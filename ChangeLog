@@ -4,6 +4,7 @@ ChangeLog for KNotes
 2004/04/21  Michael Brade <brade@kde.org>
 
     * fixed #78362: accept color drops and change background color accordingly
+    * fixed being able to uncheck all text format buttons in RT mode
 
 2004/04/20  Michael Brade <brade@kde.org>
 

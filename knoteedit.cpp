@@ -266,21 +266,25 @@ void KNoteEdit::textColor()
 void KNoteEdit::textAlignLeft()
 {
     setAlignment( AlignLeft );
+    m_textAlignLeft->setChecked( true );
 }
 
 void KNoteEdit::textAlignCenter()
 {
     setAlignment( AlignCenter );
+    m_textAlignCenter->setChecked( true );
 }
 
 void KNoteEdit::textAlignRight()
 {
     setAlignment( AlignRight );
+    m_textAlignRight->setChecked( true );
 }
 
 void KNoteEdit::textAlignBlock()
 {
     setAlignment( AlignJustify );
+    m_textAlignBlock->setChecked( true );
 }
 
 void KNoteEdit::textList()
