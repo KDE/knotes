@@ -33,6 +33,13 @@ pixdir = $(kde_datadir)/knotes/pics/
 apps_DATA = knotes.kdelnk
 appsdir = $(kde_appsdir)/Utilities
 
+install-data-local: 
+	$(mkinstalldirs) $(kde_minidir)
+	$(INSTALL_DATA) mini-knotes.xpm $(kde_minidir)/knotes.xpm
+	
+uninstall-local:
+	rm -f $(kde_minidir)/knotes.xpm
+
 messages:
 	@XGETTEXT@ -C -ktranslate -x../../kdelibs/po/kde.pot *.cpp && mv messages.po ../po/knotes.pot
 

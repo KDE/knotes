@@ -1,0 +1,33 @@
+/* XPM */
+/* Drawn  by Nico Shirwing for the K Desktop Environment */
+/* See http://www.kde.org */
+static char*knotes[]={
+"16 16 11 1",
+"# c #000000",
+"e c #ffffff",
+"a c #808080",
+"b c #c0c0c0",
+"d c #ff0000",
+"i c #800000",
+"f c #808000",
+"h c #c0c000",
+"g c #ffff00",
+"c c #ffffc0",
+". c None",
+"............##..",
+"............##..",
+"...........###..",
+"...........#a...",
+"..........#b#...",
+"........#.#a....",
+"......##c#b#....",
+"....##ccc#a##...",
+"..##cccd###cc##.",
+"##cccdddeaddccf#",
+"#ghccccdicccfhf#",
+"#hgghccchhfhfh##",
+".##hgghcfhfh##..",
+"...##hghfh##....",
+".....##h##......",
+".......#........"};
+
