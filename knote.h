@@ -53,7 +53,7 @@ protected:
     KNoteButton* m_button;
     QLabel*      m_label;
     KPopupMenu*  m_menu;
-
+	
     bool         m_dragging;
     QPoint       m_pointerOffset;
     int          m_id;

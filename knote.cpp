@@ -37,7 +37,6 @@ KNote::KNote( KConfig* config, QWidget* parent, const char* name )
 	m_label->setText( m_config->entryMap("Data")["name"] );
 	m_label->installEventFilter( this );  //recieve events( for dragging & action menu )
 
-	//create Editor- it handles own events
 	m_editor = new KNoteEdit( this );
 
 	//load the saved text for this file...
@@ -208,7 +207,7 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
 	return QWidget::eventFilter( o, ev );
 }
 
-void KNote::slotMail( int id )
+void KNote::slotMail( int /*id*/ )
 {
 	//sync up the data on note and the data file
 	QString data_name = m_config->entryMap("Data")["name"] + "_data";
@@ -227,7 +226,7 @@ void KNote::slotMail( int id )
 }
 
 
-void KNote::slotRename( int id )
+void KNote::slotRename( int /*id*/ )
 {
 	QString newname;
 	QString oldname = m_config->entryMap("Data")["name"];
@@ -273,7 +272,7 @@ void KNote::slotRename( int id )
 	emit sigRenamed( oldname, newname );
 }
 
-void KNote::slotInsDate( int id )
+void KNote::slotInsDate( int /*id*/ )
 {
 	int line, column;
 	m_editor->getCursorPosition( &line, &column );
@@ -281,7 +280,7 @@ void KNote::slotInsDate( int id )
 	                    line, column );
 }
 
-void KNote::slotConfig ( int id )
+void KNote::slotConfig ( int /*id*/ )
 {
 	//launch config dialog...
 	KNoteConfigDlg* localConfig = new KNoteConfigDlg( m_config, i18n("Local Settings") );
@@ -306,7 +305,7 @@ void KNote::slotClose()
 	emit sigClosed( m_config->entryMap("Data")["name"] );
 }
 
-void KNote::slotKill( int id )
+void KNote::slotKill( int /*id*/ )
 {
     //delete the config file...
 	QString conf_name = m_config->entryMap("Data")["name"];
@@ -325,7 +324,7 @@ void KNote::slotKill( int id )
  }
 
 
-void KNote::slotPrint( int id )
+void KNote::slotPrint( int /*id*/ )
 {
 }
 #include "knote.moc"
