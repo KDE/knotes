@@ -34,6 +34,7 @@
 #include <kstdaction.h>
 #include <kcombobox.h>
 #include <ktoolbar.h>
+#include <kpopupmenu.h>
 #include <kxmlguifactory.h>
 #include <kprinter.h>
 #include <klocale.h>
@@ -43,7 +44,6 @@
 #include <kmessagebox.h>
 #include <kprocess.h>
 #include <kinputdialog.h>
-#include <kpopupmenu.h>
 #include <kmdcodec.h>
 #include <kglobalsettings.h>
 #include <kio/netaccess.h>
@@ -55,10 +55,13 @@
 #include "knoteedit.h"
 #include "knoteconfig.h"
 #include "knoteconfigdlg.h"
+#include "knotehostdlg.h"
+#include "knotesnetsend.h"
 #include "version.h"
 
 #include <kwin.h>
 #include <netwm.h>
+//#include <kdecoration.h>
 
 #include <fixx11h.h>
 
@@ -94,6 +97,8 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
 
     new KAction( i18n("Insert Date"), "knotes_date", 0 ,
         this, SLOT(slotInsDate()), actionCollection(), "insert_date" );
+    new KAction( i18n("Send..."), "network", 0,
+        this, SLOT(slotSend()), actionCollection(), "send_note" );
     new KAction( i18n("Mail..."), "mail_send", 0,
         this, SLOT(slotMail()), actionCollection(), "mail_note" );
     KStdAction::print( this, SLOT(slotPrint()), actionCollection(), "print_note" );
@@ -427,6 +432,26 @@ void KNote::slotPreferences()
     dialog->show();
 }
 
+void KNote::slotSend()
+{
+    // pop up dialog to get the IP
+    KNoteHostDlg hostDlg( i18n("Send \"%1\"").arg( name() ), this );
+    bool ok = (hostDlg.exec() == QDialog::Accepted);
+    QString host = hostDlg.host();
+
+    if ( !ok ) // handle cancel
+        return;
+
+    if ( host.isEmpty() )
+    {
+        KMessageBox::sorry( this, i18n("The host cannot be empty.") );
+        return;
+    }
+
+    // Send the note
+    (void)new KNotesNetworkSender( host, text() );
+}
+
 void KNote::slotMail()
 {
     saveData();
@@ -625,7 +650,7 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
 
     // the shadow
     newpalette.setColor( QColorGroup::Midlight, bg.light(110) );
-    newpalette.setColor( QColorGroup::Shadow, bg.dark(116) );
+    newpalette.setColor( QColorGroup::Shadow, bg.dark(116) );  // 132 ?
     newpalette.setColor( QColorGroup::Light, bg.light(180) );
     newpalette.setColor( QColorGroup::Dark, bg.dark(108) );
     setPalette( newpalette );
@@ -691,16 +716,21 @@ void KNote::updateLayout()
     const int toolHeight = m_tool->isHidden() ? 0 : 16;
     const int margin = m_editor->margin();
     static const int border = 2;
+    bool closeLeft = false;
+
+//    if ( KDecoration::options()->customButtonPositions() )
+//       closeLeft = KDecoration::options()->titleButtonsLeft().find( 'X' ) > -1;
 
     m_button->setGeometry(
-        frameRect().width() - headerHeight - border,
+        closeLeft ? frameRect().x() + border
+                  : frameRect().width() - headerHeight - border,
         frameRect().y() + border,
         headerHeight,
         headerHeight
     );
 
     m_label->setGeometry(
-        frameRect().x() + border,
+        frameRect().x() + border + (closeLeft && !m_button->isHidden() ? headerHeight : 0),
         frameRect().y() + border,
         frameRect().width() - (m_button->isHidden() ? 0 : headerHeight) - border*2,
         headerHeight

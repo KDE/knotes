@@ -5,10 +5,16 @@ SUBDIRS         = . pics icons
 bin_PROGRAMS    = knotes
 
 include_HEADERS = KNotesIface.h
-noinst_HEADERS  = knotesapp.h knote.h knoteedit.h knoteconfigdlg.h knotebutton.h knoteslegacy.h resourcenotes.h resourcemanager.h
+noinst_HEADERS  = knotesapp.h knote.h knoteedit.h knotebutton.h knoteconfigdlg.h \
+						knoteslegacy.h resourcemanager.h resourcenotes.h resourcelocal.h \
+						knotesnetrecv.h knotesnetsend.h knotehostdlg.h
 
 noinst_LTLIBRARIES = libknotes.la
-libknotes_la_SOURCES = knotesapp.cpp knote.cpp knoteedit.cpp knotebutton.cpp knoteconfigdlg.cpp knoteconfig.kcfgc KNotesIface.skel knoteslegacy.cpp resourcemanager.cpp resourcenotes.cpp resourcelocal.cpp
+libknotes_la_SOURCES = knotesapp.cpp knote.cpp knoteedit.cpp knotebutton.cpp \
+							  knoteconfigdlg.cpp knoteconfig.kcfgc KNotesIface.skel \
+							  knoteslegacy.cpp \
+							  resourcemanager.cpp resourcenotes.cpp resourcelocal.cpp \
+							  knotesnetrecv.cpp knotesnetsend.cpp knotehostdlg.cpp
 
 knotes_SOURCES  = main.cpp
 knotes_LDADD    = libknotes.la $(LIB_KIO) -lkresources -lkdeprint $(top_builddir)/libkcal/libkcal.la
@@ -33,6 +39,5 @@ servicedir      = $(kde_servicesdir)/kresources/knotes
 
 messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/knotes.pot
-
 
 include ../admin/Doxyfile.am

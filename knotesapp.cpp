@@ -35,6 +35,7 @@
 #include <kglobalaccel.h>
 #include <ksimpleconfig.h>
 #include <kwin.h>
+#include <kextsock.h>
 
 #include <libkcal/journal.h>
 
@@ -43,8 +44,11 @@
 #include "knoteconfig.h"
 #include "knoteconfigdlg.h"
 #include "knoteslegacy.h"
+#include "knotesnetrecv.h"
 
 #include "knotes/resourcemanager.h"
+
+#define ATNOTES_PORT 24837
 
 
 int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 )
@@ -58,7 +62,7 @@ int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrColle
 KNotesApp::KNotesApp()
     : DCOPObject("KNotesIface"), QLabel( 0, 0, WType_TopLevel ),
       KXMLGUIBuilder( this ),
-      m_defaultConfig( 0 )
+      m_defaultConfig( 0 ), m_listener( 0 )
 {
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
@@ -120,6 +124,14 @@ KNotesApp::KNotesApp()
 
     kapp->installEventFilter( this );
 
+    // TODO: make listening and port configurable
+    m_listener = new KExtendedSocket(
+            QString::null, ATNOTES_PORT,
+            KExtendedSocket::passiveSocket | KExtendedSocket::inetSocket
+    );
+    connect( m_listener, SIGNAL(readyAccept()), SLOT(acceptConnection()) );
+    m_listener->listen();
+
     if ( m_noteList.count() == 0 && !kapp->isRestored() )
         newNote();
 }
@@ -132,6 +144,7 @@ KNotesApp::~KNotesApp()
     m_noteList.clear();
     blockSignals( false );
 
+    delete m_listener;
     delete m_defaultConfig;
     delete m_manager;
 }
@@ -425,6 +438,16 @@ void KNotesApp::createNote( KCal::Journal *journal )
     connect( newNote, SIGNAL(sigColorChanged()), SLOT(updateNoteActions()) );
 
     updateNoteActions();
+}
+
+void KNotesApp::acceptConnection()
+{
+    // Accept the connection and make KNotesNetworkReceiver do the job
+    KExtendedSocket *s;
+    m_listener->accept( s );
+    KNotesNetworkReceiver *recv = new KNotesNetworkReceiver( s );
+    connect( recv, SIGNAL(sigNoteReceived( const QString &, const QString & )),
+             this, SLOT(newNote( const QString &, const QString & )) );
 }
 
 void KNotesApp::saveNotes()

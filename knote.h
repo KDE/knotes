@@ -93,6 +93,7 @@ protected:
 private slots:
     void slotRename();
     void slotClose();
+    void slotSend();
     void slotMail();
     void slotPrint();
     void slotInsDate();

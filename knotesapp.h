@@ -39,6 +39,7 @@ class KAction;
 class KActionMenu;
 class KGlobalAccel;
 class KXMLGUIFactory;
+class KExtendedSocket;
 class KNotesResourceManager;
 
 namespace KCal {
@@ -98,6 +99,7 @@ private:
     void saveConfigs();
 
 private slots:
+    void acceptConnection();
     void saveNotes();
     void updateNoteActions();
     void updateGlobalAccels();
@@ -112,8 +114,9 @@ private:
     };
 
     KNotesResourceManager *m_manager;
-
     KNoteConfig     *m_defaultConfig;
+
+    KExtendedSocket *m_listener;
 
     QDict<KNote>    m_noteList;
     KNoteActionList m_noteActions;
