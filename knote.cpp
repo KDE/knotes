@@ -454,6 +454,8 @@ void KNote::slotMail() const
     {
         if ( *it == "%f" )
             mail << msg_body;
+        else if ( *it == "%t" )
+            mail << m_label->text();
         else
             mail << *it;
     }

@@ -1,17 +1,19 @@
 TODOs for KNotes
 ================
 
+ * document the config dialog
  * transparent notes
+ * alarm
  * steal some ideas from Stickies (Mac OS X)
  * save cursor position and scrollbar postion
  * the config dialog:
     - make the frame configureable (3d -> normal)
     - make the keybindings configureable
+ * fix/implement printing
 
 perhaps:
  * shadow for the notes
- * icons for the notes
- * alarm
+ * icons for the notes (small, put in the note menu)
 
 older TODOs from Wynn:
  * inserting calendar
@@ -26,4 +28,4 @@ Always open TODO:
  * make the code as perfect and clean as possible!!
 
 
--- Michael Brade 06-17-2001
+-- Michael Brade 07-11-2001
