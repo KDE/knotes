@@ -26,7 +26,7 @@ pix_DATA = knoteslogo.png knotesclose.png
 pixdir = $(kde_datadir)/knotes/pics/
 
 apps_DATA = knotes.desktop
-appsdir = $(kde_appsdir)/Programs/Utilities
+appsdir = $(kde_appsdir)/Utilities
 
 messages:
 	$(XGETTEXT) -C -ki18n -x $(includedir)/kde.pot $(knotes_SOURCES) && mv messages.po ../po/knotes.pot
