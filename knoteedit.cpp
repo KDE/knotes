@@ -143,6 +143,7 @@ void KNoteEdit::readFile( QString& filename )
     if( infile.open( IO_ReadOnly ) )
     {
         QTextStream input( &infile );
+	input.setEncoding(QTextStream::UnicodeUTF8);
         setText( input.read() );
         infile.close();
     } else
@@ -157,6 +158,7 @@ void KNoteEdit::dumpToFile( QString& filename ) const
     if( outfile.open( IO_WriteOnly ) )
     {
         QTextStream output( &outfile );
+	output.setEncoding(QTextStream::UnicodeUTF8);
         output << text();
         outfile.close();
     } else

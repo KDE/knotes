@@ -446,11 +446,11 @@ void KNote::slotMail() //const
         it != cmd_list.end(); ++it )
     {
         if ( *it == "%f" )
-            mail << msg_body;
+            mail << msg_body.local8Bit();
         else if ( *it == "%t" )
-            mail << m_label->text();
+            mail << m_label->text().local8Bit();
         else
-            mail << *it;
+            mail << (*it).local8Bit();
     }
 
     if ( !mail.start( KProcess::DontCare ) )
