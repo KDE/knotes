@@ -20,10 +20,7 @@ knotes_SOURCES	= knotes.cpp  configdlg.cpp fontdlg.cpp mail.cpp alarm.cpp \
 METASOURCES = knotes.moc configdlg.moc fontdlg.moc mail.moc alarm.moc \
 	spin.moc renamedlg.moc docking.moc
 
-SUBDIRS = docs
-
-icon_DATA = knotes.xpm
-icondir = $(kde_icondir)
+kde_icon_DATA = knotes.xpm
 
 pix_DATA = knoteslogo.xpm knotesclose.xpm
 pixdir = $(kde_datadir)/knotes/pics/
