@@ -84,6 +84,7 @@ install: all
 	$(INSTALL_DATA) knotes.xpm $(ICONSDIR)
 	$(INSTALL_DIR) $(PIXDIR)
 	$(INSTALL_DATA) knoteslogo.xpm $(PIXDIR)	
+	$(INSTALL_DATA) knotesclose.xpm $(PIXDIR)	
 	$(INSTALL_DIR) $(APPSDIR)
 	$(INSTALL_DATA) knotes.kdelnk $(APPSDIR)/knotes.kdelnk
 

@@ -30,6 +30,7 @@
 
 #include <time.h>
 #include "knotes.h"
+#include <kiconloader.h>
 #include "configdlg.h"
 #include "fontdlg.h"
 #include "mail.h"
@@ -203,6 +204,11 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     label->setAlignment( AlignHCenter);
     label->installEventFilter(this);
     dragging = false;
+
+    mybutton = new myPushButton(this);
+    mybutton->setGeometry(200-30,0,30,30);
+    mybutton->setPixmap(mykapp->getIconLoader()->loadIcon("knotesclose.xpm"));
+    connect(mybutton,SIGNAL(clicked()),this,SLOT(hideKPostit()));
 
     edit = new KPostitMultilineEdit(this);
     edit->setGeometry(0,30,200,100);
@@ -964,8 +970,9 @@ bool KPostit::insertFile(char* filename){
 
 void KPostit::resizeEvent( QResizeEvent * ){
   label->adjustSize();
-  label->setGeometry(0,0,width(),label->height());
+  label->setGeometry(0,0,width()-label->height(),label->height());
   edit->setGeometry(0, label->height(), width(), height()-label->height());
+  mybutton->setGeometry(this->width()-label->height() ,0,label->height(),label->height());
 }
 
 void KPostit::closeEvent( QCloseEvent * ){
@@ -1243,6 +1250,8 @@ void KPostit::set_colors(){
   edit->setBackgroundColor(backcolor);
   label->setPalette(mypalette);
   label->setBackgroundColor(backcolor.dark(120));
+  mybutton->setPalette(mypalette);
+  mybutton->setBackgroundColor(backcolor.dark(120));
 
 }
 
@@ -1716,5 +1725,118 @@ void catchSignals()
 }
 
 
+myPushButton::myPushButton(QWidget *parent, const char* name)
+  : QPushButton( parent, name ){
+    setFocusPolicy(NoFocus);
+    flat = True;
+    last_button = 0;
+}
 
+void myPushButton::enterEvent( QEvent * ){
+  flat = False;
+  repaint(FALSE);
+}
 
+void myPushButton::leaveEvent( QEvent * ){
+  flat = True;
+    repaint();
+}
+
+void myPushButton::paint(QPainter *painter){
+  if ( isDown() || (isOn() && !flat)) {
+    if ( style() == WindowsStyle )
+      qDrawWinButton( painter, 0, 0, width(), 
+		      height(), colorGroup(), TRUE );
+    else
+      qDrawShadePanel( painter, 0, 0, width(), 
+		       height(), colorGroup(), TRUE, 2, 0L );
+  }
+  else if (!flat ) {
+    if ( style() == WindowsStyle )
+      qDrawWinButton( painter, 0, 0, width(), height(),
+		      colorGroup(), FALSE );
+    else {
+      qDrawShadePanel( painter, 0, 0, width(), height(), 
+		       colorGroup(), FALSE, 2, 0L );
+//       painter->setPen(black);
+//       painter->drawRect(0,0,width(),height()); 
+    }
+  }
+  
+
+  int dx = ( width() - pixmap()->width() ) / 2;
+  int dy = ( height() - pixmap()->height() ) / 2;
+  if ( isDown() && style() == WindowsStyle ) {
+    dx++;
+    dy++;
+  }
+
+  painter->drawPixmap( dx, dy, *pixmap());
+  
+    
+
+}
+
+void myPushButton::mousePressEvent( QMouseEvent *e){
+  
+  if ( isDown())
+    return;
+
+  bool hit = hitButton( e->pos() );
+  if ( hit ){
+    last_button = e->button();
+    setDown( TRUE );
+    repaint( FALSE );
+    emit pressed();
+  }
+}
+
+void myPushButton::mouseReleaseEvent( QMouseEvent *e){
+  if ( !isDown() ){
+    last_button = 0;
+    return;
+  }
+  bool hit = hitButton( e->pos() );
+  setDown( FALSE );
+  if ( hit ){
+    if ( isToggleButton() )
+      setOn( !isOn() );
+    repaint( FALSE );
+    if ( isToggleButton() )
+      emit toggled( isOn() );
+    emit released();
+    emit clicked(); 
+  }
+  else {
+    repaint();
+    emit released();
+  }
+  last_button = 0;
+}
+
+void myPushButton::mouseMoveEvent( QMouseEvent *e ){
+
+  if (!last_button)
+    return;
+
+  if ( !(e->state() & LeftButton) &&
+       !(e->state() & MidButton) &&
+       !(e->state() & RightButton))
+    return;
+
+  
+  bool hit = hitButton( e->pos() );
+  if ( hit ) {
+    if ( !isDown() ) {
+      setDown(TRUE);
+      repaint(FALSE);
+      emit pressed();
+    }
+  } else {
+    if ( isDown() ) {
+      setDown(FALSE);
+      repaint();
+      emit released();
+    }
+  }
+}

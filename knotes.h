@@ -39,6 +39,7 @@
 #include <qfileinf.h> 
 #include <qdatetm.h> 
 #include <qkeycode.h>
+#include <qbutton.h>
 #include <qdir.h>
 #include <qlined.h>
 #include <qtabdlg.h>
@@ -104,6 +105,27 @@ protected:
 };
 
 
+
+class myPushButton: public QPushButton
+{
+  Q_OBJECT
+public:
+  myPushButton ( QWidget *parent=0, const char* name=0 );
+  ~myPushButton () {}
+  bool flat;
+  int last_button;
+protected:
+  void enterEvent( QEvent * );
+  void leaveEvent( QEvent * );
+  void mousePressEvent( QMouseEvent *e);
+  void mouseReleaseEvent( QMouseEvent *e);
+  void mouseMoveEvent( QMouseEvent *e);
+  void paint( QPainter *_painter );
+  void drawButton( QPainter *p ){paint(p);}
+  void drawButtonLabel( QPainter *p ){paint(p);}
+};
+
+
 class KPostitMultilineEdit: public QMultiLineEdit{
   Q_OBJECT
 
@@ -142,6 +164,7 @@ public:
   QString name;
   QString propertystring;
   QLabel* label;
+  myPushButton* mybutton;
   KPostitMultilineEdit* edit;
   
   QPopupMenu *right_mouse_button;
