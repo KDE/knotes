@@ -212,6 +212,7 @@ public slots:
   void  insertCalendar();
   void  mail();
   void  print();
+  void save_all();
   void  defaults();
   void  setAlarm();
   void  help();

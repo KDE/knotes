@@ -139,3 +139,29 @@ void MyTimer::timerEvent( QTimerEvent * ){
 
 }
 
+
+
+void SaveTimer::start(){
+  
+  startTimer(15*60*1000);
+
+}
+
+void SaveTimer::stop(){
+  
+  killTimers();
+
+}
+void SaveTimer::timerEvent( QTimerEvent * ){
+
+    for( KPostit::PostitList.first(); 
+	 KPostit::PostitList.current();
+	 KPostit::PostitList.next()
+	 ){
+
+      KPostit::PostitList.current()->savenotes();
+
+    }
+
+}
+

@@ -53,10 +53,11 @@ void findPostitFiles();
 QList<KPostit> 	  KPostit::PostitList;      // pointers to all postit objects
 QStrList 	  KPostit::PostitFilesList; // names of all postit files
 QList<AlarmEntry> KPostit::AlarmList;
-ConfigDlg *configdlg  = 0L;
-FontDlg* fontdlg      = 0L;
-QTabDialog* tabdialog = 0L;
-DefStruct newdefstruct;
+
+ConfigDlg*      configdlg  = 0L;
+FontDlg*        fontdlg    = 0L;
+QTabDialog*     tabdialog  = 0L;
+DefStruct       newdefstruct;
 
 KApplication* 	mykapp;
 DockWidget*     docker;
@@ -72,7 +73,8 @@ long 		window_id;
 QString 	tmpFile;
 
 MyTimer* 	mytimer;
-bool    saved_already_for_session_management = false;
+SaveTimer* 	savetimer;
+bool            saved_already_for_session_management = false;
 
 extern bool     savealarms();
 extern bool 	readalarms();
@@ -317,6 +319,9 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 				    SLOT(mail()));
     operations->insertItem (klocale->translate("Print Note"), this, 	
 				    SLOT(print()));
+
+    operations->insertItem (klocale->translate("Save Notes"), this, 	
+				    SLOT(save_all()));
 
     options = new QPopupMenu();
     options->setCheckable(TRUE);
@@ -639,6 +644,18 @@ void KPostit::setAlarm(){
 
 }
 
+void KPostit::save_all(){
+
+    for( KPostit::PostitList.first(); 
+	 KPostit::PostitList.current();
+	 KPostit::PostitList.next()
+	 ){
+
+      KPostit::PostitList.current()->savenotes();
+
+    }
+
+}
 void KPostit::print(){
 
   mykapp->processEvents();
@@ -1737,6 +1754,7 @@ int main( int argc, char **argv ) {
   alarmConsistencyCheck();
 
   mytimer = new MyTimer();
+  savetimer = new SaveTimer();
 
   bool restoring = false;
 

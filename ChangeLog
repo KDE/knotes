@@ -1,7 +1,11 @@
+Fri May 29 05:36:36 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
+
+	* KNotes are now automatically saved all 15 minutes. 
+	* added explicit save command on request.
+
 Thu Apr  9 03:21:54 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
 
 	* knotes recognizes urls now.
-
 	* Fixed up knotes and implemented docking properly
 
 Thu Aug  7 18:50:59 1997  Bernd Johannes Wuebben  <wuebben@petit.cornell.edu>

@@ -44,4 +44,19 @@ public:
   void stop();
 };
 
+class SaveTimer : public QObject{
+
+public:
+  SaveTimer(){
+    startTimer(15*60* 1000 ); // 15 Minutes
+  }
+
+protected:
+  virtual void timerEvent( QTimerEvent * );
+
+public:
+  void start();
+  void stop();
+};
+
 #endif
