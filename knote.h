@@ -114,9 +114,6 @@ private:
     void setColor( const QColor&, const QColor& );
 
 private:
-    QPoint m_pointerOffset;
-    bool   m_dragging;
-
     QLabel        *m_label;
     KNoteButton   *m_button;
     KToolBar      *m_tool;

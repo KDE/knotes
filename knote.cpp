@@ -70,6 +70,8 @@
 
 using namespace KCal;
 
+extern Time qt_x_time;
+
 
 KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *name )
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorder | WDestructiveClose ),
@@ -887,40 +889,15 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
         if ( ev->type() == QEvent::MouseButtonDblClick )
             slotRename();
 
-        if ( ev->type() == QEvent::MouseButtonRelease &&
-             (e->button() == LeftButton || e->button() == MidButton) )
-        {
-            m_dragging = false;
-            m_label->releaseMouse();
-            return true;
-        }
-
         if ( ev->type() == QEvent::MouseButtonPress &&
              (e->button() == LeftButton || e->button() == MidButton))
         {
-            m_pointerOffset = e->pos();
-            m_label->grabMouse( sizeAllCursor );
-
             e->button() == LeftButton ? KWin::raiseWindow( winId() )
                                       : KWin::lowerWindow( winId() );
 
-            return true;
-        }
-
-        if ( ev->type() == QEvent::MouseMove && m_label == mouseGrabber() )
-        {
-            if ( m_dragging )
-                move( QCursor::pos() - m_pointerOffset );
-            else
-            {
-                m_dragging = (
-                    (e->pos().x() - m_pointerOffset.x()) *
-                    (e->pos().x() - m_pointerOffset.x())
-                    +
-                    (e->pos().y() - m_pointerOffset.y()) *
-                    (e->pos().y() - m_pointerOffset.y())   >= 9
-                );
-            }
+            XUngrabPointer( qt_xdisplay(), qt_x_time );
+            NETRootInfo wm_root( qt_xdisplay(), NET::WMMoveResize );
+            wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(), NET::Move );
             return true;
         }
 
