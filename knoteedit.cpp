@@ -25,22 +25,45 @@
 #include <qfont.h>
 
 #include <kdebug.h>
+#include <klocale.h>
+#include <kaction.h>
+#include <kstdaction.h>
+#include <kpopupmenu.h>
+#include <kxmlgui.h>
+#include <kxmlguiclient.h>
 
 #include "knoteedit.h"
 
-using namespace Qt3;
 
 KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
     : QTextEdit( parent, name )
 {
-    setAcceptDrops( TRUE );
-    setBackgroundMode( QWidget::PaletteBase );
+    setAcceptDrops( true );
+    setBackgroundMode( PaletteBase );
     setFrameStyle( NoFrame );
     setWordWrap( WidgetWidth );
     setWrapPolicy( AtWhiteSpace );
     setTextFormat( PlainText );
 
-    connect( this, SIGNAL(returnPressed()), this, SLOT(slotReturnPressed()) );
+    KXMLGUIClient* client = dynamic_cast<KXMLGUIClient*>(parent);
+    KActionCollection* actions = client->actionCollection();
+
+    // create the actions for the RMB menu
+    KAction* undo = KStdAction::undo( this, SLOT(undo()), actions );
+    KAction* redo = KStdAction::redo( this, SLOT(redo()), actions );
+    m_cut = KStdAction::cut( this, SLOT(cut()), actions );
+    m_copy = KStdAction::copy( this, SLOT(copy()), actions );
+    m_paste = KStdAction::paste( this, SLOT(paste()), actions );
+    new KAction( i18n("Clear"), "editclear", 0, this, SLOT(clear()), actions, "edit_clear" );
+    KStdAction::selectAll( this, SLOT(selectAll()), actions );
+
+    connect( this, SIGNAL(undoAvailable(bool)), undo, SLOT(setEnabled(bool)) );
+    connect( this, SIGNAL(redoAvailable(bool)), redo, SLOT(setEnabled(bool)) );
+    connect( this, SIGNAL(copyAvailable(bool)), m_copy, SLOT(setEnabled(bool)) );
+
+    connect( this, SIGNAL(selectionChanged()), SLOT(slotSelectionChanged()) );
+
+    connect( this, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
 }
 
 KNoteEdit::~KNoteEdit()
@@ -75,16 +98,18 @@ void KNoteEdit::dumpToFile( QString& filename ) const
 
 void KNoteEdit::setTextFont( QFont& font )
 {
-    selectAll();
+    setSelectionAttributes( 1, colorGroup().background(), false );
+    setSelection( 0, 0, length(), paragraphLength( length() ), 1 );
     setFont( font );
-    selectAll( false );
+    removeSelection( 1 );
 }
 
 void KNoteEdit::setTextColor( QColor& color )
 {
-    selectAll();
+    setSelectionAttributes( 1, colorGroup().background(), false );
+    setSelection( 0, 0, length(), paragraphLength( length() ), 1 );
     setColor( color );
-    selectAll( false );
+    removeSelection( 1 );
 }
 
 void KNoteEdit::setAutoIndentMode( bool newmode )
@@ -92,94 +117,52 @@ void KNoteEdit::setAutoIndentMode( bool newmode )
     m_autoIndentMode = newmode;
 }
 
+void KNoteEdit::slotSelectionChanged()
+{
+    // TODO: QTextEdit bug
+    if ( !selectedText().isEmpty() )
+    {
+        m_cut->setEnabled( true );
+        m_copy->setEnabled( true );
+    }
+    else
+    {
+        m_cut->setEnabled( false );
+        m_copy->setEnabled( false );
+    }
+}
+
 void KNoteEdit::slotReturnPressed()
 {
     if ( m_autoIndentMode )
-        indent();
+        autoIndent();
 }
 
-/*
-void KNoteEdit::keyPressEvent( QKeyEvent* e )
+void KNoteEdit::autoIndent()
 {
-    if ( e->key() == Key_Tab )
-    {
-        int line, col;
-        cursorPosition( &line, &col );
-        insertAt( "\t", line, col );
-        return;
-    }
+    int para, index;
+    QString string;
+    getCursorPosition( &para, &index );
+    while ( para > 0 && string.stripWhiteSpace().isEmpty() )
+        string = text( --para );
 
-    if ( e->key() == Key_Return || e->key() == Key_Enter )
-    {
-        mynewLine();
-        return;
-    }
-
-    QTextEdit::keyPressEvent( e );
-}
-
-void KNoteEdit::mynewLine()
-{
-    if ( isReadOnly() )
+    if ( string.stripWhiteSpace().isEmpty() )
         return;
 
-    if ( !m_autoIndentMode )
-    {
-        newLine();
-        return;
-    }
-
-    //in auto indent mode
-    int line,col;
-    bool found_one = false;
-
-    getCursorPosition( &line, &col );
-
-    QString string1, string2;
-    while ( line >= 0 )
-    {
-        string1 = textLine( line );
-        string2 = string1.stripWhiteSpace();
-
-        if ( !string2.isEmpty() )
-        {
-            string1 = prefixString( string1 );
-            found_one = TRUE;
-            break;
-        }
-        line--;
-    }
-
-    // string will now contain those whitespace characters that I need to insert
-    // on the next line.
-
-    if ( found_one )
-    {
-        newLine();
-        int line, col;
-        cursorPosition(&line, &col);
-        insertAt(string1, line, col);
-    }
-    else
-        newLine();
-}
-
-QString KNoteEdit::prefixString( QString string )
-{
     // This routine returns the whitespace before the first non white space
-    // character in string. This is  used in mynewLine() for indent mode.
+    // character in string.
     // It is assumed that string contains at least one non whitespace character
     // ie \n \r \t \v \f and space
-    QString returnstring;
+    QString indentString;
 
     int len = string.length();
     int i = 0;
     while ( i < len && string.at(i).isSpace() )
-        returnstring += string.at( i++ );
+        indentString += string.at( i++ );
 
-    return returnstring;
-}*/
-
+    if ( !indentString.isEmpty() )
+        insert( indentString );
+}
 
 void KNoteEdit::dragEnterEvent( QDragEnterEvent* event )
 {

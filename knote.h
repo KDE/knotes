@@ -26,18 +26,26 @@
 #include <qpoint.h>
 #include <qdir.h>
 
+#include <kxmlguiclient.h>
+
 class QLabel;
 
+class KXMLGUIBuilder;
+class KXMLGUIFactory;
+
 class KPopupMenu;
+class KToggleAction;
+class KListAction;
 class KNoteButton;
 class KNoteEdit;
 
 
-class KNote : public QFrame
+class KNote : public QFrame, public KXMLGUIClient
 {
     Q_OBJECT
 public:
-    KNote( const QString& config, bool load=false, QWidget* parent=0, const char* name=0 );
+    KNote( KXMLGUIBuilder* builder, const QString& config, bool load=false,
+           QWidget* parent=0, const char* name=0 );
     ~KNote();
 
     void saveData() const;
@@ -65,9 +73,9 @@ public slots:
     void slotInsDate();
     void slotPreferences();
 
-    void slotAlwaysOnTop();
+    void slotToggleAlwaysOnTop();
     void slotToDesktop( int id );
-    void slotPrepareDesktopMenu();
+    void slotUpdateDesktopActions();
 
 signals:
     void sigKilled( const QString& );
@@ -87,19 +95,21 @@ private slots:
 private:
     void convertOldConfig();
 
-    QDir         m_noteDir;
-    QString      m_configFile;
+    QDir    m_noteDir;
+    QString m_configFile;
+    QPoint  m_pointerOffset;
+    bool    m_dragging;
 
     QLabel*      m_label;
     KNoteButton* m_button;
     KNoteEdit*   m_editor;
 
-    KPopupMenu*  m_menu;
-    KPopupMenu*  m_desktop_menu;
+    KPopupMenu*    m_menu;
+    KPopupMenu*    m_edit_menu;
+    KToggleAction* m_alwaysOnTop;
+    KListAction*   m_toDesktop;
 
-    QPoint       m_pointerOffset;
-    int          m_idAlwaysOnTop;
-    bool         m_dragging;
+    KXMLGUIFactory* factory;
 };
 
 #endif

@@ -26,6 +26,7 @@
 
 class QFont;
 class QColor;
+class KAction;
 
 
 class KNoteEdit : public QTextEdit
@@ -35,28 +36,31 @@ public:
     KNoteEdit( QWidget *parent=0, const char *name=0 );
     ~KNoteEdit();
 
-    void setAutoIndentMode( bool newmode );
     void readFile( QString& filename );
     void dumpToFile( QString& filename ) const;
     void setTextFont( QFont& font );
     void setTextColor( QColor& color );
+    void setAutoIndentMode( bool newmode );
 
 protected:
     void dragMoveEvent( QDragMoveEvent* event );
     void dragEnterEvent( QDragEnterEvent* event );
     void dropEvent( QDropEvent* event );
-/*
-    void keyPressEvent( QKeyEvent* e );
-    void mynewLine();
-*/
+
 protected slots:
     void slotReturnPressed();
+    void slotSelectionChanged();
 
 signals:
     void gotUrlDrop( const QString& url );
 
 private:
-//    QString prefixString( QString string );
+    void autoIndent();
+
+    KAction* m_cut;
+    KAction* m_copy;
+    KAction* m_paste;
+
     bool m_autoIndentMode;
 };
 

@@ -63,8 +63,6 @@ KNotesApp::KNotesApp()
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
     setXMLFile( QString( instance()->instanceName() + "ui.rc" ) );
-    setXMLGUIBuildDocument( QDomDocument() );
-
     factory = new KXMLGUIFactory( this, this, "guifactory" );
     factory->addClient( this );
 
@@ -114,7 +112,7 @@ KNotesApp::KNotesApp()
     notes = noteDir.entryList( QDir::Files, QDir::Name );   // this doesn't list the hidden data files
     for ( QStringList::Iterator i = notes.begin(); i != notes.end(); i++ )
     {
-        KNote* newNote = new KNote( *i, true );
+        KNote* newNote = new KNote( this, *i, true );
 
         connect( newNote, SIGNAL( sigRenamed(const QString&, const QString&) ),
                  this,    SLOT( slotNoteRenamed(const QString&, const QString&) ) );
@@ -181,7 +179,7 @@ int KNotesApp::newNote( QString name, const QString& text )
         }
     }
 
-    KNote* newNote = new KNote( name );
+    KNote* newNote = new KNote( this, name );
     newNote->setText( text );
 
     connect( newNote, SIGNAL( sigRenamed(const QString&, const QString&) ),
