@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2001/06/23  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * fixed #18086 (add a size grip for the notes)
+    * update the title layout if the font was changed
+
 2001/06/17  Michael Brade <brade@informatik.uni-muenchen.de>
 
     * finished porting KNotes to the XMLGUI framework
