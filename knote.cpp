@@ -19,10 +19,10 @@
 *******************************************************************/
 
 #include <qlabel.h>
+#include <qsize.h>
 #include <qsizegrip.h>
 #include <qbitmap.h>
 #include <qcursor.h>
-#include <qpointarray.h>
 #include <qpainter.h>
 #include <qpaintdevicemetrics.h>
 #include <qsimplerichtext.h>
@@ -184,7 +184,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
 
     // let KWin do the placement if the position is illegal
     if ( position != default_position &&
-            kapp->desktop()->rect().intersects( QRect( position, size() ) ) )
+            kapp->desktop()->rect().intersects( QRect( position, QSize( width, height ) ) ) )
         move( position );           // do before calling show() to avoid flicker
 
     // read configuration settings...
@@ -199,7 +199,9 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
             // to avoid flicker, call this before show()
             toDesktop( note_desktop );
             show();
-        } else {
+        }
+        else
+        {
             show();
             // if this is called before show(),
             // it won't work for sticky notes!!!
