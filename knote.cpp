@@ -21,6 +21,7 @@
 #include <qlabel.h>
 #include <qsizegrip.h>
 #include <qbitmap.h>
+#include <qcursor.h>
 #include <qpaintdevicemetrics.h>
 
 #include <private/qrichtext_p.h>
