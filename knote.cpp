@@ -895,7 +895,7 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
             return true;
         }
 
-        return m_label->eventFilter( o, ev );
+        return false;
     }
     else if ( o == m_editor )
     {
@@ -914,17 +914,20 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
             m_button->show();
             m_editor->cornerWidget()->show();
         }
-        return m_editor->eventFilter( o, ev );
+
+        return false;
     }
     else if ( o == m_editor->viewport() )
     {
         if ( ev->type() == QEvent::MouseButtonPress )
             if ( m_edit_menu && ((QMouseEvent*)ev)->button() == RightButton )
+            {
                 m_edit_menu->popup( QCursor::pos() );
-
-        return m_editor->viewport()->eventFilter( o, ev );
+                return true;
+            }
     }
-    return QFrame::eventFilter( o, ev );
+
+    return false;
 }
 
 #include "knote.moc"
