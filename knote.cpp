@@ -36,6 +36,7 @@ KNote::KNote( KConfig* config, QWidget* parent, const char* name )
         m_label->setAlignment( AlignHCenter );
         m_label->setText( m_config->entryMap("Data")["name"] );
         m_label->installEventFilter( this );  //recieve events( for dragging & action menu )
+        m_headerHeight = m_label->sizeHint().height();
 
         m_editor = new KNoteEdit( this );
 
@@ -96,9 +97,9 @@ void KNote::resizeEvent( QResizeEvent* qre )
 		int new_height = height();
 		int new_width  = width();
 		
-        m_button->setGeometry( new_width - 15, 0, 15, 15 );
-        m_label->setGeometry( 0, 0, new_width - 15, 15 );
-        m_editor->setGeometry( 0, 15, new_width, new_height - 15 );
+        m_button->setGeometry( new_width - m_headerHeight, 0, m_headerHeight, m_headerHeight );
+        m_label->setGeometry( 0, 0, new_width - m_headerHeight, m_headerHeight );
+        m_editor->setGeometry( 0, m_headerHeight, new_width, new_height - m_headerHeight );
 
 		//need to save the new size to KConfig object
 		m_config->setGroup( "Display" );
