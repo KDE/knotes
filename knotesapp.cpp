@@ -94,7 +94,7 @@ KNotesApp::KNotesApp()
     m_context_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "knotes_context", this ));
     m_note_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "notes_menu", this ));
 
-    noteGUI.setContent(
+    m_noteGUI.setContent(
         KXMLGUIFactory::readConfigFile( instance()->instanceName() + "ui.rc", instance() )
     );
 
@@ -386,9 +386,13 @@ void KNotesApp::slotConfigureAccels()
         keys.insert( notes.current()->actionCollection() );
     keys.configure();
 
+    // update GUI for new notes
+    m_noteGUI = notes.current()->actionCollection()->parentGUIClient()->domDocument();
+
     notes.toFirst();
-    for( ; notes.current(); ++notes )
-        notes.current()->reloadXML();
+
+//    for( ; notes.current(); ++notes )
+//        notes.current()->reloadXML();
 
     m_globalAccel->writeSettings();
     updateGlobalAccels();
@@ -435,7 +439,7 @@ void KNotesApp::showNote( KNote* note ) const
 
 void KNotesApp::createNote( KCal::Journal *journal )
 {
-    KNote *newNote = new KNote( noteGUI, journal, 0, journal->uid().utf8() );
+    KNote *newNote = new KNote( m_noteGUI, journal, 0, journal->uid().utf8() );
     m_noteList.insert( newNote->noteId(), newNote );
 
     connect( newNote, SIGNAL(sigRequestNewNote()), SLOT(newNote()) );

@@ -81,7 +81,6 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
     setAcceptDrops( true );
     actionCollection()->setWidget( this );
-    // FIXME " ->setXML( file );
 
     // if there is no title yet, use the start date if valid
     // (KOrganizer's journals don't have titles but a valid start date)
@@ -138,6 +137,8 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     m_editor->viewport()->installEventFilter( this );
 
     setDOMDocument( buildDoc );
+    //setXMLFile( instance()->instanceName() + "ui.rc", false, false );
+
     KXMLGUIBuilder builder( this );
     KXMLGUIFactory factory( &builder, this );
     factory.addClient( this );

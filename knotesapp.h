@@ -129,7 +129,7 @@ private:
     KXMLGUIFactory  *m_guiFactory;
     KXMLGUIBuilder  *m_guiBuilder;
 
-    QDomDocument    noteGUI;
+    QDomDocument    m_noteGUI;
 };
 
 #endif
