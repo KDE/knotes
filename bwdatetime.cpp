@@ -82,8 +82,8 @@ BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
 
    ampm = new QButtonGroup(this);
    
-   am = new QRadioButton("AM", ampm);   
-   pm = new QRadioButton("PM", ampm);   
+   am = new QRadioButton(i18n("AM"), ampm);   
+   pm = new QRadioButton(i18n("PM"), ampm);   
 
    if(qdt.time().hour() < 12){
 

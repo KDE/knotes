@@ -33,6 +33,7 @@
 #include <kiconloader.h>
 #include <kurl.h>
 #include <kfm.h>
+#include <kstring.h>
 
 #include "configdlg.h"
 #include "fontdlg.h"
@@ -259,7 +260,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     KWM::setMiniIcon(winId(), kapp->getMiniIcon());
 
     label = new QLabel(this);
-    label->setText("Hallo");
+    label->setText(i18n("Hello"));
     label->setAlignment( AlignHCenter);
     label->installEventFilter(this);
     dragging = false;
@@ -1339,19 +1340,20 @@ void KPostit::defaults()
     QLabel  *label = new QLabel(box,"label");
     box->setGeometry(10,10,315,260);
 
-    box->setTitle("About");
+    box->setTitle(i18n("About"));
 
 
     label->setGeometry(140,60,160,170);
 
-    QString labelstring = "KNotes "KNOTES_VERSION"\n"\
-      "Bernd Johannes Wuebben\n"\
-      "wuebben@math.cornell.edu\n"\
-      "wuebben@kde.org\n"\
-      "Copyright (C) 1997\n\n"\
-      "With contributions by:\n"
-      "Matthias Ettrich <ettrich@kde.org>\n"\
-      "\n\n";
+    QString labelstring;
+    ksprintf(&labelstring, i18n("KNotes %s\n"
+				"Bernd Johannes Wuebben\n"
+				"wuebben@math.cornell.edu\n"
+				"wuebben@kde.org\n"
+				"Copyright (C) 1997\n\n"
+				"With contributions by:\n"
+				"Matthias Ettrich <ettrich@kde.org>\n\n\n"),
+	     KNOTES_VERSION);
 
 
     label->setAlignment(AlignLeft|WordBreak|ExpandTabs);

@@ -43,7 +43,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 
   box = new QGroupBox(this, "box");
   box->setGeometry(10,10,320,260);
-  box->setTitle("Defaults");
+  box->setTitle(i18n("Defaults"));
 
   label1 = new QLabel(this);
   label1->setGeometry(20,30,135,25);
