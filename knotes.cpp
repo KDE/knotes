@@ -53,6 +53,10 @@ void findPostitFiles();
 QList<KPostit> 	  KPostit::PostitList;      // pointers to all postit objects
 QStrList 	  KPostit::PostitFilesList; // names of all postit files
 QList<AlarmEntry> KPostit::AlarmList;
+ConfigDlg *configdlg  = 0L;
+FontDlg* fontdlg      = 0L;
+QTabDialog* tabdialog = 0L;
+DefStruct newdefstruct;
 
 KApplication* 	mykapp;
 DockWidget*     docker;
@@ -1287,43 +1291,8 @@ void KPostit::dummy(){
 void KPostit::defaults()
 {
 
-  QTabDialog * tabdialog;
-  tabdialog = new QTabDialog(0,"tabdialog",TRUE);
-  tabdialog->setCaption( klocale->translate("KNotes Configuraton") );
-  tabdialog->resize( 350, 350 );
-  tabdialog->setCancelButton();
-
-  QWidget *about = new QWidget(tabdialog,"about");
-
-  QGroupBox *box = new QGroupBox(about,"box");
-  QLabel  *label = new QLabel(box,"label");
-  box->setGeometry(10,10,315,260);
-
-  box->setTitle("About");
 
 
-  label->setGeometry(140,60,160,170);
-
-  QString labelstring = "KNotes "KNOTES_VERSION"\n"\
-    "Bernd Johannes Wuebben\n"\
-    "wuebben@math.cornell.edu\n"\
-    "wuebben@kde.org\n"\
-    "Copyright (C) 1997\n"\
-    "\n\n";
-
-
-  label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
-  label->setText(labelstring.data());
-  
-  QString pixdir = mykapp->kde_datadir() + "/knotes/pics/";
-
-
-  QPixmap pm((pixdir + "knoteslogo.xpm").data());
-  QLabel *logo = new QLabel(box);
-  logo->setPixmap(pm);
-  logo->setGeometry(30, 50, pm.width(), pm.height());
-
-  DefStruct newdefstruct;
   newdefstruct.forecolor  = postitdefaults.forecolor;
   newdefstruct.backcolor  = postitdefaults.backcolor;
   newdefstruct.width 	  = postitdefaults.width;
@@ -1335,20 +1304,65 @@ void KPostit::defaults()
   newdefstruct.mailcommand.detach();
   newdefstruct.printcommand = postitdefaults.printcommand;
   newdefstruct.printcommand.detach();
+
+
+  if(!tabdialog){
+
+    tabdialog = new QTabDialog(0,"tabdialog",TRUE);
+    tabdialog->setCaption( klocale->translate("KNotes Configuraton") );
+    tabdialog->resize( 350, 350 );
+    tabdialog->setCancelButton();
+
+    QWidget *about = new QWidget(tabdialog,"about");
+
+    QGroupBox *box = new QGroupBox(about,"box");
+    QLabel  *label = new QLabel(box,"label");
+    box->setGeometry(10,10,315,260);
+
+    box->setTitle("About");
+
+
+    label->setGeometry(140,60,160,170);
+    
+    QString labelstring = "KPostit "KNOTES_VERSION"\n"\
+      "Bernd Johannes Wuebben\n"\
+      "wuebben@math.cornell.edu\n"\
+      "wuebben@kde.org\n"\
+      "Copyright (C) 1997\n"\
+      "\n\n";
+    
+
+    label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
+    label->setText(labelstring.data());
   
-  ConfigDlg *configdlg;
-  configdlg = new ConfigDlg(tabdialog,"configdlg",mykapp,&newdefstruct);
+    QString pixdir = mykapp->kde_datadir() + "/knotes/pics/";
 
-  FontDlg* fontdlg;
-  fontdlg = new FontDlg(tabdialog,"fontdlg",mykapp,&newdefstruct);
 
-  tabdialog->addTab(configdlg,klocale->translate("Defaults"));
-  tabdialog->addTab(fontdlg,klocale->translate("More ..."));
-  tabdialog->addTab(about,klocale->translate("About"));
+    QPixmap pm((pixdir + "knoteslogo.xpm").data());
+    QLabel *logo = new QLabel(box);
+    logo->setPixmap(pm);
+    logo->setGeometry(30, 50, pm.width(), pm.height());
   
-  if(tabdialog->exec() == QDialog::Accepted){
+    if(!configdlg)
+      configdlg = new ConfigDlg(tabdialog,"configdlg",mykapp,&newdefstruct);
 
+    if(!fontdlg)
+      fontdlg = new FontDlg(tabdialog,"fontdlg",mykapp,&newdefstruct);
 
+    tabdialog->addTab(configdlg,klocale->translate("Defaults"));
+    tabdialog->addTab(fontdlg,klocale->translate("More ..."));
+    tabdialog->addTab(about,klocale->translate("About"));
+  }
+
+  if(configdlg)
+    configdlg->setWidgets(&newdefstruct);
+
+  if(fontdlg)
+    fontdlg->setWidgets(&newdefstruct);
+
+  if(tabdialog->exec()){
+
+    printf("Returned from exec() accepted.\n");
     postitdefaults.forecolor  = newdefstruct.forecolor;
     postitdefaults.backcolor  = newdefstruct.backcolor;
     postitdefaults.width      = newdefstruct.width;
@@ -1360,7 +1374,12 @@ void KPostit::defaults()
     postitdefaults.printcommand = newdefstruct.printcommand.copy();
 
   }
+  else{
 
+    printf("Returned from exec() not accepted\n");
+  }
+
+  printf("leaving\n");
 }
 
 

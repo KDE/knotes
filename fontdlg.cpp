@@ -98,6 +98,30 @@ FontDlg::FontDlg(QWidget *parent, const char *name,
 
 }
 
+void FontDlg::setWidgets(DefStruct *defstruct){
+
+  defst = defstruct;
+
+  familylabeldisp->setText(defst->font.family());
+
+  QString size;
+  size.setNum(defst->font.pointSize());
+  sizelabeldisp->setText(size);
+
+  if(defst->font.italic())
+    stylelabeldisp->setText(klocale->translate("Italic"));
+  else
+    stylelabeldisp->setText(klocale->translate("Roman"));
+
+  if(defst->font.bold())
+    weightlabeldisp->setText(klocale->translate("Bold"));
+  else
+    weightlabeldisp->setText(klocale->translate("Normal"));
+
+
+
+
+}
 
 void FontDlg::help(){
 

@@ -115,26 +115,47 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
   mail->setGeometry(130,225,180,23);
   mail->setText(defst->mailcommand.data());
 
-  QCheckBox *check;
   QGroupBox *gbox;
 
   gbox = new QGroupBox(this);
   gbox->setGeometry(150,105,160,65);
 
-  check = new QCheckBox( klocale->translate("3d Frame"), gbox );
-  check->setGeometry( 10, 5, 100, 25 );
-  check->setChecked( defst->frame3d );
-  connect( check, SIGNAL( toggled( bool ) ), SLOT( frame3d_slot( bool ) ) );
+  check1 = new QCheckBox( klocale->translate("3d Frame"), gbox );
+  check1->setGeometry( 10, 5, 100, 25 );
+  check1->setChecked( defst->frame3d );
+  connect( check1, SIGNAL( toggled( bool ) ), SLOT( frame3d_slot( bool ) ) );
 
-  check = new QCheckBox( klocale->translate("Auto Indent"), gbox );
-  check->setGeometry( 10, 35, 100, 25 );
-  check->setChecked( defst->autoindent );
-  connect( check, SIGNAL( toggled( bool ) ), SLOT( indent_slot( bool ) ) );
+  check2 = new QCheckBox( klocale->translate("Auto Indent"), gbox );
+  check2->setGeometry( 10, 35, 100, 25 );
+  check2->setChecked( defst->autoindent );
+  connect( check2, SIGNAL( toggled( bool ) ), SLOT( indent_slot( bool ) ) );
 
   connect(parent,SIGNAL(applyButtonPressed()),SLOT(okButton()));
 
 }
 
+void ConfigDlg::setWidgets(DefStruct *defstruct){
+
+  defst = defstruct;
+
+  qframe1->setBackgroundColor(defst->forecolor);
+  qframe2->setBackgroundColor(defst->backcolor);
+
+  QString string;
+  string.setNum(defst->width);
+  width->setText(string);
+
+  QString string2;
+  string2.setNum(defst->height);
+  height->setText(string2);
+
+  print->setText(defst->printcommand.data());
+  mail->setText(defst->mailcommand.data());
+
+  check1->setChecked( defst->frame3d );
+  check2->setChecked( defst->autoindent );
+
+}
 
 void ConfigDlg::help(){
 
@@ -144,6 +165,7 @@ void ConfigDlg::help(){
 
 void ConfigDlg::okButton(){
 
+  printf("entering okButon\n");
     defst->width      = width->getValue();
     defst->height     = height->getValue();
 
@@ -151,10 +173,12 @@ void ConfigDlg::okButton(){
     defst->printcommand = print->text();
     defst->mailcommand.detach();
     defst->printcommand.detach();
+  printf("leaving okButon\n");
+  
 
 }
 void ConfigDlg::cancelbutton() {
-  reject();
+  //  reject();
 }
 
 void ConfigDlg::frame3d_slot(bool _par){

@@ -54,7 +54,7 @@ public:
 
   DefStruct *defst ;
   KApplication *mykapp;
-
+  void setWidgets(DefStruct *defstruct);
 private slots:
 
   void okButton();

@@ -145,6 +145,9 @@ private:
 
 };
 
+class ConfigDlg;
+class FontDlg;
+class QTabDialog;
 
 class KPostit :public QFrame{
 
@@ -158,7 +161,10 @@ public:
   static QList<KPostit>   PostitList;     
   static QStrList         PostitFilesList; 
   static QList<AlarmEntry> AlarmList;
-
+  /*  static ConfigDlg *configdlg =0L;
+  static FontDlg* fontdlg =0L;
+  static QTabDialog* tabdialog =0L;
+  */
   int number;
   bool hidden;
   QString name;

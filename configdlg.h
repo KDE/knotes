@@ -50,13 +50,15 @@ public:
   ConfigDlg(QWidget *parent=0, const char *name=0,
 	    KApplication* k=NULL, DefStruct *defstruct=NULL);
   ~ConfigDlg() {}
+  void setWidgets(DefStruct *defstruct);
 
   DefStruct *defst ;
   QLineEdit *mail;
   QLineEdit *print;
   KIntLineEdit* width;
   KIntLineEdit* height;
-
+  QCheckBox *check1;
+  QCheckBox *check2;
 private slots:
 
   void okButton();
@@ -72,6 +74,7 @@ signals:
 
 public:
   bool colors_changed;
+
   
 private:
 
