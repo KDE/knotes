@@ -505,7 +505,7 @@ void KNote::slotPrint() const
         textDoc->setStyleSheet( m_editor->styleSheet() );
         textDoc->setMimeSourceFactory( m_editor->mimeSourceFactory() );
         textDoc->flow()->setPageSize( body.height() );
-        textDoc->setVerticalBreak( true );
+        textDoc->setPageBreakEnabled( true );
         textDoc->setText( m_editor->text(), m_editor->context() );
 
         textDoc->doLayout( &painter, body.width() );

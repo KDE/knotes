@@ -23,6 +23,8 @@
 
 #include <qpushbutton.h>
 #include <qdrawutil.h>
+#include <qstyle.h>
+#include <qpainter.h>
 
 
 class KNoteButton: public QPushButton
@@ -137,7 +139,7 @@ protected:
 
         if ( isDown() || (isOn() && !flat) )
         {
-            if ( style().guiStyle() == WindowsStyle )
+            if ( style().styleHint(QStyle::SH_GUIStyle) == Qt::WindowsStyle )
                 qDrawWinButton( painter, 0, 0, width(),
                                 height(), colorGroup(), TRUE );
             else
@@ -146,7 +148,7 @@ protected:
         }
         else if ( !flat )
         {
-            if ( style().guiStyle() == WindowsStyle )
+            if ( style().styleHint(QStyle::SH_GUIStyle) == Qt::WindowsStyle )
                 qDrawWinButton( painter, 0, 0, width(), height(),
                                 colorGroup(), FALSE );
             else
@@ -156,7 +158,7 @@ protected:
 
         int dx = ( width() - pixmap()->width() ) / 2;
         int dy = ( height() - pixmap()->height() ) / 2;
-        if ( isDown() && style().guiStyle() == WindowsStyle )
+        if ( isDown() && style().styleHint(QStyle::SH_GUIStyle) == Qt::WindowsStyle )
         {
             dx++;
             dy++;

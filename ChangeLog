@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2001/09/04  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * compile with Qt3
+    * started some work on rich text notes (no GUI yet)
+
 2001/07/13  Michael Brade <brade@informatik.uni-muenchen.de>
 
     * fixed #28879 (titles were not centered)

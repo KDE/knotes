@@ -22,12 +22,14 @@
 #define KNOTEEDIT_H
 
 #include <qwidget.h>
+#define protected public
 #include <qtextedit.h>
+#undef protected
 
 class QFont;
 class QColor;
 class KAction;
-
+class KToggleAction;
 
 class KNoteEdit : public QTextEdit
 {
@@ -49,6 +51,26 @@ protected:
     void dragEnterEvent( QDragEnterEvent* event );
     void dropEvent( QDropEvent* event );
 
+public slots:
+//    void textStyleSelected( int );
+//    void textSizeSelected( int );
+//    void textFontSelected( const QString & );
+
+//    void textColor();
+
+    void textAlignLeft();
+    void textAlignCenter();
+    void textAlignRight();
+    void textAlignBlock();
+
+    void textList();
+
+    void textSuperScript();
+    void textSubScript();
+
+    void textIncreaseIndent();
+    void textDecreaseIndent();
+
 protected slots:
     void slotReturnPressed();
     void slotSelectionChanged();
@@ -62,6 +84,22 @@ private:
     KAction* m_cut;
     KAction* m_copy;
     KAction* m_paste;
+
+    KToggleAction* m_textBold;
+    KToggleAction* m_textItalic;
+    KToggleAction* m_textUnderline;
+
+    KToggleAction* m_textAlignLeft;
+    KToggleAction* m_textAlignCenter;
+    KToggleAction* m_textAlignRight;
+    KToggleAction* m_textAlignBlock;
+
+    KToggleAction* m_textList;
+    KToggleAction* m_textSuper;
+    KToggleAction* m_textSub;
+
+    KAction* m_textIncreaseIndent;
+    KAction* m_textDecreaseIndent;
 
     bool m_autoIndentMode;
 };
