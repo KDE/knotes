@@ -108,6 +108,7 @@ private:
     void updateLabelAlignment();
     void setColor( const QColor&, const QColor& );
 
+private:
     QPoint m_pointerOffset;
     bool   m_dragging;
 
@@ -119,7 +120,6 @@ private:
     KCal::Journal *m_journal;
     QString        m_configFile;
 
-private:
     KToggleAction *m_alwaysOnTop;
     KListAction   *m_toDesktop;
 

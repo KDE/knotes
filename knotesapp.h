@@ -97,7 +97,7 @@ private:
     void showNote( KNote *note ) const;
     void saveConfig();
 
-
+private:
     class KNoteActionList : public QPtrList<KAction>
     {
     public:

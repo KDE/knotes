@@ -1,34 +1,34 @@
-/*
-  This file is part of KNotes.
+/*******************************************************************
+ This file is part of KNotes.
 
-  Copyright (c) 2004 Bo Thorsen <bo@klaralvdalens-datakonsult.se>
+ Copyright (c) 2004, Bo Thorsen <bo@klaralvdalens-datakonsult.se>
 
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
 
-  You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the Free Software
-  Foundation, Inc., 59 Temple Place - Suite 330, Boston,
-  MA  02111-1307, USA.
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston,
+ MA  02111-1307, USA.
 
-  In addition, as a special exception, the copyright holders give
-  permission to link the code of this program with any edition of
-  the Qt library by Trolltech AS, Norway (or with modified versions
-  of Qt that use the same license as Qt), and distribute linked
-  combinations including the two.  You must obey the GNU General
-  Public License in all respects for all of the code used other than
-  Qt.  If you modify this file, you may extend this exception to
-  your version of the file, but you are not obligated to do so.  If
-  you do not wish to do so, delete this exception statement from
-  your version.
-*/
+ In addition, as a special exception, the copyright holders give
+ permission to link the code of this program with any edition of
+ the Qt library by Trolltech AS, Norway (or with modified versions
+ of Qt that use the same license as Qt), and distribute linked
+ combinations including the two.  You must obey the GNU General
+ Public License in all respects for all of the code used other than
+ Qt.  If you modify this file, you may extend this exception to
+ your version of the file, but you are not obligated to do so.  If
+ you do not wish to do so, delete this exception statement from
+ your version.
+*******************************************************************/
 
 #include "resourcemanager.h"
 #include "resourcelocal.h"
@@ -46,7 +46,7 @@
 #include <qdir.h>
 
 
-ResourceManager::ResourceManager( KNotesApp* app )
+ResourceManager::ResourceManager( KNotesApp *app )
     : QObject( app, "Resource Manager" ), m_app( app )
 {
     m_noteList.setAutoDelete( true );
@@ -58,6 +58,7 @@ ResourceManager::ResourceManager( KNotesApp* app )
 
 ResourceManager::~ResourceManager()
 {
+    kdDebug() << k_funcinfo << endl;
     blockSignals( true );
     m_noteList.clear();
     blockSignals( false );
@@ -111,7 +112,7 @@ QString ResourceManager::newNote( const QString& name, const QString& text )
     note->setDescription( text );
 
     // TODO: Make this configurable
-    ResourceNotes* resource = m_manager->standardResource();
+    ResourceNotes *resource = m_manager->standardResource();
     if ( resource )
         resource->addNote( note );
     else
@@ -120,8 +121,8 @@ QString ResourceManager::newNote( const QString& name, const QString& text )
     return note->uid();
 }
 
-void ResourceManager::registerNote( ResourceNotes* resource,
-                                    KCal::Journal* journal, bool loaded )
+void ResourceManager::registerNote( ResourceNotes *resource,
+                                    KCal::Journal *journal, bool loaded )
 {
     // KOrganizers journals don't have attachments -> use default
     // display config
@@ -130,8 +131,8 @@ void ResourceManager::registerNote( ResourceNotes* resource,
         // Set the name of the config file...
         QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
         QString file = noteDir.absFilePath( journal->uid() );
-        KURL src ( KGlobal::dirs()->findResource( "config", "knotesrc" ) );
-        KURL dst ( file );
+        KURL src( KGlobal::dirs()->findResource( "config", "knotesrc" ) );
+        KURL dst( file );
 
         // ...and "fill" it with the default config
         KIO::NetAccess::file_copy( src, dst, -1, true, m_app );
@@ -144,7 +145,9 @@ void ResourceManager::registerNote( ResourceNotes* resource,
         journal->setSummary( s );
     }
 
-    KNote* newNote = new KNote( m_app, m_app->domDocument(), journal );
+    // FIXME: if attachment is there but the file isn't: CREATE IT!!!!
+
+    KNote *newNote = new KNote( m_app, m_app->domDocument(), journal );
     m_noteList.insert( newNote->noteId(), newNote );
     m_resourceMap[ newNote ] = resource;
 
@@ -153,8 +156,11 @@ void ResourceManager::registerNote( ResourceNotes* resource,
              this,    SLOT(slotNoteKilled( KCal::Journal* )) );
     connect( newNote, SIGNAL(sigNameChanged()),
              m_app,   SLOT(updateNoteActions()) );
+    // FIXME: m_app not necessary, call save immediately or create a new signal that KNotes has
+    // to connect to!
     connect( newNote, SIGNAL(sigSaveData()), m_app, SLOT(saveNotes()) );
 
+    // FIXME: remove!
     if( !loaded )
     {
         // This is a new note
@@ -163,7 +169,7 @@ void ResourceManager::registerNote( ResourceNotes* resource,
     }
 }
 
-void ResourceManager::slotNoteKilled( KCal::Journal* journal )
+void ResourceManager::slotNoteKilled( KCal::Journal *journal )
 {
     // Remove the journal from the resource it came from
     m_resourceMap[ m_noteList[ journal->uid() ] ]->deleteNote( journal );
@@ -178,9 +184,10 @@ void ResourceManager::slotNoteKilled( KCal::Journal* journal )
                       << configFile << endl;
 
     m_app->updateNoteActions();
+    // FIXME: calendar has to be saved!!
 }
 
-int ResourceManager::count()
+int ResourceManager::count() const
 {
     return m_noteList.count();
 }
@@ -205,7 +212,7 @@ void ResourceManager::sync( const QString& app )
 }
 
 
-KNote* ResourceManager::first()
+KNote *ResourceManager::first() const
 {
     QDictIterator<KNote> it( m_noteList );
     return it.toFirst();
@@ -215,7 +222,7 @@ void ResourceManager::showNextNote()
 {
     // show next note
     QDictIterator<KNote> it( m_noteList );
-    KNote* first = it.toFirst();
+    KNote *first = it.toFirst();
     for ( ; it.current(); ++it )
         if ( it.current()->hasFocus() )
         {
@@ -227,12 +234,12 @@ void ResourceManager::showNextNote()
         }
 }
 
-KNote* ResourceManager::note( const QString& id )
+KNote *ResourceManager::note( const QString& id )
 {
     return m_noteList[id];
 }
 
-void ResourceManager::resourceAdded( ResourceNotes* resource )
+void ResourceManager::resourceAdded( ResourceNotes *resource )
 {
     kdDebug(5500) << "Resource added: " << resource->resourceName() << endl;
 
@@ -244,11 +251,11 @@ void ResourceManager::resourceAdded( ResourceNotes* resource )
         resource->load();
 }
 
-void ResourceManager::resourceModified( ResourceNotes* /*resource*/ )
+void ResourceManager::resourceModified( ResourceNotes * /*resource*/ )
 {
 }
 
-void ResourceManager::resourceDeleted( ResourceNotes* /*resource*/ )
+void ResourceManager::resourceDeleted( ResourceNotes * /*resource*/ )
 {
 }
 
