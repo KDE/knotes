@@ -61,8 +61,6 @@
 
 #include <fixx11h.h>
 
-extern Atom qt_sm_client_id;
-
 using namespace KCal;
 
 
@@ -72,12 +70,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     m_label( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ),
     m_config( 0 ), m_journal( j )
 {
-    // to disable kwin's session management (ie. saving positions of windows) we need to
-    // remove the session id from all note windows
-    XChangeProperty( x11Display(), winId(), qt_sm_client_id, XA_STRING, 8,
-        PropModeReplace, 0, 0 );
-
-    actionCollection()->setWidget( this );
+    //actionCollection()->setWidget( this );
 
     // if there is no title yet, use the start date if valid
     // (KOrganizer's journals don't have titles but a valid start date)

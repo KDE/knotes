@@ -22,10 +22,45 @@
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
 #include <klocale.h>
+#include <kxerrorhandler.h>
+
+#include <X11/Xlib.h>
+#include <X11/Xatom.h>
 
 #include "knotesapp.h"
 #include "version.h"
 #include "main.h"
+
+
+void remove_sm_from_client_leader()
+{
+    Atom type;
+    int format, status;
+    unsigned long nitems = 0;
+    unsigned long extra = 0;
+    unsigned char *data = 0;
+
+    Atom atoms[ 2 ];
+    char *atom_names[ 2 ] = { "WM_CLIENT_LEADER", "SM_CLIENT_ID" };
+
+    XInternAtoms( qt_xdisplay(), atom_names, 2, False, atoms );
+
+    QWidget w;
+    KXErrorHandler handler; // ignore X errors
+    status = XGetWindowProperty( qt_xdisplay(), w.winId(), atoms[ 0 ], 0, 10000,
+                                 FALSE, XA_WINDOW, &type, &format,
+                                 &nitems, &extra, &data );
+
+    if (status  == Success && !handler.error( false )) 
+    {
+        if (data && nitems > 0)
+        {
+            Window leader = *((Window*) data);
+            XDeleteProperty( qt_xdisplay(), leader, atoms[ 1 ] );
+        }
+        XFree(data);
+    }
+}
 
 
 Application::Application()
@@ -83,8 +118,9 @@ int main( int argc, char* argv[] )
     KUniqueApplication::addCmdLineOptions();
 
     Application app;
-
     app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
+
+    remove_sm_from_client_leader();
 
     int rval = app.exec();
 
