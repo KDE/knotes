@@ -54,7 +54,7 @@
 #include <kfontdialog.h>
 #include <kglobal.h>
 #include <kiconloader.h>
-#include <kio_netaccess.h>
+#include <kio/netaccess.h>
 #include <klocale.h>
 #include <kcmdlineargs.h>
 #include <kmessagebox.h>
@@ -1357,10 +1357,10 @@ void KPostit::insertNetFile( const char *_url)
       return;
     }
 
-    if (KIONetAccess::download( netFile, tmpFile ))
+    if (KIO::NetAccess::download( netFile, tmpFile ))
     {
       insertFile( tmpFile );
-      KIONetAccess::removeTempFile( tmpFile );
+      KIO::NetAccess::removeTempFile( tmpFile );
     }
 
 }
