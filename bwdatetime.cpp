@@ -1,7 +1,7 @@
 /*
 
  $Id$
-  
+
  KPostit -- postit Notes for the KDE project
 
  Copyright (C) Bernd Johannes Wuebben
@@ -30,37 +30,40 @@
 
 */
 
+#include <qspinbox.h>
+#include <qlayout.h>
 
 #include <bwdatetime.h>
-#include <kapp.h>
 #include <klocale.h>
 
 
-BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name) 
+BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
   : QWidget(parent, name){
-   
+
    date_notvalid = FALSE;
    time_notvalid = FALSE;
 
+
    daylabel = new QLabel(i18n("Day:"),this);
-   daylabel->setGeometry(10,10,40,25);
+   daylabel->adjustSize();
 
-   day= new QtedSetInt(1, 31,  qdt.date().day(),QtedSetInt::RightJustified, this);
-   day->setGeometry(50, 15, day->width(), day->height());
+   day = new QSpinBox(1, 31, 1, this);
+   day->setValue(qdt.date().day());
+   day->adjustSize();
 
-   monthlabel = new QLabel(i18n("Month:"),this);
-   monthlabel->setGeometry(90,10,60,25);
+   monthlabel = new QLabel(i18n("Month:"), this);
+   monthlabel->adjustSize();
 
-   month = new QtedSetInt(1, 12,  qdt.date().month(),
-			  QtedSetInt::RightJustified, this);
-   month->setGeometry(140, 15, month->width(), month->height());
+   month = new QSpinBox(1, 12, 1, this);
+   month->setValue(qdt.date().month());
+   month->adjustSize();
 
    yearlabel = new QLabel(i18n("Year:"),this);
-   yearlabel->setGeometry(180,10,60,25);
+   yearlabel->adjustSize();
 
-   year  = new QtedSetInt(1, 3000,qdt.date().year(), 	
-			  QtedSetInt::RightJustified, this);
-   year->setGeometry(220, 15, year->width(), year->height());
+   year = new QSpinBox(1, 3000, 1, this);
+   year->setValue(qdt.date().year());
+   year->adjustSize();
 
 
    int myhour = qdt.time().hour();
@@ -71,25 +74,27 @@ BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
      myhour = 12;
 
    timelabel = new QLabel(i18n("Time:"),this);
-   timelabel->setGeometry(10,50,40,25);
-   hour  = new QtedSetInt(1, 12  ,myhour, 	
-			  QtedSetInt::RightJustified, this);
-   hour->setGeometry(50, 55, hour->width(), hour->height());
+   timelabel->adjustSize();
 
-   minute= new QtedSetInt(0, 59,  qdt.time().minute() , 
-			  QtedSetInt::ZeroFilled, this);
-   minute->setGeometry(90, 55, minute->width(), minute->height());
+   // this stuff should be replaced with a KTimeSpinBox
+   hour = new QSpinBox(1, 12, 1, this);
+   hour->setValue(myhour);
+   hour->adjustSize();
+
+   minute = new QSpinBox(0, 59, 1, this);
+   minute->setValue(qdt.time().minute());
+   minute->adjustSize();
 
 
    ampm = new QButtonGroup(this);
-   
-   am = new QRadioButton(i18n("AM"), ampm);   
-   pm = new QRadioButton(i18n("PM"), ampm);   
+
+   am = new QRadioButton(i18n("AM"), ampm);
+   pm = new QRadioButton(i18n("PM"), ampm);
 
    if(qdt.time().hour() < 12){
 
      pm->setChecked(FALSE);
-     am->setChecked(TRUE); 
+     am->setChecked(TRUE);
 
    }
    else{
@@ -99,34 +104,50 @@ BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
 
    }
 
-   QSize size = am->sizeHint();
-   
-   ampm->setGeometry(140, 55, size.width(), minute->height());
+   am->adjustSize();
+   pm->adjustSize();
+   int w = QMAX(am->width(), pm->width());
+   int h = QMAX(am->height(), pm->height());
+   ampm->setMinimumSize( w +8, 2*h +6 );
+   ampm->setLineWidth(0); // don't show the frame of the buttongroup
+   am->move(4, 2);
+   pm->move(4, h+2);
 
-   int half = minute->height() / 2;
-   am->setGeometry(0, 0, size.width(), half);
-   pm->setGeometry(0, half, size.width(), half);
 
-   resize(300,95);
+   // layout management (pfeiffer)
+   QGridLayout *gridLayout = new QGridLayout(this, 6, 4, 5);
 
+   gridLayout->addWidget(daylabel,   0, 0, AlignRight);
+   gridLayout->addWidget(day,        0, 1);
+   gridLayout->addWidget(monthlabel, 0, 2, AlignRight);
+   gridLayout->addWidget(month,      0, 3);
+   gridLayout->addWidget(yearlabel,  0, 4, AlignRight);
+   gridLayout->addWidget(year,       0, 5);
+
+   gridLayout->addWidget(timelabel, 1, 0, AlignRight);
+   gridLayout->addWidget(hour,      1, 1);
+   gridLayout->addWidget(minute,    1, 2);
+   gridLayout->addWidget(ampm,      1, 3, AlignRight);
+
+   gridLayout->activate();
 }
 
 
 
 void BWDateTime::setTime(QDateTime dt) {
 
-   day	->value(dt.date().day());
-   month->value(dt.date().month());
-   year	->value(dt.date().year());
+   day->setValue(dt.date().day());
+   month->setValue(dt.date().month());
+   year->setValue(dt.date().year());
 
    int myhour = dt.time().hour();
 
    if (myhour > 12)
      myhour -= 12;
 
-   hour	->value(myhour);
-   minute->value(dt.time().minute());
-   
+   hour->setValue(myhour);
+   minute->setValue(dt.time().minute());
+
    if(dt.time().hour() < 12)
      am->setChecked(TRUE);
    else
@@ -150,7 +171,7 @@ bool BWDateTime::checkDateTime(){
    myhour += 12;
 
  if(!pm->isChecked() && (myhour ==12)) //12 am is 0 hours
-   myhour = 0; 
+   myhour = 0;
 
  if(QTime::isValid(myhour,minute->value(),0)){
     rtime.setHMS(myhour,minute->value(),0);
@@ -189,10 +210,10 @@ bool BWDateTime::checkDateTime(){
 
 }
 
-QDateTime BWDateTime::getDateTime(void) { 
+QDateTime BWDateTime::getDateTime(void) {
 
   checkDateTime();
 
-  return mydatetime; 
+  return mydatetime;
 }
 

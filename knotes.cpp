@@ -35,6 +35,7 @@
 #include <kstddirs.h>
 #include <kio_netaccess.h>
 #include <kconfig.h>
+#include <kaccel.h>
 
 
 #include "configdlg.h"
@@ -227,7 +228,7 @@ void KPostitMultilineEdit::mynewLine(){
 
 QString KPostitMultilineEdit::prefixString(QString string){
 
-  // This routine return the whitespace before the first non white space
+  // This routine returns the whitespace before the first non white space
   // character in string. This is  used in mynewLine() for indent mode.
   // It is assumed that string contains at least one non whitespace character
   // ie \n \r \t \v \f and space
@@ -249,12 +250,12 @@ void KPostitMultilineEdit::dragEnterEvent( QDragEnterEvent* event )
 {
   debug("KPostitMultilineEdit::dragEnterEvent()");
   debug("format: %s", event->format(0));
- 
+
   event->accept(QUrlDrag::canDecode(event) || QTextDrag::canDecode(event));
 }
 
 
-void KPostitMultilineEdit::dragMoveEvent( QDragMoveEvent* event ) 
+void KPostitMultilineEdit::dragMoveEvent( QDragMoveEvent* event )
 {
   debug("KPostitMultilineEdit::dragMoveEvent()");
   debug("format: %s", event->format(0));
@@ -265,15 +266,15 @@ void KPostitMultilineEdit::dragMoveEvent( QDragMoveEvent* event )
     QMultiLineEdit::dragMoveEvent(event);
 }
 
- 
+
 void KPostitMultilineEdit::dropEvent( QDropEvent* event )
 {
   debug("got KPostit::dropEvent()");
   debug("format: %s", event->format(0));
 
   QStrList list;
- 
-  if ( QUrlDrag::decode( event, list ) ) 
+
+  if ( QUrlDrag::decode( event, list ) )
     emit gotUrlDrop(list.getFirst());
   else if ( QTextDrag::canDecode( event ) )
     QMultiLineEdit::dropEvent( event );
@@ -285,6 +286,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     XSetTransientForHint(qt_xdisplay(), winId(), winId());
     KWM::setWmCommand(winId(), "");
+    KWM::setDecoration(winId(), KWM::tinyDecoration);
     KWM::setIcon(winId(), kapp->getIcon());
     KWM::setMiniIcon(winId(), kapp->getMiniIcon());
 
@@ -356,6 +358,8 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     options->setCheckable(TRUE);
 /*    options->setFont(QFont("Helvetica",12)); */
     frame3dID = options->insertItem(i18n("3D Frame"),this, SLOT(toggleFrame()));
+    onTopID = options->insertItem(i18n("Always visible"),this,
+				  SLOT(toggleOnTopMode()));
     edit->autoIndentID = options->insertItem(i18n("Auto Indent"),this,
 				       SLOT(toggleIndentMode()));
 
@@ -422,14 +426,8 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     window_id = winId();
 
-    if(!frame3d){
-      setNoFrame();
-      //      options->changeItem(i18n("3D Frame"),frame3dID);
-    }
-    else{
-      set3DFrame();
-      //      options->changeItem(i18n("No Frame"),frame3dID);
-    }
+    set3DFrame(frame3d);
+    setOnTop(postitdefaults.onTop);
 
     if(!edit->autoIndentMode){
       setNoAutoIndent();
@@ -470,6 +468,15 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
       setCaption(i18n("Note: ") + name);
     }
 
+
+    // add some keyboard accelerators (pfeiffer)
+    KAccel *accel = new KAccel(this, "kaccel");
+    accel->connectItem(KAccel::New, this, SLOT(newKPostit()));
+    accel->connectItem(KAccel::Print, this, SLOT(print()));
+    accel->connectItem(KAccel::Save, this, SLOT(save_all()));
+    accel->connectItem(KAccel::Close, this, SLOT(hideKPostit()));
+    accel->connectItem(KAccel::Quit, this, SLOT(quit()));
+    accel->connectItem(KAccel::Help, this, SLOT(help()));
 }
 
 void KPostit::clear_text(){
@@ -1264,31 +1271,25 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
 
 }
 
-void KPostit::set3DFrame(){
+void KPostit::set3DFrame(bool enable)
+{
+  frame3d = enable;
+  options->setItemChecked(frame3dID, enable);
 
-  frame3d = TRUE;
-  //  options->changeItem(i18n("No Frame"),frame3dID);
-  options->setItemChecked(frame3dID,TRUE);
-  //  edit->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
-  KWM::setDecoration(winId(), KWM::tinyDecoration);
-  edit->repaint();
-}
+  long oldDeco = KWM::getDecoration(winId());
 
-void KPostit::setNoFrame(){
+  if (enable)
+    KWM::setDecoration(winId(),
+		       oldDeco & ~KWM::noDecoration | KWM::tinyDecoration);
+  else
+    KWM::setDecoration(winId(),
+		       oldDeco & ~KWM::tinyDecoration | KWM::noDecoration);
 
-  frame3d = FALSE;
-  //  options->changeItem(i18n("3D Frame"),frame3dID);
-  options->setItemChecked(frame3dID,FALSE);
-  //  edit->setFrameStyle(QFrame::NoFrame);
-  KWM::setDecoration(winId(), KWM::noDecoration);
   edit->repaint();
 }
 
 void KPostit::toggleFrame(){
-  if(frame3d)
-    setNoFrame();
-  else
-    set3DFrame();
+  set3DFrame(!frame3d);
 }
 
 
@@ -1320,13 +1321,16 @@ void KPostit::defaults()
   newdefstruct.font       = postitdefaults.font;
   newdefstruct.mailcommand = postitdefaults.mailcommand;
   newdefstruct.printcommand = postitdefaults.printcommand;
+  newdefstruct.soundcommand = postitdefaults.soundcommand;
+  newdefstruct.playSound  = postitdefaults.playSound;
+  newdefstruct.onTop      = postitdefaults.onTop;
 
 
   if(!tabdialog){
 
     tabdialog = new QTabDialog(0,"tabdialog",TRUE);
     tabdialog->setCaption( i18n("KNotes Configuraton") );
-    tabdialog->resize( 350, 350 );
+    tabdialog->resize( 350, 390 );
     tabdialog->setCancelButton( i18n("Cancel") );
     tabdialog->setOkButton( i18n("OK") );
 
@@ -1389,6 +1393,9 @@ void KPostit::defaults()
     postitdefaults.font       = newdefstruct.font;
     postitdefaults.mailcommand = newdefstruct.mailcommand.copy();
     postitdefaults.printcommand = newdefstruct.printcommand.copy();
+    postitdefaults.soundcommand = newdefstruct.soundcommand.copy();
+    postitdefaults.playSound  = newdefstruct.playSound;
+    postitdefaults.onTop      = newdefstruct.onTop;
 
   }
   else{
@@ -1575,6 +1582,23 @@ void KPostit::setNoAutoIndent(){
 
 }
 
+void KPostit::setOnTop(bool enable)
+{
+  long oldDeco = KWM::getDecoration(winId());
+
+  if (enable)
+    KWM::setDecoration(winId(),oldDeco | KWM::staysOnTop);
+  else
+    KWM::setDecoration(winId(), oldDeco & ~KWM::staysOnTop);
+
+  options->setItemChecked(onTopID, enable);
+  postitdefaults.onTop = enable;
+}
+
+void KPostit::toggleOnTopMode()
+{
+  setOnTop(!postitdefaults.onTop);
+}
 
 void findPostitFiles(){
 
@@ -1760,8 +1784,10 @@ void readSettings()
   config->setGroup("Misc");
 
   postitdefaults.frame3d = (bool) config->readNumEntry("frame3d",(int)FALSE);
+  postitdefaults.onTop = config->readBoolEntry("always visible", FALSE);
   postitdefaults.autoindent = (bool) config->readNumEntry("autoindent",(int)TRUE);
   KPostit::dock = config->readBoolEntry("dock",TRUE);
+  postitdefaults.playSound = config->readBoolEntry("play sound", FALSE);
 
   config->setGroup("Commands");
 
@@ -1774,6 +1800,13 @@ void readSettings()
     postitdefaults.printcommand = "a2ps -1 --center-title=\"%s\" "\
       "--underlay=\"KDE\"";
 
+  postitdefaults.soundcommand = config->readEntry("soundCmd");
+  if (postitdefaults.soundcommand.isEmpty()) {
+    QString soundfile = locate("appdata", "knotes_alarm.wav");
+    if (soundfile.isNull())
+      soundfile = "knotes_alarm.wav";
+    postitdefaults.soundcommand = ("kplayaudio " + soundfile);
+  }
 }
 
 void writeSettings()
@@ -1794,12 +1827,15 @@ void writeSettings()
 
   config->setGroup("Misc");
   config->writeEntry("frame3d",postitdefaults.frame3d);
+  config->writeEntry("always visible", postitdefaults.onTop);
   config->writeEntry("autoindent",postitdefaults.autoindent);
   config->writeEntry("dock",KPostit::dock);
+  config->writeEntry("play sound", postitdefaults.playSound);
 
   config->setGroup("Commands");
   config->writeEntry("mailCmd",postitdefaults.mailcommand);
   config->writeEntry("printCmd",postitdefaults.printcommand);
+  config->writeEntry("soundCmd",postitdefaults.soundcommand);
 
   config->sync();
 

@@ -29,7 +29,7 @@
 #ifndef _CONFIG_DLG_H_
 #define _CONFIG_DLG_H_
 
-#include <qgroupbox.h> 
+#include <qgroupbox.h>
 #include <qdialog.h>
 #include <qpainter.h>
 #include <qlabel.h>
@@ -56,6 +56,7 @@ public:
   DefStruct *defst ;
   QLineEdit *mail;
   QLineEdit *print;
+  QLineEdit *sound;
   KIntNumInput* width;
   KIntNumInput* height;
   QCheckBox *check1;
@@ -69,6 +70,7 @@ private slots:
   void help();
   void indent_slot(bool);
   void frame3d_slot(bool);
+  void enableSound(bool);
 
 signals:
   void color_change();
@@ -76,12 +78,12 @@ signals:
 public:
   bool colors_changed;
 
-  
+
 private:
 
 
   QGroupBox *box;
-  
+
   QPushButton *ok;
   QPushButton *cancel;
 
@@ -106,7 +108,7 @@ private:
 
   QGroupBox *gbox;
 
-  QCheckBox *mybox;
+  QCheckBox *soundbox;
   QCheckBox *frame3d;
 
 };

@@ -1,10 +1,10 @@
 /*
 
- $ Id: $  
+ $ Id: $
 
  KPostit - postit notes for the KDE Project
  Copyright (C) 1997 Bernd Johannes Wuebben
- 
+
  wuebben@math.cornell.edu
  wuebben@kde.org
 
@@ -36,18 +36,20 @@
 
 #include <qlabel.h>
 #include <qbuttongroup.h>
-#include <qradiobutton.h> 
+#include <qradiobutton.h>
 #include <qdatetime.h>
 #include <qmessagebox.h>
 
-#include "spin.h"
+// #include "spin.h"
+
+class QSpinBox;
 
 class BWDateTime : public QWidget {
 
 public:
 
   BWDateTime(QDateTime qdt, QWidget *parent=0, const char *name=0);
-  
+
   void setTime(QDateTime qdtime);
   QDateTime getDateTime();
   bool checkDateTime();
@@ -56,13 +58,13 @@ public:
   bool date_notvalid;
 
 private:
-  
-  QtedSetInt* hour;
-  QtedSetInt* minute;
-  QtedSetInt* month;
-  QtedSetInt* year;
-  QtedSetInt* day;
-  
+
+  QSpinBox *hour;
+  QSpinBox *minute;
+  QSpinBox *month;
+  QSpinBox *year;
+  QSpinBox *day;
+
   QRadioButton * am, *pm;
   QButtonGroup * ampm;
   QLabel* daylabel;

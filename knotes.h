@@ -29,13 +29,13 @@
 #include <qcolor.h>
 #include <qpopupmenu.h>
 #include <qtimer.h>
-#include <qmultilinedit.h> 
+#include <qmultilinedit.h>
 #include <qfont.h>
 #include <qmessagebox.h>
 #include <qfile.h>
 #include <qtextstream.h>
-#include <qfileinfo.h> 
-#include <qdatetime.h> 
+#include <qfileinfo.h>
+#include <qdatetime.h>
 #include <qkeycode.h>
 #include <qbutton.h>
 #include <qdir.h>
@@ -67,6 +67,9 @@ typedef struct _DefStruct{
   QFont   font;
   QString mailcommand;
   QString printcommand;
+  QString soundcommand;
+  bool  playSound;
+  bool	onTop;
 }DefStruct;
 
 typedef struct _AlarmEntry{
@@ -99,7 +102,7 @@ class KPostitMultilineEdit: public QMultiLineEdit{
   Q_OBJECT
 
 public:
-  
+
   KPostitMultilineEdit(QWidget *parent=0, const char *wname=0);
   bool autoIndentMode;
   int  autoIndentID;
@@ -108,7 +111,7 @@ protected:
   void  dragMoveEvent(QDragMoveEvent* event);
   void  dragEnterEvent(QDragEnterEvent* event);
   void  dropEvent(QDropEvent* event);
-  
+
   void  mouseDoubleClickEvent ( QMouseEvent * e );
   void  keyPressEvent(QKeyEvent *e);
   void  mynewLine();
@@ -130,14 +133,14 @@ class KPostit :public QFrame{
   Q_OBJECT
 
 public:
-  
+
   KPostit(QWidget *parent=0, const char *wname=0,int number=0,QString pname="");
 
   // one instance for all kpostits
-  static QList<KPostit>   PostitList;     
-  static QStrList         PostitFilesList; 
+  static QList<KPostit>   PostitList;
+  static QStrList         PostitFilesList;
   static QList<AlarmEntry> AlarmList;
-  static  bool dock;
+  static bool dock;
 
   /*  static ConfigDlg *configdlg =0L;
   static FontDlg* fontdlg =0L;
@@ -150,7 +153,7 @@ public:
   QLabel* label;
   myPushButton* mybutton;
   KPostitMultilineEdit* edit;
-  
+
   QPopupMenu *right_mouse_button;
 
 protected:
@@ -161,8 +164,7 @@ protected:
 
 public slots:
 
-  void  set3DFrame();
-  void  setNoFrame();
+  void  set3DFrame(bool enable);
   void  toggleFrame();
   void  toggleDock();
   void  set_colors();
@@ -191,12 +193,14 @@ public slots:
   void  setAlarm();
   void  help();
   void  toggleIndentMode();
+  void toggleOnTopMode();
   void toDesktop(int);
   void toggleSticky();
 
 private:
   void  setAutoIndent();
   void  setNoAutoIndent();
+  void 	setOnTop(bool enable);
 
 
   QFont font;
@@ -205,6 +209,7 @@ private:
   QPopupMenu *operations;
   QPopupMenu *desktops;
   int  frame3dID;
+  int onTopID;
   int  dockID;
   QColor forecolor;
   QColor backcolor;

@@ -14,7 +14,7 @@ noinst_HEADERS = knotes.h configdlg.h fontdlg.h mail.h alarm.h \
 		bwdatetime.h spin.h timer.h renamedlg.h docking.h
 
 knotes_SOURCES	= knotes.cpp  configdlg.cpp fontdlg.cpp mail.cpp alarm.cpp \
-		bwdatetime.cpp spin.cpp timer.cpp savealarm.cpp renamedlg.cpp \
+		bwdatetime.cpp timer.cpp savealarm.cpp renamedlg.cpp \
 		docking.cpp 
 
 METASOURCES = knotes.moc configdlg.moc fontdlg.moc mail.moc alarm.moc \

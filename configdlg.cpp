@@ -38,11 +38,12 @@
 ConfigDlg::ConfigDlg(QWidget *parent, const char *name, DefStruct *defstruct)
   : QDialog(parent, name)
 {
+#warning "there is basically NO geometry management, not even adjustSize() for labels"
 
   defst = defstruct;
 
   box = new QGroupBox(this, "box");
-  box->setGeometry(10,10,320,260);
+  box->setGeometry(10,10,315,295);
   box->setTitle(i18n("Defaults"));
 
   label1 = new QLabel(this);
@@ -78,7 +79,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name, DefStruct *defstruct)
   button3->setText(i18n("Help"));
   connect(button3,SIGNAL(clicked()),this,SLOT(help()));
   */
-  
+
   width = new KIntNumInput(i18n("Width:"), 0, 100, 1, defst->width,
                            QString::null, 10, false, this);
   width->setGeometry(70,105,60,23);
@@ -102,6 +103,17 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name, DefStruct *defstruct)
   mail = new QLineEdit(this);
   mail->setGeometry(130,225,180,23);
   mail->setText(defst->mailcommand);
+
+  soundbox = new QCheckBox(i18n("Play sound:"), this);
+  soundbox->setGeometry(20,265,100,25);
+  soundbox->setChecked(defst->playSound);
+
+  sound = new QLineEdit(this);
+  sound->setGeometry(130,265,180,23);
+  sound->setText(defst->soundcommand);
+
+  connect( soundbox, SIGNAL(toggled(bool)), SLOT(enableSound(bool) ));
+  enableSound( defst->playSound );
 
   QGroupBox *gbox;
 
@@ -134,11 +146,22 @@ void ConfigDlg::setWidgets(DefStruct *defstruct){
 
   print->setText(defst->printcommand);
   mail->setText(defst->mailcommand);
+  sound->setText(defst->soundcommand);
 
   check1->setChecked( defst->frame3d );
   check2->setChecked( defst->autoindent );
+  soundbox->setChecked( defst->playSound );
+  enableSound( defst->playSound );
 
 }
+
+
+void ConfigDlg::enableSound( bool enable ) {
+
+  sound->setEnabled( enable );
+
+}
+
 
 void ConfigDlg::help(){
 
@@ -154,9 +177,11 @@ void ConfigDlg::okButton(){
 
     defst->mailcommand = mail->text();
     defst->printcommand = print->text();
+    defst->soundcommand = sound->text();
 
+    defst->playSound = soundbox->isChecked();
     //  printf("leaving okButon\n");
-  
+
 
 }
 void ConfigDlg::cancelbutton() {
@@ -192,9 +217,3 @@ void ConfigDlg::set_background_color(){
 
 
 }
-
-
-
-
-
-

@@ -29,6 +29,7 @@
 #include "knotes.h"
 #include <kwm.h>
 #include <klocale.h>
+#include <kprocess.h>
 #include <qlabel.h>
 
 extern DefStruct 	postitdefaults;
@@ -59,14 +60,18 @@ void MyTimer::timerEvent( QTimerEvent * ){
 
     if(entry->dt < qdt){
 
-      QApplication::beep();
-      kapp->processEvents();
-      sleep(1);
-      QApplication::beep();
-      kapp->processEvents();
-      sleep(1);
-      QApplication::beep();
-
+      if (postitdefaults.playSound && !postitdefaults.soundcommand.isEmpty()) {
+	playSound(postitdefaults.soundcommand);
+      }
+      else {
+	QApplication::beep();
+	kapp->processEvents();
+	sleep(1);
+	QApplication::beep();
+	kapp->processEvents();
+	sleep(1);
+	QApplication::beep();
+      }
 
       // now we need to reset the Caption of the PostitWindow whose
       // alarm expired
@@ -138,6 +143,32 @@ void MyTimer::timerEvent( QTimerEvent * ){
 
 }
 
+// this belongs somewhere in KApplication if you ask me
+void MyTimer::playSound(  QString cmd )
+{
+  QString param;
+  KProcess p;
+  int argIdx;
+  
+  cmd.simplifyWhiteSpace();
+
+  while( !cmd.isEmpty() )
+  {
+    argIdx = cmd.find(" ");
+    param = cmd.left( argIdx );
+    
+    p << param;
+
+    if (argIdx == -1)
+      argIdx = cmd.length();
+    
+    cmd = cmd.remove( 0, argIdx + 1 );
+  }
+  
+  if (!p.start(KProcess::DontCare, KProcess::NoCommunication))
+    QApplication::beep();
+  
+}
 
 
 void SaveTimer::start(){
@@ -163,4 +194,3 @@ void SaveTimer::timerEvent( QTimerEvent * ){
     }
 
 }
-

@@ -58,16 +58,17 @@ AlarmDlg::AlarmDlg(KPostit *parent, const char *name)
     str = i18n("Alarm Timer for: %1").arg(postit->name);
 
     frame1 = new QGroupBox(str, this, "frame1");
-    
+    frame1->move(5, 5);
+
     if(alarm_is_on)
-      spins = new  BWDateTime(qdt, this, "spins");
+      spins = new  BWDateTime(qdt, frame1, "spins");
     else
-      spins = new  BWDateTime(QDateTime::currentDateTime(), this, "spins");
+      spins = new  BWDateTime(QDateTime::currentDateTime(), frame1, "spins");
 
 
 
-    spins->move(10,20);
-    
+    spins->move(5, 15);
+
     if(alarm_is_on)
       ok = new QPushButton(i18n("Unset"), this, "mail");
     else
@@ -78,18 +79,19 @@ AlarmDlg::AlarmDlg(KPostit *parent, const char *name)
     cancel = new QPushButton(i18n("Cancel"), this, "cancel");
     connect(cancel, SIGNAL(clicked()), this, SLOT(cancel_slot()));
 
-    setFixedSize(330, 160);
-
+    setMinimumSize(340, 150);
+    resize(340, 150);
 }
 
 void AlarmDlg::resizeEvent(QResizeEvent *){
 
-    frame1->setGeometry(5, 5, width() - 10, 115);
+    frame1->resize(width() - 10, height() - 45);
+    spins->resize(frame1->width() -10, frame1->height() -20);
 
     cancel->setGeometry(width() - 80, height() - 30, 70, 25);
     ok->setGeometry(width() - 80 - 80 - 10, height() - 30, 70, 25);
 
-    }
+}
 
 
 void AlarmDlg::focusInEvent( QFocusEvent *){
@@ -131,7 +133,7 @@ void AlarmDlg::ok_slot(){
 
 
 QDateTime AlarmDlg::getDateTime(){
-  
+
   return mydatetime;
 
 }
@@ -144,7 +146,7 @@ bool AlarmDlg::checkDateTime(){
     return FALSE;
 
   rdt = spins->getDateTime();
-  
+
   if( rdt < QDateTime::currentDateTime()){
 
     QMessageBox::warning(

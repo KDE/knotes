@@ -1,3 +1,12 @@
+Tue Aug  3 02:23:09 1999  Carsten Pfeiffer  <pfeiffer@kde.org>
+
+	* added standard accelerator keys (new, print, save, help, close, quit)
+	* added "always on top", configurable in the popupmenu
+	* added possibility to play a sound when an alarm is activated, 
+	  configurable in the defaults dialog
+	* replaced the custom spinboxes with QSpinBoxes and made the dialog use
+	  layout management (still not perfect, yet)
+
 1999-06-07  Petter Reinholdtsen <pere@td.org.uit.no>
 	* knotes.cpp: Changed text Quit to Exit to match KDE style guide.
 

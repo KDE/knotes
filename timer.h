@@ -38,6 +38,7 @@ public:
 
 protected:
   virtual void timerEvent( QTimerEvent * );
+  void 	       playSound( QString );
 
 public:
   void start();
