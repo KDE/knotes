@@ -330,7 +330,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     }
 
     set_colors();
-    setFont(font);
+    edit->setFont(font);
 
     bool have_alarm = FALSE;
 

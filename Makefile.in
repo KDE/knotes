@@ -32,10 +32,10 @@ MOC	=	@MOC@
 HEADER = 	knotes.h kwmcom.h configdlg.h fontdlg.h mail.h alarm.h\
 		bwdatetime.h spin.h timer.h renamedlg.h
 
-SOURCES	=	knotes.cpp  kwmcom.cpp configdlg.cpp fontdlg.cpp mail.cpp alarm.cpp\
+SOURCES	=	knotes.cpp  configdlg.cpp fontdlg.cpp mail.cpp alarm.cpp\
 		bwdatetime.cpp spin.cpp timer.cpp savealarm.cpp renamedlg.cpp
 
-OBJECTS	=	knotes.o kwmcom.o configdlg.o fontdlg.o mail.o alarm.o\
+OBJECTS	=	knotes.o configdlg.o fontdlg.o mail.o alarm.o\
 		bwdatetime.o spin.o timer.o savealarm.o renamedlg.o
 
 SRCMETA	=	knotes.moc configdlg.moc fontdlg.moc mail.moc alarm.moc spin.moc\
