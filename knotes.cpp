@@ -1,4 +1,3 @@
-
 /*
 
  KNotes -- Notes for the KDE project
@@ -26,6 +25,7 @@
   */
 
 
+#include <qdrawutil.h>
 #include <time.h>
 #include "knotes.h"
 #include <kiconloader.h>
@@ -34,6 +34,7 @@
 #include <kglobal.h>
 #include <kio_netaccess.h>
 #include <kconfig.h>
+
 
 #include "configdlg.h"
 #include "fontdlg.h"

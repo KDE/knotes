@@ -29,7 +29,7 @@
 #include "knotes.h"
 #include <kwm.h>
 #include <klocale.h>
-
+#include <qlabel.h>
 
 extern KApplication* 	mykapp;
 extern DefStruct 	postitdefaults;
