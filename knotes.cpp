@@ -1647,7 +1647,7 @@ void findPostitFiles(){
 
   QStringList list = d.entryList();
   QStringList::Iterator it = list.begin(); // create list iterator
-  char *fi;                           // pointer for traversing
+  QString fi;                           // pointer for traversing
 
   while ( (fi=*it) ) {           // for each file...
     if (strcmp(".",fi) ==0 || strcmp("..",fi) ==0 ||strcmp("xyalarms",fi) ==0){
