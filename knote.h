@@ -40,7 +40,7 @@ class KNoteButton;
 class KNoteEdit;
 
 
-class KNote : public QFrame, public KXMLGUIClient
+class KNote : public QFrame, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:

@@ -24,7 +24,6 @@
 #include <qpushbutton.h>
 #include <qdrawutil.h>
 
-#include <iostream.h>
 
 class KNoteButton: public QPushButton
 {
@@ -39,6 +38,7 @@ public:
     }
     ~KNoteButton() {}
 
+private:
     bool flat;
     int  last_button;
 
@@ -132,8 +132,9 @@ protected:
 
     void paint( QPainter* painter )
     {
-        if ( painter == NULL )
-            cerr << "painter is null" << endl;
+        if ( !painter )
+            return;
+
         if ( isDown() || (isOn() && !flat) )
         {
             if ( style().guiStyle() == WindowsStyle )
@@ -160,10 +161,7 @@ protected:
             dx++;
             dy++;
         }
-        if ( painter )
-            painter->drawPixmap( dx, dy, *pixmap() );
-        else
-            cerr << "painter is NULL" << endl;
+        painter->drawPixmap( dx, dy, *pixmap() );
     }
 
     void drawButton( QPainter* p )
