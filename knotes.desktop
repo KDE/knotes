@@ -3,7 +3,7 @@ Encoding=UTF-8
 DocPath=knotes/index.html
 Exec=knotes
 Icon=knotes
-Terminal=0
+Terminal=false
 Type=Application
 
 GenericName=Popup Notes
@@ -80,4 +80,4 @@ Name[xx]=xxKNotesxx
 
 X-KDE-StartupNotify=true
 X-DCOP-ServiceType=Unique
-Categories=Qt;KDE;Utility
+Categories=Qt;KDE;Utility;
