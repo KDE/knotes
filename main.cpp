@@ -96,7 +96,7 @@ int main( int argc, char* argv[] )
           version.latin1(),
           I18N_NOOP( "KDE Notes" ),
           KAboutData::License_GPL,
-          I18N_NOOP("(c) 1997-2004, The KNotes Developers")
+          I18N_NOOP("(c) 1997-2005, The KNotes Developers")
     );
 
     aboutData.addAuthor("Michael Brade", I18N_NOOP("Maintainer"), "brade@kde.org");
