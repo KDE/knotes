@@ -26,7 +26,7 @@
  */
 
 
-
+#include <time.h>
 #include "knotes.h"
 #include "configdlg.h"
 #include "fontdlg.h"
