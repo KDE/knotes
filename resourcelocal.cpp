@@ -57,7 +57,7 @@ ResourceLocal::~ResourceLocal()
 
 bool ResourceLocal::load()
 {
-    mCalendar.load( KGlobal::dirs()->saveLocation( "appdata" ) + "notes.ics" );
+    mCalendar.load( KGlobal::dirs()->saveLocation( "data" ) + "knotes/notes.ics" );
 
     // TODO
     // initialize the Calendar
@@ -78,7 +78,7 @@ bool ResourceLocal::load()
 
 bool ResourceLocal::save()
 {
-    QString file = KGlobal::dirs()->saveLocation( "appdata" ) + "notes.ics";
+    QString file = KGlobal::dirs()->saveLocation( "data" ) + "knotes/notes.ics";
 
     if ( !mCalendar.save( file, new KCal::ICalFormat() ) )
     {

@@ -31,10 +31,10 @@
  your version.
 *******************************************************************/
 
-#ifndef RESOURCEMANAGER_H
-#define RESOURCEMANAGER_H
+#ifndef KNOTES_RESOURCEMANAGER_H
+#define KNOTES_RESOURCEMANAGER_H
 
-#include <resourcenotes.h>
+#include <knotes/resourcenotes.h>
 #include <kresources/manager.h>
 
 class KNotesApp;
