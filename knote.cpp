@@ -67,7 +67,9 @@
 
 #include <kwin.h>
 #include <netwm.h>
+#ifdef KDEPIM_CAN_DEPEND_ON_BASE
 #include <kdecoration.h>
+#endif
 
 #include <fixx11h.h>
 
@@ -838,8 +840,10 @@ void KNote::updateLayout()
     static const int border = 2;
     bool closeLeft = false;
 
+#ifdef KDEPIM_CAN_DEPEND_ON_BASE
     if ( KDecoration::options()->customButtonPositions() )
         closeLeft = KDecoration::options()->titleButtonsLeft().find( 'X' ) > -1;
+#endif
 
     m_button->setGeometry(
         closeLeft ? frameRect().x() + border
