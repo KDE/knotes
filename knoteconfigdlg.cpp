@@ -54,17 +54,9 @@ KNoteConfigDlg::KNoteConfigDlg( const QString& configfile, const QString& title,
 
 KNoteConfigDlg::~KNoteConfigDlg()
 {
+    //just delete _config, all others have parent widgets
+    //and will get destroyed by the parent
     delete _config;
-    delete _fgColor;
-    delete _bgColor;
-    delete _widthEdit;
-    delete _heightEdit;
-    delete _tabEdit;
-    delete _autoIndentSwitch;
-    delete _mailEdit;
-    delete _printEdit;
-    delete _titleFont;
-    delete _textFont;
 }
 
 void KNoteConfigDlg::makeDisplayPage()
