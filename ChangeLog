@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2002/05/10  Michael Brade <brade@kde.org>
+
+    * fixed crash on exit due to wrong deletion order
+    * fixed #42437: preferences never got saved (whoops!!)
+
 2002/03/08  Michael Brade <brade@kde.org>
 
     * fixed #38958: Show note color in notes menu
