@@ -18,35 +18,35 @@ public:
     ~QCleanupHandler() { clear(); }
 
     Type* add( Type **object ) {
-        if ( !cleanupObjects )
-            cleanupObjects = new QPtrList<Type*>;
-        cleanupObjects->insert( 0, object );
-        return *object;
+	if ( !cleanupObjects )
+	    cleanupObjects = new QPtrList<Type*>;
+	cleanupObjects->insert( 0, object );
+	return *object;
     }
 
     void remove( Type **object ) {
-        if ( !cleanupObjects )
-            return;
-        if ( cleanupObjects->findRef( object ) >= 0 )
-            (void) cleanupObjects->take();
+	if ( !cleanupObjects )
+	    return;
+	if ( cleanupObjects->findRef( object ) >= 0 )
+	    (void) cleanupObjects->take();
     }
 
     bool isEmpty() const {
-        return cleanupObjects ? cleanupObjects->isEmpty() : TRUE;
+	return cleanupObjects ? cleanupObjects->isEmpty() : TRUE;
     }
 
     void clear() {
-        if ( !cleanupObjects )
-            return;
-        QPtrListIterator<Type*> it( *cleanupObjects );
-        Type **object;
-        while ( ( object = it.current() ) ) {
-            delete *object;
-            *object = 0;
-            cleanupObjects->remove( object );
-        }
-        delete cleanupObjects;
-        cleanupObjects = 0;
+	if ( !cleanupObjects )
+	    return;
+	QPtrListIterator<Type*> it( *cleanupObjects );
+	Type **object;
+	while ( ( object = it.current() ) ) {
+	    delete *object;
+	    *object = 0;
+	    cleanupObjects->remove( object );
+	}
+	delete cleanupObjects;
+	cleanupObjects = 0;
     }
 
 private:

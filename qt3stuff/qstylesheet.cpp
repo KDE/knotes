@@ -128,7 +128,7 @@ QStyleSheetItem::QStyleSheetItem( QStyleSheet* parent, const QString& name )
     d->sheet = parent;
     init();
     if (parent)
-        parent->insert( this );
+	parent->insert( this );
 }
 
 /*!
@@ -472,7 +472,7 @@ int QStyleSheetItem::numberOfColumns() const
 void QStyleSheetItem::setNumberOfColumns(int ncols)
 {
     if (ncols > 0)
-        d->ncolumns = ncols;
+	d->ncolumns = ncols;
 }
 
 
@@ -534,15 +534,15 @@ QStyleSheetItem::WhiteSpaceMode QStyleSheetItem::whiteSpaceMode() const
   Sets the whitespace mode to \a m. Possible values are
   \list
    \i WhiteSpaceNormal
-        - whitespace in the document serves only as separators.
-        Multiple spaces or indentation are ignored.
+	- whitespace in the document serves only as separators.
+	Multiple spaces or indentation are ignored.
    \i WhiteSpacePre
-          - whitespace is preserved. This is particulary useful to
-          display programming code.
+	  - whitespace is preserved. This is particulary useful to
+	  display programming code.
    \i WhiteSpaceNoWrap
-          - multiple spaces are collapsed as with WhiteSpaceNormal, but no
-          automatic linebreaks occur. To break lines manually use the
-          <tt>&lt;br&gt;</tt> tag.
+	  - multiple spaces are collapsed as with WhiteSpaceNormal, but no
+	  automatic linebreaks occur. To break lines manually use the
+	  <tt>&lt;br&gt;</tt> tag.
   \endlist
  */
 void QStyleSheetItem::setWhiteSpaceMode(WhiteSpaceMode m)
@@ -578,19 +578,19 @@ int QStyleSheetItem::margin(Margin m) const
 void QStyleSheetItem::setMargin(Margin m, int v)
 {
     if (m == MarginAll ) {
-        d->margin[0] = v;
-        d->margin[1] = v;
-        d->margin[2] = v;
-        d->margin[3] = v;
-        d->margin[4] = v;
+	d->margin[0] = v;
+	d->margin[1] = v;
+	d->margin[2] = v;
+	d->margin[3] = v;
+	d->margin[4] = v;
     } else if (m == MarginVertical ) {
-        d->margin[MarginTop] = v;
-        d->margin[MarginBottom] = v;
+	d->margin[MarginTop] = v;
+	d->margin[MarginBottom] = v;
     } else if (m == MarginHorizontal ) {
-        d->margin[MarginLeft] = v;
-        d->margin[MarginRight] = v;
+	d->margin[MarginLeft] = v;
+	d->margin[MarginRight] = v;
     } else {
-        d->margin[m] = v;
+	d->margin[m] = v;
     }
 }
 
@@ -664,7 +664,7 @@ void QStyleSheetItem::setContexts( const QString& c)
 bool QStyleSheetItem::allowedInContext( const QStyleSheetItem* s) const
 {
     if ( d->contxt.isEmpty() )
-        return TRUE;
+	return TRUE;
     return d->contxt.find( QChar(' ')+s->name()+QChar(' ')) != -1;
 }
 
@@ -721,7 +721,7 @@ int QStyleSheetItem::lineSpacing() const
   \brief The QStyleSheet class is a collection of styles for rich text
   rendering and a generator of tags.
 
-  \ingroup graphics 
+  \ingroup graphics
   \ingroup helpsystem
 
   By creating QStyleSheetItem objects for a style sheet you build a
@@ -742,130 +742,130 @@ int QStyleSheetItem::lineSpacing() const
   The structuring tags are
   \list
     \i <tt>&lt;qt&gt;</tt>...<tt>&lt;/qt&gt;</tt>
-        - A Qt rich text document. It understands the following attributes:
-        \list
-        \i title
-        - The caption of the document. This attribute is easily accessible with
-        QTextView::documentTitle().
-        \i type
-        - The type of the document. The default type is \c page . It indicates that
-        the document is displayed in a page of its own. Another style is \c detail,
-        which can be used to explain certain expressions in more detail in a few
-        sentences. The QTextBrowser will then keep the current page and display the
-        new document in a small popup similar to QWhatsThis. Note that links
-        will not work in documents with <tt>&lt;qt type="detail"&gt;</tt>...&lt;/qt&gt.
-        \i bgcolor
-        - The background color, for example \c bgcolor="yellow" or \c bgcolor="#0000FF".
-        \i background
-        - The background pixmap, for example \c background="granit.xpm". The pixmap name
-        will be resolved by a QMimeSourceFactory().
-        \i text
-        - The default text color, for example \c text="red".
-        \i link
-        - The link color, for example \c link="green".
-        \endlist
+	- A Qt rich text document. It understands the following attributes:
+	\list
+	\i title
+	- The caption of the document. This attribute is easily accessible with
+	QTextView::documentTitle().
+	\i type
+	- The type of the document. The default type is \c page . It indicates that
+	the document is displayed in a page of its own. Another style is \c detail,
+	which can be used to explain certain expressions in more detail in a few
+	sentences. The QTextBrowser will then keep the current page and display the
+	new document in a small popup similar to QWhatsThis. Note that links
+	will not work in documents with <tt>&lt;qt type="detail"&gt;</tt>...&lt;/qt&gt.
+	\i bgcolor
+	- The background color, for example \c bgcolor="yellow" or \c bgcolor="#0000FF".
+	\i background
+	- The background pixmap, for example \c background="granit.xpm". The pixmap name
+	will be resolved by a QMimeSourceFactory().
+	\i text
+	- The default text color, for example \c text="red".
+	\i link
+	- The link color, for example \c link="green".
+	\endlist
     \i <tt>&lt;h1&gt;</tt>...<tt>&lt;/h1&gt;</tt>
-        - A top-level heading.
+	- A top-level heading.
     \i <tt>&lt;h2&gt;</tt>...<tt>&lt;/h2&gt;</tt>
-        - A sublevel heading.
+	- A sublevel heading.
     \i <tt>&lt;h3&gt;</tt>...<tt>&lt;/h3&gt;</tt>
-        - A sub-sublevel heading.
+	- A sub-sublevel heading.
     \i <tt>&lt;p&gt;</tt>...<tt>&lt;/p&gt;</tt>
-        - A left-aligned paragraph. Adjust the alignment with
-        the  \c align attribute. Possible values are
-        \c left, \c right and \c center.
+	- A left-aligned paragraph. Adjust the alignment with
+	the  \c align attribute. Possible values are
+	\c left, \c right and \c center.
     \i <tt>&lt;center&gt;</tt>...<tt>&lt;/center&gt;</tt>
-        - A centered paragraph.
+	- A centered paragraph.
     \i <tt>&lt;blockquote&gt;</tt>...<tt>&lt;/blockquote&gt;</tt>
-        - An indented paragraph that is useful for quotes.
+	- An indented paragraph that is useful for quotes.
     \i <tt>&lt;ul&gt;</tt>...<tt>&lt;/ul&gt;</tt>
-        - An unordered list. You can also pass a type argument to
-        define the bullet style. The default is \c type=disc; other
-        types are \c circle and \c square.
+	- An unordered list. You can also pass a type argument to
+	define the bullet style. The default is \c type=disc; other
+	types are \c circle and \c square.
     \i <tt>&lt;ol&gt;</tt>...<tt>&lt;/ol&gt;</tt>
-        - An ordered list. You can also pass a type argument to define
-        the enumeration label style. The default is \c type="1"; other
-        types are \c "a" and \c "A".
+	- An ordered list. You can also pass a type argument to define
+	the enumeration label style. The default is \c type="1"; other
+	types are \c "a" and \c "A".
     \i <tt>&lt;li&gt;</tt>...<tt>&lt;/li&gt;</tt>
-        - A list item. This tag can be used only within the context of
-        \c ol or \c ul.
+	- A list item. This tag can be used only within the context of
+	\c ol or \c ul.
     \i <tt>&lt;pre&gt;</tt>...<tt>&lt;/pre&gt;</tt>
-        - For larger junks of code. Whitespaces in the contents are preserved.
-        For small bits of code use the inline-style \c code.
+	- For larger junks of code. Whitespaces in the contents are preserved.
+	For small bits of code use the inline-style \c code.
    \endlist
 
    Anchors and links are done with a single tag:
    \list
     \i <tt>&lt;a&gt;</tt>...<tt>&lt;/a&gt;</tt>
-        - An anchor or link. The reference target is defined in the
-        \c href attribute of the tag as in <tt>&lt;a href="target.qml"&gt;</tt>...<tt>&lt;/a&gt;</tt>.
-        You can also specify an additional anchor within the specified target document, for
-        example <tt>&lt;a href="target.qml#123"&gt;</tt>...<tt>&lt;/a&gt;</tt>.  If
-        \c a is meant to be an anchor, the reference source is given in
-        the \c name attribute.
+	- An anchor or link. The reference target is defined in the
+	\c href attribute of the tag as in <tt>&lt;a href="target.qml"&gt;</tt>...<tt>&lt;/a&gt;</tt>.
+	You can also specify an additional anchor within the specified target document, for
+	example <tt>&lt;a href="target.qml#123"&gt;</tt>...<tt>&lt;/a&gt;</tt>.  If
+	\c a is meant to be an anchor, the reference source is given in
+	the \c name attribute.
   \endlist
 
    The default character style bindings are
    \list
     \i <tt>&lt;em&gt;</tt>...<tt>&lt;/em&gt;</tt>
-        - Emphasized. By default this is the same as <tt>&lt;i&gt;</tt>...<tt>&lt;/i&gt;</tt> (italic).
+	- Emphasized. By default this is the same as <tt>&lt;i&gt;</tt>...<tt>&lt;/i&gt;</tt> (italic).
     \i <tt>&lt;strong&gt;</tt>...<tt>&lt;/strong&gt;</tt>
-        - Strong. By default this is the same as <tt>&lt;bold&gt;</tt>...<tt>&lt;/bold&gt;</tt> (bold).
+	- Strong. By default this is the same as <tt>&lt;bold&gt;</tt>...<tt>&lt;/bold&gt;</tt> (bold).
     \i <tt>&lt;i&gt;</tt>...<tt>&lt;/i&gt;</tt>
-        - Italic font style.
+	- Italic font style.
     \i <tt>&lt;b&gt;</tt>...<tt>&lt;/b&gt;</tt>
-        - Bold font style.
+	- Bold font style.
     \i <tt>&lt;u&gt;</tt>...<tt>&lt;/u&gt;</tt>
-        - Underlined font style.
+	- Underlined font style.
     \i <tt>&lt;big&gt;</tt>...<tt>&lt;/big&gt;</tt>
-        - A larger font size.
+	- A larger font size.
     \i <tt>&lt;small&gt;</tt>...<tt>&lt;/small&gt;</tt>
-        - A smaller font size.
+	- A smaller font size.
     \i <tt>&lt;code&gt;</tt>...<tt>&lt;/code&gt;</tt>
-        - Indicates code. By default this is the same as <tt>&lt;tt&gt;</tt>...<tt>&lt;/tt&gt;</tt> (typewriter). For
-        larger junks of code use the block-tag \c pre.
+	- Indicates code. By default this is the same as <tt>&lt;tt&gt;</tt>...<tt>&lt;/tt&gt;</tt> (typewriter). For
+	larger junks of code use the block-tag \c pre.
     \i <tt>&lt;tt&gt;</tt>...<tt>&lt;/tt&gt;</tt>
-        - Typewriter font style.
+	- Typewriter font style.
     \i <tt>&lt;font&gt;</tt>...<tt>&lt;/font&gt;</tt>
-        - Customizes the font size, family  and text color. The tag understands
-        the following  attributes:
-        \list
-        \i color
-        - The text color, for example \c color="red" or \c color="#FF0000".
-        \i size
-        - The logical size of the font. Logical sizes 1 to 7 are supported.
-         The value may either be absolute (for example,
-        \c size=3) or relative (\c size=-2). In the latter case the sizes
-        are simply added.
-        \i face
-        - The family of the font, for example \c face=times.
-        \endlist
+	- Customizes the font size, family  and text color. The tag understands
+	the following  attributes:
+	\list
+	\i color
+	- The text color, for example \c color="red" or \c color="#FF0000".
+	\i size
+	- The logical size of the font. Logical sizes 1 to 7 are supported.
+	 The value may either be absolute (for example,
+	\c size=3) or relative (\c size=-2). In the latter case the sizes
+	are simply added.
+	\i face
+	- The family of the font, for example \c face=times.
+	\endlist
    \endlist
 
    Special elements are:
    \list
     \i <tt>&lt;img/&gt;</tt>
-        - An image. The image name for the mime source
-        factory is given in the source attribute, for example
-        <tt>&lt;img src="qt.xpm"/&gt;</tt>. The image tag also
-        understands the attributes \c width and \c height that determine
-        the size of the image. If the pixmap does not fit the specified
-        size it will be scaled automatically (by using QImage::smoothScale()).
+	- An image. The image name for the mime source
+	factory is given in the source attribute, for example
+	<tt>&lt;img src="qt.xpm"/&gt;</tt>. The image tag also
+	understands the attributes \c width and \c height that determine
+	the size of the image. If the pixmap does not fit the specified
+	size it will be scaled automatically (by using QImage::smoothScale()).
 
-        The \c align attribute determines where the image is
-        placed. By default, an image is placed inline just like a
-        normal character. Specify \c left or \c right to place the
-        image at the respective side.
+	The \c align attribute determines where the image is
+	placed. By default, an image is placed inline just like a
+	normal character. Specify \c left or \c right to place the
+	image at the respective side.
     \i <tt>&lt;hr/&gt;</tt>
-        - A horizonal line.
+	- A horizonal line.
     \i <tt>&lt;br/&gt;</tt>
-        - A line break.
+	- A line break.
   \endlist
 
   Another tag not in any of the above cathegories is
   \list
   \i <tt>&lt;nobr&gt;</tt>...<tt>&lt;/nobr&gt;</tt>
-        - No break. Prevents word wrap.
+	- No break. Prevents word wrap.
   \endlist
 
   In addition, rich text supports simple HTML tables. A table consists
@@ -879,41 +879,41 @@ int QStyleSheetItem::lineSpacing() const
    - A table definition.
      The default table is frameless. Specify the boolean attribute
      \c border in order to get a frame. Other attributes are
-        \list
-        \i bgcolor
-        - The background color.
-        \i width
-        - The table width. This is either absolute in pixels or relative
-        in percent of the column width, for example \c width=80%.
-        \i border
-        - The width of the table border. The default is 0 (= no border).
-        \i cellspacing
-        - Additional space around the table cells. The default is 2.
-        \i cellpadding
-        - Additional space around the contents of table cells. The default is 1.
-        \endlist
+	\list
+	\i bgcolor
+	- The background color.
+	\i width
+	- The table width. This is either absolute in pixels or relative
+	in percent of the column width, for example \c width=80%.
+	\i border
+	- The width of the table border. The default is 0 (= no border).
+	\i cellspacing
+	- Additional space around the table cells. The default is 2.
+	\i cellpadding
+	- Additional space around the contents of table cells. The default is 1.
+	\endlist
    \i <tt>&lt;tr&gt;</tt>...<tt>&lt;/tr&gt;</tt>
    - A table row. Can be used only within \c table. Understands the attributes.
-        \list
-        \i bgcolor
-        - The background color.
-        \endlist
+	\list
+	\i bgcolor
+	- The background color.
+	\endlist
    \i <tt>&lt;td&gt;</tt>...<tt>&lt;/td&gt;</tt>
    - A table data cell. Can be used only within \c tr. Understands the attributes.
-        \list
-        \i bgcolor
-        - The background color.
-        \i width
-        - The cell width. This is either absolute in pixels or relative
-        in percent of the entire table width, for example \c width=50%.
-        \i colspan
-        - Defines how many columns this cell spans. The default is 1.
-        \i rowspan
-        - Defines how many rows this cell spans. The default is 1.
-        \i align
-        - Alignment; possible values are \c left, \c right, and \c center. The
-        default is left-aligned.
-        \endlist
+	\list
+	\i bgcolor
+	- The background color.
+	\i width
+	- The cell width. This is either absolute in pixels or relative
+	in percent of the entire table width, for example \c width=50%.
+	\i colspan
+	- Defines how many columns this cell spans. The default is 1.
+	\i rowspan
+	- Defines how many rows this cell spans. The default is 1.
+	\i align
+	- Alignment; possible values are \c left, \c right, and \c center. The
+	default is left-aligned.
+	\endlist
    \i <tt>&lt;th&gt;</tt>...<tt>&lt;/th&gt;</tt>
    - A table header cell. Similar to \c td, but defaults to center alignment
      and a bold font.
@@ -950,7 +950,7 @@ void QStyleSheet::init()
     styles.setAutoDelete( TRUE );
 
     nullstyle  = new QStyleSheetItem( this,
-        QString::fromLatin1("") );
+	QString::fromLatin1("") );
 
     QStyleSheetItem*  style;
 
@@ -1119,8 +1119,8 @@ static QCleanupHandler<QStyleSheet> qt_cleanup_stylesheet;
 QStyleSheet* QStyleSheet::defaultSheet()
 {
     if (!defaultsheet) {
-        defaultsheet = new QStyleSheet();
-        qt_cleanup_stylesheet.add( &defaultsheet );
+	defaultsheet = new QStyleSheet();
+	qt_cleanup_stylesheet.add( &defaultsheet );
     }
     return defaultsheet;
 }
@@ -1135,13 +1135,13 @@ QStyleSheet* QStyleSheet::defaultSheet()
 void QStyleSheet::setDefaultSheet( QStyleSheet* sheet)
 {
     if ( defaultsheet != sheet ) {
-        if ( defaultsheet )
-            qt_cleanup_stylesheet.remove( &defaultsheet );
-        delete defaultsheet;
+	if ( defaultsheet )
+	    qt_cleanup_stylesheet.remove( &defaultsheet );
+	delete defaultsheet;
     }
     defaultsheet = sheet;
     if ( defaultsheet )
-        qt_cleanup_stylesheet.add( &defaultsheet );
+	qt_cleanup_stylesheet.add( &defaultsheet );
 }
 
 /*!\internal
@@ -1161,7 +1161,7 @@ void QStyleSheet::insert( QStyleSheetItem* style )
 QStyleSheetItem* QStyleSheet::item( const QString& name)
 {
     if ( name.isNull() )
-        return 0;
+	return 0;
     return styles[name];
 }
 
@@ -1172,7 +1172,7 @@ QStyleSheetItem* QStyleSheet::item( const QString& name)
 const QStyleSheetItem* QStyleSheet::item( const QString& name) const
 {
     if ( name.isNull() )
-        return 0;
+	return 0;
     return styles[name];
 }
 
@@ -1196,10 +1196,10 @@ const QStyleSheetItem* QStyleSheet::item( const QString& name) const
   This function should not (yet) be used in application code.
 */
 QTextCustomItem* QStyleSheet::tag(  const QString& name,
-                                   const QMap<QString, QString> &attr,
-                                   const QString& context,
-                                   const QMimeSourceFactory& factory,
-                                   bool /*emptyTag */, QTextDocument *doc ) const
+				   const QMap<QString, QString> &attr,
+				   const QString& context,
+				   const QMimeSourceFactory& factory,
+				   bool /*emptyTag */, QTextDocument *doc ) const
 {
     static QString s_img = QString::fromLatin1("img");
     static QString s_hr = QString::fromLatin1("hr");
@@ -1207,11 +1207,11 @@ QTextCustomItem* QStyleSheet::tag(  const QString& name,
     const QStyleSheetItem* style = item( name );
     // first some known  tags
     if ( !style )
-        return 0;
+	return 0;
     if ( style->name() == s_img )
-        return new QTextImage( doc, attr, context, (QMimeSourceFactory&)factory);
+	return new QTextImage( doc, attr, context, (QMimeSourceFactory&)factory);
     if ( style->name() == s_hr )
-        return new QTextHorizontalLine( doc );
+	return new QTextHorizontalLine( doc );
    return 0;
 }
 
@@ -1228,32 +1228,32 @@ QString QStyleSheet::convertFromPlainText( const QString& plain)
     QString rich;
     rich += "<p>";
     for ( int i = 0; i < int(plain.length()); ++i ) {
-        if ( plain[i] == '\n' ){
-            if ( col == 1 )
-                rich += "<p></p>";
-            else
-                rich += "<br>";
-            col = 0;
-        }
-        else if ( plain[i] == '\t' ){
-            rich += 0x00a0U;
-            // while ( col / 4.0 != int( col/4 ) ) { // weird
-            while ( col % 4 ) {
-                rich += 0x00a0U;
-                ++col;
-            }
-        }
-        else if ( plain[i].isSpace() )
-            rich += 0x00a0U;
-        else if ( plain[i] == '<' )
-            rich +="&lt;";
-        else if ( plain[i] == '>' )
-            rich +="&gt;";
-        else if ( plain[i] == '&' )
-            rich +="&amp;";
-        else
-            rich += plain[i];
-        ++col;
+	if ( plain[i] == '\n' ){
+	    if ( col == 1 )
+		rich += "<p></p>";
+	    else
+		rich += "<br>";
+	    col = 0;
+	}
+	else if ( plain[i] == '\t' ){
+	    rich += 0x00a0U;
+	    // while ( col / 4.0 != int( col/4 ) ) { // weird
+	    while ( col % 4 ) {
+		rich += 0x00a0U;
+		++col;
+	    }
+	}
+	else if ( plain[i].isSpace() )
+	    rich += 0x00a0U;
+	else if ( plain[i] == '<' )
+	    rich +="&lt;";
+	else if ( plain[i] == '>' )
+	    rich +="&gt;";
+	else if ( plain[i] == '&' )
+	    rich +="&amp;";
+	else
+	    rich += plain[i];
+	++col;
     }
     rich += "</p>";
     return rich;
@@ -1269,14 +1269,14 @@ QString QStyleSheet::escape( const QString& plain)
 {
     QString rich;
     for ( int i = 0; i < int(plain.length()); ++i ) {
-        if ( plain[i] == '<' )
-            rich +="&lt;";
-        else if ( plain[i] == '>' )
-            rich +="&gt;";
-        else if ( plain[i] == '&' )
-            rich +="&amp;";
-        else
-            rich += plain[i];
+	if ( plain[i] == '<' )
+	    rich +="&lt;";
+	else if ( plain[i] == '>' )
+	    rich +="&gt;";
+	else if ( plain[i] == '&' )
+	    rich +="&amp;";
+	else
+	    rich += plain[i];
     }
     return rich;
 }
@@ -1314,30 +1314,30 @@ QString QStyleSheet::escape( const QString& plain)
 bool QStyleSheet::mightBeRichText( const QString& text)
 {
     if ( text.isEmpty() )
-        return FALSE;
+	return FALSE;
     if ( text.left(5).lower() == "<!doc" )
-        return TRUE;
+	return TRUE;
     int open = 0;
     while ( open < int(text.length()) && text[open] != '<'
-            && text[open] != '\n' && text[open] != '&')
-        ++open;
+	    && text[open] != '\n' && text[open] != '&')
+	++open;
     if ( text[open] == '&' ) {
-        if ( text.mid(open+1,3) == "lt;" )
-            return TRUE; // support desperate attempt of user to see <...>
+	if ( text.mid(open+1,3) == "lt;" )
+	    return TRUE; // support desperate attempt of user to see <...>
     } else if ( text[open] == '<' ) {
-        int close = text.find('>', open);
-        if ( close > -1 ) {
-            QString tag;
-            for (int i = open+1; i < close; ++i) {
-                if ( text[i].isDigit() || text[i].isLetter() )
-                    tag += text[i];
-                else if ( !tag.isEmpty() && text[i].isSpace() )
-                    break;
-                else if ( !text[i].isSpace() && (!tag.isEmpty() || text[i] != '!' ) )
-                    return FALSE; // that's not a tag
-            }
-            return defaultSheet()->item( tag.lower() ) != 0;
-        }
+	int close = text.find('>', open);
+	if ( close > -1 ) {
+	    QString tag;
+	    for (int i = open+1; i < close; ++i) {
+		if ( text[i].isDigit() || text[i].isLetter() )
+		    tag += text[i];
+		else if ( !tag.isEmpty() && text[i].isSpace() )
+		    break;
+		else if ( !text[i].isSpace() && (!tag.isEmpty() || text[i] != '!' ) )
+		    return FALSE; // that's not a tag
+	    }
+	    return defaultSheet()->item( tag.lower() ) != 0;
+	}
     }
     return FALSE;
 }
@@ -1375,32 +1375,32 @@ void QStyleSheet::error( const QString& ) const
 void QStyleSheet::scaleFont( QFont& font, int logicalSize ) const
 {
     if ( logicalSize < 1 )
-        logicalSize = 1;
+	logicalSize = 1;
     if ( logicalSize > 7 )
-        logicalSize = 7;
+	logicalSize = 7;
     int basePointSize = font.pointSize();
     int s;
     switch ( logicalSize ) {
     case 1:
-        s =  basePointSize/2;
-        break;
+	s =  basePointSize/2;
+	break;
     case 2:
-        s = (8 * basePointSize) / 10;
-        break;
+	s = (8 * basePointSize) / 10;
+	break;
     case 4:
-        s =  (12 * basePointSize) / 10;
-        break;
+	s =  (12 * basePointSize) / 10;
+	break;
     case 5:
-        s = (15 * basePointSize) / 10;
-        break;
+	s = (15 * basePointSize) / 10;
+	break;
     case 6:
-        s = 2 * basePointSize;
-        break;
+	s = 2 * basePointSize;
+	break;
     case 7:
-        s = (24 * basePointSize) / 10;
-        break;
+	s = (24 * basePointSize) / 10;
+	break;
     default:
-        s = basePointSize;
+	s = basePointSize;
     }
     font.setPointSize( s );
 }

@@ -70,10 +70,10 @@ public:
     enum AdditionalStyleValues { Undefined  = - 1};
 
     enum DisplayMode {
-        DisplayBlock,
-        DisplayInline,
-        DisplayListItem,
-        DisplayNone
+	DisplayBlock,
+	DisplayInline,
+	DisplayListItem,
+	DisplayNone
     };
 
     DisplayMode displayMode() const;
@@ -119,26 +119,26 @@ public:
     void setWhiteSpaceMode(WhiteSpaceMode m);
 
     enum Margin {
-        MarginLeft,
-        MarginRight,
-        MarginTop,
-        MarginBottom,
-        MarginFirstLine,
-        MarginAll,
-        MarginVertical,
-        MarginHorizontal
+	MarginLeft,
+	MarginRight,
+	MarginTop,
+	MarginBottom,
+	MarginFirstLine,
+	MarginAll,
+	MarginVertical,
+	MarginHorizontal
     };
 
     int margin( Margin m) const;
     void setMargin( Margin, int);
 
     enum ListStyle {
-        ListDisc,
-        ListCircle,
-        ListSquare,
-        ListDecimal,
-        ListLowerAlpha,
-        ListUpperAlpha
+	ListDisc,
+	ListCircle,
+	ListSquare,
+	ListDecimal,
+	ListLowerAlpha,
+	ListUpperAlpha
     };
 
     ListStyle listStyle() const;
@@ -188,10 +188,10 @@ public:
     void insert( QStyleSheetItem* item);
 
     virtual QTextCustomItem* tag( const QString& name,
-                            const QMap<QString, QString> &attr,
-                            const QString& context,
-                            const QMimeSourceFactory& factory,
-                            bool emptyTag, QTextDocument *doc ) const;
+			    const QMap<QString, QString> &attr,
+			    const QString& context,
+			    const QMimeSourceFactory& factory,
+			    bool emptyTag, QTextDocument *doc ) const;
 
     static QString escape( const QString& );
     static QString convertFromPlainText( const QString& );

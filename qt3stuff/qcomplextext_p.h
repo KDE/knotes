@@ -15,9 +15,9 @@ namespace Qt3 {
 // bidi helper classes. Internal to Qt
 struct Q_EXPORT QBidiStatus {
     QBidiStatus() {
-        eor = QChar::DirON;
-        lastStrong = QChar::DirON;
-        last = QChar:: DirON;
+	eor = QChar::DirON;
+	lastStrong = QChar::DirON;
+	last = QChar:: DirON;
     }
     QChar::Direction eor;
     QChar::Direction lastStrong;
@@ -58,10 +58,10 @@ struct Q_EXPORT QTextRun {
 class Q_EXPORT QComplexText {
 public:
     enum Shape {
-        XIsolated,
-        XFinal,
-        XInitial,
-        XMedial
+	XIsolated,
+	XFinal,
+	XInitial,
+	XMedial
     };
 //QT2HACK
 #if 0

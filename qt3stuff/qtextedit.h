@@ -94,47 +94,48 @@ class Q_EXPORT QTextEdit : public QScrollView
 
 public:
     enum WordWrap {
-        NoWrap,
-        WidgetWidth,
-        FixedPixelWidth,
-        FixedColumnWidth
+	NoWrap,
+	WidgetWidth,
+	FixedPixelWidth,
+	FixedColumnWidth
     };
 
     enum WrapPolicy {
-        AtWhiteSpace,
-        Anywhere
+	AtWordBoundary,
+	Anywhere,
+	AtWhiteSpace = AtWordBoundary // deprecated, don't use
     };
 
     enum KeyboardAction {
-        ActionBackspace,
-        ActionDelete,
-        ActionReturn,
-        ActionKill
+	ActionBackspace,
+	ActionDelete,
+	ActionReturn,
+	ActionKill
     };
 
     enum CursorAction {
-        MoveBackward,
-        MoveForward,
-        MoveWordBackward,
-        MoveWordForward,
-        MoveUp,
-        MoveDown,
-        MoveLineStart,
-        MoveLineEnd,
-        MoveHome,
-        MoveEnd,
-        MovePgUp,
-        MovePgDown
+	MoveBackward,
+	MoveForward,
+	MoveWordBackward,
+	MoveWordForward,
+	MoveUp,
+	MoveDown,
+	MoveLineStart,
+	MoveLineEnd,
+	MoveHome,
+	MoveEnd,
+	MovePgUp,
+	MovePgDown
     };
 
     enum VerticalAlignment {
-        AlignNormal,
-        AlignSuperScript,
-        AlignSubScript
+	AlignNormal,
+	AlignSuperScript,
+	AlignSubScript
     };
 
     QTextEdit( const QString& text, const QString& context = QString::null,
-               QWidget *parent=0, const char *name=0);
+	       QWidget *parent=0, const char *name=0);
     QTextEdit( QWidget *parent = 0, const char *name = 0 );
     virtual ~QTextEdit();
     void setPalette( const QPalette & );
@@ -146,9 +147,9 @@ public:
     QString documentTitle() const;
 
     void getSelection( int *paraFrom, int *indexFrom,
-                    int *paraTo, int *indexTo, int selNum = 0 ) const;
+		    int *paraTo, int *indexTo, int selNum = 0 ) const;
     virtual bool find( const QString &expr, bool cs, bool wo, bool forward = TRUE,
-                       int *para = 0, int *index = 0 );
+		       int *para = 0, int *index = 0 );
 
     int paragraphs() const;
     int lines() const;
@@ -197,10 +198,10 @@ public:
     int undoDepth() const;
     virtual bool getFormat( int para, int index, QFont *font, QColor *color, VerticalAlignment *verticalAlignment );
     virtual bool getParagraphFormat( int para, QFont *font, QColor *color,
-                                     VerticalAlignment *verticalAlignment, int *alignment,
-                                     QStyleSheetItem::DisplayMode *displayMode,
-                                     QStyleSheetItem::ListStyle *listStyle,
-                                     int *listDepth );
+				     VerticalAlignment *verticalAlignment, int *alignment,
+				     QStyleSheetItem::DisplayMode *displayMode,
+				     QStyleSheetItem::ListStyle *listStyle,
+				     int *listDepth );
     bool isOverwriteMode() const { return overWrite; }
     QColor paragraphBackgroundColor( int para ) const;
 
@@ -355,28 +356,28 @@ private slots:
 
 private:
     struct Q_EXPORT UndoRedoInfo {
-        enum Type { Invalid, Insert, Delete, Backspace, Return, RemoveSelected, Format, Alignment, ParagType };
+	enum Type { Invalid, Insert, Delete, Backspace, Return, RemoveSelected, Format, Alignment, ParagType };
 
-        UndoRedoInfo( QTextDocument *dc );
-        ~UndoRedoInfo();
-        void clear();
-        bool valid() const;
+	UndoRedoInfo( QTextDocument *dc );
+	~UndoRedoInfo();
+	void clear();
+	bool valid() const;
 
-        QUndoRedoInfoPrivate *d;
-        int id;
-        int index;
-        int eid;
-        int eindex;
-        QTextFormat *format;
-        int flags;
-        Type type;
-        QTextDocument *doc;
-        QMemArray<int> oldAligns;
-        int newAlign;
-        bool list;
-        QStyleSheetItem::ListStyle listStyle;
-        QValueList< QPtrVector<QStyleSheetItem> > oldStyles;
-        QValueList<QStyleSheetItem::ListStyle> oldListStyles;
+	QUndoRedoInfoPrivate *d;
+	int id;
+	int index;
+	int eid;
+	int eindex;
+	QTextFormat *format;
+	int flags;
+	Type type;
+	QTextDocument *doc;
+	QMemArray<int> oldAligns;
+	int newAlign;
+	bool list;
+	QStyleSheetItem::ListStyle listStyle;
+	QValueList< QPtrVector<QStyleSheetItem> > oldStyles;
+	QValueList<QStyleSheetItem::ListStyle> oldListStyles;
     };
 
 private:

@@ -60,7 +60,7 @@ QString QTextCustomItem::richText() const { return QString::null; }
 bool QTextCustomItem::enter( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy, bool atEnd )
 {
     doc = doc; parag = parag; idx = idx; ox = ox; oy = oy; Q_UNUSED( atEnd ) return TRUE;
-                                                        
+
 }
 bool QTextCustomItem::enterAt( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy, const QPoint & )
 {
@@ -106,7 +106,7 @@ int QTextCursor::x() const
     QTextStringChar *c = string->at( idx );
     int curx = c->x;
     if ( c->rightToLeft )
-        curx += string->string()->width( idx );
+	curx += string->string()->width( idx );
     return curx;
 }
 
@@ -120,9 +120,9 @@ int QTextCursor::y() const
 bool QTextDocument::hasSelection( int id, bool visible ) const
 {
     return ( selections.find( id ) != selections.end() &&
-             ( !visible ||
-               ( (QTextDocument*)this )->selectionStartCursor( id ) !=
-               ( (QTextDocument*)this )->selectionEndCursor( id ) ) );
+	     ( !visible ||
+	       ( (QTextDocument*)this )->selectionStartCursor( id ) !=
+	       ( (QTextDocument*)this )->selectionEndCursor( id ) ) );
 }
 
 void QTextDocument::setSelectionStart( int id, QTextCursor *cursor )
@@ -138,9 +138,9 @@ QTextParag *QTextDocument::paragAt( int i ) const
 {
     QTextParag *s = fParag;
     while ( s ) {
-        if ( s->paragId() == i )
-            return s;
-        s = s->next();
+	if ( s->paragId() == i )
+	    return s;
+	s = s->next();
     }
     return 0;
 }
@@ -165,9 +165,9 @@ QTextFormat::QTextFormat( const QStyleSheetItem *style )
     ha = AlignNormal;
     collection = 0;
     fn = QFont( style->fontFamily(),
-                style->fontSize(),
-                style->fontWeight(),
-                style->fontItalic() );
+		style->fontSize(),
+		style->fontWeight(),
+		style->fontItalic() );
     fn.setUnderline( style->fontUnderline() );
     col = style->color();
     fm = QFontMetrics( fn );
@@ -274,7 +274,7 @@ void QTextFormat::update()
 int QTextFormat::minLeftBearing() const
 {
     if ( !painter || !painter->isActive() )
-        return leftBearing;
+	return leftBearing;
     painter->setFont( fn );
     return painter->fontMetrics().minLeftBearing();
 }
@@ -282,7 +282,7 @@ int QTextFormat::minLeftBearing() const
 int QTextFormat::minRightBearing() const
 {
     if ( !painter || !painter->isActive() )
-        return rightBearing;
+	return rightBearing;
     painter->setFont( fn );
     return painter->fontMetrics().minRightBearing();
 }
@@ -290,7 +290,7 @@ int QTextFormat::minRightBearing() const
 int QTextFormat::height() const
 {
     if ( !painter || !painter->isActive() )
-        return hei;
+	return hei;
     painter->setFont( fn );
     return painter->fontMetrics().height();
 }
@@ -298,7 +298,7 @@ int QTextFormat::height() const
 int QTextFormat::ascent() const
 {
     if ( !painter || !painter->isActive() )
-        return asc;
+	return asc;
     painter->setFont( fn );
     return painter->fontMetrics().ascent();
 }
@@ -306,7 +306,7 @@ int QTextFormat::ascent() const
 int QTextFormat::descent() const
 {
     if ( !painter || !painter->isActive() )
-        return dsc;
+	return dsc;
     painter->setFont( fn );
     return painter->fontMetrics().descent();
 }
@@ -328,7 +328,7 @@ void QTextFormat::generateKey()
 }
 
 QString QTextFormat::getKey( const QFont &fn, const QColor &col, bool misspelled,
-                                    const QString &lhref, const QString &lnm, VerticalAlignment a )
+				    const QString &lhref, const QString &lnm, VerticalAlignment a )
 {
     QString k;
     QTextOStream ts( &k );
@@ -349,22 +349,22 @@ QString QTextFormat::getKey( const QFont &fn, const QColor &col, bool misspelled
 void QTextFormat::updateStyle()
 {
     if ( !collection || !collection->styleSheet() )
-        return;
+	return;
     QStyleSheetItem *item = collection->styleSheet()->item( style );
     if ( !item )
-        return;
+	return;
     if ( !( different & Color ) && item->color().isValid() )
-        col = item->color();
+	col = item->color();
     if ( !( different & Size ) && item->fontSize() != -1 )
-        fn.setPointSize( item->fontSize() );
+	fn.setPointSize( item->fontSize() );
     if ( !( different & Family ) && !item->fontFamily().isEmpty() )
-        fn.setFamily( item->fontFamily() );
+	fn.setFamily( item->fontFamily() );
     if ( !( different & Bold ) && item->fontWeight() != -1 )
-        fn.setWeight( item->fontWeight() );
+	fn.setWeight( item->fontWeight() );
     if ( !( different & Italic ) && item->definesFontItalic() )
-        fn.setItalic( item->fontItalic() );
+	fn.setItalic( item->fontItalic() );
     if ( !( different & Underline ) && item->definesFontUnderline() )
-        fn.setUnderline( item->fontUnderline() );
+	fn.setUnderline( item->fontUnderline() );
     generateKey();
     update();
 
@@ -374,22 +374,22 @@ void QTextFormat::updateStyleFlags()
 {
     different = NoFlags;
     if ( !collection || !collection->styleSheet() )
-        return;
+	return;
     QStyleSheetItem *item = collection->styleSheet()->item( style );
     if ( !item )
-        return;
+	return;
     if ( item->color() != col )
-        different |= Color;
+	different |= Color;
     if ( item->fontSize() != fn.pointSize() )
-        different |= Size;
+	different |= Size;
     if ( item->fontFamily() != fn.family() )
-        different |= Family;
+	different |= Family;
     if ( item->fontItalic() != fn.italic() )
-        different |= Italic;
+	different |= Italic;
     if ( item->fontUnderline() != fn.underline() )
-        different |= Underline;
+	different |= Underline;
     if ( item->fontWeight() != fn.weight() )
-        different |= Bold;
+	different |= Bold;
 }
 
 QString QTextString::toString( const QMemArray<QTextStringChar> &data )
@@ -400,9 +400,9 @@ QString QTextString::toString( const QMemArray<QTextStringChar> &data )
     QTextStringChar *c = data.data();
     QChar *uc = (QChar *)s.unicode();
     while ( l-- ) {
-        *uc = c->c;
-        uc++;
-        c++;
+	*uc = c->c;
+	uc++;
+	c++;
     }
 
     return s;
@@ -416,9 +416,9 @@ QString QTextString::toReverseString() const
     QTextStringChar *c = data.data() + (l-1);
     QChar *uc = (QChar *)s.unicode();
     while ( l-- ) {
-        *uc = c->c;
-        uc++;
-        c--;
+	*uc = c->c;
+	uc++;
+	c--;
     }
 
     return s;
@@ -428,8 +428,8 @@ void QTextParag::setSelection( int id, int start, int end )
 {
     QMap<int, QTextParagSelection>::ConstIterator it = selections.find( id );
     if ( it != selections.end() ) {
-        if ( start == ( *it ).start && end == ( *it ).end )
-            return;
+	if ( start == ( *it ).start && end == ( *it ).end )
+	    return;
     }
 
     QTextParagSelection sel;
@@ -442,7 +442,7 @@ void QTextParag::setSelection( int id, int start, int end )
 void QTextParag::removeSelection( int id )
 {
     if ( !hasSelection( id ) )
-        return;
+	return;
     selections.remove( id );
     setChanged( TRUE, TRUE );
 }
@@ -451,7 +451,7 @@ int QTextParag::selectionStart( int id ) const
 {
     QMap<int, QTextParagSelection>::ConstIterator it = selections.find( id );
     if ( it == selections.end() )
-        return -1;
+	return -1;
     return ( *it ).start;
 }
 
@@ -459,7 +459,7 @@ int QTextParag::selectionEnd( int id ) const
 {
     QMap<int, QTextParagSelection>::ConstIterator it = selections.find( id );
     if ( it == selections.end() )
-        return -1;
+	return -1;
     return ( *it ).end;
 }
 
@@ -467,7 +467,7 @@ bool QTextParag::hasSelection( int id ) const
 {
     QMap<int, QTextParagSelection>::ConstIterator it = selections.find( id );
     if ( it == selections.end() )
-        return FALSE;
+	return FALSE;
     return ( *it ).start != ( *it ).end || length() == 1;
 }
 
@@ -475,75 +475,75 @@ bool QTextParag::fullSelected( int id ) const
 {
     QMap<int, QTextParagSelection>::ConstIterator it = selections.find( id );
     if ( it == selections.end() )
-        return FALSE;
+	return FALSE;
     return ( *it ).start == 0 && ( *it ).end == str->length() - 1;
 }
 
 int QTextParag::lineY( int l ) const
 {
     if ( l > (int)lineStarts.count() - 1 ) {
-        qWarning( "QTextParag::lineY: line %d out of range!", l );
-        return 0;
+	qWarning( "QTextParag::lineY: line %d out of range!", l );
+	return 0;
     }
 
     if ( !isValid() )
-        ( (QTextParag*)this )->format();
+	( (QTextParag*)this )->format();
 
     QMap<int, QTextParagLineStart*>::ConstIterator it = lineStarts.begin();
     while ( l-- > 0 )
-        ++it;
+	++it;
     return ( *it )->y;
 }
 
 int QTextParag::lineBaseLine( int l ) const
 {
     if ( l > (int)lineStarts.count() - 1 ) {
-        qWarning( "QTextParag::lineBaseLine: line %d out of range!", l );
-        return 10;
+	qWarning( "QTextParag::lineBaseLine: line %d out of range!", l );
+	return 10;
     }
 
     if ( !isValid() )
-        ( (QTextParag*)this )->format();
+	( (QTextParag*)this )->format();
 
     QMap<int, QTextParagLineStart*>::ConstIterator it = lineStarts.begin();
     while ( l-- > 0 )
-        ++it;
+	++it;
     return ( *it )->baseLine;
 }
 
 int QTextParag::lineHeight( int l ) const
 {
     if ( l > (int)lineStarts.count() - 1 ) {
-        qWarning( "QTextParag::lineHeight: line %d out of range!", l );
-        return 15;
+	qWarning( "QTextParag::lineHeight: line %d out of range!", l );
+	return 15;
     }
 
     if ( !isValid() )
-        ( (QTextParag*)this )->format();
+	( (QTextParag*)this )->format();
 
     QMap<int, QTextParagLineStart*>::ConstIterator it = lineStarts.begin();
     while ( l-- > 0 )
-        ++it;
+	++it;
     return ( *it )->h;
 }
 
 void QTextParag::lineInfo( int l, int &y, int &h, int &bl ) const
 {
     if ( l > (int)lineStarts.count() - 1 ) {
-        qWarning( "QTextParag::lineInfo: line %d out of range!", l );
-        qDebug( "%d %d", (int)lineStarts.count() - 1, l );
-        y = 0;
-        h = 15;
-        bl = 10;
-        return;
+	qWarning( "QTextParag::lineInfo: line %d out of range!", l );
+	qDebug( "%d %d", (int)lineStarts.count() - 1, l );
+	y = 0;
+	h = 15;
+	bl = 10;
+	return;
     }
 
     if ( !isValid() )
-        ( (QTextParag*)this )->format();
+	( (QTextParag*)this )->format();
 
     QMap<int, QTextParagLineStart*>::ConstIterator it = lineStarts.begin();
     while ( l-- > 0 )
-        ++it;
+	++it;
     y = ( *it )->y;
     h = ( *it )->h;
     bl = ( *it )->baseLine;
@@ -552,14 +552,14 @@ void QTextParag::lineInfo( int l, int &y, int &h, int &bl ) const
 int QTextParag::alignment() const
 {
     if ( align != -1 )
-        return align;
+	return align;
     QStyleSheetItem *item = style();
     if ( !item )
-        return Qt3::AlignAuto;
+	return Qt3::AlignAuto;
     for ( int i = 0; i < (int)styleSheetItemsVec.size(); ++i ) {
-        item = styleSheetItemsVec[ i ];
-        if ( item->alignment() != QStyleSheetItem::Undefined )
-            return item->alignment();
+	item = styleSheetItemsVec[ i ];
+	if ( item->alignment() != QStyleSheetItem::Undefined )
+	    return item->alignment();
     }
     return Qt3::AlignAuto;
 }
@@ -569,34 +569,34 @@ QPtrVector<QStyleSheetItem> QTextParag::styleSheetItems() const
     QPtrVector<QStyleSheetItem> vec;
     vec.resize( styleSheetItemsVec.size() );
     for ( int i = 0; i < (int)vec.size(); ++i )
-        vec.insert( i, styleSheetItemsVec[ i ] );
+	vec.insert( i, styleSheetItemsVec[ i ] );
     return vec;
 }
 
 QStyleSheetItem *QTextParag::style() const
 {
     if ( styleSheetItemsVec.size() == 0 )
-        return 0;
+	return 0;
     return styleSheetItemsVec[ styleSheetItemsVec.size() - 1 ];
 }
 
 int QTextParag::numberOfSubParagraph() const
 {
     if ( list_val != -1 )
-        return list_val;
+	return list_val;
     if ( numSubParag != -1 )
-         return numSubParag;
+ 	return numSubParag;
     int n = 0;
     QTextParag *p = (QTextParag*)this;
     while ( p && ( styleSheetItemsVec.size() >= p->styleSheetItemsVec.size() &&
-            styleSheetItemsVec[ (int)p->styleSheetItemsVec.size() - 1 ] == p->style() ||
-                   p->styleSheetItemsVec.size() >= styleSheetItemsVec.size() &&
-                   p->styleSheetItemsVec[ (int)styleSheetItemsVec.size() - 1 ] == style() ) ) {
-        if ( p->style() == style() && listStyle() != p->listStyle() )
-            break;
-        if ( p->style()->name() == "li" && p->style() != style() || styleSheetItemsVec.size() == p->styleSheetItemsVec.size() )
-            ++n;
-        p = p->prev();
+	    styleSheetItemsVec[ (int)p->styleSheetItemsVec.size() - 1 ] == p->style() ||
+		   p->styleSheetItemsVec.size() >= styleSheetItemsVec.size() &&
+		   p->styleSheetItemsVec[ (int)styleSheetItemsVec.size() - 1 ] == style() ) ) {
+	if ( p->style() == style() && listStyle() != p->listStyle() )
+	    break;
+	if ( p->style()->name() == "li" && p->style() != style() || styleSheetItemsVec.size() == p->styleSheetItemsVec.size() )
+	    ++n;
+	p = p->prev();
     }
     ( (QTextParag*)this )->numSubParag = n;
     return n;
@@ -609,19 +609,19 @@ void QTextParag::setFormat( QTextFormat *fm )
        doUpdate = TRUE;
     defFormat = formatCollection()->format( fm );
     if ( !doUpdate )
-        return;
+	return;
     for ( int i = 0; i < length(); ++i ) {
-        if ( at( i )->format()->styleName() == defFormat->styleName() )
-            at( i )->format()->updateStyle();
+	if ( at( i )->format()->styleName() == defFormat->styleName() )
+	    at( i )->format()->updateStyle();
     }
 }
 
 QTextFormatter *QTextParag::formatter() const
 {
     if ( doc )
-        return doc->formatter();
+	return doc->formatter();
     if ( pFormatter )
-        return pFormatter;
+	return pFormatter;
     return ( ( (QTextParag*)this )->pFormatter = new QTextFormatterBreakWords );
 }
 
@@ -646,24 +646,24 @@ void QTextParag::setTabArray( int *a )
 void QTextParag::setTabStops( int tw )
 {
     if ( doc )
-        doc->setTabStops( tw );
+	doc->setTabStops( tw );
     else
-        tabStopWidth = tw;
+	tabStopWidth = tw;
 }
 
 QTextStringChar::~QTextStringChar()
 {
     if ( format() )
-        format()->removeRef();
+	format()->removeRef();
     switch ( type ) {
-        case Custom:
-            delete d.custom; break;
-        case Mark:
-            delete d.mark; break;
-        case Shaped:
-            delete d.shaped; break;
-        default:
-            break;
+	case Custom:
+	    delete d.custom; break;
+	case Mark:
+	    delete d.mark; break;
+	case Shaped:
+	    delete d.shaped; break;
+	default:
+	    break;
     }
 }
 

@@ -18,7 +18,7 @@ QBidiContext::QBidiContext( uchar l, QChar::Direction e, QBidiContext *p, bool o
     : level(l) , override(o), dir(e)
 {
     if ( p )
-        p->ref();
+	p->ref();
     parent = p;
     count = 0;
 }
@@ -26,7 +26,7 @@ QBidiContext::QBidiContext( uchar l, QChar::Direction e, QBidiContext *p, bool o
 QBidiContext::~QBidiContext()
 {
     if( parent && parent->deref() )
-        delete parent;
+	delete parent;
 }
 
 //static QChar *shapeBuffer = 0;
@@ -49,11 +49,11 @@ QBidiContext::~QBidiContext()
    (R3 A left joining character, that has a left join-causing char on the left will get form XLeft)
    Note: the above rule is meaningless, as there are no pure left joining characters defined in Unicode
    R4 A dual joining character, that has a left join-causing char on the left and a right join-causing char on
-             the right will get form XMedial
+	     the right will get form XMedial
    R5  A dual joining character, that has a right join causing char on the right, and no left join causing char on the left
-         will get form XRight
+	 will get form XRight
    R6 A dual joining character, that has a  left join causing char on the left, and no right join causing char on the right
-         will get form XLeft
+	 will get form XLeft
    R7 Otherwise the character will get form XIsolated
 
    Additionally we have to do the minimal ligature support for lam-alef ligatures:
@@ -79,10 +79,10 @@ static inline const QChar *prevChar( const QString &str, int pos )
     pos--;
     const QChar *ch = str.unicode() + pos;
     while( pos > -1 ) {
-        if( !ch->isMark() )
-            return ch;
-        pos--;
-        ch--;
+	if( !ch->isMark() )
+	    return ch;
+	pos--;
+	ch--;
     }
     return &QChar::replacement;
 }
@@ -93,12 +93,12 @@ static inline const QChar *nextChar( const QString &str, int pos)
     int len = str.length();
     const QChar *ch = str.unicode() + pos;
     while( pos < len ) {
-        //qDebug("rightChar: %d isLetter=%d, joining=%d", pos, ch.isLetter(), ch.joining());
-        if( !ch->isMark() )
-            return ch;
-        // assume it's a transparent char, this might not be 100% correct
-        pos++;
-        ch++;
+	//qDebug("rightChar: %d isLetter=%d, joining=%d", pos, ch.isLetter(), ch.joining());
+	if( !ch->isMark() )
+	    return ch;
+	// assume it's a transparent char, this might not be 100% correct
+	pos++;
+	ch++;
     }
     return &QChar::replacement;
 }
@@ -123,27 +123,27 @@ QComplexText::Shape QComplexText::glyphVariant( const QString &str, int pos)
     QChar::Joining joining = str[pos].joining();
     //qDebug("checking %x, joining=%d", str[pos].unicode(), joining);
     switch ( joining ) {
-        case QChar::OtherJoining:
-        case QChar::Center:
-            // these don't change shape
-            return XIsolated;
-        case QChar::Right:
-            // only rule R2 applies
-            if( nextVisualCharJoins( str, pos ) )
-                return XFinal;
-            return XIsolated;
-        case QChar::Dual:
-            bool right = nextVisualCharJoins( str, pos );
-            bool left = prevVisualCharJoins( str, pos );
-            //qDebug("dual: right=%d, left=%d", right, left);
-            if( right && left )
-                return XMedial;
-            else if ( right )
-                return XFinal;
-            else if ( left )
-                return XInitial;
-            else
-                return XIsolated;
+	case QChar::OtherJoining:
+	case QChar::Center:
+	    // these don't change shape
+	    return XIsolated;
+	case QChar::Right:
+	    // only rule R2 applies
+	    if( nextVisualCharJoins( str, pos ) )
+		return XFinal;
+	    return XIsolated;
+	case QChar::Dual:
+	    bool right = nextVisualCharJoins( str, pos );
+	    bool left = prevVisualCharJoins( str, pos );
+	    //qDebug("dual: right=%d, left=%d", right, left);
+	    if( right && left )
+		return XMedial;
+	    else if ( right )
+		return XFinal;
+	    else if ( left )
+		return XInitial;
+	    else
+		return XIsolated;
     }
     return XIsolated;
 }
@@ -168,27 +168,27 @@ QComplexText::Shape QComplexText::glyphVariantLogical( const QString &str, int p
     QChar::Joining joining = str[pos].joining();
     //qDebug("checking %x, joining=%d", str[pos].unicode(), joining);
     switch ( joining ) {
-        case QChar::OtherJoining:
-        case QChar::Center:
-            // these don't change shape
-            return XIsolated;
-        case QChar::Right:
-            // only rule R2 applies
-            if( nextLogicalCharJoins( str, pos ) )
-                return XFinal;
-            return XIsolated;
-        case QChar::Dual:
-            bool right = nextLogicalCharJoins( str, pos );
-            bool left = prevLogicalCharJoins( str, pos );
-            //qDebug("dual: right=%d, left=%d", right, left);
-            if( right && left )
-                return XMedial;
-            else if ( right )
-                return XFinal;
-            else if ( left )
-                return XInitial;
-            else
-                return XIsolated;
+	case QChar::OtherJoining:
+	case QChar::Center:
+	    // these don't change shape
+	    return XIsolated;
+	case QChar::Right:
+	    // only rule R2 applies
+	    if( nextLogicalCharJoins( str, pos ) )
+		return XFinal;
+	    return XIsolated;
+	case QChar::Dual:
+	    bool right = nextLogicalCharJoins( str, pos );
+	    bool left = prevLogicalCharJoins( str, pos );
+	    //qDebug("dual: right=%d, left=%d", right, left);
+	    if( right && left )
+		return XMedial;
+	    else if ( right )
+		return XFinal;
+	    else if ( left )
+		return XInitial;
+	    else
+		return XIsolated;
     }
     return XIsolated;
 }
@@ -321,8 +321,8 @@ static const ushort arabicUnicodeMapping[256][4] = {
     { 0x066e, 0 }, // 0x66e
     { 0x066f, 0 }, // 0x66f
 
-        // ### some glyphs do not have shaped mappings in the presentation forms A.
-        // these have the shaping set to 0 for the moment. Will have to find out better mappings for them.
+	// ### some glyphs do not have shaped mappings in the presentation forms A.
+	// these have the shaping set to 0 for the moment. Will have to find out better mappings for them.
     { 0x0670, 0 }, // 0x670
     { 0xfb50, 1 }, // 0x671 R   Alef Wasla
     { 0x0672, 0 }, // 0x672 R    Alef with wavy Hamza above
@@ -493,24 +493,24 @@ static const ushort arabicUnicodeLamAlefMapping[6][4] = {
 QString QComplexText::shapedString(const QString& uc, int from, int len, QPainter::TextDirection dir )
 {
     if( len < 0 )
-        len = uc.length() - from;
+	len = uc.length() - from;
     if( len == 0 ) {
-        return QString::null;
+	return QString::null;
     }
 
     // we have to ignore NSMs at the beginning and add at the end.
     int num = uc.length() - from - len;
     const QChar *ch = uc.unicode() + from + len;
     while ( num > 0 && ch->combiningClass() != 0 ) {
-        ch++;
-        num--;
-        len++;
+	ch++;
+	num--;
+	len++;
     }
     ch = uc.unicode() + from;
     while ( len > 0 && ch->combiningClass() != 0 ) {
-        ch++;
-        len--;
-        from++;
+	ch++;
+	len--;
+	from++;
     }
     if ( len == 0 ) return QString::null;
 
@@ -519,105 +519,105 @@ QString QComplexText::shapedString(const QString& uc, int from, int len, QPainte
       shapeBuffer = (QChar *) malloc( len*sizeof( QChar ) );
 //        delete [] shapeBuffer;
 //        shapeBuffer = new QChar[ len + 1];
-        shapeBufSize = len;
+	shapeBufSize = len;
     }
 
     int lenOut = 0;
     QChar *data = shapeBuffer;
     if ( dir == QPainter::RTL )
-        ch += len - 1;
+	ch += len - 1;
     for ( int i = 0; i < len; i++ ) {
-        uchar r = ch->row();
-        uchar c = ch->cell();
-        if ( r != 0x06 ) {
-            *data = *ch;
-            data++;
-            lenOut++;
-        } else {
-            int pos = i + from;
-            if ( dir == QPainter::RTL )
-                pos = from + len - 1 - i;
-            int shape = glyphVariantLogical( uc, pos );
-            //qDebug("mapping U+%x to shape %d glyph=0x%x", ch->unicode(), shape, arabicUnicodeMapping[ch->cell()][shape]);
-            // take care of lam-alef ligatures (lam right of alef)
-            ushort map;
-            switch ( c ) {
-                case 0x44: { // lam
-                    const QChar *pch = nextChar( uc, pos );
-                    if ( pch->row() == 0x06 ) {
-                        switch ( pch->cell() ) {
-                            case 0x22:
-                            case 0x23:
-                            case 0x25:
-                            case 0x27:
-                                //qDebug(" lam of lam-alef ligature");
-                                map = arabicUnicodeLamAlefMapping[pch->cell() - 0x22][shape];
-                                goto next;
-                            default:
-                                break;
-                        }
-                    }
-                    break;
-                }
-                case 0x22: // alef with madda
-                case 0x23: // alef with hamza above
-                case 0x25: // alef with hamza below
-                case 0x27: // alef
-                    if ( prevChar( uc, pos )->unicode() == 0x0644 ) {
-                        // have a lam alef ligature
-                        //qDebug(" alef of lam-alef ligature");
-                        goto skip;
-                    }
-                default:
-                    break;
-            }
-            map = arabicUnicodeMapping[c][0] + shape;
-        next:
-            *data = map;
-            data++;
-            lenOut++;
-        }
+	uchar r = ch->row();
+	uchar c = ch->cell();
+	if ( r != 0x06 ) {
+	    *data = *ch;
+	    data++;
+	    lenOut++;
+	} else {
+	    int pos = i + from;
+	    if ( dir == QPainter::RTL )
+		pos = from + len - 1 - i;
+	    int shape = glyphVariantLogical( uc, pos );
+	    //qDebug("mapping U+%x to shape %d glyph=0x%x", ch->unicode(), shape, arabicUnicodeMapping[ch->cell()][shape]);
+	    // take care of lam-alef ligatures (lam right of alef)
+	    ushort map;
+	    switch ( c ) {
+		case 0x44: { // lam
+		    const QChar *pch = nextChar( uc, pos );
+		    if ( pch->row() == 0x06 ) {
+			switch ( pch->cell() ) {
+			    case 0x22:
+			    case 0x23:
+			    case 0x25:
+			    case 0x27:
+				//qDebug(" lam of lam-alef ligature");
+				map = arabicUnicodeLamAlefMapping[pch->cell() - 0x22][shape];
+				goto next;
+			    default:
+				break;
+			}
+		    }
+		    break;
+		}
+		case 0x22: // alef with madda
+		case 0x23: // alef with hamza above
+		case 0x25: // alef with hamza below
+		case 0x27: // alef
+		    if ( prevChar( uc, pos )->unicode() == 0x0644 ) {
+			// have a lam alef ligature
+			//qDebug(" alef of lam-alef ligature");
+			goto skip;
+		    }
+		default:
+		    break;
+	    }
+	    map = arabicUnicodeMapping[c][0] + shape;
+	next:
+	    *data = map;
+	    data++;
+	    lenOut++;
+	}
     skip:
-        if ( dir == QPainter::RTL )
-            ch--;
-        else
-            ch++;
+	if ( dir == QPainter::RTL )
+	    ch--;
+	else
+	    ch++;
     }
 
     if ( dir == QPainter::Auto && !uc.simpleText() ) {
-        return bidiReorderString( QConstString( shapeBuffer, lenOut ).string() );
+	return bidiReorderString( QConstString( shapeBuffer, lenOut ).string() );
     }
     if ( dir == QPainter::RTL ) {
-        // reverses the non spacing marks to be again after the base char
-        QChar *s = shapeBuffer;
-        int i = 0;
-        while ( i < lenOut ) {
-            if ( s->combiningClass() != 0 ) {
-                // non spacing marks
-                int clen = 1;
-                QChar *ch = s;
-                do {
-                    ch++;
-                    clen++;
-                } while ( ch->combiningClass() != 0 );
+	// reverses the non spacing marks to be again after the base char
+	QChar *s = shapeBuffer;
+	int i = 0;
+	while ( i < lenOut ) {
+	    if ( s->combiningClass() != 0 ) {
+		// non spacing marks
+		int clen = 1;
+		QChar *ch = s;
+		do {
+		    ch++;
+		    clen++;
+		} while ( ch->combiningClass() != 0 );
 
-                int j = 0;
-                QChar *cp = s;
-                while ( j < clen/2 ) {
-                    QChar tmp = *cp;
-                    *cp = *ch;
-                    *ch = tmp;
-                    cp++;
-                    ch--;
-                    j++;
-                }
-                s += clen;
-                i += clen;
-            } else {
-                s++;
-                i++;
-            }
-        }
+		int j = 0;
+		QChar *cp = s;
+		while ( j < clen/2 ) {
+		    QChar tmp = *cp;
+		    *cp = *ch;
+		    *ch = tmp;
+		    cp++;
+		    ch--;
+		    j++;
+		}
+		s += clen;
+		i += clen;
+	    } else {
+		s++;
+		i++;
+	    }
+	}
     }
 
     return QConstString( shapeBuffer, lenOut ).string();
@@ -627,51 +627,51 @@ QChar QComplexText::shapedCharacter( const QString &str, int pos )
 {
     const QChar *ch = str.unicode() + pos;
     if ( ch->row() != 0x06 )
-        return *ch;
+	return *ch;
     else {
-        int shape = glyphVariantLogical( str, pos );
-        //qDebug("mapping U+%x to shape %d glyph=0x%x", ch->unicode(), shape, arabicUnicodeMapping[ch->cell()][shape]);
-        // lam aleph ligatures
-        switch ( ch->cell() ) {
-            case 0x44: { // lam
-                const QChar *nch = nextChar( str, pos );
-                if ( nch->row() == 0x06 ) {
-                    switch ( nch->cell() ) {
-                        case 0x22:
-                        case 0x23:
-                        case 0x25:
-                        case 0x27:
-                            return QChar(arabicUnicodeLamAlefMapping[nch->cell() - 0x22][shape]);
-                        default:
-                            break;
-                    }
-                }
-                break;
-            }
-            case 0x22: // alef with madda
-            case 0x23: // alef with hamza above
-            case 0x25: // alef with hamza below
-            case 0x27: // alef
-                if ( prevChar( str, pos )->unicode() == 0x0644 )
-                    // have a lam alef ligature
-                    return QChar(0);
-            default:
-                break;
-        }
-        return QChar(arabicUnicodeMapping[ch->cell()][0] + shape);
+	int shape = glyphVariantLogical( str, pos );
+	//qDebug("mapping U+%x to shape %d glyph=0x%x", ch->unicode(), shape, arabicUnicodeMapping[ch->cell()][shape]);
+	// lam aleph ligatures
+	switch ( ch->cell() ) {
+	    case 0x44: { // lam
+		const QChar *nch = nextChar( str, pos );
+		if ( nch->row() == 0x06 ) {
+		    switch ( nch->cell() ) {
+			case 0x22:
+			case 0x23:
+			case 0x25:
+			case 0x27:
+			    return QChar(arabicUnicodeLamAlefMapping[nch->cell() - 0x22][shape]);
+			default:
+			    break;
+		    }
+		}
+		break;
+	    }
+	    case 0x22: // alef with madda
+	    case 0x23: // alef with hamza above
+	    case 0x25: // alef with hamza below
+	    case 0x27: // alef
+		if ( prevChar( str, pos )->unicode() == 0x0644 )
+		    // have a lam alef ligature
+		    return QChar(0);
+	    default:
+		break;
+	}
+	return QChar(arabicUnicodeMapping[ch->cell()][0] + shape);
     }
 }
 
 QPointArray QComplexText::positionMarks( QFontPrivate *f, const QString &str,
-                                         int pos, QRect *boundingRect )
+					 int pos, QRect *boundingRect )
 {
     int len = str.length();
     int nmarks = 0;
     while ( pos + nmarks < len && str[pos+nmarks +1].combiningClass() > 0 )
-        nmarks++;
+	nmarks++;
 
     if ( !nmarks )
-        return QPointArray();
+	return QPointArray();
 
     QChar baseChar = QComplexText::shapedCharacter( str, pos );
     QRect baseRect = f->boundingRect( baseChar );
@@ -684,76 +684,76 @@ QPointArray QComplexText::positionMarks( QFontPrivate *f, const QString &str,
     unsigned char lastCmb = 0;
     QRect attachmentRect;
     if ( boundingRect )
-        *boundingRect = baseRect;
+	*boundingRect = baseRect;
     for( i = 0; i < nmarks; i++ ) {
-        QChar mark = str[pos+i+1];
-        unsigned char cmb = mark.combiningClass();
-        // combining marks of different class don't interact. Reset the rectangle.
-        if ( cmb != lastCmb ) {
-            //qDebug( "resetting rect" );
-            attachmentRect = baseRect;
-        }
+	QChar mark = str[pos+i+1];
+	unsigned char cmb = mark.combiningClass();
+	// combining marks of different class don't interact. Reset the rectangle.
+	if ( cmb != lastCmb ) {
+	    //qDebug( "resetting rect" );
+	    attachmentRect = baseRect;
+	}
 
-        QPoint p;
-        QRect markRect = f->boundingRect( mark );
-        switch( cmb ) {
-        case QChar::Combining_DoubleBelow:
-                // ### wrong in rtl context!
-        case QChar::Combining_BelowLeft:
-            p += QPoint( 0, offset );
-        case QChar::Combining_BelowLeftAttached:
-            p += attachmentRect.bottomLeft() - markRect.topLeft();
-            break;
-        case QChar::Combining_Below:
-            p += QPoint( 0, offset );
-        case QChar::Combining_BelowAttached:
-            p += attachmentRect.bottomLeft() - markRect.topLeft();
-            p += QPoint( (attachmentRect.width() - markRect.width())/2 , 0 );
-            break;
-            case QChar::Combining_BelowRight:
-            p += QPoint( 0, offset );
-        case QChar::Combining_BelowRightAttached:
-            p += attachmentRect.bottomRight() - markRect.topRight();
-            break;
-            case QChar::Combining_Left:
-            p += QPoint( -offset, 0 );
-        case QChar::Combining_LeftAttached:
-            break;
-            case QChar::Combining_Right:
-            p += QPoint( offset, 0 );
-        case QChar::Combining_RightAttached:
-            break;
-        case QChar::Combining_DoubleAbove:
-            // ### wrong in RTL context!
-        case QChar::Combining_AboveLeft:
-            p += QPoint( 0, -offset );
-        case QChar::Combining_AboveLeftAttached:
-            p += attachmentRect.topLeft() - markRect.bottomLeft();
-            break;
-            case QChar::Combining_Above:
-            p += QPoint( 0, -offset );
-        case QChar::Combining_AboveAttached:
-            p += attachmentRect.topLeft() - markRect.bottomLeft();
-            p += QPoint( (attachmentRect.width() - markRect.width())/2 , 0 );
-            break;
-            case QChar::Combining_AboveRight:
-            p += QPoint( 0, -offset );
-        case QChar::Combining_AboveRightAttached:
-            p += attachmentRect.topRight() - markRect.bottomRight();
-            break;
+	QPoint p;
+	QRect markRect = f->boundingRect( mark );
+	switch( cmb ) {
+	case QChar::Combining_DoubleBelow:
+		// ### wrong in rtl context!
+	case QChar::Combining_BelowLeft:
+	    p += QPoint( 0, offset );
+	case QChar::Combining_BelowLeftAttached:
+	    p += attachmentRect.bottomLeft() - markRect.topLeft();
+	    break;
+	case QChar::Combining_Below:
+	    p += QPoint( 0, offset );
+	case QChar::Combining_BelowAttached:
+	    p += attachmentRect.bottomLeft() - markRect.topLeft();
+	    p += QPoint( (attachmentRect.width() - markRect.width())/2 , 0 );
+	    break;
+	    case QChar::Combining_BelowRight:
+	    p += QPoint( 0, offset );
+	case QChar::Combining_BelowRightAttached:
+	    p += attachmentRect.bottomRight() - markRect.topRight();
+	    break;
+	    case QChar::Combining_Left:
+	    p += QPoint( -offset, 0 );
+	case QChar::Combining_LeftAttached:
+	    break;
+	    case QChar::Combining_Right:
+	    p += QPoint( offset, 0 );
+	case QChar::Combining_RightAttached:
+	    break;
+	case QChar::Combining_DoubleAbove:
+	    // ### wrong in RTL context!
+	case QChar::Combining_AboveLeft:
+	    p += QPoint( 0, -offset );
+	case QChar::Combining_AboveLeftAttached:
+	    p += attachmentRect.topLeft() - markRect.bottomLeft();
+	    break;
+	    case QChar::Combining_Above:
+	    p += QPoint( 0, -offset );
+	case QChar::Combining_AboveAttached:
+	    p += attachmentRect.topLeft() - markRect.bottomLeft();
+	    p += QPoint( (attachmentRect.width() - markRect.width())/2 , 0 );
+	    break;
+	    case QChar::Combining_AboveRight:
+	    p += QPoint( 0, -offset );
+	case QChar::Combining_AboveRightAttached:
+	    p += attachmentRect.topRight() - markRect.bottomRight();
+	    break;
 
-        case QChar::Combining_IotaSubscript:
-            default:
-                break;
-        }
-        //qDebug( "char=%x combiningClass = %d offset=%d/%d", mark.unicode(), cmb, p.x(), p.y() );
-        markRect.moveBy( p.x(), p.y() );
-        p += QPoint( -baseOffset, 0 );
-        attachmentRect |= markRect;
-        if ( boundingRect )
-            *boundingRect |= markRect;
-        lastCmb = cmb;
-        pa.setPoint( i, p );
+	case QChar::Combining_IotaSubscript:
+	    default:
+		break;
+	}
+	//qDebug( "char=%x combiningClass = %d offset=%d/%d", mark.unicode(), cmb, p.x(), p.y() );
+	markRect.moveBy( p.x(), p.y() );
+	p += QPoint( -baseOffset, 0 );
+	attachmentRect |= markRect;
+	if ( boundingRect )
+	    *boundingRect |= markRect;
+	lastCmb = cmb;
+	pa.setPoint( i, p );
     }
     return pa;
 }
@@ -769,25 +769,25 @@ static QChar::Direction basicDirection(const QString &str, int start = 0)
     int pos = start > len ? len -1 : start;
     const QChar *uc = str.unicode() + pos;
     while( pos < len ) {
-        switch( uc->direction() )
-        {
-        case QChar::DirL:
-        case QChar::DirLRO:
-        case QChar::DirLRE:
-            return QChar::DirL;
-        case QChar::DirR:
-        case QChar::DirAL:
-        case QChar::DirRLO:
-        case QChar::DirRLE:
-            return QChar::DirR;
-        default:
-            break;
-        }
-        ++pos;
-        ++uc;
+	switch( uc->direction() )
+	{
+	case QChar::DirL:
+	case QChar::DirLRO:
+	case QChar::DirLRE:
+	    return QChar::DirL;
+	case QChar::DirR:
+	case QChar::DirAL:
+	case QChar::DirRLO:
+	case QChar::DirRLE:
+	    return QChar::DirR;
+	default:
+	    break;
+	}
+	++pos;
+	++uc;
     }
     if ( start != 0 )
-        return basicDirection( str );
+	return basicDirection( str );
     return QChar::DirL;
 }
 
@@ -803,13 +803,13 @@ QPtrList<QTextRun> *QComplexText::bidiReorderLine( QBidiControl *control, const 
 
     QBidiContext *context = control->context;
     if ( !context ) {
-        // first line
-        if( start != 0 )
-            qDebug( "bidiReorderLine::internal error");
-        if( text.isRightToLeft() )
-            context = new QBidiContext( 1, QChar::DirR );
-        else
-            context = new QBidiContext( 0, QChar::DirL );
+	// first line
+	if( start != 0 )
+	    qDebug( "bidiReorderLine::internal error");
+	if( text.isRightToLeft() )
+	    context = new QBidiContext( 1, QChar::DirR );
+	else
+	    context = new QBidiContext( 0, QChar::DirL );
     }
 
     QBidiStatus status = control->status;
@@ -820,394 +820,394 @@ QPtrList<QTextRun> *QComplexText::bidiReorderLine( QBidiControl *control, const 
 
     int current = start;
     while(current <= last) {
-        QChar::Direction dirCurrent;
-        if(current == (int)text.length()) {
-            QBidiContext *c = context;
-            while ( c->parent )
-                c = c->parent;
-            dirCurrent = c->dir;
-        } else if ( current == last ) {
-            dirCurrent = basicDirection( text, current );
-        } else
-            dirCurrent = text.at(current).direction();
+	QChar::Direction dirCurrent;
+	if(current == (int)text.length()) {
+	    QBidiContext *c = context;
+	    while ( c->parent )
+		c = c->parent;
+	    dirCurrent = c->dir;
+	} else if ( current == last ) {
+	    dirCurrent = basicDirection( text, current );
+	} else
+	    dirCurrent = text.at(current).direction();
 
 
 #if defined(BIDI_DEBUG) && BIDI_DEBUG > 1
-        cout << "directions: dir=" << dir << " current=" << dirCurrent << " last=" << status.last << " eor=" << status.eor << " lastStrong=" << status.lastStrong << " embedding=" << context->dir << " level =" << (int)context->level << endl;
+	cout << "directions: dir=" << dir << " current=" << dirCurrent << " last=" << status.last << " eor=" << status.eor << " lastStrong=" << status.lastStrong << " embedding=" << context->dir << " level =" << (int)context->level << endl;
 #endif
 
-        switch(dirCurrent) {
+	switch(dirCurrent) {
 
-            // embedding and overrides (X1-X9 in the BiDi specs)
-        case QChar::DirRLE:
-            {
-                uchar level = context->level;
-                if(level%2) // we have an odd level
-                    level += 2;
-                else
-                    level++;
-                if(level < 61) {
-                    runs->append( new QTextRun(sor, eor, context, dir) );
-                    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                    context = new QBidiContext(level, QChar::DirR, context);
-                    status.last = QChar::DirR;
-                    status.lastStrong = QChar::DirR;
-                }
-                break;
-            }
-        case QChar::DirLRE:
-            {
-                uchar level = context->level;
-                if(level%2) // we have an odd level
-                    level++;
-                else
-                    level += 2;
-                if(level < 61) {
-                    runs->append( new QTextRun(sor, eor, context, dir) );
-                    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                    context = new QBidiContext(level, QChar::DirL, context);
-                    status.last = QChar::DirL;
-                    status.lastStrong = QChar::DirL;
-                }
-                break;
-            }
-        case QChar::DirRLO:
-            {
-                uchar level = context->level;
-                if(level%2) // we have an odd level
-                    level += 2;
-                else
-                    level++;
-                if(level < 61) {
-                    runs->append( new QTextRun(sor, eor, context, dir) );
-                    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                    context = new QBidiContext(level, QChar::DirR, context, TRUE);
-                    dir = QChar::DirR;
-                    status.last = QChar::DirR;
-                    status.lastStrong = QChar::DirR;
-                }
-                break;
-            }
-        case QChar::DirLRO:
-            {
-                uchar level = context->level;
-                if(level%2) // we have an odd level
-                    level++;
-                else
-                    level += 2;
-                if(level < 61) {
-                    runs->append( new QTextRun(sor, eor, context, dir) );
-                    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                    context = new QBidiContext(level, QChar::DirL, context, TRUE);
-                    dir = QChar::DirL;
-                    status.last = QChar::DirL;
-                    status.lastStrong = QChar::DirL;
-                }
-                break;
-            }
-        case QChar::DirPDF:
-            {
-                QBidiContext *c = context->parent;
-                if(c) {
-                    runs->append( new QTextRun(sor, eor, context, dir) );
-                    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                    status.last = context->dir;
-                    if( context->deref() ) delete context;
-                    context = c;
-                    if(context->override)
-                        dir = context->dir;
-                    else
-                        dir = QChar::DirON;
-                    status.lastStrong = context->dir;
-                }
-                break;
-            }
+	    // embedding and overrides (X1-X9 in the BiDi specs)
+	case QChar::DirRLE:
+	    {
+		uchar level = context->level;
+		if(level%2) // we have an odd level
+		    level += 2;
+		else
+		    level++;
+		if(level < 61) {
+		    runs->append( new QTextRun(sor, eor, context, dir) );
+		    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+		    context = new QBidiContext(level, QChar::DirR, context);
+		    status.last = QChar::DirR;
+		    status.lastStrong = QChar::DirR;
+		}
+		break;
+	    }
+	case QChar::DirLRE:
+	    {
+		uchar level = context->level;
+		if(level%2) // we have an odd level
+		    level++;
+		else
+		    level += 2;
+		if(level < 61) {
+		    runs->append( new QTextRun(sor, eor, context, dir) );
+		    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+		    context = new QBidiContext(level, QChar::DirL, context);
+		    status.last = QChar::DirL;
+		    status.lastStrong = QChar::DirL;
+		}
+		break;
+	    }
+	case QChar::DirRLO:
+	    {
+		uchar level = context->level;
+		if(level%2) // we have an odd level
+		    level += 2;
+		else
+		    level++;
+		if(level < 61) {
+		    runs->append( new QTextRun(sor, eor, context, dir) );
+		    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+		    context = new QBidiContext(level, QChar::DirR, context, TRUE);
+		    dir = QChar::DirR;
+		    status.last = QChar::DirR;
+		    status.lastStrong = QChar::DirR;
+		}
+		break;
+	    }
+	case QChar::DirLRO:
+	    {
+		uchar level = context->level;
+		if(level%2) // we have an odd level
+		    level++;
+		else
+		    level += 2;
+		if(level < 61) {
+		    runs->append( new QTextRun(sor, eor, context, dir) );
+		    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+		    context = new QBidiContext(level, QChar::DirL, context, TRUE);
+		    dir = QChar::DirL;
+		    status.last = QChar::DirL;
+		    status.lastStrong = QChar::DirL;
+		}
+		break;
+	    }
+	case QChar::DirPDF:
+	    {
+		QBidiContext *c = context->parent;
+		if(c) {
+		    runs->append( new QTextRun(sor, eor, context, dir) );
+		    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+		    status.last = context->dir;
+		    if( context->deref() ) delete context;
+		    context = c;
+		    if(context->override)
+			dir = context->dir;
+		    else
+			dir = QChar::DirON;
+		    status.lastStrong = context->dir;
+		}
+		break;
+	    }
 
-            // strong types
-        case QChar::DirL:
-            if(dir == QChar::DirON)
-                dir = QChar::DirL;
-            switch(status.last)
-                {
-                case QChar::DirL:
-                    eor = current; status.eor = QChar::DirL; break;
-                case QChar::DirR:
-                case QChar::DirAL:
-                case QChar::DirEN:
-                case QChar::DirAN:
-                    runs->append( new QTextRun(sor, eor, context, dir) );
-                    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                    break;
-                case QChar::DirES:
-                case QChar::DirET:
-                case QChar::DirCS:
-                case QChar::DirBN:
-                case QChar::DirB:
-                case QChar::DirS:
-                case QChar::DirWS:
-                case QChar::DirON:
-                    if(dir != QChar::DirL) {
-                        //last stuff takes embedding dir
-                        if( context->dir == QChar::DirR ) {
-                            if(status.eor != QChar::DirR) {
-                                // AN or EN
-                                runs->append( new QTextRun(sor, eor, context, dir) );
-                                ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                                dir = QChar::DirR;
-                            }
-                            else
-                                eor = current - 1;
-                            runs->append( new QTextRun(sor, eor, context, dir) );
-                            ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                        } else {
-                            if(status.eor != QChar::DirL) {
-                                runs->append( new QTextRun(sor, eor, context, dir) );
-                                ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                                dir = QChar::DirL;
-                            } else {
-                                eor = current; status.eor = QChar::DirL; break;
-                            }
-                        }
-                    } else {
-                        eor = current; status.eor = QChar::DirL;
-                    }
-                default:
-                    break;
-                }
-            status.lastStrong = QChar::DirL;
-            break;
-        case QChar::DirAL:
-        case QChar::DirR:
-            if(dir == QChar::DirON) dir = QChar::DirR;
-            switch(status.last)
-                {
-                case QChar::DirR:
-                case QChar::DirAL:
-                    eor = current; status.eor = QChar::DirR; break;
-                case QChar::DirL:
-                case QChar::DirEN:
-                case QChar::DirAN:
-                    runs->append( new QTextRun(sor, eor, context, dir) );
-                    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                    break;
-                case QChar::DirES:
-                case QChar::DirET:
-                case QChar::DirCS:
-                case QChar::DirBN:
-                case QChar::DirB:
-                case QChar::DirS:
-                case QChar::DirWS:
-                case QChar::DirON:
-                    if( status.eor != QChar::DirR && status.eor != QChar::DirAL ) {
-                        //last stuff takes embedding dir
-                        if(context->dir == QChar::DirR || status.lastStrong == QChar::DirR) {
-                            runs->append( new QTextRun(sor, eor, context, dir) );
-                            ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                            dir = QChar::DirR;
-                            eor = current;
-                        } else {
-                            eor = current - 1;
-                            runs->append( new QTextRun(sor, eor, context, dir) );
-                            ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                            dir = QChar::DirR;
-                        }
-                    } else {
-                        eor = current; status.eor = QChar::DirR;
-                    }
-                default:
-                    break;
-                }
-            status.lastStrong = dirCurrent;
-            break;
+	    // strong types
+	case QChar::DirL:
+	    if(dir == QChar::DirON)
+		dir = QChar::DirL;
+	    switch(status.last)
+		{
+		case QChar::DirL:
+		    eor = current; status.eor = QChar::DirL; break;
+		case QChar::DirR:
+		case QChar::DirAL:
+		case QChar::DirEN:
+		case QChar::DirAN:
+		    runs->append( new QTextRun(sor, eor, context, dir) );
+		    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+		    break;
+		case QChar::DirES:
+		case QChar::DirET:
+		case QChar::DirCS:
+		case QChar::DirBN:
+		case QChar::DirB:
+		case QChar::DirS:
+		case QChar::DirWS:
+		case QChar::DirON:
+		    if(dir != QChar::DirL) {
+			//last stuff takes embedding dir
+			if( context->dir == QChar::DirR ) {
+			    if(status.eor != QChar::DirR) {
+				// AN or EN
+				runs->append( new QTextRun(sor, eor, context, dir) );
+				++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+				dir = QChar::DirR;
+			    }
+			    else
+				eor = current - 1;
+			    runs->append( new QTextRun(sor, eor, context, dir) );
+			    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+			} else {
+			    if(status.eor != QChar::DirL) {
+				runs->append( new QTextRun(sor, eor, context, dir) );
+				++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+				dir = QChar::DirL;
+			    } else {
+				eor = current; status.eor = QChar::DirL; break;
+			    }
+			}
+		    } else {
+			eor = current; status.eor = QChar::DirL;
+		    }
+		default:
+		    break;
+		}
+	    status.lastStrong = QChar::DirL;
+	    break;
+	case QChar::DirAL:
+	case QChar::DirR:
+	    if(dir == QChar::DirON) dir = QChar::DirR;
+	    switch(status.last)
+		{
+		case QChar::DirR:
+		case QChar::DirAL:
+		    eor = current; status.eor = QChar::DirR; break;
+		case QChar::DirL:
+		case QChar::DirEN:
+		case QChar::DirAN:
+		    runs->append( new QTextRun(sor, eor, context, dir) );
+		    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+		    break;
+		case QChar::DirES:
+		case QChar::DirET:
+		case QChar::DirCS:
+		case QChar::DirBN:
+		case QChar::DirB:
+		case QChar::DirS:
+		case QChar::DirWS:
+		case QChar::DirON:
+		    if( status.eor != QChar::DirR && status.eor != QChar::DirAL ) {
+			//last stuff takes embedding dir
+			if(context->dir == QChar::DirR || status.lastStrong == QChar::DirR) {
+			    runs->append( new QTextRun(sor, eor, context, dir) );
+			    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+			    dir = QChar::DirR;
+			    eor = current;
+			} else {
+			    eor = current - 1;
+			    runs->append( new QTextRun(sor, eor, context, dir) );
+			    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+			    dir = QChar::DirR;
+			}
+		    } else {
+			eor = current; status.eor = QChar::DirR;
+		    }
+		default:
+		    break;
+		}
+	    status.lastStrong = dirCurrent;
+	    break;
 
-            // weak types:
+	    // weak types:
 
-        case QChar::DirNSM:
-            // ### if @sor, set dir to dirSor
-            break;
-        case QChar::DirEN:
-            if(status.lastStrong != QChar::DirAL) {
-                // if last strong was AL change EN to AL
-                if(dir == QChar::DirON) {
-                    if(status.lastStrong == QChar::DirL)
-                        dir = QChar::DirL;
-                    else
-                        dir = QChar::DirAN;
-                }
-                switch(status.last)
-                    {
-                    case QChar::DirET:
-                        if ( status.lastStrong == QChar::DirR || status.lastStrong == QChar::DirAL ) {
-                            runs->append( new QTextRun(sor, eor, context, dir) );
-                            ++eor; sor = eor; status.eor = QChar::DirON;
-                            dir = QChar::DirAN;
-                        }
-                        // fall through
-                    case QChar::DirEN:
-                    case QChar::DirL:
-                        eor = current;
-                        status.eor = dirCurrent;
-                        break;
-                    case QChar::DirR:
-                    case QChar::DirAL:
-                    case QChar::DirAN:
-                        runs->append( new QTextRun(sor, eor, context, dir) );
-                        ++eor; sor = eor; status.eor = QChar::DirEN;
-                        dir = QChar::DirAN; break;
-                    case QChar::DirES:
-                    case QChar::DirCS:
-                        if(status.eor == QChar::DirEN || dir == QChar::DirAN) {
-                            eor = current; break;
-                        }
-                    case QChar::DirBN:
-                    case QChar::DirB:
-                    case QChar::DirS:
-                    case QChar::DirWS:
-                    case QChar::DirON:
-                        if(status.eor == QChar::DirR) {
-                            // neutrals go to R
-                            eor = current - 1;
-                            runs->append( new QTextRun(sor, eor, context, dir) );
-                            ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirEN;
-                            dir = QChar::DirAN;
-                        }
-                        else if( status.eor == QChar::DirL ||
-                                 (status.eor == QChar::DirEN && status.lastStrong == QChar::DirL)) {
-                            eor = current; status.eor = dirCurrent;
-                        } else {
-                            // numbers on both sides, neutrals get right to left direction
-                            if(dir != QChar::DirL) {
-                                runs->append( new QTextRun(sor, eor, context, dir) );
-                                ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                                eor = current - 1;
-                                dir = QChar::DirR;
-                                runs->append( new QTextRun(sor, eor, context, dir) );
-                                ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                                dir = QChar::DirAN;
-                            } else {
-                                eor = current; status.eor = dirCurrent;
-                            }
-                        }
-                    default:
-                        break;
-                    }
-                break;
-            }
-        case QChar::DirAN:
-            dirCurrent = QChar::DirAN;
-            if(dir == QChar::DirON) dir = QChar::DirAN;
-            switch(status.last)
-                {
-                case QChar::DirL:
-                case QChar::DirAN:
-                    eor = current; status.eor = QChar::DirAN; break;
-                case QChar::DirR:
-                case QChar::DirAL:
-                case QChar::DirEN:
-                    runs->append( new QTextRun(sor, eor, context, dir) );
-                    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                    break;
-                case QChar::DirCS:
-                    if(status.eor == QChar::DirAN) {
-                        eor = current; status.eor = QChar::DirR; break;
-                    }
-                case QChar::DirES:
-                case QChar::DirET:
-                case QChar::DirBN:
-                case QChar::DirB:
-                case QChar::DirS:
-                case QChar::DirWS:
-                case QChar::DirON:
-                    if(status.eor == QChar::DirR) {
-                        // neutrals go to R
-                        eor = current - 1;
-                        runs->append( new QTextRun(sor, eor, context, dir) );
-                        ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                        dir = QChar::DirAN;
-                    } else if( status.eor == QChar::DirL ||
-                               (status.eor == QChar::DirEN && status.lastStrong == QChar::DirL)) {
-                        eor = current; status.eor = dirCurrent;
-                    } else {
-                        // numbers on both sides, neutrals get right to left direction
-                        if(dir != QChar::DirL) {
-                            runs->append( new QTextRun(sor, eor, context, dir) );
-                            ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                            eor = current - 1;
-                            dir = QChar::DirR;
-                            runs->append( new QTextRun(sor, eor, context, dir) );
-                            ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
-                            dir = QChar::DirAN;
-                        } else {
-                            eor = current; status.eor = dirCurrent;
-                        }
-                    }
-                default:
-                    break;
-                }
-            break;
-        case QChar::DirES:
-        case QChar::DirCS:
-            break;
-        case QChar::DirET:
-            if(status.last == QChar::DirEN) {
-                dirCurrent = QChar::DirEN;
-                eor = current; status.eor = dirCurrent;
-                break;
-            }
-            break;
+	case QChar::DirNSM:
+	    // ### if @sor, set dir to dirSor
+	    break;
+	case QChar::DirEN:
+	    if(status.lastStrong != QChar::DirAL) {
+		// if last strong was AL change EN to AL
+		if(dir == QChar::DirON) {
+		    if(status.lastStrong == QChar::DirL)
+			dir = QChar::DirL;
+		    else
+			dir = QChar::DirAN;
+		}
+		switch(status.last)
+		    {
+		    case QChar::DirET:
+			if ( status.lastStrong == QChar::DirR || status.lastStrong == QChar::DirAL ) {
+			    runs->append( new QTextRun(sor, eor, context, dir) );
+			    ++eor; sor = eor; status.eor = QChar::DirON;
+			    dir = QChar::DirAN;
+			}
+			// fall through
+		    case QChar::DirEN:
+		    case QChar::DirL:
+			eor = current;
+			status.eor = dirCurrent;
+			break;
+		    case QChar::DirR:
+		    case QChar::DirAL:
+		    case QChar::DirAN:
+			runs->append( new QTextRun(sor, eor, context, dir) );
+			++eor; sor = eor; status.eor = QChar::DirEN;
+			dir = QChar::DirAN; break;
+		    case QChar::DirES:
+		    case QChar::DirCS:
+			if(status.eor == QChar::DirEN || dir == QChar::DirAN) {
+			    eor = current; break;
+			}
+		    case QChar::DirBN:
+		    case QChar::DirB:
+		    case QChar::DirS:
+		    case QChar::DirWS:
+		    case QChar::DirON:
+			if(status.eor == QChar::DirR) {
+			    // neutrals go to R
+			    eor = current - 1;
+			    runs->append( new QTextRun(sor, eor, context, dir) );
+			    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirEN;
+			    dir = QChar::DirAN;
+			}
+			else if( status.eor == QChar::DirL ||
+				 (status.eor == QChar::DirEN && status.lastStrong == QChar::DirL)) {
+			    eor = current; status.eor = dirCurrent;
+			} else {
+			    // numbers on both sides, neutrals get right to left direction
+			    if(dir != QChar::DirL) {
+				runs->append( new QTextRun(sor, eor, context, dir) );
+				++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+				eor = current - 1;
+				dir = QChar::DirR;
+				runs->append( new QTextRun(sor, eor, context, dir) );
+				++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+				dir = QChar::DirAN;
+			    } else {
+				eor = current; status.eor = dirCurrent;
+			    }
+			}
+		    default:
+			break;
+		    }
+		break;
+	    }
+	case QChar::DirAN:
+	    dirCurrent = QChar::DirAN;
+	    if(dir == QChar::DirON) dir = QChar::DirAN;
+	    switch(status.last)
+		{
+		case QChar::DirL:
+		case QChar::DirAN:
+		    eor = current; status.eor = QChar::DirAN; break;
+		case QChar::DirR:
+		case QChar::DirAL:
+		case QChar::DirEN:
+		    runs->append( new QTextRun(sor, eor, context, dir) );
+		    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+		    break;
+		case QChar::DirCS:
+		    if(status.eor == QChar::DirAN) {
+			eor = current; status.eor = QChar::DirR; break;
+		    }
+		case QChar::DirES:
+		case QChar::DirET:
+		case QChar::DirBN:
+		case QChar::DirB:
+		case QChar::DirS:
+		case QChar::DirWS:
+		case QChar::DirON:
+		    if(status.eor == QChar::DirR) {
+			// neutrals go to R
+			eor = current - 1;
+			runs->append( new QTextRun(sor, eor, context, dir) );
+			++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+			dir = QChar::DirAN;
+		    } else if( status.eor == QChar::DirL ||
+			       (status.eor == QChar::DirEN && status.lastStrong == QChar::DirL)) {
+			eor = current; status.eor = dirCurrent;
+		    } else {
+			// numbers on both sides, neutrals get right to left direction
+			if(dir != QChar::DirL) {
+			    runs->append( new QTextRun(sor, eor, context, dir) );
+			    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+			    eor = current - 1;
+			    dir = QChar::DirR;
+			    runs->append( new QTextRun(sor, eor, context, dir) );
+			    ++eor; sor = eor; dir = QChar::DirON; status.eor = QChar::DirON;
+			    dir = QChar::DirAN;
+			} else {
+			    eor = current; status.eor = dirCurrent;
+			}
+		    }
+		default:
+		    break;
+		}
+	    break;
+	case QChar::DirES:
+	case QChar::DirCS:
+	    break;
+	case QChar::DirET:
+	    if(status.last == QChar::DirEN) {
+		dirCurrent = QChar::DirEN;
+		eor = current; status.eor = dirCurrent;
+		break;
+	    }
+	    break;
 
-            // boundary neutrals should be ignored
-        case QChar::DirBN:
-            break;
-            // neutrals
-        case QChar::DirB:
-            // ### what do we do with newline and paragraph separators that come to here?
-            break;
-        case QChar::DirS:
-            // ### implement rule L1
-            break;
-        case QChar::DirWS:
-        case QChar::DirON:
-            break;
-        default:
-            break;
-        }
+	    // boundary neutrals should be ignored
+	case QChar::DirBN:
+	    break;
+	    // neutrals
+	case QChar::DirB:
+	    // ### what do we do with newline and paragraph separators that come to here?
+	    break;
+	case QChar::DirS:
+	    // ### implement rule L1
+	    break;
+	case QChar::DirWS:
+	case QChar::DirON:
+	    break;
+	default:
+	    break;
+	}
 
-        //cout << "     after: dir=" << //        dir << " current=" << dirCurrent << " last=" << status.last << " eor=" << status.eor << " lastStrong=" << status.lastStrong << " embedding=" << context->dir << endl;
+	//cout << "     after: dir=" << //        dir << " current=" << dirCurrent << " last=" << status.last << " eor=" << status.eor << " lastStrong=" << status.lastStrong << " embedding=" << context->dir << endl;
 
-        if(current >= (int)text.length()) break;
+	if(current >= (int)text.length()) break;
 
-        // set status.last as needed.
-        switch(dirCurrent)
-            {
-            case QChar::DirET:
-            case QChar::DirES:
-            case QChar::DirCS:
-            case QChar::DirS:
-            case QChar::DirWS:
-            case QChar::DirON:
-                switch(status.last)
-                    {
-                    case QChar::DirL:
-                    case QChar::DirR:
-                    case QChar::DirAL:
-                    case QChar::DirEN:
-                    case QChar::DirAN:
-                        status.last = dirCurrent;
-                        break;
-                    default:
-                        status.last = QChar::DirON;
-                    }
-                break;
-            case QChar::DirNSM:
-            case QChar::DirBN:
-                // ignore these
-                break;
-            default:
-                status.last = dirCurrent;
-            }
+	// set status.last as needed.
+	switch(dirCurrent)
+	    {
+	    case QChar::DirET:
+	    case QChar::DirES:
+	    case QChar::DirCS:
+	    case QChar::DirS:
+	    case QChar::DirWS:
+	    case QChar::DirON:
+		switch(status.last)
+		    {
+		    case QChar::DirL:
+		    case QChar::DirR:
+		    case QChar::DirAL:
+		    case QChar::DirEN:
+		    case QChar::DirAN:
+			status.last = dirCurrent;
+			break;
+		    default:
+			status.last = QChar::DirON;
+		    }
+		break;
+	    case QChar::DirNSM:
+	    case QChar::DirBN:
+		// ignore these
+		break;
+	    default:
+		status.last = dirCurrent;
+	    }
 
-        ++current;
+	++current;
     }
 
 #ifdef BIDI_DEBUG
@@ -1216,7 +1216,7 @@ QPtrList<QTextRun> *QComplexText::bidiReorderLine( QBidiControl *control, const 
     eor = current - 1; // remove dummy char
 
     if ( sor <= eor )
-        runs->append( new QTextRun(sor, eor, context, dir) );
+	runs->append( new QTextRun(sor, eor, context, dir) );
 
     // reorder line according to run structure...
 
@@ -1225,12 +1225,12 @@ QPtrList<QTextRun> *QComplexText::bidiReorderLine( QBidiControl *control, const 
     uchar levelHigh = 0;
     QTextRun *r = runs->first();
     while ( r ) {
-        //printf("level = %d\n", r->level);
-        if ( r->level > levelHigh )
-            levelHigh = r->level;
-        if ( r->level < levelLow )
-            levelLow = r->level;
-        r = runs->next();
+	//printf("level = %d\n", r->level);
+	if ( r->level > levelHigh )
+	    levelHigh = r->level;
+	if ( r->level < levelLow )
+	    levelLow = r->level;
+	r = runs->next();
     }
 
     // implements reordering of the line (L2 according to BiDi spec):
@@ -1246,36 +1246,36 @@ QPtrList<QTextRun> *QComplexText::bidiReorderLine( QBidiControl *control, const 
     QPtrListIterator<QTextRun> it2(*runs);
     QTextRun *r2;
     for ( ; (r2 = it2.current()); ++it2 )
-        cout << "    " << r2 << "  start=" << r2->start << "  stop=" << r2->stop << "  level=" << (uint)r2->level << endl;
+	cout << "    " << r2 << "  start=" << r2->start << "  stop=" << r2->stop << "  level=" << (uint)r2->level << endl;
 #endif
 
     int count = runs->count() - 1;
 
     while(levelHigh >= levelLow)
     {
-        int i = 0;
-        while ( i < count )
-        {
-            while(i < count && runs->at(i)->level < levelHigh) i++;
-            int start = i;
-            while(i <= count && runs->at(i)->level >= levelHigh) i++;
-            int end = i-1;
+	int i = 0;
+	while ( i < count )
+	{
+	    while(i < count && runs->at(i)->level < levelHigh) i++;
+	    int start = i;
+	    while(i <= count && runs->at(i)->level >= levelHigh) i++;
+	    int end = i-1;
 
-            if(start != end)
-            {
-                //cout << "reversing from " << start << " to " << end << endl;
-                for(int j = 0; j < (end-start+1)/2; j++)
-                {
-                    QTextRun *first = runs->take(start+j);
-                    QTextRun *last = runs->take(end-j-1);
-                    runs->insert(start+j, last);
-                    runs->insert(end-j, first);
-                }
-            }
-            i++;
-            if(i >= count) break;
-        }
-        levelHigh--;
+	    if(start != end)
+	    {
+		//cout << "reversing from " << start << " to " << end << endl;
+		for(int j = 0; j < (end-start+1)/2; j++)
+		{
+		    QTextRun *first = runs->take(start+j);
+		    QTextRun *last = runs->take(end-j-1);
+		    runs->insert(start+j, last);
+		    runs->insert(end-j, first);
+		}
+	    }
+	    i++;
+	    if(i >= count) break;
+	}
+	levelHigh--;
     }
 
 #ifdef BIDI_DEBUG
@@ -1284,7 +1284,7 @@ QPtrList<QTextRun> *QComplexText::bidiReorderLine( QBidiControl *control, const 
     QTextRun *r3;
     for ( ; (r3 = it3.current()); ++it3 )
     {
-        cout << "    " << r3 << endl;
+	cout << "    " << r3 << endl;
     }
 #endif
 
@@ -1307,41 +1307,41 @@ QString QComplexText::bidiReorderString( const QString &str, QChar::Direction /*
     QChar *vch = (QChar *)visual.unicode();
     const QChar *ch = str.unicode();
     while( lineStart < len ) {
-        lineEnd = lineStart;
-        while( *ch != '\n' && lineEnd < len ) {
-            ch++;
-            lineEnd++;
-        }
-        QPtrList<QTextRun> *runs = bidiReorderLine( control, str, lineStart, lineEnd - lineStart );
+	lineEnd = lineStart;
+	while( *ch != '\n' && lineEnd < len ) {
+	    ch++;
+	    lineEnd++;
+	}
+	QPtrList<QTextRun> *runs = bidiReorderLine( control, str, lineStart, lineEnd - lineStart );
 
-        // reorder the content of the line, and output to visual
-        QTextRun *r = runs->first();
-        while ( r ) {
-            if(r->level %2) {
-                // odd level, need to reverse the string
-                int pos = r->stop;
-                while(pos >= r->start) {
-                    *vch = str[pos];
-                    vch++;
-                    pos--;
-                }
-            } else {
-                int pos = r->start;
-                while(pos <= r->stop) {
-                    *vch = str[pos];
-                    vch++;
-                    pos++;
-                }
-            }
-            r = runs->next();
-        }
-        if ( *ch == '\n' ) {
-            *vch = *ch;
-            vch++;
-            ch++;
-            lineEnd++;
-        }
-        lineStart = lineEnd;
+	// reorder the content of the line, and output to visual
+	QTextRun *r = runs->first();
+	while ( r ) {
+	    if(r->level %2) {
+		// odd level, need to reverse the string
+		int pos = r->stop;
+		while(pos >= r->start) {
+		    *vch = str[pos];
+		    vch++;
+		    pos--;
+		}
+	    } else {
+		int pos = r->start;
+		while(pos <= r->stop) {
+		    *vch = str[pos];
+		    vch++;
+		    pos++;
+		}
+	    }
+	    r = runs->next();
+	}
+	if ( *ch == '\n' ) {
+	    *vch = *ch;
+	    vch++;
+	    ch++;
+	    lineEnd++;
+	}
+	lineStart = lineEnd;
     }
     return visual;
 }
@@ -1357,13 +1357,13 @@ QTextRun::QTextRun(int _start, int _stop, QBidiContext *context, QChar::Directio
 
     // add level of run (cases I1 & I2)
     if( level % 2 ) {
-        if(dir == QChar::DirL || dir == QChar::DirAN)
-            level++;
+	if(dir == QChar::DirL || dir == QChar::DirAN)
+	    level++;
     } else {
-        if( dir == QChar::DirR )
-            level++;
-        else if( dir == QChar::DirAN )
-            level += 2;
+	if( dir == QChar::DirR )
+	    level++;
+	else if( dir == QChar::DirAN )
+	    level += 2;
     }
 #ifdef BIDI_DEBUG
     printf("new run: dir=%d from %d, to %d level = %d\n", dir, _start, _stop, level);

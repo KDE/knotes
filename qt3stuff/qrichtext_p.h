@@ -129,45 +129,45 @@ public:
     QTextStringChar *clone() const;
     struct CustomData
     {
-        QTextFormat *format;
-        QTextCustomItem *custom;
+	QTextFormat *format;
+	QTextCustomItem *custom;
     };
 
     void loseCustomItem()
     {
-        if ( isCustom() ) {
-            QTextFormat *f = d.custom->format;
-            d.custom->custom = 0;
-            delete d.custom;
-            type = Regular;
-            d.format = f;
-        }
+	if ( isCustom() ) {
+	    QTextFormat *f = d.custom->format;
+	    d.custom->custom = 0;
+	    delete d.custom;
+	    type = Regular;
+	    d.format = f;
+	}
     }
 
     struct MarkData
     {
-        QTextFormat *format;
-        short xoff; // x offset for painting the Mark
-        short yoff; // y offset for painting the Mark
+	QTextFormat *format;
+	short xoff; // x offset for painting the Mark
+	short yoff; // y offset for painting the Mark
     };
 
     struct ShapedData
     {
-        QTextFormat *format;
-        QChar shapedGlyph;
+	QTextFormat *format;
+	QChar shapedGlyph;
     };
 
     union {
-        QTextFormat* format;
-        CustomData* custom;
-        MarkData *mark;
-        ShapedData *shaped;
+	QTextFormat* format;
+	CustomData* custom;
+	MarkData *mark;
+	ShapedData *shaped;
     } d;
 
 private:
     QTextStringChar &operator=( const QTextStringChar & ) {
-        //abort();
-        return *this;
+	//abort();
+	return *this;
     }
     friend class QComplexText;
     friend class QTextParag;
@@ -230,14 +230,14 @@ private:
 inline bool QTextString::isBidi() const
 {
     if ( textChanged )
-        checkBidi();
+	checkBidi();
     return bidi;
 }
 
 inline bool QTextString::isRightToLeft() const
 {
      if ( textChanged )
-        checkBidi();
+	checkBidi();
     return rightToLeft;
 }
 
@@ -390,7 +390,7 @@ class Q_EXPORT QTextCustomItem
 {
 public:
     QTextCustomItem( QTextDocument *p )
-        :  xpos(0), ypos(-1), width(-1), height(0), parent( p )
+	:  xpos(0), ypos(-1), width(-1), height(0), parent( p )
     {}
     virtual ~QTextCustomItem();
     virtual void draw(QPainter* p, int x, int y, int cx, int cy, int cw, int ch, const QColorGroup& cg, bool selected ) = 0;
@@ -441,7 +441,7 @@ class Q_EXPORT QTextImage : public QTextCustomItem
 {
 public:
     QTextImage( QTextDocument *p, const QMap<QString, QString> &attr, const QString& context,
-                QMimeSourceFactory &factory);
+		QMimeSourceFactory &factory);
     virtual ~QTextImage();
 
     Placement placement() const { return place; }
@@ -534,11 +534,11 @@ class Q_EXPORT QTextTableCell : public QLayoutItem
 
 public:
     QTextTableCell( QTextTable* table,
-                    int row, int column,
-                    const QMap<QString, QString> &attr,
-                    const QStyleSheetItem* style,
-                    const QTextFormat& fmt, const QString& context,
-                    QMimeSourceFactory &factory, QStyleSheet *sheet, const QString& doc );
+		    int row, int column,
+		    const QMap<QString, QString> &attr,
+		    const QStyleSheetItem* style,
+		    const QTextFormat& fmt, const QString& context,
+		    QMimeSourceFactory &factory, QStyleSheet *sheet, const QString& doc );
     QTextTableCell( QTextTable* table, int row, int column );
     virtual ~QTextTableCell();
 
@@ -607,7 +607,7 @@ public:
     void adjustToPainter( QPainter *p );
     void verticalBreak( int  y, QTextFlow* flow );
     void draw( QPainter* p, int x, int y, int cx, int cy, int cw, int ch,
-               const QColorGroup& cg, bool selected );
+	       const QColorGroup& cg, bool selected );
 
     bool noErase() const { return TRUE; };
     bool ownLine() const { return TRUE; }
@@ -687,9 +687,9 @@ class Q_EXPORT QTextDocument : public QObject
 
 public:
     enum SelectionIds {
-        Standard = 0,
-        Temp = 32000 // This selection must not be drawn, it's used e.g. by undo/redo to
-        // remove multiple lines with removeSelectedText()
+	Standard = 0,
+	Temp = 32000 // This selection must not be drawn, it's used e.g. by undo/redo to
+	// remove multiple lines with removeSelectedText()
     };
 
     QTextDocument( QTextDocument *p );
@@ -793,11 +793,11 @@ public:
     void doLayout( QPainter *p, int w );
     void draw( QPainter *p, const QRegion &reg, const QColorGroup &cg, const QBrush *paper = 0 );
     void drawParag( QPainter *p, QTextParag *parag, int cx, int cy, int cw, int ch,
-                    QPixmap *&doubleBuffer, const QColorGroup &cg,
-                    bool drawCursor, QTextCursor *cursor, bool resetChanged = TRUE );
+		    QPixmap *&doubleBuffer, const QColorGroup &cg,
+		    bool drawCursor, QTextCursor *cursor, bool resetChanged = TRUE );
     QTextParag *draw( QPainter *p, int cx, int cy, int cw, int ch, const QColorGroup &cg,
-                      bool onlyChanged = FALSE, bool drawCursor = FALSE, QTextCursor *cursor = 0,
-                      bool resetChanged = TRUE );
+		      bool onlyChanged = FALSE, bool drawCursor = FALSE, QTextCursor *cursor = 0,
+		      bool resetChanged = TRUE );
 
     void setDefaultFont( const QFont &f );
 
@@ -867,9 +867,9 @@ private:
 
 private:
     struct Q_EXPORT Focus {
-        QTextParag *parag;
-        int start, len;
-        QString href;
+	QTextParag *parag;
+	int start, len;
+	QString href;
     };
 
     int cx, cy, cw, vw;
@@ -922,9 +922,9 @@ class Q_EXPORT QTextDeleteCommand : public QTextCommand
 {
 public:
     QTextDeleteCommand( QTextDocument *d, int i, int idx, const QMemArray<QTextStringChar> &str,
-                        const QValueList< QPtrVector<QStyleSheetItem> > &os,
-                        const QValueList<QStyleSheetItem::ListStyle> &ols,
-                        const QMemArray<int> &oas );
+			const QValueList< QPtrVector<QStyleSheetItem> > &os,
+			const QValueList<QStyleSheetItem::ListStyle> &ols,
+			const QMemArray<int> &oas );
     QTextDeleteCommand( QTextParag *p, int idx, const QMemArray<QTextStringChar> &str );
     virtual ~QTextDeleteCommand();
 
@@ -946,12 +946,12 @@ class Q_EXPORT QTextInsertCommand : public QTextDeleteCommand
 {
 public:
     QTextInsertCommand( QTextDocument *d, int i, int idx, const QMemArray<QTextStringChar> &str,
-                        const QValueList< QPtrVector<QStyleSheetItem> > &os,
-                        const QValueList<QStyleSheetItem::ListStyle> &ols,
-                        const QMemArray<int> &oas )
-        : QTextDeleteCommand( d, i, idx, str, os, ols, oas ) {};
+			const QValueList< QPtrVector<QStyleSheetItem> > &os,
+			const QValueList<QStyleSheetItem::ListStyle> &ols,
+			const QMemArray<int> &oas )
+	: QTextDeleteCommand( d, i, idx, str, os, ols, oas ) {};
     QTextInsertCommand( QTextParag *p, int idx, const QMemArray<QTextStringChar> &str )
-        : QTextDeleteCommand( p, idx, str ) {};
+	: QTextDeleteCommand( p, idx, str ) {};
     virtual ~QTextInsertCommand() {};
 
     Commands type() const { return Insert; };
@@ -999,8 +999,8 @@ class Q_EXPORT QTextParagTypeCommand : public QTextCommand
 {
 public:
     QTextParagTypeCommand( QTextDocument *d, int fParag, int lParag, bool l,
-                           QStyleSheetItem::ListStyle s, const QValueList< QPtrVector<QStyleSheetItem> > &os,
-                           const QValueList<QStyleSheetItem::ListStyle> &ols );
+			   QStyleSheetItem::ListStyle s, const QValueList< QPtrVector<QStyleSheetItem> > &os,
+			   const QValueList<QStyleSheetItem::ListStyle> &ols );
     virtual ~QTextParagTypeCommand() {};
 
     Commands type() const { return ParagType; }
@@ -1027,19 +1027,19 @@ struct Q_EXPORT QTextParagLineStart
 {
     QTextParagLineStart() : y( 0 ), baseLine( 0 ), h( 0 ), bidicontext( 0 ) {  }
     QTextParagLineStart( ushort y_, ushort bl, ushort h_ ) : y( y_ ), baseLine( bl ), h( h_ ),
-        w( 0 ), bidicontext( 0 )  {  }
+	w( 0 ), bidicontext( 0 )  {  }
     QTextParagLineStart( QBidiContext *c, QBidiStatus s ) : y(0), baseLine(0), h(0),
-        status( s ), bidicontext( c ) { if ( bidicontext ) bidicontext->ref(); }
+	status( s ), bidicontext( c ) { if ( bidicontext ) bidicontext->ref(); }
     virtual ~QTextParagLineStart() { if ( bidicontext && bidicontext->deref() ) delete bidicontext; }
 
     void setContext( QBidiContext *c ) {
-        if ( c == bidicontext )
-            return;
-        if ( bidicontext && bidicontext->deref() )
-            delete bidicontext;
-        bidicontext = c;
-        if ( bidicontext )
-            bidicontext->ref();
+	if ( c == bidicontext )
+	    return;
+	if ( bidicontext && bidicontext->deref() )
+	    delete bidicontext;
+	bidicontext = c;
+	if ( bidicontext )
+	    bidicontext->ref();
     }
     QBidiContext *context() const { return bidicontext; }
 
@@ -1162,7 +1162,7 @@ public:
     int alignment() const;
 
     virtual void paint( QPainter &painter, const QColorGroup &cg, QTextCursor *cursor = 0, bool drawSelections = FALSE,
-                        int clipx = -1, int clipy = -1, int clipw = -1, int cliph = -1 );
+			int clipx = -1, int clipy = -1, int clipw = -1, int cliph = -1 );
 
     void setStyleSheetItems( const QPtrVector<QStyleSheetItem> &vec );
     QPtrVector<QStyleSheetItem> styleSheetItems() const;
@@ -1230,9 +1230,9 @@ public:
 protected:
     virtual void drawLabel( QPainter* p, int x, int y, int w, int h, int base, const QColorGroup& cg );
     virtual void drawParagString( QPainter &painter, const QString &str, int start, int len, int startX,
-                                  int lastY, int baseLine, int bw, int h, bool drawSelections,
-                                  QTextFormat *lastFormat, int i, const QMemArray<int> &selectionStarts,
-                                  const QMemArray<int> &selectionEnds, const QColorGroup &cg, bool rightToLeft  );
+				  int lastY, int baseLine, int bw, int h, bool drawSelections,
+				  QTextFormat *lastFormat, int i, const QMemArray<int> &selectionStarts,
+				  const QMemArray<int> &selectionEnds, const QColorGroup &cg, bool rightToLeft  );
 
 private:
 
@@ -1294,10 +1294,10 @@ public:
 
 protected:
     virtual QTextParagLineStart *formatLine( QTextParag *parag, QTextString *string, QTextParagLineStart *line, QTextStringChar *start,
-                                               QTextStringChar *last, int align = Qt3::AlignAuto, int space = 0 );
+					       QTextStringChar *last, int align = Qt3::AlignAuto, int space = 0 );
 //QT2HACK
 //    virtual QTextParagLineStart *bidiReorderLine( QTextParag *parag, QTextString *string, QTextParagLineStart *line, QTextStringChar *start,
-//                                                    QTextStringChar *last, int align, int space );
+//						    QTextStringChar *last, int align, int space );
     virtual bool isBreakable( QTextString *string, int pos ) const;
     void insertLineStart( QTextParag *parag, int index, QTextParagLineStart *ls );
 
@@ -1355,7 +1355,7 @@ class Q_EXPORT QTextPreProcessor
 {
 public:
     enum Ids {
-        Standard = 0
+	Standard = 0
     };
 
     QTextPreProcessor();
@@ -1371,20 +1371,21 @@ public:
 class Q_EXPORT QTextFormat
 {
     friend class QTextFormatCollection;
+    friend class QTextDocument;
 
 public:
     enum Flags {
-        NoFlags,
-        Bold = 1,
-        Italic = 2,
-        Underline = 4,
-        Family = 8,
-        Size = 16,
-        Color = 32,
-        Misspelled = 64,
-        VAlign = 128,
-        Font = Bold | Italic | Underline | Family | Size,
-        Format = Font | Color | Misspelled | VAlign
+	NoFlags,
+	Bold = 1,
+	Italic = 2,
+	Underline = 4,
+	Family = 8,
+	Size = 16,
+	Color = 32,
+	Misspelled = 64,
+	VAlign = 128,
+	Font = Bold | Italic | Underline | Family | Size,
+	Format = Font | Color | Misspelled | VAlign
     };
 
     enum VerticalAlignment { AlignNormal, AlignSubScript, AlignSuperScript };
@@ -1554,7 +1555,7 @@ inline int QTextCursor::index() const
 inline void QTextCursor::setIndex( int i, bool restore )
 {
     if ( restore )
-        restoreState();
+	restoreState();
     tmpIndex = -1;
     idx = i;
 }
@@ -1562,7 +1563,7 @@ inline void QTextCursor::setIndex( int i, bool restore )
 inline void QTextCursor::setParag( QTextParag *s, bool restore )
 {
     if ( restore )
-        restoreState();
+	restoreState();
     idx = 0;
     string = s;
     tmpIndex = -1;
@@ -1571,7 +1572,7 @@ inline void QTextCursor::setParag( QTextParag *s, bool restore )
 inline void QTextCursor::checkIndex()
 {
     if ( idx >= string->length() )
-        idx = string->length() - 1;
+	idx = string->length() - 1;
 }
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1599,7 +1600,7 @@ inline int QTextDocument::visibleWidth() const
 inline int QTextDocument::height() const
 {
     if ( lParag )
-        return QMAX( flow_->height, lParag->rect().top() + lParag->rect().height() + 1 );
+	return QMAX( flow_->height, lParag->rect().top() + lParag->rect().height() + 1 );
     return 0;
 }
 
@@ -1729,7 +1730,7 @@ inline QString QTextDocument::originalText() const
 inline void QTextDocument::setFlow( QTextFlow *f )
 {
     if ( flow_ )
-        delete flow_;
+	delete flow_;
     flow_ = f;
 }
 
@@ -1777,14 +1778,14 @@ inline void QTextFormat::removeRef()
 {
     ref--;
     if ( !collection )
-        return;
+	return;
     if ( this == collection->defFormat )
-        return;
+	return;
 #ifdef DEBUG_COLLECTION
     qDebug( "remove ref of '%s' to %d (%p)", k.latin1(), ref, this );
 #endif
     if ( ref == 0 )
-        collection->remove( this );
+	collection->remove( this );
 }
 
 inline QString QTextFormat::key() const
@@ -1851,17 +1852,17 @@ inline void QTextParag::setChanged( bool b, bool recursive )
 {
     changed = b;
     if ( recursive ) {
-        if ( doc && doc->parentParag() )
-            doc->parentParag()->setChanged( b, recursive );
+	if ( doc && doc->parentParag() )
+	    doc->parentParag()->setChanged( b, recursive );
     }
 }
 
 inline void QTextParag::append( const QString &s, bool reallyAtEnd )
 {
     if ( reallyAtEnd )
-        insert( str->length(), s );
+	insert( str->length(), s );
     else
-        insert( QMAX( str->length() - 1, 0 ), s );
+	insert( QMAX( str->length() - 1, 0 ), s );
 }
 
 inline QTextParag *QTextParag::prev() const
@@ -1882,7 +1883,7 @@ inline bool QTextParag::hasAnySelection() const
 inline void QTextParag::setEndState( int s )
 {
     if ( s == state )
-        return;
+	return;
     state = s;
 }
 
@@ -1899,7 +1900,7 @@ inline void QTextParag::setParagId( int i )
 inline int QTextParag::paragId() const
 {
     if ( id == -1 )
-        qWarning( "invalid parag id!!!!!!!! (%p)", (void*)this );
+	qWarning( "invalid parag id!!!!!!!! (%p)", (void*)this );
     return id;
 }
 
@@ -1931,7 +1932,7 @@ inline QTextDocument *QTextParag::document() const
 inline void QTextParag::setAlignment( int a )
 {
     if ( a == align )
-        return;
+	return;
     align = a;
     invalidate( 0 );
 }
