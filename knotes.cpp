@@ -31,6 +31,7 @@
 #include <kiconloader.h>
 #include <kurl.h>
 #include <kfm.h>
+#include <kconfig.h>
 
 #include "configdlg.h"
 #include "fontdlg.h"
@@ -1645,7 +1646,7 @@ void findPostitFiles(){
   d.setSorting( QDir::Name );
 
   QStringList list = d.entryList();
-  QStrListIterator it = list.begin(); // create list iterator
+  QStringList::Iterator it = list.begin(); // create list iterator
   char *fi;                           // pointer for traversing
 
   while ( (fi=*it) ) {           // for each file...
