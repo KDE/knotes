@@ -50,7 +50,7 @@ using namespace KCal;
 
 
 KNotesApp::KNotesApp()
-    : QLabel( 0, 0, WType_TopLevel ), DCOPObject("KNotesIface"),
+    : DCOPObject("KNotesIface"), QLabel( 0, 0, WType_TopLevel ),
       KXMLGUIBuilder( this )
 {
     m_noteActions.setAutoDelete( true );
