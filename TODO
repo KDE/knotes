@@ -21,10 +21,8 @@ features:
    .kde/share/apps/knotes/<session-name>/
 
 bugs:
- * test if KNotes works without initial config files (knote.cpp, KIO::NetAccess::exists())
  * fix shortcuts
  * add ToolTips everywhere
- * focus update when opening combo box?
  * fix being able to uncheck all formatting buttons
  * if the window state is changed from outside KNotes the buttons do not
    reflect that
