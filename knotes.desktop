@@ -65,4 +65,4 @@ Name[th]=บันทึกช่วยจำ
 
 X-KDE-StartupNotify=true
 X-DCOP-ServiceType=Unique
-Categories=QT;KDE;Utility
+Categories=Qt;KDE;Utility
