@@ -7,6 +7,9 @@ Terminal=0
 Type=Application
 Comment=You can write small notes with this
 Comment[de]=Zum Schreiben kurzer Notizen
-Name[de]=Notizzettel     
-Name=KNotes
+Comment[fi]=Voit kirjoittaa pieniä muistilappuja tällä ohjelmalla
 Comment[pl]=Edytor któtkich notatek
+Name=KNotes
+Name[de]=Notizzettel     
+Name[fi]=Muistuttaja
+
