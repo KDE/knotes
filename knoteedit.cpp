@@ -67,7 +67,7 @@ KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
     connect( this, SIGNAL(copyAvailable(bool)), m_cut, SLOT(setEnabled(bool)) );
     connect( this, SIGNAL(copyAvailable(bool)), m_copy, SLOT(setEnabled(bool)) );
 
-    new KAction( i18n("Clear"), "editclear", 0, this, SLOT(clear()), actions, "edit_clear" );
+    new KAction( KStdGuiItem::clear(), 0, this, SLOT(clear()), actions, "edit_clear" );
     KStdAction::selectAll( this, SLOT(selectAll()), actions );
 
     // create the actions modifying the text format

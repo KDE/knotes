@@ -31,6 +31,7 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kaction.h>
+#include <kstdaction.h>
 #include <kcombobox.h>
 #include <ktoolbar.h>
 #include <kxmlguifactory.h>
@@ -95,8 +96,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
         this, SLOT(slotInsDate()), actionCollection(), "insert_date" );
     new KAction( i18n("Mail..."), "mail_send", 0,
         this, SLOT(slotMail()), actionCollection(), "mail_note" );
-    new KAction( i18n("Print..."), "fileprint", 0,
-        this, SLOT(slotPrint()), actionCollection(), "print_note" );
+    KStdAction::print( this, SLOT(slotPrint()), actionCollection(), "print_note" );
     new KAction( i18n("Preferences..."), "configure", 0,
         this, SLOT(slotPreferences()), actionCollection(), "configure_note" );
 
