@@ -43,23 +43,30 @@ KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
     KXMLGUIClient* client = dynamic_cast<KXMLGUIClient*>(parent);
     KActionCollection* actions = client->actionCollection();
 
+
     // create the actions for the RMB menu
     KAction* undo = KStdAction::undo( this, SLOT(undo()), actions );
     KAction* redo = KStdAction::redo( this, SLOT(redo()), actions );
+    undo->setEnabled( isUndoAvailable() );
+    redo->setEnabled( isRedoAvailable() );
+
     m_cut = KStdAction::cut( this, SLOT(cut()), actions );
     m_copy = KStdAction::copy( this, SLOT(copy()), actions );
     m_paste = KStdAction::paste( this, SLOT(paste()), actions );
 
     m_cut->setEnabled( false );
     m_copy->setEnabled( false );
-    m_paste->setEnabled( false );
+    m_paste->setEnabled( true );
 
     connect( this, SIGNAL(undoAvailable(bool)), undo, SLOT(setEnabled(bool)) );
     connect( this, SIGNAL(redoAvailable(bool)), redo, SLOT(setEnabled(bool)) );
+
+    connect( this, SIGNAL(copyAvailable(bool)), m_cut, SLOT(setEnabled(bool)) );
     connect( this, SIGNAL(copyAvailable(bool)), m_copy, SLOT(setEnabled(bool)) );
 
     new KAction( i18n("Clear"), "editclear", 0, this, SLOT(clear()), actions, "edit_clear" );
     KStdAction::selectAll( this, SLOT(selectAll()), actions );
+
 
     // create the actions modifying the text format
     m_textBold = new KToggleAction( i18n( "&Bold" ), "text_bold", CTRL + Key_B,

@@ -1,6 +1,10 @@
 ChangeLog for KNotes
 ====================
 
+2002/10/04  Michael Brade <brade@kde.org>
+
+    * fixed cut, paste, undo and redo activation
+
 2002/09/30  Michael Brade <brade@kde.org>
 
     * fixed mouse behaviour to be like kwin: 
