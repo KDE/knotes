@@ -371,7 +371,17 @@ void KNotesApp::slotPreferences()
 
 void KNotesApp::slotConfigureAccels()
 {
-    KKeyDialog::configure( m_globalAccel, this, false );
+    KKeyDialog keys( false, this );
+    keys.insert( actionCollection() );
+    QDictIterator<KNote> notes( m_noteList );
+    if ( !m_noteList.isEmpty() )
+        keys.insert( notes.current()->actionCollection() );
+    keys.configure();
+
+    notes.toFirst();
+    for( ; notes.current(); ++notes )
+        notes.current()->reloadXML();
+
     m_globalAccel->writeSettings();
     updateGlobalAccels();
 }
