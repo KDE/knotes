@@ -1,9 +1,10 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="6">
+<kpartgui name="KNotes" version="7">
 
 <Menu name="note_context" noMerge="1">
     <Action name="insert_date"/>
+    <Action name="set_alarm"/>
     <Action name="send_note"/>
     <Action name="mail_note"/>
     <Action name="print_note"/>

@@ -61,6 +61,7 @@
 #include "knoteconfig.h"
 #include "knotesglobalconfig.h"
 #include "knoteconfigdlg.h"
+#include "knotealarmdlg.h"
 #include "knotehostdlg.h"
 #include "knotesnetsend.h"
 #include "version.h"
@@ -100,7 +101,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     }
 
     // create the menu items for the note - not the editor...
-    // rename, mail, print, save as, insert date, close, delete, new note
+    // rename, mail, print, save as, insert date, alarm, close, delete, new note
     new KAction( i18n("New"), "filenew", 0,
         this, SIGNAL(sigRequestNewNote()), actionCollection(), "new_note" );
     new KAction( i18n("Rename..."), "text", 0,
@@ -112,6 +113,9 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
     new KAction( i18n("Insert Date"), "knotes_date", 0 ,
         this, SLOT(slotInsDate()), actionCollection(), "insert_date" );
+    new KAction( i18n("Set Alarm..."), "knotes_alarm", 0 ,
+        this, SLOT(slotSetAlarm()), actionCollection(), "set_alarm" );
+
     new KAction( i18n("Send..."), "network", 0,
         this, SLOT(slotSend()), actionCollection(), "send_note" );
     new KAction( i18n("Mail..."), "mail_send", 0,
@@ -568,6 +572,14 @@ void KNote::slotClose()
 void KNote::slotInsDate()
 {
     m_editor->insert( KGlobal::locale()->formatDateTime(QDateTime::currentDateTime()) );
+}
+
+void KNote::slotSetAlarm()
+{
+    KNoteAlarmDlg dlg( name(), this );
+
+    if ( dlg.exec() != QDialog::Accepted )
+        return;
 }
 
 void KNote::slotPreferences()

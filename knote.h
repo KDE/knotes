@@ -103,11 +103,15 @@ protected:
 private slots:
     void slotRename();
     void slotClose();
+
     void slotSend();
     void slotMail();
     void slotPrint();
     void slotSaveAs();
+
     void slotInsDate();
+    void slotSetAlarm();
+
     void slotPreferences();
     void slotPopupActionToDesktop( int id );
 

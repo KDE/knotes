@@ -7,7 +7,7 @@ bin_PROGRAMS    = knotes
 include_HEADERS = KNotesIface.h KNotesAppIface.h
 noinst_HEADERS  = knotesapp.h knote.h knoteedit.h knotebutton.h knoteconfigdlg.h \
                   knoteslegacy.h resourcemanager.h resourcenotes.h resourcelocal.h \
-                  knotesnetrecv.h knotesnetsend.h knotehostdlg.h
+                  knotesnetrecv.h knotesnetsend.h knotehostdlg.h knotealarmdlg.h
 
 noinst_LTLIBRARIES = libknote.la libknoteseditor.la libknoteslegacy.la libknotesconfig.la \
                      libknotesresources.la libknotesnetwork.la
@@ -17,12 +17,12 @@ libknotesconfig_la_SOURCES = knoteconfig.kcfgc knotesglobalconfig.kcfgc
 libknoteseditor_la_SOURCES = knoteedit.cpp
 libknotesnetwork_la_SOURCES = knotesnetrecv.cpp knotesnetsend.cpp
 libknotesresources_la_SOURCES = resourcemanager.cpp resourcenotes.cpp resourcelocal.cpp
-libknote_la_SOURCES = knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp
+libknote_la_SOURCES = knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp knotealarmdlg.cpp
 
 knotes_SOURCES  = main.cpp knotesapp.cpp KNotesAppIface.skel
 knotes_LDADD    = libknote.la libknoteseditor.la libknotesnetwork.la libknotesresources.la \
-                  libknoteslegacy.la libknotesconfig.la  $(top_builddir)/libkcal/libkcal.la $(LIB_KIO) \
-                  -lkresources -lkdeprint -lkutils
+                  libknoteslegacy.la libknotesconfig.la  $(top_builddir)/libkcal/libkcal.la \
+                  $(top_builddir)/libkdepim/libkdepim.la $(LIB_KIO) -lkresources -lkdeprint -lkutils
 knotes_LDFLAGS  = $(all_libraries) $(KDE_RPATH)
 knotes_COMPILE_FIRST = libknotesconfig.la
 

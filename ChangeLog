@@ -4,6 +4,7 @@ ChangeLog for KNotes
 2005/01/16  Michael Brade <brade@kde.org>
 
     * read the most recent instead of always taking the local knotesui.rc file
+    * started implementing alarms for the notes
 
 2005/01/09  Michael Brade <brade@kde.org>
 
