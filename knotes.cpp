@@ -1343,10 +1343,16 @@ static void siguser1(int sig){
     postit->show();
   }
   else {
+    if( KPostit::PostitList.current()->hidden == true){
       KPostit::PostitList.last()->hidden = false;
-      KPostit::PostitList.last()->show();
-      KWM::activate(KPostit::PostitList.last()->winId());
-      //    KPostit::PostitList.last()->newKPostit();
+      if(KPostit::PostitList.last()->propertystring != (QString) "")
+	KWM::setProperties(KPostit::PostitList.last()->winId(),
+			   KPostit::PostitList.last()->propertystring);
+      
+    }
+    KPostit::PostitList.last()->show();
+    KWM::activate(KPostit::PostitList.last()->winId());
+    //    KPostit::PostitList.last()->newKPostit();
   }
   
   signal(SIGUSR1, siguser1);
