@@ -1,6 +1,14 @@
 ChangeLog for KNotes
 ====================
 
+2001/05/19  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * fixed the session management bug (#22844)
+    * added two more icons to the context menu
+    * fixed the undo/redo: no more undo right after startup possible
+    * improved the code for saving the notes a lot, saved a little
+      memory by removing a now unneeded variable
+
 2001/05/06  Michael Brade <brade@informatik.uni-muenchen.de>
 
     * made the notes look 3d
