@@ -290,25 +290,17 @@ void KNote::sync( const QString& app )
     sep[0] = '\0';
 
     KMD5 hash;
-    HASHHEX result;
+    QCString result;
 
     hash.update( m_label->text().utf8() );
     hash.update( sep );
     hash.update( m_editor->text().utf8() );
-    hash.finalize();
     hash.hexDigest( result );
 
-    if ( !hash.hasErrored() )
-    {
-        KSimpleConfig config( m_noteDir.absFilePath( m_configFile ) );
+    KSimpleConfig config( m_noteDir.absFilePath( m_configFile ) );
 
-        config.setGroup( "Synchronisation" );
-        config.writeEntry( app, result );
-    }
-    else
-        kdWarning() << "Couldn't calculate digest because of an error!" << endl;
-
-    hash.reset();
+    config.setGroup( "Synchronisation" );
+    config.writeEntry( app, result.data() );
 }
 
 bool KNote::isNew( const QString& app ) const
@@ -329,7 +321,6 @@ bool KNote::isModified( const QString& app ) const
     hash.update( m_label->text().utf8() );
     hash.update( sep );
     hash.update( m_editor->text().utf8() );
-    hash.finalize();
     hash.hexDigest();
 
     KSimpleConfig config( m_noteDir.absFilePath( m_configFile ) );
