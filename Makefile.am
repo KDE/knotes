@@ -1,4 +1,4 @@
-INCLUDES        = -I$(top_srcdir) $(all_includes) -I$(top_srcdir)/libkdepim
+INCLUDES        = -I$(top_srcdir) $(all_includes) -I$(top_builddir)/libkdepim
 
 SUBDIRS         = . pics icons
 
