@@ -1,28 +1,31 @@
-Wynn Wilkes 5-30-2000
- * Ported and changed a lot to use the KDE2 infrastructure
- * Printing and inserting calendar
- * Make Settings dialog
- * I'd like to get transparent notes working...
- * integrate all open notes into the dock menu
- * sticky windows
+TODOs for KNotes
+================
+
+ * transparent notes
+ * port to KActions and XMLGUI
+ * port to QTextEdit
+ * steal some ideas from Stickies (Mac OS X)
+ * save cursor position and scrollbar postion
+ * better config dialog
+    - let the user configure the size of the title
+    - make the frame configureable
+
+perhaps:
+ * icons for the notes
+ * alarm
+
+older TODOs from Wynn:
+ * inserting calendar
+ * hide unhide all? some ? one ?
+ * better pipe error checking
+ * standart error redirection in piping
+ * changing icon -- empty / non empty
+ * handle KNotes files of which all/some may reside on the desktop?
+   (eans that there must be an extension for note files...)
+
+Always open TODO:
+ * make the code as perfect and clean as possible!!
 
 
-
-Still so much !! 
-
-for example:
-
-o insert calendar correctly
-o better pipe error checking 
-o standart error redirection in piping
-o changing icon -- empty / non empty
-o hide unhide all? some ? one ?
-o remember screen position and desktop
-o handle KNotes files of which all/some may reside on the desktop
-
-
-KFM issues:
-
-o extensions of knotes files should not be shown. 
-o Change icon on the fly on the desktop
-
+--
+ Michael Brade 04-25-2001
