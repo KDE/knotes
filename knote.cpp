@@ -30,20 +30,24 @@
 #include <kstddirs.h>
 #include <kprocess.h>
 #include <kdebug.h>
-#include <ksimpleconfig.h>
 #include <klineeditdlg.h>
+#include <kpopupmenu.h>
+#include <kconfig.h>
+#include <ksimpleconfig.h>
 
+#include <qlabel.h>
 #include <qpalette.h>
 #include <qcolor.h>
 #include <qdir.h>
+#include <qfile.h>
+#include <qtextstream.h>
 #include <qprinter.h>
-#include <iostream.h>
 #include <netwm.h>
 
 
 //**** Initialization ************************************
-KNote::KNote( QString configfile, QWidget* parent, const char* name )
-    : QFrame( parent, name , WStyle_Customize | WStyle_NoBorderEx | WDestructiveClose ),
+KNote::KNote( QString configfile, bool oldconfig, QWidget* parent, const char* name )
+    : QFrame( parent, name, WStyle_Customize | WStyle_NoBorderEx | WDestructiveClose ),
       m_configfile( configfile ),
       m_saveself( true )
 {
@@ -68,6 +72,8 @@ KNote::KNote( QString configfile, QWidget* parent, const char* name )
     m_menu->insertSeparator();
     m_menu->insertItem( i18n("To Desktop"), m_desktop_menu );
     m_idAlwaysOnTop = m_menu->insertItem( i18n("Always On Top"), this, SLOT(slotAlwaysOnTop(int)));
+// DISABLED for now because of a bug in the netwm classes
+    m_menu->setItemEnabled( m_idAlwaysOnTop, false );
 
     m_menu->insertSeparator();
     m_menu->insertItem( i18n("Delete Note"), this, SLOT(slotKill(int)) );
@@ -85,17 +91,22 @@ KNote::KNote( QString configfile, QWidget* parent, const char* name )
     //create the note editor
     m_editor = new KNoteEdit( this );
 
-    //apply configuration settings...do before loading the text!
-    slotApplyConfig();
+    if( oldconfig ) {
+        //read and convert the old configuration
+        convertOldConfig();
+    } else {
+        //apply configuration settings...do before loading the text!
+        slotApplyConfig();
 
-    //load the saved text for this file...
-    QDir notedir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
-    QString datafile = "." + m_label->text() + "_data";
-    if( notedir.exists( datafile ) )
-    {
-        //load the text file and put in m_editor...
-        QString absfile = notedir.absFilePath( datafile );
-        m_editor->readFile( absfile );
+        //load the saved text for this file...
+        QDir notedir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
+        QString datafile = "." + m_label->text() + "_data";
+        if( notedir.exists( datafile ) )
+        {
+            //load the text file and put in m_editor...
+            QString absfile = notedir.absFilePath( datafile );
+            m_editor->readFile( absfile );
+        }
     }
 }
 
@@ -121,7 +132,7 @@ KNote::~KNote()
         {
             kdDebug() << "could not remove data file" << endl;
         }
-}
+    }
 
     delete m_editor;
     delete m_menu;
@@ -150,173 +161,6 @@ void KNote::closeEvent( QCloseEvent* e )
     saveDisplayConfig();
 
     QWidget::closeEvent( e );
-}
-
-void KNote::slotApplyConfig()
-{
-    KSimpleConfig config( m_configfile );
-
-    //do the Editor group: tabsize, autoindent, font, fontsize, fontstyle
-    config.setGroup( "Editor" );
-
-    QFont def( "helvetica" );
-    def = config.readFontEntry( "font", &def ) ;
-    setFont( def );
-
-    uint tab_size = config.readUnsignedNumEntry( "tabsize", 4 );
-    m_editor->setDefaultTabStop( tab_size );
-
-    bool indent = true;
-    indent = config.readBoolEntry( "autoindent", &indent );
-    m_editor->setAutoIndentMode( indent );
-
-    //do the Data Group- name, data
-    config.setGroup( "Data" );
-
-    QString notename = config.readEntry( "name", "KNotes" );
-    m_label->setText( notename );
-
-
-    //do Display group- width, height, bgcolor, fgcolor, transparent
-    //do this after the editor part so that the label can adjust it's
-    //size to the font on a resize event
-    config.setGroup( "Display" );
-
-    uint width  = config.readUnsignedNumEntry( "width", 200 );
-    uint height = config.readUnsignedNumEntry( "height", 200 );
-    resize( width, height );
-
-    //create a pallete...
-    QColor bg = config.readColorEntry( "bgcolor", &(Qt::yellow) );
-    QColor fg = config.readColorEntry( "fgcolor", &(Qt::black) );
-    QPalette newpalette = palette();
-    newpalette.setColor( QColorGroup::Background, bg );
-    newpalette.setColor( QColorGroup::Base,       bg );
-    newpalette.setColor( QColorGroup::Foreground, fg );
-    newpalette.setColor( QColorGroup::Text,       fg );
-    setPalette( newpalette );
-
-    //set darker values for the label and button...
-    m_label->setBackgroundColor( bg.dark( 120 ) );
-    m_button->setBackgroundColor( bg.dark( 120 ) );
-
-
-    config.setGroup( "WindowDisplay" );
-    int note_desktop = config.readNumEntry( "desktop", KWin::currentDesktop() );
-    ulong note_state = config.readUnsignedLongNumEntry( "state", NET::SkipTaskbar );
-    QPoint default_position = QPoint( -1, -1 );
-    QPoint position  = config.readPointEntry( "position", &default_position );
-
-    KWin::setState( winId(), note_state );
-    if( note_state & NET::StaysOnTop )
-    {
-        m_menu->setItemChecked( m_idAlwaysOnTop, false );
-}
-    setOnDesktop( note_desktop );
-    if( note_desktop != 0 && !isVisible() )
-    {
-        show();
-    }
-    if( position != default_position )
-        move( position );
-}
-
-
-//**** Public Interface **********************************
-void KNote::saveData()
-{
-    QString datafile = m_label->text();
-    QDir notedir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
-
-    if( datafile == QString::null )
-    {
-        kdDebug() << "note name was missing, not saving anything" << endl;
-        return;
-    }
-
-    QString absdatafile = notedir.absFilePath( "." + datafile + "_data" );
-    m_editor->dumpToFile( absdatafile );
-}
-
-void KNote::saveConfig()
-{
-    //all that needs to get saved here is the size and name
-    //everything else would have been saved by the preferences dialog
-
-    KSimpleConfig config( m_configfile );
-
-    //store config settings...
-    //need to save the new size to KSimpleConfig object
-    config.setGroup( "Display" );
-    config.writeEntry( "width", width() );
-    config.writeEntry( "height", height() );
-    
-    //save name....
-    config.setGroup( "Data" );
-    if( m_label )
-        config.writeEntry( "name", m_label->text() );
-}
-
-void KNote::saveDisplayConfig()
-    {
-    KSimpleConfig config( m_configfile );
-    NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop | NET::WMState );
-
-    config.setGroup( "WindowDisplay" );
-
-    int note_desktop = wm_client.desktop();
-    config.writeEntry( "desktop", note_desktop );
-    config.writeEntry( "state", wm_client.state() );
-    config.writeEntry( "position", pos() );
-    }
-
-void KNote::setOnDesktop( int id )
-{
-    KWin::setOnDesktop(winId(), id);
-}
-
-void KNote::slotToDesktop( int id )
-{
-    //this should only be called from the menu
-    if( id == 0 )
-        setOnDesktop( NETWinInfo::OnAllDesktops );
-    else
-    setOnDesktop( id );
-}
-
-void KNote::slotAlwaysOnTop( int )
-{
-    if ( m_menu->isItemChecked(m_idAlwaysOnTop) )
-    {
-        KWin::clearState(winId(), NET::StaysOnTop);
-        m_menu->setItemChecked( m_idAlwaysOnTop, false );
-    }
-    else
-    {
-        KWin::setState(winId(), NET::StaysOnTop);
-        m_menu->setItemChecked( m_idAlwaysOnTop, true );
-    }
-}
-
-QString KNote::getName()
-{
-    if( m_label )
-        return m_label->text();
-    else
-        return QString::null;
-}
-
-
-//**** SLOTS *********************************************
-void KNote::setFocus()
-{
-    m_editor->setFocus();
-}
-
-void KNote::show()
-{
-    QFrame::show();
-
 }
 
 bool KNote::eventFilter( QObject* o, QEvent* ev )
@@ -378,9 +222,307 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
     return QWidget::eventFilter( o, ev );
 }
 
+void KNote::convertOldConfig()
+{
+    QFile infile( m_configfile );
+    if( infile.open( IO_ReadOnly ) )
+    {
+        QTextStream input( &infile );
+
+        // get the name
+        m_label->setText( input.readLine() );
+
+        // get the geometry
+        QString geo = input.readLine();
+
+        int pos, data[13];
+        int n = 0;
+
+        while( (pos = geo.find('+')) != -1 )
+        {
+            if( n < 13 )
+                data[n++] = geo.left(pos).toInt();
+            geo.remove( 0, pos + 1 );
+        }
+        if( n < 13 )
+            data[n++] = geo.toInt();
+
+        int note_desktop = data[0];
+        if( data[11] == 1 )
+            note_desktop = NETWinInfo::OnAllDesktops;
+
+        resize( data[3], data[4] );
+        if( data[1] >= 0 && data[2] >= 0 )   // just to be sure...
+            move( data[1], data[2] );
+
+        if( data[12] & 2048 )
+        {
+// DISABLED for now because of a bug in the netwm classes
+//          KWin::setState( winId(), NET::StaysOnTop | NET::SkipTaskbar );
+//          m_menu->setItemChecked( m_idAlwaysOnTop, true );
+        } else
+            KWin::setState( winId(), NET::SkipTaskbar );
+
+        // get the foreground color
+        uint red = input.readLine().toUInt();
+        uint green = input.readLine().toUInt();
+        uint blue = input.readLine().toUInt();
+        QColor bg = QColor( red, green, blue );
+
+        // get the background color
+        red = input.readLine().toUInt();
+        green = input.readLine().toUInt();
+        blue = input.readLine().toUInt();
+        QColor fg = QColor( red, green, blue );
+
+        QPalette newpalette = palette();
+        newpalette.setColor( QColorGroup::Background, bg );
+        newpalette.setColor( QColorGroup::Base,       bg );
+        newpalette.setColor( QColorGroup::Foreground, fg );
+        newpalette.setColor( QColorGroup::Text,       fg );
+        setPalette( newpalette );
+
+        // set darker values for the label and button...
+        m_label->setBackgroundColor( bg.dark( 120 ) );
+        m_button->setBackgroundColor( bg.dark( 120 ) );
+
+        // get the font
+        QString fontfamily = input.readLine();
+        if( fontfamily.isEmpty() )
+            fontfamily = QString( "helvetica" );
+        uint size = input.readLine().toUInt();
+        size = QMAX( size, 4 );
+        uint weight = input.readLine().toUInt();
+        bool italic = ( input.readLine().toUInt() == 1 );
+
+        QFont font( fontfamily, size, weight, italic );
+        setFont( font );
+
+        // 3d frame? Not supported yet!
+        input.readLine();
+
+        // autoindent
+        bool indent = ( input.readLine().toUInt() == 1 );
+        m_editor->setAutoIndentMode( indent );
+        m_editor->setDefaultTabStop( 4 );
+
+        // hidden
+        bool hidden = ( input.readLine().toUInt() == 1 );
+
+        // show the note
+        if( !hidden && !isVisible() )
+        {
+            // HACK HACK
+            if( note_desktop != NETWinInfo::OnAllDesktops )
+            {
+                slotToDesktop( note_desktop );   //to avoid flicker, call this before show()
+                show();
+            } else {
+                show();
+                //if this is called before show(), it won't work for sticky notes!!!
+                slotToDesktop( note_desktop );
+            }
+        }
+
+        // get the text
+        m_editor->setText( input.readLine() );  // workaround for bug in KMultiLineEdit
+        while( !input.atEnd() )
+            m_editor->insertLine( input.readLine() );
+
+        infile.close();
+        infile.remove();
+
+        // write the new configuration
+        saveData();
+        saveConfig();
+        saveDisplayConfig();
+
+        KSimpleConfig config( m_configfile );
+        config.setGroup( "General" );
+        config.writeEntry( "version", 2 );
+
+        config.setGroup( "Display" );
+        config.writeEntry( "fgcolor", fg );
+        config.writeEntry( "bgcolor", bg );
+
+        config.setGroup( "Actions" );                  // use the new default for this group
+        config.writeEntry( "mail", "kmail --msg %f" );
+        config.writeEntry( "print", "a2ps -P %p -1 --center-title=%t --underlay=KDE %f" );
+
+        config.setGroup( "Editor" );
+        config.writeEntry( "autoindent", indent );
+        config.writeEntry( "font", font );
+        config.writeEntry( "tabsize", 4 );
+        config.sync();
+    } else
+        kdDebug() << "could not open input file" << endl;
+}
+
+
+//**** Public Interface **********************************
+void KNote::saveData()
+{
+    QString datafile = m_label->text();
+    QDir notedir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
+
+    if( datafile == QString::null )
+    {
+        kdDebug() << "note name was missing, not saving anything" << endl;
+        return;
+    }
+
+    QString absdatafile = notedir.absFilePath( "." + datafile + "_data" );
+    m_editor->dumpToFile( absdatafile );
+}
+
+void KNote::saveConfig()
+{
+    //all that needs to get saved here is the size and name
+    //everything else would have been saved by the preferences dialog
+
+    KSimpleConfig config( m_configfile );
+
+    //store config settings...
+    //need to save the new size to KSimpleConfig object
+    config.setGroup( "Display" );
+    config.writeEntry( "width", width() );
+    config.writeEntry( "height", height() );
+
+    //save name....
+    config.setGroup( "Data" );
+    if( m_label )
+        config.writeEntry( "name", m_label->text() );
+}
+
+void KNote::saveDisplayConfig()
+{
+    KSimpleConfig config( m_configfile );
+    NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop | NET::WMState );
+
+    config.setGroup( "WindowDisplay" );
+
+    config.writeEntry( "desktop", wm_client.desktop() );
+    config.writeEntry( "state", wm_client.state() );
+    config.writeEntry( "position", pos() );
+}
+
+QString KNote::getName()
+{
+    if( m_label )
+        return m_label->text();
+    else
+        return QString::null;
+}
+
+
+//**** SLOTS *********************************************
+void KNote::setFocus()
+{
+    m_editor->setFocus();
+}
+
+void KNote::show()
+{
+    QFrame::show();
+}
+
+void KNote::slotApplyConfig()
+{
+    KSimpleConfig config( m_configfile );
+
+    //do the Editor group: tabsize, autoindent, font, fontsize, fontstyle
+    config.setGroup( "Editor" );
+
+    QFont def( "helvetica" );
+    def = config.readFontEntry( "font", &def ) ;
+    setFont( def );
+
+    uint tab_size = config.readUnsignedNumEntry( "tabsize", 4 );
+    m_editor->setDefaultTabStop( tab_size );
+
+    bool indent = true;
+    indent = config.readBoolEntry( "autoindent", &indent );
+    m_editor->setAutoIndentMode( indent );
+
+    //do the Data Group- name, data
+    config.setGroup( "Data" );
+
+    QString notename = config.readEntry( "name", "KNotes" );
+    m_label->setText( notename );
+
+
+    //do Display group- width, height, bgcolor, fgcolor, transparent
+    //do this after the editor part so that the label can adjust it's
+    //size to the font on a resize event
+    config.setGroup( "Display" );
+
+    uint width  = config.readUnsignedNumEntry( "width", 200 );
+    uint height = config.readUnsignedNumEntry( "height", 200 );
+    resize( width, height );
+
+    //create a pallete...
+    QColor bg = config.readColorEntry( "bgcolor", &(Qt::yellow) );
+    QColor fg = config.readColorEntry( "fgcolor", &(Qt::black) );
+    QPalette newpalette = palette();
+    newpalette.setColor( QColorGroup::Background, bg );
+    newpalette.setColor( QColorGroup::Base,       bg );
+    newpalette.setColor( QColorGroup::Foreground, fg );
+    newpalette.setColor( QColorGroup::Text,       fg );
+    setPalette( newpalette );
+
+    //set darker values for the label and button...
+    m_label->setBackgroundColor( bg.dark( 120 ) );
+    m_button->setBackgroundColor( bg.dark( 120 ) );
+
+    config.setGroup( "WindowDisplay" );
+    int note_desktop = config.readNumEntry( "desktop", KWin::currentDesktop() );
+    ulong note_state = config.readUnsignedLongNumEntry( "state", NET::SkipTaskbar );
+    QPoint default_position = QPoint( -1, -1 );
+    QPoint position  = config.readPointEntry( "position", &default_position );
+
+    KWin::setState( winId(), note_state );
+    if( note_state & NET::StaysOnTop )
+    {
+        m_menu->setItemChecked( m_idAlwaysOnTop, true );
+    }
+    if( position != default_position )
+        move( position );                    //do before calling show() to avoid flicker
+    if( note_desktop != 0 && !isVisible() )
+    {
+        // HACK HACK
+        if( note_desktop != NETWinInfo::OnAllDesktops )
+        {
+            slotToDesktop( note_desktop );   //to avoid flicker, call this before show()
+            show();
+        } else {
+            show();
+            //if this is called before show(), it won't work for sticky notes!!!
+            slotToDesktop( note_desktop );
+        }
+    }
+}
+
+void KNote::slotToDesktop( int id )
+{
+    if( id == 0 || id == NETWinInfo::OnAllDesktops )
+        KWin::setOnAllDesktops( winId(), true );
+    else
+        KWin::setOnDesktop( winId(), id );
+}
+
+void KNote::slotAlwaysOnTop( int )
+{
+    if ( KWin::info(winId()).state & NET::StaysOnTop )
+        KWin::clearState( winId(), NET::StaysOnTop );
+    else
+        KWin::setState( winId(), KWin::info(winId()).state | NET::StaysOnTop );
+
+    m_menu->setItemChecked( m_idAlwaysOnTop, KWin::info(winId()).state & NET::StaysOnTop );
+}
+
 void KNote::slotPrepareDesktopMenu()
 {
-    NETRootInfo wm_root( qt_xdisplay(), NET::NumberOfDesktops );
+    NETRootInfo wm_root( qt_xdisplay(), NET::NumberOfDesktops | NET::DesktopNames );
     NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
 
     QStringList desktops;
@@ -416,8 +558,6 @@ void KNote::slotPrepareDesktopMenu()
     }
 }
 
-
-
 void KNote::slotRename( int /*id*/ )
 {
     QString newname;
@@ -430,7 +570,7 @@ void KNote::slotRename( int /*id*/ )
         //pop up dialog to get the new name
         bool ok;
         newname = KLineEditDlg::getText( i18n("Please enter the new name"),
-                                        QString::null, &ok, this );
+                                        oldname, &ok, this );
         if ( !ok ) // handle cancel
             return;
 
@@ -454,17 +594,17 @@ void KNote::slotRename( int /*id*/ )
 
     if( notedir.rename( oldname, newname ) )
     {
-    //open new config
+        //open new config
         m_configfile = notedir.absFilePath( newname );
         KSimpleConfig config( m_configfile );
 
-    //redo the label text
-    m_label->setText( newname );
+        //redo the label text
+        m_label->setText( newname );
         config.setGroup( "Data" );
         config.writeEntry( "name", newname );
 
-    //emit signal with oldname and newname
-    emit sigRenamed( oldname, newname );
+        //emit signal with oldname and newname
+        emit sigRenamed( oldname, newname );
 
         if( notedir.exists( oldname_data ) )
         {
@@ -500,6 +640,9 @@ void KNote::slotPreferences( int /*id*/ )
 
 void KNote::slotClose()
 {
+    saveData();
+    saveConfig();
+
     hide(); //just hide the note so it's still available from the dock window
 }
 

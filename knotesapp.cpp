@@ -29,6 +29,7 @@
 #include <klocale.h>
 #include <kiconloader.h>
 #include <kstddirs.h>
+#include <kpopupmenu.h>
 #include <kmessagebox.h>
 #include <kdebug.h>
 #include <ksimpleconfig.h>
@@ -58,38 +59,26 @@ KNotesApp::KNotesApp()
     QDir notedir( str_notedir );
     QStringList notes = notedir.entryList( QDir::Files, QDir::Name ); //doesn't list hidden files
 
-    int count = 0;
     for( QStringList::Iterator i = notes.begin(); i != notes.end(); ++i )
     {
-            QString configfile = notedir.absFilePath( *i );
-            KSimpleConfig* tmp = new KSimpleConfig( configfile );
-            tmp->setGroup( "General" );
-            int version = tmp->readNumEntry( "version", 1 );
+        QString configfile = notedir.absFilePath( *i );
+        KSimpleConfig* tmp = new KSimpleConfig( configfile );
+        tmp->setGroup( "General" );
+        int version = tmp->readNumEntry( "version", 1 );
         delete tmp;
 
-            if( version > 1 )
-            {
-            KNote* tmpnote = new KNote( configfile );
+        KNote* tmpnote = new KNote( configfile, version == 1 );
 
-                connect( tmpnote, SIGNAL( sigRenamed(QString&, QString&) ),
-                         this,    SLOT  ( slotNoteRenamed(QString&, QString&) ) );
-                connect( tmpnote, SIGNAL( sigNewNote(int) ),
-                         this,    SLOT  ( slotNewNote(int) ) );
-                connect( tmpnote, SIGNAL( sigKilled(QString) ),
-                         this,    SLOT  ( slotNoteKilled(QString) ) );
-                m_NoteList.insert( tmpnote->getName() ,tmpnote );
-                ++count;
-            }
-            else
-            {
-                /*********************************************************/
-                /*** PUT IN SUPPORT FOR READING THE OLD KNOTE FORMAT *****/
-                /*********************************************************/
-                kdDebug() << "This is an old note version, we can't read it yet" << endl;
-            }
-        }
+        connect( tmpnote, SIGNAL( sigRenamed(QString&, QString&) ),
+                 this,    SLOT  ( slotNoteRenamed(QString&, QString&) ) );
+        connect( tmpnote, SIGNAL( sigNewNote(int) ),
+                 this,    SLOT  ( slotNewNote(int) ) );
+        connect( tmpnote, SIGNAL( sigKilled(QString) ),
+                 this,    SLOT  ( slotNoteKilled(QString) ) );
+        m_NoteList.insert( tmpnote->getName(), tmpnote );
+    }
 
-    if( count == 0 && !KApplication::kApplication()->isRestored() )
+    if( m_NoteList.count() == 0 && !kapp->isRestored() )
         slotNewNote();
 }
 
@@ -147,6 +136,8 @@ void KNotesApp::copyDefaultConfig( QString& sc_filename, QString& newname )
     sc.setGroup( "Data" );
     sc.writeEntry( "name", newname );
 
+    // TODO: write default entries for the group "WindowDisplay"
+
     sc.sync();
 }
 
@@ -155,30 +146,18 @@ void KNotesApp::slotNewNote( int /*id*/ )
     QString datadir = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
 
     //find a new appropriate id for the new note...
-    bool exists;
-    QString thename;
-    QString configfile;
+    QString thename, configfile;
     QDir appdir( datadir );
-    for( int i = 1; i < 51; i++ )   //set the unjust limit to 50 notes...
+
+    for( int i = 1; ; i++ )
     {
         thename = QString( "KNote %1" ).arg(i);
-        exists = false;
 
         if( !appdir.exists( thename ) )
         {
-            exists = false;
             configfile = appdir.absFilePath( thename );
             break;
         }
-    }
-
-    if( exists )
-    {
-        QString msg = i18n(""
-        "You have exeeded the arbitrary and unjustly set limit of 50 knotes.\n"
-        "Please complain to the author.");
-        KMessageBox::sorry( NULL, msg );
-        return;
     }
 
     copyDefaultConfig( configfile, thename );
@@ -218,7 +197,7 @@ void KNotesApp::slotToNote( int id )
     //tell the WM to give this note focus
     QString name = m_note_menu->text( id );
 
-    //if it's already showing, we need to change to it's desktop
+    //if it's already showing, we need to change to its desktop
     //and give it focus
     KNote* tmpnote = m_NoteList[name];
     if( !tmpnote->isHidden() )
@@ -230,7 +209,7 @@ void KNotesApp::slotToNote( int id )
     {
         //if not show it on the current desktop
         tmpnote->show();
-        tmpnote->setOnDesktop( KWin::currentDesktop() );
+        tmpnote->slotToDesktop( KWin::currentDesktop() );
         KWin::setActiveWindow(tmpnote->winId());
         tmpnote->setFocus();
     }
@@ -266,14 +245,12 @@ void KNotesApp::slotSaveNotes()
 void KNotesApp::mouseReleaseEvent( QMouseEvent * e)
 {
     if ( rect().contains( e->pos() ) && e->button() == LeftButton )
-{
-	slotPrepareNoteMenu();
+    {
+        slotPrepareNoteMenu();
         if( m_note_menu->count() > 0 )
-	m_note_menu->popup( e->globalPos() );
-	return;
+            m_note_menu->popup( e->globalPos() );
+        return;
     }
-
-    KSystemTray::mouseReleaseEvent( e );
 }
 
 

@@ -26,23 +26,25 @@
 #include "knoteedit.h"
 #include "knotebutton.h"
 
-#include <kconfig.h>
-#include <kpopupmenu.h>
+#include <qstring.h>
 #include <qframe.h>
-#include <qlabel.h>
-#include <qdir.h>
+#include <qpoint.h>
+
+
+class QLabel;
+
+class KPopupMenu;
 
 
 class KNote : public QFrame  {
    Q_OBJECT
 public:
-    KNote( QString configfile, QWidget* parent=0, const char* name=0 );
+    KNote( QString configfile, bool oldconfig=false, QWidget* parent=0, const char* name=0 );
     ~KNote();
 
     void saveData();
     void saveConfig();
     void saveDisplayConfig();
-    void setOnDesktop( int id );
     QString getName();
 
 public slots:
@@ -71,11 +73,14 @@ signals:
 
 protected:
     virtual void resizeEvent( QResizeEvent* );
-    bool eventFilter( QObject* o, QEvent* e );
-
     virtual void closeEvent( QCloseEvent* e );
 
-    QString m_configfile;
+    bool eventFilter( QObject* o, QEvent* e );
+
+private:
+    void           convertOldConfig();
+
+    QString        m_configfile;
 
     KNoteEdit*     m_editor;
     KNoteButton*   m_button;

@@ -29,12 +29,12 @@
 #include "knoteedit.h"
 
 KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
-	: QMultiLineEdit( parent, name )
+    : QMultiLineEdit( parent, name )
 {
-	setAcceptDrops( TRUE );
-	setBackgroundMode( QWidget::PaletteBase );
-	setFrameStyle( NoFrame );
-        setWordWrap( QMultiLineEdit::WidgetWidth );
+    setAcceptDrops( TRUE );
+    setBackgroundMode( QWidget::PaletteBase );
+    setFrameStyle( NoFrame );
+    setWordWrap( QMultiLineEdit::WidgetWidth );
 }
 
 
@@ -45,31 +45,33 @@ KNoteEdit::~KNoteEdit()
 
 void KNoteEdit::readFile( QString& filename )
 {
-	QFile infile( filename );
-	if( infile.open( IO_ReadOnly ) )
-	{
-		QTextStream input( &infile );
+    QFile infile( filename );
+    if( infile.open( IO_ReadOnly ) )
+    {
+        QTextStream input( &infile );
         QString text = input.read();
         insertAt( text, 0, 0 );
-	} else
-		kdDebug() << "could not open input file" << endl;
+        infile.close();
+    } else
+        kdDebug() << "could not open input file" << endl;
 }
 
 void KNoteEdit::dumpToFile( QString& filename )
 {
-	QFile outfile( filename );
-	if( outfile.open( IO_WriteOnly ) )
-	{
-		QTextStream output( &outfile );
+    QFile outfile( filename );
+    if( outfile.open( IO_WriteOnly ) )
+    {
+        QTextStream output( &outfile );
         QString note_text = text();
         output << note_text;
-	} else
-		kdDebug() << "could not open file to write to" << endl;
+        outfile.close();
+    } else
+        kdDebug() << "could not open file to write to" << endl;
 }
 
 void KNoteEdit::setAutoIndentMode( bool newmode )
 {
-	m_autoIndentMode = newmode;
+    m_autoIndentMode = newmode;
 }
 
 
