@@ -12,7 +12,7 @@
 	
 [Actions]
 	mail=kmail --msg %f
-	date=date
+    print=a2ps -P %p -1 --center-title=%t --underlay=KDE %f
 
 [Data]
     name=KNotes
