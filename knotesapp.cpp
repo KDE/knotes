@@ -79,7 +79,7 @@ KNotesApp::~KNotesApp()
 {
 }
 
-void KNotesApp::slotNewNote( int id )
+void KNotesApp::slotNewNote( int /*id*/ )
 {
 	QString globalConfigFile = KGlobal::dirs()->findResource( "config", "knotesrc" );
 	QString datadir = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
@@ -159,13 +159,15 @@ void KNotesApp::slotNoteClosed( QString& name )
 	m_NoteList.remove( name );
 }
 
-void KNotesApp::slotPreferences( int id )
+void KNotesApp::slotPreferences( int /*id*/ )
 {
 	QString globalConfigFile = KGlobal::dirs()->findResource( "config", "knotesrc" );
+	kdDebug() << "globalConfigFile = " << globalConfigFile << endl;
 	KConfig GlobalConfig( globalConfigFile );
 	
 	//launch preferences dialog...
-	KNoteConfigDlg* tmpconfig = new KNoteConfigDlg( &GlobalConfig, i18n("KNotes Defaults") );
-	tmpconfig->show();
+	KNoteConfigDlg tmpconfig( &GlobalConfig, i18n("KNotes Defaults") );
+	tmpconfig.exec();
+	kdDebug() << "after global settings configured" << endl;
 }
 #include "knotesapp.moc"
