@@ -3,6 +3,8 @@ ICONSDIR  = @kde_icondir@
 PIXDIR  = @kde_datadir@/knotes/pics/
 APPSDIR = @kde_appsdir@/Utilities
 
+
+
 ###################################################################
 
 LDFLAGS	=	$(all_libraries) $(KDE_RPATH)

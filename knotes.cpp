@@ -601,7 +601,7 @@ void KPostit::insertCalendar(){
     if(!t.eof())
       edit->insertLine( s );
   }  
-  pclose(calfile);
+  //  pclose(calfile);  QTextStream already close the file 
   repaint();
 }
 
