@@ -58,9 +58,10 @@ KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent, const char 
 
     // Read known hosts from configfile
     m_hostCombo->setHistoryItems( KNotesGlobalConfig::knownHosts(), true );
-    //m_hostCombo->completionObject()->setItems( KNotesGlobalConfig::hostCompletions() );
-    connect( m_hostCombo->lineEdit(), SIGNAL( textChanged ( const QString & ) ),this, SLOT( slotTextChanged( const QString & ) ) );
     m_hostCombo->setFocus();
+    //m_hostCombo->completionObject()->setItems( KNotesGlobalConfig::hostCompletions() );
+    connect( m_hostCombo->lineEdit(), SIGNAL( textChanged ( const QString & ) ),
+             this, SLOT( slotTextChanged( const QString & ) ) );
     slotTextChanged( m_hostCombo->lineEdit()->text() );
 }
 
@@ -75,9 +76,9 @@ KNoteHostDlg::~KNoteHostDlg()
     KNotesGlobalConfig::writeConfig();
 }
 
-void KNoteHostDlg::slotTextChanged( const QString & _text)
+void KNoteHostDlg::slotTextChanged( const QString& text )
 {
-    enableButtonOK( !_text.isEmpty() );
+    enableButtonOK( !text.isEmpty() );
 }
 
 QString KNoteHostDlg::host() const
