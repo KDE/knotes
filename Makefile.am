@@ -32,3 +32,5 @@ rcdir     = $(kde_confdir)
 messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/knotes.pot
 
+
+include ../admin/Doxyfile.am
