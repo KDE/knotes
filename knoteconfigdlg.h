@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2003, The KNotes Developers
+ Copyright (c) 1997-2004, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -71,7 +71,7 @@ private:
     KIntNumInput *m_widthEdit;
     KIntNumInput *m_heightEdit;
     QCheckBox    *m_skipTaskbarSwitch;
-    
+
     KIntNumInput *m_tabEdit;
     QCheckBox    *m_autoIndentSwitch;
     QCheckBox    *m_richTextSwitch;

@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2003, The KNotes Developers
+ Copyright (c) 1997-2004, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -97,7 +97,7 @@ private:
     KToggleAction *m_textBold;
     KToggleAction *m_textItalic;
     KToggleAction *m_textUnderline;
-    
+
     KToggleAction *m_textAlignLeft;
     KToggleAction *m_textAlignCenter;
     KToggleAction *m_textAlignRight;
@@ -109,7 +109,7 @@ private:
 
     //KAction       *m_textIncreaseIndent;
     //KAction       *m_textDecreaseIndent;
-    
+
     KAction         *m_textColor;
     KFontAction     *m_textFont;
     KFontSizeAction *m_textSize;

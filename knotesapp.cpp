@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2003, The KNotes Developers
+ Copyright (c) 1997-2004, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -46,10 +46,10 @@
 
 
 int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 )
-{ 
-    if ( ((KAction*)s1)->text() == ((KAction*)s2)->text() ) 
-        return 0; 
-    return ( ((KAction*)s1)->text() < ((KAction*)s2)->text() ? -1 : 1 ); 
+{
+    if ( ((KAction*)s1)->text() == ((KAction*)s2)->text() )
+        return 0;
+    return ( ((KAction*)s1)->text() < ((KAction*)s2)->text() ? -1 : 1 );
 }
 
 
@@ -65,9 +65,9 @@ KNotesApp::KNotesApp()
     setPixmap( KSystemTray::loadIcon( "knotes" ) );
 
     // create the GUI...
-    new KAction( i18n("New Note"), "filenew", 0, 
+    new KAction( i18n("New Note"), "filenew", 0,
         this, SLOT(slotNewNote()), actionCollection(), "new_note" );
-    new KAction( i18n("New Note From Clipboard"), "editpaste", 0, 
+    new KAction( i18n("New Note From Clipboard"), "editpaste", 0,
         this, SLOT(slotNewNoteFromClipboard()), actionCollection(), "new_note_clipboard" );
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
@@ -158,7 +158,7 @@ void KNotesApp::hideNote( const QString& id ) const
         kdWarning(5500) << "No note with id: " << id << endl;
 }
 
-void KNotesApp::killNote( const QString& id, bool force ) 
+void KNotesApp::killNote( const QString& id, bool force )
 {
     KNote* note = m_manager->note( id );
     if ( note )
@@ -167,7 +167,7 @@ void KNotesApp::killNote( const QString& id, bool force )
         kdWarning(5500) << "No note with id: " << id << endl;
 }
 
-// "bool force = false" doesn't work with dcop 
+// "bool force = false" doesn't work with dcop
 void KNotesApp::killNote( const QString& id )
 {
     killNote( id, false );
