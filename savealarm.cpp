@@ -36,7 +36,7 @@ bool savealarms(){
   alarmfile = KApplication::localkdedir().copy();
   alarmfile += "/share/apps/knotes/xyalarms/knotesalarms";
 
-  QFile file(alarmfile.data());
+  QFile file(alarmfile);
 
 #ifdef MYDEBUG  
   printf("save: %s\n",alarmfile.data());
@@ -71,7 +71,7 @@ bool readalarms(){
   alarmfile = KApplication::localkdedir().copy();
   alarmfile += "/share/apps/knotes/xyalarms/knotesalarms";
 
-  QFile file(alarmfile.data());
+  QFile file(alarmfile);
 
 #ifdef MYDEBUG  
   printf("save: %s\n",alarmfile.data());

@@ -56,9 +56,9 @@ AlarmDlg::AlarmDlg(KPostit *parent, const char *name)
     this->setFocusPolicy(QWidget::StrongFocus);
 
     QString str;
-    str.sprintf(i18n("Alarm Timer for: %s"),postit->name.data());
+    str = i18n("Alarm Timer for: %1").arg(postit->name);
 
-    frame1 = new QGroupBox(str.data(), this, "frame1");
+    frame1 = new QGroupBox(str, this, "frame1");
     
     if(alarm_is_on)
       spins = new  BWDateTime(qdt, this, "spins");
@@ -114,7 +114,7 @@ void AlarmDlg::ok_slot(){
 
 	//	delete postit->AlarmList.current();
 	postit->AlarmList.remove(postit->AlarmList.current());
-	postit->setCaption(postit->name.data());
+	postit->setCaption(postit->name);
 	break;
       }
     }

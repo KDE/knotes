@@ -47,9 +47,9 @@ QtedSetInt::QtedSetInt(int min, int max, int start_value, int format,
       _max = _min;
  
    QString str;
-   str.sprintf("%d", _min);	// find the max number string length 
+   str.setNum(_min);	// find the max number string length 
    _length = str.length();
-   str.sprintf("%d", _max);
+   str.setNum(_max);
    if ((int)str.length() > _length)
       _length = str.length();
 

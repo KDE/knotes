@@ -156,7 +156,7 @@ void KPostitMultilineEdit::mouseDoubleClickEvent ( QMouseEvent * e ){
   if (text.isEmpty())
     return;
 
-  KURL kurl(text.data());
+  KURL kurl(text);
 
   if (kurl.isMalformed())
     return;
@@ -244,13 +244,13 @@ QString KPostitMultilineEdit::prefixString(QString string){
   // It is assumed that string contains at least one non whitespace character
   // ie \n \r \t \v \f and space
 
-  QString returnstring("");
+  QString returnstring;
 
   int len = string.length();
 
   int i = 0;
-  while(i < len && isspace(string[i]))
-    returnstring += string[i++];
+  while(i < len && string.at(i).isSpace())
+    returnstring += string.at(i++);
 
   return returnstring;
 
@@ -496,11 +496,11 @@ void KPostit::quit(){
   writeSettings();
   if(!savealarms()){
     QString str;
-    str.sprintf(i18n("Could not save KNote Alarms\n"));
+    str = i18n("Could not save KNote Alarms\n");
     QMessageBox::warning(
 			 this,
 			 i18n("Sorry"),
-			 str.data()
+			 str
                          );
   }
   QApplication::exit();
@@ -556,13 +556,12 @@ void KPostit::mail(){
 
   if(mailpipe == NULL){
     QString str;
-    str.sprintf(
-    i18n("Could not pipe the contents of this KNote into:\n %s"),cmd.data());
+    str = i18n("Could not pipe the contents of this KNote into:\n %1").arg(cmd);
 
     QMessageBox::information(
 			     this,
 			     i18n("Sorry"),
-			     str.data()
+			     str
 			     );
 
     return;
@@ -618,9 +617,9 @@ void KPostit::setAlarm(){
 
   AlarmList.append(entry);
   QString str;
-  str.sprintf("%s (A)",name.data());
+  str = QString("%1 (A)").arg(name);
   setCaption(QString(i18n("Note: ") )+str);
-  label->setText(str.data());
+  label->setText(str);
 
   //  QDate date = qdt.date();
   //  QTime time = qdt.time();
@@ -660,16 +659,13 @@ void KPostit::print(){
   if(printpipe == NULL){
     QString str;
 
-    str.sprintf(
-		i18n(
-		"Could not pipe the contents of this KNote into:\n %s"),
-		cmd.data()
-		);
+    str = i18n("Could not pipe the contents of this KNote into:\n %1")
+		.arg(cmd);
 
     QMessageBox::warning(
 			 this,
 			 i18n("Sorry"),
-			 str.data()
+			 str
 			 );
     return;
   }
@@ -698,7 +694,7 @@ void KPostit::newKPostit(){
 
     exists = FALSE;
     pname = "";
-    pname.sprintf("knote %d",i);
+    pname = QString("knote %1").arg(i);
 
     for(PostitFilesList.first();
 	(PostitFilesList.current() && (!exists));
@@ -971,7 +967,7 @@ bool KPostit::loadnotes(){
   notesfile = KApplication::localkdedir() + "/share/apps/knotes/notes/";
   notesfile += name;
 
-  QFile file(notesfile.data());
+  QFile file(notesfile);
 
 
   if( !file.open( IO_ReadOnly )) {
@@ -1028,7 +1024,7 @@ bool KPostit::loadnotes(){
   else
     italic = FALSE;
 
-  font = QFont(fontfamily.data(),pointsize,weight,italic);
+  font = QFont(fontfamily,pointsize,weight,italic);
 
 
   int int3d;
@@ -1076,11 +1072,11 @@ bool KPostit::insertFile(const char* filename){
 
   if( !file.open( IO_ReadOnly )) {
     QString string;
-    string.sprintf(i18n("Could not load:\n %s"),filename);
+    string = i18n("Could not load:\n %1").arg(filename);
     QMessageBox::warning(
 			 this,
 			 i18n("Sorry"),
-			 string.data()
+			 string
 			 );
     return FALSE;
   }
@@ -1121,7 +1117,7 @@ bool KPostit::savenotes(){
   notesfile = KApplication::localkdedir() + "/share/apps/knotes/notes/";
   notesfile += name;
 
-  QFile file(notesfile.data());
+  QFile file(notesfile);
   //  QFile file2("/home/wuebben/knotes.txt");
 
   if( !file.open( IO_WriteOnly)) {
@@ -1140,8 +1136,8 @@ bool KPostit::savenotes(){
 
   if( this->hidden){
 
-    t << propertystring.data() << '\n';
-    //    t2 << propertystring.data() << '\n';
+    t << propertystring << '\n';
+    //    t2 << propertystring << '\n';
   }
   else{
     t << KWM::getProperties(winId()) <<'\n';
@@ -1334,23 +1330,23 @@ void KPostit::defaults()
     label->setGeometry(140,60,160,170);
 
     QString labelstring;
-    labelstring.sprintf( i18n("KNotes %s\n"
+    labelstring = i18n("KNotes %1\n"
 			 "Bernd Johannes Wuebben\n"
 			 "wuebben@math.cornell.edu\n"
 			 "wuebben@kde.org\n"
 			 "Copyright (C) 1997\n\n"
 			 "With contributions by:\n"
-			 "Matthias Ettrich <ettrich@kde.org>\n\n\n"),
-	     KNOTES_VERSION);
+			 "Matthias Ettrich <ettrich@kde.org>\n\n\n")
+	     .arg(KNOTES_VERSION);
 
 
     label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
-    label->setText(labelstring.data());
+    label->setText(labelstring);
 
     QString pixdir = mykapp->kde_datadir() + "/knotes/pics/";
 
 
-    QPixmap pm((pixdir + "knoteslogo.xpm").data());
+    QPixmap pm((pixdir + "knoteslogo.xpm"));
     QLabel *logo = new QLabel(box);
     logo->setPixmap(pm);
     logo->setGeometry(30, 50, pm.width(), pm.height());
@@ -1486,7 +1482,7 @@ void KPostit::slotDropEvent( KDNDDropZone * _dropZone )
     if ( (s = list.getFirst()) )
       {
 	QString n = s;
-	insertNetFile( n.data());
+	insertNetFile( n);
       }			
 
 }
@@ -1497,7 +1493,7 @@ void KPostit::insertNetFile( const char *_url)
   QString string;
   QString netFile = _url;
   
-  KURL u( netFile.data() );
+  KURL u( netFile );
 
   if ( u.isMalformed() )
     {
@@ -1542,9 +1538,9 @@ void KPostit::insertNetFile( const char *_url)
 	return;
     }
 
-    tmpFile.sprintf( "file:/tmp/knotes%i", time( 0L ) );
+    tmpFile = QString("file:/tmp/knotes%1").arg(time( 0L ));
     connect( kfm, SIGNAL( finished() ), this, SLOT( slotKFMFinished() ) );
-    kfm->copy( netFile.data(), tmpFile.data() );
+    kfm->copy( netFile, tmpFile );
 
 }
 
@@ -1585,7 +1581,7 @@ void KPostit::slotKFMFinished()
 
   QString string;
 
-  KURL u( tmpFile.data() );
+  KURL u( tmpFile );
   insertFile( u.path());
 
   unlink( tmpFile.data() );
@@ -1666,19 +1662,19 @@ void alarmConsistencyCheck(){
   for(KPostit::AlarmList.first();KPostit::AlarmList.current();
       KPostit::AlarmList.next()){
 
-    if (KPostit::PostitFilesList.find(KPostit::AlarmList.current()->name.data()) == -1){
+    if (KPostit::PostitFilesList.find(KPostit::AlarmList.current()->name) == -1){
 
       QString str;
-      str.sprintf(i18n("Found an alarm to which the underlying\n"\
+      str = i18n("Found an alarm to which the underlying\n"\
 		  "KNotes file:\n"\
-		  "%s\n no longer exists.\n\n"\
+		  "%1\n no longer exists.\n\n"\
 		  "I will correct the Problem for you.")
-		  ,KPostit::AlarmList.current()->name.data());
+		  .arg(KPostit::AlarmList.current()->name);
 
       QMessageBox::warning(
 			   0,
 			   i18n("Inconsistency"),
-			   str.data()
+			   str
 			   );
 
       KPostit::AlarmList.remove(KPostit::AlarmList.current());

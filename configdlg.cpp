@@ -106,7 +106,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 
   print = new QLineEdit(this);
   print->setGeometry(130,185,180,23);
-  print->setText(defst->printcommand.data());
+  print->setText(defst->printcommand);
 
   label8 = new QLabel(this);
   label8->setGeometry(20,225,100,25);
@@ -114,7 +114,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 
   mail = new QLineEdit(this);
   mail->setGeometry(130,225,180,23);
-  mail->setText(defst->mailcommand.data());
+  mail->setText(defst->mailcommand);
 
   QGroupBox *gbox;
 
@@ -150,8 +150,8 @@ void ConfigDlg::setWidgets(DefStruct *defstruct){
   string2.setNum(defst->height);
   height->setText(string2);
 
-  print->setText(defst->printcommand.data());
-  mail->setText(defst->mailcommand.data());
+  print->setText(defst->printcommand);
+  mail->setText(defst->mailcommand);
 
   check1->setChecked( defst->frame3d );
   check2->setChecked( defst->autoindent );

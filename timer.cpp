@@ -116,14 +116,13 @@ void MyTimer::timerEvent( QTimerEvent * ){
       }
 
       QString str;
-      str.sprintf("Alarm for KNote:\n"\
-		  "\n%s",
-		  entry->name.data());
+      str = i18n("Alarm for KNote:\n\n%1")
+		  .arg(entry->name);
 
       QMessageBox::information(
 			       t,
-			       "Alarm",
-			       str.data()
+			       i18n("Alarm"),
+			       str
 			       );
 
 
