@@ -48,7 +48,7 @@ bool savealarms(){
 
   QDataStream d(&file);
   
-  d << KPostit::AlarmList.count();
+  d << (short)KPostit::AlarmList.count();
 
   for( KPostit::AlarmList.first();  KPostit::AlarmList.current(); 
        KPostit::AlarmList.next()){
@@ -83,7 +83,7 @@ bool readalarms(){
 
   QDataStream d(&file);
   
-  int count;
+  short int count;
   QString sname;
   QDateTime sdt;
   AlarmEntry *entry;
