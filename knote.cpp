@@ -407,6 +407,11 @@ void KNote::setText( const QString& text )
     saveData();
 }
 
+bool KNote::isModified() const
+{
+    return m_editor->isModified();
+}
+
 // FIXME KDE 4.0: remove sync(), isNew() and isModified()
 void KNote::sync( const QString& app )
 {

@@ -470,6 +470,12 @@ void KNotesApp::slotNoteKilled( KCal::Journal *journal )
 
 void KNotesApp::slotQuit()
 {
+    QDictIterator<KNote> it( m_noteList );
+
+    for ( ; *it; ++it )
+        if ( (*it)->isModified() )
+            (*it)->saveData();
+
     saveConfigs();
     kapp->quit();
 }
