@@ -388,6 +388,7 @@ private:
     };
 
 private:
+    void drawContents( QPainter * );
     virtual bool linksEnabled() const { return FALSE; }
     void init();
     void checkUndoRedoInfo( UndoRedoInfo::Type t );

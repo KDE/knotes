@@ -74,8 +74,14 @@ public:
     int height() const;
     void adjustSize();
 
-    void draw( QPainter*,  int x, int y, const QRegion& clipRegion,
+    void draw( QPainter* p,  int x, int y, const QRect& clipRect,
 	       const QColorGroup& cg, const QBrush* paper = 0) const;
+
+    // obsolete
+    void draw( QPainter* p,  int x, int y, const QRegion& clipRegion,
+	       const QColorGroup& cg, const QBrush* paper = 0) const {
+	draw( p, x, y, clipRegion.boundingRect(), cg, paper );
+    }
 
     QString context() const;
     QString anchorAt( const QPoint& pos ) const;

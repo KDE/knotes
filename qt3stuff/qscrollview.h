@@ -220,7 +220,7 @@ protected:
 
 
 private:
-    virtual void drawContents( QPainter* );
+    void drawContents( QPainter* );
     void moveContents(int x, int y);
 
     QScrollViewData* d;

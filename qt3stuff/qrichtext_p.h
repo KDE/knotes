@@ -106,7 +106,7 @@ class Q_EXPORT QTextStringChar
 public:
     // this is never called, initialize variables in QTextString::insert()!!!
     QTextStringChar() : lineStart( 0 ), type( Regular ), startOfRun( 0 ) {d.format=0;}
-    virtual ~QTextStringChar();
+    ~QTextStringChar();
 
     QChar c;
     enum Type { Regular, Custom, Mark, Shaped };
@@ -429,6 +429,8 @@ public:
 
     QTextDocument *parent;
     QTextParag *parag;
+
+    virtual void verticalBreak( int  y, QTextFlow* flow );
 };
 
 #if defined(Q_TEMPLATEDLL)
@@ -505,7 +507,7 @@ public:
     virtual void registerFloatingItem( QTextCustomItem* item, bool right = FALSE );
     virtual void unregisterFloatingItem( QTextCustomItem* item );
     virtual void drawFloatingItems(QPainter* p, int cx, int cy, int cw, int ch, const QColorGroup& cg, bool selected );
-    virtual void adjustFlow( int  &yp, int w, int h, QTextParag *parag, bool pages = TRUE );
+    virtual void adjustFlow( int  &yp, int w, int h, QTextParag *parag = 0, bool pages = TRUE );
 
     virtual bool isEmpty();
     virtual void updateHeight( QTextCustomItem *i );
@@ -514,6 +516,8 @@ public:
     virtual void eraseAfter( QTextParag *, QPainter *, const QColorGroup & );
 
     void clear();
+
+    QSize size() const { return QSize( width, height); }
 
 private:
     int width;
@@ -650,10 +654,9 @@ private:
     int us_ib, us_b, us_ob, us_cs;
     int lastX, lastY;
     QMap<QString, QString> attributes;
-
     QMap<QTextCursor*, int> currCell;
-
     Placement place;
+    void adjustCells( int y , int shift );
 };
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -791,7 +794,7 @@ public:
     QBrush *paper() const { return backBrush; }
 
     void doLayout( QPainter *p, int w );
-    void draw( QPainter *p, const QRegion &reg, const QColorGroup &cg, const QBrush *paper = 0 );
+    void draw( QPainter *p, const QRect& rect, const QColorGroup &cg, const QBrush *paper = 0 );
     void drawParag( QPainter *p, QTextParag *parag, int cx, int cy, int cw, int ch,
 		    QPixmap *&doubleBuffer, const QColorGroup &cg,
 		    bool drawCursor, QTextCursor *cursor, bool resetChanged = TRUE );

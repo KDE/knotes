@@ -1521,9 +1521,6 @@ void QTextDocument::setRichTextInternal( const QString &text )
 		QString tagname = parseOpenTag(doc, pos, attr, emptyTag);
 		if ( tagname.isEmpty() )
 		    continue; // nothing we could do with this, probably parse error
-		while ( eat( doc, pos, '\n' ) )
-		    ; // eliminate newlines right after openings
-
 		if ( tagname == "pre" || tagname == "nobr" ) {
 		    breakable = FALSE;
 		    if ( lastClose == "pre" || lastClose == "nobr" )
@@ -1548,6 +1545,11 @@ void QTextDocument::setRichTextInternal( const QString &text )
 			depth--;
 		    }
 		    curListStyle = chooseListStyle( nstyle, attr, curListStyle );
+		}
+
+		if ( !nstyle || nstyle->whiteSpaceMode() != QStyleSheetItem::WhiteSpacePre ) {
+		    while ( eat( doc, pos, '\n' ) )
+			; // eliminate newlines right after openings
 		}
 
 		QTextCustomItem* custom =  0;
@@ -2539,7 +2541,7 @@ QPixmap *QTextDocument::bufferPixmap( const QSize &s )
     return buf_pixmap;
 }
 
-void QTextDocument::draw( QPainter *p, const QRegion &reg, const QColorGroup &cg, const QBrush *paper )
+void QTextDocument::draw( QPainter *p, const QRect &rect, const QColorGroup &cg, const QBrush *paper )
 {
     if ( !firstParag() )
 	return;
@@ -2548,13 +2550,10 @@ void QTextDocument::draw( QPainter *p, const QRegion &reg, const QColorGroup &cg
 //QT2HACK
 	p->setBrushOrigin( -(int)p->worldMatrix().dx(),
 			   -(int)p->worldMatrix().dy() );
-	p->fillRect( reg.boundingRect(), *paper );
+	p->fillRect( rect, *paper );
     }
 
     QTextParag *parag = firstParag();
-    QRect cr;
-    if ( !reg.isNull() )
-	cr = reg.boundingRect();
     while ( parag ) {
 	if ( !parag->isValid() )
 	    parag->format();
@@ -2562,12 +2561,15 @@ void QTextDocument::draw( QPainter *p, const QRegion &reg, const QColorGroup &cg
 	QRect pr( parag->rect() );
 	pr.setX( 0 );
 	pr.setWidth( QWIDGETSIZE_MAX );
-	if ( !reg.isNull() && !cr.isNull() && !cr.intersects( pr ) ) {
+	if ( !rect.isNull() && !rect.intersects( pr ) ) {
 	    parag = parag->next();
 	    continue;
 	}
 	p->translate( 0, y );
-	parag->paint( *p, cg, 0, FALSE );
+	if ( rect.isValid() )
+	    parag->paint( *p, cg, 0, FALSE, rect.x(), rect.y(), rect.width(), rect.height() );
+	else
+	    parag->paint( *p, cg, 0, FALSE );
 	p->translate( 0, -y );
 	parag = parag->next();
     }
@@ -2661,8 +2663,8 @@ QTextParag *QTextDocument::draw( QPainter *p, int cx, int cy, int cw, int ch, co
 {
     if ( withoutDoubleBuffer || par && par->withoutDoubleBuffer ) {
 	withoutDoubleBuffer = TRUE;
-	QRegion rg;
-	draw( p, rg, cg );
+	QRect r;
+	draw( p, r, cg );
 	return 0;
     }
     withoutDoubleBuffer = FALSE;
@@ -3545,6 +3547,8 @@ void QTextParag::format( int start, bool doMove )
     if ( invalid == -1 )
 	return;
 
+    bool formattedAgain = FALSE;
+
     r.moveTopLeft( QPoint( documentX(), p ? p->r.y() + p->r.height() : documentY() ) );
     r.setWidth( documentWidth() );
     if ( p )
@@ -3606,7 +3610,10 @@ void QTextParag::format( int start, bool doMove )
 	    int oh = r.height();
 	    r.setY( y );
 	    r.setHeight( oh );
-	    goto formatAgain;
+	    if ( !formattedAgain ) {
+		formattedAgain = TRUE;
+		goto formatAgain;
+	    }
 	}
     }
 
@@ -6429,6 +6436,11 @@ void QTextFlow::updateHeight( QTextCustomItem *i )
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+void QTextCustomItem::verticalBreak( int y , QTextFlow* flow )
+{
+    flow->adjustFlow( y, width, height );
+}
+
 QTextTable::QTextTable( QTextDocument *p, const QMap<QString, QString> & attr  )
     : QTextCustomItem( p ), painter( 0 )
 {
@@ -6546,27 +6558,44 @@ void QTextTable::adjustToPainter( QPainter* p)
     width = 0;
 }
 
+void QTextTable::adjustCells( int y , int shift )
+{
+    QListIterator<QTextTableCell> it( cells );
+    QTextTableCell* cell;
+    bool enlarge = FALSE;
+    while ( ( cell = it.current() ) ) {
+	++it;
+	QRect r = cell->geometry();
+	if ( y <= r.top() ) {
+	    r.moveBy(0, shift );
+	    cell->setGeometry( r );
+	    enlarge = TRUE;
+	} else if ( y <= r.bottom() ) {
+	    r.rBottom() += shift;
+	    cell->setGeometry( r );
+	    enlarge = TRUE;
+	}
+    }
+    if ( enlarge )
+	height += shift;
+}
+
 void QTextTable::verticalBreak( int  yt, QTextFlow* flow )
 {
     if ( flow->pageSize() <= 0 )
-	return;
-    int shift = 0;
-    for (QTextTableCell* cell = cells.first(); cell; cell = cells.next() ) {
-	QRect r = cell->geometry();
-	r.moveBy(0, shift );
-	cell->setGeometry( r );
-	if ( cell->column() == 0 ) {
-	    int y = yt + outerborder + cell->geometry().y();
-	    int oldy = y;
-	    flow->adjustFlow( y, width, cell->geometry().height() + 2*cellspacing, 0 );
-	    shift += y - oldy;
-	    r = cell->geometry();
-	    r.moveBy(0, y - oldy );
-	    cell->setGeometry( r );
-	}
+        return;
+    QListIterator<QTextTableCell> it( cells );
+    QTextTableCell* cell;
+    while ( ( cell = it.current() ) ) {
+	++it;
+	int y = yt + outerborder + cell->geometry().y();
+	int oldy = y;
+	flow->adjustFlow( y, width, cell->richText()->flow()->size().height() + 2*cellspacing );
+	int shift = y - oldy;
+	adjustCells( oldy - outerborder - yt, shift ); 
     }
-    height += shift;
 }
+
 
 void QTextTable::draw(QPainter* p, int x, int y, int cx, int cy, int cw, int ch, const QColorGroup& cg, bool selected )
 {

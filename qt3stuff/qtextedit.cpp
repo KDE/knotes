@@ -716,6 +716,12 @@ void QTextEdit::drawContents( QPainter *p, int cx, int cy, int cw, int ch )
 
 /*! \reimp */
 
+void QTextEdit::drawContents( QPainter * )
+{
+}
+
+/*! \reimp */
+
 bool QTextEdit::event( QEvent *e )
 {
     if ( e->type() == QEvent::AccelOverride && !isReadOnly() ) {
@@ -1447,7 +1453,9 @@ void QTextEdit::ensureCursorVisible()
 */
 void QTextEdit::drawCursor( bool visible )
 {
-    if ( !cursor->parag() ||
+    if ( !isUpdatesEnabled() ||
+	 !viewport()->isUpdatesEnabled() ||
+	 !cursor->parag() ||
 	 !cursor->parag()->isValid() ||
 	 ( visible && !hasFocus() && !viewport()->hasFocus() && !inDnD ) ||
 	 isReadOnly() )
@@ -1621,7 +1629,8 @@ void QTextEdit::contentsMouseMoveEvent( QMouseEvent *e )
 	placeCursor( e->pos(), &c );
 #ifndef QT_NO_NETWORKPROTOCOL
 	if ( c.parag() && c.parag()->at( c.index() ) &&
-	     c.parag()->at( c.index() )->format()->isAnchor() ) {
+	     c.parag()->at( c.index() )->format()->isAnchor() &&
+	     !c.parag()->at( c.index() )->format()->anchorHref().isEmpty() ) {
 #ifndef QT_NO_CURSOR
 	    viewport()->setCursor( pointingHandCursor );
 #endif
@@ -2285,6 +2294,8 @@ void QTextEdit::checkUndoRedoInfo( UndoRedoInfo::Type t )
 
 void QTextEdit::repaintChanged()
 {
+    if ( !isUpdatesEnabled() || !viewport()->isUpdatesEnabled() )
+	return;
     QPainter p( viewport() );
     p.translate( -contentsX(), -contentsY() );
     paintDocument( FALSE, &p, contentsX(), contentsY(), visibleWidth(), visibleHeight() );

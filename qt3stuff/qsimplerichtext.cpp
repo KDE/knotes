@@ -52,7 +52,6 @@ public:
     int widthUsed;
 };
 
-// NOT REVISED
 /*!
   \class QSimpleRichText qsimplerichtext.h
   \brief The QSimpleRichText class provides a small displayable piece of rich text.
@@ -77,7 +76,8 @@ public:
   resized.  If the contents change, just throw the rich text
   object away and make a new one with the new contents.
 
-  For large documents, see QTextView or QTextBrowser.
+  For large documents use QTextEdit or QTextBrowser. For very small
+  items of rich text you can use a QLabel.
 */
 
 /*!
@@ -85,8 +85,8 @@ public:
   and the font \a fnt.
 
   The font is used as a basis for the text rendering. When using rich text
-  rendering on a widget \e w, you would normally specify the widget's font
-  as shown in the following code example:
+  rendering on a widget \e w, you would normally specify the widget's font,
+  for example:
 
   \code
   QSimpleRichText myrichtext( contents, mywidget->font() );
@@ -95,13 +95,13 @@ public:
   \a context is the optional context of the document. This becomes
   important if \a text contains relative references, for example
   within image tags. QSimpleRichText always uses the default mime
-  source factory (see QMimeSourceFactory::defaultFactory() ) to
+  source factory (see \l{QMimeSourceFactory::defaultFactory()}) to
   resolve those references. The context will then be used to calculate
   the absolute path. See QMimeSourceFactory::makeAbsolute() for
   details.
 
-  Finally, \a sheet is an optional style sheet. If it is 0, the default
-  style sheet will be used (see QStyleSheet::defaultSheet() ).
+  The \a sheet is an optional style sheet. If it is 0, the default
+  style sheet will be used (see \l{QStyleSheet::defaultSheet()}).
 */
 
 QSimpleRichText::QSimpleRichText( const QString& text, const QFont& fnt,
@@ -119,28 +119,28 @@ QSimpleRichText::QSimpleRichText( const QString& text, const QFont& fnt,
 }
 
 
-/*!  
+/*!
   Constructs a QSimpleRichText from the rich text string \a text
   and the font \a fnt.
 
-    A more complex constructor for QSimpleRichText that takes an
-  additional mime source factory \a factory, a vertical break
-  parameter \a verticalBreak, a bool \a linkUnderline. \a linkColor is
+  This is a slightly more complex constructor for QSimpleRichText that
+  takes an additional mime source factory \a factory, a vertical break
+  parameter \a verticalBreak and a bool \a linkUnderline. \a linkColor is
   only provided for compatibility, but has no effect, as QColorGroup's
   QColorGroup::link() color is used now.
 
   \a context is the optional context of the document. This becomes
   important if \a text contains relative references, for example
   within image tags. QSimpleRichText always uses the default mime
-  source factory (see QMimeSourceFactory::defaultFactory() ) to
+  source factory (see \l{QMimeSourceFactory::defaultFactory()}) to
   resolve those references. The context will then be used to calculate
   the absolute path. See QMimeSourceFactory::makeAbsolute() for
   details.
 
-  Finally, \a sheet is an optional style sheet. If it is 0, the default
-  style sheet will be used (see QStyleSheet::defaultSheet() ).
+  The \a sheet is an optional style sheet. If it is 0, the default
+  style sheet will be used (see \l{QStyleSheet::defaultSheet()}).
 
-  The constructor is useful to create a QSimpleRichText object
+  This constructor is useful for creating a QSimpleRichText object
   suitable for printing. Set \a verticalBreak to be the height of the
   contents area of the pages.
 */
@@ -193,7 +193,7 @@ void QSimpleRichText::setWidth( int w )
 
 /*!
   Sets the width of the document to \a w pixels, recalculating the layout
-  as if it were to be drawn with \a p.
+  as if it were to be drawn with painter \a p.
 
   Passing a painter is useful when you intend to draw on devices other
   than the screen, for example a QPrinter.
@@ -292,41 +292,62 @@ void QSimpleRichText::adjustSize()
 }
 
 /*!
-  Draws the formatted text with \a p, at position (\a x, \a y), clipped
-  to \a clipRegion.  Colors from the \a cg are used as
-  needed, and if not 0, *\a paper is used as the background brush.
+
+  Draws the formatted text with painter \a p, at position (\a x, \a
+  y), clipped to \a clipRect.  The clipping rectangle is given in the
+  document's coordinates translated by (\a x, \a y). Colors from the
+  color group \a cg are used as needed, and if not 0, \a *paper is
+  used as the background brush.
 
   Note that the display code is highly optimized to reduce flicker, so
   passing a brush for \a paper is preferable to simply clearing the area
   to be painted and then calling this without a brush.
-
-  This is a convenience function if there's no palette but just a
-  color group available. If you have a palette, pass this instead of \a cg.
 */
 
-void QSimpleRichText::draw( QPainter *p,  int x, int y, const QRegion& clipRegion,
+void QSimpleRichText::draw( QPainter *p,  int x, int y, const QRect& clipRect,
 			    const QColorGroup& cg, const QBrush* paper ) const
 {
-    QRegion reg = clipRegion;
-    if ( reg.rects().count() == 1 ) {
-	QRect r = reg.boundingRect();
-	r.moveBy( 0, -y );
-	reg = r;
-    }
+    QRect r = clipRect;
+    if ( !r.isNull() )
+	r.moveBy( -x, -y );
+
     if ( paper )
 	d->doc->setPaper( new QBrush( *paper ) );
     QColorGroup g = cg;
     if ( d->doc->paper() )
 	g.setBrush( QColorGroup::Base, *d->doc->paper() );
 
+    p->save();
+    QRect cr = clipRect;
+    if ( !cr.isNull() ) {
+//QT2HACK
+	cr.moveBy( int( p->worldMatrix().dx() ), int( p->worldMatrix().dy() ) );
+	p->setClipRect( cr );
+    }
     p->translate( x, y );
-    d->doc->draw( p, reg, g, paper );
+    d->doc->draw( p, r, g, paper );
     p->translate( -x, -y );
+    p->restore();
 }
 
+
+/*! \fn void QSimpleRichText::draw( QPainter *p,  int x, int y, const QRegion& clipRegion,
+  const QColorGroup& cg, const QBrush* paper ) const
+
+  \obsolete
+
+  Use the version with clipRect instead. The region version has
+  problems with larger documents on some platforms (on X11 regions
+  internally are represented with 16bit coordinates).
+*/
+
+
+
 /*!
-  Returns the context of the rich text document. If no context has been specified
-  in the constructor, a null string is returned.
+  Returns the context of the rich text document. If no context has
+  been specified in the constructor, a null string is returned.
+  The context is the path to use to look up relative links, such as
+  image tags and anchor references.
 */
 
 QString QSimpleRichText::context() const
@@ -335,7 +356,7 @@ QString QSimpleRichText::context() const
 }
 
 /*! Returns the anchor at the requested position, \a pos. An empty string is
-  returned if no anchor is specified for this certain position.
+  returned if no anchor is specified for this position.
 */
 
 QString QSimpleRichText::anchorAt( const QPoint& pos ) const
@@ -346,7 +367,8 @@ QString QSimpleRichText::anchorAt( const QPoint& pos ) const
 }
 
 /*!
-  Returns whether \a pos is within a text line of the document or not.
+  Returns TRUE if \a pos is within a text line of the document;
+  otherwise returns FALSE.
  */
 
 bool QSimpleRichText::inText( const QPoint& pos ) const
