@@ -27,11 +27,12 @@
 
  */
 
+#include <qcheckbox.h>
 
+#include <klocale.h>
+#include <knuminput.h>
 
 #include "configdlg.h"
-#include <klocale.h>
-
 #include "configdlg.moc"
 
 ConfigDlg::ConfigDlg(QWidget *parent, const char *name, DefStruct *defstruct)
@@ -77,27 +78,15 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name, DefStruct *defstruct)
   button3->setText(i18n("Help"));
   connect(button3,SIGNAL(clicked()),this,SLOT(help()));
   */
-  label5 = new QLabel(this);
-  label5->setGeometry(20,105,50,25);
-  label5->setText(i18n("Width:"));
-
-  width = new KIntLineEdit(this);
+  
+  width = new KIntNumInput(i18n("Width:"), 0, 100, 1, defst->width,
+                           QString::null, 10, false, this);
   width->setGeometry(70,105,60,23);
-  QString string;
-  string.setNum(defst->width);
-  width->setText(string);
 
-  label6 = new QLabel(this);
-  label6->setGeometry(20,145,50,25);
-  label6->setText(i18n("Height:"));
-
-  height = new KIntLineEdit(this);
+  height = new KIntNumInput(i18n("Height:"), 0, 100, 1, defst->height,
+                            QString::null, 10, false, this);
   height->setGeometry(70,145,60,23);
 
-  QString string2;
-  string2.setNum(defst->height);
-  height->setText(string2);
-  
   label7 = new QLabel(this);
   label7->setGeometry(20,185,100,25);
   label7->setText(i18n("Print Command:"));
@@ -140,13 +129,8 @@ void ConfigDlg::setWidgets(DefStruct *defstruct){
   qframe1->setBackgroundColor(defst->forecolor);
   qframe2->setBackgroundColor(defst->backcolor);
 
-  QString string;
-  string.setNum(defst->width);
-  width->setText(string);
-
-  QString string2;
-  string2.setNum(defst->height);
-  height->setText(string2);
+  width->setValue(defst->width);
+  height->setValue(defst>height);
 
   print->setText(defst->printcommand);
   mail->setText(defst->mailcommand);
@@ -165,8 +149,8 @@ void ConfigDlg::help(){
 void ConfigDlg::okButton(){
 
   //  printf("entering okButon\n");
-    defst->width      = width->getValue();
-    defst->height     = height->getValue();
+    defst->width      = width->value();
+    defst->height     = height->value();
 
     defst->mailcommand = mail->text();
     defst->printcommand = print->text();

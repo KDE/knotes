@@ -30,17 +30,18 @@
 #define _CONFIG_DLG_H_
 
 #include <qgroupbox.h> 
-#include <qcheckbox.h>
 #include <qdialog.h>
-#include <qlineedit.h>
-#include <qpushbutton.h>
 #include <qpainter.h>
 #include <qlabel.h>
 #include <qframe.h>
 
 #include <kcolordlg.h>
-#include <knumlineedit.h>
 #include "knotes.h"
+
+class KIntNumInput;
+class QLineEdit;
+class QCheckBox;
+class QPushButton;
 
 class ConfigDlg : public QDialog {
 
@@ -55,8 +56,8 @@ public:
   DefStruct *defst ;
   QLineEdit *mail;
   QLineEdit *print;
-  KIntLineEdit* width;
-  KIntLineEdit* height;
+  KIntNumInput* width;
+  KIntNumInput* height;
   QCheckBox *check1;
   QCheckBox *check2;
 private slots:
@@ -100,15 +101,8 @@ private:
   QFrame *qframe4;
   QPushButton *button4;
 
-  QLabel *label5;
-
-  QLabel *label6;
-
-
   QLabel *label7;
-
   QLabel *label8;
-
 
   QGroupBox *gbox;
 
