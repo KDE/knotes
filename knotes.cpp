@@ -1348,9 +1348,9 @@ void KPostit::defaults()
       "Bernd Johannes Wuebben\n"\
       "wuebben@math.cornell.edu\n"\
       "wuebben@kde.org\n"\
-      "Copyright (C) 1997\n"\
-      "Tighter desktop integration and bugfixes \n"			
-      "by Matthias Ettrich <ettrich@kde.org>\n"\
+      "Copyright (C) 1997\n\n"\
+      "With contributions by:\n"
+      "Matthias Ettrich <ettrich@kde.org>\n"\
       "\n\n";
 
 
