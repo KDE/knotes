@@ -20,23 +20,16 @@
 
 #include <qlabel.h>
 #include <qsizegrip.h>
-#include <qpalette.h>
-#include <qcolor.h>
-#include <qfile.h>
-#include <qtextstream.h>
 #include <qbitmap.h>
-#include <qpointarray.h>
 #include <qpaintdevicemetrics.h>
 
 #include <private/qrichtext_p.h>
 
 #include <kaction.h>
-#include <kstdaction.h>
 #include <kxmlgui.h>
 #include <kprinter.h>
 #include <klocale.h>
-#include <kstddirs.h>
-#include <kconfig.h>
+#include <kstandarddirs.h>
 #include <ksimpleconfig.h>
 #include <kdebug.h>
 #include <kiconloader.h>

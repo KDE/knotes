@@ -19,21 +19,15 @@
 *******************************************************************/
 
 #include <qdragobject.h>
-#include <qtextstream.h>
 #include <qfile.h>
-#include <qcolor.h>
-#include <qfont.h>
-#include <qdialog.h>
-#include <qfontmetrics.h>
 
 #include <kdebug.h>
 #include <klocale.h>
 #include <kaction.h>
 #include <kstdaction.h>
-#include <kpopupmenu.h>
 #include <kcolordialog.h>
-#include <kxmlgui.h>
 #include <kxmlguiclient.h>
+#include <kpopupmenu.h>
 
 #include "knoteedit.h"
 

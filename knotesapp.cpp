@@ -18,24 +18,19 @@
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 *******************************************************************/
 
-#include <qdir.h>
 
-#include <kapplication.h>
 #include <kwin.h>
-#include <kglobal.h>
 #include <klocale.h>
 #include <kiconloader.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <kpopupmenu.h>
 #include <khelpmenu.h>
 #include <kmessagebox.h>
 #include <kdebug.h>
 #include <ksimpleconfig.h>
 #include <kio/netaccess.h>
-#include <kurl.h>
 
 #include <kaction.h>
-#include <kstdaction.h>
 #include <kxmlgui.h>
 
 #include <unistd.h>
