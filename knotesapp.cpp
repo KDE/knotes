@@ -59,7 +59,7 @@ KNotesApp::KNotesApp()
     // create the dock widget...
     KWin::setSystemTrayWindowFor( winId(), qt_xrootwin() );
     setBackgroundMode( X11ParentRelative );
-    setPixmap( KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Small ) );
+    setPixmap( SmallIcon( "knotes" ) );
 
     // create the GUI...
     new KAction( i18n("New Note"), "filenew", 0, this, SLOT(slotNewNote()), actionCollection(), "new_note" );

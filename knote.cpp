@@ -38,7 +38,7 @@
 #include <kiconloader.h>
 #include <kmessagebox.h>
 #include <kprocess.h>
-#include <klineeditdlg.h>
+#include <kinputdialog.h>
 #include <kpopupmenu.h>
 #include <kmdcodec.h>
 #include <kglobalsettings.h>
@@ -326,8 +326,8 @@ void KNote::slotRename()
 {
     // pop up dialog to get the new name
     bool ok;
-    QString newName = KLineEditDlg::getText( i18n("Please enter the new name:"),
-                                             m_label->text(), &ok, this );
+    QString newName = KInputDialog::getText( QString::null,
+        i18n("Please enter the new name:"), m_label->text(), &ok, this );
     if ( !ok ) // handle cancel
         return;
 
