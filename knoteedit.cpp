@@ -51,7 +51,7 @@ KNoteEdit::KNoteEdit( QWidget *tool, QWidget* parent, const char* name )
     setWrapPolicy( AtWhiteSpace );
 
     KXMLGUIClient* client = dynamic_cast<KXMLGUIClient*>(parent);
-	assert(client);
+    assert(client);
     KActionCollection* actions = client->actionCollection();
 
 
