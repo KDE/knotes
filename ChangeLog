@@ -5,6 +5,14 @@ ChangeLog for KNotes
 
     * finished rich text mode, now using actions
 
+2004/01/28  Bo Thorsen <bo@sonofthor.dk>
+
+    * make KNotes use the KDE Resource Framework 
+
+2004/01/18  Laurent Montel <montel@kde.org>
+
+    * if launching KNotes agin when already running, make it create a new note
+
 2004/01/11  Michael Brade <brade@kde.org>
 
     * fixed MMB click on note title to put note really back

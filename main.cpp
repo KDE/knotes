@@ -63,11 +63,13 @@ int main( int argc, char* argv[] )
     aboutData.addAuthor("Michael Brade", I18N_NOOP("Maintainer"), "brade@kde.org");
     aboutData.addAuthor("Bernd Johannes Wuebben", I18N_NOOP("Original KNotes Author"), "wuebben@kde.org");
     aboutData.addAuthor("Wynn Wilkes", I18N_NOOP("Ported KNotes to KDE 2"), "wynnw@calderasystems.com");
+    aboutData.addAuthor("Bo Thorsen", I18N_NOOP("Use the KDE Resource Framework"), "bo@sonofthor.dk");
 
     aboutData.addCredit("Didier Belot", 0, "dib@avo.fr");
     aboutData.addCredit("Matthias Ettrich", 0, "ettrich@kde.org");
     aboutData.addCredit("David Faure", 0, "faure@kde.org");
     aboutData.addCredit("Matthias Kiefer", 0, "kiefer@kde.org");
+    aboutData.addCredit("Laurent Montel", 0, "montel@kde.org");
     aboutData.addCredit("Dirk A. Mueller", 0, "dmuell@gmx.net");
     aboutData.addCredit("Carsten Pfeiffer", 0, "pfeiffer@kde.org");
     aboutData.addCredit("Harri Porten", 0, "porten@kde.org");
