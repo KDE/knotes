@@ -34,6 +34,7 @@
 #define RESOURCENOTES_H
 
 #include <kresources/resource.h>
+#include <kdepimmacros.h>
 
 class KConfig;
 class KNotesResourceManager;
@@ -50,7 +51,7 @@ namespace KCal {
  * \warning This code is still under heavy development. Don't expect source or
  *          binary compatibility in future versions.
  */
-class ResourceNotes : public KRES::Resource
+class KDE_EXPORT ResourceNotes : public KRES::Resource
 {
 public:
     ResourceNotes( const KConfig * );
