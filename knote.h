@@ -1,4 +1,24 @@
+/*******************************************************************
+ KNotes -- Notes for the KDE project
 
+ Copyright (C) Bernd Johannes Wuebben
+     wuebben@math.cornell.edu
+     wuebben@kde.org
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+*******************************************************************/
 
 #ifndef KNOTE_H
 #define KNOTE_H
@@ -6,7 +26,7 @@
 #include "knoteedit.h"
 #include "knotebutton.h"
 
-#include <ksimpleconfig.h>
+#include <kconfig.h>
 #include <kpopupmenu.h>
 #include <qframe.h>
 #include <qlabel.h>
@@ -16,13 +36,14 @@
 class KNote : public QFrame  {
    Q_OBJECT
 public:
-    KNote( KSimpleConfig* config, QWidget* parent=0, const char* name=0 );
+    KNote( QString configfile, QWidget* parent=0, const char* name=0 );
     ~KNote();
 
-    void save();
+    void saveData();
+    void saveConfig();
+    void saveDisplayConfig();
+    void setOnDesktop( int id );
     QString getName();
-    void setOnDesktop( uint id );
-
 
 public slots:
     //menu slots
@@ -30,9 +51,10 @@ public slots:
     void slotPrint  ( int );
     void slotRename ( int );
     void slotInsDate( int );
-    void slotConfig ( int );
     void slotKill   ( int );
     void slotClose  ();
+    void slotNewNote( int );
+    void slotPreferences( int );
 
     void slotApplyConfig();
     void slotToDesktop( int id );
@@ -48,25 +70,23 @@ signals:
     void sigNewNote( int );
 
 protected:
-    void resizeEvent( QResizeEvent* );
+    virtual void resizeEvent( QResizeEvent* );
     bool eventFilter( QObject* o, QEvent* e );
 
+    virtual void closeEvent( QCloseEvent* e );
+
+    QString m_configfile;
+
     KNoteEdit*     m_editor;
-    QString        m_title;
-    KSimpleConfig* m_config;
     KNoteButton*   m_button;
     QLabel*        m_label;
     KPopupMenu*    m_menu;
     KPopupMenu*    m_desktop_menu;
-    int            m_headerHeight;
 
     bool           m_dragging;
     QPoint         m_pointerOffset;
-    int            m_id;
-    QDir*          m_notedir;
-
     int            m_idAlwaysOnTop;
-
+    bool           m_saveself;
 };
 
 

@@ -1,4 +1,24 @@
+/*******************************************************************
+ KNotes -- Notes for the KDE project
 
+ Copyright (C) Bernd Johannes Wuebben
+     wuebben@math.cornell.edu
+     wuebben@kde.org
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+*******************************************************************/
 
 #include "knote.h"
 #include "knoteconfigdlg.h"
@@ -7,11 +27,11 @@
 #include <klocale.h>
 #include <kwin.h>
 #include <kmessagebox.h>
-#include <klineeditdlg.h>
 #include <kstddirs.h>
 #include <kprocess.h>
 #include <kdebug.h>
-#include <kwin.h>
+#include <ksimpleconfig.h>
+#include <klineeditdlg.h>
 
 #include <qpalette.h>
 #include <qcolor.h>
@@ -20,39 +40,15 @@
 #include <iostream.h>
 #include <netwm.h>
 
+
 //**** Initialization ************************************
-KNote::KNote( KSimpleConfig* config, QWidget* parent, const char* name )
+KNote::KNote( QString configfile, QWidget* parent, const char* name )
     : QFrame( parent, name , WStyle_Customize | WStyle_NoBorderEx | WDestructiveClose ),
-      m_config( config )
+      m_configfile( configfile ),
+      m_saveself( true )
 {
-    m_notedir = new QDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
     setFrameStyle( NoFrame );
-    setMinimumSize( 100, 100 );
-
-    //create the note header- button and label...
-    m_button = new KNoteButton( this );
-    m_button->setPixmap( BarIcon( "knotesclose" ) );
-    connect( m_button, SIGNAL( clicked() ), this, SLOT( slotClose() ) );
-
-    m_label = new QLabel( this );
-    m_label->setAlignment( AlignHCenter );
-    m_config->setGroup( "Data" );
-    m_label->setText( m_config->readEntry( "name" ) );
-    m_headerHeight = m_label->sizeHint().height();
-
-    m_editor = new KNoteEdit( this );
-
-    //load the saved text for this file...
-    QString datafile = "." + m_label->text() + "_data";
-    if( m_notedir->exists( datafile ) )
-    {
-        //load the text file and put in m_editor...
-        QString absfile = m_notedir->absFilePath( datafile );
-        m_editor->readFile( absfile );
-    }
-
-    //apply configuration settings
-    slotApplyConfig();
+    setMinimumSize( 20, 20 );
 
     //create the menu items for note- not the editor...
     //rename, mail, print, insert date, close, delete
@@ -67,7 +63,7 @@ KNote::KNote( KSimpleConfig* config, QWidget* parent, const char* name )
     m_menu->insertItem( i18n("Mail"), this, SLOT(slotMail(int)) );
     m_menu->insertItem( i18n("Print"), this, SLOT(slotPrint(int)) );
     m_menu->insertItem( i18n("Insert Date"), this, SLOT(slotInsDate(int)) );
-    m_menu->insertItem( i18n("Note Preferences..."), this, SLOT(slotConfig(int)) );
+    m_menu->insertItem( i18n("Note Preferences..."), this, SLOT(slotPreferences(int)) );
 
     m_menu->insertSeparator();
     m_menu->insertItem( i18n("To Desktop"), m_desktop_menu );
@@ -75,26 +71,64 @@ KNote::KNote( KSimpleConfig* config, QWidget* parent, const char* name )
 
     m_menu->insertSeparator();
     m_menu->insertItem( i18n("Delete Note"), this, SLOT(slotKill(int)) );
+    m_menu->insertItem( i18n("New Note"), this, SLOT(slotNewNote(int)) );
 
+    //create the note header- button and label...
+    m_button = new KNoteButton( this );
+    m_button->setPixmap( BarIcon( "knotesclose" ) );
+    connect( m_button, SIGNAL( clicked() ), this, SLOT( slotClose() ) );
+
+    m_label = new QLabel( this );
+    m_label->setAlignment( AlignHCenter );
     m_label->installEventFilter( this );  //recieve events( for dragging & action menu )
-    KWin::setState(winId(), NET::SkipTaskbar);
-}
 
+    //create the note editor
+    m_editor = new KNoteEdit( this );
+
+    //apply configuration settings...do before loading the text!
+    slotApplyConfig();
+
+    //load the saved text for this file...
+    QDir notedir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
+    QString datafile = "." + m_label->text() + "_data";
+    if( notedir.exists( datafile ) )
+    {
+        //load the text file and put in m_editor...
+        QString absfile = notedir.absFilePath( datafile );
+        m_editor->readFile( absfile );
+    }
+}
 
 KNote::~KNote()
 {
-    //store data from multiline editor in the KConfig file...
-    if( m_config )
+    QString name = m_label->text();
+    emit sigKilled( name );
+
+    if( m_saveself )
     {
-        save();
-        delete m_config;
+        saveData();
+        saveConfig();
     }
+    else
+    {
+        QDir notedir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
 
-    delete m_notedir;
-
-    emit sigKilled(getName());
+        if( !notedir.remove( name ) )
+        {
+            kdDebug() << "could not remove conf file" << endl;
+        }
+        if( !notedir.remove( "." + name + "_data" ) )
+        {
+            kdDebug() << "could not remove data file" << endl;
+        }
 }
 
+    delete m_editor;
+    delete m_menu;
+    delete m_desktop_menu;
+    delete m_label;
+    delete m_button;
+}
 
 //**** Private Utility functions *************************
 void KNote::resizeEvent( QResizeEvent* qre )
@@ -104,28 +138,57 @@ void KNote::resizeEvent( QResizeEvent* qre )
     int new_height = height();
     int new_width  = width();
 
-    m_button->setGeometry( new_width - m_headerHeight, 0, m_headerHeight, m_headerHeight );
-    m_label->setGeometry( 0, 0, new_width - m_headerHeight, m_headerHeight );
-    m_editor->setGeometry( 0, m_headerHeight, new_width, new_height - m_headerHeight );
+    int headerHeight = m_label->sizeHint().height();
 
-    //need to save the new size to KConfig object
-    m_config->setGroup( "Display" );
-    m_config->writeEntry( "width", new_width );
-    m_config->writeEntry( "height", new_height );
+    m_button->setGeometry( new_width - headerHeight, 0, headerHeight, headerHeight );
+    m_label->setGeometry( 0, 0, new_width - headerHeight, headerHeight );
+    m_editor->setGeometry( 0, headerHeight, new_width, new_height - headerHeight );
+}
+
+void KNote::closeEvent( QCloseEvent* e )
+{
+    saveDisplayConfig();
+
+    QWidget::closeEvent( e );
 }
 
 void KNote::slotApplyConfig()
 {
-    //do Display group- width, height, bgcolor, fgcolor, transparent
-    m_config->setGroup( "Display" );
+    KSimpleConfig config( m_configfile );
 
-    uint width = m_config->readUnsignedNumEntry( "width", 200 );
-    uint height = m_config->readUnsignedNumEntry( "height", 200 );
+    //do the Editor group: tabsize, autoindent, font, fontsize, fontstyle
+    config.setGroup( "Editor" );
+
+    QFont def( "helvetica" );
+    def = config.readFontEntry( "font", &def ) ;
+    setFont( def );
+
+    uint tab_size = config.readUnsignedNumEntry( "tabsize", 4 );
+    m_editor->setDefaultTabStop( tab_size );
+
+    bool indent = true;
+    indent = config.readBoolEntry( "autoindent", &indent );
+    m_editor->setAutoIndentMode( indent );
+
+    //do the Data Group- name, data
+    config.setGroup( "Data" );
+
+    QString notename = config.readEntry( "name", "KNotes" );
+    m_label->setText( notename );
+
+
+    //do Display group- width, height, bgcolor, fgcolor, transparent
+    //do this after the editor part so that the label can adjust it's
+    //size to the font on a resize event
+    config.setGroup( "Display" );
+
+    uint width  = config.readUnsignedNumEntry( "width", 200 );
+    uint height = config.readUnsignedNumEntry( "height", 200 );
     resize( width, height );
 
     //create a pallete...
-    QColor bg = m_config->readColorEntry( "bgcolor", &(Qt::yellow) );
-    QColor fg = m_config->readColorEntry( "fgcolor", &(Qt::black) );
+    QColor bg = config.readColorEntry( "bgcolor", &(Qt::yellow) );
+    QColor fg = config.readColorEntry( "fgcolor", &(Qt::black) );
     QPalette newpalette = palette();
     newpalette.setColor( QColorGroup::Background, bg );
     newpalette.setColor( QColorGroup::Base,       bg );
@@ -137,55 +200,87 @@ void KNote::slotApplyConfig()
     m_label->setBackgroundColor( bg.dark( 120 ) );
     m_button->setBackgroundColor( bg.dark( 120 ) );
 
-    //do the Editor group: tabsize, autoindent, font, fontsize, fontstyle
-    m_config->setGroup( "Editor" );
 
-    QFont def( "helvetica" );
-    def = m_config->readFontEntry( "font", &def ) ;
-    m_editor->setFont( def );
+    config.setGroup( "WindowDisplay" );
+    int note_desktop = config.readNumEntry( "desktop", KWin::currentDesktop() );
+    ulong note_state = config.readUnsignedLongNumEntry( "state", NET::SkipTaskbar );
+    QPoint default_position = QPoint( -1, -1 );
+    QPoint position  = config.readPointEntry( "position", &default_position );
 
-    uint tab_size = m_config->readUnsignedNumEntry( "tabsize", 4 );
-    m_editor->setDefaultTabStop( tab_size );
-
-    bool indent = true;
-    indent = m_config->readBoolEntry( "autoindent", &indent );
-    m_editor->setAutoIndentMode( indent );
-
-    //do the Data Group- name, data
-    m_config->setGroup( "Data" );
-
-    QString notename = m_config->readEntry( "name", "KNotes" );
-    m_label->setText( notename );
-
+    KWin::setState( winId(), note_state );
+    if( note_state & NET::StaysOnTop )
+    {
+        m_menu->setItemChecked( m_idAlwaysOnTop, false );
+}
+    setOnDesktop( note_desktop );
+    if( note_desktop != 0 && !isVisible() )
+    {
+        show();
+    }
+    if( position != default_position )
+        move( position );
 }
 
 
 //**** Public Interface **********************************
-void KNote::save()
+void KNote::saveData()
 {
-    QString datafile = m_config->entryMap("Data")["name"];
+    QString datafile = m_label->text();
+    QDir notedir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
+
     if( datafile == QString::null )
     {
         kdDebug() << "note name was missing, not saving anything" << endl;
         return;
     }
-    QString absdatafile = m_notedir->absFilePath( "." + datafile + "_data" );
+
+    QString absdatafile = notedir.absFilePath( "." + datafile + "_data" );
     m_editor->dumpToFile( absdatafile );
 }
 
-void KNote::setOnDesktop( uint id )
+void KNote::saveConfig()
 {
-    if( id == 0 )
-        KWin::setOnAllDesktops(winId(), true);
-    else
+    //all that needs to get saved here is the size and name
+    //everything else would have been saved by the preferences dialog
+
+    KSimpleConfig config( m_configfile );
+
+    //store config settings...
+    //need to save the new size to KSimpleConfig object
+    config.setGroup( "Display" );
+    config.writeEntry( "width", width() );
+    config.writeEntry( "height", height() );
+    
+    //save name....
+    config.setGroup( "Data" );
+    if( m_label )
+        config.writeEntry( "name", m_label->text() );
+}
+
+void KNote::saveDisplayConfig()
     {
-        KWin::setOnAllDesktops(winId(), false);
-        KWin::setOnDesktop(winId(), id);
+    KSimpleConfig config( m_configfile );
+    NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop | NET::WMState );
+
+    config.setGroup( "WindowDisplay" );
+
+    int note_desktop = wm_client.desktop();
+    config.writeEntry( "desktop", note_desktop );
+    config.writeEntry( "state", wm_client.state() );
+    config.writeEntry( "position", pos() );
     }
+
+void KNote::setOnDesktop( int id )
+{
+    KWin::setOnDesktop(winId(), id);
 }
 
 void KNote::slotToDesktop( int id )
 {
+    //this should only be called from the menu
+    if( id == 0 )
+        setOnDesktop( NETWinInfo::OnAllDesktops );
+    else
     setOnDesktop( id );
 }
 
@@ -208,7 +303,7 @@ QString KNote::getName()
     if( m_label )
         return m_label->text();
     else
-        return m_title;
+        return QString::null;
 }
 
 
@@ -297,7 +392,9 @@ void KNote::slotPrepareDesktopMenu()
 
     //fill m_desktop_menu with the available desktop names
     bool alldesktops = false;
-    if( wm_client.desktop() == NETWinInfo::OnAllDesktops )
+    int note_desktop = wm_client.desktop();
+
+    if( note_desktop == NETWinInfo::OnAllDesktops )
         alldesktops = true;
 
     m_desktop_menu->clear();
@@ -308,10 +405,11 @@ void KNote::slotPrepareDesktopMenu()
 
     uint id;
     QStringList::Iterator it = desktops.begin();
-    for( uint i = 1; i <= desktops.count(); i++, it++ )
+    int num_desktops = (int)desktops.count();
+    for( int i = 1; i <= num_desktops; i++, it++ )
     {
         id = m_desktop_menu->insertItem( QString("&%1 %2").arg(i).arg( *it ), i );
-        if( ( wm_client.desktop() == i ) && !alldesktops )
+        if( note_desktop == i )
         {
             m_desktop_menu->setItemChecked( id, true );
         }
@@ -323,8 +421,9 @@ void KNote::slotPrepareDesktopMenu()
 void KNote::slotRename( int /*id*/ )
 {
     QString newname;
-    QString oldname = m_config->entryMap("Data")["name"];
-    QString oldname_data = oldname + "_data";
+    QString oldname = m_label->text();
+    QString oldname_data = "." + oldname + "_data";
+    QDir notedir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
 
     while( true )
     {
@@ -336,7 +435,7 @@ void KNote::slotRename( int /*id*/ )
             return;
 
         //check the name to make sure that it's not already used
-        if( m_notedir->exists( newname ) )
+        if( notedir.exists( newname ) )
         {
             KMessageBox::sorry( this,
                                 i18n("There is already a note with that name") );
@@ -349,24 +448,33 @@ void KNote::slotRename( int /*id*/ )
     }
 
     //close config, copy old file to new name
-    m_config->setGroup( "Data" );
-    m_config->writeEntry( "name", newname );
+    saveData();
+    saveConfig();
+    saveDisplayConfig();
 
-    delete m_config;
-    if( !m_notedir->rename( oldname, newname ) )
-            kdDebug() << "rename failed" << endl;
-    if( !m_notedir->rename( "."+oldname+"_data", "."+newname+"_data" ) )
-            kdDebug() << "rename of data file failed" << endl;
-
+    if( notedir.rename( oldname, newname ) )
+    {
     //open new config
-    QString newconfig = m_notedir->absFilePath( newname );
-    m_config = new KSimpleConfig( newconfig );
+        m_configfile = notedir.absFilePath( newname );
+        KSimpleConfig config( m_configfile );
 
     //redo the label text
     m_label->setText( newname );
+        config.setGroup( "Data" );
+        config.writeEntry( "name", newname );
 
     //emit signal with oldname and newname
     emit sigRenamed( oldname, newname );
+
+        if( notedir.exists( oldname_data ) )
+        {
+            notedir.rename( oldname_data, "."+newname+"_data" );
+        }
+    }
+    else
+    {
+        kdDebug() << "rename failed" << endl;
+    }
 }
 
 void KNote::slotInsDate( int /*id*/ )
@@ -377,48 +485,43 @@ void KNote::slotInsDate( int /*id*/ )
                         line, column );
 }
 
-void KNote::slotConfig ( int /*id*/ )
+void KNote::slotPreferences( int /*id*/ )
 {
+    saveConfig();
+
     //launch config dialog...
-    KNoteConfigDlg* localConfig = new KNoteConfigDlg( m_config, i18n("Local Settings") );
-    connect( localConfig, SIGNAL( updateConfig() ),
+    KNoteConfigDlg configDlg( m_configfile, i18n("Local Settings") );
+    connect( &configDlg, SIGNAL( updateConfig() ),
              this, SLOT( slotApplyConfig() ) );
 
     //launch preferences dialog...
-    localConfig->show();
+    configDlg.show();
 }
 
 void KNote::slotClose()
 {
     hide(); //just hide the note so it's still available from the dock window
-    save();
 }
 
 void KNote::slotKill( int /*id*/ )
 {
-    //delete the config file...
-    m_config->setGroup( "Data" );
-    QString conf_name = m_config->readEntry( "name" );
-    delete m_config;
-    m_config = NULL;
-
-    m_notedir->remove( conf_name );
-    m_notedir->remove( "." + conf_name + "_data" );
-
-    close();
+    m_saveself = false;
+    close( true );
 }
 
 void KNote::slotMail( int /*id*/ )
 {
-    save();
+    saveData();
+    KSimpleConfig config( m_configfile, true );
+    QDir notedir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
 
     //sync up the data on note and the data file
     QString data_name = "." + m_label->text() + "_data";
-    QString msg_body = m_notedir->absFilePath( data_name );
+    QString msg_body = notedir.absFilePath( data_name );
 
     //get the mail action command
-    m_config->setGroup( "Actions" );
-    QString mail_cmd = m_config->readEntry( "mail", "kmail --msg %f" );
+    config.setGroup( "Actions" );
+    QString mail_cmd = config.readEntry( "mail", "kmail --msg %f" );
     QStringList cmd_list = QStringList::split( QChar(' '), mail_cmd );
 
     KProcess mail;
@@ -438,20 +541,22 @@ void KNote::slotMail( int /*id*/ )
 
 void KNote::slotPrint( int /*id*/ )
 {
-    save();
-
+    saveData();
+    KSimpleConfig config( m_configfile, true );
+    QDir notedir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
     QPrinter printer;
+
     if( printer.setup() )
     {
-        m_config->setGroup( "Actions" );
-        QString printstr = m_config->readEntry(
+        config.setGroup( "Actions" );
+        QString printstr = config.readEntry(
                               "print",
                               "a2ps -P %p -1 --center-title=%t --underlay=KDE %f"
                            );
 
         QString printername = printer.printerName();
         QString title = m_label->text();
-        QString datafile = m_notedir->absFilePath( "." + title + "_data" );
+        QString datafile = notedir.absFilePath( "." + title + "_data" );
 
         QStringList cmd_list = QStringList::split( QChar(' '), printstr );
         KProcess printjob;
@@ -472,6 +577,11 @@ void KNote::slotPrint( int /*id*/ )
         if( !result )
             kdDebug() << "printing failed" << endl;
     }
+}
+
+void KNote::slotNewNote( int id )
+{
+    emit sigNewNote( id );
 }
 
 #include "knote.moc"

@@ -1,4 +1,24 @@
+/*******************************************************************
+ KNotes -- Notes for the KDE project
 
+ Copyright (C) Bernd Johannes Wuebben
+     wuebben@math.cornell.edu
+     wuebben@kde.org
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+*******************************************************************/
 
 #include "knotesapp.h"
 #include "knoteconfigdlg.h"
@@ -11,24 +31,17 @@
 #include <kstddirs.h>
 #include <kmessagebox.h>
 #include <kdebug.h>
+#include <ksimpleconfig.h>
 
-#include <qfile.h>
-#include <qtextstream.h>
 #include <qdir.h>
+#include <qfont.h>
 
 KNotesApp::KNotesApp()
     : KSystemTray()
 {
-    // make sure the KNote objects get deleted
-    //m_NoteList.setAutoDelete(true);
-
-    //make sure I copy over the knotesrc to a local/writeable file- some
-    QString globalConfigFile = KGlobal::dirs()->findResource( "config", "knotesrc" );
-    m_defaults = new KConfig( globalConfigFile );
-
     //create the dock widget....
     setPixmap( KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Small ) );
-    //setPixmap( UserIcon( "knotes" ) );
+
     m_note_menu = new KPopupMenu( this );
     connect( m_note_menu, SIGNAL( aboutToShow() ),
              this,        SLOT( slotPrepareNoteMenu() ) );
@@ -43,20 +56,20 @@ KNotesApp::KNotesApp()
     //initialize saved notes, if none create a note...
     QString str_notedir = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
     QDir notedir( str_notedir );
-    QStringList notes = notedir.entryList( "*" );
+    QStringList notes = notedir.entryList( QDir::Files, QDir::Name ); //doesn't list hidden files
 
     int count = 0;
     for( QStringList::Iterator i = notes.begin(); i != notes.end(); ++i )
     {
-        if( *i != "." && *i != ".." ) //ignore these
-        {
             QString configfile = notedir.absFilePath( *i );
             KSimpleConfig* tmp = new KSimpleConfig( configfile );
             tmp->setGroup( "General" );
             int version = tmp->readNumEntry( "version", 1 );
+        delete tmp;
+
             if( version > 1 )
             {
-                KNote* tmpnote = new KNote( tmp );
+            KNote* tmpnote = new KNote( configfile );
 
                 connect( tmpnote, SIGNAL( sigRenamed(QString&, QString&) ),
                          this,    SLOT  ( slotNoteRenamed(QString&, QString&) ) );
@@ -64,9 +77,7 @@ KNotesApp::KNotesApp()
                          this,    SLOT  ( slotNewNote(int) ) );
                 connect( tmpnote, SIGNAL( sigKilled(QString) ),
                          this,    SLOT  ( slotNoteKilled(QString) ) );
-
                 m_NoteList.insert( tmpnote->getName() ,tmpnote );
-                tmpnote->show();
                 ++count;
             }
             else
@@ -77,63 +88,76 @@ KNotesApp::KNotesApp()
                 kdDebug() << "This is an old note version, we can't read it yet" << endl;
             }
         }
-    }
 
-    if( count == 0 )
+    if( count == 0 && !KApplication::kApplication()->isRestored() )
         slotNewNote();
 }
 
 
 KNotesApp::~KNotesApp()
 {
-    delete m_defaults;
-
+    delete m_note_menu;
+    m_NoteList.clear();
 }
 
-void KNotesApp::copyDefaultConfig( KSimpleConfig* sc )
+void KNotesApp::copyDefaultConfig( QString& sc_filename, QString& newname )
 {
-    sc->setGroup( "Display" );
-    m_defaults->setGroup( "Display" );
+    QString defaultsfile = KGlobal::dirs()->findResource( "config", "knotesrc" );
+    KSimpleConfig defaults( defaultsfile );
+    KSimpleConfig sc( sc_filename );
 
-    uint width = m_defaults->readUnsignedNumEntry( "width", 200 );
-    uint height = m_defaults->readUnsignedNumEntry( "height", 200 );
-    QColor bgc = m_defaults->readColorEntry( "bgcolor", &(Qt::yellow) );
-    QColor fgc = m_defaults->readColorEntry( "fgcolor", &(Qt::black) );
+    sc.setGroup( "Display" );
+    defaults.setGroup( "Display" );
 
-    sc->writeEntry( "width", width );
-    sc->writeEntry( "height", height );
-    sc->writeEntry( "bgcolor", bgc );
-    sc->writeEntry( "fgcolor", fgc );
+    uint width  = defaults.readUnsignedNumEntry( "width", 200 );
+    uint height = defaults.readUnsignedNumEntry( "height", 200 );
+    QColor bgc  = defaults.readColorEntry( "bgcolor", &(Qt::yellow) );
+    QColor fgc  = defaults.readColorEntry( "fgcolor", &(Qt::black) );
 
-    sc->setGroup( "Editor" );
-    m_defaults->setGroup( "Editor" );
+    sc.writeEntry( "width", width );
+    sc.writeEntry( "height", height );
+    sc.writeEntry( "bgcolor", bgc );
+    sc.writeEntry( "fgcolor", fgc );
 
-    uint tabsize = m_defaults->readUnsignedNumEntry( "tabsize", 4 );
-    bool indent = m_defaults->readBoolEntry( "autoindent", true );
+    sc.setGroup( "Editor" );
+    defaults.setGroup( "Editor" );
 
-    sc->writeEntry( "tabsize", tabsize );
-    sc->writeEntry( "autoindent", indent );
+    uint tabsize = defaults.readUnsignedNumEntry( "tabsize", 4 );
+    bool indent  = defaults.readBoolEntry( "autoindent", true );
 
-    sc->setGroup( "Actions" );
-    m_defaults->setGroup( "Actions" );
+    sc.writeEntry( "tabsize", tabsize );
+    sc.writeEntry( "autoindent", indent );
 
-    QString mailstr = m_defaults->readEntry( "mail", "kmail --msg %f" );
-    QString printstr = m_defaults->readEntry( "print", "a2ps -P %p -1 --center-title=%t --underlay=KDE %f" );
+    QFont def_font( "helvetica" );
+    QFont currfont = defaults.readFontEntry( "font", &def_font );
+    sc.writeEntry( "font", currfont );
 
-    sc->writeEntry( "mail", mailstr );
-    sc->writeEntry( "print", printstr );
+    sc.setGroup( "Actions" );
+    defaults.setGroup( "Actions" );
 
-    sc->setGroup( "General" );
-    sc->writeEntry( "version", 2 );
+    QString mailstr  = defaults.readEntry( "mail", "kmail --msg %f" );
+    QString printstr = defaults.readEntry( "print", "a2ps -P %p -1 --center-title=%t --underlay=KDE %f" );
+
+    sc.writeEntry( "mail", mailstr );
+    sc.writeEntry( "print", printstr );
+
+    sc.setGroup( "General" );
+    sc.writeEntry( "version", 2 );
+
+    sc.setGroup( "Data" );
+    sc.writeEntry( "name", newname );
+
+    sc.sync();
 }
 
-void KNotesApp::slotNewNote( int id )
+void KNotesApp::slotNewNote( int /*id*/ )
 {
     QString datadir = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
 
     //find a new appropriate id for the new note...
     bool exists;
     QString thename;
+    QString configfile;
     QDir appdir( datadir );
     for( int i = 1; i < 51; i++ )   //set the unjust limit to 50 notes...
     {
@@ -143,6 +167,7 @@ void KNotesApp::slotNewNote( int id )
         if( !appdir.exists( thename ) )
         {
             exists = false;
+            configfile = appdir.absFilePath( thename );
             break;
         }
     }
@@ -156,12 +181,9 @@ void KNotesApp::slotNewNote( int id )
         return;
     }
 
-    KSimpleConfig* newconfig = new KSimpleConfig( datadir + thename );
-    copyDefaultConfig( newconfig );
-    newconfig->setGroup( "Data" );
-    newconfig->writeEntry("name", thename );
+    copyDefaultConfig( configfile, thename );
 
-    KNote* newnote = new KNote( newconfig );
+    KNote* newnote = new KNote( configfile );
     connect( newnote, SIGNAL( sigRenamed(QString&, QString&) ),
              this,    SLOT( slotNoteRenamed(QString&, QString&) ) );
     connect( newnote, SIGNAL( sigNewNote(int) ),
@@ -170,7 +192,6 @@ void KNotesApp::slotNewNote( int id )
              this,    SLOT( slotNoteKilled(QString) ) );
 
     m_NoteList.insert( thename, newnote );
-    newnote->show();
 }
 
 void KNotesApp::slotNoteRenamed( QString& oldname, QString& newname )
@@ -188,7 +209,7 @@ void KNotesApp::slotNoteKilled( QString name )
 void KNotesApp::slotPreferences( int )
 {
     //launch preferences dialog...
-    KNoteConfigDlg tmpconfig( m_defaults, i18n("KNotes Defaults") );
+    KNoteConfigDlg tmpconfig( "knotesrc", i18n("KNotes Defaults") );
     tmpconfig.exec();
 }
 
@@ -209,6 +230,7 @@ void KNotesApp::slotToNote( int id )
     {
         //if not show it on the current desktop
         tmpnote->show();
+        tmpnote->setOnDesktop( KWin::currentDesktop() );
         KWin::setActiveWindow(tmpnote->winId());
         tmpnote->setFocus();
     }
@@ -229,11 +251,24 @@ void KNotesApp::slotPrepareNoteMenu()
     }
 }
 
+void KNotesApp::slotSaveNotes()
+{
+    //save all the notes...
+    QDictIterator<KNote> it( m_NoteList );
+    for( ; it.current(); ++it )
+    {
+        it.current()->saveData();
+        it.current()->saveConfig();
+        it.current()->saveDisplayConfig();
+    }
+}
 
 void KNotesApp::mouseReleaseEvent( QMouseEvent * e)
 {
-    if ( rect().contains( e->pos() ) && e->button() == LeftButton ) {
+    if ( rect().contains( e->pos() ) && e->button() == LeftButton )
+{
 	slotPrepareNoteMenu();
+        if( m_note_menu->count() > 0 )
 	m_note_menu->popup( e->globalPos() );
 	return;
     }

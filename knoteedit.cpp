@@ -1,3 +1,24 @@
+/*******************************************************************
+ KNotes -- Notes for the KDE project
+
+ Copyright (C) Bernd Johannes Wuebben
+     wuebben@math.cornell.edu
+     wuebben@kde.org
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+*******************************************************************/
 
 #include <qdragobject.h>
 #include <qtextstream.h>
@@ -28,14 +49,8 @@ void KNoteEdit::readFile( QString& filename )
 	if( infile.open( IO_ReadOnly ) )
 	{
 		QTextStream input( &infile );
-
-		for( QString currline = input.readLine();
-	    	 currline != QString::null;
-	     	currline = input.readLine() )
-		{
-			//put currline in editor
-			insertLine( currline );
-		}
+        QString text = input.read();
+        insertAt( text, 0, 0 );
 	} else
 		kdDebug() << "could not open input file" << endl;
 }
@@ -46,11 +61,8 @@ void KNoteEdit::dumpToFile( QString& filename )
 	if( outfile.open( IO_WriteOnly ) )
 	{
 		QTextStream output( &outfile );
-
-		for( int line = 0; line < numLines(); line++ )
-		{
-			output << textLine( line ) << endl;
-		}
+        QString note_text = text();
+        output << note_text;
 	} else
 		kdDebug() << "could not open file to write to" << endl;
 }
