@@ -43,7 +43,6 @@ KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
     setWordWrap( WidgetWidth );
     setWrapPolicy( AtWhiteSpace );
     setLinkUnderline( true );
-    //setTabChangesFocus( false );
 
     KXMLGUIClient* client = dynamic_cast<KXMLGUIClient*>(parent);
     KActionCollection* actions = client->actionCollection();

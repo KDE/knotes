@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2004/03/21  Michael Brade <brade@kde.org>
+
+    * fixed Tab key handling in RT mode: do not give away focus to the font
+      combo box (in fact, not to anything)
+
 2004/03/19  Michael Brade <brade@kde.org>
 
     * fixed updating the icon in the notes menu after a color change

@@ -21,7 +21,6 @@ features:
    .kde/share/apps/knotes/<session-name>/
 
 bugs:
- * fix Tab key when rich text toolbar is open
  * test if KNotes works without initial config files (knote.cpp, KIO::NetAccess::exists())
  * fix shortcuts
  * add ToolTips everywhere
@@ -32,6 +31,7 @@ bugs:
  * send DCOP signals on newNote/deleteNote
  * in rich text mode: what should happen to the font setting in the config dialog?
  * find out how to avoid the reparent call in KNote
+ * support stroke out text using QStyleSheetItems in QTextEdit
 
 perhaps:
  * transparent notes

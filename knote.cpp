@@ -774,6 +774,11 @@ void KNote::keyPressEvent( QKeyEvent *e )
         e->ignore();
 }
 
+bool KNote::focusNextPrevChild( bool )
+{
+    return true;
+}
+
 bool KNote::event( QEvent *ev )
 {
     if ( ev->type() == QEvent::LayoutHint )

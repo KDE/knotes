@@ -88,6 +88,8 @@ protected:
     virtual bool event( QEvent* );
     virtual bool eventFilter( QObject*, QEvent* );
 
+    virtual bool focusNextPrevChild( bool );
+
 private slots:
     void slotRename();
     void slotClose();
