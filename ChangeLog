@@ -1,3 +1,6 @@
+1999-06-07  Petter Reinholdtsen <pere@td.org.uit.no>
+	* knotes.cpp: Changed text Quit to Exit to match KDE style guide.
+
 1999-05-22  Dirk A. Mueller  <dmuell@gmx.net>
 
 	* Ported to the Qt DND classes. It accepts QTextDrag, handled by 

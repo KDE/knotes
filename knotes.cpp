@@ -385,7 +385,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     // operations->insertSeparator();
     // operations->insertItem (i18n("Options"),options);
     //    operations->insertSeparator();
-    operations->insertItem ( i18n("Quit"), this,
+    operations->insertItem ( i18n("Exit"), this,
                              SLOT(quit()));
 
 
@@ -509,7 +509,7 @@ void KPostit::quit(){
 					 this,
 					 i18n("Sorry"),
 					 i18n("Could not save a KNote.\n"\
-							    "Quit anyways?"),
+							    "Exit anyways?"),
 					 i18n("Yes"),
 					 i18n("No"),
 					 i18n("Cancel"),
