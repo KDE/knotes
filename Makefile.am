@@ -7,7 +7,7 @@ bin_PROGRAMS = knotes
 noinst_HEADERS   = knotesapp.h knote.h knoteedit.h knoteconfigdlg.h knotebutton.h
 knotes_SOURCES	 = knotesapp.cpp knote.cpp knoteedit.cpp knoteconfigdlg.cpp main.cpp knotesdcop.skel
 include_HEADERS	= knotesdcop.h
-knotes_LDADD    = $(LIB_KDEUI) $(LIB_KDECORE)
+knotes_LDADD    = $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_KIO)
 knotes_LDFLAGS  = $(all_libraries) $(KDE_RPATH)
 METASOURCES      = AUTO
 

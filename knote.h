@@ -35,7 +35,6 @@ class QLabel;
 
 class KPopupMenu;
 
-
 class KNote : public QFrame  {
    Q_OBJECT
 public:
@@ -46,6 +45,8 @@ public:
     void saveConfig();
     void saveDisplayConfig();
     QString getName();
+
+    void setText( const QString& text );
 
 public slots:
     //menu slots

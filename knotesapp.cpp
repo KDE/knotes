@@ -33,13 +33,15 @@
 #include <kmessagebox.h>
 #include <kdebug.h>
 #include <ksimpleconfig.h>
+#include <kio/netaccess.h>
+#include <kurl.h>
 
 #include <qdir.h>
 #include <qfont.h>
 
 KNotesApp::KNotesApp()
     : KSystemTray(),
-	DCOPObject("KNotesDCOP")
+	  DCOPObject("KNotesDCOP")
 {
     //create the dock widget....
     setPixmap( KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Small ) );
@@ -55,33 +57,10 @@ KNotesApp::KNotesApp()
     menu->insertItem( i18n("Preferences..."), this, SLOT(slotPreferences(int)) );
     menu->insertItem( i18n("Notes"), m_note_menu );
 
-    //initialize saved notes, if none create a note...
-    QString str_notedir = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
-    QDir notedir( str_notedir );
-    QStringList notes = notedir.entryList( QDir::Files, QDir::Name ); //doesn't list hidden files
-
-    for( QStringList::Iterator i = notes.begin(); i != notes.end(); ++i )
-    {
-        QString configfile = notedir.absFilePath( *i );
-        KSimpleConfig* tmp = new KSimpleConfig( configfile );
-        tmp->setGroup( "General" );
-        int version = tmp->readNumEntry( "version", 1 );
-        delete tmp;
-
-        KNote* tmpnote = new KNote( configfile, version == 1 );
-
-        connect( tmpnote, SIGNAL( sigRenamed(QString&, QString&) ),
-                 this,    SLOT  ( slotNoteRenamed(QString&, QString&) ) );
-        connect( tmpnote, SIGNAL( sigNewNote(int) ),
-                 this,    SLOT  ( slotNewNote(int) ) );
-        connect( tmpnote, SIGNAL( sigKilled(QString) ),
-                 this,    SLOT  ( slotNoteKilled(QString) ) );
-        m_NoteList.insert( tmpnote->getName(), tmpnote );
-    }
+    loadNotes();
 
     if( m_NoteList.count() == 0 && !kapp->isRestored() )
         slotNewNote();
-
 }
 
 
@@ -91,124 +70,108 @@ KNotesApp::~KNotesApp()
     m_NoteList.clear();
 }
 
-/* virtual */ ASYNC KNotesApp::showNote(int i)
+void KNotesApp::loadNotes()
 {
-	if ((i>=0) && (i<(int)m_NoteList.count()))
+    QString str_notedir = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
+    QDir notedir( str_notedir );
+    QStringList notes = notedir.entryList( QDir::Files, QDir::Name ); //doesn't list hidden files
+
+    for( QStringList::Iterator i = notes.begin(); i != notes.end(); ++i )
+    {
+        //check to see if this note is already shown...
+        if( m_NoteList[ *i ] )
+            continue;
+
+        newNote( *i );
+    }
+}
+
+/* virtual */ ASYNC KNotesApp::showNote( QString name )
+{
+    kdWarning() << "this isn't implemented yet" << endl;
+}
+
+ASYNC KNotesApp::rereadNotesDir()
+{
+    loadNotes();
+}
+
+ASYNC KNotesApp::addNote( QString title, QString body,
+                          unsigned long pilotID )
+{
+    newNote( title, body );
+
+	KNote* tmp = m_NoteList[title];
+	if( tmp )
 	{
-		// Show the i'th note. But note (!) that
-		// the QDict<KNote> collection class
-		// isn't ordered, so the whole idea
-		// of having an i'th note makes no sense.
-		//
-		//
+	    QDir appdir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
+        QString sc_filename = appdir.absFilePath( title );
+
+        KSimpleConfig sc( sc_filename );
+        sc.setGroup( "KPilot" );
+        sc.writeEntry( "pilotID", pilotID );
+        sc.sync();
 	}
 	else
 	{
-		kdWarning() << "Index out of range (" 
-			<< i 
-			<< ") in DCOP showNote"
-			<< endl;
+	    kdError() << "could not add note via dcop: " << title << endl;
 	}
-}
-
-/* virtual */ ASYNC KNotesApp::rereadNotesDir()
-{
-	kdWarning() << "Not implemented yet." << endl;
-
-
-	// Probably call the dir-reading code that's in
-	// the constructor.
-	//
-	//
-}
-
-/* virtual */ ASYNC KNotesApp::addNote(QString title,
-	QString body,
-	unsigned long pilotid)
-{
-	kdWarning() << "Not implemented yet." << endl;
-
-	// Something like slotNewNote() slotNoteRenamed() ...
-	// and then insert the pilot id in group [KPilot]
-	// with key pilotID.
-	//
-	//
-}
-
-void KNotesApp::copyDefaultConfig( QString& sc_filename, QString& newname )
-{
-    QString defaultsfile = KGlobal::dirs()->findResource( "config", "knotesrc" );
-    KSimpleConfig defaults( defaultsfile );
-    KSimpleConfig sc( sc_filename );
-
-    sc.setGroup( "Display" );
-    defaults.setGroup( "Display" );
-
-    uint width  = defaults.readUnsignedNumEntry( "width", 200 );
-    uint height = defaults.readUnsignedNumEntry( "height", 200 );
-    QColor bgc  = defaults.readColorEntry( "bgcolor", &(Qt::yellow) );
-    QColor fgc  = defaults.readColorEntry( "fgcolor", &(Qt::black) );
-
-    sc.writeEntry( "width", width );
-    sc.writeEntry( "height", height );
-    sc.writeEntry( "bgcolor", bgc );
-    sc.writeEntry( "fgcolor", fgc );
-
-    sc.setGroup( "Editor" );
-    defaults.setGroup( "Editor" );
-
-    uint tabsize = defaults.readUnsignedNumEntry( "tabsize", 4 );
-    bool indent  = defaults.readBoolEntry( "autoindent", true );
-
-    sc.writeEntry( "tabsize", tabsize );
-    sc.writeEntry( "autoindent", indent );
-
-    QFont def_font( "helvetica" );
-    QFont currfont = defaults.readFontEntry( "font", &def_font );
-    sc.writeEntry( "font", currfont );
-
-    sc.setGroup( "Actions" );
-    defaults.setGroup( "Actions" );
-
-    QString mailstr  = defaults.readEntry( "mail", "kmail --msg %f" );
-    QString printstr = defaults.readEntry( "print", "a2ps -P %p -1 --center-title=%t --underlay=KDE %f" );
-
-    sc.writeEntry( "mail", mailstr );
-    sc.writeEntry( "print", printstr );
-
-    sc.setGroup( "General" );
-    sc.writeEntry( "version", 2 );
-
-    sc.setGroup( "Data" );
-    sc.writeEntry( "name", newname );
-
-    // TODO: write default entries for the group "WindowDisplay"
-
-    sc.sync();
 }
 
 void KNotesApp::slotNewNote( int /*id*/ )
 {
-    QString datadir = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
+    newNote();
+}
 
-    //find a new appropriate id for the new note...
-    QString thename, configfile;
-    QDir appdir( datadir );
+void KNotesApp::newNote( const QString& note_name, const QString& text )
+{
+    QDir appdir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
+    QString thename;
 
-    for( int i = 1; ; i++ )
+    //handle cases for the name
+    if( note_name.isEmpty() )
     {
-        thename = QString( "KNote %1" ).arg(i);
-
-        if( !appdir.exists( thename ) )
+        //find a suitable name
+        for( int i = 1; ; i++ )
         {
-            configfile = appdir.absFilePath( thename );
-            break;
+            thename = QString( "KNote %1" ).arg(i);
+            if( !appdir.exists( thename ) )
+                break;
+        }
+    }
+    else
+    {
+        thename = note_name;
+        if( m_NoteList[thename] )
+        {
+            kdError() << "This note is already showing" << endl;
+            return;
         }
     }
 
-    copyDefaultConfig( configfile, thename );
+    //handle the cases for if there is already a config file...
+    QString config = appdir.absFilePath( thename );
+    if( !appdir.exists( thename ) )
+    {
+        KIO::NetAccess::copy( KURL( KGlobal::dirs()->findResource( "config", "knotesrc" ) ),
+                              KURL( config ) );
+    }
 
-    KNote* newnote = new KNote( configfile );
+    KSimpleConfig sc( config );
+    sc.setGroup( "Data" );
+    if( sc.readEntry( "name" ) != thename )
+    {
+        sc.writeEntry( "name", thename );
+        sc.sync();
+    }
+
+    sc.setGroup( "General" );
+    int version = sc.readNumEntry( "version", 1 );
+
+    KNote* newnote = new KNote( config, version == 1 );
+    if( !text.isEmpty() )
+        newnote->setText( text );
+
     connect( newnote, SIGNAL( sigRenamed(QString&, QString&) ),
              this,    SLOT( slotNoteRenamed(QString&, QString&) ) );
     connect( newnote, SIGNAL( sigNewNote(int) ),

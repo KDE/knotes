@@ -35,7 +35,7 @@ k_dcop:
 	* Show the n-th note in the list, as if it had been
 	* selected from the "notes" menu.
 	*/
-	virtual ASYNC showNote(int) = 0;
+	virtual ASYNC showNote(QString name) = 0;
 
 	/**
 	* Re-read the directory(ies) containing KNotes
@@ -54,5 +54,8 @@ k_dcop:
 } ;
 
 
-// $Log:$
+// $Log$
+// Revision 1.1  2000/12/19 18:00:49  adridg
+// Added DCOP calls to manipulate notes (intended for KPilot)
+//
 #endif

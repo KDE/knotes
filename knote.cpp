@@ -360,6 +360,11 @@ void KNote::convertOldConfig()
 
 
 //**** Public Interface **********************************
+void KNote::setText( const QString& text )
+{
+    m_editor->setText( text );
+}
+
 void KNote::saveData()
 {
     QString datafile = m_label->text();
@@ -640,8 +645,8 @@ void KNote::slotPreferences( int /*id*/ )
 
 void KNote::slotClose()
 {
-    saveData();
-    saveConfig();
+//    saveData();
+//    saveConfig();
 
     hide(); //just hide the note so it's still available from the dock window
 }

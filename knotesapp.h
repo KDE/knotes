@@ -24,11 +24,12 @@
 #define KNOTESAPP_H
 
 #include "knote.h"
+#include "knotesdcop.h"
+
 #include <ksystemtray.h>
 #include <kconfig.h>
-#include <qdict.h>
 
-#include "knotesdcop.h"
+#include <qdict.h>
 
 class KNotesApp : public KSystemTray, virtual public KNotesDCOP
 {
@@ -37,8 +38,8 @@ public:
     KNotesApp();
     ~KNotesApp();
 
-	virtual ASYNC showNote(int);
-	virtual ASYNC addNote(QString,QString,unsigned long);
+	virtual ASYNC showNote( QString );
+	virtual ASYNC addNote( QString, QString, unsigned long );
 	virtual ASYNC rereadNotesDir();
 
 public slots:
@@ -55,9 +56,12 @@ protected slots:
     void mouseReleaseEvent( QMouseEvent *);
 
 private:
-    QDict< KNote >  m_NoteList;
-    KPopupMenu*     m_note_menu;
-    void copyDefaultConfig( QString& sc_filename, QString& newname );
+    QDict<KNote>  m_NoteList;
+    KPopupMenu*   m_note_menu;
+
+    void loadNotes();
+    void newNote( const QString& note_name = QString::null,
+                  const QString& text = QString::null );
 };
 
 #endif
