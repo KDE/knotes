@@ -10,7 +10,7 @@
 	autoindent=yes
 	font=helvetica
 	fontsize=12
-	fontstyle=50
+	fontweight=50
 	
 [Actions]
 	mail=kmail --composer --subject "Some Notes" --msg 

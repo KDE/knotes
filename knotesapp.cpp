@@ -15,10 +15,33 @@
 
 
 KNotesApp::	KNotesApp()
-
 {
-	first_instance = true;
-		
+	//make sure I copy over the knotesrc to a local/writeable file- some
+	QString globalConfigFile = KGlobal::dirs()->findResource( "config", "knotesrc" );
+    QString str_confdir = KGlobal::dirs()->saveLocation( "config" );
+    kdDebug() << "can save config at: " << str_confdir << endl;
+	QDir confdir( str_confdir );
+	
+	if( !confdir.exists( "knotesrc" ) )
+	{
+		//copy over the default config file...avoid some problems with session management
+		QFile gconfigfile( globalConfigFile );
+	    gconfigfile.open( IO_ReadOnly );
+    	
+    	QFile nconfigfile( str_confdir + "knotesrc" );
+    	nconfigfile.open( IO_WriteOnly );
+
+    	QTextStream input( &gconfigfile );
+    	QTextStream output( &nconfigfile );
+
+    	for( QString curr = input.readLine(); curr != QString::null; curr = input.readLine() )
+			output << curr << endl;
+
+    	gconfigfile.close();
+    	nconfigfile.close();
+    	kdDebug() << "saved the default config file in KDEHOME" << endl;
+	} else kdDebug() << "default config already exists" << endl;
+
 	//create the dock widget....
 	setPixmap( KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Desktop ) );
 	KPopupMenu* menu = contextMenu();
@@ -138,9 +161,10 @@ void KNotesApp::slotNoteClosed( QString& name )
 
 void KNotesApp::slotPreferences( int id )
 {
-	//launch preferences dialog...
 	QString globalConfigFile = KGlobal::dirs()->findResource( "config", "knotesrc" );
-	KConfig* gconfig = new KConfig( globalConfigFile );
-	KNoteConfigDlg* tmpconfig = new KNoteConfigDlg( gconfig, i18n("KNotes Defaults") );
+	KConfig GlobalConfig( globalConfigFile );
+	
+	//launch preferences dialog...
+	KNoteConfigDlg* tmpconfig = new KNoteConfigDlg( &GlobalConfig, i18n("KNotes Defaults") );
 	tmpconfig->show();
 }

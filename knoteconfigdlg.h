@@ -7,9 +7,10 @@
 #include <kconfig.h>
 #include <klineedit.h>
 #include <kconfig.h>
-#include <kaction.h>
 #include <kcolorbtn.h>
 
+#include <qcheckbox.h>
+#include <qfont.h>
 
 class KNoteConfigDlg : public KDialogBase  {
    Q_OBJECT
@@ -21,10 +22,10 @@ public:
 	void makeEditorPage();
 	void makeActionsPage();
 	
-	static QColor getFGColor( KConfig* tmpconfig );
-	static QColor getBGColor( KConfig* tmpconfig );
+	static QColor  getFGColor( KConfig& tmpconfig );
+	static QColor  getBGColor( KConfig& tmpconfig );
 	static QString strColor( const QColor& newc );
-		
+	static QFont   getFont( KConfig& tmpconfig );
 protected:
 	KConfig*      _config;
 	
@@ -33,18 +34,19 @@ protected:
 	KLineEdit*    _widthEdit;
 	KLineEdit*    _heightEdit;
 	KLineEdit*    _tabEdit;
-	KRadioAction* _autoIndentSwitch;
+	QCheckBox*    _autoIndentSwitch;
 	KLineEdit*    _mailEdit;
 	KLineEdit*    _dateEdit;
 	KLineEdit*    _printEdit;
-		
+	QPushButton*  _font;
+
 protected slots:
 	virtual void slotOk();
 	virtual void slotApply();
 	
 	void slotChangeFont();
-	void slotFGColor( const QColor& newColor );
-	void slotBGColor( const QColor& newColor );
+	void slotFGColor( const QColor& );
+	void slotBGColor( const QColor& );
 	
 signals:
 	void updateConfig();

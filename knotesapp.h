@@ -22,9 +22,7 @@ public slots:
 	void slotNoteClosed ( QString& name );
 	void slotPreferences( int id=0 );
 	void slotNoteRenamed( QString& oldname, QString& newname );
-	
-private:
-	bool first_instance;
+
 };
 
 #endif

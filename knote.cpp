@@ -22,7 +22,7 @@ KNote::KNote( KConfig* config, QWidget* parent, const char* name )
 	: QFrame( parent, name , WStyle_Customize | WStyle_NoBorderEx | WDestructiveClose )
 {
 	kdDebug() << "start Knote::Knote" << endl;
-
+	
 	m_config = config;
 	m_notedir = new QDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
 	setFrameStyle( NoFrame );
@@ -106,8 +106,8 @@ void KNote::slotApplyConfig()
 	resize( width, height );
 	
 	//create a pallete...
-	QColor bg = KNoteConfigDlg::getBGColor( m_config );
-	QColor fg = KNoteConfigDlg::getFGColor( m_config );
+	QColor bg = KNoteConfigDlg::getBGColor( *m_config );
+	QColor fg = KNoteConfigDlg::getFGColor( *m_config );
 	
 	QPalette newpalette = palette();
 	newpalette.setColor( QColorGroup::Background, bg );
