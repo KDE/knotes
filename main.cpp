@@ -41,7 +41,7 @@ void remove_sm_from_client_leader()
     unsigned char *data = 0;
 
     Atom atoms[ 2 ];
-    char *atom_names[ 2 ] = { "WM_CLIENT_LEADER", "SM_CLIENT_ID" };
+    char *atom_names[ 2 ] = { (char*)"WM_CLIENT_LEADER", (char*)"SM_CLIENT_ID" };
 
     XInternAtoms( qt_xdisplay(), atom_names, 2, False, atoms );
 
