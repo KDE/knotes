@@ -9,9 +9,11 @@
 #include <kstddirs.h>
 #include <kmessagebox.h>
 #include <kdebug.h>
+#include <ksimpleconfig.h>
 #include <qfile.h>
 #include <qtextstream.h>
 #include <qdir.h>
+#include <unistd.h>
 
 
 KNotesApp::	KNotesApp()
@@ -22,7 +24,28 @@ KNotesApp::	KNotesApp()
     kdDebug() << "can save config at: " << str_confdir << endl;
 	QDir confdir( str_confdir );
 	
-	if( !confdir.exists( "knotesrc" ) )
+	bool localFileExists = confdir.exists( "knotesrc" );
+        if (localFileExists)
+        {
+           // It exists, but let's check if it's one from knotes 2 or an old one.
+           // Otherwise we won't find the entries we need, and we'll create notes
+           // size 0x0 and white on white ! (David)
+           // Note this whole thing is a useless mess and should use KConfig instead.
+           KSimpleConfig * conf = new KSimpleConfig( str_confdir + "knotesrc", true );
+           conf->setGroup("General");
+           int version = conf->readNumEntry("version",1);
+           //kdDebug() << "Read version " << version << endl;
+           delete conf;
+           if ( version < 2 )
+           {
+             kdDebug() << "Old local file found, replacing" << endl;
+             unlink( QFile::encodeName( str_confdir + "knotesrc" ) );
+	     globalConfigFile = KGlobal::dirs()->findResource( "config", "knotesrc" );
+             localFileExists = false;
+           }
+        }
+
+	if( !localFileExists )
 	{
 		//copy over the default config file...avoid some problems with session management
 		QFile gconfigfile( globalConfigFile );
