@@ -1,6 +1,12 @@
 ChangeLog for KNotes
 ====================
 
+2001/05/06  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * made the notes look 3d
+    * added a small border to the text
+    * change the color of the title to show the focus state
+
 2001/04/25  Michael Brade <brade@informatik.uni-muenchen.de>
 
     Updated this file! It's time now, after one and a half years...

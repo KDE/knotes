@@ -6,11 +6,13 @@ TODOs for KNotes
  * port to QTextEdit
  * steal some ideas from Stickies (Mac OS X)
  * save cursor position and scrollbar postion
- * better config dialog
-    - let the user configure the size of the title
-    - make the frame configureable
+ * the config dialog:
+    - make the title font configureable
+    - make the frame configureable (3d -> normal)
+    - make the keybindings configureable
 
 perhaps:
+ * shadow for the notes
  * icons for the notes
  * alarm
 
@@ -27,5 +29,4 @@ Always open TODO:
  * make the code as perfect and clean as possible!!
 
 
---
- Michael Brade 04-25-2001
+-- Michael Brade 05-06-2001
