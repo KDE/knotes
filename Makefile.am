@@ -43,6 +43,9 @@ uidir           = $(kde_datadir)/knotes
 service_DATA    = local.desktop
 servicedir      = $(kde_servicesdir)/kresources/knotes
 
+manager_DATA    = knotes_manager.desktop
+managerdir      = $(kde_servicesdir)/kresources
+
 KDE_OPTIONS = nofinal
 
 messages: rc.cpp
