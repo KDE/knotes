@@ -3,9 +3,10 @@ ChangeLog for KNotes
 
 2004/08/27  Michael Brade <brade@kde.org>
 
-    * fixed #50104: finally (!) use KWin to move the note windows. Thanks to Luboš
-      for telling me that just the XUngrabPointer line was missing to make it work.
-      This enables the active desktop borders for KNotes as well.
+    * fixed #50104, #75485: finally (!) use KWin to move the note windows. Thanks
+      to Luboš for telling me that just the XUngrabPointer line was missing to
+      make it work.
+      This enables the active desktop borders and snap zones for KNotes.
 
 2004/08/26  Michael Brade <brade@kde.org>
 
