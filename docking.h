@@ -27,10 +27,10 @@
 #define _DOCKING_H_
 
 #include <stdio.h>
-#include <qapp.h>
+#include <qapplication.h>
 #include <qpixmap.h>
 #include <qtimer.h>
-#include <qpopmenu.h>
+#include <qpopupmenu.h>
 #include <qpoint.h>
 
 

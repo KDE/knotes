@@ -27,12 +27,12 @@
 #ifndef __KPOSTIT_RENAME__
 #define __KPOSTIT_RENAME__
 
-#include <qlined.h>
-#include <qmsgbox.h>
-#include <qdatetm.h> 
+#include <qlineedit.h>
+#include <qmessagebox.h>
+#include <qdatetime.h> 
 #include <qkeycode.h>
-#include <qgrpbox.h>
-#include <qpushbt.h> 
+#include <qgroupbox.h>
+#include <qpushbutton.h> 
 #include <qstrlist.h>
 
 class RenameDlg : public QDialog

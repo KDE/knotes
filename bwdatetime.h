@@ -35,10 +35,10 @@
 #define BW_DATE_TIME_H_
 
 #include <qlabel.h>
-#include <qbttngrp.h>
-#include <qradiobt.h> 
-#include <qdatetm.h>
-#include <qmsgbox.h>
+#include <qbuttongroup.h>
+#include <qradiobutton.h> 
+#include <qdatetime.h>
+#include <qmessagebox.h>
 
 #include "spin.h"
 

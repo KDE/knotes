@@ -36,7 +36,7 @@
 
 
 #include <qlabel.h>
-#include <qpushbt.h>
+#include <qpushbutton.h>
 
 class QtedSetInt : public QWidget {
    Q_OBJECT

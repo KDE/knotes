@@ -125,8 +125,11 @@ KPostitMultilineEdit::KPostitMultilineEdit(QWidget *parent, const char *myname)
 
 void KPostitMultilineEdit::keyPressEvent(QKeyEvent *e){
 
-  if (e->key() == Key_Tab)
-    insertChar('\t');
+  if (e->key() == Key_Tab) {
+    int line, col;
+    cursorPosition(&line, &col);
+    QMultiLineEdit::insertAt("\t", line, col);
+  }
 
   if(e->key() == Key_Return || e->key() == Key_Enter){
 
@@ -203,19 +206,26 @@ void KPostitMultilineEdit::mynewLine(){
     // MultiLineWidget -- It is anoyingly buggy.
     // I have to put in obscure workarounds all over the place.
 
-    QFocusEvent tmpFEOut(Event_FocusOut);
+#ifdef FocusOut
+#undef FocusOut
+#endif
+    QFocusEvent tmpFEOut(QEvent::FocusOut);
 
     focusOutEvent(&tmpFEOut);
     newLine();
 
-    for(uint i = 0; i < string.length();i++){
-      insertChar(string.data()[i]);
-    }
+    int line, col;
+    cursorPosition(&line, &col);
+    QMultiLineEdit::insertAt(string, line, col);
 
     // this doesn't work. in Qt 1.2:
     // insertAt(string.data(),line + 1,0);
 
-    QFocusEvent tmpFEIn(Event_FocusIn);
+#ifdef FocusIn
+#undef FocusIn
+#endif
+
+    QFocusEvent tmpFEIn(QEvent::FocusIn);
 
     focusInEvent(&tmpFEIn);
 
@@ -282,7 +292,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     number = _number; 	// index in popup. Not used anymore, but I'll leave it in
                         // the structure for now.
     name = pname;
-    name.detach(); 	// name of postit and name on the popup
+     	// name of postit and name on the popup
 
     kfm = 0L;
 
@@ -838,7 +848,7 @@ void KPostit::renameKPostit(){
 
     PostitFilesList.inSort(newName);
     name = newName;
-    name.detach();
+    
 
     if (have_alarm){
       label->setText(name + " (A)");
@@ -1194,7 +1204,7 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
 
 
   if (o == label){
-    if (ev->type() == Event_MouseButtonRelease){
+    if (ev->type() == QEvent::MouseButtonRelease){
       if (e->button() == LeftButton){
         dragging = false;
         label->releaseMouse();
@@ -1205,13 +1215,13 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
       return TRUE;
     }
 
-    if (ev->type() == Event_MouseButtonPress
+    if (ev->type() == QEvent::MouseButtonPress
 	&& e->button() == LeftButton){
       pointerOffset = e->pos();
       label->grabMouse(sizeAllCursor);
       return TRUE;
     }
-    if (ev->type() == Event_MouseMove
+    if (ev->type() == QEvent::MouseMove
 	&& label == mouseGrabber()){
 	if (dragging) {
 	    move(QCursor::pos()-pointerOffset);
@@ -1230,13 +1240,13 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
       return TRUE;
     }
 
-    if (ev->type() == Event_MouseMove)
+    if (ev->type() == QEvent::MouseMove)
       return TRUE;
   }
 
   (void) o;
 
-  if(ev->type() != Event_MouseButtonPress)
+  if(ev->type() != QEvent::MouseButtonPress)
     return FALSE;
 
   if(e->button() != RightButton)
@@ -1291,6 +1301,10 @@ void KPostit::toggleFrame(){
   else
     set3DFrame();
 }
+<<<<<<< knotes.cpp
+
+
+void KPostit::dummy(){
 
 void KPostit::toggleDock(){
   if (dock)
@@ -1319,9 +1333,9 @@ void KPostit::defaults()
   newdefstruct.autoindent = postitdefaults.autoindent;
   newdefstruct.font       = postitdefaults.font;
   newdefstruct.mailcommand = postitdefaults.mailcommand;
-  newdefstruct.mailcommand.detach();
+  newdefstruct.
   newdefstruct.printcommand = postitdefaults.printcommand;
-  newdefstruct.printcommand.detach();
+  newdefstruct.
 
 
   if(!tabdialog){
@@ -1506,7 +1520,7 @@ void KPostit::insertNetFile( const char *_url)
 
   QString string;
   QString netFile = _url;
-  netFile.detach();
+  
   KURL u( netFile.data() );
 
   if ( u.isMalformed() )
@@ -1828,8 +1842,8 @@ void readSettings()
 
   config->setGroup("Colors");
 
-  QColor blackC(black);
-  QColor yellowC(yellow);
+  QColor blackC(Qt::black);
+  QColor yellowC(Qt::yellow);
 
   postitdefaults.forecolor = config->readColorEntry("ForeColor",&blackC);
   postitdefaults.backcolor = config->readColorEntry("BackColor",&yellowC);

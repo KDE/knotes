@@ -27,7 +27,7 @@
 #ifndef __KPOSTIT_TIMER__
 #define __KPOSTIT_TIMER__
 
-#include <qapp.h>
+#include <qapplication.h>
 
 class MyTimer : public QObject{
 

@@ -29,15 +29,15 @@
 #ifndef _ALARM_DLG_H_
 #define _ALARM_DLG_H_
 
-#include <qgrpbox.h> 
-#include <qchkbox.h>
+#include <qgroupbox.h> 
+#include <qcheckbox.h>
 #include <qdialog.h>
-#include <qlined.h>
-#include <qpushbt.h>
+#include <qlineedit.h>
+#include <qpushbutton.h>
 #include <qpainter.h>
 #include <qlabel.h>
 #include <qframe.h>
-#include <qdatetm.h> 
+#include <qdatetime.h> 
 
 #include <kcolordlg.h>
 #include "knotes.h"
