@@ -276,7 +276,7 @@ void KNote::slotKill( bool force )
             i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>")
                 .arg( m_label->text() ),
             i18n("Confirm Delete"), KGuiItem( i18n("&Delete"), "editdelete") )
-         != KMessageBox::Yes )
+         != KMessageBox::Continue )
     {
         return;
     }
