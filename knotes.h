@@ -77,7 +77,7 @@ typedef struct _AlarmEntry{
 
 class KIntLineEdit : public QLineEdit
 {
-  Q_OBJECT;
+  Q_OBJECT
 
 public:
   KIntLineEdit( QWidget *parent = 0, const char *name = 0 ) 

@@ -144,7 +144,9 @@ void KPostitMultilineEdit::mynewLine(){
     // MultiLineWidget -- It is anoyingly buggy. 
     // I have to put in obscure workarounds all over the place. 
 
-    focusOutEvent(&QFocusEvent(Event_FocusOut));
+    QFocusEvent tmpFEOut(Event_FocusOut);
+
+    focusOutEvent(&tmpFEOut);
     newLine();
     
     for(uint i = 0; i < string.length();i++){
@@ -154,7 +156,9 @@ void KPostitMultilineEdit::mynewLine(){
     // this doesn't work. in Qt 1.2:
     // insertAt(string.data(),line + 1,0);
 
-    focusInEvent(&QFocusEvent(Event_FocusIn));
+    QFocusEvent tmpFEIn(Event_FocusIn);
+
+    focusInEvent(&tmpFEIn);
 
   }
   else{
@@ -1684,8 +1688,12 @@ void readSettings()
   postitdefaults.font = config->readFontEntry("Font",
 					       &QFont("helvetica",12));
   config->setGroup("Colors");
-  postitdefaults.forecolor = config->readColorEntry("ForeColor",&(QColor)black);
-  postitdefaults.backcolor = config->readColorEntry("BackColor",&(QColor)yellow);
+
+  QColor blackC(black);
+  QColor yellowC(yellow);
+
+  postitdefaults.forecolor = config->readColorEntry("ForeColor",&blackC);
+  postitdefaults.backcolor = config->readColorEntry("BackColor",&yellowC);
 
   config->setGroup("Geometry");
 

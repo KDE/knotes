@@ -32,8 +32,8 @@
 
 #include "fontdlg.moc"
 
-FontDlg::FontDlg(QWidget *parent=0, const char *name=0,
-		     KApplication *mykapp=NULL,DefStruct *defstruct=NULL)
+FontDlg::FontDlg(QWidget *parent, const char *name,
+		     KApplication *mykapp,DefStruct *defstruct)
   : QDialog(parent, name)
 {
 
