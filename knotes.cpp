@@ -1359,7 +1359,7 @@ void KPostit::defaults()
     label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
     label->setText(labelstring);
 
-    QPixmap pm( Icon("knoteslogo.xpm"));
+    QPixmap pm( BarIcon("knoteslogo"));
     QLabel *logo = new QLabel(box);
     logo->setPixmap(pm);
     logo->setGeometry(30, 50, pm.width(), pm.height());
