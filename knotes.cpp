@@ -101,29 +101,6 @@ extern bool 	readalarms();
 
 
 
-
-extern "C" {
-
-static int knotes_x_errhandler( Display *dpy, XErrorEvent *err )
-{
-    char errstr[256];
-
-    XGetErrorText( dpy, err->error_code, errstr, 256 );
-    fatal( "X Error: %s\n  Major opcode:  %d", errstr, err->request_code );
-    return 0;
-}
-
-
-static int knotes_xio_errhandler( Display * ){
-
-  cleanup(0);
-  return 0;
-
-}
-
-} /* extern "C" */
-
-
 KPostitMultilineEdit::KPostitMultilineEdit(QWidget *parent, const char *myname)
   : QMultiLineEdit(parent, myname){
 
@@ -1580,11 +1557,9 @@ int main( int argc, char **argv ) {
 
   pidFile = locateLocal( "appdata", "knotes.pid");
 
-  XSetErrorHandler( knotes_x_errhandler );
-  XSetIOErrorHandler( knotes_xio_errhandler );
-
+  //
   // if there is a pidFile then this is not the first instance of kpostit
-
+  //
   if ( ( fp = fopen( pidFile.ascii(), "r" ) ) != NULL )
     {
 
