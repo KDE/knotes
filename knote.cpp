@@ -111,7 +111,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     connect( m_button, SIGNAL(clicked()), this, SLOT(slotClose()) );
 
     m_label = new QLabel( this );
-    m_label->installEventFilter( this );  // recieve events (for dragging & action menu)
+    m_label->installEventFilter( this );  // receive events (for dragging & action menu)
     setName( m_journal->summary() );      // don't worry, no signals are connected at this stage yet
 
     // create the toolbar
@@ -120,7 +120,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
 
     // create the note editor
     m_editor = new KNoteEdit( m_tool, this );
-    m_editor->installEventFilter( this ); // recieve events (for modified)
+    m_editor->installEventFilter( this ); // receive events (for modified)
     m_editor->viewport()->installEventFilter( this );
 
     setDOMDocument( buildDoc );
