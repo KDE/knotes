@@ -1,6 +1,9 @@
 1999-03-07  Harri Porten  <porten@kde.org>
 
-	* make it compile with Qt 2.0. QPopMenu still has to be fixed. 
+	* make it compile with Qt 2.0.
+	* knotes.cpp: adapt to different id numbering of QPopupMenu
+	* docking.cpp: get along without the PMERROR macro whose i18n() did not
+	get parsed by msgfmt.
 
 Tue Feb 16 09:34:25 1999  David Faure  <faure@kde.org>
 

@@ -242,15 +242,13 @@ QString KPostitMultilineEdit::prefixString(QString string){
   // It is assumed that string contains at least one non whitespace character
   // ie \n \r \t \v \f and space
 
-  // TODO: check if this rewrite to Qt 2.0 really works !
-
   QString returnstring("");
 
   int len = string.length();
 
   int i = 0;
   while(i < len && isspace(string[i]))
-    returnstring += string[i];
+    returnstring += string[i++];
 
   return returnstring;
 
@@ -363,7 +361,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     }
 
     connect( right_mouse_button, SIGNAL(activated( int )),
-	     SLOT(findKPostit(int)) );
+	     SLOT(RMBActivated(int)) );
 
 
     right_mouse_button->insertSeparator();
@@ -761,8 +759,12 @@ void KPostit::newKPostit(){
 
 }
 
-void KPostit::findKPostit(int i){
+void  KPostit::RMBActivated(int i){
+  // convert absolute id to relative index
+  findKPostit(right_mouse_button->indexOf(i));
+}
 
+void KPostit::findKPostit(int i){
 
   if ( i < 0)
     return;
@@ -1156,27 +1158,10 @@ bool KPostit::savenotes(){
   t << font.family() <<'\n';
   t << font.pointSize()<< '\n';
   t << font.weight() <<'\n';
-  if (font.italic())
-    t << 1 <<'\n';
-  else
-    t <<  0 << '\n';
-
-  if (frame3d)
-    t << 1 <<'\n';
-  else
-    t <<  0 << '\n';
-
-  if (edit->autoIndentMode)
-    t << 1 <<'\n';
-  else
-    t <<  0 << '\n';
-
-  if (hidden)
-    t << 1 <<'\n';
-  else
-    t <<  0 << '\n';
-
-
+  t << (font.italic() ? 1 : 0) << endl;
+  t << (frame3d ? 1 : 0) << endl;
+  t << (edit->autoIndentMode ? 1 : 0) << endl;
+  t << (hidden ? 1 : 0) << endl;
 
   int line_count = edit->numLines();
 

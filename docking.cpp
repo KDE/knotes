@@ -30,10 +30,6 @@
 #include "knotes.h"
 #include "docking.h"
 
-#define PMERROR(pm) \
-  tmp.sprintf(i18n("Could not load %s !"), pm); \
-  QMessageBox::warning(this, i18n("Error"), tmp);
-
 //extern QStrList  KPostit::PostitFilesList; // names of all postit files
 extern KApplication *mykapp;
 //extern QList<KPostit> 	  KPostit::PostitList;    
@@ -49,7 +45,8 @@ DockWidget::DockWidget(const char *name): QWidget(0, name, 0) {
 
 
   if (!picsmall_pixmap.load(pixdir + "knotes.xpm")){
-    PMERROR("knotes.xpm");
+    tmp.sprintf(i18n("Could not load %s !"), "knotes.xpm");
+    QMessageBox::warning(this, i18n("Error"), tmp);
   }
 
   //////////////////////////////////////////////////////////////////
@@ -186,6 +183,9 @@ void DockWidget::dock() {
 }
 
 void DockWidget::findKPostit(int i){
+
+  // convert absolute id to relative index
+  i = popup_m->indexOf(i);
 
   if(KPostit::PostitList.count() > 0 && i > 1){
     KPostit::PostitList.at(0)->findKPostit( i - 2 );

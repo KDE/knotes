@@ -200,6 +200,7 @@ public slots:
   bool  insertFile(const char* filename);
   void  slotDropEvent( KDNDDropZone * _dropZone );
   void  slotKFMFinished();
+  void  RMBActivated(int);
   void  close();
   void  selectFont();
   void  findKPostit(int );
