@@ -1,20 +1,25 @@
-TODOs for KNotes
-================
+TODO for KNotes
+===============
 
- * document the config dialog
- * transparent notes
- * alarm
- * steal some ideas from Stickies (Mac OS X)
- * save cursor position and scrollbar postion
- * the config dialog:
-    - make the frame configureable (3d -> normal)
-    - make the keybindings configureable
+ * finish the rich text mode (GUI missing)
+ * alarms for the notes
+ * categories for the notes
  * improve printing:
     - width of the text on the paper should fit note width if not bigger
       than the paper width
     - print the note title as well
+ * the config dialog:
+    - make the frame configureable (3d -> normal)
+    - make the keybindings configureable
+ * save cursor and scrollbar postion
+ * document the config dialog
+ * steal some ideas from Stickies (Mac OS X)
+ 
+ * once we have more session configs make KNotes save its notes in
+   .kde/share/apps/knotes/<session-name>/
 
 perhaps:
+ * transparent notes
  * shadow for the notes
  * icons for the notes (small, put in the note menu)
 
@@ -31,4 +36,4 @@ Always open TODO:
  * make the code as perfect and clean as possible!!
 
 
--- Michael Brade 24-09-2002
+-- Michael Brade 28-09-2002

@@ -89,6 +89,8 @@ protected slots:
     void slotNoteKilled( const QString& name );
     void slotNoteRenamed( const QString& oldname, const QString& newname );
 
+    void slotQuit();
+    
 private slots:
     void updateNoteActions();
     void updateGlobalAccels();
@@ -96,7 +98,7 @@ private slots:
 private:
     KNote* noteById( int id ) const;
     void showNote( KNote* note ) const;
-    void saveNotes() const;
+    void saveNotes( bool display ) const;
 
     QDict<KNote>      m_noteList;
     QPtrList<KAction> m_noteActions;

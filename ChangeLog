@@ -1,6 +1,12 @@
 ChangeLog for KNotes
 ====================
 
+
+2002/09/28  Michael Brade <brade@kde.org>
+
+    * finally fixed the session management bug (remove the sessionId from
+      all notes => KWin will ignore them)
+
 2002/09/26  Michael Brade <brade@kde.org>
 
     * new version number

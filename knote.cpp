@@ -25,6 +25,7 @@
 #include <qpaintdevicemetrics.h>
 #include <qsimplerichtext.h>
 
+#include <kapplication.h>
 #include <kaction.h>
 #include <kxmlgui.h>
 #include <kprinter.h>
@@ -58,6 +59,8 @@
 #undef FocusOut
 #endif
 
+extern Atom qt_sm_client_id;
+
 
 // -------------------- Initialisation -------------------- //
 KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& file,
@@ -66,6 +69,9 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
     m_noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) ),
     m_configFile( file )
 {
+    XChangeProperty( x11Display(), winId(), qt_sm_client_id, XA_STRING, 8, 
+        PropModeReplace, 0, 0 );
+
     // create the menu items for the note - not the editor...
     // rename, mail, print, insert date, close, delete, new note
     new KAction( i18n("New"), "filenew", 0, this, SLOT(slotNewNote()), actionCollection(), "new_note" );
