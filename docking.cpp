@@ -1,5 +1,5 @@
 /*
- *              KSCD -- a simpole cd player for the KDE project
+ *             KNotes
  *
  * $Id$
  *
