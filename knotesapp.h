@@ -3,26 +3,37 @@
 #ifndef KNOTESAPP_H
 #define KNOTESAPP_H
 
-#include <kuniqueapp.h>
-#include <kdockwindow.h>
-
 #include "knote.h"
+#include <ksystemtray.h>
+#include <kconfig.h>
+#include <qdict.h>
 
-class KNotesApp : public KDockWindow  {
+
+class KNotesApp : public KSystemTray {
    Q_OBJECT
 public:
-	KNotesApp();
-	~KNotesApp();
-	
-protected:
-	QMap< QString, KNote* >  m_NoteList;
-		
-public slots:
-	void slotNewNote    ( int id=0 );  //needed to connect to menu
-	void slotNoteClosed ( QString& name );
-	void slotPreferences( int id=0 );
-	void slotNoteRenamed( QString& oldname, QString& newname );
+    KNotesApp();
+    ~KNotesApp();
 
+    void goToDesktop( uint desktop );
+
+public slots:
+    void slotNewNote    ( int id=0 );
+    void slotPreferences( int );
+
+    void slotNoteKilled ( QString name );
+    void slotNoteRenamed( QString& oldname, QString& newname );
+
+protected slots:
+    void slotToNote( int id );
+    void slotPrepareNoteMenu();
+
+private:
+    QDict< KNote >  m_NoteList;
+    KPopupMenu*     m_note_menu;
+    KConfig*        m_defaults;
+
+    void copyDefaultConfig( KSimpleConfig* );
 };
 
 #endif
