@@ -490,7 +490,10 @@ void KNote::slotSend()
     }
 
     // Send the note
-    (void)new KNotesNetworkSender( host, name(), text() );
+    KNotesNetworkSender *sender = new KNotesNetworkSender( host, KNotesGlobalConfig::port() );
+    sender->setSenderId( KNotesGlobalConfig::senderID() );
+    sender->setNote( name(), text() );
+    sender->connect();
 }
 
 void KNote::slotMail()

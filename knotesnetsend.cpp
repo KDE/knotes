@@ -2,6 +2,7 @@
  KNotes -- Notes for the KDE project
 
  Copyright (c) 2003, Daniel Martin <daniel.martin@pirack.com>
+               2004, Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -34,21 +35,13 @@
 #include <ksockaddr.h>
 
 #include "knotesnetsend.h"
-#include "knotesglobalconfig.h"
 
 // This comes in seconds!
 #define CONNECT_TIMEOUT 10
 
 
-KNotesNetworkSender::KNotesNetworkSender( const QString& hostname,
-                const QString& title, const QString& text )
-  : KExtendedSocket( hostname, KNotesGlobalConfig::port() ),
-    // TODO: support for unicode and richtext.
-    // Mmmmmm... how to behave with such heterogeneous environment?
-    // AFAIK, ATnotes does not allow UNICODE.
-    m_note( text.ascii() ),
-    m_title( title.ascii() ),
-    m_index( 0 )
+KNotesNetworkSender::KNotesNetworkSender( const QString& hostname, int port )
+  : KExtendedSocket( hostname, port )
 {
     enableRead( false );
     enableWrite( false );
@@ -59,18 +52,28 @@ KNotesNetworkSender::KNotesNetworkSender( const QString& hostname,
     QObject::connect( this, SIGNAL(connectionFailed( int )), SLOT(slotError( int )) );
     QObject::connect( this, SIGNAL(closed( int )), SLOT(slotClosed( int )) );
     QObject::connect( this, SIGNAL(readyWrite()), SLOT(slotReadyWrite()) );
+}
 
-    // The error signal will take care of errors
-    connect();
+void KNotesNetworkSender::setSenderId( const QString& sender )
+{
+    m_sender = sender.ascii();
+}
+
+void KNotesNetworkSender::setNote( const QString& title, const QString& text )
+{
+    // TODO: support for unicode and richtext.
+    // Mmmmmm... how to behave with such heterogeneous environment?
+    // AFAIK, ATnotes does not allow UNICODE.
+    m_title = title.ascii();
+    m_note = text.ascii();
 }
 
 void KNotesNetworkSender::slotConnected()
 {
-    const QString& sender = KNotesGlobalConfig::senderID();
-    if ( sender.isEmpty() )
+    if ( m_sender.isEmpty() )
         m_note.prepend( m_title + "\n");
     else
-        m_note.prepend( m_title + " (" + sender.ascii() + ")\n" );
+        m_note.prepend( m_title + " (" + m_sender + ")\n" );
 
     enableWrite( true );
 }

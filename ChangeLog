@@ -1,6 +1,16 @@
 ChangeLog for KNotes
 ====================
 
+2004/08/26  Michael Brade <brade@kde.org>
+
+    * fixed jumping/moving of the title text on focusIn/Out events, still not
+      perfect
+
+2004/08/25  Michael Brade <brade@kde.org>
+
+    * split KNotes into 5 static libraries to provide for reusability of parts
+      of KNotes.
+
 2004/08/22  Michael Brade <brade@kde.org>
 
     * fixed #81672: when there are no notes don't put the toolbar in the system

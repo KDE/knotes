@@ -10,11 +10,9 @@ noinst_HEADERS  = knotesapp.h knote.h knoteedit.h knotebutton.h knoteconfigdlg.h
                   knotesnetrecv.h knotesnetsend.h knotehostdlg.h
 
 # Dependencies of the static libraries:
-#   note: all others
-#   network: config [knotesnetsend depends on globalconfig, could be fixed]
-#   editor: ok
-#   resources: config
-#   config: ok
+#   network, editor, config are standalone
+#   resources depends on config
+#   note depends on all others
 
 noinst_LTLIBRARIES = libknote.la libknoteseditor.la libknotesresources.la \
                      libknotesconfig.la libknotesnetwork.la
