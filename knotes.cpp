@@ -1,8 +1,6 @@
 
 /*
 
- $Id$
-
  KNotes -- Notes for the KDE project
 
  Copyright (C) Bernd Johannes Wuebben
@@ -76,7 +74,7 @@ QString 	tmpFile;
 
 MyTimer* 	mytimer;
 SaveTimer* 	savetimer;
-bool            saved_already_for_session_management = false;
+volatile sig_atomic_t cleaning_up = false;
 
 extern bool     savealarms();
 extern bool 	readalarms();
@@ -149,6 +147,9 @@ void KPostitMultilineEdit::mouseDoubleClickEvent ( QMouseEvent * e ){
 
   QString text = markedText();
   //  printf("%d %d %s\n",line,column,text.data());
+
+  if (text.isEmpty())
+    return;
 
   KURL kurl(text.data());
 
@@ -402,11 +403,11 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     if(!frame3d){
       setNoFrame();
-      options->changeItem(klocale->translate("3D Frame"),frame3dID);
+      //      options->changeItem(klocale->translate("3D Frame"),frame3dID);
     }
     else{
       set3DFrame();
-      options->changeItem(klocale->translate("No Frame"),frame3dID);
+      //      options->changeItem(klocale->translate("No Frame"),frame3dID);
     }
 
     if(!edit->autoIndentMode){
@@ -448,32 +449,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
       setCaption(QString(klocale->translate("Note: ")) + name);
     }
 
-    connect(mykapp,SIGNAL(saveYourself()),this,SLOT(wm_saveyourself()));
-
 }
-
-void KPostit::toggleshow(){
-
-}
-
-void KPostit::wm_saveyourself(){
-
-  if(!saved_already_for_session_management){
-
-    remove( pidFile.data() );
-    savealarms();
-    writeSettings();
-
-    for(KPostit::PostitList.first();KPostit::PostitList.current();
-	KPostit::PostitList.next()){
-
-      KPostit::PostitList.current()->savenotes();
-
-    }
-    saved_already_for_session_management = true;
-  }
-}
-
 
 void KPostit::clear_text(){
 
@@ -828,8 +804,7 @@ void KPostit::renameKPostit(){
 
     QString notesfile;
     QString newnotesfile;
-    notesfile = getenv("HOME");
-    notesfile += "/.kde/share/apps/knotes/notes";
+    notesfile = KApplication::localkdedir() + "/share/apps/knotes/notes";
     newnotesfile = notesfile.copy();
     notesfile += name;
     newnotesfile += newName;
@@ -920,8 +895,7 @@ void KPostit::deleteKPostit(){
     return;
 
   QString notesfile;
-  notesfile = getenv("HOME");
-  notesfile += "/.kde/share/apps/knotes/notes/";
+  notesfile = KApplication::localkdedir() + "/share/apps/knotes/notes/";
   notesfile += name;
 
   if(remove(notesfile.data())){
@@ -978,8 +952,7 @@ bool KPostit::loadnotes(){
 
 
   QString notesfile;
-  notesfile = getenv("HOME");
-  notesfile += "/.kde/share/apps/knotes/notes/";
+  notesfile = KApplication::localkdedir() + "/share/apps/knotes/notes/";
   notesfile += name;
 
   QFile file(notesfile.data());
@@ -1129,8 +1102,7 @@ void KPostit::closeEvent( QCloseEvent * ){
 bool KPostit::savenotes(){
 
   QString notesfile;
-  notesfile = getenv("HOME");
-  notesfile += "/.kde/share/apps/knotes/notes/";
+  notesfile = KApplication::localkdedir() + "/share/apps/knotes/notes/";
   notesfile += name;
 
   QFile file(notesfile.data());
@@ -1288,7 +1260,7 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
 void KPostit::set3DFrame(){
 
   frame3d = TRUE;
-  options->changeItem(klocale->translate("No Frame"),frame3dID);
+  //  options->changeItem(klocale->translate("No Frame"),frame3dID);
   options->setItemChecked(frame3dID,TRUE);
   //  edit->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
   KWM::setDecoration(winId(), KWM::tinyDecoration);
@@ -1298,7 +1270,7 @@ void KPostit::set3DFrame(){
 void KPostit::setNoFrame(){
 
   frame3d = FALSE;
-  options->changeItem(klocale->translate("3D Frame"),frame3dID);
+  //  options->changeItem(klocale->translate("3D Frame"),frame3dID);
   options->setItemChecked(frame3dID,FALSE);
   //  edit->setFrameStyle(QFrame::NoFrame);
   KWM::setDecoration(winId(), KWM::noDecoration);
@@ -1324,11 +1296,6 @@ void KPostit::toggleDock(){
     docker->dock();
   }
   options->setItemChecked(dockID,dock);
-}
-
-void KPostit::dummy(){
-
-
 }
 
 void KPostit::defaults()
@@ -1662,10 +1629,10 @@ void KPostit::setNoAutoIndent(){
 
 void findPostitFiles(){
 
-  QString p = getenv( "HOME" );
-  QString filesdir = p + "/.kde/share/apps/knotes/notes/";
+  QString p = KApplication::localkdedir();
+  QString filesdir = p + "/share/apps/knotes/notes/";
 
-  QString alarmdir = p + "/.kde/share/apps/knotes/xyalarms";
+  QString alarmdir = p + "/share/apps/knotes/xyalarms";
 
   if ( access( filesdir.data(), F_OK ) ){
     mkdir( filesdir.data(), 0700 );
@@ -1722,6 +1689,24 @@ void alarmConsistencyCheck(){
   }
 }
 
+sessionWidget::sessionWidget() {
+  // the only function of this widget is to catch & forward the
+  // saveYourself() signal from the session manager
+  connect(mykapp, SIGNAL(saveYourself()), SLOT(wm_saveyourself()));
+}
+
+void sessionWidget::wm_saveyourself() {
+
+  remove( pidFile.data() );
+  savealarms();
+  writeSettings();
+
+  for(KPostit::PostitList.first();KPostit::PostitList.current();
+      KPostit::PostitList.next())
+
+    KPostit::PostitList.current()->savenotes();
+}
+
 int main( int argc, char **argv ) {
 
   FILE *fp;
@@ -1737,8 +1722,8 @@ int main( int argc, char **argv ) {
   testDir( "/.kde/share/apps/knotes/notes" );
   testDir( "/.kde/share/apps/knotes/xyalarms" );
 
-  QString p = getenv( "HOME" );
-  QString rcDir = p + "/.kde/share/apps/knotes";
+  QString p = KApplication::localkdedir();
+  QString rcDir = p + "/share/apps/knotes";
   pidFile = rcDir + "/knotes.pid";
 
 
@@ -1810,7 +1795,7 @@ int main( int argc, char **argv ) {
 
 
   // manual session management (knotes alredy stores everything)
-  kapp->setTopWidget(new QWidget);
+  kapp->setTopWidget(new sessionWidget);
   kapp->enableSessionManagement(true);
   kapp->setWmCommand("knotes -knotes_restore");
 
@@ -1830,8 +1815,9 @@ void readSettings()
 
   KConfig *config = mykapp->getConfig();
   config->setGroup( "Font" );
-  postitdefaults.font = config->readFontEntry("Font",
-					       &QFont("helvetica",12));
+  QFont defaultFont("helvetica",12);
+  postitdefaults.font = config->readFontEntry("Font", &defaultFont);
+
   config->setGroup("Colors");
 
   QColor blackC(black);
@@ -1899,6 +1885,9 @@ static void cleanup( int sig )
 {
 
   (void) sig;
+  if(cleaning_up)
+    return;
+  cleaning_up = true;
   //  printf("KPostit: Caught signal %d. Tyring to save state.\n",sig);
   remove( pidFile.data() );
   savealarms();

@@ -5,6 +5,21 @@ Tue Feb 16 09:34:25 1999  David Faure  <faure@kde.org>
 	* Move options submenu to toplevel RMB menu (too many submenus!)
 	* Re-added "Quit" menu entry (in order to quit when docking is off)
 
+1999-02-16  Harri Porten  <porten@kde.org>
+
+	* fixed SIGSEV caused by double-clicking on empty places.
+	* introduced a simple sessionWidget that will catch the
+        saveYourself() signal from the session manager and invoke saving all
+        data. This is more robust than having concurring methods in every
+        widget and works without the saved_already_for_session_management
+        variable that was NOT unset if the user cancelled the shutdown (bug !)
+	* renaming: missing slash broke renaming.
+        * set atomic flag in cleanup(). Hope to have avoided occasional crash
+        leading to data loss.
+	* Replaced ~/.kde with KApplication::localkdedir()
+        * option menu: disabled illogical switch between "3D frame" and
+        "no frame" label. It is a checkable entry!
+
 Fri May 29 05:36:36 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
 
 	* KNotes are now automatically saved all 15 minutes. 
