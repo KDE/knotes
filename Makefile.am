@@ -29,6 +29,6 @@ rc_DATA   = knotesrc
 rcdir     = $(kde_confdir)
 
 
-messages:
+messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/knotes.pot
 
