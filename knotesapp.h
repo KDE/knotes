@@ -22,17 +22,25 @@
 #define KNOTESAPP_H
 
 #include <qstring.h>
+#include <qlist.h>
 #include <qdict.h>
+#include <qlabel.h>
 
 #include <kapp.h>
-#include <ksystemtray.h>
+#include <kxmlguiclient.h>
+#include <kxmlguibuilder.h>
 
 #include "KNotesIface.h"
 
 class KNote;
+class KPopupMenu;
+class KAction;
+class KActionMenu;
+class KXMLGUIFactory;
 
 
-class KNotesApp : public KSystemTray, virtual public KNotesIface, public KSessionManaged
+class KNotesApp : public QLabel, virtual public KNotesIface, public KSessionManaged,
+    public KXMLGUIBuilder, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:
@@ -63,15 +71,14 @@ public:
     bool saveState( QSessionManager& );
 
 protected:
-    void mouseReleaseEvent( QMouseEvent* );
+    void mousePressEvent( QMouseEvent* );
     bool eventFilter( QObject*, QEvent* );
 
 protected slots:
     void slotNewNote();
-    void slotToNote( int id ) const;
+    void slotShowNote();
 
     void slotPreferences() const;
-    void slotPrepareNoteMenu();
 
     void slotNoteKilled( const QString& name );
     void slotNoteRenamed( const QString& oldname, const QString& newname );
@@ -80,9 +87,14 @@ private:
     KNote* noteById( int id ) const;
     void showNote( KNote* note ) const;
     void saveNotes() const;
+    void updateNoteActions();
 
-    QDict<KNote>  m_NoteList;
-    KPopupMenu*   m_note_menu;
+    QDict<KNote>   m_noteList;
+    QList<KAction> m_noteActions;
+    KPopupMenu*    m_note_menu;
+    KPopupMenu*    m_context_menu;
+
+    KXMLGUIFactory* factory;
 };
 
 #endif

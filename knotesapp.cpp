@@ -34,6 +34,10 @@
 #include <kio/netaccess.h>
 #include <kurl.h>
 
+#include <kaction.h>
+#include <kstdaction.h>
+#include <kxmlgui.h>
+
 #include <unistd.h>
 
 #include "knotesapp.h"
@@ -42,24 +46,32 @@
 
 
 KNotesApp::KNotesApp()
-    : KSystemTray(), DCOPObject("KNotesIface")
+    : QLabel( 0, 0, WType_TopLevel ), DCOPObject("KNotesIface"),
+      KXMLGUIBuilder( this )
 {
-    // create the dock widget....
+    m_noteActions.setAutoDelete( true );
+
+    // create the dock widget...
+    KWin::setSystemTrayWindowFor( winId(), qt_xrootwin() );
+    setBackgroundMode( X11ParentRelative );
     setPixmap( KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Small ) );
 
-    m_note_menu = new KPopupMenu( this );
-    connect( m_note_menu, SIGNAL( aboutToShow() ),
-             this,        SLOT( slotPrepareNoteMenu() ) );
-    connect( m_note_menu, SIGNAL( activated(int) ),
-             this,        SLOT( slotToNote(int) ) );
+    // create the GUI...
+    KStdAction::openNew( this, SLOT( slotNewNote() ), actionCollection() );
+    KStdAction::preferences( this, SLOT( slotPreferences() ), actionCollection() );
+    KStdAction::quit( kapp, SLOT( closeAllWindows() ), actionCollection() );
+    new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
-    KPopupMenu* menu = contextMenu();
-    KHelpMenu* helpMenu = new KHelpMenu( this, kapp->aboutData(), false );
-    menu->insertItem( i18n("New Note"), this, SLOT( slotNewNote() ) );
-    menu->insertItem( i18n("Notes"), m_note_menu );
-    menu->insertItem( SmallIcon("configure"), i18n("Preferences..."), this, SLOT( slotPreferences() ) );
-    menu->insertSeparator();
-    menu->insertItem( SmallIcon("help"), i18n("&Help"), helpMenu->menu() );
+    setXMLFile( QString( instance()->instanceName() + "ui.rc" ) );
+    setXMLGUIBuildDocument( QDomDocument() );
+
+    factory = new KXMLGUIFactory( this, this, "guifactory" );
+    factory->addClient( this );
+
+    m_context_menu = static_cast<KPopupMenu*>(factory->container( "context_menu", this ));
+    m_context_menu->insertTitle( kapp->miniIcon(), kapp->caption(), -1, 0 );
+
+    m_note_menu = static_cast<KPopupMenu*>(factory->container( "note_menu", this ));
 
     // remove old (KDE 1.x) local config file if it still exists
     QString configfile = KGlobal::dirs()->findResource( "config", "knotesrc" );
@@ -113,26 +125,29 @@ KNotesApp::KNotesApp()
         connect( newNote, SIGNAL( sigKilled(const QString&) ),
                  this,    SLOT( slotNoteKilled(const QString&) ) );
 
-        m_NoteList.insert( newNote->name(), newNote );
+        m_noteList.insert( newNote->name(), newNote );
     }
+    updateNoteActions();
 
     kapp->installEventFilter( this );
 
-    if ( m_NoteList.count() == 0 && !kapp->isRestored() )
+    if ( m_noteList.count() == 0 && !kapp->isRestored() )
         slotNewNote();
 }
 
 KNotesApp::~KNotesApp()
 {
     delete m_note_menu;
-    m_NoteList.clear();
+    delete m_context_menu;
+    m_noteList.clear();
+    delete factory;
 }
 
 bool KNotesApp::saveState( QSessionManager& )
 {
     saveNotes();
 
-    QDictIterator<KNote> it( m_NoteList );
+    QDictIterator<KNote> it( m_noteList );
     for ( ; it.current(); ++it )
         it.current()->hide();
 
@@ -145,24 +160,25 @@ bool KNotesApp::commitData( QSessionManager& )
     return true;
 }
 
+
 // -------------------- public DCOP interface -------------------- //
 
 int KNotesApp::newNote( QString name, const QString& text )
 {
-    if ( !name.isNull() && m_NoteList[name] )
+    if ( !name.isNull() && m_noteList[name] )
     {
         kdError() << "A note with this name already exists!" << endl;
         return -1;
     }
     
-    // must be done here to check if !m_NoteList[name]
+    // must be done here to check if !m_noteList[name]
     QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
     if ( name.isEmpty() )
     {
         for ( int i = 1; ; i++ )
         {
             name = QString( "KNote %1" ).arg(i);
-            if ( !m_NoteList[name] && !noteDir.exists( name ) )
+            if ( !m_noteList[name] && !noteDir.exists( name ) )
                 break;
         }
     }
@@ -177,14 +193,15 @@ int KNotesApp::newNote( QString name, const QString& text )
     connect( newNote, SIGNAL( sigKilled(const QString&) ),
              this,    SLOT( slotNoteKilled(const QString&) ) );
 
-    m_NoteList.insert( newNote->name(), newNote );
-    
+    m_noteList.insert( newNote->name(), newNote );
+    updateNoteActions();
+
     return newNote->noteId();
 }
 
 void KNotesApp::showNote( const QString& name ) const
 {
-    KNote* note = m_NoteList[name];
+    KNote* note = m_noteList[name];
 
     if ( !note )
     {
@@ -210,7 +227,7 @@ void KNotesApp::showNote( int noteId ) const
 
 void KNotesApp::killNote( const QString& name )
 {
-    KNote* note = m_NoteList[name];
+    KNote* note = m_noteList[name];
     if ( note )
         note->slotKill();
 }
@@ -225,7 +242,7 @@ void KNotesApp::killNote( int noteId )
 QMap<int,QString> KNotesApp::notes() const
 {
     QMap<int,QString> notes;
-    QDictIterator<KNote> it( m_NoteList );
+    QDictIterator<KNote> it( m_noteList );
 
     for ( ; it.current(); ++it )
         notes.insert( it.current()->noteId(), it.current()->name() );
@@ -235,7 +252,7 @@ QMap<int,QString> KNotesApp::notes() const
 
 QString KNotesApp::text( const QString& name ) const
 {
-    KNote* note = m_NoteList[name];
+    KNote* note = m_noteList[name];
     
     if ( note )
         return note->text();
@@ -267,7 +284,7 @@ void KNotesApp::setName( int noteId, const QString& newName )
 
 void KNotesApp::setText( const QString& name, const QString& newText )
 {
-    KNote* note = m_NoteList[name];
+    KNote* note = m_noteList[name];
     if ( note )
         note->setText( newText );
 }
@@ -281,7 +298,7 @@ void KNotesApp::setText( int noteId, const QString& newText )
 
 void KNotesApp::sync( const QString& app )
 {
-    QDictIterator<KNote> it( m_NoteList );
+    QDictIterator<KNote> it( m_noteList );
 
     for ( ; it.current(); ++it )
         it.current()->sync( app );
@@ -289,7 +306,7 @@ void KNotesApp::sync( const QString& app )
 
 bool KNotesApp::isNew( const QString& app, const QString& name ) const
 {
-    KNote* note = m_NoteList[name];
+    KNote* note = m_noteList[name];
 
     if ( note )
         return note->isNew( app );
@@ -309,7 +326,7 @@ bool KNotesApp::isNew( const QString& app, int noteId ) const
 
 bool KNotesApp::isModified( const QString& app, const QString& name ) const
 {
-    KNote* note = m_NoteList[name];
+    KNote* note = m_noteList[name];
 
     if ( note )
         return note->isModified( app );
@@ -330,14 +347,23 @@ bool KNotesApp::isModified( const QString& app, int noteId ) const
 
 // ------------------- protected methods ------------------- //
 
-void KNotesApp::mouseReleaseEvent( QMouseEvent* e)
+void KNotesApp::mousePressEvent( QMouseEvent* e )
 {
-    if ( rect().contains( e->pos() ) && e->button() == LeftButton )
+    if ( !rect().contains( e->pos() ) )
+        return;
+
+    switch ( e->button() )
     {
-        slotPrepareNoteMenu();
+    case LeftButton:
         if ( m_note_menu->count() > 0 )
             m_note_menu->popup( e->globalPos() );
-        return;
+        break;
+    case MidButton:
+    case RightButton:
+        m_context_menu->popup( e->globalPos() );
+        break;
+    default:
+        break;
     }
 }
 
@@ -350,7 +376,7 @@ bool KNotesApp::eventFilter( QObject* o, QEvent* ev )
         if ( ke->key() == Key_BackTab )         // Shift+Tab
         {
             // show next note
-            QDictIterator<KNote> it( m_NoteList );
+            QDictIterator<KNote> it( m_noteList );
             KNote* first = it.current();
             for ( ; it.current(); ++it )
                 if ( it.current()->hasFocus() ) {
@@ -377,27 +403,29 @@ void KNotesApp::slotNewNote()
     newNote();
 }
 
-void KNotesApp::slotToNote( int id ) const
+void KNotesApp::slotShowNote()
 {
     //tell the WM to give this note focus
-    QString name = m_note_menu->text( id );
+    QString name = QString::fromUtf8( sender()->name() );
     showNote( name );
 }
 
 void KNotesApp::slotNoteRenamed( const QString& oldname, const QString& newname )
 {
-    if ( m_NoteList[newname] )
+    if ( m_noteList[newname] )
     {
         KMessageBox::sorry( this, i18n("There is already a note with that name") );
         return;
     }
 
-    KNote* note = m_NoteList[oldname];
+    KNote* note = m_noteList[oldname];
     if ( note )
     {
-        m_NoteList.remove( oldname );
-        m_NoteList.insert( newname, note );
+        m_noteList.remove( oldname );
+        m_noteList.insert( newname, note );
         note->setName( newname );
+
+        updateNoteActions();
     }
     else
         kdError() << "There is no note named: " << oldname << endl;
@@ -405,7 +433,8 @@ void KNotesApp::slotNoteRenamed( const QString& oldname, const QString& newname 
 
 void KNotesApp::slotNoteKilled( const QString& name )
 {
-    m_NoteList.remove( name );
+    m_noteList.remove( name );
+    updateNoteActions();
 }
 
 void KNotesApp::slotPreferences() const
@@ -415,21 +444,12 @@ void KNotesApp::slotPreferences() const
     config.exec();
 }
 
-void KNotesApp::slotPrepareNoteMenu()
-{
-    // find all notes - get their names and put them into the menu
-    m_note_menu->clear();
-
-    for ( QDictIterator<KNote> it( m_NoteList ); it.current(); ++it )
-        m_note_menu->insertItem( it.currentKey() );
-}
-
 
 // -------------------- private methods -------------------- //
 
 KNote* KNotesApp::noteById( int noteId ) const
 {
-    QDictIterator<KNote> it( m_NoteList );
+    QDictIterator<KNote> it( m_noteList );
 
     for ( ; it.current(); ++it )
         if ( it.current()->noteId() == noteId )
@@ -461,13 +481,29 @@ void KNotesApp::showNote( KNote* note ) const
 void KNotesApp::saveNotes() const
 {
     // save all the notes...
-    QDictIterator<KNote> it( m_NoteList );
+    QDictIterator<KNote> it( m_noteList );
     for ( ; it.current(); ++it )
     {
         it.current()->saveData();
         it.current()->saveConfig();
         it.current()->saveDisplayConfig();
     }
+}
+
+void KNotesApp::updateNoteActions()
+{
+    unplugActionList( "notes" );
+    m_noteActions.clear();
+
+    for ( QDictIterator<KNote> it( m_noteList ); it.current(); ++it )
+    {
+        KAction *action = new KAction( it.currentKey(), 0, 0, it.currentKey().utf8() );
+        connect( action, SIGNAL( activated() ), this, SLOT( slotShowNote() ) );
+        m_noteActions.append( action );
+    }
+
+    if ( !m_noteList.isEmpty() )
+        plugActionList( "notes", m_noteActions );
 }
 
 #include "knotesapp.moc"
