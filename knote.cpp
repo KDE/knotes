@@ -46,6 +46,9 @@
 #include <netwm.h>
 
 // fscking X headers
+#ifdef FocusIn
+#undef FocusIn
+#endif
 #ifdef FocusOut
 #undef FocusOut
 #endif
@@ -57,9 +60,6 @@ KNote::KNote( const QString& config, bool load, QWidget* parent, const char* nam
       m_configFile( config ),
       m_killSelf( false )
 {
-    setFrameStyle( NoFrame );
-    setMinimumSize( 20, 20 );
-
     // create the menu items for the note - not the editor...
     // rename, mail, print, insert date, close, delete, new note
     m_desktop_menu = new KPopupMenu( this );
@@ -91,13 +91,19 @@ KNote::KNote( const QString& config, bool load, QWidget* parent, const char* nam
 
     m_label = new QLabel( this );
     m_label->setAlignment( AlignHCenter );
-    m_label->installEventFilter( this );  // recieve events( for dragging & action menu )
+    m_label->installEventFilter( this );  // recieve events (for dragging & action menu)
 
     // create the note editor
     m_editor = new KNoteEdit( this );
-    m_editor->installEventFilter( this ); // recieve events( for modified )
+    m_editor->installEventFilter( this ); // recieve events (for modified)
 
     setFocusProxy( m_editor );
+
+    // set up the look&feel of the note
+    setFrameStyle( WinPanel | Raised );
+    setLineWidth( 1 );
+    setMinimumSize( 20, 20 );
+    setMargin( 5 );
 
     // now create or load the data and configuration
     bool oldconfig = false;
@@ -512,19 +518,35 @@ void KNote::slotApplyConfig()
     uint height = config.readUnsignedNumEntry( "height", 200 );
     resize( width, height );
 
-    //create a pallete...
+    // create a pallete...
     QColor bg = config.readColorEntry( "bgcolor", &(Qt::yellow) );
     QColor fg = config.readColorEntry( "fgcolor", &(Qt::black) );
+
     QPalette newpalette = palette();
     newpalette.setColor( QColorGroup::Background, bg );
-    newpalette.setColor( QColorGroup::Base,       bg );
     newpalette.setColor( QColorGroup::Foreground, fg );
-    newpalette.setColor( QColorGroup::Text,       fg );
+    newpalette.setColor( QColorGroup::Base,       bg ); // text background
+    newpalette.setColor( QColorGroup::Text,       fg ); // text color
+
+    // the shadow
+    newpalette.setColor( QColorGroup::Midlight, bg.light(110) );
+    newpalette.setColor( QColorGroup::Shadow, bg.dark(116) );
+    newpalette.setColor( QColorGroup::Light, bg.light(180) );
+    newpalette.setColor( QColorGroup::Dark, bg.dark(108) );
     setPalette( newpalette );
 
-    //set darker values for the label and button...
-    m_label->setBackgroundColor( bg.dark( 120 ) );
-    m_button->setBackgroundColor( bg.dark( 120 ) );
+    // set darker values for the label and button...
+    m_button->setBackgroundColor( bg.dark(116) );
+    if ( hasFocus() )
+    {
+        m_label->setBackgroundColor( bg.dark(116) );
+        m_button->show();
+    }
+    else
+    {
+        m_label->setBackgroundColor( bg );
+        m_button->hide();
+    }
 
     config.setGroup( "WindowDisplay" );
     int note_desktop = config.readNumEntry( "desktop", KWin::currentDesktop() );
@@ -616,14 +638,29 @@ void KNote::convertOldConfig()
 
         QPalette newpalette = palette();
         newpalette.setColor( QColorGroup::Background, bg );
-        newpalette.setColor( QColorGroup::Base,       bg );
         newpalette.setColor( QColorGroup::Foreground, fg );
-        newpalette.setColor( QColorGroup::Text,       fg );
+        newpalette.setColor( QColorGroup::Base,       bg ); // text background
+        newpalette.setColor( QColorGroup::Text,       fg ); // text color
+
+        // the shadow
+        newpalette.setColor( QColorGroup::Midlight, bg.light(110) );
+        newpalette.setColor( QColorGroup::Shadow, bg.dark(116) );
+        newpalette.setColor( QColorGroup::Light, bg.light(180) );
+        newpalette.setColor( QColorGroup::Dark, bg.dark(108) );
         setPalette( newpalette );
 
         // set darker values for the label and button...
-        m_label->setBackgroundColor( bg.dark( 120 ) );
-        m_button->setBackgroundColor( bg.dark( 120 ) );
+        m_button->setBackgroundColor( bg.dark(116) );
+        if ( hasFocus() )
+        {
+            m_label->setBackgroundColor( bg.dark(116) );
+            m_button->show();
+        }
+        else
+        {
+            m_label->setBackgroundColor( bg );
+            m_button->hide();
+        }
 
         // get the font
         QString fontfamily = input.readLine();
@@ -719,14 +756,16 @@ void KNote::resizeEvent( QResizeEvent* qre )
 {
     QFrame::resizeEvent( qre );
 
-    int new_height = height();
-    int new_width  = width();
-
     int headerHeight = m_label->sizeHint().height();
+    m_label->setFixedHeight( headerHeight );
+    m_button->setFixedSize( headerHeight, headerHeight );
 
-    m_button->setGeometry( new_width - headerHeight, 0, headerHeight, headerHeight );
-    m_label->setGeometry( 0, 0, new_width - headerHeight, headerHeight );
-    m_editor->setGeometry( 0, headerHeight, new_width, new_height - headerHeight );
+    m_button->setGeometry( frameRect().width() - headerHeight - 2, frameRect().y() + 2,
+                headerHeight, headerHeight );
+    m_label->setGeometry( frameRect().x() + 2, frameRect().y() + 2,
+                frameRect().width() - headerHeight - 4, headerHeight );
+    m_editor->setGeometry( contentsRect().x(), contentsRect().y() + headerHeight + 2,
+                contentsRect().width(), contentsRect().height() - headerHeight - 4 );
 }
 
 void KNote::closeEvent( QCloseEvent* e )
@@ -799,14 +838,24 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
 
         return m_label->eventFilter( o, ev );
     }
-    else if ( o == m_editor && ev->type() == QEvent::FocusOut )
+    else if ( o == m_editor )
     {
-        if ( m_editor->edited() )
-            saveData();
+        if ( ev->type() == QEvent::FocusOut )
+        {
+            m_label->setBackgroundColor( palette().active().background() );
+            m_button->hide();
+
+            if ( m_editor->edited() )
+                saveData();
+        }
+        else if ( ev->type() == QEvent::FocusIn )
+        {
+            m_label->setBackgroundColor( palette().active().shadow() );
+            m_button->show();
+        }
 
         return m_editor->eventFilter( o, ev );
     }
-
     return QWidget::eventFilter( o, ev );
 }
 
