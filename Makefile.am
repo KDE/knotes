@@ -45,7 +45,7 @@ uninstall-local:
 	rm -f $(kde_minidir)/knotes.xpm
 
 messages:
-	@XGETTEXT@ -C -ktranslate -x../../kdelibs/po/kde.pot *.cpp && mv messages.po ../po/knotes.pot
+	$(XGETTEXT) -C -ktranslate -ki18n -x $(includedir)/kde.pot $(knotes_SOURCES) && mv messages.po ../po/knotes.pot
 
 ####### Explicit dependencies
 knotes.cpp: knotes.moc
