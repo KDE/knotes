@@ -9,11 +9,6 @@ noinst_HEADERS  = knotesapp.h knote.h knoteedit.h knotebutton.h knoteconfigdlg.h
                   knoteslegacy.h resourcemanager.h resourcenotes.h resourcelocal.h \
                   knotesnetrecv.h knotesnetsend.h knotehostdlg.h
 
-# Dependencies of the static libraries:
-#   network, editor, config are standalone
-#   resources depends on config
-#   note depends on all others
-
 noinst_LTLIBRARIES = libknote.la libknoteseditor.la libknotesresources.la \
                      libknotesconfig.la libknotesnetwork.la
 
@@ -32,7 +27,7 @@ knotes_LDFLAGS  = $(all_libraries) $(KDE_RPATH)
 kde_module_LTLIBRARIES  = knotes_local.la
 knotes_local_la_SOURCES = resourcelocal_plugin.cpp
 knotes_local_la_LDFLAGS = $(KDE_LDFLAGS) -module $(KDE_PLUGIN)
-knotes_local_la_LIBADD  = libknotesresources.la libknotesconfig.la \
+knotes_local_la_LIBADD  = libknotesresources.la \
                           $(top_builddir)/libkcal/libkcal.la -lkdeprint
 
 METASOURCES     = AUTO
