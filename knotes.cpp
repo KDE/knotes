@@ -192,7 +192,7 @@ QString KPostitMultilineEdit::prefixString(QString string){
 KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname)
   : QFrame(parent, myname){
 
-    KWM::setDecoration(winId(), 2);
+    KWM::setDecoration(winId(), 2); 
     KWM::setWmCommand(winId(), "");
     XSetTransientForHint( qt_xdisplay(), winId(), (Window)(-1));
     KWM::setIcon(winId(), kapp->getIcon());
