@@ -1,6 +1,15 @@
 ChangeLog for KNotes
 ====================
 
+2004/08/20  Michael Brade <brade@kde.org>
+
+    * fixed #85973: respect newlines when switching from plain text to
+      rich text
+
+2004/05/02  Michael Brade <brade@kde.org>
+
+    * Security: listening on the network for new notes is now off by default
+
 2004/05/02  Michael Brade <brade@kde.org>
 
     * Most probably fix a bug that freezed KNotes every now and then: file_copy

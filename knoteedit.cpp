@@ -206,7 +206,13 @@ void KNoteEdit::setTextFormat( TextFormat f )
     {
         QString t = text();
         KTextEdit::setTextFormat( f );
-        setText( t );
+        
+        // if the note contains html/xml source try to display it, otherwise
+        // get the modified text again and set it to preserve newlines
+        if ( QStyleSheet::mightBeRichText( t ) )
+            setText( t );
+        else
+            setText( text() );
 
         enableRichTextActions();
     }
