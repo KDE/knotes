@@ -1311,7 +1311,8 @@ void KPostit::defaults()
     tabdialog = new QTabDialog(0,"tabdialog",TRUE);
     tabdialog->setCaption( klocale->translate("KNotes Configuraton") );
     tabdialog->resize( 350, 350 );
-    tabdialog->setCancelButton();
+    tabdialog->setCancelButton( klocale->translate("Cancel") );
+    tabdialog->setOkButton( klocale->translate("OK") );
 
     QWidget *about = new QWidget(tabdialog,"about");
 
