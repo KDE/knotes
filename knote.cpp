@@ -338,7 +338,7 @@ void KNote::slotClose()
 void KNote::slotKill()
 {
     if ( KMessageBox::warningYesNo( this,
-         i18n("Do you really want to delete note <b>%1</b>?").arg( m_label->text() ),
+         i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>").arg( m_label->text() ),
          i18n("Confirm Delete") ) == KMessageBox::Yes )
     {
         emit sigKillNote( m_journal );
