@@ -127,8 +127,8 @@ void ResourceManager::registerNote( ResourceNotes* resource,
         // Set the name of the config file...
         QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
         QString file = noteDir.absFilePath( journal->uid() );
-        KURL src = KGlobal::dirs()->findResource( "config", "knotesrc" );
-        KURL dst = file;
+        KURL src ( KGlobal::dirs()->findResource( "config", "knotesrc" ) );
+        KURL dst ( file );
 
         // ...and "fill" it with the default config
         KIO::NetAccess::file_copy( src, dst, -1, true, m_app );
