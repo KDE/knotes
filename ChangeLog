@@ -1,6 +1,13 @@
 ChangeLog for KNotes
 ====================
 
+2004/04/14  Michael Brade <brade@kde.org>
+
+    * use a KHistoryCombo for the KNoteHostDlg. This prevents the possibility
+      to send a note to more than one host at once, so keep only the list of
+      recent hosts without weighting for compatibility in case this feature is
+      requested
+
 2004/03/31  Michael Brade <brade@kde.org>
 
     * hmm, wasn't such a good idea to set a default desktop in KConfig XT - only
@@ -12,6 +19,18 @@ ChangeLog for KNotes
 
     * fixed #71685: again a libical bug, it did not encode '\' at all so it was
       possible to write control sequences in KNotes, e.g. \n.
+
+2004/03/23  Michael Brade <brade@kde.org>
+
+    * optimized networking code, merged KNotesNetworkListener and KNotesApp
+
+2004/03/23  Michael Brade <brade@kde.org>
+
+    * adapted and applied patch from Daniel Martin to enable communication of
+      KNotes with ATnotes on Windows machines and other network-enabled
+      KNotes. Notes can be sent and received over the network. Thanks to
+      Daniel's excellent code only a minimal set of lines in KNotes itself
+      had to be touched. (also fixes #57196)
 
 2004/03/23  Michael Brade <brade@kde.org>
 
