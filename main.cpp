@@ -35,7 +35,9 @@ int main( int argc, char* argv[] )
         I18N_NOOP( KNOTES_VERSION ), I18N_NOOP( "KDE Notes" ), KAboutData::License_GPL,
         I18N_NOOP("(c) 1997-2001, The KNotes Developers") );
 
-    aboutData.addAuthor("Bernd Johannes Wuebben",0, "wuebben@kde.org");
+    aboutData.addAuthor("Michael Brade", "Maintainer", "brade@informatik.uni-muenchen.de");
+    aboutData.addAuthor("Bernd Johannes Wuebben", "Original KNotes Author", "wuebben@kde.org");
+    aboutData.addAuthor("Wynn Wilkes", "Ported KNotes to KDE 2", "wynnw@calderasystems.com");
     aboutData.addAuthor("Matthias Ettrich",0, "ettrich@kde.org");
     aboutData.addAuthor("Didier Belot",0, "dib@avo.fr");
     aboutData.addAuthor("Harri Porten",0, "porten@kde.org");
@@ -43,8 +45,7 @@ int main( int argc, char* argv[] )
     aboutData.addAuthor("Dirk A. Mueller",0, "dmuell@gmx.net");
     aboutData.addAuthor("Petter Reinholdtsen",0, "pere@td.org.uit.no");
     aboutData.addAuthor("Carsten Pfeiffer",0, "pfeiffer@kde.org");
-    aboutData.addAuthor("Wynn Wilkes",0, "wynnw@calderasystems.com");
-    aboutData.addAuthor("Michael Brade",0, "brade@informatik.uni-muenchen.de");
+    aboutData.addAuthor("Espen Sand",0, "espen@kde.org");
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 
