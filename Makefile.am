@@ -12,8 +12,7 @@ knotes_LDFLAGS  = $(all_libraries) $(KDE_RPATH)
 
 METASOURCES     = AUTO
 
-apps_DATA       = knotes.desktop
-appsdir         = $(kde_appsdir)/Utilities
+xdg_apps_DATA   = knotes.desktop
 
 ui_DATA         = knotesui.rc
 uidir           = $(kde_datadir)/knotes
