@@ -113,7 +113,6 @@ void KNote::resizeEvent( QResizeEvent* qre )
     m_config->setGroup( "Display" );
     m_config->writeEntry( "width", new_width );
     m_config->writeEntry( "height", new_height );
-    m_config->sync();
 }
 
 void KNote::slotApplyConfig()
@@ -407,7 +406,6 @@ void KNote::slotClose()
 {
     hide(); //just hide the note so it's still available from the dock window
     save();
-    m_config->sync();
 }
 
 void KNote::slotKill( int /*id*/ )
