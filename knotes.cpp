@@ -249,7 +249,6 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
 
     KWM::setWmCommand(winId(), "");
-    XSetTransientForHint( qt_xdisplay(), winId(), winId());
     KWM::setIcon(winId(), kapp->getIcon());
     KWM::setMiniIcon(winId(), kapp->getMiniIcon());
 
