@@ -227,7 +227,12 @@ void KNote::saveConfig() const
     NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop | NET::WMState );
     config.setGroup( "WindowDisplay" );
     config.writeEntry( "desktop", wm_client.desktop() );
-    config.writeEntry( "state", wm_client.state() );
+
+    if ( isHidden() && m_alwaysOnTop->isChecked() )
+        config.writeEntry( "state", wm_client.state() | NET::StaysOnTop );
+    else
+        config.writeEntry( "state", wm_client.state() );
+
     // TODO: move to group Display
     config.writeEntry( "position", pos() );
 }

@@ -114,7 +114,9 @@ private:
     KCal::Journal *m_journal;
     QString        m_configFile;
 
+public:
     KToggleAction *m_alwaysOnTop;
+private:
     KListAction   *m_toDesktop;
 
     KPopupMenu *m_menu;
