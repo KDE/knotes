@@ -50,8 +50,7 @@ public:
 public slots:
     virtual void setTextFormat( TextFormat f );
 
-    //void textStyleSelected( int );
-    //void setStrikeOut( bool );
+    void textStrikeOut( bool );
 
     void textColor();
 
@@ -98,7 +97,7 @@ private:
     KToggleAction *m_textBold;
     KToggleAction *m_textItalic;
     KToggleAction *m_textUnderline;
-    //KToggleAction *m_textStrikeOut;
+    KToggleAction *m_textStrikeOut;
 
     KToggleAction *m_textAlignLeft;
     KToggleAction *m_textAlignCenter;

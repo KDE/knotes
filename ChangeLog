@@ -7,6 +7,7 @@ ChangeLog for KNotes
       leader KNotes is not managed anymore by KWin (again) and is now 
       thus able to restore its notes properly on login with manually saved
       sessions.
+    * fixed 75341: implemented support for the "strike out" text property
 
 2004/03/21  Michael Brade <brade@kde.org>
 

@@ -77,13 +77,13 @@ KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
                                       actions, "format_italic" );
     m_textUnderline = new KToggleAction( i18n("&Underline"), "text_under", CTRL + Key_U, 0, 0,
                                          actions, "format_underline" );
-//     m_textStrikeOut = new KToggleAction( i18n("&Strike Out"), "text_strike", CTRL + Key_S, 0, 0,
-//                                          actions, "format_strikeout" );
+    m_textStrikeOut = new KToggleAction( i18n("&Strike Out"), "text_strike", CTRL + Key_S, 0, 0,
+                                         actions, "format_strikeout" );
 
     connect( m_textBold, SIGNAL(toggled(bool)), SLOT(setBold(bool)) );
     connect( m_textItalic, SIGNAL(toggled(bool)), SLOT(setItalic(bool)) );
     connect( m_textUnderline, SIGNAL(toggled(bool)), SLOT(setUnderline(bool)) );
-//     connect( m_textStrikeOut, SIGNAL(toggled(bool)), SLOT(setStrikeOut(bool)) );
+    connect( m_textStrikeOut, SIGNAL(toggled(bool)), SLOT(textStrikeOut(bool)) );
 
     m_textAlignLeft = new KToggleAction( i18n("Align &Left"), "text_left", CTRL + Key_L,
                                  this, SLOT(textAlignLeft()),
@@ -220,39 +220,40 @@ void KNoteEdit::setTextFormat( TextFormat f )
     }
 }
 
-// void KNoteEdit::setStrikeOut( bool s )
-// {
-//     // QTextEdit does not support stroke out text (no saving,
-//     // no changing of more than one selected character)
-//     QFont font;
-//
-//     if ( !hasSelectedText() )
-//     {
-//         font = currentFont();
-//         font.setStrikeOut( s );
-//         setCurrentFont( font );
-//     }
-//     else
-//     {
-//         int pFrom, pTo, iFrom, iTo;
-//         int cp, ci;
-//
-//         getSelection( &pFrom, &iFrom, &pTo, &iTo );
-//         getCursorPosition( &cp, &ci );
-//
-//         for ( int p = pFrom; p <= pTo; p++ )
-//             for ( int i = iFrom; i <= iTo; i++ )
-//         {
-//             setSelection( p, i, p, i );
-//             font = currentFont();
-//             font.setStrikeOut( s );
-//             setCurrentFont( font );
-//         }
-//
-//         setSelection( pFrom, iFrom, pTo, iTo );
-//         setCursorPosition( cp, ci );
-//     }
-// }
+void KNoteEdit::textStrikeOut( bool s )
+{
+    // QTextEdit does not support stroke out text (no saving,
+    // no changing of more than one selected character)
+    QFont font;
+
+    if ( !hasSelectedText() )
+    {
+        font = currentFont();
+        font.setStrikeOut( s );
+        setCurrentFont( font );
+    }
+    else
+    {
+        int pFrom, pTo, iFrom, iTo;
+        int cp, ci;
+
+        getSelection( &pFrom, &iFrom, &pTo, &iTo );
+        getCursorPosition( &cp, &ci );
+
+        for ( int p = pFrom; p <= pTo; p++ )
+            for ( int i = iFrom; i < iTo; i++ )
+        {
+            setCursorPosition( p, i + 1 );
+            setSelection( p, i, p, i + 1 );
+            font = currentFont();
+            font.setStrikeOut( s );
+            setCurrentFont( font );
+        }
+
+        setSelection( pFrom, iFrom, pTo, iTo );
+        setCursorPosition( cp, ci );
+    }
+}
 
 void KNoteEdit::textColor()
 {
@@ -365,7 +366,7 @@ void KNoteEdit::fontChanged( const QFont &f )
     m_textBold->setChecked( f.bold() );
     m_textItalic->setChecked( f.italic() );
     m_textUnderline->setChecked( f.underline() );
-//     m_textStrikeOut->setChecked( f.strikeOut() );
+    m_textStrikeOut->setChecked( f.strikeOut() );
 }
 
 void KNoteEdit::colorChanged( const QColor &c )
@@ -442,7 +443,7 @@ void KNoteEdit::enableRichTextActions()
     m_textBold->setEnabled( true );
     m_textItalic->setEnabled( true );
     m_textUnderline->setEnabled( true );
-//     m_textStrikeOut->setEnabled( true );
+    m_textStrikeOut->setEnabled( true );
 
     m_textAlignLeft->setEnabled( true );
     m_textAlignCenter->setEnabled( true );
@@ -464,7 +465,7 @@ void KNoteEdit::disableRichTextActions()
     m_textBold->setEnabled( false );
     m_textItalic->setEnabled( false );
     m_textUnderline->setEnabled( false );
-//     m_textStrikeOut->setEnabled( false );
+    m_textStrikeOut->setEnabled( false );
 
     m_textAlignLeft->setEnabled( false );
     m_textAlignCenter->setEnabled( false );

@@ -47,6 +47,7 @@
     <Action name="format_bold"/>
     <Action name="format_italic"/>
     <Action name="format_underline"/>
+    <Action name="format_strikeout"/>
     <Separator/>
     <Action name="format_alignleft"/>
     <Action name="format_aligncenter"/>
