@@ -67,7 +67,6 @@ public:
     void sync( const QString& app );
     bool isNew( const QString& app ) const;
     bool isModified( const QString& app ) const;
-    void toDesktop( int desktop );
 
 public slots:
     void slotKill( bool force = false );
@@ -113,6 +112,8 @@ private:
     void updateLayout();
     void updateLabelAlignment();
     void setColor( const QColor&, const QColor& );
+
+    void toDesktop( int desktop );
 
     QString toPlainText( const QString& );
 

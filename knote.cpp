@@ -219,7 +219,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
     if ( newNote )
     {
-        // until kdelibs provides copying of KConfigSkeletons (KDE 3.3)
+        // until kdelibs provides copying of KConfigSkeletons (KDE 3.4)
         KNotesGlobalConfig *globalConfig = KNotesGlobalConfig::self();
         m_config->setBgColor( globalConfig->bgColor() );
         m_config->setFgColor( globalConfig->fgColor() );
@@ -233,6 +233,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
         m_config->setTabSize( globalConfig->tabSize() );
 
         m_config->setDesktop( globalConfig->desktop() );
+        m_config->setHideNote( globalConfig->hideNote() );
         m_config->setPosition( globalConfig->position() );
         m_config->setShowInTaskbar( globalConfig->showInTaskbar() );
         m_config->setKeepAbove( globalConfig->keepAbove() );
@@ -274,22 +275,15 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
         desktop = KWin::currentDesktop();
 
     // show the note if desired
-    if ( desktop != 0 && !isVisible() )
+    if ( desktop != 0 && !m_config->hideNote() )
     {
-        // HACK HACK
-        if ( desktop != NETWinInfo::OnAllDesktops )
-        {
-            // to avoid flicker, call this before show()
+        // to avoid flicker, call this before show()
+        toDesktop( desktop );
+        show();
+
+        // because KWin forgets about that for hidden windows
+        if ( desktop == NETWinInfo::OnAllDesktops )
             toDesktop( desktop );
-            show();
-        }
-        else
-        {
-            show();
-            // if this is called before show(),
-            // it won't work for sticky notes!!!
-            toDesktop( desktop );
-        }
     }
 
     m_editor->setText( m_journal->description() );
@@ -347,8 +341,9 @@ void KNote::saveConfig() const
     m_config->setHeight( height() - (m_tool->isHidden() ? 0 : m_tool->height()) );
     m_config->setPosition( pos() );
 
-    NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop | NET::WMState );
-    m_config->setDesktop( wm_client.desktop() );
+    NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
+    if ( wm_client.desktop() == NETWinInfo::OnAllDesktops || wm_client.desktop() > 0 )
+        m_config->setDesktop( wm_client.desktop() );
 
     // actually store the config on disk
     m_config->writeConfig();
@@ -439,14 +434,6 @@ bool KNote::isModified( const QString& app ) const
         return true;
 }
 
-void KNote::toDesktop( int desktop )
-{
-    if ( desktop == 0 || desktop == NETWinInfo::OnAllDesktops )
-        KWin::setOnAllDesktops( winId(), true );
-    else
-        KWin::setOnDesktop( winId(), desktop );
-}
-
 
 // ------------------ private slots (menu actions) ------------------ //
 
@@ -464,8 +451,15 @@ void KNote::slotRename()
 
 void KNote::slotClose()
 {
+    NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
+    if ( wm_client.desktop() == NETWinInfo::OnAllDesktops || wm_client.desktop() > 0 )
+        m_config->setDesktop( wm_client.desktop() );
+
     m_editor->clearFocus();
-    hide(); //just hide the note so it's still available from the dock window
+    m_config->setHideNote( true );
+
+    // just hide the note so it's still available from the dock window
+    hide();
 }
 
 void KNote::slotInsDate()
@@ -631,9 +625,7 @@ void KNote::slotSaveAs()
 
 void KNote::slotPopupActionToDesktop( int id )
 {
-    if( id > 1 )
-      --id;      // compensate for the menu separator
-    toDesktop( id );
+    toDesktop( id - 1 ); // compensate for the menu separator, -1 == all desktops
 }
 
 
@@ -727,6 +719,17 @@ QString KNote::toPlainText( const QString& text )
     conv.setText( text );
     conv.setTextFormat( PlainText );
     return conv.text();
+}
+
+void KNote::toDesktop( int desktop )
+{
+    if ( desktop == 0 )
+        return;
+
+    if ( desktop == NETWinInfo::OnAllDesktops )
+        KWin::setOnAllDesktops( winId(), true );
+    else
+        KWin::setOnDesktop( winId(), desktop );
 }
 
 void KNote::setColor( const QColor &fg, const QColor &bg )
@@ -855,9 +858,14 @@ void KNote::updateLayout()
 
 void KNote::showEvent( QShowEvent * )
 {
-    // KWin does not preserve these properties for hidden windows
-    slotUpdateKeepAboveBelow();
-    slotUpdateShowInTaskbar();
+    if ( m_config->hideNote() )
+    {
+        // KWin does not preserve these properties for hidden windows
+        slotUpdateKeepAboveBelow();
+        slotUpdateShowInTaskbar();
+        toDesktop( m_config->desktop() );
+        m_config->setHideNote( false );
+    }
 }
 
 void KNote::resizeEvent( QResizeEvent *qre )

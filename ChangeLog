@@ -1,6 +1,18 @@
 ChangeLog for KNotes
 ====================
 
+2004/08/31  Michael Brade <brade@kde.org>
+
+    * now KNotes always saves the desktop of its notes since this is what one
+      would expect, I guess. Visible change: if you hide a note, change to
+      another desktop and show it again, the note will be shown on the desktop
+      where it has been hidden. And more important, if a note is sticky it will
+      still be sticky after it is first hidden and then shown again. Let's see
+      what the users' feedback will be.
+
+      This will also make it possible to properly implement the often requested
+      hide all/show all notes feature.
+
 2004/08/29  Michael Brade <brade@kde.org>
 
     * fixed #77202: removing the global event filter where I not only returned

@@ -477,22 +477,10 @@ void KNotesApp::slotQuit()
 
 void KNotesApp::showNote( KNote* note ) const
 {
-    if ( !note->isHidden() )
-    {
-        // if it's already showing, we need to change to its desktop
-        // and give it focus
-        KWin::setCurrentDesktop( KWin::windowInfo( note->winId() ).desktop() );
-        KWin::forceActiveWindow( note->winId() );
-        note->setFocus();
-    }
-    else
-    {
-        // if not, show note on the current desktop
-        note->show();
-        note->toDesktop( KWin::currentDesktop() );
-        KWin::forceActiveWindow( note->winId() );
-        note->setFocus();
-    }
+    note->show();
+    KWin::setCurrentDesktop( KWin::windowInfo( note->winId() ).desktop() );
+    KWin::forceActiveWindow( note->winId() );
+    note->setFocus();
 }
 
 void KNotesApp::createNote( KCal::Journal *journal )
