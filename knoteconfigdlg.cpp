@@ -66,8 +66,8 @@ void KNoteConfigDlg::makeDisplayPage()
     QGridLayout* glay     = new QGridLayout( topLevel, 5, 3 );
     glay->setColStretch( 1, 1 );
 
-    QLabel* l_fgcolor = new QLabel( i18n("&Text Color:"), displayPage );
-    QLabel* l_bgcolor = new QLabel( i18n("&Background Color:"), displayPage );
+    QLabel* l_fgcolor = new QLabel( i18n("&Text color:"), displayPage );
+    QLabel* l_bgcolor = new QLabel( i18n("&Background color:"), displayPage );
 
     QColor fgcolor = _config->readColorEntry( "fgcolor", &(Qt::black) );
     QColor bgcolor = _config->readColorEntry( "bgcolor", &(Qt::yellow) );
@@ -88,8 +88,8 @@ void KNoteConfigDlg::makeDisplayPage()
 
     if ( _global )
     {
-        QLabel* l_width  = new QLabel( i18n("Default &Width:"), displayPage );
-        QLabel* l_height = new QLabel( i18n("Default &Height:"), displayPage );
+        QLabel* l_width  = new QLabel( i18n("Default &width:"), displayPage );
+        QLabel* l_height = new QLabel( i18n("Default &height:"), displayPage );
 
         uint width = _config->readUnsignedNumEntry( "width", 200 );
         uint height = _config->readUnsignedNumEntry( "height", 200 );
@@ -122,7 +122,7 @@ void KNoteConfigDlg::makeEditorPage()
     QGridLayout* glay     = new QGridLayout( topLevel, 4, 3 );
     glay->setColStretch( 1, 1 );
 
-    QLabel* l_tabsize = new QLabel( i18n( "&Tab Size:" ), editorPage );
+    QLabel* l_tabsize = new QLabel( i18n( "&Tab size:" ), editorPage );
     glay->addWidget( l_tabsize, 0, 0 );
 
     int tabsize = _config->readUnsignedNumEntry( "tabsize", 4 );
