@@ -40,7 +40,6 @@
 
 #ifndef QT_H
 #include "qt3stuff.h"
-//#include "qscrollview3.h"
 #include "qscrollview.h"
 #include "qstylesheet.h"
 #include "qpainter.h"
@@ -426,6 +425,7 @@ private:
     QTextEditPrivate *d;
     bool inDnD;
     bool readonly;
+    bool inResize;
 };
 
 inline Qt3::QTextDocument *QTextEdit::document() const

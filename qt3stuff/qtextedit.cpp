@@ -608,6 +608,7 @@ void QTextEdit::init()
     wrapWidth = -1;
     wPolicy = AtWhiteSpace;
     inDnD = FALSE;
+    inResize = FALSE;
 
     doc->setFormatter( new QTextFormatterBreakWords );
     currentFormat = doc->formatCollection()->defaultFormat();
@@ -1901,6 +1902,9 @@ void QTextEdit::formatMore()
         formatTimer->start( interval, TRUE );
     else
         interval = QMAX( 0, interval );
+        
+    if ( inResize )
+        inResize = FALSE;
 }
 
 void QTextEdit::doResize()
@@ -1908,8 +1912,11 @@ void QTextEdit::doResize()
     if ( wrapMode != WidgetWidth )
         return;
     doc->setMinimumWidth( -1, 0 );
-// QT2HACK
-//    resizeContents( 0, 0 );
+// BIG QT2HACK
+    if ( !inResize ) {
+        inResize = TRUE;
+        resizeContents( 0, 0 );
+    }
     doc->setWidth( visibleWidth() );
     wrapWidth = visibleWidth();
     doc->invalidate();

@@ -2786,7 +2786,7 @@ int QTextFormat::width( const QChar &c ) const
         return 0;
     if ( !painter || !painter->isActive() ) {
         if ( c == '\t' )
-            return fm.width( 'x' ) * 8;
+            return fm.width( 'x' ) * 8;     // Michael: BUG??
         if ( ha == AlignNormal ) {
             int w;
             if ( c.row() )
