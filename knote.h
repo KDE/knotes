@@ -65,6 +65,8 @@ public:
     void setName( const QString& name );
     void setText( const QString& text );
 
+    bool isModified() const;
+
     void sync( const QString& app );
     bool isNew( const QString& app ) const;
     bool isModified( const QString& app ) const;

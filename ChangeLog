@@ -1,6 +1,12 @@
 ChangeLog for KNotes
 ====================
 
+2004/11/28  Michael Brade <brade@kde.org>
+
+    * fixed #90744, #91702, #92596, #93499: save modified notes on quit, may
+      not have happened when the note still had focus. Also, the problem
+      with knotesnotes.ics is gone now.
+
 2004/09/27  Michael Brade <brade@kde.org>
 
     * no compile-time dependency on kdebase allowed, so read kwinrc directly
