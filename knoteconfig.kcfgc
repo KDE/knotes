@@ -1,4 +1,5 @@
 File=knoteconfig.kcfg
 ClassName=KNoteConfig
 Mutators=true
+IncludeFiles=kdeversion.h
 CustomAdditions=true

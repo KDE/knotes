@@ -1,3 +1,4 @@
+#if !KDE_IS_VERSION(3, 3, 92)
 public:
 KNoteConfig() : KConfigSkeleton()
 {
@@ -64,3 +65,4 @@ KNoteConfig() : KConfigSkeleton()
   itemKeepBelow = new KConfigSkeleton::ItemBool( currentGroup(), QString::fromLatin1( "KeepBelow" ), mKeepBelow, false );
   addItem( itemKeepBelow, QString::fromLatin1( "KeepBelow" ) );
 }
+#endif
