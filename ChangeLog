@@ -1,6 +1,10 @@
 ChangeLog for KNotes
 ====================
 
+2003/06/22  Michael Brade <brade@kde.org>
+ 
+    * fixed #42088: don't loose notes if HD is full, always keep a backup
+
 2003/06/17  Michael Brade <brade@kde.org>
 
     * fixed #58338: show note title in taskbar
