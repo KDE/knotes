@@ -416,7 +416,6 @@ void KNote::slotToggleAlwaysOnTop()
 
 void KNote::slotToDesktop( int id )
 {
-kdDebug(5500) << k_funcinfo << id << endl;
     if ( id == 0 || id == NETWinInfo::OnAllDesktops )
         KWin::setOnAllDesktops( winId(), true );
     else
@@ -425,7 +424,6 @@ kdDebug(5500) << k_funcinfo << id << endl;
 
 void KNote::slotUpdateDesktopActions()
 {
-kdDebug(5500) << k_funcinfo << endl;
     NETRootInfo wm_root( qt_xdisplay(), NET::NumberOfDesktops | NET::DesktopNames );
     NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
 

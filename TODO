@@ -9,7 +9,10 @@ TODOs for KNotes
  * the config dialog:
     - make the frame configureable (3d -> normal)
     - make the keybindings configureable
- * fix/implement printing
+ * improve printing:
+    - width of the text on the paper should fit note width if not bigger
+      than the paper width
+    - print the note title as well
 
 perhaps:
  * shadow for the notes
@@ -28,4 +31,4 @@ Always open TODO:
  * make the code as perfect and clean as possible!!
 
 
--- Michael Brade 07-11-2001
+-- Michael Brade 24-09-2002
