@@ -24,7 +24,6 @@ features:
    .kde/share/apps/knotes/<session-name>/
 
 bugs:
- * where do we set the completion mode for KGlobalSettings::completionMode??
  * fix shortcuts
  * if the window state is changed from outside KNotes the buttons do not
    reflect that
@@ -47,6 +46,7 @@ TODO:
  * in rich text mode: what should happen to the font setting in the config dialog?
  * use KWinDecorations instead of home-made decoration
  * add ToolTips everywhere
+ * update the date icon, either from crystal or Matthias Kiefer
 
 perhaps:
  * transparent notes

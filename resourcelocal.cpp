@@ -48,6 +48,8 @@
 ResourceLocal::ResourceLocal( const KConfig* config )
     : ResourceNotes( config )
 {
+    if ( !config )
+        setType( "file" );
 }
 
 ResourceLocal::~ResourceLocal()

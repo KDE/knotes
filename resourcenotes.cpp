@@ -36,6 +36,8 @@
 ResourceNotes::ResourceNotes( const KConfig *config )
     : KRES::Resource( config ), mManager( 0 )
 {
+    if ( !config )
+        setResourceName( "Notes" );
 }
 
 ResourceNotes::~ResourceNotes()
