@@ -47,6 +47,7 @@ int main( int argc, char* argv[] )
     aboutData.addAuthor("Petter Reinholdtsen",0, "pere@td.org.uit.no");
     aboutData.addAuthor("Carsten Pfeiffer",0, "pfeiffer@kde.org");
     aboutData.addAuthor("Wynn Wilkes",0, "wynnw@calderasystems.com");
+    aboutData.addAuthor("Michael Brade",0, "brade@informatik.uni-muenchen.de");
     KCmdLineArgs::init( argc, argv, &aboutData );
 
     KUniqueApplication::addCmdLineOptions();

@@ -57,6 +57,16 @@ KNotesApp::KNotesApp()
     menu->insertItem( i18n("Preferences..."), this, SLOT(slotPreferences(int)) );
     menu->insertItem( i18n("Notes"), m_note_menu );
 
+    //remove old local config file if it still exists
+    QString configfile = KGlobal::dirs()->findResource( "config", "knotesrc" );
+	KSimpleConfig *test = new KSimpleConfig( configfile );
+    test->setGroup( "General" );
+    if ( test->readNumEntry( "version", 1 ) == 1 )
+    {
+		KIO::NetAccess::del( KURL( configfile ) );
+ 	}
+   	delete test;
+
     loadNotes();
 
     if( m_NoteList.count() == 0 && !kapp->isRestored() )
@@ -176,17 +186,21 @@ void KNotesApp::newNote( const QString& note_name, const QString& text )
     }
 
     KSimpleConfig sc( config );
-    sc.setGroup( "Data" );
-    if( sc.readEntry( "name" ) != thename )
-    {
-        sc.writeEntry( "name", thename );
-        sc.sync();
-    }
-
     sc.setGroup( "General" );
     int version = sc.readNumEntry( "version", 1 );
 
+    if( version == 2 )
+    {
+	    sc.setGroup( "Data" );
+        if( sc.readEntry( "name" ) != thename )
+	    {
+            sc.writeEntry( "name", thename );
+            sc.sync();
+        }
+    }
+
     KNote* newnote = new KNote( config, version == 1 );
+
     if( !text.isEmpty() )
         newnote->setText( text );
 
@@ -197,7 +211,7 @@ void KNotesApp::newNote( const QString& note_name, const QString& text )
     connect( newnote, SIGNAL( sigKilled(QString) ),
              this,    SLOT( slotNoteKilled(QString) ) );
 
-    m_NoteList.insert( thename, newnote );
+    m_NoteList.insert( newnote->getName(), newnote );
 }
 
 void KNotesApp::slotNoteRenamed( QString& oldname, QString& newname )

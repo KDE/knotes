@@ -72,8 +72,7 @@ KNote::KNote( QString configfile, bool oldconfig, QWidget* parent, const char* n
     m_menu->insertSeparator();
     m_menu->insertItem( i18n("To Desktop"), m_desktop_menu );
     m_idAlwaysOnTop = m_menu->insertItem( i18n("Always On Top"), this, SLOT(slotAlwaysOnTop(int)));
-// DISABLED for now because of a bug in the netwm classes
-    m_menu->setItemEnabled( m_idAlwaysOnTop, false );
+    m_menu->setItemEnabled( m_idAlwaysOnTop, true );
 
     m_menu->insertSeparator();
     m_menu->insertItem( i18n("Delete Note"), this, SLOT(slotKill(int)) );
@@ -257,9 +256,8 @@ void KNote::convertOldConfig()
 
         if( data[12] & 2048 )
         {
-// DISABLED for now because of a bug in the netwm classes
-//          KWin::setState( winId(), NET::StaysOnTop | NET::SkipTaskbar );
-//          m_menu->setItemChecked( m_idAlwaysOnTop, true );
+            KWin::setState( winId(), NET::StaysOnTop | NET::SkipTaskbar );
+            m_menu->setItemChecked( m_idAlwaysOnTop, true );
         } else
             KWin::setState( winId(), NET::SkipTaskbar );
 
@@ -331,6 +329,8 @@ void KNote::convertOldConfig()
 
         infile.close();
         infile.remove();
+
+        m_configfile = QFileInfo( m_configfile ).dirPath() + "/" + m_label->text();
 
         // write the new configuration
         saveData();
@@ -454,7 +454,6 @@ void KNote::slotApplyConfig()
 
     QString notename = config.readEntry( "name", "KNotes" );
     m_label->setText( notename );
-
 
     //do Display group- width, height, bgcolor, fgcolor, transparent
     //do this after the editor part so that the label can adjust it's
@@ -645,8 +644,8 @@ void KNote::slotPreferences( int /*id*/ )
 
 void KNote::slotClose()
 {
-//    saveData();
-//    saveConfig();
+    saveData();
+    saveConfig();
 
     hide(); //just hide the note so it's still available from the dock window
 }

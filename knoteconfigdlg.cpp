@@ -166,6 +166,11 @@ void KNoteConfigDlg::makeActionsPage()
 
 void KNoteConfigDlg::storeSettings()
 {
+    //store General settings
+    _config->setGroup( "General" );
+
+    _config->writeEntry( "version", 2 );
+
     //store Display settings
     _config->setGroup( "Display" );
 
