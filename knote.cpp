@@ -359,14 +359,13 @@ void KNote::slotClose()
     hide(); //just hide the note so it's still available from the dock window
 }
 
-void KNote::slotKill()
+void KNote::slotKill( bool force )
 {
+    if ( !force )
     if ( KMessageBox::warningYesNo( this,
          i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>").arg( m_label->text() ),
-         i18n("Confirm Delete") ) == KMessageBox::Yes )
-    {
-        emit sigKillNote( m_journal );
-    }
+         i18n("Confirm Delete") ) != KMessageBox::Yes ) return;
+    emit sigKillNote( m_journal );
 }
 
 void KNote::slotInsDate()

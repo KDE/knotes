@@ -241,13 +241,18 @@ void KNotesApp::hideNote( const QString& id ) const
         kdWarning(5500) << "No note with id: " << id << endl;
 }
 
-void KNotesApp::killNote( const QString& id )
+void KNotesApp::killNote( const QString& id, bool force ) 
 {
     KNote* note = m_noteList[id];
     if ( note )
-        note->slotKill();
+        note->slotKill( force );
     else
         kdWarning(5500) << "No note with id: " << id << endl;
+}
+
+void KNotesApp::killNote( const QString& id ) // "bool force = false" doesn't work with dcop 
+{
+    killNote( id, false );
 }
 
 QMap<QString,QString> KNotesApp::notes() const

@@ -71,7 +71,7 @@ public slots:
     void slotNewNote();
     void slotRename();
     void slotClose();
-    void slotKill();
+    void slotKill( bool force = false );
     void slotMail() /*const*/;
     void slotPrint();
     void slotInsDate();

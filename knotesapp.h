@@ -60,6 +60,7 @@ public:
 
     void showNote( const QString& id ) const;
     void hideNote( const QString& id ) const;
+    void killNote( const QString& id, bool force );
     void killNote( const QString& id );
 
     QString name( const QString& id ) const;

@@ -71,6 +71,13 @@ k_dcop:
     virtual ASYNC killNote( const QString& noteId ) = 0;
 
     /**
+     * Deletes a note forever.
+     * @param noteId the id of the note to kill
+     * @param force do not request confirmation
+     */
+    virtual ASYNC killNote( const QString& noteId, bool force ) = 0;
+
+    /**
      * Get all the notes including their ids.
      * @return a QMap that maps the id of a note to its name
      */
