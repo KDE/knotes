@@ -44,8 +44,7 @@ DockWidget::DockWidget(const char *name)
   pos_x = pos_y = 0;
   left_popup_m = 0;
 
-  picsmall_pixmap = 
-    KGlobal::iconLoader()->loadIcon( "knotes", KIconLoader::Small );
+  picsmall_pixmap = SmallIcon("knotes");
   setPixmap( picsmall_pixmap );
 
   //////////////////////////////////////////////////////////////////
