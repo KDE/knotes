@@ -36,6 +36,7 @@
 #include <kdialog.h>
 #include <klocale.h>
 #include <kmessagebox.h>
+#include <kglobal.h>
 
 #include "bwdatetime.h"
 
@@ -43,6 +44,8 @@
 BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
   : QWidget(parent, name)
 {
+   use12Clock = KGlobal::locale()->use12Clock();
+
    date_notvalid = FALSE;
    time_notvalid = FALSE;
 
@@ -59,38 +62,41 @@ BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
    year->setValue(qdt.date().year());
 
    int myhour = qdt.time().hour();
-   if (myhour > 12)
-     myhour -= 12;
-   if (myhour == 0)
-     myhour = 12;
+   if (use12Clock)
+   {
+     if (myhour > 12)
+       myhour -= 12;
+     if (myhour == 0)
+       myhour = 12;
+   }
 
    timelabel = new QLabel(i18n("Time:"),this);
    // this stuff should be replaced with a KTimeSpinBox
-   hour = new QSpinBox(1, 12, 1, this);
+   hour = use12Clock
+	? new QSpinBox(1, 12, 1, this)
+	: new QSpinBox(0, 23, 1, this);
    hour->setValue(myhour);
    minute = new QSpinBox(0, 59, 1, this);
    minute->setValue(qdt.time().minute());
  
-   ampm = new QButtonGroup(this);
-   ampm->setFrameStyle( QFrame::NoFrame );
+   if (use12Clock)
+   {
+     ampm = new QButtonGroup(this);
+     ampm->setFrameStyle( QFrame::NoFrame );
 
-   QVBoxLayout *hlay = new QVBoxLayout( ampm, 0, KDialog::spacingHint() );
+     QVBoxLayout *hlay = new QVBoxLayout( ampm, 0, KDialog::spacingHint() );
    
-   am = new QRadioButton(i18n("AM"), ampm);
-   pm = new QRadioButton(i18n("PM"), ampm);
+     am = new QRadioButton(i18n("AM"), ampm);
+     pm = new QRadioButton(i18n("PM"), ampm);
 
-   if(qdt.time().hour() < 12)
-   {
-     pm->setChecked(FALSE);
-     am->setChecked(TRUE);
+     if (qdt.time().hour() < 12)
+       am->setChecked(TRUE);
+     else
+       pm->setChecked(TRUE);
+
+     hlay->addWidget(am);
+     hlay->addWidget(pm);
    }
-   else
-   {
-     pm->setChecked(TRUE);
-     am->setChecked(FALSE);
-   }
-   hlay->addWidget(am);
-   hlay->addWidget(pm);
 
    // layout management (pfeiffer)
    QGridLayout *glay = new QGridLayout( this, 6, 3, KDialog::spacingHint() );
@@ -106,7 +112,7 @@ BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
    glay->addWidget(timelabel, 2, 0, AlignRight);
    glay->addWidget(hour,      2, 1);
    glay->addWidget(minute,    2, 2);
-   glay->addMultiCellWidget(ampm, 2, 2, 3, 5 );
+   if (use12Clock) glay->addMultiCellWidget(ampm, 2, 2, 3, 5 );
 }
 
 
@@ -119,17 +125,16 @@ void BWDateTime::setTime(QDateTime dt) {
 
    int myhour = dt.time().hour();
 
-   if (myhour > 12)
-     myhour -= 12;
+   if (use12Clock && myhour > 12) myhour -= 12;
 
    hour->setValue(myhour);
    minute->setValue(dt.time().minute());
 
-   if(dt.time().hour() < 12)
-     am->setChecked(TRUE);
-   else
-     pm->setChecked(FALSE);
-
+   if (use12Clock)
+     if (dt.time().hour() < 12)
+       am->setChecked(TRUE);
+     else
+       pm->setChecked(FALSE);
 }
 
 
@@ -144,11 +149,14 @@ bool BWDateTime::checkDateTime( void )
 
   int myhour = hour->value();
 
-  if(pm->isChecked() && (myhour != 12)) // 12 pm is 12 hours
-    myhour += 12;
+  if (use12Clock)
+  {
+    if(pm->isChecked() && (myhour != 12)) // 12 pm is 12 hours
+      myhour += 12;
 
-  if(!pm->isChecked() && (myhour ==12)) //12 am is 0 hours
-    myhour = 0;
+    if(!pm->isChecked() && (myhour ==12)) //12 am is 0 hours
+      myhour = 0;
+  }
 
   if(QTime::isValid(myhour,minute->value(),0))
   {

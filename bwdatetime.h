@@ -57,6 +57,7 @@ public:
   bool date_notvalid;
 
 private:
+  bool use12Clock;
 
   QSpinBox *hour;
   QSpinBox *minute;
