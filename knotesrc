@@ -8,10 +8,7 @@
 		
 [Editor]
 	tabsize=4
-	autoindent=yes
-	font=helvetica
-	fontsize=12
-	fontweight=50
+	autoindent=true
 	
 [Actions]
 	mail=kmail --msg %f
