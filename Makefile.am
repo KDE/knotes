@@ -17,9 +17,8 @@ knotes_SOURCES	= knotes.cpp  configdlg.cpp fontdlg.cpp mail.cpp alarm.cpp \
 		bwdatetime.cpp spin.cpp timer.cpp savealarm.cpp renamedlg.cpp \
 		docking.cpp 
 
-BUILTSOURCES = knotes.moc configdlg.moc fontdlg.moc mail.moc alarm.moc \
+METASOURCES = knotes.moc configdlg.moc fontdlg.moc mail.moc alarm.moc \
 	spin.moc renamedlg.moc
-DISTCLEANFILES = $(BUILTSOURCES)
 
 SUBDIRS = docs
 
@@ -41,44 +40,4 @@ uninstall-local:
 
 messages:
 	$(XGETTEXT) -C -ktranslate -ki18n -x $(includedir)/kde.pot $(knotes_SOURCES) && mv messages.po ../po/knotes.pot
-
-####### Explicit dependencies
-knotes.cpp: knotes.moc
-knotes.moc: knotes.h
-	$(MOC) knotes.h -o knotes.moc
-
-configdlg.cpp: configdlg.moc
-configdlg.moc: configdlg.h
-	$(MOC) configdlg.h -o configdlg.moc
-
-fontdlg.cpp: fontdlg.moc
-fontdlg.moc: fontdlg.h
-	$(MOC) fontdlg.h -o fontdlg.moc
-	
-docking.cpp: docking.moc
-docking.moc: docking.h
-	$(MOC) docking.h -o docking.moc	
-
-mail.cpp: mail.moc
-mail.moc: mail.h
-	$(MOC) mail.h -o mail.moc
-
-alarm.cpp: alarm.moc
-alarm.moc: alarm.h
-	$(MOC) alarm.h -o alarm.moc
-
-spin.cpp: spin.moc
-spin.moc: spin.h
-	$(MOC) spin.h -o spin.moc
-
-renamedlg.cpp: renamedlg.moc
-renamedlg.moc: renamedlg.h
-	$(MOC) renamedlg.h -o renamedlg.moc
-
-
-
-
-
-
-
 
