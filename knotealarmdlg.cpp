@@ -101,12 +101,16 @@ void KNoteAlarmDlg::slotOk()
     if ( m_buttons->selectedId() == 0 )
     {
         m_journal->clearAlarms();
+        KDialogBase::slotOk();
         return;
     }
 
     KCal::Alarm *alarm;
     if ( m_journal->alarms().isEmpty() )
+    {
         alarm = m_journal->newAlarm();
+        alarm->setEnabled( true );
+    }
     else
         alarm = m_journal->alarms().first();
 
