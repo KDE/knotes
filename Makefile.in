@@ -3,6 +3,7 @@
 # this variables are needed for rpath support
 kde_libraries = @kde_libraries@
 qt_libraries = @qt_libraries@
+exec_prefix = @exec_prefix@
 top_builddir = ..
 LIBTOOL = @LIBTOOL@
 KDE_RPATH = @KDE_RPATH@
