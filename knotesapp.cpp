@@ -19,8 +19,12 @@
 *******************************************************************/
 
 #include <qclipboard.h>
+#include <qptrlist.h>
+#include <qdir.h>
 
-#include <kwin.h>
+#include <kdebug.h>
+#include <kaction.h>
+#include <kxmlguifactory.h>
 #include <klocale.h>
 #include <kiconloader.h>
 #include <kstandarddirs.h>
@@ -29,18 +33,20 @@
 #include <kkeydialog.h>
 #include <kglobalaccel.h>
 #include <kmessagebox.h>
-#include <kdebug.h>
 #include <ksimpleconfig.h>
 #include <kio/netaccess.h>
+#include <kwin.h>
 
-#include <kaction.h>
-#include <kxmlguifactory.h>
-
-#include <unistd.h>
+#include "libkcal/journal.h"
+#include "libkcal/icalformat.h"
 
 #include "knotesapp.h"
 #include "knote.h"
 #include "knoteconfigdlg.h"
+#include "knoteslegacy.h"
+#include "version.h"
+
+using namespace KCal;
 
 
 KNotesApp::KNotesApp()
@@ -54,31 +60,30 @@ KNotesApp::KNotesApp()
     KWin::setSystemTrayWindowFor( winId(), qt_xrootwin() );
     setBackgroundMode( X11ParentRelative );
     setPixmap( KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Small ) );
-
-
+ 
     // create the GUI...
     new KAction( i18n("New Note"), "filenew", 0, this, SLOT(slotNewNote()), actionCollection(), "new_note" );
     new KAction( i18n("New Note From Clipboard"), "editpaste", 0, this, SLOT(slotNewNoteFromClipboard()), actionCollection(), "new_note_clipboard" );
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
-
+    
     KStdAction::preferences( this, SLOT(slotPreferences()), actionCollection() );
     KStdAction::keyBindings( this, SLOT(slotConfigureAccels()), actionCollection() );
     KStdAction::quit( this, SLOT(slotQuit()), actionCollection() )->setShortcut( 0 );
-
+    
     setXMLFile( QString( instance()->instanceName() + "ui.rc" ) );
     factory = new KXMLGUIFactory( this, this, "guifactory" );
     factory->addClient( this );
 
     m_context_menu = static_cast<KPopupMenu*>(factory->container( "knotes_context", this ));
     m_note_menu = static_cast<KPopupMenu*>(factory->container( "notes_menu", this ));
-
+    
     // create accels for global shortcuts
     globalAccel = new KGlobalAccel( this, "global accel" );
-    globalAccel->insert( "global_new_note", i18n("New Note"), "",
-                         ALT+SHIFT+Key_N, ALT+SHIFT+Key_N ,
+    globalAccel->insert( "global_new_note", i18n("New Note"), "", 
+                         ALT+SHIFT+Key_N, ALT+SHIFT+Key_N , 
                          this, SLOT(slotNewNote()), true, true );
     globalAccel->insert( "global_new_note_clipboard", i18n("New Note From Clipboard"), "",
-                         ALT+SHIFT+Key_C, ALT+SHIFT+Key_C,
+                         ALT+SHIFT+Key_C, ALT+SHIFT+Key_C, 
                          this, SLOT(slotNewNoteFromClipboard()), true, true );
 
     globalAccel->readSettings();
@@ -89,234 +94,155 @@ KNotesApp::KNotesApp()
 
     updateGlobalAccels();
 
+    // clean up old config files
+    KNotesLegacy::cleanUp();
 
-    // remove old (KDE 1.x) local config file if it still exists
-    QString configfile = KGlobal::dirs()->findResource( "config", "knotesrc" );
-    KSimpleConfig *test = new KSimpleConfig( configfile, true );
-    test->setGroup( "General" );
-    if ( test->readDoubleNumEntry( "version", 1 ) == 1 )
-    {
-        delete test;
-        if ( !( checkAccess( configfile, W_OK ) &&
-                KIO::NetAccess::del( KURL(configfile) ) ) )
-        {
-            kdError(5500) << "Could not delete old config file!!" << endl;
-            // TODO
-        }
-    } else
-        delete test;
+    // read the notes
+    m_calendar.load( KGlobal::dirs()->saveLocation( "appdata" ) + "notes.ics" );
 
+    // TODO
+    // initialize the Calendar 
+    //m_calendar.setOwner(..);
+    //m_calendar.setEmail(..);
+
+    // read the old config files into m_calendar and convert them
+    if ( KNotesLegacy::convert( &m_calendar ) )
+        saveNotes();
 
     QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
-
-    // clean up note names (pre KNotes 2.1)
-    QStringList notes = noteDir.entryList( QDir::Files, QDir::Name );   // this doesn't list the hidden data files
-    for ( QStringList::Iterator n = notes.begin(); n != notes.end(); n++ )
+    QPtrList<Journal> notes = m_calendar.journals();
+    for ( Journal *note = notes.first(); note; note = notes.next() )
     {
-        bool number;
-        (*n).mid( 6 ).toInt( &number );
-        if ( !((*n).startsWith( "KNote " ) && number) )
+        // KOrganizers journals don't have attachments -> use default display config
+        if ( note->attachments(CONFIG_MIME).isEmpty() )
         {
-            QString newName;
-            for ( int i = 1; ; i++ )
-            {
-                newName = QString( "KNote %1" ).arg(i);
-                if ( !noteDir.exists( newName ) )
-                    break;
-            }
-            noteDir.rename( *n, newName, false );
-            noteDir.rename( "." + (*n) + "_data", "." + newName + "_data", false );
-            kdDebug(5500) << "Note " << *n << " renamed to " << newName << endl;
+            // set the name of the config file...
+            QString file = noteDir.absFilePath( note->uid() );
+
+            // ...and "fill" it with the default config
+            KIO::NetAccess::copy( 
+                    KURL( KGlobal::dirs()->findResource( "config", "knotesrc" ) ),
+                    KURL( file ) 
+            );
+            
+            note->addAttachment( new Attachment( file, CONFIG_MIME ) );
         }
-    }
+        
+        if ( note->summary().isNull() && note->dtStart().isValid() )
+            note->setSummary( KGlobal::locale()->formatDateTime( note->dtStart() ) );
 
-    // now read the notes
-    notes = noteDir.entryList( QDir::Files, QDir::Name );   // this doesn't list the hidden data files
-    for ( QStringList::Iterator i = notes.begin(); i != notes.end(); i++ )
-    {
-        KNote* newNote = new KNote( this, domDocument(), *i, true );
+        KNote* newNote = new KNote( this, domDocument(), note );
+        m_noteList.insert( note->uid(), newNote );
 
-        connect( newNote, SIGNAL( sigRenamed(const QString&, const QString&) ),
-                 this,    SLOT( slotNoteRenamed(const QString&, const QString&) ) );
-        connect( newNote, SIGNAL( sigNewNote() ),
-                 this,    SLOT( slotNewNote() ) );
-        connect( newNote, SIGNAL( sigKilled(const QString&) ),
-                 this,    SLOT( slotNoteKilled(const QString&) ) );
-        connect( newNote, SIGNAL( sigConfigChanged() ),
-                 this,    SLOT( updateNoteActions() ) );
-
-        m_noteList.insert( newNote->name(), newNote );
+        connect( newNote, SIGNAL(sigNewNote()), this, SLOT(slotNewNote()) );
+        connect( newNote, SIGNAL(sigKillNote( KCal::Journal* )),
+                 this,    SLOT(slotNoteKilled( KCal::Journal* )) );
+        connect( newNote, SIGNAL(sigConfigChanged()), this, SLOT(updateNoteActions()) );
+        connect( newNote, SIGNAL(sigDataChanged()), this, SLOT(saveNotes()) );
     }
     updateNoteActions();
 
-    connect( kapp, SIGNAL( lastWindowClosed() ), kapp, SLOT( quit() ) );
-
+    connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
+    
     kapp->installEventFilter( this );
-
+    
     if ( m_noteList.count() == 0 && !kapp->isRestored() )
-        slotNewNote();
+        newNote();
 }
 
 KNotesApp::~KNotesApp()
 {
-kdDebug(5500) << k_funcinfo << endl;
-    saveNotes( false );
-    blockSignals(true);
+    saveNotes();
+    
+    blockSignals( true );
     m_noteList.clear();
-    blockSignals(false);
+    blockSignals( false );
 
     delete factory;
 }
 
-bool KNotesApp::saveState( QSessionManager& )
-{
-kdDebug(5500) << k_funcinfo << endl;
-    saveNotes( false );
-    return true;
-}
-
 bool KNotesApp::commitData( QSessionManager& )
 {
-kdDebug(5500) << k_funcinfo << endl;
-    saveNotes( true );
+    saveConfig();
     return true;
 }
-
 
 // -------------------- public DCOP interface -------------------- //
 
-int KNotesApp::newNote( QString name, const QString& text )
+QString KNotesApp::newNote( const QString& name, const QString& text )
 {
-    if ( !name.isNull() && m_noteList[name] )
-    {
-        kdError(5500) << "A note with this name already exists!" << endl;
-        return -1;
-    }
+    // create the new note
+    Journal *note = new Journal();
 
-    // must be done here to check if !m_noteList[name]
+    // set the name of the config file...
     QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
-    if ( name.isEmpty() )
-    {
-        for ( int i = 1; ; i++ )
-        {
-            name = QString( "KNote %1" ).arg(i);
-            if ( !m_noteList[name] && !noteDir.exists( name ) )
-                break;
-        }
+    QString file = noteDir.absFilePath( note->uid() );
 
-//      New Notes have the current date as title
-/*
-        name = KGlobal::locale()->formatDateTime(QDateTime::currentDateTime());
-        if ( m_noteList[name] || noteDir.exists( name ) )
-        {
-            name += "   -%1-";
-            for ( int i =2; ; i++ )
-            {
-                QString n = name.arg(i);
-                if ( !m_noteList[n] && !noteDir.exists( n ) )
-                {
-                    name=n;
-                    break;
-                }
-            }
-        }
-*/
-    }
+    // ...and "fill" it with the default config
+    KIO::NetAccess::copy( KURL( KGlobal::dirs()->findResource( "config", "knotesrc" ) ),
+                          KURL( file ) );
 
-    KNote* newNote = new KNote( this, domDocument(), name );
-    newNote->setText( text );
+    // new notes have the current date/time as title if none was given
+    if ( !name.isNull() )
+        note->setSummary( name );
+    else
+        note->setSummary( KGlobal::locale()->formatDateTime( QDateTime::currentDateTime() ) );
+    
+    note->setDescription( text );
+    note->addAttachment( new Attachment( file, CONFIG_MIME ) );
+    m_calendar.addJournal( note );
 
-    connect( newNote, SIGNAL( sigRenamed(const QString&, const QString&) ),
-             this,    SLOT( slotNoteRenamed(const QString&, const QString&) ) );
-    connect( newNote, SIGNAL( sigNewNote() ),
-             this,    SLOT( slotNewNote() ) );
-    connect( newNote, SIGNAL( sigKilled(const QString&) ),
-             this,    SLOT( slotNoteKilled(const QString&) ) );
-    connect( newNote, SIGNAL( sigConfigChanged() ),
-             this,    SLOT( updateNoteActions() ) );
+    KNote* newNote = new KNote( this, domDocument(), note );
+    m_noteList.insert( newNote->noteId(), newNote );
 
-    m_noteList.insert( newNote->name(), newNote );
+    connect( newNote, SIGNAL(sigNewNote()), this, SLOT(slotNewNote()) );
+    connect( newNote, SIGNAL(sigKillNote( KCal::Journal* )),
+             this,    SLOT(slotNoteKilled( KCal::Journal* )) );
+    connect( newNote, SIGNAL(sigConfigChanged()), this, SLOT(updateNoteActions()) );
+    connect( newNote, SIGNAL(sigDataChanged()), this, SLOT(saveNotes()) );
+
     updateNoteActions();
     showNote( newNote );
 
     return newNote->noteId();
 }
 
-int KNotesApp::newNoteFromClipboard( QString name )
+QString KNotesApp::newNoteFromClipboard( const QString& name )
 {
     const QString& text = KApplication::clipboard()->text();
     return newNote( name, text );
 }
 
-void KNotesApp::showNote( const QString& name ) const
+void KNotesApp::showNote( const QString& id ) const
 {
-    KNote* note = m_noteList[name];
-
-    if ( !note )
-    {
-        kdWarning(5500) << "No note named " << name << endl;
-        return;
-    }
-
-    showNote( note );
+    KNote* note = m_noteList[id];
+    if ( note )
+        showNote( note );
+    else 
+        kdWarning(5500) << "No note with id: " << id << endl;
 }
 
-void KNotesApp::showNote( int noteId ) const
+void KNotesApp::hideNote( const QString& id ) const
 {
-    KNote* note = noteById( noteId );
-
-    if ( !note )
-    {
-        kdWarning(5500) << "No note with id " << noteId << endl;
-        return;
-    }
-
-    showNote( note );
+    KNote* note = m_noteList[id];
+    if ( note )
+        note->hide();
+    else
+        kdWarning(5500) << "No note with id: " << id << endl;
 }
 
-void KNotesApp::hideNote( const QString& name ) const
+void KNotesApp::killNote( const QString& id )
 {
-    KNote* note = m_noteList[name];
-
-    if ( !note )
-    {
-        kdWarning(5500) << "No note named " << name << endl;
-        return;
-    }
-
-    note->hide();
-}
-
-void KNotesApp::hideNote( int noteId ) const
-{
-    KNote* note = noteById( noteId );
-
-    if ( !note )
-    {
-        kdWarning(5500) << "No note with id " << noteId << endl;
-        return;
-    }
-
-    note->hide();
-}
-
-void KNotesApp::killNote( const QString& name )
-{
-    KNote* note = m_noteList[name];
+    KNote* note = m_noteList[id];
     if ( note )
         note->slotKill();
+    else
+        kdWarning(5500) << "No note with id: " << id << endl;
 }
 
-void KNotesApp::killNote( int noteId )
+QMap<QString,QString> KNotesApp::notes() const
 {
-    KNote* note = noteById( noteId );
-    if ( note )
-        note->slotKill();
-}
-
-QMap<int,QString> KNotesApp::notes() const
-{
-    QMap<int,QString> notes;
+    QMap<QString,QString> notes;
     QDictIterator<KNote> it( m_noteList );
 
     for ( ; it.current(); ++it )
@@ -325,50 +251,43 @@ QMap<int,QString> KNotesApp::notes() const
     return notes;
 }
 
-QString KNotesApp::text( const QString& name ) const
+QString KNotesApp::name( const QString& id ) const
 {
-    KNote* note = m_noteList[name];
+    KNote* note = m_noteList[id];
+    if ( note )
+        return note->name();
+    else
+        return QString::null;
+}
 
+QString KNotesApp::text( const QString& id ) const
+{
+    KNote* note = m_noteList[id];
     if ( note )
         return note->text();
     else
         return QString::null;
 }
 
-QString KNotesApp::text( int noteId ) const
+void KNotesApp::setName( const QString& id, const QString& newName )
 {
-    KNote* note = noteById( noteId );
-
+    KNote* note = m_noteList[id];
     if ( note )
-        return note->text();
-    else
-        return QString::null;
+    {
+        note->setName( newName );
+        updateNoteActions();
+    }
+    else 
+        kdWarning(5500) << "No note with id: " << id << endl;
 }
 
-void KNotesApp::setName( const QString& oldName, const QString& newName )
+void KNotesApp::setText( const QString& id, const QString& newText )
 {
-    slotNoteRenamed( oldName, newName );
-}
-
-void KNotesApp::setName( int noteId, const QString& newName )
-{
-    KNote* note = noteById( noteId );
-    if ( note )
-        slotNoteRenamed( note->name(), newName );
-}
-
-void KNotesApp::setText( const QString& name, const QString& newText )
-{
-    KNote* note = m_noteList[name];
+    KNote* note = m_noteList[id];
     if ( note )
         note->setText( newText );
-}
-
-void KNotesApp::setText( int noteId, const QString& newText )
-{
-    KNote* note = noteById( noteId );
-    if ( note )
-        note->setText( newText );
+    else 
+        kdWarning(5500) << "No note with id: " << id << endl;
 }
 
 void KNotesApp::sync( const QString& app )
@@ -379,40 +298,18 @@ void KNotesApp::sync( const QString& app )
         it.current()->sync( app );
 }
 
-bool KNotesApp::isNew( const QString& app, const QString& name ) const
+bool KNotesApp::isNew( const QString& app, const QString& id ) const
 {
-    KNote* note = m_noteList[name];
-
+    KNote* note = m_noteList[id];
     if ( note )
         return note->isNew( app );
     else
         return false;
 }
 
-bool KNotesApp::isNew( const QString& app, int noteId ) const
+bool KNotesApp::isModified( const QString& app, const QString& id ) const
 {
-    KNote* note = noteById( noteId );
-
-    if ( note )
-        return note->isNew( app );
-    else
-        return false;
-}
-
-bool KNotesApp::isModified( const QString& app, const QString& name ) const
-{
-    KNote* note = m_noteList[name];
-
-    if ( note )
-        return note->isModified( app );
-    else
-        return false;
-}
-
-bool KNotesApp::isModified( const QString& app, int noteId ) const
-{
-    KNote* note = noteById( noteId );
-
+    KNote* note = m_noteList[id];
     if ( note )
         return note->isModified( app );
     else
@@ -457,9 +354,10 @@ bool KNotesApp::eventFilter( QObject* o, QEvent* ev )
         {
             // show next note
             QDictIterator<KNote> it( m_noteList );
-            KNote* first = it.current();
+            KNote* first = it.toFirst();
             for ( ; it.current(); ++it )
-                if ( it.current()->hasFocus() ) {
+                if ( it.current()->hasFocus() ) 
+                {
                     if ( ++it )
                         showNote( it.current() );
                     else
@@ -492,70 +390,47 @@ void KNotesApp::slotNewNoteFromClipboard()
 
 void KNotesApp::slotShowNote()
 {
-    //tell the WM to give this note focus
+    // tell the WM to give this note focus
     QString name = QString::fromUtf8( sender()->name() );
     showNote( name );
 }
 
-void KNotesApp::slotNoteRenamed( const QString& oldname, const QString& newname )
+void KNotesApp::slotNoteKilled( Journal *journal )
 {
-    if ( m_noteList[newname] )
-    {
-        KMessageBox::sorry( this, i18n("There is already a note with that name") );
-        return;
-    }
+    // this kills the KNote object
+    m_noteList.remove( journal->uid() );
 
-    KNote *note = m_noteList.take( oldname );
-    if ( note )
-    {
-        m_noteList.insert( newname, note );
-        note->setName( newname );
+    QString configFile = journal->attachments( CONFIG_MIME ).first()->uri();
+    if ( !QDir::home().remove( configFile ) )
+        kdError(5500) << "Can't remove the note config: " << configFile << endl;
+        
+    m_calendar.deleteJournal( journal );
 
-        updateNoteActions();
-    }
-    else
-        kdError(5500) << "There is no note named: " << oldname << endl;
-}
-
-void KNotesApp::slotNoteKilled( const QString& name )
-{
-kdDebug(5500) << k_funcinfo << endl;
-    m_noteList.take( name );
     updateNoteActions();
 }
 
 void KNotesApp::slotPreferences() const
 {
-    //launch preferences dialog...
+    // launch preferences dialog...
     KNoteConfigDlg config( "knotesrc", i18n("KNotes Defaults"), true );
     config.exec();
 }
 
 void KNotesApp::slotConfigureAccels()
 {
-    KKeyDialog::configure(globalAccel,this,false);
+    KKeyDialog::configure( globalAccel, this, false );
     globalAccel->writeSettings();
     updateGlobalAccels();
 }
 
 void KNotesApp::slotQuit()
 {
-    saveNotes( true );
+    saveConfig();
     kapp->quit();
 }
 
+
 // -------------------- private methods -------------------- //
-
-KNote* KNotesApp::noteById( int noteId ) const
-{
-    QDictIterator<KNote> it( m_noteList );
-
-    for ( ; it.current(); ++it )
-        if ( it.current()->noteId() == noteId )
-            return it.current();
-
-    return 0L;
-}
 
 void KNotesApp::showNote( KNote* note ) const
 {
@@ -577,18 +452,18 @@ void KNotesApp::showNote( KNote* note ) const
     }
 }
 
-void KNotesApp::saveNotes( bool display ) const
+void KNotesApp::saveConfig()
 {
-kdDebug(5500) << k_funcinfo << endl;
-    // save all the notes...
     QDictIterator<KNote> it( m_noteList );
     for ( ; it.current(); ++it )
-    {
-        it.current()->saveData();
-        it.current()->saveConfig();
-        if ( display )
-            it.current()->saveDisplayConfig();
-    }
+        it.current()->saveConfig();    
+}
+
+void KNotesApp::saveNotes()
+{
+    QString file = KGlobal::dirs()->saveLocation( "appdata" ) + "notes.ics";
+    if ( !m_calendar.save( file, new ICalFormat() ) )
+        kdError(5500) << "Can't save the notes to: " << file << endl;
 }
 
 void KNotesApp::updateNoteActions()
@@ -598,11 +473,12 @@ void KNotesApp::updateNoteActions()
 
     for ( QDictIterator<KNote> it( m_noteList ); it.current(); ++it )
     {
-        KAction *action = new KAction( it.currentKey(), 0, 0, it.currentKey().utf8() );
+        KAction *action = new KAction( it.current()->name(), KShortcut(), 
+                                       this, SLOT(slotShowNote()), 
+                                       (QObject*)0, it.current()->noteId().utf8() );
         QPixmap pix( 16, 16 );
         pix.fill( it.current()->paletteBackgroundColor() );
         action->setIconSet( pix );
-        connect( action, SIGNAL( activated() ), this, SLOT( slotShowNote() ) );
         m_noteActions.append( action );
     }
 
@@ -629,7 +505,7 @@ void KNotesApp::updateGlobalAccels()
         globalAccel->updateConnections();
     }
     else
-    {
+    {        
         KAction *action = actionCollection()->action( "new_note" );
         if ( action )
             action->setShortcut( 0 );

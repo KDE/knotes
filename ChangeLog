@@ -1,6 +1,77 @@
 ChangeLog for KNotes
 ====================
 
+2003/01/26  Michael Brade <brade@kde.org>
+
+    * use libkcals new Attachment class
+    * the config file attachments have "application/x-knotes-config" mime type
+
+2002/11/05  Michael Brade <brade@kde.org>
+
+    * need to write the KNotes version to knotesrc, otherwise we'll get
+      an additional new note the next startup
+
+2002/11/03  Michael Brade <brade@kde.org>
+
+    * found a nice way to prevent loosing focus when opening the RMB menu
+
+2002/11/01  Michael Brade <brade@kde.org>
+
+    * use iCalendar's uids as note ids, saves quite some code and adds the
+      possibility to have more that one note using the same title. Also, now
+      a note will never change its id again.
+
+2002/10/31  Michael Brade <brade@kde.org>
+
+    * faster shutdown
+
+2002/10/30  Michael Brade <brade@kde.org>
+
+    * faster startup
+    * support for loading KOrganizer's journals:
+        - use default config
+        - set the start date as summary
+    * support for a note on different desktops: check position and let KWin do
+      the placement if it is illegal
+    * fixed small bug in attachments path
+
+2002/10/21  Michael Brade <brade@kde.org>
+
+    * new version number, we now have KNotes 3.0
+    * finished iCalendar code, KNotes is now fully working with libkcal - theoretically,
+      as attachments aren't implemented in libkcal yet
+
+2002/10/20  Michael Brade <brade@kde.org>
+
+    * new class KNotesLegacy which stores all the code dealing with
+      outdated config files
+    * fixed some bugs I found while rewriting the config stuff
+    * newNote and newNoteFromClipboard now take a "const QString& name"
+    * new subdirectory "icons" to make KIconLoader apply its effects to all
+      KNotes icons
+
+2002/10/17  Michael Brade <brade@kde.org>
+
+    * first steps to make KNotes save its data to iCal
+
+2002/10/16  Michael Brade <brade@kde.org>
+
+    * moved icons into their own subdirectory
+    * removed really old icons
+    * made KNoteButtons always square
+    * show the rich text actions only for actual rich text notes
+    * don't emit the bold/italic/underline signals when moving the cursor
+      or selecting text, otherwise this will change the selected text!
+
+2002/10/15  Michael Brade <brade@kde.org>
+
+    * rewrote KNoteButton (code was from the last stone age ;)
+
+2002/10/15  Michael Brade <brade@kde.org>
+
+    * added basic gui for rich text support, needs polishing
+      (too bad I can't use actions yet!)
+
 2002/10/04  Michael Brade <brade@kde.org>
 
     * fixed cut, paste, undo and redo activation

@@ -1,1 +1,2 @@
-#define KNOTES_VERSION "2.3"
+#define KNOTES_VERSION "3.0"
+#define CONFIG_MIME "application/x-knotes-config"

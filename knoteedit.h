@@ -27,20 +27,17 @@
 
 class QFont;
 class QColor;
+class QPushButton;
 class KAction;
-class KToggleAction;
 
 
 class KNoteEdit : public KTextEdit
 {
     Q_OBJECT
 public:
-    KNoteEdit( QWidget *parent=0, const char *name=0 );
+    KNoteEdit( QWidget *tool, QWidget *parent=0, const char *name=0 );
     ~KNoteEdit();
 
-    void readFile( const QString& filename );
-    void dumpToFile( const QString& filename ) const;
-    
     void setTextFont( const QFont& font );
     void setTextColor( const QColor& color );
     void setTabStop( int tabs );
@@ -68,9 +65,6 @@ public slots:
     void textIncreaseIndent();
     void textDecreaseIndent();
 
-signals:
-    void gotUrlDrop( const QString& url );
-
 protected:
     virtual void contentsDragEnterEvent( QDragEnterEvent *e );
     virtual void contentsDragMoveEvent( QDragMoveEvent *e );
@@ -78,6 +72,11 @@ protected:
 
 private slots:
     void slotReturnPressed();
+    
+    // this is needed as long as we don't use actions
+    void slotSetBold();
+    void slotSetItalic();
+    void slotSetUnderline();
 
     void fontChanged( const QFont &f );
     void colorChanged( const QColor &c );
@@ -90,11 +89,11 @@ private:
     void enableRichTextActions();
     void disableRichTextActions();
 
-
     KAction *m_cut;
     KAction *m_copy;
     KAction *m_paste;
 
+#if 0
     KAction *m_textColor;
 
     KToggleAction *m_textBold;
@@ -112,6 +111,25 @@ private:
 
     KAction *m_textIncreaseIndent;
     KAction *m_textDecreaseIndent;
+#else
+    QPushButton *m_textColor;
+
+    QPushButton *m_textBold;
+    QPushButton *m_textItalic;
+    QPushButton *m_textUnderline;
+
+    QPushButton *m_textAlignLeft;
+    QPushButton *m_textAlignCenter;
+    QPushButton *m_textAlignRight;
+    QPushButton *m_textAlignBlock;
+
+    QPushButton *m_textList;
+    QPushButton *m_textSuper;
+    QPushButton *m_textSub;
+    
+    QPushButton *m_textIncreaseIndent;
+    QPushButton *m_textDecreaseIndent;
+#endif
 
     bool m_autoIndentMode;
 };

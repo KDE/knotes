@@ -24,7 +24,6 @@
 #include <qstring.h>
 #include <qframe.h>
 #include <qpoint.h>
-#include <qdir.h>
 #include <qcolor.h>
 
 #include <kxmlguiclient.h>
@@ -40,20 +39,23 @@ class KListAction;
 class KNoteButton;
 class KNoteEdit;
 
+namespace KCal {
+    class Journal;
+}
+
 
 class KNote : public QFrame, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:
-    KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& config,
-           bool load=false, QWidget* parent=0, const char* name=0 );
+    KNote( KXMLGUIBuilder *builder, QDomDocument buildDoc, KCal::Journal *journal,
+           QWidget *parent=0, const char *name=0 );
     ~KNote();
 
-    void saveData() const;
+    void saveData();
     void saveConfig() const;
-    void saveDisplayConfig() const;
 
-    int noteId() const;
+    QString noteId() const;
     QString name() const;
     QString text() const;
 
@@ -70,7 +72,7 @@ public slots:
     void slotClose();
     void slotKill();
     void slotMail() /*const*/;
-    void slotPrint() const;
+    void slotPrint();
     void slotInsDate();
     void slotPreferences();
 
@@ -79,9 +81,9 @@ public slots:
     void slotUpdateDesktopActions();
 
 signals:
-    void sigKilled( const QString& );
-    void sigRenamed( const QString&, const QString& );
     void sigNewNote();
+    void sigKillNote( KCal::Journal* );
+    void sigDataChanged();
     void sigConfigChanged();
 
 protected:
@@ -96,19 +98,20 @@ private slots:
     void slotApplyConfig();
 
 private:
-    void convertOldConfig();
     void updateFocus();
     void updateLayout();
     void setColor( const QColor&, const QColor& );
 
-    QDir    m_noteDir;
-    QString m_configFile;
     QPoint  m_pointerOffset;
     bool    m_dragging;
 
     QLabel      *m_label;
     KNoteButton *m_button;
     KNoteEdit   *m_editor;
+    QWidget     *m_tool;
+    
+    KCal::Journal *m_journal;
+    QString        m_configFile;
 
     KToggleAction *m_alwaysOnTop;
     KListAction   *m_toDesktop;

@@ -1,32 +1,25 @@
-INCLUDES = $(all_includes)
+INCLUDES        = -I$(top_srcdir) $(all_includes)
 
-####### Files
-
-SUBDIRS         = .
+SUBDIRS         = . pics icons
 
 bin_PROGRAMS    = knotes
 
 include_HEADERS = KNotesIface.h
-noinst_HEADERS  = knotesapp.h knote.h knoteedit.h knoteconfigdlg.h knotebutton.h
-knotes_SOURCES  = knotesapp.cpp knote.cpp knoteedit.cpp knoteconfigdlg.cpp main.cpp KNotesIface.skel
-knotes_LDADD    = $(LIB_KIO) -lkdeprint
+noinst_HEADERS  = knotesapp.h knote.h knoteedit.h knoteconfigdlg.h knotebutton.h knoteslegacy.h
+knotes_SOURCES  = knotesapp.cpp knote.cpp knoteedit.cpp knotebutton.cpp knoteconfigdlg.cpp main.cpp KNotesIface.skel knoteslegacy.cpp
+knotes_LDADD    = $(LIB_KIO) -lkdeprint $(top_builddir)/libkcal/libkcal.la
 knotes_LDFLAGS  = $(all_libraries) $(KDE_RPATH)
 
 METASOURCES     = AUTO
 
-KDE_ICON  = knotes
+apps_DATA       = knotes.desktop
+appsdir         = $(kde_appsdir)/Utilities
 
-pix_DATA  = knoteslogo.png knotesclose.png knotesdelete.png knotesdate.png
-pixdir    = $(kde_datadir)/knotes/pics
+ui_DATA         = knotesui.rc
+uidir           = $(kde_datadir)/knotes
 
-apps_DATA = knotes.desktop
-appsdir   = $(kde_appsdir)/Utilities
-
-ui_DATA   = knotesui.rc
-uidir     = $(kde_datadir)/knotes
-
-rc_DATA   = knotesrc
-rcdir     = $(kde_confdir)
+rc_DATA         = knotesrc
+rcdir           = $(kde_confdir)
 
 
 messages: rc.cpp

@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2002, The KNotes Developers
+ Copyright (c) 2002, Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -18,34 +18,29 @@
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 *******************************************************************/
 
-#ifndef KNOTEBUTTON_H
-#define KNOTEBUTTON_H
+#ifndef KNOTESLEGACY_H
+#define KNOTESLEGACY_H
 
-#include <qpushbutton.h>
+#include <qstring.h>
+#include <qdir.h>
 
-class QPainter;
-class QEvent;
-class QResizeEvent;
+namespace KCal {
+    class CalendarLocal;
+    class Journal;
+}
 
 
-class KNoteButton: public QPushButton
+/**
+ * This converts and removes old note storage and config files.
+ */
+class KNotesLegacy
 {
-    Q_OBJECT
 public:
-    KNoteButton( const QString& icon, QWidget *parent=0, const char *name=0 );
-    ~KNoteButton();
-
-    virtual QSize sizeHint() const;
-    
-protected:
-    virtual void enterEvent( QEvent * );
-    virtual void leaveEvent( QEvent * );
-    
-    virtual void drawButton( QPainter *p );
-    virtual void drawButtonLabel( QPainter *p );
-
+    static void cleanUp();
+    static bool convert( KCal::CalendarLocal *calendar );
 private:
-    bool m_flat;
+    static void convertKNotes1Config( KCal::Journal *j, QDir& dir, const QString& file );
+    static void convertKNotes2Config( KCal::Journal *j, QDir& dir, const QString& file );
 };
 
 #endif

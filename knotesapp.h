@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2001, The KNotes Developers
+ Copyright (c) 1997-2002, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -30,6 +30,8 @@
 #include <kxmlguiclient.h>
 #include <kxmlguibuilder.h>
 
+#include "libkcal/calendarlocal.h"
+
 #include "KNotesIface.h"
 
 class KNote;
@@ -38,6 +40,10 @@ class KAction;
 class KActionMenu;
 class KGlobalAccel;
 class KXMLGUIFactory;
+
+namespace KCal {
+    class Journal;
+}
 
 
 class KNotesApp : public QLabel, virtual public KNotesIface, public KSessionManaged,
@@ -48,31 +54,27 @@ public:
     KNotesApp();
     ~KNotesApp();
 
-    int newNote( QString name = QString::null, const QString& text = QString::null );
-    int newNoteFromClipboard( QString name = QString::null );
-    void showNote( const QString& name ) const;
-    void showNote( int noteId ) const;
-    void hideNote( const QString& name ) const;
-    void hideNote( int noteId ) const;
-    void killNote( const QString& name );
-    void killNote( int noteId );
+    QString newNote( const QString& name = QString::null, 
+                            const QString& text = QString::null );
+    QString newNoteFromClipboard( const QString& name = QString::null );
 
-    QMap<int,QString> notes() const;
-    QString text( const QString& name ) const;
-    QString text( int noteId ) const;
-    void setName( const QString& oldName, const QString& newName );
-    void setName( int noteId, const QString& newName );
-    void setText( const QString& name, const QString& newText );
-    void setText( int noteId, const QString& newText );
+    void showNote( const QString& id ) const;
+    void hideNote( const QString& id ) const;
+    void killNote( const QString& id );
 
+    QString name( const QString& id ) const;
+    QString text( const QString& id ) const;
+    
+    void setName( const QString& id, const QString& newName );
+    void setText( const QString& id, const QString& newText );
+
+    QMap<QString,QString> notes() const;
+    
     void sync( const QString& app );
-    bool isNew( const QString& app, const QString& name ) const;
-    bool isNew( const QString& app, int noteId ) const;
-    bool isModified( const QString& app, const QString& name ) const;
-    bool isModified( const QString& app, int noteId ) const;
+    bool isNew( const QString& app, const QString& id ) const;
+    bool isModified( const QString& app, const QString& id ) const;
     
     bool commitData( QSessionManager& );
-    bool saveState( QSessionManager& );
 
 protected:
     void mousePressEvent( QMouseEvent* );
@@ -86,27 +88,30 @@ protected slots:
     void slotPreferences() const;
     void slotConfigureAccels();
 
-    void slotNoteKilled( const QString& name );
-    void slotNoteRenamed( const QString& oldname, const QString& newname );
+    void slotNoteKilled( KCal::Journal* );
 
     void slotQuit();
-    
+
 private slots:
     void updateNoteActions();
     void updateGlobalAccels();
+    
+    void saveNotes();
 
 private:
-    KNote* noteById( int id ) const;
-    void showNote( KNote* note ) const;
-    void saveNotes( bool display ) const;
+    void showNote( KNote *note ) const;
+    void saveConfig();
+
 
     QDict<KNote>      m_noteList;
     QPtrList<KAction> m_noteActions;
 
-    KPopupMenu* m_note_menu;
-    KPopupMenu* m_context_menu;
+    KCal::CalendarLocal m_calendar;
 
-    KXMLGUIFactory* factory;
+    KPopupMenu *m_note_menu;
+    KPopupMenu *m_context_menu;
+
+    KXMLGUIFactory *factory;
 
     KGlobalAccel *globalAccel;
 };
