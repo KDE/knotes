@@ -68,6 +68,8 @@ void KNotesLegacy::cleanUp()
         test->writeEntry( "version", KNOTES_VERSION );
         delete test;
     }
+    else
+        delete test;
 }
 
 bool KNotesLegacy::convert( CalendarLocal *calendar )
