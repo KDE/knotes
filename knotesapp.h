@@ -28,13 +28,18 @@
 #include <kconfig.h>
 #include <qdict.h>
 
+#include "knotesdcop.h"
 
-class KNotesApp : public KSystemTray
+class KNotesApp : public KSystemTray, virtual public KNotesDCOP
 {
    Q_OBJECT
 public:
     KNotesApp();
     ~KNotesApp();
+
+	virtual ASYNC showNote(int);
+	virtual ASYNC addNote(QString,QString,unsigned long);
+	virtual ASYNC rereadNotesDir();
 
 public slots:
     void slotNewNote    ( int id=0 );

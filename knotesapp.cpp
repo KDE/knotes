@@ -38,7 +38,8 @@
 #include <qfont.h>
 
 KNotesApp::KNotesApp()
-    : KSystemTray()
+    : KSystemTray(),
+	DCOPObject("KNotesDCOP")
 {
     //create the dock widget....
     setPixmap( KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Small ) );
@@ -88,6 +89,50 @@ KNotesApp::~KNotesApp()
 {
     delete m_note_menu;
     m_NoteList.clear();
+}
+
+/* virtual */ ASYNC KNotesApp::showNote(int i)
+{
+	if ((i>=0) && (i<(int)m_NoteList.count()))
+	{
+		// Show the i'th note. But note (!) that
+		// the QDict<KNote> collection class
+		// isn't ordered, so the whole idea
+		// of having an i'th note makes no sense.
+		//
+		//
+	}
+	else
+	{
+		kdWarning() << "Index out of range (" 
+			<< i 
+			<< ") in DCOP showNote"
+			<< endl;
+	}
+}
+
+/* virtual */ ASYNC KNotesApp::rereadNotesDir()
+{
+	kdWarning() << "Not implemented yet." << endl;
+
+
+	// Probably call the dir-reading code that's in
+	// the constructor.
+	//
+	//
+}
+
+/* virtual */ ASYNC KNotesApp::addNote(QString title,
+	QString body,
+	unsigned long pilotid)
+{
+	kdWarning() << "Not implemented yet." << endl;
+
+	// Something like slotNewNote() slotNoteRenamed() ...
+	// and then insert the pilot id in group [KPilot]
+	// with key pilotID.
+	//
+	//
 }
 
 void KNotesApp::copyDefaultConfig( QString& sc_filename, QString& newname )
