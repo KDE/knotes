@@ -3,11 +3,9 @@ TODOs for KNotes
 
  * transparent notes
  * port to KActions and XMLGUI
- * port to QTextEdit
  * steal some ideas from Stickies (Mac OS X)
  * save cursor position and scrollbar postion
  * the config dialog:
-    - make the title font configureable
     - make the frame configureable (3d -> normal)
     - make the keybindings configureable
 
@@ -18,15 +16,15 @@ perhaps:
 
 older TODOs from Wynn:
  * inserting calendar
- * hide unhide all? some ? one ?
+ * hide/unhide all/some/one ?
  * better pipe error checking
  * standart error redirection in piping
  * changing icon -- empty / non empty
  * handle KNotes files of which all/some may reside on the desktop?
-   (eans that there must be an extension for note files...)
+   (means that there must be an extension for note files...)
 
 Always open TODO:
  * make the code as perfect and clean as possible!!
 
 
--- Michael Brade 05-06-2001
+-- Michael Brade 05-11-2001

@@ -1,6 +1,20 @@
 ChangeLog for KNotes
 ====================
 
+2001/06/11  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * improved Configdialog:
+      - use nicer and bigger icons
+      - removed the size setting from the local note config dialog
+      - #20172: separate font settings for title and body
+    * don't reload the display setting if changing e.g. only the color -
+      the note's geometry could have been changed already
+
+2001/06/10  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * if there's only one note jump to it immediately instead of
+      showing the LMB menu
+
 2001/06/10  Michael Brade <brade@informatik.uni-muenchen.de>
 
     * small bugfix: display "No notes" instead of nothing in the LMB
