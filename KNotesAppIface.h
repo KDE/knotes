@@ -1,8 +1,7 @@
 /*******************************************************************
  KNotesIface.h  --  This file defines the DCOP interface for KNotes.
 
- Copyright (C) 2000 by Adriaan de Groot
-               2001-2004 by Michael Brade <brade@kde.org>
+ Copyright (C) 2004 by Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -17,10 +16,21 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+ In addition, as a special exception, the copyright holders give
+ permission to link the code of this program with any edition of
+ the Qt library by Trolltech AS, Norway (or with modified versions
+ of Qt that use the same license as Qt), and distribute linked
+ combinations including the two.  You must obey the GNU General
+ Public License in all respects for all of the code used other than
+ Qt.  If you modify this file, you may extend this exception to
+ your version of the file, but you are not obligated to do so.  If
+ you do not wish to do so, delete this exception statement from
+ your version.
 *******************************************************************/
 
-#ifndef __KNotesIface_h__
-#define __KNotesIface_h__
+#ifndef __KNotesAppIface_h__
+#define __KNotesAppIface_h__
 
 #include <qstring.h>
 #include <qmap.h>
@@ -28,7 +38,7 @@
 #include <dcopobject.h>
 
 
-class KNotesIface : virtual public DCOPObject
+class KNotesAppIface : virtual public DCOPObject
 {
     K_DCOP
 k_dcop:
@@ -98,6 +108,55 @@ k_dcop:
      * @return the body as a QString
      */
     virtual QString text( const QString& noteId ) const = 0;
+
+
+    /******** HERE STARTS THE KNotesAppIface DCOP INTERFACE EXTENSION ********/
+
+    /**
+     * Show a note as if it had been selected from the "notes" menu.
+     * @param noteId the id of the note to show
+     */
+    virtual ASYNC showNote( const QString& noteId ) const = 0;
+
+    /**
+     * Hide a note.
+     * @param noteId the id of the note to hide
+     */
+    virtual ASYNC hideNote( const QString& noteId ) const = 0;
+
+    /**
+     * Show all notes on their respective desktops.
+     */
+    virtual ASYNC showAllNotes() const = 0;
+
+    /**
+     * Hide all notes.
+     */
+    virtual ASYNC hideAllNotes() const = 0;
+
+    /**
+     * This tells KNotes that a specific app has synchronized with all the notes.
+     * @param app the app that has synced with KNotes
+     */
+    virtual ASYNC sync( const QString& app ) = 0;
+
+    /**
+     * Test if a note was created new after the last sync.
+     * @param app the app that wants to get the status since the last sync
+     * @param noteId the id of the note
+     * @return true if the note is new, false if not or if the note does
+     *         not exist
+     */
+    virtual bool isNew( const QString& app, const QString& noteId ) const = 0;
+
+    /**
+     * Test if a note was modified since the last sync.
+     * @param app the app that wants to get the status since the last sync
+     * @param noteId the id of the note
+     * @return true if modified (note that this will return true if the note is
+     *         new as well!) and false if the note is not modified or doesn't exist
+     */
+    virtual bool isModified( const QString& app, const QString& noteId ) const = 0;
 };
 
 #endif

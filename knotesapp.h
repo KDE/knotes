@@ -30,7 +30,7 @@
 #include <kapplication.h>
 #include <kxmlguiclient.h>
 
-#include "KNotesIface.h"
+#include "KNotesAppIface.h"
 
 class KNote;
 class KPopupMenu;
@@ -48,8 +48,8 @@ namespace KCal {
 }
 
 
-class KNotesApp : public QLabel, virtual public KNotesIface, public KSessionManaged,
-    virtual public KXMLGUIClient
+class KNotesApp : public QLabel, public KSessionManaged, virtual public KXMLGUIClient,
+    virtual public KNotesAppIface
 {
     Q_OBJECT
 public:
