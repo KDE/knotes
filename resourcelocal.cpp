@@ -88,12 +88,12 @@ bool ResourceLocal::save()
                                      -1, true ) ) {
         KMessageBox::error( 0,
                             i18n("<qt>Unable to save the notes backup to "
-                                 "<b>%1</b>! Check that there is sufficient "
+                                 "<b>%1</b>. Check that there is sufficient "
                                  "disk space.</qt>").arg( backup ) );
         return false;
     } else if ( !mCalendar.save( file, mFormat ) ) {
         KMessageBox::error( 0,
-                            i18n("<qt>Unable to save the notes to <b>%1</b>! "
+                            i18n("<qt>Unable to save the notes to <b>%1</b>. "
                                  "Check that there is sufficient disk space."
                                  "<br>There should be a backup in <b>%2</b> "
                                  "though.</qt>").arg( file ).arg( backup ) );
