@@ -193,7 +193,7 @@ QString KPostitMultilineEdit::prefixString(QString string){
 KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname)
   : QFrame(parent, myname){
 
-    KWM::setDecoration(winId(), 0); 
+
     KWM::setWmCommand(winId(), "");
     XSetTransientForHint( qt_xdisplay(), winId(), (Window)(-1));
     KWM::setIcon(winId(), kapp->getIcon());
@@ -214,6 +214,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     edit->setGeometry(0,30,200,100);
     edit->installEventFilter(this);
     edit->setFocus();
+    edit->setFrameStyle(QFrame::NoFrame);
 
     hidden = false;
     number = _number; 	// index in popup. Not used anymore, but I'll leave it in
@@ -274,11 +275,13 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     operations->insertSeparator();
     operations->insertItem (klocale->translate("Help"),this,SLOT(help()));
+
+    operations->insertSeparator();
+    operations->insertItem (klocale->translate("Options"),options);
     operations->insertSeparator();
     operations->insertItem ( klocale->translate("Quit"), this,
  				    SLOT(quit()));
-    operations->insertSeparator();
-    operations->insertItem (klocale->translate("Options"),options);
+
 
     right_mouse_button = new QPopupMenu;
 
@@ -1172,7 +1175,8 @@ void KPostit::set3DFrame(){
   frame3d = TRUE;
   //  options->changeItem("No Frame",frame3dID);
   options->setItemChecked(frame3dID,TRUE);
-  edit->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
+  //  edit->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
+  KWM::setDecoration(winId(), 2); 
   edit->repaint();
 }
 
@@ -1181,7 +1185,8 @@ void KPostit::setNoFrame(){
   frame3d = FALSE;
   //  options->changeItem("3D Frame",frame3dID);
   options->setItemChecked(frame3dID,FALSE);
-  edit->setFrameStyle(QFrame::NoFrame);
+  //  edit->setFrameStyle(QFrame::NoFrame);
+  KWM::setDecoration(winId(), 0); 
   edit->repaint();
 }
 
@@ -1654,6 +1659,7 @@ int main( int argc, char **argv ) {
   if(!one_is_visible && !restoring){
 
     KPostit::PostitList.last()->show(); 
+    KPostit::PostitList.last()->hidden=false; 
   }
 
   // manual session management (knotes alredy stores everything)
@@ -1681,8 +1687,8 @@ void readSettings()
 
   config->setGroup("Geometry");
 
-  postitdefaults.width = config->readNumEntry("width",270);
-  postitdefaults.height = config->readNumEntry("height",220);
+  postitdefaults.width = config->readNumEntry("width",230);
+  postitdefaults.height = config->readNumEntry("height",165);
 
   config->setGroup("Misc");
   
@@ -1832,7 +1838,7 @@ void myPushButton::paint(QPainter *painter){
   }
   
 
-  int dx = ( width() - pixmap()->width() ) / 2;
+   int dx = ( width() - pixmap()->width() ) / 2;
   int dy = ( height() - pixmap()->height() ) / 2;
   if ( isDown() && style() == WindowsStyle ) {
     dx++;
@@ -1841,8 +1847,16 @@ void myPushButton::paint(QPainter *painter){
 
   painter->drawPixmap( dx, dy, *pixmap());
   
-    
+  /*
+  QPen pen = painter->pen();
+  pen.setWidth(2);
+  pen.setColor(backgroundColor().light(180));
+  //  pen.setColor(white);
+  painter->setPen(pen);
 
+  painter->drawLine(2,2,width()-3,height()-2);
+  painter->drawLine(width()-3,2,2,height()-2);
+  */
 }
 
 void myPushButton::mousePressEvent( QMouseEvent *e){
