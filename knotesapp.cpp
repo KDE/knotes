@@ -120,9 +120,11 @@ KNotesApp::KNotesApp()
         saveNotes();
 
     QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
-    QPtrList<Journal> notes = m_calendar.journals();
-    for ( Journal *note = notes.first(); note; note = notes.next() )
+    Journal::List notes = m_calendar.journals();
+    Journal::List::ConstIterator it;
+    for ( it = notes.begin(); it != notes.end(); ++it )
     {
+        Journal *note = *it;
         // KOrganizers journals don't have attachments -> use default display config
         if ( note->attachments(CONFIG_MIME).isEmpty() )
         {
