@@ -28,8 +28,8 @@
 #include <qcolor.h>
 #include <qfile.h>
 #include <qtextstream.h>
-#include <qprinter.h>
 
+#include <kprinter.h>
 #include <klocale.h>
 #include <kstddirs.h>
 #include <kconfig.h>
@@ -437,7 +437,7 @@ void KNote::slotPrint() const
     saveData();
 
     KSimpleConfig config( m_noteDir.absFilePath( m_configFile ), true );
-    QPrinter printer;
+    KPrinter printer;
 
     if ( printer.setup() )
     {
