@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2005/02/02  Michael Brade <brade@kde.org>
+
+    * implemented #69137: read-only support for the notes, i.e. the ability to
+      lock a note from being modified.
+
 2005/01/16  Michael Brade <brade@kde.org>
 
     * read the most recent instead of always taking the local knotesui.rc file

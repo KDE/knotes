@@ -37,6 +37,8 @@
 #include <knotes/resourcenotes.h>
 #include <kresources/manager.h>
 
+#include <libkcal/alarm.h>
+
 class KNotesApp;
 class KNote;
 
@@ -45,8 +47,7 @@ namespace KCal {
 }
 
 
-class KNotesResourceManager : public QObject,
-    public KRES::ManagerObserver<ResourceNotes>
+class KNotesResourceManager : public QObject, public KRES::ManagerObserver<ResourceNotes>
 {
     Q_OBJECT
 public:
@@ -60,6 +61,8 @@ public:
     void registerNote( ResourceNotes *resource, KCal::Journal *journal );
 
     void deleteNote( KCal::Journal *journal );
+
+    KCal::Alarm::List alarms( const QDateTime& from, const QDateTime& to );
 
     // from the ManagerObserver interface
     virtual void resourceAdded( ResourceNotes *resource );

@@ -106,6 +106,8 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
         this, SIGNAL(sigRequestNewNote()), actionCollection(), "new_note" );
     new KAction( i18n("Rename..."), "text", 0,
         this, SLOT(slotRename()), actionCollection(), "rename_note" );
+    m_readOnly = new KToggleAction( i18n("Lock"), "lock" , 0,
+        this, SLOT(slotUpdateReadOnly()), actionCollection(), "lock_note" );
     new KAction( i18n("Hide"), "fileclose" , Key_Escape,
         this, SLOT(slotClose()), actionCollection(), "hide_note" );
     new KAction( i18n("Delete"), "knotes_delete", 0,
@@ -234,6 +236,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
         m_config->setAutoIndent( globalConfig->autoIndent() );
         m_config->setRichText( globalConfig->richText() );
         m_config->setTabSize( globalConfig->tabSize() );
+        m_config->setReadOnly( globalConfig->readOnly() );
 
         m_config->setDesktop( globalConfig->desktop() );
         m_config->setHideNote( globalConfig->hideNote() );
@@ -310,6 +313,9 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
     m_editor->setText( m_journal->description() );
     m_editor->setModified( false );
+
+    m_readOnly->setChecked( m_config->readOnly() );
+    slotUpdateReadOnly();
 }
 
 KNote::~KNote()
@@ -554,6 +560,25 @@ void KNote::slotRename()
         return;
 
     setName( newName );
+}
+
+void KNote::slotUpdateReadOnly()
+{
+    const bool readOnly = m_readOnly->isChecked();
+
+    m_editor->setReadOnly( readOnly );
+    m_config->setReadOnly( readOnly );
+
+    // Enable/disable actions accordingly
+    actionCollection()->action( "configure_note" )->setEnabled( !readOnly );
+    actionCollection()->action( "insert_date" )->setEnabled( !readOnly );
+    actionCollection()->action( "delete_note" )->setEnabled( !readOnly );
+
+    // TODO: replace the menu
+    actionCollection()->action( "edit_clear" )->setEnabled( !readOnly );
+    actionCollection()->action( "edit_paste" )->setEnabled( !readOnly );
+
+    updateFocus();
 }
 
 void KNote::slotClose()
@@ -892,10 +917,19 @@ void KNote::updateFocus()
         m_button->show();
         m_editor->cornerWidget()->show();
 
-        if ( m_tool->isHidden() && m_editor->textFormat() == QTextEdit::RichText )
+        if ( !m_config->readOnly() )
         {
-            m_tool->show();
-            setGeometry( x(), y(), width(), height() + m_tool->height() );
+            if ( m_tool->isHidden() && m_editor->textFormat() == QTextEdit::RichText )
+            {
+                m_tool->show();
+                setGeometry( x(), y(), width(), height() + m_tool->height() );
+            }
+        }
+        else if ( !m_tool->isHidden() )
+        {
+            m_tool->hide();
+            setGeometry( x(), y(), width(), height() - m_tool->height() );
+            updateLayout();     // to update the minimum height
         }
     }
     else

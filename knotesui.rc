@@ -1,6 +1,6 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="7">
+<kpartgui name="KNotes" version="8">
 
 <Menu name="note_context" noMerge="1">
     <Action name="insert_date"/>
@@ -13,6 +13,7 @@
     <Separator/>
     <Action name="new_note"/>
     <Action name="rename_note"/>
+    <Action name="lock_note"/>
     <Action name="hide_note"/>
     <Action name="delete_note"/>
     <Separator/>

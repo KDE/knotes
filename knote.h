@@ -102,6 +102,7 @@ protected:
 
 private slots:
     void slotRename();
+    void slotUpdateReadOnly();
     void slotClose();
 
     void slotSend();
@@ -146,6 +147,8 @@ private:
 
     KPopupMenu    *m_menu;
     KPopupMenu    *m_edit_menu;
+
+    KToggleAction *m_readOnly;
 
     KListAction   *m_toDesktop;
     KToggleAction *m_keepAbove;

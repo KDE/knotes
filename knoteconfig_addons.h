@@ -33,6 +33,9 @@ KNoteConfig() : KConfigSkeleton()
   KConfigSkeleton::ItemUInt  *itemTabSize;
   itemTabSize = new KConfigSkeleton::ItemUInt( currentGroup(), QString::fromLatin1( "tabsize" ), mTabSize, 4 );
   addItem( itemTabSize, QString::fromLatin1( "TabSize" ) );
+  KConfigSkeleton::ItemBool  *itemReadOnly;
+  itemReadOnly = new KConfigSkeleton::ItemBool( currentGroup(), QString::fromLatin1( "ReadOnly" ), mReadOnly, false );
+  addItem( itemReadOnly, QString::fromLatin1( "ReadOnly" ) );
 
   setCurrentGroup( QString::fromLatin1( "General" ) );
 
