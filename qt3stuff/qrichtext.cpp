@@ -4143,13 +4143,13 @@ void QTextParag::drawLabel( QPainter* p, int x, int y, int w, int h, int base, c
 	break;
     case QStyleSheetItem::ListSquare:
 	{
-	    QRect er( r.right() - size * 2, r.top() + base - fm.boundingRect( 'A' ).height() / 2 - size / 2 - 1, size, size );
+	    QRect er( r.right() - size * 2, r.top() + fm.height() / 2 - size / 2, size, size );
 	    p->fillRect( er , cg.brush( QColorGroup::Foreground ) );
 	}
 	break;
     case QStyleSheetItem::ListCircle:
 	{
-	    QRect er( r.right()-size*2, r.top() + base - fm.boundingRect('A').height()/2 - size/2 - 1, size, size);
+	    QRect er( r.right()-size*2, r.top() + fm.height() / 2 - size / 2, size, size);
 	    p->drawEllipse( er );
 	}
 	break;
@@ -4157,7 +4157,7 @@ void QTextParag::drawLabel( QPainter* p, int x, int y, int w, int h, int base, c
     default:
 	{
 	    p->setBrush( cg.brush( QColorGroup::Foreground ));
-	    QRect er( r.right()-size*2, r.top() + base - fm.boundingRect('A').height()/2 - size/2 - 1, size, size);
+	    QRect er( r.right()-size*2, r.top() + fm.height() / 2 - size / 2, size, size);
 	    p->drawEllipse( er );
 	    p->setBrush( Qt::NoBrush );
 	}
@@ -5167,7 +5167,7 @@ int QTextFormatterBreakWords::format( QTextDocument *doc, QTextParag *parag,
 
     // ### hack. The last char in the paragraph is always invisible, and somehow sometimes has a wrong format. It changes between
     // layouting and printing. This corrects some layouting errors in BiDi mode due to this.
-    if ( len > 1 ) {
+    if ( len > 1 && ( !c->format() || !c->format()->isAnchor() ) ) {
 	c->format()->removeRef();
 	c->setFormat( string->at( len - 2 ).format() );
 	c->format()->addRef();
@@ -5363,7 +5363,7 @@ QTextFormat *QTextFormatCollection::format( const QFont &f, const QColor &c )
     cachedFormat = createFormat( f, c );
     cachedFormat->collection = this;
     cKey.insert( cachedFormat->key(), cachedFormat );
-    if ( cachedFormat->key() != key ) 
+    if ( cachedFormat->key() != key )
 	qWarning("ASSERT: keys for format not identical: '%s '%s'", cachedFormat->key().latin1(), key.latin1() );
 #ifdef DEBUG_COLLECTION
     qDebug( "format of font and col '%s' - worst case", cachedFormat->key().latin1() );

@@ -100,7 +100,7 @@ class QViewportWidget : public QWidget
     Q_OBJECT
 
 public:
-    QViewportWidget( QScrollView *parent = 0, const char *name = 0, WFlags f = 0 )
+    QViewportWidget( QScrollView* Q_PARENT, const char* Q_NAME, WFlags f = 0 )
 	: QWidget( parent, name, f )
     {}
 };
@@ -110,7 +110,7 @@ class QClipperWidget : public QWidget
     Q_OBJECT
 
 public:
-    QClipperWidget( QWidget * parent=0, const char * name=0, WFlags f=0 )
+    QClipperWidget( QWidget * Q_PARENT, const char * Q_NAME, WFlags f=0 )
         : QWidget ( parent,name,f) { blockFocus = FALSE; }
     bool focusNextPrevChild( bool next ) {
         if ( !blockFocus )
