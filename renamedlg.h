@@ -41,14 +41,14 @@ class RenameDlg : public QDialog
 public:
 
 	RenameDlg( QWidget *parent = 0, const char *name = 0 ,
-		   QString *string = NULL, QStrList *list= NULL);
+		   QString *string = NULL, QStringList *list= NULL);
 
 
 	QLineEdit *lineNum;
 
 private:
 	QString  *pstring;
-	QStrList *pstrlist;
+	QStringList *pstrlist;
 	QPushButton *ok, *cancel;
 	QGroupBox *frame;
 	void resizeEvent(QResizeEvent *);

@@ -35,7 +35,7 @@
 #include "renamedlg.h"
 
 RenameDlg::RenameDlg( QWidget *parent, const char *name,
-		      QString *string,QStrList *list)
+		      QString *string,QStringList *list)
   : QDialog( parent, name, TRUE ){
 
     pstring = string;
@@ -82,8 +82,10 @@ void RenameDlg::selected(){
       return;	
   }
   
-  for(pstrlist->first();pstrlist->current();pstrlist->next()){
-    if(QString(pstrlist->current()) == *pstring){
+//  for(pstrlist->first();pstrlist->current();pstrlist->next()){
+	for(QStringList::Iterator it=pstrlist->begin(); it != pstrlist->end() ;
+		it++) {
+    if(*it == *pstring){
 
       KMessageBox::sorry(
 		     this,

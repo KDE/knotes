@@ -91,7 +91,7 @@ void DockWidget::createLeftPopUp(){
 
   for ( uint i = 0; i < KPostit::PostitFilesList.count(); i++){
       
-    popup_m->insertItem (KPostit::PostitFilesList.at(i));
+    popup_m->insertItem (KPostit::PostitFilesList[i]);
 
   }
 }

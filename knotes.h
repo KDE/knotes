@@ -137,7 +137,7 @@ public:
 
   // one instance for all kpostits
   static QList<KPostit>   PostitList;
-  static QStrList         PostitFilesList;
+  static QStringList         PostitFilesList;
   static QList<AlarmEntry> AlarmList;
   static bool dock;
 

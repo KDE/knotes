@@ -62,7 +62,7 @@
 void findPostitFiles();
 
 QList<KPostit> 	  KPostit::PostitList;      // pointers to all postit objects
-QStrList 	  KPostit::PostitFilesList; // names of all postit files
+QStringList 	  KPostit::PostitFilesList; // names of all postit files
 QList<AlarmEntry> KPostit::AlarmList;
 bool KPostit::dock;
 
@@ -276,10 +276,10 @@ void KPostitMultilineEdit::dropEvent( QDropEvent* event )
   debug("got KPostit::dropEvent()");
   debug("format: %s", event->format(0));
 
-  QStrList list;
+  QStringList list;
 
-  if ( QUrlDrag::decode( event, list ) )
-    emit gotUrlDrop(list.getFirst());
+  if ( QUrlDrag::decodeToUnicodeUris( event, list ) )
+    emit gotUrlDrop(list.first());
   else if ( QTextDrag::canDecode( event ) )
     QMultiLineEdit::dropEvent( event );
 }
@@ -388,7 +388,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     for ( uint i = 0; i < PostitFilesList.count(); i++){
 
-      int k = right_mouse_button->insertItem (PostitFilesList.at(i));
+      int k = right_mouse_button->insertItem (PostitFilesList[i]);
       k = k;
     }
 
@@ -704,15 +704,18 @@ void KPostit::newKPostit(){
     pname = "";
     pname = QString("knote %1").arg(i);
 
-    for(PostitFilesList.first();
+/*    for(PostitFilesList.first();
 	(PostitFilesList.current() && (!exists));
 	  PostitFilesList.next()){
 
       if ( QString(PostitFilesList.current()) == pname){ // file exist already
-
-	exists = TRUE;
-	break;
-      }
+*/
+	for(QStringList::Iterator it=PostitFilesList.begin();
+		it != PostitFilesList.end() && !exists;it++) {
+		if (*it==pname) {
+		exists = TRUE;
+		break;
+    	  }
     }
     if (!exists)
       break;
@@ -739,13 +742,19 @@ void KPostit::newKPostit(){
 
 
 
-  PostitFilesList.inSort(pname.ascii());
+  PostitFilesList.append(pname);
+  PostitFilesList.sort();
 
   for(PostitList.first();PostitList.current();PostitList.next()){
     int k = 0;
-    for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
+    /*for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
       PostitList.current()->right_mouse_button->insertItem(
 	     PostitFilesList.current(),k,k);
+      k++;
+    }*/
+    for(QStringList::Iterator it=PostitFilesList.begin();
+	it != PostitFilesList.end();it++){
+      PostitList.current()->right_mouse_button->insertItem(*it,k,k);
       k++;
     }
   }
@@ -818,10 +827,14 @@ void KPostit::renameKPostit(){
     }
 
 
-    for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
+    /*for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
       if(name == QString(PostitFilesList.current())){
-	PostitFilesList.remove(PostitFilesList.at());
-	break;
+	PostitFilesList.remove(PostitFilesList.at());*/
+	for(QStringList::Iterator it=PostitFilesList.begin();
+		it != PostitFilesList.end();it++) {
+		if (name == *it) {
+			PostitFilesList.remove(it);		
+			break;
       }
     }
 
@@ -840,7 +853,9 @@ void KPostit::renameKPostit(){
     }
     mytimer->start();
 
-    PostitFilesList.inSort(newName.ascii());
+    PostitFilesList.append(newName);
+    PostitFilesList.sort();
+
     name = newName;
 
 
@@ -861,12 +876,15 @@ void KPostit::renameKPostit(){
       }
 
       int k = 0;
-      for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
+/*      for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
 	PostitList.current()->right_mouse_button->insertItem(
-			     PostitFilesList.current(),k,k);
-	k++;
-      }
-      docker->createLeftPopUp();
+			     PostitFilesList.current(),k,k);*/
+	for(QStringList::Iterator it=PostitFilesList.begin();
+		it != PostitFilesList.end(); it++) {
+		PostitList.current()->right_mouse_button->insertItem(*it,k,k);
+		k++;
+    }
+    docker->createLeftPopUp();
     }
   }
   delete dlg;
@@ -919,13 +937,21 @@ void KPostit::deleteKPostit(){
 
 
 
-  for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
+/*  for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
     if(name == QString(PostitFilesList.current())){
       PostitFilesList.remove(PostitFilesList.at());
       break;
     }
   }
-
+*/
+  for(QStringList::Iterator it=PostitFilesList.begin();
+	it != PostitFilesList.end(); it++) {
+	if (name == *it) {
+		PostitFilesList.remove(it);
+		break;
+	}
+  }
+		
   if ((PostitFilesList.count()==0) && !dock)
     // no more notes and non docked = no menu !
     toggleDock();
@@ -933,11 +959,16 @@ void KPostit::deleteKPostit(){
   // reinsert PostitFilesList into popus in a sorted fashion
   for(PostitList.first();PostitList.current();PostitList.next()){
     int k = 0;
-    for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
+    /*for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
       PostitList.current()->right_mouse_button->insertItem(
 					      PostitFilesList.current(),k,k);
       k++;
-    }
+    }*/
+	for(QStringList::Iterator it=PostitFilesList.begin();
+		it != PostitFilesList.end() ; it++) {
+		PostitList.current()->right_mouse_button->insertItem(*it,k,k);
+		k++;
+	}
   }
 
   docker->createLeftPopUp();
@@ -1585,7 +1616,8 @@ void findPostitFiles(){
       continue;
     }
 
-    KPostit::PostitFilesList.inSort(fi.ascii());
+    KPostit::PostitFilesList.append(fi);
+    KPostit::PostitFilesList.sort();
     ++it;
   }
 
@@ -1596,7 +1628,8 @@ void alarmConsistencyCheck(){
   for(KPostit::AlarmList.first();KPostit::AlarmList.current();
       KPostit::AlarmList.next()){
 
-    if (KPostit::PostitFilesList.find(KPostit::AlarmList.current()->name.ascii()) == -1){
+    if (KPostit::PostitFilesList.find(KPostit::AlarmList.current()->name) == 
+	KPostit::PostitFilesList.end()){
 
       QString str;
       str = i18n("Found an alarm to which the underlying\n"\
@@ -1694,11 +1727,14 @@ int main( int argc, char **argv ) {
     KPostit::PostitFilesList.append("knote 1");
   }
 
-  unsigned int i;
+  //unsigned int i;
   bool one_is_visible = false;
 
-  for (i=0; i<KPostit::PostitFilesList.count(); i++){
-    postit = new KPostit(NULL,NULL,0,KPostit::PostitFilesList.at(i));
+  /*for (i=0; i<KPostit::PostitFilesList.count(); i++){
+    postit = new KPostit(NULL,NULL,0,KPostit::PostitFilesList.at(i));*/
+	for(QStringList::Iterator it=KPostit::PostitFilesList.begin();
+		it != KPostit::PostitFilesList.end(); it++) {
+	postit = new KPostit(NULL,NULL,0,*it);
     KPostit::PostitList.append(postit);
     if(!postit->hidden){
       postit->show();

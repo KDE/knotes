@@ -1,3 +1,8 @@
+1999-10-16  Harri Porten  <porten@kde.org>
+
+	* knotes.cpp: applied Unicode patch from Ming-Che Chuang
+	<r8921131@ms1.cc.ntu.edu.tw>
+
 1999-09-25  Harri Porten  <porten@kde.org>
 
 	* alarm.cpp: remove (A) from lable when unsetting alarm
