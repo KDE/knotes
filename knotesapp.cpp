@@ -133,8 +133,9 @@ KNotesApp::~KNotesApp()
 {
 kdDebug(5500) << k_funcinfo << endl;
     saveNotes();
-    disconnect();
+    blockSignals(true);
     m_noteList.clear();
+    blockSignals(false);
 
     delete factory;
 }
