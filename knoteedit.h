@@ -29,6 +29,7 @@ class QFont;
 class QColor;
 class QPushButton;
 class KAction;
+class KActionCollection;
 class KToggleAction;
 class KFontAction;
 class KFontSizeAction;
@@ -38,7 +39,7 @@ class KNoteEdit : public KTextEdit
 {
     Q_OBJECT
 public:
-    KNoteEdit( QWidget *parent=0, const char *name=0 );
+    KNoteEdit( KActionCollection *actions, QWidget *parent=0, const char *name=0 );
     ~KNoteEdit();
 
     void setText( const QString& text );

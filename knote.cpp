@@ -132,7 +132,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     setName( m_journal->summary() );      // don't worry, no signals are connected at this stage yet
 
     // create the note editor
-    m_editor = new KNoteEdit( this );
+    m_editor = new KNoteEdit( actionCollection(), this );
     m_editor->installEventFilter( this ); // receive events (for modified)
     m_editor->viewport()->installEventFilter( this );
 
