@@ -776,10 +776,8 @@ void KNote::updateLayout()
     );
 
     m_label->setGeometry(
-        frameRect().x() + border + (closeLeft && !m_button->isHidden() ? headerHeight : 0),
-        frameRect().y() + border,
-        frameRect().width() - (m_button->isHidden() ? 0 : headerHeight) - border*2,
-        headerHeight
+        frameRect().x() + border, frameRect().y() + border,
+        frameRect().width() - border*2, headerHeight
     );
 
     m_editor->setGeometry(
