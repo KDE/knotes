@@ -41,6 +41,7 @@ class KGlobalAccel;
 class KXMLGUIFactory;
 class KXMLGUIBuilder;
 class KExtendedSocket;
+class KNotesAlarm;
 class KNotesResourceManager;
 
 namespace KCal {
@@ -124,6 +125,7 @@ private:
 
     KNotesResourceManager *m_manager;
 
+    KNotesAlarm     *m_alarm;
     KExtendedSocket *m_listener;
 
     QDict<KNote>    m_noteList;

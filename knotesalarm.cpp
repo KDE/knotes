@@ -29,40 +29,44 @@
  your version.
 *******************************************************************/
 
-#ifndef KNOTEALARMDLG_H
-#define KNOTEALARMDLG_H
+#include <qstringlist.h>
 
-#include <kdialogbase.h>
+#include <kmessagebox.h>
+#include <klocale.h>
 
-class QButtonGroup;
-class KDateEdit;
-class KTimeEdit;
+#include <libkcal/calendarresources.h>
 
-namespace KCal {
-    class Journal;
+#include "knotesalarm.h"
+#include "knotesglobalconfig.h"
+
+
+KNotesAlarm::KNotesAlarm( KNotesResourceManager *manager, QObject *parent, const char *name )
+  : QObject( parent, name ),
+    m_manager( manager )
+{
+    // TODO: fix timezone stuff?
+
+    connect( &m_checkTimer, SIGNAL(timeout()), SLOT(checkAlarms()) );
+    m_checkTimer.start( 1000 * KNotesGlobalConfig::self()->checkInterval() );  // interval in seconds
+}
+
+void KNotesAlarm::checkAlarms()
+{
+    QDateTime from = KNotesGlobalConfig::self()->alarmsLastChecked().addSecs( 1 );
+    KNotesGlobalConfig::self()->setAlarmsLastChecked( QDateTime::currentDateTime() );
+    QValueList<KCal::Alarm *> alarms = m_manager->alarms( from, KNotesGlobalConfig::self()->alarmsLastChecked() );
+
+    QStringList notes;
+    QValueList<KCal::Alarm *>::ConstIterator it;
+    for ( it = alarms.begin(); it != alarms.end(); ++it )
+    {
+        KCal::Incidence *incidence = (*it)->parent();
+        notes += incidence->summary();
+    }
+
+    if ( !notes.isEmpty() )
+        KMessageBox::informationList( 0, i18n("The following notes triggered alarms:"), notes, i18n("Alarm") );
 }
 
 
-class KNoteAlarmDlg : public KDialogBase
-{
-    Q_OBJECT
-public:
-    KNoteAlarmDlg( const QString& caption, QWidget *parent=0, const char *name=0 );
-
-    void setIncidence( KCal::Journal *journal );
-
-protected:
-    virtual void slotOk();
-
-private slots:
-    void slotButtonChanged( int id );
-
-private:
-    QButtonGroup  *m_buttons;
-    KCal::Journal *m_journal;
-
-    KDateEdit *m_atDate;
-    KTimeEdit *m_atTime, *m_inTime;
-};
-
-#endif
+#include "knotesalarm.moc"

@@ -45,6 +45,7 @@
 
 #include "knotesapp.h"
 #include "knote.h"
+#include "knotesalarm.h"
 #include "knoteconfigdlg.h"
 #include "knotesglobalconfig.h"
 #include "knoteslegacy.h"
@@ -186,6 +187,9 @@ KNotesApp::KNotesApp()
 
         m_manager->save();
     }
+
+    // set up the alarm reminder
+    m_alarm = new KNotesAlarm( m_manager, this );
 
     // create the socket and possibly start listening for connections
     m_listener = new KExtendedSocket();

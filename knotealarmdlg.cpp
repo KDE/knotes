@@ -72,9 +72,6 @@ KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent, const cha
     connect( m_buttons, SIGNAL(clicked( int )), SLOT(slotButtonChanged( int )) );
 }
 
-KNoteAlarmDlg::~KNoteAlarmDlg()
-{
-}
 
 void KNoteAlarmDlg::setIncidence( KCal::Journal *journal )
 {
