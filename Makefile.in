@@ -3,9 +3,9 @@
 prefix  = @prefix@
 BINDIR  = $(prefix)/bin
 LIBDIR  = $(prefix)/lib
-PIXDIR  = $(prefix)/lib/pics
-DOCSDIR = $(prefix)/doc/HTML/knotes
-APPSDIR = $(prefix)/apps/Utilities
+PIXDIR  = $(prefix)/share/icons
+DOCSDIR = $(prefix)/share/doc/HTML/knotes
+APPSDIR = $(prefix)/share/applnk/Utilities
 
 install = @INSTALL@
 INSTALL = $(install) -m 0755
