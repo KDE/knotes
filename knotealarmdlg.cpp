@@ -132,6 +132,7 @@ void KNoteAlarmDlg::slotOk()
     {
         alarm = m_journal->newAlarm();
         alarm->setEnabled( true );
+        alarm->setType( KCal::Alarm::Display );
     }
     else
         alarm = m_journal->alarms().first();

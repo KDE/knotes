@@ -5,6 +5,7 @@ ChangeLog for KNotes
 
     * fixed #93001: strikeout text now actually works for multiple paragraphs
 	   as well.
+    * fixed #18059: finished implementation of alarms for the notes
 
 2005/02/05  Michael Brade <brade@kde.org>
 
