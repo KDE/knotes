@@ -156,22 +156,22 @@ bool KNotesApp::commitData( QSessionManager& )
 QString KNotesApp::newNote( const QString& name, const QString& text )
 {
     // create the new note
-    KCal::Journal *note = new KCal::Journal();
+    KCal::Journal *journal = new KCal::Journal();
 
     // new notes have the current date/time as title if none was given
     if ( !name.isEmpty() )
-        note->setSummary( name );
+        journal->setSummary( name );
     else
-        note->setSummary( KGlobal::locale()->formatDateTime( QDateTime::currentDateTime() ) );
+        journal->setSummary( KGlobal::locale()->formatDateTime( QDateTime::currentDateTime() ) );
 
     // the body of the note
-    note->setDescription( text );
+    journal->setDescription( text );
 
-    m_manager->addNewNote( note );
+    m_manager->addNewNote( journal );
 
-    showNote( note->uid() );
+    showNote( journal->uid() );
 
-    return note->uid();
+    return journal->uid();
 }
 
 QString KNotesApp::newNoteFromClipboard( const QString& name )
@@ -186,7 +186,7 @@ void KNotesApp::showNote( const QString& id ) const
     if ( note )
         showNote( note );
     else
-        kdWarning(5500) << "No note with id: " << id << endl;
+        kdWarning(5500) << "showNote: no note with id: " << id << endl;
 }
 
 void KNotesApp::hideNote( const QString& id ) const
@@ -195,7 +195,7 @@ void KNotesApp::hideNote( const QString& id ) const
     if ( note )
         note->hide();
     else
-        kdWarning(5500) << "No note with id: " << id << endl;
+        kdWarning(5500) << "hideNote: no note with id: " << id << endl;
 }
 
 void KNotesApp::killNote( const QString& id, bool force )
@@ -204,7 +204,7 @@ void KNotesApp::killNote( const QString& id, bool force )
     if ( note )
         note->slotKill( force );
     else
-        kdWarning(5500) << "No note with id: " << id << endl;
+        kdWarning(5500) << "killNote: no note with id: " << id << endl;
 }
 
 // "bool force = false" doesn't work with dcop
@@ -248,7 +248,7 @@ void KNotesApp::setName( const QString& id, const QString& newName )
     if ( note )
         note->setName( newName );
     else
-        kdWarning(5500) << "No note with id: " << id << endl;
+        kdWarning(5500) << "setName: no note with id: " << id << endl;
 }
 
 void KNotesApp::setText( const QString& id, const QString& newText )
@@ -257,7 +257,7 @@ void KNotesApp::setText( const QString& id, const QString& newText )
     if ( note )
         note->setText( newText );
     else
-        kdWarning(5500) << "No note with id: " << id << endl;
+        kdWarning(5500) << "setText: no note with id: " << id << endl;
 }
 
 void KNotesApp::sync( const QString& app )
