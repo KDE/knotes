@@ -39,40 +39,85 @@
 #include <libkdepim/kdateedit.h>
 #include <libkdepim/ktimeedit.h>
 
+#include <libkcal/journal.h>
+#include <libkcal/alarm.h>
+
 #include "knotealarmdlg.h"
 
 
 KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent, const char *name )
     : KDialogBase( parent, name, true, caption, Ok|Cancel, Ok )
 {
-    //enableButtonSeparator( true );
-
     QVBox *page = makeVBoxMainWidget();
-    QGroupBox *buttons = new QGroupBox( 3, Vertical, i18n("Scheduled Alarm"), page );
-    QButtonGroup *group = new QButtonGroup( page );
-    group->hide();
+    QGroupBox *group = new QGroupBox( 3, Vertical, i18n("Scheduled Alarm"), page );
+    m_buttons = new QButtonGroup( page );
+    m_buttons->hide();
 
-    QRadioButton *none = new QRadioButton( i18n("No alarm"), buttons );
-    group->insert( none );
+    QRadioButton *none = new QRadioButton( i18n("&No alarm"), group );
+    m_buttons->insert( none );
 
-    QHBox *at = new QHBox( buttons );
-    QRadioButton *label_at = new QRadioButton( i18n("Alarm at:"), at );
-    group->insert( label_at );
-    KDateEdit *at_date = new KDateEdit( at );
-    KTimeEdit *at_time = new KTimeEdit( at );
-    at->setStretchFactor( at_date, 1 );
+    QHBox *at = new QHBox( group );
+    QRadioButton *label_at = new QRadioButton( i18n("Alarm &at:"), at );
+    m_buttons->insert( label_at );
+    m_atDate = new KDateEdit( at );
+    m_atTime = new KTimeEdit( at );
+    at->setStretchFactor( m_atDate, 1 );
 
-    QHBox *in = new QHBox( buttons );
-    QRadioButton *label_in = new QRadioButton( i18n("Alarm in:"), in );
-    group->insert( label_in );
-    KTimeEdit *in_time = new KTimeEdit( in );
+    QHBox *in = new QHBox( group );
+    QRadioButton *label_in = new QRadioButton( i18n("Alarm &in:"), in );
+    m_buttons->insert( label_in );
+    m_inTime = new KTimeEdit( in );
     QLabel *in_min = new QLabel( i18n("hours/minutes"), in );
 }
-
 
 KNoteAlarmDlg::~KNoteAlarmDlg()
 {
 }
 
+void KNoteAlarmDlg::setIncidence( KCal::Journal *journal )
+{
+    m_journal = journal;
+
+    if ( !m_journal->alarms().isEmpty() )
+    {
+        KCal::Alarm *alarm = m_journal->alarms().first();
+        if ( alarm->hasTime() )
+        {
+            m_buttons->setButton( 1 );
+            m_atDate->setDate( alarm->time().date() );
+            m_atTime->setTime( alarm->time().time() );
+        }
+        else if ( alarm->hasStartOffset() )
+            m_buttons->setButton( 2 );
+        else
+            m_buttons->setButton( 0 );
+    }
+    else
+        m_buttons->setButton( 0 );
+}
+
+void KNoteAlarmDlg::slotOk()
+{
+    if ( m_buttons->selectedId() == 0 )
+    {
+        m_journal->clearAlarms();
+        return;
+    }
+
+    KCal::Alarm *alarm;
+    if ( m_journal->alarms().isEmpty() )
+        alarm = m_journal->newAlarm();
+    else
+        alarm = m_journal->alarms().first();
+
+    if ( m_buttons->selectedId() == 1 )
+        alarm->setTime( QDateTime( m_atDate->date(), m_atTime->getTime() ) );
+    else
+    {
+        // TODO
+    }
+
+    KDialogBase::slotOk();
+}
 
 #include "knotealarmdlg.moc"

@@ -577,6 +577,7 @@ void KNote::slotInsDate()
 void KNote::slotSetAlarm()
 {
     KNoteAlarmDlg dlg( name(), this );
+    dlg.setIncidence( m_journal );
 
     if ( dlg.exec() != QDialog::Accepted )
         return;

@@ -34,6 +34,14 @@
 
 #include <kdialogbase.h>
 
+class QButtonGroup;
+class KDateEdit;
+class KTimeEdit;
+
+namespace KCal {
+    class Journal;
+}
+
 
 class KNoteAlarmDlg : public KDialogBase
 {
@@ -42,8 +50,17 @@ public:
     KNoteAlarmDlg( const QString& caption, QWidget *parent=0, const char *name=0 );
     ~KNoteAlarmDlg();
 
-// signals:
-//     void newAlarm( Alarm );
+    void setIncidence( KCal::Journal *journal );
+
+protected:
+    virtual void slotOk();
+
+private:
+    QButtonGroup  *m_buttons;
+    KCal::Journal *m_journal;
+
+    KDateEdit *m_atDate;
+    KTimeEdit *m_atTime, *m_inTime;
 };
 
 #endif
