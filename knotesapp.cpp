@@ -117,7 +117,7 @@ KNotesApp::KNotesApp()
     m_manager = new KNotesResourceManager();
     connect( m_manager, SIGNAL(sigRegisteredNote( KCal::Journal * )),
              this,      SLOT(createNote( KCal::Journal * )) );
-    connect( m_manager, SIGNAL(sigUnregisteredNote( KCal::Journal * )),
+    connect( m_manager, SIGNAL(sigDeregisteredNote( KCal::Journal * )),
              this,      SLOT(killNote( KCal::Journal * )) );
 
     // read the notes

@@ -108,7 +108,7 @@ void KNotesResourceManager::deleteNote( KCal::Journal *journal )
     // Remove the journal from the resource it came from
     m_resourceMap[ uid ]->deleteNote( journal );
     m_resourceMap.remove( uid );
-    emit sigUnregisteredNote( journal );
+    emit sigDeregisteredNote( journal );
 }
 
 void KNotesResourceManager::resourceAdded( ResourceNotes *resource )
