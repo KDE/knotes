@@ -67,7 +67,7 @@ QtedSetInt::QtedSetInt(int min, int max, int start_value, int format,
    _label_p->setAlignment(AlignCenter);
    _label_p->setLineWidth(2);
    _label_p->setFrameStyle(QFrame::Panel | QFrame::Sunken);
-   _label_p->setBackgroundColor(white);
+//   _label_p->setBackgroundColor(white);
 
    value(start_value);
    setSize();
