@@ -368,13 +368,18 @@ void KNote::slotClose()
 
 void KNote::slotKill()
 {
-    if ( !m_noteDir.remove( m_configFile ) )
-        kdWarning() << "could not remove conf file for note " << m_label->text() << endl;
+    if ( KMessageBox::warningYesNo( this,
+         i18n("Do you really want to delete this note?"),
+         i18n("Delete \"%1\"").arg( m_label->text() ) ) == KMessageBox::Yes )
+    {
+        if ( !m_noteDir.remove( m_configFile ) )
+            kdWarning() << "could not remove conf file for note " << m_label->text() << endl;
 
-    if ( !m_noteDir.remove( "." + m_configFile + "_data" ) )
-        kdWarning() << "could not remove data file for note " << m_label->text() << endl;
+        if ( !m_noteDir.remove( "." + m_configFile + "_data" ) )
+            kdWarning() << "could not remove data file for note " << m_label->text() << endl;
 
-    delete this;
+        delete this;
+    }
 }
 
 void KNote::slotInsDate()
