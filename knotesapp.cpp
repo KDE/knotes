@@ -367,6 +367,7 @@ void KNotesApp::mousePressEvent( QMouseEvent* e )
         break;
     case RightButton:
         m_context_menu->popup( e->globalPos() );
+    default: break;
     }
 }
 
