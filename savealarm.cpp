@@ -34,7 +34,7 @@ bool savealarms(){
 
   QString alarmfile;
   alarmfile = getenv("HOME");
-  alarmfile += "/.kde/knotes/xyalarms/knotesalarms";
+  alarmfile += "/.kde/share/apps/knotes/xyalarms/knotesalarms";
 
   QFile file(alarmfile.data());
 
@@ -69,7 +69,7 @@ bool readalarms(){
   QString alarmfile;
 
   alarmfile = getenv("HOME");
-  alarmfile += "/.kde/knotes/xyalarms/knotesalarms";
+  alarmfile += "/.kde/share/apps/knotes/xyalarms/knotesalarms";
 
   QFile file(alarmfile.data());
 

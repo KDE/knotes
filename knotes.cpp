@@ -63,9 +63,24 @@ MyTimer* 	mytimer;
 extern bool     savealarms();
 extern bool 	readalarms();
 
+#include <dirent.h>
+#include <sys/stat.h>
+
+// Torben
+void testDir( const char *_name )
+{
+    DIR *dp;
+    QString c = getenv( "HOME" );
+    c += _name;
+    dp = opendir( c.data() );
+    if ( dp == NULL )
+	::mkdir( c.data(), S_IRWXU );
+    else
+	closedir( dp );
+}
+
 KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname)
   : QMultiLineEdit(parent, myname){
-
 
     number = _number; 	// index in popup. Not used anymore, but I'll leave it in
                         // the structure for now.
@@ -605,7 +620,7 @@ void KPostit::renameKPostit(){
     QString notesfile;
     QString newnotesfile;
     notesfile = getenv("HOME");
-    notesfile += "/.kde/knotes/";
+    notesfile += "/.kde/share/apps/knotes/notes";
     newnotesfile = notesfile.copy();
     notesfile += name;
     newnotesfile += newName;
@@ -678,7 +693,7 @@ void KPostit::deleteKPostit(){
 
   QString notesfile;
   notesfile = getenv("HOME");
-  notesfile += "/.kde/knotes/";
+  notesfile += "/.kde/share/apps/knotes/notes/";
   notesfile += name;
 
   if(remove(notesfile.data())){
@@ -737,7 +752,7 @@ bool KPostit::loadnotes(){
 
   QString notesfile;
   notesfile = getenv("HOME");
-  notesfile += "/.kde/knotes/";
+  notesfile += "/.kde/share/apps/knotes/notes/";
   notesfile += name;
 
   QFile file(notesfile.data());
@@ -875,7 +890,7 @@ bool KPostit::savenotes(){
 
   QString notesfile;
   notesfile = getenv("HOME");
-  notesfile += "/.kde/knotes/";
+  notesfile += "/.kde/share/apps/knotes/notes/";
   notesfile += name;
 
   QFile file(notesfile.data());
@@ -1248,9 +1263,9 @@ void KPostit::slotKFMFinished()
 void findPostitFiles(){
 
   QString p = getenv( "HOME" );
-  QString filesdir = p + "/.kde/knotes/";
+  QString filesdir = p + "/.kde/share/apps/knotes/notes/";
 
-  QString alarmdir = p + "/.kde/knotes/xyalarms";
+  QString alarmdir = p + "/.kde/share/apps/knotes/xyalarms";
 
   if ( access( filesdir.data(), F_OK ) ){
     mkdir( filesdir.data(), 0700 );
@@ -1331,12 +1346,18 @@ int main( int argc, char **argv ) {
   FILE *fp;
   int pid;
   KPostit* postit;
+  
+  // Torben
+  testDir( "/.kde" );
+  testDir( "/.kde/share" );      
+  testDir( "/.kde/share/config" );
+  testDir( "/.kde/share/apps" );
+  testDir( "/.kde/share/apps/knotes" );
+  testDir( "/.kde/share/apps/knotes/notes" );
+  testDir( "/.kde/share/apps/knotes/xyalarms" );
 
   QString p = getenv( "HOME" );
-  QString rcDir = p + "/.kde/config/";
-  if ( access( rcDir.data(), F_OK ) )
-    mkdir( rcDir.data(), 0740 );
-
+  QString rcDir = p + "/.kde/share/apps/knotes";
   pidFile = rcDir + "/knotes.pid";
 
   // if there is a pidFile then this is not the first instance of kpostit

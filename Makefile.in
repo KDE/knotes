@@ -4,7 +4,7 @@ prefix  = @prefix@
 BINDIR  = $(prefix)/bin
 LIBDIR  = $(prefix)/lib
 PIXDIR  = $(prefix)/share/icons
-DOCSDIR = $(prefix)/share/doc/HTML/knotes
+DOCSDIR = $(prefix)/share/doc/HTML/en/knotes
 APPSDIR = $(prefix)/share/applnk/Utilities
 
 install = @INSTALL@
@@ -67,8 +67,8 @@ install: all
 	$(INSTALL_DIR) $(BINDIR)
 	$(INSTALL) $(TARGET) $(BINDIR)
 	$(INSTALL_DIR) $(DOCSDIR)
-	@for i in knotes.html knotes.sgml knotes-1.html \
-	knotes-2.html knotes-3.html knotes-4.html knotes-5.html; do \
+	@for i in index.html index-1.html \
+	index-2.html index-3.html index-4.html index-5.html; do \
 	echo $(INSTALL_DATA) ./docs/$$i $(DOCSDIR) ; \
 	$(INSTALL_DATA) ./docs/$$i $(DOCSDIR) ; \
 	done
