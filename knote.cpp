@@ -166,7 +166,7 @@ void KNote::saveData() const
 {
     QString datafile = m_noteDir.absFilePath( "." + m_configFile + "_data" );
     m_editor->dumpToFile( datafile );
-    m_editor->setEdited( false );
+    m_editor->setModified( false );
 }
 
 void KNote::saveConfig() const
@@ -326,10 +326,7 @@ void KNote::slotKill()
 
 void KNote::slotInsDate()
 {
-    int line, column;
-    m_editor->getCursorPosition( &line, &column );
-    m_editor->insertAt( KGlobal::locale()->formatDateTime(QDateTime::currentDateTime()),
-                        line, column );
+    m_editor->insert( KGlobal::locale()->formatDateTime(QDateTime::currentDateTime()) );
 }
 
 void KNote::slotPreferences()
@@ -482,7 +479,8 @@ void KNote::slotApplyConfig()
     setFont( def );
 
     uint tab_size = config.readUnsignedNumEntry( "tabsize", 4 );
-    m_editor->setDefaultTabStop( tab_size );
+//    m_editor->setTabStopWidth( tab_size );
+    m_editor->setTabStops( tab_size );
 
     bool indent = true;
     indent = config.readBoolEntry( "autoindent", &indent );
@@ -669,7 +667,8 @@ void KNote::convertOldConfig()
         // autoindent
         bool indent = ( input.readLine().toUInt() == 1 );
         m_editor->setAutoIndentMode( indent );
-        m_editor->setDefaultTabStop( 4 );
+//        m_editor->setTabStopWidth( 4 );
+        m_editor->setTabStops( 4 );
 
         // hidden
         bool hidden = ( input.readLine().toUInt() == 1 );
@@ -691,9 +690,9 @@ void KNote::convertOldConfig()
         }
 
         // get the text
-        m_editor->setText( input.readLine() );  // workaround for bug in QMultiLineEdit
         while ( !input.atEnd() )
-            m_editor->insertLine( input.readLine() );
+            m_editor->insert( input.readLine() + "\n" );
+//          m_editor->insertParagraph( input.readLine(), -1 );
 
         infile.close();
         infile.remove();     // TODO: success?
@@ -835,7 +834,7 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
             m_label->setBackgroundColor( palette().active().background() );
             m_button->hide();
 
-            if ( m_editor->edited() )
+            if ( m_editor->isModified() )
                 saveData();
         }
         else if ( ev->type() == QEvent::FocusIn )
@@ -843,8 +842,7 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
             m_label->setBackgroundColor( palette().active().shadow() );
             m_button->show();
         }
-
-        return m_editor->eventFilter( o, ev );
+        return false;
     }
     return QWidget::eventFilter( o, ev );
 }

@@ -2,14 +2,10 @@
 
 <kpartgui name="KNotes" version="1">
 
-<ActionProperties>
-    <Action name="file_new" text="New Note"/>
-    <Action name="options_configure" text="Preferences..."/>
-</ActionProperties>
-
-<Menu name="context_menu" noMerge="1"><text>KNotes</text>
-    <Action name="file_new"/>
-    <Menu name="notes_menu" noMerge="1"><text>Notes</text>
+<Menu name="knotes_context" noMerge="1"><text>KNotes</text>
+    <title icon="knotes">KNotes</title>
+    <Action name="new_note"/>
+    <Menu name="notes_sub_menu" noMerge="1"><text>&amp;Notes</text>
         <ActionList name="notes"/>
     </Menu>
     <Action name="options_configure"/>
@@ -23,11 +19,38 @@
         <Action name="help_about_kde"/>
     </Menu>
     <Separator/>
-    <Action name="file_quit"/>
+    <Action name="quit"/>
 </Menu>
 
-<Menu name="note_menu" noMerge="1"><text>Notes</text>
+<Menu name="notes_menu" noMerge="1"><text>Notes</text>
+    <title>Notes</title>
     <ActionList name="notes"/>
+</Menu>
+
+<Menu name="note_context" noMerge="1">
+    <Action name="new_note"/>
+    <Action name="rename_note"/>
+    <Action name="delete_note"/>
+    <Separator/>
+    <Action name="insert_date"/>
+    <Action name="mail_note"/>
+    <Action name="print_note"/>
+    <Action name="options_configure"/>
+    <Separator/>
+    <Action name="to_desktop"/>
+    <Action name="always_on_top"/>
+</Menu>
+
+<Menu name="note_edit" noMerge="1">
+    <Action name="edit_undo"/>
+    <Action name="edit_redo"/>
+    <Separator/>
+    <Action name="edit_cut"/>
+    <Action name="edit_copy"/>
+    <Action name="edit_paste"/>
+    <Action name="edit_clear"/>
+    <Separator/>
+    <Action name="edit_select_all"/>
 </Menu>
 
 </kpartgui>

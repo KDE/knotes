@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2001/06/10  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * ported to QTextEdit
+    * updated actions, removed the ActionProperties section for now
+
 2001/06/05  Michael Brade <brade@informatik.uni-muenchen.de>
 
     * started to port KNotes to the XMLGUI framework (50% done)

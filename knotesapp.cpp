@@ -57,9 +57,9 @@ KNotesApp::KNotesApp()
     setPixmap( KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Small ) );
 
     // create the GUI...
-    KStdAction::openNew( this, SLOT( slotNewNote() ), actionCollection() );
-    KStdAction::preferences( this, SLOT( slotPreferences() ), actionCollection() );
-    KStdAction::quit( kapp, SLOT( closeAllWindows() ), actionCollection() );
+    new KAction( i18n("New Note"), "filenew", 0, this, SLOT(slotNewNote()), actionCollection(), "new_note" );
+    new KAction( i18n("&Preferences..."), "configure", 0, this, SLOT(slotPreferences()), actionCollection(), "options_configure" );
+    new KAction( i18n("&Quit"), "exit", 0, kapp, SLOT( closeAllWindows() ), actionCollection(), "quit" );
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
     setXMLFile( QString( instance()->instanceName() + "ui.rc" ) );
@@ -68,10 +68,8 @@ KNotesApp::KNotesApp()
     factory = new KXMLGUIFactory( this, this, "guifactory" );
     factory->addClient( this );
 
-    m_context_menu = static_cast<KPopupMenu*>(factory->container( "context_menu", this ));
-    m_context_menu->insertTitle( kapp->miniIcon(), kapp->caption(), -1, 0 );
-
-    m_note_menu = static_cast<KPopupMenu*>(factory->container( "note_menu", this ));
+    m_context_menu = static_cast<KPopupMenu*>(factory->container( "knotes_context", this ));
+    m_note_menu = static_cast<KPopupMenu*>(factory->container( "notes_menu", this ));
 
     // remove old (KDE 1.x) local config file if it still exists
     QString configfile = KGlobal::dirs()->findResource( "config", "knotesrc" );
@@ -502,7 +500,7 @@ void KNotesApp::updateNoteActions()
         m_noteActions.append( action );
     }
 
-    if ( !m_noteList.isEmpty() )
+    if ( !m_noteActions.isEmpty() )
         plugActionList( "notes", m_noteActions );
 }
 

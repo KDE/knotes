@@ -26,14 +26,18 @@
 
 #include "knoteedit.h"
 
+using namespace Qt3;
 
 KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
-    : QMultiLineEdit( parent, name )
+    : QTextEdit( parent, name )
 {
     setAcceptDrops( TRUE );
     setBackgroundMode( QWidget::PaletteBase );
     setFrameStyle( NoFrame );
-    setWordWrap( QMultiLineEdit::WidgetWidth );
+    setWordWrap( WidgetWidth );
+    setWrapPolicy( AtWhiteSpace );
+
+    connect( this, SIGNAL(returnPressed()), this, SLOT(slotReturnPressed()) );
 }
 
 
@@ -48,13 +52,12 @@ void KNoteEdit::readFile( QString& filename )
     if( infile.open( IO_ReadOnly ) )
     {
         QTextStream input( &infile );
-        QString text = input.read();
-        setText( text );
+        setText( input.read() );
         infile.close();
     } else
         kdDebug() << "could not open input file" << endl;
 
-    setEdited( false );
+    setModified( false );
 }
 
 void KNoteEdit::dumpToFile( QString& filename ) const
@@ -63,8 +66,7 @@ void KNoteEdit::dumpToFile( QString& filename ) const
     if( outfile.open( IO_WriteOnly ) )
     {
         QTextStream output( &outfile );
-        QString note_text = text();
-        output << note_text;
+        output << text();
         outfile.close();
     } else
         kdDebug() << "could not open file to write to" << endl;
@@ -75,7 +77,13 @@ void KNoteEdit::setAutoIndentMode( bool newmode )
     m_autoIndentMode = newmode;
 }
 
+void KNoteEdit::slotReturnPressed()
+{
+    if ( m_autoIndentMode )
+        indent();
+}
 
+/*
 void KNoteEdit::keyPressEvent( QKeyEvent* e )
 {
     if ( e->key() == Key_Tab )
@@ -97,7 +105,7 @@ void KNoteEdit::keyPressEvent( QKeyEvent* e )
 
 void KNoteEdit::mouseDoubleClickEvent( QMouseEvent* e )
 {
-    QMultiLineEdit::mouseDoubleClickEvent( e );
+    QTextEdit::mouseDoubleClickEvent( e );
 
     int line, column = 0;
     getCursorPosition( &line, &column );
@@ -107,7 +115,6 @@ void KNoteEdit::mouseDoubleClickEvent( QMouseEvent* e )
 
     //now try to open the marked text???
 }
-
 
 void KNoteEdit::mynewLine()
 {
@@ -169,7 +176,7 @@ QString KNoteEdit::prefixString( QString string )
         returnstring += string.at( i++ );
 
     return returnstring;
-}
+}*/
 
 
 void KNoteEdit::dragEnterEvent( QDragEnterEvent* event )
@@ -185,7 +192,7 @@ void KNoteEdit::dragMoveEvent( QDragMoveEvent* event )
     }
     else if ( QTextDrag::canDecode(event) )
     {
-        QMultiLineEdit::dragMoveEvent(event);
+        QTextEdit::dragMoveEvent(event);
     }
 }
 
@@ -199,7 +206,7 @@ void KNoteEdit::dropEvent( QDropEvent* event )
     }
     else if ( QTextDrag::canDecode( event ) )
     {
-        QMultiLineEdit::dropEvent( event );
+        QTextEdit::dropEvent( event );
     }
 }
 

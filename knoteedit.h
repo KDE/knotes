@@ -22,13 +22,14 @@
 #define KNOTEEDIT_H
 
 #include <qwidget.h>
-#include <qmultilineedit.h>
+#include <qtextedit.h>
 
+using namespace Qt3;
 
-class KNoteEdit : public QMultiLineEdit
+class KNoteEdit : public QTextEdit
 {
     Q_OBJECT
-public: 
+public:
     KNoteEdit( QWidget *parent=0, const char *name=0 );
     ~KNoteEdit();
 
@@ -37,14 +38,16 @@ public:
     void dumpToFile( QString& filename ) const;
 
 protected:
-    void  dragMoveEvent( QDragMoveEvent* event );
-    void  dragEnterEvent( QDragEnterEvent* event );
-    void  dropEvent( QDropEvent* event );
-
-    void  mouseDoubleClickEvent( QMouseEvent* e );
-    void  keyPressEvent( QKeyEvent* e );
-    void  mynewLine();
-
+    void dragMoveEvent( QDragMoveEvent* event );
+    void dragEnterEvent( QDragEnterEvent* event );
+    void dropEvent( QDropEvent* event );
+/*
+    void mouseDoubleClickEvent( QMouseEvent* e );
+    void keyPressEvent( QKeyEvent* e );
+    void mynewLine();
+*/
+protected slots:
+    void slotReturnPressed();
 private:
     QString prefixString( QString string );
     bool m_autoIndentMode;

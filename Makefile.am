@@ -1,14 +1,15 @@
-INCLUDES = $(all_includes)
-
+INCLUDES = -I$(top_srcdir)/knotes/qt3stuff $(all_includes)
 
 ####### Files
+
+SUBDIRS         = qt3stuff .
 
 bin_PROGRAMS    = knotes
 
 include_HEADERS = KNotesIface.h
 noinst_HEADERS  = knotesapp.h knote.h knoteedit.h knoteconfigdlg.h knotebutton.h
 knotes_SOURCES  = knotesapp.cpp knote.cpp knoteedit.cpp knoteconfigdlg.cpp main.cpp KNotesIface.skel
-knotes_LDADD    = $(LIB_KIO) -lkdeprint
+knotes_LDADD    = $(LIB_KIO) -lkdeprint qt3stuff/libqt3stuff.la
 knotes_LDFLAGS  = $(all_libraries) $(KDE_RPATH)
 
 METASOURCES     = AUTO
