@@ -25,11 +25,11 @@
 #ifndef __KNOTES__
 #define __KNOTES__
 
-#include <qmultilinedit.h>
+#include <qmultilineedit.h>
 #include <qcolor.h>
 #include <qpopupmenu.h>
 #include <qtimer.h>
-#include <qmultilinedit.h>
+#include <qmultilineedit.h>
 #include <qfont.h>
 #include <qfile.h>
 #include <qtextstream.h>
