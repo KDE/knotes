@@ -473,7 +473,7 @@ void KNotesApp::updateNoteActions()
 
     for ( QDictIterator<KNote> it( m_noteList ); it.current(); ++it )
     {
-        KAction *action = new KAction( it.current()->name(), KShortcut(), 
+        KAction *action = new KAction( it.current()->name().replace( "&", "&&"), KShortcut(), 
                                        this, SLOT(slotShowNote()), 
                                        (QObject*)0, it.current()->noteId().utf8() );
         QPixmap pix( 16, 16 );
