@@ -66,7 +66,7 @@ ResourceManager::~ResourceManager()
 void ResourceManager::load()
 {
     if ( !m_manager->standardResource() ) {
-        kdDebug() << "Warning! No standard resource yet." << endl;
+        kdDebug(5500) << "Warning! No standard resource yet." << endl;
         ResourceNotes *resource = new ResourceLocal( 0 );
         m_manager->add( resource );
         m_manager->setStandardResource( resource );
@@ -75,7 +75,7 @@ void ResourceManager::load()
     // Open all active resources
     KRES::Manager<ResourceNotes>::ActiveIterator it;
     for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it ) {
-        kdDebug() << "Opening resource " + (*it)->resourceName() << endl;
+        kdDebug(5500) << "Opening resource " + (*it)->resourceName() << endl;
         (*it)->setManager( this );
         if ( (*it)->open() )
             (*it)->load();
@@ -113,7 +113,7 @@ QString ResourceManager::newNote( const QString& name, const QString& text )
     if ( resource )
         resource->addNote( note );
     else
-        kdDebug(5800) << "ResourceManager::newNote(): no resource" << endl;
+        kdDebug(5500) << "ResourceManager::newNote(): no resource" << endl;
 
     return note->uid();
 }
@@ -229,7 +229,7 @@ KNote* ResourceManager::note( const QString& id )
 
 void ResourceManager::resourceAdded( ResourceNotes* resource )
 {
-  kdDebug() << "Resource added: " << resource->resourceName() << endl;
+  kdDebug(5500) << "Resource added: " << resource->resourceName() << endl;
 
   if ( !resource->isActive() ) return;
 

@@ -420,7 +420,7 @@ void KNote::slotUpdateDesktopActions()
 
     m_toDesktop->setItems( desktops );
 
-    kdDebug() << "updateDesktopActions:" << wm_client.desktop() << endl;
+    kdDebug(5500) << "updateDesktopActions:" << wm_client.desktop() << endl;
     if ( wm_client.desktop() == NETWinInfo::OnAllDesktops )
         m_toDesktop->setCurrentItem( 0 );
     else

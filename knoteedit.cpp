@@ -417,7 +417,7 @@ void KNoteEdit::autoIndent()
 
 void KNoteEdit::emitLinkClicked( const QString &s )
 {
-    kdDebug() << k_funcinfo << s << endl;
+    kdDebug(5500) << k_funcinfo << s << endl;
 }
 
 void KNoteEdit::enableRichTextActions()
