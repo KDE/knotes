@@ -46,6 +46,7 @@
 #include "knotebutton.h"
 #include "knoteedit.h"
 #include "knoteconfigdlg.h"
+#include "version.h"
 
 #include <kwin.h>
 #include <netwm.h>
