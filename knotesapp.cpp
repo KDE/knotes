@@ -8,20 +8,21 @@
 #include <kiconloader.h>
 #include <kstddirs.h>
 #include <kmessagebox.h>
+#include <kdebug.h>
 #include <qfile.h>
 #include <qtextstream.h>
 #include <qdir.h>
-#include <iostream.h>
 
 
 KNotesApp::	KNotesApp()
-	: KDockWindow()
+
 {
 	first_instance = true;
-	
+		
 	//create the dock widget....
 	setPixmap( KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Desktop ) );
 	KPopupMenu* menu = contextMenu();
+	menu->insertTitle( SmallIcon("knotes"), i18n("Knotes Options") );
 	menu->insertItem( i18n("New Note"), this, SLOT(slotNewNote(int)) );
 	menu->insertItem( i18n("Preferences..."), this, SLOT(slotPreferences(int)) );		
 	
@@ -33,9 +34,12 @@ KNotesApp::	KNotesApp()
  	int count = 0;
  	for( QStringList::Iterator i = notes.begin(); i != notes.end(); ++i )
  	{
+ 		kdDebug() << "checking file: " << *i << endl;
 		if( *i != "." && *i != ".." ) //ignore these
  		{
-   			KConfig* tmp = new KConfig( notedir.absFilePath( *i ) );
+ 			QString configfile = notedir.absFilePath( *i );
+ 			kdDebug() << "restoring note, file: " << configfile << endl;
+   			KConfig* tmp = new KConfig( configfile );
    			KNote* tmpnote = new KNote( tmp );
    			m_NoteList[*i] = tmpnote;
    			tmpnote->show();
@@ -56,7 +60,8 @@ void KNotesApp::slotNewNote( int id )
 {
 	QString globalConfigFile = KGlobal::dirs()->findResource( "config", "knotesrc" );
 	QString datadir = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
-		
+	kdDebug() << "KNotesApp::slotNewNote, using template: " << globalConfigFile << endl;
+	
     //find a new appropriate id for the new note...
     bool exists;
     QString thename;
@@ -127,6 +132,7 @@ void KNotesApp::slotNoteRenamed( QString& oldname, QString& newname )
 
 void KNotesApp::slotNoteClosed( QString& name )
 {
+	kdDebug() << "removed note: " << name << endl;
 	m_NoteList.remove( name );
 }
 
@@ -135,6 +141,6 @@ void KNotesApp::slotPreferences( int id )
 	//launch preferences dialog...
 	QString globalConfigFile = KGlobal::dirs()->findResource( "config", "knotesrc" );
 	KConfig* gconfig = new KConfig( globalConfigFile );
-	KNoteConfigDlg* tmpconfig = new KNoteConfigDlg( gconfig );
+	KNoteConfigDlg* tmpconfig = new KNoteConfigDlg( gconfig, i18n("KNotes Defaults") );
 	tmpconfig->show();
 }
