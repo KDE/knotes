@@ -3848,6 +3848,7 @@ void QTextEdit::setUndoDepth( int d )
 void QTextEdit::setTabStopWidth( int ts )
 {
     document()->setTabStops( ts );
+    doResize();
 }
 
 /*! \reimp */
