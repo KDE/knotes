@@ -217,7 +217,8 @@ void KNoteConfigDlg::storeSettings()
 	_config->writeEntry( "fontweight", fontweight );
 	_config->writeEntry( "tabsize", _tab );
 	_config->writeEntry( "autoindent", strbool );
-	
+
+	//store Action Settings ** TODO **
 	
 	_config->sync();	
 }
