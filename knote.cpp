@@ -397,10 +397,11 @@ void KNote::slotPreferences()
 
 void KNote::slotToggleAlwaysOnTop()
 {
-    if ( KWin::info(winId()).state & NET::StaysOnTop )
+    KWin::WindowInfo info( KWin::windowInfo( winId() ) );
+    if ( info.state() & NET::StaysOnTop )
         KWin::clearState( winId(), NET::StaysOnTop );
     else
-        KWin::setState( winId(), KWin::info(winId()).state | NET::StaysOnTop );
+        KWin::setState( winId(), info.state() | NET::StaysOnTop );
 }
 
 void KNote::slotPopupActionToDesktop( int id )
@@ -585,7 +586,7 @@ void KNote::slotApplyConfig()
 void KNote::slotSkipTaskbar( bool skip )
 {
     if ( skip )
-        KWin::setState( winId(), KWin::info(winId()).state | NET::SkipTaskbar );
+        KWin::setState( winId(), KWin::windowInfo(winId()).state() | NET::SkipTaskbar );
     else
         KWin::clearState( winId(), NET::SkipTaskbar );
 }
@@ -726,7 +727,7 @@ void KNote::updateLayout()
 void KNote::showEvent( QShowEvent * )
 {
     if ( m_alwaysOnTop->isChecked() )
-        KWin::setState( winId(), KWin::info(winId()).state | NET::StaysOnTop );
+        KWin::setState( winId(), KWin::windowInfo(winId()).state() | NET::StaysOnTop );
 }
 
 void KNote::resizeEvent( QResizeEvent *qre )
