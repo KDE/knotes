@@ -69,6 +69,8 @@ KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent, const cha
     m_inTime = new KTimeEdit( in );
     QLabel *in_min = new QLabel( i18n("hours/minutes"), in );
 
+    label_in->setEnabled( false ); // TODO
+
     connect( m_buttons, SIGNAL(clicked( int )), SLOT(slotButtonChanged( int )) );
 }
 
