@@ -75,7 +75,7 @@ KNotesApp::KNotesApp()
         if ( !( checkAccess( configfile, W_OK ) &&
                 KIO::NetAccess::del( KURL(configfile) ) ) )
         {
-            kdError() << "Could not delete old config file!!" << endl;
+            kdError(5500) << "Could not delete old config file!!" << endl;
             // TODO
         }
     } else
@@ -100,7 +100,7 @@ KNotesApp::KNotesApp()
             }
             noteDir.rename( *n, newName, false );
             noteDir.rename( "." + (*n) + "_data", "." + newName + "_data", false );
-            kdDebug() << "Note " << *n << " renamed to " << newName << endl;
+            kdDebug(5500) << "Note " << *n << " renamed to " << newName << endl;
         }
     }
 
@@ -161,7 +161,7 @@ int KNotesApp::newNote( QString name, const QString& text )
 {
     if ( !name.isNull() && m_noteList[name] )
     {
-        kdError() << "A note with this name already exists!" << endl;
+        kdError(5500) << "A note with this name already exists!" << endl;
         return -1;
     }
     
@@ -199,7 +199,7 @@ void KNotesApp::showNote( const QString& name ) const
 
     if ( !note )
     {
-        kdWarning() << "No note named " << name << endl;
+        kdWarning(5500) << "No note named " << name << endl;
         return;
     }
 
@@ -212,7 +212,7 @@ void KNotesApp::showNote( int noteId ) const
     
     if ( !note )
     {
-        kdWarning() << "No note with id " << noteId << endl;
+        kdWarning(5500) << "No note with id " << noteId << endl;
         return;
     }
 
@@ -427,7 +427,7 @@ void KNotesApp::slotNoteRenamed( const QString& oldname, const QString& newname 
         updateNoteActions();
     }
     else
-        kdError() << "There is no note named: " << oldname << endl;
+        kdError(5500) << "There is no note named: " << oldname << endl;
 }
 
 void KNotesApp::slotNoteKilled( const QString& name )

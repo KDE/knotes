@@ -373,10 +373,10 @@ void KNote::slotKill()
          i18n("Delete \"%1\"").arg( m_label->text() ) ) == KMessageBox::Yes )
     {
         if ( !m_noteDir.remove( m_configFile ) )
-            kdWarning() << "could not remove conf file for note " << m_label->text() << endl;
+            kdWarning(5500) << "could not remove conf file for note " << m_label->text() << endl;
 
         if ( !m_noteDir.remove( "." + m_configFile + "_data" ) )
-            kdWarning() << "could not remove data file for note " << m_label->text() << endl;
+            kdWarning(5500) << "could not remove data file for note " << m_label->text() << endl;
 
         delete this;
     }
@@ -795,7 +795,7 @@ void KNote::convertOldConfig()
         config.writeEntry( "tabsize", 4 );
         config.sync();
     } else
-        kdDebug() << "could not open input file" << endl;
+        kdDebug(5500) << "could not open input file" << endl;
 }
 
 void KNote::updateLayout()

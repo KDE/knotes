@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2001, The KNotes Developers
+ Copyright (c) 1997-2002, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -147,7 +147,7 @@ void KNoteEdit::readFile( QString& filename )
         setText( input.read() );
         infile.close();
     } else
-        kdDebug() << "could not open input file" << endl;
+        kdDebug(5500) << "could not open input file" << endl;
 
     setModified( false );
 }
@@ -162,7 +162,7 @@ void KNoteEdit::dumpToFile( QString& filename ) const
         output << text();
         outfile.close();
     } else
-        kdDebug() << "could not open file to write to" << endl;
+        kdDebug(5500) << "could not open file to write to" << endl;
 }
 
 void KNoteEdit::setTextFont( QFont& font )
