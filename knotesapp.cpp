@@ -515,9 +515,7 @@ void KNotesApp::slotConfigureAccels()
 void KNotesApp::slotNoteKilled( KCal::Journal *journal )
 {
     m_manager->deleteNote( journal );
-
     saveNotes();
-    updateNoteActions();
 }
 
 void KNotesApp::slotQuit()
