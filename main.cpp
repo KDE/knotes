@@ -23,7 +23,7 @@
 #include <kaboutdata.h>
 #include <klocale.h>
 
-#include <iostream.h>
+#include <iostream>
 
 #include "knotesapp.h"
 #include "version.h"
