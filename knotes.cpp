@@ -242,22 +242,16 @@ QString KPostitMultilineEdit::prefixString(QString string){
   // It is assumed that string contains at least one non whitespace character
   // ie \n \r \t \v \f and space
 
-  int size = string.size();
-  char* buffer = (char*) malloc(size + 1);
-  strncpy (buffer, string.data(),size - 1);
-  buffer[size] = '\0';
+  // TODO: check if this rewrite to Qt 2.0 really works !
 
-  int i;
-  for (i = 0 ; i < size; i++){
-    if(!isspace(buffer[i]))
-      break;
-  }
+  QString returnstring("");
 
-  buffer[i] = '\0';
+  int len = string.length();
 
-  QString returnstring = buffer;
+  int i = 0;
+  while(i < len && isspace(string[i]))
+    returnstring += string[i];
 
-  free(buffer);
   return returnstring;
 
 }
@@ -1301,10 +1295,7 @@ void KPostit::toggleFrame(){
   else
     set3DFrame();
 }
-<<<<<<< knotes.cpp
 
-
-void KPostit::dummy(){
 
 void KPostit::toggleDock(){
   if (dock)
@@ -1333,9 +1324,7 @@ void KPostit::defaults()
   newdefstruct.autoindent = postitdefaults.autoindent;
   newdefstruct.font       = postitdefaults.font;
   newdefstruct.mailcommand = postitdefaults.mailcommand;
-  newdefstruct.
   newdefstruct.printcommand = postitdefaults.printcommand;
-  newdefstruct.
 
 
   if(!tabdialog){

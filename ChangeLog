@@ -1,3 +1,7 @@
+1999-03-07  Harri Porten  <porten@kde.org>
+
+	* make it compile with Qt 2.0. QPopMenu still has to be fixed. 
+
 Tue Feb 16 09:34:25 1999  David Faure  <faure@kde.org>
 
 	* Added option "dock in panel" (to disable docking)

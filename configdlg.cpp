@@ -171,8 +171,7 @@ void ConfigDlg::okButton(){
 
     defst->mailcommand = mail->text();
     defst->printcommand = print->text();
-    defst->
-    defst->
+
   printf("leaving okButon\n");
   
 
