@@ -15,8 +15,6 @@ public:
     KNotesApp();
     ~KNotesApp();
 
-    void goToDesktop( uint desktop );
-
 public slots:
     void slotNewNote    ( int id=0 );
     void slotPreferences( int );
@@ -28,7 +26,7 @@ protected slots:
     void slotToNote( int id );
     void slotPrepareNoteMenu();
     void mouseReleaseEvent( QMouseEvent *);
-    
+
 private:
     QDict< KNote >  m_NoteList;
     KPopupMenu*     m_note_menu;

@@ -15,13 +15,12 @@
 
 class KNote : public QFrame  {
    Q_OBJECT
-public: 
+public:
     KNote( KSimpleConfig* config, QWidget* parent=0, const char* name=0 );
     ~KNote();
 
     void save();
     QString getName();
-    uint currDesktop();
     void setOnDesktop( uint id );
 
 

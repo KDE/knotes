@@ -11,13 +11,13 @@
 #include <kstddirs.h>
 #include <kprocess.h>
 #include <kdebug.h>
+#include <kwin.h>
 
 #include <qpalette.h>
 #include <qcolor.h>
 #include <qdir.h>
 #include <qprinter.h>
 #include <iostream.h>
-
 #include <netwm.h>
 
 //**** Initialization ************************************
@@ -38,7 +38,6 @@ KNote::KNote( KSimpleConfig* config, QWidget* parent, const char* name )
     m_label->setAlignment( AlignHCenter );
     m_config->setGroup( "Data" );
     m_label->setText( m_config->readEntry( "name" ) );
-    m_label->installEventFilter( this );  //recieve events( for dragging & action menu )
     m_headerHeight = m_label->sizeHint().height();
 
     m_editor = new KNoteEdit( this );
@@ -77,12 +76,8 @@ KNote::KNote( KSimpleConfig* config, QWidget* parent, const char* name )
     m_menu->insertSeparator();
     m_menu->insertItem( i18n("Delete Note"), this, SLOT(slotKill(int)) );
 
-    NETWinInfo info( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMState );
-    unsigned long state = info.state();
-    kdDebug() << "my state is: " << state << endl;
-    info.setState( NET::SkipTaskbar, NET::SkipTaskbar );
-    state = info.state();
-    kdDebug() << "new state is: " << state << endl;
+    m_label->installEventFilter( this );  //recieve events( for dragging & action menu )
+    KWin::setState(winId(), NET::SkipTaskbar);
 }
 
 
@@ -176,21 +171,13 @@ void KNote::save()
 
 void KNote::setOnDesktop( uint id )
 {
-    NETWinInfo info( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
     if( id == 0 )
-    {
-        info.setDesktop( NETWinInfo::OnAllDesktops );
-    }
+        KWin::setOnAllDesktops(winId(), true);
     else
     {
-        info.setDesktop( id );
+        KWin::setOnAllDesktops(winId(), false);
+        KWin::setOnDesktop(winId(), id);
     }
-}
-
-uint KNote::currDesktop()
-{
-    NETWinInfo info( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
-    return info.desktop();
 }
 
 void KNote::slotToDesktop( int id )
@@ -200,21 +187,16 @@ void KNote::slotToDesktop( int id )
 
 void KNote::slotAlwaysOnTop( int )
 {
-    NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMState );
-    unsigned long currstate = wm_client.state();
-    kdDebug() << "currstate = " << currstate << endl;
-    if( (currstate & NET::StaysOnTop) == NET::StaysOnTop )
+    if ( m_menu->isItemChecked(m_idAlwaysOnTop) )
     {
-        wm_client.setState( 0, NET::StaysOnTop );
+        KWin::clearState(winId(), NET::StaysOnTop);
         m_menu->setItemChecked( m_idAlwaysOnTop, false );
     }
     else
     {
-        wm_client.setState( NET::StaysOnTop, NET::StaysOnTop );
+        KWin::setState(winId(), NET::StaysOnTop);
         m_menu->setItemChecked( m_idAlwaysOnTop, true );
     }
-    currstate = wm_client.state();
-    kdDebug() << "newstate = " << currstate << endl;
 }
 
 QString KNote::getName()

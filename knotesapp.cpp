@@ -4,6 +4,7 @@
 #include "knoteconfigdlg.h"
 
 #include <kapp.h>
+#include <kwin.h>
 #include <kglobal.h>
 #include <klocale.h>
 #include <kiconloader.h>
@@ -14,10 +15,6 @@
 #include <qfile.h>
 #include <qtextstream.h>
 #include <qdir.h>
-
-
-#include <netwm.h>
-
 
 KNotesApp::KNotesApp()
     : KSystemTray()
@@ -200,26 +197,16 @@ void KNotesApp::slotToNote( int id )
     KNote* tmpnote = m_NoteList[name];
     if( !tmpnote->isHidden() )
     {
-        uint note_desktop = tmpnote->currDesktop();
-        goToDesktop( note_desktop );
-        tmpnote->setActiveWindow();
+        KWin::setActiveWindow(tmpnote->winId());
         tmpnote->setFocus();
     }
     else
     {
         //if not show it on the current desktop
         tmpnote->show();
-        int currdesktop = tmpnote->currDesktop();
-        tmpnote->setOnDesktop( currdesktop );
-        tmpnote->setActiveWindow();
+        KWin::setActiveWindow(tmpnote->winId());
         tmpnote->setFocus();
     }
-}
-
-void KNotesApp::goToDesktop( uint desktop )
-{
-    NETRootInfo wm_root( qt_xdisplay(), NET::WindowManager );
-    wm_root.setCurrentDesktop( desktop );
 }
 
 void KNotesApp::slotPrepareNoteMenu()
@@ -245,7 +232,7 @@ void KNotesApp::mouseReleaseEvent( QMouseEvent * e)
 	m_note_menu->popup( e->globalPos() );
 	return;
     }
-    
+
     KSystemTray::mouseReleaseEvent( e );
 }
 
