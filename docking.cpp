@@ -44,12 +44,12 @@ DockWidget::DockWidget(const char *name): QWidget(0, name, 0) {
 
   pos_x = pos_y = 0;
 
-  QString pixdir = mykapp->kde_datadir() + "/knotes/pics/";
+  QString pixdir = mykapp->kde_icondir() + "/mini/";
   QString tmp;
 
 
-  if (!picsmall_pixmap.load(pixdir + "knotessmall.xpm")){
-    PMERROR("knotessmall.xpm");
+  if (!picsmall_pixmap.load(pixdir + "knotes.xpm")){
+    PMERROR("knotes.xpm");
   }
 
   //////////////////////////////////////////////////////////////////
