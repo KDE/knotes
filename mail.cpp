@@ -90,8 +90,8 @@ void Mail::ok_slot(){
     QMessageBox::warning(
 			 this,
 			 i18n("Sorry"),
-			 i18n("You must specify a Recipient")
-			 );
+			 i18n("You must specify a Recipient"),
+			 i18n("OK"));
     return;
   }
 

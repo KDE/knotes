@@ -159,8 +159,8 @@ bool BWDateTime::checkDateTime(){
     QMessageBox::warning(
 			 this,
 			 i18n("Sorry"),
-			 i18n("The Time you selected is invalid")
-			 );
+			 i18n("The Time you selected is invalid"),
+			 i18n("OK"));
 
     time_notvalid = TRUE;
     return FALSE;
@@ -174,8 +174,8 @@ bool BWDateTime::checkDateTime(){
     QMessageBox::warning(
 			 this,
 			 i18n("Sorry"),
-			 i18n("The Date you selected is invalid")
-			 );
+			 i18n("The Date you selected is invalid"),
+			 i18n("OK"));
 
     date_notvalid = TRUE;
     return FALSE;

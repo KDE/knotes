@@ -517,7 +517,8 @@ void KPostit::quit(){
     QMessageBox::warning(
 			 this,
 			 i18n("Sorry"),
-			 str
+			 str,
+			 i18n("OK")
                          );
   }
   QApplication::exit();
@@ -578,7 +579,8 @@ void KPostit::mail(){
     QMessageBox::information(
 			     this,
 			     i18n("Sorry"),
-			     str
+			     str,
+			     i18n("OK")
 			     );
 
     return;
@@ -682,7 +684,8 @@ void KPostit::print(){
     QMessageBox::warning(
 			 this,
 			 i18n("Sorry"),
-			 str
+			 str,
+			 i18n("OK")
 			 );
     return;
   }
@@ -733,7 +736,8 @@ void KPostit::newKPostit(){
 			 i18n("Sorry"),
 			 i18n("You have exeeded the "
 					    "arbitrary and unjustly set "
-			 "limit of 50 knotes.\n Please complain to the author.")
+			 "limit of 50 knotes.\n Please complain to the author."),
+			 i18n("OK")
 			 );
     return;
 
@@ -1085,7 +1089,8 @@ bool KPostit::insertFile(const char* filename){
     QMessageBox::warning(
 			 this,
 			 i18n("Sorry"),
-			 string
+			 string,
+			 i18n("OK")
 			 );
     return FALSE;
   }
@@ -1490,8 +1495,8 @@ void KPostit::insertNetFile( const char *_url)
 	QMessageBox::warning(
 			     this,
 			     i18n("Sorry"),
-			     i18n("Malformed URL")
-			     );
+			     i18n("Malformed URL"),
+			     i18n("OK"));
 	return;
     }
 
@@ -1612,7 +1617,8 @@ void alarmConsistencyCheck(){
       QMessageBox::warning(
 			   0,
 			   i18n("Inconsistency"),
-			   str
+			   str,
+			   i18n("OK")
 			   );
 
       KPostit::AlarmList.remove(KPostit::AlarmList.current());

@@ -150,8 +150,8 @@ bool AlarmDlg::checkDateTime(){
     QMessageBox::warning(
 			 this,
 			 i18n("Sorry"),
-	   i18n("I am afraid you already missed your appointment.")
-			 );
+	   i18n("I am afraid you already missed your appointment."),
+		i18n("OK") );
     return FALSE;
   }
 

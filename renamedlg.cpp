@@ -78,8 +78,8 @@ void RenameDlg::selected(){
 			 i18n("Sorry"),
 			 i18n(
 		     "The name \"xyalarms\" is reserved for internal usage.\n"\
-		     "Please choose a different name")
-		      );
+		     "Please choose a different name"),
+		      i18n("OK"));
       return;	
 
   }
@@ -91,8 +91,8 @@ void RenameDlg::selected(){
 		     this,
 		     i18n("Sorry"),
 		     i18n("A KNotes note with this name already exists\n"\
-		     "Please choose a different name")
-		     );
+		     "Please choose a different name"),
+		     i18n("OK"));
 
       return;	
     }
