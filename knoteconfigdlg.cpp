@@ -31,7 +31,7 @@
 #include <kiconloader.h>
 
 #include "knoteconfigdlg.h"
-
+#include "version.h"
 
 KNoteConfigDlg::KNoteConfigDlg( const QString& configfile, const QString& title,
             bool global, QWidget* parent, const char* name )
@@ -184,7 +184,7 @@ void KNoteConfigDlg::storeSettings()
     // store General settings
     _config->setGroup( "General" );
 
-    _config->writeEntry( "version", 2 );
+    _config->writeEntry( "version", KNOTES_VERSION );
 
     // store Display settings
     _config->setGroup( "Display" );

@@ -55,7 +55,7 @@ KNotesApp::KNotesApp()
     // create the GUI...
     new KAction( i18n("New Note"), "filenew", 0, this, SLOT(slotNewNote()), actionCollection(), "new_note" );
     new KAction( i18n("&Preferences..."), "configure", 0, this, SLOT(slotPreferences()), actionCollection(), "options_configure" );
-    new KAction( i18n("&Quit"), "exit", 0, kapp, SLOT( quit() ), actionCollection(), "quit" );
+    new KAction( i18n("&Quit"), "exit", 0, kapp, SLOT(quit()), actionCollection(), "quit" );
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
     setXMLFile( QString( instance()->instanceName() + "ui.rc" ) );
@@ -132,10 +132,11 @@ KNotesApp::KNotesApp()
 KNotesApp::~KNotesApp()
 {
     saveNotes();
-    delete m_note_menu;
-    delete m_context_menu;
     disconnect();
     m_noteList.clear();
+
+    delete m_note_menu;
+    delete m_context_menu;
     delete factory;
 }
 
