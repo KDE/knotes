@@ -6,3 +6,5 @@ DocPath=knotes/knotes.html
 Info=Notes
 Terminal=0
 Type=Application
+Name=KNotes
+Comment[pl]=Edytor któtkich notatek.
