@@ -332,3 +332,4 @@ void KNote::slotKill( int id )
 void KNote::slotPrint( int id )
 {
 }
+#include "knote.moc"

@@ -189,3 +189,4 @@ void KNoteEdit::dropEvent( QDropEvent* event )
 		QMultiLineEdit::dropEvent( event );
 	}
 }
+#include "knoteedit.moc"

@@ -258,3 +258,4 @@ void KNoteConfigDlg::slotBGColor( const QColor& c )
 	_bgColor->setBackgroundColor( _fg );
 	
 }
+#include "knoteconfigdlg.moc"

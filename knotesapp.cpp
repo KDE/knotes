@@ -168,3 +168,4 @@ void KNotesApp::slotPreferences( int id )
 	KNoteConfigDlg* tmpconfig = new KNoteConfigDlg( &GlobalConfig, i18n("KNotes Defaults") );
 	tmpconfig->show();
 }
+#include "knotesapp.moc"

@@ -24,3 +24,4 @@ KNoteDockWidget::~KNoteDockWidget()
 
 
 
+#include "knotedockwidget.moc"
