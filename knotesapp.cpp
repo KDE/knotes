@@ -482,15 +482,15 @@ void KNotesApp::saveNotes()
     QString file = KGlobal::dirs()->saveLocation( "appdata" ) + "notes.ics";
     QString backup = file + "~";
 
-    // if the backup fails don't even try to save the current notes 
+    // if the backup fails don't even try to save the current notes
     // (might just destroy the file that's already there)
 
-    if ( !KIO::NetAccess::file_copy( KURL( file ), KURL( backup ), -1, true ) )
-        KMessageBox::error(0, i18n("<qt>Can't save the notes backup to <b>%1<b>! Harddisk full?")
-                                  .arg( backup ) );
+    if ( KIO::NetAccess::exists( KURL( file ) ) && !KIO::NetAccess::file_copy( KURL( file ), KURL( backup ), -1, true) )
+        KMessageBox::error(0, i18n("<qt>Can't save the notes backup to <b>%1</b>! Harddisk full?%2</qt>")
+                                  .arg( backup ).arg(file) );
     else if ( !m_calendar.save( file, new ICalFormat() ) )
-        KMessageBox::error(0, i18n("<qt>Can't save the notes to <b>%1<b>! Harddisk full? \
-                                    There should be a backup in <b>%2<b> though.<qt>")
+        KMessageBox::error(0, i18n("<qt>Can't save the notes to <b>%1</b>! Harddisk full? \
+                                    There should be a backup in <b>%2</b> though.</qt>")
                                   .arg( file ).arg( backup ) );
 }
 
