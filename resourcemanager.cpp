@@ -2,6 +2,7 @@
  This file is part of KNotes.
 
  Copyright (c) 2004, Bo Thorsen <bo@klaralvdalens-datakonsult.se>
+               2004, Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -58,7 +59,6 @@ ResourceManager::ResourceManager( KNotesApp *app )
 
 ResourceManager::~ResourceManager()
 {
-    kdDebug() << k_funcinfo << endl;
     blockSignals( true );
     m_noteList.clear();
     blockSignals( false );
@@ -68,7 +68,7 @@ void ResourceManager::load()
 {
     if ( !m_manager->standardResource() )
     {
-        kdDebug(5500) << "Warning! No standard resource yet." << endl;
+        kdWarning(5500) << "No standard resource yet." << endl;
         ResourceNotes *resource = new ResourceLocal( 0 );
         m_manager->add( resource );
         m_manager->setStandardResource( resource );
@@ -151,20 +151,18 @@ void ResourceManager::registerNote( ResourceNotes *resource,
     m_noteList.insert( newNote->noteId(), newNote );
     m_resourceMap[ newNote ] = resource;
 
-    connect( newNote, SIGNAL(sigNewNote()), m_app, SLOT(slotNewNote()) );
+    connect( newNote, SIGNAL(sigNewNote()), m_app, SLOT(newNote()) );
     connect( newNote, SIGNAL(sigKillNote( KCal::Journal* )),
              this,    SLOT(slotNoteKilled( KCal::Journal* )) );
     connect( newNote, SIGNAL(sigNameChanged()),
-             m_app,   SLOT(updateNoteActions()) );
-    // FIXME: m_app not necessary, call save immediately or create a new signal that KNotes has
-    // to connect to!
-    connect( newNote, SIGNAL(sigSaveData()), m_app, SLOT(saveNotes()) );
+             this,    SIGNAL(sigNotesChanged()) );
+    connect( newNote, SIGNAL(sigSaveData()), this, SLOT(save()) );
 
     // FIXME: remove!
     if( !loaded )
     {
         // This is a new note
-        m_app->updateNoteActions();
+        emit sigNotesChanged();
         m_app->showNote( newNote );
     }
 }
@@ -182,9 +180,8 @@ void ResourceManager::slotNoteKilled( KCal::Journal *journal )
     if ( !QDir::home().remove( configFile ) )
         kdError(5500) << "Can't remove the note config: "
                       << configFile << endl;
-
-    m_app->updateNoteActions();
-    // FIXME: calendar has to be saved!!
+    save();
+    emit sigNotesChanged();
 }
 
 int ResourceManager::count() const
@@ -209,29 +206,6 @@ void ResourceManager::sync( const QString& app )
 
     for ( ; it.current(); ++it )
         it.current()->sync( app );
-}
-
-
-KNote *ResourceManager::first() const
-{
-    QDictIterator<KNote> it( m_noteList );
-    return it.toFirst();
-}
-
-void ResourceManager::showNextNote()
-{
-    // show next note
-    QDictIterator<KNote> it( m_noteList );
-    KNote *first = it.toFirst();
-    for ( ; it.current(); ++it )
-        if ( it.current()->hasFocus() )
-        {
-            if ( ++it )
-                m_app->showNote( it.current() );
-            else
-                m_app->showNote( first );
-            break;
-        }
 }
 
 KNote *ResourceManager::note( const QString& id )

@@ -50,14 +50,11 @@ public:
     KNotesApp();
     ~KNotesApp();
 
-    QString newNote( const QString& name = QString::null,
-                            const QString& text = QString::null );
-    QString newNoteFromClipboard( const QString& name = QString::null );
-
     void showNote( const QString& id ) const;
     void hideNote( const QString& id ) const;
-    void killNote( const QString& id, bool force );
+
     void killNote( const QString& id );
+    void killNote( const QString& id, bool force );
 
     QString name( const QString& id ) const;
     QString text( const QString& id ) const;
@@ -73,13 +70,16 @@ public:
 
     bool commitData( QSessionManager& );
 
+public slots:
+    QString newNote( const QString& name = QString::null,
+                     const QString& text = QString::null );
+    QString newNoteFromClipboard( const QString& name = QString::null );
+
 protected:
     void mousePressEvent( QMouseEvent* );
     bool eventFilter( QObject*, QEvent* );
 
 protected slots:
-    void slotNewNote();
-    void slotNewNoteFromClipboard();
     void slotShowNote();
 
     void slotPreferences() const;
@@ -91,11 +91,8 @@ private slots:
     void updateNoteActions();
     void updateGlobalAccels();
 
-    void saveNotes();
-
 private:
     void showNote( KNote *note ) const;
-    void saveConfig();
 
 private:
     class KNoteActionList : public QPtrList<KAction>

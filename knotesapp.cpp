@@ -68,9 +68,9 @@ KNotesApp::KNotesApp()
 
     // create the GUI...
     new KAction( i18n("New Note"), "filenew", 0,
-        this, SLOT(slotNewNote()), actionCollection(), "new_note" );
+        this, SLOT(newNote()), actionCollection(), "new_note" );
     new KAction( i18n("New Note From Clipboard"), "editpaste", 0,
-        this, SLOT(slotNewNoteFromClipboard()), actionCollection(), "new_note_clipboard" );
+        this, SLOT(newNoteFromClipboard()), actionCollection(), "new_note_clipboard" );
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
     KStdAction::preferences( this, SLOT(slotPreferences()), actionCollection() );
@@ -88,10 +88,10 @@ KNotesApp::KNotesApp()
     globalAccel = new KGlobalAccel( this, "global accel" );
     globalAccel->insert( "global_new_note", i18n("New Note"), "",
                          ALT+SHIFT+Key_N, ALT+SHIFT+Key_N ,
-                         this, SLOT(slotNewNote()), true, true );
+                         this, SLOT(newNote()), true, true );
     globalAccel->insert( "global_new_note_clipboard", i18n("New Note From Clipboard"), "",
                          ALT+SHIFT+Key_C, ALT+SHIFT+Key_C,
-                         this, SLOT(slotNewNoteFromClipboard()), true, true );
+                         this, SLOT(newNoteFromClipboard()), true, true );
 
     globalAccel->readSettings();
 
@@ -106,6 +106,7 @@ KNotesApp::KNotesApp()
 
     // read the notes
     m_manager = new ResourceManager( this );
+    connect( m_manager, SIGNAL(sigNotesChanged()), this, SLOT(updateNoteActions()) );
     m_manager->load();
     updateNoteActions();
 
@@ -119,13 +120,13 @@ KNotesApp::KNotesApp()
 
 KNotesApp::~KNotesApp()
 {
-    saveNotes();
+    m_manager->save();
     delete factory;
 }
 
 bool KNotesApp::commitData( QSessionManager& )
 {
-    saveConfig();
+    m_manager->saveConfigs();
     return true;
 }
 
@@ -251,7 +252,7 @@ void KNotesApp::mousePressEvent( QMouseEvent* e )
     {
     case LeftButton:
         if ( m_manager->count() == 1 )
-            showNote( m_manager->first() );
+            showNote( m_manager->iterator().toFirst() );
         else if ( m_note_menu->count() > 0 )
             m_note_menu->popup( e->globalPos() );
         break;
@@ -272,7 +273,19 @@ bool KNotesApp::eventFilter( QObject* o, QEvent* ev )
 
         if ( ke->key() == Key_BackTab )         // Shift+Tab
         {
-            m_manager->showNextNote();
+            // show next note
+            QDictIterator<KNote> it( m_manager->iterator() );
+            KNote *first = it.toFirst();
+            for ( ; it.current(); ++it )
+                if ( it.current()->hasFocus() )
+                {
+                    if ( ++it )
+                        showNote( it.current() );
+                    else
+                        showNote( first );
+                    break;
+                }
+
             ke->accept();
             return true;
         }
@@ -285,16 +298,6 @@ bool KNotesApp::eventFilter( QObject* o, QEvent* ev )
 
 
 // -------------------- protected slots -------------------- //
-
-void KNotesApp::slotNewNote()
-{
-    newNote();
-}
-
-void KNotesApp::slotNewNoteFromClipboard()
-{
-    newNoteFromClipboard();
-}
 
 void KNotesApp::slotShowNote()
 {
@@ -319,7 +322,7 @@ void KNotesApp::slotConfigureAccels()
 
 void KNotesApp::slotQuit()
 {
-    saveConfig();
+    m_manager->saveConfigs();
     kapp->quit();
 }
 
@@ -346,22 +349,12 @@ void KNotesApp::showNote( KNote* note ) const
     }
 }
 
-void KNotesApp::saveConfig()
-{
-    m_manager->saveConfigs();
-}
-
-void KNotesApp::saveNotes()
-{
-    m_manager->save();
-}
-
 void KNotesApp::updateNoteActions()
 {
     unplugActionList( "notes" );
     m_noteActions.clear();
 
-    for ( QDictIterator<KNote> it = m_manager->iterator(); it.current(); ++it )
+    for ( QDictIterator<KNote> it( m_manager->iterator() ); it.current(); ++it )
     {
         KAction *action = new KAction( it.current()->name().replace("&", "&&"),
                                        KShortcut(), this, SLOT(slotShowNote()),

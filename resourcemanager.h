@@ -2,6 +2,7 @@
  This file is part of KNotes.
 
  Copyright (c) 2004, Bo Thorsen <bo@klaralvdalens-datakonsult.se>
+               2004, Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -53,21 +54,14 @@ public:
     virtual ~ResourceManager();
 
     void load();
-    void save();
     void saveConfigs();
+    void sync( const QString& app );
 
     QString newNote( const QString& name, const QString& text );
 
     int count() const;
-    QMap<QString,QString> notes() const;
-
-    void sync( const QString& app );
-
-    KNote* first() const;
-
-    void showNextNote();
-
     KNote* note( const QString& );
+    QMap<QString,QString> notes() const;
 
     QDictIterator<KNote> iterator()
     {
@@ -81,6 +75,11 @@ public:
 
     void registerNote( ResourceNotes *resource,
                        KCal::Journal *journal, bool loaded );
+signals:
+    void sigNotesChanged();
+
+public slots:
+    void save();
 
 private slots:
     void slotNoteKilled( KCal::Journal* );

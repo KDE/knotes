@@ -86,7 +86,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     // create the menu items for the note - not the editor...
     // rename, mail, print, insert date, close, delete, new note
     new KAction( i18n("New"), "filenew", 0,
-        this, SLOT(slotNewNote()), actionCollection(), "new_note" );
+        this, SIGNAL(sigNewNote()), actionCollection(), "new_note" );
     new KAction( i18n("Rename..."), "text", 0,
         this, SLOT(slotRename()), actionCollection(), "rename_note" );
     new KAction( i18n("Hide"), "fileclose" , 0,
@@ -342,11 +342,6 @@ bool KNote::isModified( const QString& app ) const
 
 
 // -------------------- public slots -------------------- //
-
-void KNote::slotNewNote()
-{
-    emit sigNewNote();
-}
 
 void KNote::slotRename()
 {

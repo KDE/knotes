@@ -70,7 +70,6 @@ public:
     void toDesktop( int desktop );
 
 public slots:
-    void slotNewNote();
     void slotRename();
     void slotClose();
     void slotKill( bool force = false );
