@@ -135,8 +135,6 @@ KNotesApp::~KNotesApp()
     disconnect();
     m_noteList.clear();
 
-    delete m_note_menu;
-    delete m_context_menu;
     delete factory;
 }
 
@@ -167,7 +165,7 @@ int KNotesApp::newNote( QString name, const QString& text )
         kdError(5500) << "A note with this name already exists!" << endl;
         return -1;
     }
-    
+
     // must be done here to check if !m_noteList[name]
     QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
     if ( name.isEmpty() )
@@ -214,7 +212,7 @@ void KNotesApp::showNote( const QString& name ) const
 void KNotesApp::showNote( int noteId ) const
 {
     KNote* note = noteById( noteId );
-    
+
     if ( !note )
     {
         kdWarning(5500) << "No note with id " << noteId << endl;
@@ -252,7 +250,7 @@ QMap<int,QString> KNotesApp::notes() const
 QString KNotesApp::text( const QString& name ) const
 {
     KNote* note = m_noteList[name];
-    
+
     if ( note )
         return note->text();
     else
@@ -262,7 +260,7 @@ QString KNotesApp::text( const QString& name ) const
 QString KNotesApp::text( int noteId ) const
 {
     KNote* note = noteById( noteId );
-    
+
     if ( note )
         return note->text();
     else

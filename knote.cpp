@@ -219,8 +219,6 @@ KNote::~KNote()
 {
     emit sigKilled( m_label->text() );
 
-    delete m_menu;
-    delete m_edit_menu;
 }
 
 
@@ -624,7 +622,7 @@ void KNote::slotApplyConfig()
         m_button->hide();
         m_editor->cornerWidget()->hide();
     }
-    
+
     emit sigConfigChanged();
 }
 
