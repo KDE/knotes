@@ -9,7 +9,7 @@
 
   <group name="Network">
     <entry name="ReceiveNotes" type="Bool">
-      <default>true</default>
+      <default>false</default>
     </entry>
 
     <entry name="Port" type="UInt">
