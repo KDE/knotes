@@ -2,7 +2,7 @@
  KNotesIface.h  --  This file defines the DCOP interface for KNotes.
 
  Copyright (C) 2000 by Adriaan de Groot
-               2001, 2002 by Michael Brade <brade@kde.org>
+               2001-2003 by Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License

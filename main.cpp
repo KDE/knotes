@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2002, The KNotes Developers
+ Copyright (c) 1997-2003, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -34,7 +34,7 @@ int main( int argc, char* argv[] )
 {
     KAboutData aboutData( "knotes", I18N_NOOP("KNotes"),
         I18N_NOOP( KNOTES_VERSION ), I18N_NOOP( "KDE Notes" ), KAboutData::License_GPL,
-        I18N_NOOP("(c) 1997-2002, The KNotes Developers") );
+        I18N_NOOP("(c) 1997-2003, The KNotes Developers") );
 
     aboutData.addAuthor("Michael Brade", I18N_NOOP("Maintainer"), "brade@kde.org");
     aboutData.addAuthor("Bernd Johannes Wuebben", I18N_NOOP("Original KNotes Author"), "wuebben@kde.org");
