@@ -6,25 +6,36 @@ bin_PROGRAMS    = knotes
 
 include_HEADERS = KNotesIface.h
 noinst_HEADERS  = knotesapp.h knote.h knoteedit.h knotebutton.h knoteconfigdlg.h \
-						knoteslegacy.h resourcemanager.h resourcenotes.h resourcelocal.h \
-						knotesnetrecv.h knotesnetsend.h knotehostdlg.h
+                  knoteslegacy.h resourcemanager.h resourcenotes.h resourcelocal.h \
+                  knotesnetrecv.h knotesnetsend.h knotehostdlg.h
 
-noinst_LTLIBRARIES = libknotes.la
-libknotes_la_SOURCES = knotesapp.cpp knote.cpp knoteedit.cpp knotebutton.cpp \
-							  knoteconfigdlg.cpp knoteconfig.kcfgc knotesglobalconfig.kcfgc \
-							  KNotesIface.skel knoteslegacy.cpp \
-							  resourcemanager.cpp resourcenotes.cpp resourcelocal.cpp \
-							  knotesnetrecv.cpp knotesnetsend.cpp knotehostdlg.cpp
+# Dependencies of the static libraries:
+#   note: all others
+#   network: config [knotesnetsend depends on globalconfig, could be fixed]
+#   editor: ok
+#   resources: config
+#   config: ok
 
-knotes_SOURCES  = main.cpp
-knotes_LDADD    = libknotes.la $(LIB_KIO) -lkresources -lkdeprint $(top_builddir)/libkcal/libkcal.la
+noinst_LTLIBRARIES = libknote.la libknoteseditor.la libknotesresources.la \
+                     libknotesconfig.la libknotesnetwork.la
+
+libknotesconfig_la_SOURCES = knoteslegacy.cpp knoteconfig.kcfgc knotesglobalconfig.kcfgc
+libknoteseditor_la_SOURCES = knoteedit.cpp
+libknotesnetwork_la_SOURCES = knotesnetrecv.cpp knotesnetsend.cpp
+libknotesresources_la_SOURCES = resourcemanager.cpp resourcenotes.cpp resourcelocal.cpp
+libknote_la_SOURCES = knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp
+
+knotes_SOURCES  = main.cpp knotesapp.cpp KNotesIface.skel
+knotes_LDADD    = libknote.la libknoteseditor.la libknotesnetwork.la libknotesresources.la \
+                  libknotesconfig.la  $(top_builddir)/libkcal/libkcal.la $(LIB_KIO) \
+                  -lkresources -lkdeprint
 knotes_LDFLAGS  = $(all_libraries) $(KDE_RPATH)
 
-kde_module_LTLIBRARIES = knotes_local.la
+kde_module_LTLIBRARIES  = knotes_local.la
 knotes_local_la_SOURCES = resourcelocal_plugin.cpp
 knotes_local_la_LDFLAGS = $(KDE_LDFLAGS) -module $(KDE_PLUGIN)
-knotes_local_la_LIBADD  = libknotes.la $(top_builddir)/libkcal/libkcal.la -lkdeprint
-
+knotes_local_la_LIBADD  = libknotesresources.la libknotesconfig.la \
+                          $(top_builddir)/libkcal/libkcal.la -lkdeprint
 
 METASOURCES     = AUTO
 
