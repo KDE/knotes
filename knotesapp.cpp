@@ -423,16 +423,24 @@ void KNotesApp::slotConfigureAccels()
     keys.insert( actionCollection() );
     QDictIterator<KNote> notes( m_noteList );
     if ( !m_noteList.isEmpty() )
-        keys.insert( notes.current()->actionCollection() );
+        keys.insert( (*notes)->actionCollection() );
     keys.configure();
 
     // update GUI for new notes
-    m_noteGUI = notes.current()->actionCollection()->parentGUIClient()->domDocument();
+    m_noteGUI = (*notes)->actionCollection()->parentGUIClient()->domDocument();
 
     notes.toFirst();
-
-//    for( ; notes.current(); ++notes )
-//        notes.current()->reloadXML();
+    QValueList<KAction *> list = (*notes)->actionCollection()->actions();
+    for ( QValueList<KAction *>::iterator it = list.begin(); it != list.end(); ++it )
+    {
+        notes.toFirst();
+        for ( ++notes; *notes; ++notes )
+        {
+            KAction *toChange = (*notes)->actionCollection()->action( (*it)->name() );
+            if ( toChange->shortcut() != (*it)->shortcut() )
+                toChange->setShortcut( (*it)->shortcut() );
+        }
+    }
 
     m_globalAccel->writeSettings();
     updateGlobalAccels();
