@@ -137,7 +137,7 @@ void KNoteConfigDlg::makeEditorPage()
     glay->addWidget( _autoIndentSwitch, 1, 0, AlignCenter );
 
     check_val = _config->readBoolEntry( "richtext", false );
-    _richTextSwitch = new QCheckBox( i18n("&Rich Text"), editorPage );
+    _richTextSwitch = new QCheckBox( i18n("&Rich text"), editorPage );
     _richTextSwitch->setChecked( check_val );
     glay->addWidget( _richTextSwitch, 1, 2, AlignCenter );
 
