@@ -184,7 +184,7 @@ void KNoteConfigDlg::makeActionsPage()
     glay->setColStretch( 1, 1 );
 
     QLabel* l_mail = new QLabel( i18n("&Mail action:"), actionsPage );
-    QString mailstr = m_config->readEntry( "mail", "kmail --msg %f" );
+    QString mailstr = m_config->readPathEntry( "mail", "kmail --msg %f" );
     m_mailEdit = new KLineEdit( mailstr, actionsPage );
     l_mail->setBuddy( m_mailEdit );
     glay->addWidget( l_mail, 0, 0 );
@@ -225,7 +225,7 @@ void KNoteConfigDlg::storeSettings()
     // store Action Settings
     m_config->setGroup( "Actions" );
 
-    m_config->writeEntry( "mail", m_mailEdit->text() );
+    m_config->writePathEntry( "mail", m_mailEdit->text() );
 
     // TODO: use kconf_update?
     m_config->deleteEntry( "print" );

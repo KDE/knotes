@@ -248,7 +248,7 @@ void KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
     // update the config
     KConfig config( configFile );
     config.setGroup( "Data" );
-    journal->setSummary( config.readEntry( "name", QString::null ) );
+    journal->setSummary( config.readEntry( "name" ) );
     config.deleteEntry( "name" );
     config.deleteGroup( "Data", false );
     config.setGroup( "General" );

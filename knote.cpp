@@ -438,7 +438,7 @@ void KNote::slotMail() //const
 
     //get the mail action command
     config.setGroup( "Actions" );
-    QString mail_cmd = config.readEntry( "mail", "kmail --msg %f" );
+    QString mail_cmd = config.readPathEntry( "mail", "kmail --msg %f" );
     QStringList cmd_list = QStringList::split( QChar(' '), mail_cmd );
 
     KProcess mail;
