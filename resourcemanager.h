@@ -68,6 +68,7 @@ public:
 
 signals:
     void sigRegisteredNote( KCal::Journal *journal );
+    void sigUnregisteredNote( KCal::Journal *journal );
 
 private:
     KRES::Manager<ResourceNotes> *m_manager;

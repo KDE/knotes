@@ -105,6 +105,7 @@ private slots:
     void updateNetworkListener();
 
     void createNote( KCal::Journal *journal );
+    void killNote( KCal::Journal *journal );
 
 private:
     class KNoteActionList : public QPtrList<KAction>

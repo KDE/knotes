@@ -117,6 +117,8 @@ KNotesApp::KNotesApp()
     m_manager = new KNotesResourceManager();
     connect( m_manager, SIGNAL(sigRegisteredNote( KCal::Journal * )),
              this,      SLOT(createNote( KCal::Journal * )) );
+    connect( m_manager, SIGNAL(sigUnregisteredNote( KCal::Journal * )),
+             this,      SLOT(killNote( KCal::Journal * )) );
 
     // read the notes
     m_manager->load();
@@ -426,6 +428,13 @@ void KNotesApp::createNote( KCal::Journal *journal )
     connect( newNote, SIGNAL(sigDataChanged()), SLOT(saveNotes()) );
     connect( newNote, SIGNAL(sigColorChanged()), SLOT(updateNoteActions()) );
 
+    updateNoteActions();
+}
+
+void KNotesApp::killNote( KCal::Journal *journal )
+{
+    // this kills the KNote object
+    m_noteList.remove( journal->uid() );
     updateNoteActions();
 }
 
