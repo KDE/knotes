@@ -31,7 +31,6 @@
 #include <klocale.h>
 #include <qlabel.h>
 
-extern KApplication* 	mykapp;
 extern DefStruct 	postitdefaults;
 
 void MyTimer::start(){
@@ -61,10 +60,10 @@ void MyTimer::timerEvent( QTimerEvent * ){
     if(entry->dt < qdt){
 
       QApplication::beep();
-      mykapp->processEvents();
+      kapp->processEvents();
       sleep(1);
       QApplication::beep();
-      mykapp->processEvents();
+      kapp->processEvents();
       sleep(1);
       QApplication::beep();
 

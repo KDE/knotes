@@ -48,12 +48,10 @@ Q_OBJECT
 
 public:
 
-  FontDlg(QWidget *parent=0, const char *name=0,
-	    KApplication* k=NULL, DefStruct *defstruct=NULL);
+  FontDlg(QWidget *parent=0, const char *name=0, DefStruct *defstruct=NULL);
   ~FontDlg() {}
 
   DefStruct *defst ;
-  KApplication *mykapp;
   void setWidgets(DefStruct *defstruct);
 private slots:
 

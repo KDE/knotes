@@ -33,7 +33,6 @@
 #include "knotes.h"
 #include <klocale.h>
 
-extern KApplication* 	mykapp;
 extern DefStruct 	postitdefaults;
 extern MyTimer* 	mytimer;
 

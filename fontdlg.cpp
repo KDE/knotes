@@ -33,12 +33,10 @@
 
 #include "fontdlg.moc"
 
-FontDlg::FontDlg(QWidget *parent, const char *name,
-		     KApplication *mykapp,DefStruct *defstruct)
+FontDlg::FontDlg(QWidget *parent, const char *name,DefStruct *defstruct)
   : QDialog(parent, name)
 {
 
-  mykapp = kapp;
   defst = defstruct;
 
   box = new QGroupBox(this, "box");
@@ -126,7 +124,7 @@ void FontDlg::setWidgets(DefStruct *defstruct){
 
 void FontDlg::help(){
 
-  mykapp->invokeHTMLHelp("","");
+  kapp->invokeHTMLHelp("","");
 
 }
 

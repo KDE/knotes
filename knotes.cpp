@@ -32,6 +32,7 @@
 #include <kurl.h>
 #include <krun.h>
 #include <kglobal.h>
+#include <kstddirs.h>
 #include <kio_netaccess.h>
 #include <kconfig.h>
 
@@ -62,7 +63,6 @@ FontDlg*        fontdlg    = 0L;
 QTabDialog*     tabdialog  = 0L;
 DefStruct       newdefstruct;
 
-KApplication* 	mykapp;
 DockWidget*     docker;
 DefStruct 	postitdefaults;
 
@@ -85,19 +85,6 @@ extern bool 	readalarms();
 #include <dirent.h>
 #include <sys/stat.h>
 #include <klocale.h>
-
-
-void testDir( const char *_name )
-{
-    DIR *dp;
-    QString c = getenv( "HOME" );
-    c += _name;
-    dp = opendir( c.data() );
-    if ( dp == NULL )
-	::mkdir( c.data(), S_IRWXU );
-    else
-	closedir( dp );
-}
 
 
 
@@ -456,7 +443,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     options->setItemChecked(dockID,dock);
 
     set_colors();
-    connect(mykapp,SIGNAL(kdisplayPaletteChanged()),this,SLOT(set_colors()));
+    connect(kapp,SIGNAL(kdisplayPaletteChanged()),this,SLOT(set_colors()));
 
     edit->setFont(font);
     //    label->setFont(font);
@@ -540,7 +527,7 @@ void KPostit::quit(){
 
 void KPostit::help(){
 
-  mykapp->invokeHTMLHelp("","");
+  kapp->invokeHTMLHelp("","");
 
 }
 
@@ -567,8 +554,8 @@ void KPostit::mail(){
     return;
   }
 
-  mykapp->processEvents();
-  mykapp->flushX();
+  kapp->processEvents();
+  kapp->flushX();
 
   FILE* mailpipe;
 
@@ -674,8 +661,8 @@ void KPostit::save_all(){
 }
 void KPostit::print(){
 
-  mykapp->processEvents();
-  mykapp->flushX();
+  kapp->processEvents();
+  kapp->flushX();
 
   FILE* printpipe;
 
@@ -836,12 +823,8 @@ void KPostit::renameKPostit(){
   RenameDlg* dlg = new RenameDlg(this,"renamedlg",&newName,&PostitFilesList);
   if(dlg->exec()){
 
-    QString notesfile;
-    QString newnotesfile;
-    notesfile = KApplication::localkdedir() + "/share/apps/knotes/notes";
-    newnotesfile = notesfile.copy();
-    notesfile += name;
-    newnotesfile += newName;
+    QString notesfile( locateLocal("appdata", "notes/"+name) );
+    QString newnotesfile( locateLocal("appdata", "notes/"+newName) );
 
     if(rename(notesfile.data(),newnotesfile.data())){
 
@@ -936,9 +919,7 @@ void KPostit::deleteKPostit(){
   if(result)
     return;
 
-  QString notesfile;
-  notesfile = KApplication::localkdedir() + "/share/apps/knotes/notes/";
-  notesfile += name;
+  QString notesfile( locateLocal("appdata", "notes/"+name) );
 
   if(remove(notesfile.data())){
   }
@@ -993,9 +974,7 @@ void KPostit::deleteKPostit(){
 bool KPostit::loadnotes(){
 
 
-  QString notesfile;
-  notesfile = KApplication::localkdedir() + "/share/apps/knotes/notes/";
-  notesfile += name;
+  QString notesfile ( locateLocal("appdata", "notes/"+name) );
 
   QFile file(notesfile);
 
@@ -1143,9 +1122,7 @@ void KPostit::closeEvent( QCloseEvent * ){
 
 bool KPostit::savenotes(){
 
-  QString notesfile;
-  notesfile = KApplication::localkdedir() + "/share/apps/knotes/notes/";
-  notesfile += name;
+  QString notesfile( locateLocal("appdata", "notes/"+name) );
 
   QFile file(notesfile);
   //  QFile file2("/home/wuebben/knotes.txt");
@@ -1373,19 +1350,16 @@ void KPostit::defaults()
     label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
     label->setText(labelstring);
 
-    QString pixdir = mykapp->kde_datadir() + "/knotes/pics/";
-
-
-    QPixmap pm((pixdir + "knoteslogo.xpm"));
+    QPixmap pm( Icon("knoteslogo.xpm"));
     QLabel *logo = new QLabel(box);
     logo->setPixmap(pm);
     logo->setGeometry(30, 50, pm.width(), pm.height());
 
     if(!configdlg)
-      configdlg = new ConfigDlg(tabdialog,"configdlg",mykapp,&newdefstruct);
+      configdlg = new ConfigDlg(tabdialog,"configdlg",&newdefstruct);
 
     if(!fontdlg)
-      fontdlg = new FontDlg(tabdialog,"fontdlg",mykapp,&newdefstruct);
+      fontdlg = new FontDlg(tabdialog,"fontdlg",&newdefstruct);
 
     tabdialog->addTab(configdlg,i18n("Defaults"));
     tabdialog->addTab(fontdlg,i18n("More ..."));
@@ -1599,20 +1573,8 @@ void KPostit::setNoAutoIndent(){
 
 void findPostitFiles(){
 
-  QString p = KApplication::localkdedir();
-  QString filesdir = p + "/share/apps/knotes/notes/";
-
-  QString alarmdir = p + "/share/apps/knotes/xyalarms";
-
-  if ( access( filesdir.data(), F_OK ) ){
-    mkdir( filesdir.data(), 0700 );
-  }
-
-  if ( access( alarmdir.data(), F_OK ) ){
-    mkdir( alarmdir.data(), 0700 );
-  }
-
-
+  QString filesdir = locateLocal( "appdata", "notes/" );
+  QString alarmdir = locateLocal( "appdata", "xyalarms/" );
 
   QDir d(filesdir);
   d.setSorting( QDir::Name );
@@ -1662,7 +1624,7 @@ void alarmConsistencyCheck(){
 sessionWidget::sessionWidget() {
   // the only function of this widget is to catch & forward the
   // saveYourself() signal from the session manager
-  connect(mykapp, SIGNAL(saveYourself()), SLOT(wm_saveyourself()));
+  connect(kapp, SIGNAL(saveYourself()), SLOT(wm_saveyourself()));
 }
 
 void sessionWidget::wm_saveyourself() {
@@ -1683,19 +1645,9 @@ int main( int argc, char **argv ) {
   int pid;
   KPostit* postit;
 
-  // Torben
-  testDir( "/.kde" );
-  testDir( "/.kde/share" );
-  testDir( "/.kde/share/config" );
-  testDir( "/.kde/share/apps" );
-  testDir( "/.kde/share/apps/knotes" );
-  testDir( "/.kde/share/apps/knotes/notes" );
-  testDir( "/.kde/share/apps/knotes/xyalarms" );
+  KApplication a(argc, argv, "knotes");
 
-  QString p = KApplication::localkdedir();
-  QString rcDir = p + "/share/apps/knotes";
-  pidFile = rcDir + "/knotes.pid";
-
+  pidFile = locateLocal( "appdata", "knotes.pid");
 
   XSetErrorHandler( knotes_x_errhandler );
   XSetIOErrorHandler( knotes_xio_errhandler );
@@ -1728,8 +1680,6 @@ int main( int argc, char **argv ) {
   fprintf( fp, "%d\n", getpid());
   fclose( fp );
 
-  KApplication a(argc, argv, "knotes");
-  mykapp = &a;
 
   readSettings();
 
@@ -1783,7 +1733,7 @@ void readSettings()
 
   QString str;
 
-  KConfig *config = mykapp->getConfig();
+  KConfig *config = kapp->getConfig();
   config->setGroup( "Font" );
   QFont defaultFont("helvetica",12);
   postitdefaults.font = config->readFontEntry("Font", &defaultFont);
@@ -1823,7 +1773,7 @@ void readSettings()
 void writeSettings()
 {
 
-  KConfig *config = mykapp->getConfig();
+  KConfig *config = kapp->getConfig();
 
   config->setGroup( "Font" );
   config->writeEntry("Font",postitdefaults.font);

@@ -34,12 +34,10 @@
 
 #include "configdlg.moc"
 
-ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
-		     KApplication *mykapp, DefStruct *defstruct)
+ConfigDlg::ConfigDlg(QWidget *parent, const char *name, DefStruct *defstruct)
   : QDialog(parent, name)
 {
 
-  mykapp = kapp;
   defst = defstruct;
 
   box = new QGroupBox(this, "box");
@@ -160,7 +158,7 @@ void ConfigDlg::setWidgets(DefStruct *defstruct){
 
 void ConfigDlg::help(){
 
-  mykapp->invokeHTMLHelp("","");
+  kapp->invokeHTMLHelp("","");
 
 }
 

@@ -34,7 +34,6 @@
 #include "docking.h"
 
 //extern QStrList  KPostit::PostitFilesList; // names of all postit files
-extern KApplication *mykapp;
 //extern QList<KPostit> 	  KPostit::PostitList;    
 
 DockWidget::DockWidget(const char *name): QWidget(0, name, 0) {
@@ -44,15 +43,6 @@ DockWidget::DockWidget(const char *name): QWidget(0, name, 0) {
   pos_x = pos_y = 0;
 
   picsmall_pixmap = KGlobal::iconLoader()->loadApplicationMiniIcon( "knotes.xpm" );
-
-/*
-  QString tmp;
-  QString pixdir = mykapp->kde_icondir() + "/mini/";
-  if (!picsmall_pixmap.load(pixdir + "knotes.xpm")){
-    tmp = i18n("Could not load %1 !").arg("knotes.xpm");
-    QMessageBox::warning(this, i18n("Error"), tmp);
-  }
-*/
 
   //////////////////////////////////////////////////////////////////
   // popup menu for left mouse button
@@ -166,7 +156,7 @@ void DockWidget::configureKNotes(){
 
 void DockWidget::help(){
 
-  mykapp->invokeHTMLHelp("","");
+  kapp->invokeHTMLHelp("","");
 
 }
 

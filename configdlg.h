@@ -48,8 +48,7 @@ Q_OBJECT
 
 public:
 
-  ConfigDlg(QWidget *parent=0, const char *name=0,
-	    KApplication* k=NULL, DefStruct *defstruct=NULL);
+  ConfigDlg(QWidget *parent=0, const char *name=0, DefStruct *defstruct=NULL);
   ~ConfigDlg() {}
   void setWidgets(DefStruct *defstruct);
 
@@ -100,7 +99,6 @@ private:
   QLabel *label4;
   QFrame *qframe4;
   QPushButton *button4;
-  KApplication* mykapp; // never use kapp;
 
   QLabel *label5;
 

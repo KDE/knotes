@@ -28,13 +28,11 @@
 
 
 #include "knotes.h"
-
+#include <kstddirs.h>
 
 bool savealarms(){
 
-  QString alarmfile;
-  alarmfile = KApplication::localkdedir().copy();
-  alarmfile += "/share/apps/knotes/xyalarms/knotesalarms";
+  QString alarmfile( locateLocal( "appdata", "xyalarms/knotesalarms") );
 
   QFile file(alarmfile);
 
@@ -66,10 +64,7 @@ bool savealarms(){
 
 bool readalarms(){
 
-  QString alarmfile;
-
-  alarmfile = KApplication::localkdedir().copy();
-  alarmfile += "/share/apps/knotes/xyalarms/knotesalarms";
+  QString alarmfile( locateLocal( "appdata", "xyalarms/knotesalarms") );
 
   QFile file(alarmfile);
 
