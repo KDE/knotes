@@ -88,5 +88,9 @@ namespace Qt3 { // can't be Qt, a class already exists with that name :(
 #define QPtrVector QVector
 #define QMemArray QArray
 
+// create defines for name and parent with the old style " = 0" default values.
+#define Q_NAME name = 0
+#define Q_PARENT parent = 0
+
 #endif // QT3STUFF_H
 

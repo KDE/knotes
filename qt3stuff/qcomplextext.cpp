@@ -679,6 +679,7 @@ QPointArray QComplexText::positionMarks( QFontPrivate *f, const QString &str,
 
     //qDebug( "base char: bounding rect at %d/%d (%d/%d)", baseRect.x(), baseRect.y(), baseRect.width(), baseRect.height() );
     int offset = f->actual.pixelSize / 10 + 1;
+    //qDebug("offset = %d", offset );
     QPointArray pa( nmarks );
     int i;
     unsigned char lastCmb = 0;
@@ -688,6 +689,35 @@ QPointArray QComplexText::positionMarks( QFontPrivate *f, const QString &str,
     for( i = 0; i < nmarks; i++ ) {
 	QChar mark = str[pos+i+1];
 	unsigned char cmb = mark.combiningClass();
+	if ( cmb < 200 ) {
+	    // fixed position classes. We approximate by mapping to one of the others.
+	    // currently I added only the ones for arabic, hebrew and thai.
+
+	    // ### add a bit more offset to arabic, a bit hacky
+	    if ( cmb >= 27 && cmb <= 36 )
+		offset +=1;
+	    // below
+	    if ( (cmb >= 10 && cmb <= 18) ||
+		 cmb == 20 || cmb == 22 ||
+		 cmb == 29 || cmb == 32 ) 
+		cmb = QChar::Combining_Below;
+	    // above 
+	    else if ( cmb == 23 || cmb == 27 || cmb == 28 ||
+		      cmb == 30 || cmb == 31 || (cmb >= 33 && cmb <= 36 ) )
+		cmb = QChar::Combining_Above;
+	    //below-right
+	    else if ( cmb == 103 )
+		cmb = QChar::Combining_BelowRight;
+	    // above-right
+	    else if ( cmb == 24 || cmb == 107 )
+		cmb = QChar::Combining_AboveRight;
+	    else if ( cmb == 25 )
+		cmb = QChar::Combining_AboveLeft;
+	    // fixed:
+	    //  19 21
+	    
+	}
+	
 	// combining marks of different class don't interact. Reset the rectangle.
 	if ( cmb != lastCmb ) {
 	    //qDebug( "resetting rect" );

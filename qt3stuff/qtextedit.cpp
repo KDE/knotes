@@ -88,6 +88,7 @@ static bool block_set_alignment = FALSE;
   \brief The QTextEdit widget provides a sophisticated single-page rich text editor.
 
   \ingroup basic
+  \ingroup text
 
     QTextEdit is an advanced WYSIWYG editor supporting rich text
     formatting. It is optimized to handle large documents and to respond
@@ -124,13 +125,13 @@ static bool block_set_alignment = FALSE;
     is rich text or plain text.
 
     The text edit documentation uses the following concepts:
-    <ul>
-    <li><i>current format</i> --
+    \list
+    \i <i>current format</i> --
     this is the format at the current cursor position, \e and it
     is the format of the selected text if any.
-    <li><i>current paragraph</i> -- the paragraph which contains the
+    \i <i>current paragraph</i> -- the paragraph which contains the
     cursor.
-    </ul>
+    \endlist
 
     The text is set or replaced using setText() which deletes any
     existing text and replaces it with the text passed in the setText()
@@ -230,44 +231,44 @@ static bool block_set_alignment = FALSE;
     select a given string within the text.
 
     The list of key-bindings which are implemented for editing:
-  <ul>
-  <li><i> Backspace </i> -- Delete the character to the left of the cursor
-  <li><i> Delete </i> -- Delete the character to the right of the cursor
-  <li><i> Ctrl+A </i> -- Move the cursor to the beginning of the line
-  <li><i> Ctrl+B </i> -- Move the cursor one character left
-  <li><i> Ctrl+C </i> -- Copy the marked text to the clipboard (also
+  \list
+  \i <i> Backspace </i> -- Delete the character to the left of the cursor
+  \i <i> Delete </i> -- Delete the character to the right of the cursor
+  \i <i> Ctrl+A </i> -- Move the cursor to the beginning of the line
+  \i <i> Ctrl+B </i> -- Move the cursor one character left
+  \i <i> Ctrl+C </i> -- Copy the marked text to the clipboard (also
   <i>Ctrl+Insert</i> under Windows)
-  <li><i> Ctrl+D </i> -- Delete the character to the right of the cursor
-  <li><i> Ctrl+E </i> -- Move the cursor to the end of the line
-  <li><i> Ctrl+F </i> -- Move the cursor one character right
-  <li><i> Ctrl+H </i> -- Delete the character to the left of the cursor
-  <li><i> Ctrl+K </i> -- Delete to end of line
-  <li><i> Ctrl+N </i> -- Move the cursor one line down
-  <li><i> Ctrl+P </i> -- Move the cursor one line up
-  <li><i> Ctrl+V </i> -- Paste the clipboard text into line edit (also
+  \i <i> Ctrl+D </i> -- Delete the character to the right of the cursor
+  \i <i> Ctrl+E </i> -- Move the cursor to the end of the line
+  \i <i> Ctrl+F </i> -- Move the cursor one character right
+  \i <i> Ctrl+H </i> -- Delete the character to the left of the cursor
+  \i <i> Ctrl+K </i> -- Delete to end of line
+  \i <i> Ctrl+N </i> -- Move the cursor one line down
+  \i <i> Ctrl+P </i> -- Move the cursor one line up
+  \i <i> Ctrl+V </i> -- Paste the clipboard text into line edit (also
   <i>Shift+Insert</i> under Windows)
-  <li><i> Ctrl+X </i> -- Cut the marked text, copy to clipboard (also
+  \i <i> Ctrl+X </i> -- Cut the marked text, copy to clipboard (also
   <i>Shift+Delete</i> under Windows)
-  <li><i> Ctrl+Z </i> -- Undo the last operation
-  <li><i> Ctrl+Y </i> -- Redo the last operation
-  <li><i> Left Arrow </i> -- Move the cursor one character left
-  <li><i> Ctrl+Left Arrow </i> -- Move the cursor one word left
-  <li><i> Right Arrow </i> -- Move the cursor one character right
-  <li><i> Ctrl+Right Arrow </i> -- Move the cursor one word right
-  <li><i> Up Arrow </i> -- Move the cursor one line up
-  <li><i> Ctrl+Up Arrow </i> -- Move the cursor one word up
-  <li><i> Down Arrow </i> -- Move the cursor one line down
-  <li><i> Ctrl+Down Arrow </i> -- Move the cursor one word down
-  <li><i> Page Up </i> -- Move the cursor one page up
-  <li><i> Page Down </i> -- Move the cursor one page down
-  <li><i> Home </i> -- Move the cursor to the beginning of the line
-  <li><i> Ctrl+Home Arrow </i> -- Move the cursor to the beginning of the text
-  <li><i> End </i> -- Move the cursor to the end of the line
-  <li><i> Ctrl+End Arrow </i> -- Move the cursor to the end of the text
-    <li><i> Shift+Wheel</i> -- Scroll the page horizontally (the Wheel is
+  \i <i> Ctrl+Z </i> -- Undo the last operation
+  \i <i> Ctrl+Y </i> -- Redo the last operation
+  \i <i> Left Arrow </i> -- Move the cursor one character left
+  \i <i> Ctrl+Left Arrow </i> -- Move the cursor one word left
+  \i <i> Right Arrow </i> -- Move the cursor one character right
+  \i <i> Ctrl+Right Arrow </i> -- Move the cursor one word right
+  \i <i> Up Arrow </i> -- Move the cursor one line up
+  \i <i> Ctrl+Up Arrow </i> -- Move the cursor one word up
+  \i <i> Down Arrow </i> -- Move the cursor one line down
+  \i <i> Ctrl+Down Arrow </i> -- Move the cursor one word down
+  \i <i> Page Up </i> -- Move the cursor one page up
+  \i <i> Page Down </i> -- Move the cursor one page down
+  \i <i> Home </i> -- Move the cursor to the beginning of the line
+  \i <i> Ctrl+Home Arrow </i> -- Move the cursor to the beginning of the text
+  \i <i> End </i> -- Move the cursor to the end of the line
+  \i <i> Ctrl+End Arrow </i> -- Move the cursor to the end of the text
+    \i <i> Shift+Wheel</i> -- Scroll the page horizontally (the Wheel is
     the mouse wheel)
-    <li><i> Ctrl+Wheel</i> -- Zoom the text
-  </ul>
+    \i <i> Ctrl+Wheel</i> -- Zoom the text
+  \endlist
 
     To select (mark) text hold down the Shift key whilst pressing one of
     the movement keystrokes, for example, <i>Shift+Right Arrow</i> will
@@ -287,19 +288,19 @@ static bool block_set_alignment = FALSE;
 
     When QTextEdit is used read-only the key-bindings are limited to
     navigation, and text may only be selected with the mouse:
-    <ul>
-    <li><i> Up Arrow </i> -- Move one line up
-    <li><i> Down Arrow </i> -- Move one line down
-    <li><i> Left Arrow </i> -- Move one character left
-    <li><i> Right Arrow </i> -- Move one character right
-    <li><i> Page Up </i> -- Move one (viewport) page up
-    <li><i> Page Down </i> -- Move one (viewport) page down
-    <li><i> Home </i> -- Move to the beginning of the text
-    <li><i> End </i> -- Move to the end of the text
-    <li><i> Shift+Wheel</i> -- Scroll the page horizontally (the Wheel is
+    \list
+    \i <i> Up Arrow </i> -- Move one line up
+    \i <i> Down Arrow </i> -- Move one line down
+    \i <i> Left Arrow </i> -- Move one character left
+    \i <i> Right Arrow </i> -- Move one character right
+    \i <i> Page Up </i> -- Move one (viewport) page up
+    \i <i> Page Down </i> -- Move one (viewport) page down
+    \i <i> Home </i> -- Move to the beginning of the text
+    \i <i> End </i> -- Move to the end of the text
+    \i <i> Shift+Wheel</i> -- Scroll the page horizontally (the Wheel is
     the mouse wheel)
-    <li><i> Ctrl+Wheel</i> -- Zoom the text
-    </ul>
+    \i <i> Ctrl+Wheel</i> -- Zoom the text
+    \endlist
 
     The text edit may be able to provide some meta-information. For
     example, the documentTitle() function will return the text from
@@ -722,19 +723,31 @@ bool QTextEdit::event( QEvent *e )
 	if ( ke->state() & ControlButton ) {
 	    switch ( ke->key() ) {
 	    case Key_A:
-	    case Key_E:
-#if defined (Q_WS_WIN)
-	    case Key_Insert:
-#endif
-	    case Key_X:
-	    case Key_V:
+	    case Key_B:
 	    case Key_C:
+	    case Key_D:
+	    case Key_E:
+	    case Key_F:
+	    case Key_H:
+	    case Key_I: 
+	    case Key_K:
+	    case Key_N:
+	    case Key_P:
+	    case Key_T: 
+	    case Key_V:
+	    case Key_X:
+	    case Key_Y:
+	    case Key_Z:
 	    case Key_Left:
 	    case Key_Right:
 	    case Key_Up:
 	    case Key_Down:
 	    case Key_Home:
 	    case Key_End:
+	    case Key_Tab:
+#if defined (Q_WS_WIN)
+	    case Key_Insert:
+#endif
 		ke->accept();
 	    default:
 		break;
@@ -2942,16 +2955,16 @@ void QTextEdit::getSelection( int *paraFrom, int *indexFrom,
   \brief the text format: rich text, plain text or auto text
 
   The text format is one of the following:
-  <ul>
-  <li> \c PlainText - all characters, except newlines, are displayed
+  \list
+  \i PlainText - all characters, except newlines, are displayed
   verbatim, including spaces. Whenever a newline appears in the text the
   text edit inserts a hard line break and begins a new paragraph.
-  <li> \c RichText - rich text rendering. The available styles are
+  \i RichText - rich text rendering. The available styles are
   defined in the default stylesheet QStyleSheet::defaultSheet().
-  <li> \c AutoText - this is the default. The text edit autodetects
+  \i AutoText - this is the default. The text edit autodetects
   which rendering style is best, \c PlainText or \c RichText. This is
   done by using the QStyleSheet::mightBeRichText() function.
-  </ul>
+  \endlist
 */
 
 void QTextEdit::setTextFormat( TextFormat format )
@@ -3620,7 +3633,7 @@ void QTextEdit::pasteSpecial( const QPoint& pt )
 QCString QTextEdit::pickSpecial( QMimeSource* ms, bool always_ask, const QPoint& pt )
 {
     if ( ms )  {
-	QPopupMenu popup( this );
+	QPopupMenu popup( this, "qt_pickspecial_menu" );
 	QString fmt;
 	int n = 0;
 	QDict<void> done;
@@ -3945,7 +3958,7 @@ bool QTextEdit::getParagraphFormat( int para, QFont *font, QColor *color,
 
 QPopupMenu *QTextEdit::createPopupMenu()
 {
-    QPopupMenu *popup = new QPopupMenu( this );
+    QPopupMenu *popup = new QPopupMenu( this, "qt_edit_menu" );
     d->id[ IdUndo ] = popup->insertItem( tr( "Undo" ) );
     d->id[ IdRedo ] = popup->insertItem( tr( "Redo" ) );
     popup->insertSeparator();

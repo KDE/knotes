@@ -79,10 +79,22 @@ public:
   \ingroup text
   \brief The QStyleSheetItem class provides an encapsulation of a set of text styles.
 
-  A style consists of a name and a set of font, color, and other
-  display properties.  When used in a \link QStyleSheet style
-  sheet\endlink, items define the name of a rich text tag and the
-  display property changes associated with it.
+  A style sheet item consists of a name and a set of attributes that
+  specifiy its font, color, etc. When used in a \link QStyleSheet
+  style sheet\endlink (see styleSheet()), items define the name() of a
+  rich text tag and the display property changes associated with it.
+
+  The \link QStyleSheetItem::DisplayMode display mode\endlink
+  attribute indicates whether the item is a block, an inline element
+  or a list element; see setDisplayMode(). The treatment of whitespace
+  is controlled by the \link QStyleSheetItem::WhiteSpaceMode white
+  space mode\endlink; see setWhiteSpaceMode(). An item's margins are
+  set with setMargin(), and line spacing is set with setLineSpacing().
+  In the case of list items, the list style is set with
+  setListStyle(). An item may be a hypertext link anchor; see
+  setAnchor(). Other attributes are set with setAlignment(),
+  setFontFamily(), setFontSize(), setFontWeight(), setFontItalic(),
+  setFontUnderline() and setColor().
 */
 
 /*! \enum QStyleSheetItem::AdditionalStyleValues
@@ -93,15 +105,15 @@ public:
 
   This enum defines the ways in which QStyleSheet can treat whitespace.  There are three values at present:
 
-  \value WhiteSpaceNormal  any sequence of whitespace is equivalent
-  to a single space and is a line-break position.
+  \value WhiteSpaceNormal  any sequence of whitespace (including
+  line-breaks) is equivalent to a single space.
 
   \value WhiteSpacePre  whitespace must be output exactly as given
   in the input.
 
   \value WhiteSpaceNoWrap  multiple spaces are collapsed as with
-  WhiteSpaceNormal, but no automatic linebreaks occur. To break lines manually,
-  use the  <tt>&lt;br&gt;</tt> tag.
+  WhiteSpaceNormal, but no automatic line-breaks occur. To break lines manually,
+  use the \c{<br>} tag.
 
 */
 
@@ -203,7 +215,7 @@ void QStyleSheetItem::init()
 }
 
 /*!
-  Returns the name of style.
+  Returns the name of the style item.
 */
 QString QStyleSheetItem::name() const
 {
@@ -211,7 +223,8 @@ QString QStyleSheetItem::name() const
 }
 
 /*!
-  Returns the \link QStyleSheetItem::DisplayMode display mode\endlink of the style.
+  Returns the \link QStyleSheetItem::DisplayMode display mode\endlink
+  of the style.
 
   \sa setDisplayMode()
  */
@@ -224,14 +237,14 @@ QStyleSheetItem::DisplayMode QStyleSheetItem::displayMode() const
 
   This enum type defines the way adjacent elements are displayed.  The possible values are:
 
-  \value DisplayBlock  elements are displayed as a rectangular block (e.g.,
-    &lt;P&gt; ... &lt;/P&gt;).
+  \value DisplayBlock  elements are displayed as a rectangular block
+  (e.g. \c{<p>...</p>}).
 
   \value DisplayInline  elements are displayed in a horizontally flowing
-     sequence (e.g., &lt;EM&gt; ... &lt;/EM&gt;).
+     sequence (e.g. \c{<em>...</em>}).
 
   \value DisplayListItem  elements are displayed in a vertical sequence
-    (e.g., &lt;LI&gt; ... &lt;/LI&gt;).
+    (e.g. \c{<li>...</li>}).
 
   \value DisplayNone  elements are not displayed at all.
 */
@@ -259,8 +272,8 @@ int QStyleSheetItem::alignment() const
 }
 
 /*!
-  Sets the alignment to \a f. This only makes sense for styles with
-  \link QStyleSheetItem::DisplayMode display mode\endlink
+  Sets the alignment to \a f. This only makes sense for styles with a
+  \link QStyleSheetItem::DisplayMode display mode\endlink of
   DisplayBlock. Possible values are AlignAuto, AlignLeft, AlignRight,
   AlignCenter and AlignJustify.
 
@@ -273,7 +286,7 @@ void QStyleSheetItem::setAlignment( int f )
 
 
 /*!
-  Returns whether the style sets an italic or upright font.
+  Returns TRUE if the style sets an italic font; otherwise returns FALSE.
 
  \sa setFontItalic(), definesFontItalic()
  */
@@ -305,7 +318,7 @@ bool QStyleSheetItem::definesFontItalic() const
 }
 
 /*!
-  Returns whether the style sets an underlined font.
+  Returns TRUE if the style sets an underlined font; otherwise returns FALSE.
 
  \sa setFontUnderline(), definesFontUnderline()
  */
@@ -372,7 +385,7 @@ int QStyleSheetItem::logicalFontSize() const
 
 
 /*!
-  Sets the logical font size setting of the style tp \a s.
+  Sets the logical font size setting of the style to \a s.
   Valid logical sizes are 1 to 7.
 
  \sa logicalFontSize(), QFont::pointSize(), QFont::setPointSize()
@@ -481,7 +494,7 @@ void QStyleSheetItem::setNumberOfColumns(int ncols)
 
 /*!
   Returns the text color of this style or an invalid color
-  if no color has been set yet.
+  if no color has been set.
 
   \sa setColor() QColor::isValid()
  */
@@ -511,7 +524,7 @@ bool QStyleSheetItem::isAnchor() const
 }
 
 /*!
-    If \a anc is TRUE sets this style to be an anchor (link);
+    If \a anc is TRUE sets this style to be an anchor (hypertext link);
     otherwise sets it to not be an anchor. Elements in this style have
     connections to other documents or anchors.
 
@@ -526,7 +539,7 @@ void QStyleSheetItem::setAnchor(bool anc)
 /*!
   Returns the whitespace mode.
 
-  \sa setWhiteSpaceMode()
+  \sa setWhiteSpaceMode() WhiteSpaceMode
  */
 QStyleSheetItem::WhiteSpaceMode QStyleSheetItem::whiteSpaceMode() const
 {
@@ -534,19 +547,8 @@ QStyleSheetItem::WhiteSpaceMode QStyleSheetItem::whiteSpaceMode() const
 }
 
 /*!
-  Sets the whitespace mode to \a m. Possible values are
-  \list
-   \i WhiteSpaceNormal
-	- whitespace in the document serves only as separators.
-	Multiple spaces or indentation are ignored.
-   \i WhiteSpacePre
-	  - whitespace is preserved. This is particulary useful to
-	  display programming code.
-   \i WhiteSpaceNoWrap
-	  - multiple spaces are collapsed as with WhiteSpaceNormal, but no
-	  automatic linebreaks occur. To break lines manually use the
-	  <tt>&lt;br&gt;</tt> tag.
-  \endlist
+  Sets the whitespace mode to \a m.
+  \sa WhiteSpaceMode
  */
 void QStyleSheetItem::setWhiteSpaceMode(WhiteSpaceMode m)
 {
@@ -555,13 +557,13 @@ void QStyleSheetItem::setWhiteSpaceMode(WhiteSpaceMode m)
 
 
 /*!
-  Returns the width of margin \a m in pixel.
+  Returns the width of margin \a m in pixels.
 
-  The margin determinator \a m can be \c MarginLeft, \c MarginRight,
+  The margin, \a m, can be \c MarginLeft, \c MarginRight,
   \c MarginTop, \c MarginBottom, \c MarginAll, \c MarginVertical or \c
   MarginHorizontal.
 
-  \sa setMargin()
+  \sa setMargin() Margin
  */
 int QStyleSheetItem::margin(Margin m) const
 {
@@ -570,9 +572,9 @@ int QStyleSheetItem::margin(Margin m) const
 
 
 /*!
-  Sets the width of margin \a m to \a v  pixels.
+  Sets the width of margin \a m to \a v pixels.
 
-  The margin determinator \a m can be \c MarginLeft, \c MarginRight,
+  The margin, \a m, can be \c MarginLeft, \c MarginRight,
   \c MarginTop, \c MarginBottom, \c MarginAll, \c MarginVertical or \c
   MarginHorizontal.  The value \a v must be >= 0.
 
@@ -601,7 +603,7 @@ void QStyleSheetItem::setMargin(Margin m, int v)
 /*!
   Returns the list style of the style.
 
-  \sa setListStyle()
+  \sa setListStyle() ListStyle
  */
 QStyleSheetItem::ListStyle QStyleSheetItem::listStyle() const
 {
@@ -613,9 +615,9 @@ QStyleSheetItem::ListStyle QStyleSheetItem::listStyle() const
   This enum type defines how the items in a list are prefixed when
   displayed.  The currently defined values are:
 
-  \value ListDisc  a filled circle
+  \value ListDisc  a filled circle (i.e. a bullet)
   \value ListCircle  an unfilled circle
-  \value ListSquare  a filled circle
+  \value ListSquare  a filled square
   \value ListDecimal  an integer in base 10: \e 1, \e 2, \e 3, ...
   \value ListLowerAlpha  a lowercase letter: \e a, \e b, \e c, ...
   \value ListUpperAlpha  an uppercase letter: \e A, \e B, \e C, ...
@@ -624,9 +626,9 @@ QStyleSheetItem::ListStyle QStyleSheetItem::listStyle() const
   Sets the list style of the style to \a s.
 
   This is used by nested elements that have a display mode of
-  DisplayListItem.
+  \c DisplayListItem.
 
-  \sa listStyle() DisplayMode QStyleSheetItem::ListStyle
+  \sa listStyle() DisplayMode ListStyle
  */
 void QStyleSheetItem::setListStyle(ListStyle s)
 {
@@ -660,9 +662,9 @@ void QStyleSheetItem::setContexts( const QString& c)
 
 /*!
   Returns TRUE if this style can be nested into an element
-  of style \a s, and FALSE otherwise.
+  of style \a s; otherwise returns FALSE.
 
-  \sa contxts(), setContexts()
+  \sa contexts(), setContexts()
  */
 bool QStyleSheetItem::allowedInContext( const QStyleSheetItem* s) const
 {
@@ -673,7 +675,8 @@ bool QStyleSheetItem::allowedInContext( const QStyleSheetItem* s) const
 
 
 /*!
-  Returns whether this style has self-nesting enabled.
+  Returns TRUE if this style has self-nesting enabled; otherwise
+  returns FALSE.
 
   \sa setSelfNesting()
  */
@@ -685,8 +688,8 @@ bool QStyleSheetItem::selfNesting() const
 /*!
   Sets the self-nesting property for this style to \a nesting.
 
-  In order to support "dirty" HTML, paragraphs &lt;p&gt and list items
-  &lt;li&gt are not self-nesting. This means that starting a new
+  In order to support "dirty" HTML, paragraphs \c{<p>} and list items
+  \c{<li>} are not self-nesting. This means that starting a new
   paragraph or list item automatically closes the previous one.
 
   \sa selfNesting()
@@ -738,98 +741,106 @@ int QStyleSheetItem::lineSpacing() const
 
   The default QStyleSheet object has the following style bindings,
   sorted by structuring bindings, anchors, character style bindings
-  (i.e., inline styles), special elements such as horizontal lines or
+  (i.e. inline styles), special elements such as horizontal lines or
   images, and other tags. In addition, rich text supports simple HTML
   tables.
 
   The structuring tags are
   \list
-    \i <tt>&lt;qt&gt;</tt>...<tt>&lt;/qt&gt;</tt>
+    \i \c{<qt>}...\c{</qt>}
 	- A Qt rich text document. It understands the following attributes:
 	\list
 	\i title
 	- The caption of the document. This attribute is easily accessible with
 	QTextView::documentTitle().
 	\i type
-	- The type of the document. The default type is \c page . It indicates that
-	the document is displayed in a page of its own. Another style is \c detail,
-	which can be used to explain certain expressions in more detail in a few
-	sentences. The QTextBrowser will then keep the current page and display the
-	new document in a small popup similar to QWhatsThis. Note that links
-	will not work in documents with <tt>&lt;qt type="detail"&gt;</tt>...&lt;/qt&gt.
+	- The type of the document. The default type is \c page . It
+	  indicates that the document is displayed in a page of its
+	  own. Another style is \c detail, which can be used to
+	  explain certain expressions in more detail in a few
+	  sentences. The QTextBrowser will then keep the current page
+	  and display the new document in a small popup similar to
+	  QWhatsThis. Note that links will not work in documents with
+	  \c{<qt type="detail">...</qt>}.
 	\i bgcolor
-	- The background color, for example \c bgcolor="yellow" or \c bgcolor="#0000FF".
+	- The background color, for example \c bgcolor="yellow" or \c
+	  bgcolor="#0000FF".
 	\i background
-	- The background pixmap, for example \c background="granit.xpm". The pixmap name
-	will be resolved by a QMimeSourceFactory().
+	- The background pixmap, for example \c
+	  background="granit.xpm". The pixmap name will be resolved by
+	  a QMimeSourceFactory().
 	\i text
 	- The default text color, for example \c text="red".
 	\i link
 	- The link color, for example \c link="green".
 	\endlist
-    \i <tt>&lt;h1&gt;</tt>...<tt>&lt;/h1&gt;</tt>
+    \i \c{<h1>...</h1>}
 	- A top-level heading.
-    \i <tt>&lt;h2&gt;</tt>...<tt>&lt;/h2&gt;</tt>
+    \i \c{<h2>...</h2>}
 	- A sublevel heading.
-    \i <tt>&lt;h3&gt;</tt>...<tt>&lt;/h3&gt;</tt>
+    \i \c{<h3>...</h3>}
 	- A sub-sublevel heading.
-    \i <tt>&lt;p&gt;</tt>...<tt>&lt;/p&gt;</tt>
+    \i \c{<p>...</p>}
 	- A left-aligned paragraph. Adjust the alignment with
 	the  \c align attribute. Possible values are
 	\c left, \c right and \c center.
-    \i <tt>&lt;center&gt;</tt>...<tt>&lt;/center&gt;</tt>
+    \i \c{<center>...</center>}
 	- A centered paragraph.
-    \i <tt>&lt;blockquote&gt;</tt>...<tt>&lt;/blockquote&gt;</tt>
+    \i \c{<blockquote>...</blockquote>}
 	- An indented paragraph that is useful for quotes.
-    \i <tt>&lt;ul&gt;</tt>...<tt>&lt;/ul&gt;</tt>
+    \i \c{<ul>...</ul>}
 	- An unordered list. You can also pass a type argument to
 	define the bullet style. The default is \c type=disc; other
 	types are \c circle and \c square.
-    \i <tt>&lt;ol&gt;</tt>...<tt>&lt;/ol&gt;</tt>
+    \i \c{<ol>...</ol>}
 	- An ordered list. You can also pass a type argument to define
 	the enumeration label style. The default is \c type="1"; other
 	types are \c "a" and \c "A".
     \i <tt>&lt;li&gt;</tt>...<tt>&lt;/li&gt;</tt>
 	- A list item. This tag can be used only within the context of
 	\c ol or \c ul.
-    \i <tt>&lt;pre&gt;</tt>...<tt>&lt;/pre&gt;</tt>
+    \i \c{<pre>...</pre>}
 	- For larger junks of code. Whitespaces in the contents are preserved.
 	For small bits of code use the inline-style \c code.
    \endlist
 
    Anchors and links are done with a single tag:
    \list
-    \i <tt>&lt;a&gt;</tt>...<tt>&lt;/a&gt;</tt>
-	- An anchor or link. The reference target is defined in the
-	\c href attribute of the tag as in <tt>&lt;a href="target.qml"&gt;</tt>...<tt>&lt;/a&gt;</tt>.
-	You can also specify an additional anchor within the specified target document, for
-	example <tt>&lt;a href="target.qml#123"&gt;</tt>...<tt>&lt;/a&gt;</tt>.  If
-	\c a is meant to be an anchor, the reference source is given in
-	the \c name attribute.
+    \i \c{<a>...</a>}
+	- An anchor or link. The reference target is defined in the \c
+	  href attribute of the tag as in \c{<a
+	  href="target.qml">...</a>}. You can also specify an
+	  additional anchor within the specified target document, for
+	  example \c{<a href="target.qml#123">...</a>}. If \c a is
+	  meant to be an anchor, the reference source is given in the
+	  \c name attribute.
   \endlist
 
    The default character style bindings are
    \list
-    \i <tt>&lt;em&gt;</tt>...<tt>&lt;/em&gt;</tt>
-	- Emphasized. By default this is the same as <tt>&lt;i&gt;</tt>...<tt>&lt;/i&gt;</tt> (italic).
-    \i <tt>&lt;strong&gt;</tt>...<tt>&lt;/strong&gt;</tt>
-	- Strong. By default this is the same as <tt>&lt;bold&gt;</tt>...<tt>&lt;/bold&gt;</tt> (bold).
-    \i <tt>&lt;i&gt;</tt>...<tt>&lt;/i&gt;</tt>
+    \i \c{<em>...</em>}
+	- Emphasized. By default this is the same as
+	\c{<i>...</i>} (italic).
+    \i \c{<strong>...</strong>}
+	- Strong. By default this is the same as
+	\c{<b>...</b>} (bold).
+    \i \c{<i>...</i>}
 	- Italic font style.
-    \i <tt>&lt;b&gt;</tt>...<tt>&lt;/b&gt;</tt>
+    \i  \c{<b>...</b>}
 	- Bold font style.
-    \i <tt>&lt;u&gt;</tt>...<tt>&lt;/u&gt;</tt>
+    \i  \c{<u>...</u>}
 	- Underlined font style.
-    \i <tt>&lt;big&gt;</tt>...<tt>&lt;/big&gt;</tt>
+    \i  \c{<big>...</big>}
 	- A larger font size.
-    \i <tt>&lt;small&gt;</tt>...<tt>&lt;/small&gt;</tt>
+    \i  \c{<small>...</small>}
 	- A smaller font size.
-    \i <tt>&lt;code&gt;</tt>...<tt>&lt;/code&gt;</tt>
-	- Indicates code. By default this is the same as <tt>&lt;tt&gt;</tt>...<tt>&lt;/tt&gt;</tt> (typewriter). For
+    \i  \c{<code>...</code>}
+	- Indicates code. By default this is the same as
+	\c{<tt>...</tt>} (typewriter). For
 	larger junks of code use the block-tag \c pre.
-    \i <tt>&lt;tt&gt;</tt>...<tt>&lt;/tt&gt;</tt>
+    \i  \c{<tt>...</tt>}
 	- Typewriter font style.
-    \i <tt>&lt;font&gt;</tt>...<tt>&lt;/font&gt;</tt>
+    \i  \c{<font>...</font>}
 	- Customizes the font size, family  and text color. The tag understands
 	the following  attributes:
 	\list
@@ -847,47 +858,45 @@ int QStyleSheetItem::lineSpacing() const
 
    Special elements are:
    \list
-    \i <tt>&lt;img/&gt;</tt>
+    \i \c{<img>}
 	- An image. The image name for the mime source
 	factory is given in the source attribute, for example
-	<tt>&lt;img src="qt.xpm"/&gt;</tt>. The image tag also
-	understands the attributes \c width and \c height that determine
-	the size of the image. If the pixmap does not fit the specified
-	size it will be scaled automatically (by using QImage::smoothScale()).
+	\c{<img src="qt.xpm" />}
+	The image tag also understands the attributes \c width and \c
+	height that determine the size of the image. If the pixmap
+	does not fit the specified size it will be scaled
+	automatically (by using QImage::smoothScale()).
 
 	The \c align attribute determines where the image is
 	placed. By default, an image is placed inline just like a
 	normal character. Specify \c left or \c right to place the
 	image at the respective side.
-    \i <tt>&lt;hr/&gt;</tt>
+    \i \c{<hr>}
 	- A horizonal line.
-    \i <tt>&lt;br/&gt;</tt>
+    \i \c{<br>}
 	- A line break.
   \endlist
 
   Another tag not in any of the above cathegories is
   \list
-  \i <tt>&lt;nobr&gt;</tt>...<tt>&lt;/nobr&gt;</tt>
+  \i \c{<nobr>...</nobr>}
 	- No break. Prevents word wrap.
   \endlist
 
   In addition, rich text supports simple HTML tables. A table consists
-  of a set of rows in which each row contains some number of cells. Cells
+  of one or more rows each of which contains one or more cells. Cells
   are either data cells or header cells, depending on their
-  content. Usually a cell fills one rectangle in the table grid. It
-  may, however, also span several rows, columns or both.
+  content. Cells which span rows and columns are supported.
 
  \list
-   \i <tt>&lt;table&gt;</tt>...<tt>&lt;/table&gt;</tt>
-   - A table definition.
-     The default table is frameless. Specify the boolean attribute
-     \c border in order to get a frame. Other attributes are
+   \i \c{<table>...</table>}
+   - A table. Tables support the following attributes:
 	\list
 	\i bgcolor
 	- The background color.
 	\i width
-	- The table width. This is either absolute in pixels or relative
-	in percent of the column width, for example \c width=80%.
+	- The table width. This is either an absolute pixel width or a relative
+	percentage of the table's width, for example \c width=80%.
 	\i border
 	- The width of the table border. The default is 0 (= no border).
 	\i cellspacing
@@ -895,37 +904,39 @@ int QStyleSheetItem::lineSpacing() const
 	\i cellpadding
 	- Additional space around the contents of table cells. The default is 1.
 	\endlist
-   \i <tt>&lt;tr&gt;</tt>...<tt>&lt;/tr&gt;</tt>
-   - A table row. Can be used only within \c table. Understands the attributes.
+   \i \c{<tr>...</tr>}
+   - A table row. This is only valid within a \c table. Rows support
+     the following attribute:
 	\list
 	\i bgcolor
 	- The background color.
 	\endlist
-   \i <tt>&lt;td&gt;</tt>...<tt>&lt;/td&gt;</tt>
-   - A table data cell. Can be used only within \c tr. Understands the attributes.
+   \i \c{<th>...</th>}
+   - A table header cell. Similar to \c td, but defaults to center alignment
+     and a bold font.
+   \i \c{<td>...</td>}
+   - A table data cell. This is only valid within a \c tr. Cells
+     support the following attributes:
 	\list
 	\i bgcolor
 	- The background color.
 	\i width
-	- The cell width. This is either absolute in pixels or relative
-	in percent of the entire table width, for example \c width=50%.
+	- The cell width. This is either an absolute pixel width or a relative
+	percentage of table's width, for example \c width=50%.
 	\i colspan
-	- Defines how many columns this cell spans. The default is 1.
+	- Specifies how many columns this cell spans. The default is 1.
 	\i rowspan
-	- Defines how many rows this cell spans. The default is 1.
+	- Specifies how many rows this cell spans. The default is 1.
 	\i align
 	- Alignment; possible values are \c left, \c right, and \c center. The
-	default is left-aligned.
+	default is left.
 	\endlist
-   \i <tt>&lt;th&gt;</tt>...<tt>&lt;/th&gt;</tt>
-   - A table header cell. Similar to \c td, but defaults to center alignment
-     and a bold font.
    \endlist
 */
 
 /*!
   Creates a style sheet with parent \a parent and name \a name.  Like
-  any QObject, the created object will be deleted when its parent is
+  any QObject it will be deleted when its parent is
   destroyed (if the child still exists).
 
   By default the style sheet has the tag definitions defined above.
@@ -1110,11 +1121,11 @@ static QStyleSheet* defaultsheet = 0;
 static QCleanupHandler<QStyleSheet> qt_cleanup_stylesheet;
 
 /*!
-  Returns the application-wide default style sheet.This style sheet is
+  Returns the application-wide default style sheet. This style sheet is
   used by rich text rendering classes such as QSimpleRichText,
-  QWhatsThis and also QMessageBox to define the rendering style and
+  QWhatsThis and QMessageBox to define the rendering style and
   available tags within rich text documents. It serves also as initial
-  style sheet for the more complex render widgets QTextView and
+  style sheet for the more complex render widgets QTextEdit and
   QTextBrowser.
 
   \sa setDefaultSheet()
@@ -1182,17 +1193,17 @@ const QStyleSheetItem* QStyleSheet::item( const QString& name) const
 
 /*!
     \preliminary
-  Generates an internal object for tag named \a name, given the
+  Generates an internal object for the tag called \a name, given the
   attributes \a attr, and using additional information provided
-  by the mime source factory \a factory .
+  by the mime source factory \a factory.
 
-  \a context is the optional context of the document. This becomes
-  important if the text contains relative references, for example
-  within image tags. QSimpleRichText always uses the default mime
-  source factory (see QMimeSourceFactory::defaultFactory() ) to
-  resolve those references. The context will then be used to calculate
-  the absolute path. See QMimeSourceFactory::makeAbsolute() for
-  details.
+  \a context is the optional context of the document, i.e. the path to
+  look for relative links. This becomes important if the text contains
+  relative references, for example within image tags. QSimpleRichText
+  always uses the default mime source factory (see
+  \l{QMimeSourceFactory::defaultFactory()}) to resolve these references.
+  The context will then be used to calculate the absolute path. See
+  QMimeSourceFactory::makeAbsolute() for details.
 
   \a emptyTag and \a doc are for internal use only.
 
@@ -1264,7 +1275,7 @@ QString QStyleSheet::convertFromPlainText( const QString& plain)
 
 /*!
   Auxiliary function. Converts the plain text string \a plain to a
-  rich text formatted string by escaping HTML meta-characters.
+  rich text formatted string with any HTML meta-characters escaped.
 
   \sa convertFromPlainText()
  */
@@ -1290,15 +1301,15 @@ QString QStyleSheet::escape( const QString& plain)
   \enum Qt::TextFormat
 
   This enum is used in widgets that can display both plain text and
-  rich text, e.g., QLabel. It is used for deciding whether a text
+  rich text, e.g. QLabel. It is used for deciding whether a text
   string should be interpreted as one or the other. This is
   normally done by passing one of the enum values to a setTextFormat()
   function.
 
-  \value PlainText  The text string is interpreted as a normal text string.
+  \value PlainText  The text string is interpreted as a plain text string.
 
-  \value RichText The text string is interpreted as a rich text
-  according to the current QStyleSheet::defaultSheet().
+  \value RichText The text string is interpreted as a rich text string
+  using the current QStyleSheet::defaultSheet().
 
   \value AutoText The text string is interpreted as for \c RichText if
   QStyleSheet::mightBeRichText() returns TRUE, otherwise as for \c
@@ -1306,8 +1317,8 @@ QString QStyleSheet::escape( const QString& plain)
 */
 
 /*!
-  Returns whether the string \a text is likely to be rich text
-  formatted.
+  Returns TRUE if the string \a text is likely to be rich text;
+  otherwise returns FALSE.
 
   Note: The function uses a fast and therefore simple heuristic. It
   mainly checks whether there is something that looks like a tag
@@ -1370,7 +1381,7 @@ void QStyleSheet::error( const QString& ) const
   When calling this function, \a font has a point size corresponding to
   the logical font size 3.
 
-  Typical logical font sizes range from 1 to 7, with 1 being the smallest.
+  Logical font sizes range from 1 to 7, with 1 being the smallest.
 
   \sa QStyleSheetItem::logicalFontSize(),
   QStyleSheetItem::logicalFontSizeStep(), QFont::setPointSize()
