@@ -44,7 +44,6 @@
 
 #include "knotesapp.h"
 #include "knote.h"
-#include "knoteconfig.h"
 #include "knoteconfigdlg.h"
 #include "knotesglobalconfig.h"
 #include "knoteslegacy.h"
