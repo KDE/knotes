@@ -1,13 +1,12 @@
+#include <iostream.h>
 
-
-#include "knoteedit.h"
-
-#include <kurl.h>
 #include <qdragobject.h>
 #include <qtextstream.h>
 #include <qfile.h>
-#include <iostream.h>
 
+#include <kurl.h>
+
+#include "knoteedit.h"
 
 KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
 	: QMultiLineEdit( parent, name )
@@ -88,7 +87,7 @@ void KNoteEdit::mouseDoubleClickEvent( QMouseEvent* e )
 	getCursorPosition( &line, &column );
 
 	QString text = markedText();
-	//  printf("%d %d %s\n",line,column,text.ascii());
+	//  kbDebug() << line << column << text;
 	
 	//now try to open the marked text???
 }

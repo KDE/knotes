@@ -78,7 +78,7 @@ AlarmDialog::AlarmDialog( KPostit *parent, const char *name, bool modal )
   mSpins = new BWDateTime( dt, group, "spins" );
   vlay->addWidget( mSpins );
 
-  setButtonText( User1, mAlarmActive == true ? i18n("&Unset") : i18n("&Set") );
+  setButtonText( User1, mAlarmActive ? i18n("&Unset") : i18n("&Set") );
 }
 
 
@@ -103,14 +103,14 @@ void AlarmDialog::slotUser1( void )
       {
 	mPostit->AlarmList.remove(mPostit->AlarmList.current());
 	mPostit->setCaption(mPostit->name);
-	mPostit->label->setText(mPostit->name.data());
+	mPostit->label->setText(mPostit->name);
 	break;
       }
     }
     mytimer->start();
     reject();
   }
-  else if( checkDateTime() == true )
+  else if( checkDateTime() )
   {
     accept();
   }
@@ -125,7 +125,7 @@ QDateTime AlarmDialog::getDateTime( void )
 
 bool AlarmDialog::checkDateTime( void )
 {
-  if( mSpins->checkDateTime() == false )
+  if( !mSpins->checkDateTime() )
   {
     return false;
   }

@@ -101,10 +101,10 @@ protected:
   void  mynewLine();
 
 private:
-  QString prefixString(QString string);
+  QString prefixString(const QString &string);
 
 signals:
-  void gotUrlDrop(const char* url);
+  void gotUrlDrop(const QString &url);
 
 };
 
@@ -156,7 +156,7 @@ public slots:
   void  undo();
   void  redo();
   void  insertDate();
-  void  insertNetFile( const char *_url);
+  void  insertNetFile( const QString &_url);
   bool  insertFile(const QString &filename);
   void  RMBActivated(int);
   void  close();

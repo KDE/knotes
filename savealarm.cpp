@@ -27,18 +27,19 @@
 
 
 #include <qfile.h>
+
 #include <kstddirs.h>
+#include <kdebug.h>
+
 #include "knotes.h"
 
-bool savealarms(){
-
+bool savealarms()
+{
   QString alarmfile( locateLocal( "appdata", "xyalarms/knotesalarms") );
 
   QFile file(alarmfile);
 
-#ifdef MYDEBUG  
-  printf("save: %s\n",alarmfile.data());
-#endif
+  kbDebug() << "save: " << alarmfile;
 
   if( !file.open( IO_WriteOnly | IO_Truncate )) {
     return FALSE;
@@ -68,9 +69,7 @@ bool readalarms(){
 
   QFile file(alarmfile);
 
-#ifdef MYDEBUG  
-  printf("save: %s\n",alarmfile.data());
-#endif
+  kbDebug() << "save: " << alarmfile;
 
   if( !file.open( IO_ReadOnly )) {
     return FALSE;
@@ -79,30 +78,26 @@ bool readalarms(){
   QDataStream d(&file);
   
   short int count;
-  QString sname;
-  QDateTime sdt;
   AlarmEntry *entry;
 
   d >>  count ;
 
-  for( int i = 0 ; i < count ; i++){
-
-    sname = "";
+  for( int i = 0 ; i < count ; i++)
+  {
+    QString sname;
+    QDateTime sdt;
 
     d >> sname;
     d >> sdt;
 
-    //    printf("%s\n",sname.data());
+    //    kbDebug() << sname;
     
     entry 	= new AlarmEntry;
     entry->name = sname;
     entry->dt 	= sdt;
 
     KPostit::AlarmList.append(entry);
-
-    
   }
-
   
   file.close();
 

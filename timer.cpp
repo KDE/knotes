@@ -55,7 +55,7 @@ void MyTimer::timerEvent( QTimerEvent * ){
 
   QDateTime qdt = QDateTime::currentDateTime();
 
-  //  printf("In Timer counter:%d\n",KPostit::AlarmList.count());
+  //  kbDebug() "In Timer counter:" << KPostit::AlarmList.count();
 
   QListIterator<AlarmEntry> it(KPostit::AlarmList);
   AlarmEntry* entry;

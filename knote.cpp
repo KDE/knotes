@@ -245,11 +245,9 @@ void KNote::slotRename( int id )
 				i18n("There is already a note with that name") );
 		}
 		else
-		if( newname == "" || newname == QString::null )
-		{
+		if( newname.isEmpty() )
 			KMessageBox::sorry( this,
 				i18n("A name must have at least one character") );
-		}
 		else break;
 	}
 	
