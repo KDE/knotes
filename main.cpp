@@ -27,8 +27,27 @@
 
 #include "knotesapp.h"
 #include "version.h"
+#include "main.h"
 
 using namespace std;
+
+Application::Application() : KUniqueApplication(), mMainWindow( 0 )
+{
+}
+
+int Application::newInstance()
+{
+    if ( !mMainWindow )
+    {
+        mMainWindow = new KNotesApp();
+        mMainWindow->show();
+    }
+    else
+    {
+        mMainWindow->newNote( );
+    }
+    return KUniqueApplication::newInstance();
+}
 
 int main( int argc, char* argv[] )
 {
@@ -53,22 +72,11 @@ int main( int argc, char* argv[] )
 
     KUniqueApplication::addCmdLineOptions();
 
-    // Check if unique application is already running...
-    if ( !KUniqueApplication::start() )
-    {
-        cerr << "KNotes is already running, exiting..." << endl;
-        return 1;
-    }
-    KUniqueApplication app;
-
-    KNotesApp* a = new KNotesApp();
+    Application app;
 
     app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 
-    a->show();
-
     int rval = app.exec();
-    delete a;
 
     return rval;
 }
