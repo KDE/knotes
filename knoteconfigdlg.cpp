@@ -57,7 +57,6 @@ KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
         config = KNotesGlobalConfig::self();
     }
 
-    config->readConfig();
     config->setVersion( KNOTES_VERSION );
 }
 
