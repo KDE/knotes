@@ -852,19 +852,15 @@ void QScrollView::updateScrollBars()
     bool reverse = false;
     int xoffset = ( reverse && (showv || cornerWidget() )) ? vsbExt : 0;
     int xpos = reverse ? 0 : w - vsbExt;
-    bool frameContentsOnly =
-// QT2HACK
-	true;
-//	style().styleHint(QStyle::SH_ScrollView_FrameOnlyAroundContents);
-    if( ! frameContentsOnly ) {
-	if ( reverse )
+    if( style() == WindowsStyle ) {
+        if ( reverse )
             xpos += fw;
         else
             xpos -= fw;
     }
     if ( showh ) {
         int right = ( showv || cornerWidget() ) ? w-vsbExt : w;
-        if ( ! frameContentsOnly )
+        if ( style() == WindowsStyle )
             setHBarGeometry( *d->hbar, fw + xoffset, h-hsbExt-fw,
 			     right-fw-fw, hsbExt );
         else
@@ -879,12 +875,12 @@ void QScrollView::updateScrollBars()
 				w-vsbExt-lmarg-rmarg,
 				bottom-tmarg-bmarg );
 	d->viewportResized( w-vsbExt-lmarg-rmarg, bottom-tmarg-bmarg );
-	if ( ! frameContentsOnly )
+	if ( style() == WindowsStyle )
 	    changeFrameRect(QRect(0, 0, w, h) );
 	else
 	    changeFrameRect(QRect(xoffset, 0, w-vsbExt, bottom));
 	if (cornerWidget()) {
-	    if ( ! frameContentsOnly )
+	    if ( style() == WindowsStyle )
 		setVBarGeometry( *d->vbar, xpos,
 				 fw, vsbExt,
 				 h-hsbExt-fw-fw );
@@ -894,7 +890,7 @@ void QScrollView::updateScrollBars()
 				 h-hsbExt );
 	}
 	else {
-	    if ( ! frameContentsOnly )
+	    if ( style() == WindowsStyle )
 		setVBarGeometry( *d->vbar, xpos,
 				 fw, vsbExt,
 				 bottom-fw-fw );
@@ -903,7 +899,7 @@ void QScrollView::updateScrollBars()
 				 vsbExt, bottom );
 	}
     } else {
-        if ( ! frameContentsOnly )
+        if ( style() == WindowsStyle )
             changeFrameRect(QRect(0, 0, w, h));
         else
             changeFrameRect(QRect(0, 0, w, bottom));
@@ -915,7 +911,7 @@ void QScrollView::updateScrollBars()
     QWidget *corner = d->corner;
     if ( !d->corner )
 	corner = d->defaultCorner;
-    if ( ! frameContentsOnly )
+    if ( style() == WindowsStyle )
 	corner->setGeometry( xpos,
 			     h-hsbExt-fw,
 			     vsbExt,
