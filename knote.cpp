@@ -721,18 +721,24 @@ void KNote::updateLayout()
 
 // -------------------- protected methods -------------------- //
 
-void KNote::resizeEvent( QResizeEvent* qre )
+void KNote::showEvent( QShowEvent * )
+{
+    if ( m_alwaysOnTop->isChecked() )
+        KWin::setState( winId(), KWin::info(winId()).state | NET::StaysOnTop );
+}
+
+void KNote::resizeEvent( QResizeEvent *qre )
 {
     QFrame::resizeEvent( qre );
     updateLayout();
 }
 
-void KNote::closeEvent( QCloseEvent* /*e*/ )
+void KNote::closeEvent( QCloseEvent * )
 {
     slotClose();
 }
 
-void KNote::keyPressEvent( QKeyEvent* e )
+void KNote::keyPressEvent( QKeyEvent *e )
 {
     if ( e->key() == Key_Escape )
         slotClose();
@@ -740,7 +746,7 @@ void KNote::keyPressEvent( QKeyEvent* e )
         e->ignore();
 }
 
-bool KNote::event( QEvent* ev )
+bool KNote::event( QEvent *ev )
 {
     if ( ev->type() == QEvent::LayoutHint )
     {
@@ -751,11 +757,11 @@ bool KNote::event( QEvent* ev )
         return QFrame::event( ev );
 }
 
-bool KNote::eventFilter( QObject* o, QEvent* ev )
+bool KNote::eventFilter( QObject *o, QEvent *ev )
 {
     if ( o == m_label )
     {
-        QMouseEvent* e = (QMouseEvent*)ev;
+        QMouseEvent *e = (QMouseEvent *)ev;
 
         if ( ev->type() == QEvent::MouseButtonDblClick )
             slotRename();
@@ -829,7 +835,7 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
     {
         if ( m_edit_menu &&
              ev->type() == QEvent::MouseButtonPress &&
-             ((QMouseEvent*)ev)->button() == RightButton )
+             ((QMouseEvent *)ev)->button() == RightButton )
         {
             m_edit_menu->popup( QCursor::pos() );
             return true;

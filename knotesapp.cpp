@@ -338,14 +338,10 @@ void KNotesApp::showNote( KNote* note ) const
     }
     else
     {
-        WId id = note->winId();
-
         // if not, show note on the current desktop
         note->show();
         note->toDesktop( KWin::currentDesktop() );
-        if ( note->m_alwaysOnTop->isChecked() )
-            KWin::setState( id, KWin::info( id ).state | NET::StaysOnTop );
-        KWin::setActiveWindow( id );
+        KWin::setActiveWindow( note->winId() );
         note->setFocus();
     }
 }

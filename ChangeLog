@@ -1,13 +1,20 @@
 ChangeLog for KNotes
 ====================
 
+2004/03/06  Michael Brade <brade@kde.org>
+
+    * fixed 72818: add a tooltip
+    * fixed 74469: RMB menu locks whole desktop if opened on a modified note
+    * fixed 75507, 76126: handle (load) tabs correctly, fix in libical
+    * removed hack for the fix for #57367
+
 2004/02/24  Michael Brade <brade@kde.org>
 
     * finished rich text mode, now using actions
 
 2004/01/28  Bo Thorsen <bo@sonofthor.dk>
 
-    * make KNotes use the KDE Resource Framework 
+    * make KNotes use the KDE Resource Framework
 
 2004/01/18  Laurent Montel <montel@kde.org>
 

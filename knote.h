@@ -22,6 +22,7 @@
 #define KNOTE_H
 
 #include <qstring.h>
+#include <qevent.h>
 #include <qframe.h>
 #include <qpoint.h>
 #include <qcolor.h>
@@ -89,6 +90,7 @@ signals:
     void sigSaveData();
 
 protected:
+    virtual void showEvent( QShowEvent* );
     virtual void resizeEvent( QResizeEvent* );
     virtual void closeEvent( QCloseEvent* );
     virtual void keyPressEvent( QKeyEvent* );
@@ -117,9 +119,8 @@ private:
     KCal::Journal *m_journal;
     QString        m_configFile;
 
-public:
-    KToggleAction *m_alwaysOnTop;
 private:
+    KToggleAction *m_alwaysOnTop;
     KListAction   *m_toDesktop;
 
     KPopupMenu *m_menu;
