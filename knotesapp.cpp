@@ -500,8 +500,13 @@ void KNotesApp::updateNoteActions()
         m_noteActions.append( action );
     }
 
-    if ( !m_noteActions.isEmpty() )
-        plugActionList( "notes", m_noteActions );
+    if ( m_noteActions.isEmpty() )
+    {
+        KAction *action = new KAction( i18n("No notes") );
+        m_noteActions.append( action );
+    }
+
+    plugActionList( "notes", m_noteActions );
 }
 
 #include "knotesapp.moc"

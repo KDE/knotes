@@ -3,6 +3,11 @@ ChangeLog for KNotes
 
 2001/06/10  Michael Brade <brade@informatik.uni-muenchen.de>
 
+    * small bugfix: display "No notes" instead of nothing in the LMB
+      menu if there are no notes anymore.
+
+2001/06/10  Michael Brade <brade@informatik.uni-muenchen.de>
+
     * ported to QTextEdit
     * updated actions, removed the ActionProperties section for now
 
