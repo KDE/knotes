@@ -3,6 +3,9 @@ ChangeLog for KNotes
 
 2004/08/29  Michael Brade <brade@kde.org>
 
+    * fixed #77202: workaround a Qt bug I cannot fix by not accepting Key_Left
+      or Key_Right key events for the config widget, this at least stops KNotes
+      from crashing.
     * fixed #68031, #81888: configuring shortcuts is possible now and changes
       are preserved between several KNotes sessions. All possible interactions
       with KNotes can have custom shortcuts, there are no hidden features
