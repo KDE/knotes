@@ -37,6 +37,7 @@ class KPopupMenu;
 class KAction;
 class KActionMenu;
 class KGlobalAccel;
+class KXMLGUIFactory;
 class KNotesResourceManager;
 
 namespace KCal {
@@ -118,6 +119,7 @@ private:
     KPopupMenu      *m_context_menu;
 
     KGlobalAccel    *m_globalAccel;
+    KXMLGUIFactory  *m_guiFactory;
 };
 
 #endif

@@ -81,11 +81,12 @@ KNotesApp::KNotesApp()
     KStdAction::quit( this, SLOT(slotQuit()), actionCollection() )->setShortcut( 0 );
 
     setXMLFile( QString( instance()->instanceName() + "ui.rc" ) );
-    KXMLGUIFactory factory( this, this, "guifactory" );
-    factory.addClient( this );
 
-    m_context_menu = static_cast<KPopupMenu*>(factory.container( "knotes_context", this ) );
-    m_note_menu = static_cast<KPopupMenu*>(factory.container( "notes_menu", this ) );
+    m_guiFactory = new KXMLGUIFactory( this, this, "guifactory" );
+    m_guiFactory->addClient( this );
+
+    m_context_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "knotes_context", this ) );
+    m_note_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "notes_menu", this ) );
 
     // create accels for global shortcuts
     m_globalAccel = new KGlobalAccel( this, "global accel" );
@@ -447,6 +448,8 @@ void KNotesApp::updateNoteActions()
     }
 
     plugActionList( "notes", m_noteActions );
+
+    m_note_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "notes_menu", this ) );
 }
 
 void KNotesApp::updateGlobalAccels()
