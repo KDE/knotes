@@ -63,6 +63,7 @@
 #include <kurl.h>
 #include <kwm.h>
 #include <kwin.h>
+#include <kaboutdata.h>
 
 #include "alarm.h"
 #include "docking.h"
@@ -1535,7 +1536,19 @@ KNotesApp::newInstance()
 
 int main( int argc, char **argv ) 
 {
-  KCmdLineArgs::init(argc, argv, "knotes", description, KNOTES_VERSION);
+  KAboutData aboutData( "knotes", I18N_NOOP("KNotes"),
+    KNOTES_VERSION, description, KAboutData::License_GPL,
+    "(c) 1997-2000, KNote Developers");
+  aboutData.addAuthor("Bernd Johannes Wuebben",0, "wuebben@kde.org");
+  aboutData.addAuthor("Matthias Ettrich",0, "ettrich@kde.org");
+  aboutData.addAuthor("Didier Belot",0, "dib@avo.fr");
+  aboutData.addAuthor("Harri Porten",0, "porten@kde.org");
+  aboutData.addAuthor("David Faure",0, "faure@kde.org");
+  aboutData.addAuthor("Dirk A. Mueller",0, "dmuell@gmx.net");
+  aboutData.addAuthor("Petter Reinholdtsen",0, "pere@td.org.uit.no");
+  aboutData.addAuthor("Carsten Pfeiffer",0, "pfeiffer@kde.org");
+  
+  KCmdLineArgs::init( argc, argv, &aboutData );
 
   if (!KNotesApp::start())
   {

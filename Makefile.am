@@ -29,5 +29,5 @@ apps_DATA = knotes.desktop
 appsdir = $(kde_appsdir)/Utilities
 
 messages:
-	$(XGETTEXT) -C -ki18n -x $(includedir)/kde.pot $(knotes_SOURCES) && mv messages.po $(podir)/knotes.pot
+	$(XGETTEXT) -C -kI18N_NOOP -ki18n -x $(includedir)/kde.pot $(knotes_SOURCES) && mv messages.po $(podir)/knotes.pot
 
