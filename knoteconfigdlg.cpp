@@ -221,14 +221,4 @@ QWidget *KNoteConfigDlg::makeNetworkPage()
     return networkPage;
 }
 
-void KNoteConfigDlg::keyPressEvent( QKeyEvent *e )
-{
-    // workaround a bug somewhere deep in Qt that causes a stack overflow, AFAIR
-    QKeyEvent* ke = (QKeyEvent*)e;
-    if ( ke->key() == Key_Left || ke->key() == Key_Right )
-        ke->accept();
-
-    ke->ignore();
-}
-
 #include "knoteconfigdlg.moc"

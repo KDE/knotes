@@ -45,8 +45,6 @@ protected:
     QWidget *makeDefaultsPage();
     QWidget *makeActionsPage();
     QWidget *makeNetworkPage();
-
-    virtual void keyPressEvent( QKeyEvent * );
 };
 
 #endif
