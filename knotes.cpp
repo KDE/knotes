@@ -365,12 +365,14 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
       ++it;
     }
 
-    if (have_alarm)
-      setCaption(name + " (A)");
-    else
-      setCaption(name);
-    label->setText(caption());
-    
+    if (have_alarm){
+      label->setText(name + " (A)");
+      setCaption(QString(klocale->translate("Note: ")) + name + " (A)");
+    }
+    else {
+      label->setText(name);
+      setCaption(QString(klocale->translate("Note: ")) + name);
+    }
 
     connect(mykapp,SIGNAL(saveYourself()),this,SLOT(wm_saveyourself()));
     
@@ -563,8 +565,8 @@ void KPostit::setAlarm(){
   AlarmList.append(entry);
   QString str;
   str.sprintf("%s (A)",name.data());
-  setCaption(str.data());
-  label->setText(caption());
+  setCaption(QString(klocale->translate("Note: ") )+str);
+  label->setText(str.data());
 
   //  QDate date = qdt.date();
   //  QTime time = qdt.time();
@@ -771,11 +773,14 @@ void KPostit::renameKPostit(){
     name = newName;
     name.detach();
 
-    if( have_alarm )
-      setCaption(name + " (A)");
-    else
-      setCaption(name);
-    label->setText(caption());
+    if (have_alarm){
+      label->setText(name + " (A)");
+      setCaption(QString(klocale->translate("Note: ")) + name + " (A)");
+    }
+    else {
+      label->setText(name);
+      setCaption(QString(klocale->translate("Note: ")) + name);
+    }
 
     // remove and reinsert the popup menues in a sorted fashion
 
@@ -1011,7 +1016,7 @@ bool KPostit::insertFile(char* filename){
 void KPostit::resizeEvent( QResizeEvent * ){
   label->adjustSize();
   label->setGeometry(1,1,width()-label->height()-2,label->height());
-  edit->setGeometry(1, label->height(), width()-2, height()-label->height()-1);
+  edit->setGeometry(1, label->height()+1, width()-2, height()-label->height()-2);
   mybutton->setGeometry(this->width()-label->height()-1 ,1,label->height(),label->height());
 }
 
