@@ -1,1 +1,1 @@
-#define KNOTES_VERSION "2.2"
+#define KNOTES_VERSION "2.3"
