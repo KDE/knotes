@@ -63,7 +63,7 @@ public:
 
     void sync( const QString& app );
 
-    KNote* first();
+    KNote* first() const;
 
     void showNextNote();
 
