@@ -42,19 +42,18 @@ protected:
     void dragEnterEvent( QDragEnterEvent* event );
     void dropEvent( QDropEvent* event );
 /*
-    void mouseDoubleClickEvent( QMouseEvent* e );
     void keyPressEvent( QKeyEvent* e );
     void mynewLine();
 */
 protected slots:
     void slotReturnPressed();
 
-private:
-    QString prefixString( QString string );
-    bool m_autoIndentMode;
-
 signals:
     void gotUrlDrop( const QString& url );
+
+private:
+//    QString prefixString( QString string );
+    bool m_autoIndentMode;
 };
 
 #endif

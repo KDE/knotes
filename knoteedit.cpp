@@ -52,7 +52,6 @@ void KNoteEdit::readFile( QString& filename )
     {
         QTextStream input( &infile );
         setText( input.read() );
-//        insert( input.read() );
         infile.close();
     } else
         kdDebug() << "could not open input file" << endl;
@@ -74,11 +73,9 @@ void KNoteEdit::dumpToFile( QString& filename ) const
 
 void KNoteEdit::setTextFont( QFont& font )
 {
-    setSelectionAttributes(0, white, false);
     selectAll();
     setFont( font );
     selectAll( false );
-//    setSelectionAttributes(0, blue, true);
 }
 
 void KNoteEdit::setAutoIndentMode( bool newmode )
@@ -109,20 +106,7 @@ void KNoteEdit::keyPressEvent( QKeyEvent* e )
         return;
     }
 
-    QMultiLineEdit::keyPressEvent( e );
-}
-
-void KNoteEdit::mouseDoubleClickEvent( QMouseEvent* e )
-{
-    QTextEdit::mouseDoubleClickEvent( e );
-
-    int line, column = 0;
-    getCursorPosition( &line, &column );
-
-    QString text = markedText();
-    //  kbDebug() << line << column << text;
-
-    //now try to open the marked text???
+    QTextEdit::keyPressEvent( e );
 }
 
 void KNoteEdit::mynewLine()

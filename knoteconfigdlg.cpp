@@ -243,8 +243,7 @@ void KNoteConfigDlg::slotApply()
 
 void KNoteConfigDlg::slotChangeTitleFont()
 {
-    QFont newfont;
-//    QString example = i18n("Example Text");
+    QFont newfont = _titleFont->font();
     KFontDialog::getFont( newfont );
 
     _titleFont->setFont( newfont );
@@ -252,8 +251,7 @@ void KNoteConfigDlg::slotChangeTitleFont()
 
 void KNoteConfigDlg::slotChangeTextFont()
 {
-    QFont newfont;
-//    QString example = i18n("Example Text");
+    QFont newfont = _textFont->font();
     KFontDialog::getFont( newfont );
 
     _textFont->setFont( newfont );
