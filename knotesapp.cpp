@@ -160,7 +160,6 @@ QString KNotesApp::newNote( const QString& name, const QString& text )
 
     m_manager->addNewNote( note );
 
-    updateNoteActions();
     showNote( note->uid() );
 
     return note->uid();
@@ -414,7 +413,7 @@ void KNotesApp::showNote( KNote* note ) const
 
 void KNotesApp::createNote( KCal::Journal *journal )
 {
-    KNote *newNote = new KNote( this, domDocument(), journal, 
+    KNote *newNote = new KNote( this, domDocument(), journal,
                                 0, journal->uid().utf8() );
     m_noteList.insert( newNote->noteId(), newNote );
 

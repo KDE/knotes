@@ -1,10 +1,22 @@
 ChangeLog for KNotes
 ====================
 
+2004/03/31  Michael Brade <brade@kde.org>
+
+    * hmm, wasn't such a good idea to set a default desktop in KConfig XT - only
+      changes will actually be saved and thus every new note that is not moved
+      to a different desktop after creation appeared on the desktop KNotes was
+      started on. Fixed.
+
+2004/03/24  Michael Brade <brade@kde.org>
+
+    * fixed #71685: again a libical bug, it did not encode '\' at all so it was
+      possible to write control sequences in KNotes, e.g. \n.
+
 2004/03/23  Michael Brade <brade@kde.org>
 
     * Thanks to Luboš for his function that removes sm from the client
-      leader KNotes is not managed anymore by KWin (again) and is now 
+      leader KNotes is not managed anymore by KWin (again) and is now
       thus able to restore its notes properly on login with manually saved
       sessions.
     * fixed 75341: implemented support for the "strike out" text property

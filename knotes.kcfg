@@ -59,9 +59,7 @@
 
   <group name="WindowDisplay">
     <entry name="Desktop" type="Int" key="desktop">
-      <!-- this works because KNoteConfig is created only
-           once in and only in KNote's CTOR -->
-      <default code="true">KWin::currentDesktop()</default>
+      <default>-10</default>
     </entry>
 
     <entry name="Position" type="Point" key="position">

@@ -207,8 +207,13 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     // read configuration settings...
     slotApplyConfig();
 
-    // show the note if desired
+    // if this is a new note put on current desktop - we can't use defaults
+    // in KConfig XT since only _changes_ will be stored in the config file
     int desktop = m_config->desktop();
+    if ( desktop < 0 && desktop != NETWinInfo::OnAllDesktops )
+        desktop = KWin::currentDesktop();
+
+    // show the note if desired
     if ( desktop != 0 && !isVisible() )
     {
         // HACK HACK
