@@ -54,7 +54,7 @@ void KNotesAlarm::checkAlarms()
 {
     QDateTime from = KNotesGlobalConfig::self()->alarmsLastChecked().addSecs( 1 );
     KNotesGlobalConfig::self()->setAlarmsLastChecked( QDateTime::currentDateTime() );
-    QValueList<KCal::Alarm *> alarms = m_manager->alarms( from, KNotesGlobalConfig::self()->alarmsLastChecked() );
+    QValueList<KCal::Alarm *> alarms; // FIXME = m_manager->alarms( from, KNotesGlobalConfig::self()->alarmsLastChecked() );
 
     QStringList notes;
     QValueList<KCal::Alarm *>::ConstIterator it;
