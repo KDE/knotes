@@ -849,6 +849,13 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
     QPixmap miniIcon = effect.apply( kapp->miniIcon(), KIconEffect::Colorize, 1, bg, false );
     KWin::setIcons( winId(), icon, miniIcon );
 
+    // set the color for the selection used to highlight the find stuff
+    QColor sel = palette().color( QPalette::Active, QColorGroup::Base ).dark();
+    if ( sel == Qt::black )
+        sel = palette().color( QPalette::Active, QColorGroup::Base ).light();
+
+    m_editor->setSelectionAttributes( 1, sel, true );
+
     // to set the color of the title
     updateFocus();
     emit sigColorChanged();
