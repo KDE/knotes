@@ -1,3 +1,8 @@
+1999-05-22  Dirk A. Mueller  <dmuell@gmx.net>
+
+	* Ported to the Qt DND classes. It accepts QTextDrag, handled by 
+	QMultiLineEdit and QUrlDrag. 
+
 1999-03-07  Harri Porten  <porten@kde.org>
 
 	* make it compile with Qt 2.0.

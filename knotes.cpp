@@ -82,7 +82,6 @@ extern bool 	readalarms();
 #include <dirent.h>
 #include <sys/stat.h>
 #include <klocale.h>
-#include <drag.h>
 
 
 void testDir( const char *_name )
@@ -123,6 +122,8 @@ static int knotes_xio_errhandler( Display * ){
 
 KPostitMultilineEdit::KPostitMultilineEdit(QWidget *parent, const char *myname)
   : QMultiLineEdit(parent, myname){
+
+  setAcceptDrops(TRUE);
 }
 
 void KPostitMultilineEdit::keyPressEvent(QKeyEvent *e){
@@ -257,6 +258,42 @@ QString KPostitMultilineEdit::prefixString(QString string){
 }
 
 
+void KPostitMultilineEdit::dragEnterEvent( QDragEnterEvent* event )
+{
+  debug("KPostitMultilineEdit::dragEnterEvent()");
+  debug("format: %s", event->format(0));
+ 
+//  if( QUrlDrag::canDecode(event) )
+    event->accept();
+}
+
+
+void KPostitMultilineEdit::dragMoveEvent( QDragMoveEvent* event ) 
+{
+  debug("KPostitMultilineEdit::dragMoveEvent()");
+  debug("format: %s", event->format(0));
+
+  if( QUrlDrag::canDecode(event) )
+    event->accept();
+  else if ( QTextDrag::canDecode(event) )
+    QMultiLineEdit::dragMoveEvent(event);
+}
+
+ 
+void KPostitMultilineEdit::dropEvent( QDropEvent* event )
+{
+  debug("got KPostit::dropEvent()");
+  debug("format: %s", event->format(0));
+
+  QStrList list;
+ 
+  if ( QUrlDrag::decode( event, list ) ) 
+    emit gotUrlDrop(list.getFirst());
+  else if ( QTextDrag::canDecode( event ) )
+    QMultiLineEdit::dropEvent( event );
+}
+
+
 KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname)
   : QFrame(parent, myname){
 
@@ -281,6 +318,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     edit->installEventFilter(this);
     edit->setFocus();
     edit->setFrameStyle(QFrame::NoFrame);
+    connect(edit, SIGNAL(gotUrlDrop(const char*)), this, SLOT(insertNetFile(const char*)));
 
     hidden = false;
     number = _number; 	// index in popup. Not used anymore, but I'll leave it in
@@ -311,23 +349,23 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     operations->insertItem(i18n("Clear"),this, SLOT(clear_text()));
 
     operations->insertSeparator();
-    operations->insertItem (i18n("New Note"), this, 	
+    operations->insertItem (i18n("New Note"), this,
 				    SLOT(newKPostit()));
-    operations->insertItem (i18n("Delete Note"), this, 	
+    operations->insertItem (i18n("Delete Note"), this,
 				    SLOT(deleteKPostit()));
     operations->insertItem (i18n("Rename Note..."),this,SLOT(renameKPostit()));
     operations->insertSeparator();
-    operations->insertItem (i18n("Alarm ..."), this, 	
+    operations->insertItem (i18n("Alarm ..."), this,
 				    SLOT(setAlarm()));
     operations->insertSeparator();
-    operations->insertItem (i18n("Calendar"), this, 	
+    operations->insertItem (i18n("Calendar"), this,
 				    SLOT(insertCalendar()));
-    operations->insertItem (i18n("Mail Note ..."), this, 	
+    operations->insertItem (i18n("Mail Note ..."), this,
 				    SLOT(mail()));
-    operations->insertItem (i18n("Print Note"), this, 	
+    operations->insertItem (i18n("Print Note"), this,
 				    SLOT(print()));
 
-    operations->insertItem (i18n("Save Notes"), this, 	
+    operations->insertItem (i18n("Save Notes"), this,
 				    SLOT(save_all()));
 
     options = new QPopupMenu();
@@ -341,7 +379,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     options->insertItem(i18n("Colors"),colors);
     options->insertSeparator();
     options->insertItem(i18n("Change Defaults ..."),this, SLOT(defaults()));
-    dockID = options->insertItem(i18n("Dock in panel"), this, 
+    dockID = options->insertItem(i18n("Dock in panel"), this,
                                  SLOT(toggleDock()));
 
     operations->insertSeparator();
@@ -369,7 +407,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     right_mouse_button->insertSeparator();
     //    right_mouse_button->insertItem(i18n("Hide Note"), this,
     //	       SLOT(hideKPostit()));
-    right_mouse_button->insertItem (i18n("Insert Date"), this, 	
+    right_mouse_button->insertItem (i18n("Insert Date"), this,
 				    SLOT(insertDate()));
     right_mouse_button->insertSeparator();
     right_mouse_button->insertItem (i18n("Operations"),operations);
@@ -399,11 +437,6 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     installEventFilter( this );
 
     window_id = winId();
-
-    KDNDDropZone * dropZone = new KDNDDropZone( this , DndURL);
-    connect( dropZone, SIGNAL( dropAction( KDNDDropZone *) ),
-	   this, SLOT( slotDropEvent( KDNDDropZone *) ) );
-
 
     if(!frame3d){
       setNoFrame();
@@ -457,7 +490,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
 void KPostit::clear_text(){
 
-  edit->clear();	
+  edit->clear();
 }
 
 void KPostit::selectFont(){
@@ -490,7 +523,7 @@ void KPostit::quit(){
 	return;
       }
     }
-  }	
+  }
 
   remove( pidFile.data() );
   writeSettings();
@@ -842,7 +875,7 @@ void KPostit::renameKPostit(){
 
     PostitFilesList.inSort(newName);
     name = newName;
-    
+
 
     if (have_alarm){
       label->setText(name + " (A)");
@@ -864,7 +897,7 @@ void KPostit::renameKPostit(){
       for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
 	PostitList.current()->right_mouse_button->insertItem(
 			     PostitFilesList.current(),k,k);
-	k++;	
+	k++;
       }
       docker->createLeftPopUp();
     }
@@ -885,7 +918,7 @@ void KPostit::hideKPostit(){
       numVisible++;
   if ((numVisible == 0) && !dock)
     // no more visible notes and not docked = no menu !
-    toggleDock(); 
+    toggleDock();
 }
 
 
@@ -918,7 +951,7 @@ void KPostit::deleteKPostit(){
     // remove popup entries
     for(uint i = 0 ; i < PostitFilesList.count();i++){
       PostitList.current()->right_mouse_button->removeItemAt(0);
-    }	
+    }
   }
 
 
@@ -930,7 +963,7 @@ void KPostit::deleteKPostit(){
     }
   }
 
-  if ((PostitFilesList.count()==0) && !dock) 
+  if ((PostitFilesList.count()==0) && !dock)
     // no more notes and non docked = no menu !
     toggleDock();
 
@@ -1471,28 +1504,14 @@ static void siguser1(int sig){
   signal(SIGUSR1, siguser1);
 }
 
-
-void KPostit::slotDropEvent( KDNDDropZone * _dropZone )
-{
-    QStrList & list = _dropZone->getURLList();
-
-    char *s;
-
-    // Load the first file in this window
-    if ( (s = list.getFirst()) )
-      {
-	QString n = s;
-	insertNetFile( n);
-      }			
-
-}
-
 void KPostit::insertNetFile( const char *_url)
 {
 
   QString string;
   QString netFile = _url;
-  
+
+  debug("KPostit::insertNetfile()");
+
   KURL u( netFile );
 
   if ( u.isMalformed() )
@@ -1569,7 +1588,7 @@ void KPostit::close(){
 
     PostitList.remove( this );
     delete this;
-  }	
+  }
   else{
     quit();
   }
@@ -1736,7 +1755,7 @@ int main( int argc, char **argv ) {
       // and continue on
       //
       if ( kill( pid, SIGUSR1 ) == 0){
-	
+
 	// the kpostit is still alive
 	// it could however be zombi or a recycled pid -- use IPC instead.
 
@@ -1841,13 +1860,13 @@ void readSettings()
   if (postitdefaults.printcommand.isEmpty())
     postitdefaults.printcommand = "a2ps -1 --center-title=\"%s\" "\
       "--underlay=\"KDE\"";
-			
+
 }
 
 void writeSettings()
 {
 
-  KConfig *config = mykapp->getConfig();		
+  KConfig *config = mykapp->getConfig();
 
   config->setGroup( "Font" );
   config->writeEntry("Font",postitdefaults.font);

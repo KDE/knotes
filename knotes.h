@@ -41,6 +41,7 @@
 #include <qdir.h>
 #include <qlineedit.h>
 #include <qtabdialog.h>
+#include <qdragobject.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -104,12 +105,19 @@ public:
   int  autoIndentID;
 
 protected:
+  void  dragMoveEvent(QDragMoveEvent* event);
+  void  dragEnterEvent(QDragEnterEvent* event);
+  void  dropEvent(QDropEvent* event);
+  
   void  mouseDoubleClickEvent ( QMouseEvent * e );
   void  keyPressEvent(QKeyEvent *e);
   void  mynewLine();
 
 private:
   QString prefixString(QString string);
+
+signals:
+  void gotUrlDrop(const char* url);
 
 };
 
@@ -146,7 +154,6 @@ public:
   QPopupMenu *right_mouse_button;
 
 protected:
-
   bool  eventFilter( QObject *, QEvent * );
   void resizeEvent( QResizeEvent * );
   void  closeEvent( QCloseEvent * );
@@ -168,7 +175,6 @@ public slots:
   void  insertDate();
   void  insertNetFile( const char *_url);
   bool  insertFile(const char* filename);
-  void  slotDropEvent( KDNDDropZone * _dropZone );
   void  slotKFMFinished();
   void  RMBActivated(int);
   void  close();
