@@ -288,7 +288,7 @@ KPostit::KPostit( QWidget *parent, const char *myname, int  _number,
 
   mybutton = new myPushButton(this);
   mybutton->setGeometry(200-30,0,30,30);
-  mybutton->setPixmap(KGlobal::iconLoader()->loadIcon("knotesclose"));
+  mybutton->setPixmap(BarIcon("knotesclose"));
   connect(mybutton,SIGNAL(clicked()),this,SLOT(hideKPostit()));
 
   edit = new KPostitMultilineEdit(this);
