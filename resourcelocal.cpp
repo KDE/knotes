@@ -37,8 +37,6 @@
 
 #include <libkcal/icalformat.h>
 
-#include "knoteslegacy.h"
-
 #include "knotes/resourcelocal.h"
 #include "knotes/resourcemanager.h"
 
@@ -58,15 +56,6 @@ ResourceLocal::~ResourceLocal()
 bool ResourceLocal::load()
 {
     mCalendar.load( KGlobal::dirs()->saveLocation( "data" ) + "knotes/notes.ics" );
-
-    // TODO
-    // initialize the Calendar
-    //mCalendar.setOwner(..);
-    //mCalendar.setEmail(..);
-
-    // read the old config files into mCalendar and convert them
-    if ( KNotesLegacy::convert( &mCalendar ) )
-        save();
 
     KCal::Journal::List notes = mCalendar.journals();
     KCal::Journal::List::ConstIterator it;

@@ -39,6 +39,7 @@
 #include <kextsock.h>
 
 #include <libkcal/journal.h>
+#include <libkcal/calendarlocal.h>
 
 #include "knotesapp.h"
 #include "knote.h"
@@ -127,6 +128,18 @@ KNotesApp::KNotesApp()
 
     // read the notes
     m_manager->load();
+
+    // read the old config files, convert and add them
+    KCal::CalendarLocal calendar;
+    if ( KNotesLegacy::convert( &calendar ) )
+    {
+        KCal::Journal::List notes = calendar.journals();
+        KCal::Journal::List::ConstIterator it;
+        for ( it = notes.begin(); it != notes.end(); ++it )
+            m_manager->addNewNote( *it );
+
+        m_manager->save();
+    }
 
     kapp->installEventFilter( this );
 
