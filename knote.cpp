@@ -70,6 +70,7 @@ using namespace KCal;
 KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
               QWidget* parent, const char* name )
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorder | WDestructiveClose ),
+    m_label( 0 ), m_button( 0 ), m_editor( 0 ), m_tool( 0 ), 
     m_journal( j )
 {
     // to disable kwin's session management (ie. saving positions of windows) we need to
@@ -79,29 +80,39 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
 
     // create the menu items for the note - not the editor...
     // rename, mail, print, insert date, close, delete, new note
-    new KAction( i18n("New"), "filenew", 0, this, SLOT(slotNewNote()), actionCollection(), "new_note" );
-    new KAction( i18n("Rename..."), "text", 0, this, SLOT(slotRename()), actionCollection(), "rename_note" );
-    new KAction( i18n("Hide"), "fileclose" , 0, this, SLOT(slotClose()), actionCollection(), "hide_note" );
-    new KAction( i18n("Delete"), "knotes_delete", 0, this, SLOT(slotKill()), actionCollection(), "delete_note" );
+    new KAction( i18n("New"), "filenew", 0, 
+        this, SLOT(slotNewNote()), actionCollection(), "new_note" );
+    new KAction( i18n("Rename..."), "text", 0, 
+        this, SLOT(slotRename()), actionCollection(), "rename_note" );
+    new KAction( i18n("Hide"), "fileclose" , 0, 
+        this, SLOT(slotClose()), actionCollection(), "hide_note" );
+    new KAction( i18n("Delete"), "knotes_delete", 0, 
+        this, SLOT(slotKill()), actionCollection(), "delete_note" );
 
-    new KAction( i18n("Insert Date"), "knotes_date", 0 , this, SLOT(slotInsDate()), actionCollection(), "insert_date" );
-    new KAction( i18n("Mail..."), "mail_send", 0, this, SLOT(slotMail()), actionCollection(), "mail_note" );
-    new KAction( i18n("Print..."), "fileprint", 0, this, SLOT(slotPrint()), actionCollection(), "print_note" );
-    new KAction( i18n("Preferences..."), "configure", 0, this, SLOT(slotPreferences()), actionCollection(), "configure_note" );
+    new KAction( i18n("Insert Date"), "knotes_date", 0 , 
+        this, SLOT(slotInsDate()), actionCollection(), "insert_date" );
+    new KAction( i18n("Mail..."), "mail_send", 0, 
+        this, SLOT(slotMail()), actionCollection(), "mail_note" );
+    new KAction( i18n("Print..."), "fileprint", 0, 
+        this, SLOT(slotPrint()), actionCollection(), "print_note" );
+    new KAction( i18n("Preferences..."), "configure", 0, 
+        this, SLOT(slotPreferences()), actionCollection(), "configure_note" );
 
-    m_alwaysOnTop = new KToggleAction( i18n("Always on Top"), "attach", 0, this, SLOT(slotToggleAlwaysOnTop()), actionCollection(), "always_on_top" );
+    m_alwaysOnTop = new KToggleAction( i18n("Always on Top"), "attach", 0, 
+        this, SLOT(slotToggleAlwaysOnTop()), actionCollection(), "always_on_top" );
     connect( m_alwaysOnTop, SIGNAL(toggled(bool)), m_alwaysOnTop, SLOT(setChecked(bool)) );
-    m_toDesktop = new KListAction( i18n("To Desktop"), 0, this, SLOT(slotPopupActionToDesktop(int)), actionCollection(), "to_desktop" );
+
+    m_toDesktop = new KListAction( i18n("To Desktop"), 0, 
+        this, SLOT(slotPopupActionToDesktop(int)), actionCollection(), "to_desktop" );
     connect( m_toDesktop->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(slotUpdateDesktopActions()) );
 
     // create the note header, button and label...
     m_button = new KNoteButton( "knotes_close", this );
-    connect( m_button, SIGNAL( clicked() ), this, SLOT( slotClose() ) );
+    connect( m_button, SIGNAL(clicked()), this, SLOT(slotClose()) );
 
     m_label = new QLabel( this );
     m_label->installEventFilter( this );  // recieve events (for dragging & action menu)
-    m_label->setText( m_journal->summary() );
-    updateLabelAlignment();
+    setName( m_journal->summary() );      // don't worry, no signals are connected at this stage yet
 
     // create the toolbar
     m_tool = new QWidget( this, "toolbar" );
@@ -167,7 +178,8 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
         m_alwaysOnTop->setChecked( true );
 
     // let KWin do the placement if the position is illegal
-    if ( kapp->desktop()->rect().contains( position.x()+width, position.y()+height ) && position != default_position )
+    if ( position != default_position &&
+            kapp->desktop()->rect().contains( position.x() + width, position.y() + height ) )
         move( position );           // do before calling show() to avoid flicker
 
     // read configuration settings...
@@ -196,7 +208,6 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
 
 KNote::~KNote()
 {
-kdDebug(5500) << k_funcinfo << endl;
 }
 
 
@@ -206,10 +217,10 @@ void KNote::saveData()
 {
     m_journal->setSummary( m_label->text() );
     m_journal->setDescription( m_editor->text() );
+    m_editor->setModified( false );
 
     // TODO: call m_calendar.update( this ) in knotesapp?
-    emit sigDataChanged();
-    m_editor->setModified( false );
+    emit sigSaveData();
 }
 
 void KNote::saveConfig() const
@@ -256,7 +267,15 @@ void KNote::setName( const QString& name )
 {
     m_label->setText( name );
     updateLabelAlignment();
-    saveData();
+
+    if ( m_editor )    // not called from CTOR?
+        saveData();
+
+    // set the window's name for the taskbar entry to be more helpful (#58338)
+    NETWinInfo note_win( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
+    note_win.setName( name.utf8() );
+
+    emit sigNameChanged();
 }
 
 void KNote::setText( const QString& text )
@@ -332,7 +351,6 @@ void KNote::slotRename()
         return;
 
     setName( newName );
-    emit sigConfigChanged();
 }
 
 void KNote::slotClose()
@@ -360,7 +378,7 @@ void KNote::slotPreferences()
 {
     // launch preferences dialog...
     KNoteConfigDlg configDlg( m_configFile, i18n("Local Settings"), false );
-    connect( &configDlg, SIGNAL( updateConfig() ), this, SLOT( slotApplyConfig() ) );
+    connect( &configDlg, SIGNAL(updateConfig()), this, SLOT(slotApplyConfig()) );
     configDlg.exec();
 }
 
@@ -375,7 +393,7 @@ void KNote::slotToggleAlwaysOnTop()
 void KNote::slotPopupActionToDesktop( int id )
 {
     if( id > 1 )
-	--id; // compensate for the menu separator
+      --id;      // compensate for the menu separator
     toDesktop( id );
 }
 
@@ -548,8 +566,6 @@ void KNote::slotApplyConfig()
     QColor fg = config.readColorEntry( "fgcolor", &(Qt::black) );
 
     setColor( fg, bg );
-
-    emit sigConfigChanged();
 }
 
 
@@ -583,10 +599,9 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
     updateFocus();
 }
 
-//If the name is too long to fit, left-align it,
-//otherwise center it (#59028)
 void KNote::updateLabelAlignment()
 {
+    // if the name is too long to fit, left-align it, otherwise center it (#59028)
     QString labelText = m_label->text();
     if ( m_label->fontMetrics().boundingRect( labelText ).width() > m_label->width() )
         m_label->setAlignment( AlignLeft );

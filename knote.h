@@ -84,8 +84,8 @@ public slots:
 signals:
     void sigNewNote();
     void sigKillNote( KCal::Journal* );
-    void sigDataChanged();
-    void sigConfigChanged();
+    void sigNameChanged();
+    void sigSaveData();
 
 protected:
     virtual void resizeEvent( QResizeEvent* );

@@ -62,8 +62,10 @@ KNotesApp::KNotesApp()
     setPixmap( SmallIcon( "knotes" ) );
 
     // create the GUI...
-    new KAction( i18n("New Note"), "filenew", 0, this, SLOT(slotNewNote()), actionCollection(), "new_note" );
-    new KAction( i18n("New Note From Clipboard"), "editpaste", 0, this, SLOT(slotNewNoteFromClipboard()), actionCollection(), "new_note_clipboard" );
+    new KAction( i18n("New Note"), "filenew", 0, 
+        this, SLOT(slotNewNote()), actionCollection(), "new_note" );
+    new KAction( i18n("New Note From Clipboard"), "editpaste", 0, 
+        this, SLOT(slotNewNoteFromClipboard()), actionCollection(), "new_note_clipboard" );
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
     KStdAction::preferences( this, SLOT(slotPreferences()), actionCollection() );
@@ -137,8 +139,8 @@ KNotesApp::KNotesApp()
         connect( newNote, SIGNAL(sigNewNote()), this, SLOT(slotNewNote()) );
         connect( newNote, SIGNAL(sigKillNote( KCal::Journal* )),
                  this,    SLOT(slotNoteKilled( KCal::Journal* )) );
-        connect( newNote, SIGNAL(sigConfigChanged()), this, SLOT(updateNoteActions()) );
-        connect( newNote, SIGNAL(sigDataChanged()), this, SLOT(saveNotes()) );
+        connect( newNote, SIGNAL(sigNameChanged()), this, SLOT(updateNoteActions()) );
+        connect( newNote, SIGNAL(sigSaveData()), this, SLOT(saveNotes()) );
     }
     updateNoteActions();
 
@@ -198,8 +200,8 @@ QString KNotesApp::newNote( const QString& name, const QString& text )
     connect( newNote, SIGNAL(sigNewNote()), this, SLOT(slotNewNote()) );
     connect( newNote, SIGNAL(sigKillNote( KCal::Journal* )),
              this,    SLOT(slotNoteKilled( KCal::Journal* )) );
-    connect( newNote, SIGNAL(sigConfigChanged()), this, SLOT(updateNoteActions()) );
-    connect( newNote, SIGNAL(sigDataChanged()), this, SLOT(saveNotes()) );
+    connect( newNote, SIGNAL(sigNameChanged()), this, SLOT(updateNoteActions()) );
+    connect( newNote, SIGNAL(sigSaveData()), this, SLOT(saveNotes()) );
 
     updateNoteActions();
     showNote( newNote );
@@ -273,10 +275,7 @@ void KNotesApp::setName( const QString& id, const QString& newName )
 {
     KNote* note = m_noteList[id];
     if ( note )
-    {
         note->setName( newName );
-        updateNoteActions();
-    }
     else
         kdWarning(5500) << "No note with id: " << id << endl;
 }
