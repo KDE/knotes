@@ -527,6 +527,15 @@ static bool block_set_alignment = FALSE;
   \sa setCursorPosition()
 */
 
+/*! \overload void QTextEdit::cursorPositionChanged( int para, int pos )
+
+  This signal is emitted if the position of the cursor changed. \a
+  para contains the paragraph index and \a pos contains the character
+  position within the paragraph.
+
+  \sa setCursorPosition()
+*/
+
 /*! \fn void QTextEdit::returnPressed()
 
   This signal is emitted if the user pressed the Return or the Enter key.
@@ -946,6 +955,7 @@ void QTextEdit::keyPressEvent( QKeyEvent *e )
     }
 
     emit cursorPositionChanged( cursor );
+    emit cursorPositionChanged( cursor->parag()->paragId(), cursor->index() );
     if ( clearUndoRedoInfo )
 	clearUndoRedo();
     changeIntervalTimer->start( 100, TRUE );
@@ -1443,12 +1453,15 @@ void QTextEdit::drawCursor( bool visible )
     cursor->parag()->document()->nextDoubleBuffered = TRUE;
     if ( !cursor->nestedDepth() ) {
 	int h = cursor->parag()->lineHeightOfChar( cursor->index() );
-	int x = r.x() - cursor->totalOffsetX() + cursor->x() - 5;
+	int dist = 5;
+	if ( ( cursor->parag()->alignment() & Qt::AlignJustify ) == Qt::AlignJustify )
+	    dist = 50;
+	int x = r.x() - cursor->totalOffsetX() + cursor->x() - dist;
 	x = QMAX( x, 0 );
 	p.setClipRect( QRect( x - contentsX(),
-			      r.y() - cursor->totalOffsetY() + cursor->y() - contentsY(), 10, h ) );
+			      r.y() - cursor->totalOffsetY() + cursor->y() - contentsY(), 2 * dist, h ) );
 	doc->drawParag( &p, cursor->parag(), x,
-			r.y() - cursor->totalOffsetY() + cursor->y(), 10, h, pix, cg, visible, cursor );
+			r.y() - cursor->totalOffsetY() + cursor->y(), 2 * dist, h, pix, cg, visible, cursor );
     } else {
 	doc->drawParag( &p, cursor->parag(), r.x() - cursor->totalOffsetX(),
 			r.y() - cursor->totalOffsetY(), r.width(), r.height(),
@@ -1521,8 +1534,6 @@ void QTextEdit::contentsMousePressEvent( QMouseEvent *e )
 
 	bool redraw = FALSE;
 	if ( doc->hasSelection( QTextDocument::Standard ) ) {
-	    emit copyAvailable( doc->hasSelection( QTextDocument::Standard ) );
-	    emit selectionChanged();
 	    if ( !( e->state() & ShiftButton ) ) {
 		redraw = doc->removeSelection( QTextDocument::Standard );
 		doc->setSelectionStart( QTextDocument::Standard, cursor );
@@ -1638,13 +1649,11 @@ void QTextEdit::contentsMouseReleaseEvent( QMouseEvent * )
 	    if ( !doc->selectedText( QTextDocument::Standard ).isEmpty() )
 		doc->copySelectedText( QTextDocument::Standard );
 //	    QApplication::clipboard()->setSelectionMode(FALSE);
-
-	    emit copyAvailable( doc->hasSelection( QTextDocument::Standard ) );
-	    emit selectionChanged();
 //	}
 #endif
     }
     emit cursorPositionChanged( cursor );
+    emit cursorPositionChanged( cursor->parag()->paragId(), cursor->index() );
     if ( oldCursor != *cursor )
 	updateCurrentFormat();
     inDoubleClick = FALSE;
@@ -1659,6 +1668,9 @@ void QTextEdit::contentsMouseReleaseEvent( QMouseEvent * )
     drawCursor( TRUE );
     if ( !doc->hasSelection( QTextDocument::Standard, TRUE ) )
 	doc->removeSelection( QTextDocument::Standard );
+
+    emit copyAvailable( doc->hasSelection( QTextDocument::Standard ) );
+    emit selectionChanged();
 }
 
 /*! \reimp */

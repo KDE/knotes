@@ -1388,21 +1388,37 @@ void QTextDocument::setPlainText( const QString &text )
     clear();
     preferRichText = FALSE;
 
-    QString s;
-    lParag = 0;
-    QStringList lst = QStringList::split( '\n', text, TRUE );
-    for ( QStringList::Iterator it = lst.begin(); it != lst.end(); ++it ) {
+    int lastNl = 0;
+    int nl = text.find( '\n' );
+    if ( nl == -1 ) {
 	lParag = createParag( this, lParag, 0 );
 	if ( !fParag )
 	    fParag = lParag;
-	s = *it;
+	QString s = text;
 	if ( !s.isEmpty() ) {
 	    if ( s[ (int)s.length() - 1 ] == '\r' )
 		s.remove( s.length() - 1, 1 );
 	    lParag->append( s );
 	}
+    } else {
+	while ( TRUE ) {
+	    lParag = createParag( this, lParag, 0 );
+	    if ( !fParag )
+		fParag = lParag;
+	    QString s = text.mid( lastNl, nl - lastNl );
+	    if ( !s.isEmpty() ) {
+		if ( s[ (int)s.length() - 1 ] == '\r' )
+		    s.remove( s.length() - 1, 1 );
+		lParag->append( s );
+	    }
+	    if ( nl == 0xffffff )
+		break;
+	    lastNl = nl + 1;
+	    nl = text.find( '\n', nl + 1 );
+	    if ( nl == -1 )
+		nl = 0xffffff;
+	}
     }
-
     if ( !lParag )
 	lParag = fParag = createParag( this, 0, 0 );
 }
@@ -2377,6 +2393,14 @@ bool QTextDocument::find( const QString &expr, bool cs, bool wo, bool forward,
 	    start = *index;
 	else if ( first )
 	    start = cursor->index();
+	if ( !forward && first ) {
+	    start -= expr.length() + 1;
+	    if ( start < 0 ) {
+		first = FALSE;
+		p = p->prev();
+		continue;
+	    }
+	}
 	first = FALSE;
 	int res = forward ? s.find( expr, start, cs ) : s.findRev( expr, start, cs );
 	if ( res != -1 ) {
@@ -2738,6 +2762,16 @@ void QTextDocument::unregisterCustomItem( QTextCustomItem *i, QTextParag *p )
     customItems.removeRef( i );
 }
 
+bool QTextDocument::hasFocusParagraph() const
+{
+    return !!focusIndicator.parag;
+}
+
+QString QTextDocument::focusHref() const
+{
+    return focusIndicator.href;
+}
+
 bool QTextDocument::focusNextPrevChild( bool next )
 {
     if ( !focusIndicator.parag ) {
@@ -2772,6 +2806,43 @@ bool QTextDocument::focusNextPrevChild( bool next )
 			focusIndicator.len++;
 			i++;
 		    }
+		} else if ( p->at( i )->isCustom() ) {
+		    if ( p->at( i )->customItem()->isNested() ) {
+			QTextTable *t = (QTextTable*)p->at( i )->customItem();
+			QPtrList<QTextTableCell> cells = t->tableCells();
+			// first try to continue
+			QTextTableCell *c;
+			bool resetCells = TRUE;
+			for ( c = cells.first(); c; c = cells.next() ) {
+			    if ( c->richText()->hasFocusParagraph() ) {
+				if ( c->richText()->focusNextPrevChild( next ) ) {
+				    p->setChanged( TRUE );
+				    focusIndicator.parag = p;
+				    focusIndicator.start = i;
+				    focusIndicator.len = 0;
+				    focusIndicator.href = c->richText()->focusHref();
+				    return TRUE;
+				} else {
+				    resetCells = FALSE;
+				    c = cells.next();
+				    break;
+				}
+			    }
+			}
+			// now really try
+			if ( resetCells )
+			    c = cells.first();
+			for ( ; c; c = cells.next() ) {
+			    if ( c->richText()->focusNextPrevChild( next ) ) {
+				p->setChanged( TRUE );
+				focusIndicator.parag = p;
+				focusIndicator.start = i;
+				focusIndicator.len = 0;
+				focusIndicator.href = c->richText()->focusHref();
+				return TRUE;
+			    }
+			}
+		    }
 		}
 	    }
 	    index = 0;
@@ -2780,6 +2851,8 @@ bool QTextDocument::focusNextPrevChild( bool next )
     } else {
 	QTextParag *p = focusIndicator.parag;
 	int index = focusIndicator.start - 1;
+	if ( focusIndicator.len == 0 && index < focusIndicator.parag->length() - 1 )
+	    index++;
 	while ( p ) {
 	    for ( int i = index; i >= 0; --i ) {
 		if ( p->at( i )->format()->isAnchor() ) {
@@ -2799,6 +2872,47 @@ bool QTextDocument::focusNextPrevChild( bool next )
 			focusIndicator.start--;
 			i--;
 		    }
+		} else if ( p->at( i )->isCustom() ) {
+		    if ( p->at( i )->customItem()->isNested() ) {
+			QTextTable *t = (QTextTable*)p->at( i )->customItem();
+			QPtrList<QTextTableCell> cells = t->tableCells();
+			// first try to continue
+			QTextTableCell *c;
+			bool resetCells = TRUE;
+			for ( c = cells.last(); c; c = cells.prev() ) {
+			    if ( c->richText()->hasFocusParagraph() ) {
+				if ( c->richText()->focusNextPrevChild( next ) ) {
+				    p->setChanged( TRUE );
+				    focusIndicator.parag = p;
+				    focusIndicator.start = i;
+				    focusIndicator.len = 0;
+				    focusIndicator.href = c->richText()->focusHref();
+				    return TRUE;
+				} else {
+				    resetCells = FALSE;
+				    c = cells.prev();
+				    break;
+				}
+			    }
+			    if ( cells.at() == 0 )
+				break;
+			}
+			// now really try
+			if ( resetCells )
+			    c = cells.last();
+			for ( ; c; c = cells.prev() ) {
+			    if ( c->richText()->focusNextPrevChild( next ) ) {
+				p->setChanged( TRUE );
+				focusIndicator.parag = p;
+				focusIndicator.start = i;
+				focusIndicator.len = 0;
+				focusIndicator.href = c->richText()->focusHref();
+				return TRUE;
+			    }
+			    if ( cells.at() == 0 )
+				break;
+			}
+		    }
 		}
 	    }
 	    p = p->prev();
@@ -2806,6 +2920,8 @@ bool QTextDocument::focusNextPrevChild( bool next )
 		index = p->length() - 1;
 	}
     }
+
+    focusIndicator.parag = 0;
 
     return FALSE;
 }
@@ -3728,6 +3844,11 @@ void QTextParag::paint( QPainter &painter, const QColorGroup &cg, QTextCursor *c
 	// check for cursor mark
 	if ( cursor && this == cursor->parag() && i == cursor->index() ) {
 	    curx = chr->x;
+	    if ( !chr->rightToLeft &&
+		 chr->c.isSpace() &&
+		 i > 0 &&
+		 ( alignment() & Qt::AlignJustify ) == Qt::AlignJustify )
+		curx = at( i - 1 )->x + str->width( i - 1 );
 	    if ( chr->rightToLeft )
 		curx += cw;
 	    curh = h;

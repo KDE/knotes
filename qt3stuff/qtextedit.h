@@ -303,6 +303,7 @@ signals:
     void currentAlignmentChanged( int a );
     void currentVerticalAlignmentChanged( VerticalAlignment a );
     void cursorPositionChanged( QTextCursor *c );
+    void cursorPositionChanged( int para, int pos );
     void returnPressed();
     void modificationChanged( bool m );
 
