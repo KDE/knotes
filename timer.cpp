@@ -115,7 +115,7 @@ void MyTimer::timerEvent( QTimerEvent * ){
       }
 
       QString str;
-      str.sprintf("              Alarm for KNote:           \n"\
+      str.sprintf("Alarm for KNote:\n"\
 		  "\n%s",
 		  entry->name.data());
 
