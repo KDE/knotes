@@ -918,7 +918,8 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
     {
         if ( ev->type() == QEvent::FocusOut )
         {
-            updateFocus();
+            if ( static_cast<QFocusEvent*>(ev)->reason() != QFocusEvent::Popup )
+                updateFocus();
             if ( m_editor->isModified() )
                 saveData();
         }
