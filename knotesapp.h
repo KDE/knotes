@@ -66,7 +66,7 @@ public:
     bool isNew( const QString& app, int noteId ) const;
     bool isModified( const QString& app, const QString& name ) const;
     bool isModified( const QString& app, int noteId ) const;
-
+    
     bool commitData( QSessionManager& );
     bool saveState( QSessionManager& );
 

@@ -217,6 +217,8 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
 
 KNote::~KNote()
 {
+kdDebug(5500) << k_funcinfo << endl;
+
     emit sigKilled( m_label->text() );
 
 }
@@ -226,6 +228,8 @@ KNote::~KNote()
 
 void KNote::saveData() const
 {
+kdDebug(5500) << k_funcinfo << endl;
+
     QString datafile = m_noteDir.absFilePath( "." + m_configFile + "_data" );
     m_editor->dumpToFile( datafile );
     m_editor->setModified( false );
@@ -233,6 +237,8 @@ void KNote::saveData() const
 
 void KNote::saveConfig() const
 {
+kdDebug(5500) << k_funcinfo << endl;
+
     // all that needs to get saved here is the size and name
     // everything else would have been saved by the preferences dialog
     KSimpleConfig config( m_noteDir.absFilePath( m_configFile ) );
@@ -250,6 +256,8 @@ void KNote::saveConfig() const
 
 void KNote::saveDisplayConfig() const
 {
+kdDebug(5500) << k_funcinfo << endl;
+
     KSimpleConfig config( m_noteDir.absFilePath( m_configFile ) );
     NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop | NET::WMState );
 
@@ -362,6 +370,7 @@ void KNote::slotRename()
 
 void KNote::slotClose()
 {
+kdDebug(5500) << k_funcinfo << endl;
     m_editor->clearFocus();
     hide(); //just hide the note so it's still available from the dock window
 }
@@ -834,6 +843,7 @@ void KNote::resizeEvent( QResizeEvent* qre )
 
 void KNote::closeEvent( QCloseEvent* /*e*/ )
 {
+kdDebug(5500) << k_funcinfo << endl;
     slotClose();
 }
 

@@ -1,6 +1,10 @@
 ChangeLog for KNotes
 ====================
 
+2002/09/10  Michael Brade <brade@kde.org>
+
+    * fixed one more readNumEntry, thanks to Matthias Kiefer 
+
 2002/05/10  Michael Brade <brade@kde.org>
 
     * fixed crash on exit due to wrong deletion order

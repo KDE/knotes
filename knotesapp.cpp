@@ -69,7 +69,7 @@ KNotesApp::KNotesApp()
     QString configfile = KGlobal::dirs()->findResource( "config", "knotesrc" );
     KSimpleConfig *test = new KSimpleConfig( configfile, true );
     test->setGroup( "General" );
-    if ( test->readNumEntry( "version", 1 ) == 1 )
+    if ( test->readDoubleNumEntry( "version", 1 ) == 1 )
     {
         delete test;
         if ( !( checkAccess( configfile, W_OK ) &&
@@ -131,6 +131,7 @@ KNotesApp::KNotesApp()
 
 KNotesApp::~KNotesApp()
 {
+kdDebug(5500) << k_funcinfo << endl;
     saveNotes();
     disconnect();
     m_noteList.clear();
@@ -140,17 +141,19 @@ KNotesApp::~KNotesApp()
 
 bool KNotesApp::saveState( QSessionManager& )
 {
+kdDebug(5500) << k_funcinfo << endl;
     saveNotes();
 
     QDictIterator<KNote> it( m_noteList );
     for ( ; it.current(); ++it )
         it.current()->hide();
 
-   return true;
+    return true;
 }
 
 bool KNotesApp::commitData( QSessionManager& )
 {
+kdDebug(5500) << k_funcinfo << endl;
     saveNotes();
     return true;
 }
@@ -436,6 +439,7 @@ void KNotesApp::slotNoteRenamed( const QString& oldname, const QString& newname 
 
 void KNotesApp::slotNoteKilled( const QString& name )
 {
+kdDebug(5500) << k_funcinfo << endl;
     m_noteList.take( name );
     updateNoteActions();
 }
@@ -483,6 +487,7 @@ void KNotesApp::showNote( KNote* note ) const
 
 void KNotesApp::saveNotes() const
 {
+kdDebug(5500) << k_funcinfo << endl;
     // save all the notes...
     QDictIterator<KNote> it( m_noteList );
     for ( ; it.current(); ++it )
