@@ -21,6 +21,7 @@ knotes_SOURCES	= knotes.cpp  configdlg.cpp fontdlg.cpp mail.cpp alarm.cpp\
 
 BUILTSOURCES = knotes.moc configdlg.moc fontdlg.moc mail.moc alarm.moc \
 	spin.moc renamedlg.moc
+DISTCLEANFILES = $(BUILTSOURCES)
 
 SUBDIRS = docs
 
