@@ -121,6 +121,7 @@ KNotesApp::KNotesApp()
       m_decoration( new KDecorationOptionsImpl )
 #else
       m_decoration( 0 )
+#endif
 {
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
