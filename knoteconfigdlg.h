@@ -39,10 +39,12 @@ public slots:
     void slotUpdateCaption();
 
 protected:
-    void makeDisplayPage( bool defaults );
-    void makeEditorPage();
-    void makeActionsPage();
-    void makeNetworkPage();
+    QWidget *makeDisplayPage( bool );
+    QWidget *makeEditorPage( bool );
+
+    QWidget *makeDefaultsPage();
+    QWidget *makeActionsPage();
+    QWidget *makeNetworkPage();
 };
 
 #endif

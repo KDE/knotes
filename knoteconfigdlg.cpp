@@ -21,7 +21,9 @@
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qcheckbox.h>
+#include <qtabwidget.h>
 
+#include <kapplication.h>
 #include <kconfig.h>
 #include <klocale.h>
 #include <kiconloader.h>
@@ -29,7 +31,7 @@
 #include <knuminput.h>
 #include <klineedit.h>
 #include <kfontrequester.h>
-#include <kseparator.h>
+#include <kwin.h>
 
 #include "knote.h"
 #include "knoteconfigdlg.h"
@@ -43,18 +45,27 @@ KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
                      config ? Default|Ok|Apply|Cancel : Default|Ok|Cancel, Ok )
 {
     setCaption( title );
-    setIcon( SmallIcon( "knotes" ) );
+    KWin::setIcons( winId(), kapp->icon(), kapp->miniIcon() );
 
     setIconListAllVisible( true );
+    enableButtonSeparator( true );
 
-    makeDisplayPage( !config );
-    makeEditorPage();
-
-    if ( !config )
+    if ( config )
     {
-        makeActionsPage();
-        makeNetworkPage();
+        addPage( makeDisplayPage( false ), i18n("Display"), "knotes",
+                 i18n("Display Settings") );
+        addPage( makeEditorPage( false ), i18n("Editor"), "edit",
+                 i18n("Editor Settings") );
+    }
+    else
+    {
         config = KNotesGlobalConfig::self();
+        addPage( makeDefaultsPage(), i18n("Defaults"), "knotes",
+                 i18n("Default Settings for New Notes") );
+        addPage( makeActionsPage(), i18n("Actions"), "misc",
+                 i18n("Action Settings") );
+        addPage( makeNetworkPage(), i18n("Network"), "network",
+                 i18n("Network Settings") );
     }
 
     config->setVersion( KNOTES_VERSION );
@@ -71,20 +82,21 @@ void KNoteConfigDlg::slotUpdateCaption()
         setCaption( note->name() );
 }
 
-void KNoteConfigDlg::makeDisplayPage( bool defaults )
+QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
 {
     QWidget *displayPage = new QWidget();
-    QGridLayout *layout = new QGridLayout( displayPage, 6, 2, 0, spacingHint() );
+    QGridLayout *layout = new QGridLayout( displayPage, 2, 2,
+                                           defaults ? marginHint() : 0, spacingHint() );
 
     QLabel *label_FgColor = new QLabel( i18n("&Text color:"), displayPage, "label_FgColor" );
     layout->addWidget( label_FgColor, 0, 0 );
 
-    QLabel *label_BgColor = new QLabel( i18n("&Background color:"), displayPage, "label_BgColor" );
-    layout->addWidget( label_BgColor, 1, 0 );
-
     KColorButton *kcfg_FgColor = new KColorButton( displayPage, "kcfg_FgColor" );
     label_FgColor->setBuddy( kcfg_FgColor );
     layout->addWidget( kcfg_FgColor, 0, 1 );
+
+    QLabel *label_BgColor = new QLabel( i18n("&Background color:"), displayPage, "label_BgColor" );
+    layout->addWidget( label_BgColor, 1, 0 );
 
     KColorButton *kcfg_BgColor = new KColorButton( displayPage, "kcfg_BgColor" );
     label_BgColor->setBuddy( kcfg_BgColor );
@@ -92,38 +104,38 @@ void KNoteConfigDlg::makeDisplayPage( bool defaults )
 
     QCheckBox *kcfg_ShowInTaskbar = new QCheckBox( i18n("&Show note in taskbar"),
                                                    displayPage, "kcfg_ShowInTaskbar" );
-    layout->addWidget( kcfg_ShowInTaskbar, 4, 0 );
-
 
     if ( defaults )
     {
         QLabel *label_Width = new QLabel( i18n("Default &width:"), displayPage, "label_Width" );
         layout->addWidget( label_Width, 2, 0 );
 
-        QLabel *label_Height = new QLabel( i18n("Default &height:"), displayPage, "label_Height" );
-        layout->addWidget( label_Height, 3, 0 );
-
         KIntNumInput *kcfg_Width = new KIntNumInput( displayPage, "kcfg_Width" );
         label_Width->setBuddy( kcfg_Width );
         kcfg_Width->setRange( 100, 2000, 10, false );
         layout->addWidget( kcfg_Width, 2, 1 );
 
+        QLabel *label_Height = new QLabel( i18n("Default &height:"), displayPage, "label_Height" );
+        layout->addWidget( label_Height, 3, 0 );
+
         KIntNumInput *kcfg_Height = new KIntNumInput( displayPage, "kcfg_Height" );
         kcfg_Height->setRange( 100, 2000, 10, false );
         label_Height->setBuddy( kcfg_Height );
         layout->addWidget( kcfg_Height, 3, 1 );
+
+        layout->addWidget( kcfg_ShowInTaskbar, 4, 0 );
     }
+    else
+        layout->addWidget( kcfg_ShowInTaskbar, 2, 0 );
 
-    KSeparator *separator = new KSeparator( Horizontal, displayPage );
-    layout->addMultiCellWidget( separator, 5, 5, 0, 1 );
-
-    addPage( displayPage, i18n("Display"), "knotes", i18n("Display Settings") );
+    return displayPage;
 }
 
-void KNoteConfigDlg::makeEditorPage()
+QWidget *KNoteConfigDlg::makeEditorPage( bool defaults )
 {
     QWidget *editorPage = new QWidget();
-    QGridLayout *layout = new QGridLayout( editorPage, 4, 3, 0, spacingHint() );
+    QGridLayout *layout = new QGridLayout( editorPage, 4, 3,
+                                           defaults ? marginHint() : 0, spacingHint() );
 
     QLabel *label_TabSize = new QLabel( i18n( "&Tab size:" ), editorPage, "label_TabSize" );
     layout->addMultiCellWidget( label_TabSize, 0, 0, 0, 1 );
@@ -143,24 +155,32 @@ void KNoteConfigDlg::makeEditorPage()
     layout->addWidget( label_Font, 3, 0 );
 
     KFontRequester *kcfg_Font = new KFontRequester( editorPage, "kcfg_Font" );
+    kcfg_Font->setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
     layout->addMultiCellWidget( kcfg_Font, 3, 3, 1, 2 );
 
     QLabel *label_TitleFont = new QLabel( i18n("Title font:"), editorPage, "label_TitleFont" );
     layout->addWidget( label_TitleFont, 2, 0 );
 
     KFontRequester *kcfg_TitleFont = new KFontRequester( editorPage, "kcfg_TitleFont" );
+    kcfg_TitleFont->setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
     layout->addMultiCellWidget( kcfg_TitleFont, 2, 2, 1, 2 );
 
-    KSeparator *separator = new KSeparator( Horizontal, editorPage );
-    layout->addMultiCellWidget( separator, 4, 4, 0, 2 );
-
-    addPage( editorPage, i18n("Editor"), "edit", i18n("Editor Settings") );
+    return editorPage;
 }
 
-void KNoteConfigDlg::makeActionsPage()
+QWidget *KNoteConfigDlg::makeDefaultsPage()
+{
+    QTabWidget *defaultsPage = new QTabWidget();
+    defaultsPage->addTab( makeDisplayPage( true ), SmallIconSet( "knotes" ), i18n("Displa&y") );
+    defaultsPage->addTab( makeEditorPage( true ), SmallIconSet( "edit" ), i18n("&Editor") );
+
+    return defaultsPage;
+}
+
+QWidget *KNoteConfigDlg::makeActionsPage()
 {
     QWidget *actionsPage = new QWidget();
-    QGridLayout *layout = new QGridLayout( actionsPage, 3, 2, 0, spacingHint() );
+    QGridLayout *layout = new QGridLayout( actionsPage, 2, 2, 0, spacingHint() );
 
     QLabel *label_MailAction = new QLabel( i18n("&Mail action:"), actionsPage, "label_MailAction" );
     layout->addWidget( label_MailAction, 0, 0 );
@@ -169,22 +189,19 @@ void KNoteConfigDlg::makeActionsPage()
     label_MailAction->setBuddy( kcfg_MailAction );
     layout->addWidget( kcfg_MailAction, 0, 1 );
 
-    KSeparator *separator = new KSeparator( Horizontal, actionsPage );
-    layout->addMultiCellWidget( separator, 2, 2, 0, 1 );
-
-    addPage( actionsPage, i18n("Actions"), "misc", i18n("Action Settings") );
+    return actionsPage;
 }
 
-void KNoteConfigDlg::makeNetworkPage()
+QWidget *KNoteConfigDlg::makeNetworkPage()
 {
     QWidget *networkPage = new QWidget();
-    QGridLayout *layout = new QGridLayout( networkPage, 4, 2, 0, spacingHint() );
+    QGridLayout *layout = new QGridLayout( networkPage, 3, 2, 0, spacingHint() );
 
     QCheckBox *kcfg_ReceiveNotes = new QCheckBox( i18n("Enable &receiving notes"),
                                                   networkPage, "kcfg_ReceiveNotes" );
     layout->addMultiCellWidget( kcfg_ReceiveNotes, 0, 0, 0, 1 );
 
-    QLabel *label_Port = new QLabel( i18n( "&Port:" ), networkPage, "label_Port" );
+    QLabel *label_Port = new QLabel( i18n("&Port:"), networkPage, "label_Port" );
     layout->addWidget( label_Port, 1, 0 );
 
     KIntNumInput *kcfg_Port = new KIntNumInput( networkPage, "kcfg_Port" );
@@ -192,10 +209,7 @@ void KNoteConfigDlg::makeNetworkPage()
     label_Port->setBuddy( kcfg_Port );
     layout->addWidget( kcfg_Port, 1, 1 );
 
-    KSeparator *separator = new KSeparator( Horizontal, networkPage );
-    layout->addMultiCellWidget( separator, 3, 3, 0, 1 );
-
-    addPage( networkPage, i18n("Network"), "network", i18n("Network Settings") );
+    return networkPage;
 }
 
 

@@ -47,6 +47,10 @@ TODO:
  * use KWinDecorations instead of home-made decoration
  * add ToolTips everywhere
  * update the date icon, either from crystal or Matthias Kiefer
+ * use KWin::setIcons for the notes windows, either to put the color or change
+   the color of the notes icon if possible
+ * ensure the knotes settings dialog has a unique name with regard to the notes config
+   dialogs
 
 perhaps:
  * transparent notes

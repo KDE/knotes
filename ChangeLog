@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2004/04/24  Michael Brade <brade@kde.org>
+
+    * streamlined the config dialogs, reflect that only some dialogs are defaults,
+      others are global settings
+
 2004/04/23  Michael Brade <brade@kde.org>
 
     * fixed adding a new resource every start of KNotes. Please delete
