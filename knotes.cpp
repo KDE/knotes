@@ -54,6 +54,7 @@ void findPostitFiles();
 QList<KPostit> 	  KPostit::PostitList;      // pointers to all postit objects
 QStrList 	  KPostit::PostitFilesList; // names of all postit files
 QList<AlarmEntry> KPostit::AlarmList;
+bool KPostit::dock;
 
 ConfigDlg*      configdlg  = 0L;
 FontDlg*        fontdlg    = 0L;
@@ -330,20 +331,22 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     frame3dID = options->insertItem(klocale->translate("3D Frame"),this, SLOT(toggleFrame()));
     edit->autoIndentID = options->insertItem(klocale->translate("Auto Indent"),this,
 				       SLOT(toggleIndentMode()));
+
     options->insertItem(klocale->translate("Font..."),this, SLOT(selectFont()));
     options->insertItem(klocale->translate("Colors"),colors);
     options->insertSeparator();
     options->insertItem(klocale->translate("Change Defaults ..."),this, SLOT(defaults()));
-
+    dockID = options->insertItem(klocale->translate("Dock in panel"), this, 
+                                 SLOT(toggleDock()));
 
     operations->insertSeparator();
     operations->insertItem (klocale->translate("Help"),this,SLOT(help()));
 
-    operations->insertSeparator();
-    operations->insertItem (klocale->translate("Options"),options);
+    // operations->insertSeparator();
+    // operations->insertItem (klocale->translate("Options"),options);
     //    operations->insertSeparator();
-    //    operations->insertItem ( klocale->translate("Quit"), this,
-    //			    SLOT(quit()));
+    operations->insertItem ( klocale->translate("Quit"), this,
+                             SLOT(quit()));
 
 
     right_mouse_button = new QPopupMenu;
@@ -363,8 +366,9 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     //	       SLOT(hideKPostit()));
     right_mouse_button->insertItem (klocale->translate("Insert Date"), this, 	
 				    SLOT(insertDate()));
-  right_mouse_button->insertSeparator();
+    right_mouse_button->insertSeparator();
     right_mouse_button->insertItem (klocale->translate("Operations"),operations);
+    right_mouse_button->insertItem (klocale->translate("Options"),options);
 
     right_mouse_button->insertSeparator();
 
@@ -413,6 +417,8 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
       setAutoIndent();
       options->setItemChecked(edit->autoIndentID,TRUE);
     }
+
+    options->setItemChecked(dockID,dock);
 
     set_colors();
     connect(mykapp,SIGNAL(kdisplayPaletteChanged()),this,SLOT(set_colors()));
@@ -938,6 +944,10 @@ void KPostit::deleteKPostit(){
     }
   }
 
+  if ((PostitFilesList.count()==0) && !dock) 
+    // no more notes and non docked = no menu !
+    toggleDock();
+
   // reinsert PostitFilesList into popus in a sorted fashion
   for(PostitList.first();PostitList.current();PostitList.next()){
     int k = 0;
@@ -1302,6 +1312,19 @@ void KPostit::toggleFrame(){
     set3DFrame();
 }
 
+void KPostit::toggleDock(){
+  if (dock)
+  {
+    dock = FALSE;
+    docker->undock();
+  }
+  else
+  {
+    dock = TRUE;
+    docker->dock();
+  }
+  options->setItemChecked(dockID,dock);
+}
 
 void KPostit::dummy(){
 
@@ -1792,7 +1815,8 @@ int main( int argc, char **argv ) {
   kapp->setWmCommand("knotes -knotes_restore");
 
   docker = new DockWidget();
-  docker->dock();
+  if (KPostit::dock)
+      docker->dock();
 
   return a.exec();
 
@@ -1825,6 +1849,7 @@ void readSettings()
 
   postitdefaults.frame3d = (bool) config->readNumEntry("frame3d",(int)FALSE);
   postitdefaults.autoindent = (bool) config->readNumEntry("autoindent",(int)TRUE);
+  KPostit::dock = config->readBoolEntry("dock",TRUE);
 
   config->setGroup("Commands");
 
@@ -1858,6 +1883,7 @@ void writeSettings()
   config->setGroup("Misc");
   config->writeEntry("frame3d",postitdefaults.frame3d);
   config->writeEntry("autoindent",postitdefaults.autoindent);
+  config->writeEntry("dock",KPostit::dock);
 
   config->setGroup("Commands");
   config->writeEntry("mailCmd",postitdefaults.mailcommand);

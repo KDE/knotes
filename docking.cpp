@@ -172,7 +172,6 @@ void DockWidget::help(){
 void DockWidget::dock() {
 
   if (!docked) {
-
     // prepare panel to accept this widget
     KWM::setDockWindow (this->winId());
 
@@ -198,15 +197,9 @@ void DockWidget::findKPostit(int i){
 void DockWidget::undock() {
 
   if (docked) {
-
-    // the widget's window has to be destroyed in order 
-    // to undock from the panel. Simply using hide() is
-    // not enough.
-    this->destroy(true, true);
-
-    // recreate window for further dockings
-    this->create(0, true, false);
-
+    // new docking method, taken from ksirc (servercontroller.cpp)
+    this->hide();
+    this->recreate(0x0, 0, QPoint(0,0), FALSE); 
     docked = false;
   }
 }

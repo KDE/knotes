@@ -1,3 +1,10 @@
+Tue Feb 16 09:34:25 1999  David Faure  <faure@kde.org>
+
+	* Added option "dock in panel" (to disable docking)
+	Docking is automatically re-enabled if the last note is deleted
+	* Move options submenu to toplevel RMB menu (too many submenus!)
+	* Re-added "Quit" menu entry (in order to quit when docking is off)
+
 Fri May 29 05:36:36 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
 
 	* KNotes are now automatically saved all 15 minutes. 
