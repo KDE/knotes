@@ -1,7 +1,6 @@
 [Desktop Entry]
 Exec=knotes
 Icon=knotes
-MiniIcon=knotes
 DocPath=knotes/index.html
 Terminal=0
 Type=Application
