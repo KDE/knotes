@@ -39,8 +39,8 @@ public:
     static void cleanUp();
     static bool convert( KCal::CalendarLocal *calendar );
 private:
-    static void convertKNotes1Config( KCal::Journal *j, QDir& dir, const QString& file );
-    static void convertKNotes2Config( KCal::Journal *j, QDir& dir, const QString& file );
+    static bool convertKNotes1Config( KCal::Journal *j, QDir& dir, const QString& file );
+    static bool convertKNotes2Config( KCal::Journal *j, QDir& dir, const QString& file );
 };
 
 #endif

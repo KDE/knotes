@@ -5,6 +5,8 @@ ChangeLog for KNotes
 
     * fixed #68127: notes are not really deleted if deleting is the last
       action before quitting KNotes
+    * fixed #72888, #73404, #75558: much more robust conversion of old config
+      files, now hopefully absolutely no black notes anymore
 
 2004/03/08  Michael Brade <brade@kde.org>
 

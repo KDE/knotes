@@ -52,24 +52,18 @@ void KNotesLegacy::cleanUp()
     QString configfile = KGlobal::dirs()->findResource( "config", "knotesrc" );
     KSimpleConfig *test = new KSimpleConfig( configfile );
     test->setGroup( "General" );
-    double version = test->readDoubleNumEntry( "version", 1 );
-    if ( version == 1 )
-    {
-        delete test;
-        if ( !( checkAccess( configfile, W_OK ) &&
-                KIO::NetAccess::del( KURL(configfile), 0 ) ) )
-        {
-            kdError(5500) << k_funcinfo << "Could not delete old config file!!" << endl;
-            // TODO
-        }
-    }
-    else if ( version < 3 )
-    {
+    double version = test->readDoubleNumEntry( "version", 1.0 );
+
+    if ( version >= 2.0 )
         test->writeEntry( "version", KNOTES_VERSION );
-        delete test;
+
+    delete test;
+
+    if ( version == 1.0 && !( checkAccess( configfile, W_OK ) &&
+         KIO::NetAccess::del( KURL(configfile), 0 ) ) )
+    {
+        kdError(5500) << k_funcinfo << "Could not delete old config file!" << endl;
     }
-    else
-        delete test;
 }
 
 bool KNotesLegacy::convert( CalendarLocal *calendar )
@@ -83,57 +77,72 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
         QString file = noteDir.absFilePath( *note );
         KSimpleConfig* test = new KSimpleConfig( file, true );
         test->setGroup( "General" );
-        double version = test->readDoubleNumEntry( "version", 1 );
+        double version = test->readDoubleNumEntry( "version", 1.0 );
         delete test;
 
         if ( version < 3.0 )
         {
             // create the new note
             Journal *journal = new Journal();
+            bool success;
 
             if ( version < 2.0 )
-                convertKNotes1Config( journal, noteDir, *note );
+                success = convertKNotes1Config( journal, noteDir, *note );
             else
-                convertKNotes2Config( journal, noteDir, *note );
+                success = convertKNotes2Config( journal, noteDir, *note );
 
-            calendar->addJournal( journal );
-            converted = true;
+            // could not convert file => do not add a new note
+            if ( !success )
+                delete journal;
+            else
+            {
+                calendar->addJournal( journal );
+                converted = true;
+            }
         }
     }
 
     return converted;
 }
 
-void KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
+bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
         const QString& file )
 {
     QFile infile( noteDir.absFilePath( file ) );
-
     if ( !infile.open( IO_ReadOnly ) )
     {
-        kdError(5500) << k_funcinfo << "Could not open input file: " << infile.name() << endl;
-
-        // TODO: better return false and delete current journal, same in convertKNotes2Config
-        return;
+        kdError(5500) << k_funcinfo << "Could not open input file: \""
+                      << infile.name() << "\"" << endl;
+        return false;
     }
 
     QTextStream input( &infile );
 
-    // set the new configfile's name...
+    // get the name
+    journal->setSummary( input.readLine() );
+
+    QStringList props = QStringList::split( '+', input.readLine() );
+
+    // robustness
+    if ( props.count() != 13 )
+    {
+        kdWarning(5500) << k_funcinfo << "The file \"" << infile.name()
+                        << "\" lacks version information but is not a valid "
+                        << "KNotes 1 config file either!" << endl;
+        return false;
+    }
+
+    // the new configfile's name
     QString configFile = noteDir.absFilePath( journal->uid() );
 
     // set the defaults
     KIO::NetAccess::copy(
-        KURL( KGlobal::dirs()->findResource( "config", "knotesrc" ) ), KURL( configFile ), 0
+        KURL( KGlobal::dirs()->findResource( "config", "knotesrc" ) ),
+        KURL( configFile ),
+        0
     );
 
-    // get the name
-    journal->setSummary( input.readLine() );
-
-    // TODO: Needed? What about KConfig? This deletes everything else?
-    //       Test with a config file that contains a value not set here!
     KSimpleConfig config( configFile );
-
     config.setGroup( "General" );
     config.writeEntry( "version", KNOTES_VERSION );
 
@@ -144,22 +153,8 @@ void KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     config.setGroup( "Display" );
 
     // get the geometry
-    QString geo = input.readLine();
-
-    int pos, data[13];
-    int n = 0;
-
-    while ( (pos = geo.find('+')) != -1 )
-    {
-        if( n < 13 )
-            data[n++] = geo.left(pos).toInt();
-        geo.remove( 0, pos + 1 );
-    }
-    if ( n < 13 )
-        data[n++] = geo.toInt();
-
-    config.writeEntry( "width", data[3] );
-    config.writeEntry( "height", data[4] );
+    config.writeEntry( "width", props[3] );
+    config.writeEntry( "height", props[4] );
 
     // get the background color
     uint red = input.readLine().toUInt();
@@ -204,20 +199,16 @@ void KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     // hidden
     bool hidden = ( input.readLine().toUInt() == 1 );
 
-    int note_desktop = data[0];
+    int note_desktop = props[0].toUInt();
     if ( hidden )
         note_desktop = 0;
-    else if ( data[11] == 1 )
+    else if ( props[11].toUInt() == 1 )
         note_desktop = NETWinInfo::OnAllDesktops;
 
     config.writeEntry( "desktop", note_desktop );
+    config.writeEntry( "position", QPoint( props[1].toUInt(), props[2].toUInt() ) );
 
-    if ( data[1] >= 0 && data[2] >= 0 )   // just to be sure...
-        config.writeEntry( "position", QPoint( data[1], data[2] ) );
-    else
-        config.writeEntry( "position", QPoint( 10, 10 ) );
-
-    if ( data[12] & 2048 )
+    if ( props[12].toUInt() & 2048 )
         config.writeEntry( "state", NET::SkipTaskbar | NET::StaysOnTop );
     else
         config.writeEntry( "state", NET::SkipTaskbar );
@@ -236,23 +227,31 @@ void KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     journal->setDescription( text );
     journal->addAttachment( new Attachment( configFile, CONFIG_MIME ) );
 
-    infile.close();
-    infile.remove();        // TODO: success?
+    if ( !infile.remove() )
+        kdWarning(5500) << k_funcinfo << "Could not delete input file: \"" << infile.name() << "\"" << endl;
+
+    return true;
 }
 
-void KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
+bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
         const QString& file )
 {
-    // new name for config file
-    noteDir.rename( file, journal->uid() );
     QString configFile = noteDir.absFilePath( journal->uid() );
+
+    // new name for config file
+    if ( !noteDir.rename( file, journal->uid() ) )
+    {
+        kdError(5500) << k_funcinfo << "Could not rename input file: \""
+                      << noteDir.absFilePath( file ) << "\" to \""
+                      << configFile << "\"!" << endl;
+        return false;
+    }
 
     // update the config
     KConfig config( configFile );
     config.setGroup( "Data" );
     journal->setSummary( config.readEntry( "name" ) );
-    config.deleteEntry( "name" );
-    config.deleteGroup( "Data", false );
+    config.deleteGroup( "Data", true );
     config.setGroup( "General" );
     config.writeEntry( "version", KNOTES_VERSION );
 
@@ -263,11 +262,12 @@ void KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
         QTextStream input( &infile );
         input.setEncoding( QTextStream::UnicodeUTF8 );
         journal->setDescription( input.read() );
-        infile.close();
-        infile.remove();    // TODO: success?
+        if ( !infile.remove() )
+            kdWarning(5500) << k_funcinfo << "Could not delete data file: \"" << infile.name() << "\"" << endl;
     }
     else
-        kdError(5500) << k_funcinfo << "Could not open input file: " << infile.name() << endl;
+        kdWarning(5500) << k_funcinfo << "Could not open data file: \"" << infile.name() << "\"" << endl;
 
     journal->addAttachment( new Attachment( configFile, CONFIG_MIME ) );
+    return true;
 }
