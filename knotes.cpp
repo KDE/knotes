@@ -1009,7 +1009,7 @@ bool KPostit::loadnotes(){
 
 }
 
-bool KPostit::insertFile(char* filename){
+bool KPostit::insertFile(const char* filename){
 
 
   QFile file(filename);

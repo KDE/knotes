@@ -193,7 +193,7 @@ public slots:
   void  insertDate();
   void  toggleshow();
   void  insertNetFile( const char *_url);
-  bool  insertFile(char* filename);
+  bool  insertFile(const char* filename);
   void  slotDropEvent( KDNDDropZone * _dropZone );
   void  slotKFMFinished();
   void  close();
