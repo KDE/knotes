@@ -321,7 +321,7 @@ void KNote::slotKill()
     if ( !m_noteDir.remove( "." + m_configFile + "_data" ) )
         kdWarning() << "could not remove data file for note " << m_label->text() << endl;
 
-    close( true );
+    delete this;
 }
 
 void KNote::slotInsDate()
