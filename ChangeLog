@@ -5,6 +5,7 @@ ChangeLog for KNotes
 
     * fixed #85973: respect newlines when switching from plain text to
       rich text
+    * fixed #87266 by making sure that at least 10 pixels of a note are visible
 
 2004/05/02  Michael Brade <brade@kde.org>
 

@@ -224,9 +224,12 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
         m_keepBelow->setChecked( false );
     }
 
-    // let KWin do the placement if the position is illegal
+    // let KWin do the placement if the position is illegal--at least 10 pixels
+    // of a note need to be visible
     const QPoint& position = m_config->position();
-    if ( kapp->desktop()->rect().intersects( QRect( position, QSize( width, height ) ) ) )
+    QRect desk = kapp->desktop()->rect();
+    desk.addCoords( 10, 10, -10, -10 );
+    if ( desk.intersects( QRect( position, QSize( width, height ) ) ) )
         move( position );           // do before calling show() to avoid flicker
 
     // read configuration settings...
