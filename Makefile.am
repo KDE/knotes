@@ -43,6 +43,8 @@ uidir           = $(kde_datadir)/knotes
 service_DATA    = local.desktop
 servicedir      = $(kde_servicesdir)/kresources/knotes
 
+KDE_OPTIONS = nofinal
+
 messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/knotes.pot
 
