@@ -1,5 +1,12 @@
 # $Id$
 
+# this variables are needed for rpath support
+kde_libraries = @kde_libraries@
+qt_libraries = @qt_libraries@
+top_builddir = ..
+LIBTOOL = @LIBTOOL@
+KDE_RPATH = @KDE_RPATH@
+
 prefix  = @prefix@
 BINDIR  = $(prefix)/bin
 LIBDIR  = $(prefix)/lib
@@ -52,7 +59,7 @@ Makefile: Makefile.in
 	cd .. && CONFIG_FILES=knotes/$@ CONFIG_HEADERS= $(SHELL) ./config.status
 
 $(TARGET): $(SOURCES) $(SRCMETA) $(OBJECTS) $(HEADER)
-	$(CXX) $(OBJECTS) -o $(TARGET) $(LDFLAGS)
+	$(LIBTOOL) --mode=link $(CXX) $(OBJECTS) -o $(TARGET) $(LDFLAGS) $(KDE_RPATH)
 
 depend:
 	@makedepend -I$(INCDIR) $(SOURCES) 2> /dev/null
