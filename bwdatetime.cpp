@@ -26,11 +26,13 @@
  qtremind - an X windows appoint reminder program.
  Copyright (C) 1997  Tom Daley
 
+ (klocale->translate stuff added by didier Belot <dib@avo.fr>)
 
 */
 
 
 #include <bwdatetime.h>
+#include <kapp.h>
 
 
 BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name) 
@@ -39,20 +41,20 @@ BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
    date_notvalid = FALSE;
    time_notvalid = FALSE;
 
-   daylabel = new QLabel("Day:",this);
+   daylabel = new QLabel(klocale->translate("Day:"),this);
    daylabel->setGeometry(10,10,40,25);
 
    day= new QtedSetInt(1, 31,  qdt.date().day(),QtedSetInt::RightJustified, this);
    day->setGeometry(50, 15, day->width(), day->height());
 
-   monthlabel = new QLabel("Month:",this);
+   monthlabel = new QLabel(klocale->translate("Month:"),this);
    monthlabel->setGeometry(90,10,60,25);
 
    month = new QtedSetInt(1, 12,  qdt.date().month(),
 			  QtedSetInt::RightJustified, this);
    month->setGeometry(140, 15, month->width(), month->height());
 
-   yearlabel = new QLabel("Year:",this);
+   yearlabel = new QLabel(klocale->translate("Year:"),this);
    yearlabel->setGeometry(180,10,60,25);
 
    year  = new QtedSetInt(1, 3000,qdt.date().year(), 	
@@ -67,7 +69,7 @@ BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
    if (myhour == 0)
      myhour = 12;
 
-   timelabel = new QLabel("Time:",this);
+   timelabel = new QLabel(klocale->translate("Time:"),this);
    timelabel->setGeometry(10,50,40,25);
    hour  = new QtedSetInt(1, 12  ,myhour, 	
 			  QtedSetInt::RightJustified, this);
@@ -153,7 +155,9 @@ bool BWDateTime::checkDateTime(){
     rtime.setHMS(myhour,minute->value(),0);
   }
   else{
-    QMessageBox::message("Sorry","The Time you selected is invalid","OK");
+    QMessageBox::message(klocale->translate("Sorry"),
+			klocale->translate("The Time you selected is invalid"),
+			klocale->translate("OK"));
     time_notvalid = TRUE;
     return FALSE;
 
@@ -163,7 +167,9 @@ bool BWDateTime::checkDateTime(){
     rdate.setYMD(year->value(),month->value(),day->value());
   }
   else{
-    QMessageBox::message("Sorry","The Date you selected is invalid","OK");
+    QMessageBox::message(klocale->translate("Sorry"),
+			klocale->translate("The Date you selected is invalid"),
+			klocale->translate("OK"));
     date_notvalid = TRUE;
     return FALSE;
   }

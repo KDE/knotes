@@ -90,6 +90,9 @@ uninstall:
 	rm -f $(DOCSDIR)/knotes.html
 	rm -f $(APPSDIR)/knotes.kdelnk
 
+messages:
+	@XGETTEXT@ -C -ktranslate -x../../kdelibs/po/kde.pot *.cpp
+
 ####### Explicit dependencies
 
 

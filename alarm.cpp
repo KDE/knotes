@@ -23,6 +23,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
+ (klocale->translate stuff added by didier Belot <dib@avo.fr>)
+
  */
 
 
@@ -53,7 +55,7 @@ AlarmDlg::AlarmDlg(KPostit *parent, const char *name)
     this->setFocusPolicy(QWidget::StrongFocus);
 
     QString str;
-    str.sprintf("Alarm Timer for: %s",postit->name.data());
+    str.sprintf(klocale->translate("Alarm Timer for: %s"),postit->name.data());
 
     frame1 = new QGroupBox(str.data(), this, "frame1");
     
@@ -67,13 +69,13 @@ AlarmDlg::AlarmDlg(KPostit *parent, const char *name)
     spins->move(10,20);
     
     if(alarm_is_on)
-      ok = new QPushButton("Unset", this, "mail");
+      ok = new QPushButton(klocale->translate("Unset"), this, "mail");
     else
-      ok = new QPushButton("Set", this, "mail");
+      ok = new QPushButton(klocale->translate("Set"), this, "mail");
 
     connect(ok, SIGNAL(clicked()), this, SLOT(ok_slot()));
 
-    cancel = new QPushButton("Cancel", this, "cancel");
+    cancel = new QPushButton(klocale->translate("Cancel"), this, "cancel");
     connect(cancel, SIGNAL(clicked()), this, SLOT(cancel_slot()));
 
     setFixedSize(330, 160);
@@ -145,8 +147,9 @@ bool AlarmDlg::checkDateTime(){
   
   if( rdt < QDateTime::currentDateTime()){
 
-    QMessageBox::message("Sorry",
-			 "I am afraid you already missed your appointment.","OK");
+    QMessageBox::message(klocale->translate("Sorry"),
+			 klocale->translate("I am afraid you already missed your appointment."),
+			 klocale->translate("OK"));
     return FALSE;
   }
 

@@ -23,6 +23,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
+ (klocale->translate stuff added by didier Belot <dib@avo.fr>)
+
  */
 
 
@@ -40,16 +42,16 @@ FontDlg::FontDlg(QWidget *parent=0, const char *name=0,
 
   box = new QGroupBox(this, "box");
   box->setGeometry(10,10,320,260);
-  box->setTitle("Set Default Font");
+  box->setTitle(klocale->translate("Set Default Font"));
 
   button = new QPushButton(this);
   button->setGeometry(235,225,80,25);
-  button->setText("Change");
+  button->setText(klocale->translate("Change"));
   connect(button,SIGNAL(clicked()),this,SLOT(setFont()));
 
   familylabel = new QLabel(this);
   familylabel->setGeometry(20,65,135,25);
-  familylabel->setText("Family:");
+  familylabel->setText(klocale->translate("Family:"));
 
   familylabeldisp = new QLabel(this);
   familylabeldisp->setGeometry(130,65,150,25);	
@@ -59,7 +61,7 @@ FontDlg::FontDlg(QWidget *parent=0, const char *name=0,
 
   sizelabel = new QLabel(this);
   sizelabel->setGeometry(20,105,100,25);
-  sizelabel->setText("Point Size:");
+  sizelabel->setText(klocale->translate("Point Size:"));
 
   sizelabeldisp = new QLabel(this);
   sizelabeldisp->setGeometry(130,105,60,25);	
@@ -70,27 +72,27 @@ FontDlg::FontDlg(QWidget *parent=0, const char *name=0,
 
   stylelabel = new QLabel(this);
   stylelabel->setGeometry(20,140,80,25);
-  stylelabel->setText("Style:");
+  stylelabel->setText(klocale->translate("Style:"));
 
   stylelabeldisp = new QLabel(this);
   stylelabeldisp->setGeometry(130,145,80,23);
   stylelabeldisp->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
   if(defst->font.italic())
-    stylelabeldisp->setText("Italic");
+    stylelabeldisp->setText(klocale->translate("Italic"));
   else
-    stylelabeldisp->setText("Roman");
+    stylelabeldisp->setText(klocale->translate("Roman"));
 
   weightlabel = new QLabel(this);
   weightlabel->setGeometry(20,180,80,25);
-  weightlabel->setText("Weight:");
+  weightlabel->setText(klocale->translate("Weight:"));
 
   weightlabeldisp = new QLabel(this);
   weightlabeldisp->setGeometry(130,185,80,23);
   weightlabeldisp->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
   if(defst->font.bold())
-    weightlabeldisp->setText("Bold");
+    weightlabeldisp->setText(klocale->translate("Bold"));
   else
-    weightlabeldisp->setText("Normal");
+    weightlabeldisp->setText(klocale->translate("Normal"));
 
   connect(parent,SIGNAL(applyButtonPressed()),SLOT(okButton()));
 
@@ -121,14 +123,14 @@ void FontDlg::setFont(){
   familylabeldisp->setText(defst->font.family());
 
   if(defst->font.bold())
-    weightlabeldisp->setText("Bold");
+    weightlabeldisp->setText(klocale->translate("Bold"));
   else
-    weightlabeldisp->setText("Normal");
+    weightlabeldisp->setText(klocale->translate("Normal"));
 
   if(defst->font.italic())
-    stylelabeldisp->setText("Italic");
+    stylelabeldisp->setText(klocale->translate("Italic"));
   else
-    stylelabeldisp->setText("Roman");
+    stylelabeldisp->setText(klocale->translate("Roman"));
 
   QString size;
   size.setNum(defst->font.pointSize());

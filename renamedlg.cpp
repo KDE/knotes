@@ -22,9 +22,12 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
+ (klocale->translate stuff added by didier Belot <dib@avo.fr>)
+ 
  */
 
 #include "renamedlg.h"
+#include <kapp.h>
 
 RenameDlg::RenameDlg( QWidget *parent, const char *name,
 		      QString *string,QStrList *list)
@@ -33,13 +36,13 @@ RenameDlg::RenameDlg( QWidget *parent, const char *name,
     pstring = string;
     pstrlist = list;
     
-    frame = new QGroupBox( "Rename this note to", this );
+    frame = new QGroupBox( klocale->translate("Rename this note to"), this );
     lineNum = new QLineEdit( this );
     this->setFocusPolicy( QWidget::StrongFocus );
     connect(lineNum, SIGNAL(returnPressed()), this, SLOT(selected()));
     
-    ok = new QPushButton("Rename", this );
-    cancel = new QPushButton("Cancel", this ); 
+    ok = new QPushButton(klocale->translate("Rename"), this );
+    cancel = new QPushButton(klocale->translate("Cancel"), this ); 
     
     connect(cancel, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ok, SIGNAL(clicked()), this, SLOT(selected()));
@@ -69,17 +72,20 @@ void RenameDlg::selected(){
     reject();
   if(*pstring == QString("xyalarms")){
 
-    QMessageBox::message("Sorry",
-			 "The name \"xyalarms\" is reserved for internal usage.\n"\
-			   "Please choose a different name","OK");
+    QMessageBox::message(klocale->translate("Sorry"),
+			 klocale->translate("The name \"xyalarms\" is reserved for internal usage.\n"\
+			   "Please choose a different name"),
+			 klocale->translate("OK"));
       return;	
 
   }
   
   for(pstrlist->first();pstrlist->current();pstrlist->next()){
     if(QString(pstrlist->current()) == *pstring){
-      QMessageBox::message("Sorry","A KNotes note with this name already exists\n"\
-			   "Please choose a different name","OK");
+      QMessageBox::message(klocale->translate("Sorry"),
+      			klocale->translate("A KNotes note with this name already exists\n"\
+			   "Please choose a different name"),
+			klocale->translate("OK"));
       return;	
     }
   }
