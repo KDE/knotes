@@ -124,12 +124,12 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     connect( m_toDesktop->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(slotUpdateDesktopActions()) );
 
     // create the note header, button and label...
-    m_button = new KNoteButton( "knotes_close", this );
-    connect( m_button, SIGNAL(clicked()), this, SLOT(slotClose()) );
-
     m_label = new QLabel( this );
     m_label->installEventFilter( this );  // receive events (for dragging & action menu)
     setName( m_journal->summary() );      // don't worry, no signals are connected at this stage yet
+
+    m_button = new KNoteButton( "knotes_close", this );
+    connect( m_button, SIGNAL(clicked()), this, SLOT(slotClose()) );
 
     // create the note editor
     m_editor = new KNoteEdit( this );
@@ -146,6 +146,23 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     m_menu = static_cast<KPopupMenu*>(factory.container( "note_context", this ));
     m_edit_menu = static_cast<KPopupMenu*>(factory.container( "note_edit", this ));
     m_tool = static_cast<KToolBar*>(factory.container( "note_tool", this ));
+    m_tool->setIconSize( 10 );
+    m_tool->setFixedHeight( 16 );
+
+    // if there was just a way of making KComboBox adhere the toolbar height...
+    QObjectList *list = m_tool->queryList( "KComboBox" );
+    QObjectListIt it( *list );
+    while ( it.current() != 0 )
+    {
+        KComboBox *combo = (KComboBox *)it.current();
+        QFont font = combo->font();
+        font.setPointSize( 7 );
+        combo->setFont( font );
+        combo->setFixedHeight( 14 );
+        ++it;
+    }
+    delete list;
+
     m_tool->hide();
 
     setFocusProxy( m_editor );
@@ -743,7 +760,6 @@ void KNote::updateLayout()
     // So we have to write our own layout manager...
 
     const int headerHeight = m_label->sizeHint().height();
-    const int toolHeight = m_tool->isHidden() ? 0 : 16;
     const int margin = m_editor->margin();
     static const int border = 2;
     bool closeLeft = false;
@@ -770,34 +786,18 @@ void KNote::updateLayout()
         contentsRect().x(),
         contentsRect().y() + headerHeight + border,
         contentsRect().width(),
-        contentsRect().height() - headerHeight - toolHeight - border*2
+        contentsRect().height() - headerHeight -
+                (m_tool->isHidden() ? 0 : m_tool->height()) - border*2
     );
 
     m_tool->setGeometry(
-        contentsRect().x(),
-        contentsRect().height() - 16,
-        contentsRect().width(),
-        16
+        contentsRect().x(), contentsRect().height() - m_tool->height(),
+        contentsRect().width(), m_tool->height()
     );
-    m_tool->setIconSize( 10 );
-
-    // if there was just a way of making KComboBox adhere the toolbar height...
-    QObjectList *list = m_tool->queryList( "KComboBox" );
-    QObjectListIt it( *list );
-    while ( it.current() != 0 && toolHeight )
-    {
-        KComboBox *combo = (KComboBox *)it.current();
-        QFont font = combo->font();
-        font.setPointSize( 7 );
-        combo->setFont( font );
-        combo->setFixedHeight( m_tool->height() - 2 );
-        ++it;
-    }
-    delete list;
 
     setMinimumSize(
         m_editor->cornerWidget()->width() + margin*2 + border*2,
-        headerHeight + toolHeight +
+        headerHeight + (m_tool->isHidden() ? 0 : m_tool->height()) +
                 m_editor->cornerWidget()->height() + margin*2 + border*2
     );
 
