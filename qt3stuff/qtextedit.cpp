@@ -1454,7 +1454,7 @@ void QTextEdit::drawCursor( bool visible )
     if ( !cursor->nestedDepth() ) {
 	int h = cursor->parag()->lineHeightOfChar( cursor->index() );
 	int dist = 5;
-	if ( ( cursor->parag()->alignment() & Qt::AlignJustify ) == Qt::AlignJustify )
+	if ( ( cursor->parag()->alignment() & Qt3::AlignJustify ) == Qt3::AlignJustify )
 	    dist = 50;
 	int x = r.x() - cursor->totalOffsetX() + cursor->x() - dist;
 	x = QMAX( x, 0 );

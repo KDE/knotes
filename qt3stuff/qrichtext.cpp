@@ -3847,7 +3847,7 @@ void QTextParag::paint( QPainter &painter, const QColorGroup &cg, QTextCursor *c
 	    if ( !chr->rightToLeft &&
 		 chr->c.isSpace() &&
 		 i > 0 &&
-		 ( alignment() & Qt::AlignJustify ) == Qt::AlignJustify )
+		 ( alignment() & Qt3::AlignJustify ) == Qt3::AlignJustify )
 		curx = at( i - 1 )->x + str->width( i - 1 );
 	    if ( chr->rightToLeft )
 		curx += cw;
