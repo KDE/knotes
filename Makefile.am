@@ -52,4 +52,4 @@ KDE_OPTIONS = nofinal
 messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/knotes.pot
 
-include ../admin/Doxyfile.am
+include $(top_srcdir)/doc/api/Doxyfile.am
