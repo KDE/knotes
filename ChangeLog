@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2005/02/21  Michael Brade <brade@kde.org>
+
+    * fixed #93001: strikeout text now actually works for multiple paragraphs
+	   as well.
+
 2005/02/05  Michael Brade <brade@kde.org>
 
     * fixed crash when deleting a note

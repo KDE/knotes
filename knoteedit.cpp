@@ -235,20 +235,31 @@ void KNoteEdit::textStrikeOut( bool s )
     }
     else
     {
-        int pFrom, pTo, iFrom, iTo;
+        int pFrom, pTo, iFrom, iTo, iF, iT;
         int cp, ci;
 
         getSelection( &pFrom, &iFrom, &pTo, &iTo );
         getCursorPosition( &cp, &ci );
 
         for ( int p = pFrom; p <= pTo; p++ )
-            for ( int i = iFrom; i < iTo; i++ )
         {
-            setCursorPosition( p, i + 1 );
-            setSelection( p, i, p, i + 1 );
-            font = currentFont();
-            font.setStrikeOut( s );
-            setCurrentFont( font );
+            iF = 0;
+            iT = paragraphLength( p );
+
+            if ( p == pFrom )
+                iF = iFrom;
+
+            if ( p == pTo )
+                iT = iTo;
+
+            for ( int i = iF; i < iT; i++ )
+            {
+                setCursorPosition( p, i + 1 );
+                setSelection( p, i, p, i + 1 );
+                font = currentFont();
+                font.setStrikeOut( s );
+                setCurrentFont( font );
+            }
         }
 
         setSelection( pFrom, iFrom, pTo, iTo );
