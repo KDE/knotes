@@ -2,7 +2,7 @@
  This file is part of KNotes.
 
  Copyright (c) 2004, Bo Thorsen <bo@sonofthor.dk>
-               2004, Michael Brade <brade@kde.org>
+               2004, 2005, Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -92,4 +92,27 @@ bool ResourceLocal::deleteNote( KCal::Journal* journal )
 {
     mCalendar.deleteJournal( journal );
     return true;
+}
+
+KCal::Alarm::List ResourceLocal::alarms( const QDateTime& from, const QDateTime& to )
+{
+    KCal::Alarm::List alarms;
+    KCal::Journal::List notes = mCalendar.journals();
+    KCal::Journal::List::ConstIterator note;
+    for ( note = notes.begin(); note != notes.end(); ++note )
+    {
+        QDateTime preTime = from.addSecs( -1 );
+        KCal::Alarm::List::ConstIterator it;
+        for( it = (*note)->alarms().begin(); it != (*note)->alarms().end(); ++it )
+        {
+            if ( (*it)->enabled() )
+            {
+                QDateTime dt = (*it)->nextRepetition( preTime );
+                if ( dt.isValid() && dt <= to )
+                    alarms.append( *it );
+            }
+        }
+    }
+
+    return alarms;
 }

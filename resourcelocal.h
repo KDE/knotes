@@ -34,6 +34,7 @@
 #define RESOURCELOCAL_H
 
 #include "resourcenotes.h"
+
 #include <libkcal/calendarlocal.h>
 
 
@@ -55,6 +56,8 @@ public:
 
     virtual bool addNote( KCal::Journal* );
     virtual bool deleteNote( KCal::Journal* );
+
+    virtual KCal::Alarm::List alarms( const QDateTime& from, const QDateTime& to );
 
 protected:
     KCal::CalendarLocal mCalendar;
