@@ -1644,11 +1644,11 @@ void findPostitFiles(){
   QDir d(filesdir);
   d.setSorting( QDir::Name );
 
-  const QStrList *list = d.entryList();
-  QStrListIterator it( *list );      // create list iterator
-  char *fi;                          // pointer for traversing
+  QStringList list = d.entryList();
+  QStrListIterator it = list.begin(); // create list iterator
+  char *fi;                           // pointer for traversing
 
-  while ( (fi=it.current()) ) {           // for each file...
+  while ( (fi=*it) ) {           // for each file...
     if (strcmp(".",fi) ==0 || strcmp("..",fi) ==0 ||strcmp("xyalarms",fi) ==0){
       ++it;
       continue;
