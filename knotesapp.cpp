@@ -25,6 +25,7 @@
 #include <kdebug.h>
 #include <kaction.h>
 #include <kxmlguifactory.h>
+#include <ksystemtray.h>
 #include <klocale.h>
 #include <kiconloader.h>
 #include <kstandarddirs.h>
@@ -67,7 +68,7 @@ KNotesApp::KNotesApp()
     // create the dock widget...
     KWin::setSystemTrayWindowFor( winId(), qt_xrootwin() );
     setBackgroundMode( X11ParentRelative );
-    setPixmap( SmallIcon( "knotes" ) );
+    setPixmap( KSystemTray::loadIcon( "knotes" ) );
 
     // create the GUI...
     new KAction( i18n("New Note"), "filenew", 0, 
