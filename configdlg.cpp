@@ -126,7 +126,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
   connect( check1, SIGNAL( toggled( bool ) ), SLOT( frame3d_slot( bool ) ) );
 
   check2 = new QCheckBox( klocale->translate("Auto Indent"), gbox );
-  check2->setGeometry( 10, 35, 100, 25 );
+  check2->setGeometry( 10, 35, 130, 25 );
   check2->setChecked( defst->autoindent );
   connect( check2, SIGNAL( toggled( bool ) ), SLOT( indent_slot( bool ) ) );
 
