@@ -813,9 +813,11 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
         {
             QFocusEvent *fe = static_cast<QFocusEvent *>(ev);
             if ( fe->reason() != QFocusEvent::Popup && fe->reason() != QFocusEvent::Mouse )
+            {
                 updateFocus();
-            if ( m_editor->isModified() )
-                saveData();
+                if ( m_editor->isModified() )
+                    saveData();
+            }
         }
         else if ( ev->type() == QEvent::FocusIn )
             updateFocus();
@@ -825,12 +827,13 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
 
     if ( o == m_editor->viewport() )
     {
-        if ( ev->type() == QEvent::MouseButtonPress )
-            if ( m_edit_menu && ((QMouseEvent*)ev)->button() == RightButton )
-            {
-                m_edit_menu->popup( QCursor::pos() );
-                return true;
-            }
+        if ( m_edit_menu &&
+             ev->type() == QEvent::MouseButtonPress &&
+             ((QMouseEvent*)ev)->button() == RightButton )
+        {
+            m_edit_menu->popup( QCursor::pos() );
+            return true;
+        }
     }
 
     return false;
