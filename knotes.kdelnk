@@ -5,13 +5,8 @@ Icon=knotes.xpm
 DocPath=knotes/knotes.html
 Terminal=0
 Type=Application
-<<<<<<< knotes.kdelnk
 Comment=You can write small notes with this
 Comment[de]=Zum Schreiben kurzer Notizen
-Name=Notes
 Name[de]=Notizzettel     
-
-=======
 Name=KNotes
-Comment[pl]=Edytor któtkich notatek.
->>>>>>> 1.3
+Comment[pl]=Edytor któtkich notatek
