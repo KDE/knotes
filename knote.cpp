@@ -466,7 +466,7 @@ void KNote::slotPrint()
     KPrinter printer;
     printer.setFullPage( true );
 
-    if ( printer.setup() )
+    if ( printer.setup(0L, i18n("Print %1").arg(name())) )
     {
         KSimpleConfig config( m_configFile, true );
         config.setGroup( "Editor" );
