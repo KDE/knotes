@@ -39,28 +39,152 @@
 #define QTEXTEDIT_H
 
 #ifndef QT_H
-#include "qlist.h"
-#include "qpixmap.h"
-#include "qcolor.h"
-#include "qtextview.h"
+#include "qt3stuff.h"
+//#include "qscrollview3.h"
+#include "qscrollview.h"
+#include "qstylesheet.h"
+#include "qpainter.h"
+#include "qvector.h"
+#include "qvaluelist.h"
 #endif // QT_H
 
-#ifndef QT_NO_TEXTEDIT
+class QFont;
+class QColor;
+class QPainter;
+class QKeyEvent;
+class QResizeEvent;
+class QMouseEvent;
+class QTimer;
+class QPopupMenu;
+class QTextEditPrivate;
+struct QUndoRedoInfoPrivate;
 
-// This class is out of the Qt3 namespace on purpose : it will make code
-// more easy to port to Qt 3. The other classes are inside Qt3 because otherwise
-// they would conflict with Qt 2.
-class Q_EXPORT QTextEdit : public Qt3::QTextView
+namespace Qt3 {
+
+    class QTextDocument;
+    class QTextCursor;
+    class QTextString;
+    class QTextCommand;
+    class QTextParag;
+    class QTextFormat;
+    class QTextString;
+
+};
+
+using namespace Qt3;
+
+class Q_EXPORT QTextEdit : public QScrollView
 {
     Q_OBJECT
+    Q_ENUMS( WordWrap WrapPolicy )
+    Q_PROPERTY( TextFormat textFormat READ textFormat WRITE setTextFormat )
+    Q_PROPERTY( QString text READ text WRITE setText )
+    Q_PROPERTY( QBrush paper READ paper WRITE setPaper )
+    Q_PROPERTY( bool linkUnderline READ linkUnderline WRITE setLinkUnderline )
+    Q_PROPERTY( QString documentTitle READ documentTitle )
+    Q_PROPERTY( int length READ length )
+    Q_PROPERTY( WordWrap wordWrap READ wordWrap WRITE setWordWrap )
+    Q_PROPERTY( int wrapColumnOrWidth READ wrapColumnOrWidth WRITE setWrapColumnOrWidth )
+    Q_PROPERTY( WrapPolicy wrapPolicy READ wrapPolicy WRITE setWrapPolicy )
+    Q_PROPERTY( bool hasSelectedText READ hasSelectedText )
+    Q_PROPERTY( QString selectedText READ selectedText )
     Q_PROPERTY( int undoDepth READ undoDepth WRITE setUndoDepth )
-    Q_PROPERTY( bool overWriteMode READ isOverwriteMode WRITE setOverwriteMode )
+    Q_PROPERTY( bool overwriteMode READ isOverwriteMode WRITE setOverwriteMode )
+    Q_PROPERTY( bool modified READ isModified WRITE setModified DESIGNABLE false )
+    Q_PROPERTY( bool readOnly READ isReadOnly WRITE setReadOnly )
 
 public:
-    QTextEdit(QWidget *parent = 0, const char *name = 0 );
-    ~QTextEdit();
+    enum WordWrap {
+        NoWrap,
+        WidgetWidth,
+        FixedPixelWidth,
+        FixedColumnWidth
+    };
 
-    void getCursorPosition( int &parag, int &index ) const;
+    enum WrapPolicy {
+        AtWhiteSpace,
+        Anywhere
+    };
+
+    enum KeyboardAction {
+        ActionBackspace,
+        ActionDelete,
+        ActionReturn,
+        ActionKill
+    };
+
+    enum CursorAction {
+        MoveBackward,
+        MoveForward,
+        MoveWordBackward,
+        MoveWordForward,
+        MoveUp,
+        MoveDown,
+        MoveLineStart,
+        MoveLineEnd,
+        MoveHome,
+        MoveEnd,
+        MovePgUp,
+        MovePgDown
+    };
+
+    enum VerticalAlignment {
+        AlignNormal,
+        AlignSuperScript,
+        AlignSubScript
+    };
+
+    QTextEdit( const QString& text, const QString& context = QString::null,
+               QWidget *parent=0, const char *name=0);
+    QTextEdit( QWidget *parent = 0, const char *name = 0 );
+    virtual ~QTextEdit();
+    void setPalette( const QPalette & );
+
+    QString text() const;
+    QString text( int para ) const;
+    TextFormat textFormat() const;
+    QString context() const;
+    QString documentTitle() const;
+
+    void getSelection( int *paraFrom, int *indexFrom,
+                    int *paraTo, int *indexTo, int selNum = 0 ) const;
+    virtual bool find( const QString &expr, bool cs, bool wo, bool forward = TRUE,
+                       int *para = 0, int *index = 0 );
+
+    int paragraphs() const;
+    int lines() const;
+    int linesOfParagraph( int para ) const;
+    int lineOfChar( int para, int chr );
+    int length() const;
+    QRect paragraphRect( int para ) const;
+    int paragraphAt( const QPoint &pos ) const;
+    int charAt( const QPoint &pos, int *para ) const;
+    int paragraphLength( int para ) const;
+
+    QStyleSheet* styleSheet() const;
+    QMimeSourceFactory* mimeSourceFactory() const;
+
+    QBrush paper() const;
+    bool linkUnderline() const;
+
+    int heightForWidth( int w ) const;
+
+    bool hasSelectedText() const;
+    QString selectedText() const;
+
+    WordWrap wordWrap() const;
+    int wrapColumnOrWidth() const;
+    WrapPolicy wrapPolicy() const;
+
+    int tabStopWidth() const;
+
+    QString anchorAt( const QPoint& pos );
+
+    QSize sizeHint() const;
+
+    bool isReadOnly() const { return readonly; }
+
+    void getCursorPosition( int *parag, int *index ) const;
     bool isModified() const;
     bool italic() const;
     bool bold() const;
@@ -70,18 +194,56 @@ public:
     QColor color() const;
     QFont font() const;
     int alignment() const;
-    bool isOverwriteMode() const;
     int undoDepth() const;
-    virtual void insert( const QString &text, bool indent = FALSE, bool checkNewLine = TRUE, bool removeSelected = TRUE );
-    virtual bool getFormat( int parag, int index, QFont &font, QColor &color );
+    virtual bool getFormat( int para, int index, QFont *font, QColor *color, VerticalAlignment *verticalAlignment );
+    virtual bool getParagraphFormat( int para, QFont *font, QColor *color,
+                                     VerticalAlignment *verticalAlignment, int *alignment,
+                                     QStyleSheetItem::DisplayMode *displayMode,
+                                     QStyleSheetItem::ListStyle *listStyle,
+                                     int *listDepth );
+    bool isOverwriteMode() const { return overWrite; }
+    QColor paragraphBackgroundColor( int para ) const;
+
+    bool eventFilter( QObject *o, QEvent *e );
 
 public slots:
-    virtual void setOverwriteMode( bool b );
+    void setEnabled( bool );
+    virtual void setMimeSourceFactory( QMimeSourceFactory* factory );
+    virtual void setStyleSheet( QStyleSheet* styleSheet );
+    virtual void scrollToAnchor( const QString& name );
+    virtual void setPaper( const QBrush& pap );
+    virtual void setLinkUnderline( bool );
+
+    virtual void setWordWrap( WordWrap mode );
+    virtual void setWrapColumnOrWidth( int );
+    virtual void setWrapPolicy( WrapPolicy policy );
+
+    virtual void copy();
+    virtual void append( const QString& text );
+
+    void setText( const QString &txt ) { setText( txt, QString::null ); }
+    virtual void setText( const QString &txt, const QString &context );
+    virtual void setTextFormat( TextFormat f );
+
+    virtual void selectAll();
+    virtual void selectAll( bool select );
+
+    virtual void setTabStopWidth( int ts );
+    virtual void zoomIn( int range );
+    virtual void zoomIn() { zoomIn( 1 ); }
+    virtual void zoomOut( int range );
+    virtual void zoomOut() { zoomOut( 1 ); }
+
+    virtual void sync();
+    virtual void setReadOnly( bool b );
+
     virtual void undo();
     virtual void redo();
     virtual void cut();
     virtual void paste();
+#ifndef QT_NO_CLIPBOARD
     virtual void pasteSubType( const QCString &subtype );
+#endif
     virtual void clear();
     virtual void del();
     virtual void indent();
@@ -92,289 +254,183 @@ public slots:
     virtual void setPointSize( int s );
     virtual void setColor( const QColor &c );
     virtual void setFont( const QFont &f );
+    virtual void setVerticalAlignment( VerticalAlignment a );
     virtual void setAlignment( int a );
-    virtual void setParagType( Qt3::QStyleSheetItem::DisplayMode dm, Qt3::QStyleSheetItem::ListStyle listStyle );
+    virtual void setParagType( QStyleSheetItem::DisplayMode dm, QStyleSheetItem::ListStyle listStyle );
     virtual void setCursorPosition( int parag, int index );
-    virtual void setSelection( int parag_from, int index_from, int parag_to, int index_to, int selNum = 0 );
+    virtual void setSelection( int parag_from, int index_from, int parag_to, int index_to );
+    virtual void setSelection( int parag_from, int index_from, int parag_to, int index_to, int selNum );
     virtual void setSelectionAttributes( int selNum, const QColor &back, bool invertText );
     virtual void setModified( bool m );
     virtual void resetFormat();
     virtual void setUndoDepth( int d );
+    virtual void setFormat( QTextFormat *f, int flags );
+    virtual void ensureCursorVisible();
+    virtual void placeCursor( const QPoint &pos );
+    virtual void placeCursor( const QPoint &pos, QTextCursor *c );
+    virtual void moveCursor( CursorAction action, bool select );
+    virtual void doKeyboardAction( KeyboardAction action );
     virtual void removeSelectedText();
+    virtual void removeSelectedText( int selNum );
+    virtual void removeSelection();
+    virtual void removeSelection( int selNum );
+    virtual void setCurrentFont( const QFont &f );
+    virtual void setOverwriteMode( bool b ) { overWrite = b; }
+
+    virtual void scrollToBottom();
+
+    virtual void insert( const QString &text );
+    virtual void insert( const QString &text, bool indent );
+    virtual void insert( const QString &text, bool indent, bool checkNewLine );
+    virtual void insert( const QString &text, bool indent, bool checkNewLine, bool removeSelected );
+
+    virtual void insertAt( const QString &text, int para, int index );
+    virtual void removeParagraph( int para );
+    virtual void insertParagraph( const QString &text, int para );
+
+    virtual void setParagraphBackgroundColor( int para, const QColor &bg );
+    virtual void clearParagraphBackground( int para );
 
 signals:
+    void textChanged();
+    void selectionChanged();
+    void copyAvailable( bool );
     void undoAvailable( bool yes );
     void redoAvailable( bool yes );
     void currentFontChanged( const QFont &f );
     void currentColorChanged( const QColor &c );
     void currentAlignmentChanged( int a );
-    void cursorPositionChanged( Qt3::QTextCursor *c );
+    void currentVerticalAlignmentChanged( VerticalAlignment a );
+    void cursorPositionChanged( QTextCursor *c );
     void returnPressed();
     void modificationChanged( bool m );
 
 protected:
-    enum KeyboardAction { // keep in sync with QTextView
-	ActionBackspace,
-	ActionDelete,
-	ActionReturn,
-	ActionKill
-    };
+    void repaintChanged();
+    void updateStyles();
+    void drawContents( QPainter *p, int cx, int cy, int cw, int ch );
+    bool event( QEvent *e );
+    void keyPressEvent( QKeyEvent *e );
+    void resizeEvent( QResizeEvent *e );
+    void viewportResizeEvent( QResizeEvent* );
+    void contentsMousePressEvent( QMouseEvent *e );
+    void contentsMouseMoveEvent( QMouseEvent *e );
+    void contentsMouseReleaseEvent( QMouseEvent *e );
+    void contentsMouseDoubleClickEvent( QMouseEvent *e );
+    void contentsWheelEvent( QWheelEvent *e );
+// QT2HACK
+#if 0
+    void imStartEvent( QIMEvent * );
+    void imComposeEvent( QIMEvent * );
+    void imEndEvent( QIMEvent * );
+#endif
+#ifndef QT_NO_DRAGANDDROP
+    void contentsDragEnterEvent( QDragEnterEvent *e );
+    void contentsDragMoveEvent( QDragMoveEvent *e );
+    void contentsDragLeaveEvent( QDragLeaveEvent *e );
+    void contentsDropEvent( QDropEvent *e );
+#endif
+// QT2HACK
+//    void contentsContextMenuEvent( QContextMenuEvent *e );
+    bool focusNextPrevChild( bool next );
+    QTextDocument *document() const;
+    QTextCursor *textCursor() const;
+    void setDocument( QTextDocument *doc );
+    virtual QPopupMenu *createPopupMenu();
+    void drawCursor( bool visible );
 
-    enum MoveDirection { // keep in sync with QTextView
-	MoveLeft,
-	MoveRight,
-	MoveUp,
-	MoveDown,
-	MoveHome,
-	MoveEnd,
-	MovePgUp,
-	MovePgDown
-    };
+    void windowActivationChange( bool );
 
-    void setFormat( Qt3::QTextFormat *f, int flags );
-    void ensureCursorVisible();
-    void placeCursor( const QPoint &pos, Qt3::QTextCursor *c = 0 );
-    void moveCursor( MoveDirection direction, bool shift, bool control );
-    void moveCursor( MoveDirection direction, bool control );
-    void doKeyboardAction( KeyboardAction action );
-    Qt3::QTextCursor *textCursor() const;
+protected slots:
+    virtual void doChangeInterval();
+
+private slots:
+    void formatMore();
+    void doResize();
+    void doAutoScroll();
+    void blinkCursor();
+    void setModified();
+    void startDrag();
+    void documentWidthChanged( int w );
 
 private:
-    bool isReadOnly() const { return FALSE; }
-    void emitUndoAvailable( bool b ) { emit undoAvailable( b ); }
-    void emitRedoAvailable( bool b ) { emit redoAvailable( b ); }
-    void emitCurrentFontChanged( const QFont &f ) { emit currentFontChanged( f ); }
-    void emitCurrentColorChanged( const QColor &c ) { emit currentColorChanged( c ); }
-    void emitCurrentAlignmentChanged( int a ) { emit currentAlignmentChanged( a ); }
-    void emitCursorPositionChanged( Qt3::QTextCursor *c ) { emit cursorPositionChanged( c ); }
-    void emitReturnPressed() { emit returnPressed(); }
-    void emitModificationChanged( bool m ) { emit modificationChanged( m ); }
+    struct Q_EXPORT UndoRedoInfo {
+        enum Type { Invalid, Insert, Delete, Backspace, Return, RemoveSelected, Format, Alignment, ParagType };
 
-private:	// Disabled copy constructor and operator=
-#if defined(Q_DISABLE_COPY)
-    QTextEdit( const QTextEdit & );
-    QTextEdit& operator=( const QTextEdit & );
+        UndoRedoInfo( QTextDocument *dc );
+        ~UndoRedoInfo();
+        void clear();
+        bool valid() const;
+
+        QUndoRedoInfoPrivate *d;
+        int id;
+        int index;
+        int eid;
+        int eindex;
+        QTextFormat *format;
+        int flags;
+        Type type;
+        QTextDocument *doc;
+        QMemArray<int> oldAligns;
+        int newAlign;
+        bool list;
+        QStyleSheetItem::ListStyle listStyle;
+        QValueList< QPtrVector<QStyleSheetItem> > oldStyles;
+        QValueList<QStyleSheetItem::ListStyle> oldListStyles;
+    };
+
+private:
+    virtual bool linksEnabled() const { return FALSE; }
+    void init();
+    void checkUndoRedoInfo( UndoRedoInfo::Type t );
+    void updateCurrentFormat();
+    bool handleReadOnlyKeyEvent( QKeyEvent *e );
+    void makeParagVisible( QTextParag *p );
+#ifndef QT_NO_MIME
+    QCString pickSpecial(QMimeSource* ms, bool always_ask, const QPoint&);
 #endif
+#ifndef QT_NO_MIMECLIPBOARD
+    void pasteSpecial(const QPoint&);
+#endif
+    void setFontInternal( const QFont &f );
+
+    virtual void emitHighlighted( const QString & ) {}
+    virtual void emitLinkClicked( const QString & ) {}
+
+    void readFormats( QTextCursor &c1, QTextCursor &c2, int oldLen, QTextString &text, bool fillStyles = FALSE );
+    void clearUndoRedo();
+    void paintDocument( bool drawAll, QPainter *p, int cx = -1, int cy = -1, int cw = -1, int ch = -1 );
+    void moveCursor( CursorAction action );
+
+private:
+    QTextDocument *doc;
+    QTextCursor *cursor;
+    bool mousePressed;
+    QTimer *formatTimer, *scrollTimer, *changeIntervalTimer, *blinkTimer, *dragStartTimer;
+    QTextParag *lastFormatted;
+    int interval;
+    UndoRedoInfo undoRedoInfo;
+    QTextFormat *currentFormat;
+    int currentAlignment;
+    bool inDoubleClick;
+    QPoint oldMousePos, mousePos;
+    bool cursorVisible, blinkCursorVisible;
+    bool readOnly, modified, mightStartDrag;
+    QPoint dragStartPos;
+    QString onLink;
+    bool overWrite;
+    WordWrap wrapMode;
+    WrapPolicy wPolicy;
+    int wrapWidth;
+    QString pressedLink;
+    QTextEditPrivate *d;
+    bool inDnD;
+    bool readonly;
 };
 
-inline void QTextEdit::getCursorPosition( int &parag, int &index ) const
+inline Qt3::QTextDocument *QTextEdit::document() const
 {
-    Qt3::QTextView::getCursorPosition( parag, index );
-}
-
-inline bool QTextEdit::isModified() const
-{
-    return Qt3::QTextView::isModified();
-}
-
-inline bool QTextEdit::italic() const
-{
-    return Qt3::QTextView::italic();
-}
-
-inline bool QTextEdit::bold() const
-{
-    return Qt3::QTextView::bold();
-}
-
-inline bool QTextEdit::underline() const
-{
-    return Qt3::QTextView::underline();
-}
-
-inline QString QTextEdit::family() const
-{
-    return Qt3::QTextView::family();
-}
-
-inline int QTextEdit::pointSize() const
-{
-    return Qt3::QTextView::pointSize();
-}
-
-inline QColor QTextEdit::color() const
-{
-    return Qt3::QTextView::color();
-}
-
-inline QFont QTextEdit::font() const
-{
-    return Qt3::QTextView::font();
-}
-
-inline int QTextEdit::alignment() const
-{
-    return Qt3::QTextView::alignment();
-}
-
-inline bool QTextEdit::isOverwriteMode() const
-{
-    return Qt3::QTextView::isOverwriteMode();
-}
-
-inline int QTextEdit::undoDepth() const
-{
-    return Qt3::QTextView::undoDepth();
-}
-
-inline void QTextEdit::insert( const QString &text, bool indent, bool checkNewLine, bool removeSelected )
-{
-    Qt3::QTextView::insert( text, indent, checkNewLine, removeSelected );
-}
-
-inline void QTextEdit::setOverwriteMode( bool b )
-{
-    Qt3::QTextView::setOverwriteMode( b );
-}
-
-inline void QTextEdit::undo()
-{
-    Qt3::QTextView::undo();
-}
-
-inline void QTextEdit::redo()
-{
-    Qt3::QTextView::redo();
-}
-
-inline void QTextEdit::cut()
-{
-    Qt3::QTextView::cut();
-}
-
-inline void QTextEdit::paste()
-{
-    Qt3::QTextView::paste();
-}
-
-inline void QTextEdit::pasteSubType( const QCString &subtype )
-{
-    Qt3::QTextView::pasteSubType( subtype );
-}
-
-inline void QTextEdit::clear()
-{
-    Qt3::QTextView::clear();
-}
-
-inline void QTextEdit::del()
-{
-    Qt3::QTextView::del();
-}
-
-inline void QTextEdit::indent()
-{
-    Qt3::QTextView::indent();
-}
-
-inline void QTextEdit::setItalic( bool b )
-{
-    Qt3::QTextView::setItalic( b );
-}
-
-inline void QTextEdit::setBold( bool b )
-{
-    Qt3::QTextView::setBold( b );
-}
-
-inline void QTextEdit::setUnderline( bool b )
-{
-    Qt3::QTextView::setUnderline( b );
-}
-
-inline void QTextEdit::setFamily( const QString &f )
-{
-    Qt3::QTextView::setFamily( f );
-}
-
-inline void QTextEdit::setPointSize( int s )
-{
-    Qt3::QTextView::setPointSize( s );
-}
-
-inline void QTextEdit::setColor( const QColor &c )
-{
-    Qt3::QTextView::setColor( c );
-}
-
-inline void QTextEdit::setFont( const QFont &f )
-{
-    Qt3::QTextView::setFontInternal( f );
-}
-
-inline void QTextEdit::setAlignment( int a )
-{
-    Qt3::QTextView::setAlignment( a );
-}
-
-inline void QTextEdit::setParagType( Qt3::QStyleSheetItem::DisplayMode dm, Qt3::QStyleSheetItem::ListStyle listStyle )
-{
-    Qt3::QTextView::setParagType( dm, listStyle );
-}
-
-inline void QTextEdit::setCursorPosition( int parag, int index )
-{
-    Qt3::QTextView::setCursorPosition( parag, index );
-}
-
-inline void QTextEdit::setSelection( int parag_from, int index_from, int parag_to, int index_to, int selNum )
-{
-    Qt3::QTextView::setSelection( parag_from, index_from, parag_to, index_to, selNum );
-}
-
-inline void QTextEdit::setSelectionAttributes( int selNum, const QColor &back, bool invertText )
-{
-    Qt3::QTextView::setSelectionAttributes( selNum, back, invertText );
-}
-
-inline void QTextEdit::setModified( bool m )
-{
-    Qt3::QTextView::setModified( m );
-}
-
-inline void QTextEdit::resetFormat()
-{
-    Qt3::QTextView::resetFormat();
-}
-
-inline void QTextEdit::setUndoDepth( int d )
-{
-    Qt3::QTextView::setUndoDepth( d );
-}
-
-inline void QTextEdit::setFormat( Qt3::QTextFormat *f, int flags )
-{
-    Qt3::QTextView::setFormat( f, flags );
-}
-
-inline void QTextEdit::ensureCursorVisible()
-{
-    Qt3::QTextView::ensureCursorVisible();
-}
-
-inline void QTextEdit::placeCursor( const QPoint &pos, Qt3::QTextCursor *c )
-{
-    Qt3::QTextView::placeCursor( pos, c );
-}
-
-inline void QTextEdit::moveCursor( MoveDirection direction, bool shift, bool control )
-{
-    Qt3::QTextView::moveCursor( (MoveDirectionPrivate)direction, shift, control );
-}
-
-inline void QTextEdit::moveCursor( MoveDirection direction, bool control )
-{
-    Qt3::QTextView::moveCursor( (MoveDirectionPrivate)direction, control );
-}
-
-inline void QTextEdit::removeSelectedText()
-{
-    Qt3::QTextView::removeSelectedText();
-}
-
-inline void QTextEdit::doKeyboardAction( KeyboardAction action )
-{
-    Qt3::QTextView::doKeyboardAction( (KeyboardActionPrivate)action );
+    return doc;
 }
 
 inline Qt3::QTextCursor *QTextEdit::textCursor() const
@@ -382,11 +438,9 @@ inline Qt3::QTextCursor *QTextEdit::textCursor() const
     return cursor;
 }
 
-inline bool QTextEdit::getFormat( int parag, int index, QFont &font, QColor &color )
+inline void QTextEdit::setCurrentFont( const QFont &f )
 {
-    return Qt3::QTextView::getFormat( parag, index, font, color );
+    QTextEdit::setFontInternal( f );
 }
 
-#endif // QT_NO_TEXTEDIT
-
-#endif
+#endif //QTEXTVIEW_H

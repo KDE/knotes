@@ -3,111 +3,56 @@
 
 #ifndef QT_H
 #include <qlist.h>
-#include <qguardedptr.h>
 #endif // QT_H
 
-template<class Type>
-class Q_EXPORT QGuardedCleanupHandler
-{
-public:
-    ~QGuardedCleanupHandler() { clear(); }
+#define QPtrList QList
+#define QPtrListIterator QListIterator
 
-    void add( Type* object )
-    {
-	cleanupObjects.insert( 0, new QGuardedPtr<Type>(object) );
-    }
-
-    void remove( Type *object )
-    {
-	QListIterator<QGuardedPtr<Type> > it( cleanupObjects );
-	while ( it.current() ) {
-	    QGuardedPtr<Type>* guard = it.current();
-	    ++it;
-	    if ( (Type *)guard == object ) {
-		cleanupObjects.removeRef( guard );
-		delete guard;
-		break;
-	    }
-	}
-    }
-
-    bool isEmpty() const
-    {
-	QListIterator<QGuardedPtr<Type> > it( cleanupObjects );
-	while ( it.current() ) {
-	    QGuardedPtr<Type>* guard = it.current();
-	    ++it;
-	    if ( (Type*)*guard )
-		return FALSE;
-	}
-	return TRUE;
-    }
-
-    void clear() {
-	QListIterator<QGuardedPtr<Type> > it( cleanupObjects );
-	it.toLast();
-	while ( it.current() ) {
-	    QGuardedPtr<Type>* guard = it.current();
-	    --it;
-	    cleanupObjects.removeRef( guard );
-	    delete (Type*)*guard;
-	    delete guard;
-	}
-    }
-
-private:
-    QList<QGuardedPtr<Type> > cleanupObjects;
-};
+namespace Qt3 {
 
 template<class Type>
 class Q_EXPORT QCleanupHandler
 {
 public:
-    QCleanupHandler() : cleanupObjects( 0 )
-    {}
+    QCleanupHandler() : cleanupObjects( 0 ) {}
     ~QCleanupHandler() { clear(); }
 
-    void add( Type* object )
-    {
-	if ( !cleanupObjects ) {
-	    cleanupObjects = new QList<Type>;
-	}
-	cleanupObjects->insert( 0, object );
+    Type* add( Type **object ) {
+        if ( !cleanupObjects )
+            cleanupObjects = new QPtrList<Type*>;
+        cleanupObjects->insert( 0, object );
+        return *object;
     }
 
-    void remove( Type *object )
-    {
-	if ( !cleanupObjects )
-	    return;
-	if ( object )
-	    cleanupObjects->removeRef( object );
+    void remove( Type **object ) {
+        if ( !cleanupObjects )
+            return;
+        if ( cleanupObjects->findRef( object ) >= 0 )
+            (void) cleanupObjects->take();
     }
 
-    bool isEmpty() const
-    {
-	return cleanupObjects ? cleanupObjects->isEmpty() : TRUE;
+    bool isEmpty() const {
+        return cleanupObjects ? cleanupObjects->isEmpty() : TRUE;
     }
 
-    void clear()
-    {
-	if ( !cleanupObjects )
-	    return;
-
-	QListIterator<Type> it( *cleanupObjects );
-	it.toLast();
-	while ( it.current() ) {
-	    Type* object = it.current();
-	    --it;
-	    cleanupObjects->removeRef( object );
-	    delete object;
-	}
-
-	delete cleanupObjects;
-	cleanupObjects = 0;
+    void clear() {
+        if ( !cleanupObjects )
+            return;
+        QPtrListIterator<Type*> it( *cleanupObjects );
+        Type **object;
+        while ( ( object = it.current() ) ) {
+            delete *object;
+            *object = 0;
+            cleanupObjects->remove( object );
+        }
+        delete cleanupObjects;
+        cleanupObjects = 0;
     }
 
 private:
-    QList<Type> *cleanupObjects;
+    QPtrList<Type*> *cleanupObjects;
 };
+
+}; // namespace Qt3
 
 #endif //QCLEANUPHANDLER_H

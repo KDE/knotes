@@ -39,7 +39,7 @@
 #define QSTYLESHEET_H
 
 #ifndef QT_H
-#include "qnamespace.h"
+//#include "qnamespace.h"
 #include "qstring.h"
 #include "qvaluelist.h"
 #include "qvector.h"
@@ -47,14 +47,13 @@
 #include "qobject.h"
 #endif // QT_H
 
-#ifndef QT_NO_RICHTEXT
-
 template<class Key, class T> class QMap;
 
 namespace Qt3 {
 
 class QStyleSheet;
 class QTextDocument;
+class QStyleSheetItemData;
 
 class Q_EXPORT QStyleSheetItem : public Qt
 {
@@ -71,10 +70,10 @@ public:
     enum AdditionalStyleValues { Undefined  = - 1};
 
     enum DisplayMode {
-	DisplayBlock,
-	DisplayInline,
-	DisplayListItem,
-	DisplayNone
+        DisplayBlock,
+        DisplayInline,
+        DisplayListItem,
+        DisplayNone
     };
 
     DisplayMode displayMode() const;
@@ -120,26 +119,26 @@ public:
     void setWhiteSpaceMode(WhiteSpaceMode m);
 
     enum Margin {
-	MarginLeft,
-	MarginRight,
-	MarginTop,
-	MarginBottom,
-	MarginFirstLine,
-	MarginAll,
-	MarginVertical,
-	MarginHorizontal
+        MarginLeft,
+        MarginRight,
+        MarginTop,
+        MarginBottom,
+        MarginFirstLine,
+        MarginAll,
+        MarginVertical,
+        MarginHorizontal
     };
 
     int margin( Margin m) const;
     void setMargin( Margin, int);
 
     enum ListStyle {
-	ListDisc,
-	ListCircle,
-	ListSquare,
-	ListDecimal,
-	ListLowerAlpha,
-	ListUpperAlpha
+        ListDisc,
+        ListCircle,
+        ListSquare,
+        ListDecimal,
+        ListLowerAlpha,
+        ListUpperAlpha
     };
 
     ListStyle listStyle() const;
@@ -157,8 +156,7 @@ public:
 
 private:
     void init();
-    class Data;
-    Data* d;
+    QStyleSheetItemData* d;
 };
 
 
@@ -190,10 +188,10 @@ public:
     void insert( QStyleSheetItem* item);
 
     virtual QTextCustomItem* tag( const QString& name,
-			    const QMap<QString, QString> &attr,
-			    const QString& context,
-			    const QMimeSourceFactory& factory,
-			    bool emptyTag, QTextDocument *doc ) const;
+                            const QMap<QString, QString> &attr,
+                            const QString& context,
+                            const QMimeSourceFactory& factory,
+                            bool emptyTag, QTextDocument *doc ) const;
 
     static QString convertFromPlainText( const QString& );
     static bool mightBeRichText( const QString& );
@@ -208,8 +206,6 @@ private:
     QStyleSheetItem* nullstyle;
 };
 
-} // namespace
-
-#endif // QT_NO_RICHTEXT
+}; // namespace Qt3
 
 #endif // QSTYLESHEET_H
