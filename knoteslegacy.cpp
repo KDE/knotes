@@ -57,7 +57,7 @@ void KNotesLegacy::cleanUp()
     {
         delete test;
         if ( !( checkAccess( configfile, W_OK ) &&
-                KIO::NetAccess::del( KURL(configfile) ) ) )
+                KIO::NetAccess::del( KURL(configfile), 0 ) ) )
         {
             kdError(5500) << k_funcinfo << "Could not delete old config file!!" << endl;
             // TODO
@@ -122,7 +122,7 @@ void KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
 
     // set the defaults
     KIO::NetAccess::copy(
-        KURL( KGlobal::dirs()->findResource( "config", "knotesrc" ) ), KURL( configFile )
+        KURL( KGlobal::dirs()->findResource( "config", "knotesrc" ) ), KURL( configFile ), 0
     );
 
     // get the name
