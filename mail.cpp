@@ -84,7 +84,11 @@ void Mail::ok_slot(){
 
   QString str = getRecipient();
   if (str.isEmpty()){
-    QMessageBox::message("Sorry","You must specify a Recipient","OK");
+    QMessageBox::warning(
+			 this,
+			 "Sorry",
+			 "You must specify a Recipient"
+			 );
     return;
   }
 

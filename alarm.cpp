@@ -147,9 +147,11 @@ bool AlarmDlg::checkDateTime(){
   
   if( rdt < QDateTime::currentDateTime()){
 
-    QMessageBox::message(klocale->translate("Sorry"),
-			 klocale->translate("I am afraid you already missed your appointment."),
-			 klocale->translate("OK"));
+    QMessageBox::warning(
+			 this,
+			 klocale->translate("Sorry"),
+	   klocale->translate("I am afraid you already missed your appointment.")
+			 );
     return FALSE;
   }
 

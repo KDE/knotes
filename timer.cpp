@@ -108,7 +108,11 @@ void MyTimer::timerEvent( QTimerEvent * ){
 		  "\n%s",
 		  entry->name.data());
 
-      QMessageBox::information(t, "Alarm",str.data(),QMessageBox::Ok);
+      QMessageBox::information(
+			       t, 
+			       "Alarm",
+			       str.data()
+			       );
 
 
       delete entry;

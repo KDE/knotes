@@ -419,11 +419,18 @@ void KPostit::quit(){
   for(PostitList.first();PostitList.current();PostitList.next()){
 
     if (!PostitList.current()->savenotes()){
-      int result = QMessageBox::query (klocale->translate("Sorry"), 
-				       klocale->translate("Could not save a KNote.\n"\
-				       "Quit anyways?"));
+      int result = QMessageBox::warning(
+					 this,
+					 klocale->translate("Sorry"), 
+					 klocale->translate("Could not save a KNote.\n"\
+							    "Quit anyways?"),
+					 klocale->translate("Yes"),
+					 klocale->translate("No"),
+					 klocale->translate("Cancel"),
+					 1,2
+					 );
 
-      if (!result){
+      if (result){
 	return;         
       }
     }
@@ -434,8 +441,11 @@ void KPostit::quit(){
   if(!savealarms()){
     QString str;
     str.sprintf(klocale->translate("Could not save KNote Alarms\n"));
-    QMessageBox::message(klocale->translate("Sorry"),str.data(),
-                         klocale->translate("OK"));
+    QMessageBox::warning(
+			 this,
+			 klocale->translate("Sorry"),
+			 str.data()
+                         );
   }
   QApplication::exit();
 
@@ -490,8 +500,15 @@ void KPostit::mail(){
 
   if(mailpipe == NULL){
     QString str;
-    str.sprintf(klocale->translate("Could not pipe the contents of this KNote into:\n %s"),cmd.data());
-    QMessageBox::message(klocale->translate("Sorry"),str.data(),"OK");
+    str.sprintf(
+    klocale->translate("Could not pipe the contents of this KNote into:\n %s"),cmd.data());
+
+    QMessageBox::information(
+			     this,
+			     klocale->translate("Sorry"),
+			     str.data()
+			     );
+
     return;
   }
 
@@ -574,8 +591,18 @@ void KPostit::print(){
   
   if(printpipe == NULL){
     QString str;
-    str.sprintf(klocale->translate("Could not pipe the contents of this KNotes into:\n %s"),cmd.data());
-    QMessageBox::message(klocale->translate("Sorry"),str.data(),klocale->translate("OK"));
+
+    str.sprintf(
+		klocale->translate(
+		"Could not pipe the contents of this KNotes into:\n %s"),
+		cmd.data()
+		);
+
+    QMessageBox::warning(
+			 this,
+			 klocale->translate("Sorry"),
+			 str.data()
+			 );
     return;
   }
 
@@ -621,9 +648,12 @@ void KPostit::newKPostit(){
   }
 
   if (exists){ // all 50 names are taken
-    QMessageBox::message(klocale->translate("Sorry"),klocale->translate("You have exeeded the arbitrary and unjustly set"\
-			 "limit of 50 knotes.\n Please complain to the author."),
-			 "OK");
+    QMessageBox::warning(this,
+			 klocale->translate("Sorry"),
+			 klocale->translate("You have exeeded the"\
+					    "arbitrary and unjustly set"\
+			 "limit of 50 knotes.\n Please complain to the author.")
+			 );
     return;
     
   }
@@ -776,12 +806,18 @@ void KPostit::hideKPostit(){
 void KPostit::deleteKPostit(){
 
 
-  int result = QMessageBox::warning(this, klocale->translate("Question"),
-		klocale->translate("Are you sure you want to delete this\n"\
-				  "note permanently?"), 
-				    QMessageBox::Yes, 
-				    QMessageBox::Cancel);
-  if(result == QMessageBox::Cancel)
+  int result = QMessageBox::warning(this, 
+				    klocale->translate("Question"),
+				    klocale->translate("Are you sure you "\
+						       "want to delete this\n"\
+						       "note permanently?"), 
+				    klocale->translate("Yes"), 
+				    klocale->translate("Cancel"), 
+				    "",
+				    1,
+				    1);
+
+  if(result)
     return;
 
   QString notesfile;
@@ -945,7 +981,11 @@ bool KPostit::insertFile(char* filename){
   if( !file.open( IO_ReadOnly )) {
     QString string;
     string.sprintf(klocale->translate("Could not load:\n %s"),filename);
-    QMessageBox::message(klocale->translate("Sorry"),string.data(),klocale->translate("OK"));
+    QMessageBox::warning(
+			 this,
+			 klocale->translate("Sorry"),
+			 string.data()
+			 );
     return FALSE;
   }
 
@@ -1331,9 +1371,11 @@ void KPostit::insertNetFile( const char *_url)
 
   if ( u.isMalformed() )
     {
-	QMessageBox::message (klocale->translate("Sorry"), 
-		klocale->translate("Malformed URL"), 
-		klocale->translate("Ok"));
+	QMessageBox::warning(
+			     this,
+			     klocale->translate("Sorry"), 
+			     klocale->translate("Malformed URL")
+			     );
 	return;
     }
 
@@ -1346,21 +1388,25 @@ void KPostit::insertNetFile( const char *_url)
 
     if ( kfm != 0L )
     {
-	QMessageBox::message (klocale->translate("Sorry"), 
-		      klocale->translate("KNotes is already waiting\n"\
+	QMessageBox::warning(
+			     this,
+			     klocale->translate("Sorry"), 
+			     klocale->translate("KNotes is already waiting\n"\
 			      "for an internet job to finish\n"\
 			      "Please wait until it has finished\n"\
-			      "Alternatively stop the running one."), 
-			klocale->translate("Ok"));
+			      "Alternatively stop the running one.")
+			     );
 	return;
     }
     
     kfm = new KFM;
     if ( !kfm->isOK() )
     {
-	QMessageBox::message (klocale->translate("Sorry"), 
-			klocale->translate("Could not start or find KFM"), 
-			klocale->translate("Ok"));
+	QMessageBox::warning(
+			     this,
+			     klocale->translate("Sorry"), 
+			     klocale->translate("Could not start or find KFM")
+			     );
 	delete kfm;
 	kfm = 0L;
 	return;
@@ -1378,11 +1424,17 @@ void KPostit::close(){
 
 
   if (!savenotes()){
-    result = QMessageBox::query (klocale->translate("Sorry"), 
+    result = QMessageBox::warning(
+				  this,
+				  klocale->translate("Sorry"), 
 				  klocale->translate("Could not save the KNotes.\n"\
-				  "Close anyways?"));
+				  "Close anyways?"),
+				  klocale->translate("Yes"),
+				  klocale->translate("No"),
+				  klocale->translate("Cancel"),
+				  1,2);
 
-	if (!result){
+	if (result){
 	    return;         // we don't want to exit.
 	}
   }
@@ -1493,8 +1545,11 @@ void alarmConsistencyCheck(){
 		  "I will correct the Problem for you.")
 		  ,KPostit::AlarmList.current()->name.data());
 
-      QMessageBox::message(klocale->translate("Inconsistency"),str.data(),
-			klocale->translate("OK"));
+      QMessageBox::warning(
+			   0,
+			   klocale->translate("Inconsistency"),
+			   str.data()
+			   );
 
       KPostit::AlarmList.remove(KPostit::AlarmList.current());
 

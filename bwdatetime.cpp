@@ -155,9 +155,12 @@ bool BWDateTime::checkDateTime(){
     rtime.setHMS(myhour,minute->value(),0);
   }
   else{
-    QMessageBox::message(klocale->translate("Sorry"),
-			klocale->translate("The Time you selected is invalid"),
-			klocale->translate("OK"));
+    QMessageBox::warning(
+			 this,
+			 klocale->translate("Sorry"),
+			 klocale->translate("The Time you selected is invalid")
+			 );
+
     time_notvalid = TRUE;
     return FALSE;
 
@@ -167,9 +170,12 @@ bool BWDateTime::checkDateTime(){
     rdate.setYMD(year->value(),month->value(),day->value());
   }
   else{
-    QMessageBox::message(klocale->translate("Sorry"),
-			klocale->translate("The Date you selected is invalid"),
-			klocale->translate("OK"));
+    QMessageBox::warning(
+			 this,
+			 klocale->translate("Sorry"),
+			 klocale->translate("The Date you selected is invalid")
+			 );
+
     date_notvalid = TRUE;
     return FALSE;
   }

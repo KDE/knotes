@@ -72,20 +72,27 @@ void RenameDlg::selected(){
     reject();
   if(*pstring == QString("xyalarms")){
 
-    QMessageBox::message(klocale->translate("Sorry"),
-			 klocale->translate("The name \"xyalarms\" is reserved for internal usage.\n"\
-			   "Please choose a different name"),
-			 klocale->translate("OK"));
+    QMessageBox::warning(
+			 this,
+			 klocale->translate("Sorry"),
+			 klocale->translate(
+		     "The name \"xyalarms\" is reserved for internal usage.\n"\
+		     "Please choose a different name")
+		      );
       return;	
 
   }
   
   for(pstrlist->first();pstrlist->current();pstrlist->next()){
     if(QString(pstrlist->current()) == *pstring){
-      QMessageBox::message(klocale->translate("Sorry"),
-      			klocale->translate("A KNotes note with this name already exists\n"\
-			   "Please choose a different name"),
-			klocale->translate("OK"));
+
+      QMessageBox::warning(
+		     this,
+		     klocale->translate("Sorry"),
+		     klocale->translate("A KNotes note with this name already exists\n"\
+		     "Please choose a different name")
+		     );
+
       return;	
     }
   }
