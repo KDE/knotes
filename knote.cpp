@@ -214,13 +214,11 @@ void KNote::slotMail( int /*id*/ )
         data_name = m_notedir->absFilePath( data_name );
         m_editor->dumpToFile( data_name );
 
-        QString fname = "\"";
-        fname += data_name;
-        fname += "\"";
-
+		cerr << "data_name = " << data_name << endl;
+		
         //KMail doesn't really respect the --msg option it seems??
         KProcess mail;
-        mail << "kmail" << "--composer" << "--msg" << fname;
+        mail << "kmail" << "--msg" << data_name;
         if( !mail.start( KProcess::DontCare ) )
                 cerr << "could not start process" << endl;
 }
