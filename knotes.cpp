@@ -31,7 +31,6 @@
 #include <kiconloader.h>
 #include <kurl.h>
 #include <kfm.h>
-#include <kstring.h>
 
 #include "configdlg.h"
 #include "fontdlg.h"
@@ -1332,13 +1331,13 @@ void KPostit::defaults()
     label->setGeometry(140,60,160,170);
 
     QString labelstring;
-    ksprintf(&labelstring, i18n("KNotes %s\n"
-				"Bernd Johannes Wuebben\n"
-				"wuebben@math.cornell.edu\n"
-				"wuebben@kde.org\n"
-				"Copyright (C) 1997\n\n"
-				"With contributions by:\n"
-				"Matthias Ettrich <ettrich@kde.org>\n\n\n"),
+    labelstring.sprintf( i18n("KNotes %s\n"
+			 "Bernd Johannes Wuebben\n"
+			 "wuebben@math.cornell.edu\n"
+			 "wuebben@kde.org\n"
+			 "Copyright (C) 1997\n\n"
+			 "With contributions by:\n"
+			 "Matthias Ettrich <ettrich@kde.org>\n\n\n"),
 	     KNOTES_VERSION);
 
 
