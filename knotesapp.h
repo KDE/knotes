@@ -83,10 +83,10 @@ public slots:
 
 protected:
     void mousePressEvent( QMouseEvent* );
-    bool eventFilter( QObject*, QEvent* );
 
 protected slots:
     void slotShowNote();
+    void slotWalkThroughNotes();
 
     void slotPreferences();
     void slotConfigureAccels();

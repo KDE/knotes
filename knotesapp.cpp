@@ -53,28 +53,54 @@
 #include "knotes/resourcemanager.h"
 
 
+class KNotesKeyDialog : public KDialogBase
+{
+public:
+    KNotesKeyDialog( KGlobalAccel *globals, QWidget *parent, const char* name = 0 )
+        : KDialogBase( parent, name, true, i18n("Configure Shortcuts"), Default|Ok|Cancel, Ok )
+    {
+        m_keyChooser = new KKeyChooser( globals, this );
+        setMainWidget( m_keyChooser );
+        connect( this, SIGNAL(defaultClicked()), m_keyChooser, SLOT(allDefault()) );
+    }
+
+    void insert( KActionCollection *actions )
+    {
+        m_keyChooser->insert( actions, i18n("Note Actions") );
+    }
+
+    void configure()
+    {
+        if ( exec() == Accepted )
+            m_keyChooser->save();
+    }
+
+private:
+    KKeyChooser *m_keyChooser;
+};
+
 class KDecorationOptionsImpl : public KDecorationOptions
 {
-    public:
-        KDecorationOptionsImpl()
-        {
-            d = new KDecorationOptionsPrivate;
-            d->defaultKWinSettings();
-            updateSettings();
-        }
+public:
+    KDecorationOptionsImpl()
+    {
+        d = new KDecorationOptionsPrivate;
+        d->defaultKWinSettings();
+        updateSettings();
+    }
 
-        virtual ~KDecorationOptionsImpl()
-        {
-            delete d;
-        }
+    virtual ~KDecorationOptionsImpl()
+    {
+        delete d;
+    }
 
-        virtual unsigned long updateSettings()
-        {
-            KConfig cfg( "kwinrc", true );
-            unsigned long changed = 0;
-            changed |= d->updateKWinSettings( &cfg );
-            return changed;
-        }
+    virtual unsigned long updateSettings()
+    {
+        KConfig cfg( "kwinrc", true );
+        unsigned long changed = 0;
+        changed |= d->updateKWinSettings( &cfg );
+        return changed;
+    }
 };
 
 int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 )
@@ -166,8 +192,6 @@ KNotesApp::KNotesApp()
 
         m_manager->save();
     }
-
-    kapp->installEventFilter( this );
 
     // create the socket and possibly start listening for connections
     m_listener = new KExtendedSocket();
@@ -364,44 +388,28 @@ void KNotesApp::mousePressEvent( QMouseEvent* e )
     }
 }
 
-bool KNotesApp::eventFilter( QObject* o, QEvent* ev )
-{
-    if ( ev->type() == QEvent::KeyPress )
-    {
-        QKeyEvent* ke = (QKeyEvent*)ev;
-
-        if ( ke->key() == Key_BackTab )         // Shift+Tab
-        {
-            // show next note
-            QDictIterator<KNote> it( m_noteList );
-            KNote *first = it.toFirst();
-            for ( ; it.current(); ++it )
-                if ( it.current()->hasFocus() )
-                {
-                    if ( ++it )
-                        showNote( it.current() );
-                    else
-                        showNote( first );
-                    break;
-                }
-
-            ke->accept();
-            return true;
-        }
-        else
-            ke->ignore();
-    }
-
-    return QLabel::eventFilter( o, ev );
-}
-
-
 // -------------------- protected slots -------------------- //
 
 void KNotesApp::slotShowNote()
 {
     // tell the WM to give this note focus
     showNote( QString::fromUtf8( sender()->name() ) );
+}
+
+void KNotesApp::slotWalkThroughNotes()
+{
+    // show next note
+    QDictIterator<KNote> it( m_noteList );
+    KNote *first = it.toFirst();
+    for ( ; *it; ++it )
+        if ( (*it)->hasFocus() )
+        {
+            if ( ++it )
+                showNote( *it );
+            else
+                showNote( first );
+            break;
+        }
 }
 
 void KNotesApp::slotPreferences()
@@ -419,15 +427,11 @@ void KNotesApp::slotPreferences()
 
 void KNotesApp::slotConfigureAccels()
 {
-    KKeyDialog keys( false, this );
-    keys.insert( actionCollection() );
+    KNotesKeyDialog keys( m_globalAccel, this );
     QDictIterator<KNote> notes( m_noteList );
     if ( !m_noteList.isEmpty() )
         keys.insert( (*notes)->actionCollection() );
     keys.configure();
-
-    // update GUI for new notes
-    m_noteGUI = (*notes)->actionCollection()->parentGUIClient()->domDocument();
 
     notes.toFirst();
     QValueList<KAction *> list = (*notes)->actionCollection()->actions();
@@ -444,6 +448,11 @@ void KNotesApp::slotConfigureAccels()
 
     m_globalAccel->writeSettings();
     updateGlobalAccels();
+
+    // update GUI doc for new notes
+    m_noteGUI.setContent(
+        KXMLGUIFactory::readConfigFile( instance()->instanceName() + "ui.rc", instance() )
+    );
 }
 
 void KNotesApp::slotNoteKilled( KCal::Journal *journal )
@@ -489,6 +498,7 @@ void KNotesApp::createNote( KCal::Journal *journal )
     m_noteList.insert( newNote->noteId(), newNote );
 
     connect( newNote, SIGNAL(sigRequestNewNote()), SLOT(newNote()) );
+    connect( newNote, SIGNAL(sigShowNextNote()), SLOT(slotWalkThroughNotes()) );
     connect( newNote, SIGNAL(sigKillNote( KCal::Journal* )),
                         SLOT(slotNoteKilled( KCal::Journal* )) );
     connect( newNote, SIGNAL(sigNameChanged()), SLOT(updateNoteActions()) );

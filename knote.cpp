@@ -86,9 +86,11 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
     setAcceptDrops( true );
     actionCollection()->setWidget( this );
-    actionCollection()->setXMLFile( instance()->instanceName() + "ui.rc" );
 
     setDOMDocument( buildDoc );
+
+    // just set the name of the file to save the actions to, do NOT reparse it
+    setXMLFile( instance()->instanceName() + "ui.rc", false, false );
 
     // if there is no title yet, use the start date if valid
     // (KOrganizer's journals don't have titles but a valid start date)
@@ -104,7 +106,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
         this, SIGNAL(sigRequestNewNote()), actionCollection(), "new_note" );
     new KAction( i18n("Rename..."), "text", 0,
         this, SLOT(slotRename()), actionCollection(), "rename_note" );
-    new KAction( i18n("Hide"), "fileclose" , 0,
+    new KAction( i18n("Hide"), "fileclose" , Key_Escape,
         this, SLOT(slotClose()), actionCollection(), "hide_note" );
     new KAction( i18n("Delete"), "knotes_delete", 0,
         this, SLOT(slotKill()), actionCollection(), "delete_note" );
@@ -132,6 +134,10 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     m_toDesktop = new KListAction( i18n("To Desktop"), 0,
         this, SLOT(slotPopupActionToDesktop(int)), actionCollection(), "to_desktop" );
     connect( m_toDesktop->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(slotUpdateDesktopActions()) );
+
+    // invisible action to walk through the notes to make this configurable
+    new KAction( i18n("Walk Through Notes"), 0, SHIFT+Key_BackTab,
+                 this, SIGNAL(sigShowNextNote()), actionCollection(), "walk_notes" );
 
     // create the note header, button and label...
     m_label = new QLabel( this );
@@ -863,14 +869,6 @@ void KNote::resizeEvent( QResizeEvent *qre )
 void KNote::closeEvent( QCloseEvent * )
 {
     slotClose();
-}
-
-void KNote::keyPressEvent( QKeyEvent *e )
-{
-    if ( e->key() == Key_Escape )
-        slotClose();
-    else
-        e->ignore();
 }
 
 void KNote::dragEnterEvent( QDragEnterEvent *e )

@@ -1,6 +1,13 @@
 ChangeLog for KNotes
 ====================
 
+2004/08/29  Michael Brade <brade@kde.org>
+
+    * fixed #68031, #81888: configuring shortcuts is possible now and changes
+      are preserved between several KNotes sessions. All possible interactions
+      with KNotes can have custom shortcuts, there are no hidden features
+      anymore.
+
 2004/08/28  Michael Brade <brade@kde.org>
 
     * fixed #71593, #86711: add the possibility to save a note to a file, either

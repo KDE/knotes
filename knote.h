@@ -74,6 +74,7 @@ public slots:
 
 signals:
     void sigRequestNewNote();
+    void sigShowNextNote();
     void sigNameChanged();
     void sigDataChanged();
     void sigColorChanged();
@@ -83,7 +84,6 @@ protected:
     virtual void showEvent( QShowEvent* );
     virtual void resizeEvent( QResizeEvent* );
     virtual void closeEvent( QCloseEvent* );
-    virtual void keyPressEvent( QKeyEvent* );
     virtual void dropEvent( QDropEvent* );
     virtual void dragEnterEvent( QDragEnterEvent* );
 
