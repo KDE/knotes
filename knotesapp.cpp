@@ -144,11 +144,6 @@ bool KNotesApp::saveState( QSessionManager& )
 {
 kdDebug(5500) << k_funcinfo << endl;
     saveNotes();
-
-    QDictIterator<KNote> it( m_noteList );
-    for ( ; it.current(); ++it )
-        it.current()->hide();
-
     return true;
 }
 
