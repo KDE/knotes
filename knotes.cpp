@@ -1527,30 +1527,41 @@ int main( int argc, char **argv ) {
 
   mytimer = new MyTimer();
 
+  bool restoring = false;
 
-  if (argc != 2 || QString("-only_restore") != (QString)argv[1]){
-    if(KPostit::PostitFilesList.count() == 0){
-      KPostit::PostitFilesList.append("knote 1");
-    }
+  if (QString("-restore") == (QString)argv[1]){
+    restoring = true;
+  }
+
+
+  if(KPostit::PostitFilesList.count() == 0 ){
+    KPostit::PostitFilesList.append("knote 1");
   }
 
   unsigned int i;
+  bool one_is_visible = false;
+
   for (i=0; i<KPostit::PostitFilesList.count(); i++){
     postit = new KPostit(NULL,NULL,0,KPostit::PostitFilesList.at(i));
     KPostit::PostitList.append(postit); 
-    if(!postit->hidden)
+    if(!postit->hidden){
       postit->show();
+      one_is_visible = true;
+    }
   }
 
+  if(!one_is_visible && !restoring){
+
+    KPostit::PostitList.last()->show(); 
+  }
 
   // manual session management (knotes alredy stores everything)
   kapp->setTopWidget(new QWidget);
   kapp->enableSessionManagement(true);
-  kapp->setWmCommand("knotes -only_restore");
+  kapp->setWmCommand("knotes -restore");
 
   return a.exec();
 
-  delete mytimer;
 }
 
 
