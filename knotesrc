@@ -1,0 +1,21 @@
+[Display]
+	bgcolor=145 180 255
+	fgcolor=0 0 0
+	width=200
+	height=200
+	transparent=no
+		
+[Editor]
+	tabsize=4
+	autoindent=yes
+	font=helvetica
+	fontsize=12
+	fontstyle=50
+	
+[Actions]
+	mail=kmail --composer --subject "Some Notes" --msg 
+	print=lpr
+	date=date
+
+[Data]
+    name=KNotes
