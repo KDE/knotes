@@ -34,13 +34,13 @@ extern KApplication* 	mykapp;
 extern DefStruct 	postitdefaults;
 
 void MyTimer::start(){
-  
+
   startTimer(1000);
 
 }
 
 void MyTimer::stop(){
-  
+
   killTimers();
 
 }
@@ -51,11 +51,11 @@ void MyTimer::timerEvent( QTimerEvent * ){
   QDateTime qdt = QDateTime::currentDateTime();
 
   //  printf("In Timer counter:%d\n",KPostit::AlarmList.count());
-  
+
   QListIterator<AlarmEntry> it(KPostit::AlarmList);
   AlarmEntry* entry;
 
-  while ( (entry=it.current()) ) {         
+  while ( (entry=it.current()) ) {
 
     if(entry->dt < qdt){
 
@@ -81,7 +81,7 @@ void MyTimer::timerEvent( QTimerEvent * ){
 	if(
 	   KPostit::PostitList.current()->name == entry->name
 	   ){
-	  
+	
 	  exists = TRUE;
 	  t = KPostit::PostitList.current();
 	  t->setCaption(QString(klocale->translate("Note: ")) +
@@ -91,9 +91,9 @@ void MyTimer::timerEvent( QTimerEvent * ){
 	  if( KPostit::PostitList.current()->hidden == true){
 	    KPostit::PostitList.current()->hidden = false;
 	    if(KPostit::PostitList.current()->propertystring != (QString) "")
-	      KWM::setProperties(KPostit::PostitList.current()->winId(),
-				 KPostit::PostitList.current()->propertystring);
-	    
+		KPostit::PostitList.current()->setGeometry(KWM::setProperties(KPostit::PostitList.current()->winId(),
+				 KPostit::PostitList.current()->propertystring));
+	
 	  }
 	  KPostit::PostitList.current()->show();
 	  KWM::activate(KPostit::PostitList.current()->winId());
@@ -105,7 +105,7 @@ void MyTimer::timerEvent( QTimerEvent * ){
 
 
 	// if this particular kpostit note widget is not alive yet, create it.
-	t = new KPostit (NULL,NULL,0, 
+	t = new KPostit (NULL,NULL,0,
 			 entry->name.copy());
 	t->setCaption(QString(klocale->translate("Note: ")) + entry->name);
 	t->label->setText(entry->name);
@@ -120,7 +120,7 @@ void MyTimer::timerEvent( QTimerEvent * ){
 		  entry->name.data());
 
       QMessageBox::information(
-			       t, 
+			       t,
 			       "Alarm",
 			       str.data()
 			       );
@@ -134,7 +134,7 @@ void MyTimer::timerEvent( QTimerEvent * ){
 
     ++it;
   }
-  
+
   this->start();
 
 }
@@ -142,19 +142,19 @@ void MyTimer::timerEvent( QTimerEvent * ){
 
 
 void SaveTimer::start(){
-  
+
   startTimer(15*60*1000);
 
 }
 
 void SaveTimer::stop(){
-  
+
   killTimers();
 
 }
 void SaveTimer::timerEvent( QTimerEvent * ){
 
-    for( KPostit::PostitList.first(); 
+    for( KPostit::PostitList.first();
 	 KPostit::PostitList.current();
 	 KPostit::PostitList.next()
 	 ){
