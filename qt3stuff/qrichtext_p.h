@@ -258,7 +258,7 @@ public:
     QTextCursor();
     QTextCursor( const QTextCursor &c );
     QTextCursor &operator=( const QTextCursor &c );
-    virtual ~QTextCursor() {};
+    virtual ~QTextCursor() {}
 
     bool operator==( const QTextCursor &c ) const;
     bool operator!=( const QTextCursor &c ) const { return !(*this == c); }
@@ -609,7 +609,7 @@ public:
     void draw( QPainter* p, int x, int y, int cx, int cy, int cw, int ch,
 	       const QColorGroup& cg, bool selected );
 
-    bool noErase() const { return TRUE; };
+    bool noErase() const { return TRUE; }
     bool ownLine() const { return TRUE; }
     Placement placement() const { return place; }
     bool isNested() const { return TRUE; }
@@ -752,7 +752,7 @@ public:
     int numSelections() const { return nSelections; }
     void addSelection( int id );
 
-    QString selectedText( int id ) const;
+    QString selectedText( int id, bool withCustom = TRUE ) const;
     void copySelectedText( int id );
     void removeSelectedText( int id, QTextCursor *cursor );
     void indentSelection( int id );
@@ -928,7 +928,7 @@ public:
     QTextDeleteCommand( QTextParag *p, int idx, const QMemArray<QTextStringChar> &str );
     virtual ~QTextDeleteCommand();
 
-    Commands type() const { return Delete; };
+    Commands type() const { return Delete; }
     QTextCursor *execute( QTextCursor *c );
     QTextCursor *unexecute( QTextCursor *c );
 
@@ -949,12 +949,12 @@ public:
 			const QValueList< QPtrVector<QStyleSheetItem> > &os,
 			const QValueList<QStyleSheetItem::ListStyle> &ols,
 			const QMemArray<int> &oas )
-	: QTextDeleteCommand( d, i, idx, str, os, ols, oas ) {};
+	: QTextDeleteCommand( d, i, idx, str, os, ols, oas ) {}
     QTextInsertCommand( QTextParag *p, int idx, const QMemArray<QTextStringChar> &str )
-	: QTextDeleteCommand( p, idx, str ) {};
-    virtual ~QTextInsertCommand() {};
+	: QTextDeleteCommand( p, idx, str ) {}
+    virtual ~QTextInsertCommand() {}
 
-    Commands type() const { return Insert; };
+    Commands type() const { return Insert; }
     QTextCursor *execute( QTextCursor *c ) { return QTextDeleteCommand::unexecute( c ); }
     QTextCursor *unexecute( QTextCursor *c ) { return QTextDeleteCommand::execute( c ); }
 
@@ -982,7 +982,7 @@ class Q_EXPORT QTextAlignmentCommand : public QTextCommand
 {
 public:
     QTextAlignmentCommand( QTextDocument *d, int fParag, int lParag, int na, const QMemArray<int> &oa );
-    virtual ~QTextAlignmentCommand() {};
+    virtual ~QTextAlignmentCommand() {}
 
     Commands type() const { return Alignment; }
     QTextCursor *execute( QTextCursor *c );
@@ -1001,7 +1001,7 @@ public:
     QTextParagTypeCommand( QTextDocument *d, int fParag, int lParag, bool l,
 			   QStyleSheetItem::ListStyle s, const QValueList< QPtrVector<QStyleSheetItem> > &os,
 			   const QValueList<QStyleSheetItem::ListStyle> &ols );
-    virtual ~QTextParagTypeCommand() {};
+    virtual ~QTextParagTypeCommand() {}
 
     Commands type() const { return ParagType; }
     QTextCursor *execute( QTextCursor *c );
@@ -1223,9 +1223,9 @@ public:
     void setBreakable( bool b ) { breakable = b; }
     bool isBreakable() const { return breakable; }
 
-    void setBackgroundColor( const QColor &c ) { delete bgcol; bgcol = new QColor( c ); setChanged( TRUE ); }
+    void setBackgroundColor( const QColor &c );
     QColor *backgroundColor() const { return bgcol; }
-    void clearBackgroundColor() { delete bgcol; bgcol = 0; setChanged( TRUE ); }
+    void clearBackgroundColor();
 
 protected:
     virtual void drawLabel( QPainter* p, int x, int y, int w, int h, int base, const QColorGroup& cg );
@@ -1319,7 +1319,7 @@ class Q_EXPORT QTextFormatterBreakInWords : public QTextFormatter
 {
 public:
     QTextFormatterBreakInWords();
-    virtual ~QTextFormatterBreakInWords() {};
+    virtual ~QTextFormatterBreakInWords() {}
 
     int format( QTextDocument *doc, QTextParag *parag, int start, const QMap<int, QTextParagLineStart*> &oldLineStarts );
 
@@ -1331,7 +1331,7 @@ class Q_EXPORT QTextFormatterBreakWords : public QTextFormatter
 {
 public:
     QTextFormatterBreakWords();
-    virtual ~QTextFormatterBreakWords() {};
+    virtual ~QTextFormatterBreakWords() {}
 
     int format( QTextDocument *doc, QTextParag *parag, int start, const QMap<int, QTextParagLineStart*> &oldLineStarts );
 
@@ -1343,7 +1343,7 @@ class Q_EXPORT QTextIndent
 {
 public:
     QTextIndent();
-    virtual ~QTextIndent() {};
+    virtual ~QTextIndent() {}
 
     virtual void indent( QTextDocument *doc, QTextParag *parag, int *oldIndent = 0, int *newIndent = 0 ) = 0;
 
@@ -1359,7 +1359,7 @@ public:
     };
 
     QTextPreProcessor();
-    virtual ~QTextPreProcessor() {};
+    virtual ~QTextPreProcessor() {}
 
     virtual void process( QTextDocument *doc, QTextParag *, int, bool = TRUE ) = 0;
     virtual QTextFormat *format( int id ) = 0;
@@ -1391,7 +1391,7 @@ public:
     enum VerticalAlignment { AlignNormal, AlignSubScript, AlignSuperScript };
 
     QTextFormat();
-    virtual ~QTextFormat() {};
+    virtual ~QTextFormat() {}
 
     QTextFormat( const QStyleSheetItem *s );
     QTextFormat( const QFont &f, const QColor &c, QTextFormatCollection *parent = 0 );
@@ -1855,6 +1855,18 @@ inline void QTextParag::setChanged( bool b, bool recursive )
 	if ( doc && doc->parentParag() )
 	    doc->parentParag()->setChanged( b, recursive );
     }
+}
+
+inline void QTextParag::setBackgroundColor( const QColor & c )
+{
+    delete bgcol;
+    bgcol = new QColor( c );
+    setChanged( TRUE );
+}
+
+inline void QTextParag::clearBackgroundColor()
+{
+    delete bgcol; bgcol = 0; setChanged( TRUE );
 }
 
 inline void QTextParag::append( const QString &s, bool reallyAtEnd )

@@ -1151,7 +1151,6 @@ void QTextEdit::readFormats( QTextCursor &c1, QTextCursor &c2, int oldLen, QText
 		lastIndex++;
 	    }
 	}
-	lastIndex++;
 	QTextParag *p = c1.parag()->next();
 	while ( p && p != c2.parag() ) {
 	    for ( int i = 0; i < p->length(); ++i ) {
@@ -1160,7 +1159,7 @@ void QTextEdit::readFormats( QTextCursor &c1, QTextCursor &c2, int oldLen, QText
 		    text.at( i + lastIndex ).setFormat( p->at( i )->format() );
 		}
 	    }
-	    lastIndex += p->length() + 1;
+	    lastIndex += p->length();
 	    p = p->next();
 	}
 	for ( i = 0; i < c2.index(); ++i ) {
@@ -1232,7 +1231,7 @@ void QTextEdit::removeSelectedText( int selNum )
 	undoRedoInfo.d->text = QString::null;
     }
     int oldLen = undoRedoInfo.d->text.length();
-    undoRedoInfo.d->text = doc->selectedText( selNum );
+    undoRedoInfo.d->text = doc->selectedText( selNum, FALSE );
     undoRedoInfo.oldAligns.resize( undoRedoInfo.oldAligns.size() + QMAX( 0, c2.parag()->paragId() - c1.parag()->paragId() + 1 ) );
     readFormats( c1, c2, oldLen, undoRedoInfo.d->text, TRUE );
     doc->removeSelectedText( selNum, cursor );
@@ -1426,7 +1425,7 @@ void QTextEdit::drawCursor( bool visible )
 {
     if ( !cursor->parag() ||
 	 !cursor->parag()->isValid() ||
-	 ( !hasFocus() && !viewport()->hasFocus() && !inDnD ) ||
+	 ( visible && !hasFocus() && !viewport()->hasFocus() && !inDnD ) ||
 	 isReadOnly() )
 	return;
 
@@ -3753,6 +3752,8 @@ int QTextEdit::wrapColumnOrWidth() const
   \value AtWhiteSpace  Break lines at whitespace, e.g. spaces or
   newlines.
   \value Anywhere  Break anywhere, including within words.
+  \value AtWordBoundary Don't use this deprecated value (it is a
+  synonym for AtWhiteSpace which you should use instead).
 
    \sa setWrapPolicy()
 */

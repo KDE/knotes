@@ -85,6 +85,9 @@ public:
   display property changes associated with it.
 */
 
+/*! \enum QStyleSheetItem::AdditionalStyleValues
+    \internal
+*/
 
 /*! \enum QStyleSheetItem::WhiteSpaceMode
 

@@ -563,29 +563,37 @@ void QTextCursor::insert( const QString &str, bool checkNewLine, QMemArray<QText
 	QStringList::Iterator it = lst.begin();
 	int y = string->rect().y() + string->rect().height();
 	int lastIndex = 0;
-	for ( ; it != lst.end(); ++it ) {
+	QTextFormat *lastFormat = 0;
+	for ( ; it != lst.end(); ) {
 	    if ( it != lst.begin() ) {
 		splitAndInsertEmptyParag( FALSE, TRUE );
 		string->setEndState( -1 );
 		string->prev()->format( -1, FALSE );
+		if ( lastFormat && formatting && string->prev() ) {
+		    lastFormat->addRef();
+		    string->prev()->string()->setFormat( string->prev()->length() - 1, lastFormat, TRUE );
+		}
 	    }
+	    lastFormat = 0;
 	    QString s = *it;
-	    if ( s.isEmpty() )
-		continue;
-	    string->insert( idx, s );
+	    ++it;
+	    if ( !s.isEmpty() )
+		string->insert( idx, s );
+	
 	    if ( formatting ) {
 		int len = s.length();
-		if ( it != --lst.end() )
-		    len++;
 		for ( int i = 0; i < len; ++i ) {
 		    if ( formatting->at( i + lastIndex ).format() ) {
 			formatting->at( i + lastIndex ).format()->addRef();
 			string->string()->setFormat( i + idx, formatting->at( i + lastIndex ).format(), TRUE );
 		    }
 		}
+		if ( it != lst.end() )
+		    lastFormat = formatting->at( len + lastIndex ).format();
+		++len;
 		lastIndex += len;
 	    }
-
+	
 	    idx += s.length();
 	}
 	string->format( -1, FALSE );
@@ -1093,19 +1101,7 @@ void QTextCursor::splitAndInsertEmptyParag( bool ind, bool updateIds )
 	}
     }
 
-    if ( atParagStart() ) {
-	QTextParag *p = string->prev();
-	QTextParag *s = doc->createParag( doc, p, string, updateIds );
-	if ( f )
-	    s->setFormat( 0, 1, f, TRUE );
-	s->copyParagData( string );
-	if ( ind ) {
-	    s->indent();
-	    s->format();
-	    indent();
-	    string->format();
-	}
-    } else if ( atParagEnd() ) {
+    if ( atParagEnd() ) {
 	QTextParag *n = string->next();
 	QTextParag *s = doc->createParag( doc, string, n, updateIds );
 	if ( f )
@@ -1119,6 +1115,18 @@ void QTextCursor::splitAndInsertEmptyParag( bool ind, bool updateIds )
 	} else {
 	    string = s;
 	    idx = 0;
+	}
+    } else if ( atParagStart() ) {
+	QTextParag *p = string->prev();
+	QTextParag *s = doc->createParag( doc, p, string, updateIds );
+	if ( f )
+	    s->setFormat( 0, 1, f, TRUE );
+	s->copyParagData( string );
+	if ( ind ) {
+	    s->indent();
+	    s->format();
+	    indent();
+	    string->format();
 	}
     } else {
 	QString str = string->string()->toString().mid( idx, 0xFFFFFF );
@@ -1933,6 +1941,30 @@ void QTextDocument::addSelection( int id )
     nSelections = QMAX( nSelections, id + 1 );
 }
 
+static void setSelectionEndHelper( int id, QTextDocumentSelection &sel, QTextCursor &start, QTextCursor &end )
+{
+    QTextCursor c1 = start;
+    QTextCursor c2 = end;
+    if ( sel.swapped ) {
+	c1 = end;
+	c2 = start;
+    }
+
+    c1.parag()->removeSelection( id );
+    c2.parag()->removeSelection( id );
+    if ( c1.parag() != c2.parag() ) {
+	c1.parag()->setSelection( id, c1.index(), c1.parag()->length() - 1 );
+	c2.parag()->setSelection( id, 0, c2.index() );
+    } else {
+	c1.parag()->setSelection( id, QMIN( c1.index(), c2.index() ), QMAX( c1.index(), c2.index() ) );
+    }
+
+    sel.startCursor = start;
+    sel.endCursor = end;
+    if ( sel.startCursor.parag() == sel.endCursor.parag() )
+	sel.swapped = sel.startCursor.index() > sel.endCursor.index();
+}
+
 bool QTextDocument::setSelectionEnd( int id, QTextCursor *cursor )
 {
     QMap<int, QTextDocumentSelection>::Iterator it = selections.find( id );
@@ -1950,27 +1982,7 @@ bool QTextDocument::setSelectionEnd( int id, QTextCursor *cursor )
     }
 
     if ( sel.endCursor.parag() == end.parag() ) {
-	QTextCursor c1 = start;
-	QTextCursor c2 = end;
-	if ( sel.swapped ) {
-	    c1 = end;
-	    c2 = start;
-	}
-
-	c1.parag()->removeSelection( id );
-	c2.parag()->removeSelection( id );
-	if ( c1.parag() != c2.parag() ) {
-	    c1.parag()->setSelection( id, c1.index(), c1.parag()->length() - 1 );
-	    c2.parag()->setSelection( id, 0, c2.index() );
-	} else {
-	    c1.parag()->setSelection( id, QMIN( c1.index(), c2.index() ), QMAX( c1.index(), c2.index() ) );
-	}
-
-	sel.startCursor = start;
-	sel.endCursor = end;
-	if ( sel.startCursor.parag() == sel.endCursor.parag() )
-	    sel.swapped = sel.startCursor.index() > sel.endCursor.index();
-
+	setSelectionEndHelper( id, sel, start, end );
 	return TRUE;
     }
 
@@ -2063,6 +2075,8 @@ bool QTextDocument::setSelectionEnd( int id, QTextCursor *cursor )
     if ( sel.startCursor.parag() == sel.endCursor.parag() )
 	sel.swapped = sel.startCursor.index() > sel.endCursor.index();
 
+    setSelectionEndHelper( id, sel, start, end );
+
     return TRUE;
 }
 
@@ -2085,6 +2099,14 @@ void QTextDocument::selectAll( int id )
     QTextParag *p = fParag;
     while ( p ) {
 	p->setSelection( id, 0, p->length() - 1 );
+	for ( int i = 0; i < (int)p->length(); ++i ) {
+	    if ( p->at( i )->isCustom() && p->at( i )->customItem()->isNested() ) {
+		QTextTable *t = (QTextTable*)p->at( i )->customItem();
+		QPtrList<QTextTableCell> tableCells = t->tableCells();
+		for ( QTextTableCell *c = tableCells.first(); c; c = tableCells.next() )
+		    c->richText()->selectAll( id );
+	    }
+	}
 	p = p->next();
     }
 
@@ -2140,7 +2162,7 @@ bool QTextDocument::removeSelection( int id )
     return TRUE;
 }
 
-QString QTextDocument::selectedText( int id ) const
+QString QTextDocument::selectedText( int id, bool withCustom ) const
 {
     // ######## TODO: look at textFormat() and return rich text or plain text (like the text() method!)
     QMap<int, QTextDocumentSelection>::ConstIterator it = selections.find( id );
@@ -2163,13 +2185,15 @@ QString QTextDocument::selectedText( int id ) const
 	return c1.parag()->string()->toString().mid( c1.index(), c2.index() - c1.index() );
 
     QString s;
-    s += c1.parag()->string()->toString().mid( c1.index() ) + "\n";
+    s += c1.parag()->string()->toString().mid( c1.index() );
+    s.remove( s.length() - 1, 1 );
+    s += "\n";
     QTextParag *p = c1.parag()->next();
     while ( p ) {
-	int end = p == c2.parag() ? c2.index() : p->length();
+	int end = p == c2.parag() ? c2.index() : p->length() - 1;
 	if ( p == c2.parag() && p->at( QMAX( 0, end - 1 ) )->isCustom() )
 	    ++end;
-	if ( !p->customItems() ) {
+	if ( !withCustom || !p->customItems() ) {
 	    s += p->string()->toString().left( end );
 	    if ( p != c2.parag() )
 		s += "\n";
@@ -2269,8 +2293,11 @@ void QTextDocument::removeSelectedText( int id, QTextCursor *cursor )
 	return;
     }
 
-    if (  c1.index() == 0 )
+    bool didGoLeft = FALSE;
+    if (  c1.index() == 0 ) {
 	cursor->gotoLeft();
+	didGoLeft = TRUE;
+    }
 
     c1.parag()->remove( c1.index(), c1.parag()->length() - 1 - c1.index() );
     QTextParag *p = c1.parag()->next();
@@ -2291,6 +2318,9 @@ void QTextDocument::removeSelectedText( int id, QTextCursor *cursor )
     }
 
     c1.parag()->join( c2.parag() );
+
+    if ( didGoLeft )
+	cursor->gotoRight();
 }
 
 void QTextDocument::indentSelection( int id )
@@ -3625,7 +3655,9 @@ void QTextParag::paint( QPainter &painter, const QColorGroup &cg, QTextCursor *c
     int curx = -1, cury = 0, curh = 0;
     bool lastDirection = chr->rightToLeft;
     QTextStringChar::Type lastType = chr->type;
+#if 0 // seems we don't need that anymore
     int tw = 0;
+#endif
 
     QString qstr = str->toString();
 
@@ -3675,7 +3707,9 @@ void QTextParag::paint( QPainter &painter, const QColorGroup &cg, QTextCursor *c
 
 	// init a new line
 	if ( chr->lineStart ) {
+#if 0 // seems we don't need that anymore
 	    tw = 0;
+#endif
 	    ++line;
 	    lineInfo( line, cy, h, baseLine );
 	    lasth = h;
