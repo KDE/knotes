@@ -23,6 +23,7 @@
 #include <qfile.h>
 #include <qcolor.h>
 #include <qfont.h>
+#include <qfontmetrics.h>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -110,6 +111,12 @@ void KNoteEdit::setTextColor( QColor& color )
     setSelection( 0, 0, length(), paragraphLength( length() ), 1 );
     setColor( color );
     removeSelection( 1 );
+}
+
+void KNoteEdit::setTabStop( int tabs )
+{
+    QFontMetrics fm( font() );
+    setTabStopWidth( fm.width( 'x' ) * tabs );
 }
 
 void KNoteEdit::setAutoIndentMode( bool newmode )

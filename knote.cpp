@@ -502,7 +502,7 @@ void KNote::slotApplyConfig()
     m_label->setFont( def );
 
     uint tab_size = config.readUnsignedNumEntry( "tabsize", 4 );
-    m_editor->setTabStopWidth( tab_size );
+    m_editor->setTabStop( tab_size );
 
     bool indent = true;
     indent = config.readBoolEntry( "autoindent", &indent );
@@ -659,7 +659,7 @@ void KNote::convertOldConfig()
         // autoindent
         bool indent = ( input.readLine().toUInt() == 1 );
         m_editor->setAutoIndentMode( indent );
-        m_editor->setTabStopWidth( 4 );
+        m_editor->setTabStop( 4 );
 
         // hidden
         bool hidden = ( input.readLine().toUInt() == 1 );

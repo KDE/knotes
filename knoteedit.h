@@ -40,6 +40,8 @@ public:
     void dumpToFile( QString& filename ) const;
     void setTextFont( QFont& font );
     void setTextColor( QColor& color );
+
+    void setTabStop( int tabs );
     void setAutoIndentMode( bool newmode );
 
 protected:
