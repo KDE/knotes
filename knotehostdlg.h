@@ -49,6 +49,9 @@ public:
     ~KNoteHostDlg();
 
     QString host() const;
+private slots:
+void slotTextChanged( const QString &);
+
 
 private:
     KHistoryCombo *m_hostCombo;
