@@ -31,7 +31,9 @@
 #include "alarm.h"
 #include "timer.h"
 #include "knotes.h"
+
 #include <klocale.h>
+#include <kmessagebox.h>
 
 extern DefStruct 	postitdefaults;
 extern MyTimer* 	mytimer;
@@ -150,11 +152,8 @@ bool AlarmDlg::checkDateTime(){
 
   if( rdt < QDateTime::currentDateTime()){
 
-    QMessageBox::warning(
-			 this,
-			 i18n("Sorry"),
-	   i18n("I am afraid you already missed your appointment."),
-		i18n("OK") );
+    KMessageBox::sorry(this,
+	   i18n("I am afraid you already missed your appointment."));
     return FALSE;
   }
 

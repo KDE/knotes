@@ -25,18 +25,26 @@
   */
 
 
-#include <qdrawutil.h>
 #include <time.h>
-#include "knotes.h"
-#include <kiconloader.h>
-#include <kurl.h>
-#include <krun.h>
-#include <kglobal.h>
-#include <kstddirs.h>
-#include <kio_netaccess.h>
-#include <kconfig.h>
-#include <kaccel.h>
+#include <dirent.h>
+#include <sys/stat.h>
 
+#include "knotes.h"
+
+#include <qdrawutil.h>
+#include <qmessagebox.h>
+
+#include <kaccel.h>
+#include <kconfig.h>
+#include <kglobal.h>
+#include <kiconloader.h>
+#include <kio_netaccess.h>
+#include <klocale.h>
+#include <kmessagebox.h>
+#include <krun.h>
+#include <kstddirs.h>
+#include <kurl.h>
+#include <kwm.h>
 
 #include "configdlg.h"
 #include "fontdlg.h"
@@ -50,7 +58,6 @@
 #include <X11/Xlib.h>
 
 #include "knotes.moc"
-#include <kwm.h>
 
 void findPostitFiles();
 
@@ -83,9 +90,6 @@ volatile sig_atomic_t cleaning_up = false;
 extern bool     savealarms();
 extern bool 	readalarms();
 
-#include <dirent.h>
-#include <sys/stat.h>
-#include <klocale.h>
 
 
 
@@ -143,7 +147,7 @@ void KPostitMultilineEdit::mouseDoubleClickEvent ( QMouseEvent * e ){
   getCursorPosition(&line,&column);
 
   QString text = markedText();
-  //  printf("%d %d %s\n",line,column,text.data());
+  //  printf("%d %d %s\n",line,column,text.ascii());
 
   if (text.isEmpty())
     return;
@@ -210,7 +214,7 @@ void KPostitMultilineEdit::mynewLine(){
     QMultiLineEdit::insertAt(string, line, col);
 
     // this doesn't work. in Qt 1.2:
-    // insertAt(string.data(),line + 1,0);
+    // insertAt(string.ascii(),line + 1,0);
 
 #ifdef FocusIn
 #undef FocusIn
@@ -409,7 +413,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     connect( desktops, SIGNAL(activated( int )),
 	     SLOT(toDesktop(int)) );
 
-    right_mouse_button->insertItem(KWM::getToDesktopString(),
+    right_mouse_button->insertItem(KWM::toDesktopString(),
 				   desktops);
 
     //    right_mouse_button->insertSeparator();
@@ -499,15 +503,10 @@ void KPostit::quit(){
   for(PostitList.first();PostitList.current();PostitList.next()){
 
     if (!PostitList.current()->savenotes()){
-      int result = QMessageBox::warning(
+      int result = KMessageBox::warningYesNoCancel(
 					 this,
-					 i18n("Sorry"),
-					 i18n("Could not save a KNote.\n"\
-							    "Exit anyways?"),
-					 i18n("Yes"),
-					 i18n("No"),
-					 i18n("Cancel"),
-					 1,2
+					 i18n("Could not save a KNote.\n"
+					      "Exit anyways?")
 					 );
 
       if (result){
@@ -516,18 +515,10 @@ void KPostit::quit(){
     }
   }
 
-  remove( pidFile.data() );
+  remove( pidFile.ascii() );
   writeSettings();
-  if(!savealarms()){
-    QString str;
-    str = i18n("Could not save KNote Alarms\n");
-    QMessageBox::warning(
-			 this,
-			 i18n("Sorry"),
-			 str,
-			 i18n("OK")
-                         );
-  }
+  if(!savealarms())
+    KMessageBox::sorry(this, i18n("Could not save KNote Alarms\n"));
   QApplication::exit();
 
 }
@@ -569,26 +560,21 @@ void KPostit::mail(){
 
   QString cmd;
   cmd = postitdefaults.mailcommand.copy();
-  cmd = cmd.sprintf(postitdefaults.mailcommand.data(),
-		    maildlg->getSubject().data(),maildlg->getRecipient().data());
+  cmd = cmd.sprintf(postitdefaults.mailcommand.ascii(),
+		    maildlg->getSubject().ascii(),maildlg->getRecipient().ascii());
 
-  /*  printf("%s\n",cmd.data());*/
+  /*  printf("%s\n",cmd.ascii());*/
 
   delete maildlg;
 
-  mailpipe = popen(cmd.data(),"w");
+  mailpipe = popen(cmd.ascii(),"w");
   //  printf("popen %d\n",(int) mailpipe);
 
   if(mailpipe == NULL){
     QString str;
     str = i18n("Could not pipe the contents of this KNote into:\n %1").arg(cmd);
 
-    QMessageBox::information(
-			     this,
-			     i18n("Sorry"),
-			     str,
-			     i18n("OK")
-			     );
+    KMessageBox::sorry(this, str);
 
     return;
   }
@@ -677,10 +663,10 @@ void KPostit::print(){
 
   QString cmd;
   cmd = postitdefaults.printcommand.copy();
-  cmd = cmd.sprintf(postitdefaults.printcommand.data(),name.data());
-  //  printf("%s\n",cmd.data());
+  cmd = cmd.sprintf(postitdefaults.printcommand.ascii(),name.ascii());
+  //  printf("%s\n",cmd.ascii());
 
-  printpipe = popen(cmd.data(),"w");
+  printpipe = popen(cmd.ascii(),"w");
 
   if(printpipe == NULL){
     QString str;
@@ -688,12 +674,7 @@ void KPostit::print(){
     str = i18n("Could not pipe the contents of this KNote into:\n %1")
 		.arg(cmd);
 
-    QMessageBox::warning(
-			 this,
-			 i18n("Sorry"),
-			 str,
-			 i18n("OK")
-			 );
+    KMessageBox::sorry(this, str);
     return;
   }
 
@@ -739,17 +720,12 @@ void KPostit::newKPostit(){
   }
 
   if (exists){ // all 50 names are taken
-    QMessageBox::warning(this,
-			 i18n("Sorry"),
+    KMessageBox::sorry(this,
 			 i18n("You have exeeded the "
-					    "arbitrary and unjustly set "
-			 "limit of 50 knotes.\n Please complain to the author."),
-			 i18n("OK")
-			 );
+			      "arbitrary and unjustly set "
+			      "limit of 50 knotes.\n Please complain to the author."));
     return;
-
   }
-
 
   // update all popup menus
   for(PostitList.first();PostitList.current();PostitList.next()){
@@ -763,7 +739,7 @@ void KPostit::newKPostit(){
 
 
 
-  PostitFilesList.inSort(pname);
+  PostitFilesList.inSort(pname.ascii());
 
   for(PostitList.first();PostitList.current();PostitList.next()){
     int k = 0;
@@ -837,7 +813,7 @@ void KPostit::renameKPostit(){
     QString notesfile( locateLocal("appdata", "notes/"+name) );
     QString newnotesfile( locateLocal("appdata", "notes/"+newName) );
 
-    if(rename(notesfile.data(),newnotesfile.data())){
+    if(rename(notesfile.ascii(),newnotesfile.ascii())){
 
     }
 
@@ -864,7 +840,7 @@ void KPostit::renameKPostit(){
     }
     mytimer->start();
 
-    PostitFilesList.inSort(newName);
+    PostitFilesList.inSort(newName.ascii());
     name = newName;
 
 
@@ -901,7 +877,7 @@ void KPostit::hideKPostit(){
   int numVisible = 0;
 
   hidden = true;
-  propertystring = KWM::getProperties(winId());
+  propertystring = KWM::properties(winId());
   this->hide();
 
   for(PostitList.first(); PostitList.current() ; PostitList.next())
@@ -914,8 +890,6 @@ void KPostit::hideKPostit(){
 
 
 void KPostit::deleteKPostit(){
-
-
   int result = QMessageBox::warning(this,
 				    i18n("Question"),
 				    i18n("Are you sure you "\
@@ -932,7 +906,7 @@ void KPostit::deleteKPostit(){
 
   QString notesfile( locateLocal("appdata", "notes/"+name) );
 
-  if(remove(notesfile.data())){
+  if(remove(notesfile.ascii())){
   }
 
 
@@ -1084,7 +1058,7 @@ bool KPostit::loadnotes(){
 
 }
 
-bool KPostit::insertFile(const char* filename){
+bool KPostit::insertFile(const QString &filename){
 
 
   QFile file(filename);
@@ -1093,12 +1067,7 @@ bool KPostit::insertFile(const char* filename){
   if( !file.open( IO_ReadOnly )) {
     QString string;
     string = i18n("Could not load:\n %1").arg(filename);
-    QMessageBox::warning(
-			 this,
-			 i18n("Sorry"),
-			 string,
-			 i18n("OK")
-			 );
+    KMessageBox::sorry(this, string);
     return FALSE;
   }
 
@@ -1159,7 +1128,7 @@ bool KPostit::savenotes(){
     //    t2 << propertystring << '\n';
   }
   else{
-    t << KWM::getProperties(winId()) <<'\n';
+    t << KWM::properties(winId()) <<'\n';
     //    t2 << KWM::getProperties(winId()) <<'\n';
   }
 
@@ -1256,14 +1225,14 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
     int n = KWM::numberOfDesktops();
     for (i=1; i <= n; i++){
       QString b = "&";
-      b.append(KWM::getDesktopName(i));
+      b.append(KWM::desktopName(i));
       desktops->insertItem(b, i);
     }
     desktops->setItemChecked(KWM::currentDesktop(), TRUE);
     if (KWM::isSticky(winId()))
-      right_mouse_button->changeItem(KWM::getUnStickyString(), sticky_id);
+      right_mouse_button->changeItem(KWM::unStickyString(), sticky_id);
     else
-      right_mouse_button->changeItem(KWM::getStickyString(), sticky_id);
+      right_mouse_button->changeItem(KWM::stickyString(), sticky_id);
     right_mouse_button->popup(tmp_point);
   }
 
@@ -1276,7 +1245,7 @@ void KPostit::set3DFrame(bool enable)
   frame3d = enable;
   options->setItemChecked(frame3dID, enable);
 
-  long oldDeco = KWM::getDecoration(winId());
+  long oldDeco = KWM::decoration(winId());
 
   if (enable)
     KWM::setDecoration(winId(),
@@ -1499,18 +1468,16 @@ void KPostit::insertNetFile( const char *_url)
 
   if ( u.isMalformed() )
     {
-	QMessageBox::warning(
+	KMessageBox::sorry(
 			     this,
-			     i18n("Sorry"),
-			     i18n("Malformed URL"),
-			     i18n("OK"));
+			     i18n("Malformed URL"));
 	return;
     }
 
     // Just a usual file ?
-    if ( strcmp( u.protocol(), "file" ) == 0 )
+    if ( u.protocol() == "file" )
     {
-      insertFile( u.path());
+      insertFile( u.path() );
       return;
     }
 
@@ -1584,7 +1551,7 @@ void KPostit::setNoAutoIndent(){
 
 void KPostit::setOnTop(bool enable)
 {
-  long oldDeco = KWM::getDecoration(winId());
+  long oldDeco = KWM::decoration(winId());
 
   if (enable)
     KWM::setDecoration(winId(),oldDeco | KWM::staysOnTop);
@@ -1612,13 +1579,13 @@ void findPostitFiles(){
   QStringList::Iterator it = list.begin(); // create list iterator
   QString fi;                           // pointer for traversing
 
-  while ( (fi=*it) ) {           // for each file...
-    if (strcmp(".",fi) ==0 || strcmp("..",fi) ==0 ||strcmp("xyalarms",fi) ==0){
+  while ( !(fi=*it).isNull() ) {           // for each file...
+    if ("." == fi || ".." == fi || "xyalarms" == fi){
       ++it;
       continue;
     }
 
-    KPostit::PostitFilesList.inSort(fi);
+    KPostit::PostitFilesList.inSort(fi.ascii());
     ++it;
   }
 
@@ -1629,7 +1596,7 @@ void alarmConsistencyCheck(){
   for(KPostit::AlarmList.first();KPostit::AlarmList.current();
       KPostit::AlarmList.next()){
 
-    if (KPostit::PostitFilesList.find(KPostit::AlarmList.current()->name) == -1){
+    if (KPostit::PostitFilesList.find(KPostit::AlarmList.current()->name.ascii()) == -1){
 
       QString str;
       str = i18n("Found an alarm to which the underlying\n"\
@@ -1638,12 +1605,9 @@ void alarmConsistencyCheck(){
 		  "I will correct the Problem for you.")
 		  .arg(KPostit::AlarmList.current()->name);
 
-      QMessageBox::warning(
-			   0,
-			   i18n("Inconsistency"),
-			   str,
-			   i18n("OK")
-			   );
+      KMessageBox::sorry(0,
+			 str,
+			 i18n("Inconsistency"));
 
       KPostit::AlarmList.remove(KPostit::AlarmList.current());
 
@@ -1659,7 +1623,7 @@ sessionWidget::sessionWidget() {
 
 void sessionWidget::wm_saveyourself() {
 
-  remove( pidFile.data() );
+  remove( pidFile.ascii() );
   savealarms();
   writeSettings();
 
@@ -1684,7 +1648,7 @@ int main( int argc, char **argv ) {
 
   // if there is a pidFile then this is not the first instance of kpostit
 
-  if ( ( fp = fopen( pidFile, "r" ) ) != NULL )
+  if ( ( fp = fopen( pidFile.ascii(), "r" ) ) != NULL )
     {
 
       fscanf( fp, "%d", &pid);
@@ -1706,10 +1670,9 @@ int main( int argc, char **argv ) {
 
   catchSignals();
 
-  fp = fopen( pidFile, "w" );
+  fp = fopen( pidFile.ascii(), "w" );
   fprintf( fp, "%d\n", getpid());
   fclose( fp );
-
 
   readSettings();
 
@@ -1853,7 +1816,7 @@ static void cleanup( int sig )
     return;
   cleaning_up = true;
   //  printf("KPostit: Caught signal %d. Tyring to save state.\n",sig);
-  remove( pidFile.data() );
+  remove( pidFile.ascii() );
   savealarms();
   writeSettings();
 

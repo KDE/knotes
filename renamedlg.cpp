@@ -26,9 +26,13 @@
  
  */
 
-#include "renamedlg.h"
+#include <qdialog.h>
+
 #include <kapp.h>
 #include <klocale.h>
+#include <kmessagebox.h>
+
+#include "renamedlg.h"
 
 RenameDlg::RenameDlg( QWidget *parent, const char *name,
 		      QString *string,QStrList *list)
@@ -48,7 +52,6 @@ RenameDlg::RenameDlg( QWidget *parent, const char *name,
     connect(cancel, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ok, SIGNAL(clicked()), this, SLOT(selected()));
     resize(300, 120); 
-    
 }
 
 void RenameDlg::resizeEvent(QResizeEvent *){
@@ -71,29 +74,21 @@ void RenameDlg::selected(){
   pstring->stripWhiteSpace();
   if(pstring->isEmpty())
     reject();
-  if(*pstring == QString("xyalarms")){
-
-    QMessageBox::warning(
-			 this,
-			 i18n("Sorry"),
-			 i18n(
+  if(*pstring == "xyalarms"){
+    KMessageBox::sorry(this,
+		       i18n(
 		     "The name \"xyalarms\" is reserved for internal usage.\n"\
-		     "Please choose a different name"),
-		      i18n("OK"));
+		     "Please choose a different name"));
       return;	
-
   }
   
   for(pstrlist->first();pstrlist->current();pstrlist->next()){
     if(QString(pstrlist->current()) == *pstring){
 
-      QMessageBox::warning(
+      KMessageBox::sorry(
 		     this,
-		     i18n("Sorry"),
 		     i18n("A KNotes note with this name already exists\n"\
-		     "Please choose a different name"),
-		     i18n("OK"));
-
+		     "Please choose a different name"));
       return;	
     }
   }

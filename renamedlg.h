@@ -28,7 +28,6 @@
 #define __KPOSTIT_RENAME__
 
 #include <qlineedit.h>
-#include <qmessagebox.h>
 #include <qdatetime.h> 
 #include <qkeycode.h>
 #include <qgroupbox.h>

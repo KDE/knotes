@@ -35,7 +35,7 @@
 
 #include <bwdatetime.h>
 #include <klocale.h>
-
+#include <kmessagebox.h>
 
 BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
   : QWidget(parent, name){
@@ -177,11 +177,9 @@ bool BWDateTime::checkDateTime(){
     rtime.setHMS(myhour,minute->value(),0);
   }
   else{
-    QMessageBox::warning(
+    KMessageBox::sorry(
 			 this,
-			 i18n("Sorry"),
-			 i18n("The Time you selected is invalid"),
-			 i18n("OK"));
+			 i18n("The Time you selected is invalid"));
 
     time_notvalid = TRUE;
     return FALSE;
@@ -192,11 +190,9 @@ bool BWDateTime::checkDateTime(){
     rdate.setYMD(year->value(),month->value(),day->value());
   }
   else{
-    QMessageBox::warning(
+    KMessageBox::sorry(
 			 this,
-			 i18n("Sorry"),
-			 i18n("The Date you selected is invalid"),
-			 i18n("OK"));
+			 i18n("The Date you selected is invalid"));
 
     date_notvalid = TRUE;
     return FALSE;

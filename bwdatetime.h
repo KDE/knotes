@@ -38,7 +38,6 @@
 #include <qbuttongroup.h>
 #include <qradiobutton.h>
 #include <qdatetime.h>
-#include <qmessagebox.h>
 
 // #include "spin.h"
 

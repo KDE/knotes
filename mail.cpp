@@ -27,8 +27,9 @@
 
 
 #include "mail.h"
-#include <klocale.h>
 
+#include <klocale.h>
+#include <kmessagebox.h>
 
 Mail::Mail(KPostit *parent, const char *name)
     : QDialog(parent, name,TRUE){
@@ -87,11 +88,8 @@ void Mail::ok_slot(){
 
   QString str = getRecipient();
   if (str.isEmpty()){
-    QMessageBox::warning(
-			 this,
-			 i18n("Sorry"),
-			 i18n("You must specify a Recipient"),
-			 i18n("OK"));
+    KMessageBox::sorry(this,
+		       i18n("You must specify a Recipient"));
     return;
   }
 

@@ -27,10 +27,13 @@
 
 #include "timer.h"
 #include "knotes.h"
+
+#include <qlabel.h>
+
 #include <kwm.h>
 #include <klocale.h>
 #include <kprocess.h>
-#include <qlabel.h>
+#include <kmessagebox.h>
 
 extern DefStruct 	postitdefaults;
 
@@ -123,11 +126,7 @@ void MyTimer::timerEvent( QTimerEvent * ){
       str = i18n("Alarm for KNote:\n\n%1")
 		  .arg(entry->name);
 
-      QMessageBox::information(
-			       t,
-			       i18n("Alarm"),
-			       str,
-			       i18n("OK"));
+      KMessageBox::information(t, str, i18n("Alarm"));
 
 
       delete entry;

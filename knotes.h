@@ -31,7 +31,6 @@
 #include <qtimer.h>
 #include <qmultilinedit.h>
 #include <qfont.h>
-#include <qmessagebox.h>
 #include <qfile.h>
 #include <qtextstream.h>
 #include <qfileinfo.h>
@@ -176,7 +175,7 @@ public slots:
   void  quit();
   void  insertDate();
   void  insertNetFile( const char *_url);
-  bool  insertFile(const char* filename);
+  bool  insertFile(const QString &filename);
   void  RMBActivated(int);
   void  close();
   void  selectFont();
