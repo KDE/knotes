@@ -1,6 +1,10 @@
 ChangeLog for KNotes
 ====================
 
+2003/10/21  Michael Brade <brade@kde.org>
+
+    * fixed dropping of urls
+
 2003/06/28  Michael Brade <brade@kde.org>
 
     * fixed #54293: sort note titles in the notes menu
