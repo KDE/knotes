@@ -136,7 +136,7 @@ public:
   int  autoIndentID;
 
 protected:
-
+  void  mouseDoubleClickEvent ( QMouseEvent * e );
   void  keyPressEvent(QKeyEvent *e);
   void  mynewLine();
 

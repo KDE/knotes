@@ -31,6 +31,9 @@
 #include <time.h>
 #include "knotes.h"
 #include <kiconloader.h>
+#include <kurl.h>
+#include <kfm.h>
+
 #include "configdlg.h"
 #include "fontdlg.h"
 #include "mail.h"
@@ -128,6 +131,28 @@ void KPostitMultilineEdit::keyPressEvent(QKeyEvent *e){
   QMultiLineEdit::keyPressEvent(e);
 
 }
+
+void KPostitMultilineEdit::mouseDoubleClickEvent ( QMouseEvent * e ){
+
+  QMultiLineEdit::mouseDoubleClickEvent(e);
+
+  int line, column = 0;
+  getCursorPosition(&line,&column);
+
+  QString text = markedText();
+  //  printf("%d %d %s\n",line,column,text.data());
+
+  KURL kurl(text.data());
+
+  if (kurl.isMalformed())
+    return;
+
+  KFM* kfm = new KFM();
+  kfm->openURL( text );
+  delete kfm;
+
+}
+
 
 void KPostitMultilineEdit::mynewLine(){
 
