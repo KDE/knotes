@@ -1,6 +1,10 @@
 ChangeLog for KNotes
 ====================
 
+2003/06/28  Michael Brade <brade@kde.org>
+
+    * fixed #54293: sort note titles in the notes menu
+
 2003/06/22  Michael Brade <brade@kde.org>
  
     * fixed #42088: don't loose notes if HD is full, always keep a backup

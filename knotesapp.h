@@ -103,8 +103,14 @@ private:
     void saveConfig();
 
 
+    class KNoteActionList : public QPtrList<KAction>
+    {
+    public:
+        virtual int compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 );
+    };
+
     QDict<KNote>      m_noteList;
-    QPtrList<KAction> m_noteActions;
+    KNoteActionList   m_noteActions;
 
     KCal::CalendarLocal m_calendar;
 

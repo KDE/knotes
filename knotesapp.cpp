@@ -49,6 +49,14 @@
 using namespace KCal;
 
 
+int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 )
+{ 
+    if ( ((KAction*)s1)->text() == ((KAction*)s2)->text() ) 
+        return 0; 
+    return ( ((KAction*)s1)->text() < ((KAction*)s2)->text() ? -1 : 1 ); 
+}
+
+
 KNotesApp::KNotesApp()
     : DCOPObject("KNotesIface"), QLabel( 0, 0, WType_TopLevel ),
       KXMLGUIBuilder( this )
@@ -494,6 +502,8 @@ void KNotesApp::updateNoteActions()
         action->setIconSet( pix );
         m_noteActions.append( action );
     }
+
+    m_noteActions.sort();
 
     if ( m_noteActions.isEmpty() )
     {
