@@ -58,7 +58,7 @@ KNotesApp::KNotesApp()
  
     // create the GUI...
     new KAction( i18n("New Note"), "filenew", 0, this, SLOT(slotNewNote()), actionCollection(), "new_note" );
-    new KAction( i18n("New Note from Clipboard"), "editpaste", 0, this, SLOT(slotNewNoteFromClipboard()), actionCollection(), "new_note_clipboard" );
+    new KAction( i18n("New Note From Clipboard"), "editpaste", 0, this, SLOT(slotNewNoteFromClipboard()), actionCollection(), "new_note_clipboard" );
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
     
     KStdAction::preferences( this, SLOT(slotPreferences()), actionCollection() );
@@ -77,7 +77,7 @@ KNotesApp::KNotesApp()
     globalAccel->insert( "global_new_note", i18n("New Note"), "", 
                          ALT+SHIFT+Key_N, ALT+SHIFT+Key_N , 
                          this, SLOT(slotNewNote()), true, true );
-    globalAccel->insert( "global_new_note_clipboard", i18n("New Note from Clipboard"), "",
+    globalAccel->insert( "global_new_note_clipboard", i18n("New Note From Clipboard"), "",
                          ALT+SHIFT+Key_C, ALT+SHIFT+Key_C, 
                          this, SLOT(slotNewNoteFromClipboard()), true, true );
 
