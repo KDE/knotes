@@ -81,6 +81,9 @@ public slots:
                      const QString& text = QString::null );
     QString newNoteFromClipboard( const QString& name = QString::null );
 
+    void hideAllNotes() const;
+    void showAllNotes() const;
+
 protected:
     void mousePressEvent( QMouseEvent* );
 

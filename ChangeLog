@@ -12,6 +12,11 @@ ChangeLog for KNotes
 
       This will also make it possible to properly implement the often requested
       hide all/show all notes feature.
+    * fixed #29242, #44761, #65090: implemented Show All/Hide All Notes and
+      added a global shortcut for both actions. Thanks to Jakob Schroeter for
+      the initial patch on which this is based and the idea to add the global
+      shortcut. With my previous patch to properly store the desktop this
+      feature is now usable.
 
 2004/08/29  Michael Brade <brade@kde.org>
 
