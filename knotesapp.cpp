@@ -490,8 +490,8 @@ void KNotesApp::saveNotes()
         KMessageBox::error(0, i18n("<qt>Can't save the notes backup to <b>%1</b>! Harddisk full?</qt>")
                                   .arg( backup ) );
     else if ( !m_calendar.save( file, new ICalFormat() ) )
-        KMessageBox::error(0, i18n("<qt>Can't save the notes to <b>%1</b>! Harddisk full? \
-                                    There should be a backup in <b>%2</b> though.</qt>")
+        KMessageBox::error(0, i18n("<qt>Can't save the notes to <b>%1</b>! Harddisk full?<br>"
+                                   "There should be a backup in <b>%2</b> though.</qt>")
                                   .arg( file ).arg( backup ) );
 }
 
