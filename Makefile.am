@@ -22,7 +22,7 @@ METASOURCES = knotes.moc configdlg.moc fontdlg.moc mail.moc alarm.moc \
 
 KDE_ICON = knotes
 
-pix_DATA = knoteslogo.xpm knotesclose.xpm
+pix_DATA = knoteslogo.png knotesclose.png
 pixdir = $(kde_datadir)/knotes/pics/
 
 apps_DATA = knotes.desktop
