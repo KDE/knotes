@@ -60,6 +60,7 @@ public:
 
 protected:
     void mouseReleaseEvent( QMouseEvent* );
+    bool eventFilter( QObject*, QEvent* );
 
 protected slots:
     void slotNewNote();
@@ -74,6 +75,7 @@ protected slots:
 
 private:
     KNote* noteById( int id ) const;
+    void showNote( KNote* note ) const;
 
     QDict<KNote>  m_NoteList;
     KPopupMenu*   m_note_menu;

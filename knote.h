@@ -69,9 +69,6 @@ public slots:
     void slotToDesktop( int id );
     void slotPrepareDesktopMenu();
 
-    virtual void setFocus();
-    virtual void show();
-
 signals:
     void sigKilled( const QString& );
     void sigRenamed( const QString&, const QString& );
@@ -80,6 +77,7 @@ signals:
 protected:
     virtual void resizeEvent( QResizeEvent* );
     virtual void closeEvent( QCloseEvent* );
+    virtual void keyPressEvent( QKeyEvent* );
 
     bool eventFilter( QObject*, QEvent* );
 

@@ -117,6 +117,8 @@ KNotesApp::KNotesApp()
         m_NoteList.insert( newNote->name(), newNote );
     }
 
+    kapp->installEventFilter( this );
+
     if ( m_NoteList.count() == 0 && !kapp->isRestored() )
         slotNewNote();
 }
@@ -175,21 +177,7 @@ void KNotesApp::showNote( const QString& name ) const
         return;
     }
 
-    if ( !note->isHidden() )
-    {
-        // if it's already showing, we need to change to its desktop
-        // and give it focus
-        KWin::setActiveWindow( note->winId() );
-        note->setFocus();
-    }
-    else
-    {
-        // if not, show note on the current desktop
-        note->show();
-        note->slotToDesktop( KWin::currentDesktop() );
-        KWin::setActiveWindow( note->winId() );
-        note->setFocus();
-    }
+    showNote( note );
 }
 
 void KNotesApp::showNote( int noteId ) const
@@ -202,21 +190,7 @@ void KNotesApp::showNote( int noteId ) const
         return;
     }
 
-    if ( !note->isHidden() )
-    {
-        // if it's already showing, we need to change to its desktop
-        // and give it focus
-        KWin::setActiveWindow( note->winId() );
-        note->setFocus();
-    }
-    else
-    {
-        // if not, show note on the current desktop
-        note->show();
-        note->slotToDesktop( KWin::currentDesktop() );
-        KWin::setActiveWindow( note->winId() );
-        note->setFocus();
-    }
+    showNote( note );
 }
 
 void KNotesApp::killNote( const QString& name )
@@ -341,7 +315,7 @@ bool KNotesApp::isModified( const QString& app, int noteId ) const
 
 // ------------------- protected methods ------------------- //
 
-void KNotesApp::mouseReleaseEvent( QMouseEvent * e)
+void KNotesApp::mouseReleaseEvent( QMouseEvent* e)
 {
     if ( rect().contains( e->pos() ) && e->button() == LeftButton )
     {
@@ -350,6 +324,34 @@ void KNotesApp::mouseReleaseEvent( QMouseEvent * e)
             m_note_menu->popup( e->globalPos() );
         return;
     }
+}
+
+bool KNotesApp::eventFilter( QObject* o, QEvent* ev )
+{
+    if ( ev->type() == QEvent::KeyPress )
+    {
+        QKeyEvent* ke = (QKeyEvent*)ev;
+
+        if ( ke->key() == Key_BackTab )         // Shift+Tab
+        {
+            // show next note
+            QDictIterator<KNote> it( m_NoteList );
+            KNote* first = it.current();
+            for ( ; it.current(); ++it )
+                if ( it.current()->hasFocus() ) {
+                    if ( ++it )
+                        showNote( it.current() );
+                    else
+                        showNote( first );
+                    break;
+                }
+
+            ke->accept();
+            return true;
+        }
+    }
+
+    return QObject::eventFilter( o, ev );
 }
 
 
@@ -431,6 +433,26 @@ KNote* KNotesApp::noteById( int noteId ) const
             return it.current();
 
     return 0L;
+}
+
+void KNotesApp::showNote( KNote* note ) const
+{
+    if ( !note->isHidden() )
+    {
+        // if it's already showing, we need to change to its desktop
+        // and give it focus
+        KWin::setCurrentDesktop( KWin::info( note->winId() ).desktop );
+        KWin::setActiveWindow( note->winId() );
+        note->setFocus();
+    }
+    else
+    {
+        // if not, show note on the current desktop
+        note->show();
+        note->slotToDesktop( KWin::currentDesktop() );
+        KWin::setActiveWindow( note->winId() );
+        note->setFocus();
+    }
 }
 
 #include "knotesapp.moc"

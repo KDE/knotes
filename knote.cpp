@@ -97,6 +97,8 @@ KNote::KNote( const QString& config, bool load, QWidget* parent, const char* nam
     m_editor = new KNoteEdit( this );
     m_editor->installEventFilter( this ); // recieve events( for modified )
 
+    setFocusProxy( m_editor );
+
     // now create or load the data and configuration
     bool oldconfig = false;
     // WARNING: if the config file doesn't exist a new note will be created!
@@ -345,17 +347,6 @@ void KNote::slotPreferences()
     connect( &configDlg, SIGNAL( updateConfig() ), this, SLOT( slotApplyConfig() ) );
 
     configDlg.show();
-}
-
-
-void KNote::setFocus()
-{
-    m_editor->setFocus();
-}
-
-void KNote::show()
-{
-    QFrame::show();
 }
 
 void KNote::slotToDesktop( int id )
@@ -743,6 +734,14 @@ void KNote::closeEvent( QCloseEvent* e )
     saveDisplayConfig();
 
     QWidget::closeEvent( e );
+}
+
+void KNote::keyPressEvent( QKeyEvent* e )
+{
+    if ( e->key() == Key_Escape )
+        slotClose();
+    else
+        e->ignore();
 }
 
 bool KNote::eventFilter( QObject* o, QEvent* ev )
