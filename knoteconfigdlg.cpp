@@ -132,12 +132,12 @@ void KNoteConfigDlg::makeEditorPage()
     l_tabsize->setBuddy( _tabEdit );
 
     bool check_val = _config->readBoolEntry( "autoindent", true );
-    _autoIndentSwitch = new QCheckBox( i18n("Auto &Indent"), editorPage );
+    _autoIndentSwitch = new QCheckBox( i18n("Auto &indent"), editorPage );
     _autoIndentSwitch->setChecked( check_val );
     glay->addWidget( _autoIndentSwitch, 1, 0, AlignCenter );
 
     check_val = _config->readBoolEntry( "richtext", false );
-    _richTextSwitch = new QCheckBox( i18n("Edit &Rich Text"), editorPage );
+    _richTextSwitch = new QCheckBox( i18n("Edit &rich text"), editorPage );
     _richTextSwitch->setChecked( check_val );
     _richTextSwitch->setEnabled( false );
     glay->addWidget( _richTextSwitch, 1, 2, AlignCenter );
