@@ -146,14 +146,14 @@ void KNoteConfigDlg::makeEditorPage()
     QFont def_font(KGlobalSettings::generalFont());
     QFont currfont = _config->readFontEntry( "titlefont", &def_font );
     _titleFont->setFont( currfont );
-    _titleFont->setText( i18n( "Title Font: Click to Change" ) );
+    _titleFont->setText( i18n( "Title Font: Click to Change..." ) );
     glay->addMultiCellWidget( _titleFont, 2, 2, 0, 2 );
     connect( _titleFont, SIGNAL(clicked()), this, SLOT(slotChangeTitleFont()) );
 
     _textFont = new QPushButton( editorPage );
     currfont = _config->readFontEntry( "font", &def_font );
     _textFont->setFont( currfont );
-    _textFont->setText( i18n( "Text Font: Click to Change" ) );
+    _textFont->setText( i18n( "Text Font: Click to Change..." ) );
     glay->addMultiCellWidget( _textFont, 3, 3, 0, 2 );
     connect( _textFont, SIGNAL(clicked()), this, SLOT(slotChangeTextFont()) );
 }
@@ -171,7 +171,7 @@ void KNoteConfigDlg::makeActionsPage()
     QGridLayout* glay     = new QGridLayout( topLevel, 2, 2 );
     glay->setColStretch( 1, 1 );
 
-    QLabel* l_mail = new QLabel( i18n("&Mail Action:"), actionsPage );
+    QLabel* l_mail = new QLabel( i18n("&Mail action:"), actionsPage );
     QString mailstr = _config->readEntry( "mail", "kmail --msg %f" );
     _mailEdit = new KLineEdit( mailstr, actionsPage );
     l_mail->setBuddy( _mailEdit );

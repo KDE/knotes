@@ -70,13 +70,13 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
     // create the menu items for the note - not the editor...
     // rename, mail, print, insert date, close, delete, new note
     new KAction( i18n("New"), "filenew", 0, this, SLOT(slotNewNote()), actionCollection(), "new_note" );
-    new KAction( i18n("Rename"), "text", 0, this, SLOT(slotRename()), actionCollection(), "rename_note" );
-    new KAction( i18n("Delete"), "knotesdelete", 0, this, SLOT(slotKill()), actionCollection(), "delete_note" );
+    new KAction( i18n("Rename..."), "text", 0, this, SLOT(slotRename()), actionCollection(), "rename_note" );
+    new KAction( i18n("Delete..."), "knotesdelete", 0, this, SLOT(slotKill()), actionCollection(), "delete_note" );
 
     new KAction( i18n("Insert Date"), 0, this, SLOT(slotInsDate()), actionCollection(), "insert_date" );
-    new KAction( i18n("Mail"), "mail_send", 0, this, SLOT(slotMail()), actionCollection(), "mail_note" );
-    new KAction( i18n("Print"), "fileprint", 0, this, SLOT(slotPrint()), actionCollection(), "print_note" );
-    new KAction( i18n("Note Preferences..."), "configure", 0, this, SLOT(slotPreferences()), actionCollection(), "configure_note" );
+    new KAction( i18n("Mail..."), "mail_send", 0, this, SLOT(slotMail()), actionCollection(), "mail_note" );
+    new KAction( i18n("Print..."), "fileprint", 0, this, SLOT(slotPrint()), actionCollection(), "print_note" );
+    new KAction( i18n("Preferences..."), "configure", 0, this, SLOT(slotPreferences()), actionCollection(), "configure_note" );
 
     m_alwaysOnTop = new KToggleAction( i18n("Always on Top"), "attach", 0, this, SLOT(slotToggleAlwaysOnTop()), actionCollection(), "always_on_top" );
     connect( m_alwaysOnTop, SIGNAL(toggled(bool)), m_alwaysOnTop, SLOT(setChecked(bool)) );
@@ -347,7 +347,7 @@ void KNote::slotRename()
 {
     //pop up dialog to get the new name
     bool ok;
-    QString newname = KLineEditDlg::getText( i18n("Please enter the new name"),
+    QString newname = KLineEditDlg::getText( i18n("Please enter the new name:"),
                                              m_label->text(), &ok, this );
     if ( !ok ) // handle cancel
         return;
@@ -420,7 +420,7 @@ void KNote::slotUpdateDesktopActions()
     NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
 
     QStringList desktops;
-    desktops.append( i18n("&All desktops") );
+    desktops.append( i18n("&All Desktops") );
     desktops.append( QString::null );           // Separator
 
     int count = wm_root.numberOfDesktops();
