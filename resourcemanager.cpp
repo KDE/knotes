@@ -85,7 +85,10 @@ void KNotesResourceManager::addNewNote( KCal::Journal *journal )
     // TODO: Make this configurable
     ResourceNotes *resource = m_manager->standardResource();
     if ( resource )
+    {
         resource->addNote( journal );
+        registerNote( resource, journal );
+    }
     else
         kdWarning(5500) << k_funcinfo << "no resource!" << endl;
 }

@@ -96,7 +96,6 @@ bool ResourceLocal::save()
 bool ResourceLocal::addNote( KCal::Journal* journal )
 {
     mCalendar.addJournal( journal );
-    manager()->registerNote( this, journal );
     return true;
 }
 
