@@ -29,7 +29,7 @@ knotes_local_la_LIBADD  = libknotes.la $(top_builddir)/libkcal/libkcal.la -lkdep
 METASOURCES     = AUTO
 
 xdg_apps_DATA   = knotes.desktop
-kde_kcfg_DATA   = knotes.kcfg knotesglobalconfig.kcfg
+kde_kcfg_DATA   = knoteconfig.kcfg knotesglobalconfig.kcfg
 
 ui_DATA         = knotesui.rc
 uidir           = $(kde_datadir)/knotes
