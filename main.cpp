@@ -51,7 +51,7 @@ void remove_sm_from_client_leader()
                                  FALSE, XA_WINDOW, &type, &format,
                                  &nitems, &extra, &data );
 
-    if (status  == Success && !handler.error( false )) 
+    if (status  == Success && !handler.error( false ))
     {
         if (data && nitems > 0)
         {
@@ -107,6 +107,7 @@ int main( int argc, char* argv[] )
     aboutData.addCredit("Matthias Ettrich", 0, "ettrich@kde.org");
     aboutData.addCredit("David Faure", 0, "faure@kde.org");
     aboutData.addCredit("Matthias Kiefer", 0, "kiefer@kde.org");
+    aboutData.addCredit("Luboš Luňák", 0, "l.lunak@kde.org");
     aboutData.addCredit("Laurent Montel", 0, "montel@kde.org");
     aboutData.addCredit("Dirk A. Mueller", 0, "dmuell@gmx.net");
     aboutData.addCredit("Carsten Pfeiffer", 0, "pfeiffer@kde.org");

@@ -1,6 +1,13 @@
 ChangeLog for KNotes
 ====================
 
+2004/03/23  Michael Brade <brade@kde.org>
+
+    * Thanks to Luboš for his function that removes sm from the client
+      leader KNotes is not managed anymore by KWin (again) and is now 
+      thus able to restore its notes properly on login with manually saved
+      sessions.
+
 2004/03/21  Michael Brade <brade@kde.org>
 
     * fixed Tab key handling in RT mode: do not give away focus to the font
