@@ -1,9 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (C) Bernd Johannes Wuebben
-     wuebben@math.cornell.edu
-     wuebben@kde.org
+ Copyright (c) 1997-2001, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -20,31 +18,37 @@
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 *******************************************************************/
 
-#include "knoteconfigdlg.h"
-
-#include <kfontdialog.h>
-#include <kglobal.h>
-#include <kinstance.h>
-#include <kiconloader.h>
-#include <klocale.h>
-#include <kdebug.h>
-
-#include <qpixmap.h>                                    
+#include <qstring.h>
+#include <qpixmap.h>
 #include <qframe.h>
 #include <qlabel.h>
 #include <qlayout.h>
+#include <qcheckbox.h>
+
+#include <kglobal.h>
+#include <kconfig.h>
+#include <klocale.h>
+#include <kdebug.h>
+#include <kcolorbutton.h>
+#include <knuminput.h>
+#include <klineedit.h>
+#include <kfontdialog.h>
+#include <kiconloader.h>
+
+#include "knoteconfigdlg.h"
+
 
 KNoteConfigDlg::KNoteConfigDlg( const QString& configfile, const QString & title,
-                                QWidget* parent, const char* name )
-        : KDialogBase( IconList, title, Ok|Apply|Cancel, Ok,
-                       parent, name, true, true )
+            QWidget* parent, const char* name )
+    : KDialogBase( IconList, title, Ok|Apply|Cancel, Ok,
+            parent, name, true, true )
 {
-        setIconListAllVisible( true );
+    setIconListAllVisible( true );
     _config = new KConfig( configfile, false, false );
 
-        makeDisplayPage();
-        makeEditorPage();
-        makeActionsPage();
+    makeDisplayPage();
+    makeEditorPage();
+    makeActionsPage();
 }
 
 KNoteConfigDlg::~KNoteConfigDlg()

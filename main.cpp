@@ -1,9 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (C) Bernd Johannes Wuebben
-     wuebben@math.cornell.edu
-     wuebben@kde.org
+ Copyright (c) 1997-2001, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -20,23 +18,22 @@
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 *******************************************************************/
 
-#include "knotesapp.h"
-
+#include <kuniqueapp.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
 #include <klocale.h>
-#include <kuniqueapp.h>
-#include <kapp.h>
 
 #include <iostream.h>
+
+#include "knotesapp.h"
+#include "version.h"
 
 
 int main( int argc, char* argv[] )
 {
-    KAboutData aboutData(
-        "knotes", I18N_NOOP("KNotes"),
-        I18N_NOOP("2.0pre"), I18N_NOOP( "KDE Notes" ), KAboutData::License_GPL,
-        I18N_NOOP("(c) 1997-2000, KNote Developers") );
+    KAboutData aboutData( "knotes", I18N_NOOP("KNotes"),
+        I18N_NOOP( KNOTES_VERSION ), I18N_NOOP( "KDE Notes" ), KAboutData::License_GPL,
+        I18N_NOOP("(c) 1997-2001, The KNotes Developers") );
 
     aboutData.addAuthor("Bernd Johannes Wuebben",0, "wuebben@kde.org");
     aboutData.addAuthor("Matthias Ettrich",0, "ettrich@kde.org");
@@ -48,13 +45,15 @@ int main( int argc, char* argv[] )
     aboutData.addAuthor("Carsten Pfeiffer",0, "pfeiffer@kde.org");
     aboutData.addAuthor("Wynn Wilkes",0, "wynnw@calderasystems.com");
     aboutData.addAuthor("Michael Brade",0, "brade@informatik.uni-muenchen.de");
+
     KCmdLineArgs::init( argc, argv, &aboutData );
 
     KUniqueApplication::addCmdLineOptions();
-    //check if unique application is already running...
-    if( !KUniqueApplication::start() )
+
+    // Check if unique application is already running...
+    if ( !KUniqueApplication::start() )
     {
-        cerr << "already running, exiting..." << endl;
+        cerr << "KNotes is already running, exiting..." << endl;
         return 1;
     }
     KUniqueApplication app;

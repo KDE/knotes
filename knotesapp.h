@@ -1,9 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (C) Bernd Johannes Wuebben
-     wuebben@math.cornell.edu
-     wuebben@kde.org
+ Copyright (c) 1997-2001, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -23,45 +21,62 @@
 #ifndef KNOTESAPP_H
 #define KNOTESAPP_H
 
-#include "knote.h"
-#include "knotesdcop.h"
-
-#include <ksystemtray.h>
-#include <kconfig.h>
-
+#include <qstring.h>
 #include <qdict.h>
 
-class KNotesApp : public KSystemTray, virtual public KNotesDCOP
+#include <ksystemtray.h>
+
+#include "KNotesIface.h"
+
+class KNote;
+
+
+class KNotesApp : public KSystemTray, virtual public KNotesIface
 {
-   Q_OBJECT
+    Q_OBJECT
 public:
     KNotesApp();
     ~KNotesApp();
 
-	virtual ASYNC showNote( const QString& );
-	virtual ASYNC addNote( QString, QString, unsigned long );
-	virtual ASYNC rereadNotesDir();
+    int newNote( QString name = QString::null, const QString& text = QString::null );
+    void showNote( const QString& name ) const;
+    void showNote( int noteId ) const;
+    void killNote( const QString& name );
+    void killNote( int noteId );
 
-public slots:
-    void slotNewNote    ( int id=0 );
-    void slotPreferences( int );
+    QMap<int,QString> notes() const;
+    QString text( const QString& name ) const;
+    QString text( int noteId ) const;
+    void setName( const QString& oldName, const QString& newName );
+    void setName( int noteId, const QString& newName );
+    void setText( const QString& name, const QString& newText );
+    void setText( int noteId, const QString& newText );
 
-    void slotNoteKilled ( QString name );
-    void slotNoteRenamed( QString& oldname, QString& newname );
-    void slotSaveNotes();
+    void sync( const QString& app );
+    bool isNew( const QString& app, const QString& name ) const;
+    bool isNew( const QString& app, int noteId ) const;
+    bool isModified( const QString& app, const QString& name ) const;
+    bool isModified( const QString& app, int noteId ) const;
+
+protected:
+    void mouseReleaseEvent( QMouseEvent* );
 
 protected slots:
-    void slotToNote( int id );
+    void slotNewNote();
+    void slotToNote( int id ) const;
+    void slotSaveNotes() const;
+
+    void slotPreferences() const;
     void slotPrepareNoteMenu();
-    void mouseReleaseEvent( QMouseEvent *);
+
+    void slotNoteKilled( const QString& name );
+    void slotNoteRenamed( const QString& oldname, const QString& newname );
 
 private:
+    KNote* noteById( int id ) const;
+
     QDict<KNote>  m_NoteList;
     KPopupMenu*   m_note_menu;
-
-    void loadNotes();
-    void newNote( const QString& note_name = QString::null,
-                  const QString& text = QString::null );
 };
 
 #endif

@@ -1,9 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (C) Bernd Johannes Wuebben
-     wuebben@math.cornell.edu
-     wuebben@kde.org
+ Copyright (c) 1997-2001, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -23,77 +21,88 @@
 #ifndef KNOTE_H
 #define KNOTE_H
 
-#include "knoteedit.h"
-#include "knotebutton.h"
-
 #include <qstring.h>
 #include <qframe.h>
 #include <qpoint.h>
-
+#include <qdir.h>
 
 class QLabel;
 
 class KPopupMenu;
+class KNoteButton;
+class KNoteEdit;
 
-class KNote : public QFrame  {
-   Q_OBJECT
+
+class KNote : public QFrame
+{
+    Q_OBJECT
 public:
-    KNote( QString configfile, bool oldconfig=false, QWidget* parent=0, const char* name=0 );
+    KNote( const QString& config, bool load=false, QWidget* parent=0, const char* name=0 );
     ~KNote();
 
-    void saveData();
-    void saveConfig();
-    void saveDisplayConfig();
-    QString getName();
+    void saveData() const;
+    void saveConfig() const;
+    void saveDisplayConfig() const;
 
+    int noteId() const;
+    QString name() const;
+    QString text() const;
+
+    void setName( const QString& name );
     void setText( const QString& text );
 
-public slots:
-    //menu slots
-    void slotMail   ( int );
-    void slotPrint  ( int );
-    void slotRename ( int );
-    void slotInsDate( int );
-    void slotKill   ( int );
-    void slotClose  ();
-    void slotNewNote( int );
-    void slotPreferences( int );
+    void sync( const QString& app );
+    bool isNew( const QString& app ) const;
+    bool isModified( const QString& app ) const;
 
-    void slotApplyConfig();
+public slots:
+    void slotNewNote();
+    void slotRename();
+    void slotClose();
+    void slotKill();
+    void slotMail() const;
+    void slotPrint() const;
+    void slotInsDate();
+    void slotPreferences();
+
+    void slotAlwaysOnTop();
     void slotToDesktop( int id );
     void slotPrepareDesktopMenu();
-    void slotAlwaysOnTop( int );
 
     virtual void setFocus();
     virtual void show();
 
 signals:
-    void sigKilled( QString );
-    void sigRenamed( QString&, QString& );
-    void sigNewNote( int );
+    void sigKilled( const QString& );
+    void sigRenamed( const QString&, const QString& );
+    void sigNewNote();
 
 protected:
     virtual void resizeEvent( QResizeEvent* );
-    virtual void closeEvent( QCloseEvent* e );
+    virtual void closeEvent( QCloseEvent* );
 
-    bool eventFilter( QObject* o, QEvent* e );
+    bool eventFilter( QObject*, QEvent* );
+
+private slots:
+    void slotApplyConfig();
 
 private:
-    void           convertOldConfig();
+    void convertOldConfig();
 
-    QString        m_configfile;
+    QDir         m_noteDir;
+    QString      m_configFile;
 
-    KNoteEdit*     m_editor;
-    KNoteButton*   m_button;
-    QLabel*        m_label;
-    KPopupMenu*    m_menu;
-    KPopupMenu*    m_desktop_menu;
+    QLabel*      m_label;
+    KNoteButton* m_button;
+    KNoteEdit*   m_editor;
 
-    bool           m_dragging;
-    QPoint         m_pointerOffset;
-    int            m_idAlwaysOnTop;
-    bool           m_saveself;
+    KPopupMenu*  m_menu;
+    KPopupMenu*  m_desktop_menu;
+
+    QPoint       m_pointerOffset;
+    int          m_idAlwaysOnTop;
+    bool         m_dragging;
+    bool         m_killSelf;
 };
-
 
 #endif

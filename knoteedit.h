@@ -1,9 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (C) Bernd Johannes Wuebben
-     wuebben@math.cornell.edu
-     wuebben@kde.org
+ Copyright (c) 1997-2001, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -29,31 +27,30 @@
 
 class KNoteEdit : public QMultiLineEdit
 {
-   Q_OBJECT
+    Q_OBJECT
 public: 
-	KNoteEdit( QWidget *parent=0, const char *name=0 );
-	~KNoteEdit();
-	
-	void setAutoIndentMode( bool newmode );
-	void readFile( QString& filename );
-	void dumpToFile( QString& filename );
-	
-protected:
-	void  dragMoveEvent(QDragMoveEvent* event);
-	void  dragEnterEvent(QDragEnterEvent* event);
-	void  dropEvent(QDropEvent* event);
+    KNoteEdit( QWidget *parent=0, const char *name=0 );
+    ~KNoteEdit();
 
-	void  mouseDoubleClickEvent ( QMouseEvent * e );
-	void  keyPressEvent(QKeyEvent *e);
-	void  mynewLine();
+    void setAutoIndentMode( bool newmode );
+    void readFile( QString& filename );
+    void dumpToFile( QString& filename ) const;
+
+protected:
+    void  dragMoveEvent( QDragMoveEvent* event );
+    void  dragEnterEvent( QDragEnterEvent* event );
+    void  dropEvent( QDropEvent* event );
+
+    void  mouseDoubleClickEvent( QMouseEvent* e );
+    void  keyPressEvent( QKeyEvent* e );
+    void  mynewLine();
 
 private:
-	QString prefixString( QString string );
-	bool m_autoIndentMode;
+    QString prefixString( QString string );
+    bool m_autoIndentMode;
 
 signals:
-	void gotUrlDrop(const QString & url);
-
+    void gotUrlDrop( const QString& url );
 };
 
 #endif

@@ -1,9 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (C) Bernd Johannes Wuebben
-     wuebben@math.cornell.edu
-     wuebben@kde.org
+ Copyright (c) 1997-2001, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -24,18 +22,21 @@
 #define KNOTECONFIGDLG_H
 
 #include <kdialogbase.h>
-#include <kconfig.h>
-#include <klineedit.h>
-#include <kcolorbtn.h>
-#include <kcolordialog.h>
-#include <knuminput.h>
 
-#include <qcheckbox.h>
-#include <qfont.h>
+class QString;
+class QColor;
+class QCheckBox;
+class QPushButton;
+
+class KConfig;
+class KColorButton;
+class KLineEdit;
+class KIntNumInput;
+
 
 class KNoteConfigDlg : public KDialogBase
 {
-   Q_OBJECT
+    Q_OBJECT
 public:
     KNoteConfigDlg( const QString& configfile, const QString & title,
                     QWidget* parent=0, const char* name=0 );
@@ -73,7 +74,6 @@ signals:
 
 private:
     void storeSettings();
-
 };
 
 #endif
