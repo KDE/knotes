@@ -35,6 +35,9 @@
 #include "alarm.h"
 #include "timer.h"
 #include "renamedlg.h"
+#include "version.h"
+
+#include <X11/Xlib.h>
 
 #include "knotes.moc"
 
@@ -383,7 +386,7 @@ void KPostit::mail(){
   cmd = cmd.sprintf(postitdefaults.mailcommand.data(),
 		    maildlg->getSubject().data(),maildlg->getRecipient().data());
 
-  printf("%s\n",cmd.data());
+  /*  printf("%s\n",cmd.data());*/
 
   delete maildlg;
 
@@ -1027,7 +1030,7 @@ void KPostit::defaults()
   box->setTitle("About");
   label->setGeometry(10,25,280,170);
   label->setAlignment( AlignCenter);
-  label->setText("KNotes 0.3\n"\
+  label->setText("KNotes "KNOTES_VERSION"\n"\
                  "Written by Bernd Johannes Wuebben\n"\
 		 "wuebben@math.cornell.edu\n"\
 		 "(C) 1997\n"\
@@ -1301,6 +1304,29 @@ void alarmConsistencyCheck(){
   }
 }
 
+extern "C" {
+
+static int knotes_x_errhandler( Display *dpy, XErrorEvent *err )
+{
+    char errstr[256];
+
+    cleanup(0);
+    XGetErrorText( dpy, err->error_code, errstr, 256 );
+    fatal( "X Error: %s\n  Major opcode:  %d", errstr, err->request_code );
+    return 0;
+}
+
+
+static int knotes_xio_errhandler( Display * ){
+
+  cleanup(0);
+  /*fatal( "%s: Fatal IO error: client killed", "kppp" );*/
+  return 0;
+}
+
+} /*extern C*/                                 
+
+
 int main( int argc, char **argv ) {
 
   FILE *fp;
@@ -1365,6 +1391,10 @@ int main( int argc, char **argv ) {
   mytimer = new MyTimer();
   
   postit->show();
+
+  XSetErrorHandler( knotes_x_errhandler );
+  XSetIOErrorHandler( knotes_xio_errhandler );
+
   return a.exec();
 
   delete mytimer;
