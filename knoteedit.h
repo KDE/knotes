@@ -24,6 +24,9 @@
 #include <qwidget.h>
 #include <qtextedit.h>
 
+class QFont;
+class QColor;
+
 
 class KNoteEdit : public QTextEdit
 {
@@ -36,6 +39,7 @@ public:
     void readFile( QString& filename );
     void dumpToFile( QString& filename ) const;
     void setTextFont( QFont& font );
+    void setTextColor( QColor& color );
 
 protected:
     void dragMoveEvent( QDragMoveEvent* event );

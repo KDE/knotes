@@ -21,6 +21,8 @@
 #include <qdragobject.h>
 #include <qtextstream.h>
 #include <qfile.h>
+#include <qcolor.h>
+#include <qfont.h>
 
 #include <kdebug.h>
 
@@ -75,6 +77,13 @@ void KNoteEdit::setTextFont( QFont& font )
 {
     selectAll();
     setFont( font );
+    selectAll( false );
+}
+
+void KNoteEdit::setTextColor( QColor& color )
+{
+    selectAll();
+    setColor( color );
     selectAll( false );
 }
 

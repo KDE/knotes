@@ -560,6 +560,9 @@ void KNote::slotApplyConfig()
     newpalette.setColor( QColorGroup::Dark, bg.dark(108) );
     setPalette( newpalette );
 
+    // set the text color
+    m_editor->setTextColor( fg );
+
     // set darker values for the label and button...
     m_button->setBackgroundColor( bg.dark(116) );
     if ( hasFocus() )
@@ -643,6 +646,8 @@ void KNote::convertOldConfig()
         newpalette.setColor( QColorGroup::Light, bg.light(180) );
         newpalette.setColor( QColorGroup::Dark, bg.dark(108) );
         setPalette( newpalette );
+
+        m_editor->setTextColor( fg );
 
         // set darker values for the label and button...
         m_button->setBackgroundColor( bg.dark(116) );

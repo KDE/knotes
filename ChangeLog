@@ -9,6 +9,7 @@ ChangeLog for KNotes
       - #20172: separate font settings for title and body
     * don't reload the display setting if changing e.g. only the color -
       the note's geometry could have been changed already
+    * fixed some bugs introduced by the QTextEdit port
 
 2001/06/10  Michael Brade <brade@informatik.uni-muenchen.de>
 
