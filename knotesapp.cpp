@@ -41,7 +41,7 @@
 
 KNotesApp::KNotesApp()
     : KSystemTray(),
-	  DCOPObject("KNotesDCOP")
+	  DCOPObject("KNotesIface")
 {
     //create the dock widget....
     setPixmap( KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Small ) );
@@ -86,9 +86,27 @@ void KNotesApp::loadNotes()
     }
 }
 
-/* virtual */ ASYNC KNotesApp::showNote( QString name )
+/* virtual */ ASYNC KNotesApp::showNote( const QString& name )
 {
-    kdWarning() << "this isn't implemented yet" << endl;
+    KNote* tmpnote = m_NoteList[name];
+    if (!tmpnote)
+    {
+    	kdWarning() << "No note named " << name << endl;
+	return;
+    }
+    if( !tmpnote->isHidden() )
+    {
+        KWin::setActiveWindow(tmpnote->winId());
+        tmpnote->setFocus();
+    }
+    else
+    {
+        //if not show it on the current desktop
+        tmpnote->show();
+        tmpnote->slotToDesktop( KWin::currentDesktop() );
+        KWin::setActiveWindow(tmpnote->winId());
+        tmpnote->setFocus();
+    }
 }
 
 ASYNC KNotesApp::rereadNotesDir()
@@ -208,20 +226,7 @@ void KNotesApp::slotToNote( int id )
 
     //if it's already showing, we need to change to its desktop
     //and give it focus
-    KNote* tmpnote = m_NoteList[name];
-    if( !tmpnote->isHidden() )
-    {
-        KWin::setActiveWindow(tmpnote->winId());
-        tmpnote->setFocus();
-    }
-    else
-    {
-        //if not show it on the current desktop
-        tmpnote->show();
-        tmpnote->slotToDesktop( KWin::currentDesktop() );
-        KWin::setActiveWindow(tmpnote->winId());
-        tmpnote->setFocus();
-    }
+    showNote(name);
 }
 
 void KNotesApp::slotPrepareNoteMenu()

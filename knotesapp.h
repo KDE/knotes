@@ -38,7 +38,7 @@ public:
     KNotesApp();
     ~KNotesApp();
 
-	virtual ASYNC showNote( QString );
+	virtual ASYNC showNote( const QString& );
 	virtual ASYNC addNote( QString, QString, unsigned long );
 	virtual ASYNC rereadNotesDir();
 
