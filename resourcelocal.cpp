@@ -1,7 +1,7 @@
 /*******************************************************************
  This file is part of KNotes.
 
- Copyright (c) 2004, Bo Thorsen <bo@klaralvdalens-datakonsult.se>
+ Copyright (c) 2004, Bo Thorsen <bo@sonofthor.dk>
                2004, Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or modify
