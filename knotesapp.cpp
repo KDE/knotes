@@ -21,6 +21,7 @@
 #include <qclipboard.h>
 #include <qptrlist.h>
 #include <qdir.h>
+#include <qtooltip.h>
 
 #include <kdebug.h>
 #include <kaction.h>
@@ -61,6 +62,7 @@ KNotesApp::KNotesApp()
 
     // create the dock widget...
     KWin::setSystemTrayWindowFor( winId(), qt_xrootwin() );
+    QToolTip::add( this, i18n( "KNotes: Sticky notes for KDE." ) );
     setBackgroundMode( X11ParentRelative );
     setPixmap( KSystemTray::loadIcon( "knotes" ) );
 
@@ -249,9 +251,7 @@ void KNotesApp::mousePressEvent( QMouseEvent* e )
     {
     case LeftButton:
         if ( m_manager->count() == 1 )
-        {
             showNote( m_manager->first() );
-        }
         else if ( m_note_menu->count() > 0 )
             m_note_menu->popup( e->globalPos() );
         break;
