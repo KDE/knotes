@@ -62,6 +62,7 @@ long 		window_id;
 QString 	tmpFile;
 
 MyTimer* 	mytimer;
+bool    saved_already_for_session_management = false;
 
 extern bool     savealarms();
 extern bool 	readalarms();
@@ -208,6 +209,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     edit->installEventFilter(this);
     edit->setFocus();
 
+    hidden = false;
     number = _number; 	// index in popup. Not used anymore, but I'll leave it in
                         // the structure for now.
     name = pname;
@@ -222,7 +224,8 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     font 		= postitdefaults.font;
     frame3d 		= postitdefaults.frame3d;
 
-    resize(postitdefaults.width,postitdefaults.height);
+    resize(postitdefaults.width,postitdefaults.height + 30);
+    edit->resize(postitdefaults.width,postitdefaults.height);
 
     loadnotes();
 
@@ -262,9 +265,12 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     options->insertSeparator();
     options->insertItem(klocale->translate("Change Defaults ..."),this, SLOT(defaults()));
 
+
     operations->insertSeparator();
     operations->insertItem (klocale->translate("Help"),this,SLOT(help()));
-
+    operations->insertSeparator();
+    operations->insertItem ( klocale->translate("Quit"), this,
+ 				    SLOT(quit()));
     operations->insertSeparator();
     operations->insertItem (klocale->translate("Options"),options);
 
@@ -281,9 +287,14 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
 
     right_mouse_button->insertSeparator();
+    right_mouse_button->insertItem(klocale->translate("Hide Note"), this,
+		       SLOT(hideKPostit()));
     right_mouse_button->insertItem (klocale->translate("Insert Date"), this, 	
 				    SLOT(insertDate()));
+  right_mouse_button->insertSeparator();
     right_mouse_button->insertItem (klocale->translate("Operations"),operations);
+
+    right_mouse_button->insertSeparator();
 
     sticky_id = right_mouse_button->insertItem("", this, SLOT(toggleSticky())); 
     
@@ -294,13 +305,15 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     right_mouse_button->insertItem(KWM::getToDesktopString(), 
 				   desktops);
 
-    right_mouse_button->insertSeparator();
+    //    right_mouse_button->insertSeparator();
 
 //     right_mouse_button->insertItem (klocale->translate("Quit"), this,
 // 				    SLOT(quit()));
 
-    right_mouse_button->insertItem(klocale->translate("Delete Note"), this,
-		       SLOT(deleteKPostit()));
+    //    right_mouse_button->insertItem(klocale->translate("Delete Note"), this,
+    //	       SLOT(deleteKPostit()));
+
+
 
     installEventFilter( this );     
 
@@ -331,6 +344,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     set_colors();
     edit->setFont(font);
+    //    label->setFont(font);
 
     bool have_alarm = FALSE;
 
@@ -350,12 +364,32 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     else
       setCaption(name);
     label->setText(caption());
+    
 
-
+    connect(mykapp,SIGNAL(saveYourself()),this,SLOT(wm_saveyourself()));
+    
 }
 
 void KPostit::toggleshow(){
   
+}
+
+void KPostit::wm_saveyourself(){
+
+  if(!saved_already_for_session_management){
+  
+    remove( pidFile.data() );
+    savealarms();
+    writeSettings();
+    
+    for(KPostit::PostitList.first();KPostit::PostitList.current();
+	KPostit::PostitList.next()){
+
+      KPostit::PostitList.current()->savenotes();
+
+    }
+    saved_already_for_session_management = true;
+  }
 }
 
 
@@ -369,6 +403,7 @@ void KPostit::selectFont(){
   QFont myfont = QWidget::font();
   KFontDialog::getFont(myfont);
   edit->setFont(myfont);
+  //  label->setFont(myfont);
   font = myfont;
   
 }
@@ -633,6 +668,8 @@ void KPostit::findKPostit(int i){
   for(PostitList.first(); PostitList.current() ; PostitList.next()){
     if (PostitList.current()->name == QString(right_mouse_button->text(
 					      right_mouse_button->idAt( i)))) {
+      PostitList.current()->hidden = false;
+      PostitList.current()->show();
       KWM::activate(PostitList.current()->winId());
       return;
     }
@@ -714,6 +751,14 @@ void KPostit::renameKPostit(){
     }
   }
 }
+
+void KPostit::hideKPostit(){
+
+    hidden = true;
+    this->hide();
+
+}
+
 
 void KPostit::deleteKPostit(){
 
@@ -856,7 +901,13 @@ bool KPostit::loadnotes(){
   else
     edit->autoIndentMode = FALSE;
   
-  
+  QString hiddenstring = t.readLine();
+  int hiddenint = hiddenstring.toUInt();
+  if(hiddenint == 1)
+    hidden = true;
+  else
+    hidden = false;
+
   // get the text body
 
   while ( !t.eof() ) {
@@ -960,6 +1011,12 @@ bool KPostit::savenotes(){
   else
     t <<  0 << '\n';
 
+  if (hidden)
+    t << 1 <<'\n';
+  else
+    t <<  0 << '\n';
+
+  
 
   int line_count = edit->numLines();
 
@@ -1207,7 +1264,9 @@ static void siguser1(int sig){
     postit->show();
   }
   else {
-    KPostit::PostitList.last()->newKPostit();
+      KPostit::PostitList.last()->show();
+      KWM::activate(KPostit::PostitList.last()->winId());
+      //    KPostit::PostitList.last()->newKPostit();
   }
   
   signal(SIGUSR1, siguser1);
@@ -1469,7 +1528,7 @@ int main( int argc, char **argv ) {
   mytimer = new MyTimer();
 
 
-  if (argc != 2 || QString("-only_restore") != argv[1]){
+  if (argc != 2 || QString("-only_restore") != (QString)argv[1]){
     if(KPostit::PostitFilesList.count() == 0){
       KPostit::PostitFilesList.append("knote 1");
     }
@@ -1479,7 +1538,8 @@ int main( int argc, char **argv ) {
   for (i=0; i<KPostit::PostitFilesList.count(); i++){
     postit = new KPostit(NULL,NULL,0,KPostit::PostitFilesList.at(i));
     KPostit::PostitList.append(postit); 
-    postit->show();
+    if(!postit->hidden)
+      postit->show();
   }
 
 

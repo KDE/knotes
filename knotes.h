@@ -138,7 +138,7 @@ public:
   static QList<AlarmEntry> AlarmList;
 
   int number;
-
+  bool hidden;
   QString name;
 
   QLabel* label;
@@ -155,6 +155,7 @@ protected:
 
 public slots:
 
+  void  wm_saveyourself();
   void  set3DFrame();
   void  setNoFrame();
   void  toggleFrame();
@@ -178,6 +179,7 @@ public slots:
   void  newKPostit();
   void  renameKPostit();
   void  deleteKPostit();
+  void  hideKPostit();
   void  insertCalendar();
   void  mail();
   void  print();
@@ -202,6 +204,7 @@ private:
   int  frame3dID;
   QColor forecolor;
   QColor backcolor;
+
   QTimer *timer;
   bool frame3d;
 
