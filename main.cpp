@@ -31,8 +31,14 @@
 
 using namespace std;
 
-Application::Application() : KUniqueApplication(), mMainWindow( 0 )
+Application::Application()
+    : KUniqueApplication(), mMainWindow( 0 )
 {
+}
+
+Application::~Application()
+{
+    delete mMainWindow;
 }
 
 int Application::newInstance()
@@ -43,9 +49,8 @@ int Application::newInstance()
         mMainWindow->show();
     }
     else
-    {
-        mMainWindow->newNote( );
-    }
+        mMainWindow->newNote();
+
     return KUniqueApplication::newInstance();
 }
 

@@ -31,6 +31,7 @@ class Application : public KUniqueApplication
 {
   public:
     Application();
+    ~Application();
 
     virtual int newInstance();
 
