@@ -33,6 +33,8 @@
 #include <qpushbutton.h>
 #include <qtextstream.h>
 
+#include <kuniqueapp.h>
+
 class QLabel;
 class QPopupMenu;
 class QTimer;
@@ -206,6 +208,12 @@ public slots:
 
     OptionDialog *mOptionDialog;
 
+};
+
+class KNotesApp : public KUniqueApplication
+{
+public:
+   int newInstance();
 };
 
 class sessionWidget : public QWidget {

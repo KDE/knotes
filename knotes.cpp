@@ -46,7 +46,7 @@
 #include <qpopupmenu.h>
 #include <qtimer.h>
 
-#include <kapp.h>
+#include <kuniqueapp.h>
 #include <kaccel.h>
 #include <kcmenumngr.h>
 #include <kcolordlg.h>
@@ -56,6 +56,7 @@
 #include <kiconloader.h>
 #include <kio_netaccess.h>
 #include <klocale.h>
+#include <kcmdlineargs.h>
 #include <kmessagebox.h>
 #include <krun.h>
 #include <kstddirs.h>
@@ -74,6 +75,10 @@
 
 #include "knotes.moc"
 
+
+static const char *description = 
+	I18N_NOOP("KDE notes");
+
 void findPostitFiles();
 
 QList<KPostit> 	  KPostit::PostitList;      // pointers to all postit objects
@@ -89,7 +94,6 @@ void 		catchSignals();
 void 	        readSettings();
 void 	        writeSettings();
 
-QString 	pidFile;
 long 		window_id;
 QString 	tmpFile;
 
@@ -487,7 +491,6 @@ void KPostit::quit( void )
     }
   }
 
-  remove( pidFile.ascii() );
   writeSettings();
   if( savealarms() == false )
   {
@@ -782,11 +785,13 @@ void KPostit::renameKPostit(){
     /*for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
       if(name == QString(PostitFilesList.current())){
 	PostitFilesList.remove(PostitFilesList.at());*/
-	for(QStringList::Iterator it=PostitFilesList.begin();
-		it != PostitFilesList.end();it++) {
-		if (name == *it) {
-			PostitFilesList.remove(it);		
-			break;
+    for(QStringList::Iterator it=PostitFilesList.begin();
+    	it != PostitFilesList.end();it++) 
+    {
+      if (name == *it) 
+      {
+         PostitFilesList.remove(it);		
+         break;
       }
     }
 
@@ -822,21 +827,21 @@ void KPostit::renameKPostit(){
 
     // remove and reinsert the popup menues in a sorted fashion
 
-    for(PostitList.first();PostitList.current();PostitList.next()){
-      for(uint i = 0 ; i < PostitFilesList.count();i++){
+    for(PostitList.first();PostitList.current();PostitList.next())
+    {
+      for(uint i = 0 ; i < PostitFilesList.count();i++)
+      {
 	PostitList.current()->right_mouse_button->removeItemAt(0);
       }
 
       int k = 0;
-/*      for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
-	PostitList.current()->right_mouse_button->insertItem(
-			     PostitFilesList.current(),k,k);*/
-	for(QStringList::Iterator it=PostitFilesList.begin();
-		it != PostitFilesList.end(); it++) {
-		PostitList.current()->right_mouse_button->insertItem(*it,k,k);
-		k++;
-    }
-    docker->createLeftPopUp();
+      for(QStringList::Iterator it=PostitFilesList.begin();
+          it != PostitFilesList.end(); it++) 
+      {
+         PostitList.current()->right_mouse_button->insertItem(*it,k,k);
+         k++;
+      }
+      docker->createLeftPopUp();
     }
   }
   delete dlg;
@@ -876,22 +881,14 @@ void KPostit::deleteKPostit()
   }
 
 
-  for(PostitList.first();PostitList.current();PostitList.next()){
+  for(PostitList.first();PostitList.current();PostitList.next())
+  {
     // remove popup entries
     for(uint i = 0 ; i < PostitFilesList.count();i++){
       PostitList.current()->right_mouse_button->removeItemAt(0);
     }
   }
 
-
-
-/*  for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
-    if(name == QString(PostitFilesList.current())){
-      PostitFilesList.remove(PostitFilesList.at());
-      break;
-    }
-  }
-*/
   for(QStringList::Iterator it=PostitFilesList.begin();
 	it != PostitFilesList.end(); it++) {
 	if (name == *it) {
@@ -905,26 +902,24 @@ void KPostit::deleteKPostit()
     toggleDock();
 
   // reinsert PostitFilesList into popus in a sorted fashion
-  for(PostitList.first();PostitList.current();PostitList.next()){
+  for(PostitList.first();PostitList.current();PostitList.next())
+  {
     int k = 0;
-    /*for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
-      PostitList.current()->right_mouse_button->insertItem(
-					      PostitFilesList.current(),k,k);
-      k++;
-    }*/
-	for(QStringList::Iterator it=PostitFilesList.begin();
-		it != PostitFilesList.end() ; it++) {
-		PostitList.current()->right_mouse_button->insertItem(*it,k,k);
-		k++;
-	}
+    for(QStringList::Iterator it=PostitFilesList.begin();
+        it != PostitFilesList.end() ; it++) 
+    {
+       PostitList.current()->right_mouse_button->insertItem(*it,k,k);
+       k++;
+    }
   }
 
   docker->createLeftPopUp();
 
   mytimer->stop();
-  for(KPostit::AlarmList.first();KPostit::AlarmList.current();KPostit::AlarmList.next()){
-
-    if (KPostit::AlarmList.current()->name == name){
+  for(KPostit::AlarmList.first();KPostit::AlarmList.current();KPostit::AlarmList.next())
+  {
+    if (KPostit::AlarmList.current()->name == name)
+    {
       delete KPostit::AlarmList.current();
       KPostit::AlarmList.remove(KPostit::AlarmList.current());
     }
@@ -935,17 +930,15 @@ void KPostit::deleteKPostit()
   delete this;
 }
 
-bool KPostit::loadnotes(){
-
-
+bool KPostit::loadnotes()
+{
   QString notesfile ( locateLocal("appdata", "notes/"+name) );
 
   QFile file(notesfile);
 
 
-  if( !file.open( IO_ReadOnly )) {
+  if( !file.open( IO_ReadOnly )) 
     return FALSE;
-  }
 
   edit->setAutoUpdate(FALSE);
   QTextStream t(&file);
@@ -1025,7 +1018,8 @@ bool KPostit::loadnotes(){
 
   // get the text body
 
-  while ( !t.eof() ) {
+  while ( !t.eof() ) 
+  {
     QString s = t.readLine();
 //    if(!t.eof())
       edit->insertLine( s );
@@ -1037,13 +1031,13 @@ bool KPostit::loadnotes(){
 
 }
 
-bool KPostit::insertFile(const QString &filename){
-
-
+bool KPostit::insertFile(const QString &filename)
+{
   QFile file(filename);
 
 
-  if( !file.open( IO_ReadOnly )) {
+  if( !file.open( IO_ReadOnly )) 
+  {
     QString string;
     string = i18n("Could not load:\n %1").arg(filename);
     KMessageBox::sorry(this, string);
@@ -1054,7 +1048,8 @@ bool KPostit::insertFile(const QString &filename){
   QTextStream t(&file);
 
 
-  while ( !t.eof() ) {
+  while ( !t.eof() ) 
+  {
     QString s = t.readLine();
 //    if(!t.eof())
       edit->insertLine( s );
@@ -1069,14 +1064,16 @@ bool KPostit::insertFile(const QString &filename){
 
 
 
-void KPostit::resizeEvent( QResizeEvent * ){
+void KPostit::resizeEvent( QResizeEvent * )
+{
   label->adjustSize();
   label->setGeometry(1,1,width()-label->height()-2,label->height());
   edit->setGeometry(1, label->height()+1, width()-2, height()-label->height()-2);
   mybutton->setGeometry(this->width()-label->height()-1 ,1,label->height(),label->height());
 }
 
-void KPostit::closeEvent( QCloseEvent * ){
+void KPostit::closeEvent( QCloseEvent * )
+{
   deleteKPostit();
 };
 
@@ -1085,30 +1082,22 @@ bool KPostit::savenotes(){
   QString notesfile( locateLocal("appdata", "notes/"+name) );
 
   QFile file(notesfile);
-  //  QFile file2("/home/wuebben/knotes.txt");
 
   if( !file.open( IO_WriteOnly)) {
     return FALSE;
   }
 
-  /* if( !file2.open( IO_WriteOnly | IO_Truncate )) {
-    return FALSE;
-  }*/
 
   QTextStream t(&file);
-// QTextStream t2(&file2);
 
   t << name <<'\n';
-  //  t2 << name <<'\n';
 
   if( this->hidden){
 
     t << propertystring << '\n';
-    //    t2 << propertystring << '\n';
   }
   else{
     t << KWM::properties(winId()) <<'\n';
-    //    t2 << KWM::properties(winId()) <<'\n';
   }
 
   t << backcolor.red() <<'\n';
@@ -1135,7 +1124,6 @@ bool KPostit::savenotes(){
   }
 
   file.close();
-  //  file2.close();
 
   return TRUE;
 }
@@ -1292,23 +1280,8 @@ void KPostit::configurationChanged( const DefStruct &state )
   postitdefaults.onTop = onTop;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void KPostit::set_colors(){
-
-
+void KPostit::set_colors()
+{
   QPalette mypalette = (edit->palette()).copy();
 
   QColorGroup cgrp = mypalette.normal();
@@ -1330,8 +1303,8 @@ void KPostit::set_colors(){
 }
 
 
-void KPostit::set_foreground_color(){
-
+void KPostit::set_foreground_color()
+{
   QColor color;
 
   color = forecolor;
@@ -1341,13 +1314,10 @@ void KPostit::set_foreground_color(){
 
   forecolor = color;
   set_colors();
-
-
-
 }
 
-void KPostit::set_background_color(){
-
+void KPostit::set_background_color()
+{
   QColor color;
 
   color = backcolor;
@@ -1360,31 +1330,6 @@ void KPostit::set_background_color(){
 
 }
 
-
-static void siguser1(int sig){
-  sig = sig;
-
-  if (KPostit::PostitList.count() == 0){
-    KPostit::PostitFilesList.append("knote 1");
-    KPostit* postit = new KPostit(NULL,NULL,0,"knote 1");
-    KPostit::PostitList.append(postit);
-    postit->show();
-  }
-  else {
-    if( KPostit::PostitList.last()->hidden == true){
-      KPostit::PostitList.last()->hidden = false;
-      if(KPostit::PostitList.last()->propertystring != (QString) "")
-	  KPostit::PostitList.last()->setGeometry(KWM::setProperties(KPostit::PostitList.last()->winId(),
-			   KPostit::PostitList.last()->propertystring));
-
-    }
-    KPostit::PostitList.last()->show();
-    KWM::activate(KPostit::PostitList.last()->winId());
-    //    KPostit::PostitList.last()->newKPostit();
-  }
-
-  signal(SIGUSR1, siguser1);
-}
 
 void KPostit::insertNetFile( const char *_url)
 {
@@ -1446,32 +1391,34 @@ void KPostit::close( void )
 }
 
 
-void KPostit::toggleIndentMode(){
+void KPostit::toggleIndentMode()
+{
   if(edit->autoIndentMode)
     setNoAutoIndent();
   else
     setAutoIndent();
 }
 
-void KPostit::toDesktop(int d){
+void KPostit::toDesktop(int d)
+{
   KWM::moveToDesktop(winId(), d);
 }
 
-void KPostit::toggleSticky(){
+void KPostit::toggleSticky()
+{
   KWM::setSticky(winId(), !KWM::isSticky(winId()));
 }
 
-void KPostit::setAutoIndent(){
-
+void KPostit::setAutoIndent()
+{
   edit->autoIndentMode = TRUE;
   options->setItemChecked(edit->autoIndentID,TRUE);
 }
 
-void KPostit::setNoAutoIndent(){
-
+void KPostit::setNoAutoIndent()
+{
   edit->autoIndentMode = FALSE;
   options->setItemChecked(edit->autoIndentID,FALSE);
-
 }
 
 void KPostit::setOnTop(bool enable)
@@ -1492,8 +1439,8 @@ void KPostit::toggleOnTopMode()
   setOnTop(!postitdefaults.onTop);
 }
 
-void findPostitFiles(){
-
+void findPostitFiles()
+{
   QString filesdir = locateLocal( "appdata", "notes/" );
   QString alarmdir = locateLocal( "appdata", "xyalarms/" );
 
@@ -1517,13 +1464,15 @@ void findPostitFiles(){
 
 }
 
-void alarmConsistencyCheck(){
-
+void alarmConsistencyCheck()
+{
   for(KPostit::AlarmList.first();KPostit::AlarmList.current();
-      KPostit::AlarmList.next()){
+      KPostit::AlarmList.next())
+  {
 
     if (KPostit::PostitFilesList.find(KPostit::AlarmList.current()->name) == 
-	KPostit::PostitFilesList.end()){
+	KPostit::PostitFilesList.end())
+    {
 
       QString str;
       str = i18n("Found an alarm to which the underlying\n"\
@@ -1542,15 +1491,15 @@ void alarmConsistencyCheck(){
   }
 }
 
-sessionWidget::sessionWidget() {
+sessionWidget::sessionWidget() 
+{
   // the only function of this widget is to catch & forward the
   // saveYourself() signal from the session manager
   connect(kapp, SIGNAL(saveYourself()), SLOT(wm_saveyourself()));
 }
 
-void sessionWidget::wm_saveyourself() {
-
-  remove( pidFile.ascii() );
+void sessionWidget::wm_saveyourself() 
+{
   savealarms();
   writeSettings();
 
@@ -1560,44 +1509,43 @@ void sessionWidget::wm_saveyourself() {
     KPostit::PostitList.current()->savenotes();
 }
 
-int main( int argc, char **argv ) {
+int 
+KNotesApp::newInstance()
+{
+  if (KPostit::PostitList.count() == 0){
+    KPostit::PostitFilesList.append("knote 1");
+    KPostit* postit = new KPostit(NULL,NULL,0,"knote 1");
+    KPostit::PostitList.append(postit);
+    postit->show();
+  }
+  else {
+    if( KPostit::PostitList.last()->hidden == true){
+      KPostit::PostitList.last()->hidden = false;
+      if(KPostit::PostitList.last()->propertystring != (QString) "")
+	  KPostit::PostitList.last()->setGeometry(KWM::setProperties(KPostit::PostitList.last()->winId(),
+			   KPostit::PostitList.last()->propertystring));
 
-  FILE *fp;
-  int pid;
-  KPostit* postit;
-
-  KApplication a(argc, argv, "knotes");
-
-  pidFile = locateLocal( "appdata", "knotes.pid");
-
-  //
-  // if there is a pidFile then this is not the first instance of kpostit
-  //
-  if ( ( fp = fopen( pidFile.ascii(), "r" ) ) != NULL )
-    {
-
-      fscanf( fp, "%d", &pid);
-      printf("pid %d\n",pid);
-
-      // if this fails I assume that the pid file is left over from a bad exit
-      // and continue on
-      //
-      if ( kill( pid, SIGUSR1 ) == 0){
-
-	// the kpostit is still alive
-	// it could however be zombi or a recycled pid -- use IPC instead.
-
-	exit(0);
-      }
-
-      fclose( fp );
     }
+    KPostit::PostitList.last()->show();
+    KWM::activate(KPostit::PostitList.last()->winId());
+    //    KPostit::PostitList.last()->newKPostit();
+  }
+  return 0;
+}
+
+int main( int argc, char **argv ) 
+{
+  KCmdLineArgs::init(argc, argv, "knotes", description, KNOTES_VERSION);
+
+  if (!KNotesApp::start())
+  {
+     // Already running.
+     exit(0);
+  }
+
+  KNotesApp a;
 
   catchSignals();
-
-  fp = fopen( pidFile.ascii(), "w" );
-  fprintf( fp, "%d\n", getpid());
-  fclose( fp );
 
   readSettings();
 
@@ -1608,34 +1556,22 @@ int main( int argc, char **argv ) {
   mytimer = new MyTimer();
   savetimer = new SaveTimer();
 
-  bool restoring = false;
-
-  if (QString("-knotes_restore") == (QString)argv[1]){
-    restoring = true;
-  }
-
-
-  if(KPostit::PostitFilesList.count() == 0 && !restoring){
-    KPostit::PostitFilesList.append("knote 1");
-  }
-
   //unsigned int i;
   bool one_is_visible = false;
 
-  /*for (i=0; i<KPostit::PostitFilesList.count(); i++){
-    postit = new KPostit(NULL,NULL,0,KPostit::PostitFilesList.at(i));*/
-	for(QStringList::Iterator it=KPostit::PostitFilesList.begin();
-		it != KPostit::PostitFilesList.end(); it++) {
-	postit = new KPostit(NULL,NULL,0,*it);
+  for(QStringList::Iterator it=KPostit::PostitFilesList.begin();
+	it != KPostit::PostitFilesList.end(); it++) 
+  {
+    KPostit* postit = new KPostit(NULL,NULL,0,*it);
     KPostit::PostitList.append(postit);
-    if(!postit->hidden){
+    if(!postit->hidden)
+    {
       postit->show();
       one_is_visible = true;
     }
   }
 
-
-  // manual session management (knotes alredy stores everything)
+  // manual session management (knotes already stores everything)
   kapp->setTopWidget(new sessionWidget);
 #if 0  
   kapp->enableSessionManagement(true);
@@ -1738,23 +1674,19 @@ void writeSettings()
 
 static void cleanup( int sig )
 {
-
   (void) sig;
   if(cleaning_up)
     return;
   cleaning_up = true;
-  //  printf("KPostit: Caught signal %d. Tyring to save state.\n",sig);
-  remove( pidFile.ascii() );
+  //  printf("KPostit: Caught signal %d. Trying to save state.\n",sig);
   savealarms();
   writeSettings();
 
   for(KPostit::PostitList.first();KPostit::PostitList.current();
-      KPostit::PostitList.next()){
-
+      KPostit::PostitList.next())
+  {
     KPostit::PostitList.current()->savenotes();
-
   }
-
 
   QApplication::exit();
 }
@@ -1770,7 +1702,7 @@ void catchSignals()
 //	signal(SIGCHLD, cleanup);
 
 	signal(SIGABRT, cleanup);
-	signal(SIGUSR1, siguser1);
+	signal(SIGUSR1, cleanup);
 	signal(SIGALRM, cleanup);
 	signal(SIGFPE, cleanup);
 	signal(SIGILL, cleanup);
