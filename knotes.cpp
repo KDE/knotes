@@ -85,6 +85,29 @@ void testDir( const char *_name )
 }
 
 
+
+extern "C" {
+
+static int knotes_x_errhandler( Display *dpy, XErrorEvent *err )
+{
+    char errstr[256];
+
+    XGetErrorText( dpy, err->error_code, errstr, 256 );
+    fatal( "X Error: %s\n  Major opcode:  %d", errstr, err->request_code );
+    return 0;
+}
+
+
+static int knotes_xio_errhandler( Display * ){
+
+  cleanup(0);
+  return 0;
+
+}
+
+} /* extern "C" */                                  
+
+
 KPostitMultilineEdit::KPostitMultilineEdit(QWidget *parent, const char *myname)
   : QMultiLineEdit(parent, myname){
 }
@@ -1041,17 +1064,31 @@ bool KPostit::savenotes(){
   notesfile += name;
 
   QFile file(notesfile.data());
+  QFile file2("/home/wuebben/knotes.txt");
 
-  if( !file.open( IO_WriteOnly | IO_Truncate )) {
+  if( !file.open( IO_WriteOnly)) {
+    return FALSE;
+  }
+
+  if( !file2.open( IO_WriteOnly | IO_Truncate )) {
     return FALSE;
   }
 
   QTextStream t(&file);
+  QTextStream t2(&file2);
 
   t << name <<'\n';
+  t2 << name <<'\n';
      
-  t << KWM::getProperties(winId()) <<'\n';
- 
+  if( this->hidden){
+
+    t << propertystring.data() << '\n';
+    t2 << propertystring.data() << '\n';
+  }
+  else{
+    t << KWM::getProperties(winId()) <<'\n';
+    t2 << KWM::getProperties(winId()) <<'\n';
+  }
 
   t << backcolor.red() <<'\n';
   t << backcolor.green()<< '\n';
@@ -1094,6 +1131,7 @@ bool KPostit::savenotes(){
   }
 
   file.close();
+  file2.close();
 
   return TRUE;
 }
@@ -1600,6 +1638,10 @@ int main( int argc, char **argv ) {
   QString rcDir = p + "/.kde/share/apps/knotes";
   pidFile = rcDir + "/knotes.pid";
 
+
+  XSetErrorHandler( knotes_x_errhandler );
+  XSetIOErrorHandler( knotes_xio_errhandler );
+
   // if there is a pidFile then this is not the first instance of kpostit
 
   if ( ( fp = fopen( pidFile, "r" ) ) != NULL )
@@ -1662,6 +1704,7 @@ int main( int argc, char **argv ) {
     }
   }
 
+  //  if(!one_is_visible && !restoring){
   if(!one_is_visible && !restoring){
 
     KPostit::PostitList.last()->show(); 
@@ -1745,6 +1788,8 @@ void writeSettings()
   config->sync();
 
 }
+
+
 
 static void cleanup( int sig )
 {
