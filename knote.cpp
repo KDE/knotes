@@ -36,6 +36,7 @@
 #include <ktoolbar.h>
 #include <kpopupmenu.h>
 #include <kxmlguifactory.h>
+#include <kcolordrag.h>
 #include <kprinter.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
@@ -75,6 +76,8 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     m_label( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ),
     m_config( 0 ), m_journal( j )
 {
+    setAcceptDrops( true );
+
     //actionCollection()->setWidget( this );
 
     // if there is no title yet, use the start date if valid
@@ -816,6 +819,21 @@ void KNote::keyPressEvent( QKeyEvent *e )
         e->ignore();
 }
 
+void KNote::dragEnterEvent( QDragEnterEvent *e )
+{
+    e->accept( KColorDrag::canDecode( e ) );
+}
+
+void KNote::dropEvent( QDropEvent *e )
+{
+    QColor bg;
+    if ( KColorDrag::decode( e, bg ) )
+    {
+        setColor( paletteForegroundColor(), bg );
+        m_config->setBgColor( bg );
+    }
+}
+
 bool KNote::focusNextPrevChild( bool )
 {
     return true;
@@ -834,6 +852,20 @@ bool KNote::event( QEvent *ev )
 
 bool KNote::eventFilter( QObject *o, QEvent *ev )
 {
+    if ( ev->type() == QEvent::DragEnter &&
+         KColorDrag::canDecode( static_cast<QDragEnterEvent *>(ev) ) )
+    {
+        dragEnterEvent( static_cast<QDragEnterEvent *>(ev) );
+        return true;
+    }
+
+    if ( ev->type() == QEvent::Drop &&
+         KColorDrag::canDecode( static_cast<QDropEvent *>(ev) ) )
+    {
+        dropEvent( static_cast<QDropEvent *>(ev) );
+        return true;
+    }
+
     if ( o == m_label )
     {
         QMouseEvent *e = (QMouseEvent *)ev;
@@ -893,7 +925,8 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
         if ( ev->type() == QEvent::FocusOut )
         {
             QFocusEvent *fe = static_cast<QFocusEvent *>(ev);
-            if ( fe->reason() != QFocusEvent::Popup && fe->reason() != QFocusEvent::Mouse )
+            if ( fe->reason() != QFocusEvent::Popup &&
+                 fe->reason() != QFocusEvent::Mouse )
             {
                 updateFocus();
                 if ( m_editor->isModified() )

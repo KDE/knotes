@@ -84,6 +84,8 @@ protected:
     virtual void resizeEvent( QResizeEvent* );
     virtual void closeEvent( QCloseEvent* );
     virtual void keyPressEvent( QKeyEvent* );
+    virtual void dropEvent( QDropEvent* );
+    virtual void dragEnterEvent( QDragEnterEvent* );
 
     virtual bool event( QEvent* );
     virtual bool eventFilter( QObject*, QEvent* );
