@@ -8,7 +8,7 @@ APPSDIR = @kde_appsdir@/Utilities
 ###################################################################
 
 LDFLAGS	=	$(all_libraries) $(KDE_RPATH)
-LDADD   =       -lkfm    -lm    $(LIB_KDEUI)
+LDADD   =           -lm    $(LIB_KFM) $(LIB_KDEUI)
 INCLUDES =	$(all_includes)
 
 ####### Files
