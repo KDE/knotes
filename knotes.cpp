@@ -263,8 +263,7 @@ void KPostitMultilineEdit::dragEnterEvent( QDragEnterEvent* event )
   debug("KPostitMultilineEdit::dragEnterEvent()");
   debug("format: %s", event->format(0));
  
-//  if( QUrlDrag::canDecode(event) )
-    event->accept();
+  event->accept(QUrlDrag::canDecode(event) || QTextDrag::canDecode(event));
 }
 
 
