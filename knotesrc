@@ -1,9 +1,8 @@
 [Display]
-	bgcolor=145 180 255
+	bgcolor=244 239 94
 	fgcolor=0 0 0
 	width=200
 	height=200
-	transparent=no
 		
 [Editor]
 	tabsize=4
@@ -13,8 +12,7 @@
 	fontweight=50
 	
 [Actions]
-	mail=kmail --composer --subject "Some Notes" --msg 
-	print=lpr
+	mail=kmail --msg %f
 	date=date
 
 [Data]
