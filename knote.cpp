@@ -99,9 +99,9 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     connect( m_button, SIGNAL( clicked() ), this, SLOT( slotClose() ) );
 
     m_label = new QLabel( this );
-    m_label->setAlignment( AlignHCenter );
     m_label->installEventFilter( this );  // recieve events (for dragging & action menu)
     m_label->setText( m_journal->summary() );
+    updateLabelAlignment();
 
     // create the toolbar
     m_tool = new QWidget( this, "toolbar" );
@@ -255,6 +255,7 @@ QString KNote::text() const
 void KNote::setName( const QString& name )
 {
     m_label->setText( name );
+    updateLabelAlignment();
     saveData();
 }
 
@@ -531,6 +532,7 @@ void KNote::slotApplyConfig()
     // TODO remove this!
     def = config.readFontEntry( "titlefont", &def );
     m_label->setFont( def );
+    updateLabelAlignment();
 
     uint tab_size = config.readUnsignedNumEntry( "tabsize", 4 );
     m_editor->setTabStop( tab_size );
@@ -579,6 +581,17 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
 
     // to set the color of the title
     updateFocus();
+}
+
+//If the name is too long to fit, left-align it,
+//otherwise center it (#59028)
+void KNote::updateLabelAlignment()
+{
+    QString labelText = m_label->text();
+    if ( m_label->fontMetrics().boundingRect( labelText ).width() > m_label->width() )
+        m_label->setAlignment( AlignLeft );
+    else
+        m_label->setAlignment( AlignHCenter );
 }
 
 void KNote::updateFocus()
@@ -633,6 +646,7 @@ kdDebug(5500) << k_funcinfo << endl;
                 frameRect().width() - (m_button->isHidden()?0:headerHeight) - 4,
                 headerHeight
              );
+    updateLabelAlignment();
 
     m_tool->setGeometry(
                 contentsRect().x(),

@@ -101,6 +101,7 @@ private slots:
 private:
     void updateFocus();
     void updateLayout();
+    void updateLabelAlignment();
     void setColor( const QColor&, const QColor& );
 
     QPoint  m_pointerOffset;
