@@ -29,55 +29,34 @@
 #ifndef _ALARM_DLG_H_
 #define _ALARM_DLG_H_
 
-#include <qgroupbox.h> 
-#include <qcheckbox.h>
-#include <qdialog.h>
-#include <qlineedit.h>
-#include <qpushbutton.h>
-#include <qpainter.h>
-#include <qlabel.h>
-#include <qframe.h>
 #include <qdatetime.h> 
+#include <kdialogbase.h>
 
-#include <kcolordlg.h>
-#include "knotes.h"
-#include <bwdatetime.h>
+class KPostit;
+class BWDateTime;
 
-#include <spin.h>
-
-class AlarmDlg : public QDialog
+class AlarmDialog : public KDialogBase
 {
-    Q_OBJECT
+  Q_OBJECT
 
-public:
+  public:
+    AlarmDialog( KPostit *parent, const char *name=0, bool modal=true );
+    ~AlarmDialog( void );
 
-    AlarmDlg ( KPostit *parent = 0, const char *name=0);
+    QDateTime getDateTime( void );
 
-    QDateTime getDateTime();
+  protected slots:
+    virtual void slotUser1( void );
 
-protected:
+  private:
+    bool checkDateTime( void );
 
-    void focusInEvent( QFocusEvent *);
-    void resizeEvent ( QResizeEvent *);
-
-private:
-
-    QString pname;
-    QDateTime mydatetime;
-    QDateTime qdt;
-    QPushButton *ok, *cancel;
-    QGroupBox 	*frame1;
-    KPostit *postit;
-    BWDateTime *spins;
-    bool alarm_is_on;
-
-public slots:
-     
-    void cancel_slot();
-    void ok_slot();
-
-private:
-    bool checkDateTime();
+  private:
+    KPostit    *mPostit;
+    BWDateTime *mSpins;
+    QDateTime  mDateTime;
+    bool       mAlarmActive;
 };
 
 #endif
+

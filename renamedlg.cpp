@@ -26,76 +26,84 @@
  
  */
 
-#include <qdialog.h>
+//
+// 1999-12-28 Espen Sand
+// Changed to KDialogBase and Qlayouts
+//
 
-#include <kapp.h>
+#include <qlabel.h>
+#include <qlayout.h>
+#include <qlineedit.h>
+#include <qstringlist.h>
+
 #include <klocale.h>
 #include <kmessagebox.h>
 
 #include "renamedlg.h"
 
-RenameDlg::RenameDlg( QWidget *parent, const char *name,
-		      QString *string,QStringList *list)
-  : QDialog( parent, name, TRUE ){
+RenameDialog::RenameDialog( QWidget *parent, const char *name, bool modal,
+			    QString *string, QStringList *list )
+  : KDialogBase( parent, name, modal, i18n("Rename Note"), Cancel|Ok, Ok )
+{
+  pstring = string;
+  pstrlist = list;
+  
+  QWidget *page = new QWidget( this ); 
+  setMainWidget(page);
+  QVBoxLayout *topLayout = new QVBoxLayout( page, 0, spacingHint() );
+  
+  QString text = i18n("Rename this note to:");
+  QLabel *label = new QLabel( text, page );
+  topLayout->addWidget( label );
+  
+  lineNum = new QLineEdit( page );
+  lineNum->setFocus();
+  lineNum->setMinimumWidth( fontMetrics().maxWidth()*20 );
+  topLayout->addWidget( lineNum );
 
-    pstring = string;
-    pstrlist = list;
-    
-    frame = new QGroupBox( i18n("Rename this note to"), this );
-    lineNum = new QLineEdit( this );
-    this->setFocusPolicy( QWidget::StrongFocus );
-    connect(lineNum, SIGNAL(returnPressed()), this, SLOT(selected()));
-    
-    ok = new QPushButton(i18n("Rename"), this );
-    cancel = new QPushButton(i18n("Cancel"), this ); 
-    
-    connect(cancel, SIGNAL(clicked()), this, SLOT(reject()));
-    connect(ok, SIGNAL(clicked()), this, SLOT(selected()));
-    resize(300, 120); 
+  topLayout->addSpacing( spacingHint() );
+  topLayout->addStretch(10);
 }
 
-void RenameDlg::resizeEvent(QResizeEvent *){
 
-    frame->setGeometry(5, 5, width() - 10, 80);
-    cancel->setGeometry(width() - 80, height() - 30, 70, 25);
-    ok->setGeometry(width() -80 - 10 - 70, height() - 30, 70, 25);
-    lineNum->setGeometry(20, 35, width() - 40, 25);
+RenameDialog::~RenameDialog( void )
+{
 }
 
-void RenameDlg::focusInEvent( QFocusEvent *){
 
-    lineNum->setFocus();
-    lineNum->selectAll();
-}
-
-void RenameDlg::selected(){
-
+void RenameDialog::slotOk( void )
+{
   *pstring = lineNum->text();
   pstring->stripWhiteSpace();
-  if(pstring->isEmpty())
+  if( pstring->isEmpty() == true )
+  {
+    puts("\a");
     reject();
-  if(*pstring == "xyalarms"){
-    KMessageBox::sorry(this,
-		       i18n(
-		     "The name \"xyalarms\" is reserved for internal usage.\n"\
-		     "Please choose a different name"));
-      return;	
   }
-  
-//  for(pstrlist->first();pstrlist->current();pstrlist->next()){
-	for(QStringList::Iterator it=pstrlist->begin(); it != pstrlist->end() ;
-		it++) {
-    if(*it == *pstring){
 
-      KMessageBox::sorry(
-		     this,
-		     i18n("A KNotes note with this name already exists\n"\
-		     "Please choose a different name"));
+  if( *pstring == "xyalarms" )
+  {
+    QString msg = i18n(""
+      "The name \"xyalarms\" is reserved for internal usage.\n"
+      "Please choose a different name");
+    KMessageBox::sorry(this, msg );
+    return;	
+  }
+
+  for(QStringList::Iterator it=pstrlist->begin(); it != pstrlist->end(); it++)
+  {
+    if( *it == *pstring )
+    {
+      QString msg = i18n(""
+        "A note with this name already exists.\n"
+	"Please choose a different name");
+      KMessageBox::sorry( this, msg );
       return;	
     }
   }
   
   accept();
 }
+
 
 #include "renamedlg.moc"

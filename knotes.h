@@ -25,36 +25,19 @@
 #ifndef __KNOTES__
 #define __KNOTES__
 
-#include <qmultilineedit.h>
 #include <qcolor.h>
-#include <qpopupmenu.h>
-#include <qtimer.h>
-#include <qmultilineedit.h>
-#include <qfont.h>
-#include <qfile.h>
-#include <qtextstream.h>
-#include <qfileinfo.h>
 #include <qdatetime.h>
-#include <qkeycode.h>
-#include <qbutton.h>
-#include <qdir.h>
-#include <qlineedit.h>
-#include <qtabdialog.h>
 #include <qdragobject.h>
+#include <qfont.h>
+#include <qmultilineedit.h>
 #include <qpushbutton.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <signal.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <dirent.h>
-#include <ctype.h>
+#include <qtextstream.h>
 
-#include <kurl.h> // must go before kapp.h
-#include <kapp.h>
-#include <kcolordlg.h>
-#include <kfontdialog.h>
+class QLabel;
+class QPopupMenu;
+class QTimer;
+class OptionDialog;
+
 
 typedef struct _DefStruct{
   QColor forecolor;
@@ -123,9 +106,6 @@ signals:
 
 };
 
-class ConfigDlg;
-class FontDlg;
-class QTabDialog;
 
 class KPostit :public QFrame{
 
@@ -133,7 +113,9 @@ class KPostit :public QFrame{
 
 public:
 
-  KPostit(QWidget *parent=0, const char *wname=0,int number=0,QString pname="");
+  KPostit(QWidget *parent=0, const char *wname=0,int number=0,
+	  QString pname="");
+  ~KPostit( void );
 
   // one instance for all kpostits
   static QList<KPostit>   PostitList;
@@ -141,10 +123,6 @@ public:
   static QList<AlarmEntry> AlarmList;
   static bool dock;
 
-  /*  static ConfigDlg *configdlg =0L;
-  static FontDlg* fontdlg =0L;
-  static QTabDialog* tabdialog =0L;
-  */
   int number;
   bool hidden;
   QString name;
@@ -173,6 +151,8 @@ public slots:
   bool  loadnotes();
   bool  savenotes();
   void  quit();
+  void  undo();
+  void  redo();
   void  insertDate();
   void  insertNetFile( const char *_url);
   bool  insertFile(const QString &filename);
@@ -187,38 +167,44 @@ public slots:
   void  insertCalendar();
   void  mail();
   void  print();
-  void save_all();
+  void  save_all();
   void  defaults();
   void  setAlarm();
   void  help();
   void  toggleIndentMode();
-  void toggleOnTopMode();
-  void toDesktop(int);
-  void toggleSticky();
+  void  toggleOnTopMode();
+  void  toDesktop(int);
+  void  toggleSticky();
 
-private:
-  void  setAutoIndent();
-  void  setNoAutoIndent();
-  void 	setOnTop(bool enable);
+  private slots:
+    void configurationChanged( const DefStruct &state );
 
 
-  QFont font;
-  QPopupMenu *colors;
-  QPopupMenu *options;
-  QPopupMenu *operations;
-  QPopupMenu *desktops;
-  int  frame3dID;
-  int onTopID;
-  int  dockID;
-  QColor forecolor;
-  QColor backcolor;
+  private:
+    void  setAutoIndent();
+    void  setNoAutoIndent();
+    void  setOnTop(bool enable);
 
-  QTimer *timer;
-  bool frame3d;
+  private:  
+    QFont font;
+    QPopupMenu *colors;
+    QPopupMenu *options;
+    QPopupMenu *operations;
+    QPopupMenu *desktops;
+    int  frame3dID;
+    int onTopID;
+    int  dockID;
+    QColor forecolor;
+    QColor backcolor;
 
-  QPoint pointerOffset;
-  bool dragging;
-  int sticky_id;
+    QTimer *timer;
+    bool frame3d;
+
+    QPoint pointerOffset;
+    bool dragging;
+    int sticky_id;
+
+    OptionDialog *mOptionDialog;
 
 };
 

@@ -1,4 +1,3 @@
-
 /*
 
  $Id$
@@ -27,139 +26,120 @@
 
  */
 
+//
+// 1999-12-28 Espen Sand
+// Changed to KDialogBase and Qlayouts
+//
 
-#include "alarm.h"
-#include "timer.h"
-#include "knotes.h"
+#include <qgroupbox.h> 
+#include <qlayout.h>
 
 #include <klocale.h>
 #include <kmessagebox.h>
 
-extern DefStruct 	postitdefaults;
+#include "alarm.h"
+#include "bwdatetime.h"
+#include "knotes.h"
+#include "spin.h"
+#include "timer.h"
+
 extern MyTimer* 	mytimer;
 
-AlarmDlg::AlarmDlg(KPostit *parent, const char *name)
-    : QDialog(parent, name,TRUE){
 
+AlarmDialog::AlarmDialog( KPostit *parent, const char *name, bool modal )
+  : KDialogBase( parent, name, modal, i18n("Alarm"), Cancel|User1, User1 )
+{
+  mPostit      = parent;
+  mAlarmActive = false;
+  QDateTime dt = QDateTime::currentDateTime();
 
-    postit = parent;
-    alarm_is_on = FALSE;
-
-    for(postit->AlarmList.first();postit->AlarmList.current();postit->AlarmList.next()){
-      if (postit->AlarmList.current()->name == postit->name){
-
-	alarm_is_on = TRUE;
-	qdt = postit->AlarmList.current()->dt;
-	break;
-      }
+  for( mPostit->AlarmList.first(); mPostit->AlarmList.current() != 0;
+       mPostit->AlarmList.next() )
+  {
+    if( mPostit->AlarmList.current()->name == mPostit->name )
+    {
+      mAlarmActive = true;
+      dt = mPostit->AlarmList.current()->dt;
+      break;
     }
+  }
 
-    this->setFocusPolicy(QWidget::StrongFocus);
+  QWidget *page = new QWidget( this ); 
+  setMainWidget(page);
+  QVBoxLayout *topLayout = new QVBoxLayout( page, 0, spacingHint() );
 
-    QString str;
-    str = i18n("Alarm Timer for: %1").arg(postit->name);
+  QString text = i18n("Alarm Timer for: %1").arg(mPostit->name);
+  QGroupBox *group = new QGroupBox( text, page, "group" );
+  topLayout->addWidget( group );
 
-    frame1 = new QGroupBox(str, this, "frame1");
-    frame1->move(5, 5);
+  QVBoxLayout *vlay = new QVBoxLayout( group, spacingHint() );
+  vlay->addSpacing( fontMetrics().lineSpacing() );
 
-    if(alarm_is_on)
-      spins = new  BWDateTime(qdt, frame1, "spins");
-    else
-      spins = new  BWDateTime(QDateTime::currentDateTime(), frame1, "spins");
+  mSpins = new BWDateTime( dt, group, "spins" );
+  vlay->addWidget( mSpins );
 
-
-
-    spins->move(5, 15);
-
-    if(alarm_is_on)
-      ok = new QPushButton(i18n("Unset"), this, "mail");
-    else
-      ok = new QPushButton(i18n("Set"), this, "mail");
-
-    connect(ok, SIGNAL(clicked()), this, SLOT(ok_slot()));
-
-    cancel = new QPushButton(i18n("Cancel"), this, "cancel");
-    connect(cancel, SIGNAL(clicked()), this, SLOT(cancel_slot()));
-
-    setMinimumSize(340, 150);
-    resize(340, 150);
-}
-
-void AlarmDlg::resizeEvent(QResizeEvent *){
-
-    frame1->resize(width() - 10, height() - 45);
-    spins->resize(frame1->width() -10, frame1->height() -20);
-
-    cancel->setGeometry(width() - 80, height() - 30, 70, 25);
-    ok->setGeometry(width() - 80 - 80 - 10, height() - 30, 70, 25);
-
+  setButtonText( User1, mAlarmActive == true ? i18n("&Unset") : i18n("&Set") );
 }
 
 
-void AlarmDlg::focusInEvent( QFocusEvent *){
-
-  //    recipient->setFocus();
-
+AlarmDialog::~AlarmDialog( void )
+{
 }
 
-void AlarmDlg::cancel_slot(){
-  reject();
-}
 
-void AlarmDlg::ok_slot(){
-
-  if(alarm_is_on){
-    alarm_is_on = FALSE;
-
+void AlarmDialog::slotUser1( void )
+{
+  if( mAlarmActive == true )
+  {
+    mAlarmActive = false;
     mytimer->stop();
-    for(postit->AlarmList.first();postit->AlarmList.current();postit->AlarmList.next()){
-      if (postit->AlarmList.current()->name == postit->name){
 
-	//	delete postit->AlarmList.current();
-	postit->AlarmList.remove(postit->AlarmList.current());
-	postit->setCaption(postit->name);
-	postit->label->setText(postit->name.data());
+    for( mPostit->AlarmList.first(); mPostit->AlarmList.current() != 0;
+	 mPostit->AlarmList.next() )
+    {
+      if( mPostit->AlarmList.current()->name == mPostit->name )
+      {
+	mPostit->AlarmList.remove(mPostit->AlarmList.current());
+	mPostit->setCaption(mPostit->name);
+	mPostit->label->setText(mPostit->name.data());
 	break;
       }
     }
     mytimer->start();
     reject();
-    return;
   }
-
-
-  if(checkDateTime()){
+  else if( checkDateTime() == true )
+  {
     accept();
   }
-  return;
 }
 
 
-QDateTime AlarmDlg::getDateTime(){
-
-  return mydatetime;
-
+QDateTime AlarmDialog::getDateTime( void )
+{
+  return mDateTime;
 }
 
-bool AlarmDlg::checkDateTime(){
 
-  QDateTime rdt;
-
-  if(!spins->checkDateTime())
-    return FALSE;
-
-  rdt = spins->getDateTime();
-
-  if( rdt < QDateTime::currentDateTime()){
-
-    KMessageBox::sorry(this,
-	   i18n("I am afraid you already missed your appointment."));
-    return FALSE;
+bool AlarmDialog::checkDateTime( void )
+{
+  if( mSpins->checkDateTime() == false )
+  {
+    return false;
   }
 
-  mydatetime = rdt;
-  return TRUE;
+  QDateTime dt = mSpins->getDateTime();
+  if( dt < QDateTime::currentDateTime() )
+  {
+    QString msg = i18n("I am afraid you already missed your appointment.");
+    KMessageBox::sorry( this, msg );
+    return false;
+  }
 
+  mDateTime = dt;
+  return true;
 }
+
+
 #include "alarm.moc"
 

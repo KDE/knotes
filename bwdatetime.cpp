@@ -30,106 +30,83 @@
 
 */
 
-#include <qspinbox.h>
 #include <qlayout.h>
+#include <qspinbox.h>
 
-#include <bwdatetime.h>
+#include <kdialog.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 
-BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
-  : QWidget(parent, name){
+#include "bwdatetime.h"
 
+
+BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
+  : QWidget(parent, name)
+{
    date_notvalid = FALSE;
    time_notvalid = FALSE;
 
-
    daylabel = new QLabel(i18n("Day:"),this);
-   daylabel->adjustSize();
-
    day = new QSpinBox(1, 31, 1, this);
    day->setValue(qdt.date().day());
-   day->adjustSize();
 
    monthlabel = new QLabel(i18n("Month:"), this);
-   monthlabel->adjustSize();
-
    month = new QSpinBox(1, 12, 1, this);
    month->setValue(qdt.date().month());
-   month->adjustSize();
 
    yearlabel = new QLabel(i18n("Year:"),this);
-   yearlabel->adjustSize();
-
    year = new QSpinBox(1, 3000, 1, this);
    year->setValue(qdt.date().year());
-   year->adjustSize();
-
 
    int myhour = qdt.time().hour();
-
    if (myhour > 12)
      myhour -= 12;
    if (myhour == 0)
      myhour = 12;
 
    timelabel = new QLabel(i18n("Time:"),this);
-   timelabel->adjustSize();
-
    // this stuff should be replaced with a KTimeSpinBox
    hour = new QSpinBox(1, 12, 1, this);
    hour->setValue(myhour);
-   hour->adjustSize();
-
    minute = new QSpinBox(0, 59, 1, this);
    minute->setValue(qdt.time().minute());
-   minute->adjustSize();
-
-
+ 
    ampm = new QButtonGroup(this);
+   ampm->setFrameStyle( QFrame::NoFrame );
 
+   QVBoxLayout *hlay = new QVBoxLayout( ampm, 0, KDialog::spacingHint() );
+   
    am = new QRadioButton(i18n("AM"), ampm);
    pm = new QRadioButton(i18n("PM"), ampm);
 
-   if(qdt.time().hour() < 12){
-
+   if(qdt.time().hour() < 12)
+   {
      pm->setChecked(FALSE);
      am->setChecked(TRUE);
-
    }
-   else{
-
+   else
+   {
      pm->setChecked(TRUE);
      am->setChecked(FALSE);
-
    }
-
-   am->adjustSize();
-   pm->adjustSize();
-   int w = QMAX(am->width(), pm->width());
-   int h = QMAX(am->height(), pm->height());
-   ampm->setMinimumSize( w +8, 2*h +6 );
-   ampm->setLineWidth(0); // don't show the frame of the buttongroup
-   am->move(4, 2);
-   pm->move(4, h+2);
-
+   hlay->addWidget(am);
+   hlay->addWidget(pm);
 
    // layout management (pfeiffer)
-   QGridLayout *gridLayout = new QGridLayout(this, 6, 4, 5);
+   QGridLayout *glay = new QGridLayout( this, 6, 3, KDialog::spacingHint() );
+   glay->addWidget(daylabel,   0, 0, AlignRight);
+   glay->addWidget(day,        0, 1);
+   glay->addWidget(monthlabel, 0, 2, AlignRight);
+   glay->addWidget(month,      0, 3);
+   glay->addWidget(yearlabel,  0, 4, AlignRight);
+   glay->addWidget(year,       0, 5);
 
-   gridLayout->addWidget(daylabel,   0, 0, AlignRight);
-   gridLayout->addWidget(day,        0, 1);
-   gridLayout->addWidget(monthlabel, 0, 2, AlignRight);
-   gridLayout->addWidget(month,      0, 3);
-   gridLayout->addWidget(yearlabel,  0, 4, AlignRight);
-   gridLayout->addWidget(year,       0, 5);
+   glay->addRowSpacing( 1, KDialog::spacingHint() );
 
-   gridLayout->addWidget(timelabel, 1, 0, AlignRight);
-   gridLayout->addWidget(hour,      1, 1);
-   gridLayout->addWidget(minute,    1, 2);
-   gridLayout->addWidget(ampm,      1, 3, AlignRight);
-
-   gridLayout->activate();
+   glay->addWidget(timelabel, 2, 0, AlignRight);
+   glay->addWidget(hour,      2, 1);
+   glay->addWidget(minute,    2, 2);
+   glay->addMultiCellWidget(ampm, 2, 2, 3, 5 );
 }
 
 
@@ -157,59 +134,51 @@ void BWDateTime::setTime(QDateTime dt) {
 
 
 
-bool BWDateTime::checkDateTime(){
+bool BWDateTime::checkDateTime( void )
+{
+  QDate rdate;
+  QTime rtime;
 
- QDate rdate;
- QTime rtime;
+  time_notvalid = FALSE;
+  date_notvalid = FALSE;
 
- time_notvalid = FALSE;
- date_notvalid = FALSE;
+  int myhour = hour->value();
 
- int myhour = hour->value();
+  if(pm->isChecked() && (myhour != 12)) // 12 pm is 12 hours
+    myhour += 12;
 
- if(pm->isChecked() && (myhour != 12)) // 12 pm is 12 hours
-   myhour += 12;
+  if(!pm->isChecked() && (myhour ==12)) //12 am is 0 hours
+    myhour = 0;
 
- if(!pm->isChecked() && (myhour ==12)) //12 am is 0 hours
-   myhour = 0;
-
- if(QTime::isValid(myhour,minute->value(),0)){
+  if(QTime::isValid(myhour,minute->value(),0))
+  {
     rtime.setHMS(myhour,minute->value(),0);
   }
-  else{
-    KMessageBox::sorry(
-			 this,
-			 i18n("The Time you selected is invalid"));
-
+  else
+  {
+    KMessageBox::sorry( this, i18n("The Time you selected is invalid") );
     time_notvalid = TRUE;
     return FALSE;
-
   }
 
-  if(QDate::isValid(year->value(),month->value(),day->value())){
+  if(QDate::isValid(year->value(),month->value(),day->value()))
+  {
     rdate.setYMD(year->value(),month->value(),day->value());
   }
-  else{
-    KMessageBox::sorry(
-			 this,
-			 i18n("The Date you selected is invalid"));
-
+  else
+  {
+    KMessageBox::sorry( this, i18n("The Date you selected is invalid") );
     date_notvalid = TRUE;
     return FALSE;
   }
 
-
   QDateTime rdt(rdate,rtime);
   mydatetime = rdt;
-
   return TRUE;
-
 }
 
-QDateTime BWDateTime::getDateTime(void) {
-
+QDateTime BWDateTime::getDateTime( void ) 
+{
   checkDateTime();
-
   return mydatetime;
 }
-

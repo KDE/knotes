@@ -30,10 +30,11 @@
 
 #include <qlabel.h>
 
-#include <kwm.h>
+#include <kapp.h>
 #include <klocale.h>
-#include <kprocess.h>
 #include <kmessagebox.h>
+#include <kprocess.h>
+#include <kwm.h>
 
 extern DefStruct 	postitdefaults;
 

@@ -1,4 +1,3 @@
-
 /*
 
  $Id$
@@ -29,49 +28,30 @@
 #ifndef _MAIL_DLG_H_
 #define _MAIL_DLG_H_
 
-#include <qgroupbox.h> 
-#include <qcheckbox.h>
-#include <qdialog.h>
-#include <qlineedit.h>
-#include <qpushbutton.h>
-#include <qpainter.h>
-#include <qlabel.h>
-#include <qframe.h>
+#include <kdialogbase.h>
 
-#include <kcolordlg.h>
-#include "knotes.h"
+class QLabel;
+class QLineEdit;
+class KPostit;
 
-class Mail : public QDialog
+class Mail : public KDialogBase
 {
-    Q_OBJECT
+  Q_OBJECT
 
-public:
+  public:
+    Mail( KPostit *parent = 0, const char *name=0, bool modal=true );
+    ~Mail( void );
 
-    Mail ( KPostit *parent = 0, const char *name=0);
+    QString getRecipient( void );
+    QString getSubject( void );
 
+  protected slots:
+    virtual void slotUser1( void );
+
+  private:
     QLineEdit 	*recipient;
     QLineEdit 	*subject;
     QLabel 	*subjectlabel;
-    QString getRecipient(){return recipient->text();};
-    QString getSubject(){return subject->text();};
-
-protected:
-
-    void focusInEvent( QFocusEvent *);
-    void resizeEvent ( QResizeEvent *);
-
-private:
-
-    QPushButton *ok, *cancel;
-    QGroupBox 	*frame1;
-
-
-
-public slots:
-     
-    void cancel_slot();
-    void ok_slot();
-
 };
 
 #endif

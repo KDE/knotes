@@ -52,7 +52,7 @@ DockWidget::DockWidget(const char *name): QWidget(0, name, 0) {
   createLeftPopUp();
 
   connect( popup_m, SIGNAL(activated( int )),SLOT(findKPostit(int)) );
-  popup_m->adjustSize();
+  //popup_m->adjustSize();
 
   ///////////////////////////////////////////////////////////////////
   // right_popup menu for left mouse button
@@ -60,7 +60,7 @@ DockWidget::DockWidget(const char *name): QWidget(0, name, 0) {
   right_popup_m = new QPopupMenu();
   right_popup_m->insertItem (i18n("Help"),this,SLOT(help()));
 
-  right_popup_m->insertItem(i18n("Change Defaults"),
+  right_popup_m->insertItem(i18n("Default Configuration..."),
 			    this, SLOT(configureKNotes()));
 
   right_popup_m->insertSeparator();
@@ -69,7 +69,7 @@ DockWidget::DockWidget(const char *name): QWidget(0, name, 0) {
 			     this, SLOT(exitKNotes()));
 
   //  connect( right_popup_m, SIGNAL(activated( int )),SLOT(rightAction(int)) );
-  right_popup_m->adjustSize();
+  //right_popup_m->adjustSize();
 
 
 }

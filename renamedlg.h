@@ -24,39 +24,37 @@
 
  */
 
+//
+// 1999-12-28 Espen Sand
+// Changed to KDialogBase and Qlayouts
+//
+
+
 #ifndef __KPOSTIT_RENAME__
 #define __KPOSTIT_RENAME__
 
-#include <qlineedit.h>
-#include <qdatetime.h> 
-#include <qkeycode.h>
-#include <qgroupbox.h>
-#include <qpushbutton.h> 
-#include <qstrlist.h>
+#include <kdialogbase.h>
+class QStringList;
 
-class RenameDlg : public QDialog
+
+class RenameDialog : public KDialogBase
 {
-	Q_OBJECT
+  Q_OBJECT
 
-public:
+  public:
+  
+    RenameDialog( QWidget *parent=0, const char *name=0, bool modal=true,
+	          QString *string=0, QStringList *list=0 );
+    ~RenameDialog( void );
+   
+  protected slots:
+    virtual void slotOk( void );
 
-	RenameDlg( QWidget *parent = 0, const char *name = 0 ,
-		   QString *string = NULL, QStringList *list= NULL);
-
-
-	QLineEdit *lineNum;
-
-private:
-	QString  *pstring;
-	QStringList *pstrlist;
-	QPushButton *ok, *cancel;
-	QGroupBox *frame;
-	void resizeEvent(QResizeEvent *);
-	void focusInEvent(QFocusEvent *);
-
-public slots:
-
-	void selected();
+  private:
+    QLineEdit   *lineNum;
+    QString     *pstring;
+    QStringList *pstrlist;
 };
 
 #endif
+

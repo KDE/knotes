@@ -1,4 +1,3 @@
-
 /*
 
  $Id$
@@ -25,75 +24,82 @@
 
  */
 
+//
+// 1999-12-28 Espen Sand
+// Changed to KDialogBase and Qlayouts
+//
 
-#include "mail.h"
+#include <qframe.h>
+#include <qlabel.h>
+#include <qlayout.h>
+#include <qlineedit.h>
+
 
 #include <klocale.h>
 #include <kmessagebox.h>
 
-Mail::Mail(KPostit *parent, const char *name)
-    : QDialog(parent, name,TRUE){
+#include "knotes.h"
+#include "mail.h"
 
 
-    this->setFocusPolicy(QWidget::StrongFocus);
+Mail::Mail( KPostit *parent, const char *name, bool modal )
+  : KDialogBase( parent, name, modal, i18n("Mail Note"), User1|Cancel, 
+		 User1, false, i18n("&Mail") ) 
+{
+  QWidget *page = new QWidget( this ); 
+  setMainWidget(page);
+  QVBoxLayout *topLayout = new QVBoxLayout( page, 0, spacingHint() );
+  
+  QString text = i18n("Mail Note to:");
+  QLabel *label = new QLabel( text, page, "mailto" );
+  topLayout->addWidget( label );
+  
+  recipient = new QLineEdit( page, "mailtoedit");
+  recipient->setFocus();
+  recipient->setMinimumWidth( fontMetrics().maxWidth()*20 );
+  topLayout->addWidget( recipient );
+  
+  text = i18n("Subject:");
+  label = new QLabel( text, page, "subject" );
+  topLayout->addWidget( label );
 
-    frame1 = new QGroupBox(
-			   i18n(
-			   "Mail Note to:"), this, "frame1");
+  subject = new QLineEdit( page, "subjectedit");
+  subject->setMinimumWidth( fontMetrics().maxWidth()*20 );
+  subject->setText(parent->name);
+  topLayout->addWidget( subject );
 
-    recipient = new QLineEdit( this, "recipient");
-    recipient->setFocus();
-
-    subject = new QLineEdit( this, "Subject");
-    subject->setText(parent->name);
-
-    subjectlabel = new QLabel(this,"subjectlabel");
-    subjectlabel->setText(i18n("Subject:"));
-
-    ok = new QPushButton(i18n("Mail"), this, "mail");
-    connect(ok, SIGNAL(clicked()), this, SLOT(ok_slot()));
-
-    cancel = new QPushButton(i18n("Cancel"), this, "cancel");
-    connect(cancel, SIGNAL(clicked()), this, SLOT(cancel_slot()));
-
-    setFixedSize(330, 160);
-
-}
-
-void Mail::resizeEvent(QResizeEvent *){
-
-    frame1->setGeometry(5, 5, width() - 10, 115);
-
-    cancel->setGeometry(width() - 80, height() - 30, 70, 25);
-    ok->setGeometry(width() - 80 - 80 - 10, height() - 30, 70, 25);
-
-    recipient->setGeometry(20, 25, width() - 40, 25);
-    subject->setGeometry(20, 80, width() - 40, 25);
-    
-    subjectlabel->setGeometry(20,55,80,20);
+  topLayout->addSpacing( spacingHint() );
+  topLayout->addStretch(10);
 }
 
 
-void Mail::focusInEvent( QFocusEvent *){
-
-    recipient->setFocus();
-
+Mail::~Mail( void ) 
+{
 }
 
-void Mail::cancel_slot(){
-  reject();
+
+QString Mail::getRecipient( void ) 
+{
+  return recipient->text();
 }
 
-void Mail::ok_slot(){
 
+QString Mail::getSubject( void ) 
+{
+  return subject->text();
+}
+
+
+void Mail::slotUser1( void )
+{
   QString str = getRecipient();
-  if (str.isEmpty()){
-    KMessageBox::sorry(this,
-		       i18n("You must specify a Recipient"));
+  if( str.isEmpty() == true )
+  {
+    KMessageBox::sorry( this, i18n("You must specify a Recipient") );
     return;
   }
-
   accept();
 }
+
 
 #include "mail.moc"
