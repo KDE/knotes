@@ -177,7 +177,7 @@ KNotesApp::KNotesApp()
     m_manager->load();
 
     // read the old config files, convert and add them
-    KCal::CalendarLocal calendar;
+    KCal::CalendarLocal calendar( QString::fromLatin1( "UTC" ) );
     if ( KNotesLegacy::convert( &calendar ) )
     {
         KCal::Journal::List notes = calendar.journals();

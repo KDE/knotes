@@ -43,7 +43,7 @@
 
 
 ResourceLocal::ResourceLocal( const KConfig* config )
-    : ResourceNotes( config )
+    : ResourceNotes( config ), mCalendar( QString::fromLatin1( "UTC" ) )
 {
     if ( !config )
         setType( "file" );
