@@ -80,8 +80,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     KWin::setIcons( winId(), kapp->icon(), kapp->miniIcon() );
 
     setAcceptDrops( true );
-
-    //actionCollection()->setWidget( this );
+    actionCollection()->setWidget( this );
 
     // if there is no title yet, use the start date if valid
     // (KOrganizer's journals don't have titles but a valid start date)

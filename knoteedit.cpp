@@ -71,13 +71,13 @@ KNoteEdit::KNoteEdit( QWidget *parent, const char *name )
     KStdAction::selectAll( this, SLOT(selectAll()), actions );
 
     // create the actions modifying the text format
-    m_textBold = new KToggleAction( i18n("&Bold"), "text_bold", CTRL + Key_B, 0, 0,
+    m_textBold = new KToggleAction( i18n("Bold"), "text_bold", CTRL + Key_B, 0, 0,
                                     actions, "format_bold" );
-    m_textItalic = new KToggleAction( i18n("&Italic"), "text_italic", CTRL + Key_I, 0, 0,
+    m_textItalic = new KToggleAction( i18n("Italic"), "text_italic", CTRL + Key_I, 0, 0,
                                       actions, "format_italic" );
-    m_textUnderline = new KToggleAction( i18n("&Underline"), "text_under", CTRL + Key_U, 0, 0,
+    m_textUnderline = new KToggleAction( i18n("Underline"), "text_under", CTRL + Key_U, 0, 0,
                                          actions, "format_underline" );
-    m_textStrikeOut = new KToggleAction( i18n("&Strike Out"), "text_strike", CTRL + Key_S, 0, 0,
+    m_textStrikeOut = new KToggleAction( i18n("Strike Out"), "text_strike", CTRL + Key_S, 0, 0,
                                          actions, "format_strikeout" );
 
     connect( m_textBold, SIGNAL(toggled(bool)), SLOT(setBold(bool)) );
@@ -85,17 +85,17 @@ KNoteEdit::KNoteEdit( QWidget *parent, const char *name )
     connect( m_textUnderline, SIGNAL(toggled(bool)), SLOT(setUnderline(bool)) );
     connect( m_textStrikeOut, SIGNAL(toggled(bool)), SLOT(textStrikeOut(bool)) );
 
-    m_textAlignLeft = new KToggleAction( i18n("Align &Left"), "text_left", CTRL + Key_L,
+    m_textAlignLeft = new KToggleAction( i18n("Align Left"), "text_left", ALT + Key_L,
                                  this, SLOT(textAlignLeft()),
                                  actions, "format_alignleft" );
     m_textAlignLeft->setChecked( true ); // just a dummy, will be updated later
-    m_textAlignCenter = new KToggleAction( i18n("Align &Center"), "text_center", CTRL + ALT + Key_C,
+    m_textAlignCenter = new KToggleAction( i18n("Align Center"), "text_center", ALT + Key_C,
                                  this, SLOT(textAlignCenter()),
                                  actions, "format_aligncenter" );
-    m_textAlignRight = new KToggleAction( i18n("Align &Right"), "text_right", CTRL + ALT + Key_R,
+    m_textAlignRight = new KToggleAction( i18n("Align Right"), "text_right", ALT + Key_R,
                                  this, SLOT(textAlignRight()),
                                  actions, "format_alignright" );
-    m_textAlignBlock = new KToggleAction( i18n("Align &Block"), "text_block", CTRL + Key_J,
+    m_textAlignBlock = new KToggleAction( i18n("Align Block"), "text_block", ALT + Key_B,
                                  this, SLOT(textAlignBlock()),
                                  actions, "format_alignblock" );
 
