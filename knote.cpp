@@ -859,6 +859,9 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
     {
         QMouseEvent* e = (QMouseEvent*)ev;
 
+        if ( ev->type() == QEvent::MouseButtonDblClick )
+            slotRename();
+
         if ( ev->type() == QEvent::MouseButtonRelease )
         {
             if ( e->button() == LeftButton )
@@ -878,6 +881,7 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
             m_label->grabMouse( sizeAllCursor );
             return true;
         }
+
         if ( ev->type() == QEvent::MouseMove && m_label == mouseGrabber())
         {
             if ( m_dragging )
