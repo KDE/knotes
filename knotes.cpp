@@ -606,7 +606,7 @@ void KPostit::insertCalendar(){
 
   while ( !t.eof() ) {
     QString s = t.readLine();
-    if(!t.eof())
+//    if(!t.eof())
       edit->insertLine( s );
   }  
   //  pclose(calfile);  QTextStream already close the file 
@@ -1057,7 +1057,7 @@ bool KPostit::loadnotes(){
 
   while ( !t.eof() ) {
     QString s = t.readLine();
-    if(!t.eof())
+//    if(!t.eof())
       edit->insertLine( s );
   }
 
@@ -1090,7 +1090,7 @@ bool KPostit::insertFile(const char* filename){
 
   while ( !t.eof() ) {
     QString s = t.readLine();
-    if(!t.eof())
+//    if(!t.eof())
       edit->insertLine( s );
   }
 
