@@ -41,6 +41,7 @@
 #include <X11/Xlib.h>
 
 #include "knotes.moc"
+#include <kwm.h>
 
 void findPostitFiles();
 
@@ -81,196 +82,12 @@ void testDir( const char *_name )
 	closedir( dp );
 }
 
-KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname)
+
+KPostitMultilineEdit::KPostitMultilineEdit(QWidget *parent, const char *myname)
   : QMultiLineEdit(parent, myname){
-
-    number = _number; 	// index in popup. Not used anymore, but I'll leave it in
-                        // the structure for now.
-    name = pname;
-    name.detach(); 	// name of postit and name on the popup
-
-    kfm = 0L;
-
-    //set the defaults
-    forecolor 		= postitdefaults.forecolor;
-    backcolor 		= postitdefaults.backcolor;
-    autoIndentMode 	= postitdefaults.autoindent;
-    font 		= postitdefaults.font;
-    frame3d 		= postitdefaults.frame3d;
-
-    resize(postitdefaults.width,postitdefaults.height);
-
-    loadnotes();
-
-    colors =  	new QPopupMenu ();
-
-    colors->insertItem(klocale->translate("Text Color"),this, SLOT(set_foreground_color()));
-    colors->insertItem(klocale->translate("Background Color"),this, SLOT(set_background_color()));
-
-    operations =  	new QPopupMenu ();
-    operations->insertItem(klocale->translate("Clear"),this, SLOT(clear_text()));
-
-    operations->insertSeparator();
-    operations->insertItem (klocale->translate("New Note"), this, 	
-				    SLOT(newKPostit()));
-    operations->insertItem (klocale->translate("Delete Note"), this, 	
-				    SLOT(deleteKPostit()));
-    operations->insertItem (klocale->translate("Rename Note"),this,SLOT(renameKPostit()));
-    operations->insertSeparator();
-    operations->insertItem (klocale->translate("Alarm ..."), this, 	
-				    SLOT(setAlarm()));
-    operations->insertSeparator();
-    operations->insertItem (klocale->translate("Calendar"), this, 	
-				    SLOT(insertCalendar()));
-    operations->insertItem (klocale->translate("Mail Note ..."), this, 	
-				    SLOT(mail()));
-    operations->insertItem (klocale->translate("Print Note"), this, 	
-				    SLOT(print()));
-
-    options = new QPopupMenu();
-    options->setCheckable(TRUE);
-    options->setFont(QFont("Helvetica",12));
-    frame3dID = options->insertItem(klocale->translate("3D Frame"),this, SLOT(toggleFrame()));
-    autoIndentID = options->insertItem(klocale->translate("Auto Indent"),this, 
-				       SLOT(toggleIndentMode()));
-    options->insertItem(klocale->translate("Font"),this, SLOT(selectFont()));
-    options->insertItem(klocale->translate("Colors"),colors);
-    options->insertSeparator();
-    options->insertItem(klocale->translate("Change Defaults ..."),this, SLOT(defaults()));
-
-    operations->insertSeparator();
-    operations->insertItem (klocale->translate("Help"),this,SLOT(help()));
-
-    operations->insertSeparator();
-    operations->insertItem (klocale->translate("Options"),options);
-
-    right_mouse_button = new QPopupMenu;
-
-    for ( uint i = 0; i < PostitFilesList.count(); i++){
-      
-      int k = right_mouse_button->insertItem (PostitFilesList.at(i));
-      k = k;
-    }
-
-    connect( right_mouse_button, SIGNAL(activated( int )), 
-	     SLOT(findKPostit(int)) );
-
-
-    right_mouse_button->insertSeparator();
-    right_mouse_button->insertItem (klocale->translate("Insert Date"), this, 	
-				    SLOT(insertDate()));
-    right_mouse_button->insertSeparator();
-    right_mouse_button->insertItem (klocale->translate("Operations"),operations);
-
-    right_mouse_button->insertSeparator();
-    right_mouse_button->insertItem (klocale->translate("Quit"), this,
-				    SLOT(quit()));
-
-    installEventFilter( this );     
-
-    kwmcom_init(qt_xdisplay(), winId());
-    window_id = winId();
-
-    KDNDDropZone * dropZone = new KDNDDropZone( this , DndURL);
-    connect( dropZone, SIGNAL( dropAction( KDNDDropZone *) ), 
-	   this, SLOT( slotDropEvent( KDNDDropZone *) ) );
-
-
-    if(!frame3d){
-      setNoFrame();
-      options->changeItem(klocale->translate("3D Frame"),frame3dID);
-    }
-    else{
-      set3DFrame();
-      options->changeItem(klocale->translate("No Frame"),frame3dID);
-    }
-
-    if(!autoIndentMode){
-      setNoAutoIndent();
-      options->setItemChecked(autoIndentID,FALSE);
-    }
-    else{
-      setAutoIndent();
-      options->setItemChecked(autoIndentID,TRUE);
-    }
-
-    set_colors();
-    setFont(font);
-
-    bool have_alarm = FALSE;
-
-    QListIterator<AlarmEntry> it( AlarmList );
-    AlarmEntry *entry;                      
-
-    while ( (entry=it.current()) ) {         
-      if(entry->name == name){
-	have_alarm = TRUE;
-	break;
-      }
-      ++it;
-    }
-
-    if (have_alarm)
-      setCaption(name + " (A)");
-    else
-      setCaption(name);
-
-
 }
 
-void KPostit::toggleshow(){
-  
-}
-
-
-void KPostit::clear_text(){
-
-  this->clear();	
-}
-
-void KPostit::selectFont(){
- 
-  QFont myfont = QWidget::font();
-  KFontDialog::getFont(myfont);
-  this->setFont(myfont);
-  font = myfont;
-  
-}
-
-void KPostit::quit(){
-
-  for(PostitList.first();PostitList.current();PostitList.next()){
-
-    if (!PostitList.current()->savenotes()){
-      int result = QMessageBox::query (klocale->translate("Sorry"), 
-				       klocale->translate("Could not save a KNote.\n"\
-				       "Quit anyways?"));
-
-      if (!result){
-	return;         
-      }
-    }
-  }	
-
-  remove( pidFile.data() );
-  writeSettings();
-  if(!savealarms()){
-    QString str;
-    str.sprintf(klocale->translate("Could not save KNote Alarms\n"));
-    QMessageBox::message(klocale->translate("Sorry"),str.data(),
-                         klocale->translate("OK"));
-  }
-  QApplication::exit();
-
-}
-
-
-void KPostit::help(){
-
-  mykapp->invokeHTMLHelp("","");
-
-}
-void KPostit::keyPressEvent(QKeyEvent *e){
+void KPostitMultilineEdit::keyPressEvent(QKeyEvent *e){
 
   if (e->key() == Key_Tab)
     insertChar('\t');
@@ -285,7 +102,7 @@ void KPostit::keyPressEvent(QKeyEvent *e){
 
 }
 
-void KPostit::mynewLine(){
+void KPostitMultilineEdit::mynewLine(){
 
   if (isReadOnly())
     return;
@@ -343,7 +160,7 @@ void KPostit::mynewLine(){
   }
 }
 
-QString KPostit::prefixString(QString string){
+QString KPostitMultilineEdit::prefixString(QString string){
   
   // This routine return the whitespace before the first non white space
   // character in string. This is  used in mynewLine() for indent mode.
@@ -370,6 +187,226 @@ QString KPostit::prefixString(QString string){
 
 }
 
+
+KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname)
+  : QFrame(parent, myname){
+
+    KWM::setDecoration(winId(), 2);
+    KWM::setWmCommand(winId(), "");
+    XSetTransientForHint( qt_xdisplay(), winId(), (Window)(-1));
+    KWM::setIcon(winId(), kapp->getIcon());
+    KWM::setMiniIcon(winId(), kapp->getMiniIcon());
+
+    label = new QLabel(this);
+    label->setText("Hallo");
+    label->setAlignment( AlignHCenter);
+    label->installEventFilter(this);
+    dragging = false;
+
+    edit = new KPostitMultilineEdit(this);
+    edit->setGeometry(0,30,200,100);
+    edit->installEventFilter(this);
+    edit->setFocus();
+
+    number = _number; 	// index in popup. Not used anymore, but I'll leave it in
+                        // the structure for now.
+    name = pname;
+    name.detach(); 	// name of postit and name on the popup
+
+    kfm = 0L;
+
+    //set the defaults
+    forecolor 		= postitdefaults.forecolor;
+    backcolor 		= postitdefaults.backcolor;
+    edit->autoIndentMode 	= postitdefaults.autoindent;
+    font 		= postitdefaults.font;
+    frame3d 		= postitdefaults.frame3d;
+
+    resize(postitdefaults.width,postitdefaults.height);
+
+    loadnotes();
+
+    colors =  	new QPopupMenu ();
+
+    colors->insertItem(klocale->translate("Text Color"),this, SLOT(set_foreground_color()));
+    colors->insertItem(klocale->translate("Background Color"),this, SLOT(set_background_color()));
+
+    operations =  	new QPopupMenu ();
+    operations->insertItem(klocale->translate("Clear"),this, SLOT(clear_text()));
+
+    operations->insertSeparator();
+    operations->insertItem (klocale->translate("New Note"), this, 	
+				    SLOT(newKPostit()));
+    operations->insertItem (klocale->translate("Delete Note"), this, 	
+				    SLOT(deleteKPostit()));
+    operations->insertItem (klocale->translate("Rename Note"),this,SLOT(renameKPostit()));
+    operations->insertSeparator();
+    operations->insertItem (klocale->translate("Alarm ..."), this, 	
+				    SLOT(setAlarm()));
+    operations->insertSeparator();
+    operations->insertItem (klocale->translate("Calendar"), this, 	
+				    SLOT(insertCalendar()));
+    operations->insertItem (klocale->translate("Mail Note ..."), this, 	
+				    SLOT(mail()));
+    operations->insertItem (klocale->translate("Print Note"), this, 	
+				    SLOT(print()));
+
+    options = new QPopupMenu();
+    options->setCheckable(TRUE);
+    options->setFont(QFont("Helvetica",12));
+    frame3dID = options->insertItem(klocale->translate("3D Frame"),this, SLOT(toggleFrame()));
+    edit->autoIndentID = options->insertItem(klocale->translate("Auto Indent"),this, 
+				       SLOT(toggleIndentMode()));
+    options->insertItem(klocale->translate("Font"),this, SLOT(selectFont()));
+    options->insertItem(klocale->translate("Colors"),colors);
+    options->insertSeparator();
+    options->insertItem(klocale->translate("Change Defaults ..."),this, SLOT(defaults()));
+
+    operations->insertSeparator();
+    operations->insertItem (klocale->translate("Help"),this,SLOT(help()));
+
+    operations->insertSeparator();
+    operations->insertItem (klocale->translate("Options"),options);
+
+    right_mouse_button = new QPopupMenu;
+
+    for ( uint i = 0; i < PostitFilesList.count(); i++){
+      
+      int k = right_mouse_button->insertItem (PostitFilesList.at(i));
+      k = k;
+    }
+
+    connect( right_mouse_button, SIGNAL(activated( int )), 
+	     SLOT(findKPostit(int)) );
+
+
+    right_mouse_button->insertSeparator();
+    right_mouse_button->insertItem (klocale->translate("Insert Date"), this, 	
+				    SLOT(insertDate()));
+    right_mouse_button->insertItem (klocale->translate("Operations"),operations);
+
+    sticky_id = right_mouse_button->insertItem("", this, SLOT(toggleSticky())); 
+    
+    desktops = new QPopupMenu;
+    connect( desktops, SIGNAL(activated( int )), 
+	     SLOT(toDesktop(int)) );
+
+    right_mouse_button->insertItem(KWM::getToDesktopString(), 
+				   desktops);
+
+    right_mouse_button->insertSeparator();
+
+//     right_mouse_button->insertItem (klocale->translate("Quit"), this,
+// 				    SLOT(quit()));
+
+    right_mouse_button->insertItem(klocale->translate("Delete Note"), this,
+		       SLOT(deleteKPostit()));
+
+    installEventFilter( this );     
+
+    window_id = winId();
+
+    KDNDDropZone * dropZone = new KDNDDropZone( this , DndURL);
+    connect( dropZone, SIGNAL( dropAction( KDNDDropZone *) ), 
+	   this, SLOT( slotDropEvent( KDNDDropZone *) ) );
+
+
+    if(!frame3d){
+      setNoFrame();
+      options->changeItem(klocale->translate("3D Frame"),frame3dID);
+    }
+    else{
+      set3DFrame();
+      options->changeItem(klocale->translate("No Frame"),frame3dID);
+    }
+
+    if(!edit->autoIndentMode){
+      setNoAutoIndent();
+      options->setItemChecked(edit->autoIndentID,FALSE);
+    }
+    else{
+      setAutoIndent();
+      options->setItemChecked(edit->autoIndentID,TRUE);
+    }
+
+    set_colors();
+    setFont(font);
+
+    bool have_alarm = FALSE;
+
+    QListIterator<AlarmEntry> it( AlarmList );
+    AlarmEntry *entry;                      
+
+    while ( (entry=it.current()) ) {         
+      if(entry->name == name){
+	have_alarm = TRUE;
+	break;
+      }
+      ++it;
+    }
+
+    if (have_alarm)
+      setCaption(name + " (A)");
+    else
+      setCaption(name);
+    label->setText(caption());
+
+
+}
+
+void KPostit::toggleshow(){
+  
+}
+
+
+void KPostit::clear_text(){
+
+  edit->clear();	
+}
+
+void KPostit::selectFont(){
+ 
+  QFont myfont = QWidget::font();
+  KFontDialog::getFont(myfont);
+  edit->setFont(myfont);
+  font = myfont;
+  
+}
+
+void KPostit::quit(){
+
+  for(PostitList.first();PostitList.current();PostitList.next()){
+
+    if (!PostitList.current()->savenotes()){
+      int result = QMessageBox::query (klocale->translate("Sorry"), 
+				       klocale->translate("Could not save a KNote.\n"\
+				       "Quit anyways?"));
+
+      if (!result){
+	return;         
+      }
+    }
+  }	
+
+  remove( pidFile.data() );
+  writeSettings();
+  if(!savealarms()){
+    QString str;
+    str.sprintf(klocale->translate("Could not save KNote Alarms\n"));
+    QMessageBox::message(klocale->translate("Sorry"),str.data(),
+                         klocale->translate("OK"));
+  }
+  QApplication::exit();
+
+}
+
+
+void KPostit::help(){
+
+  mykapp->invokeHTMLHelp("","");
+
+}
+
 void KPostit::insertDate(){
   
   int line, column;
@@ -378,8 +415,8 @@ void KPostit::insertDate(){
   QDateTime dt = QDateTime::currentDateTime();
   string = dt.toString();
 
-  this->getCursorPosition(&line,&column);
-  this->insertAt(string,line,column);
+  edit->getCursorPosition(&line,&column);
+  edit->insertAt(string,line,column);
  
 }
 
@@ -419,10 +456,10 @@ void KPostit::mail(){
 
   QTextStream t(mailpipe,IO_WriteOnly );
 
-  int line_count = numLines();
+  int line_count = edit->numLines();
 
   for(int i = 0 ; i < line_count ; i++){
-    t << textLine(i) << '\n';
+    t << edit->textLine(i) << '\n';
   }
   pclose(mailpipe);
   
@@ -443,7 +480,7 @@ void KPostit::insertCalendar(){
   while ( !t.eof() ) {
     QString s = t.readLine();
     if(!t.eof())
-      this->insertLine( s );
+      edit->insertLine( s );
   }  
   pclose(calfile);
   repaint();
@@ -462,13 +499,14 @@ void KPostit::setAlarm(){
 
   AlarmEntry* entry;
   entry = new AlarmEntry;
-  entry->name = this->name.copy();
+  entry->name = name.copy();
   entry->dt = qdt;
 
   AlarmList.append(entry);
   QString str;
   str.sprintf("%s (A)",name.data());
   setCaption(str.data());
+  label->setText(caption());
 
   //  QDate date = qdt.date();
   //  QTime time = qdt.time();
@@ -502,10 +540,10 @@ void KPostit::print(){
 
   QTextStream t(printpipe,IO_WriteOnly );
 
-  int line_count = numLines();
+  int line_count = edit->numLines();
 
   for(int i = 0 ; i < line_count ; i++){
-    t << textLine(i) << '\n';
+    t << edit->textLine(i) << '\n';
   }
 
   pclose(printpipe);
@@ -590,17 +628,12 @@ void KPostit::findKPostit(int i){
     return;
   }
   
-  // unminimize the correponding kpostit if a windget already exists for it
+  // activate the correponding kpostit if a windget already exists for it
 
   for(PostitList.first(); PostitList.current() ; PostitList.next()){
     if (PostitList.current()->name == QString(right_mouse_button->text(
 					      right_mouse_button->idAt( i)))) {
-
-
-            kwmcom_send_to_kwm( kwm_un_minimize_window_by_id, 
-			  PostitList.current()->winId(),
-			   0L, 0L, 0L, 0L);
-      PostitList.current()->raise();
+      KWM::activate(PostitList.current()->winId());
       return;
     }
   }
@@ -663,6 +696,7 @@ void KPostit::renameKPostit(){
       setCaption(name + " (A)");
     else
       setCaption(name);
+    label->setText(caption());
 
     // remove and reinsert the popup menues in a sorted fashion
 
@@ -684,18 +718,12 @@ void KPostit::renameKPostit(){
 void KPostit::deleteKPostit(){
 
 
-  if(PostitFilesList.count() == 1){
-    QMessageBox::message(klocale->translate("Sorry"),
-		klocale->translate("You can't delete the last KNote."),
-		klocale->translate("Ok"));
-    return;
-  }
-
-  int result = QMessageBox::query(klocale->translate("Question"),
+  int result = QMessageBox::warning(this, klocale->translate("Question"),
 		klocale->translate("Are you sure you want to delete this\n"\
-				  "note permanently?"),
-		klocale->translate("Ok"));
-  if(!result)
+				  "note permanently?"), 
+				    QMessageBox::Yes, 
+				    QMessageBox::Cancel);
+  if(result == QMessageBox::Cancel)
     return;
 
   QString notesfile;
@@ -743,15 +771,6 @@ void KPostit::deleteKPostit(){
 
   PostitList.remove( this );
   delete this;    
-  if(PostitList.count() == 0){ // this was the last KPostit Object
-    // we need to bring back to live at least one, this will not be necessary
-    // once we get the kwm communications stuff worked out.
-    KPostit* postit;
-    postit = new KPostit(NULL,NULL,0,KPostit::PostitFilesList.first());    
-    KPostit::PostitList.append( postit ); 
-    postit->show();
-  }
-    
 }
 
 bool KPostit::loadnotes(){
@@ -769,7 +788,7 @@ bool KPostit::loadnotes(){
     return FALSE;
   }
 
-  this->setAutoUpdate(FALSE);
+  edit->setAutoUpdate(FALSE);
   QTextStream t(&file);
 
   // get the name
@@ -777,14 +796,9 @@ bool KPostit::loadnotes(){
   
   // get the geomtery
 
-  QString width = t.readLine();
-  QString height = t.readLine();
+  QString geom = t.readLine();
 
-  QString xpos = t.readLine();
-  QString ypos = t.readLine();
-  
-  //  resize(width.toUInt(),height.toUInt());
-  this->setGeometry(xpos.toUInt(),ypos.toUInt(),width.toUInt(),height.toUInt());
+  setGeometry(KWM::setProperties(winId(), geom));
 
   // get the backcolor
 
@@ -838,9 +852,9 @@ bool KPostit::loadnotes(){
   QString autostr = t.readLine();
   indent = autostr.toUInt();
   if(indent == 1)
-    autoIndentMode = TRUE;
+    edit->autoIndentMode = TRUE;
   else
-    autoIndentMode = FALSE;
+    edit->autoIndentMode = FALSE;
   
   
   // get the text body
@@ -848,10 +862,10 @@ bool KPostit::loadnotes(){
   while ( !t.eof() ) {
     QString s = t.readLine();
     if(!t.eof())
-      this->insertLine( s );
+      edit->insertLine( s );
   }
 
-  this->setAutoUpdate(TRUE);
+  edit->setAutoUpdate(TRUE);
   file.close();
   return TRUE;
 
@@ -870,27 +884,33 @@ bool KPostit::insertFile(char* filename){
     return FALSE;
   }
 
-  this->setAutoUpdate(FALSE);
+  edit->setAutoUpdate(FALSE);
   QTextStream t(&file);
 
 
   while ( !t.eof() ) {
     QString s = t.readLine();
     if(!t.eof())
-      this->insertLine( s );
+      edit->insertLine( s );
   }
 
-  this->setAutoUpdate(TRUE);
+  edit->setAutoUpdate(TRUE);
   file.close();
-  this->repaint();
+  edit->repaint();
   return TRUE;
 
 }
 
+
+
+void KPostit::resizeEvent( QResizeEvent * ){
+  label->adjustSize();
+  label->setGeometry(0,0,width(),label->height());
+  edit->setGeometry(0, label->height(), width(), height()-label->height());
+}
+
 void KPostit::closeEvent( QCloseEvent * ){
-
-  close();
-
+  deleteKPostit();
 };
 
 bool KPostit::savenotes(){
@@ -910,17 +930,8 @@ bool KPostit::savenotes(){
 
   t << name <<'\n';
      
-  t << this->width() <<'\n';
-  t << this->height() <<'\n';
-
+  t << KWM::getProperties(winId()) <<'\n';
  
-  t << this->frameGeometry().x() <<'\n';
-  t << this->frameGeometry().y() <<'\n';
-  /*
-
-  t << this->geometry().x() <<'\n';
-  t << this->geometry().y() <<'\n';
-  */
 
   t << backcolor.red() <<'\n';
   t << backcolor.green()<< '\n';
@@ -944,16 +955,16 @@ bool KPostit::savenotes(){
   else
     t <<  0 << '\n';
 
-  if (autoIndentMode)
+  if (edit->autoIndentMode)
     t << 1 <<'\n';
   else
     t <<  0 << '\n';
 
 
-  int line_count = numLines();
+  int line_count = edit->numLines();
 
   for(int i = 0 ; i < line_count ; i++){
-    t << textLine(i) << '\n';
+    t << edit->textLine(i) << '\n';
   }
 
   file.close();
@@ -965,20 +976,75 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
 
   static QPoint tmp_point;
 
+  QMouseEvent *e = (QMouseEvent *)ev;
+
+
+  if (o == label){
+    if (ev->type() == Event_MouseButtonRelease){
+      if (e->button() == LeftButton){
+        dragging = false;
+        label->releaseMouse();
+	raise();
+      }
+      if (e->button() == MidButton)
+	lower();
+      return TRUE;
+    }
+
+    if (ev->type() == Event_MouseButtonPress
+	&& e->button() == LeftButton){
+      pointerOffset = e->pos();
+      label->grabMouse(sizeAllCursor);
+      return TRUE;
+    }
+    if (ev->type() == Event_MouseMove
+	&& label == mouseGrabber()){
+      if (dragging)
+	move(QCursor::pos()-pointerOffset);
+      else {
+	dragging = (
+	  (e->pos().x() - pointerOffset.x())
+	  *
+	  (e->pos().x() - pointerOffset.x())
+	  +
+	  (e->pos().y() - pointerOffset.y())
+	    *
+	  (e->pos().y() - pointerOffset.y())
+	  >= 9);
+      }
+      return TRUE;
+    }
+    
+    if (ev->type() == Event_MouseMove)
+      return TRUE;
+  }
+  
   (void) o;
 
   if(ev->type() != Event_MouseButtonPress) 
     return FALSE;
     
-  QMouseEvent *e = (QMouseEvent *)ev;
-  
-  if(e->button() != RightButton) 
+  if(e->button() != RightButton)
     return FALSE;
 
   tmp_point = QCursor::pos();
   
-  if(right_mouse_button)
+  if(right_mouse_button){
+    desktops->clear();
+    int i;
+    int n = KWM::numberOfDesktops();
+    for (i=1; i <= n; i++){
+      QString b = "&";
+      b.append(KWM::getDesktopName(i));
+      desktops->insertItem(b, i);
+    }
+    desktops->setItemChecked(KWM::currentDesktop(), TRUE);
+    if (KWM::isSticky(winId()))
+      right_mouse_button->changeItem(KWM::getUnStickyString(), sticky_id);
+    else
+      right_mouse_button->changeItem(KWM::getStickyString(), sticky_id);
     right_mouse_button->popup(tmp_point);
+  }
 
   return TRUE;
 
@@ -989,8 +1055,8 @@ void KPostit::set3DFrame(){
   frame3d = TRUE;
   //  options->changeItem("No Frame",frame3dID);
   options->setItemChecked(frame3dID,TRUE);
-  this->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
-  this->repaint();
+  edit->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
+  edit->repaint();
 }
 
 void KPostit::setNoFrame(){
@@ -998,8 +1064,8 @@ void KPostit::setNoFrame(){
   frame3d = FALSE;
   //  options->changeItem("3D Frame",frame3dID);
   options->setItemChecked(frame3dID,FALSE);
-  this->setFrameStyle(QFrame::NoFrame);
-  this->repaint();
+  edit->setFrameStyle(QFrame::NoFrame);
+  edit->repaint();
 }
 
 void KPostit::toggleFrame(){
@@ -1009,25 +1075,6 @@ void KPostit::toggleFrame(){
     set3DFrame();
 }
 
-void KPostit::toggleIndentMode(){
-  if(autoIndentMode)
-    setNoAutoIndent();
-  else
-    setAutoIndent();
-}
-
-void KPostit::setAutoIndent(){
-  
-  autoIndentMode = TRUE;
-  options->setItemChecked(autoIndentID,TRUE);
-}
-
-void KPostit::setNoAutoIndent(){
-
-  autoIndentMode = FALSE;
-  options->setItemChecked(autoIndentID,FALSE);
-
-}
 
 void KPostit::dummy(){
 
@@ -1101,7 +1148,7 @@ void KPostit::defaults()
 void KPostit::set_colors(){
 
 
-  QPalette mypalette = (this->palette()).copy();
+  QPalette mypalette = (edit->palette()).copy();
 
   QColorGroup cgrp = mypalette.normal();
   QColorGroup ncgrp(forecolor,cgrp.background(),
@@ -1111,8 +1158,10 @@ void KPostit::set_colors(){
   mypalette.setDisabled(ncgrp);
   mypalette.setActive(ncgrp);
 
-  this->setPalette(mypalette);
-  this->setBackgroundColor(backcolor);
+  edit->setPalette(mypalette);
+  edit->setBackgroundColor(backcolor);
+  label->setPalette(mypalette);
+  label->setBackgroundColor(backcolor.dark(120));
 
 }
 
@@ -1148,20 +1197,20 @@ void KPostit::set_background_color(){
 }
 
 
-static void un_minimize(int sig){
+static void siguser1(int sig){
   sig = sig;
 
-#ifdef MYDEBUG
-  printf("Trying to unminimize:\n Signal received : %d My WinId: %ld \n",
-	 sig,window_id);
-#endif
+  if (KPostit::PostitList.count() == 0){
+    KPostit::PostitFilesList.append("knote 1");
+    KPostit* postit = new KPostit(NULL,NULL,0,"knote 1");
+    KPostit::PostitList.append(postit); 
+    postit->show();
+  }
+  else {
+    KPostit::PostitList.last()->newKPostit();
+  }
   
-  kwmcom_send_to_kwm( kwm_un_minimize_window_by_id, 
-		      KPostit::PostitList.last()->winId(),
-		      0L, 0L, 0L, 0L);
-  KPostit::PostitList.last()->raise();
-  
-  signal(SIGUSR1, un_minimize);
+  signal(SIGUSR1, siguser1);
 }
 
 
@@ -1272,6 +1321,36 @@ void KPostit::slotKFMFinished()
 }
 
 
+
+void KPostit::toggleIndentMode(){
+  if(edit->autoIndentMode)
+    setNoAutoIndent();
+  else
+    setAutoIndent();
+}
+
+void KPostit::toDesktop(int d){
+  KWM::moveToDesktop(winId(), d);
+}
+
+void KPostit::toggleSticky(){
+  KWM::setSticky(winId(), !KWM::isSticky(winId()));
+}
+
+void KPostit::setAutoIndent(){
+  
+  edit->autoIndentMode = TRUE;
+  options->setItemChecked(edit->autoIndentID,TRUE);
+}
+
+void KPostit::setNoAutoIndent(){
+
+  edit->autoIndentMode = FALSE;
+  options->setItemChecked(edit->autoIndentID,FALSE);
+
+}
+
+
 void findPostitFiles(){
 
   QString p = getenv( "HOME" );
@@ -1331,29 +1410,6 @@ void alarmConsistencyCheck(){
   }
 }
 
-extern "C" {
-
-static int knotes_x_errhandler( Display *dpy, XErrorEvent *err )
-{
-    char errstr[256];
-
-    cleanup(0);
-    XGetErrorText( dpy, err->error_code, errstr, 256 );
-    fatal( "X Error: %s\n  Major opcode:  %d", errstr, err->request_code );
-    return 0;
-}
-
-
-static int knotes_xio_errhandler( Display * ){
-
-  cleanup(0);
-  /*fatal( "%s: Fatal IO error: client killed", "kppp" );*/
-  return 0;
-}
-
-} /*extern C*/                                 
-
-
 int main( int argc, char **argv ) {
 
   FILE *fp;
@@ -1410,23 +1466,27 @@ int main( int argc, char **argv ) {
   readalarms();
   alarmConsistencyCheck();
 
-  if(KPostit::PostitFilesList.count() == 0){
-    KPostit::PostitFilesList.append("knote 1");
-    postit = new KPostit(NULL,NULL,0,"knote 1");
-
-  }
-  else{
-    postit = new KPostit(NULL,NULL,0,KPostit::PostitFilesList.first());
-  }
-
-  KPostit::PostitList.append( postit ); 
-
   mytimer = new MyTimer();
-  
-  postit->show();
 
-  XSetErrorHandler( knotes_x_errhandler );
-  XSetIOErrorHandler( knotes_xio_errhandler );
+
+  if (argc != 2 || QString("-only_restore") != argv[1]){
+    if(KPostit::PostitFilesList.count() == 0){
+      KPostit::PostitFilesList.append("knote 1");
+    }
+  }
+
+  unsigned int i;
+  for (i=0; i<KPostit::PostitFilesList.count(); i++){
+    postit = new KPostit(NULL,NULL,0,KPostit::PostitFilesList.at(i));
+    KPostit::PostitList.append(postit); 
+    postit->show();
+  }
+
+
+  // manual session management (knotes alredy stores everything)
+  kapp->setTopWidget(new QWidget);
+  kapp->enableSessionManagement(true);
+  kapp->setWmCommand("knotes -only_restore");
 
   return a.exec();
 
@@ -1529,7 +1589,7 @@ void catchSignals()
 //	signal(SIGCHLD, cleanup);
 
 	signal(SIGABRT, cleanup);
-	signal(SIGUSR1, un_minimize);
+	signal(SIGUSR1, siguser1);
 	signal(SIGALRM, cleanup);
 	signal(SIGFPE, cleanup);
 	signal(SIGILL, cleanup);

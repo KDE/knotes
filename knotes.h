@@ -55,7 +55,6 @@
 #include <kfm.h>
 #include <kcolordlg.h>
 #include <kfontdialog.h>
-#include "kwmcom.h"
 
 typedef struct _DefStruct{
   QColor forecolor;
@@ -105,8 +104,27 @@ protected:
 };
 
 
+class KPostitMultilineEdit: public QMultiLineEdit{
+  Q_OBJECT
 
-class   KPostit :public QMultiLineEdit{
+public:
+  
+  KPostitMultilineEdit(QWidget *parent=0, const char *wname=0);
+  bool autoIndentMode;
+  int  autoIndentID;
+
+protected:
+
+  void  keyPressEvent(QKeyEvent *e);
+  void  mynewLine();
+
+private:
+  QString prefixString(QString string);
+
+};
+
+
+class KPostit :public QFrame{
 
   Q_OBJECT
 
@@ -119,25 +137,20 @@ public:
   static QStrList         PostitFilesList; 
   static QList<AlarmEntry> AlarmList;
 
-
   int number;
 
   QString name;
+
+  QLabel* label;
+  KPostitMultilineEdit* edit;
   
   QPopupMenu *right_mouse_button;
-
 
 protected:
 
   bool  eventFilter( QObject *, QEvent * );
-  void  closeEvent( QCloseEvent *e );
-  void  keyPressEvent(QKeyEvent *e);
-  void  mynewLine();
-
-private:
-  QString prefixString(QString string);
-  void  setAutoIndent();
-  void  setNoAutoIndent();
+  void resizeEvent( QResizeEvent * );
+  void  closeEvent( QCloseEvent * );
 
 
 public slots:
@@ -165,29 +178,36 @@ public slots:
   void  newKPostit();
   void  renameKPostit();
   void  deleteKPostit();
-  void  toggleIndentMode();
   void  insertCalendar();
   void  mail();
   void  print();
   void  defaults();
   void  setAlarm();
   void  help();
+  void  toggleIndentMode();
+  void toDesktop(int);
+  void toggleSticky();
 
 private:
+  void  setAutoIndent();
+  void  setNoAutoIndent();
 
 
   QFont font;
   QPopupMenu *colors;
   QPopupMenu *options;
   QPopupMenu *operations;
+  QPopupMenu *desktops;
   KFM *kfm;
   int  frame3dID;
-  bool autoIndentMode;
-  int  autoIndentID;
   QColor forecolor;
   QColor backcolor;
   QTimer *timer;
   bool frame3d;
+
+  QPoint pointerOffset;
+  bool dragging;
+  int sticky_id;
 
 };
 

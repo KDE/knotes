@@ -5,3 +5,16 @@ Thu Aug  7 18:50:59 1997  Bernd Johannes Wuebben  <wuebben@petit.cornell.edu>
 Mon Nov 17 21:32:28 1997  didier Belot <dib@avo.fr>
 
 	* added all necessary stuff for locale (klocale->translate())
+
+Sat Nov 22 13:13:05 1997 Matthias Ettrich <ettrich@kde.org>
+
+	* sessionmanagement: uses kwm properties now, not only geometry info
+	* look: pretty thin border. KPostit does no longer inherit QMultiline
+	        but simply QFrame. New class: KPostitMultilineEdit.
+	        New QMessage box for warning. Icon+Miniicon.
+	* feel: moving possible with the label, rmb menu contains toDesktop
+	        and sticky, notes are activated not only raised. Alt-F4
+	        can remove a note now.
+	* invokation: change: siguser1 will give you a new knote (like
+	        taking a new paper from a block).
+	        "-only_restore" used for session management.

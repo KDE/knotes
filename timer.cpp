@@ -27,6 +27,7 @@
 
 #include "timer.h"
 #include "knotes.h"
+#include <kwm.h>
 
 
 extern KApplication* 	mykapp;
@@ -72,6 +73,8 @@ void MyTimer::timerEvent( QTimerEvent * ){
 
       bool exists = FALSE;
 
+      KPostit *t = 0;
+
       for(KPostit::PostitList.first();KPostit::PostitList.current();
 	    KPostit::PostitList.next()){
 	
@@ -80,13 +83,10 @@ void MyTimer::timerEvent( QTimerEvent * ){
 	   ){
 	  
 	  exists = TRUE;
-	  KPostit::PostitList.current()->setCaption(
-		      KPostit::PostitList.current()->name);
-	  
-	  kwmcom_send_to_kwm( kwm_un_minimize_window_by_id, 
-			      KPostit::PostitList.current()->winId(),
-			      0L, 0L, 0L, 0L);
-	  KPostit::PostitList.current()->raise();
+	  t = KPostit::PostitList.current();
+	  t->setCaption(KPostit::PostitList.current()->name);
+	  t->label->setText(t->caption());
+	  KWM::activate(KPostit::PostitList.current()->winId());
 	}
 
       }
@@ -95,8 +95,8 @@ void MyTimer::timerEvent( QTimerEvent * ){
 
 
 	// if this particular kpostit note widget is not alive yet, create it.
-	KPostit *t = new KPostit (NULL,NULL,0, 
-				  entry->name.copy());
+	t = new KPostit (NULL,NULL,0, 
+			 entry->name.copy());
 	t->setCaption(entry->name);
 	t->show ();
 	KPostit::PostitList.append( t );
@@ -108,7 +108,7 @@ void MyTimer::timerEvent( QTimerEvent * ){
 		  "\n%s",
 		  entry->name.data());
 
-      QMessageBox::message("Alarm",str.data(),"OK");
+      QMessageBox::information(t, "Alarm",str.data(),QMessageBox::Ok);
 
 
       delete entry;
