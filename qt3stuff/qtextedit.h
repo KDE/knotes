@@ -72,7 +72,7 @@ namespace Qt3 {
 
 using namespace Qt3;
 
-class Q_EXPORT QTextEdit : public QScrollView
+class Q_EXPORT QTextEdit : public Qt3::QScrollView
 {
     Q_OBJECT
     Q_ENUMS( WordWrap WrapPolicy )

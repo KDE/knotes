@@ -48,7 +48,6 @@
 #include "qevent.h"
 #include "qtimer.h"
 #include "qapplication.h"
-#include "qlistbox.h"
 #include "qvbox.h"
 #include "qapplication.h"
 #include "qclipboard.h"
