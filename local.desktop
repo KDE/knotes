@@ -31,6 +31,7 @@ Name[sr@Latn]=Zabeleške u lokalnom fajlu
 Name[sv]=Anteckningar i lokal fil
 Name[ta]=உள் கோப்பில் உள்ள குறிப்புகள்
 Name[tg]=Хабарҳо дар файли локалӣ
+Name[uk]=Нотатки у локальному файлі
 Name[zh_CN]=本地文件中的笔记
 X-KDE-Library=knotes_local
 Type=Service
