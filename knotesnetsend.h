@@ -41,7 +41,7 @@ class KNotesNetworkSender : public KExtendedSocket
 {
     Q_OBJECT
 public:
-    KNotesNetworkSender( const QString &, const QString & );
+    KNotesNetworkSender( const QString &, const QString &, const QString & );
 
 protected slots:
     void slotConnected();
@@ -52,6 +52,7 @@ protected slots:
 
 private:
     QCString m_note;
+    QCString m_title;
     uint m_index;
 };
 

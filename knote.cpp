@@ -468,7 +468,7 @@ void KNote::slotSend()
     }
 
     // Send the note
-    (void)new KNotesNetworkSender( host, text() );
+    (void)new KNotesNetworkSender( host, name(), text() );
 }
 
 void KNote::slotMail()

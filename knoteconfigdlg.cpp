@@ -21,6 +21,7 @@
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qcheckbox.h>
+#include <qhgroupbox.h>
 #include <qtabwidget.h>
 
 #include <kapplication.h>
@@ -195,19 +196,27 @@ QWidget *KNoteConfigDlg::makeActionsPage()
 QWidget *KNoteConfigDlg::makeNetworkPage()
 {
     QWidget *networkPage = new QWidget();
-    QGridLayout *layout = new QGridLayout( networkPage, 3, 2, 0, spacingHint() );
+    QGridLayout *layout = new QGridLayout( networkPage, 4, 2, 0, spacingHint() );
 
-    QCheckBox *kcfg_ReceiveNotes = new QCheckBox( i18n("Enable &receiving notes"),
-                                                  networkPage, "kcfg_ReceiveNotes" );
-    layout->addMultiCellWidget( kcfg_ReceiveNotes, 0, 0, 0, 1 );
+    QGroupBox *incoming = new QHGroupBox( i18n("Incoming Notes"), networkPage );
+    layout->addMultiCellWidget( incoming, 0, 0, 0, 1 );
+
+    new QCheckBox( i18n("Accept incoming notes"), incoming, "kcfg_ReceiveNotes" );
+
+    QGroupBox *outgoing = new QHGroupBox( i18n("Outgoing Notes"), networkPage );
+    layout->addMultiCellWidget( outgoing, 1, 1, 0, 1 );
+
+    QLabel *label_SenderID = new QLabel( i18n("&Sender ID:"), outgoing, "label_SenderID" );
+    KLineEdit *kcfg_SenderID = new KLineEdit( outgoing, "kcfg_SenderID" );
+    label_SenderID->setBuddy( kcfg_SenderID );
 
     QLabel *label_Port = new QLabel( i18n("&Port:"), networkPage, "label_Port" );
-    layout->addWidget( label_Port, 1, 0 );
+    layout->addWidget( label_Port, 2, 0 );
 
     KIntNumInput *kcfg_Port = new KIntNumInput( networkPage, "kcfg_Port" );
     kcfg_Port->setRange( 0, 65535, 1, false );
     label_Port->setBuddy( kcfg_Port );
-    layout->addWidget( kcfg_Port, 1, 1 );
+    layout->addWidget( kcfg_Port, 2, 1 );
 
     return networkPage;
 }

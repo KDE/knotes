@@ -17,6 +17,8 @@
       <default>24837</default>
     </entry>
 
+    <entry name="SenderID" type="String"/>
+
     <entry name="KnownHosts" type="StringList"/>
   </group>
 </kcfg>

@@ -40,12 +40,14 @@
 #define CONNECT_TIMEOUT 10
 
 
-KNotesNetworkSender::KNotesNetworkSender( const QString& hostname, const QString& text )
+KNotesNetworkSender::KNotesNetworkSender( const QString& hostname,
+                const QString& title, const QString& text )
   : KExtendedSocket( hostname, KNotesGlobalConfig::port() ),
     // TODO: support for unicode and richtext.
     // Mmmmmm... how to behave with such heterogeneous environment?
     // AFAIK, ATnotes does not allow UNICODE.
     m_note( text.ascii() ),
+    m_title( title.ascii() ),
     m_index( 0 )
 {
     enableRead( false );
@@ -64,10 +66,11 @@ KNotesNetworkSender::KNotesNetworkSender( const QString& hostname, const QString
 
 void KNotesNetworkSender::slotConnected()
 {
-    // Now we have socket information. Can append header.
-    const KSocketAddress *local = localAddress();
-    if ( local )
-        m_note = QString( local->nodeName() + "\n" ).ascii() + m_note;
+    const QString& sender = KNotesGlobalConfig::senderID();
+    if ( sender.isEmpty() )
+        m_note.prepend( m_title + "\n");
+    else
+        m_note.prepend( m_title + " (" + sender.ascii() + ")\n" );
 
     enableWrite( true );
 }

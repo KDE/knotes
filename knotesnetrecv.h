@@ -60,8 +60,7 @@ private:
     QByteArray *m_buffer;
     KExtendedSocket *m_sock;
 
-    QString m_noteHeader;  // arrival time, in this implementation
-    QString m_notePrefix;  // peer's address, in this implementation
+    QString m_titleAddon;
 };
 
 #endif

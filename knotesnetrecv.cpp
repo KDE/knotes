@@ -2,7 +2,7 @@
  KNotes -- Notes for the KDE project
 
  Copyright (c) 2003, Daniel Martin <daniel.martin@pirack.com>
-               2003, Michael Brade <brade@kde.org>
+               2004, Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -37,8 +37,8 @@
 
 #include <kextsock.h>
 #include <ksockaddr.h>
-#include <kglobal.h>
 #include <klocale.h>
+#include <kglobal.h>
 
 #include "knotesnetrecv.h"
 
@@ -58,11 +58,13 @@ KNotesNetworkReceiver::KNotesNetworkReceiver( KExtendedSocket *s )
   : QObject(),
     m_buffer( new QByteArray() ), m_sock( s )
 {
-    m_noteHeader = KGlobal::locale()->formatDateTime( QDateTime::currentDateTime(), true, true );
+    QString date = KGlobal::locale()->formatDateTime( QDateTime::currentDateTime(), true, false );
 
-    // We forge a note beginning with the remote address, to help the user
-    // guess who wrote it.
-    m_notePrefix = i18n("From: %1\n").arg( m_sock->peerAddress()->nodeName() );
+    // Add the remote IP or hostname and the date to the title, to help the
+    // user guess who wrote it.
+    m_titleAddon = QString(" [%1, %2]")
+                   .arg( m_sock->peerAddress()->nodeName() )
+                   .arg( date );
 
     // Setup the timer
     m_timer = new QTimer( this );
@@ -79,8 +81,6 @@ KNotesNetworkReceiver::KNotesNetworkReceiver( KExtendedSocket *s )
 
 KNotesNetworkReceiver::~KNotesNetworkReceiver()
 {
-    // Timer frees itself when its parent dies.
-    m_timer->stop();
     delete m_buffer;
     delete m_sock;
 }
@@ -119,12 +119,14 @@ void KNotesNetworkReceiver::slotConnectionClosed( int /*state*/ )
     {
         QString noteText = QString( *m_buffer ).stripWhiteSpace();
 
-        // Remove first line with (possibly) fake Id.
-        noteText = m_notePrefix + noteText.mid( noteText.find( QRegExp("[\r\n]") ) );
+        // First line is the note title or, in case of ATnotes, the id
+        int pos = noteText.find( QRegExp("[\r\n]") );
+        QString noteTitle = noteText.left( pos ).stripWhiteSpace() + m_titleAddon;
 
-        // this also means we can't receive empty notes
-        if ( noteText.length() > m_notePrefix.length() )
-            emit sigNoteReceived( m_noteHeader, noteText );
+        noteText = noteText.mid( pos ).stripWhiteSpace();
+
+        if ( !noteText.isEmpty() )
+            emit sigNoteReceived( noteTitle, noteText );
     }
 
     delete this;
