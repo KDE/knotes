@@ -170,7 +170,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     config.setGroup( "WindowDisplay" );
     int note_desktop = config.readNumEntry( "desktop", KWin::currentDesktop() );
     ulong note_state = config.readUnsignedLongNumEntry( "state", NET::SkipTaskbar );
-    QPoint default_position = QPoint( -1, -1 );
+    QPoint default_position = QPoint( -1000, -1000 );
     QPoint position  = config.readPointEntry( "position", &default_position );
 
     KWin::setState( winId(), note_state );
@@ -179,7 +179,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
 
     // let KWin do the placement if the position is illegal
     if ( position != default_position &&
-            kapp->desktop()->rect().contains( position.x() + width, position.y() + height ) )
+            kapp->desktop()->rect().intersects( QRect( position, size() ) ) )
         move( position );           // do before calling show() to avoid flicker
 
     // read configuration settings...
