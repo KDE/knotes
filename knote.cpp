@@ -56,7 +56,8 @@ KNote::KNote( KConfig* config, QWidget* parent, const char* name )
         m_menu = new KPopupMenu( this );
         m_menu->insertItem( i18n("Rename"),      this, SLOT(slotRename(int)) );
         m_menu->insertItem( i18n("Mail"),        this, SLOT(slotMail(int)) );
-        m_menu->insertItem( i18n("Print"),       this, SLOT(slotPrint(int)) );
+		//Printing not implemented for 2.0 release
+        //m_menu->insertItem( i18n("Print"),       this, SLOT(slotPrint(int)) );
         m_menu->insertItem( i18n("Insert Date"), this, SLOT(slotInsDate(int)) );
         m_menu->insertSeparator();
         m_menu->insertItem( i18n("Note Preferences..."), this, SLOT(slotConfig(int)) );
@@ -92,9 +93,18 @@ void KNote::resizeEvent( QResizeEvent* qre )
 {
         QFrame::resizeEvent( qre );
 
-        m_button->setGeometry( width() - 15, 0, 15, 15 );
-        m_label->setGeometry( 0, 0, width() - 15, 15 );
-        m_editor->setGeometry( 0, 15, width(), height() - 15 );
+		int new_height = height();
+		int new_width  = width();
+		
+        m_button->setGeometry( new_width - 15, 0, 15, 15 );
+        m_label->setGeometry( 0, 0, new_width - 15, 15 );
+        m_editor->setGeometry( 0, 15, new_width, new_height - 15 );
+
+		//need to save the new size to KConfig object
+		m_config->setGroup( "Display" );
+        m_config->writeEntry( "width", new_width );
+		m_config->writeEntry( "height", new_height );
+        m_config->sync();
 }
 
 void KNote::slotApplyConfig()
@@ -214,13 +224,21 @@ void KNote::slotMail( int /*id*/ )
         data_name = m_notedir->absFilePath( data_name );
         m_editor->dumpToFile( data_name );
 
-		cerr << "data_name = " << data_name << endl;
-		
-        //KMail doesn't really respect the --msg option it seems??
+		//get the mail action command
+		QString mail_cmd = m_config->entryMap( "Actions" )["mail"];
+		QStringList cmd_list = QStringList::split( QChar(' '), mail_cmd );
         KProcess mail;
-        mail << "kmail" << "--msg" << data_name;
-        if( !mail.start( KProcess::DontCare ) )
-                cerr << "could not start process" << endl;
+		for( QStringList::Iterator it = cmd_list.begin();
+		     it != cmd_list.end();
+			 ++it )
+		{
+				if( *it == "%f" )
+						mail << data_name;
+				else mail << *it;
+		}
+
+		if( !mail.start( KProcess::DontCare ) )
+                kdDebug() << "could not start process" << endl;
 }
 
 
@@ -328,5 +346,7 @@ void KNote::slotKill( int /*id*/ )
 
 void KNote::slotPrint( int /*id*/ )
 {
+        //printing not implemented yet...
 }
+
 #include "knote.moc"
