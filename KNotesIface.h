@@ -44,21 +44,9 @@ k_dcop:
 
     /**
      * Show a note as if it had been selected from the "notes" menu.
-     * @param name the name (title) of the note to show
-     */
-    virtual ASYNC showNote( const QString& name ) const = 0;
-
-    /**
-     * Show a note as if it had been selected from the "notes" menu.
      * @param noteId the id of the note to show
      */
     virtual ASYNC showNote( int noteId ) const = 0;
-
-    /**
-     * Deletes a note forever.
-     * @param name the name (title) of the note to kill
-     */
-    virtual ASYNC killNote( const QString& name ) = 0;
 
     /**
      * Deletes a note forever.
@@ -74,13 +62,6 @@ k_dcop:
 
     /**
      * Changes the title of a note.
-     * @param oldName the name (title) of the note to be modified
-     * @param newName the new title
-     */
-    virtual ASYNC setName( const QString& oldName, const QString& newName ) = 0;
-
-    /**
-     * Changes the title of a note.
      * @param noteId the id of the note to be modified
      * @param newName the new title
      */
@@ -88,24 +69,10 @@ k_dcop:
 
     /**
      * Sets the text of a note. This will delete the old text!
-     * @param name the name (title) of the note
-     * @param newText the new text for the note
-     */
-    virtual ASYNC setText( const QString& name, const QString& newText ) = 0;
-
-    /**
-     * Sets the text of a note. This will delete the old text!
      * @param noteId the id of the note
      * @param newText the new text for the note
      */
     virtual ASYNC setText( int noteId, const QString& newText ) = 0;
-
-    /**
-     * Returns the text of a note.
-     * @param name the name (title) of the note in question
-     * @return the text in a QString
-     */
-    virtual QString text( const QString& name ) const = 0;
 
     /**
      * Returns the text of a note.
@@ -119,15 +86,6 @@ k_dcop:
      * @param app the app that has synced with KNotes
      */
     virtual ASYNC sync( const QString& app ) = 0;
-    
-    /**
-     * Test if a note was created new after the last sync.
-     * @param app the app that wants to get the status since the last sync
-     * @param name the name (title) of the note
-     * @return true if the note is new, false if not or if the note does
-     *         not exist
-     */
-    virtual bool isNew( const QString& app, const QString& name ) const = 0;
 
     /**
      * Test if a note was created new after the last sync.
@@ -137,15 +95,6 @@ k_dcop:
      *         not exist
      */
     virtual bool isNew( const QString& app, int noteId ) const = 0;
-
-    /**
-     * Test if a note was modified since the last sync.
-     * @param app the app that wants to get the status since the last sync
-     * @param name the name (title) of the note
-     * @return true if modified (note that this will return true if the note is
-     *         new as well!) and false if the note is not modified or doesn't exist
-     */
-    virtual bool isModified( const QString& app, const QString& name ) const = 0;
 
     /**
      * Test if a note was modified since the last sync.
