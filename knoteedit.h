@@ -22,14 +22,13 @@
 #define KNOTEEDIT_H
 
 #include <qwidget.h>
-#define protected public
 #include <qtextedit.h>
-#undef protected
 
 class QFont;
 class QColor;
 class KAction;
 class KToggleAction;
+
 
 class KNoteEdit : public QTextEdit
 {
