@@ -49,7 +49,7 @@ KNoteEdit::KNoteEdit( QWidget *tool, QWidget* parent, const char* name )
     setWrapPolicy( AtWhiteSpace );
 
     KXMLGUIClient* client = dynamic_cast<KXMLGUIClient*>(parent);
-    KActionCollection* actions = client->actionCollection();
+	if (client) KActionCollection* actions = client->actionCollection();
 
 
     // create the actions for the RMB menu
