@@ -10,7 +10,8 @@ KDE_RPATH = @KDE_RPATH@
 prefix  = @prefix@
 BINDIR  = $(prefix)/bin
 LIBDIR  = $(prefix)/lib
-PIXDIR  = $(prefix)/share/icons
+ICONSDIR  = $(prefix)/share/icons
+PIXDIR  = $(prefix)/share/apps/knotes/pics/
 DOCSDIR = $(prefix)/share/doc/HTML/en/knotes
 APPSDIR = $(prefix)/share/applnk/Utilities
 
@@ -79,8 +80,10 @@ install: all
 	echo $(INSTALL_DATA) ./docs/$$i $(DOCSDIR) ; \
 	$(INSTALL_DATA) ./docs/$$i $(DOCSDIR) ; \
 	done
+	$(INSTALL_DIR) $(ICONSDIR)
+	$(INSTALL_DATA) knotes.xpm $(ICONSDIR)
 	$(INSTALL_DIR) $(PIXDIR)
-	$(INSTALL_DATA) knotes.xpm $(PIXDIR)
+	$(INSTALL_DATA) knoteslogo.xpm $(PIXDIR)	
 	$(INSTALL_DIR) $(APPSDIR)
 	$(INSTALL_DATA) knotes.kdelnk $(APPSDIR)/knotes.kdelnk
 

@@ -1151,15 +1151,31 @@ void KPostit::defaults()
 
   QGroupBox *box = new QGroupBox(about,"box");
   QLabel  *label = new QLabel(box,"label");
-  box->setGeometry(10,10,320,260);
-  box->setTitle(klocale->translate("About"));
-  label->setGeometry(10,25,280,170);
-  label->setAlignment( AlignCenter);
-  label->setText("KNotes "KNOTES_VERSION"\n"\
-                 "Written by Bernd Johannes Wuebben\n"\
-		 "wuebben@math.cornell.edu\n"\
-		 "(C) 1997\n"\
-                 "\n");
+  box->setGeometry(10,10,315,260);
+
+  box->setTitle("About");
+
+
+  label->setGeometry(140,60,160,170);
+
+  QString labelstring = "KNotes "KNOTES_VERSION"\n"\
+    "Bernd Johannes Wuebben\n"\
+    "wuebben@math.cornell.edu\n"\
+    "wuebben@kde.org\n"\
+    "Copyright (C) 1997\n"\
+    "\n\n";
+
+
+  label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
+  label->setText(labelstring.data());
+  
+  QString pixdir = mykapp->kdedir() + QString("/share/apps/knotes/pics/");  
+
+
+  QPixmap pm((pixdir + "knoteslogo.xpm").data());
+  QLabel *logo = new QLabel(box);
+  logo->setPixmap(pm);
+  logo->setGeometry(30, 50, pm.width(), pm.height());
 
   DefStruct newdefstruct;
   newdefstruct.forecolor  = postitdefaults.forecolor;
