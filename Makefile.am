@@ -31,7 +31,7 @@ METASOURCES     = AUTO
 xdg_apps_DATA   = knotes.desktop
 kde_kcfg_DATA   = knoteconfig.kcfg knotesglobalconfig.kcfg
 
-ui_DATA         = knotesui.rc
+ui_DATA         = knotesappui.rc knotesui.rc
 uidir           = $(kde_datadir)/knotes
 
 service_DATA    = local.desktop

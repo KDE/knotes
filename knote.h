@@ -50,8 +50,8 @@ class KNote : public QFrame, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:
-    KNote( KXMLGUIBuilder *builder, QDomDocument buildDoc, KCal::Journal *journal,
-           QWidget *parent=0, const char *name=0 );
+    KNote( QDomDocument buildDoc, KCal::Journal *journal, QWidget *parent = 0,
+           const char *name = 0 );
     ~KNote();
 
     void saveData();

@@ -35,6 +35,7 @@
 #include <kcombobox.h>
 #include <ktoolbar.h>
 #include <kpopupmenu.h>
+#include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
 #include <kcolordrag.h>
 #include <kiconeffect.h>
@@ -70,8 +71,7 @@
 using namespace KCal;
 
 
-KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
-              QWidget* parent, const char* name )
+KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *name )
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorder | WDestructiveClose ),
     m_label( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ),
     m_config( 0 ), m_journal( j )
@@ -137,13 +137,13 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     m_editor->viewport()->installEventFilter( this );
 
     setDOMDocument( buildDoc );
-    KXMLGUIFactory factory( builder, this, "guifactory" );
+    KXMLGUIBuilder builder( this );
+    KXMLGUIFactory factory( &builder, this );
     factory.addClient( this );
 
     m_menu = static_cast<KPopupMenu*>(factory.container( "note_context", this ));
     m_edit_menu = static_cast<KPopupMenu*>(factory.container( "note_edit", this ));
     m_tool = static_cast<KToolBar*>(factory.container( "note_tool", this ));
-    m_tool->reparent( this, QPoint( 0, 0 ) );
     m_tool->hide();
 
     setFocusProxy( m_editor );

@@ -1,6 +1,18 @@
 ChangeLog for KNotes
 ====================
 
+2004/08/22  Michael Brade <brade@kde.org>
+
+    * fixed #81672: when there are no notes don't put the toolbar in the system
+      tray *blush* by splitting the XMLGUI file for the system tray and the
+      notes
+    * still share the parsed note xmlgui file between the notes by parsing it
+      and creating a QDomDocument in KNotesApp already
+    * when there is no note after restoring a session, still show the "No Notes"
+      item in the notes menu
+    * each note now has its own KXMLGUIBilder to get rid of the reparent-call,
+      the builder's parent will be the widgets' parent
+
 2004/08/20  Michael Brade <brade@kde.org>
 
     * fixed #85973: respect newlines when switching from plain text to

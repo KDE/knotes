@@ -25,6 +25,7 @@
 #include <kdebug.h>
 #include <kaction.h>
 #include <kxmlguifactory.h>
+#include <kxmlguibuilder.h>
 #include <ksystemtray.h>
 #include <klocale.h>
 #include <kiconeffect.h>
@@ -60,7 +61,6 @@ int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrColle
 
 KNotesApp::KNotesApp()
     : DCOPObject("KNotesIface"), QLabel( 0, 0, WType_TopLevel ),
-      KXMLGUIBuilder( this ),
       m_listener( 0 )
 {
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
@@ -85,13 +85,18 @@ KNotesApp::KNotesApp()
     KStdAction::keyBindings( this, SLOT(slotConfigureAccels()), actionCollection() );
     KStdAction::quit( this, SLOT(slotQuit()), actionCollection() )->setShortcut( 0 );
 
-    setXMLFile( QString( instance()->instanceName() + "ui.rc" ) );
+    setXMLFile( instance()->instanceName() + "appui.rc" );
 
-    m_guiFactory = new KXMLGUIFactory( this, this, "guifactory" );
+    m_guiBuilder = new KXMLGUIBuilder( this );
+    m_guiFactory = new KXMLGUIFactory( m_guiBuilder, this );
     m_guiFactory->addClient( this );
 
     m_context_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "knotes_context", this ));
     m_note_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "notes_menu", this ));
+
+    noteGUI.setContent(
+        KXMLGUIFactory::readConfigFile( instance()->instanceName() + "ui.rc", instance() )
+    );
 
     // create accels for global shortcuts
     m_globalAccel = new KGlobalAccel( this, "global accel" );
@@ -133,6 +138,8 @@ KNotesApp::KNotesApp()
 
     if ( m_noteList.count() == 0 && !kapp->isRestored() )
         newNote();
+
+    updateNoteActions();  // in case there is no note yet
 }
 
 KNotesApp::~KNotesApp()
@@ -145,6 +152,7 @@ KNotesApp::~KNotesApp()
 
     delete m_listener;
     delete m_manager;
+    delete m_guiBuilder;
 }
 
 bool KNotesApp::commitData( QSessionManager& )
@@ -427,8 +435,7 @@ void KNotesApp::showNote( KNote* note ) const
 
 void KNotesApp::createNote( KCal::Journal *journal )
 {
-    KNote *newNote = new KNote( this, domDocument(), journal,
-                                0, journal->uid().utf8() );
+    KNote *newNote = new KNote( noteGUI, journal, 0, journal->uid().utf8() );
     m_noteList.insert( newNote->noteId(), newNote );
 
     connect( newNote, SIGNAL(sigRequestNewNote()), SLOT(newNote()) );

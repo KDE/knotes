@@ -25,10 +25,10 @@
 #include <qdict.h>
 #include <qptrlist.h>
 #include <qlabel.h>
+#include <qdom.h>
 
 #include <kapplication.h>
 #include <kxmlguiclient.h>
-#include <kxmlguibuilder.h>
 
 #include "KNotesIface.h"
 
@@ -38,6 +38,7 @@ class KAction;
 class KActionMenu;
 class KGlobalAccel;
 class KXMLGUIFactory;
+class KXMLGUIBuilder;
 class KExtendedSocket;
 class KNotesResourceManager;
 
@@ -47,7 +48,7 @@ namespace KCal {
 
 
 class KNotesApp : public QLabel, virtual public KNotesIface, public KSessionManaged,
-    public KXMLGUIBuilder, virtual public KXMLGUIClient
+    virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:
@@ -126,6 +127,9 @@ private:
 
     KGlobalAccel    *m_globalAccel;
     KXMLGUIFactory  *m_guiFactory;
+    KXMLGUIBuilder  *m_guiBuilder;
+
+    QDomDocument    noteGUI;
 };
 
 #endif
