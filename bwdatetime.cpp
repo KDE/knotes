@@ -26,7 +26,7 @@
  qtremind - an X windows appoint reminder program.
  Copyright (C) 1997  Tom Daley
 
- (klocale->translate stuff added by didier Belot <dib@avo.fr>)
+ (i18n stuff added by didier Belot <dib@avo.fr>)
 
 */
 
@@ -41,20 +41,20 @@ BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
    date_notvalid = FALSE;
    time_notvalid = FALSE;
 
-   daylabel = new QLabel(klocale->translate("Day:"),this);
+   daylabel = new QLabel(i18n("Day:"),this);
    daylabel->setGeometry(10,10,40,25);
 
    day= new QtedSetInt(1, 31,  qdt.date().day(),QtedSetInt::RightJustified, this);
    day->setGeometry(50, 15, day->width(), day->height());
 
-   monthlabel = new QLabel(klocale->translate("Month:"),this);
+   monthlabel = new QLabel(i18n("Month:"),this);
    monthlabel->setGeometry(90,10,60,25);
 
    month = new QtedSetInt(1, 12,  qdt.date().month(),
 			  QtedSetInt::RightJustified, this);
    month->setGeometry(140, 15, month->width(), month->height());
 
-   yearlabel = new QLabel(klocale->translate("Year:"),this);
+   yearlabel = new QLabel(i18n("Year:"),this);
    yearlabel->setGeometry(180,10,60,25);
 
    year  = new QtedSetInt(1, 3000,qdt.date().year(), 	
@@ -69,7 +69,7 @@ BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name)
    if (myhour == 0)
      myhour = 12;
 
-   timelabel = new QLabel(klocale->translate("Time:"),this);
+   timelabel = new QLabel(i18n("Time:"),this);
    timelabel->setGeometry(10,50,40,25);
    hour  = new QtedSetInt(1, 12  ,myhour, 	
 			  QtedSetInt::RightJustified, this);
@@ -157,8 +157,8 @@ bool BWDateTime::checkDateTime(){
   else{
     QMessageBox::warning(
 			 this,
-			 klocale->translate("Sorry"),
-			 klocale->translate("The Time you selected is invalid")
+			 i18n("Sorry"),
+			 i18n("The Time you selected is invalid")
 			 );
 
     time_notvalid = TRUE;
@@ -172,8 +172,8 @@ bool BWDateTime::checkDateTime(){
   else{
     QMessageBox::warning(
 			 this,
-			 klocale->translate("Sorry"),
-			 klocale->translate("The Date you selected is invalid")
+			 i18n("Sorry"),
+			 i18n("The Date you selected is invalid")
 			 );
 
     date_notvalid = TRUE;

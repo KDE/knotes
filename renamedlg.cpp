@@ -22,7 +22,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
- (klocale->translate stuff added by didier Belot <dib@avo.fr>)
+ (i18n stuff added by didier Belot <dib@avo.fr>)
  
  */
 
@@ -36,13 +36,13 @@ RenameDlg::RenameDlg( QWidget *parent, const char *name,
     pstring = string;
     pstrlist = list;
     
-    frame = new QGroupBox( klocale->translate("Rename this note to"), this );
+    frame = new QGroupBox( i18n("Rename this note to"), this );
     lineNum = new QLineEdit( this );
     this->setFocusPolicy( QWidget::StrongFocus );
     connect(lineNum, SIGNAL(returnPressed()), this, SLOT(selected()));
     
-    ok = new QPushButton(klocale->translate("Rename"), this );
-    cancel = new QPushButton(klocale->translate("Cancel"), this ); 
+    ok = new QPushButton(i18n("Rename"), this );
+    cancel = new QPushButton(i18n("Cancel"), this ); 
     
     connect(cancel, SIGNAL(clicked()), this, SLOT(reject()));
     connect(ok, SIGNAL(clicked()), this, SLOT(selected()));
@@ -74,8 +74,8 @@ void RenameDlg::selected(){
 
     QMessageBox::warning(
 			 this,
-			 klocale->translate("Sorry"),
-			 klocale->translate(
+			 i18n("Sorry"),
+			 i18n(
 		     "The name \"xyalarms\" is reserved for internal usage.\n"\
 		     "Please choose a different name")
 		      );
@@ -88,8 +88,8 @@ void RenameDlg::selected(){
 
       QMessageBox::warning(
 		     this,
-		     klocale->translate("Sorry"),
-		     klocale->translate("A KNotes note with this name already exists\n"\
+		     i18n("Sorry"),
+		     i18n("A KNotes note with this name already exists\n"\
 		     "Please choose a different name")
 		     );
 

@@ -23,7 +23,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
- (klocale->translate stuff added by didier Belot <dib@avo.fr>)
+ (i18n stuff added by didier Belot <dib@avo.fr>)
 
  */
 
@@ -47,7 +47,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 
   label1 = new QLabel(this);
   label1->setGeometry(20,30,135,25);
-  label1->setText(klocale->translate("Text Color:"));
+  label1->setText(i18n("Text Color:"));
 
   qframe1 = new QFrame(this);
   qframe1->setGeometry(155,30,30,25);	
@@ -56,12 +56,12 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 
   button1 = new QPushButton(this);
   button1->setGeometry(205,30,100,25);
-  button1->setText(klocale->translate("Change"));
+  button1->setText(i18n("Change"));
   connect(button1,SIGNAL(clicked()),this,SLOT(set_fore_color()));
 
   label2 = new QLabel(this);
   label2->setGeometry(20,65,135,25);
-  label2->setText(klocale->translate("Background Color:"));
+  label2->setText(i18n("Background Color:"));
 
   qframe2 = new QFrame(this);
   qframe2->setGeometry(155,65,30,25);	
@@ -70,17 +70,17 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 
   button2 = new QPushButton(this);
   button2->setGeometry(205,65,100,25);
-  button2->setText(klocale->translate("Change"));
+  button2->setText(i18n("Change"));
   connect(button2,SIGNAL(clicked()),this,SLOT(set_background_color()));
 
   /*  button3 = new QPushButton(this);
   button3->setGeometry(255,240,70,25);
-  button3->setText(klocale->translate("Help"));
+  button3->setText(i18n("Help"));
   connect(button3,SIGNAL(clicked()),this,SLOT(help()));
   */
   label5 = new QLabel(this);
   label5->setGeometry(20,105,50,25);
-  label5->setText(klocale->translate("Width:"));
+  label5->setText(i18n("Width:"));
 
   width = new KIntLineEdit(this);
   width->setGeometry(70,105,60,23);
@@ -90,7 +90,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 
   label6 = new QLabel(this);
   label6->setGeometry(20,145,50,25);
-  label6->setText(klocale->translate("Height:"));
+  label6->setText(i18n("Height:"));
 
   height = new KIntLineEdit(this);
   height->setGeometry(70,145,60,23);
@@ -101,7 +101,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
   
   label7 = new QLabel(this);
   label7->setGeometry(20,185,100,25);
-  label7->setText(klocale->translate("Print Command:"));
+  label7->setText(i18n("Print Command:"));
 
   print = new QLineEdit(this);
   print->setGeometry(130,185,180,23);
@@ -109,7 +109,7 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
 
   label8 = new QLabel(this);
   label8->setGeometry(20,225,100,25);
-  label8->setText(klocale->translate("Mail Command:"));
+  label8->setText(i18n("Mail Command:"));
 
   mail = new QLineEdit(this);
   mail->setGeometry(130,225,180,23);
@@ -120,12 +120,12 @@ ConfigDlg::ConfigDlg(QWidget *parent, const char *name,
   gbox = new QGroupBox(this);
   gbox->setGeometry(150,105,160,65);
 
-  check1 = new QCheckBox( klocale->translate("3d Frame"), gbox );
+  check1 = new QCheckBox( i18n("3d Frame"), gbox );
   check1->setGeometry( 10, 5, 100, 25 );
   check1->setChecked( defst->frame3d );
   connect( check1, SIGNAL( toggled( bool ) ), SLOT( frame3d_slot( bool ) ) );
 
-  check2 = new QCheckBox( klocale->translate("Auto Indent"), gbox );
+  check2 = new QCheckBox( i18n("Auto Indent"), gbox );
   check2->setGeometry( 10, 35, 130, 25 );
   check2->setChecked( defst->autoindent );
   connect( check2, SIGNAL( toggled( bool ) ), SLOT( indent_slot( bool ) ) );

@@ -31,8 +31,8 @@
 #include "docking.h"
 
 #define PMERROR(pm) \
-  tmp.sprintf(klocale->translate("Could not load %s !"), pm); \
-  QMessageBox::warning(this, klocale->translate("Error"), tmp);
+  tmp.sprintf(i18n("Could not load %s !"), pm); \
+  QMessageBox::warning(this, i18n("Error"), tmp);
 
 //extern QStrList  KPostit::PostitFilesList; // names of all postit files
 extern KApplication *mykapp;
@@ -66,14 +66,14 @@ DockWidget::DockWidget(const char *name): QWidget(0, name, 0) {
   // right_popup menu for left mouse button
 
   right_popup_m = new QPopupMenu();
-  right_popup_m->insertItem (klocale->translate("Help"),this,SLOT(help()));
+  right_popup_m->insertItem (i18n("Help"),this,SLOT(help()));
 
-  right_popup_m->insertItem(klocale->translate("Change Defaults"),
+  right_popup_m->insertItem(i18n("Change Defaults"),
 			    this, SLOT(configureKNotes()));
 
   right_popup_m->insertSeparator();
 
-  right_popup_m->insertItem (klocale->translate("Exit Knotes"),
+  right_popup_m->insertItem (i18n("Exit Knotes"),
 			     this, SLOT(exitKNotes()));
 
   //  connect( right_popup_m, SIGNAL(activated( int )),SLOT(rightAction(int)) );
@@ -92,7 +92,7 @@ void DockWidget::createLeftPopUp(){
   //  printf("In creatLeftPopUp\n");
   popup_m->clear();
 
-  newID = popup_m->insertItem(klocale->translate("New Knote"),
+  newID = popup_m->insertItem(i18n("New Knote"),
 				 this, SLOT(newKNote()));
 
   popup_m->insertSeparator();

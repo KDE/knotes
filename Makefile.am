@@ -39,5 +39,5 @@ uninstall-local:
 	rm -f $(kde_minidir)/knotes.xpm
 
 messages:
-	$(XGETTEXT) -C -ktranslate -ki18n -x $(includedir)/kde.pot $(knotes_SOURCES) && mv messages.po ../po/knotes.pot
+	$(XGETTEXT) -C -ki18n -x $(includedir)/kde.pot $(knotes_SOURCES) && mv messages.po ../po/knotes.pot
 

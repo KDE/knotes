@@ -21,7 +21,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
- (klocale->translate stuff added by didier Belot <dib@avo.fr>)
+ (i18n stuff added by didier Belot <dib@avo.fr>)
 
   */
 
@@ -300,53 +300,53 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     colors =  	new QPopupMenu ();
 
-    colors->insertItem(klocale->translate("Text Color..."),this, SLOT(set_foreground_color()));
-    colors->insertItem(klocale->translate("Background Color..."),this, SLOT(set_background_color()));
+    colors->insertItem(i18n("Text Color..."),this, SLOT(set_foreground_color()));
+    colors->insertItem(i18n("Background Color..."),this, SLOT(set_background_color()));
 
     operations =  	new QPopupMenu ();
-    operations->insertItem(klocale->translate("Clear"),this, SLOT(clear_text()));
+    operations->insertItem(i18n("Clear"),this, SLOT(clear_text()));
 
     operations->insertSeparator();
-    operations->insertItem (klocale->translate("New Note"), this, 	
+    operations->insertItem (i18n("New Note"), this, 	
 				    SLOT(newKPostit()));
-    operations->insertItem (klocale->translate("Delete Note"), this, 	
+    operations->insertItem (i18n("Delete Note"), this, 	
 				    SLOT(deleteKPostit()));
-    operations->insertItem (klocale->translate("Rename Note..."),this,SLOT(renameKPostit()));
+    operations->insertItem (i18n("Rename Note..."),this,SLOT(renameKPostit()));
     operations->insertSeparator();
-    operations->insertItem (klocale->translate("Alarm ..."), this, 	
+    operations->insertItem (i18n("Alarm ..."), this, 	
 				    SLOT(setAlarm()));
     operations->insertSeparator();
-    operations->insertItem (klocale->translate("Calendar"), this, 	
+    operations->insertItem (i18n("Calendar"), this, 	
 				    SLOT(insertCalendar()));
-    operations->insertItem (klocale->translate("Mail Note ..."), this, 	
+    operations->insertItem (i18n("Mail Note ..."), this, 	
 				    SLOT(mail()));
-    operations->insertItem (klocale->translate("Print Note"), this, 	
+    operations->insertItem (i18n("Print Note"), this, 	
 				    SLOT(print()));
 
-    operations->insertItem (klocale->translate("Save Notes"), this, 	
+    operations->insertItem (i18n("Save Notes"), this, 	
 				    SLOT(save_all()));
 
     options = new QPopupMenu();
     options->setCheckable(TRUE);
 /*    options->setFont(QFont("Helvetica",12)); */
-    frame3dID = options->insertItem(klocale->translate("3D Frame"),this, SLOT(toggleFrame()));
-    edit->autoIndentID = options->insertItem(klocale->translate("Auto Indent"),this,
+    frame3dID = options->insertItem(i18n("3D Frame"),this, SLOT(toggleFrame()));
+    edit->autoIndentID = options->insertItem(i18n("Auto Indent"),this,
 				       SLOT(toggleIndentMode()));
 
-    options->insertItem(klocale->translate("Font..."),this, SLOT(selectFont()));
-    options->insertItem(klocale->translate("Colors"),colors);
+    options->insertItem(i18n("Font..."),this, SLOT(selectFont()));
+    options->insertItem(i18n("Colors"),colors);
     options->insertSeparator();
-    options->insertItem(klocale->translate("Change Defaults ..."),this, SLOT(defaults()));
-    dockID = options->insertItem(klocale->translate("Dock in panel"), this, 
+    options->insertItem(i18n("Change Defaults ..."),this, SLOT(defaults()));
+    dockID = options->insertItem(i18n("Dock in panel"), this, 
                                  SLOT(toggleDock()));
 
     operations->insertSeparator();
-    operations->insertItem (klocale->translate("Help"),this,SLOT(help()));
+    operations->insertItem (i18n("Help"),this,SLOT(help()));
 
     // operations->insertSeparator();
-    // operations->insertItem (klocale->translate("Options"),options);
+    // operations->insertItem (i18n("Options"),options);
     //    operations->insertSeparator();
-    operations->insertItem ( klocale->translate("Quit"), this,
+    operations->insertItem ( i18n("Quit"), this,
                              SLOT(quit()));
 
 
@@ -363,13 +363,13 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
 
     right_mouse_button->insertSeparator();
-    //    right_mouse_button->insertItem(klocale->translate("Hide Note"), this,
+    //    right_mouse_button->insertItem(i18n("Hide Note"), this,
     //	       SLOT(hideKPostit()));
-    right_mouse_button->insertItem (klocale->translate("Insert Date"), this, 	
+    right_mouse_button->insertItem (i18n("Insert Date"), this, 	
 				    SLOT(insertDate()));
     right_mouse_button->insertSeparator();
-    right_mouse_button->insertItem (klocale->translate("Operations"),operations);
-    right_mouse_button->insertItem (klocale->translate("Options"),options);
+    right_mouse_button->insertItem (i18n("Operations"),operations);
+    right_mouse_button->insertItem (i18n("Options"),options);
 
     right_mouse_button->insertSeparator();
 
@@ -384,10 +384,10 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     //    right_mouse_button->insertSeparator();
 
-//     right_mouse_button->insertItem (klocale->translate("Quit"), this,
+//     right_mouse_button->insertItem (i18n("Quit"), this,
 // 				    SLOT(quit()));
 
-    //    right_mouse_button->insertItem(klocale->translate("Delete Note"), this,
+    //    right_mouse_button->insertItem(i18n("Delete Note"), this,
     //	       SLOT(deleteKPostit()));
 
 
@@ -403,11 +403,11 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     if(!frame3d){
       setNoFrame();
-      //      options->changeItem(klocale->translate("3D Frame"),frame3dID);
+      //      options->changeItem(i18n("3D Frame"),frame3dID);
     }
     else{
       set3DFrame();
-      //      options->changeItem(klocale->translate("No Frame"),frame3dID);
+      //      options->changeItem(i18n("No Frame"),frame3dID);
     }
 
     if(!edit->autoIndentMode){
@@ -442,11 +442,11 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     if (have_alarm){
       label->setText(name + " (A)");
-      setCaption(QString(klocale->translate("Note: ")) + name + " (A)");
+      setCaption(QString(i18n("Note: ")) + name + " (A)");
     }
     else {
       label->setText(name);
-      setCaption(QString(klocale->translate("Note: ")) + name);
+      setCaption(QString(i18n("Note: ")) + name);
     }
 
 }
@@ -473,12 +473,12 @@ void KPostit::quit(){
     if (!PostitList.current()->savenotes()){
       int result = QMessageBox::warning(
 					 this,
-					 klocale->translate("Sorry"),
-					 klocale->translate("Could not save a KNote.\n"\
+					 i18n("Sorry"),
+					 i18n("Could not save a KNote.\n"\
 							    "Quit anyways?"),
-					 klocale->translate("Yes"),
-					 klocale->translate("No"),
-					 klocale->translate("Cancel"),
+					 i18n("Yes"),
+					 i18n("No"),
+					 i18n("Cancel"),
 					 1,2
 					 );
 
@@ -492,10 +492,10 @@ void KPostit::quit(){
   writeSettings();
   if(!savealarms()){
     QString str;
-    str.sprintf(klocale->translate("Could not save KNote Alarms\n"));
+    str.sprintf(i18n("Could not save KNote Alarms\n"));
     QMessageBox::warning(
 			 this,
-			 klocale->translate("Sorry"),
+			 i18n("Sorry"),
 			 str.data()
                          );
   }
@@ -553,11 +553,11 @@ void KPostit::mail(){
   if(mailpipe == NULL){
     QString str;
     str.sprintf(
-    klocale->translate("Could not pipe the contents of this KNote into:\n %s"),cmd.data());
+    i18n("Could not pipe the contents of this KNote into:\n %s"),cmd.data());
 
     QMessageBox::information(
 			     this,
-			     klocale->translate("Sorry"),
+			     i18n("Sorry"),
 			     str.data()
 			     );
 
@@ -615,7 +615,7 @@ void KPostit::setAlarm(){
   AlarmList.append(entry);
   QString str;
   str.sprintf("%s (A)",name.data());
-  setCaption(QString(klocale->translate("Note: ") )+str);
+  setCaption(QString(i18n("Note: ") )+str);
   label->setText(str.data());
 
   //  QDate date = qdt.date();
@@ -657,14 +657,14 @@ void KPostit::print(){
     QString str;
 
     str.sprintf(
-		klocale->translate(
+		i18n(
 		"Could not pipe the contents of this KNote into:\n %s"),
 		cmd.data()
 		);
 
     QMessageBox::warning(
 			 this,
-			 klocale->translate("Sorry"),
+			 i18n("Sorry"),
 			 str.data()
 			 );
     return;
@@ -713,8 +713,8 @@ void KPostit::newKPostit(){
 
   if (exists){ // all 50 names are taken
     QMessageBox::warning(this,
-			 klocale->translate("Sorry"),
-			 klocale->translate("You have exeeded the "
+			 i18n("Sorry"),
+			 i18n("You have exeeded the "
 					    "arbitrary and unjustly set "
 			 "limit of 50 knotes.\n Please complain to the author.")
 			 );
@@ -842,11 +842,11 @@ void KPostit::renameKPostit(){
 
     if (have_alarm){
       label->setText(name + " (A)");
-      setCaption(QString(klocale->translate("Note: ")) + name + " (A)");
+      setCaption(QString(i18n("Note: ")) + name + " (A)");
     }
     else {
       label->setText(name);
-      setCaption(QString(klocale->translate("Note: ")) + name);
+      setCaption(QString(i18n("Note: ")) + name);
     }
 
     // remove and reinsert the popup menues in a sorted fashion
@@ -881,12 +881,12 @@ void KPostit::deleteKPostit(){
 
 
   int result = QMessageBox::warning(this,
-				    klocale->translate("Question"),
-				    klocale->translate("Are you sure you "\
+				    i18n("Question"),
+				    i18n("Are you sure you "\
 						       "want to delete this\n"\
 						       "note permanently?"),
-				    klocale->translate("Yes"),
-				    klocale->translate("Cancel"),
+				    i18n("Yes"),
+				    i18n("Cancel"),
 				    "",
 				    1,
 				    1);
@@ -1060,10 +1060,10 @@ bool KPostit::insertFile(const char* filename){
 
   if( !file.open( IO_ReadOnly )) {
     QString string;
-    string.sprintf(klocale->translate("Could not load:\n %s"),filename);
+    string.sprintf(i18n("Could not load:\n %s"),filename);
     QMessageBox::warning(
 			 this,
-			 klocale->translate("Sorry"),
+			 i18n("Sorry"),
 			 string.data()
 			 );
     return FALSE;
@@ -1260,7 +1260,7 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
 void KPostit::set3DFrame(){
 
   frame3d = TRUE;
-  //  options->changeItem(klocale->translate("No Frame"),frame3dID);
+  //  options->changeItem(i18n("No Frame"),frame3dID);
   options->setItemChecked(frame3dID,TRUE);
   //  edit->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
   KWM::setDecoration(winId(), KWM::tinyDecoration);
@@ -1270,7 +1270,7 @@ void KPostit::set3DFrame(){
 void KPostit::setNoFrame(){
 
   frame3d = FALSE;
-  //  options->changeItem(klocale->translate("3D Frame"),frame3dID);
+  //  options->changeItem(i18n("3D Frame"),frame3dID);
   options->setItemChecked(frame3dID,FALSE);
   //  edit->setFrameStyle(QFrame::NoFrame);
   KWM::setDecoration(winId(), KWM::noDecoration);
@@ -1319,10 +1319,10 @@ void KPostit::defaults()
   if(!tabdialog){
 
     tabdialog = new QTabDialog(0,"tabdialog",TRUE);
-    tabdialog->setCaption( klocale->translate("KNotes Configuraton") );
+    tabdialog->setCaption( i18n("KNotes Configuraton") );
     tabdialog->resize( 350, 350 );
-    tabdialog->setCancelButton( klocale->translate("Cancel") );
-    tabdialog->setOkButton( klocale->translate("OK") );
+    tabdialog->setCancelButton( i18n("Cancel") );
+    tabdialog->setOkButton( i18n("OK") );
 
     QWidget *about = new QWidget(tabdialog,"about");
 
@@ -1363,9 +1363,9 @@ void KPostit::defaults()
     if(!fontdlg)
       fontdlg = new FontDlg(tabdialog,"fontdlg",mykapp,&newdefstruct);
 
-    tabdialog->addTab(configdlg,klocale->translate("Defaults"));
-    tabdialog->addTab(fontdlg,klocale->translate("More ..."));
-    tabdialog->addTab(about,klocale->translate("About"));
+    tabdialog->addTab(configdlg,i18n("Defaults"));
+    tabdialog->addTab(fontdlg,i18n("More ..."));
+    tabdialog->addTab(about,i18n("About"));
   }
 
   if(configdlg)
@@ -1505,8 +1505,8 @@ void KPostit::insertNetFile( const char *_url)
     {
 	QMessageBox::warning(
 			     this,
-			     klocale->translate("Sorry"),
-			     klocale->translate("Malformed URL")
+			     i18n("Sorry"),
+			     i18n("Malformed URL")
 			     );
 	return;
     }
@@ -1522,8 +1522,8 @@ void KPostit::insertNetFile( const char *_url)
     {
 	QMessageBox::warning(
 			     this,
-			     klocale->translate("Sorry"),
-			     klocale->translate("KNotes is already waiting\n"\
+			     i18n("Sorry"),
+			     i18n("KNotes is already waiting\n"\
 			      "for an internet job to finish\n"\
 			      "Please wait until it has finished\n"\
 			      "Alternatively stop the running one.")
@@ -1536,8 +1536,8 @@ void KPostit::insertNetFile( const char *_url)
     {
 	QMessageBox::warning(
 			     this,
-			     klocale->translate("Sorry"),
-			     klocale->translate("Could not start or find KFM")
+			     i18n("Sorry"),
+			     i18n("Could not start or find KFM")
 			     );
 	delete kfm;
 	kfm = 0L;
@@ -1558,12 +1558,12 @@ void KPostit::close(){
   if (!savenotes()){
     result = QMessageBox::warning(
 				  this,
-				  klocale->translate("Sorry"),
-				  klocale->translate("Could not save the KNotes.\n"\
+				  i18n("Sorry"),
+				  i18n("Could not save the KNotes.\n"\
 				  "Close anyways?"),
-				  klocale->translate("Yes"),
-				  klocale->translate("No"),
-				  klocale->translate("Cancel"),
+				  i18n("Yes"),
+				  i18n("No"),
+				  i18n("Cancel"),
 				  1,2);
 
 	if (result){
@@ -1671,7 +1671,7 @@ void alarmConsistencyCheck(){
     if (KPostit::PostitFilesList.find(KPostit::AlarmList.current()->name.data()) == -1){
 
       QString str;
-      str.sprintf(klocale->translate("Found an alarm to which the underlying\n"\
+      str.sprintf(i18n("Found an alarm to which the underlying\n"\
 		  "KNotes file:\n"\
 		  "%s\n no longer exists.\n\n"\
 		  "I will correct the Problem for you.")
@@ -1679,7 +1679,7 @@ void alarmConsistencyCheck(){
 
       QMessageBox::warning(
 			   0,
-			   klocale->translate("Inconsistency"),
+			   i18n("Inconsistency"),
 			   str.data()
 			   );
 
