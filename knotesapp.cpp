@@ -81,7 +81,6 @@ KNotesApp::KNotesApp()
     if( m_NoteList.count() == 0 && !kapp->isRestored() )
         slotNewNote();
 
-    setBackgroundMode(X11ParentRelative);
 }
 
 
