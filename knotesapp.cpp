@@ -400,8 +400,6 @@ void KNotesApp::slotConfigureAccels()
 
 void KNotesApp::slotNoteKilled( KCal::Journal *journal )
 {
-    // this kills the KNote object
-    m_noteList.remove( journal->uid() );
     m_manager->deleteNote( journal );
 
     saveNotes();
