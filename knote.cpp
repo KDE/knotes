@@ -70,9 +70,10 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
     // rename, mail, print, insert date, close, delete, new note
     new KAction( i18n("New"), "filenew", 0, this, SLOT(slotNewNote()), actionCollection(), "new_note" );
     new KAction( i18n("Rename..."), "text", 0, this, SLOT(slotRename()), actionCollection(), "rename_note" );
+    new KAction( i18n("Hide"), "fileclose" , 0, this, SLOT(slotClose()), actionCollection(), "hide_note" );
     new KAction( i18n("Delete"), "knotesdelete", 0, this, SLOT(slotKill()), actionCollection(), "delete_note" );
 
-    new KAction( i18n("Insert Date"), 0, this, SLOT(slotInsDate()), actionCollection(), "insert_date" );
+    new KAction( i18n("Insert Date"), "knotesdate", 0 , this, SLOT(slotInsDate()), actionCollection(), "insert_date" );
     new KAction( i18n("Mail..."), "mail_send", 0, this, SLOT(slotMail()), actionCollection(), "mail_note" );
     new KAction( i18n("Print..."), "fileprint", 0, this, SLOT(slotPrint()), actionCollection(), "print_note" );
     new KAction( i18n("Preferences..."), "configure", 0, this, SLOT(slotPreferences()), actionCollection(), "configure_note" );

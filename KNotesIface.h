@@ -43,11 +43,27 @@ k_dcop:
                          const QString& text = QString::null ) = 0;
 
     /**
+     * Create a new note and inserts the current text in the clipboard
+     * as text.
+     *
+     * @param name the name (title) of the new note, if it is empty,
+     *        KNotes will choose an appropriate name
+     * @return the new notes' id or -1 if an error occured
+     */
+    virtual int newNoteFromClipboard( QString name = QString::null ) = 0;
+
+    /**
      * Show a note as if it had been selected from the "notes" menu.
      * @param noteId the id of the note to show
      */
     virtual ASYNC showNote( int noteId ) const = 0;
 
+    /**
+     * Hide a note as if it had been selected from the "notes" menu.
+     * @param noteId the id of the note to hide
+     */ 
+    virtual ASYNC hideNote( int noteId ) const = 0;
+    
     /**
      * Deletes a note forever.
      * @param noteId the id of the note to kill

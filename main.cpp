@@ -47,6 +47,7 @@ int main( int argc, char* argv[] )
     aboutData.addAuthor("Petter Reinholdtsen",0, "pere@td.org.uit.no");
     aboutData.addAuthor("Carsten Pfeiffer",0, "pfeiffer@kde.org");
     aboutData.addAuthor("Espen Sand",0, "espen@kde.org");
+    aboutData.addAuthor("Matthias Kiefer",0, "kiefer@kde.org");
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 

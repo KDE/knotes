@@ -18,6 +18,7 @@
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 *******************************************************************/
 
+#include <qclipboard.h>
 
 #include <kwin.h>
 #include <klocale.h>
@@ -25,6 +26,8 @@
 #include <kstandarddirs.h>
 #include <kpopupmenu.h>
 #include <khelpmenu.h>
+#include <kkeydialog.h>
+#include <kglobalaccel.h>
 #include <kmessagebox.h>
 #include <kdebug.h>
 #include <ksimpleconfig.h>
@@ -52,18 +55,40 @@ KNotesApp::KNotesApp()
     setBackgroundMode( X11ParentRelative );
     setPixmap( KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Small ) );
 
+ 
     // create the GUI...
     new KAction( i18n("New Note"), "filenew", 0, this, SLOT(slotNewNote()), actionCollection(), "new_note" );
-    new KAction( i18n("&Preferences..."), "configure", 0, this, SLOT(slotPreferences()), actionCollection(), "options_configure" );
-    new KAction( i18n("&Quit"), "exit", 0, kapp, SLOT(quit()), actionCollection(), "quit" );
+    new KAction( i18n("New Note from Clipboard"), "editpaste", 0, this, SLOT(slotNewNoteFromClipboard()), actionCollection(), "new_note_clipboard" );
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
-
+    
+    KStdAction::preferences( this, SLOT(slotPreferences()), actionCollection() );
+    KStdAction::keyBindings( this, SLOT(slotConfigureAccels()), actionCollection() );
+    KStdAction::quit( kapp, SLOT(quit()), actionCollection() )->setShortcut( 0 );
+    
     setXMLFile( QString( instance()->instanceName() + "ui.rc" ) );
     factory = new KXMLGUIFactory( this, this, "guifactory" );
     factory->addClient( this );
 
     m_context_menu = static_cast<KPopupMenu*>(factory->container( "knotes_context", this ));
     m_note_menu = static_cast<KPopupMenu*>(factory->container( "notes_menu", this ));
+    
+    // create accels for global shortcuts
+    globalAccel = new KGlobalAccel( this, "global accel" );
+    globalAccel->insert( "global_new_note", i18n("New Note"), "", 
+                         ALT+SHIFT+Key_N, ALT+SHIFT+Key_N , 
+                         this, SLOT(slotNewNote()), true, true );
+    globalAccel->insert( "global_new_note_clipboard", i18n("New Note from Clipboard"), "",
+                         ALT+SHIFT+Key_C, ALT+SHIFT+Key_C, 
+                         this, SLOT(slotNewNoteFromClipboard()), true, true );
+
+    globalAccel->readSettings();
+
+    KConfig *config = KGlobal::config();
+    config->setGroup( "Global Keybindings" );
+    globalAccel->setEnabled( config->readBoolEntry( "Enabled", true ) );
+
+    updateGlobalAccels();
+
 
     // remove old (KDE 1.x) local config file if it still exists
     QString configfile = KGlobal::dirs()->findResource( "config", "knotesrc" );
@@ -80,6 +105,7 @@ KNotesApp::KNotesApp()
         }
     } else
         delete test;
+
 
     QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
 
@@ -175,6 +201,24 @@ int KNotesApp::newNote( QString name, const QString& text )
             if ( !m_noteList[name] && !noteDir.exists( name ) )
                 break;
         }
+        
+//      New Notes have the current date as title
+/*      
+        name = KGlobal::locale()->formatDateTime(QDateTime::currentDateTime());
+        if ( m_noteList[name] || noteDir.exists( name ) )
+        {
+            name += "   -%1-";
+            for ( int i =2; ; i++ )
+            {
+                QString n = name.arg(i);
+                if ( !m_noteList[n] && !noteDir.exists( n ) )
+                {
+                    name=n;
+                    break;
+                }
+            }
+        }
+*/
     }
 
     KNote* newNote = new KNote( this, domDocument(), name );
@@ -191,8 +235,15 @@ int KNotesApp::newNote( QString name, const QString& text )
 
     m_noteList.insert( newNote->name(), newNote );
     updateNoteActions();
+    showNote( newNote );
 
     return newNote->noteId();
+}
+
+int KNotesApp::newNoteFromClipboard( QString name )
+{
+    const QString& text = KApplication::clipboard()->text();
+    return newNote( name, text );
 }
 
 void KNotesApp::showNote( const QString& name ) const
@@ -219,6 +270,32 @@ void KNotesApp::showNote( int noteId ) const
     }
 
     showNote( note );
+}
+
+void KNotesApp::hideNote( const QString& name ) const
+{
+    KNote* note = m_noteList[name];
+
+    if ( !note )
+    {
+        kdWarning(5500) << "No note named " << name << endl;
+        return;
+    }
+
+    note->hide();
+}
+
+void KNotesApp::hideNote( int noteId ) const
+{
+    KNote* note = noteById( noteId );
+    
+    if ( !note )
+    {
+        kdWarning(5500) << "No note with id " << noteId << endl;
+        return;
+    }
+
+    note->hide();
 }
 
 void KNotesApp::killNote( const QString& name )
@@ -406,6 +483,11 @@ void KNotesApp::slotNewNote()
     newNote();
 }
 
+void KNotesApp::slotNewNoteFromClipboard()
+{
+    newNoteFromClipboard();
+}
+
 void KNotesApp::slotShowNote()
 {
     //tell the WM to give this note focus
@@ -445,6 +527,13 @@ void KNotesApp::slotPreferences() const
     //launch preferences dialog...
     KNoteConfigDlg config( "knotesrc", i18n("KNotes Defaults"), true );
     config.exec();
+}
+
+void KNotesApp::slotConfigureAccels()
+{
+    KKeyDialog::configure(globalAccel,this,false);
+    globalAccel->writeSettings();
+    updateGlobalAccels();
 }
 
 
@@ -516,6 +605,30 @@ void KNotesApp::updateNoteActions()
     }
 
     plugActionList( "notes", m_noteActions );
+}
+
+void KNotesApp::updateGlobalAccels()
+{
+    if ( globalAccel->isEnabled() )
+    {
+        KAction *action = actionCollection()->action( "new_note" );
+        if ( action )
+            action->setShortcut( globalAccel->shortcut( "global_new_note" ) );
+        action = actionCollection()->action( "new_note_clipboard" );
+        if ( action )
+            action->setShortcut( globalAccel->shortcut( "global_new_note_clipboard" ) );
+
+        globalAccel->updateConnections();
+    }
+    else
+    {        
+        KAction *action = actionCollection()->action( "new_note" );
+        if ( action )
+            action->setShortcut( 0 );
+        action = actionCollection()->action( "new_note_clipboard" );
+        if ( action )
+            action->setShortcut( 0 );
+    }
 }
 
 #include "knotesapp.moc"

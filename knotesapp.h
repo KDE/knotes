@@ -36,6 +36,7 @@ class KNote;
 class KPopupMenu;
 class KAction;
 class KActionMenu;
+class KGlobalAccel;
 class KXMLGUIFactory;
 
 
@@ -48,8 +49,11 @@ public:
     ~KNotesApp();
 
     int newNote( QString name = QString::null, const QString& text = QString::null );
+    int newNoteFromClipboard( QString name = QString::null );
     void showNote( const QString& name ) const;
     void showNote( int noteId ) const;
+    void hideNote( const QString& name ) const;
+    void hideNote( int noteId ) const;
     void killNote( const QString& name );
     void killNote( int noteId );
 
@@ -76,15 +80,18 @@ protected:
 
 protected slots:
     void slotNewNote();
+    void slotNewNoteFromClipboard();
     void slotShowNote();
 
     void slotPreferences() const;
+    void slotConfigureAccels();
 
     void slotNoteKilled( const QString& name );
     void slotNoteRenamed( const QString& oldname, const QString& newname );
 
 private slots:
     void updateNoteActions();
+    void updateGlobalAccels();
 
 private:
     KNote* noteById( int id ) const;
@@ -98,6 +105,8 @@ private:
     KPopupMenu* m_context_menu;
 
     KXMLGUIFactory* factory;
+
+    KGlobalAccel *globalAccel;
 };
 
 #endif

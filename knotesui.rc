@@ -1,13 +1,13 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="1">
+<kpartgui name="KNotes" version="2">
 
 <Menu name="knotes_context" noMerge="1"><text>KNotes</text>
     <title icon="knotes">KNotes</title>
     <Action name="new_note"/>
-    <Menu name="notes_sub_menu" noMerge="1"><text>&amp;Notes</text>
-        <ActionList name="notes"/>
-    </Menu>
+    <Action name="new_note_clipboard"/>
+    <Separator/>
+    <Action name="options_configure_keybinding"/>
     <Action name="options_configure"/>
     <Separator/>
     <Menu name="help" icon="help" noMerge="1"><text>&amp;Help</text>
@@ -19,7 +19,7 @@
         <Action name="help_about_kde"/>
     </Menu>
     <Separator/>
-    <Action name="quit"/>
+    <Action name="file_quit"/>
 </Menu>
 
 <Menu name="notes_menu" noMerge="1"><text>Notes</text>
@@ -35,6 +35,7 @@
     <Separator/>
     <Action name="new_note"/>
     <Action name="rename_note"/>
+    <Action name="hide_note"/>
     <Action name="delete_note"/>
     <Separator/>
     <Action name="to_desktop"/>

@@ -1,6 +1,16 @@
 ChangeLog for KNotes
 ====================
 
+2002/09/25  Michael Brade <brade@kde.org>
+
+    * patch from Matthias Kiefer:
+        - add DCOP call hideNote()
+        - add new action "New Note from Clipboard"
+        - nice icon for the "Insert Date" action
+        - global shortcuts for "New Note" and "New Note from Clipboard"
+    * changed some actions to KStdActions
+    * removed the "Notes" sub-menu from the RMB menu
+
 2002/09/24  Michael Brade <brade@kde.org>
 
     * fixed printing:

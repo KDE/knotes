@@ -16,7 +16,7 @@ METASOURCES     = AUTO
 
 KDE_ICON  = knotes
 
-pix_DATA  = knoteslogo.png knotesclose.png knotesdelete.png
+pix_DATA  = knoteslogo.png knotesclose.png knotesdelete.png knotesdate.png
 pixdir    = $(kde_datadir)/knotes/pics
 
 apps_DATA = knotes.desktop
