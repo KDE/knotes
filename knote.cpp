@@ -22,6 +22,10 @@ KNote::KNote( KConfig* config, QWidget* parent, const char* name )
 	: QFrame( parent, name , WStyle_Customize | WStyle_NoBorderEx | WDestructiveClose )
 {
 	kdDebug() << "start Knote::Knote" << endl;
+
+	//WABA: Get rid of decorations. I can hardly imagine that 
+	//this is "The Right Way" of doing that.
+	KWin::setType( winId(), NET::Toolbar);
 	
 	m_config = config;
 	m_notedir = new QDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
