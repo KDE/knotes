@@ -32,6 +32,7 @@
 
 #include "KNotesAppIface.h"
 
+class KFind;
 class KNote;
 class KPopupMenu;
 class KAction;
@@ -90,6 +91,9 @@ protected slots:
     void slotShowNote();
     void slotWalkThroughNotes();
 
+    void slotOpenFindDialog();
+    void slotFindNext();
+
     void slotPreferences();
     void slotConfigureAccels();
 
@@ -124,6 +128,9 @@ private:
 
     QDict<KNote>    m_noteList;
     KNoteActionList m_noteActions;
+
+    KFind           *m_find;
+    QDictIterator<KNote> *m_findPos;
 
     KPopupMenu      *m_note_menu;
     KPopupMenu      *m_context_menu;

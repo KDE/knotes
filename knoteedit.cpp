@@ -42,6 +42,13 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *n
     setWrapPolicy( AtWhiteSpace );
     setLinkUnderline( true );
 
+    // set the color for the selection used to highlight the find stuff
+    QColor sel = palette().color( QPalette::Active, QColorGroup::Base ).dark();
+    if ( sel == Qt::black )
+        sel = palette().color( QPalette::Active, QColorGroup::Base ).light();
+
+    setSelectionAttributes( 1, sel, true );
+
     // create the actions for the RMB menu
     KAction* undo = KStdAction::undo( this, SLOT(undo()), actions );
     KAction* redo = KStdAction::redo( this, SLOT(redo()), actions );

@@ -34,6 +34,7 @@ class QLabel;
 
 class KXMLGUIBuilder;
 
+class KFind;
 class KPopupMenu;
 class KNoteButton;
 class KNoteEdit;
@@ -61,9 +62,12 @@ public:
     QString noteId() const;
     QString name() const;
     QString text() const;
+    QString plainText() const;
 
     void setName( const QString& name );
     void setText( const QString& text );
+
+    void find( const QString& pattern, long options );
 
     bool isModified() const;
 
@@ -81,6 +85,8 @@ signals:
     void sigDataChanged();
     void sigColorChanged();
     void sigKillNote( KCal::Journal* );
+
+    void sigFindFinished();
 
 protected:
     virtual void showEvent( QShowEvent* );
@@ -105,6 +111,9 @@ private slots:
     void slotPreferences();
     void slotPopupActionToDesktop( int id );
 
+    void slotFindNext();
+    void slotHighlight( const QString& txt, int idx, int len );
+
     void slotApplyConfig();
     void slotUpdateKeepAboveBelow();
     void slotUpdateShowInTaskbar();
@@ -128,6 +137,8 @@ private:
 
     KNoteConfig   *m_config;
     KCal::Journal *m_journal;
+
+    KFind         *m_find;
 
     KPopupMenu    *m_menu;
     KPopupMenu    *m_edit_menu;

@@ -32,6 +32,8 @@
 #include <kstandarddirs.h>
 #include <kpopupmenu.h>
 #include <khelpmenu.h>
+#include <kfind.h>
+#include <kfinddialog.h>
 #include <kkeydialog.h>
 #include <kglobalaccel.h>
 #include <ksimpleconfig.h>
@@ -88,7 +90,7 @@ int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrColle
 
 KNotesApp::KNotesApp()
     : DCOPObject("KNotesIface"), QLabel( 0, 0, WType_TopLevel ),
-      m_listener( 0 )
+      m_listener( 0 ), m_find( 0 ), m_findPos( 0 )
 {
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
@@ -112,8 +114,10 @@ KNotesApp::KNotesApp()
         this, SLOT(hideAllNotes()), actionCollection(), "hide_all_notes" );
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
+    KStdAction::find( this, SLOT(slotOpenFindDialog()), actionCollection() );
     KStdAction::preferences( this, SLOT(slotPreferences()), actionCollection() );
     KStdAction::keyBindings( this, SLOT(slotConfigureAccels()), actionCollection() );
+    //FIXME: no shortcut removing!?
     KStdAction::quit( this, SLOT(slotQuit()), actionCollection() )->setShortcut( 0 );
 
     setXMLFile( instance()->instanceName() + "appui.rc" );
@@ -412,6 +416,44 @@ void KNotesApp::slotWalkThroughNotes()
         }
 }
 
+void KNotesApp::slotOpenFindDialog()
+{
+    KFindDialog findDia( this, "find_dialog" );
+    findDia.setHasSelection( false );
+    findDia.setHasCursor( false );
+    findDia.setSupportsBackwardsFind( false );
+
+    if ( findDia.exec() != QDialog::Accepted )
+        return;
+
+    delete m_findPos;
+    m_findPos = new QDictIterator<KNote>( m_noteList );
+
+    // this could be in an own method if searching without a dialog should be possible
+    delete m_find;
+    m_find = new KFind( findDia.pattern(), findDia.options(), this );
+
+    slotFindNext();
+}
+
+void KNotesApp::slotFindNext()
+{
+    if ( **m_findPos )
+    {
+        KNote *note = **m_findPos;
+        ++*m_findPos;
+        note->find( m_find->pattern(), m_find->options() );
+    }
+    else
+    {
+        m_find->displayFinalDialog();
+        delete m_find;
+        m_find = 0;
+        delete m_findPos;
+        m_findPos = 0;
+    }
+}
+
 void KNotesApp::slotPreferences()
 {
     // reuse the dialog if possible
@@ -501,6 +543,7 @@ void KNotesApp::createNote( KCal::Journal *journal )
     connect( newNote, SIGNAL(sigNameChanged()), SLOT(updateNoteActions()) );
     connect( newNote, SIGNAL(sigDataChanged()), SLOT(saveNotes()) );
     connect( newNote, SIGNAL(sigColorChanged()), SLOT(updateNoteActions()) );
+    connect( newNote, SIGNAL(sigFindFinished()), SLOT(slotFindNext()) );
 
     updateNoteActions();
 }

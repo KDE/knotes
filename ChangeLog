@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2005/01/09  Michael Brade <brade@kde.org>
+
+    * fixed #76435: most wanted feature: find function for the notes.
+      At the moment the shortcut doesn't work.
+
 2004/11/28  Michael Brade <brade@kde.org>
 
     * fixed #90744, #91702, #92596, #93499: save modified notes on quit, may

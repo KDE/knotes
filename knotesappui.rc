@@ -1,11 +1,13 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="2">
+<kpartgui name="KNotes" version="3">
 
 <Menu name="knotes_context" noMerge="1"><text>KNotes</text>
     <title icon="knotes">KNotes</title>
     <Action name="new_note"/>
     <Action name="new_note_clipboard"/>
+    <Separator/>
+    <Action name="edit_find"/>
     <Separator/>
     <Action name="show_all_notes"/>
     <Action name="hide_all_notes"/>

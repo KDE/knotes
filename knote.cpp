@@ -45,6 +45,7 @@
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
+#include <kfind.h>
 #include <kprocess.h>
 #include <kinputdialog.h>
 #include <kmdcodec.h>
@@ -77,7 +78,7 @@ extern Time qt_x_time;
 KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *name )
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorder | WDestructiveClose ),
     m_label( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ), m_config( 0 ),
-    m_journal( j ), m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) )
+    m_journal( j ), m_find( 0 ), m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) )
 {
     // be explicit
     KWin::setIcons( winId(), kapp->icon(), kapp->miniIcon() );
@@ -384,6 +385,20 @@ QString KNote::text() const
     return m_editor->text();
 }
 
+QString KNote::plainText() const
+{
+    if ( m_editor->textFormat() == RichText )
+    {
+        QTextEdit conv;
+        conv.setTextFormat( RichText );
+        conv.setText( m_editor->text() );
+        conv.setTextFormat( PlainText );
+        return conv.text();
+    }
+    else
+        return m_editor->text();
+}
+
 void KNote::setName( const QString& name )
 {
     m_label->setText( name );
@@ -403,6 +418,69 @@ void KNote::setText( const QString& text )
 {
     m_editor->setText( text );
     saveData();
+}
+
+void KNote::find( const QString& pattern, long options )
+{
+    delete m_find;
+    m_find = new KFind( pattern, options, this );
+
+    connect( m_find, SIGNAL(highlight( const QString &, int, int )),
+             this, SLOT(slotHighlight( const QString &, int, int )) );
+    connect( m_find, SIGNAL(findNext()), this, SLOT(slotFindNext()) );
+
+    m_find->setData( plainText() );
+    slotFindNext();
+}
+
+void KNote::slotFindNext()
+{
+    // TODO: honor FindBackwards
+    // TODO: dialogClosed() -> delete m_find
+
+    // Let KFind inspect the text fragment, and display a dialog if a match is found
+    KFind::Result res = m_find->find();
+
+    if ( res == KFind::NoMatch ) // i.e. at end-pos
+    {
+        m_editor->removeSelection( 1 );
+        emit sigFindFinished();
+        delete m_find;
+        m_find = 0;
+    }
+    else
+    {
+        show();
+        KWin::setCurrentDesktop( KWin::windowInfo( winId() ).desktop() );
+    }
+}
+
+void KNote::slotHighlight( const QString& str, int idx, int len )
+{
+    int paraFrom = 0, idxFrom = 0, p = 0;
+    for ( ; p < idx; ++p )
+        if ( str[p] == '\n' )
+        {
+            ++paraFrom;
+            idxFrom = 0;
+        }
+        else
+            ++idxFrom;
+
+    int paraTo = paraFrom, idxTo = idxFrom;
+
+    for ( ; p < idx + len; ++p )
+    {
+        if ( str[p] == '\n' )
+        {
+            ++paraTo;
+            idxTo = 0;
+        }
+        else
+            ++idxTo;
+    }
+
+    m_editor->setSelection( paraFrom, idxFrom, paraTo, idxTo, 1 );
 }
 
 bool KNote::isModified() const
@@ -530,12 +608,6 @@ void KNote::slotSend()
 
 void KNote::slotMail()
 {
-    QString msg_body = m_editor->text();
-
-    // convert rich text to plain text first
-    if ( m_editor->textFormat() == RichText )
-        msg_body = toPlainText( msg_body );
-
     // get the mail action command
     QStringList cmd_list = QStringList::split( QChar(' '), KNotesGlobalConfig::mailAction() );
 
@@ -544,7 +616,7 @@ void KNote::slotMail()
         it != cmd_list.end(); ++it )
     {
         if ( *it == "%f" )
-            mail << msg_body.local8Bit();
+            mail << plainText().local8Bit();  // convert rich text to plain text
         else if ( *it == "%t" )
             mail << m_label->text().local8Bit();
         else
@@ -562,7 +634,7 @@ void KNote::slotPrint()
     KPrinter printer;
     printer.setFullPage( true );
 
-    if ( printer.setup(0L, i18n("Print %1").arg(name())) )
+    if ( printer.setup( 0, i18n("Print %1").arg(name()) ) )
     {
         QPainter painter;
         painter.begin( &printer );
@@ -618,7 +690,6 @@ void KNote::slotPrint()
 
 void KNote::slotSaveAs()
 {
-    QString msg_body = m_editor->text();
     QCheckBox *convert = 0;
 
     if ( m_editor->textFormat() == RichText )
@@ -636,15 +707,15 @@ void KNote::slotSaveAs()
     if ( fileName.isEmpty() )
         return;
 
-    // convert rich text to plain text first
-    if ( convert && convert->isChecked() )
-        msg_body = toPlainText( msg_body );
-
     QFile file( fileName );
     if ( file.open( IO_WriteOnly ) )
     {
         QTextStream stream( &file );
-        stream << msg_body;
+        // convert rich text to plain text first
+        if ( convert && convert->isChecked() )
+            stream << text();
+        else
+            stream << plainText();
     }
 }
 
@@ -736,15 +807,6 @@ void KNote::slotUpdateDesktopActions()
 
 
 // -------------------- private methods -------------------- //
-
-QString KNote::toPlainText( const QString& text )
-{
-    QTextEdit conv;
-    conv.setTextFormat( RichText );
-    conv.setText( text );
-    conv.setTextFormat( PlainText );
-    return conv.text();
-}
 
 void KNote::toDesktop( int desktop )
 {
