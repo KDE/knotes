@@ -31,16 +31,18 @@
  your version.
 *******************************************************************/
 
-#include "resourcelocal.h"
-#include "knoteslegacy.h"
-#include "resourcemanager.h"
-
-#include <libkcal/icalformat.h>
-
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
 #include <kio/netaccess.h>
+
+#include <libkcal/icalformat.h>
+
+#include "knoteslegacy.h"
+
+#include "knotes/resourcelocal.h"
+#include "knotes/resourcemanager.h"
+
 
 
 ResourceLocal::ResourceLocal( const KConfig* config )

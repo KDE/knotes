@@ -31,26 +31,26 @@
  your version.
 *******************************************************************/
 
-#include "resourcemanager.h"
-#include "resourcelocal.h"
+#include "knotes/resourcemanager.h"
+#include "knotes/resourcelocal.h"
 
 #include <libkcal/journal.h>
 
 
-ResourceManager::ResourceManager()
-    : QObject( 0, "Resource Manager" )
+KNotesResourceManager::KNotesResourceManager()
+    : QObject( 0, "KNotes Resource Manager" )
 {
     m_manager = new KRES::Manager<ResourceNotes>( "notes" );
     m_manager->addObserver( this );
     m_manager->readConfig();
 }
 
-ResourceManager::~ResourceManager()
+KNotesResourceManager::~KNotesResourceManager()
 {
     delete m_manager;
 }
 
-void ResourceManager::load()
+void KNotesResourceManager::load()
 {
     if ( !m_manager->standardResource() )
     {
@@ -71,7 +71,7 @@ void ResourceManager::load()
     }
 }
 
-void ResourceManager::save()
+void KNotesResourceManager::save()
 {
     KRES::Manager<ResourceNotes>::ActiveIterator it;
     for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it )
@@ -80,7 +80,7 @@ void ResourceManager::save()
 
 // when adding a new note, make sure a config file exists!!
 
-void ResourceManager::addNewNote( KCal::Journal *journal )
+void KNotesResourceManager::addNewNote( KCal::Journal *journal )
 {
     // TODO: Make this configurable
     ResourceNotes *resource = m_manager->standardResource();
@@ -90,7 +90,7 @@ void ResourceManager::addNewNote( KCal::Journal *journal )
         kdWarning(5500) << k_funcinfo << "no resource!" << endl;
 }
 
-void ResourceManager::registerNote( ResourceNotes *resource,
+void KNotesResourceManager::registerNote( ResourceNotes *resource,
     KCal::Journal *journal )
 {
     // TODO: only emit the signal if the journal is new?
@@ -98,7 +98,7 @@ void ResourceManager::registerNote( ResourceNotes *resource,
     emit sigRegisteredNote( journal );
 }
 
-void ResourceManager::deleteNote( KCal::Journal *journal )
+void KNotesResourceManager::deleteNote( KCal::Journal *journal )
 {
     QString uid = journal->uid();
 
@@ -107,7 +107,7 @@ void ResourceManager::deleteNote( KCal::Journal *journal )
     m_resourceMap.remove( uid );
 }
 
-void ResourceManager::resourceAdded( ResourceNotes *resource )
+void KNotesResourceManager::resourceAdded( ResourceNotes *resource )
 {
     kdDebug(5500) << "Resource added: " << resource->resourceName() << endl;
 
@@ -119,12 +119,12 @@ void ResourceManager::resourceAdded( ResourceNotes *resource )
         resource->load();
 }
 
-void ResourceManager::resourceModified( ResourceNotes *resource )
+void KNotesResourceManager::resourceModified( ResourceNotes *resource )
 {
     kdDebug(5500) << "Resource modified: " << resource->resourceName() << endl;
 }
 
-void ResourceManager::resourceDeleted( ResourceNotes *resource )
+void KNotesResourceManager::resourceDeleted( ResourceNotes *resource )
 {
     kdDebug(5500) << "Resource deleted: " << resource->resourceName() << endl;
 }

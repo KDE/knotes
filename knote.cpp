@@ -47,7 +47,7 @@
 #include <kglobalsettings.h>
 #include <kio/netaccess.h>
 
-#include "libkcal/journal.h"
+#include <libkcal/journal.h>
 
 #include "knote.h"
 #include "knotebutton.h"

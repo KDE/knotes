@@ -42,7 +42,8 @@
 #include "knote.h"
 #include "knoteconfigdlg.h"
 #include "knoteslegacy.h"
-#include "resourcemanager.h"
+
+#include "knotes/resourcemanager.h"
 
 
 int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 )
@@ -107,7 +108,7 @@ KNotesApp::KNotesApp()
     KNotesLegacy::cleanUp();
 
     // create the resource manager
-    m_manager = new ResourceManager();
+    m_manager = new KNotesResourceManager();
     connect( m_manager, SIGNAL(sigRegisteredNote( KCal::Journal * )),
              this,      SLOT(createNote( KCal::Journal * )) );
 

@@ -45,13 +45,13 @@ namespace KCal {
 }
 
 
-class ResourceManager : public QObject,
+class KNotesResourceManager : public QObject,
     public KRES::ManagerObserver<ResourceNotes>
 {
     Q_OBJECT
 public:
-    ResourceManager();
-    virtual ~ResourceManager();
+    KNotesResourceManager();
+    virtual ~KNotesResourceManager();
 
     void load();
     void save();

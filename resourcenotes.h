@@ -36,7 +36,7 @@
 #include <kresources/resource.h>
 
 class KConfig;
-class ResourceManager;
+class KNotesResourceManager;
 
 namespace KCal {
     class Journal;
@@ -69,11 +69,11 @@ public:
     virtual bool addNote( KCal::Journal * ) = 0;
     virtual bool deleteNote( KCal::Journal * ) = 0;
 
-    void setManager( ResourceManager *manager ) { mManager = manager; }
-    ResourceManager *manager() const            { return mManager; }
+    void setManager( KNotesResourceManager *manager ) { mManager = manager; }
+    KNotesResourceManager *manager() const            { return mManager; }
 
 protected:
-    ResourceManager *mManager;
+    KNotesResourceManager *mManager;
 };
 
 

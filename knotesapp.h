@@ -37,7 +37,7 @@ class KPopupMenu;
 class KAction;
 class KActionMenu;
 class KGlobalAccel;
-class ResourceManager;
+class KNotesResourceManager;
 
 namespace KCal {
     class Journal;
@@ -109,7 +109,7 @@ private:
         virtual int compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 );
     };
 
-    ResourceManager *m_manager;
+    KNotesResourceManager *m_manager;
 
     QDict<KNote>    m_noteList;
     KNoteActionList m_noteActions;
