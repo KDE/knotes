@@ -51,16 +51,19 @@ void KNotesLegacy::cleanUp()
 {
     // remove old (KDE 1.x) local config file if it still exists
     QString configfile = KGlobal::dirs()->saveLocation( "config" ) + "knotesrc";
-    KSimpleConfig *test = new KSimpleConfig( configfile );
-    test->setGroup( "General" );
-    double version = test->readDoubleNumEntry( "version", 1.0 );
-    delete test;
+    if ( QFile::exists( configfile ) ) {
+        KSimpleConfig *test = new KSimpleConfig( configfile );
+        test->setGroup( "General" );
+        double version = test->readDoubleNumEntry( "version", 1.0 );
+        delete test;
 
-    if ( version == 1.0 &&
-         !( checkAccess( configfile, W_OK ) &&
-            KIO::NetAccess::del( KURL(configfile), 0 ) ) )
-    {
-        kdError(5500) << k_funcinfo << "Could not delete old config file!" << endl;
+        if ( version == 1.0 ) {
+            if ( !( checkAccess( configfile, W_OK ) &&
+                    QFile::remove( configfile ) ) )
+            {
+                kdError(5500) << k_funcinfo << "Could not delete old config file " << configfile << endl;
+            }
+        }
     }
 }
 
