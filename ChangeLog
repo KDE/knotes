@@ -1,3 +1,184 @@
+ChangeLog for KNotes
+====================
+
+2001/04/25  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    Updated this file! It's time now, after one and a half years...
+
+2001/04/25  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    Fixed the DCOP interface, no overloaded methods anymore.
+
+2001/03/29  Nikolas Zimmermann <wildfox@kde.org>
+
+    converted to KPrinter
+
+2001/03/29  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    Focus updates. Fix for BR2333, it's time now ;-)
+
+    GUI: Esc closes the current note, Shift-Tab cycles through the notes.
+         TODO: make this configureable
+
+2001/03/25  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * Some internal redesign
+    * the notes are now saved on FocusOutEvent to reduce the possibility
+      of data loss (Bug#19851)
+    * restructured the menu
+    * most important: rewrote and extended the DCOP interface. KNotes now
+      provides methods to work fine with PDA sync utils, ATM that's KPilot.
+      The number of apps that can sync with KNotes is not limited.
+
+2001/02/04  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    The fix for the broken config files. Enabled the "Stays On Top" option
+    as well.
+
+2001/01/18  Matthias Kiefer <matthias.kiefer@gmx.de>
+
+    desktop names are encoded in utf8
+
+2000/12/19  Wynn Wilkes <wynnw@calderasystems.com>
+
+    Added support for two dcop calls, rereadNoteDirectory and addNote
+    The addNote doesn't work yet - there's some problem with the DCOP
+    when I've tested from the command line.
+
+    Cleaned up the internal code to use new private functions that handle
+    the different cases.
+
+2000/12/19  Adriaan de Groot <adridg@sci.kun.nl>
+
+    Added DCOP calls to manipulate notes (intended for KPilot)
+
+2000/10/15  Antonio Larrosa Jimenez <larrosa@kde.org>
+
+    The patch by Michael Brade <Michael.Brade@informatik.uni-muenchen.de>
+    posted on kde-core-devel some days ago. Partly reviewed by Wynn Wilkes.
+
+2000/10/04  David Faure <faure@kde.org>
+
+    Patch from Wynn Wilkes, reviewed by Michael Brade, approved by Matthias Elter.
+    It fixes the following problems:
+    "There are some bad memory leaks in the current cvs, and the note data is not
+    saved on a session shutdown.  The patch fixes those and adds some workarounds
+    for some weird behavior in the QMultiLineEdit widget which adds some phantom
+    lines to your text now and then.  It also reduces the memory usage by not
+    keeping a KConfig object open for each note all the time - it just creates
+    them when saving new changes to the note settings."
+
+2000/09/24  Dirk Müller <mueller@kde.org>
+
+    - first attempt fixing the blatant memory leaks in this app.
+      it still does a lot of crazy things, like keeping all kinds of KSimpleConfig
+      objects open all the time and writing new coordinates to it in the ::resizeEvent.
+      it still leaks as the KNote objects are not deleted. this needs more work
+    - code cleanup. use KWin convenience functions instead of hacking
+      our own NetWM queries. tested by myself. This simple code is probably
+      example code for other developers, so its important that it isn't
+      totally screwed up.
+    - removed unnecessary header file.
+    - fixed a few uninitialized variable reads that could lead to a crash
+      approved by insure++
+
+2000/09/23  Matthias Ettrich <ettrich@kde.org>
+
+    removed unused (but linked) file. Show nodelist on LMB as it was in KDE1
+
+2000/09/14  Wynn Wilkes <wynnw@calderasystems.com>
+
+    Tons of fixes:
+     - Window Manager integration readded
+     - Notes don't appear on the taskbar
+     - Printing works
+     - Notes can be sticky
+     - Added good defaults to config reading - so no albino notes
+
+2000/08/18  Waldo Bastian <bastian@kde.org>
+
+    Adjust size of header to size of font.
+
+2000/08/11  Wynn Wilkes <wynnw@calderasystems.com>
+
+    * Fixed mail action to use a generic mail command with %f as the file.
+    * Fixed the mail action to use full path names- that's all kmail works with
+      currently.
+    * fixed the action page of the config dialog to provide an edit box for
+      the mail command, took out label for printing since it won't be done..
+
+2000/07/31  Stefan Schimanski <1Stein@gmx.de>
+
+    Rename bug #5858 fixed.
+
+2000/07/28  Wynn Wilkes <wynnw@calderasystems.com>
+
+    Config dialog:
+    * start putting in support for action configuration, waiting to hear from
+      kmail guys about --msg option
+    * Changed to be a modal dialog
+
+2000/07/14  Wynn Wilkes <wynnw@calderasystems.com>
+
+    removed WABA's net entry for removing window borders...
+    KWin is respecting the Qt flags again it seems, it works without this now
+
+2000/07/06  Waldo Bastian <bastian@kde.org>
+
+    +       //WABA: Get rid of decorations. I can hardly imagine that
+    +       //this is "The Right Way" of doing that.
+    +       KWin::setType( winId(), NET::Toolbar);
+
+2000/06/21  Wynn Wilkes <wynnw@calderasystems.com>
+
+    Almost done with the config dialog
+    Fixed knotesrc problem with session management
+
+2000/06/13  Wynn Wilkes <wynnw@calderasystems.com>
+
+    updated for change in file structure- removed old dockwidget code
+
+    Further progress on porting, configure dialog almost done
+
+2000/05/30  Wynn Wilkes <wynnw@calderasystems.com>
+
+    KNotes rewrite:
+     - changed config file to use KConfig
+     - use KDockWindow and KUniqueApplication
+     - Changed structure to make smaller files
+
+2000/01/30  Charles Samuels <charles@kde.org>
+
+    This is my daily huge commit for KAboutData.  There are also patches for
+    KCmdLineArgs (so it works).  Ktop is really doing bad folks.
+
+2000/01/03  Espen Sand <espen@kde.org>
+
+    Using KContextMenuManager to decide when to display popup menus.
+    I do this for the popup menu in the taskbar as well. I assume this
+    is correct?
+
+    Replaced QPopupMenu with KPopupMenu in the taskbar widget.
+
+1999/12/30  Espen Sand <espen@kde.org>
+
+    * Every dialog ported to KDialogBase by translator
+      requests (fixed sizes removed).
+
+    * Undo/Redo! A no-brainer because of QMultiLineEdit.
+
+    * Some cleanup and rearrangement of popup dialogs.
+
+    Todo
+    -----
+    I think the docking pixmap has a wrong size. It
+    is not aligned with the Display Property pixmap in kicker.
+
+
+
+Old KNotes ChangeLog (KDE 1.x):
+===============================
+
 1999-10-16  Harri Porten  <porten@kde.org>
 
 	* knotes.cpp: applied Unicode patch from Ming-Che Chuang
