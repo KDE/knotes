@@ -50,7 +50,7 @@ KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent, const char 
     : KDialogBase( parent, name, true, caption, Ok|Cancel, Ok, true )
 {
     QVBox *page = makeVBoxMainWidget();
-    (void)new QLabel( i18n("Host name or IP address:"), page );
+    (void)new QLabel( i18n("Hostname or IP address:"), page );
 
     m_hostCombo = new KHistoryCombo( true, page );
     m_hostCombo->setMinimumWidth( fontMetrics().maxWidth() * 15 );
