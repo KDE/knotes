@@ -242,8 +242,8 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     colors =  	new QPopupMenu ();
 
-    colors->insertItem(klocale->translate("Text Color"),this, SLOT(set_foreground_color()));
-    colors->insertItem(klocale->translate("Background Color"),this, SLOT(set_background_color()));
+    colors->insertItem(klocale->translate("Text Color..."),this, SLOT(set_foreground_color()));
+    colors->insertItem(klocale->translate("Background Color..."),this, SLOT(set_background_color()));
 
     operations =  	new QPopupMenu ();
     operations->insertItem(klocale->translate("Clear"),this, SLOT(clear_text()));
@@ -253,7 +253,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 				    SLOT(newKPostit()));
     operations->insertItem (klocale->translate("Delete Note"), this, 	
 				    SLOT(deleteKPostit()));
-    operations->insertItem (klocale->translate("Rename Note"),this,SLOT(renameKPostit()));
+    operations->insertItem (klocale->translate("Rename Note..."),this,SLOT(renameKPostit()));
     operations->insertSeparator();
     operations->insertItem (klocale->translate("Alarm ..."), this, 	
 				    SLOT(setAlarm()));
@@ -271,7 +271,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     frame3dID = options->insertItem(klocale->translate("3D Frame"),this, SLOT(toggleFrame()));
     edit->autoIndentID = options->insertItem(klocale->translate("Auto Indent"),this, 
 				       SLOT(toggleIndentMode()));
-    options->insertItem(klocale->translate("Font"),this, SLOT(selectFont()));
+    options->insertItem(klocale->translate("Font..."),this, SLOT(selectFont()));
     options->insertItem(klocale->translate("Colors"),colors);
     options->insertSeparator();
     options->insertItem(klocale->translate("Change Defaults ..."),this, SLOT(defaults()));
