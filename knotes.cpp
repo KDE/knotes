@@ -605,7 +605,7 @@ void KPostit::print(){
 
     str.sprintf(
 		klocale->translate(
-		"Could not pipe the contents of this KNotes into:\n %s"),
+		"Could not pipe the contents of this KNote into:\n %s"),
 		cmd.data()
 		);
 
@@ -662,7 +662,7 @@ void KPostit::newKPostit(){
     QMessageBox::warning(this,
 			 klocale->translate("Sorry"),
 			 klocale->translate("You have exeeded the "
-					    "arbitrary and unjustly set"
+					    "arbitrary and unjustly set "
 			 "limit of 50 knotes.\n Please complain to the author.")
 			 );
     return;
