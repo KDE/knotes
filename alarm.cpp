@@ -116,6 +116,7 @@ void AlarmDlg::ok_slot(){
 	//	delete postit->AlarmList.current();
 	postit->AlarmList.remove(postit->AlarmList.current());
 	postit->setCaption(postit->name);
+	postit->label->setText(postit->name.data());
 	break;
       }
     }

@@ -1,3 +1,8 @@
+1999-09-25  Harri Porten  <porten@kde.org>
+
+	* alarm.cpp: remove (A) from lable when unsetting alarm
+	(patch by Michael Haeckel <Michael.Haeckel@stud.uni-bayreuth.de>
+
 Tue Aug  3 02:23:09 1999  Carsten Pfeiffer  <pfeiffer@kde.org>
 
 	* added standard accelerator keys (new, print, save, help, close, quit)

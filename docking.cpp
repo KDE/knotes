@@ -123,7 +123,7 @@ void DockWidget::exitKNotes(){
 
   if(KPostit::PostitList.count() > 0){
 
-    printf("about to exit via PostitList\n");
+    //    printf("about to exit via PostitList\n");
     KPostit::PostitList.at(0)->quit();
 
   }
