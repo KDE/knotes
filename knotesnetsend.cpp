@@ -34,14 +34,14 @@
 #include <ksockaddr.h>
 
 #include "knotesnetsend.h"
+#include "knotesglobalconfig.h"
 
 // This comes in seconds!
 #define CONNECT_TIMEOUT 10
-#define ATNOTES_PORT 24837
 
 
 KNotesNetworkSender::KNotesNetworkSender( const QString& hostname, const QString& text )
-  : KExtendedSocket( hostname, ATNOTES_PORT ),
+  : KExtendedSocket( hostname, KNotesGlobalConfig::port() ),
     // TODO: support for unicode and richtext.
     // Mmmmmm... how to behave with such heterogeneous environment?
     // AFAIK, ATnotes does not allow UNICODE.

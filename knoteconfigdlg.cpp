@@ -32,8 +32,9 @@
 #include <kseparator.h>
 
 #include "knote.h"
-#include "knoteconfig.h"
 #include "knoteconfigdlg.h"
+#include "knoteconfig.h"
+#include "knotesglobalconfig.h"
 #include "version.h"
 
 
@@ -52,7 +53,12 @@ KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
 
     makeDisplayPage( defaults );
     makeEditorPage();
-    makeActionsPage();
+
+    if ( defaults )
+    {
+        makeActionsPage();
+        makeNetworkPage();
+    }
 }
 
 KNoteConfigDlg::~KNoteConfigDlg()
@@ -86,7 +92,7 @@ void KNoteConfigDlg::makeDisplayPage( bool defaults )
     layout->addWidget( kcfg_BgColor, 1, 1 );
 
     QCheckBox *kcfg_ShowInTaskbar = new QCheckBox( i18n("&Show note in taskbar"),
-                                                 displayPage, "kcfg_ShowInTaskbar" );
+                                                   displayPage, "kcfg_ShowInTaskbar" );
     layout->addWidget( kcfg_ShowInTaskbar, 4, 0 );
 
 
@@ -149,13 +155,13 @@ void KNoteConfigDlg::makeEditorPage()
     KSeparator *separator = new KSeparator( Horizontal, editorPage );
     layout->addMultiCellWidget( separator, 4, 4, 0, 2 );
 
-    addPage( editorPage, i18n( "Editor" ), "edit", i18n("Editor Settings") );
+    addPage( editorPage, i18n("Editor"), "edit", i18n("Editor Settings") );
 }
 
 void KNoteConfigDlg::makeActionsPage()
 {
     QWidget *actionsPage = new QWidget();
-    QGridLayout *layout = new QGridLayout( actionsPage, 2, 2, 0, spacingHint() );
+    QGridLayout *layout = new QGridLayout( actionsPage, 3, 2, 0, spacingHint() );
 
     QLabel *label_MailAction = new QLabel( i18n("&Mail action:"), actionsPage, "label_MailAction" );
     layout->addWidget( label_MailAction, 0, 0 );
@@ -167,7 +173,32 @@ void KNoteConfigDlg::makeActionsPage()
     KSeparator *separator = new KSeparator( Horizontal, actionsPage );
     layout->addMultiCellWidget( separator, 2, 2, 0, 1 );
 
-    addPage( actionsPage, i18n( "Actions" ), "misc", i18n("Action Settings") );
+    addPage( actionsPage, KNotesGlobalConfig::self(),
+             i18n("Actions"), "misc", i18n("Action Settings") );
+}
+
+void KNoteConfigDlg::makeNetworkPage()
+{
+    QWidget *networkPage = new QWidget();
+    QGridLayout *layout = new QGridLayout( networkPage, 4, 2, 0, spacingHint() );
+
+    QCheckBox *kcfg_ReceiveNotes = new QCheckBox( i18n("Enable &receiving notes"),
+                                                  networkPage, "kcfg_ReceiveNotes" );
+    layout->addMultiCellWidget( kcfg_ReceiveNotes, 0, 0, 0, 1 );
+
+    QLabel *label_Port = new QLabel( i18n( "&Port:" ), networkPage, "label_Port" );
+    layout->addWidget( label_Port, 1, 0 );
+
+    KIntNumInput *kcfg_Port = new KIntNumInput( networkPage, "kcfg_Port" );
+    kcfg_Port->setRange( 0, 65535, 1, false );
+    label_Port->setBuddy( kcfg_Port );
+    layout->addWidget( kcfg_Port, 1, 1 );
+
+    KSeparator *separator = new KSeparator( Horizontal, networkPage );
+    layout->addMultiCellWidget( separator, 3, 3, 0, 1 );
+
+    addPage( networkPage, KNotesGlobalConfig::self(),
+             i18n("Network"), "network", i18n("Network Settings") );
 }
 
 

@@ -1,0 +1,4 @@
+File=knotesglobalconfig.kcfg
+ClassName=KNotesGlobalConfig
+Mutators=true
+Singleton=true

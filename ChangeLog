@@ -1,12 +1,23 @@
 ChangeLog for KNotes
 ====================
 
+2004/04/19  Michael Brade <brade@kde.org>
+
+    * added configuration of network settings:
+       - enable/disable listening for new notes
+       - set the port used for sending and receiving notes
+    * added a second config file, knotesglobalrc, since network settings
+      are not local to every note and should not sit in every note's (display)
+      config file
+    * moved MailAction to the global config file as well
+    * now actually save the recent hosts as well.
+
 2004/04/14  Michael Brade <brade@kde.org>
 
     * use a KHistoryCombo for the KNoteHostDlg. This prevents the possibility
       to send a note to more than one host at once, so keep only the list of
       recent hosts without weighting for compatibility in case this feature is
-      requested
+      requested later
 
 2004/03/31  Michael Brade <brade@kde.org>
 

@@ -43,12 +43,11 @@
 #include "knote.h"
 #include "knoteconfig.h"
 #include "knoteconfigdlg.h"
+#include "knotesglobalconfig.h"
 #include "knoteslegacy.h"
 #include "knotesnetrecv.h"
 
 #include "knotes/resourcemanager.h"
-
-#define ATNOTES_PORT 24837
 
 
 int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 )
@@ -124,13 +123,11 @@ KNotesApp::KNotesApp()
 
     kapp->installEventFilter( this );
 
-    // TODO: make listening and port configurable
-    m_listener = new KExtendedSocket(
-            QString::null, ATNOTES_PORT,
-            KExtendedSocket::passiveSocket | KExtendedSocket::inetSocket
-    );
+    // create the socket and possibly start listening for connections
+    m_listener = new KExtendedSocket();
+    m_listener->setSocketFlags( KExtendedSocket::passiveSocket | KExtendedSocket::inetSocket );
     connect( m_listener, SIGNAL(readyAccept()), SLOT(acceptConnection()) );
-    m_listener->listen();
+    updateNetworkListener();
 
     if ( m_noteList.count() == 0 && !kapp->isRestored() )
         newNote();
@@ -375,6 +372,7 @@ void KNotesApp::slotPreferences()
     // create a new preferences dialog...
     KNoteConfigDlg *dialog = new KNoteConfigDlg( m_defaultConfig,
             i18n("Default Settings"), true, this, "KNotes Default Settings" );
+    connect( dialog, SIGNAL(settingsChanged()), this, SLOT(updateNetworkListener()) );
     dialog->show();
 }
 
@@ -511,6 +509,17 @@ void KNotesApp::updateGlobalAccels()
         action = actionCollection()->action( "new_note_clipboard" );
         if ( action )
             action->setShortcut( 0 );
+    }
+}
+
+void KNotesApp::updateNetworkListener()
+{
+    m_listener->reset();
+
+    if ( KNotesGlobalConfig::receiveNotes() )
+    {
+        m_listener->setPort( KNotesGlobalConfig::port() );
+        m_listener->listen();
     }
 }
 

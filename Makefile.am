@@ -11,8 +11,8 @@ noinst_HEADERS  = knotesapp.h knote.h knoteedit.h knotebutton.h knoteconfigdlg.h
 
 noinst_LTLIBRARIES = libknotes.la
 libknotes_la_SOURCES = knotesapp.cpp knote.cpp knoteedit.cpp knotebutton.cpp \
-							  knoteconfigdlg.cpp knoteconfig.kcfgc KNotesIface.skel \
-							  knoteslegacy.cpp \
+							  knoteconfigdlg.cpp knoteconfig.kcfgc knotesglobalconfig.kcfgc \
+							  KNotesIface.skel knoteslegacy.cpp \
 							  resourcemanager.cpp resourcenotes.cpp resourcelocal.cpp \
 							  knotesnetrecv.cpp knotesnetsend.cpp knotehostdlg.cpp
 
@@ -29,7 +29,7 @@ knotes_local_la_LIBADD  = libknotes.la $(top_builddir)/libkcal/libkcal.la -lkdep
 METASOURCES     = AUTO
 
 xdg_apps_DATA   = knotes.desktop
-kde_kcfg_DATA   = knotes.kcfg
+kde_kcfg_DATA   = knotes.kcfg knotesglobalconfig.kcfg
 
 ui_DATA         = knotesui.rc
 uidir           = $(kde_datadir)/knotes

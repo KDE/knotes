@@ -2,13 +2,6 @@
 <!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
 <kcfg>
   <kcfgfile arg="true"/>
-  <include>kwin.h</include>
-
-  <group name="Actions">
-    <entry name="MailAction" type="String" key="mail">
-      <default>kmail --subject %t --body %f</default>
-    </entry>
-  </group>
 
   <group name="Display">
     <entry name="BgColor" type="Color" key="bgcolor">

@@ -43,26 +43,23 @@
 #include <kcombobox.h>
 
 #include "knotehostdlg.h"
+#include "knotesglobalconfig.h"
 
 
 KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent, const char *name )
     : KDialogBase( parent, name, true, caption, Ok|Cancel, Ok, true )
 {
     QVBox *page = makeVBoxMainWidget();
-    (void)new QLabel( i18n("Please enter the hostname/IP address:"), page );
+    (void)new QLabel( i18n("Hostname or IP address:"), page );
 
     m_hostCombo = new KHistoryCombo( true, page );
     m_hostCombo->setMinimumWidth( fontMetrics().maxWidth() * 15 );
     m_hostCombo->setDuplicatesEnabled( false );
-#if 0
-    // Get used hosts from the configfile TODO: use KConfig XT
-    KSimpleConfig config( "knotesglobalrc", true );
-    config.setGroup( "Network" );
-    //QStringList list = config.readListEntry( "Host Completions" );
-    //m_hostCombo->completionObject()->setItems( list );
-    QStringList list = config.readListEntry( "Hosts" );
-    m_hostCombo->setHistoryItems( list, true );
-#endif
+
+    // Read known hosts from configfile
+    m_hostCombo->setHistoryItems( KNotesGlobalConfig::knownHosts(), true );
+    //m_hostCombo->completionObject()->setItems( KNotesGlobalConfig::hostCompletions() );
+
     m_hostCombo->setFocus();
 }
 
@@ -70,13 +67,10 @@ KNoteHostDlg::~KNoteHostDlg()
 {
     if ( result() == Accepted )
         m_hostCombo->addToHistory( m_hostCombo->currentText().stripWhiteSpace() );
-#if 0
-    // Save used hostnames to configfile
-    KSimpleConfig config( "knotesglobalrc", false );
-    config.setGroup( "Network" );
-    //config.writeEntry( "Host Completions", m_hostCombo->completionObject()->items() );
-    config.writeEntry( "Hosts", m_hostCombo->historyItems() );
-#endif
+
+    // Write known hosts to configfile
+    KNotesGlobalConfig::setKnownHosts( m_hostCombo->historyItems() );
+    //KNotesGlobalConfig::setHostCompletions( m_hostCombo->completionObject()->items() );
 }
 
 QString KNoteHostDlg::host() const

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
+<kcfg>
+  <kcfgfile name="knotesglobalrc"/>
+
+  <group name="Actions">
+    <entry name="MailAction" type="String">
+      <default>kmail --subject %t --body %f</default>
+    </entry>
+  </group>
+
+  <group name="Network">
+    <entry name="ReceiveNotes" type="Bool">
+      <default>true</default>
+    </entry>
+
+    <entry name="Port" type="UInt">
+      <label>The port KNotes will listen on and send notes to.</label>
+      <default>24837</default>
+    </entry>
+
+    <entry name="KnownHosts" type="StringList"/>
+  </group>
+</kcfg>

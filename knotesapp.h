@@ -103,6 +103,7 @@ private slots:
     void saveNotes();
     void updateNoteActions();
     void updateGlobalAccels();
+    void updateNetworkListener();
 
     void createNote( KCal::Journal *journal );
 

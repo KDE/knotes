@@ -54,6 +54,7 @@
 #include "knotebutton.h"
 #include "knoteedit.h"
 #include "knoteconfig.h"
+#include "knotesglobalconfig.h"
 #include "knoteconfigdlg.h"
 #include "knotehostdlg.h"
 #include "knotesnetsend.h"
@@ -469,7 +470,7 @@ void KNote::slotMail()
     }
 
     // get the mail action command
-    QStringList cmd_list = QStringList::split( QChar(' '), m_config->mailAction() );
+    QStringList cmd_list = QStringList::split( QChar(' '), KNotesGlobalConfig::mailAction() );
 
     KProcess mail;
     for ( QStringList::Iterator it = cmd_list.begin();

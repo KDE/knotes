@@ -42,6 +42,7 @@ protected:
     void makeDisplayPage( bool defaults );
     void makeEditorPage();
     void makeActionsPage();
+    void makeNetworkPage();
 };
 
 #endif
