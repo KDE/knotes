@@ -98,6 +98,7 @@ private slots:
     void slotSend();
     void slotMail();
     void slotPrint();
+    void slotSaveAs();
     void slotInsDate();
     void slotPreferences();
     void slotPopupActionToDesktop( int id );
@@ -112,6 +113,8 @@ private:
     void updateLayout();
     void updateLabelAlignment();
     void setColor( const QColor&, const QColor& );
+
+    QString toPlainText( const QString& );
 
 private:
     QLabel        *m_label;

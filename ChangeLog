@@ -1,6 +1,12 @@
 ChangeLog for KNotes
 ====================
 
+2004/08/28  Michael Brade <brade@kde.org>
+
+    * fixed #71593, #86711: add the possibility to save a note to a file, either
+      in plain text or rich text format. Initial patch by Jakob Schroeter,
+      js AT camaya DOT net, thanks!
+
 2004/08/27  Michael Brade <brade@kde.org>
 
     * fixed #50104, #75485: finally (!) use KWin to move the note windows. Thanks

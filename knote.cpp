@@ -27,6 +27,8 @@
 #include <qpaintdevicemetrics.h>
 #include <qsimplerichtext.h>
 #include <qobjectlist.h>
+#include <qfile.h>
+#include <qcheckbox.h>
 
 #include <kapplication.h>
 #include <kdebug.h>
@@ -48,6 +50,7 @@
 #include <kinputdialog.h>
 #include <kmdcodec.h>
 #include <kglobalsettings.h>
+#include <kfiledialog.h>
 #include <kio/netaccess.h>
 
 #include <libkcal/journal.h>
@@ -93,7 +96,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     }
 
     // create the menu items for the note - not the editor...
-    // rename, mail, print, insert date, close, delete, new note
+    // rename, mail, print, save as, insert date, close, delete, new note
     new KAction( i18n("New"), "filenew", 0,
         this, SIGNAL(sigRequestNewNote()), actionCollection(), "new_note" );
     new KAction( i18n("Rename..."), "text", 0,
@@ -109,6 +112,8 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
         this, SLOT(slotSend()), actionCollection(), "send_note" );
     new KAction( i18n("Mail..."), "mail_send", 0,
         this, SLOT(slotMail()), actionCollection(), "mail_note" );
+    new KAction( i18n("Save As..."), "filesaveas", 0,
+        this, SLOT(slotSaveAs()), actionCollection(), "save_note" );
     KStdAction::print( this, SLOT(slotPrint()), actionCollection(), "print_note" );
     new KAction( i18n("Preferences..."), "configure", 0,
         this, SLOT(slotPreferences()), actionCollection(), "configure_note" );
@@ -500,19 +505,11 @@ void KNote::slotSend()
 
 void KNote::slotMail()
 {
-    saveData();
-
     QString msg_body = m_editor->text();
 
     // convert rich text to plain text first
     if ( m_editor->textFormat() == RichText )
-    {
-        QTextEdit conv;
-        conv.setTextFormat( RichText );
-        conv.setText( msg_body );
-        conv.setTextFormat( PlainText );
-        msg_body = conv.text();
-    }
+        msg_body = toPlainText( msg_body );
 
     // get the mail action command
     QStringList cmd_list = QStringList::split( QChar(' '), KNotesGlobalConfig::mailAction() );
@@ -591,6 +588,38 @@ void KNote::slotPrint()
         }
 
         painter.end();
+    }
+}
+
+void KNote::slotSaveAs()
+{
+    QString msg_body = m_editor->text();
+    QCheckBox *convert = 0;
+
+    if ( m_editor->textFormat() == RichText )
+    {
+        convert = new QCheckBox( 0 );
+        convert->setText( i18n("Save note as plain text") );
+    }
+
+    KFileDialog dlg( QString::null, QString::null, this, "filedialog", true, convert );
+    dlg.setOperationMode( KFileDialog::Saving );
+    dlg.setCaption( i18n("Save As") );
+    dlg.exec();
+
+    QString fileName = dlg.selectedFile();
+    if ( fileName.isEmpty() )
+        return;
+
+    // convert rich text to plain text first
+    if ( convert && convert->isChecked() )
+        msg_body = toPlainText( msg_body );
+
+    QFile file( fileName );
+    if ( file.open( IO_WriteOnly ) )
+    {
+        QTextStream stream( &file );
+        stream << msg_body;
     }
 }
 
@@ -684,6 +713,15 @@ void KNote::slotUpdateDesktopActions()
 
 
 // -------------------- private methods -------------------- //
+
+QString KNote::toPlainText( const QString& text )
+{
+    QTextEdit conv;
+    conv.setTextFormat( RichText );
+    conv.setText( text );
+    conv.setTextFormat( PlainText );
+    return conv.text();
+}
 
 void KNote::setColor( const QColor &fg, const QColor &bg )
 {
