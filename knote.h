@@ -27,6 +27,7 @@
 #include <qpoint.h>
 #include <qcolor.h>
 
+#include <kconfig.h>
 #include <kxmlguiclient.h>
 
 class QLabel;
@@ -132,6 +133,8 @@ private:
     KListAction   *m_toDesktop;
     KToggleAction *m_keepAbove;
     KToggleAction *m_keepBelow;
+
+    KSharedConfig::Ptr m_kwinConf;
 };
 
 #endif

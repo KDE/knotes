@@ -1,6 +1,10 @@
 ChangeLog for KNotes
 ====================
 
+2004/09/27  Michael Brade <brade@kde.org>
+
+    * no compile-time dependency on kdebase allowed, so read kwinrc directly
+
 2004/08/31  Michael Brade <brade@kde.org>
 
     * now KNotes always saves the desktop of its notes since this is what one

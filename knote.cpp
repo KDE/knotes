@@ -44,7 +44,6 @@
 #include <kprinter.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
-#include <ksimpleconfig.h>
 #include <kmessagebox.h>
 #include <kprocess.h>
 #include <kinputdialog.h>
@@ -67,9 +66,6 @@
 
 #include <kwin.h>
 #include <netwm.h>
-#ifdef KDEPIM_CAN_DEPEND_ON_BASE
-#include <kdecoration.h>
-#endif
 
 #include <fixx11h.h>
 
@@ -80,8 +76,8 @@ extern Time qt_x_time;
 
 KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *name )
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorder | WDestructiveClose ),
-    m_label( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ),
-    m_config( 0 ), m_journal( j )
+    m_label( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ), m_config( 0 ),
+    m_journal( j ), m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) )
 {
     // be explicit
     KWin::setIcons( winId(), kapp->icon(), kapp->miniIcon() );
@@ -840,10 +836,9 @@ void KNote::updateLayout()
     static const int border = 2;
     bool closeLeft = false;
 
-#ifdef KDEPIM_CAN_DEPEND_ON_BASE
-    if ( KDecoration::options()->customButtonPositions() )
-        closeLeft = KDecoration::options()->titleButtonsLeft().find( 'X' ) > -1;
-#endif
+    m_kwinConf->setGroup( "Style" );
+    if ( m_kwinConf->readBoolEntry( "CustomButtonPositions" ) )
+        closeLeft = m_kwinConf->readEntry( "ButtonsOnLeft" ).find( 'X' ) > -1;
 
     m_button->setGeometry(
         closeLeft ? frameRect().x() + border

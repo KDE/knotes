@@ -37,9 +37,6 @@
 #include <ksimpleconfig.h>
 #include <kwin.h>
 #include <kextsock.h>
-#ifdef KDEPIM_CAN_DEPEND_ON_BASE
-#include <kdecoration_p.h>
-#endif
 
 #include <libkcal/journal.h>
 #include <libkcal/calendarlocal.h>
@@ -80,31 +77,6 @@ private:
     KKeyChooser *m_keyChooser;
 };
 
-#ifdef KDEPIM_CAN_DEPEND_ON_BASE
-class KDecorationOptionsImpl : public KDecorationOptions
-{
-public:
-    KDecorationOptionsImpl()
-    {
-        d = new KDecorationOptionsPrivate;
-        d->defaultKWinSettings();
-        updateSettings();
-    }
-
-    virtual ~KDecorationOptionsImpl()
-    {
-        delete d;
-    }
-
-    virtual unsigned long updateSettings()
-    {
-        KConfig cfg( "kwinrc", true );
-        unsigned long changed = 0;
-        changed |= d->updateKWinSettings( &cfg );
-        return changed;
-    }
-};
-#endif
 
 int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 )
 {
@@ -116,12 +88,7 @@ int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrColle
 
 KNotesApp::KNotesApp()
     : DCOPObject("KNotesIface"), QLabel( 0, 0, WType_TopLevel ),
-      m_listener( 0 ),
-#ifdef KDEPIM_CAN_DEPEND_ON_BASE
-      m_decoration( new KDecorationOptionsImpl )
-#else
-      m_decoration( 0 )
-#endif
+      m_listener( 0 )
 {
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
@@ -233,7 +200,6 @@ KNotesApp::~KNotesApp()
     delete m_listener;
     delete m_manager;
     delete m_guiBuilder;
-    delete m_decoration;
 }
 
 bool KNotesApp::commitData( QSessionManager& )

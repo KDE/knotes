@@ -41,7 +41,6 @@ class KXMLGUIFactory;
 class KXMLGUIBuilder;
 class KExtendedSocket;
 class KNotesResourceManager;
-class KDecorationOptionsImpl;
 
 namespace KCal {
     class Journal;
@@ -134,8 +133,6 @@ private:
     KXMLGUIBuilder  *m_guiBuilder;
 
     QDomDocument    m_noteGUI;
-
-    KDecorationOptionsImpl *m_decoration;
 };
 
 #endif
