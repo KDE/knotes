@@ -34,7 +34,6 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
-#include <kio/netaccess.h>
 
 #include <libkcal/icalformat.h>
 
@@ -80,27 +79,14 @@ bool ResourceLocal::load()
 bool ResourceLocal::save()
 {
     QString file = KGlobal::dirs()->saveLocation( "appdata" ) + "notes.ics";
-    QString backup = file + "~";
 
-    // if the backup fails don't even try to save the current notes
-    // (might just destroy the file that's already there)
-
-    if ( KIO::NetAccess::exists( KURL( file ), true, 0 ) &&
-         !KIO::NetAccess::file_copy( KURL( file ), KURL( backup ), -1, true ) )
-    {
-        KMessageBox::error( 0,
-                            i18n("<qt>Unable to save the notes backup to "
-                                 "<b>%1</b>. Check that there is sufficient "
-                                 "disk space.</qt>").arg( backup ) );
-        return false;
-    }
-    else if ( !mCalendar.save( file, new KCal::ICalFormat() ) )
+    if ( !mCalendar.save( file, new KCal::ICalFormat() ) )
     {
         KMessageBox::error( 0,
                             i18n("<qt>Unable to save the notes to <b>%1</b>. "
                                  "Check that there is sufficient disk space."
-                                 "<br>There should be a backup in <b>%2</b> "
-                                 "though.</qt>").arg( file ).arg( backup ) );
+                                 "<br>There should be a backup in the same directory "
+                                 "though.</qt>").arg( file ) );
         return false;
     }
 

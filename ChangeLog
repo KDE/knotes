@@ -1,6 +1,12 @@
 ChangeLog for KNotes
 ====================
 
+2004/05/02  Michael Brade <brade@kde.org>
+
+    * Most probably fix a bug that freezed KNotes every now and then: file_copy
+      was called twice for some reason. Remove it altogether since ICalFormat
+      does backups for about a year already. Thanks to David for the hint!
+
 2004/04/27  Michael Brade <brade@kde.org>
 
     * more work on networking: send and receive note titles and sender name,

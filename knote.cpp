@@ -179,7 +179,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
 
     // no config file yet? -> use the default display config if available
     // we want to write to configFile, so use "false"
-    bool newNote = !KIO::NetAccess::exists( KURL( configFile ), false, 0 );
+    bool newNote = !KIO::NetAccess::exists( KURL::fromPathOrURL( configFile ), false, 0 );
 
     m_config = new KNoteConfig( KSharedConfig::openConfig( configFile, false, false ) );
     m_config->readConfig();
@@ -288,7 +288,7 @@ void KNote::slotKill( bool force )
     QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
     configFile += m_journal->uid();
 
-    if ( !KIO::NetAccess::del( KURL( configFile ), this ) )
+    if ( !KIO::NetAccess::del( KURL::fromPathOrURL( configFile ), this ) )
         kdError(5500) << "Can't remove the note config: " << configFile << endl;
 
     emit sigKillNote( m_journal );
