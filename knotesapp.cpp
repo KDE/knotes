@@ -45,7 +45,6 @@ KNotesApp::	KNotesApp()
 	//create the dock widget....
 	setPixmap( KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Desktop ) );
 	KPopupMenu* menu = contextMenu();
-	menu->insertTitle( SmallIcon("knotes"), i18n("Knotes Options") );
 	menu->insertItem( i18n("New Note"), this, SLOT(slotNewNote(int)) );
 	menu->insertItem( i18n("Preferences..."), this, SLOT(slotPreferences(int)) );		
 	
