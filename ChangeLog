@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2001/07/11  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * fixed #28627 (%t in Mail Action)
+    * started to fix #23567 (printing)
+
 2001/07/09  Michael Brade <brade@informatik.uni-muenchen.de>
 
     * don't reread the knotesui.rc all the time a new note is created

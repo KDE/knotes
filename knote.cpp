@@ -18,11 +18,6 @@
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 *******************************************************************/
 
-#include "knote.h"
-#include "knotebutton.h"
-#include "knoteedit.h"
-#include "knoteconfigdlg.h"
-
 #include <qlabel.h>
 #include <qsizegrip.h>
 #include <qpalette.h>
@@ -31,6 +26,7 @@
 #include <qtextstream.h>
 #include <qbitmap.h>
 #include <qpointarray.h>
+#include <qpaintdevicemetrics.h>
 
 #include <kaction.h>
 #include <kstdaction.h>
@@ -48,6 +44,13 @@
 #include <kpopupmenu.h>
 #include <kmdcodec.h>
 #include <kio/netaccess.h>
+
+#include "knote.h"
+#include "knotebutton.h"
+#include "knoteedit.h"
+#include "knoteconfigdlg.h"
+#include "qsimplerichtext.h"
+
 #include <kwin.h>
 #include <netwm.h>
 
@@ -58,6 +61,7 @@
 #ifdef FocusOut
 #undef FocusOut
 #endif
+
 
 // -------------------- Initialisation -------------------- //
 KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& file,
@@ -461,46 +465,72 @@ void KNote::slotMail() const
     }
 
     if ( !mail.start( KProcess::DontCare ) )
+    {
+        // TODO: use KMessageBox!
         kdDebug() << "could not start process" << endl;
+    }
 }
 
 void KNote::slotPrint() const
 {
     saveData();
 
-    KSimpleConfig config( m_noteDir.absFilePath( m_configFile ), true );
     KPrinter printer;
+    printer.setFullPage( true );
 
     if ( printer.setup() )
     {
-        config.setGroup( "Actions" );
-        QString printstr = config.readEntry(
-                              "print",
-                              "a2ps -P %p -1 --center-title=%t --underlay=KDE %f"
-                           );
+        KSimpleConfig config( m_noteDir.absFilePath( m_configFile ), true );
 
-        QString printername = printer.printerName();
-        QString title = m_label->text();
-        QString datafile = m_noteDir.absFilePath( "." + m_configFile + "_data" );
+        QPainter painter;
+        painter.begin( &printer );
 
-        QStringList cmd_list = QStringList::split( QChar(' '), printstr );
-        KProcess printjob;
-        for ( QStringList::Iterator it = cmd_list.begin();
-            it != cmd_list.end(); ++it )
-        {
-            if ( *it == "%p" )
-                printjob << printername;
-            else if ( *it == "%t" )
-                printjob << title;
-            else if ( *it == "%f" )
-                printjob << datafile;
-            else
-                printjob << *it;
+        // TODO
+        const int margin = 40;  // pt
+        QFont font( "helvetica" );
+        font = config.readFontEntry( "font", &font );
+
+        QPaintDeviceMetrics metrics( painter.device() );
+        int marginX = margin * metrics.logicalDpiX() / 72;
+        int marginY = margin * metrics.logicalDpiY() / 72;
+
+        QRect body( marginX, marginY,
+                    metrics.width() - marginX * 2,
+                    metrics.height() - marginY * 2 );
+
+        Qt3::QSimpleRichText richText( m_editor->text(),
+                                  font,               // TODO: ehhm?? correct?
+                                  m_editor->context(),
+                                  m_editor->styleSheet(),
+                                  m_editor->mimeSourceFactory(),
+                                  body.height() );
+
+        richText.setWidth( &painter, body.width() );
+
+        QRect view( body );
+
+        int page = 1;
+        for (;;) {
+            richText.draw( &painter, body.left(), body.top(), view, colorGroup() );
+
+            view.moveBy( 0, body.height() );
+            painter.translate( 0 , -body.height() );
+
+            // page numbers
+            painter.setFont( font );
+            painter.drawText(
+                view.right() - painter.fontMetrics().width( QString::number( page ) ),
+                view.bottom() + painter.fontMetrics().ascent() + 5, QString::number( page )
+            );
+
+            if ( view.top()  >= richText.height() )
+                break;
+
+            printer.newPage();
+            page++;
         }
 
-        bool result = printjob.start( KProcess::Block, KProcess::NoCommunication );
-        if ( !result )
-            kdDebug() << "printing failed" << endl;
+        painter.end();
     }
 }
 
