@@ -1179,7 +1179,7 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
 void KPostit::set3DFrame(){
   
   frame3d = TRUE;
-  //  options->changeItem("No Frame",frame3dID);
+  options->changeItem("No Frame",frame3dID);
   options->setItemChecked(frame3dID,TRUE);
   //  edit->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
   KWM::setDecoration(winId(), 2); 
@@ -1189,7 +1189,7 @@ void KPostit::set3DFrame(){
 void KPostit::setNoFrame(){
 
   frame3d = FALSE;
-  //  options->changeItem("3D Frame",frame3dID);
+  options->changeItem("3D Frame",frame3dID);
   options->setItemChecked(frame3dID,FALSE);
   //  edit->setFrameStyle(QFrame::NoFrame);
   KWM::setDecoration(winId(), 0); 
