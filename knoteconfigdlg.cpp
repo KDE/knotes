@@ -33,32 +33,32 @@
 
 #include "knote.h"
 #include "knoteconfigdlg.h"
-#include "knoteconfig.h"
 #include "knotesglobalconfig.h"
 #include "version.h"
 
 
 KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
-        bool defaults, QWidget *parent, const char *name )
-    : KConfigDialog( parent, name, config, IconList,
-                     defaults ? Default|Ok|Cancel : Default|Ok|Apply|Cancel, Ok )
+        QWidget *parent, const char *name )
+    : KConfigDialog( parent, name, config ? config : KNotesGlobalConfig::self(), IconList,
+                     config ? Default|Ok|Apply|Cancel : Default|Ok|Cancel, Ok )
 {
     setCaption( title );
     setIcon( SmallIcon( "knotes" ) );
 
     setIconListAllVisible( true );
 
-    config->readConfig();
-    config->setVersion( KNOTES_VERSION );
-
-    makeDisplayPage( defaults );
+    makeDisplayPage( !config );
     makeEditorPage();
 
-    if ( defaults )
+    if ( !config )
     {
         makeActionsPage();
         makeNetworkPage();
+        config = KNotesGlobalConfig::self();
     }
+
+    config->readConfig();
+    config->setVersion( KNOTES_VERSION );
 }
 
 KNoteConfigDlg::~KNoteConfigDlg()
@@ -173,8 +173,7 @@ void KNoteConfigDlg::makeActionsPage()
     KSeparator *separator = new KSeparator( Horizontal, actionsPage );
     layout->addMultiCellWidget( separator, 2, 2, 0, 1 );
 
-    addPage( actionsPage, KNotesGlobalConfig::self(),
-             i18n("Actions"), "misc", i18n("Action Settings") );
+    addPage( actionsPage, i18n("Actions"), "misc", i18n("Action Settings") );
 }
 
 void KNoteConfigDlg::makeNetworkPage()
@@ -197,8 +196,7 @@ void KNoteConfigDlg::makeNetworkPage()
     KSeparator *separator = new KSeparator( Horizontal, networkPage );
     layout->addMultiCellWidget( separator, 3, 3, 0, 1 );
 
-    addPage( networkPage, KNotesGlobalConfig::self(),
-             i18n("Network"), "network", i18n("Network Settings") );
+    addPage( networkPage, i18n("Network"), "network", i18n("Network Settings") );
 }
 
 

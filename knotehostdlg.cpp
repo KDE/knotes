@@ -71,6 +71,7 @@ KNoteHostDlg::~KNoteHostDlg()
     // Write known hosts to configfile
     KNotesGlobalConfig::setKnownHosts( m_hostCombo->historyItems() );
     //KNotesGlobalConfig::setHostCompletions( m_hostCombo->completionObject()->items() );
+    KNotesGlobalConfig::writeConfig();
 }
 
 QString KNoteHostDlg::host() const

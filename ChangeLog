@@ -1,6 +1,25 @@
 ChangeLog for KNotes
 ====================
 
+2004/04/20  Michael Brade <brade@kde.org>
+
+    * revert dependency on kdelibs-HEAD, we need KDE 3.2.x for the KDE PIM 3.3
+      release
+    * add a hack to work around inconsistency/limitation in KConfig XT:
+      it is not possible to make one KCXT-generated class inherit another
+      one due to CTOR-incompatibilites. The hack installs a CustomAddition
+      and simply provides a copied&pasted CTOR from the generated code with
+      adapted arguments (none, actually).
+    * so now KNotesGlobalConfig inherits KNoteConfig and the global config
+      dialog needs only one KConfigSkeleton---the former one
+    * due to the last point it is now possible (and needed) to not simply copy
+      the knotesrc for new notes but rather just copy part of KNotesGlobalConfig
+      into the new KNoteConfig object. And boy, this makes creation of new notes
+      *heaps* faster, even on my PIV1800! (I guess everything has its good side)
+    * and last, another good thing about this: knotesglobalrc is dead and the
+      MailAction is back to knotesrc again, so no incompatibilites with "old"
+      KNotes versions :)
+
 2004/04/19  Michael Brade <brade@kde.org>
 
     * added configuration of network settings:

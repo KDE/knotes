@@ -171,24 +171,38 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     // the config file location
     QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
     configFile += m_journal->uid();
-    KURL dst( configFile );
 
     // no config file yet? -> use the default display config if available
     // we want to write to configFile, so use "false"
-    if ( !KIO::NetAccess::exists( dst, false, 0 ) )
-    {
-        // use saveLocation since it's the user's default and not the
-        // system's default (i.e., KNotes has to have write permission)
-        KURL src( KGlobal::dirs()->saveLocation( "config" ) + "knotesrc" );
-
-        // "fill" the config file with the default config
-        if ( KIO::NetAccess::exists( src, true, 0 ) )
-            KIO::NetAccess::file_copy( src, dst, -1, true, false, 0 );
-    }
+    bool newNote = !KIO::NetAccess::exists( KURL( configFile ), false, 0 );
 
     m_config = new KNoteConfig( KSharedConfig::openConfig( configFile, false, false ) );
     m_config->readConfig();
     m_config->setVersion( KNOTES_VERSION );
+
+    if ( newNote )
+    {
+        // until kdelibs provides copying of KConfigSkeletons (KDE 3.3)
+        KNotesGlobalConfig *globalConfig = KNotesGlobalConfig::self();
+        m_config->setBgColor( globalConfig->bgColor() );
+        m_config->setFgColor( globalConfig->fgColor() );
+        m_config->setWidth( globalConfig->width() );
+        m_config->setHeight( globalConfig->height() );
+
+        m_config->setFont( globalConfig->font() );
+        m_config->setTitleFont( globalConfig->titleFont() );
+        m_config->setAutoIndent( globalConfig->autoIndent() );
+        m_config->setRichText( globalConfig->richText() );
+        m_config->setTabSize( globalConfig->tabSize() );
+
+        m_config->setDesktop( globalConfig->desktop() );
+        m_config->setPosition( globalConfig->position() );
+        m_config->setShowInTaskbar( globalConfig->showInTaskbar() );
+        m_config->setKeepAbove( globalConfig->keepAbove() );
+        m_config->setKeepBelow( globalConfig->keepBelow() );
+
+        m_config->writeConfig();
+    }
 
     // load the display configuration of the note
     width = m_config->width();
@@ -269,7 +283,7 @@ void KNote::slotKill( bool force )
     QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
     configFile += m_journal->uid();
 
-    if ( !KIO::NetAccess::del( KURL(configFile), this ) )
+    if ( !KIO::NetAccess::del( KURL( configFile ), this ) )
         kdError(5500) << "Can't remove the note config: " << configFile << endl;
 
     emit sigKillNote( m_journal );
@@ -426,8 +440,7 @@ void KNote::slotPreferences()
         return;
 
     // create a new preferences dialog...
-    KNoteConfigDlg *dialog = new KNoteConfigDlg( m_config, name(), false, this,
-                                                 noteId().utf8() );
+    KNoteConfigDlg *dialog = new KNoteConfigDlg( m_config, name(), this, noteId().utf8() );
     connect( dialog, SIGNAL(settingsChanged()), this, SLOT(slotApplyConfig()) );
     connect( this, SIGNAL(sigNameChanged()), dialog, SLOT(slotUpdateCaption()) );
     dialog->show();

@@ -61,7 +61,7 @@ int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrColle
 KNotesApp::KNotesApp()
     : DCOPObject("KNotesIface"), QLabel( 0, 0, WType_TopLevel ),
       KXMLGUIBuilder( this ),
-      m_defaultConfig( 0 ), m_listener( 0 )
+      m_listener( 0 )
 {
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
@@ -142,7 +142,6 @@ KNotesApp::~KNotesApp()
     blockSignals( false );
 
     delete m_listener;
-    delete m_defaultConfig;
     delete m_manager;
 }
 
@@ -361,17 +360,9 @@ void KNotesApp::slotPreferences()
     if ( KNoteConfigDlg::showDialog( "KNotes Default Settings" ) )
         return;
 
-    // create the KNoteConfig if needed
-    if ( !m_defaultConfig )
-    {
-        QString configFile = KGlobal::dirs()->saveLocation( "config" ) + "knotesrc";
-        KSharedConfig::Ptr config = KSharedConfig::openConfig( configFile, false, false );
-        m_defaultConfig = new KNoteConfig( config );
-    }
-
     // create a new preferences dialog...
-    KNoteConfigDlg *dialog = new KNoteConfigDlg( m_defaultConfig,
-            i18n("Default Settings"), true, this, "KNotes Default Settings" );
+    KNoteConfigDlg *dialog = new KNoteConfigDlg( 0, i18n("Default Settings"), this,
+                                                 "KNotes Default Settings" );
     connect( dialog, SIGNAL(settingsChanged()), this, SLOT(updateNetworkListener()) );
     dialog->show();
 }

@@ -33,7 +33,6 @@
 #include "KNotesIface.h"
 
 class KNote;
-class KNoteConfig;
 class KPopupMenu;
 class KAction;
 class KActionMenu;
@@ -115,7 +114,6 @@ private:
     };
 
     KNotesResourceManager *m_manager;
-    KNoteConfig     *m_defaultConfig;
 
     KExtendedSocket *m_listener;
 
