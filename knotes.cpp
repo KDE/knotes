@@ -1278,7 +1278,7 @@ void KPostit::defaults()
   label->setAlignment(AlignLeft|WordBreak|ExpandTabs);
   label->setText(labelstring.data());
   
-  QString pixdir = mykapp->kdedir() + QString("/share/apps/knotes/pics/");  
+  QString pixdir = mykapp->kde_datadir() + "/knotes/pics/";
 
 
   QPixmap pm((pixdir + "knoteslogo.xpm").data());
