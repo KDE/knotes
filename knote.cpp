@@ -87,8 +87,12 @@ KNote::~KNote()
     if( m_config )
     {
         save();
-        m_config->sync();
+        delete m_config;
     }
+
+    delete m_notedir;
+
+    emit sigKilled(getName());
 }
 
 
@@ -203,7 +207,8 @@ QString KNote::getName()
 {
     if( m_label )
         return m_label->text();
-    else return QString::null;
+    else
+        return m_title;
 }
 
 
@@ -346,7 +351,6 @@ void KNote::slotRename( int /*id*/ )
     //close config, copy old file to new name
     m_config->setGroup( "Data" );
     m_config->writeEntry( "name", newname );
-    m_config->sync();
 
     delete m_config;
     if( !m_notedir->rename( oldname, newname ) )
@@ -401,7 +405,6 @@ void KNote::slotKill( int /*id*/ )
     m_notedir->remove( conf_name );
     m_notedir->remove( "." + conf_name + "_data" );
 
-    emit sigKilled( conf_name );
     close();
 }
 
@@ -472,3 +475,4 @@ void KNote::slotPrint( int /*id*/ )
 }
 
 #include "knote.moc"
+#include "knotebutton.moc"

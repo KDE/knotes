@@ -19,6 +19,9 @@
 KNotesApp::KNotesApp()
     : KSystemTray()
 {
+    // make sure the KNote objects get deleted
+    //m_NoteList.setAutoDelete(true);
+
     //make sure I copy over the knotesrc to a local/writeable file- some
     QString globalConfigFile = KGlobal::dirs()->findResource( "config", "knotesrc" );
     m_defaults = new KConfig( globalConfigFile );
@@ -83,6 +86,8 @@ KNotesApp::KNotesApp()
 
 KNotesApp::~KNotesApp()
 {
+    delete m_defaults;
+
 }
 
 void KNotesApp::copyDefaultConfig( KSimpleConfig* sc )

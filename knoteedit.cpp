@@ -13,6 +13,7 @@ KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
 	setAcceptDrops( TRUE );
 	setBackgroundMode( QWidget::PaletteBase );
 	setFrameStyle( NoFrame );
+        setWordWrap( QMultiLineEdit::WidgetWidth );
 }
 
 
@@ -27,7 +28,7 @@ void KNoteEdit::readFile( QString& filename )
 	if( infile.open( IO_ReadOnly ) )
 	{
 		QTextStream input( &infile );
-	
+
 		for( QString currline = input.readLine();
 	    	 currline != QString::null;
 	     	currline = input.readLine() )
@@ -45,7 +46,7 @@ void KNoteEdit::dumpToFile( QString& filename )
 	if( outfile.open( IO_WriteOnly ) )
 	{
 		QTextStream output( &outfile );
-	
+
 		for( int line = 0; line < numLines(); line++ )
 		{
 			output << textLine( line ) << endl;
@@ -87,7 +88,7 @@ void KNoteEdit::mouseDoubleClickEvent( QMouseEvent* e )
 
 	QString text = markedText();
 	//  kbDebug() << line << column << text;
-	
+
 	//now try to open the marked text???
 }
 

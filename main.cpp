@@ -39,5 +39,8 @@ int main( int argc, char* argv[] )
     KNotesApp* a = new KNotesApp();
     a->show();
 
-    return app.exec();
+    int ret = app.exec();
+
+    delete a;
+    return ret;
 }
