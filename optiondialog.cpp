@@ -34,7 +34,7 @@
 #include "version.h"
 
 
-OptionDialog::OptionDialog( QWidget *parent, char *name, bool modal )
+OptionDialog::OptionDialog( QWidget *parent, const char *name, bool modal )
   :KDialogBase( Tabbed, i18n("Configuration"), Help|Apply|Ok|Cancel,
 		Ok, parent, name, modal )
 {

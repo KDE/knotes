@@ -37,7 +37,7 @@ class OptionDialog : public KDialogBase
   Q_OBJECT
   
   public:
-    OptionDialog( QWidget *parent=0, char *name=0, bool modal=true );
+    OptionDialog( QWidget *parent=0, const char *name=0, bool modal=true );
     ~OptionDialog( void );
 
     void setState( const DefStruct &state );
