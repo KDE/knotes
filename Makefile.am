@@ -20,20 +20,13 @@ knotes_SOURCES	= knotes.cpp  configdlg.cpp fontdlg.cpp mail.cpp alarm.cpp \
 METASOURCES = knotes.moc configdlg.moc fontdlg.moc mail.moc alarm.moc \
 	spin.moc renamedlg.moc docking.moc
 
-kde_icon_DATA = knotes.xpm
+KDE_ICON = knotes
 
 pix_DATA = knoteslogo.xpm knotesclose.xpm
 pixdir = $(kde_datadir)/knotes/pics/
 
 apps_DATA = knotes.desktop
 appsdir = $(kde_appsdir)/Utilities
-
-install-data-local: 
-	$(mkinstalldirs) $(kde_minidir)
-	$(INSTALL_DATA) $(srcdir)/mini-knotes.xpm $(kde_minidir)/knotes.xpm
-	
-uninstall-local:
-	rm -f $(kde_minidir)/knotes.xpm
 
 messages:
 	$(XGETTEXT) -C -ki18n -x $(includedir)/kde.pot $(knotes_SOURCES) && mv messages.po ../po/knotes.pot
