@@ -1129,7 +1129,7 @@ bool KPostit::savenotes(){
   }
   else{
     t << KWM::properties(winId()) <<'\n';
-    //    t2 << KWM::getProperties(winId()) <<'\n';
+    //    t2 << KWM::properties(winId()) <<'\n';
   }
 
   t << backcolor.red() <<'\n';
