@@ -1,6 +1,10 @@
 ChangeLog for KNotes
 ====================
 
+2001/07/13  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * fixed #28879 (titles were not centered)
+
 2001/07/11  Michael Brade <brade@informatik.uni-muenchen.de>
 
     * fixed #28627 (%t in Mail Action)
