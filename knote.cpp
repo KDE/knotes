@@ -37,11 +37,11 @@
 #include <kpopupmenu.h>
 #include <kxmlguifactory.h>
 #include <kcolordrag.h>
+#include <kiconeffect.h>
 #include <kprinter.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <ksimpleconfig.h>
-#include <kiconloader.h>
 #include <kmessagebox.h>
 #include <kprocess.h>
 #include <kinputdialog.h>
@@ -76,6 +76,9 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     m_label( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ),
     m_config( 0 ), m_journal( j )
 {
+    // be explicit
+    KWin::setIcons( winId(), kapp->icon(), kapp->miniIcon() );
+
     setAcceptDrops( true );
 
     //actionCollection()->setWidget( this );
@@ -679,6 +682,12 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
     QPalette darker = palette();
     darker.setColor( QColorGroup::Button, bg.dark(116) );
     m_button->setPalette( darker );
+
+    // update the icon color
+    KIconEffect effect;
+    QPixmap icon = effect.apply( kapp->icon(), KIconEffect::Colorize, 1, bg, false );
+    QPixmap miniIcon = effect.apply( kapp->miniIcon(), KIconEffect::Colorize, 1, bg, false );
+    KWin::setIcons( winId(), icon, miniIcon );
 
     // to set the color of the title
     updateFocus();

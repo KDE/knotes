@@ -27,7 +27,7 @@
 #include <kxmlguifactory.h>
 #include <ksystemtray.h>
 #include <klocale.h>
-#include <kiconloader.h>
+#include <kiconeffect.h>
 #include <kstandarddirs.h>
 #include <kpopupmenu.h>
 #include <khelpmenu.h>
@@ -462,9 +462,10 @@ void KNotesApp::updateNoteActions()
                                        KShortcut(), this, SLOT(slotShowNote()),
                                        (QObject *)0,
                                        it.current()->noteId().utf8() );
-        QPixmap pix( 16, 16 );
-        pix.fill( it.current()->paletteBackgroundColor() );
-        action->setIconSet( pix );
+        KIconEffect effect;
+        QPixmap icon = effect.apply( kapp->miniIcon(), KIconEffect::Colorize, 1,
+                                     it.current()->paletteBackgroundColor(), false );
+        action->setIconSet( icon );
         m_noteActions.append( action );
     }
 
