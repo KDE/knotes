@@ -14,7 +14,7 @@ INSTALL_DIR = $(install) -d -m 0755
 
 ###################################################################
 
-CXXFLAGS=	@CXXFLAGS@  -DHAVE_CONFIG_H -I..
+CXXFLAGS=	@CXXFLAGS@  -DHAVE_CONFIG_H -I.. -I.
 LDFLAGS	=	@LDFLAGS@ @all_libraries@ -lkfm -lkdecore -lkdeui -lqt -lm -lXext -lX11
 INCDIR	=	@all_includes@
 CXX	=	@CXX@
