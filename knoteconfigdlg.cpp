@@ -29,9 +29,12 @@
 #include <klineedit.h>
 #include <kfontdialog.h>
 #include <kiconloader.h>
+#include <kseparator.h>
 
 #include "knoteconfigdlg.h"
 #include "version.h"
+
+#include <netwm.h>
 
 KNoteConfigDlg::KNoteConfigDlg( const QString& configfile, const QString& title,
             bool global, QWidget* parent, const char* name )
@@ -62,7 +65,7 @@ void KNoteConfigDlg::makeDisplayPage()
 
     // set layout - top level is the QVBoxLayout...
     QVBoxLayout* topLevel = new QVBoxLayout( displayPage, 0, spacingHint() );
-    QGridLayout* glay     = new QGridLayout( topLevel, 5, 3 );
+    QGridLayout* glay     = new QGridLayout( topLevel, 6, 3 );
     glay->setColStretch( 1, 1 );
 
     QLabel* l_fgcolor = new QLabel( i18n("&Text color:"), displayPage );
@@ -80,10 +83,18 @@ void KNoteConfigDlg::makeDisplayPage()
     l_fgcolor->setBuddy( m_fgColor );
     l_bgcolor->setBuddy( m_bgColor );
 
+    bool check_val = m_config->readBoolEntry( "skipTaskbar", true );
+    m_skipTaskbarSwitch = new QCheckBox( i18n("&Show Note in Taskbar"), displayPage );
+    m_skipTaskbarSwitch->setChecked( !check_val );
+
+    KSeparator *sep = new KSeparator( Horizontal, displayPage );
+
     glay->addWidget( l_fgcolor, 0, 0 );
     glay->addWidget( l_bgcolor, 1, 0 );
     glay->addWidget( m_fgColor, 0, 2 );
     glay->addWidget( m_bgColor, 1, 2 );
+    glay->addMultiCellWidget( sep, 4, 4, 0, 2 );
+    glay->addWidget( m_skipTaskbarSwitch, 5, 0 );
 
     if ( m_global )
     {
@@ -192,6 +203,9 @@ void KNoteConfigDlg::storeSettings()
     {
         m_config->writeEntry( "height", m_heightEdit->value() );
         m_config->writeEntry( "width", m_widthEdit->value() );
+
+        m_config->setGroup( "WindowDisplay" );
+        m_config->writeEntry( "state", !m_skipTaskbarSwitch->isChecked() ? NET::SkipTaskbar : 0 );
     }
 
     // store Editor settings
@@ -219,6 +233,7 @@ void KNoteConfigDlg::slotOk()
     // get data from ls
     storeSettings();
     emit updateConfig();
+    emit skipTaskbar( !m_skipTaskbarSwitch->isChecked() );
 
     accept();
 }
@@ -227,6 +242,7 @@ void KNoteConfigDlg::slotApply()
 {
     storeSettings();
     emit updateConfig();
+    emit skipTaskbar( !m_skipTaskbarSwitch->isChecked() );
 }
 
 void KNoteConfigDlg::slotChangeTitleFont()

@@ -379,6 +379,7 @@ void KNote::slotPreferences()
     // launch preferences dialog...
     KNoteConfigDlg configDlg( m_configFile, i18n("Local Settings"), false );
     connect( &configDlg, SIGNAL(updateConfig()), this, SLOT(slotApplyConfig()) );
+    connect( &configDlg, SIGNAL(skipTaskbar(bool)), this, SLOT(slotSkipTaskbar(bool)) );
     configDlg.exec();
 }
 
@@ -501,7 +502,8 @@ void KNote::slotPrint()
 
         int page = 1;
 
-        for (;;) {
+        for (;;) 
+        {
             text.draw( &painter, body.left(), body.top(), view, colorGroup() );
             view.moveBy( 0, body.height() );
             painter.translate( 0, -body.height() );
@@ -568,6 +570,13 @@ void KNote::slotApplyConfig()
     setColor( fg, bg );
 }
 
+void KNote::slotSkipTaskbar( bool skip )
+{
+    if ( skip )
+        KWin::setState( winId(), KWin::info(winId()).state | NET::SkipTaskbar );
+    else
+        KWin::clearState( winId(), NET::SkipTaskbar );
+}
 
 // -------------------- private methods -------------------- //
 
@@ -611,7 +620,6 @@ void KNote::updateLabelAlignment()
 
 void KNote::updateFocus()
 {
-kdDebug(5500) << k_funcinfo << endl;
     if ( hasFocus() )
     {
         m_label->setBackgroundColor( palette().active().shadow() );
@@ -641,7 +649,6 @@ kdDebug(5500) << k_funcinfo << endl;
 
 void KNote::updateLayout()
 {
-kdDebug(5500) << k_funcinfo << endl;
     // DAMN, Qt 3.1 still has no support for widgets with a fixed aspect ratio :-(
     // So we have to write our own layout manager...
 

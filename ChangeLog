@@ -4,6 +4,8 @@ ChangeLog for KNotes
 2003/06/22  Michael Brade <brade@kde.org>
  
     * fixed #42088: don't loose notes if HD is full, always keep a backup
+    * make it possible to select skip taskbar/not to skip taskbar on a
+      per-note basis
 
 2003/06/17  Michael Brade <brade@kde.org>
 

@@ -57,6 +57,7 @@ protected slots:
 
 signals:
     void updateConfig();
+    void skipTaskbar( bool skip );
 
 private:
     void storeSettings();
@@ -69,6 +70,7 @@ private:
     KColorButton *m_bgColor;
     KIntNumInput *m_widthEdit;
     KIntNumInput *m_heightEdit;
+    QCheckBox    *m_skipTaskbarSwitch;
     
     KIntNumInput *m_tabEdit;
     QCheckBox    *m_autoIndentSwitch;

@@ -97,6 +97,7 @@ protected:
 
 private slots:
     void slotApplyConfig();
+    void slotSkipTaskbar( bool skip );
 
 private:
     void updateFocus();
