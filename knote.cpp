@@ -70,7 +70,7 @@ using namespace KCal;
 KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
               QWidget* parent, const char* name )
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorder | WDestructiveClose ),
-    m_label( 0 ), m_button( 0 ), m_editor( 0 ), m_tool( 0 ), 
+    m_label( 0 ), m_button( 0 ), m_editor( 0 ), m_tool( 0 ),
     m_journal( j )
 {
     // to disable kwin's session management (ie. saving positions of windows) we need to
@@ -80,29 +80,29 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
 
     // create the menu items for the note - not the editor...
     // rename, mail, print, insert date, close, delete, new note
-    new KAction( i18n("New"), "filenew", 0, 
+    new KAction( i18n("New"), "filenew", 0,
         this, SLOT(slotNewNote()), actionCollection(), "new_note" );
-    new KAction( i18n("Rename..."), "text", 0, 
+    new KAction( i18n("Rename..."), "text", 0,
         this, SLOT(slotRename()), actionCollection(), "rename_note" );
-    new KAction( i18n("Hide"), "fileclose" , 0, 
+    new KAction( i18n("Hide"), "fileclose" , 0,
         this, SLOT(slotClose()), actionCollection(), "hide_note" );
-    new KAction( i18n("Delete"), "knotes_delete", 0, 
+    new KAction( i18n("Delete"), "knotes_delete", 0,
         this, SLOT(slotKill()), actionCollection(), "delete_note" );
 
-    new KAction( i18n("Insert Date"), "knotes_date", 0 , 
+    new KAction( i18n("Insert Date"), "knotes_date", 0 ,
         this, SLOT(slotInsDate()), actionCollection(), "insert_date" );
-    new KAction( i18n("Mail..."), "mail_send", 0, 
+    new KAction( i18n("Mail..."), "mail_send", 0,
         this, SLOT(slotMail()), actionCollection(), "mail_note" );
-    new KAction( i18n("Print..."), "fileprint", 0, 
+    new KAction( i18n("Print..."), "fileprint", 0,
         this, SLOT(slotPrint()), actionCollection(), "print_note" );
-    new KAction( i18n("Preferences..."), "configure", 0, 
+    new KAction( i18n("Preferences..."), "configure", 0,
         this, SLOT(slotPreferences()), actionCollection(), "configure_note" );
 
-    m_alwaysOnTop = new KToggleAction( i18n("Always on Top"), "attach", 0, 
+    m_alwaysOnTop = new KToggleAction( i18n("Always on Top"), "attach", 0,
         this, SLOT(slotToggleAlwaysOnTop()), actionCollection(), "always_on_top" );
     connect( m_alwaysOnTop, SIGNAL(toggled(bool)), m_alwaysOnTop, SLOT(setChecked(bool)) );
 
-    m_toDesktop = new KListAction( i18n("To Desktop"), 0, 
+    m_toDesktop = new KListAction( i18n("To Desktop"), 0,
         this, SLOT(slotPopupActionToDesktop(int)), actionCollection(), "to_desktop" );
     connect( m_toDesktop->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(slotUpdateDesktopActions()) );
 
@@ -501,7 +501,7 @@ void KNote::slotPrint()
 
         int page = 1;
 
-        for (;;) 
+        for (;;)
         {
             text.draw( &painter, body.left(), body.top(), view, colorGroup() );
             view.moveBy( 0, body.height() );
@@ -745,7 +745,8 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
             m_pointerOffset = e->pos();
             m_label->grabMouse( sizeAllCursor );
 
-            e->button() == LeftButton ? raise() : lower();
+            e->button() == LeftButton ? KWin::raiseWindow( winId() )
+                                      : KWin::lowerWindow( winId() );
 
             return true;
         }
@@ -781,7 +782,8 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
     {
         if ( ev->type() == QEvent::FocusOut )
         {
-            if ( static_cast<QFocusEvent*>(ev)->reason() != QFocusEvent::Popup )
+            QFocusEvent *fe = static_cast<QFocusEvent *>(ev);
+            if ( fe->reason() != QFocusEvent::Popup && fe->reason() != QFocusEvent::Mouse )
                 updateFocus();
             if ( m_editor->isModified() )
                 saveData();
