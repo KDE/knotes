@@ -55,6 +55,9 @@ public:
 protected:
     virtual void slotOk();
 
+private slots:
+    void slotButtonChanged( int id );
+
 private:
     QButtonGroup  *m_buttons;
     KCal::Journal *m_journal;

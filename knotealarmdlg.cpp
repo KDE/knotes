@@ -68,6 +68,8 @@ KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent, const cha
     m_buttons->insert( label_in );
     m_inTime = new KTimeEdit( in );
     QLabel *in_min = new QLabel( i18n("hours/minutes"), in );
+
+    connect( m_buttons, SIGNAL(clicked( int )), SLOT(slotButtonChanged( int )) );
 }
 
 KNoteAlarmDlg::~KNoteAlarmDlg()
@@ -94,6 +96,29 @@ void KNoteAlarmDlg::setIncidence( KCal::Journal *journal )
     }
     else
         m_buttons->setButton( 0 );
+
+    slotButtonChanged( m_buttons->selectedId() );
+}
+
+void KNoteAlarmDlg::slotButtonChanged( int id )
+{
+    switch ( id )
+    {
+    case 0:
+        m_atDate->setEnabled( false );
+        m_atTime->setEnabled( false );
+        m_inTime->setEnabled( false );
+        break;
+    case 1:
+        m_atDate->setEnabled( true );
+        m_atTime->setEnabled( true );
+        m_inTime->setEnabled( false );
+        break;
+    case 2:
+        m_atDate->setEnabled( false );
+        m_atTime->setEnabled( false );
+        m_inTime->setEnabled( true );
+    }
 }
 
 void KNoteAlarmDlg::slotOk()
