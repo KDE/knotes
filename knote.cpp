@@ -111,7 +111,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
     m_edit_menu = static_cast<KPopupMenu*>(factory->container( "note_edit", this ));
 
     setFocusProxy( m_editor );
-
+    
     // create the resize handle
     m_editor->setCornerWidget( new QSizeGrip( this ) );
     int width = m_editor->cornerWidget()->width();
@@ -597,37 +597,8 @@ void KNote::slotApplyConfig()
     QColor bg = config.readColorEntry( "bgcolor", &(Qt::yellow) );
     QColor fg = config.readColorEntry( "fgcolor", &(Qt::black) );
 
-    QPalette newpalette = palette();
-    newpalette.setColor( QColorGroup::Background, bg );
-    newpalette.setColor( QColorGroup::Foreground, fg );
-    newpalette.setColor( QColorGroup::Base,       bg ); // text background
-    newpalette.setColor( QColorGroup::Text,       fg ); // text color
-
-    // the shadow
-    newpalette.setColor( QColorGroup::Midlight, bg.light(110) );
-    newpalette.setColor( QColorGroup::Shadow, bg.dark(116) );
-    newpalette.setColor( QColorGroup::Light, bg.light(180) );
-    newpalette.setColor( QColorGroup::Dark, bg.dark(108) );
-    setPalette( newpalette );
-
-    // set the text color
-    m_editor->setTextColor( fg );
-
-    // set darker values for the label and button...
-    m_button->setBackgroundColor( bg.dark(116) );
-    if ( hasFocus() )
-    {
-        m_label->setBackgroundColor( bg.dark(116) );
-        m_button->show();
-        m_editor->cornerWidget()->show();
-    }
-    else
-    {
-        m_label->setBackgroundColor( bg );
-        m_button->hide();
-        m_editor->cornerWidget()->hide();
-    }
-
+    setColor( fg, bg );
+    
     emit sigConfigChanged();
 }
 
@@ -688,36 +659,8 @@ void KNote::convertOldConfig()
         blue = input.readLine().toUInt();
         QColor fg = QColor( red, green, blue );
 
-        QPalette newpalette = palette();
-        newpalette.setColor( QColorGroup::Background, bg );
-        newpalette.setColor( QColorGroup::Foreground, fg );
-        newpalette.setColor( QColorGroup::Base,       bg ); // text background
-        newpalette.setColor( QColorGroup::Text,       fg ); // text color
-
-        // the shadow
-        newpalette.setColor( QColorGroup::Midlight, bg.light(110) );
-        newpalette.setColor( QColorGroup::Shadow, bg.dark(116) );
-        newpalette.setColor( QColorGroup::Light, bg.light(180) );
-        newpalette.setColor( QColorGroup::Dark, bg.dark(108) );
-        setPalette( newpalette );
-
-        m_editor->setTextColor( fg );
-
-        // set darker values for the label and button...
-        m_button->setBackgroundColor( bg.dark(116) );
-        if ( hasFocus() )
-        {
-            m_label->setBackgroundColor( bg.dark(116) );
-            m_button->show();
-            m_editor->cornerWidget()->show();
-        }
-        else
-        {
-            m_label->setBackgroundColor( bg );
-            m_button->hide();
-            m_editor->cornerWidget()->hide();
-        }
-
+        setColor( fg, bg );
+        
         // get the font
         QString fontfamily = input.readLine();
         if ( fontfamily.isEmpty() )
@@ -809,25 +752,79 @@ void KNote::convertOldConfig()
         kdDebug(5500) << "could not open input file" << endl;
 }
 
+void KNote::setColor( const QColor &fg, const QColor &bg )
+{
+    QPalette newpalette = palette();
+    newpalette.setColor( QColorGroup::Background, bg );
+    newpalette.setColor( QColorGroup::Foreground, fg );
+    newpalette.setColor( QColorGroup::Base,       bg ); // text background
+    newpalette.setColor( QColorGroup::Text,       fg ); // text color
+
+    // the shadow
+    newpalette.setColor( QColorGroup::Midlight, bg.light(110) );
+    newpalette.setColor( QColorGroup::Shadow, bg.dark(116) );
+    newpalette.setColor( QColorGroup::Light, bg.light(180) );
+    newpalette.setColor( QColorGroup::Dark, bg.dark(108) );
+    setPalette( newpalette );
+
+    // set the text color
+    m_editor->setTextColor( fg );
+
+    // set darker values for the label and button...
+    m_button->setBackgroundColor( palette().active().shadow() );
+    
+    // to set the color of the title
+    updateFocus();
+}
+
+void KNote::updateFocus()
+{
+    if ( hasFocus() )
+    {
+        m_label->setBackgroundColor( palette().active().shadow() );
+        m_button->show();
+        m_editor->cornerWidget()->show();
+    }
+    else
+    {
+        m_label->setBackgroundColor( palette().active().background() );
+        m_button->hide();
+        m_editor->cornerWidget()->hide();
+    }
+}
+
 void KNote::updateLayout()
 {
+    // DAMN, Qt 3.1 still has no support for widgets with a fixed aspect ratio :-(
+    // So we have to write our own layout manager...
+
     int headerHeight = m_label->sizeHint().height();
     int margin = m_editor->margin();
 
-    m_button->setGeometry( frameRect().width() - headerHeight - 2,
-                           frameRect().y() + 2, headerHeight, headerHeight );
+    m_button->setGeometry( 
+                frameRect().width() - headerHeight - 2,
+                frameRect().y() + 2, 
+                headerHeight, 
+                headerHeight 
+             );
 
-    m_label->setGeometry( frameRect().x() + 2, frameRect().y() + 2,
-              frameRect().width() - (m_button->isHidden() ? 0 : headerHeight) - 4,
-              headerHeight );
-
-    m_editor->setGeometry( contentsRect().x(), contentsRect().y() + headerHeight + 2,
-                contentsRect().width(), contentsRect().height() - headerHeight - 4 );
+    m_label->setGeometry( 
+                frameRect().x() + 2, 
+                frameRect().y() + 2,
+                frameRect().width() - (m_button->isHidden()?0:headerHeight) - 4,
+                headerHeight 
+             );
+              
+    m_editor->setGeometry( 
+                contentsRect().x(), 
+                contentsRect().y() + headerHeight + 2,
+                contentsRect().width(),
+                contentsRect().height() - headerHeight - 4
+             );
 
     setMinimumSize( m_editor->cornerWidget()->width() + margin*2 + 4,
                     headerHeight + m_editor->cornerWidget()->height() + margin*2 + 4 );
 }
-
 
 // -------------------- protected methods -------------------- //
 
@@ -871,41 +868,38 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
         if ( ev->type() == QEvent::MouseButtonDblClick )
             slotRename();
 
-        if ( ev->type() == QEvent::MouseButtonRelease )
+        if ( ev->type() == QEvent::MouseButtonRelease && 
+             (e->button() == LeftButton || e->button() == MidButton) )
         {
-            if ( e->button() == LeftButton )
-            {
-                m_dragging = false;
-                m_label->releaseMouse();
-                raise();
-            }
-            if ( e->button() == MidButton )
-                lower();
+            m_dragging = false;
+            m_label->releaseMouse();
             return true;
         }
 
-        if ( ev->type() == QEvent::MouseButtonPress && e->button() == LeftButton )
+        if ( ev->type() == QEvent::MouseButtonPress &&
+             (e->button() == LeftButton || e->button() == MidButton)) 
         {
             m_pointerOffset = e->pos();
             m_label->grabMouse( sizeAllCursor );
+            
+            e->button() == LeftButton ? raise() : lower();
+                
             return true;
         }
 
-        if ( ev->type() == QEvent::MouseMove && m_label == mouseGrabber())
+        if ( ev->type() == QEvent::MouseMove && m_label == mouseGrabber() )
         {
             if ( m_dragging )
                 move( QCursor::pos() - m_pointerOffset );
             else
             {
                 m_dragging = (
-                    (e->pos().x() - m_pointerOffset.x())
-                    *
+                    (e->pos().x() - m_pointerOffset.x()) *
                     (e->pos().x() - m_pointerOffset.x())
                     +
-                    (e->pos().y() - m_pointerOffset.y())
-                    *
-                    (e->pos().y() - m_pointerOffset.y())
-                    >= 9 );
+                    (e->pos().y() - m_pointerOffset.y()) *
+                    (e->pos().y() - m_pointerOffset.y())   >= 9 
+                );
             }
             return true;
         }
@@ -919,27 +913,22 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
 
         return false;
     }
-    else if ( o == m_editor )
+    
+    if ( o == m_editor )
     {
         if ( ev->type() == QEvent::FocusOut )
         {
-            m_label->setBackgroundColor( palette().active().background() );
-            m_button->hide();
-            m_editor->cornerWidget()->hide();
-
+            updateFocus();
             if ( m_editor->isModified() )
                 saveData();
         }
         else if ( ev->type() == QEvent::FocusIn )
-        {
-            m_label->setBackgroundColor( palette().active().shadow() );
-            m_button->show();
-            m_editor->cornerWidget()->show();
-        }
+            updateFocus();
 
         return false;
     }
-    else if ( o == m_editor->viewport() )
+    
+    if ( o == m_editor->viewport() )
     {
         if ( ev->type() == QEvent::MouseButtonPress )
             if ( m_edit_menu && ((QMouseEvent*)ev)->button() == RightButton )

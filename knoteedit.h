@@ -38,11 +38,11 @@ public:
     KNoteEdit( QWidget *parent=0, const char *name=0 );
     ~KNoteEdit();
 
-    void readFile( QString& filename );
-    void dumpToFile( QString& filename ) const;
+    void readFile( const QString& filename );
+    void dumpToFile( const QString& filename ) const;
     
-    void setTextFont( QFont& font );
-    void setTextColor( QColor& color );
+    void setTextFont( const QFont& font );
+    void setTextColor( const QColor& color );
     void setTabStop( int tabs );
     void setAutoIndentMode( bool newmode );
 

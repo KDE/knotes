@@ -138,7 +138,7 @@ KNoteEdit::~KNoteEdit()
 {
 }
 
-void KNoteEdit::readFile( QString& filename )
+void KNoteEdit::readFile( const QString& filename )
 {
     QFile infile( filename );
     if( infile.open( IO_ReadOnly ) )
@@ -153,7 +153,7 @@ void KNoteEdit::readFile( QString& filename )
     setModified( false );
 }
 
-void KNoteEdit::dumpToFile( QString& filename ) const
+void KNoteEdit::dumpToFile( const QString& filename ) const
 {
     QFile outfile( filename );
     if( outfile.open( IO_WriteOnly ) )
@@ -166,7 +166,7 @@ void KNoteEdit::dumpToFile( QString& filename ) const
         kdDebug(5500) << "could not open file to write to" << endl;
 }
 
-void KNoteEdit::setTextFont( QFont& font )
+void KNoteEdit::setTextFont( const QFont& font )
 {
     if ( textFormat() == PlainText )
         setFont( font );
@@ -174,7 +174,7 @@ void KNoteEdit::setTextFont( QFont& font )
         setCurrentFont( font );
 }
 
-void KNoteEdit::setTextColor( QColor& color )
+void KNoteEdit::setTextColor( const QColor& color )
 {
     setColor( color );
 

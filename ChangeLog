@@ -1,6 +1,14 @@
 ChangeLog for KNotes
 ====================
 
+2002/09/30  Michael Brade <brade@kde.org>
+
+    * fixed mouse behaviour to be like kwin: 
+         - raise() and lower() windows already on mouse button press, 
+           not on mouse button release
+         - MMB moves notes as well
+    * reduced code duplication (setColor, updateFocus)
+    * fixed some consts
 
 2002/09/28  Michael Brade <brade@kde.org>
 

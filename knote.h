@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2001, The KNotes Developers
+ Copyright (c) 1997-2002, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -25,6 +25,7 @@
 #include <qframe.h>
 #include <qpoint.h>
 #include <qdir.h>
+#include <qcolor.h>
 
 #include <kxmlguiclient.h>
 
@@ -96,7 +97,9 @@ private slots:
 
 private:
     void convertOldConfig();
+    void updateFocus();
     void updateLayout();
+    void setColor( const QColor&, const QColor& );
 
     QDir    m_noteDir;
     QString m_configFile;
@@ -112,7 +115,7 @@ private:
 
     KPopupMenu *m_menu;
     KPopupMenu *m_edit_menu;
-
+    
     KXMLGUIFactory *factory;
 };
 
