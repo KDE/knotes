@@ -27,7 +27,6 @@
 #include <kurldrag.h>
 #include <kstdaction.h>
 #include <kcolordialog.h>
-#include <kfontcombo.h>
 #include <kxmlguiclient.h>
 #include <ktoolbar.h>
 
