@@ -2,7 +2,6 @@ TODOs for KNotes
 ================
 
  * transparent notes
- * port to KActions and XMLGUI
  * steal some ideas from Stickies (Mac OS X)
  * save cursor position and scrollbar postion
  * the config dialog:
@@ -27,4 +26,4 @@ Always open TODO:
  * make the code as perfect and clean as possible!!
 
 
--- Michael Brade 05-11-2001
+-- Michael Brade 06-17-2001

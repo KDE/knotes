@@ -1,6 +1,12 @@
 ChangeLog for KNotes
 ====================
 
+2001/06/17  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * finished porting KNotes to the XMLGUI framework
+    * fixed auto-indent
+    * fixed the RMB menu
+
 2001/06/11  Michael Brade <brade@informatik.uni-muenchen.de>
 
     * improved Configdialog:

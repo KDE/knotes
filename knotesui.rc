@@ -28,14 +28,14 @@
 </Menu>
 
 <Menu name="note_context" noMerge="1">
-    <Action name="new_note"/>
-    <Action name="rename_note"/>
-    <Action name="delete_note"/>
-    <Separator/>
     <Action name="insert_date"/>
     <Action name="mail_note"/>
     <Action name="print_note"/>
-    <Action name="options_configure"/>
+    <Action name="configure_note"/>
+    <Separator/>
+    <Action name="new_note"/>
+    <Action name="rename_note"/>
+    <Action name="delete_note"/>
     <Separator/>
     <Action name="to_desktop"/>
     <Action name="always_on_top"/>
