@@ -326,14 +326,6 @@ void KNoteEdit::contentsDragEnterEvent( QDragEnterEvent* event )
         KTextEdit::contentsDragEnterEvent( event );
 }
 
-void KNoteEdit::contentsDragMoveEvent( QDragMoveEvent* event )
-{
-    if ( KURLDrag::canDecode( event ) )
-        event->accept();
-    else
-        KTextEdit::contentsDragMoveEvent( event );
-}
-
 void KNoteEdit::contentsDropEvent( QDropEvent* event )
 {
     KURL::List list;
