@@ -142,7 +142,7 @@ void ConfigDlg::setWidgets(DefStruct *defstruct){
   qframe2->setBackgroundColor(defst->backcolor);
 
   width->setValue(defst->width);
-  height->setValue(defst>height);
+  height->setValue(defst->height);
 
   print->setText(defst->printcommand);
   mail->setText(defst->mailcommand);
