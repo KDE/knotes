@@ -523,7 +523,7 @@ void KPostit::insertDate( void )
 {
   int line, column;
   edit->getCursorPosition(&line,&column);
-  edit->insertAt( QDateTime::currentDateTime().toString(), line, column );
+  edit->insertAt( KGlobal::locale()->formatDateTime(QDateTime::currentDateTime()), line, column );
 }
 
 void KPostit::mail( void )
