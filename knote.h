@@ -34,10 +34,11 @@ class KXMLGUIBuilder;
 class KXMLGUIFactory;
 
 class KPopupMenu;
-class KToggleAction;
-class KListAction;
 class KNoteButton;
 class KNoteEdit;
+class KToolBar;
+class KListAction;
+class KToggleAction;
 
 namespace KCal {
     class Journal;
@@ -105,13 +106,13 @@ private:
     void updateLabelAlignment();
     void setColor( const QColor&, const QColor& );
 
-    QPoint  m_pointerOffset;
-    bool    m_dragging;
+    QPoint m_pointerOffset;
+    bool   m_dragging;
 
     QLabel      *m_label;
     KNoteButton *m_button;
+    KToolBar    *m_tool;
     KNoteEdit   *m_editor;
-    QWidget     *m_tool;
 
     KCal::Journal *m_journal;
     QString        m_configFile;

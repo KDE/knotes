@@ -26,10 +26,13 @@
 #include <qpainter.h>
 #include <qpaintdevicemetrics.h>
 #include <qsimplerichtext.h>
+#include <qobjectlist.h>
 
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kaction.h>
+#include <kcombobox.h>
+#include <ktoolbar.h>
 #include <kxmlguifactory.h>
 #include <kprinter.h>
 #include <klocale.h>
@@ -70,13 +73,15 @@ using namespace KCal;
 KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
               QWidget* parent, const char* name )
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorder | WDestructiveClose ),
-    m_label( 0 ), m_button( 0 ), m_editor( 0 ), m_tool( 0 ),
+    m_label( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ),
     m_journal( j )
 {
     // to disable kwin's session management (ie. saving positions of windows) we need to
     // remove the session id from all note windows
     XChangeProperty( x11Display(), winId(), qt_sm_client_id, XA_STRING, 8,
         PropModeReplace, 0, 0 );
+
+    actionCollection()->setWidget( this );
 
     // create the menu items for the note - not the editor...
     // rename, mail, print, insert date, close, delete, new note
@@ -115,7 +120,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     setName( m_journal->summary() );      // don't worry, no signals are connected at this stage yet
 
     // create the toolbar
-    m_tool = new QWidget( this, "toolbar" );
+    m_tool = new KToolBar( this, "toolbar" );
     m_tool->hide();
 
     // create the note editor
@@ -189,7 +194,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     if ( note_desktop != 0 && !isVisible() )
     {
         // HACK HACK
-        if( note_desktop != NETWinInfo::OnAllDesktops )
+        if ( note_desktop != NETWinInfo::OnAllDesktops )
         {
             // to avoid flicker, call this before show()
             toDesktop( note_desktop );
@@ -233,7 +238,7 @@ void KNote::saveConfig() const
     // but don't save the height of the toolbar
     config.setGroup( "Display" );
     config.writeEntry( "width", width() );
-    config.writeEntry( "height", height() - (m_tool->isHidden() ? 0:m_tool->height()) );
+    config.writeEntry( "height", height() - (m_tool->isHidden() ? 0 : m_tool->height()) );
 
     NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop | NET::WMState );
     config.setGroup( "WindowDisplay" );
@@ -648,46 +653,64 @@ void KNote::updateFocus()
 
 void KNote::updateLayout()
 {
-    // DAMN, Qt 3.1 still has no support for widgets with a fixed aspect ratio :-(
+    // DAMN, Qt still has no support for widgets with a fixed aspect ratio :-(
     // So we have to write our own layout manager...
 
     int headerHeight = m_label->sizeHint().height();
+    int toolHeight = m_tool->isHidden() ? 0 : m_tool->height();
     int margin = m_editor->margin();
+    static const int border = 2;
 
     m_button->setGeometry(
-                frameRect().width() - headerHeight - 2,
-                frameRect().y() + 2,
-                headerHeight,
-                headerHeight
-             );
+        frameRect().width() - headerHeight - border,
+        frameRect().y() + border,
+        headerHeight,
+        headerHeight
+    );
 
     m_label->setGeometry(
-                frameRect().x() + 2,
-                frameRect().y() + 2,
-                frameRect().width() - (m_button->isHidden()?0:headerHeight) - 4,
-                headerHeight
-             );
-    updateLabelAlignment();
+        frameRect().x() + border,
+        frameRect().y() + border,
+        frameRect().width() - (m_button->isHidden() ? 0 : headerHeight) - border*2,
+        headerHeight
+    );
 
     m_tool->setGeometry(
-                contentsRect().x(),
-                contentsRect().y() + headerHeight + 2,
-                contentsRect().width(),
-                16
-                //m_tool->minimumSizeHint().height()
-             );
+        contentsRect().x(),
+        contentsRect().y() + headerHeight + border,
+        contentsRect().width(),
+        16
+    );
+    m_tool->setIconSize( 10 );
 
-    int toolHeight = m_tool->isHidden() ? 0 : m_tool->height();
+    // if there was just a way of making KComboBox adhere the toolbar height...
+    QObjectList *list = m_tool->queryList( "KComboBox" );
+    QObjectListIt it( *list );
+    while ( it.current() != 0 )
+    {
+        KComboBox *combo = (KComboBox *)it.current();
+        QFont font = combo->font();
+        font.setPointSize( 7 );
+        combo->setFont( font );
+        combo->setFixedHeight( m_tool->height() - 2 );
+        ++it;
+    }
+    delete list;
 
     m_editor->setGeometry(
-                contentsRect().x(),
-                contentsRect().y() + headerHeight + toolHeight + 2,
-                contentsRect().width(),
-                contentsRect().height() - headerHeight - toolHeight - 4
-             );
+        contentsRect().x(),
+        contentsRect().y() + headerHeight + toolHeight + 2,
+        contentsRect().width(),
+        contentsRect().height() - headerHeight - toolHeight - 4
+    );
 
-    setMinimumSize( m_editor->cornerWidget()->width() + margin*2 + 4,
-                    headerHeight + toolHeight + m_editor->cornerWidget()->height() + margin*2 + 4 );
+    setMinimumSize(
+        m_editor->cornerWidget()->width() + margin*2 + border*2,
+        headerHeight + toolHeight +
+                m_editor->cornerWidget()->height() + margin*2 + border*2
+    );
+
+    updateLabelAlignment();
 }
 
 // -------------------- protected methods -------------------- //

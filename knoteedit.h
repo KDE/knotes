@@ -29,13 +29,17 @@ class QFont;
 class QColor;
 class QPushButton;
 class KAction;
+class KToggleAction;
+class KFontAction;
+class KFontSizeAction;
+class KToolBar;
 
 
 class KNoteEdit : public KTextEdit
 {
     Q_OBJECT
 public:
-    KNoteEdit( QWidget *tool, QWidget *parent=0, const char *name=0 );
+    KNoteEdit( KToolBar *tool, QWidget *parent=0, const char *name=0 );
     ~KNoteEdit();
 
     void setTextFont( const QFont& font );
@@ -46,9 +50,7 @@ public:
 public slots:
     virtual void setTextFormat( TextFormat f );
 
-//    void textStyleSelected( int );
-//    void textSizeSelected( int );
-//    void textFontSelected( const QString & );
+    //void textStyleSelected( int );
 
     void textColor();
 
@@ -62,8 +64,8 @@ public slots:
     void textSuperScript();
     void textSubScript();
 
-    void textIncreaseIndent();
-    void textDecreaseIndent();
+    //void textIncreaseIndent();
+    //void textDecreaseIndent();
 
 protected:
     virtual void contentsDragEnterEvent( QDragEnterEvent *e );
@@ -72,11 +74,6 @@ protected:
 
 private slots:
     void slotReturnPressed();
-
-    // this is needed as long as we don't use actions
-    void slotSetBold();
-    void slotSetItalic();
-    void slotSetUnderline();
 
     void fontChanged( const QFont &f );
     void colorChanged( const QColor &c );
@@ -97,13 +94,10 @@ private:
     KAction *m_copy;
     KAction *m_paste;
 
-#if 0
-    KAction *m_textColor;
-
     KToggleAction *m_textBold;
     KToggleAction *m_textItalic;
     KToggleAction *m_textUnderline;
-
+    
     KToggleAction *m_textAlignLeft;
     KToggleAction *m_textAlignCenter;
     KToggleAction *m_textAlignRight;
@@ -113,27 +107,12 @@ private:
     KToggleAction *m_textSuper;
     KToggleAction *m_textSub;
 
-    KAction *m_textIncreaseIndent;
-    KAction *m_textDecreaseIndent;
-#else
-    QPushButton *m_textColor;
-
-    QPushButton *m_textBold;
-    QPushButton *m_textItalic;
-    QPushButton *m_textUnderline;
-
-    QPushButton *m_textAlignLeft;
-    QPushButton *m_textAlignCenter;
-    QPushButton *m_textAlignRight;
-    QPushButton *m_textAlignBlock;
-
-    QPushButton *m_textList;
-    QPushButton *m_textSuper;
-    QPushButton *m_textSub;
-
-    QPushButton *m_textIncreaseIndent;
-    QPushButton *m_textDecreaseIndent;
-#endif
+    //KAction       *m_textIncreaseIndent;
+    //KAction       *m_textDecreaseIndent;
+    
+    KAction         *m_textColor;
+    KFontAction     *m_textFont;
+    KFontSizeAction *m_textSize;
 
     bool m_autoIndentMode;
 };
