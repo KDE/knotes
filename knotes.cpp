@@ -503,7 +503,7 @@ void KPostit::quit( void )
 
 void KPostit::help( void )
 {
-  kapp->invokeHTMLHelp("","");
+  kapp->invokeHelp();
 }
 
 

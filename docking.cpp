@@ -149,7 +149,7 @@ void DockWidget::configureKNotes(){
 
 void DockWidget::help( void )
 {
-  kapp->invokeHTMLHelp("","");
+  kapp->invokeHelp( );
 }
 
 
