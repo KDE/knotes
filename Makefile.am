@@ -1,6 +1,5 @@
 INCLUDES = $(all_includes)
 
-AM_CPPFLAGS = -DQT_NO_ASCII_CAST -DQT_CLEAN_NAMESPACE -DQT_NO_COMPAT
 
 ####### Files
 bin_PROGRAMS = knotes
