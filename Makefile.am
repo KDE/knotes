@@ -38,7 +38,6 @@ appsdir = $(kde_appsdir)/Utilities
 install-data-local: 
 	$(mkinstalldirs) $(kde_minidir)
 	$(INSTALL_DATA) mini-knotes.xpm $(kde_minidir)/knotes.xpm
-	$(INSTALL_DATA) knotessmall.xpm $(pixdir)/knotessmall.xpm
 	
 uninstall-local:
 	rm -f $(kde_minidir)/knotes.xpm
