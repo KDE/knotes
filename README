@@ -1,0 +1,67 @@
+
+README for KNotes 0.3
+
+o Had to change the name to KNotes.
+o Minor Bug fixes 
+o A KNotes note remembers now its position on the desktop provided you 
+  have kwm 0.7 p4 or newer.
+
+
+README for KNotes 0.2
+
+KNotes is my attempt to write a really usable and good looking notes  
+application for the KDE project. KJots are great, but I am a "postit" 
+man. I could therefore not resist to squeeze this little project in.
+
+The first stage of the KNotes project has been completed. Most, if not all 
+basic functionality has been implemented. The second phase of this project will
+consist of attempting to closely integrate KNotess with the KDE desktop i.e
+kwm and kpanel. Currently this integration has only been achieved in a 
+rudimentary fashion. The reason for this is that I have reached the 
+boundaries of what can currently be done with the kwm communication protocol. 
+
+This brings me to mention the second and more serious reason for implementing
+KNotes: to test and extend the kwm communications protocol. It is at present
+for example not possible for a KNote note to remember its position and virtual 
+desktop on exit and place itself exactly on the same position the next time
+it is map onto the desktop. I am currently working with Matthias on this and 
+similar problems.
+
+KNotes can:
+
+	o accept drag and drop (even from a remote ftp site)
+	o mail your note
+	o print your note ( try it, it looks great ;-)
+	o insert the date or a calendar of the current month
+	o associate an alarm timer to a note and notify you on expiry
+	o have arbitrary colors for background and text
+	o have arbitrary sized note
+	o use an arbitrary font for a note.
+	o do auto-indentation
+	o do two different frame styles
+
+and remembers all this on a per note basis on exit.
+
+What is your opinion, should KNotes have a simpler window title-bar?
+
+For optimal usage, place the KNotes icon on the kpanel.
+
+To get started, point the mouse pointer on a KNotes note and use the right 
+mouse button to bring up the KNotes pop-up menu.
+
+You need to have sendmail up and running in order to be able
+to mail you notes. Once kmail is finished this might change.
+
+You need a2ps for printing. If you don't have it -- get it. 
+http://www.enst.fr/~demaille/a2ps.html
+
+(a2ps together with GNU enscript are the most essential printing utilities in 
+the UNIX world. Make sure you know them well.)
+
+Best Regards
+Bernd 
+wuebben@kde.org
+wuebben@math.cornell.edu
+
+
+

@@ -1,0 +1,118 @@
+# $Id$
+
+prefix  = @prefix@
+BINDIR  = $(prefix)/bin
+LIBDIR  = $(prefix)/lib
+PIXDIR  = $(prefix)/lib/pics
+DOCSDIR = $(prefix)/doc/HTML/knotes
+APPSDIR = $(prefix)/apps/Utilities
+
+install = @INSTALL@
+INSTALL = $(install) -m 0755
+INSTALL_DATA = $(install) -m 0644
+INSTALL_DIR = $(install) -d -m 0755   
+
+###################################################################
+
+CXXFLAGS=	@CXXFLAGS@  -DHAVE_CONFIG_H -I..
+LDFLAGS	=	@LDFLAGS@ @all_libraries@ -lkfm -lkdecore -lkdeui -lqt -lm -lXext -lX11
+INCDIR	=	@all_includes@
+CXX	=	@CXX@
+MOC	=	@MOC@
+
+
+####### Files
+HEADER = 	knotes.h kwmcom.h configdlg.h fontdlg.h mail.h alarm.h\
+		bwdatetime.h spin.h timer.h renamedlg.h
+
+SOURCES	=	knotes.cpp  kwmcom.cpp configdlg.cpp fontdlg.cpp mail.cpp alarm.cpp\
+		bwdatetime.cpp spin.cpp timer.cpp savealarm.cpp renamedlg.cpp
+
+OBJECTS	=	knotes.o kwmcom.o configdlg.o fontdlg.o mail.o alarm.o\
+		bwdatetime.o spin.o timer.o savealarm.o renamedlg.o
+
+SRCMETA	=	knotes.moc configdlg.moc fontdlg.moc mail.moc alarm.moc spin.moc\
+		renamedlg.moc
+
+
+TARGET	=	knotes
+
+####### Implicit rules
+
+.SUFFIXES: .cpp
+
+.cpp.o:
+	$(CXX)  -c $(CXXFLAGS) $(DEFS) $(INCDIR) $<
+
+####### Build rules
+
+all: $(TARGET)
+
+Makefile: Makefile.in
+	cd .. && CONFIG_FILES=knotes/$@ CONFIG_HEADERS= $(SHELL) ./config.status
+
+$(TARGET): $(SOURCES) $(SRCMETA) $(OBJECTS) $(HEADER)
+	$(CXX) $(OBJECTS) -o $(TARGET) $(LDFLAGS)
+
+depend:
+	@makedepend -I$(INCDIR) $(SOURCES) 2> /dev/null
+clean:
+	-rm -f *.o *.bak *~ *% #*
+	-rm -f $(SRCMETA) $(TARGET)
+
+distclean: clean
+	rm -f Makefile
+
+install: all
+	$(INSTALL_DIR) $(BINDIR)
+	$(INSTALL) $(TARGET) $(BINDIR)
+	$(INSTALL_DIR) $(DOCSDIR)
+	@for i in knotes.html knotes.sgml knotes-1.html \
+	knotes-2.html knotes-3.html knotes-4.html knotes-5.html; do \
+	echo $(INSTALL_DATA) ./docs/$$i $(DOCSDIR) ; \
+	$(INSTALL_DATA) ./docs/$$i $(DOCSDIR) ; \
+	done
+	$(INSTALL_DIR) $(PIXDIR)
+	$(INSTALL_DATA) knotes.xpm $(PIXDIR)
+	$(INSTALL_DIR) $(APPSDIR)
+	$(INSTALL_DATA) knotes.kdelnk $(APPSDIR)/knotes.kdelnk
+
+uninstall:
+	rm -f $(BINDIR)/$(TARGET)
+	rm -f $(DOCSDIR)/knotes.gif
+	rm -f $(DOCSDIR)/knotes.html
+	rm -f $(APPSDIR)/knotes.kdelnk
+
+####### Explicit dependencies
+
+
+####### Meta objects
+
+knotes.moc: knotes.h
+	$(MOC) knotes.h -o knotes.moc
+
+configdlg.moc: configdlg.h
+	$(MOC) configdlg.h -o configdlg.moc
+
+fontdlg.moc: fontdlg.h
+	$(MOC) fontdlg.h -o fontdlg.moc
+
+mail.moc: mail.h
+	$(MOC) mail.h -o mail.moc
+
+alarm.moc: alarm.h
+	$(MOC) alarm.h -o alarm.moc
+
+spin.moc: spin.h
+	$(MOC) spin.h -o spin.moc
+
+renamedlg.moc: renamedlg.h
+	$(MOC) renamedlg.h -o renamedlg.moc
+
+
+
+
+
+
+
+
