@@ -1,9 +1,8 @@
-#include <iostream.h>
 
 #include <qdragobject.h>
 #include <qtextstream.h>
 #include <qfile.h>
-
+#include <kdebug.h>
 #include <kurl.h>
 
 #include "knoteedit.h"
@@ -37,7 +36,7 @@ void KNoteEdit::readFile( QString& filename )
 			insertLine( currline );
 		}
 	} else
-		cerr << "could not open input file" << endl;
+		kdDebug() << "could not open input file" << endl;
 }
 
 void KNoteEdit::dumpToFile( QString& filename )
@@ -52,7 +51,7 @@ void KNoteEdit::dumpToFile( QString& filename )
 			output << textLine( line ) << endl;
 		}
 	} else
-		cerr << "could not open file to write to" << endl;
+		kdDebug() << "could not open file to write to" << endl;
 }
 
 void KNoteEdit::setAutoIndentMode( bool newmode )
