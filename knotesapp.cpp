@@ -584,7 +584,7 @@ void KNotesApp::updateGlobalAccels()
         action = actionCollection()->action( "new_note_clipboard" );
         if ( action )
             action->setShortcut( 0 );
-        action = actionCollection()->action( "hide_all_nots" );
+        action = actionCollection()->action( "hide_all_notes" );
         if ( action )
             action->setShortcut( 0 );
         action = actionCollection()->action( "show_all_notes" );
