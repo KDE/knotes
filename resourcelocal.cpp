@@ -115,9 +115,3 @@ bool ResourceLocal::deleteNote( KCal::Journal* journal )
     mCalendar.deleteJournal( journal );
     return true;
 }
-
-bool ResourceLocal::updateNote( KCal::Journal* )
-{
-    kdDebug() << "NYI: ResourceLocal::updateNote( KCal::Journal* )\n";
-    return false;
-}

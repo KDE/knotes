@@ -55,8 +55,6 @@ public:
     virtual bool addNote( KCal::Journal* );
 
     virtual bool deleteNote( KCal::Journal* );
-
-    virtual bool updateNote( KCal::Journal* );
 };
   
 

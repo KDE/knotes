@@ -72,8 +72,6 @@ public:
 
     virtual bool deleteNote( KCal::Journal* ) = 0;
 
-    virtual bool updateNote( KCal::Journal* ) = 0;
-
     void setManager( ResourceManager* manager ) { mManager = manager; }
     ResourceManager* manager() const { return mManager; }
 
