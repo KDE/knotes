@@ -57,7 +57,8 @@ void KNoteConfigDlg::makeDisplayPage()
 {
     _config->setGroup( "Display" );
 
-    QPixmap icon = KGlobal::iconLoader()->loadIcon( "appearance", KIcon::Action, KIcon::SizeMedium );
+//    QPixmap icon = KGlobal::iconLoader()->loadIcon( "appearance", KIcon::Action, KIcon::SizeMedium );
+    QPixmap icon = KGlobal::iconLoader()->loadIcon( "appearance", KIcon::Toolbar, KIcon::SizeMedium );
     QFrame* displayPage = addPage( i18n( "Display" ), i18n("Display Settings"), icon );
 
     // set layout - top level is the QVBoxLayout...
@@ -112,7 +113,8 @@ void KNoteConfigDlg::makeEditorPage()
 {
     _config->setGroup( "Editor" );
 
-    QPixmap icon = KGlobal::iconLoader()->loadIcon( "edit", KIcon::Action, KIcon::SizeMedium );
+//    QPixmap icon = KGlobal::iconLoader()->loadIcon( "edit", KIcon::Action, KIcon::SizeMedium );
+    QPixmap icon = KGlobal::iconLoader()->loadIcon( "edit", KIcon::Toolbar, KIcon::SizeMedium );
     QFrame* editorPage = addPage( i18n( "Editor" ), i18n("Editor Settings"), icon );
 
     // set layout - top level is the QVBoxLayout...
@@ -159,7 +161,8 @@ void KNoteConfigDlg::makeActionsPage()
 {
     _config->setGroup( "Actions" );
 
-    QPixmap icon = KGlobal::iconLoader()->loadIcon( "misc", KIcon::Action, KIcon::SizeMedium );
+//    QPixmap icon = KGlobal::iconLoader()->loadIcon( "misc", KIcon::Action, KIcon::SizeMedium );
+    QPixmap icon = KGlobal::iconLoader()->loadIcon( "misc", KIcon::Toolbar, KIcon::SizeMedium );
     QFrame* actionsPage = addPage( i18n( "Actions" ), i18n("Action Settings"), icon );
 
     // set layout - top level is the QVBoxLayout...
