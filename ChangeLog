@@ -1,6 +1,15 @@
 ChangeLog for KNotes
 ====================
 
+2004/02/24  Michael Brade <brade@kde.org>
+
+    * finished rich text mode, now using actions
+
+2004/01/11  Michael Brade <brade@kde.org>
+
+    * fixed MMB click on note title to put note really back
+    * started conversion to using actions in rich text mode (finally!)
+
 2003/10/21  Michael Brade <brade@kde.org>
 
     * fixed dropping of urls
@@ -10,7 +19,7 @@ ChangeLog for KNotes
     * fixed #54293: sort note titles in the notes menu
 
 2003/06/22  Michael Brade <brade@kde.org>
- 
+
     * fixed #42088: don't loose notes if HD is full, always keep a backup
     * make it possible to select skip taskbar/not to skip taskbar on a
       per-note basis
@@ -445,88 +454,88 @@ Old KNotes ChangeLog (KDE 1.x):
 
 1999-10-16  Harri Porten  <porten@kde.org>
 
-	* knotes.cpp: applied Unicode patch from Ming-Che Chuang
-	<r8921131@ms1.cc.ntu.edu.tw>
+    * knotes.cpp: applied Unicode patch from Ming-Che Chuang
+    <r8921131@ms1.cc.ntu.edu.tw>
 
 1999-09-25  Harri Porten  <porten@kde.org>
 
-	* alarm.cpp: remove (A) from lable when unsetting alarm
-	(patch by Michael Haeckel <Michael.Haeckel@stud.uni-bayreuth.de>
+    * alarm.cpp: remove (A) from lable when unsetting alarm
+    (patch by Michael Haeckel <Michael.Haeckel@stud.uni-bayreuth.de>
 
 Tue Aug  3 02:23:09 1999  Carsten Pfeiffer  <pfeiffer@kde.org>
 
-	* added standard accelerator keys (new, print, save, help, close, quit)
-	* added "always on top", configurable in the popupmenu
-	* added possibility to play a sound when an alarm is activated,
-	  configurable in the defaults dialog
-	* replaced the custom spinboxes with QSpinBoxes and made the dialog use
-	  layout management (still not perfect, yet)
+    * added standard accelerator keys (new, print, save, help, close, quit)
+    * added "always on top", configurable in the popupmenu
+    * added possibility to play a sound when an alarm is activated,
+      configurable in the defaults dialog
+    * replaced the custom spinboxes with QSpinBoxes and made the dialog use
+      layout management (still not perfect, yet)
 
 1999-06-07  Petter Reinholdtsen <pere@td.org.uit.no>
-	* knotes.cpp: Changed text Quit to Exit to match KDE style guide.
+    * knotes.cpp: Changed text Quit to Exit to match KDE style guide.
 
 1999-05-22  Dirk A. Mueller  <dmuell@gmx.net>
 
-	* Ported to the Qt DND classes. It accepts QTextDrag, handled by
-	QMultiLineEdit and QUrlDrag.
+    * Ported to the Qt DND classes. It accepts QTextDrag, handled by
+    QMultiLineEdit and QUrlDrag.
 
 1999-03-07  Harri Porten  <porten@kde.org>
 
-	* make it compile with Qt 2.0.
-	* knotes.cpp: adapt to different id numbering of QPopupMenu
-	* docking.cpp: get along without the PMERROR macro whose i18n() did not
-	get parsed by msgfmt.
+    * make it compile with Qt 2.0.
+    * knotes.cpp: adapt to different id numbering of QPopupMenu
+    * docking.cpp: get along without the PMERROR macro whose i18n() did not
+    get parsed by msgfmt.
 
 Tue Feb 16 09:34:25 1999  David Faure  <faure@kde.org>
 
-	* Added option "dock in panel" (to disable docking)
-	Docking is automatically re-enabled if the last note is deleted
-	* Move options submenu to toplevel RMB menu (too many submenus!)
-	* Re-added "Quit" menu entry (in order to quit when docking is off)
+    * Added option "dock in panel" (to disable docking)
+    Docking is automatically re-enabled if the last note is deleted
+    * Move options submenu to toplevel RMB menu (too many submenus!)
+    * Re-added "Quit" menu entry (in order to quit when docking is off)
 
 1999-02-16  Harri Porten  <porten@kde.org>
 
-	* fixed SIGSEV caused by double-clicking on empty places.
-	* introduced a simple sessionWidget that will catch the
+    * fixed SIGSEV caused by double-clicking on empty places.
+    * introduced a simple sessionWidget that will catch the
         saveYourself() signal from the session manager and invoke saving all
         data. This is more robust than having concurring methods in every
         widget and works without the saved_already_for_session_management
         variable that was NOT unset if the user canceled the shutdown (bug !)
-	* renaming: missing slash broke renaming.
+    * renaming: missing slash broke renaming.
         * set atomic flag in cleanup(). Hope to have avoided occasional crash
         leading to data loss.
-	* Replaced ~/.kde with KApplication::localkdedir()
+    * Replaced ~/.kde with KApplication::localkdedir()
         * option menu: disabled illogical switch between "3D frame" and
         "no frame" label. It is a checkable entry!
 
 Fri May 29 05:36:36 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
 
-	* KNotes are now automatically saved all 15 minutes.
-	* added explicit save command on request.
+    * KNotes are now automatically saved all 15 minutes.
+    * added explicit save command on request.
 
 Thu Apr  9 03:21:54 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
 
-	* knotes recognizes urls now.
-	* Fixed up knotes and implemented docking properly
+    * knotes recognizes urls now.
+    * Fixed up knotes and implemented docking properly
 
 Thu Aug  7 18:50:59 1997  Bernd Johannes Wuebben  <wuebben@petit.cornell.edu>
 
-	* knotes.cpp: knotes now save themselves on X sever exit
+    * knotes.cpp: knotes now save themselves on X sever exit
 
-Mon Nov 17 21:32:28 1997  didier Belot <dib@avo.fr>
+Mon Nov 17 21:32:28 1997  Didier Belot <dib@avo.fr>
 
-	* added all necessary stuff for locale (klocale->translate())
+    * added all necessary stuff for locale (klocale->translate())
 
 Sat Nov 22 13:13:05 1997 Matthias Ettrich <ettrich@kde.org>
 
-	* sessionmanagement: uses kwm properties now, not only geometry info
-	* look: pretty thin border. KPostit does no longer inherit QMultiline
-	        but simply QFrame. New class: KPostitMultilineEdit.
-	        New QMessage box for warning. Icon+Miniicon.
-	* feel: moving possible with the label, rmb menu contains toDesktop
-	        and sticky, notes are activated not only raised. Alt-F4
-	        can remove a note now.
-	* invocation: change: siguser1 will give you a new knote (like
-	        taking a new paper from a block).
-	        "-knotes_restore" used for session management.
-	        Do NOT use "-restore" since kapplication filters this!
+    * sessionmanagement: uses kwm properties now, not only geometry info
+    * look: pretty thin border. KPostit does no longer inherit QMultiline
+            but simply QFrame. New class: KPostitMultilineEdit.
+            New QMessage box for warning. Icon+Miniicon.
+    * feel: moving possible with the label, rmb menu contains toDesktop
+            and sticky, notes are activated not only raised. Alt-F4
+            can remove a note now.
+    * invocation: change: siguser1 will give you a new knote (like
+            taking a new paper from a block).
+            "-knotes_restore" used for session management.
+            Do NOT use "-restore" since kapplication filters this!
