@@ -265,19 +265,19 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
     // config items in the journal have priority
     QString property = m_journal->customProperty( "KNotes", "FgColor" );
-    if ( property != QString::null )
+    if ( !property.isNull() )
         m_config->setFgColor( QColor( property ) );
     else
         m_journal->setCustomProperty( "KNotes", "FgColor", m_config->fgColor().name() );
 
     property = m_journal->customProperty( "KNotes", "BgColor" );
-    if ( property != QString::null )
+    if ( !property.isNull() )
         m_config->setBgColor( QColor( property ) );
     else
         m_journal->setCustomProperty( "KNotes", "BgColor", m_config->bgColor().name() );
 
     property = m_journal->customProperty( "KNotes", "RichText" );
-    if ( property != QString::null )
+    if ( !property.isNull() )
         m_config->setRichText( property == "true" ? true : false );
     else
         m_journal->setCustomProperty( "KNotes", "RichText", m_config->richText() ? "true" : "false" );
