@@ -17,4 +17,5 @@ Sat Nov 22 13:13:05 1997 Matthias Ettrich <ettrich@kde.org>
 	        can remove a note now.
 	* invokation: change: siguser1 will give you a new knote (like
 	        taking a new paper from a block).
-	        "-only_restore" used for session management.
+	        "-knotes_restore" used for session management.
+	        Do NOT use "-restore" since kapplication filters this!

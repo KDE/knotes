@@ -193,7 +193,7 @@ QString KPostitMultilineEdit::prefixString(QString string){
 KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname)
   : QFrame(parent, myname){
 
-    KWM::setDecoration(winId(), 2); 
+    KWM::setDecoration(winId(), 0); 
     KWM::setWmCommand(winId(), "");
     XSetTransientForHint( qt_xdisplay(), winId(), (Window)(-1));
     KWM::setIcon(winId(), kapp->getIcon());
@@ -711,8 +711,8 @@ void KPostit::findKPostit(int i){
 			     PostitList.current()->propertystring);
 
       }
-	KWM::activate(PostitList.current()->winId());
       PostitList.current()->show();
+      KWM::activate(PostitList.current()->winId());
       return;
     }
   }
@@ -1010,9 +1010,9 @@ bool KPostit::insertFile(char* filename){
 
 void KPostit::resizeEvent( QResizeEvent * ){
   label->adjustSize();
-  label->setGeometry(0,0,width()-label->height(),label->height());
-  edit->setGeometry(0, label->height(), width(), height()-label->height());
-  mybutton->setGeometry(this->width()-label->height() ,0,label->height(),label->height());
+  label->setGeometry(1,1,width()-label->height()-2,label->height());
+  edit->setGeometry(1, label->height(), width()-2, height()-label->height()-1);
+  mybutton->setGeometry(this->width()-label->height()-1 ,1,label->height(),label->height());
 }
 
 void KPostit::closeEvent( QCloseEvent * ){
@@ -1292,6 +1292,7 @@ void KPostit::set_colors(){
   label->setBackgroundColor(backcolor.dark(120));
   mybutton->setPalette(mypalette);
   mybutton->setBackgroundColor(backcolor.dark(120));
+  setBackgroundColor(backcolor.dark(150));
 
 }
 
@@ -1337,6 +1338,7 @@ static void siguser1(int sig){
     postit->show();
   }
   else {
+      KPostit::PostitList.last()->hidden = false;
       KPostit::PostitList.last()->show();
       KWM::activate(KPostit::PostitList.last()->winId());
       //    KPostit::PostitList.last()->newKPostit();
@@ -1617,12 +1619,12 @@ int main( int argc, char **argv ) {
 
   bool restoring = false;
 
-  if (QString("-restore") == (QString)argv[1]){
+  if (QString("-knotes_restore") == (QString)argv[1]){
     restoring = true;
   }
 
 
-  if(KPostit::PostitFilesList.count() == 0 ){
+  if(KPostit::PostitFilesList.count() == 0 && !restoring){
     KPostit::PostitFilesList.append("knote 1");
   }
 
@@ -1646,7 +1648,7 @@ int main( int argc, char **argv ) {
   // manual session management (knotes alredy stores everything)
   kapp->setTopWidget(new QWidget);
   kapp->enableSessionManagement(true);
-  kapp->setWmCommand("knotes -restore");
+  kapp->setWmCommand("knotes -knotes_restore");
 
   return a.exec();
 
