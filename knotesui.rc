@@ -39,7 +39,8 @@
     <Action name="delete_note"/>
     <Separator/>
     <Action name="to_desktop"/>
-    <Action name="always_on_top"/>
+    <Action name="keep_above"/>
+    <Action name="keep_below"/>
 </Menu>
 
 <Menu name="note_edit" noMerge="1">

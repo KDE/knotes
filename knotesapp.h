@@ -33,6 +33,7 @@
 #include "KNotesIface.h"
 
 class KNote;
+class KNoteConfig;
 class KPopupMenu;
 class KAction;
 class KActionMenu;
@@ -85,7 +86,7 @@ protected:
 protected slots:
     void slotShowNote();
 
-    void slotPreferences() const;
+    void slotPreferences();
     void slotConfigureAccels();
 
     void slotNoteKilled( KCal::Journal *journal );
@@ -111,6 +112,8 @@ private:
     };
 
     KNotesResourceManager *m_manager;
+
+    KNoteConfig     *m_defaultConfig;
 
     QDict<KNote>    m_noteList;
     KNoteActionList m_noteActions;

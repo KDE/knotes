@@ -24,256 +24,150 @@
 
 #include <kconfig.h>
 #include <klocale.h>
+#include <kiconloader.h>
 #include <kcolorbutton.h>
 #include <knuminput.h>
 #include <klineedit.h>
-#include <kfontdialog.h>
-#include <kiconloader.h>
+#include <kfontrequester.h>
 #include <kseparator.h>
-#include <kwin.h>
 
+#include "knote.h"
+#include "knoteconfig.h"
 #include "knoteconfigdlg.h"
 #include "version.h"
 
-#include <netwm.h>
 
-KNoteConfigDlg::KNoteConfigDlg( const QString& configfile, const QString& title,
-            bool global, QWidget* parent, const char* name )
-    : KDialogBase( IconList, title, Ok|Apply|Cancel, Ok, parent, name, true, true )
+KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
+        bool defaults, QWidget *parent, const char *name )
+    : KConfigDialog( parent, name, config, IconList,
+                     defaults ? Default|Ok|Cancel : Default|Ok|Apply|Cancel, Ok )
 {
-    setIconListAllVisible( true );
-    m_config = new KConfig( configfile, false, false );
-    m_global = global;
+    setCaption( title );
+    setIcon( SmallIcon( "knotes" ) );
 
-    makeDisplayPage();
+    setIconListAllVisible( true );
+
+    config->readConfig();
+    config->setVersion( KNOTES_VERSION );
+
+    makeDisplayPage( defaults );
     makeEditorPage();
     makeActionsPage();
 }
 
 KNoteConfigDlg::~KNoteConfigDlg()
 {
-    // just delete m_config, all others have parent widgets
-    // and will get destroyed by the parent
-    delete m_config;
 }
 
-void KNoteConfigDlg::makeDisplayPage()
+void KNoteConfigDlg::slotUpdateCaption()
 {
-    m_config->setGroup( "Display" );
+    KNote *note = ::qt_cast<KNote *>(sender());
+    if ( note )
+        setCaption( note->name() );
+}
 
-    QPixmap icon = KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Toolbar, KIcon::SizeMedium );
-    QFrame* displayPage = addPage( i18n("Display"), i18n("Display Settings"), icon );
+void KNoteConfigDlg::makeDisplayPage( bool defaults )
+{
+    QWidget *displayPage = new QWidget();
+    QGridLayout *layout = new QGridLayout( displayPage, 6, 2, 0, spacingHint() );
 
-    // set layout - top level is the QVBoxLayout...
-    QVBoxLayout* topLevel = new QVBoxLayout( displayPage, 0, spacingHint() );
-    QGridLayout* glay     = new QGridLayout( topLevel, 6, 3 );
-    glay->setColStretch( 1, 1 );
+    QLabel *label_FgColor = new QLabel( i18n("&Text color:"), displayPage, "label_FgColor" );
+    layout->addWidget( label_FgColor, 0, 0 );
 
-    QLabel* l_fgcolor = new QLabel( i18n("&Text color:"), displayPage );
-    QLabel* l_bgcolor = new QLabel( i18n("&Background color:"), displayPage );
+    QLabel *label_BgColor = new QLabel( i18n("&Background color:"), displayPage, "label_BgColor" );
+    layout->addWidget( label_BgColor, 1, 0 );
 
-    QColor fgcolor = m_config->readColorEntry( "fgcolor", &(Qt::black) );
-    QColor bgcolor = m_config->readColorEntry( "bgcolor", &(Qt::yellow) );
-    m_fgColor = new KColorButton( fgcolor, displayPage );
-    m_bgColor = new KColorButton( bgcolor, displayPage );
-    connect( m_fgColor, SIGNAL(changed(const QColor&)),
-            this, SLOT(slotFGColor(const QColor&)) );
-    connect( m_bgColor, SIGNAL(changed(const QColor&)),
-            this, SLOT(slotBGColor(const QColor&)) );
+    KColorButton *kcfg_FgColor = new KColorButton( displayPage, "kcfg_FgColor" );
+    label_FgColor->setBuddy( kcfg_FgColor );
+    layout->addWidget( kcfg_FgColor, 0, 1 );
 
-    l_fgcolor->setBuddy( m_fgColor );
-    l_bgcolor->setBuddy( m_bgColor );
+    KColorButton *kcfg_BgColor = new KColorButton( displayPage, "kcfg_BgColor" );
+    label_BgColor->setBuddy( kcfg_BgColor );
+    layout->addWidget( kcfg_BgColor, 1, 1 );
 
-    m_config->setGroup( "WindowDisplay" );
-    ulong state = m_global ? m_config->readUnsignedLongNumEntry( "state", NET::SkipTaskbar )
-                           : KWin::windowInfo( parentWidget()->winId() ).state();
+    QCheckBox *kcfg_ShowInTaskbar = new QCheckBox( i18n("&Show note in taskbar"),
+                                                 displayPage, "kcfg_ShowInTaskbar" );
+    layout->addWidget( kcfg_ShowInTaskbar, 4, 0 );
 
-    m_skipTaskbarSwitch = new QCheckBox( i18n("&Show note in taskbar"), displayPage );
-    m_skipTaskbarSwitch->setChecked( !(state & NET::SkipTaskbar) );
 
-    KSeparator *sep = new KSeparator( Horizontal, displayPage );
-
-    glay->addWidget( l_fgcolor, 0, 0 );
-    glay->addWidget( l_bgcolor, 1, 0 );
-    glay->addWidget( m_fgColor, 0, 2 );
-    glay->addWidget( m_bgColor, 1, 2 );
-    glay->addMultiCellWidget( sep, 4, 4, 0, 2 );
-    glay->addWidget( m_skipTaskbarSwitch, 5, 0 );
-
-    if ( m_global )
+    if ( defaults )
     {
-        QLabel* l_width  = new QLabel( i18n("Default &width:"), displayPage );
-        QLabel* l_height = new QLabel( i18n("Default &height:"), displayPage );
+        QLabel *label_Width = new QLabel( i18n("Default &width:"), displayPage, "label_Width" );
+        layout->addWidget( label_Width, 2, 0 );
 
-        m_config->setGroup( "Display" );
-        uint width = m_config->readUnsignedNumEntry( "width", 200 );
-        uint height = m_config->readUnsignedNumEntry( "height", 200 );
+        QLabel *label_Height = new QLabel( i18n("Default &height:"), displayPage, "label_Height" );
+        layout->addWidget( label_Height, 3, 0 );
 
-        m_widthEdit = new KIntNumInput( width, displayPage );
-        m_widthEdit->setRange( 100, 2000, 10, false );
-        m_heightEdit = new KIntNumInput( height, displayPage );
-        m_heightEdit->setRange( 100, 2000, 10, false );
+        KIntNumInput *kcfg_Width = new KIntNumInput( displayPage, "kcfg_Width" );
+        label_Width->setBuddy( kcfg_Width );
+        kcfg_Width->setRange( 100, 2000, 10, false );
+        layout->addWidget( kcfg_Width, 2, 1 );
 
-        l_width->setBuddy( m_widthEdit );
-        l_height->setBuddy( m_heightEdit );
-
-        glay->addWidget( l_width, 2, 0 );
-        glay->addWidget( m_widthEdit, 2, 2 );
-        glay->addWidget( l_height, 3, 0 );
-        glay->addWidget( m_heightEdit, 3, 2 );
+        KIntNumInput *kcfg_Height = new KIntNumInput( displayPage, "kcfg_Height" );
+        kcfg_Height->setRange( 100, 2000, 10, false );
+        label_Height->setBuddy( kcfg_Height );
+        layout->addWidget( kcfg_Height, 3, 1 );
     }
+
+    KSeparator *separator = new KSeparator( Horizontal, displayPage );
+    layout->addMultiCellWidget( separator, 5, 5, 0, 1 );
+
+    addPage( displayPage, i18n("Display"), "knotes", i18n("Display Settings") );
 }
 
 void KNoteConfigDlg::makeEditorPage()
 {
-    m_config->setGroup( "Editor" );
+    QWidget *editorPage = new QWidget();
+    QGridLayout *layout = new QGridLayout( editorPage, 4, 3, 0, spacingHint() );
 
-    QPixmap icon = KGlobal::iconLoader()->loadIcon( "edit", KIcon::Toolbar, KIcon::SizeMedium );
-    QFrame* editorPage = addPage( i18n( "Editor" ), i18n("Editor Settings"), icon );
+    QLabel *label_TabSize = new QLabel( i18n( "&Tab size:" ), editorPage, "label_TabSize" );
+    layout->addMultiCellWidget( label_TabSize, 0, 0, 0, 1 );
 
-    // set layout - top level is the QVBoxLayout...
-    QVBoxLayout* topLevel = new QVBoxLayout( editorPage, 0, spacingHint() );
-    QGridLayout* glay     = new QGridLayout( topLevel, 4, 3 );
-    glay->setColStretch( 1, 1 );
+    KIntNumInput *kcfg_TabSize = new KIntNumInput( editorPage, "kcfg_TabSize" );
+    kcfg_TabSize->setRange( 0, 40, 1, false );
+    label_TabSize->setBuddy( kcfg_TabSize );
+    layout->addWidget( kcfg_TabSize, 0, 2 );
 
-    QLabel* l_tabsize = new QLabel( i18n( "&Tab size:" ), editorPage );
-    glay->addWidget( l_tabsize, 0, 0 );
+    QCheckBox *kcfg_AutoIndent = new QCheckBox( i18n("Auto &indent"), editorPage, "kcfg_AutoIndent" );
+    layout->addMultiCellWidget( kcfg_AutoIndent, 1, 1, 0, 1 );
 
-    int tabsize = m_config->readUnsignedNumEntry( "tabsize", 4 );
-    m_tabEdit = new KIntNumInput( tabsize, editorPage );
-    m_tabEdit->setRange( 0, 20, 1, false );
-    glay->addWidget( m_tabEdit, 0, 2 );
-    l_tabsize->setBuddy( m_tabEdit );
+    QCheckBox *kcfg_RichText = new QCheckBox( i18n("&Rich text"), editorPage, "kcfg_RichText" );
+    layout->addWidget( kcfg_RichText, 1, 2 );
 
-    bool check_val = m_config->readBoolEntry( "autoindent", true );
-    m_autoIndentSwitch = new QCheckBox( i18n("Auto &indent"), editorPage );
-    m_autoIndentSwitch->setChecked( check_val );
-    glay->addWidget( m_autoIndentSwitch, 1, 0, AlignCenter );
+    QLabel *label_Font = new QLabel( i18n("Text font:"), editorPage, "label_Font" );
+    layout->addWidget( label_Font, 3, 0 );
 
-    check_val = m_config->readBoolEntry( "richtext", false );
-    m_richTextSwitch = new QCheckBox( i18n("&Rich text"), editorPage );
-    m_richTextSwitch->setChecked( check_val );
-    glay->addWidget( m_richTextSwitch, 1, 2, AlignCenter );
+    KFontRequester *kcfg_Font = new KFontRequester( editorPage, "kcfg_Font" );
+    layout->addMultiCellWidget( kcfg_Font, 3, 3, 1, 2 );
 
-    m_titleFont = new QPushButton( editorPage );
-    QFont def_font(KGlobalSettings::generalFont());
-    QFont currfont = m_config->readFontEntry( "titlefont", &def_font );
-    m_titleFont->setFont( currfont );
-    m_titleFont->setText( i18n( "Title Font: Click to Change..." ) );
-    glay->addMultiCellWidget( m_titleFont, 2, 2, 0, 2 );
-    connect( m_titleFont, SIGNAL(clicked()), this, SLOT(slotChangeTitleFont()) );
+    QLabel *label_TitleFont = new QLabel( i18n("Title font:"), editorPage, "label_TitleFont" );
+    layout->addWidget( label_TitleFont, 2, 0 );
 
-    m_textFont = new QPushButton( editorPage );
-    currfont = m_config->readFontEntry( "font", &def_font );
-    m_textFont->setFont( currfont );
-    m_textFont->setText( i18n( "Text Font: Click to Change..." ) );
-    glay->addMultiCellWidget( m_textFont, 3, 3, 0, 2 );
-    connect( m_textFont, SIGNAL(clicked()), this, SLOT(slotChangeTextFont()) );
+    KFontRequester *kcfg_TitleFont = new KFontRequester( editorPage, "kcfg_TitleFont" );
+    layout->addMultiCellWidget( kcfg_TitleFont, 2, 2, 1, 2 );
+
+    KSeparator *separator = new KSeparator( Horizontal, editorPage );
+    layout->addMultiCellWidget( separator, 4, 4, 0, 2 );
+
+    addPage( editorPage, i18n( "Editor" ), "edit", i18n("Editor Settings") );
 }
 
 void KNoteConfigDlg::makeActionsPage()
 {
-    m_config->setGroup( "Actions" );
+    QWidget *actionsPage = new QWidget();
+    QGridLayout *layout = new QGridLayout( actionsPage, 2, 2, 0, spacingHint() );
 
-    QPixmap icon = KGlobal::iconLoader()->loadIcon( "misc", KIcon::Toolbar, KIcon::SizeMedium );
-    QFrame* actionsPage = addPage( i18n( "Actions" ), i18n("Action Settings"), icon );
+    QLabel *label_MailAction = new QLabel( i18n("&Mail action:"), actionsPage, "label_MailAction" );
+    layout->addWidget( label_MailAction, 0, 0 );
 
-    // set layout - top level is the QVBoxLayout...
-    QVBoxLayout* topLevel = new QVBoxLayout( actionsPage, 0, spacingHint() );
-    QGridLayout* glay     = new QGridLayout( topLevel, 2, 2 );
-    glay->setColStretch( 1, 1 );
+    KLineEdit *kcfg_MailAction = new KLineEdit( actionsPage, "kcfg_MailAction" );
+    label_MailAction->setBuddy( kcfg_MailAction );
+    layout->addWidget( kcfg_MailAction, 0, 1 );
 
-    QLabel* l_mail = new QLabel( i18n("&Mail action:"), actionsPage );
-    QString mailstr = m_config->readPathEntry( "mail", "kmail --msg %f" );
-    m_mailEdit = new KLineEdit( mailstr, actionsPage );
-    l_mail->setBuddy( m_mailEdit );
-    glay->addWidget( l_mail, 0, 0 );
-    glay->addWidget( m_mailEdit, 0, 1 );
-}
+    KSeparator *separator = new KSeparator( Horizontal, actionsPage );
+    layout->addMultiCellWidget( separator, 2, 2, 0, 1 );
 
-void KNoteConfigDlg::storeSettings()
-{
-    // store General settings
-    m_config->setGroup( "General" );
-
-    m_config->writeEntry( "version", KNOTES_VERSION );
-
-    // store Display settings
-    m_config->setGroup( "Display" );
-
-    m_config->writeEntry( "fgcolor", m_fgColor->color() );
-    m_config->writeEntry( "bgcolor", m_bgColor->color() );
-
-    if ( m_global )
-    {
-        m_config->writeEntry( "height", m_heightEdit->value() );
-        m_config->writeEntry( "width", m_widthEdit->value() );
-
-        m_config->setGroup( "WindowDisplay" );
-        m_config->writeEntry( "state", !m_skipTaskbarSwitch->isChecked() ? NET::SkipTaskbar : 0 );
-    }
-
-    // store Editor settings
-    m_config->setGroup( "Editor" );
-
-    m_config->writeEntry( "titlefont", m_titleFont->font() );
-    m_config->writeEntry( "font", m_textFont->font() );
-    m_config->writeEntry( "autoindent", m_autoIndentSwitch->isChecked() );
-    m_config->writeEntry( "richtext", m_richTextSwitch->isChecked() );
-    m_config->writeEntry( "tabsize", m_tabEdit->value() );
-
-    // store Action Settings
-    m_config->setGroup( "Actions" );
-
-    m_config->writePathEntry( "mail", m_mailEdit->text() );
-
-    // TODO: use kconf_update?
-    m_config->deleteEntry( "print" );
-
-    m_config->sync();
-}
-
-void KNoteConfigDlg::slotOk()
-{
-    // get data from ls
-    storeSettings();
-    emit updateConfig();
-    emit skipTaskbar( !m_skipTaskbarSwitch->isChecked() );
-
-    accept();
-}
-
-void KNoteConfigDlg::slotApply()
-{
-    storeSettings();
-    emit updateConfig();
-    emit skipTaskbar( !m_skipTaskbarSwitch->isChecked() );
-}
-
-void KNoteConfigDlg::slotChangeTitleFont()
-{
-    QFont newfont = m_titleFont->font();
-    KFontDialog::getFont( newfont );
-
-    m_titleFont->setFont( newfont );
-}
-
-void KNoteConfigDlg::slotChangeTextFont()
-{
-    QFont newfont = m_textFont->font();
-    KFontDialog::getFont( newfont );
-
-    m_textFont->setFont( newfont );
-}
-
-void KNoteConfigDlg::slotFGColor( const QColor& c )
-{
-    m_fgColor->setBackgroundColor( c );
-}
-
-void KNoteConfigDlg::slotBGColor( const QColor& c )
-{
-    m_bgColor->setBackgroundColor( c );
+    addPage( actionsPage, i18n( "Actions" ), "misc", i18n("Action Settings") );
 }
 
 

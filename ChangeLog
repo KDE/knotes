@@ -1,6 +1,37 @@
 ChangeLog for KNotes
 ====================
 
+2004/03/17  Michael Brade <brade@kde.org>
+
+    * set an appropriate caption icon for the config dialog
+    * make the config dialogs non-modal, put the nodeId as widget name so that
+      we can cache the dialog and open more than one at once
+    * fixed #72657: Show note in taskbar did not work properly due to
+      KWin not preserving NET::SkipTaskbar for hidden windows
+    * fixed a bug that changes in the note default configuration will
+      never be used (use KStandardDirs::saveLocation() instead of
+      KStandardDirs::findResource())
+
+2004/03/16  Tobias Koenig <tokoe@kde.org>
+
+    * fixed bug that removed/added notes are/aren't visible in the LMB menu,
+      we need to keep the KXMLGUIFactory around if the menu is to be changed
+      later
+
+2004/03/16  Michael Brade <brade@kde.org>
+
+    * adapt to new KWin: s/Always on Top/Keep Above Others/g and added
+      Keep Below Others; furthermore use the corresponding new NET::State flags
+    * completely rewrote the config dialog, make it inherit KConfigDialog
+    * ported KNotes to KConfig XT, had to change the config file format:
+      removed "state" entry and added "KeepAbove", "KeepBelow", "ShowInTaskbar"
+
+2004/03/15  Michael Brade <brade@kde.org>
+
+    * removed const from KNotesApp::slotPreferences to make it possible to
+      set KNotesApp as parent of the config dialog -> fixes jumping to another
+      desktop when opening the config dialog
+
 2004/03/13  Michael Brade <brade@kde.org>
 
     * s/ResourceManager/KNotesResourceManager/g

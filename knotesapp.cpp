@@ -40,6 +40,7 @@
 
 #include "knotesapp.h"
 #include "knote.h"
+#include "knoteconfig.h"
 #include "knoteconfigdlg.h"
 #include "knoteslegacy.h"
 
@@ -56,7 +57,8 @@ int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrColle
 
 KNotesApp::KNotesApp()
     : DCOPObject("KNotesIface"), QLabel( 0, 0, WType_TopLevel ),
-      KXMLGUIBuilder( this )
+      KXMLGUIBuilder( this ),
+      m_defaultConfig( 0 )
 {
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
@@ -85,8 +87,8 @@ KNotesApp::KNotesApp()
     m_guiFactory = new KXMLGUIFactory( this, this, "guifactory" );
     m_guiFactory->addClient( this );
 
-    m_context_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "knotes_context", this ) );
-    m_note_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "notes_menu", this ) );
+    m_context_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "knotes_context", this ));
+    m_note_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "notes_menu", this ));
 
     // create accels for global shortcuts
     m_globalAccel = new KGlobalAccel( this, "global accel" );
@@ -130,6 +132,7 @@ KNotesApp::~KNotesApp()
     m_noteList.clear();
     blockSignals( false );
 
+    delete m_defaultConfig;
     delete m_manager;
 }
 
@@ -343,11 +346,24 @@ void KNotesApp::slotShowNote()
     showNote( QString::fromUtf8( sender()->name() ) );
 }
 
-void KNotesApp::slotPreferences() const
+void KNotesApp::slotPreferences()
 {
-    // launch preferences dialog...
-    KNoteConfigDlg config( "knotesrc", i18n("KNotes Defaults"), true );
-    config.exec();
+    // reuse the dialog if possible
+    if ( KNoteConfigDlg::showDialog( "KNotes Default Settings" ) )
+        return;
+
+    // create the KNoteConfig if needed
+    if ( !m_defaultConfig )
+    {
+        QString configFile = KGlobal::dirs()->saveLocation( "config" ) + "knotesrc";
+        KSharedConfig::Ptr config = KSharedConfig::openConfig( configFile, false, false );
+        m_defaultConfig = new KNoteConfig( config );
+    }
+
+    // create a new preferences dialog...
+    KNoteConfigDlg *dialog = new KNoteConfigDlg( m_defaultConfig,
+            i18n("Default Settings"), true, this, "KNotes Default Settings" );
+    dialog->show();
 }
 
 void KNotesApp::slotConfigureAccels()

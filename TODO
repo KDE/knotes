@@ -1,7 +1,7 @@
 TODO for KNotes
 ===============
 
- * finish the rich text mode (GUI missing)
+features:
  * alarms for the notes
  * categories for the notes
  * improve printing:
@@ -12,16 +12,30 @@ TODO for KNotes
     - make the frame configureable (3d -> normal)
     - make the keybindings configureable
  * save cursor and scrollbar postion
- * document the config dialog
  * steal some ideas from Stickies (Mac OS X)
 
  * once we have more session configs make KNotes save its notes in
    .kde/share/apps/knotes/<session-name>/
 
+bugs:
+ * test if KNotes works without initial config files (knote.cpp, KIO::NetAccess::exists())
+ * fix shortcuts
+ * focus update when opening combo box?
+ * fix font selection and update
+ * fix color update in menu
+ * fix switching from rich text mode to normal and then restart KNotes
+   (probably happens because of order of reading text and
+   setting RichText/PlainText property)
+ * fix being able to uncheck all formatting buttons
+ * if the window state is changed from outside KNotes the buttons do not
+   reflect that
+ * send DCOP signals on newNote/deleteNote
+ * mail rich text notes properly
+
 perhaps:
  * transparent notes
  * shadow for the notes
- * icons for the notes (small, put in the note menu)
+ * icons for the notes (small, put in the note menu and note title)
 
 older TODOs from Wynn:
  * inserting calendar
@@ -32,8 +46,8 @@ older TODOs from Wynn:
  * handle KNotes files of which all/some may reside on the desktop?
    (means that there must be an extension for note files...)
 
-Always open TODO:
+always open TODO:
  * make the code as perfect and clean as possible!!
 
 
--- Michael Brade 28-09-2002
+-- Michael Brade 17-03-2004

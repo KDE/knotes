@@ -28,15 +28,16 @@
 #include <kdebug.h>
 #include <kapplication.h>
 #include <kglobal.h>
-#include <kstandarddirs.h>
 #include <kurl.h>
+#include <kstandarddirs.h>
 #include <ksimpleconfig.h>
 #include <kio/netaccess.h>
 
 #include <unistd.h>
 
-#include "version.h"
 #include "knoteslegacy.h"
+#include "knoteconfig.h"
+#include "version.h"
 
 #include "libkcal/calendarlocal.h"
 #include "libkcal/journal.h"
@@ -49,18 +50,15 @@ using namespace KCal;
 void KNotesLegacy::cleanUp()
 {
     // remove old (KDE 1.x) local config file if it still exists
-    QString configfile = KGlobal::dirs()->findResource( "config", "knotesrc" );
+    QString configfile = KGlobal::dirs()->saveLocation( "config" ) + "knotesrc";
     KSimpleConfig *test = new KSimpleConfig( configfile );
     test->setGroup( "General" );
     double version = test->readDoubleNumEntry( "version", 1.0 );
-
-    if ( version >= 2.0 )
-        test->writeEntry( "version", KNOTES_VERSION );
-
     delete test;
 
-    if ( version == 1.0 && !( checkAccess( configfile, W_OK ) &&
-         KIO::NetAccess::del( KURL(configfile), 0 ) ) )
+    if ( version == 1.0 &&
+         !( checkAccess( configfile, W_OK ) &&
+            KIO::NetAccess::del( KURL(configfile), 0 ) ) )
     {
         kdError(5500) << k_funcinfo << "Could not delete old config file!" << endl;
     }
@@ -75,13 +73,14 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
     for ( QStringList::Iterator note = notes.begin(); note != notes.end(); note++ )
     {
         QString file = noteDir.absFilePath( *note );
-        KSimpleConfig* test = new KSimpleConfig( file, true );
+        KSimpleConfig* test = new KSimpleConfig( file );
         test->setGroup( "General" );
         double version = test->readDoubleNumEntry( "version", 1.0 );
-        delete test;
 
         if ( version < 3.0 )
         {
+            delete test;
+
             // create the new note
             Journal *journal = new Journal();
             bool success;
@@ -99,6 +98,15 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
                 calendar->addJournal( journal );
                 converted = true;
             }
+        }
+        // window state changed for version 3.2
+        else if ( version < 3.2 )
+        {
+            uint state = test->readUnsignedLongNumEntry( "state", NET::SkipTaskbar );
+            test->writeEntry( "ShowInTaskbar", (state & NET::SkipTaskbar) ? false : true );
+            test->writeEntry( "KeepAbove", (state & NET::KeepAbove) ? true : false );
+            test->deleteEntry( "state" );
+            delete test;
         }
     }
 
@@ -137,38 +145,30 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
 
     // set the defaults
     KIO::NetAccess::copy(
-        KURL( KGlobal::dirs()->findResource( "config", "knotesrc" ) ),
+        KURL( KGlobal::dirs()->saveLocation( "config" ) + "knotesrc" ),
         KURL( configFile ),
         0
     );
 
-    KSimpleConfig config( configFile );
-    config.setGroup( "General" );
-    config.writeEntry( "version", KNOTES_VERSION );
-
-    // use the new default for this group
-    config.setGroup( "Actions" );
-    config.writeEntry( "mail", "kmail --msg %f" );
-
-    config.setGroup( "Display" );
+    KNoteConfig config( KSharedConfig::openConfig( configFile, false, false ) );
+    config.readConfig();
+    config.setVersion( KNOTES_VERSION );
 
     // get the geometry
-    config.writeEntry( "width", props[3] );
-    config.writeEntry( "height", props[4] );
+    config.setWidth( props[3].toUInt() );
+    config.setHeight( props[4].toUInt() );
 
     // get the background color
     uint red = input.readLine().toUInt();
     uint green = input.readLine().toUInt();
     uint blue = input.readLine().toUInt();
-    config.writeEntry( "bgcolor", QColor( red, green, blue ) );
+    config.setBgColor( QColor( red, green, blue ) );
 
     // get the foreground color
     red = input.readLine().toUInt();
     green = input.readLine().toUInt();
     blue = input.readLine().toUInt();
-    config.writeEntry( "fgcolor", QColor( red, green, blue ) );
-
-    config.setGroup( "Editor" );
+    config.setFgColor( QColor( red, green, blue ) );
 
     // get the font
     QString fontfamily = input.readLine();
@@ -180,40 +180,31 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     bool italic = ( input.readLine().toUInt() == 1 );
     QFont font( fontfamily, size, weight, italic );
 
-    config.writeEntry( "titlefont", font );
-    config.writeEntry( "font", font );
+    config.setTitleFont( font );
+    config.setFont( font );
 
     // 3d frame? Not supported yet!
     input.readLine();
 
     // autoindent
-    bool indent = ( input.readLine().toUInt() == 1 );
-    config.writeEntry( "autoindent", indent );
+    config.setAutoIndent( input.readLine().toUInt() == 1 );
 
-    // rich text and tabsize
-    config.writeEntry( "richtext", false );
-    config.writeEntry( "tabsize", 4 );
-
-    config.setGroup( "WindowDisplay" );
-
-    // hidden
-    bool hidden = ( input.readLine().toUInt() == 1 );
+    // KNotes 1 never had rich text
+    config.setRichText( false );
 
     int note_desktop = props[0].toUInt();
-    if ( hidden )
+
+    // hidden or on all desktops?
+    if ( input.readLine().toUInt() == 1 )
         note_desktop = 0;
     else if ( props[11].toUInt() == 1 )
         note_desktop = NETWinInfo::OnAllDesktops;
 
-    config.writeEntry( "desktop", note_desktop );
-    config.writeEntry( "position", QPoint( props[1].toUInt(), props[2].toUInt() ) );
+    config.setDesktop( note_desktop );
+    config.setPosition( QPoint( props[1].toUInt(), props[2].toUInt() ) );
+    config.setKeepAbove( props[12].toUInt() & 2048 );
 
-    if ( props[12].toUInt() & 2048 )
-        config.writeEntry( "state", NET::SkipTaskbar | NET::StaysOnTop );
-    else
-        config.writeEntry( "state", NET::SkipTaskbar );
-
-    config.sync();
+    config.writeConfig();
 
     // get the text
     QString text;
@@ -253,6 +244,11 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
     config.deleteGroup( "Data", true );
     config.setGroup( "General" );
     config.writeEntry( "version", KNOTES_VERSION );
+    config.setGroup( "WindowDisplay" );
+    uint state = config.readUnsignedLongNumEntry( "state", NET::SkipTaskbar );
+    config.writeEntry( "ShowInTaskbar", (state & NET::SkipTaskbar) ? false : true );
+    config.writeEntry( "KeepAbove", (state & NET::KeepAbove) ? true : false );
+    config.deleteEntry( "state" );
 
     // load the saved text and put it in the journal
     QFile infile( noteDir.absFilePath( "." + file + "_data" ) );

@@ -21,64 +21,27 @@
 #ifndef KNOTECONFIGDLG_H
 #define KNOTECONFIGDLG_H
 
-#include <kdialogbase.h>
+#include <kconfigdialog.h>
 
 class QString;
-class QColor;
-class QCheckBox;
-class QPushButton;
-
-class KConfig;
-class KColorButton;
-class KLineEdit;
-class KIntNumInput;
+class KNoteConfig;
 
 
-class KNoteConfigDlg : public KDialogBase
+class KNoteConfigDlg : public KConfigDialog
 {
     Q_OBJECT
 public:
-    KNoteConfigDlg( const QString &configfile, const QString &title,
-                    bool global, QWidget *parent=0, const char *name=0 );
+    KNoteConfigDlg( KNoteConfig *config, const QString &title,
+                    bool defaults, QWidget *parent=0, const char *name=0 );
     ~KNoteConfigDlg();
 
-    void makeDisplayPage();
+public slots:
+    void slotUpdateCaption();
+
+protected:
+    void makeDisplayPage( bool defaults );
     void makeEditorPage();
     void makeActionsPage();
-
-protected slots:
-    virtual void slotOk();
-    virtual void slotApply();
-
-    void slotChangeTitleFont();
-    void slotChangeTextFont();
-    void slotFGColor( const QColor& );
-    void slotBGColor( const QColor& );
-
-signals:
-    void updateConfig();
-    void skipTaskbar( bool skip );
-
-private:
-    void storeSettings();
-
-    bool m_global;
-
-    KConfig *m_config;
-
-    KColorButton *m_fgColor;
-    KColorButton *m_bgColor;
-    KIntNumInput *m_widthEdit;
-    KIntNumInput *m_heightEdit;
-    QCheckBox    *m_skipTaskbarSwitch;
-
-    KIntNumInput *m_tabEdit;
-    QCheckBox    *m_autoIndentSwitch;
-    QCheckBox    *m_richTextSwitch;
-    QPushButton  *m_titleFont;
-    QPushButton  *m_textFont;
-
-    KLineEdit    *m_mailEdit;
 };
 
 #endif

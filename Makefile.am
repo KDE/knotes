@@ -8,7 +8,7 @@ include_HEADERS = KNotesIface.h
 noinst_HEADERS  = knotesapp.h knote.h knoteedit.h knoteconfigdlg.h knotebutton.h knoteslegacy.h resourcenotes.h resourcemanager.h
 
 noinst_LTLIBRARIES = libknotes.la
-libknotes_la_SOURCES  = knotesapp.cpp knote.cpp knoteedit.cpp knotebutton.cpp knoteconfigdlg.cpp KNotesIface.skel knoteslegacy.cpp resourcemanager.cpp resourcenotes.cpp resourcelocal.cpp
+libknotes_la_SOURCES = knotesapp.cpp knote.cpp knoteedit.cpp knotebutton.cpp knoteconfigdlg.cpp knoteconfig.kcfgc KNotesIface.skel knoteslegacy.cpp resourcemanager.cpp resourcenotes.cpp resourcelocal.cpp
 
 knotes_SOURCES  = main.cpp
 knotes_LDADD    = libknotes.la $(LIB_KIO) -lkresources -lkdeprint $(top_builddir)/libkcal/libkcal.la
@@ -23,15 +23,13 @@ knotes_local_la_LIBADD  = libknotes.la $(top_builddir)/libkcal/libkcal.la -lkdep
 METASOURCES     = AUTO
 
 xdg_apps_DATA   = knotes.desktop
+kde_kcfg_DATA   = knotes.kcfg
 
 ui_DATA         = knotesui.rc
 uidir           = $(kde_datadir)/knotes
 
-rc_DATA         = knotesrc
-rcdir           = $(kde_confdir)
-
-servicedir = $(kde_servicesdir)/kresources/knotes
-service_DATA = local.desktop
+service_DATA    = local.desktop
+servicedir      = $(kde_servicesdir)/kresources/knotes
 
 messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/knotes.pot

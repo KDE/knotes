@@ -36,6 +36,7 @@ class KXMLGUIBuilder;
 class KPopupMenu;
 class KNoteButton;
 class KNoteEdit;
+class KNoteConfig;
 class KToolBar;
 class KListAction;
 class KToggleAction;
@@ -69,17 +70,7 @@ public:
     void toDesktop( int desktop );
 
 public slots:
-    void slotRename();
-    void slotClose();
     void slotKill( bool force = false );
-    void slotMail() /*const*/;
-    void slotPrint();
-    void slotInsDate();
-    void slotPreferences();
-
-    void slotToggleAlwaysOnTop();
-    void slotPopupActionToDesktop( int id );
-    void slotUpdateDesktopActions();
 
 signals:
     void sigRequestNewNote();
@@ -97,8 +88,18 @@ protected:
     virtual bool eventFilter( QObject*, QEvent* );
 
 private slots:
+    void slotRename();
+    void slotClose();
+    void slotMail();
+    void slotPrint();
+    void slotInsDate();
+    void slotPreferences();
+    void slotPopupActionToDesktop( int id );
+
     void slotApplyConfig();
-    void slotSkipTaskbar( bool skip );
+    void slotUpdateKeepAboveBelow();
+    void slotUpdateShowInTaskbar();
+    void slotUpdateDesktopActions();
 
 private:
     void updateFocus();
@@ -110,19 +111,20 @@ private:
     QPoint m_pointerOffset;
     bool   m_dragging;
 
-    QLabel      *m_label;
-    KNoteButton *m_button;
-    KToolBar    *m_tool;
-    KNoteEdit   *m_editor;
+    QLabel        *m_label;
+    KNoteButton   *m_button;
+    KToolBar      *m_tool;
+    KNoteEdit     *m_editor;
 
+    KNoteConfig   *m_config;
     KCal::Journal *m_journal;
-    QString        m_configFile;
 
-    KToggleAction *m_alwaysOnTop;
+    KPopupMenu    *m_menu;
+    KPopupMenu    *m_edit_menu;
+
     KListAction   *m_toDesktop;
-
-    KPopupMenu *m_menu;
-    KPopupMenu *m_edit_menu;
+    KToggleAction *m_keepAbove;
+    KToggleAction *m_keepBelow;
 };
 
 #endif
