@@ -132,7 +132,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     connect( m_button, SIGNAL(clicked()), this, SLOT(slotClose()) );
 
     // create the note editor
-    m_editor = new KNoteEdit( this );
+    m_editor = new KNoteEdit( actionCollection(), this );
     m_editor->installEventFilter( this ); // receive events (for modified)
     m_editor->viewport()->installEventFilter( this );
 
