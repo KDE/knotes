@@ -917,7 +917,7 @@ void KNote::updateFocus()
         m_button->show();
         m_editor->cornerWidget()->show();
 
-        if ( !m_config->readOnly() )
+        if ( !m_editor->isReadOnly() )
         {
             if ( m_tool->isHidden() && m_editor->textFormat() == QTextEdit::RichText )
             {
