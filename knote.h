@@ -100,7 +100,6 @@ private:
     QPoint       m_pointerOffset;
     int          m_idAlwaysOnTop;
     bool         m_dragging;
-    bool         m_killSelf;
 };
 
 #endif

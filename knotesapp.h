@@ -24,6 +24,7 @@
 #include <qstring.h>
 #include <qdict.h>
 
+#include <kapp.h>
 #include <ksystemtray.h>
 
 #include "KNotesIface.h"
@@ -31,7 +32,7 @@
 class KNote;
 
 
-class KNotesApp : public KSystemTray, virtual public KNotesIface
+class KNotesApp : public KSystemTray, virtual public KNotesIface, public KSessionManaged
 {
     Q_OBJECT
 public:
@@ -58,6 +59,9 @@ public:
     bool isModified( const QString& app, const QString& name ) const;
     bool isModified( const QString& app, int noteId ) const;
 
+    bool commitData( QSessionManager& );
+    bool saveState( QSessionManager& );
+
 protected:
     void mouseReleaseEvent( QMouseEvent* );
     bool eventFilter( QObject*, QEvent* );
@@ -65,7 +69,6 @@ protected:
 protected slots:
     void slotNewNote();
     void slotToNote( int id ) const;
-    void slotSaveNotes() const;
 
     void slotPreferences() const;
     void slotPrepareNoteMenu();
@@ -76,6 +79,7 @@ protected slots:
 private:
     KNote* noteById( int id ) const;
     void showNote( KNote* note ) const;
+    void saveNotes() const;
 
     QDict<KNote>  m_NoteList;
     KPopupMenu*   m_note_menu;

@@ -62,8 +62,6 @@ int main( int argc, char* argv[] )
     KNotesApp* a = new KNotesApp();
 
     app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
-    app.connect( &app, SIGNAL( saveYourself() ), a, SLOT( slotSaveNotes() ) );
-    app.connect( &app, SIGNAL( shutDown() ), a, SLOT( slotSaveNotes() ) );
 
     a->show();
 

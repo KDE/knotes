@@ -57,8 +57,7 @@
 KNote::KNote( const QString& config, bool load, QWidget* parent, const char* name )
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorderEx | WDestructiveClose ),
       m_noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) ),
-      m_configFile( config ),
-      m_killSelf( false )
+      m_configFile( config )
 {
     // create the menu items for the note - not the editor...
     // rename, mail, print, insert date, close, delete, new note
@@ -153,20 +152,6 @@ KNote::~KNote()
 {
     emit sigKilled( m_label->text() );
 
-    if ( !m_killSelf )
-    {
-        saveData();
-        saveConfig();
-    }
-    else
-    {
-        if ( !m_noteDir.remove( m_configFile ) )
-            kdDebug() << "could not remove conf file" << endl;
-
-        if ( !m_noteDir.remove( "." + m_configFile + "_data" ) )
-            kdDebug() << "could not remove data file" << endl;
-    }
-
     delete m_editor;
     delete m_menu;
     delete m_desktop_menu;
@@ -207,7 +192,6 @@ void KNote::saveDisplayConfig() const
     NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop | NET::WMState );
 
     config.setGroup( "WindowDisplay" );
-
     config.writeEntry( "desktop", wm_client.desktop() );
     config.writeEntry( "state", wm_client.state() );
     config.writeEntry( "position", pos() );
@@ -331,7 +315,12 @@ void KNote::slotClose()
 
 void KNote::slotKill()
 {
-    m_killSelf = true;
+    if ( !m_noteDir.remove( m_configFile ) )
+        kdWarning() << "could not remove conf file for note " << m_label->text() << endl;
+
+    if ( !m_noteDir.remove( "." + m_configFile + "_data" ) )
+        kdWarning() << "could not remove data file for note " << m_label->text() << endl;
+
     close( true );
 }
 
@@ -770,6 +759,7 @@ void KNote::resizeEvent( QResizeEvent* qre )
 
 void KNote::closeEvent( QCloseEvent* e )
 {
+    saveConfig();
     saveDisplayConfig();
 
     QWidget::closeEvent( e );

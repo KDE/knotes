@@ -49,10 +49,12 @@ void KNoteEdit::readFile( QString& filename )
     {
         QTextStream input( &infile );
         QString text = input.read();
-        insertAt( text, 0, 0 );
+        setText( text );
         infile.close();
     } else
         kdDebug() << "could not open input file" << endl;
+
+    setEdited( false );
 }
 
 void KNoteEdit::dumpToFile( QString& filename ) const

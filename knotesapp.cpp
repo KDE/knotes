@@ -19,7 +19,6 @@
 *******************************************************************/
 
 #include <qdir.h>
-#include <qfont.h>
 
 #include <kapp.h>
 #include <kwin.h>
@@ -58,9 +57,9 @@ KNotesApp::KNotesApp()
     KHelpMenu* helpMenu = new KHelpMenu( this, kapp->aboutData(), false );
     menu->insertItem( i18n("New Note"), this, SLOT( slotNewNote() ) );
     menu->insertItem( i18n("Notes"), m_note_menu );
-    menu->insertItem( i18n("Preferences..."), this, SLOT( slotPreferences() ) );
+    menu->insertItem( SmallIcon("configure"), i18n("Preferences..."), this, SLOT( slotPreferences() ) );
     menu->insertSeparator();
-    menu->insertItem( i18n("&Help"), helpMenu->menu() );
+    menu->insertItem( SmallIcon("help"), i18n("&Help"), helpMenu->menu() );
 
     // remove old (KDE 1.x) local config file if it still exists
     QString configfile = KGlobal::dirs()->findResource( "config", "knotesrc" );
@@ -129,6 +128,22 @@ KNotesApp::~KNotesApp()
     m_NoteList.clear();
 }
 
+bool KNotesApp::saveState( QSessionManager& )
+{
+    saveNotes();
+
+    QDictIterator<KNote> it( m_NoteList );
+    for ( ; it.current(); ++it )
+        it.current()->hide();
+
+   return true;
+}
+
+bool KNotesApp::commitData( QSessionManager& )
+{
+    saveNotes();
+    return true;
+}
 
 // -------------------- public DCOP interface -------------------- //
 
@@ -369,18 +384,6 @@ void KNotesApp::slotToNote( int id ) const
     showNote( name );
 }
 
-void KNotesApp::slotSaveNotes() const
-{
-    // save all the notes...
-    QDictIterator<KNote> it( m_NoteList );
-    for ( ; it.current(); ++it )
-    {
-        it.current()->saveData();
-        it.current()->saveConfig();
-        it.current()->saveDisplayConfig();
-    }
-}
-
 void KNotesApp::slotNoteRenamed( const QString& oldname, const QString& newname )
 {
     if ( m_NoteList[newname] )
@@ -452,6 +455,18 @@ void KNotesApp::showNote( KNote* note ) const
         note->slotToDesktop( KWin::currentDesktop() );
         KWin::setActiveWindow( note->winId() );
         note->setFocus();
+    }
+}
+
+void KNotesApp::saveNotes() const
+{
+    // save all the notes...
+    QDictIterator<KNote> it( m_NoteList );
+    for ( ; it.current(); ++it )
+    {
+        it.current()->saveData();
+        it.current()->saveConfig();
+        it.current()->saveDisplayConfig();
     }
 }
 
