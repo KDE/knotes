@@ -1,6 +1,28 @@
 ChangeLog for KNotes
 ====================
 
+2003/06/17  Michael Brade <brade@kde.org>
+
+    * fixed #58338: show note title in taskbar
+    * various code and style optimisations
+
+2003/06/13  Maks Orlovich <mo002j@mail.rochester.edu>
+
+    * fixed #59028: if title is too long to fit, left-align it, so we don't
+      end up showing its middle
+
+2003/04/25  Michael Brade <brade@kde.org>
+
+    * HACK to fix #57367: Always On Top property lost when hide->show a note
+
+2003/04/04  Luboš Luňák <l.lunak@kde.org>
+
+    * fixed #56625: compensate for the menu separator when using the index
+
+2003/02/06  Stephan Binner <binner@kde.org>
+
+    * fixed #54108: "&" in note tile will be displayed as underscore in the menu
+
 2003/01/26  Michael Brade <brade@kde.org>
 
     * use libkcals new Attachment class
@@ -296,7 +318,7 @@ ChangeLog for KNotes
     keeping a KConfig object open for each note all the time - it just creates
     them when saving new changes to the note settings."
 
-2000/09/24  Dirk M�ller <mueller@kde.org>
+2000/09/24  Dirk Mller <mueller@kde.org>
 
     - first attempt fixing the blatant memory leaks in this app.
       it still does a lot of crazy things, like keeping all kinds of KSimpleConfig
