@@ -237,4 +237,17 @@ void KNotesApp::slotPrepareNoteMenu()
     }
 }
 
+
+void KNotesApp::mouseReleaseEvent( QMouseEvent * e)
+{
+    if ( rect().contains( e->pos() ) && e->button() == LeftButton ) {
+	slotPrepareNoteMenu();
+	m_note_menu->popup( e->globalPos() );
+	return;
+    }
+    
+    KSystemTray::mouseReleaseEvent( e );
+}
+
+
 #include "knotesapp.moc"

@@ -27,7 +27,8 @@ public slots:
 protected slots:
     void slotToNote( int id );
     void slotPrepareNoteMenu();
-
+    void mouseReleaseEvent( QMouseEvent *);
+    
 private:
     QDict< KNote >  m_NoteList;
     KPopupMenu*     m_note_menu;
