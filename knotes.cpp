@@ -26,7 +26,6 @@
  */
 
 
-#include <dirent.h>
 
 #include "knotes.h"
 #include "configdlg.h"

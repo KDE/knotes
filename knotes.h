@@ -48,6 +48,7 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <dirent.h>
 
 #include <kurl.h> // must go before kapp.h
 #include <kapp.h>
