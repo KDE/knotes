@@ -1,4 +1,5 @@
 [Desktop Entry]
+Encoding=UTF-8
 DocPath=knotes/index.html
 Exec=knotes
 Icon=knotes
@@ -6,8 +7,28 @@ Terminal=0
 Type=Application
 
 Comment=Popup Notes
+Comment[da]=Popup-noter
+Comment[de]=Haftnotizen
+Comment[es]=Notas emergentes
+Comment[fi]=Muistilappu
+Comment[fr]=Un éditeur de petites notes
+Comment[he]=פתקים מוקפצים
+Comment[hu]=Jegyzetlapok
+Comment[lt]=Pastabos lapeliuose
+Comment[lv]=Izlecošās Piezīmes
+Comment[sk]=Vyskakujúce poznámky
+Comment[sv]=Anteckningslappar
+Comment[ta]=§ÁøÁ£ðÒì ÌÈ¢ôÒ¸û
+Comment[uk]=Спливаючі нотатки
+Comment[xx]=xx
 
 Name=KNotes
+Name[ar]=كنوتس
+Name[fr]=kNotes
+Name[hu]=KNotes jegyzettömb
+Name[lv]=KPiezīmes
+Name[sv]=Knotes
+Name[xx]=xx
 
 X-KDE-StartupNotify=true
 X-DCOP-ServiceType=Unique
