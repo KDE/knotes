@@ -1064,30 +1064,30 @@ bool KPostit::savenotes(){
   notesfile += name;
 
   QFile file(notesfile.data());
-  QFile file2("/home/wuebben/knotes.txt");
+  //  QFile file2("/home/wuebben/knotes.txt");
 
   if( !file.open( IO_WriteOnly)) {
     return FALSE;
   }
 
-  if( !file2.open( IO_WriteOnly | IO_Truncate )) {
+  /* if( !file2.open( IO_WriteOnly | IO_Truncate )) {
     return FALSE;
-  }
+  }*/
 
   QTextStream t(&file);
-  QTextStream t2(&file2);
+// QTextStream t2(&file2);
 
   t << name <<'\n';
-  t2 << name <<'\n';
+  //  t2 << name <<'\n';
      
   if( this->hidden){
 
     t << propertystring.data() << '\n';
-    t2 << propertystring.data() << '\n';
+    //    t2 << propertystring.data() << '\n';
   }
   else{
     t << KWM::getProperties(winId()) <<'\n';
-    t2 << KWM::getProperties(winId()) <<'\n';
+    //    t2 << KWM::getProperties(winId()) <<'\n';
   }
 
   t << backcolor.red() <<'\n';
@@ -1131,7 +1131,7 @@ bool KPostit::savenotes(){
   }
 
   file.close();
-  file2.close();
+  //  file2.close();
 
   return TRUE;
 }
