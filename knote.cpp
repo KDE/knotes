@@ -122,7 +122,6 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
     // set up the look&feel of the note
     setFrameStyle( WinPanel | Raised );
     setLineWidth( 1 );
-    setMinimumSize( 20, 20 );
 
     m_editor->setMargin( 5 );
     m_editor->setFrameStyle( NoFrame );
@@ -806,17 +805,20 @@ void KNote::convertOldConfig()
 void KNote::updateLayout()
 {
     int headerHeight = m_label->sizeHint().height();
+    int margin = m_editor->margin();
 
     m_button->setGeometry( frameRect().width() - headerHeight - 2,
                            frameRect().y() + 2, headerHeight, headerHeight );
 
-    m_label->setGeometry( frameRect().x() + 2,
-              frameRect().y() + 2,
+    m_label->setGeometry( frameRect().x() + 2, frameRect().y() + 2,
               frameRect().width() - (m_button->isHidden() ? 0 : headerHeight) - 4,
               headerHeight );
 
     m_editor->setGeometry( contentsRect().x(), contentsRect().y() + headerHeight + 2,
                 contentsRect().width(), contentsRect().height() - headerHeight - 4 );
+
+    setMinimumSize( m_editor->cornerWidget()->width() + margin*2 + 4,
+                    headerHeight + m_editor->cornerWidget()->height() + margin*2 + 4 );
 }
 
 
