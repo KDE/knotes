@@ -65,6 +65,7 @@ public:
     void sync( const QString& app );
     bool isNew( const QString& app ) const;
     bool isModified( const QString& app ) const;
+    void toDesktop( int desktop );
 
 public slots:
     void slotNewNote();
@@ -77,7 +78,7 @@ public slots:
     void slotPreferences();
 
     void slotToggleAlwaysOnTop();
-    void slotToDesktop( int id );
+    void slotPopupActionToDesktop( int id );
     void slotUpdateDesktopActions();
 
 signals:

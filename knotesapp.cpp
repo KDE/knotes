@@ -446,7 +446,7 @@ void KNotesApp::showNote( KNote* note ) const
     {
         // if not, show note on the current desktop
         note->show();
-        note->slotToDesktop( KWin::currentDesktop() );
+        note->toDesktop( KWin::currentDesktop() );
         KWin::setActiveWindow( note->winId() );
         note->setFocus();
     }

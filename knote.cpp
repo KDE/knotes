@@ -91,7 +91,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
 
     m_alwaysOnTop = new KToggleAction( i18n("Always on Top"), "attach", 0, this, SLOT(slotToggleAlwaysOnTop()), actionCollection(), "always_on_top" );
     connect( m_alwaysOnTop, SIGNAL(toggled(bool)), m_alwaysOnTop, SLOT(setChecked(bool)) );
-    m_toDesktop = new KListAction( i18n("To Desktop"), 0, this, SLOT(slotToDesktop(int)), actionCollection(), "to_desktop" );
+    m_toDesktop = new KListAction( i18n("To Desktop"), 0, this, SLOT(slotPopupActionToDesktop(int)), actionCollection(), "to_desktop" );
     connect( m_toDesktop->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(slotUpdateDesktopActions()) );
 
     // create the note header, button and label...
@@ -180,13 +180,13 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
         if( note_desktop != NETWinInfo::OnAllDesktops )
         {
             // to avoid flicker, call this before show()
-            slotToDesktop( note_desktop );
+            toDesktop( note_desktop );
             show();
         } else {
             show();
             // if this is called before show(),
             // it won't work for sticky notes!!!
-            slotToDesktop( note_desktop );
+            toDesktop( note_desktop );
         }
     }
 
@@ -366,12 +366,19 @@ void KNote::slotToggleAlwaysOnTop()
         KWin::setState( winId(), KWin::info(winId()).state | NET::StaysOnTop );
 }
 
-void KNote::slotToDesktop( int id )
+void KNote::slotPopupActionToDesktop( int id )
 {
-    if ( id == 0 || id == NETWinInfo::OnAllDesktops )
+    if( id > 1 )
+	--id; // compensate for the menu separator
+    toDesktop( id );
+}
+
+void KNote::toDesktop( int desktop )
+{
+    if ( desktop == 0 || desktop == NETWinInfo::OnAllDesktops )
         KWin::setOnAllDesktops( winId(), true );
     else
-        KWin::setOnDesktop( winId(), id );
+        KWin::setOnDesktop( winId(), desktop );
 }
 
 void KNote::slotUpdateDesktopActions()
@@ -389,10 +396,11 @@ void KNote::slotUpdateDesktopActions()
 
     m_toDesktop->setItems( desktops );
 
+    kdDebug() << "updateDesktopActions:" << wm_client.desktop() << endl;
     if ( wm_client.desktop() == NETWinInfo::OnAllDesktops )
         m_toDesktop->setCurrentItem( 0 );
     else
-        m_toDesktop->setCurrentItem( wm_client.desktop() );
+        m_toDesktop->setCurrentItem( wm_client.desktop() + 1 ); // compensate for separator (+1)
 }
 
 void KNote::slotMail() //const
