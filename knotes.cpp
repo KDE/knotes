@@ -287,8 +287,8 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     XSetTransientForHint(qt_xdisplay(), winId(), winId());
     KWM::setWmCommand(winId(), "");
     KWM::setDecoration(winId(), KWM::tinyDecoration);
-    KWM::setIcon(winId(), kapp->getIcon());
-    KWM::setMiniIcon(winId(), kapp->getMiniIcon());
+    KWM::setIcon(winId(), kapp->icon());
+    KWM::setMiniIcon(winId(), kapp->miniIcon());
 
     label = new QLabel(this);
     label->setText(i18n("Hello"));
@@ -1765,7 +1765,7 @@ void readSettings()
 
   QString str;
 
-  KConfig *config = kapp->getConfig();
+  KConfig *config = kapp->config();
   config->setGroup( "Font" );
   QFont defaultFont("helvetica",12);
   postitdefaults.font = config->readFontEntry("Font", &defaultFont);
@@ -1814,7 +1814,7 @@ void readSettings()
 void writeSettings()
 {
 
-  KConfig *config = kapp->getConfig();
+  KConfig *config = kapp->config();
 
   config->setGroup( "Font" );
   config->writeEntry("Font",postitdefaults.font);
