@@ -1,9 +1,0 @@
-# KDE Config File
-[KDE Desktop Entry]
-Exec=knotes
-Icon=knotes.xpm
-DocPath=knotes/index.html
-Terminal=0
-Type=Application
-Comment=You can write small notes with this
-Name=KNotes

@@ -25,7 +25,7 @@ kde_icon_DATA = knotes.xpm
 pix_DATA = knoteslogo.xpm knotesclose.xpm
 pixdir = $(kde_datadir)/knotes/pics/
 
-apps_DATA = knotes.kdelnk
+apps_DATA = knotes.desktop
 appsdir = $(kde_appsdir)/Utilities
 
 install-data-local: 
