@@ -45,6 +45,7 @@
 #include <kstddirs.h>
 #include <kurl.h>
 #include <kwm.h>
+#include <kwin.h>
 
 #include "configdlg.h"
 #include "fontdlg.h"
@@ -407,13 +408,13 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     right_mouse_button->insertSeparator();
 
-    sticky_id = right_mouse_button->insertItem("", this, SLOT(toggleSticky()));
+    //sticky_id = right_mouse_button->insertItem("", this, SLOT(toggleSticky()));
 
     desktops = new QPopupMenu;
     connect( desktops, SIGNAL(activated( int )),
 	     SLOT(toDesktop(int)) );
 
-    right_mouse_button->insertItem(KWM::toDesktopString(),
+    right_mouse_button->insertItem(i18n("&To desktop"),
 				   desktops);
 
     //    right_mouse_button->insertSeparator();
@@ -1253,17 +1254,20 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
   if(right_mouse_button){
     desktops->clear();
     int i;
-    int n = KWM::numberOfDesktops();
+    int n = KWin::numberOfDesktops();
     for (i=1; i <= n; i++){
       QString b = "&";
-      b.append(KWM::desktopName(i));
+      //b.append(KWM::desktopName(i));
+      b.append(QString::number(i));
       desktops->insertItem(b, i);
     }
-    desktops->setItemChecked(KWM::currentDesktop(), TRUE);
+    desktops->setItemChecked(KWin::currentDesktop(), TRUE);
+    /* 
     if (KWM::isSticky(winId()))
       right_mouse_button->changeItem(KWM::unStickyString(), sticky_id);
     else
       right_mouse_button->changeItem(KWM::stickyString(), sticky_id);
+    */
     right_mouse_button->popup(tmp_point);
   }
 
