@@ -45,6 +45,7 @@ KNotesApp::KNotesApp()
       KXMLGUIBuilder( this )
 {
     m_noteActions.setAutoDelete( true );
+    m_noteList.setAutoDelete( true );
 
     // create the dock widget...
     KWin::setSystemTrayWindowFor( winId(), qt_xrootwin() );
@@ -54,7 +55,7 @@ KNotesApp::KNotesApp()
     // create the GUI...
     new KAction( i18n("New Note"), "filenew", 0, this, SLOT(slotNewNote()), actionCollection(), "new_note" );
     new KAction( i18n("&Preferences..."), "configure", 0, this, SLOT(slotPreferences()), actionCollection(), "options_configure" );
-    new KAction( i18n("&Quit"), "exit", 0, kapp, SLOT( closeAllWindows() ), actionCollection(), "quit" );
+    new KAction( i18n("&Quit"), "exit", 0, kapp, SLOT( quit() ), actionCollection(), "quit" );
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
     setXMLFile( QString( instance()->instanceName() + "ui.rc" ) );
@@ -128,8 +129,10 @@ KNotesApp::KNotesApp()
 
 KNotesApp::~KNotesApp()
 {
+    saveNotes();
     delete m_note_menu;
     delete m_context_menu;
+    disconnect();
     m_noteList.clear();
     delete factory;
 }
@@ -416,10 +419,9 @@ void KNotesApp::slotNoteRenamed( const QString& oldname, const QString& newname 
         return;
     }
 
-    KNote* note = m_noteList[oldname];
+    KNote *note = m_noteList.take( oldname );
     if ( note )
     {
-        m_noteList.remove( oldname );
         m_noteList.insert( newname, note );
         note->setName( newname );
 
@@ -431,7 +433,7 @@ void KNotesApp::slotNoteRenamed( const QString& oldname, const QString& newname 
 
 void KNotesApp::slotNoteKilled( const QString& name )
 {
-    m_noteList.remove( name );
+    m_noteList.take( name );
     updateNoteActions();
 }
 

@@ -3,6 +3,7 @@ ChangeLog for KNotes
 
 2002/01/22  Michael Brade <brade@kde.org>
 
+    * fixed #37222: Alt-F4 "deletes" note
     * fixed #37176: ask for confirmation before deleting a note
     * fixed #36374: double click to rename a note
     * email updates

@@ -828,10 +828,7 @@ void KNote::resizeEvent( QResizeEvent* qre )
 
 void KNote::closeEvent( QCloseEvent* e )
 {
-    saveConfig();
-    saveDisplayConfig();
-
-    QFrame::closeEvent( e );
+    slotClose();
 }
 
 void KNote::keyPressEvent( QKeyEvent* e )
