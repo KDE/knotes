@@ -290,7 +290,7 @@ void KNote::sync( const QString& app )
     sep[0] = '\0';
 
     KMD5 hash;
-    QCString result;
+    HASHHEX result;
 
     hash.update( m_label->text().utf8() );
     hash.update( sep );
@@ -300,7 +300,7 @@ void KNote::sync( const QString& app )
     KSimpleConfig config( m_noteDir.absFilePath( m_configFile ) );
 
     config.setGroup( "Synchronisation" );
-    config.writeEntry( app, result.data() );
+    config.writeEntry( app, result );
 }
 
 bool KNote::isNew( const QString& app ) const
