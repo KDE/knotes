@@ -53,18 +53,6 @@ k_dcop:
     virtual QString newNoteFromClipboard( const QString& name = QString::null ) = 0;
 
     /**
-     * Show a note as if it had been selected from the "notes" menu.
-     * @param noteId the id of the note to show
-     */
-    virtual ASYNC showNote( const QString& noteId ) const = 0;
-
-    /**
-     * Hide a note.
-     * @param noteId the id of the note to hide
-     */
-    virtual ASYNC hideNote( const QString& noteId ) const = 0;
-
-    /**
      * Deletes a note forever.
      * @param noteId the id of the note to kill
      */
@@ -110,30 +98,6 @@ k_dcop:
      * @return the body as a QString
      */
     virtual QString text( const QString& noteId ) const = 0;
-
-    /**
-     * This tells KNotes that a specific app has synchronized with all the notes.
-     * @param app the app that has synced with KNotes
-     */
-    virtual ASYNC sync( const QString& app ) = 0;
-
-    /**
-     * Test if a note was created new after the last sync.
-     * @param app the app that wants to get the status since the last sync
-     * @param noteId the id of the note
-     * @return true if the note is new, false if not or if the note does
-     *         not exist
-     */
-    virtual bool isNew( const QString& app, const QString& noteId ) const = 0;
-
-    /**
-     * Test if a note was modified since the last sync.
-     * @param app the app that wants to get the status since the last sync
-     * @param noteId the id of the note
-     * @return true if modified (note that this will return true if the note is
-     *         new as well!) and false if the note is not modified or doesn't exist
-     */
-    virtual bool isModified( const QString& app, const QString& noteId ) const = 0;
 };
 
 #endif

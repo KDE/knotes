@@ -29,7 +29,6 @@
 #include <kcolordialog.h>
 
 #include "knoteedit.h"
-#include "knotebutton.h"
 
 static const short SEP = 5;
 static const short ICON_SIZE = 10;
@@ -202,7 +201,7 @@ void KNoteEdit::setTextFormat( TextFormat f )
     {
         QString t = text();
         KTextEdit::setTextFormat( f );
-        
+
         // if the note contains html/xml source try to display it, otherwise
         // get the modified text again and set it to preserve newlines
         if ( QStyleSheet::mightBeRichText( t ) )

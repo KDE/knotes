@@ -25,6 +25,7 @@
 #include <kdebug.h>
 #include <kaction.h>
 #include <kxmlguifactory.h>
+#include <kxmlguibuilder.h>
 #include <ksystemtray.h>
 #include <klocale.h>
 #include <kiconeffect.h>
@@ -38,16 +39,45 @@
 #include <kextsock.h>
 
 #include <libkcal/journal.h>
+#include <libkcal/calendarlocal.h>
 
 #include "knotesapp.h"
 #include "knote.h"
-#include "knoteconfig.h"
 #include "knoteconfigdlg.h"
 #include "knotesglobalconfig.h"
 #include "knoteslegacy.h"
 #include "knotesnetrecv.h"
 
 #include "knotes/resourcemanager.h"
+
+
+class KNotesKeyDialog : public KDialogBase
+{
+public:
+    KNotesKeyDialog( KGlobalAccel *globals, QWidget *parent, const char* name = 0 )
+        : KDialogBase( parent, name, true, QString::null, Default|Ok|Cancel, Ok )
+//        : KDialogBase( parent, name, true, i18n("Configure Shortcuts"), Default|Ok|Cancel, Ok )
+    {
+        m_keyChooser = new KKeyChooser( globals, this );
+        setMainWidget( m_keyChooser );
+        connect( this, SIGNAL(defaultClicked()), m_keyChooser, SLOT(allDefault()) );
+    }
+
+    void insert( KActionCollection *actions )
+    {
+        //m_keyChooser->insert( actions, i18n("Note Actions") );
+        m_keyChooser->insert( actions );
+    }
+
+    void configure()
+    {
+        if ( exec() == Accepted )
+            m_keyChooser->save();
+    }
+
+private:
+    KKeyChooser *m_keyChooser;
+};
 
 
 int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 )
@@ -60,7 +90,6 @@ int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrColle
 
 KNotesApp::KNotesApp()
     : DCOPObject("KNotesIface"), QLabel( 0, 0, WType_TopLevel ),
-      KXMLGUIBuilder( this ),
       m_listener( 0 )
 {
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
@@ -79,19 +108,28 @@ KNotesApp::KNotesApp()
         this, SLOT(newNote()), actionCollection(), "new_note" );
     new KAction( i18n("New Note From Clipboard"), "editpaste", 0,
         this, SLOT(newNoteFromClipboard()), actionCollection(), "new_note_clipboard" );
+//    new KAction( i18n("Show All Notes"), "knotes", 0,
+//        this, SLOT(showAllNotes()), actionCollection(), "show_all_notes" );
+//    new KAction( i18n("Hide All Notes"), "fileclose", 0,
+//        this, SLOT(hideAllNotes()), actionCollection(), "hide_all_notes" );
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
     KStdAction::preferences( this, SLOT(slotPreferences()), actionCollection() );
     KStdAction::keyBindings( this, SLOT(slotConfigureAccels()), actionCollection() );
     KStdAction::quit( this, SLOT(slotQuit()), actionCollection() )->setShortcut( 0 );
 
-    setXMLFile( QString( instance()->instanceName() + "ui.rc" ) );
+    setXMLFile( instance()->instanceName() + "appui.rc" );
 
-    m_guiFactory = new KXMLGUIFactory( this, this, "guifactory" );
+    m_guiBuilder = new KXMLGUIBuilder( this );
+    m_guiFactory = new KXMLGUIFactory( m_guiBuilder, this );
     m_guiFactory->addClient( this );
 
     m_context_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "knotes_context", this ));
     m_note_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "notes_menu", this ));
+
+    m_noteGUI.setContent(
+        KXMLGUIFactory::readConfigFile( instance()->instanceName() + "ui.rc", instance() )
+    );
 
     // create accels for global shortcuts
     m_globalAccel = new KGlobalAccel( this, "global accel" );
@@ -101,6 +139,12 @@ KNotesApp::KNotesApp()
     m_globalAccel->insert( "global_new_note_clipboard", i18n("New Note From Clipboard"), "",
                            ALT+SHIFT+Key_C, ALT+SHIFT+Key_C,
                            this, SLOT(newNoteFromClipboard()), true, true );
+//    m_globalAccel->insert( "global_hide_all_notes", i18n("Hide All Notes"), "",
+//                           ALT+SHIFT+Key_H, ALT+SHIFT+Key_H ,
+//                           this, SLOT(hideAllNotes()), true, true );
+//    m_globalAccel->insert( "global_show_all_notes", i18n("Show All Notes"), "",
+//                           ALT+SHIFT+Key_S, ALT+SHIFT+Key_S,
+//                           this, SLOT(showAllNotes()), true, true );
 
     m_globalAccel->readSettings();
 
@@ -123,7 +167,17 @@ KNotesApp::KNotesApp()
     // read the notes
     m_manager->load();
 
-    kapp->installEventFilter( this );
+    // read the old config files, convert and add them
+    KCal::CalendarLocal calendar;
+    if ( KNotesLegacy::convert( &calendar ) )
+    {
+        KCal::Journal::List notes = calendar.journals();
+        KCal::Journal::List::ConstIterator it;
+        for ( it = notes.begin(); it != notes.end(); ++it )
+            m_manager->addNewNote( *it );
+
+        m_manager->save();
+    }
 
     // create the socket and possibly start listening for connections
     m_listener = new KExtendedSocket();
@@ -133,6 +187,8 @@ KNotesApp::KNotesApp()
 
     if ( m_noteList.count() == 0 && !kapp->isRestored() )
         newNote();
+
+    updateNoteActions();  // in case there is no note yet
 }
 
 KNotesApp::~KNotesApp()
@@ -145,6 +201,7 @@ KNotesApp::~KNotesApp()
 
     delete m_listener;
     delete m_manager;
+    delete m_guiBuilder;
 }
 
 bool KNotesApp::commitData( QSessionManager& )
@@ -180,6 +237,23 @@ QString KNotesApp::newNoteFromClipboard( const QString& name )
 {
     const QString& text = KApplication::clipboard()->text();
     return newNote( name, text );
+}
+
+void KNotesApp::hideAllNotes() const
+{
+    QDictIterator<KNote> it( m_noteList );
+    for ( ; *it; ++it )
+        (*it)->close();
+}
+
+void KNotesApp::showAllNotes() const
+{
+    QDictIterator<KNote> it( m_noteList );
+    for ( ; *it; ++it )
+    {
+        (*it)->show();
+        (*it)->setFocus();
+    }
 }
 
 void KNotesApp::showNote( const QString& id ) const
@@ -316,44 +390,28 @@ void KNotesApp::mousePressEvent( QMouseEvent* e )
     }
 }
 
-bool KNotesApp::eventFilter( QObject* o, QEvent* ev )
-{
-    if ( ev->type() == QEvent::KeyPress )
-    {
-        QKeyEvent* ke = (QKeyEvent*)ev;
-
-        if ( ke->key() == Key_BackTab )         // Shift+Tab
-        {
-            // show next note
-            QDictIterator<KNote> it( m_noteList );
-            KNote *first = it.toFirst();
-            for ( ; it.current(); ++it )
-                if ( it.current()->hasFocus() )
-                {
-                    if ( ++it )
-                        showNote( it.current() );
-                    else
-                        showNote( first );
-                    break;
-                }
-
-            ke->accept();
-            return true;
-        }
-        else
-            ke->ignore();
-    }
-
-    return QLabel::eventFilter( o, ev );
-}
-
-
 // -------------------- protected slots -------------------- //
 
 void KNotesApp::slotShowNote()
 {
     // tell the WM to give this note focus
     showNote( QString::fromUtf8( sender()->name() ) );
+}
+
+void KNotesApp::slotWalkThroughNotes()
+{
+    // show next note
+    QDictIterator<KNote> it( m_noteList );
+    KNote *first = it.toFirst();
+    for ( ; *it; ++it )
+        if ( (*it)->hasFocus() )
+        {
+            if ( ++it )
+                showNote( *it );
+            else
+                showNote( first );
+            break;
+        }
 }
 
 void KNotesApp::slotPreferences()
@@ -371,25 +429,39 @@ void KNotesApp::slotPreferences()
 
 void KNotesApp::slotConfigureAccels()
 {
-    KKeyDialog keys( false, this );
-    keys.insert( actionCollection() );
+    KNotesKeyDialog keys( m_globalAccel, this );
     QDictIterator<KNote> notes( m_noteList );
     if ( !m_noteList.isEmpty() )
-        keys.insert( notes.current()->actionCollection() );
+        keys.insert( (*notes)->actionCollection() );
     keys.configure();
-
-    notes.toFirst();
-    for( ; notes.current(); ++notes )
-        notes.current()->reloadXML();
 
     m_globalAccel->writeSettings();
     updateGlobalAccels();
+
+    // update GUI doc for new notes
+    m_noteGUI.setContent(
+        KXMLGUIFactory::readConfigFile( instance()->instanceName() + "ui.rc", instance() )
+    );
+
+    if ( m_noteList.isEmpty() )
+        return;
+
+    notes.toFirst();
+    QValueList<KAction *> list = (*notes)->actionCollection()->actions();
+    for ( QValueList<KAction *>::iterator it = list.begin(); it != list.end(); ++it )
+    {
+        notes.toFirst();
+        for ( ++notes; *notes; ++notes )
+        {
+            KAction *toChange = (*notes)->actionCollection()->action( (*it)->name() );
+            if ( toChange->shortcut() != (*it)->shortcut() )
+                toChange->setShortcut( (*it)->shortcut() );
+        }
+    }
 }
 
 void KNotesApp::slotNoteKilled( KCal::Journal *journal )
 {
-    // this kills the KNote object
-    m_noteList.remove( journal->uid() );
     m_manager->deleteNote( journal );
 
     saveNotes();
@@ -407,31 +479,19 @@ void KNotesApp::slotQuit()
 
 void KNotesApp::showNote( KNote* note ) const
 {
-    if ( !note->isHidden() )
-    {
-        // if it's already showing, we need to change to its desktop
-        // and give it focus
-        KWin::setCurrentDesktop( KWin::windowInfo( note->winId() ).desktop() );
-        KWin::forceActiveWindow( note->winId() );
-        note->setFocus();
-    }
-    else
-    {
-        // if not, show note on the current desktop
-        note->show();
-        note->toDesktop( KWin::currentDesktop() );
-        KWin::forceActiveWindow( note->winId() );
-        note->setFocus();
-    }
+    note->show();
+    KWin::setCurrentDesktop( KWin::windowInfo( note->winId() ).desktop() );
+    KWin::forceActiveWindow( note->winId() );
+    note->setFocus();
 }
 
 void KNotesApp::createNote( KCal::Journal *journal )
 {
-    KNote *newNote = new KNote( this, domDocument(), journal,
-                                0, journal->uid().utf8() );
+    KNote *newNote = new KNote( m_noteGUI, journal, 0, journal->uid().utf8() );
     m_noteList.insert( newNote->noteId(), newNote );
 
     connect( newNote, SIGNAL(sigRequestNewNote()), SLOT(newNote()) );
+    connect( newNote, SIGNAL(sigShowNextNote()), SLOT(slotWalkThroughNotes()) );
     connect( newNote, SIGNAL(sigKillNote( KCal::Journal* )),
                         SLOT(slotNoteKilled( KCal::Journal* )) );
     connect( newNote, SIGNAL(sigNameChanged()), SLOT(updateNoteActions()) );
@@ -509,6 +569,12 @@ void KNotesApp::updateGlobalAccels()
         action = actionCollection()->action( "new_note_clipboard" );
         if ( action )
             action->setShortcut( m_globalAccel->shortcut( "global_new_note_clipboard" ) );
+        action = actionCollection()->action( "hide_all_notes" );
+        if ( action )
+            action->setShortcut( m_globalAccel->shortcut( "global_hide_all_notes" ) );
+        action = actionCollection()->action( "show_all_notes" );
+        if ( action )
+            action->setShortcut( m_globalAccel->shortcut( "global_show_all_notes" ) );
 
         m_globalAccel->updateConnections();
     }
@@ -518,6 +584,12 @@ void KNotesApp::updateGlobalAccels()
         if ( action )
             action->setShortcut( 0 );
         action = actionCollection()->action( "new_note_clipboard" );
+        if ( action )
+            action->setShortcut( 0 );
+        action = actionCollection()->action( "hide_all_notes" );
+        if ( action )
+            action->setShortcut( 0 );
+        action = actionCollection()->action( "show_all_notes" );
         if ( action )
             action->setShortcut( 0 );
     }

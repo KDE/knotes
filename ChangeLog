@@ -1,6 +1,76 @@
 ChangeLog for KNotes
 ====================
 
+2004/09/27  Michael Brade <brade@kde.org>
+
+    * no compile-time dependency on kdebase allowed, so read kwinrc directly
+
+2004/08/31  Michael Brade <brade@kde.org>
+
+    * now KNotes always saves the desktop of its notes since this is what one
+      would expect, I guess. Visible change: if you hide a note, change to
+      another desktop and show it again, the note will be shown on the desktop
+      where it has been hidden. And more important, if a note is sticky it will
+      still be sticky after it is first hidden and then shown again. Let's see
+      what the users' feedback will be.
+
+      This will also make it possible to properly implement the often requested
+      hide all/show all notes feature.
+    * fixed #29242, #44761, #65090: implemented Show All/Hide All Notes and
+      added a global shortcut for both actions. Thanks to Jakob Schroeter for
+      the initial patch on which this is based and the idea to add the global
+      shortcut. With my previous patch to properly store the desktop this
+      feature is now usable.
+
+2004/08/29  Michael Brade <brade@kde.org>
+
+    * fixed #77202: removing the global event filter where I not only returned
+      the proper boolean value but also (incorrectly) changed the accept/ignore
+      flag of key events fixed the endless loop that caused the stack overflow.
+    * fixed #68031, #81888: configuring shortcuts is possible now and changes
+      are preserved between several KNotes sessions. All possible interactions
+      with KNotes can have custom shortcuts, there are no hidden features
+      anymore.
+
+2004/08/28  Michael Brade <brade@kde.org>
+
+    * fixed #71593, #86711: add the possibility to save a note to a file, either
+      in plain text or rich text format. Initial patch by Jakob Schroeter,
+      js AT camaya DOT net, thanks!
+
+2004/08/27  Michael Brade <brade@kde.org>
+
+    * fixed #50104, #75485: finally (!) use KWin to move the note windows. Thanks
+      to Luboš for telling me that just the XUngrabPointer line was missing to
+      make it work.
+      This enables the active desktop borders and snap zones for KNotes.
+    * fixed #68481: Also using a tip from Luboš I made KNotes put its close
+      button where all the other windows have it as well. KNotes needs to be
+      restarted though to make a change take effect. Needs a fix.
+
+2004/08/26  Michael Brade <brade@kde.org>
+
+    * fixed jumping/moving of the title text on focusIn/Out events, still not
+      perfect
+
+2004/08/25  Michael Brade <brade@kde.org>
+
+    * split KNotes into 5 static libraries to provide for reusability of parts
+      of KNotes.
+
+2004/08/22  Michael Brade <brade@kde.org>
+
+    * fixed #81672: when there are no notes don't put the toolbar in the system
+      tray *blush* by splitting the XMLGUI file for the system tray and the
+      notes
+    * still share the parsed note xmlgui file between the notes by parsing it
+      and creating a QDomDocument in KNotesApp already
+    * when there is no note after restoring a session, still show the "No Notes"
+      item in the notes menu
+    * each note now has its own KXMLGUIBilder to get rid of the reparent-call,
+      the builder's parent will be the widgets' parent
+    * fixed #87696: allow default sizes as small as 50x50 pixels
+
 2004/08/20  Michael Brade <brade@kde.org>
 
     * fixed #85973: respect newlines when switching from plain text to

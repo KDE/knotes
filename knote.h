@@ -27,6 +27,7 @@
 #include <qpoint.h>
 #include <qcolor.h>
 
+#include <kconfig.h>
 #include <kxmlguiclient.h>
 
 class QLabel;
@@ -50,8 +51,8 @@ class KNote : public QFrame, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:
-    KNote( KXMLGUIBuilder *builder, QDomDocument buildDoc, KCal::Journal *journal,
-           QWidget *parent=0, const char *name=0 );
+    KNote( QDomDocument buildDoc, KCal::Journal *journal, QWidget *parent = 0,
+           const char *name = 0 );
     ~KNote();
 
     void saveData();
@@ -67,13 +68,13 @@ public:
     void sync( const QString& app );
     bool isNew( const QString& app ) const;
     bool isModified( const QString& app ) const;
-    void toDesktop( int desktop );
 
 public slots:
     void slotKill( bool force = false );
 
 signals:
     void sigRequestNewNote();
+    void sigShowNextNote();
     void sigNameChanged();
     void sigDataChanged();
     void sigColorChanged();
@@ -83,7 +84,6 @@ protected:
     virtual void showEvent( QShowEvent* );
     virtual void resizeEvent( QResizeEvent* );
     virtual void closeEvent( QCloseEvent* );
-    virtual void keyPressEvent( QKeyEvent* );
     virtual void dropEvent( QDropEvent* );
     virtual void dragEnterEvent( QDragEnterEvent* );
 
@@ -98,6 +98,7 @@ private slots:
     void slotSend();
     void slotMail();
     void slotPrint();
+    void slotSaveAs();
     void slotInsDate();
     void slotPreferences();
     void slotPopupActionToDesktop( int id );
@@ -113,10 +114,11 @@ private:
     void updateLabelAlignment();
     void setColor( const QColor&, const QColor& );
 
-private:
-    QPoint m_pointerOffset;
-    bool   m_dragging;
+    void toDesktop( int desktop );
 
+    QString toPlainText( const QString& );
+
+private:
     QLabel        *m_label;
     KNoteButton   *m_button;
     KToolBar      *m_tool;
@@ -131,6 +133,8 @@ private:
     KListAction   *m_toDesktop;
     KToggleAction *m_keepAbove;
     KToggleAction *m_keepBelow;
+
+    KSharedConfig::Ptr m_kwinConf;
 };
 
 #endif

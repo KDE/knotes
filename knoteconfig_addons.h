@@ -45,6 +45,9 @@ KNoteConfig() : KConfigSkeleton()
   KConfigSkeleton::ItemInt  *itemDesktop;
   itemDesktop = new KConfigSkeleton::ItemInt( currentGroup(), QString::fromLatin1( "desktop" ), mDesktop, -10 );
   addItem( itemDesktop, QString::fromLatin1( "Desktop" ) );
+  KConfigSkeleton::ItemBool  *itemHideNote;
+  itemHideNote = new KConfigSkeleton::ItemBool( currentGroup(), QString::fromLatin1( "HideNote" ), mHideNote, false );
+  addItem( itemHideNote, QString::fromLatin1( "HideNote" ) );
   KConfigSkeleton::ItemPoint  *itemPosition;
   itemPosition = new KConfigSkeleton::ItemPoint( currentGroup(), QString::fromLatin1( "position" ), mPosition, QPoint( -10000, -10000 ) );
   addItem( itemPosition, QString::fromLatin1( "Position" ) );

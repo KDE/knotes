@@ -2,6 +2,7 @@
  KNotes -- Notes for the KDE project
 
  Copyright (c) 2003, Daniel Martin <daniel.martin@pirack.com>
+               2004, Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -41,7 +42,10 @@ class KNotesNetworkSender : public KExtendedSocket
 {
     Q_OBJECT
 public:
-    KNotesNetworkSender( const QString &, const QString &, const QString & );
+    KNotesNetworkSender( const QString &host, int port );
+
+    void setSenderId( const QString& sender );
+    void setNote( const QString &title, const QString &text );
 
 protected slots:
     void slotConnected();
@@ -53,6 +57,7 @@ protected slots:
 private:
     QCString m_note;
     QCString m_title;
+    QCString m_sender;
     uint m_index;
 };
 

@@ -113,14 +113,14 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
 
         KIntNumInput *kcfg_Width = new KIntNumInput( displayPage, "kcfg_Width" );
         label_Width->setBuddy( kcfg_Width );
-        kcfg_Width->setRange( 100, 2000, 10, false );
+        kcfg_Width->setRange( 50, 2000, 10, false );
         layout->addWidget( kcfg_Width, 2, 1 );
 
         QLabel *label_Height = new QLabel( i18n("Default &height:"), displayPage, "label_Height" );
         layout->addWidget( label_Height, 3, 0 );
 
         KIntNumInput *kcfg_Height = new KIntNumInput( displayPage, "kcfg_Height" );
-        kcfg_Height->setRange( 100, 2000, 10, false );
+        kcfg_Height->setRange( 50, 2000, 10, false );
         label_Height->setBuddy( kcfg_Height );
         layout->addWidget( kcfg_Height, 3, 1 );
 
@@ -220,6 +220,5 @@ QWidget *KNoteConfigDlg::makeNetworkPage()
 
     return networkPage;
 }
-
 
 #include "knoteconfigdlg.moc"

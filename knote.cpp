@@ -27,6 +27,8 @@
 #include <qpaintdevicemetrics.h>
 #include <qsimplerichtext.h>
 #include <qobjectlist.h>
+#include <qfile.h>
+#include <qcheckbox.h>
 
 #include <kapplication.h>
 #include <kdebug.h>
@@ -35,18 +37,19 @@
 #include <kcombobox.h>
 #include <ktoolbar.h>
 #include <kpopupmenu.h>
+#include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
 #include <kcolordrag.h>
 #include <kiconeffect.h>
 #include <kprinter.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
-#include <ksimpleconfig.h>
 #include <kmessagebox.h>
 #include <kprocess.h>
 #include <kinputdialog.h>
 #include <kmdcodec.h>
 #include <kglobalsettings.h>
+#include <kfiledialog.h>
 #include <kio/netaccess.h>
 
 #include <libkcal/journal.h>
@@ -63,24 +66,29 @@
 
 #include <kwin.h>
 #include <netwm.h>
-//#include <kdecoration.h>
 
 #include <fixx11h.h>
 
 using namespace KCal;
 
+extern Time qt_x_time;
 
-KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
-              QWidget* parent, const char* name )
+
+KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *name )
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorder | WDestructiveClose ),
-    m_label( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ),
-    m_config( 0 ), m_journal( j )
+    m_label( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ), m_config( 0 ),
+    m_journal( j ), m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) )
 {
     // be explicit
     KWin::setIcons( winId(), kapp->icon(), kapp->miniIcon() );
 
     setAcceptDrops( true );
     actionCollection()->setWidget( this );
+
+    setDOMDocument( buildDoc );
+
+    // just set the name of the file to save the actions to, do NOT reparse it
+    setXMLFile( instance()->instanceName() + "ui.rc", false, false );
 
     // if there is no title yet, use the start date if valid
     // (KOrganizer's journals don't have titles but a valid start date)
@@ -91,12 +99,12 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     }
 
     // create the menu items for the note - not the editor...
-    // rename, mail, print, insert date, close, delete, new note
+    // rename, mail, print, save as, insert date, close, delete, new note
     new KAction( i18n("New"), "filenew", 0,
         this, SIGNAL(sigRequestNewNote()), actionCollection(), "new_note" );
     new KAction( i18n("Rename..."), "text", 0,
         this, SLOT(slotRename()), actionCollection(), "rename_note" );
-    new KAction( i18n("Hide"), "fileclose" , 0,
+    new KAction( i18n("Hide"), "fileclose" , Key_Escape,
         this, SLOT(slotClose()), actionCollection(), "hide_note" );
     new KAction( i18n("Delete"), "knotes_delete", 0,
         this, SLOT(slotKill()), actionCollection(), "delete_note" );
@@ -107,6 +115,8 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
         this, SLOT(slotSend()), actionCollection(), "send_note" );
     new KAction( i18n("Mail..."), "mail_send", 0,
         this, SLOT(slotMail()), actionCollection(), "mail_note" );
+//    new KAction( i18n("Save As..."), "filesaveas", 0,
+//        this, SLOT(slotSaveAs()), actionCollection(), "save_note" );
     KStdAction::print( this, SLOT(slotPrint()), actionCollection(), "print_note" );
     new KAction( i18n("Preferences..."), "configure", 0,
         this, SLOT(slotPreferences()), actionCollection(), "configure_note" );
@@ -123,27 +133,49 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
         this, SLOT(slotPopupActionToDesktop(int)), actionCollection(), "to_desktop" );
     connect( m_toDesktop->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(slotUpdateDesktopActions()) );
 
-    // create the note header, button and label...
-    m_button = new KNoteButton( "knotes_close", this );
-    connect( m_button, SIGNAL(clicked()), this, SLOT(slotClose()) );
+    // invisible action to walk through the notes to make this configurable
+    new KAction( QString::null, 0, SHIFT+Key_BackTab,
+                 this, SIGNAL(sigShowNextNote()), actionCollection(), "walk_notes" );
+//    new KAction( i18n("Walk Through Notes"), 0, SHIFT+Key_BackTab,
+//                 this, SIGNAL(sigShowNextNote()), actionCollection(), "walk_notes" );
 
+    // create the note header, button and label...
     m_label = new QLabel( this );
     m_label->installEventFilter( this );  // receive events (for dragging & action menu)
     setName( m_journal->summary() );      // don't worry, no signals are connected at this stage yet
+
+    m_button = new KNoteButton( "knotes_close", this );
+    connect( m_button, SIGNAL(clicked()), this, SLOT(slotClose()) );
 
     // create the note editor
     m_editor = new KNoteEdit( actionCollection(), this );
     m_editor->installEventFilter( this ); // receive events (for modified)
     m_editor->viewport()->installEventFilter( this );
 
-    setDOMDocument( buildDoc );
-    KXMLGUIFactory factory( builder, this, "guifactory" );
+    KXMLGUIBuilder builder( this );
+    KXMLGUIFactory factory( &builder, this );
     factory.addClient( this );
 
     m_menu = static_cast<KPopupMenu*>(factory.container( "note_context", this ));
     m_edit_menu = static_cast<KPopupMenu*>(factory.container( "note_edit", this ));
     m_tool = static_cast<KToolBar*>(factory.container( "note_tool", this ));
-    m_tool->reparent( this, QPoint( 0, 0 ) );
+    m_tool->setIconSize( 10 );
+    m_tool->setFixedHeight( 16 );
+
+    // if there was just a way of making KComboBox adhere the toolbar height...
+    QObjectList *list = m_tool->queryList( "KComboBox" );
+    QObjectListIt it( *list );
+    while ( it.current() != 0 )
+    {
+        KComboBox *combo = (KComboBox *)it.current();
+        QFont font = combo->font();
+        font.setPointSize( 7 );
+        combo->setFont( font );
+        combo->setFixedHeight( 14 );
+        ++it;
+    }
+    delete list;
+
     m_tool->hide();
 
     setFocusProxy( m_editor );
@@ -187,7 +219,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
 
     if ( newNote )
     {
-        // until kdelibs provides copying of KConfigSkeletons (KDE 3.3)
+        // until kdelibs provides copying of KConfigSkeletons (KDE 3.4)
         KNotesGlobalConfig *globalConfig = KNotesGlobalConfig::self();
         m_config->setBgColor( globalConfig->bgColor() );
         m_config->setFgColor( globalConfig->fgColor() );
@@ -201,6 +233,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
         m_config->setTabSize( globalConfig->tabSize() );
 
         m_config->setDesktop( globalConfig->desktop() );
+        m_config->setHideNote( globalConfig->hideNote() );
         m_config->setPosition( globalConfig->position() );
         m_config->setShowInTaskbar( globalConfig->showInTaskbar() );
         m_config->setKeepAbove( globalConfig->keepAbove() );
@@ -232,6 +265,25 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     if ( desk.intersects( QRect( position, QSize( width, height ) ) ) )
         move( position );           // do before calling show() to avoid flicker
 
+    // config items in the journal have priority
+    QString property = m_journal->customProperty( "KNotes", "FgColor" );
+    if ( property != QString::null )
+        m_config->setFgColor( QColor( property ) );
+    else
+        m_journal->setCustomProperty( "KNotes", "FgColor", m_config->fgColor().name() );
+
+    property = m_journal->customProperty( "KNotes", "BgColor" );
+    if ( property != QString::null )
+        m_config->setBgColor( QColor( property ) );
+    else
+        m_journal->setCustomProperty( "KNotes", "BgColor", m_config->bgColor().name() );
+
+    property = m_journal->customProperty( "KNotes", "RichText" );
+    if ( property != QString::null )
+        m_config->setRichText( property == "true" ? true : false );
+    else
+        m_journal->setCustomProperty( "KNotes", "RichText", m_config->richText() ? "true" : "false" );
+
     // read configuration settings...
     slotApplyConfig();
 
@@ -242,22 +294,15 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
         desktop = KWin::currentDesktop();
 
     // show the note if desired
-    if ( desktop != 0 && !isVisible() )
+    if ( desktop != 0 && !m_config->hideNote() )
     {
-        // HACK HACK
-        if ( desktop != NETWinInfo::OnAllDesktops )
-        {
-            // to avoid flicker, call this before show()
+        // to avoid flicker, call this before show()
+        toDesktop( desktop );
+        show();
+
+        // because KWin forgets about that for hidden windows
+        if ( desktop == NETWinInfo::OnAllDesktops )
             toDesktop( desktop );
-            show();
-        }
-        else
-        {
-            show();
-            // if this is called before show(),
-            // it won't work for sticky notes!!!
-            toDesktop( desktop );
-        }
     }
 
     m_editor->setText( m_journal->description() );
@@ -304,6 +349,9 @@ void KNote::saveData()
 {
     m_journal->setSummary( m_label->text() );
     m_journal->setDescription( m_editor->text() );
+    m_journal->setCustomProperty( "KNotes", "FgColor", paletteForegroundColor().name() );
+    m_journal->setCustomProperty( "KNotes", "BgColor", paletteBackgroundColor().name() );
+    m_journal->setCustomProperty( "KNotes", "RichText", m_config->richText() ? "true" : "false" );
 
     emit sigDataChanged();
     m_editor->setModified( false );
@@ -315,8 +363,9 @@ void KNote::saveConfig() const
     m_config->setHeight( height() - (m_tool->isHidden() ? 0 : m_tool->height()) );
     m_config->setPosition( pos() );
 
-    NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop | NET::WMState );
-    m_config->setDesktop( wm_client.desktop() );
+    NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
+    if ( wm_client.desktop() == NETWinInfo::OnAllDesktops || wm_client.desktop() > 0 )
+        m_config->setDesktop( wm_client.desktop() );
 
     // actually store the config on disk
     m_config->writeConfig();
@@ -407,14 +456,6 @@ bool KNote::isModified( const QString& app ) const
         return true;
 }
 
-void KNote::toDesktop( int desktop )
-{
-    if ( desktop == 0 || desktop == NETWinInfo::OnAllDesktops )
-        KWin::setOnAllDesktops( winId(), true );
-    else
-        KWin::setOnDesktop( winId(), desktop );
-}
-
 
 // ------------------ private slots (menu actions) ------------------ //
 
@@ -432,8 +473,15 @@ void KNote::slotRename()
 
 void KNote::slotClose()
 {
+    NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
+    if ( wm_client.desktop() == NETWinInfo::OnAllDesktops || wm_client.desktop() > 0 )
+        m_config->setDesktop( wm_client.desktop() );
+
     m_editor->clearFocus();
-    hide(); //just hide the note so it's still available from the dock window
+    m_config->setHideNote( true );
+
+    // just hide the note so it's still available from the dock window
+    hide();
 }
 
 void KNote::slotInsDate()
@@ -471,24 +519,19 @@ void KNote::slotSend()
     }
 
     // Send the note
-    (void)new KNotesNetworkSender( host, name(), text() );
+    KNotesNetworkSender *sender = new KNotesNetworkSender( host, KNotesGlobalConfig::port() );
+    sender->setSenderId( KNotesGlobalConfig::senderID() );
+    sender->setNote( name(), text() );
+    sender->connect();
 }
 
 void KNote::slotMail()
 {
-    saveData();
-
     QString msg_body = m_editor->text();
 
     // convert rich text to plain text first
     if ( m_editor->textFormat() == RichText )
-    {
-        QTextEdit conv;
-        conv.setTextFormat( RichText );
-        conv.setText( msg_body );
-        conv.setTextFormat( PlainText );
-        msg_body = conv.text();
-    }
+        msg_body = toPlainText( msg_body );
 
     // get the mail action command
     QStringList cmd_list = QStringList::split( QChar(' '), KNotesGlobalConfig::mailAction() );
@@ -570,11 +613,43 @@ void KNote::slotPrint()
     }
 }
 
+void KNote::slotSaveAs()
+{
+/*
+    QString msg_body = m_editor->text();
+    QCheckBox *convert = 0;
+
+    if ( m_editor->textFormat() == RichText )
+    {
+        convert = new QCheckBox( 0 );
+        convert->setText( i18n("Save note as plain text") );
+    }
+
+    KFileDialog dlg( QString::null, QString::null, this, "filedialog", true, convert );
+    dlg.setOperationMode( KFileDialog::Saving );
+    dlg.setCaption( i18n("Save As") );
+    dlg.exec();
+
+    QString fileName = dlg.selectedFile();
+    if ( fileName.isEmpty() )
+        return;
+
+    // convert rich text to plain text first
+    if ( convert && convert->isChecked() )
+        msg_body = toPlainText( msg_body );
+
+    QFile file( fileName );
+    if ( file.open( IO_WriteOnly ) )
+    {
+        QTextStream stream( &file );
+        stream << msg_body;
+    }
+*/
+}
+
 void KNote::slotPopupActionToDesktop( int id )
 {
-    if( id > 1 )
-      --id;      // compensate for the menu separator
-    toDesktop( id );
+    toDesktop( id - 1 ); // compensate for the menu separator, -1 == all desktops
 }
 
 
@@ -661,6 +736,26 @@ void KNote::slotUpdateDesktopActions()
 
 // -------------------- private methods -------------------- //
 
+QString KNote::toPlainText( const QString& text )
+{
+    QTextEdit conv;
+    conv.setTextFormat( RichText );
+    conv.setText( text );
+    conv.setTextFormat( PlainText );
+    return conv.text();
+}
+
+void KNote::toDesktop( int desktop )
+{
+    if ( desktop == 0 )
+        return;
+
+    if ( desktop == NETWinInfo::OnAllDesktops )
+        KWin::setOnAllDesktops( winId(), true );
+    else
+        KWin::setOnDesktop( winId(), desktop );
+}
+
 void KNote::setColor( const QColor &fg, const QColor &bg )
 {
     QPalette newpalette = palette();
@@ -741,13 +836,13 @@ void KNote::updateLayout()
     // So we have to write our own layout manager...
 
     const int headerHeight = m_label->sizeHint().height();
-    const int toolHeight = m_tool->isHidden() ? 0 : 16;
     const int margin = m_editor->margin();
     static const int border = 2;
     bool closeLeft = false;
 
-//    if ( KDecoration::options()->customButtonPositions() )
-//       closeLeft = KDecoration::options()->titleButtonsLeft().find( 'X' ) > -1;
+    m_kwinConf->setGroup( "Style" );
+    if ( m_kwinConf->readBoolEntry( "CustomButtonPositions" ) )
+        closeLeft = m_kwinConf->readEntry( "ButtonsOnLeft" ).find( 'X' ) > -1;
 
     m_button->setGeometry(
         closeLeft ? frameRect().x() + border
@@ -758,44 +853,26 @@ void KNote::updateLayout()
     );
 
     m_label->setGeometry(
-        frameRect().x() + border + (closeLeft && !m_button->isHidden() ? headerHeight : 0),
-        frameRect().y() + border,
-        frameRect().width() - (m_button->isHidden() ? 0 : headerHeight) - border*2,
-        headerHeight
+        frameRect().x() + border, frameRect().y() + border,
+        frameRect().width() - border*2, headerHeight
     );
 
     m_editor->setGeometry(
         contentsRect().x(),
         contentsRect().y() + headerHeight + border,
         contentsRect().width(),
-        contentsRect().height() - headerHeight - toolHeight - border*2
+        contentsRect().height() - headerHeight -
+                (m_tool->isHidden() ? 0 : m_tool->height()) - border*2
     );
 
     m_tool->setGeometry(
-        contentsRect().x(),
-        contentsRect().height() - 16,
-        contentsRect().width(),
-        16
+        contentsRect().x(), contentsRect().height() - m_tool->height(),
+        contentsRect().width(), m_tool->height()
     );
-    m_tool->setIconSize( 10 );
-
-    // if there was just a way of making KComboBox adhere the toolbar height...
-    QObjectList *list = m_tool->queryList( "KComboBox" );
-    QObjectListIt it( *list );
-    while ( it.current() != 0 && toolHeight )
-    {
-        KComboBox *combo = (KComboBox *)it.current();
-        QFont font = combo->font();
-        font.setPointSize( 7 );
-        combo->setFont( font );
-        combo->setFixedHeight( m_tool->height() - 2 );
-        ++it;
-    }
-    delete list;
 
     setMinimumSize(
         m_editor->cornerWidget()->width() + margin*2 + border*2,
-        headerHeight + toolHeight +
+        headerHeight + (m_tool->isHidden() ? 0 : m_tool->height()) +
                 m_editor->cornerWidget()->height() + margin*2 + border*2
     );
 
@@ -806,9 +883,14 @@ void KNote::updateLayout()
 
 void KNote::showEvent( QShowEvent * )
 {
-    // KWin does not preserve these properties for hidden windows
-    slotUpdateKeepAboveBelow();
-    slotUpdateShowInTaskbar();
+    if ( m_config->hideNote() )
+    {
+        // KWin does not preserve these properties for hidden windows
+        slotUpdateKeepAboveBelow();
+        slotUpdateShowInTaskbar();
+        toDesktop( m_config->desktop() );
+        m_config->setHideNote( false );
+    }
 }
 
 void KNote::resizeEvent( QResizeEvent *qre )
@@ -822,14 +904,6 @@ void KNote::closeEvent( QCloseEvent * )
     slotClose();
 }
 
-void KNote::keyPressEvent( QKeyEvent *e )
-{
-    if ( e->key() == Key_Escape )
-        slotClose();
-    else
-        e->ignore();
-}
-
 void KNote::dragEnterEvent( QDragEnterEvent *e )
 {
     e->accept( KColorDrag::canDecode( e ) );
@@ -841,6 +915,7 @@ void KNote::dropEvent( QDropEvent *e )
     if ( KColorDrag::decode( e, bg ) )
     {
         setColor( paletteForegroundColor(), bg );
+        m_journal->setCustomProperty( "KNotes", "BgColor", bg.name() );
         m_config->setBgColor( bg );
     }
 }
@@ -884,40 +959,15 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
         if ( ev->type() == QEvent::MouseButtonDblClick )
             slotRename();
 
-        if ( ev->type() == QEvent::MouseButtonRelease &&
-             (e->button() == LeftButton || e->button() == MidButton) )
-        {
-            m_dragging = false;
-            m_label->releaseMouse();
-            return true;
-        }
-
         if ( ev->type() == QEvent::MouseButtonPress &&
              (e->button() == LeftButton || e->button() == MidButton))
         {
-            m_pointerOffset = e->pos();
-            m_label->grabMouse( sizeAllCursor );
-
             e->button() == LeftButton ? KWin::raiseWindow( winId() )
                                       : KWin::lowerWindow( winId() );
 
-            return true;
-        }
-
-        if ( ev->type() == QEvent::MouseMove && m_label == mouseGrabber() )
-        {
-            if ( m_dragging )
-                move( QCursor::pos() - m_pointerOffset );
-            else
-            {
-                m_dragging = (
-                    (e->pos().x() - m_pointerOffset.x()) *
-                    (e->pos().x() - m_pointerOffset.x())
-                    +
-                    (e->pos().y() - m_pointerOffset.y()) *
-                    (e->pos().y() - m_pointerOffset.y())   >= 9
-                );
-            }
+            XUngrabPointer( qt_xdisplay(), qt_x_time );
+            NETRootInfo wm_root( qt_xdisplay(), NET::WMMoveResize );
+            wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(), NET::Move );
             return true;
         }
 
@@ -963,6 +1013,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
 
     return false;
 }
+
 
 #include "knote.moc"
 #include "knotebutton.moc"

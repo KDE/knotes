@@ -25,12 +25,12 @@
 #include <qdict.h>
 #include <qptrlist.h>
 #include <qlabel.h>
+#include <qdom.h>
 
 #include <kapplication.h>
 #include <kxmlguiclient.h>
-#include <kxmlguibuilder.h>
 
-#include "KNotesIface.h"
+#include "KNotesAppIface.h"
 
 class KNote;
 class KPopupMenu;
@@ -38,6 +38,7 @@ class KAction;
 class KActionMenu;
 class KGlobalAccel;
 class KXMLGUIFactory;
+class KXMLGUIBuilder;
 class KExtendedSocket;
 class KNotesResourceManager;
 
@@ -46,8 +47,8 @@ namespace KCal {
 }
 
 
-class KNotesApp : public QLabel, virtual public KNotesIface, public KSessionManaged,
-    public KXMLGUIBuilder, virtual public KXMLGUIClient
+class KNotesApp : public QLabel, public KSessionManaged, virtual public KXMLGUIClient,
+    virtual public KNotesAppIface
 {
     Q_OBJECT
 public:
@@ -79,12 +80,15 @@ public slots:
                      const QString& text = QString::null );
     QString newNoteFromClipboard( const QString& name = QString::null );
 
+    void hideAllNotes() const;
+    void showAllNotes() const;
+
 protected:
     void mousePressEvent( QMouseEvent* );
-    bool eventFilter( QObject*, QEvent* );
 
 protected slots:
     void slotShowNote();
+    void slotWalkThroughNotes();
 
     void slotPreferences();
     void slotConfigureAccels();
@@ -126,6 +130,9 @@ private:
 
     KGlobalAccel    *m_globalAccel;
     KXMLGUIFactory  *m_guiFactory;
+    KXMLGUIBuilder  *m_guiBuilder;
+
+    QDomDocument    m_noteGUI;
 };
 
 #endif

@@ -29,6 +29,7 @@ bugs:
    reflect that
 
 TODO:
+ * F1 should open Help
  * do not copy the knotesrc file anymore
    => use the static KNotesGlobalConfig object and copy the important stuff over
       Disadv: some keys and defaults must be defined in both config files
@@ -56,6 +57,8 @@ perhaps:
  * transparent notes
  * shadow for the notes
  * icons for the notes (small, put in the note menu and note title)
+ * gradients
+ * action to keep all notes on top
 
 older TODOs from Wynn:
  * inserting calendar
