@@ -29,7 +29,7 @@ MOC	=	@MOC@
 
 
 ####### Files
-HEADER = 	knotes.h kwmcom.h configdlg.h fontdlg.h mail.h alarm.h\
+HEADER = 	knotes.h configdlg.h fontdlg.h mail.h alarm.h\
 		bwdatetime.h spin.h timer.h renamedlg.h
 
 SOURCES	=	knotes.cpp  configdlg.cpp fontdlg.cpp mail.cpp alarm.cpp\
