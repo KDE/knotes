@@ -406,7 +406,7 @@ void KPostit::clear_text(){
 
 void KPostit::selectFont(){
  
-  QFont myfont = QWidget::font();
+  QFont myfont = edit->font();
   KFontDialog::getFont(myfont);
   edit->setFont(myfont);
   //  label->setFont(myfont);
@@ -1661,7 +1661,7 @@ void readSettings()
   KConfig *config = mykapp->getConfig();
   config->setGroup( "Font" );
   postitdefaults.font = config->readFontEntry("Font",
-					       &QFont("courier",12));
+					       &QFont("helvetica",12));
   config->setGroup("Colors");
   postitdefaults.forecolor = config->readColorEntry("ForeColor",&(QColor)black);
   postitdefaults.backcolor = config->readColorEntry("BackColor",&(QColor)yellow);
