@@ -84,14 +84,16 @@ bool ResourceLocal::save()
     // (might just destroy the file that's already there)
 
     if ( KIO::NetAccess::exists( KURL( file ), true, 0 ) &&
-         !KIO::NetAccess::file_copy( KURL( file ), KURL( backup ),
-                                     -1, true ) ) {
+         !KIO::NetAccess::file_copy( KURL( file ), KURL( backup ), -1, true ) )
+    {
         KMessageBox::error( 0,
                             i18n("<qt>Unable to save the notes backup to "
                                  "<b>%1</b>. Check that there is sufficient "
                                  "disk space.</qt>").arg( backup ) );
         return false;
-    } else if ( !mCalendar.save( file, mFormat ) ) {
+    } 
+    else if ( !mCalendar.save( file, new KCal::ICalFormat() ) ) 
+    {
         KMessageBox::error( 0,
                             i18n("<qt>Unable to save the notes to <b>%1</b>. "
                                  "Check that there is sufficient disk space."

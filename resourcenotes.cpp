@@ -37,7 +37,6 @@
 ResourceNotes::ResourceNotes( const KConfig* config )
     : KRES::Resource( config ), mManager( 0 )
 {
-    mFormat = new KCal::ICalFormat();
 }
 
 ResourceNotes::~ResourceNotes()

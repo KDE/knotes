@@ -77,7 +77,6 @@ public:
 
 protected:
     KCal::CalendarLocal mCalendar;
-    KCal::ICalFormat* mFormat;
     ResourceManager* mManager;
 };
 
