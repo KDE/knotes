@@ -33,4 +33,4 @@ messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/knotes.pot
 
 
-include ../admin/Doxyfile.am
+include $(top_srcdir)/admin/Doxyfile.am
