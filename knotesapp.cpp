@@ -112,7 +112,7 @@ KNotesApp::KNotesApp()
     notes = noteDir.entryList( QDir::Files, QDir::Name );   // this doesn't list the hidden data files
     for ( QStringList::Iterator i = notes.begin(); i != notes.end(); i++ )
     {
-        KNote* newNote = new KNote( this, *i, true );
+        KNote* newNote = new KNote( this, domDocument(), *i, true );
 
         connect( newNote, SIGNAL( sigRenamed(const QString&, const QString&) ),
                  this,    SLOT( slotNoteRenamed(const QString&, const QString&) ) );
@@ -179,7 +179,7 @@ int KNotesApp::newNote( QString name, const QString& text )
         }
     }
 
-    KNote* newNote = new KNote( this, name );
+    KNote* newNote = new KNote( this, domDocument(), name );
     newNote->setText( text );
 
     connect( newNote, SIGNAL( sigRenamed(const QString&, const QString&) ),
@@ -391,9 +391,11 @@ bool KNotesApp::eventFilter( QObject* o, QEvent* ev )
             ke->accept();
             return true;
         }
+        else
+            ke->ignore();
     }
 
-    return QObject::eventFilter( o, ev );
+    return QLabel::eventFilter( o, ev );
 }
 
 

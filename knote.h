@@ -44,8 +44,8 @@ class KNote : public QFrame, public KXMLGUIClient
 {
     Q_OBJECT
 public:
-    KNote( KXMLGUIBuilder* builder, const QString& config, bool load=false,
-           QWidget* parent=0, const char* name=0 );
+    KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& config,
+           bool load=false, QWidget* parent=0, const char* name=0 );
     ~KNote();
 
     void saveData() const;

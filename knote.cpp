@@ -60,8 +60,8 @@
 #endif
 
 // -------------------- Initialisation -------------------- //
-KNote::KNote( KXMLGUIBuilder* builder, const QString& file, bool load,
-              QWidget* parent, const char* name )
+KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& file,
+              bool load, QWidget* parent, const char* name )
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorderEx | WDestructiveClose ),
       m_noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) ),
       m_configFile( file )
@@ -96,7 +96,7 @@ KNote::KNote( KXMLGUIBuilder* builder, const QString& file, bool load,
     m_editor->installEventFilter( this ); // recieve events (for modified)
     m_editor->viewport()->installEventFilter( this );
 
-    setXMLFile( QString( instance()->instanceName() + "ui.rc" ) );
+    setDOMDocument( buildDoc );
     factory = new KXMLGUIFactory( builder, this, "guifactory" );
     factory->addClient( this );
 
