@@ -133,8 +133,6 @@ void KNoteConfigDlg::makeDisplayPage()
 	
 	glay->addWidget( l_height, 3, 0 );
     glay->addMultiCellWidget( _heightEdit, 3, 3, 1, 2 );
-	
-
 }
 
 void KNoteConfigDlg::makeEditorPage()
@@ -178,10 +176,15 @@ void KNoteConfigDlg::makeActionsPage()
 	QGridLayout* glay     = new QGridLayout( topLevel, 3, 3 );
 	
 	QLabel* l_mail = new QLabel( i18n("Mail Action"), actionsPage );
-	QLabel* l_print = new QLabel( i18n("Print Action"), actionsPage );
-	
+	_mail = _config->entryMap("Actions")["mail"];
+	_mailEdit = new KLineEdit( _mail, actionsPage );
 	glay->addWidget( l_mail, 0, 0 );
-	glay->addWidget( l_print, 2, 0 );
+	glay->addMultiCellWidget( _mailEdit, 0, 0, 1, 2 );
+
+	
+	//printing not implemented yet
+	//QLabel* l_print = new QLabel( i18n("Print Action"), actionsPage );
+	//glay->addWidget( l_print, 2, 0 );
 }
 
 void KNoteConfigDlg::storeSettings()
