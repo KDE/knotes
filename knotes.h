@@ -140,7 +140,7 @@ public:
   int number;
   bool hidden;
   QString name;
-
+  QString propertystring;
   QLabel* label;
   KPostitMultilineEdit* edit;
   

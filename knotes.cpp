@@ -668,9 +668,15 @@ void KPostit::findKPostit(int i){
   for(PostitList.first(); PostitList.current() ; PostitList.next()){
     if (PostitList.current()->name == QString(right_mouse_button->text(
 					      right_mouse_button->idAt( i)))) {
-      PostitList.current()->hidden = false;
+      if( PostitList.current()->hidden == true){
+	PostitList.current()->hidden = false;
+	if(propertystring != (QString) "")
+	  KWM::setProperties(PostitList.current()->winId(),
+			     PostitList.current()->propertystring);
+
+      }
+	KWM::activate(PostitList.current()->winId());
       PostitList.current()->show();
-      KWM::activate(PostitList.current()->winId());
       return;
     }
   }
@@ -755,6 +761,7 @@ void KPostit::renameKPostit(){
 void KPostit::hideKPostit(){
 
     hidden = true;
+    propertystring = KWM::getProperties(winId());
     this->hide();
 
 }
@@ -842,6 +849,7 @@ bool KPostit::loadnotes(){
   // get the geomtery
 
   QString geom = t.readLine();
+  propertystring = geom;
 
   setGeometry(KWM::setProperties(winId(), geom));
 
