@@ -417,6 +417,7 @@ void KNote::slotToggleAlwaysOnTop()
 
 void KNote::slotToDesktop( int id )
 {
+kdDebug(5500) << k_funcinfo << id << endl;
     if ( id == 0 || id == NETWinInfo::OnAllDesktops )
         KWin::setOnAllDesktops( winId(), true );
     else
@@ -425,6 +426,7 @@ void KNote::slotToDesktop( int id )
 
 void KNote::slotUpdateDesktopActions()
 {
+kdDebug(5500) << k_funcinfo << endl;
     NETRootInfo wm_root( qt_xdisplay(), NET::NumberOfDesktops | NET::DesktopNames );
     NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
 
@@ -571,7 +573,7 @@ void KNote::slotApplyConfig()
         m_editor->setText( m_editor->text() );
     }
 
-    QFont def(KGlobalSettings::generalFont());
+    QFont def( KGlobalSettings::generalFont() );
     def = config.readFontEntry( "font", &def );
     m_editor->setTextFont( def );
 

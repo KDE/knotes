@@ -1,11 +1,17 @@
 ChangeLog for KNotes
 ====================
 
+2002/09/21  Michael Brade <brade@kde.org>
+
+    * inherit KTextEdit instead of QTextEdit
+    * fixed drag and drop of text and URLs
+    * fixed changing of font size/family/style
+
 2002/09/10  Michael Brade <brade@kde.org>
 
     * fixed one more readNumEntry, thanks to Matthias Kiefer 
  
-2002/06/17 Wynn Wilkes <wynnw@wilkes.ws>
+2002/06/17  Wynn Wilkes <wynnw@wilkes.ws>
 
     * fixed a bug where new notes with the version of 2.2 were seen as old notes
       and were converted which led to bad note config files and a big black screen
