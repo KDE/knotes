@@ -265,6 +265,25 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     if ( desk.intersects( QRect( position, QSize( width, height ) ) ) )
         move( position );           // do before calling show() to avoid flicker
 
+    // config items in the journal have priority
+    QString property = m_journal->customProperty( "KNotes", "FgColor" );
+    if ( property != QString::null )
+        m_config->setFgColor( QColor( property ) );
+    else
+        m_journal->setCustomProperty( "KNotes", "FgColor", m_config->fgColor().name() );
+
+    property = m_journal->customProperty( "KNotes", "BgColor" );
+    if ( property != QString::null )
+        m_config->setBgColor( QColor( property ) );
+    else
+        m_journal->setCustomProperty( "KNotes", "BgColor", m_config->bgColor().name() );
+
+    property = m_journal->customProperty( "KNotes", "RichText" );
+    if ( property != QString::null )
+        m_config->setRichText( property == "true" ? true : false );
+    else
+        m_journal->setCustomProperty( "KNotes", "RichText", m_config->richText() ? "true" : "false" );
+
     // read configuration settings...
     slotApplyConfig();
 
@@ -330,6 +349,9 @@ void KNote::saveData()
 {
     m_journal->setSummary( m_label->text() );
     m_journal->setDescription( m_editor->text() );
+    m_journal->setCustomProperty( "KNotes", "FgColor", paletteForegroundColor().name() );
+    m_journal->setCustomProperty( "KNotes", "BgColor", paletteBackgroundColor().name() );
+    m_journal->setCustomProperty( "KNotes", "RichText", m_config->richText() ? "true" : "false" );
 
     emit sigDataChanged();
     m_editor->setModified( false );
@@ -890,6 +912,7 @@ void KNote::dropEvent( QDropEvent *e )
     if ( KColorDrag::decode( e, bg ) )
     {
         setColor( paletteForegroundColor(), bg );
+        m_journal->setCustomProperty( "KNotes", "BgColor", bg.name() );
         m_config->setBgColor( bg );
     }
 }
