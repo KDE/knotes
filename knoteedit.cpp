@@ -318,19 +318,19 @@ void KNoteEdit::textSubScript()
 
 /** protected methods **/
 
-void KNoteEdit::contentsDragEnterEvent( QDragEnterEvent* event )
+void KNoteEdit::contentsDragEnterEvent( QDragEnterEvent *e )
 {
-    if ( KURLDrag::canDecode( event ) )
-        event->accept();
+    if ( KURLDrag::canDecode( e ) )
+        e->accept();
     else
-        KTextEdit::contentsDragEnterEvent( event );
+        KTextEdit::contentsDragEnterEvent( e );
 }
 
-void KNoteEdit::contentsDropEvent( QDropEvent* event )
+void KNoteEdit::contentsDropEvent( QDropEvent *e )
 {
     KURL::List list;
 
-    if ( KURLDrag::decode( event, list ) )
+    if ( KURLDrag::decode( e, list ) )
         for ( KURL::List::Iterator it = list.begin(); it != list.end(); ++it )
         {
             if ( it != list.begin() )
@@ -339,7 +339,7 @@ void KNoteEdit::contentsDropEvent( QDropEvent* event )
             insert( (*it).prettyURL() );
         }
     else
-        KTextEdit::contentsDropEvent( event );
+        KTextEdit::contentsDropEvent( e );
 }
 
 /** private slots **/
