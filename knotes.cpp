@@ -661,8 +661,8 @@ void KPostit::newKPostit(){
   if (exists){ // all 50 names are taken
     QMessageBox::warning(this,
 			 klocale->translate("Sorry"),
-			 klocale->translate("You have exeeded the"\
-					    "arbitrary and unjustly set"\
+			 klocale->translate("You have exeeded the "
+					    "arbitrary and unjustly set"
 			 "limit of 50 knotes.\n Please complain to the author.")
 			 );
     return;
