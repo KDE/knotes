@@ -65,7 +65,8 @@ ResourceManager::~ResourceManager()
 
 void ResourceManager::load()
 {
-    if ( !m_manager->standardResource() ) {
+    if ( !m_manager->standardResource() )
+    {
         kdDebug(5500) << "Warning! No standard resource yet." << endl;
         ResourceNotes *resource = new ResourceLocal( 0 );
         m_manager->add( resource );
@@ -74,7 +75,8 @@ void ResourceManager::load()
 
     // Open all active resources
     KRES::Manager<ResourceNotes>::ActiveIterator it;
-    for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it ) {
+    for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it )
+    {
         kdDebug(5500) << "Opening resource " + (*it)->resourceName() << endl;
         (*it)->setManager( this );
         if ( (*it)->open() )
@@ -108,7 +110,7 @@ QString ResourceManager::newNote( const QString& name, const QString& text )
         note->setSummary( KGlobal::locale()->formatDateTime( QDateTime::currentDateTime() ) );
     note->setDescription( text );
 
-    // TODO: Make this be configurable
+    // TODO: Make this configurable
     ResourceNotes* resource = m_manager->standardResource();
     if ( resource )
         resource->addNote( note );
@@ -123,7 +125,8 @@ void ResourceManager::registerNote( ResourceNotes* resource,
 {
     // KOrganizers journals don't have attachments -> use default
     // display config
-    if ( journal->attachments(CONFIG_MIME).isEmpty() ) {
+    if ( journal->attachments(CONFIG_MIME).isEmpty() )
+    {
         // Set the name of the config file...
         QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
         QString file = noteDir.absFilePath( journal->uid() );
@@ -135,7 +138,8 @@ void ResourceManager::registerNote( ResourceNotes* resource,
         journal->addAttachment( new KCal::Attachment( file, CONFIG_MIME ) );
     }
 
-    if ( journal->summary().isNull() && journal->dtStart().isValid() ) {
+    if ( journal->summary().isNull() && journal->dtStart().isValid() )
+    {
         QString s = KGlobal::locale()->formatDateTime( journal->dtStart() );
         journal->setSummary( s );
     }
@@ -148,10 +152,11 @@ void ResourceManager::registerNote( ResourceNotes* resource,
     connect( newNote, SIGNAL(sigKillNote( KCal::Journal* )),
              this,    SLOT(slotNoteKilled( KCal::Journal* )) );
     connect( newNote, SIGNAL(sigNameChanged()),
-             m_app, SLOT(updateNoteActions()) );
+             m_app,   SLOT(updateNoteActions()) );
     connect( newNote, SIGNAL(sigSaveData()), m_app, SLOT(saveNotes()) );
 
-    if( !loaded ) {
+    if( !loaded )
+    {
         // This is a new note
         m_app->updateNoteActions();
         m_app->showNote( newNote );
@@ -229,14 +234,14 @@ KNote* ResourceManager::note( const QString& id )
 
 void ResourceManager::resourceAdded( ResourceNotes* resource )
 {
-  kdDebug(5500) << "Resource added: " << resource->resourceName() << endl;
+    kdDebug(5500) << "Resource added: " << resource->resourceName() << endl;
 
-  if ( !resource->isActive() ) return;
+    if ( !resource->isActive() )
+        return;
 
-  resource->setManager( this );
-  if ( resource->open() ) {
-    resource->load();
-  }
+    resource->setManager( this );
+    if ( resource->open() )
+        resource->load();
 }
 
 void ResourceManager::resourceModified( ResourceNotes* /*resource*/ )

@@ -55,8 +55,7 @@ ResourceLocal::~ResourceLocal()
 
 bool ResourceLocal::load()
 {
-    mCalendar.load( KGlobal::dirs()->saveLocation( "appdata" )
-                     + "notes.ics" );
+    mCalendar.load( KGlobal::dirs()->saveLocation( "appdata" ) + "notes.ics" );
 
     // TODO
     // initialize the Calendar
@@ -91,8 +90,8 @@ bool ResourceLocal::save()
                                  "<b>%1</b>. Check that there is sufficient "
                                  "disk space.</qt>").arg( backup ) );
         return false;
-    } 
-    else if ( !mCalendar.save( file, new KCal::ICalFormat() ) ) 
+    }
+    else if ( !mCalendar.save( file, new KCal::ICalFormat() ) )
     {
         KMessageBox::error( 0,
                             i18n("<qt>Unable to save the notes to <b>%1</b>. "

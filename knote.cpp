@@ -366,10 +366,16 @@ void KNote::slotClose()
 
 void KNote::slotKill( bool force )
 {
-    if ( !force )
-    if ( KMessageBox::warningYesNo( this,
-         i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>").arg( m_label->text() ),
-         i18n("Confirm Delete") ) != KMessageBox::Yes ) return;
+    if ( !force &&
+         KMessageBox::warningYesNo( this,
+            i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>")
+                .arg( m_label->text() ),
+            i18n("Confirm Delete") )
+         != KMessageBox::Yes )
+    {
+        return;
+    }
+
     emit sigKillNote( m_journal );
 }
 
