@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2001/06/05  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * started to port KNotes to the XMLGUI framework (50% done)
+    * dropped KSystemTray inheritance
+
 2001/05/19  Michael Brade <brade@informatik.uni-muenchen.de>
 
     * fixed the session management bug (#22844)
