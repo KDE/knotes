@@ -26,7 +26,7 @@
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <klocale.h>
-#include <kpopmenu.h>
+#include <kpopupmenu.h>
 #include <kwm.h>
 
 #include <qtooltip.h>
