@@ -12,6 +12,7 @@ ChangeLog for KNotes
       item in the notes menu
     * each note now has its own KXMLGUIBilder to get rid of the reparent-call,
       the builder's parent will be the widgets' parent
+    * fixed #87696: allow default sizes as small as 50x50 pixels
 
 2004/08/20  Michael Brade <brade@kde.org>
 

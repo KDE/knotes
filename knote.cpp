@@ -81,6 +81,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
     setAcceptDrops( true );
     actionCollection()->setWidget( this );
+    // FIXME " ->setXML( file );
 
     // if there is no title yet, use the start date if valid
     // (KOrganizer's journals don't have titles but a valid start date)
