@@ -39,6 +39,7 @@
 #include <kpopupmenu.h>
 #include <kmdcodec.h>
 #include <kio/netaccess.h>
+#include <kglobalsettings.h>
 
 #include "knote.h"
 #include "knotebutton.h"
@@ -551,11 +552,10 @@ void KNote::slotApplyConfig()
         m_editor->setText( m_editor->text() );
     }
 
-    QFont def("helvetica");
+    QFont def(KGlobalSettings::generalFont());
     def = config.readFontEntry( "font", &def );
     m_editor->setTextFont( def );
 
-    def = QFont("helvetica");
     def = config.readFontEntry( "titlefont", &def );
     m_label->setFont( def );
 

@@ -140,7 +140,7 @@ void KNoteConfigDlg::makeEditorPage()
     glay->addWidget( _richTextSwitch, 1, 2, AlignCenter );
 
     _titleFont = new QPushButton( editorPage );
-    QFont def_font( "helvetica" );
+    QFont def_font(KGlobalSettings::generalFont());
     QFont currfont = _config->readFontEntry( "titlefont", &def_font );
     _titleFont->setFont( currfont );
     _titleFont->setText( i18n( "Title Font: Click to Change" ) );
@@ -148,7 +148,6 @@ void KNoteConfigDlg::makeEditorPage()
     connect( _titleFont, SIGNAL(clicked()), this, SLOT(slotChangeTitleFont()) );
 
     _textFont = new QPushButton( editorPage );
-    def_font = QFont( "helvetica" );
     currfont = _config->readFontEntry( "font", &def_font );
     _textFont->setFont( currfont );
     _textFont->setText( i18n( "Text Font: Click to Change" ) );
