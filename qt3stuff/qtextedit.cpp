@@ -344,8 +344,8 @@ static bool block_set_alignment = FALSE;
   This enum is used to set the vertical alignment of the text.
 
   \value AlignNormal Normal alignment
-  \valu AlignSuperScript Superscript
-  \valu AlignSubScript Subscript
+  \value AlignSuperScript Superscript
+  \value AlignSubScript Subscript
 */
 
 /*!  \fn void QTextEdit::copyAvailable (bool yes)
@@ -389,12 +389,12 @@ static bool block_set_alignment = FALSE;
     \preliminary
 
   This function sets the QTextDocument which should be used by the text
-  edit. This can be used, for example, if you want to display a document
-  using multiple views. You would create a QTextDocument and set it to
-  the text edits which should display it. You would need to connect to
-  the textChanged() and selectionChanged() signals of all the text edits
-  and update them all accordingly (preferably with a slight delay for
-  efficiency reasons).
+  edit to \a doc. This can be used, for example, if you want to
+  display a document using multiple views. You would create a
+  QTextDocument and set it to the text edits which should display it.
+  You would need to connect to the textChanged() and
+  selectionChanged() signals of all the text edits and update them all
+  accordingly (preferably with a slight delay for efficiency reasons).
 */
 
 /*! \enum QTextEdit::CursorAction
@@ -544,7 +544,7 @@ static bool block_set_alignment = FALSE;
 */
 
 QTextEdit::QTextEdit( QWidget *parent, const char *name )
-    : QScrollView( parent, name, WNorthWestGravity | WRepaintNoErase | WResizeNoErase ),
+    : QScrollView( parent, name, WStaticContents | WRepaintNoErase | WResizeNoErase ),
       doc( new QTextDocument( 0 ) ), undoRedoInfo( doc )
 {
     init();
@@ -573,7 +573,7 @@ QTextEdit::QTextEdit( QWidget *parent, const char *name )
 
 QTextEdit::QTextEdit( const QString& text, const QString& context,
                       QWidget *parent, const char *name)
-    : QScrollView( parent, name, WNorthWestGravity | WRepaintNoErase | WResizeNoErase ),
+    : QScrollView( parent, name, WStaticContents | WRepaintNoErase | WResizeNoErase ),
       doc( new QTextDocument( 0 ) ), undoRedoInfo( doc )
 {
     init();
@@ -1204,7 +1204,7 @@ void QTextEdit::removeSelection()
 }
 
 /*!  Deletes the selected text (i.e. the default selection's text) of
-  the selection selNum (by default, 0). If there is no selected text
+  the selection \a selNum (by default, 0). If there is no selected text
   nothing happens.
 
   \sa selectedText removeSelection()
@@ -1419,6 +1419,9 @@ void QTextEdit::ensureCursorVisible()
     ensureVisible( x, y + h / 2, w, h / 2 + 2 );
 }
 
+/*!
+    \internal
+*/
 void QTextEdit::drawCursor( bool visible )
 {
     if ( !cursor->parag() ||
@@ -1441,9 +1444,11 @@ void QTextEdit::drawCursor( bool visible )
     cursor->parag()->document()->nextDoubleBuffered = TRUE;
     if ( !cursor->nestedDepth() ) {
         int h = cursor->parag()->lineHeightOfChar( cursor->index() );
-        p.setClipRect( QRect( r.x() - cursor->totalOffsetX() + cursor->x() - 5 - contentsX(),
+        int x = r.x() - cursor->totalOffsetX() + cursor->x() - 5;
+        x = QMAX( x, 0 );
+        p.setClipRect( QRect( x - contentsX(),
                               r.y() - cursor->totalOffsetY() + cursor->y() - contentsY(), 10, h ) );
-        doc->drawParag( &p, cursor->parag(), r.x() - cursor->totalOffsetX() + cursor->x() - 5,
+        doc->drawParag( &p, cursor->parag(), x,
                         r.y() - cursor->totalOffsetY() + cursor->y(), 10, h, pix, cg, visible, cursor );
     } else {
         doc->drawParag( &p, cursor->parag(), r.x() - cursor->totalOffsetX(),
@@ -1663,8 +1668,10 @@ void QTextEdit::contentsMouseDoubleClickEvent( QMouseEvent * )
 {
     QTextCursor c1 = *cursor;
     QTextCursor c2 = *cursor;
-    c1.gotoWordLeft();
-    c2.gotoWordRight();
+    if ( cursor->index() > 0 && !cursor->parag()->at( cursor->index()-1 )->c.isSpace() )
+        c1.gotoWordLeft();
+    if ( !cursor->parag()->at( cursor->index() )->c.isSpace() && !cursor->atParagEnd() )
+        c2.gotoWordRight();
 
     doc->setSelectionStart( QTextDocument::Standard, &c1 );
     doc->setSelectionEnd( QTextDocument::Standard, &c2 );
@@ -2317,7 +2324,10 @@ void QTextEdit::indent()
     emit textChanged();
 }
 
-/*! Reimplemented to allow tabbing through links
+/*! Reimplemented to allow tabbing through links.
+    If \a n is TRUE the tab moves the focus to the next child; if \a n
+    is FALSE the tab moves the focus to the previous child.
+    Returns TRUE if the focus was moved; otherwise returns FALSE.
  */
 
 bool QTextEdit::focusNextPrevChild( bool n )
@@ -2341,9 +2351,6 @@ bool QTextEdit::focusNextPrevChild( bool n )
 
 void QTextEdit::setFormat( QTextFormat *f, int flags )
 {
-    if ( isReadOnly() )
-        return;
-
     if ( doc->hasSelection( QTextDocument::Standard ) ) {
         drawCursor( FALSE );
         QString str = doc->selectedText( QTextDocument::Standard );
@@ -2596,15 +2603,15 @@ void QTextEdit::setUnderline( bool b )
 }
 
 /*!
-  Sets the font family of the current format to \a f.
+  Sets the font family of the current format to \a fontFamily.
 
   \sa family() setCurrentFont()
 */
 
-void QTextEdit::setFamily( const QString &f_ )
+void QTextEdit::setFamily( const QString &fontFamily )
 {
     QTextFormat f( *currentFormat );
-    f.setFamily( f_ );
+    f.setFamily( fontFamily );
     setFormat( &f, QTextFormat::Family );
 }
 
@@ -2666,6 +2673,7 @@ QString QTextEdit::text() const
 }
 
 /*!
+    \overload
     Returns the text of paragraph \a para.
 
     If textFormat() is \c RichText the text will contain HTML
@@ -2678,6 +2686,7 @@ QString QTextEdit::text( int para ) const
 }
 
 /*!
+    \overload
 
   Changes the text of the text edit to the string \a text and the
   context to \a context. Any previous text is removed.
@@ -2820,11 +2829,11 @@ void QTextEdit::setCursorPosition( int para, int index )
   \sa setCursorPosition()
  */
 
-void QTextEdit::getCursorPosition( int *parag, int *index ) const
+void QTextEdit::getCursorPosition( int *para, int *index ) const
 {
-    if ( !parag || !index )
+    if ( !para || !index )
         return;
-    *parag = cursor->parag()->paragId();
+    *para = cursor->parag()->paragId();
     *index = cursor->index();
 }
 
@@ -3801,6 +3810,7 @@ QTextEdit::WrapPolicy QTextEdit::wrapPolicy() const
 
 void QTextEdit::clear()
 {
+    setContentsPos( 0, 0 );
     cursor->restoreState();
     doc->clear( TRUE );
     cursor->setDocument( doc );

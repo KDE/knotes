@@ -39,7 +39,7 @@
 #define QSTYLESHEET_H
 
 #ifndef QT_H
-//#include "qnamespace.h"
+#include "qt3stuff.h"
 #include "qstring.h"
 #include "qvaluelist.h"
 #include "qvector.h"
@@ -163,8 +163,8 @@ private:
 #if defined(Q_TEMPLATEDLL)
 // MOC_SKIP_BEGIN
 template class Q_EXPORT QDict<QStyleSheetItem>;
-template class Q_EXPORT QValueList< QVector<QStyleSheetItem> >;
-template class Q_EXPORT QVector<QStyleSheetItem>;
+template class Q_EXPORT QValueList< QPtrVector<QStyleSheetItem> >;
+template class Q_EXPORT QPtrVector<QStyleSheetItem>;
 template class Q_EXPORT QValueList<QStyleSheetItem::ListStyle>;
 // MOC_SKIP_END
 #endif
@@ -193,6 +193,7 @@ public:
                             const QMimeSourceFactory& factory,
                             bool emptyTag, QTextDocument *doc ) const;
 
+    static QString escape( const QString& );
     static QString convertFromPlainText( const QString& );
     static bool mightBeRichText( const QString& );
 

@@ -184,6 +184,7 @@ public:
     bool isReadOnly() const { return readonly; }
 
     void getCursorPosition( int *parag, int *index ) const;
+
     bool isModified() const;
     bool italic() const;
     bool bold() const;

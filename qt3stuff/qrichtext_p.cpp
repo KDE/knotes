@@ -57,29 +57,30 @@ int QTextCustomItem::widthHint() const { return 0; }
 
 QString QTextCustomItem::richText() const { return QString::null; }
 
-void QTextCustomItem::enter( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy, bool atEnd )
+bool QTextCustomItem::enter( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy, bool atEnd )
 {
-    doc = doc; parag = parag; idx = idx; ox = ox; oy = oy; Q_UNUSED( atEnd )
+    doc = doc; parag = parag; idx = idx; ox = ox; oy = oy; Q_UNUSED( atEnd ) return TRUE;
+                                                        
 }
-void QTextCustomItem::enterAt( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy, const QPoint & )
+bool QTextCustomItem::enterAt( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy, const QPoint & )
 {
-    doc = doc; parag = parag; idx = idx; ox = ox; oy = oy;
+    doc = doc; parag = parag; idx = idx; ox = ox; oy = oy; return TRUE;
 }
-void QTextCustomItem::next( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy )
+bool QTextCustomItem::next( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy )
 {
-    doc = doc; parag = parag; idx = idx; ox = ox; oy = oy;
+    doc = doc; parag = parag; idx = idx; ox = ox; oy = oy; return TRUE;
 }
-void QTextCustomItem::prev( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy )
+bool QTextCustomItem::prev( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy )
 {
-    doc = doc; parag = parag; idx = idx; ox = ox; oy = oy;
+    doc = doc; parag = parag; idx = idx; ox = ox; oy = oy; return TRUE;
 }
-void QTextCustomItem::down( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy )
+bool QTextCustomItem::down( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy )
 {
-    doc = doc; parag = parag; idx = idx; ox = ox; oy = oy;
+    doc = doc; parag = parag; idx = idx; ox = ox; oy = oy; return TRUE;
 }
-void QTextCustomItem::up( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy )
+bool QTextCustomItem::up( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy )
 {
-    doc = doc; parag = parag; idx = idx; ox = ox; oy = oy;
+    doc = doc; parag = parag; idx = idx; ox = ox; oy = oy; return TRUE;
 }
 
 void QTextFlow::setPageSize( int ps ) { pagesize = ps; }
