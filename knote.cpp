@@ -437,7 +437,7 @@ void KNote::slotUpdateDesktopActions()
         m_toDesktop->setCurrentItem( wm_client.desktop() );
 }
 
-void KNote::slotMail() const
+void KNote::slotMail() //const
 {
     saveData();
     KSimpleConfig config( m_noteDir.absFilePath( m_configFile ), true );
@@ -464,8 +464,7 @@ void KNote::slotMail() const
 
     if ( !mail.start( KProcess::DontCare ) )
     {
-#warning "FSCK, why doesn't this compile??"
-        //KMessageBox::sorry( this, i18n("Unable to start the mail process.") );
+        KMessageBox::sorry( this, i18n("Unable to start the mail process.") );
     }
 }
 

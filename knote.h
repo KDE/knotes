@@ -68,7 +68,7 @@ public slots:
     void slotRename();
     void slotClose();
     void slotKill();
-    void slotMail() const;
+    void slotMail() /*const*/;
     void slotPrint() const;
     void slotInsDate();
     void slotPreferences();
