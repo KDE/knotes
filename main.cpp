@@ -18,7 +18,7 @@
  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 *******************************************************************/
 
-#include <kuniqueapp.h>
+#include <kuniqueapplication.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
 #include <klocale.h>

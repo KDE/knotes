@@ -1,4 +1,4 @@
-INCLUDES = -I$(top_srcdir)/knotes/qt3stuff $(all_includes)
+INCLUDES = $(all_includes)
 
 ####### Files
 

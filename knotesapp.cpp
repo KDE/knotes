@@ -20,7 +20,7 @@
 
 #include <qdir.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <kwin.h>
 #include <kglobal.h>
 #include <klocale.h>

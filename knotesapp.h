@@ -22,11 +22,11 @@
 #define KNOTESAPP_H
 
 #include <qstring.h>
-#include <qlist.h>
+#include <qptrlist.h>
 #include <qdict.h>
 #include <qlabel.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <kxmlguiclient.h>
 #include <kxmlguibuilder.h>
 
@@ -89,10 +89,11 @@ private:
     void saveNotes() const;
     void updateNoteActions();
 
-    QDict<KNote>   m_noteList;
-    QList<KAction> m_noteActions;
-    KPopupMenu*    m_note_menu;
-    KPopupMenu*    m_context_menu;
+    QDict<KNote>      m_noteList;
+    QPtrList<KAction> m_noteActions;
+
+    KPopupMenu* m_note_menu;
+    KPopupMenu* m_context_menu;
 
     KXMLGUIFactory* factory;
 };

@@ -28,6 +28,8 @@
 #include <qpointarray.h>
 #include <qpaintdevicemetrics.h>
 
+#include <private/qrichtext_p.h>
+
 #include <kaction.h>
 #include <kstdaction.h>
 #include <kxmlgui.h>
@@ -49,7 +51,6 @@
 #include "knotebutton.h"
 #include "knoteedit.h"
 #include "knoteconfigdlg.h"
-#include "qrichtext_p.h"
 
 #include <kwin.h>
 #include <netwm.h>
@@ -66,7 +67,7 @@
 // -------------------- Initialisation -------------------- //
 KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& file,
               bool load, QWidget* parent, const char* name )
-  : QFrame( parent, name, WStyle_Customize | WStyle_NoBorderEx | WDestructiveClose ),
+  : QFrame( parent, name, WStyle_Customize | WStyle_NoBorder | WDestructiveClose ),
       m_noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) ),
       m_configFile( file )
 {
