@@ -870,10 +870,18 @@ void KPostit::renameKPostit(){
 
 void KPostit::hideKPostit(){
 
-    hidden = true;
-    propertystring = KWM::getProperties(winId());
-    this->hide();
+  int numVisible = 0;
 
+  hidden = true;
+  propertystring = KWM::getProperties(winId());
+  this->hide();
+
+  for(PostitList.first(); PostitList.current() ; PostitList.next())
+    if(PostitList.current()->hidden == false)
+      numVisible++;
+  if ((numVisible == 0) && !dock)
+    // no more visible notes and not docked = no menu !
+    toggleDock(); 
 }
 
 
