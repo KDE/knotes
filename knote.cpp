@@ -27,7 +27,7 @@
 
 #include <kapplication.h>
 #include <kaction.h>
-#include <kxmlgui.h>
+#include <kxmlguifactory.h>
 #include <kprinter.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
@@ -69,7 +69,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
     m_noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) ),
     m_configFile( file )
 {
-    XChangeProperty( x11Display(), winId(), qt_sm_client_id, XA_STRING, 8, 
+    XChangeProperty( x11Display(), winId(), qt_sm_client_id, XA_STRING, 8,
         PropModeReplace, 0, 0 );
 
     // create the menu items for the note - not the editor...
@@ -111,7 +111,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
     m_edit_menu = static_cast<KPopupMenu*>(factory->container( "note_edit", this ));
 
     setFocusProxy( m_editor );
-    
+
     // create the resize handle
     m_editor->setCornerWidget( new QSizeGrip( this ) );
     int width = m_editor->cornerWidget()->width();
@@ -499,7 +499,7 @@ void KNote::slotPrint() const
 
         QPainter painter;
         painter.begin( &printer );
-        
+
         const int margin = 40;  // pt
 
         QPaintDeviceMetrics metrics( painter.device() );
@@ -598,7 +598,7 @@ void KNote::slotApplyConfig()
     QColor fg = config.readColorEntry( "fgcolor", &(Qt::black) );
 
     setColor( fg, bg );
-    
+
     emit sigConfigChanged();
 }
 
@@ -660,7 +660,7 @@ void KNote::convertOldConfig()
         QColor fg = QColor( red, green, blue );
 
         setColor( fg, bg );
-        
+
         // get the font
         QString fontfamily = input.readLine();
         if ( fontfamily.isEmpty() )
@@ -772,7 +772,7 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
 
     // set darker values for the label and button...
     m_button->setBackgroundColor( palette().active().shadow() );
-    
+
     // to set the color of the title
     updateFocus();
 }
@@ -801,22 +801,22 @@ void KNote::updateLayout()
     int headerHeight = m_label->sizeHint().height();
     int margin = m_editor->margin();
 
-    m_button->setGeometry( 
+    m_button->setGeometry(
                 frameRect().width() - headerHeight - 2,
-                frameRect().y() + 2, 
-                headerHeight, 
-                headerHeight 
+                frameRect().y() + 2,
+                headerHeight,
+                headerHeight
              );
 
-    m_label->setGeometry( 
-                frameRect().x() + 2, 
+    m_label->setGeometry(
+                frameRect().x() + 2,
                 frameRect().y() + 2,
                 frameRect().width() - (m_button->isHidden()?0:headerHeight) - 4,
-                headerHeight 
+                headerHeight
              );
-              
-    m_editor->setGeometry( 
-                contentsRect().x(), 
+
+    m_editor->setGeometry(
+                contentsRect().x(),
                 contentsRect().y() + headerHeight + 2,
                 contentsRect().width(),
                 contentsRect().height() - headerHeight - 4
@@ -868,7 +868,7 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
         if ( ev->type() == QEvent::MouseButtonDblClick )
             slotRename();
 
-        if ( ev->type() == QEvent::MouseButtonRelease && 
+        if ( ev->type() == QEvent::MouseButtonRelease &&
              (e->button() == LeftButton || e->button() == MidButton) )
         {
             m_dragging = false;
@@ -877,13 +877,13 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
         }
 
         if ( ev->type() == QEvent::MouseButtonPress &&
-             (e->button() == LeftButton || e->button() == MidButton)) 
+             (e->button() == LeftButton || e->button() == MidButton))
         {
             m_pointerOffset = e->pos();
             m_label->grabMouse( sizeAllCursor );
-            
+
             e->button() == LeftButton ? raise() : lower();
-                
+
             return true;
         }
 
@@ -898,7 +898,7 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
                     (e->pos().x() - m_pointerOffset.x())
                     +
                     (e->pos().y() - m_pointerOffset.y()) *
-                    (e->pos().y() - m_pointerOffset.y())   >= 9 
+                    (e->pos().y() - m_pointerOffset.y())   >= 9
                 );
             }
             return true;
@@ -913,7 +913,7 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
 
         return false;
     }
-    
+
     if ( o == m_editor )
     {
         if ( ev->type() == QEvent::FocusOut )
@@ -928,7 +928,7 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
 
         return false;
     }
-    
+
     if ( o == m_editor->viewport() )
     {
         if ( ev->type() == QEvent::MouseButtonPress )

@@ -34,7 +34,7 @@
 #include <kio/netaccess.h>
 
 #include <kaction.h>
-#include <kxmlgui.h>
+#include <kxmlguifactory.h>
 
 #include <unistd.h>
 
@@ -55,30 +55,30 @@ KNotesApp::KNotesApp()
     setBackgroundMode( X11ParentRelative );
     setPixmap( KGlobal::iconLoader()->loadIcon( "knotes", KIcon::Small ) );
 
- 
+
     // create the GUI...
     new KAction( i18n("New Note"), "filenew", 0, this, SLOT(slotNewNote()), actionCollection(), "new_note" );
     new KAction( i18n("New Note From Clipboard"), "editpaste", 0, this, SLOT(slotNewNoteFromClipboard()), actionCollection(), "new_note_clipboard" );
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
-    
+
     KStdAction::preferences( this, SLOT(slotPreferences()), actionCollection() );
     KStdAction::keyBindings( this, SLOT(slotConfigureAccels()), actionCollection() );
     KStdAction::quit( this, SLOT(slotQuit()), actionCollection() )->setShortcut( 0 );
-    
+
     setXMLFile( QString( instance()->instanceName() + "ui.rc" ) );
     factory = new KXMLGUIFactory( this, this, "guifactory" );
     factory->addClient( this );
 
     m_context_menu = static_cast<KPopupMenu*>(factory->container( "knotes_context", this ));
     m_note_menu = static_cast<KPopupMenu*>(factory->container( "notes_menu", this ));
-    
+
     // create accels for global shortcuts
     globalAccel = new KGlobalAccel( this, "global accel" );
-    globalAccel->insert( "global_new_note", i18n("New Note"), "", 
-                         ALT+SHIFT+Key_N, ALT+SHIFT+Key_N , 
+    globalAccel->insert( "global_new_note", i18n("New Note"), "",
+                         ALT+SHIFT+Key_N, ALT+SHIFT+Key_N ,
                          this, SLOT(slotNewNote()), true, true );
     globalAccel->insert( "global_new_note_clipboard", i18n("New Note From Clipboard"), "",
-                         ALT+SHIFT+Key_C, ALT+SHIFT+Key_C, 
+                         ALT+SHIFT+Key_C, ALT+SHIFT+Key_C,
                          this, SLOT(slotNewNoteFromClipboard()), true, true );
 
     globalAccel->readSettings();
@@ -150,9 +150,9 @@ KNotesApp::KNotesApp()
     updateNoteActions();
 
     connect( kapp, SIGNAL( lastWindowClosed() ), kapp, SLOT( quit() ) );
-    
+
     kapp->installEventFilter( this );
-    
+
     if ( m_noteList.count() == 0 && !kapp->isRestored() )
         slotNewNote();
 }
@@ -203,9 +203,9 @@ int KNotesApp::newNote( QString name, const QString& text )
             if ( !m_noteList[name] && !noteDir.exists( name ) )
                 break;
         }
-        
+
 //      New Notes have the current date as title
-/*      
+/*
         name = KGlobal::locale()->formatDateTime(QDateTime::currentDateTime());
         if ( m_noteList[name] || noteDir.exists( name ) )
         {
@@ -290,7 +290,7 @@ void KNotesApp::hideNote( const QString& name ) const
 void KNotesApp::hideNote( int noteId ) const
 {
     KNote* note = noteById( noteId );
-    
+
     if ( !note )
     {
         kdWarning(5500) << "No note with id " << noteId << endl;
@@ -629,7 +629,7 @@ void KNotesApp::updateGlobalAccels()
         globalAccel->updateConnections();
     }
     else
-    {        
+    {
         KAction *action = actionCollection()->action( "new_note" );
         if ( action )
             action->setShortcut( 0 );
