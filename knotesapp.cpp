@@ -487,10 +487,10 @@ void KNotesApp::saveNotes()
     // (might just destroy the file that's already there)
 
     if ( KIO::NetAccess::exists( KURL( file ) ) && !KIO::NetAccess::file_copy( KURL( file ), KURL( backup ), -1, true) )
-        KMessageBox::error(0, i18n("<qt>Can't save the notes backup to <b>%1</b>! Harddisk full?</qt>")
+        KMessageBox::error(0, i18n("<qt>Unable to save the notes backup to <b>%1</b>! Check that there is sufficient disk space.</qt>")
                                   .arg( backup ) );
     else if ( !m_calendar.save( file, new ICalFormat() ) )
-        KMessageBox::error(0, i18n("<qt>Can't save the notes to <b>%1</b>! Harddisk full?<br>"
+        KMessageBox::error(0, i18n("<qt>Unable to save the notes to <b>%1</b>! Check that there is sufficient disk space.<br>"
                                    "There should be a backup in <b>%2</b> though.</qt>")
                                   .arg( file ).arg( backup ) );
 }
