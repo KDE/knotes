@@ -42,7 +42,7 @@ DockWidget::DockWidget(const char *name): QWidget(0, name, 0) {
 
   pos_x = pos_y = 0;
 
-  picsmall_pixmap = KGlobal::iconLoader()->loadApplicationMiniIcon( "knotes.xpm" );
+  picsmall_pixmap = KGlobal::iconLoader()->loadApplicationIcon( "knotes", KIconLoader::Small );
 
   //////////////////////////////////////////////////////////////////
   // popup menu for left mouse button
