@@ -36,7 +36,7 @@ static const short SEP = 5;
 static const short ICON_SIZE = 10;
 
 
-KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
+KNoteEdit::KNoteEdit( QWidget *parent, const char *name )
     : KTextEdit( parent, name )
 {
     setAcceptDrops( true );
