@@ -178,11 +178,9 @@ void KNoteConfigDlg::makeActionsPage()
 	QGridLayout* glay     = new QGridLayout( topLevel, 3, 3 );
 	
 	QLabel* l_mail = new QLabel( i18n("Mail Action"), actionsPage );
-	QLabel* l_date = new QLabel( i18n("Date Action"), actionsPage );
 	QLabel* l_print = new QLabel( i18n("Print Action"), actionsPage );
 	
 	glay->addWidget( l_mail, 0, 0 );
-	glay->addWidget( l_date, 1, 0 );
 	glay->addWidget( l_print, 2, 0 );
 }
 
