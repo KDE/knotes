@@ -63,8 +63,8 @@
 KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& file,
               bool load, QWidget* parent, const char* name )
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorder | WDestructiveClose ),
-      m_noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) ),
-      m_configFile( file )
+    m_noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) ),
+    m_configFile( file )
 {
     // create the menu items for the note - not the editor...
     // rename, mail, print, insert date, close, delete, new note
@@ -134,9 +134,10 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
     // WARNING: if the config file doesn't exist a new note will be created!
     if ( load && m_noteDir.exists( m_configFile ) )
     {
-        KSimpleConfig* test = new KSimpleConfig( m_noteDir.absFilePath( m_configFile ), true );
+        QString path = m_noteDir.absFilePath( m_configFile );
+        KSimpleConfig* test = new KSimpleConfig( path, true );
         test->setGroup( "General" );
-        oldconfig = ( test->readNumEntry( "version", 1 ) == 1 );
+        oldconfig = ( test->readDoubleNumEntry( "version", 1 ) < 2 );
         delete test;
     }
     else
@@ -780,7 +781,7 @@ void KNote::convertOldConfig()
         // TODO: Needed? What about KConfig? This deletes everything else?
         KSimpleConfig config( m_noteDir.absFilePath( m_configFile ) );
         config.setGroup( "General" );
-        config.writeEntry( "version", 2 );
+        config.writeEntry( "version", KNOTES_VERSION );
 
         config.setGroup( "Display" );
         config.writeEntry( "fgcolor", fg );
@@ -828,7 +829,7 @@ void KNote::resizeEvent( QResizeEvent* qre )
     updateLayout();
 }
 
-void KNote::closeEvent( QCloseEvent* e )
+void KNote::closeEvent( QCloseEvent* /*e*/ )
 {
     slotClose();
 }
