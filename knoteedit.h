@@ -24,7 +24,6 @@
 #include <qwidget.h>
 #include <qtextedit.h>
 
-using namespace Qt3;
 
 class KNoteEdit : public QTextEdit
 {
@@ -36,6 +35,7 @@ public:
     void setAutoIndentMode( bool newmode );
     void readFile( QString& filename );
     void dumpToFile( QString& filename ) const;
+    void setTextFont( QFont& font );
 
 protected:
     void dragMoveEvent( QDragMoveEvent* event );
@@ -48,6 +48,7 @@ protected:
 */
 protected slots:
     void slotReturnPressed();
+
 private:
     QString prefixString( QString string );
     bool m_autoIndentMode;

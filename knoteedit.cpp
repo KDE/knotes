@@ -36,15 +36,14 @@ KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
     setFrameStyle( NoFrame );
     setWordWrap( WidgetWidth );
     setWrapPolicy( AtWhiteSpace );
+    setTextFormat( PlainText );
 
     connect( this, SIGNAL(returnPressed()), this, SLOT(slotReturnPressed()) );
 }
 
-
 KNoteEdit::~KNoteEdit()
 {
 }
-
 
 void KNoteEdit::readFile( QString& filename )
 {
@@ -53,6 +52,7 @@ void KNoteEdit::readFile( QString& filename )
     {
         QTextStream input( &infile );
         setText( input.read() );
+//        insert( input.read() );
         infile.close();
     } else
         kdDebug() << "could not open input file" << endl;
@@ -70,6 +70,15 @@ void KNoteEdit::dumpToFile( QString& filename ) const
         outfile.close();
     } else
         kdDebug() << "could not open file to write to" << endl;
+}
+
+void KNoteEdit::setTextFont( QFont& font )
+{
+    setSelectionAttributes(0, white, false);
+    selectAll();
+    setFont( font );
+    selectAll( false );
+//    setSelectionAttributes(0, blue, true);
 }
 
 void KNoteEdit::setAutoIndentMode( bool newmode )

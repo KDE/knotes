@@ -443,7 +443,7 @@ void KNotesApp::slotNoteKilled( const QString& name )
 void KNotesApp::slotPreferences() const
 {
     //launch preferences dialog...
-    KNoteConfigDlg config( "knotesrc", i18n("KNotes Defaults") );
+    KNoteConfigDlg config( "knotesrc", i18n("KNotes Defaults"), true );
     config.exec();
 }
 

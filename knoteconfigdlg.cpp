@@ -38,13 +38,14 @@
 #include "knoteconfigdlg.h"
 
 
-KNoteConfigDlg::KNoteConfigDlg( const QString& configfile, const QString & title,
-            QWidget* parent, const char* name )
+KNoteConfigDlg::KNoteConfigDlg( const QString& configfile, const QString& title,
+            bool global, QWidget* parent, const char* name )
     : KDialogBase( IconList, title, Ok|Apply|Cancel, Ok,
             parent, name, true, true )
 {
     setIconListAllVisible( true );
     _config = new KConfig( configfile, false, false );
+    _global = global;
 
     makeDisplayPage();
     makeEditorPage();
@@ -62,24 +63,23 @@ KNoteConfigDlg::~KNoteConfigDlg()
     delete _autoIndentSwitch;
     delete _mailEdit;
     delete _printEdit;
-    delete _font;
+    delete _titleFont;
+    delete _textFont;
 }
 
 void KNoteConfigDlg::makeDisplayPage()
 {
     _config->setGroup( "Display" );
 
-    QPixmap icon = KGlobal::iconLoader()->loadIcon( "blend", KIcon::Action );
+    QPixmap icon = KGlobal::iconLoader()->loadIcon( "appearance", KIcon::Action, KIcon::SizeMedium );
     QFrame* displayPage = addPage( i18n( "Display" ), i18n("Display Settings"), icon );
 
-    //set layout- top level is the QVBoxLayout....
+    //set layout - top level is the QVBoxLayout....
     QVBoxLayout* topLevel = new QVBoxLayout( displayPage, 0, spacingHint() );
     QGridLayout* glay     = new QGridLayout( topLevel, 5, 3 );
 
     QLabel* l_fgcolor = new QLabel( i18n("Text Color"), displayPage );
     QLabel* l_bgcolor = new QLabel( i18n("Background Color"), displayPage );
-    QLabel* l_width   = new QLabel( i18n("Note Width"), displayPage );
-    QLabel* l_height  = new QLabel( i18n("Note Height"), displayPage );
 
     QColor fgcolor = _config->readColorEntry( "fgcolor", &(Qt::black) );
     QColor bgcolor = _config->readColorEntry( "bgcolor", &(Qt::yellow) );
@@ -90,35 +90,41 @@ void KNoteConfigDlg::makeDisplayPage()
     connect( _bgColor, SIGNAL( changed(const QColor&)),
             this, SLOT( slotBGColor(const QColor&) ) );
 
-    uint width = _config->readUnsignedNumEntry( "width", 200 );
-    uint height = _config->readUnsignedNumEntry( "height", 200 );
-    _widthEdit = new KIntNumInput( width, displayPage );
-    _widthEdit->setRange( 100, 2000, 10, false );
-    _heightEdit = new KIntNumInput( height, displayPage );
-    _heightEdit->setRange( 100, 2000, 10, false );
-
     glay->addWidget( l_fgcolor, 0, 0 );
     glay->addWidget( l_bgcolor, 1, 0 );
     glay->addWidget( _fgColor, 0, 2 );
     glay->addWidget( _bgColor, 1, 2 );
 
-    glay->addWidget( l_width, 2, 0 );
-    glay->addWidget( _widthEdit, 2, 2 );
+    if ( _global )
+    {
+        QLabel* l_width  = new QLabel( i18n("Default Width"), displayPage );
+        QLabel* l_height = new QLabel( i18n("Default Height"), displayPage );
 
-    glay->addWidget( l_height, 3, 0 );
-    glay->addWidget( _heightEdit, 3, 2 );
+        uint width = _config->readUnsignedNumEntry( "width", 200 );
+        uint height = _config->readUnsignedNumEntry( "height", 200 );
+
+        _widthEdit = new KIntNumInput( width, displayPage );
+        _widthEdit->setRange( 100, 2000, 10, false );
+        _heightEdit = new KIntNumInput( height, displayPage );
+        _heightEdit->setRange( 100, 2000, 10, false );
+
+        glay->addWidget( l_width, 2, 0 );
+        glay->addWidget( _widthEdit, 2, 2 );
+        glay->addWidget( l_height, 3, 0 );
+        glay->addWidget( _heightEdit, 3, 2 );
+    }
 }
 
 void KNoteConfigDlg::makeEditorPage()
 {
     _config->setGroup( "Editor" );
 
-    QPixmap icon = KGlobal::iconLoader()->loadIcon( "editcopy", KIcon::Action );
+    QPixmap icon = KGlobal::iconLoader()->loadIcon( "edit", KIcon::Action, KIcon::SizeMedium );
     QFrame* editorPage = addPage( i18n( "Editor" ), i18n("Editor Settings"), icon );
 
     //set layout- top level is the QVBoxLayout....
     QVBoxLayout* topLevel = new QVBoxLayout( editorPage, 0, spacingHint() );
-    QGridLayout* glay     = new QGridLayout( topLevel, 3, 3 );
+    QGridLayout* glay     = new QGridLayout( topLevel, 4, 3 );
 
     QLabel* l_tabsize = new QLabel( i18n( "Tab Size" ), editorPage );
     glay->addWidget( l_tabsize, 0, 0 );
@@ -133,20 +139,28 @@ void KNoteConfigDlg::makeEditorPage()
     _autoIndentSwitch->setChecked( check_val );
     glay->addMultiCellWidget( _autoIndentSwitch, 1, 1, 0, 2, AlignCenter );
 
-    _font = new QPushButton( editorPage );
+    _titleFont = new QPushButton( editorPage );
     QFont def_font( "helvetica" );
-    QFont currfont = _config->readFontEntry( "font", &def_font );
-    _font->setFont( currfont );
-    _font->setText( i18n( "Current Font: Click to Change" ) );
-    glay->addMultiCellWidget( _font, 2, 2, 0, 2, AlignCenter );
-    connect( _font, SIGNAL(clicked()), this, SLOT(slotChangeFont()) );
+    QFont currfont = _config->readFontEntry( "titlefont", &def_font );
+    _titleFont->setFont( currfont );
+    _titleFont->setText( i18n( "Title Font: Click to Change" ) );
+    glay->addMultiCellWidget( _titleFont, 2, 2, 0, 2, AlignCenter );
+    connect( _titleFont, SIGNAL(clicked()), this, SLOT(slotChangeTitleFont()) );
+
+    _textFont = new QPushButton( editorPage );
+    def_font = QFont( "helvetica" );
+    currfont = _config->readFontEntry( "font", &def_font );
+    _textFont->setFont( currfont );
+    _textFont->setText( i18n( "Text Font: Click to Change" ) );
+    glay->addMultiCellWidget( _textFont, 3, 3, 0, 2, AlignCenter );
+    connect( _textFont, SIGNAL(clicked()), this, SLOT(slotChangeTextFont()) );
 }
 
 void KNoteConfigDlg::makeActionsPage()
 {
     _config->setGroup( "Actions" );
 
-    QPixmap icon = KGlobal::iconLoader()->loadIcon( "run", KIcon::Action );
+    QPixmap icon = KGlobal::iconLoader()->loadIcon( "misc", KIcon::Action, KIcon::SizeMedium );
     QFrame* actionsPage = addPage( i18n( "Actions" ), i18n("Action Settings"), icon );
 
     //set layout- top level is the QVBoxLayout....
@@ -170,12 +184,12 @@ void KNoteConfigDlg::makeActionsPage()
 
 void KNoteConfigDlg::storeSettings()
 {
-    //store General settings
+    // store General settings
     _config->setGroup( "General" );
 
     _config->writeEntry( "version", 2 );
 
-    //store Display settings
+    // store Display settings
     _config->setGroup( "Display" );
 
     _config->writeEntry( "fgcolor", _fgColor->color() );
@@ -183,23 +197,26 @@ void KNoteConfigDlg::storeSettings()
 
     uint testval;
 
-    testval = _heightEdit->value();
-    _config->writeEntry( "height", testval );
+    if ( _global )
+    {
+        testval = _heightEdit->value();
+        _config->writeEntry( "height", testval );
 
-    testval = _widthEdit->value();
-    _config->writeEntry( "width", testval );
+        testval = _widthEdit->value();
+        _config->writeEntry( "width", testval );
+    }
 
-    //store Editor settings
+    // store Editor settings
     _config->setGroup( "Editor" );
 
-    _config->writeEntry( "font", _font->font() );
+    _config->writeEntry( "titlefont", _titleFont->font() );
+    _config->writeEntry( "font", _textFont->font() );
 
     bool autoindent = _autoIndentSwitch->isChecked();
     _config->writeEntry( "autoindent", autoindent );
 
     testval = _tabEdit->value();
     _config->writeEntry( "tabsize", testval );
-
 
     //store Action Settings ** TODO **
     _config->setGroup( "Actions" );
@@ -224,13 +241,22 @@ void KNoteConfigDlg::slotApply()
     emit updateConfig();
 }
 
-void KNoteConfigDlg::slotChangeFont()
+void KNoteConfigDlg::slotChangeTitleFont()
 {
     QFont newfont;
-    QString example = i18n("Example Text");
-    KFontDialog::getFontAndText( newfont, example );
+//    QString example = i18n("Example Text");
+    KFontDialog::getFont( newfont );
 
-    _font->setFont( newfont );
+    _titleFont->setFont( newfont );
+}
+
+void KNoteConfigDlg::slotChangeTextFont()
+{
+    QFont newfont;
+//    QString example = i18n("Example Text");
+    KFontDialog::getFont( newfont );
+
+    _textFont->setFont( newfont );
 }
 
 void KNoteConfigDlg::slotFGColor( const QColor& c )

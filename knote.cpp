@@ -54,10 +54,10 @@
 #endif
 
 // -------------------- Initialisation -------------------- //
-KNote::KNote( const QString& config, bool load, QWidget* parent, const char* name )
+KNote::KNote( const QString& file, bool load, QWidget* parent, const char* name )
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorderEx | WDestructiveClose ),
       m_noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) ),
-      m_configFile( config )
+      m_configFile( file )
 {
     // create the menu items for the note - not the editor...
     // rename, mail, print, insert date, close, delete, new note
@@ -116,7 +116,7 @@ KNote::KNote( const QString& config, bool load, QWidget* parent, const char* nam
     }
     else
     {
-        m_label->setText( config );
+        m_label->setText( m_configFile );
 
         // set the new configfile's name...
         for ( int i = 1; ; i++ )
@@ -135,16 +135,56 @@ KNote::KNote( const QString& config, bool load, QWidget* parent, const char* nam
         //read and convert the old configuration
         convertOldConfig();
     } else {
-        //read configuration settings...do before loading the text!
+        // load the display configuration of the note
+        KSimpleConfig config( m_noteDir.absFilePath( m_configFile ) );
+        config.setGroup( "Display" );
+        uint width  = config.readUnsignedNumEntry( "width", 200 );
+        uint height = config.readUnsignedNumEntry( "height", 200 );
+        resize( width, height );
+
+        config.setGroup( "WindowDisplay" );
+        int note_desktop = config.readNumEntry( "desktop", KWin::currentDesktop() );
+        ulong note_state = config.readUnsignedLongNumEntry( "state", NET::SkipTaskbar );
+        QPoint default_position = QPoint( -1, -1 );
+        QPoint position  = config.readPointEntry( "position", &default_position );
+
+        KWin::setState( winId(), note_state );
+        if ( note_state & NET::StaysOnTop )
+            m_menu->setItemChecked( m_idAlwaysOnTop, true );
+
+        if ( position != default_position )
+            move( position );                    // do before calling show() to avoid flicker
+
+        // read configuration settings...
         slotApplyConfig();
 
+        // show the note if desired
+        if ( note_desktop != 0 && !isVisible() )
+        {
+            // HACK HACK
+            if( note_desktop != NETWinInfo::OnAllDesktops )
+            {
+                // to avoid flicker, call this before show()
+                slotToDesktop( note_desktop );
+                show();
+            } else {
+                show();
+                // if this is called before show(),
+                // it won't work for sticky notes!!!
+                slotToDesktop( note_desktop );
+            }
+        }
+
+        // load the saved text and put it in m_editor...
         QString datafile = "." + m_configFile + "_data";
         if ( m_noteDir.exists( datafile ) )
         {
-            //load the saved text and put it in m_editor...
             QString absfile = m_noteDir.absFilePath( datafile );
             m_editor->readFile( absfile );
         }
+
+        // TODO: remove this HACK!
+        slotApplyConfig();
     }
 }
 
@@ -335,7 +375,7 @@ void KNote::slotPreferences()
 
     //launch preferences dialog...
     KNoteConfigDlg configDlg( m_noteDir.absFilePath( m_configFile ),
-                              i18n("Local Settings") );
+                              i18n("Local Settings"), false );
     connect( &configDlg, SIGNAL( updateConfig() ), this, SLOT( slotApplyConfig() ) );
 
     configDlg.show();
@@ -475,8 +515,12 @@ void KNote::slotApplyConfig()
     config.setGroup( "Editor" );
 
     QFont def( "helvetica" );
-    def = config.readFontEntry( "font", &def ) ;
-    setFont( def );
+    def = config.readFontEntry( "font", &def );
+    m_editor->setTextFont( def );
+
+    def = QFont( "helvetica" );
+    def = config.readFontEntry( "titlefont", &def );
+    m_label->setFont( def );
 
     uint tab_size = config.readUnsignedNumEntry( "tabsize", 4 );
 //    m_editor->setTabStopWidth( tab_size );
@@ -496,14 +540,8 @@ void KNote::slotApplyConfig()
         m_label->setText( notename );
     }
 
-    //do Display group- width, height, bgcolor, fgcolor, transparent
-    //do this after the editor part so that the label can adjust it's
-    //size to the font on a resize event
+    // do Display group - bgcolor, fgcolor, transparent
     config.setGroup( "Display" );
-
-    uint width  = config.readUnsignedNumEntry( "width", 200 );
-    uint height = config.readUnsignedNumEntry( "height", 200 );
-    resize( width, height );
 
     // create a pallete...
     QColor bg = config.readColorEntry( "bgcolor", &(Qt::yellow) );
@@ -533,36 +571,6 @@ void KNote::slotApplyConfig()
     {
         m_label->setBackgroundColor( bg );
         m_button->hide();
-    }
-
-    config.setGroup( "WindowDisplay" );
-    int note_desktop = config.readNumEntry( "desktop", KWin::currentDesktop() );
-    ulong note_state = config.readUnsignedLongNumEntry( "state", NET::SkipTaskbar );
-    QPoint default_position = QPoint( -1, -1 );
-    QPoint position  = config.readPointEntry( "position", &default_position );
-
-    // TODO: move this code?
-    KWin::setState( winId(), note_state );
-    if ( note_state & NET::StaysOnTop )
-    {
-        m_menu->setItemChecked( m_idAlwaysOnTop, true );
-    }
-
-    if ( position != default_position )
-        move( position );                    // do before calling show() to avoid flicker
-
-    if ( note_desktop != 0 && !isVisible() )
-    {
-        // HACK HACK
-        if( note_desktop != NETWinInfo::OnAllDesktops )
-        {
-            slotToDesktop( note_desktop );   //to avoid flicker, call this before show()
-            show();
-        } else {
-            show();
-            //if this is called before show(), it won't work for sticky notes!!!
-            slotToDesktop( note_desktop );
-        }
     }
 }
 
@@ -659,7 +667,8 @@ void KNote::convertOldConfig()
         bool italic = ( input.readLine().toUInt() == 1 );
 
         QFont font( fontfamily, size, weight, italic );
-        setFont( font );
+        m_label->setFont( font );
+        m_editor->setTextFont( font );
 
         // 3d frame? Not supported yet!
         input.readLine();
@@ -730,6 +739,7 @@ void KNote::convertOldConfig()
 
         config.setGroup( "Editor" );
         config.writeEntry( "autoindent", indent );
+        config.writeEntry( "titlefont", font );
         config.writeEntry( "font", font );
         config.writeEntry( "tabsize", 4 );
         config.sync();
