@@ -333,7 +333,7 @@ void KNotesApp::showNote( KNote* note ) const
         // if it's already showing, we need to change to its desktop
         // and give it focus
         KWin::setCurrentDesktop( KWin::info( note->winId() ).desktop );
-        KWin::setActiveWindow( note->winId() );
+        KWin::forceActiveWindow( note->winId() );
         note->setFocus();
     }
     else
@@ -341,7 +341,7 @@ void KNotesApp::showNote( KNote* note ) const
         // if not, show note on the current desktop
         note->show();
         note->toDesktop( KWin::currentDesktop() );
-        KWin::setActiveWindow( note->winId() );
+        KWin::forceActiveWindow( note->winId() );
         note->setFocus();
     }
 }
