@@ -31,6 +31,8 @@
 #include <kcolordialog.h>
 #include <kxmlguiclient.h>
 
+#include <assert.h>
+
 #include "knoteedit.h"
 #include "knotebutton.h"
 
@@ -49,7 +51,8 @@ KNoteEdit::KNoteEdit( QWidget *tool, QWidget* parent, const char* name )
     setWrapPolicy( AtWhiteSpace );
 
     KXMLGUIClient* client = dynamic_cast<KXMLGUIClient*>(parent);
-	if (client) KActionCollection* actions = client->actionCollection();
+	assert(client);
+    KActionCollection* actions = client->actionCollection();
 
 
     // create the actions for the RMB menu
