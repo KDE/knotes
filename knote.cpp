@@ -49,7 +49,7 @@
 #include "knotebutton.h"
 #include "knoteedit.h"
 #include "knoteconfigdlg.h"
-#include "qsimplerichtext.h"
+#include "qrichtext_p.h"
 
 #include <kwin.h>
 #include <netwm.h>
@@ -482,13 +482,13 @@ void KNote::slotPrint() const
     {
         KSimpleConfig config( m_noteDir.absFilePath( m_configFile ), true );
 
-        QPainter painter;
-        painter.begin( &printer );
-
         // TODO
         const int margin = 40;  // pt
         QFont font( "helvetica" );
         font = config.readFontEntry( "font", &font );
+
+        QPainter painter;
+        painter.begin( &printer );
 
         QPaintDeviceMetrics metrics( painter.device() );
         int marginX = margin * metrics.logicalDpiX() / 72;
@@ -498,20 +498,30 @@ void KNote::slotPrint() const
                     metrics.width() - marginX * 2,
                     metrics.height() - marginY * 2 );
 
-        Qt3::QSimpleRichText richText( m_editor->text(),
-                                  font,               // TODO: ehhm?? correct?
-                                  m_editor->context(),
-                                  m_editor->styleSheet(),
-                                  m_editor->mimeSourceFactory(),
-                                  body.height() );
+        QTextDocument* textDoc = new QTextDocument( 0 );
+        textDoc->setFormatter( new QTextFormatterBreakWords );
+        textDoc->setDefaultFont( font );        // only needed for the pointsize
+        textDoc->setUnderlineLinks( true );
+        textDoc->setStyleSheet( m_editor->styleSheet() );
+        textDoc->setMimeSourceFactory( m_editor->mimeSourceFactory() );
+        textDoc->flow()->setPageSize( body.height() );
+        textDoc->setVerticalBreak( true );
+        textDoc->setText( m_editor->text(), m_editor->context() );
 
-        richText.setWidth( &painter, body.width() );
+        textDoc->doLayout( &painter, body.width() );
 
         QRect view( body );
 
         int page = 1;
+        int x = body.left();
+        int y = body.top();
+
         for (;;) {
-            richText.draw( &painter, body.left(), body.top(), view, colorGroup() );
+            painter.translate( x, y );
+            view.moveBy( 0, -y );
+            textDoc->draw( &painter, view, colorGroup() );
+            view.moveBy( 0, y );
+            painter.translate( -x, -y );
 
             view.moveBy( 0, body.height() );
             painter.translate( 0 , -body.height() );
@@ -523,7 +533,7 @@ void KNote::slotPrint() const
                 view.bottom() + painter.fontMetrics().ascent() + 5, QString::number( page )
             );
 
-            if ( view.top()  >= richText.height() )
+            if ( view.top()  >= textDoc->height() )
                 break;
 
             printer.newPage();
