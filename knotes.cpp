@@ -1343,7 +1343,7 @@ static void siguser1(int sig){
     postit->show();
   }
   else {
-    if( KPostit::PostitList.current()->hidden == true){
+    if( KPostit::PostitList.last()->hidden == true){
       KPostit::PostitList.last()->hidden = false;
       if(KPostit::PostitList.last()->propertystring != (QString) "")
 	KWM::setProperties(KPostit::PostitList.last()->winId(),
