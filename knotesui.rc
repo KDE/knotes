@@ -1,0 +1,33 @@
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+
+<kpartgui name="KNotes" version="1">
+
+<ActionProperties>
+    <Action name="file_new" text="New Note"/>
+    <Action name="options_configure" text="Preferences..."/>
+</ActionProperties>
+
+<Menu name="context_menu" noMerge="1"><text>KNotes</text>
+    <Action name="file_new"/>
+    <Menu name="notes_menu" noMerge="1"><text>Notes</text>
+        <ActionList name="notes"/>
+    </Menu>
+    <Action name="options_configure"/>
+    <Separator/>
+    <Menu name="help" icon="help" noMerge="1"><text>&amp;Help</text>
+        <Action name="help_contents"/>
+        <Separator/>
+        <Action name="help_report_bug"/>
+        <Separator/>
+        <Action name="help_about_app"/>
+        <Action name="help_about_kde"/>
+    </Menu>
+    <Separator/>
+    <Action name="file_quit"/>
+</Menu>
+
+<Menu name="note_menu" noMerge="1"><text>Notes</text>
+    <ActionList name="notes"/>
+</Menu>
+
+</kpartgui>
