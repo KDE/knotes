@@ -1,24 +1,23 @@
 /* XPM */
-static char *knotesclose[] = {
-/* width height num_colors chars_per_pixel */
-"    14    14        3            1",
-/* colors */
-". c None",
-"# c #ffffff",
-"a c #707070",
+static char *magick[] = {
+/* columns rows colors chars-per-pixel */
+"14 14 3 1",
+"  c #000000",
+". c #ffffff",
+"X c None",
 /* pixels */
-"..............",
-"..............",
-"..............",
-"..#.......#...",
-"...#.....#....",
-"....#...#.....",
-".....#.#......",
-"......#.......",
-".....#.#......",
-"....#...#.....",
-"...#.....#....",
-"..#.......#...",
-"..............",
-".............."
+"XXXXXXXXXXXXXX",
+"XXXXXXXXXXXXXX",
+"XXXXXXXXXXXXXX",
+"XX.XXXXXXX.XXX",
+"XXX.XXXXX.XXXX",
+"XXXX.XXX.XXXXX",
+"XXXXX.X.XXXXXX",
+"XXXXXX.XXXXXXX",
+"XXXXX.X.XXXXXX",
+"XXXX.XXX.XXXXX",
+"XXX.XXXXX.XXXX",
+"XX.XXXXXXX.XXX",
+"XXXXXXXXXXXXXX",
+"XXXXXXXXXXXXXX"
 };
