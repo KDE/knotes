@@ -1746,8 +1746,10 @@ int main( int argc, char **argv ) {
 
   // manual session management (knotes alredy stores everything)
   kapp->setTopWidget(new sessionWidget);
+#if 0  
   kapp->enableSessionManagement(true);
   kapp->setWmCommand("knotes -knotes_restore");
+#endif  
 
   docker = new DockWidget();
   if (KPostit::dock)
