@@ -353,7 +353,12 @@ void KNotesApp::mousePressEvent( QMouseEvent* e )
     switch ( e->button() )
     {
     case LeftButton:
-        if ( m_note_menu->count() > 0 )
+        if ( m_noteList.count() == 1 )
+        {
+            QDictIterator<KNote> it( m_noteList );
+            showNote( it.toFirst() );
+        }
+        else if ( m_note_menu->count() > 0 )
             m_note_menu->popup( e->globalPos() );
         break;
     case MidButton:
