@@ -32,16 +32,16 @@ class KAction;
 class KToggleAction;
 class KFontAction;
 class KFontSizeAction;
-class KToolBar;
 
 
 class KNoteEdit : public KTextEdit
 {
     Q_OBJECT
 public:
-    KNoteEdit( KToolBar *tool, QWidget *parent=0, const char *name=0 );
+    KNoteEdit( QWidget *parent=0, const char *name=0 );
     ~KNoteEdit();
 
+    void setText( const QString& text );
     void setTextFont( const QFont& font );
     void setTextColor( const QColor& color );
     void setTabStop( int tabs );
@@ -51,6 +51,7 @@ public slots:
     virtual void setTextFormat( TextFormat f );
 
     //void textStyleSelected( int );
+    //void setStrikeOut( bool );
 
     void textColor();
 
@@ -97,6 +98,7 @@ private:
     KToggleAction *m_textBold;
     KToggleAction *m_textItalic;
     KToggleAction *m_textUnderline;
+    //KToggleAction *m_textStrikeOut;
 
     KToggleAction *m_textAlignLeft;
     KToggleAction *m_textAlignCenter;

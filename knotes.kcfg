@@ -6,7 +6,7 @@
 
   <group name="Actions">
     <entry name="MailAction" type="String" key="mail">
-      <default>kmail --msg %f</default>
+      <default>kmail --subject %t --body %f</default>
     </entry>
   </group>
 

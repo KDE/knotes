@@ -1,6 +1,6 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="2">
+<kpartgui name="KNotes" version="3">
 
 <Menu name="knotes_context" noMerge="1"><text>KNotes</text>
     <title icon="knotes">KNotes</title>
@@ -42,6 +42,26 @@
     <Action name="keep_above"/>
     <Action name="keep_below"/>
 </Menu>
+
+<ToolBar name="note_tool">
+    <Action name="format_bold"/>
+    <Action name="format_italic"/>
+    <Action name="format_underline"/>
+    <Separator/>
+    <Action name="format_alignleft"/>
+    <Action name="format_aligncenter"/>
+    <Action name="format_alignright"/>
+    <Action name="format_alignblock"/>
+    <Separator/>
+    <Action name="format_list"/>
+    <Action name="format_super"/>
+    <Action name="format_sub"/>
+    <Separator/>
+    <Action name="format_color"/>
+    <Separator/>
+    <Action name="format_font"/>
+    <Action name="format_size"/>
+</ToolBar>
 
 <Menu name="note_edit" noMerge="1">
     <Action name="edit_undo"/>

@@ -127,12 +127,8 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     m_label->installEventFilter( this );  // receive events (for dragging & action menu)
     setName( m_journal->summary() );      // don't worry, no signals are connected at this stage yet
 
-    // create the toolbar
-    m_tool = new KToolBar( this, "toolbar" );
-    m_tool->hide();
-
     // create the note editor
-    m_editor = new KNoteEdit( m_tool, this );
+    m_editor = new KNoteEdit( this );
     m_editor->installEventFilter( this ); // receive events (for modified)
     m_editor->viewport()->installEventFilter( this );
 
@@ -142,6 +138,9 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
 
     m_menu = static_cast<KPopupMenu*>(factory.container( "note_context", this ));
     m_edit_menu = static_cast<KPopupMenu*>(factory.container( "note_edit", this ));
+    m_tool = static_cast<KToolBar*>(factory.container( "note_tool", this ));
+    m_tool->reparent( this, QPoint( 0, 0 ) );
+    m_tool->hide();
 
     setFocusProxy( m_editor );
 
@@ -434,8 +433,17 @@ void KNote::slotMail()
 {
     saveData();
 
-    // TODO: convert to plain text
     QString msg_body = m_editor->text();
+
+    // convert rich text to plain text first
+    if ( m_editor->textFormat() == RichText )
+    {
+        QTextEdit conv;
+        conv.setTextFormat( RichText );
+        conv.setText( msg_body );
+        conv.setTextFormat( PlainText );
+        msg_body = conv.text();
+    }
 
     // get the mail action command
     QStringList cmd_list = QStringList::split( QChar(' '), m_config->mailAction() );
@@ -532,15 +540,17 @@ void KNote::slotApplyConfig()
     if ( m_config->richText() )
         m_editor->setTextFormat( RichText );
     else
-    {
         m_editor->setTextFormat( PlainText );
-        m_editor->setText( m_editor->text() );
-    }
 
     m_label->setFont( m_config->titleFont() );
     m_editor->setTextFont( m_config->font() );
     m_editor->setTabStop( m_config->tabSize() );
     m_editor->setAutoIndentMode( m_config->autoIndent() );
+
+    // if called as a slot, save the text, we might have changed the
+    // text format - otherwise the journal will not be updated
+    if ( sender() )
+        saveData();
 
     setColor( m_config->fgColor(), m_config->bgColor() );
 
@@ -632,6 +642,7 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
 
     // to set the color of the title
     updateFocus();
+    emit sigColorChanged();
 }
 
 void KNote::updateLabelAlignment()
@@ -667,8 +678,8 @@ void KNote::updateFocus()
         if ( !m_tool->isHidden() )
         {
             m_tool->hide();
-            updateLayout();     // to update the minimum height
             setGeometry( x(), y(), width(), height() - m_tool->height() );
+            updateLayout();     // to update the minimum height
         }
     }
 }
@@ -678,9 +689,9 @@ void KNote::updateLayout()
     // DAMN, Qt still has no support for widgets with a fixed aspect ratio :-(
     // So we have to write our own layout manager...
 
-    int headerHeight = m_label->sizeHint().height();
-    int toolHeight = m_tool->isHidden() ? 0 : m_tool->height();
-    int margin = m_editor->margin();
+    const int headerHeight = m_label->sizeHint().height();
+    const int toolHeight = m_tool->isHidden() ? 0 : 16;
+    const int margin = m_editor->margin();
     static const int border = 2;
 
     m_button->setGeometry(
@@ -697,9 +708,16 @@ void KNote::updateLayout()
         headerHeight
     );
 
-    m_tool->setGeometry(
+    m_editor->setGeometry(
         contentsRect().x(),
         contentsRect().y() + headerHeight + border,
+        contentsRect().width(),
+        contentsRect().height() - headerHeight - toolHeight - border*2
+    );
+
+    m_tool->setGeometry(
+        contentsRect().x(),
+        contentsRect().height() - 16,
         contentsRect().width(),
         16
     );
@@ -708,7 +726,7 @@ void KNote::updateLayout()
     // if there was just a way of making KComboBox adhere the toolbar height...
     QObjectList *list = m_tool->queryList( "KComboBox" );
     QObjectListIt it( *list );
-    while ( it.current() != 0 )
+    while ( it.current() != 0 && toolHeight )
     {
         KComboBox *combo = (KComboBox *)it.current();
         QFont font = combo->font();
@@ -718,13 +736,6 @@ void KNote::updateLayout()
         ++it;
     }
     delete list;
-
-    m_editor->setGeometry(
-        contentsRect().x(),
-        contentsRect().y() + headerHeight + toolHeight + 2,
-        contentsRect().width(),
-        contentsRect().height() - headerHeight - toolHeight - 4
-    );
 
     setMinimumSize(
         m_editor->cornerWidget()->width() + margin*2 + border*2,

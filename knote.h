@@ -76,6 +76,7 @@ signals:
     void sigRequestNewNote();
     void sigNameChanged();
     void sigDataChanged();
+    void sigColorChanged();
     void sigKillNote( KCal::Journal* );
 
 protected:

@@ -28,7 +28,6 @@
 #include <kstdaction.h>
 #include <kcolordialog.h>
 #include <kxmlguiclient.h>
-#include <ktoolbar.h>
 
 #include "knoteedit.h"
 #include "knotebutton.h"
@@ -37,13 +36,14 @@ static const short SEP = 5;
 static const short ICON_SIZE = 10;
 
 
-KNoteEdit::KNoteEdit( KToolBar *tool, QWidget* parent, const char* name )
+KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
     : KTextEdit( parent, name )
 {
     setAcceptDrops( true );
     setWordWrap( WidgetWidth );
     setWrapPolicy( AtWhiteSpace );
     setLinkUnderline( true );
+    //setTabChangesFocus( false );
 
     KXMLGUIClient* client = dynamic_cast<KXMLGUIClient*>(parent);
     KActionCollection* actions = client->actionCollection();
@@ -78,10 +78,13 @@ KNoteEdit::KNoteEdit( KToolBar *tool, QWidget* parent, const char* name )
                                       actions, "format_italic" );
     m_textUnderline = new KToggleAction( i18n("&Underline"), "text_under", CTRL + Key_U, 0, 0,
                                          actions, "format_underline" );
+//     m_textStrikeOut = new KToggleAction( i18n("&Strike Out"), "text_strike", CTRL + Key_S, 0, 0,
+//                                          actions, "format_strikeout" );
 
-    connect( m_textBold, SIGNAL(toggled(bool)), this, SLOT(setBold(bool)) );
-    connect( m_textItalic, SIGNAL(toggled(bool)), this, SLOT(setItalic(bool)) );
-    connect( m_textUnderline, SIGNAL(toggled(bool)), this, SLOT(setUnderline(bool)) );
+    connect( m_textBold, SIGNAL(toggled(bool)), SLOT(setBold(bool)) );
+    connect( m_textItalic, SIGNAL(toggled(bool)), SLOT(setItalic(bool)) );
+    connect( m_textUnderline, SIGNAL(toggled(bool)), SLOT(setUnderline(bool)) );
+//     connect( m_textStrikeOut, SIGNAL(toggled(bool)), SLOT(setStrikeOut(bool)) );
 
     m_textAlignLeft = new KToggleAction( i18n("Align &Left"), "text_left", CTRL + Key_L,
                                  this, SLOT(textAlignLeft()),
@@ -118,15 +121,15 @@ KNoteEdit::KNoteEdit( KToolBar *tool, QWidget* parent, const char* name )
     m_textSuper->setExclusiveGroup( "valign" );
     m_textSub->setExclusiveGroup( "valign" );
 
-//  There is no easy possibility to implement text indenting with QTextEdit
+// There is no easy possibility to implement text indenting with QTextEdit
 //
-//    m_textIncreaseIndent = new KAction( i18n("Increase Indent"), "format_increaseindent", 0,
-//                                this, SLOT(textIncreaseIndent()),
-//                                actions, "format_increaseindent" );
+//     m_textIncreaseIndent = new KAction( i18n("Increase Indent"), "format_increaseindent", 0,
+//                                         this, SLOT(textIncreaseIndent()),
+//                                         actions, "format_increaseindent" );
 //
-//    m_textDecreaseIndent = new KAction( i18n("Decrease Indent"), "format_decreaseindent", 0,
-//                                this, SLOT(textDecreaseIndent()),
-//                                actions, "format_decreaseindent" );
+//     m_textDecreaseIndent = new KAction( i18n("Decrease Indent"), "format_decreaseindent", 0,
+//                                         this, SLOT(textDecreaseIndent()),
+//                                         actions, "format_decreaseindent" );
 
     QPixmap pix( ICON_SIZE, ICON_SIZE );
     pix.fill( black );     // just a dummy, gets updated before widget is shown
@@ -134,38 +137,14 @@ KNoteEdit::KNoteEdit( KToolBar *tool, QWidget* parent, const char* name )
                                   SLOT(textColor()), actions, "format_color" );
 
     m_textFont = new KFontAction( i18n("Text Font"), "text", KKey(),
-                                  this, SLOT(setFamily( const QString & )) );
+                                  actions, "format_font" );
+    connect( m_textFont, SIGNAL(activated( const QString & )),
+             this, SLOT(setFamily( const QString & )) );
 
-    m_textSize = new KFontSizeAction( i18n("Text Size"), KKey() );
+    m_textSize = new KFontSizeAction( i18n("Text Size"), KKey(),
+                                      actions, "format_size" );
     connect( m_textSize, SIGNAL(fontSizeChanged( int )),
              this, SLOT(setPointSize( int )) );
-
-    // plug the stuff in
-    m_textBold->plug( tool );
-    m_textItalic->plug( tool );
-    m_textUnderline->plug( tool );
-
-    (new KActionSeparator( this ))->plug( tool );
-
-    m_textAlignLeft->plug( tool );
-    m_textAlignCenter->plug( tool );
-    m_textAlignRight->plug( tool );
-    m_textAlignBlock->plug( tool );
-
-    (new KActionSeparator( this ))->plug( tool );
-
-    m_textList->plug( tool );
-    m_textSuper->plug( tool );
-    m_textSub->plug( tool );
-
-    (new KActionSeparator( this ))->plug( tool );
-
-    m_textColor->plug( tool );
-
-    (new KActionSeparator( this ))->plug( tool );
-
-    m_textFont->plug( tool );
-    m_textSize->plug( tool );
 
     // QTextEdit connections
     connect( this, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
@@ -181,6 +160,14 @@ KNoteEdit::KNoteEdit( KToolBar *tool, QWidget* parent, const char* name )
 
 KNoteEdit::~KNoteEdit()
 {
+}
+
+void KNoteEdit::setText( const QString& text )
+{
+    // to update the font and font size combo box - QTextEdit stopped
+    // emitting the currentFontChanged signal with the new optimizations
+    KTextEdit::setText( text );
+    fontChanged( currentFont() );
 }
 
 void KNoteEdit::setTextFont( const QFont& font )
@@ -213,13 +200,60 @@ void KNoteEdit::setAutoIndentMode( bool newmode )
 
 void KNoteEdit::setTextFormat( TextFormat f )
 {
-    if ( f == RichText )
-        enableRichTextActions();
-    else
-        disableRichTextActions();
+    if ( f == textFormat() )
+        return;
 
-    KTextEdit::setTextFormat( f );
+    if ( f == RichText )
+    {
+        QString t = text();
+        KTextEdit::setTextFormat( f );
+        setText( t );
+
+        enableRichTextActions();
+    }
+    else
+    {
+        KTextEdit::setTextFormat( f );
+        QString t = text();
+        setText( t );
+
+        disableRichTextActions();
+    }
 }
+
+// void KNoteEdit::setStrikeOut( bool s )
+// {
+//     // QTextEdit does not support stroke out text (no saving,
+//     // no changing of more than one selected character)
+//     QFont font;
+//
+//     if ( !hasSelectedText() )
+//     {
+//         font = currentFont();
+//         font.setStrikeOut( s );
+//         setCurrentFont( font );
+//     }
+//     else
+//     {
+//         int pFrom, pTo, iFrom, iTo;
+//         int cp, ci;
+//
+//         getSelection( &pFrom, &iFrom, &pTo, &iTo );
+//         getCursorPosition( &cp, &ci );
+//
+//         for ( int p = pFrom; p <= pTo; p++ )
+//             for ( int i = iFrom; i <= iTo; i++ )
+//         {
+//             setSelection( p, i, p, i );
+//             font = currentFont();
+//             font.setStrikeOut( s );
+//             setCurrentFont( font );
+//         }
+//
+//         setSelection( pFrom, iFrom, pTo, iTo );
+//         setCursorPosition( cp, ci );
+//     }
+// }
 
 void KNoteEdit::textColor()
 {
@@ -332,6 +366,7 @@ void KNoteEdit::fontChanged( const QFont &f )
     m_textBold->setChecked( f.bold() );
     m_textItalic->setChecked( f.italic() );
     m_textUnderline->setChecked( f.underline() );
+//     m_textStrikeOut->setChecked( f.strikeOut() );
 }
 
 void KNoteEdit::colorChanged( const QColor &c )
@@ -408,6 +443,7 @@ void KNoteEdit::enableRichTextActions()
     m_textBold->setEnabled( true );
     m_textItalic->setEnabled( true );
     m_textUnderline->setEnabled( true );
+//     m_textStrikeOut->setEnabled( true );
 
     m_textAlignLeft->setEnabled( true );
     m_textAlignCenter->setEnabled( true );
@@ -429,6 +465,7 @@ void KNoteEdit::disableRichTextActions()
     m_textBold->setEnabled( false );
     m_textItalic->setEnabled( false );
     m_textUnderline->setEnabled( false );
+//     m_textStrikeOut->setEnabled( false );
 
     m_textAlignLeft->setEnabled( false );
     m_textAlignCenter->setEnabled( false );

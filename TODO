@@ -11,26 +11,27 @@ features:
  * the config dialog:
     - make the frame configureable (3d -> normal)
     - make the keybindings configureable
+ * support images
+ * support urls
  * save cursor and scrollbar postion
  * steal some ideas from Stickies (Mac OS X)
+ * steal some ideas from ATNotes (Win)
 
  * once we have more session configs make KNotes save its notes in
    .kde/share/apps/knotes/<session-name>/
 
 bugs:
+ * fix Tab key when rich text toolbar is open
  * test if KNotes works without initial config files (knote.cpp, KIO::NetAccess::exists())
  * fix shortcuts
+ * add ToolTips everywhere
  * focus update when opening combo box?
- * fix font selection and update
- * fix color update in menu
- * fix switching from rich text mode to normal and then restart KNotes
-   (probably happens because of order of reading text and
-   setting RichText/PlainText property)
  * fix being able to uncheck all formatting buttons
  * if the window state is changed from outside KNotes the buttons do not
    reflect that
  * send DCOP signals on newNote/deleteNote
- * mail rich text notes properly
+ * in rich text mode: what should happen to the font setting in the config dialog?
+ * find out how to avoid the reparent call in KNote
 
 perhaps:
  * transparent notes
@@ -50,4 +51,4 @@ always open TODO:
  * make the code as perfect and clean as possible!!
 
 
--- Michael Brade 17-03-2004
+-- Michael Brade 19-03-2004

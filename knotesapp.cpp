@@ -417,11 +417,12 @@ void KNotesApp::createNote( KCal::Journal *journal )
     KNote *newNote = new KNote( this, domDocument(), journal );
     m_noteList.insert( newNote->noteId(), newNote );
 
-    connect( newNote, SIGNAL(sigRequestNewNote()), this, SLOT(newNote()) );
+    connect( newNote, SIGNAL(sigRequestNewNote()), SLOT(newNote()) );
     connect( newNote, SIGNAL(sigKillNote( KCal::Journal* )),
-             this,    SLOT(slotNoteKilled( KCal::Journal* )) );
-    connect( newNote, SIGNAL(sigNameChanged()), this, SLOT(updateNoteActions()) );
-    connect( newNote, SIGNAL(sigDataChanged()), this, SLOT(saveNotes()) );
+                        SLOT(slotNoteKilled( KCal::Journal* )) );
+    connect( newNote, SIGNAL(sigNameChanged()), SLOT(updateNoteActions()) );
+    connect( newNote, SIGNAL(sigDataChanged()), SLOT(saveNotes()) );
+    connect( newNote, SIGNAL(sigColorChanged()), SLOT(updateNoteActions()) );
 
     updateNoteActions();
 }

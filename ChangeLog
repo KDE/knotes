@@ -1,6 +1,24 @@
 ChangeLog for KNotes
 ====================
 
+2004/03/19  Michael Brade <brade@kde.org>
+
+    * fixed updating the icon in the notes menu after a color change
+    * fixed change of font family in richt text mode
+    * fixed updating of font and font size combo box
+    * fixed bug that made the html source show up in a text note when switching
+      from rich text to plain text and then restarting KNotes
+    * make KNotes interpret the text as rich text when switching from pain text
+      to rich text
+    * moved the rich text -> plain text conversion to KNoteEdit
+    * finally switched rich text toolbar to XMLGUI as well
+    * fixed #60841: include the title as subject by default when mailing a note
+    * make mailing a note possible again at all - KMail now needs --body and not
+      --msg as argument
+    * convert rich text notes to plain text before emailing them
+    * fixed #75793: notes should not resize in RT mode, moved to the bottom of
+      the note
+
 2004/03/17  Michael Brade <brade@kde.org>
 
     * set an appropriate caption icon for the config dialog
