@@ -8,12 +8,11 @@ LIBTOOL = @LIBTOOL@
 KDE_RPATH = @KDE_RPATH@
 
 prefix  = @prefix@
-BINDIR  = $(prefix)/bin
-LIBDIR  = $(prefix)/lib
-ICONSDIR  = $(prefix)/share/icons
-PIXDIR  = $(prefix)/share/apps/knotes/pics/
-DOCSDIR = $(prefix)/share/doc/HTML/en/knotes
-APPSDIR = $(prefix)/share/applnk/Utilities
+install_root = @install_root@
+BINDIR  = @kde_bindir@
+ICONSDIR  = @kde_icondir@
+PIXDIR  = @kde_datadir@/knotes/pics/
+APPSDIR = @kde_appsdir@/Utilities
 
 install = @INSTALL@
 INSTALL = $(install) -m 0755
@@ -74,12 +73,7 @@ distclean: clean
 install: all
 	$(INSTALL_DIR) $(BINDIR)
 	$(INSTALL) $(TARGET) $(BINDIR)
-	$(INSTALL_DIR) $(DOCSDIR)
-	@for i in index.html index-1.html \
-	index-2.html index-3.html index-4.html index-5.html; do \
-	echo $(INSTALL_DATA) ./docs/$$i $(DOCSDIR) ; \
-	$(INSTALL_DATA) ./docs/$$i $(DOCSDIR) ; \
-	done
+	(cd docs && $(MAKE) install)
 	$(INSTALL_DIR) $(ICONSDIR)
 	$(INSTALL_DATA) knotes.xpm $(ICONSDIR)
 	$(INSTALL_DIR) $(PIXDIR)
@@ -93,6 +87,10 @@ uninstall:
 	rm -f $(DOCSDIR)/knotes.gif
 	rm -f $(DOCSDIR)/knotes.html
 	rm -f $(APPSDIR)/knotes.kdelnk
+	(cd docs && $(MAKE) uninstall)
+	rm -f $(ICONSDIR)/knotes.xpm
+	rm -f $(PIXDIR)/knoteslogo.xpm
+	rm -f $(PIXDIR)/knotesclose.xpm
 
 messages:
 	@XGETTEXT@ -C -ktranslate -x../../kdelibs/po/kde.pot *.cpp && mv messages.po ../po/knotes.pot
