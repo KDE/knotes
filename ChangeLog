@@ -1,6 +1,10 @@
 ChangeLog for KNotes
 ====================
 
+2005/01/16  Michael Brade <brade@kde.org>
+
+    * read the most recent instead of always taking the local knotesui.rc file
+
 2005/01/09  Michael Brade <brade@kde.org>
 
     * fixed #76435: most wanted feature: find function for the notes.

@@ -129,9 +129,15 @@ KNotesApp::KNotesApp()
     m_context_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "knotes_context", this ));
     m_note_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "notes_menu", this ));
 
-    m_noteGUI.setContent(
-        KXMLGUIFactory::readConfigFile( instance()->instanceName() + "ui.rc", instance() )
-    );
+    // get the most recent XML UI file
+    QString xmlFileName = instance()->instanceName() + "ui.rc";
+    QString filter = QString::fromLatin1( instance()->instanceName() + '/' ) + xmlFileName;
+    QStringList fileList = instance()->dirs()->findAllResources( "data", filter ) +
+                           instance()->dirs()->findAllResources( "data", xmlFileName );
+
+    QString doc;
+    KXMLGUIClient::findMostRecentXMLFile( fileList, doc );
+    m_noteGUI.setContent( doc );
 
     // create accels for global shortcuts
     m_globalAccel = new KGlobalAccel( this, "global accel" );
