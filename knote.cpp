@@ -24,10 +24,13 @@
 #include "knoteconfigdlg.h"
 
 #include <qlabel.h>
+#include <qsizegrip.h>
 #include <qpalette.h>
 #include <qcolor.h>
 #include <qfile.h>
 #include <qtextstream.h>
+#include <qbitmap.h>
+#include <qpointarray.h>
 
 #include <kaction.h>
 #include <kstdaction.h>
@@ -102,11 +105,27 @@ KNote::KNote( KXMLGUIBuilder* builder, const QString& file, bool load,
 
     setFocusProxy( m_editor );
 
+    // create the resize handle
+    m_editor->setCornerWidget( new QSizeGrip( this ) );
+    int width = m_editor->cornerWidget()->width();
+    int height = m_editor->cornerWidget()->height();
+    QBitmap mask;
+    mask.resize( width, height );
+    mask.fill( color0 );
+    QPointArray array;
+    array.setPoints( 3, 0, height, width, height, width, 0 );
+    QPainter p;
+    p.begin( &mask );
+    p.setBrush( color1 );
+    p.drawPolygon( array );
+    p.end();
+    m_editor->cornerWidget()->setMask( mask );
+
     // set up the look&feel of the note
     setFrameStyle( WinPanel | Raised );
     setLineWidth( 1 );
     setMinimumSize( 20, 20 );
-    setMargin( 5 );
+    m_editor->setMargin( 5 );
 
     // now create or load the data and configuration
     bool oldconfig = false;
@@ -547,11 +566,13 @@ void KNote::slotApplyConfig()
     {
         m_label->setBackgroundColor( bg.dark(116) );
         m_button->show();
+        m_editor->cornerWidget()->show();
     }
     else
     {
         m_label->setBackgroundColor( bg );
         m_button->hide();
+        m_editor->cornerWidget()->hide();
     }
 }
 
@@ -633,11 +654,13 @@ void KNote::convertOldConfig()
         {
             m_label->setBackgroundColor( bg.dark(116) );
             m_button->show();
+            m_editor->cornerWidget()->show();
         }
         else
         {
             m_label->setBackgroundColor( bg );
             m_button->hide();
+            m_editor->cornerWidget()->hide();
         }
 
         // get the font
@@ -728,16 +751,9 @@ void KNote::convertOldConfig()
         kdDebug() << "could not open input file" << endl;
 }
 
-
-// -------------------- protected methods -------------------- //
-
-void KNote::resizeEvent( QResizeEvent* qre )
+void KNote::updateLayout()
 {
-    QFrame::resizeEvent( qre );
-
     int headerHeight = m_label->sizeHint().height();
-    m_label->setFixedHeight( headerHeight );
-    m_button->setFixedSize( headerHeight, headerHeight );
 
     m_button->setGeometry( frameRect().width() - headerHeight - 2, frameRect().y() + 2,
                 headerHeight, headerHeight );
@@ -745,6 +761,14 @@ void KNote::resizeEvent( QResizeEvent* qre )
                 frameRect().width() - headerHeight - 4, headerHeight );
     m_editor->setGeometry( contentsRect().x(), contentsRect().y() + headerHeight + 2,
                 contentsRect().width(), contentsRect().height() - headerHeight - 4 );
+}
+
+// -------------------- protected methods -------------------- //
+
+void KNote::resizeEvent( QResizeEvent* qre )
+{
+    QFrame::resizeEvent( qre );
+    updateLayout();
 }
 
 void KNote::closeEvent( QCloseEvent* e )
@@ -761,6 +785,17 @@ void KNote::keyPressEvent( QKeyEvent* e )
         slotClose();
     else
         e->ignore();
+}
+
+bool KNote::event( QEvent* ev )
+{
+    if ( ev->type() == QEvent::LayoutHint )
+    {
+        updateLayout();
+        return true;
+    }
+    else
+        return QFrame::event( ev );
 }
 
 bool KNote::eventFilter( QObject* o, QEvent* ev )
@@ -822,6 +857,7 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
         {
             m_label->setBackgroundColor( palette().active().background() );
             m_button->hide();
+            m_editor->cornerWidget()->hide();
 
             if ( m_editor->isModified() )
                 saveData();
@@ -830,6 +866,7 @@ bool KNote::eventFilter( QObject* o, QEvent* ev )
         {
             m_label->setBackgroundColor( palette().active().shadow() );
             m_button->show();
+            m_editor->cornerWidget()->show();
         }
         return m_editor->eventFilter( o, ev );
     }

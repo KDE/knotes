@@ -87,13 +87,15 @@ protected:
     virtual void closeEvent( QCloseEvent* );
     virtual void keyPressEvent( QKeyEvent* );
 
-    bool eventFilter( QObject*, QEvent* );
+    virtual bool event( QEvent* );
+    virtual bool eventFilter( QObject*, QEvent* );
 
 private slots:
     void slotApplyConfig();
 
 private:
     void convertOldConfig();
+    void updateLayout();
 
     QDir    m_noteDir;
     QString m_configFile;
