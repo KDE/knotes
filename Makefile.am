@@ -13,11 +13,12 @@ INCLUDES =	$(all_includes)
 
 bin_PROGRAMS = knotes
 
-noinst_HEADERS = knotes.h configdlg.h fontdlg.h mail.h alarm.h\
-		bwdatetime.h spin.h timer.h renamedlg.h
+noinst_HEADERS = knotes.h configdlg.h fontdlg.h mail.h alarm.h \
+		bwdatetime.h spin.h timer.h renamedlg.h docking.h
 
-knotes_SOURCES	= knotes.cpp  configdlg.cpp fontdlg.cpp mail.cpp alarm.cpp\
-		bwdatetime.cpp spin.cpp timer.cpp savealarm.cpp renamedlg.cpp
+knotes_SOURCES	= knotes.cpp  configdlg.cpp fontdlg.cpp mail.cpp alarm.cpp \
+		bwdatetime.cpp spin.cpp timer.cpp savealarm.cpp renamedlg.cpp \
+		docking.cpp 
 
 BUILTSOURCES = knotes.moc configdlg.moc fontdlg.moc mail.moc alarm.moc \
 	spin.moc renamedlg.moc
@@ -37,6 +38,7 @@ appsdir = $(kde_appsdir)/Utilities
 install-data-local: 
 	$(mkinstalldirs) $(kde_minidir)
 	$(INSTALL_DATA) mini-knotes.xpm $(kde_minidir)/knotes.xpm
+	$(INSTALL_DATA) knotessmall.xpm $(pixdir)/knotessmall.xpm
 	
 uninstall-local:
 	rm -f $(kde_minidir)/knotes.xpm
@@ -56,6 +58,10 @@ configdlg.moc: configdlg.h
 fontdlg.cpp: fontdlg.moc
 fontdlg.moc: fontdlg.h
 	$(MOC) fontdlg.h -o fontdlg.moc
+	
+docking.cpp: docking.moc
+docking.moc: docking.h
+	$(MOC) docking.h -o docking.moc	
 
 mail.cpp: mail.moc
 mail.moc: mail.h

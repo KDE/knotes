@@ -38,6 +38,7 @@
 #include "timer.h"
 #include "renamedlg.h"
 #include "version.h"
+#include "docking.h"
 
 #include <X11/Xlib.h>
 
@@ -51,6 +52,7 @@ QStrList 	  KPostit::PostitFilesList; // names of all postit files
 QList<AlarmEntry> KPostit::AlarmList;
 
 KApplication* 	mykapp;
+DockWidget*     docker;
 DefStruct 	postitdefaults;
 
 static void 	cleanup(int);
@@ -71,7 +73,7 @@ extern bool 	readalarms();
 #include <dirent.h>
 #include <sys/stat.h>
 
-// Torben
+
 void testDir( const char *_name )
 {
     DIR *dp;
@@ -305,9 +307,9 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     operations->insertSeparator();
     operations->insertItem (klocale->translate("Options"),options);
-    operations->insertSeparator();
-    operations->insertItem ( klocale->translate("Quit"), this,
- 				    SLOT(quit()));
+    //    operations->insertSeparator();
+    //    operations->insertItem ( klocale->translate("Quit"), this,
+    //			    SLOT(quit()));
 
 
     right_mouse_button = new QPopupMenu;
@@ -323,8 +325,8 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
 
     right_mouse_button->insertSeparator();
-    right_mouse_button->insertItem(klocale->translate("Hide Note"), this,
-		       SLOT(hideKPostit()));
+    //    right_mouse_button->insertItem(klocale->translate("Hide Note"), this,
+    //	       SLOT(hideKPostit()));
     right_mouse_button->insertItem (klocale->translate("Insert Date"), this, 	
 				    SLOT(insertDate()));
   right_mouse_button->insertSeparator();
@@ -703,6 +705,8 @@ void KPostit::newKPostit(){
 
   }
 
+
+
   PostitFilesList.inSort(pname);
 
   for(PostitList.first();PostitList.current();PostitList.next()){
@@ -714,10 +718,14 @@ void KPostit::newKPostit(){
     }
   }
 
+
+
   KPostit *t = new KPostit (NULL,NULL,PostitFilesList.count() - 1 ,pname);
 
   t->show ();
   PostitList.append( t );
+
+  docker->createLeftPopUp();
 
 }
 
@@ -827,6 +835,7 @@ void KPostit::renameKPostit(){
 			     PostitFilesList.current(),k,k);
 	k++;	
       }
+      docker->createLeftPopUp();
     }
   }
 }
@@ -873,6 +882,8 @@ void KPostit::deleteKPostit(){
     }	
   }
 
+
+
   for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
     if(name == QString(PostitFilesList.current())){
       PostitFilesList.remove(PostitFilesList.at());
@@ -889,6 +900,8 @@ void KPostit::deleteKPostit(){
       k++;
     }
   }
+
+  docker->createLeftPopUp();
 
   mytimer->stop();
   for(KPostit::AlarmList.first();KPostit::AlarmList.current();KPostit::AlarmList.next()){
@@ -1704,17 +1717,14 @@ int main( int argc, char **argv ) {
     }
   }
 
-  //  if(!one_is_visible && !restoring){
-  if(!one_is_visible && !restoring){
-
-    KPostit::PostitList.last()->show(); 
-    KPostit::PostitList.last()->hidden=false; 
-  }
 
   // manual session management (knotes alredy stores everything)
   kapp->setTopWidget(new QWidget);
   kapp->enableSessionManagement(true);
   kapp->setWmCommand("knotes -knotes_restore");
+
+  docker = new DockWidget();
+  docker->dock();
 
   return a.exec();
 

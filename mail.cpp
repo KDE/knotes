@@ -35,21 +35,23 @@ Mail::Mail(KPostit *parent, const char *name)
 
     this->setFocusPolicy(QWidget::StrongFocus);
 
-    frame1 = new QGroupBox("Mail Note to::", this, "frame1");
+    frame1 = new QGroupBox(
+			   klocale->translate(
+			   "Mail Note to:"), this, "frame1");
 
     recipient = new QLineEdit( this, "recipient");
     recipient->setFocus();
 
-    subject = new QLineEdit( this, "subject");
+    subject = new QLineEdit( this, "Subject");
     subject->setText(parent->name);
 
     subjectlabel = new QLabel(this,"subjectlabel");
-    subjectlabel->setText("Subject:");
+    subjectlabel->setText(klocale->translate("Subject:"));
 
-    ok = new QPushButton("Mail", this, "mail");
+    ok = new QPushButton(klocale->translate("Mail"), this, "mail");
     connect(ok, SIGNAL(clicked()), this, SLOT(ok_slot()));
 
-    cancel = new QPushButton("Cancel", this, "cancel");
+    cancel = new QPushButton(klocale->translate("Cancel"), this, "cancel");
     connect(cancel, SIGNAL(clicked()), this, SLOT(cancel_slot()));
 
     setFixedSize(330, 160);
@@ -86,8 +88,8 @@ void Mail::ok_slot(){
   if (str.isEmpty()){
     QMessageBox::warning(
 			 this,
-			 "Sorry",
-			 "You must specify a Recipient"
+			 klocale->translate("Sorry"),
+			 klocale->translate("You must specify a Recipient")
 			 );
     return;
   }
