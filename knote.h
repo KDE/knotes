@@ -27,9 +27,6 @@ public:
 	    else return QString::null;
 	}
 
-private:
-	void applyConfig();
-
 public slots:
 	//menu slots
 	void slotMail   ( int id=0 );
@@ -38,7 +35,8 @@ public slots:
 	void slotInsDate( int id=0 );
 	void slotConfig ( int id=0 );
 	void slotKill   ( int id=0 );
-	void slotClose  ( );
+	void slotClose  ();
+	void slotApplyConfig();
 	
 signals:
 	void sigClosed( QString& );

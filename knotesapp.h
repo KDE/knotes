@@ -7,8 +7,6 @@
 #include <kdockwindow.h>
 
 #include "knote.h"
-#include "knotedockwidget.h"
-
 
 class KNotesApp : public KDockWindow  {
    Q_OBJECT
@@ -18,7 +16,6 @@ public:
 	
 protected:
 	QMap< QString, KNote* >  m_NoteList;
-	KNoteDockWidget*         m_DockWidget;
 		
 public slots:
 	void slotNewNote    ( int id=0 );  //needed to connect to menu

@@ -10,6 +10,7 @@
 #include <klineeditdlg.h>
 #include <kstddirs.h>
 #include <kprocess.h>
+#include <kdebug.h>
 
 #include <qpalette.h>
 #include <qcolor.h>
@@ -20,13 +21,14 @@
 KNote::KNote( KConfig* config, QWidget* parent, const char* name )
 	: QFrame( parent, name , WStyle_Customize | WStyle_NoBorderEx | WDestructiveClose )
 {
+	kdDebug() << "start Knote::Knote" << endl;
+
 	m_config = config;
 	m_notedir = new QDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
 	setFrameStyle( NoFrame );
 	
 	//create the note header- button and label...
 	m_button = new KNoteButton( this );
-	//m_button->setText( "x" );
 	m_button->setPixmap( BarIcon( "knotesclose" ) );
 	connect( m_button, SIGNAL( clicked() ), this, SLOT( slotClose() ) );
 	
@@ -39,7 +41,7 @@ KNote::KNote( KConfig* config, QWidget* parent, const char* name )
 	m_editor = new KNoteEdit( this );
 
 	//load the saved text for this file...
-	QString datafile = m_config->entryMap("Data")["name"] + "_data";
+	QString datafile = "." + m_config->entryMap("Data")["name"] + "_data";
    	if( m_notedir->exists( datafile ) )
    	{
    		//load the text file and put in m_editor...
@@ -48,7 +50,7 @@ KNote::KNote( KConfig* config, QWidget* parent, const char* name )
    	}
    	
     //apply configuration settings
-    applyConfig();
+    slotApplyConfig();
 
     //create the menu items for note- not the editor...
 	//rename, mail, print, insert date, close, delete
@@ -66,12 +68,17 @@ KNote::KNote( KConfig* config, QWidget* parent, const char* name )
 
 KNote::~KNote()
 {
-	cerr << "begin ~KNote()" << endl;
-	
 	//store data from multiline editor in the KConfig file...
 	if( m_editor && m_config ) //m_config has been deleted when note is killed/not closed
 	{
-		QString datafile = m_config->entryMap("Data")["name"] + "_data";
+		QString datafile = m_config->entryMap("Data")["name"];
+		if( datafile == QString::null )
+		{
+			kdDebug() << "note name was missing, not saving anything" << endl;
+			return;
+		}
+		datafile = "." + datafile + "_data";
+		kdDebug() << "saving data to: " << datafile << endl;
 		QString absdatafile = m_notedir->absFilePath( datafile );
 		m_editor->dumpToFile( absdatafile );
 	}
@@ -91,23 +98,7 @@ void KNote::resizeEvent( QResizeEvent* qre )
 	m_editor->setGeometry( 0, 15, width(), height() - 15 );
 }
 
-QColor parseColorString( QString& str )
-{
-	QStringList c = QStringList::split( ' ', str );
-	if( c.count() != 3 )
-	{
-		cerr << "invalid color line: " << str << endl;
-		return Qt::white;
-	}
-	
-	int r = c[0].toInt();
-	int g = c[1].toInt();
-	int b = c[2].toInt();
-	
-	return QColor( r, g, b );
-}
-
-void KNote::applyConfig()
+void KNote::slotApplyConfig()
 {
 	//do Display group- width, height, bgcolor, fgcolor, transparent
 	int width  = (m_config->entryMap( "Display" )["width"]).toInt();
@@ -115,10 +106,8 @@ void KNote::applyConfig()
 	resize( width, height );
 	
 	//create a pallete...
-	QString str_bgcolor = m_config->entryMap("Display")["bgcolor"];
-	QString str_fgcolor = m_config->entryMap("Display")["fgcolor"];
-	QColor bg = parseColorString( str_bgcolor );
-	QColor fg = parseColorString( str_fgcolor );
+	QColor bg = KNoteConfigDlg::getBGColor( m_config );
+	QColor fg = KNoteConfigDlg::getFGColor( m_config );
 	
 	QPalette newpalette = palette();
 	newpalette.setColor( QColorGroup::Background, bg );
@@ -248,7 +237,7 @@ void KNote::slotRename( int id )
 	{
 		//pop up dialog to get the new name
     	newname = KLineEditDlg::getText( i18n("Please enter the new name"), QString::null, NULL, this );
-    	cerr << "newname = \'" << newname << "\'" << endl;
+    	
 		//check the name to make sure that it's not already used
 		if( m_notedir->exists( newname ) )
 		{
@@ -271,9 +260,9 @@ void KNote::slotRename( int id )
 
 	delete m_config;
 	if( !m_notedir->rename( oldname, newname ) )
-		cerr << "rename failed" << endl;
-	if( !m_notedir->rename( oldname+"_data", newname+"_data" ) )
-		cerr << "rename of data file failed" << endl;
+		kdDebug() << "rename failed" << endl;
+	if( !m_notedir->rename( "."+oldname+"_data", "."+newname+"_data" ) )
+		kdDebug() << "rename of data file failed" << endl;
 	
 	//open new config
 	QString newconfig = m_notedir->absFilePath( newname );
@@ -297,22 +286,26 @@ void KNote::slotInsDate( int id )
 void KNote::slotConfig ( int id )
 {
 	//launch config dialog...
-	KNoteConfigDlg localConfig( m_config );
-	localConfig.show();
+	KNoteConfigDlg* localConfig = new KNoteConfigDlg( m_config, i18n("Local Settings") );	
+	connect( localConfig, SIGNAL( updateConfig() ),
+	         this, SLOT( slotApplyConfig() ) );
+	
+	//launch preferences dialog...
+	localConfig->show();
 }
 
 void KNote::slotClose()
 {
 	//save the note text...
-	QString datafile = m_config->entryMap("Data")["name"] + "_data";
+	QString datafile = "." + m_config->entryMap("Data")["name"] + "_data";
 	QString absname = m_notedir->absFilePath( datafile );
 	m_editor->dumpToFile( absname );
 
 	m_config->sync();
 	
-	emit sigClosed( m_config->entryMap("Data")["name"] );
-		
 	close();
+	
+	emit sigClosed( m_config->entryMap("Data")["name"] );
 }
 
 void KNote::slotKill( int id )
@@ -320,16 +313,18 @@ void KNote::slotKill( int id )
     //delete the config file...	
 	QString conf_name = m_config->entryMap("Data")["name"];
     m_notedir->remove( conf_name );
-    m_notedir->remove( conf_name + "_data" );
+    m_notedir->remove( "." + conf_name + "_data" );
 
-   	emit sigClosed( m_config->entryMap("Data")["name"] );
+    kdDebug() << "KNote::slotKill, removed file: " << conf_name << endl;
+    kdDebug() << "KNote::slotKill, removed file: " << "." + conf_name + "_data" << endl;
 
    	//don't save anything- m_config checked in destructor
+   	emit sigClosed( m_config->entryMap("Data")["name"] );
    	delete m_config;
    	m_config = NULL;
    	
 	close();
-}
+ }
 
 
 void KNote::slotPrint( int id )
