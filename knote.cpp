@@ -534,7 +534,7 @@ void KNote::slotPrepareDesktopMenu()
     int num = wm_root.numberOfDesktops();
     for( int i = 1; i <= num; i++ )
     {
-        desktops.append( wm_root.desktopName( i ) );
+        desktops.append( QString::fromUtf8(wm_root.desktopName( i )) );
     }
 
     //fill m_desktop_menu with the available desktop names
