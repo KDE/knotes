@@ -4,6 +4,7 @@ ChangeLog for KNotes
 2005/02/05  Michael Brade <brade@kde.org>
 
     * fixed crash when deleting a note
+    * KNotes startup much faster
 
 2005/02/02  Michael Brade <brade@kde.org>
 

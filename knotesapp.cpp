@@ -91,7 +91,7 @@ int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrColle
 
 KNotesApp::KNotesApp()
     : DCOPObject("KNotesIface"), QLabel( 0, 0, WType_TopLevel ),
-      m_listener( 0 ), m_find( 0 ), m_findPos( 0 )
+      m_alarm( 0 ), m_listener( 0 ), m_find( 0 ), m_findPos( 0 )
 {
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
@@ -188,7 +188,8 @@ KNotesApp::KNotesApp()
         m_manager->save();
     }
 
-    // set up the alarm reminder
+    // set up the alarm reminder - do it after loading the notes because this
+    // is used as a check if updateNoteActions has to be called for a new note
     m_alarm = new KNotesAlarm( m_manager, this );
 
     // create the socket and possibly start listening for connections
@@ -200,7 +201,7 @@ KNotesApp::KNotesApp()
     if ( m_noteList.count() == 0 && !kapp->isRestored() )
         newNote();
 
-    updateNoteActions();  // in case there is no note yet
+    updateNoteActions();
 }
 
 KNotesApp::~KNotesApp()
@@ -555,7 +556,9 @@ void KNotesApp::createNote( KCal::Journal *journal )
     connect( newNote, SIGNAL(sigColorChanged()), SLOT(updateNoteActions()) );
     connect( newNote, SIGNAL(sigFindFinished()), SLOT(slotFindNext()) );
 
-    updateNoteActions();
+    // don't call this during startup for each and every loaded note
+    if ( m_alarm )
+        updateNoteActions();
 }
 
 void KNotesApp::killNote( KCal::Journal *journal )
