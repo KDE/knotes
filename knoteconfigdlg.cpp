@@ -16,7 +16,7 @@
 #include <qcolordialog.h>
 
 KNoteConfigDlg::KNoteConfigDlg( KConfig* curr, QString title, QWidget* parent, const char* name )
-	: KDialogBase( IconList, title, Ok|Apply|Cancel, Cancel, parent, name, false, true )
+	: KDialogBase( IconList, title, Ok|Apply|Cancel, Cancel, parent, name, true, true )
 {
 	setIconListAllVisible( true );
 	
