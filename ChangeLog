@@ -7,6 +7,9 @@ ChangeLog for KNotes
       to Luboš for telling me that just the XUngrabPointer line was missing to
       make it work.
       This enables the active desktop borders and snap zones for KNotes.
+    * fixed #68481: Also using a tip from Luboš I made KNotes put its close
+      button where all the other windows have it as well. KNotes needs to be
+      restarted though to make a change take effect. Needs a fix.
 
 2004/08/26  Michael Brade <brade@kde.org>
 

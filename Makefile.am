@@ -21,7 +21,7 @@ libknote_la_SOURCES = knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.
 knotes_SOURCES  = main.cpp knotesapp.cpp KNotesIface.skel
 knotes_LDADD    = libknote.la libknoteseditor.la libknotesnetwork.la libknotesresources.la \
                   libknotesconfig.la  $(top_builddir)/libkcal/libkcal.la $(LIB_KIO) \
-                  -lkresources -lkdeprint
+                  -lkresources -lkdeprint -lkdecorations
 knotes_LDFLAGS  = $(all_libraries) $(KDE_RPATH)
 
 kde_module_LTLIBRARIES  = knotes_local.la

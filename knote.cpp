@@ -64,7 +64,7 @@
 
 #include <kwin.h>
 #include <netwm.h>
-//#include <kdecoration.h>
+#include <kdecoration.h>
 
 #include <fixx11h.h>
 
@@ -769,8 +769,8 @@ void KNote::updateLayout()
     static const int border = 2;
     bool closeLeft = false;
 
-//    if ( KDecoration::options()->customButtonPositions() )
-//       closeLeft = KDecoration::options()->titleButtonsLeft().find( 'X' ) > -1;
+    if ( KDecoration::options()->customButtonPositions() )
+        closeLeft = KDecoration::options()->titleButtonsLeft().find( 'X' ) > -1;
 
     m_button->setGeometry(
         closeLeft ? frameRect().x() + border
@@ -943,6 +943,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
 
     return false;
 }
+
 
 #include "knote.moc"
 #include "knotebutton.moc"

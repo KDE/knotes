@@ -37,6 +37,7 @@
 #include <ksimpleconfig.h>
 #include <kwin.h>
 #include <kextsock.h>
+#include <kdecoration_p.h>
 
 #include <libkcal/journal.h>
 #include <libkcal/calendarlocal.h>
@@ -52,6 +53,30 @@
 #include "knotes/resourcemanager.h"
 
 
+class KDecorationOptionsImpl : public KDecorationOptions
+{
+    public:
+        KDecorationOptionsImpl()
+        {
+            d = new KDecorationOptionsPrivate;
+            d->defaultKWinSettings();
+            updateSettings();
+        }
+
+        virtual ~KDecorationOptionsImpl()
+        {
+            delete d;
+        }
+
+        virtual unsigned long updateSettings()
+        {
+            KConfig cfg( "kwinrc", true );
+            unsigned long changed = 0;
+            changed |= d->updateKWinSettings( &cfg );
+            return changed;
+        }
+};
+
 int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 )
 {
     if ( ((KAction*)s1)->text() == ((KAction*)s2)->text() )
@@ -62,7 +87,8 @@ int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrColle
 
 KNotesApp::KNotesApp()
     : DCOPObject("KNotesIface"), QLabel( 0, 0, WType_TopLevel ),
-      m_listener( 0 )
+      m_listener( 0 ),
+      m_decoration( new KDecorationOptionsImpl )
 {
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
@@ -166,6 +192,7 @@ KNotesApp::~KNotesApp()
     delete m_listener;
     delete m_manager;
     delete m_guiBuilder;
+    delete m_decoration;
 }
 
 bool KNotesApp::commitData( QSessionManager& )
