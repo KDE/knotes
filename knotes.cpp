@@ -320,7 +320,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     options = new QPopupMenu();
     options->setCheckable(TRUE);
-    options->setFont(QFont("Helvetica",12));
+/*    options->setFont(QFont("Helvetica",12)); */
     frame3dID = options->insertItem(klocale->translate("3D Frame"),this, SLOT(toggleFrame()));
     edit->autoIndentID = options->insertItem(klocale->translate("Auto Indent"),this, 
 				       SLOT(toggleIndentMode()));
@@ -1258,7 +1258,7 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
 void KPostit::set3DFrame(){
   
   frame3d = TRUE;
-  options->changeItem("No Frame",frame3dID);
+  options->changeItem(klocale->translate("No Frame"),frame3dID);
   options->setItemChecked(frame3dID,TRUE);
   //  edit->setFrameStyle(QFrame::WinPanel | QFrame::Sunken);
   KWM::setDecoration(winId(), 2); 
@@ -1268,7 +1268,7 @@ void KPostit::set3DFrame(){
 void KPostit::setNoFrame(){
 
   frame3d = FALSE;
-  options->changeItem("3D Frame",frame3dID);
+  options->changeItem(klocale->translate("3D Frame"),frame3dID);
   options->setItemChecked(frame3dID,FALSE);
   //  edit->setFrameStyle(QFrame::NoFrame);
   KWM::setDecoration(winId(), 0); 
