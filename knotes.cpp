@@ -444,14 +444,14 @@ KPostit::KPostit( QWidget *parent, const char *myname, int  _number,
 
   // add some keyboard accelerators (pfeiffer)
   KAccel *accel = new KAccel(this, "kaccel");
-  accel->connectItem(KAccel::New, this, SLOT(newKPostit()));
-  accel->connectItem(KAccel::Undo, this, SLOT(undo()));
-  accel->connectItem(KAccel::Redo, this, SLOT(redo()));
-  accel->connectItem(KAccel::Print, this, SLOT(print()));
-  accel->connectItem(KAccel::Save, this, SLOT(save_all()));
-  accel->connectItem(KAccel::Close, this, SLOT(hideKPostit()));
-  accel->connectItem(KAccel::Quit, this, SLOT(quit()));
-  accel->connectItem(KAccel::Help, this, SLOT(help()));
+  accel->connectItem(KStdAccel::New, this, SLOT(newKPostit()));
+  accel->connectItem(KStdAccel::Undo, this, SLOT(undo()));
+  accel->connectItem(KStdAccel::Redo, this, SLOT(redo()));
+  accel->connectItem(KStdAccel::Print, this, SLOT(print()));
+  accel->connectItem(KStdAccel::Save, this, SLOT(save_all()));
+  accel->connectItem(KStdAccel::Close, this, SLOT(hideKPostit()));
+  accel->connectItem(KStdAccel::Quit, this, SLOT(quit()));
+  accel->connectItem(KStdAccel::Help, this, SLOT(help()));
 }
 
 
