@@ -1342,7 +1342,7 @@ void KPostit::defaults()
 
     label->setGeometry(140,60,160,170);
     
-    QString labelstring = "KPostit "KNOTES_VERSION"\n"\
+    QString labelstring = "KNotes "KNOTES_VERSION"\n"\
       "Bernd Johannes Wuebben\n"\
       "wuebben@math.cornell.edu\n"\
       "wuebben@kde.org\n"\
