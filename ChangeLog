@@ -318,7 +318,7 @@ ChangeLog for KNotes
     keeping a KConfig object open for each note all the time - it just creates
     them when saving new changes to the note settings."
 
-2000/09/24  Dirk Mller <mueller@kde.org>
+2000/09/24  Dirk Müller <mueller@kde.org>
 
     - first attempt fixing the blatant memory leaks in this app.
       it still does a lot of crazy things, like keeping all kinds of KSimpleConfig
