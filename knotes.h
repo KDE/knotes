@@ -53,7 +53,6 @@
 
 #include <kurl.h> // must go before kapp.h
 #include <kapp.h>
-#include <kfm.h>
 #include <kcolordlg.h>
 #include <kfontdialog.h>
 
@@ -175,7 +174,6 @@ public slots:
   void  insertDate();
   void  insertNetFile( const char *_url);
   bool  insertFile(const char* filename);
-  void  slotKFMFinished();
   void  RMBActivated(int);
   void  close();
   void  selectFont();
@@ -205,7 +203,6 @@ private:
   QPopupMenu *options;
   QPopupMenu *operations;
   QPopupMenu *desktops;
-  KFM *kfm;
   int  frame3dID;
   int  dockID;
   QColor forecolor;

@@ -3,7 +3,7 @@
 ###################################################################
 
 LDFLAGS	=	$(all_libraries) $(KDE_RPATH)
-LDADD   =       $(LIB_KFM) $(LIB_KDEUI) -lm
+LDADD   =       $(LIB_KIO) $(LIB_KDEUI) -lm
 INCLUDES =	$(all_includes)
 
 ####### Files

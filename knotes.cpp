@@ -30,7 +30,9 @@
 #include "knotes.h"
 #include <kiconloader.h>
 #include <kurl.h>
-#include <kfm.h>
+#include <krun.h>
+#include <kglobal.h>
+#include <kio_netaccess.h>
 #include <kconfig.h>
 
 #include "configdlg.h"
@@ -162,10 +164,7 @@ void KPostitMultilineEdit::mouseDoubleClickEvent ( QMouseEvent * e ){
   if (kurl.isMalformed())
     return;
 
-  KFM* kfm = new KFM();
-  kfm->openURL( text );
-  delete kfm;
-
+  (void) new KRun ( text );
 }
 
 
@@ -309,7 +308,7 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     mybutton = new myPushButton(this);
     mybutton->setGeometry(200-30,0,30,30);
-    mybutton->setPixmap(mykapp->getIconLoader()->loadIcon("knotesclose.xpm"));
+    mybutton->setPixmap(KGlobal::iconLoader()->loadIcon("knotesclose.xpm"));
     connect(mybutton,SIGNAL(clicked()),this,SLOT(hideKPostit()));
 
     edit = new KPostitMultilineEdit(this);
@@ -324,8 +323,6 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
                         // the structure for now.
     name = pname;
      	// name of postit and name on the popup
-
-    kfm = 0L;
 
     //set the defaults
     forecolor 		= postitdefaults.forecolor;
@@ -1530,35 +1527,11 @@ void KPostit::insertNetFile( const char *_url)
       return;
     }
 
-    if ( kfm != 0L )
+    if (KIONetAccess::download( netFile, tmpFile ))
     {
-	QMessageBox::warning(
-			     this,
-			     i18n("Sorry"),
-			     i18n("KNotes is already waiting\n"\
-			      "for an internet job to finish\n"\
-			      "Please wait until it has finished\n"\
-			      "Alternatively stop the running one.")
-			     );
-	return;
+      insertFile( tmpFile );
+      KIONetAccess::removeTempFile( tmpFile );
     }
-
-    kfm = new KFM;
-    if ( !kfm->isOK() )
-    {
-	QMessageBox::warning(
-			     this,
-			     i18n("Sorry"),
-			     i18n("Could not start or find KFM")
-			     );
-	delete kfm;
-	kfm = 0L;
-	return;
-    }
-
-    tmpFile = QString("file:/tmp/knotes%1").arg(time( 0L ));
-    connect( kfm, SIGNAL( finished() ), this, SLOT( slotKFMFinished() ) );
-    kfm->copy( netFile, tmpFile );
 
 }
 
@@ -1593,22 +1566,6 @@ void KPostit::close(){
   }
 
 }
-
-void KPostit::slotKFMFinished()
-{
-
-  QString string;
-
-  KURL u( tmpFile );
-  insertFile( u.path());
-
-  unlink( tmpFile.data() );
-  delete kfm;
-  kfm = 0L;
-
-}
-
-
 
 void KPostit::toggleIndentMode(){
   if(edit->autoIndentMode)

@@ -26,10 +26,12 @@
 #include <qtooltip.h>
 #include <kwm.h>
 #include <kapp.h>
+#include <klocale.h>
+#include <kglobal.h>
+#include <kiconloader.h>
 
 #include "knotes.h"
 #include "docking.h"
-#include <klocale.h>
 
 //extern QStrList  KPostit::PostitFilesList; // names of all postit files
 extern KApplication *mykapp;
@@ -41,14 +43,16 @@ DockWidget::DockWidget(const char *name): QWidget(0, name, 0) {
 
   pos_x = pos_y = 0;
 
-  QString pixdir = mykapp->kde_icondir() + "/mini/";
+  picsmall_pixmap = KGlobal::iconLoader()->loadApplicationMiniIcon( "knotes.xpm" );
+
+/*
   QString tmp;
-
-
+  QString pixdir = mykapp->kde_icondir() + "/mini/";
   if (!picsmall_pixmap.load(pixdir + "knotes.xpm")){
     tmp = i18n("Could not load %1 !").arg("knotes.xpm");
     QMessageBox::warning(this, i18n("Error"), tmp);
   }
+*/
 
   //////////////////////////////////////////////////////////////////
   // popup menu for left mouse button
