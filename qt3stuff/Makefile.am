@@ -5,5 +5,5 @@ libqt3stuff_la_SOURCES = qcomplextext.cpp qrichtext.cpp qrichtext_p.cpp qstylesh
 libqt3stuff_la_LDFLAGS = $(all_libraries) -no-undefined
 libqt3stuff_la_LIBADD = $(LIB_QT)
 METASOURCES = AUTO
-SUBDIRS = . example
+SUBDIRS = .
 KDE_OPTIONS = qtonly
