@@ -51,9 +51,8 @@
 //
 
 #ifndef QT_H
-#include "qt3stuff.h"
 #include "qstring.h"
-#include "qlist.h"
+#include "qptrlist.h"
 #include "qrect.h"
 #include "qfontmetrics.h"
 #include "qintdict.h"
@@ -69,19 +68,18 @@
 #include "qtextstream.h"
 #include "qpixmap.h"
 #include "qstylesheet.h"
-#include "qvector.h"
+#include "qptrvector.h"
 #include "qpainter.h"
 #include "qlayout.h"
 #include "qobject.h"
-#include <limits.h>
-#include "qcomplextext_p.h"
+#include "private/qcomplextext_p.h"
 #include "qapplication.h"
+#include <limits.h>
 #endif // QT_H
 
+#ifndef QT_NO_RICHTEXT
 
 //#define DEBUG_COLLECTION
-
-namespace Qt3 {
 
 class QTextDocument;
 class QTextString;
@@ -144,7 +142,7 @@ public:
 	}
     }
 
-    struct MarkData
+     struct MarkData
     {
 	QTextFormat *format;
 	short xoff; // x offset for painting the Mark
@@ -417,6 +415,8 @@ public:
     int width;
     int height;
 
+    QRect geometry() const { return QRect( xpos, ypos, width, height ); }
+
     virtual bool enter( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy, bool atEnd = FALSE );
     virtual bool enterAt( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy, const QPoint & );
     virtual bool next( QTextCursor *, QTextDocument *&doc, QTextParag *&parag, int &idx, int &ox, int &oy );
@@ -430,7 +430,7 @@ public:
     QTextDocument *parent;
     QTextParag *parag;
 
-    virtual void verticalBreak( int  y, QTextFlow* flow );
+    virtual void pageBreak( int  y, QTextFlow* flow );
 };
 
 #if defined(Q_TEMPLATEDLL)
@@ -443,7 +443,7 @@ class Q_EXPORT QTextImage : public QTextCustomItem
 {
 public:
     QTextImage( QTextDocument *p, const QMap<QString, QString> &attr, const QString& context,
-		QMimeSourceFactory &factory);
+		QMimeSourceFactory &factory );
     virtual ~QTextImage();
 
     Placement placement() const { return place; }
@@ -468,7 +468,8 @@ private:
 class Q_EXPORT QTextHorizontalLine : public QTextCustomItem
 {
 public:
-    QTextHorizontalLine( QTextDocument *p );
+    QTextHorizontalLine( QTextDocument *p, const QMap<QString, QString> &attr, const QString& context,
+			 QMimeSourceFactory &factory );
     virtual ~QTextHorizontalLine();
 
     void adjustToPainter( QPainter* );
@@ -479,6 +480,7 @@ public:
 
 private:
     int tmpheight;
+    QColor color;
 
 };
 
@@ -497,38 +499,36 @@ public:
     QTextFlow();
     virtual ~QTextFlow();
 
-    virtual void setWidth( int w );
+    virtual void setWidth( int width );
+    int width() const;
+
     virtual void setPageSize( int ps );
     int pageSize() const { return pagesize; }
 
     virtual int adjustLMargin( int yp, int h, int margin, int space );
     virtual int adjustRMargin( int yp, int h, int margin, int space );
 
-    virtual void registerFloatingItem( QTextCustomItem* item, bool right = FALSE );
+    virtual void registerFloatingItem( QTextCustomItem* item );
     virtual void unregisterFloatingItem( QTextCustomItem* item );
+    virtual QRect boundingRect() const;
     virtual void drawFloatingItems(QPainter* p, int cx, int cy, int cw, int ch, const QColorGroup& cg, bool selected );
-    virtual void adjustFlow( int  &yp, int w, int h, QTextParag *parag = 0, bool pages = TRUE );
+
+    virtual int adjustFlow( int  y, int w, int h ); // adjusts y according to the defined pagesize. Returns the shift.
 
     virtual bool isEmpty();
-    virtual void updateHeight( QTextCustomItem *i );
-
-    virtual void draw( QPainter *, int , int , int , int );
-    virtual void eraseAfter( QTextParag *, QPainter *, const QColorGroup & );
 
     void clear();
 
-    QSize size() const { return QSize( width, height); }
-
 private:
-    int width;
-    int height;
-
+    int w;
     int pagesize;
 
     QPtrList<QTextCustomItem> leftItems;
     QPtrList<QTextCustomItem> rightItems;
 
 };
+
+inline int QTextFlow::width() const { return w; }
 
 class QTextTable;
 
@@ -573,6 +573,8 @@ public:
     QBrush *backGround() const { return background; }
     virtual void invalidate();
 
+    int verticalAlignmentOffset() const;
+
 private:
     QPainter* painter() const;
     QRect geom;
@@ -590,7 +592,7 @@ private:
     int cached_width;
     int cached_sizehint;
     QMap<QString, QString> attributes;
-
+    int align;
 };
 
 #if defined(Q_TEMPLATEDLL)
@@ -609,7 +611,7 @@ public:
     virtual ~QTextTable();
 
     void adjustToPainter( QPainter *p );
-    void verticalBreak( int  y, QTextFlow* flow );
+    void pageBreak( int  y, QTextFlow* flow );
     void draw( QPainter* p, int x, int y, int cx, int cy, int cw, int ch,
 	       const QColorGroup& cg, bool selected );
 
@@ -635,6 +637,9 @@ public:
 
     QPtrList<QTextTableCell> tableCells() const { return cells; }
 
+    QRect geometry() const { return layout ? layout->geometry() : QRect(); }
+    bool isStretching() const { return stretch; }
+
 private:
     void format( int &w );
     void addCell( QTextTableCell* cell );
@@ -657,6 +662,7 @@ private:
     QMap<QTextCursor*, int> currCell;
     Placement place;
     void adjustCells( int y , int shift );
+    int pageBreakFor;
 };
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -719,6 +725,12 @@ public:
     void setWidth( int w );
     int minimumWidth() const;
     bool setMinimumWidth( int w, QTextParag *parag );
+
+    void setY( int y );
+    int leftMargin() const;
+    void setLeftMargin( int lm );
+    int rightMargin() const;
+    void setRightMargin( int rm );
 
     QTextParag *firstParag() const;
     QTextParag *lastParag() const;
@@ -808,9 +820,10 @@ public:
     void unregisterCustomItem( QTextCustomItem *i, QTextParag *p );
 
     void setFlow( QTextFlow *f );
+    void takeFlow();
     QTextFlow *flow() const { return flow_; }
-    bool verticalBreak() const { return pages; }
-    void setVerticalBreak( bool b ) { pages = b; }
+    bool isPageBreakEnabled() const { return pages; }
+    void setPageBreakEnabled( bool b ) { pages = b; }
 
     void setUseFormatCollection( bool b ) { useFC = b; }
     bool useFormatCollection() const { return useFC; }
@@ -905,6 +918,8 @@ private:
     bool nextDoubleBuffered;
     Focus focusIndicator;
     int minw;
+    int leftmargin;
+    int rightmargin;
     QTextParag *minwParag;
     QStyleSheet* sheet_;
     QMimeSourceFactory* factory_;
@@ -1031,13 +1046,31 @@ struct Q_EXPORT QTextParagSelection
 
 struct Q_EXPORT QTextParagLineStart
 {
-    QTextParagLineStart() : y( 0 ), baseLine( 0 ), h( 0 ), bidicontext( 0 ) {  }
+    QTextParagLineStart() : y( 0 ), baseLine( 0 ), h( 0 )
+#ifndef QT_NO_COMPLEXTEXT
+	, bidicontext( 0 )
+#endif
+    {  }
     QTextParagLineStart( ushort y_, ushort bl, ushort h_ ) : y( y_ ), baseLine( bl ), h( h_ ),
-	w( 0 ), bidicontext( 0 )  {  }
+	w( 0 )
+#ifndef QT_NO_COMPLEXTEXT
+	, bidicontext( 0 )
+#endif
+    {  }
+#ifndef QT_NO_COMPLEXTEXT
     QTextParagLineStart( QBidiContext *c, QBidiStatus s ) : y(0), baseLine(0), h(0),
 	status( s ), bidicontext( c ) { if ( bidicontext ) bidicontext->ref(); }
-    virtual ~QTextParagLineStart() { if ( bidicontext && bidicontext->deref() ) delete bidicontext; }
+#endif
 
+    virtual ~QTextParagLineStart()
+    {
+#ifndef QT_NO_COMPLEXTEXT
+	if ( bidicontext && bidicontext->deref() )
+	    delete bidicontext;
+#endif
+    }
+
+#ifndef QT_NO_COMPLEXTEXT
     void setContext( QBidiContext *c ) {
 	if ( c == bidicontext )
 	    return;
@@ -1048,15 +1081,19 @@ struct Q_EXPORT QTextParagLineStart
 	    bidicontext->ref();
     }
     QBidiContext *context() const { return bidicontext; }
+#endif
 
 public:
     ushort y, baseLine, h;
+#ifndef QT_NO_COMPLEXTEXT
     QBidiStatus status;
+#endif
     int w;
 
 private:
+#ifndef QT_NO_COMPLEXTEXT
     QBidiContext *bidicontext;
-
+#endif
 };
 
 #if defined(Q_TEMPLATEDLL)
@@ -1104,7 +1141,6 @@ public:
 
     QRect rect() const;
     void setHeight( int h ) { r.setHeight( h ); }
-    void setWidth( int w ) { r.setWidth( w ); }
     void show();
     void hide();
     bool isVisible() const { return visible; }
@@ -1253,7 +1289,6 @@ private:
     bool needPreProcess : 1;
     bool fullWidth : 1;
     bool newLinesAllowed : 1;
-    bool splittedInside : 1;
     bool lastInFrame : 1;
     bool visible : 1;
     bool breakable : 1;
@@ -1290,6 +1325,7 @@ public:
     virtual ~QTextFormatter();
 
     virtual int format( QTextDocument *doc, QTextParag *parag, int start, const QMap<int, QTextParagLineStart*> &oldLineStarts ) = 0;
+    virtual int formatVertically( QTextDocument* doc, QTextParag* parag );
 
     bool isWrapEnabled( QTextParag *p ) const { if ( !wrapEnabled ) return FALSE; if ( p && !p->isBreakable() ) return FALSE; return TRUE;}
     int wrapAtColumn() const { return wrapColumn;}
@@ -1300,10 +1336,11 @@ public:
 
 protected:
     virtual QTextParagLineStart *formatLine( QTextParag *parag, QTextString *string, QTextParagLineStart *line, QTextStringChar *start,
-					       QTextStringChar *last, int align = Qt3::AlignAuto, int space = 0 );
-//QT2HACK
-//    virtual QTextParagLineStart *bidiReorderLine( QTextParag *parag, QTextString *string, QTextParagLineStart *line, QTextStringChar *start,
-//						    QTextStringChar *last, int align, int space );
+					       QTextStringChar *last, int align = Qt::AlignAuto, int space = 0 );
+#ifndef QT_NO_COMPLEXTEXT
+    virtual QTextParagLineStart *bidiReorderLine( QTextParag *parag, QTextString *string, QTextParagLineStart *line, QTextStringChar *start,
+						    QTextStringChar *last, int align, int space );
+#endif
     virtual bool isBreakable( QTextString *string, int pos ) const;
     void insertLineStart( QTextParag *parag, int index, QTextParagLineStart *ls );
 
@@ -1595,19 +1632,12 @@ inline int QTextDocument::y() const
 
 inline int QTextDocument::width() const
 {
-    return QMAX( cw, flow_->width );
+    return QMAX( cw, flow_->width() );
 }
 
 inline int QTextDocument::visibleWidth() const
 {
     return vw;
-}
-
-inline int QTextDocument::height() const
-{
-    if ( lParag )
-	return QMAX( flow_->height, lParag->rect().top() + lParag->rect().height() + 1 );
-    return 0;
 }
 
 inline QTextParag *QTextDocument::firstParag() const
@@ -1640,6 +1670,31 @@ inline void QTextDocument::setWidth( int w )
 inline int QTextDocument::minimumWidth() const
 {
     return minw;
+}
+
+inline void QTextDocument::setY( int y )
+{
+    cy = y;
+}
+
+inline int QTextDocument::leftMargin() const
+{
+    return leftmargin;
+}
+
+inline void QTextDocument::setLeftMargin( int lm )
+{
+    leftmargin = lm;
+}
+
+inline int QTextDocument::rightMargin() const
+{
+    return rightmargin;
+}
+
+inline void QTextDocument::setRightMargin( int rm )
+{
+    rightmargin = rm;
 }
 
 inline QTextPreProcessor *QTextDocument::preProcessor() const
@@ -1738,6 +1793,11 @@ inline void QTextDocument::setFlow( QTextFlow *f )
     if ( flow_ )
 	delete flow_;
     flow_ = f;
+}
+
+inline void QTextDocument::takeFlow()
+{
+    flow_ = 0;
 }
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -2087,6 +2147,6 @@ inline int QTextStringChar::descent() const
     return !isCustom() ? format()->descent() : 0;
 }
 
-}; // namespace Qt3
+#endif //QT_NO_RICHTEXT
 
 #endif
