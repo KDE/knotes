@@ -3,8 +3,8 @@ INCLUDES = $(all_includes)
 ####### Files
 bin_PROGRAMS = knotes
 
-noinst_HEADERS   = knotesapp.h knote.h knoteedit.h knoteconfigdlg.h knotedockwidget.h knotebutton.h
-knotes_SOURCES	 = knotesapp.cpp knote.cpp knoteedit.cpp knoteconfigdlg.cpp knotedockwidget.cpp main.cpp
+noinst_HEADERS   = knotesapp.h knote.h knoteedit.h knoteconfigdlg.h knotebutton.h
+knotes_SOURCES	 = knotesapp.cpp knote.cpp knoteedit.cpp knoteconfigdlg.cpp main.cpp
 knotes_LDADD    = $(LIB_KDEUI) $(LIB_KDECORE)
 knotes_LDFLAGS  = $(all_libraries) $(KDE_RPATH)
 METASOURCES      = AUTO
