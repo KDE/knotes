@@ -45,17 +45,14 @@ public:
     void setTabStop( int tabs );
     void setAutoIndentMode( bool newmode );
 
-protected:
-    void dragMoveEvent( QDragMoveEvent* event );
-    void dragEnterEvent( QDragEnterEvent* event );
-    void dropEvent( QDropEvent* event );
-
 public slots:
+    virtual void setTextFormat( TextFormat f );
+
 //    void textStyleSelected( int );
 //    void textSizeSelected( int );
 //    void textFontSelected( const QString & );
 
-//    void textColor();
+    void textColor();
 
     void textAlignLeft();
     void textAlignCenter();
@@ -70,35 +67,50 @@ public slots:
     void textIncreaseIndent();
     void textDecreaseIndent();
 
-protected slots:
-    void slotReturnPressed();
-    void slotSelectionChanged();
-
 signals:
     void gotUrlDrop( const QString& url );
+
+protected:
+    void dragMoveEvent( QDragMoveEvent *event );
+    void dragEnterEvent( QDragEnterEvent *event );
+    void dropEvent( QDropEvent *event );
+
+private slots:
+    void slotReturnPressed();
+
+    void fontChanged( const QFont &f );
+    void colorChanged( const QColor &c );
+    void alignmentChanged( int a );
+    void verticalAlignmentChanged( VerticalAlignment a );
 
 private:
     void autoIndent();
 
-    KAction* m_cut;
-    KAction* m_copy;
-    KAction* m_paste;
+    void enableRichTextActions();
+    void disableRichTextActions();
 
-    KToggleAction* m_textBold;
-    KToggleAction* m_textItalic;
-    KToggleAction* m_textUnderline;
 
-    KToggleAction* m_textAlignLeft;
-    KToggleAction* m_textAlignCenter;
-    KToggleAction* m_textAlignRight;
-    KToggleAction* m_textAlignBlock;
+    KAction *m_cut;
+    KAction *m_copy;
+    KAction *m_paste;
 
-    KToggleAction* m_textList;
-    KToggleAction* m_textSuper;
-    KToggleAction* m_textSub;
+    KAction *m_textColor;
 
-    KAction* m_textIncreaseIndent;
-    KAction* m_textDecreaseIndent;
+    KToggleAction *m_textBold;
+    KToggleAction *m_textItalic;
+    KToggleAction *m_textUnderline;
+
+    KToggleAction *m_textAlignLeft;
+    KToggleAction *m_textAlignCenter;
+    KToggleAction *m_textAlignRight;
+    KToggleAction *m_textAlignBlock;
+
+    KToggleAction *m_textList;
+    KToggleAction *m_textSuper;
+    KToggleAction *m_textSub;
+
+    KAction *m_textIncreaseIndent;
+    KAction *m_textDecreaseIndent;
 
     bool m_autoIndentMode;
 };

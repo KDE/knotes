@@ -38,30 +38,13 @@ class KNoteConfigDlg : public KDialogBase
 {
     Q_OBJECT
 public:
-    KNoteConfigDlg( const QString& configfile, const QString & title,
-                    bool global, QWidget* parent=0, const char* name=0 );
+    KNoteConfigDlg( const QString &configfile, const QString &title,
+                    bool global, QWidget *parent=0, const char *name=0 );
     ~KNoteConfigDlg();
 
     void makeDisplayPage();
     void makeEditorPage();
     void makeActionsPage();
-
-protected:
-    KConfig*      _config;
-    bool          _global;
-
-    KColorButton* _fgColor;
-    KColorButton* _bgColor;
-
-    KIntNumInput* _widthEdit;
-    KIntNumInput* _heightEdit;
-    KIntNumInput* _tabEdit;
-
-    QCheckBox*    _autoIndentSwitch;
-    KLineEdit*    _mailEdit;
-    KLineEdit*    _printEdit;
-    QPushButton*  _titleFont;
-    QPushButton*  _textFont;
 
 protected slots:
     virtual void slotOk();
@@ -77,6 +60,23 @@ signals:
 
 private:
     void storeSettings();
+
+    bool _global;
+
+    KConfig *_config;
+
+    KColorButton *_fgColor;
+    KColorButton *_bgColor;
+
+    KIntNumInput *_widthEdit;
+    KIntNumInput *_heightEdit;
+    KIntNumInput *_tabEdit;
+
+    QCheckBox   *_autoIndentSwitch;
+    QCheckBox   *_richTextSwitch;
+    KLineEdit   *_mailEdit;
+    QPushButton *_titleFont;
+    QPushButton *_textFont;
 };
 
 #endif

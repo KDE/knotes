@@ -102,16 +102,17 @@ private:
     QPoint  m_pointerOffset;
     bool    m_dragging;
 
-    QLabel*      m_label;
-    KNoteButton* m_button;
-    KNoteEdit*   m_editor;
+    QLabel      *m_label;
+    KNoteButton *m_button;
+    KNoteEdit   *m_editor;
 
-    KPopupMenu*    m_menu;
-    KPopupMenu*    m_edit_menu;
-    KToggleAction* m_alwaysOnTop;
-    KListAction*   m_toDesktop;
+    KToggleAction *m_alwaysOnTop;
+    KListAction   *m_toDesktop;
 
-    KXMLGUIFactory* factory;
+    KPopupMenu *m_menu;
+    KPopupMenu *m_edit_menu;
+
+    KXMLGUIFactory *factory;
 };
 
 #endif

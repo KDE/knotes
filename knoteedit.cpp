@@ -23,6 +23,7 @@
 #include <qfile.h>
 #include <qcolor.h>
 #include <qfont.h>
+#include <qdialog.h>
 #include <qfontmetrics.h>
 
 #include <kdebug.h>
@@ -30,6 +31,7 @@
 #include <kaction.h>
 #include <kstdaction.h>
 #include <kpopupmenu.h>
+#include <kcolordialog.h>
 #include <kxmlgui.h>
 #include <kxmlguiclient.h>
 
@@ -40,12 +42,8 @@ KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
     : QTextEdit( parent, name )
 {
     setAcceptDrops( true );
-    setBackgroundMode( PaletteBase );
-    setFrameStyle( NoFrame );
     setWordWrap( WidgetWidth );
     setWrapPolicy( AtWhiteSpace );
-//    setTextFormat( RichText );
-    setTextFormat( PlainText );
 
     KXMLGUIClient* client = dynamic_cast<KXMLGUIClient*>(parent);
     KActionCollection* actions = client->actionCollection();
@@ -56,6 +54,10 @@ KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
     m_cut = KStdAction::cut( this, SLOT(cut()), actions );
     m_copy = KStdAction::copy( this, SLOT(copy()), actions );
     m_paste = KStdAction::paste( this, SLOT(paste()), actions );
+
+    m_cut->setEnabled( false );
+    m_copy->setEnabled( false );
+    m_paste->setEnabled( false );
 
     connect( this, SIGNAL(undoAvailable(bool)), undo, SLOT(setEnabled(bool)) );
     connect( this, SIGNAL(redoAvailable(bool)), redo, SLOT(setEnabled(bool)) );
@@ -79,7 +81,7 @@ KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
     m_textAlignLeft = new KToggleAction( i18n( "Align &Left" ), "text_left", CTRL + Key_L,
                                  this, SLOT( textAlignLeft() ),
                                  actions, "format_alignleft" );
-    m_textAlignLeft->setChecked( TRUE );
+    m_textAlignLeft->setChecked( true );
     m_textAlignCenter = new KToggleAction( i18n( "Align &Center" ), "text_center", CTRL + ALT + Key_C,
                                  this, SLOT( textAlignCenter() ),
                                  actions, "format_aligncenter" );
@@ -113,21 +115,28 @@ KNoteEdit::KNoteEdit( QWidget* parent, const char* name )
     m_textSub->setExclusiveGroup( "valign" );
 
     m_textIncreaseIndent = new KAction( i18n( "Increase Indent" ), "format_increaseindent", 0,
-                                this, SLOT( textIncreaseIndent() ),
+                                this, SLOT(textIncreaseIndent()),
                                 actions, "format_increaseindent" );
 
-    m_textDecreaseIndent = new KAction( i18n( "Decrease Indent" ),"format_decreaseindent", 0,
-                                this, SLOT( textDecreaseIndent() ),
+    m_textDecreaseIndent = new KAction( i18n( "Decrease Indent" ), "format_decreaseindent", 0,
+                                this, SLOT(textDecreaseIndent()),
                                 actions, "format_decreaseindent" );
 
-//    textColor = new TKSelectColorAction( i18n( "Text Color..." ), TKSelectColorAction::TextColor,
-//                                     this, SLOT( textColor() ),
-//                                     actions, "format_color" );
+    QPixmap pix( 16, 16 );
+    pix.fill( black );
+    m_textColor = new KAction( i18n( "Text Color..." ), pix, 0, this,
+                               SLOT(textColor()), actions, "format_color" );
 
-
-    connect( this, SIGNAL(selectionChanged()), SLOT(slotSelectionChanged()) );
 
     connect( this, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
+    connect( this, SIGNAL(currentFontChanged( const QFont & )),
+             this, SLOT(fontChanged( const QFont & )) );
+    connect( this, SIGNAL(currentColorChanged( const QColor & )),
+             this, SLOT(colorChanged( const QColor & )) );
+    connect( this, SIGNAL(currentAlignmentChanged( int )),
+             this, SLOT(alignmentChanged( int )) );
+    connect( this, SIGNAL(currentVerticalAlignmentChanged( VerticalAlignment )),
+             this, SLOT(verticalAlignmentChanged( VerticalAlignment )) );
 }
 
 KNoteEdit::~KNoteEdit()
@@ -162,18 +171,35 @@ void KNoteEdit::dumpToFile( QString& filename ) const
 
 void KNoteEdit::setTextFont( QFont& font )
 {
-    setSelectionAttributes( 1, colorGroup().background(), false );
-    setSelection( 0, 0, length(), paragraphLength( length() ), 1 );
-    setFont( font );
-    removeSelection( 1 );
+    if ( textFormat() == PlainText )
+    {
+        setSelectionAttributes( 1, colorGroup().background(), false );
+        setSelection( 0, 0, length(), paragraphLength( length() ), 1 );
+        setCurrentFont( font );
+        removeSelection( 1 );
+    }
+    else
+    {
+        setFamily( font.family() );
+        setPointSize( font.pointSize() );
+    }
 }
 
 void KNoteEdit::setTextColor( QColor& color )
 {
-    setSelectionAttributes( 1, colorGroup().background(), false );
-    setSelection( 0, 0, length(), paragraphLength( length() ), 1 );
-    setColor( color );
-    removeSelection( 1 );
+    if ( textFormat() == PlainText )
+    {
+        setSelectionAttributes( 1, colorGroup().background(), false );
+        setSelection( 0, 0, length(), paragraphLength( length() ), 1 );
+        setColor( color );
+        removeSelection( 1 );
+    }
+    else
+        setColor( color );
+
+    QPixmap pix( 16, 16 );
+    pix.fill( color );
+    m_textColor->setIconSet( pix );
 }
 
 void KNoteEdit::setTabStop( int tabs )
@@ -187,35 +213,53 @@ void KNoteEdit::setAutoIndentMode( bool newmode )
     m_autoIndentMode = newmode;
 }
 
+
 /** public slots **/
+
+void KNoteEdit::setTextFormat( TextFormat f )
+{
+    if ( f == RichText )
+        enableRichTextActions();
+    else
+        disableRichTextActions();
+
+    QTextEdit::setTextFormat( f );
+}
+
+void KNoteEdit::textColor()
+{
+    QColor c = color();
+    int ret = KColorDialog::getColor( c, this );
+    if ( ret == QDialog::Accepted )
+        setTextColor( c );
+}
 
 void KNoteEdit::textAlignLeft()
 {
-    setAlignment( Qt::AlignLeft );
+    setAlignment( AlignLeft );
 }
 
 void KNoteEdit::textAlignCenter()
 {
-    setAlignment( Qt::AlignCenter );
+    setAlignment( AlignCenter );
 }
 
 void KNoteEdit::textAlignRight()
 {
-    setAlignment( Qt::AlignRight );
+    setAlignment( AlignRight );
 }
 
 void KNoteEdit::textAlignBlock()
 {
-    setAlignment( Qt::AlignJustify );
+    setAlignment( AlignJustify );
 }
-
 
 void KNoteEdit::textList()
 {
     if ( m_textList->isChecked() )
-        setParagType( QStyleSheetItem::DisplayBlock, QStyleSheetItem::ListDisc );
-    else
         setParagType( QStyleSheetItem::DisplayListItem, QStyleSheetItem::ListDisc );
+    else
+        setParagType( QStyleSheetItem::DisplayBlock, QStyleSheetItem::ListDisc );
 }
 
 void KNoteEdit::textSuperScript()
@@ -243,7 +287,32 @@ void KNoteEdit::textDecreaseIndent()
 }
 
 
-/** protected slots **/
+/** protected methods **/
+
+void KNoteEdit::dragEnterEvent( QDragEnterEvent* event )
+{
+    event->accept( QUriDrag::canDecode(event) || QTextDrag::canDecode(event) );
+}
+
+void KNoteEdit::dragMoveEvent( QDragMoveEvent* event )
+{
+    if ( QUriDrag::canDecode(event) )
+        event->accept();
+    else if ( QTextDrag::canDecode(event) )
+        QTextEdit::dragMoveEvent(event);
+}
+
+void KNoteEdit::dropEvent( QDropEvent* event )
+{
+    QStringList list;
+
+    if ( QUriDrag::decodeToUnicodeUris( event, list ) )
+        emit gotUrlDrop( list.first() );
+    else if ( QTextDrag::canDecode( event ) )
+        QTextEdit::dropEvent( event );
+}
+
+/** private slots **/
 
 void KNoteEdit::slotReturnPressed()
 {
@@ -251,20 +320,51 @@ void KNoteEdit::slotReturnPressed()
         autoIndent();
 }
 
-void KNoteEdit::slotSelectionChanged()
+void KNoteEdit::fontChanged( const QFont &f )
 {
-    // TODO: QTextEdit bug
-    if ( !selectedText().isEmpty() )
-    {
-        m_cut->setEnabled( true );
-        m_copy->setEnabled( true );
-    }
-    else
-    {
-        m_cut->setEnabled( false );
-        m_copy->setEnabled( false );
-    }
+//TODO
+//    m_comboFont->lineEdit()->setText( f.family() );
+//    m_comboSize->lineEdit()->setText( QString::number( f.pointSize() ) );
+    m_textBold->setChecked( f.bold() );
+    m_textItalic->setChecked( f.italic() );
+    m_textUnderline->setChecked( f.underline() );
 }
+
+void KNoteEdit::colorChanged( const QColor &c )
+{
+    QPixmap pix( 16, 16 );
+    pix.fill( c );
+    m_textColor->setIconSet( pix );
+}
+
+void KNoteEdit::alignmentChanged( int a )
+{
+    // TODO: AlignAuto
+    if ( ( a == AlignAuto ) || ( a & AlignLeft ) )
+        m_textAlignLeft->setChecked( true );
+    else if ( ( a & AlignHCenter ) )
+        m_textAlignCenter->setChecked( true );
+    else if ( ( a & AlignRight ) )
+        m_textAlignRight->setChecked( true );
+    else if ( ( a & AlignJustify ) )
+        m_textAlignBlock->setChecked( true );
+}
+
+void KNoteEdit::verticalAlignmentChanged( VerticalAlignment a )
+{
+    if ( a == AlignNormal )
+    {
+        m_textSuper->setChecked( false );
+        m_textSub->setChecked( false );
+    }
+    else if ( a == AlignSuperScript )
+        m_textSuper->setChecked( true );
+    else if ( a == AlignSubScript )
+        m_textSub->setChecked( true );
+}
+
+
+/** private methods **/
 
 void KNoteEdit::autoIndent()
 {
@@ -292,35 +392,46 @@ void KNoteEdit::autoIndent()
         insert( indentString );
 }
 
-void KNoteEdit::dragEnterEvent( QDragEnterEvent* event )
+void KNoteEdit::enableRichTextActions()
 {
-    event->accept( QUriDrag::canDecode(event) || QTextDrag::canDecode(event) );
+    m_textColor->setEnabled( true );
+
+    m_textBold->setEnabled( true );
+    m_textItalic->setEnabled( true );
+    m_textUnderline->setEnabled( true );
+
+    m_textAlignLeft->setEnabled( true );
+    m_textAlignCenter->setEnabled( true );
+    m_textAlignRight->setEnabled( true );
+    m_textAlignBlock->setEnabled( true );
+
+    m_textList->setEnabled( true );
+    m_textSuper->setEnabled( true );
+    m_textSub->setEnabled( true );
+
+    m_textIncreaseIndent->setEnabled( true );
+    m_textDecreaseIndent->setEnabled( true );
 }
 
-void KNoteEdit::dragMoveEvent( QDragMoveEvent* event )
+void KNoteEdit::disableRichTextActions()
 {
-    if ( QUriDrag::canDecode(event) )
-    {
-        event->accept();
-    }
-    else if ( QTextDrag::canDecode(event) )
-    {
-        QTextEdit::dragMoveEvent(event);
-    }
-}
+    m_textColor->setEnabled( false );
 
-void KNoteEdit::dropEvent( QDropEvent* event )
-{
-    QStringList list;
+    m_textBold->setEnabled( false );
+    m_textItalic->setEnabled( false );
+    m_textUnderline->setEnabled( false );
 
-    if ( QUriDrag::decodeToUnicodeUris( event, list ) )
-    {
-        emit gotUrlDrop( list.first() );
-    }
-    else if ( QTextDrag::canDecode( event ) )
-    {
-        QTextEdit::dropEvent( event );
-    }
+    m_textAlignLeft->setEnabled( false );
+    m_textAlignCenter->setEnabled( false );
+    m_textAlignRight->setEnabled( false );
+    m_textAlignBlock->setEnabled( false );
+
+    m_textList->setEnabled( false );
+    m_textSuper->setEnabled( false );
+    m_textSub->setEnabled( false );
+
+    m_textIncreaseIndent->setEnabled( false );
+    m_textDecreaseIndent->setEnabled( false );
 }
 
 #include "knoteedit.moc"

@@ -1,6 +1,15 @@
 ChangeLog for KNotes
 ====================
 
+2001/09/09  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * improved the config dialog
+    * almost finished rich text notes
+
+2001/09/08  Michael Brade <brade@informatik.uni-muenchen.de>
+
+    * bugfixes to make KNotes work with Qt3
+
 2001/09/04  Michael Brade <brade@informatik.uni-muenchen.de>
 
     * compile with Qt3

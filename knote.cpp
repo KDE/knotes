@@ -129,7 +129,10 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
     setFrameStyle( WinPanel | Raised );
     setLineWidth( 1 );
     setMinimumSize( 20, 20 );
+
     m_editor->setMargin( 5 );
+    m_editor->setFrameStyle( NoFrame );
+    m_editor->setBackgroundMode( PaletteBase );
 
     // now create or load the data and configuration
     bool oldconfig = false;
@@ -158,10 +161,13 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
                               KURL( m_noteDir.absFilePath( m_configFile ) ) );
     }
 
-    if ( oldconfig ) {
+    if ( oldconfig )
+    {
         //read and convert the old configuration
         convertOldConfig();
-    } else {
+    }
+    else
+    {
         // load the display configuration of the note
         KSimpleConfig config( m_noteDir.absFilePath( m_configFile ) );
         config.setGroup( "Display" );
@@ -180,7 +186,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
             m_alwaysOnTop->setChecked( true );
 
         if ( position != default_position )
-            move( position );                    // do before calling show() to avoid flicker
+            move( position );           // do before calling show() to avoid flicker
 
         // read configuration settings...
         slotApplyConfig();
@@ -232,17 +238,17 @@ void KNote::saveData() const
 
 void KNote::saveConfig() const
 {
-    //all that needs to get saved here is the size and name
-    //everything else would have been saved by the preferences dialog
+    // all that needs to get saved here is the size and name
+    // everything else would have been saved by the preferences dialog
     KSimpleConfig config( m_noteDir.absFilePath( m_configFile ) );
 
-    //store config settings...
-    //need to save the new size to KSimpleConfig object
+    // store config settings...
+    // need to save the new size to KSimpleConfig object
     config.setGroup( "Display" );
     config.writeEntry( "width", width() );
     config.writeEntry( "height", height() );
 
-    //save name....
+    // save name....
     config.setGroup( "Data" );
     config.writeEntry( "name", m_label->text() );
 }
@@ -394,12 +400,11 @@ void KNote::slotPreferences()
 {
     saveConfig();
 
-    //launch preferences dialog...
+    // launch preferences dialog...
     KNoteConfigDlg configDlg( m_noteDir.absFilePath( m_configFile ),
                               i18n("Local Settings"), false );
     connect( &configDlg, SIGNAL( updateConfig() ), this, SLOT( slotApplyConfig() ) );
-
-    configDlg.show();
+    configDlg.exec();
 }
 
 void KNote::slotToggleAlwaysOnTop()
@@ -466,8 +471,8 @@ void KNote::slotMail() const
 
     if ( !mail.start( KProcess::DontCare ) )
     {
-        // TODO: use KMessageBox!
-        kdDebug() << "could not start process" << endl;
+#warning "FSCK, why doesn't this compile??"
+        //KMessageBox::sorry( this, i18n("Unable to start the mail process.") );
     }
 }
 
@@ -551,22 +556,30 @@ void KNote::slotApplyConfig()
 {
     KSimpleConfig config( m_noteDir.absFilePath( m_configFile ) );
 
-    //do the Editor group: tabsize, autoindent, font, fontsize, fontstyle
+    //do the Editor group: tabsize, autoindent, textformat, font, fontsize, fontstyle
     config.setGroup( "Editor" );
 
-    QFont def( "helvetica" );
+    bool richtext = config.readBoolEntry( "richtext", false );
+    if ( richtext )
+        m_editor->setTextFormat( RichText );
+    else
+    {
+        m_editor->setTextFormat( PlainText );
+        m_editor->setText( m_editor->text() );
+    }
+
+    QFont def("helvetica");
     def = config.readFontEntry( "font", &def );
     m_editor->setTextFont( def );
 
-    def = QFont( "helvetica" );
+    def = QFont("helvetica");
     def = config.readFontEntry( "titlefont", &def );
     m_label->setFont( def );
 
     uint tab_size = config.readUnsignedNumEntry( "tabsize", 4 );
     m_editor->setTabStop( tab_size );
 
-    bool indent = true;
-    indent = config.readBoolEntry( "autoindent", &indent );
+    bool indent = config.readBoolEntry( "autoindent", true );
     m_editor->setAutoIndentMode( indent );
 
     //do the Data Group- name, data
@@ -726,6 +739,9 @@ void KNote::convertOldConfig()
         m_editor->setAutoIndentMode( indent );
         m_editor->setTabStop( 4 );
 
+        // richtext
+        m_editor->setTextFormat( Qt::PlainText );
+
         // hidden
         bool hidden = ( input.readLine().toUInt() == 1 );
 
@@ -770,7 +786,7 @@ void KNote::convertOldConfig()
         saveConfig();
         saveDisplayConfig();
 
-        // TODO: Needed? What about KConfig?
+        // TODO: Needed? What about KConfig? This deletes everything else?
         KSimpleConfig config( m_noteDir.absFilePath( m_configFile ) );
         config.setGroup( "General" );
         config.writeEntry( "version", 2 );
@@ -781,10 +797,10 @@ void KNote::convertOldConfig()
 
         config.setGroup( "Actions" );      // use the new default for this group
         config.writeEntry( "mail", "kmail --msg %f" );
-        config.writeEntry( "print", "a2ps -P %p -1 --center-title=%t --underlay=KDE %f" );
 
         config.setGroup( "Editor" );
         config.writeEntry( "autoindent", indent );
+        config.writeEntry( "richtext", false );
         config.writeEntry( "titlefont", font );
         config.writeEntry( "font", font );
         config.writeEntry( "tabsize", 4 );
@@ -808,6 +824,7 @@ void KNote::updateLayout()
     m_editor->setGeometry( contentsRect().x(), contentsRect().y() + headerHeight + 2,
                 contentsRect().width(), contentsRect().height() - headerHeight - 4 );
 }
+
 
 // -------------------- protected methods -------------------- //
 
