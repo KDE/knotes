@@ -122,6 +122,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
     m_editor->cornerWidget()->setMask( mask );
 
     // set up the look&feel of the note
+    setMinimumSize( 20, 20 );
     setFrameStyle( WinPanel | Raised );
     setLineWidth( 1 );
 
