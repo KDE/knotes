@@ -1,1 +1,0 @@
-#define KNOTES_VERSION 3.2
