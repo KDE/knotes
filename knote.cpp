@@ -77,7 +77,7 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, const QString& fil
     new KAction( i18n("Print"), "fileprint", 0, this, SLOT(slotPrint()), actionCollection(), "print_note" );
     new KAction( i18n("Note Preferences..."), "configure", 0, this, SLOT(slotPreferences()), actionCollection(), "configure_note" );
 
-    m_alwaysOnTop = new KToggleAction( i18n("Always On Top"), "attach", 0, this, SLOT(slotToggleAlwaysOnTop()), actionCollection(), "always_on_top" );
+    m_alwaysOnTop = new KToggleAction( i18n("Always on Top"), "attach", 0, this, SLOT(slotToggleAlwaysOnTop()), actionCollection(), "always_on_top" );
     connect( m_alwaysOnTop, SIGNAL(toggled(bool)), m_alwaysOnTop, SLOT(setChecked(bool)) );
     m_toDesktop = new KListAction( i18n("To Desktop"), 0, this, SLOT(slotToDesktop(int)), actionCollection(), "to_desktop" );
     connect( m_toDesktop->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(slotUpdateDesktopActions()) );

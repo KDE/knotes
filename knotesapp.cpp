@@ -510,7 +510,7 @@ void KNotesApp::updateNoteActions()
 
     if ( m_noteActions.isEmpty() )
     {
-        KAction *action = new KAction( i18n("No notes") );
+        KAction *action = new KAction( i18n("No Notes") );
         m_noteActions.append( action );
     }
 
