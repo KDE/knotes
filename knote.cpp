@@ -618,6 +618,8 @@ void KNote::slotApplyConfig()
         m_button->hide();
         m_editor->cornerWidget()->hide();
     }
+    
+    emit sigConfigChanged();
 }
 
 

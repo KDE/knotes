@@ -81,6 +81,7 @@ signals:
     void sigKilled( const QString& );
     void sigRenamed( const QString&, const QString& );
     void sigNewNote();
+    void sigConfigChanged();
 
 protected:
     virtual void resizeEvent( QResizeEvent* );

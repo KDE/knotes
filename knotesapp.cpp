@@ -116,6 +116,8 @@ KNotesApp::KNotesApp()
                  this,    SLOT( slotNewNote() ) );
         connect( newNote, SIGNAL( sigKilled(const QString&) ),
                  this,    SLOT( slotNoteKilled(const QString&) ) );
+        connect( newNote, SIGNAL( sigConfigChanged() ),
+                 this,    SLOT( updateNoteActions() ) );
 
         m_noteList.insert( newNote->name(), newNote );
     }
@@ -186,6 +188,8 @@ int KNotesApp::newNote( QString name, const QString& text )
              this,    SLOT( slotNewNote() ) );
     connect( newNote, SIGNAL( sigKilled(const QString&) ),
              this,    SLOT( slotNoteKilled(const QString&) ) );
+    connect( newNote, SIGNAL( sigConfigChanged() ),
+             this,    SLOT( updateNoteActions() ) );
 
     m_noteList.insert( newNote->name(), newNote );
     updateNoteActions();
@@ -497,6 +501,9 @@ void KNotesApp::updateNoteActions()
     for ( QDictIterator<KNote> it( m_noteList ); it.current(); ++it )
     {
         KAction *action = new KAction( it.currentKey(), 0, 0, it.currentKey().utf8() );
+        QPixmap pix( 16, 16 );
+        pix.fill( it.current()->paletteBackgroundColor() );
+        action->setIconSet( pix );
         connect( action, SIGNAL( activated() ), this, SLOT( slotShowNote() ) );
         m_noteActions.append( action );
     }
