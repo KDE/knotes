@@ -86,9 +86,13 @@ private slots:
 private:
     void autoIndent();
 
+    virtual bool linksEnabled() const { return true; }
+    virtual void emitLinkClicked( const QString &s );
+
     void enableRichTextActions();
     void disableRichTextActions();
 
+private:
     KAction *m_cut;
     KAction *m_copy;
     KAction *m_paste;
