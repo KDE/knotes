@@ -478,11 +478,11 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
 
     if (have_alarm){
       label->setText(name + " (A)");
-      setCaption(QString(i18n("Note: ")) + name + " (A)");
+      setCaption(i18n("Note: ") + name + " (A)");
     }
     else {
       label->setText(name);
-      setCaption(QString(i18n("Note: ")) + name);
+      setCaption(i18n("Note: ") + name);
     }
 
 }
@@ -650,7 +650,7 @@ void KPostit::setAlarm(){
   AlarmList.append(entry);
   QString str;
   str = QString("%1 (A)").arg(name);
-  setCaption(QString(i18n("Note: ") )+str);
+  setCaption(i18n("Note: ") + str);
   label->setText(str);
 
   //  QDate date = qdt.date();
@@ -878,11 +878,11 @@ void KPostit::renameKPostit(){
 
     if (have_alarm){
       label->setText(name + " (A)");
-      setCaption(QString(i18n("Note: ")) + name + " (A)");
+      setCaption(i18n("Note: ") + name + " (A)");
     }
     else {
       label->setText(name);
-      setCaption(QString(i18n("Note: ")) + name);
+      setCaption(i18n("Note: ") + name);
     }
 
     // remove and reinsert the popup menues in a sorted fashion

@@ -85,7 +85,7 @@ void MyTimer::timerEvent( QTimerEvent * ){
 	
 	  exists = TRUE;
 	  t = KPostit::PostitList.current();
-	  t->setCaption(QString(i18n("Note: ")) +
+	  t->setCaption(i18n("Note: ") +
 			KPostit::PostitList.current()->name);
 	  t->label->setText(KPostit::PostitList.current()->name);
 
@@ -108,7 +108,7 @@ void MyTimer::timerEvent( QTimerEvent * ){
 	// if this particular kpostit note widget is not alive yet, create it.
 	t = new KPostit (NULL,NULL,0,
 			 entry->name.copy());
-	t->setCaption(QString(i18n("Note: ")) + entry->name);
+	t->setCaption(i18n("Note: ") + entry->name);
 	t->label->setText(entry->name);
 	t->show ();
 	KPostit::PostitList.append( t );
