@@ -448,8 +448,6 @@ void KNotesApp::updateNoteActions()
     }
 
     plugActionList( "notes", m_noteActions );
-
-    m_note_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "notes_menu", this ) );
 }
 
 void KNotesApp::updateGlobalAccels()
