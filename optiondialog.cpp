@@ -198,9 +198,10 @@ void OptionDialog::setupAboutPage( void )
     "Bernd Johannes Wuebben\n"
     "wuebben@math.cornell.edu\n"
     "wuebben@kde.org\n"
-    "Copyright (C) 1997\n\n"
+    "Copyright (C) 1997-2000\n\n"
     "With contributions by:\n"
-    "Matthias Ettrich <ettrich@kde.org>").arg(KNOTES_VERSION);
+    "Matthias Ettrich <ettrich@kde.org> and\n"
+    "Espen Sand <espen@kde.org>").arg(KNOTES_VERSION);
 
   topLayout->addSpacing( spacingHint() );
 

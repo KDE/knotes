@@ -77,7 +77,6 @@ void RenameDialog::slotOk( void )
   pstring->stripWhiteSpace();
   if( pstring->isEmpty() == true )
   {
-    puts("\a");
     reject();
   }
 

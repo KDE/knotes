@@ -91,9 +91,11 @@ void AlarmDialog::slotUser1( void )
 {
   if( mAlarmActive == true )
   {
-    mAlarmActive = false;
-    mytimer->stop();
+    //
+    // Remove an alarm from the list and update the note window caption
+    //
 
+    mytimer->stop();
     for( mPostit->AlarmList.first(); mPostit->AlarmList.current() != 0;
 	 mPostit->AlarmList.next() )
     {

@@ -21,14 +21,15 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include "knotes.h"
-
-#include <qtooltip.h>
-#include <kwm.h>
 #include <kapp.h>
-#include <klocale.h>
+#include <kcmenumngr.h>
 #include <kglobal.h>
 #include <kiconloader.h>
+#include <klocale.h>
+#include <kpopmenu.h>
+#include <kwm.h>
+
+#include <qtooltip.h>
 
 #include "knotes.h"
 #include "docking.h"
@@ -36,101 +37,94 @@
 //extern QStrList  KPostit::PostitFilesList; // names of all postit files
 //extern QList<KPostit> 	  KPostit::PostitList;    
 
-DockWidget::DockWidget(const char *name): QWidget(0, name, 0) {
-
+DockWidget::DockWidget(const char *name)
+  : QLabel( 0, name, 0 ) 
+{
   docked = false;
-
   pos_x = pos_y = 0;
+  left_popup_m = 0;
 
-  picsmall_pixmap = KGlobal::iconLoader()->loadIcon( "knotes", KIconLoader::Small );
+  picsmall_pixmap = 
+    KGlobal::iconLoader()->loadIcon( "knotes", KIconLoader::Small );
+  setPixmap( picsmall_pixmap );
 
   //////////////////////////////////////////////////////////////////
   // popup menu for left mouse button
 
-  popup_m = new QPopupMenu();
-
   createLeftPopUp();
-
-  connect( popup_m, SIGNAL(activated( int )),SLOT(findKPostit(int)) );
-  //popup_m->adjustSize();
 
   ///////////////////////////////////////////////////////////////////
   // right_popup menu for left mouse button
 
-  right_popup_m = new QPopupMenu();
-  right_popup_m->insertItem (i18n("Help"),this,SLOT(help()));
-
-  right_popup_m->insertItem(i18n("Default Configuration..."),
-			    this, SLOT(configureKNotes()));
-
+  right_popup_m = new KPopupMenu();
+  right_popup_m->insertTitle( picsmall_pixmap, kapp->caption() );
+  right_popup_m->insertItem (i18n("Help"),
+    this,SLOT(help()));
+  right_popup_m->insertItem(i18n("Configuration..."),
+    this, SLOT(configureKNotes()));
   right_popup_m->insertSeparator();
-
-  right_popup_m->insertItem (i18n("Exit Knotes"),
-			     this, SLOT(exitKNotes()));
-
-  //  connect( right_popup_m, SIGNAL(activated( int )),SLOT(rightAction(int)) );
-  //right_popup_m->adjustSize();
-
-
+  right_popup_m->insertItem (i18n("Quit"),
+    this, SLOT(exitKNotes()));
 }
 
-DockWidget::~DockWidget(){
 
-
+DockWidget::~DockWidget()
+{
 }
 
-void DockWidget::createLeftPopUp(){
 
-  //  printf("In creatLeftPopUp\n");
-  popup_m->clear();
+void DockWidget::createLeftPopUp( void )
+{
+  if( left_popup_m == 0 )
+  {
+    left_popup_m = new KPopupMenu();
+    if( left_popup_m == 0 ) { return; }
+    connect( left_popup_m, SIGNAL(activated( int )),SLOT(findKPostit(int)) );
+  }
+  else
+  {
+    left_popup_m->clear();
+  }
 
-  newID = popup_m->insertItem(i18n("New Knote"),
-				 this, SLOT(newKNote()));
-
-  popup_m->insertSeparator();
-
-  for ( uint i = 0; i < KPostit::PostitFilesList.count(); i++){
-      
-    popup_m->insertItem (KPostit::PostitFilesList[i]);
-
+  newID = left_popup_m->insertItem(i18n("New Knote"),
+    this, SLOT(newKNote()));
+  left_popup_m->insertSeparator();
+  for( uint i = 0; i < KPostit::PostitFilesList.count(); i++ )
+  {      
+    left_popup_m->insertItem (KPostit::PostitFilesList[i]);
   }
 }
 
-void DockWidget::newKNote(){
 
+void DockWidget::newKNote( void )
+{
   KPostit* postit;
-
-  if(KPostit::PostitFilesList.count() == 0 ){
-
+  if(KPostit::PostitFilesList.count() == 0 )
+  {
     KPostit::PostitFilesList.append("knote 1");
     postit = new KPostit(NULL,NULL,0,KPostit::PostitFilesList.last());
 
     KPostit::PostitList.append(postit); 
     postit->show();
     createLeftPopUp();
-
   }
-  else{
-
+  else
+  {
     KPostit::PostitList.first()->newKPostit(); 
   }
-
-
 }
-void DockWidget::exitKNotes(){
 
-  //  printf("in exitKNotes\n");
 
-  if(KPostit::PostitList.count() > 0){
-
-    //    printf("about to exit via PostitList\n");
+void DockWidget::exitKNotes( void )
+{
+  if(KPostit::PostitList.count() > 0)
+  {
     KPostit::PostitList.at(0)->quit();
-
   }
-  else{
-      QApplication::exit();
+  else
+  {
+    QApplication::exit();
   }
-
 }
 
 void DockWidget::configureKNotes(){
@@ -154,44 +148,31 @@ void DockWidget::configureKNotes(){
 }
 
 
-void DockWidget::help(){
-
+void DockWidget::help( void )
+{
   kapp->invokeHTMLHelp("","");
-
 }
 
 
-void DockWidget::dock() {
-
-  if (!docked) {
+void DockWidget::dock( void ) 
+{
+  if( docked == false ) 
+  {
     // prepare panel to accept this widget
     KWM::setDockWindow (this->winId());
-
     // that's all the space there is
     this->setFixedSize(24, 24);
-
     // finally dock the widget
     this->show();
     docked = true;
   }
-
-}
-
-void DockWidget::findKPostit(int i){
-
-  // convert absolute id to relative index
-  i = popup_m->indexOf(i);
-
-  if(KPostit::PostitList.count() > 0 && i > 1){
-    KPostit::PostitList.at(0)->findKPostit( i - 2 );
-  }
-
 }
 
 
-void DockWidget::undock() {
-
-  if (docked) {
+void DockWidget::undock( void ) 
+{
+  if( docked == true ) 
+  {
     // new docking method, taken from ksirc (servercontroller.cpp)
     this->hide();
     this->recreate(0x0, 0, QPoint(0,0), FALSE); 
@@ -199,50 +180,81 @@ void DockWidget::undock() {
   }
 }
 
-const bool DockWidget::isDocked() {
 
+const bool DockWidget::isDocked( void ) 
+{
   return docked;
-
 }
 
-void DockWidget::paintEvent (QPaintEvent *e) {
 
-  (void) e;
+void DockWidget::findKPostit(int i)
+{
+  // convert absolute id to relative index
+  i = left_popup_m->indexOf(i);
 
+  if(KPostit::PostitList.count() > 0 && i > 1)
+  {
+    KPostit::PostitList.at(0)->findKPostit( i - 2 );
+  }
+}
+
+/*
+void DockWidget::paintEvent(QPaintEvent * ) 
+{
   paintIcon();
-
 }
 
-void DockWidget::paintIcon () {
 
+void DockWidget::paintIcon () 
+{
   bitBlt(this, 0, 0, &picsmall_pixmap);
-
-
 }
+*/
 
-
-void DockWidget::mousePressEvent(QMouseEvent *e) {
-
-  if ( e->button() == (LeftButton || MidButton) ) {
-
-    QPoint point = this->mapToGlobal (QPoint(0,0));
-
-    point  = point - QPoint(30,60);
-    popup_m->popup(point);
-    popup_m->exec();
+void DockWidget::mousePressEvent(QMouseEvent *e) 
+{
+  if( KContextMenuManager::showOnButtonPress() == false )
+  {
     return;
   }
 
-  if ( e->button() == RightButton ) {
+  if( e->button() == LeftButton ) 
+  {
+    left_popup_m->exec( mapToGlobal(QPoint(0,0))-QPoint(30,60) );
+  }
+  else if( e->button() == RightButton ) 
+  {
+    right_popup_m->exec( mapToGlobal(QPoint(0,0))-QPoint(30,60) );
+  }
+}
 
-    QPoint point = this->mapToGlobal (QPoint(0,0));
 
-    point  = point - QPoint(30,60);
-    right_popup_m->popup(point);
-    right_popup_m->exec();
+void DockWidget::mouseReleaseEvent(QMouseEvent *e) 
+{
+  if( KContextMenuManager::showOnButtonPress() == true )
+  {
+    return;
+  }
+
+  if( e->button() == LeftButton ) 
+  {
+    //left_popup_m->exec( mapToGlobal(QPoint(0,0))-QPoint(30,60) );
+    left_popup_m->exec( e->globalPos() );
+  }
+  else if( e->button() == RightButton ) 
+  {
+    //right_popup_m->exec( mapToGlobal(QPoint(0,0))-QPoint(30,60) );
+    right_popup_m->exec( e->globalPos() );
   }
 
 }
+
+
+
+
+
+
+
 
 void DockWidget::toggle_window_state() {
 
@@ -271,13 +283,4 @@ void DockWidget::toggle_window_state() {
 }
 
 
-
-
-
 #include "docking.moc"
-
-
-
-
-
-

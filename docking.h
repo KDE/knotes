@@ -28,13 +28,17 @@
 
 #include <stdio.h>
 #include <qapplication.h>
+#include <qlabel.h>
 #include <qpixmap.h>
 #include <qtimer.h>
-#include <qpopupmenu.h>
 #include <qpoint.h>
 
 
-class DockWidget : public QWidget {
+class KPopupMenu;
+
+
+class DockWidget : public QLabel 
+{
 
   Q_OBJECT
 
@@ -43,12 +47,13 @@ public:
   ~DockWidget();
 
 protected:
-  void paintEvent(QPaintEvent *e);
+  //void paintEvent(QPaintEvent *e);
+  void mousePressEvent(QMouseEvent *e);
+  void mouseReleaseEvent(QMouseEvent *e);
 
 public slots:
 
   void toggle_window_state();
-  void mousePressEvent(QMouseEvent *e);
   void findKPostit(int);
   void exitKNotes();
   void configureKNotes();
@@ -58,7 +63,7 @@ public slots:
 
   void dock();
   void undock();
-  void paintIcon();
+  //void paintIcon();
 
 public:
   const bool isDocked();
@@ -70,8 +75,8 @@ private:
   int toggleID;
   int pos_x;
   int pos_y;
-  QPopupMenu *popup_m;
-  QPopupMenu *right_popup_m;
+  KPopupMenu *right_popup_m;
+  KPopupMenu *left_popup_m;
   QPixmap picsmall_pixmap;
 
 };

@@ -48,6 +48,7 @@
 
 #include <kapp.h>
 #include <kaccel.h>
+#include <kcmenumngr.h>
 #include <kcolordlg.h>
 #include <kconfig.h>
 #include <kfontdialog.h>
@@ -337,25 +338,30 @@ KPostit::KPostit( QWidget *parent, const char *myname, int  _number,
 
   options = new QPopupMenu();
   options->setCheckable(TRUE);
-  frame3dID = options->insertItem(i18n("3D Frame"),this,SLOT(toggleFrame()));
+  frame3dID = options->insertItem(i18n("3D Frame"),
+    this,SLOT(toggleFrame()));
   onTopID = options->insertItem(i18n("Always visible"),
-				this,SLOT(toggleOnTopMode()));
-  edit->autoIndentID = options->insertItem(i18n("Auto Indent"),this,
-					   SLOT(toggleIndentMode()));
+    this,SLOT(toggleOnTopMode()));
+  edit->autoIndentID = options->insertItem(i18n("Auto Indent"),
+    this, SLOT(toggleIndentMode()));
   
-  options->insertItem(i18n("Font..."),this, SLOT(selectFont()));
+  options->insertItem(i18n("Font..."),
+    this, SLOT(selectFont()));
   options->insertItem(i18n("Colors"),colors);
   options->insertSeparator();
-  options->insertItem(i18n("Default Configuration..."),this, SLOT(defaults()));
-  dockID = options->insertItem(i18n("Dock in panel"), this,
-			       SLOT(toggleDock()));
+  options->insertItem(i18n("Configuration..."),
+    this, SLOT(defaults()));
+  dockID = options->insertItem(i18n("Dock in panel"), 
+    this, SLOT(toggleDock()));
 
   operations->insertSeparator();
-  operations->insertItem (i18n("Help"),this,SLOT(help()));
-  operations->insertItem ( i18n("Exit"), this, SLOT(quit()));
+  operations->insertItem( i18n("Help"), this, SLOT(help()) );
+  operations->insertItem( i18n("Quit"), this, SLOT(quit()) );
 
 
   right_mouse_button = new QPopupMenu;
+  KContextMenuManager::insert( edit, right_mouse_button );
+
   for ( uint i = 0; i < PostitFilesList.count(); i++)
   {
     int k = right_mouse_button->insertItem (PostitFilesList[i]);
@@ -637,76 +643,73 @@ void KPostit::print(){
 
 }
 
-void KPostit::newKPostit(){
-
+void KPostit::newKPostit( void )
+{
   QString pname;
-  bool exists = FALSE;
+  bool exists = false;
 
+  //
   // lets give it the next available name of the for kpostit %d, with %d
   // and integer. If we have more than fifty of those, we give up.
-
-  for (int i = 1; i < 50; i++){
-
-    exists = FALSE;
+  //
+  for(int i = 1; i < 50; i++)
+  {
+    exists = false;
     pname = "";
     pname = QString("knote %1").arg(i);
-
-/*    for(PostitFilesList.first();
-	(PostitFilesList.current() && (!exists));
-	  PostitFilesList.next()){
-
-      if ( QString(PostitFilesList.current()) == pname){ // file exist already
-*/
-	for(QStringList::Iterator it=PostitFilesList.begin();
-		it != PostitFilesList.end() && !exists;it++) {
-		if (*it==pname) {
-		exists = TRUE;
-		break;
-    	  }
+    for( QStringList::Iterator it=PostitFilesList.begin();
+	 it != PostitFilesList.end() && !exists; it++ ) 
+    {
+      if( *it==pname ) 
+      {
+	exists = true;
+	break;
+      }
     }
-    if (!exists)
+    if( exists == false )
+    {
       break;
-
+    }
   }
 
-  if (exists){ // all 50 names are taken
-    KMessageBox::sorry(this,
-			 i18n("You have exeeded the "
-			      "arbitrary and unjustly set "
-			      "limit of 50 knotes.\n Please complain to the author."));
+  if( exists == true ) // all 50 names are taken
+  {
+    QString msg = i18n(""
+      "You have exeeded the arbitrary and unjustly set limit of 50 knotes.\n"
+      "Please complain to the author.");
+    KMessageBox::sorry(this,msg);
     return;
   }
 
+  //
   // update all popup menus
-  for(PostitList.first();PostitList.current();PostitList.next()){
-
-    // now remove and then reinsert, in a sorted fashion, the popup menu entries
-    for(uint i = 0 ; i < PostitFilesList.count();i++){
+  //
+  for(PostitList.first();PostitList.current();PostitList.next())
+  {
+    //
+    // now remove and then reinsert, in a sorted fashion, the 
+    // popup menu entries
+    //
+    for( uint i = 0 ; i < PostitFilesList.count();i++)
+    {
       PostitList.current()->right_mouse_button->removeItemAt(0);
     }
-
   }
-
 
 
   PostitFilesList.append(pname);
   PostitFilesList.sort();
 
-  for(PostitList.first();PostitList.current();PostitList.next()){
+  for(PostitList.first();PostitList.current();PostitList.next())
+  {
     int k = 0;
-    /*for(PostitFilesList.first();PostitFilesList.current();PostitFilesList.next()){
-      PostitList.current()->right_mouse_button->insertItem(
-	     PostitFilesList.current(),k,k);
-      k++;
-    }*/
     for(QStringList::Iterator it=PostitFilesList.begin();
-	it != PostitFilesList.end();it++){
+	it != PostitFilesList.end(); it++)
+    {
       PostitList.current()->right_mouse_button->insertItem(*it,k,k);
       k++;
     }
   }
-
-
 
   KPostit *t = new KPostit (NULL,NULL,PostitFilesList.count() - 1 ,pname);
 
@@ -717,7 +720,8 @@ void KPostit::newKPostit(){
 
 }
 
-void  KPostit::RMBActivated(int i){
+void  KPostit::RMBActivated(int i)
+{
   // convert absolute id to relative index
   findKPostit(right_mouse_button->indexOf(i));
 }
@@ -1136,16 +1140,19 @@ bool KPostit::savenotes(){
   return TRUE;
 }
 
-bool KPostit::eventFilter(QObject *o, QEvent *ev){
-
+bool KPostit::eventFilter(QObject *o, QEvent *ev)
+{
   static QPoint tmp_point;
 
   QMouseEvent *e = (QMouseEvent *)ev;
 
 
-  if (o == label){
-    if (ev->type() == QEvent::MouseButtonRelease){
-      if (e->button() == LeftButton){
+  if( o == label )
+  {
+    if( ev->type() == QEvent::MouseButtonRelease )
+    {
+      if( e->button() == LeftButton )
+      {
         dragging = false;
         label->releaseMouse();
 	raise();
@@ -1155,18 +1162,20 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
       return TRUE;
     }
 
-    if (ev->type() == QEvent::MouseButtonPress
-	&& e->button() == LeftButton){
+    if( ev->type() == QEvent::MouseButtonPress && e->button() == LeftButton)
+    {
       pointerOffset = e->pos();
       label->grabMouse(sizeAllCursor);
       return TRUE;
     }
-    if (ev->type() == QEvent::MouseMove
-	&& label == mouseGrabber()){
-	if (dragging) {
-	    move(QCursor::pos()-pointerOffset);
-	}
-      else {
+    if( ev->type() == QEvent::MouseMove && label == mouseGrabber())
+    {
+      if (dragging) 
+      {
+	move(QCursor::pos()-pointerOffset);
+      }
+      else 
+      {
 	dragging = (
 	  (e->pos().x() - pointerOffset.x())
 	  *
@@ -1194,11 +1203,15 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
 
   tmp_point = QCursor::pos();
 
-  if(right_mouse_button){
+  if(right_mouse_button)
+  {
     desktops->clear();
     int i;
     int n = KWin::numberOfDesktops();
-    for (i=1; i <= n; i++){
+    printf("KWin::numberOfDesktops()=%d\n", KWin::numberOfDesktops() );
+
+    for (i=1; i <= n; i++)
+    {
       QString b = "&";
       //b.append(KWM::desktopName(i));
       b.append(QString::number(i));
@@ -1211,7 +1224,7 @@ bool KPostit::eventFilter(QObject *o, QEvent *ev){
     else
       right_mouse_button->changeItem(KWM::stickyString(), sticky_id);
     */
-    right_mouse_button->popup(tmp_point);
+    //right_mouse_button->popup(tmp_point);
   }
 
   return TRUE;
