@@ -139,12 +139,12 @@ KNoteEdit::KNoteEdit( QWidget *tool, QWidget* parent, const char* name )
 #else
     // create the tool buttons (can't use actions yet :-( )
     QBoxLayout *layout = new QBoxLayout( tool, QBoxLayout::LeftToRight );
-    
+
     m_textBold = new KNoteButton( "text_bold", tool );
     m_textBold->setToggleButton( true );
     connect( m_textBold, SIGNAL(clicked()), this, SLOT(slotSetBold()) );
     layout->addWidget( m_textBold );
-    
+
     m_textItalic = new KNoteButton( "text_italic", tool );
     m_textItalic->setToggleButton( true );
     connect( m_textItalic, SIGNAL(clicked()), this, SLOT(slotSetItalic()) );
@@ -154,29 +154,29 @@ KNoteEdit::KNoteEdit( QWidget *tool, QWidget* parent, const char* name )
     m_textUnderline->setToggleButton( true );
     connect( m_textUnderline, SIGNAL(clicked()), this, SLOT(slotSetUnderline()) );
     layout->addWidget( m_textUnderline );
-    
+
     layout->addSpacing( SEP );
 
     m_textAlignLeft = new KNoteButton( "text_left", tool );
     m_textAlignLeft->setToggleButton( true );
     connect( m_textAlignLeft, SIGNAL(clicked()), this, SLOT(textAlignLeft()) );
     layout->addWidget( m_textAlignLeft );
-    
+
     m_textAlignCenter = new KNoteButton( "text_center", tool );
     m_textAlignCenter->setToggleButton( true );
     connect( m_textAlignCenter, SIGNAL(clicked()), this, SLOT(textAlignCenter()) );
     layout->addWidget( m_textAlignCenter );
-                
+
     m_textAlignRight = new KNoteButton( "text_right", tool );
     m_textAlignRight->setToggleButton( true );
     connect( m_textAlignRight, SIGNAL(clicked()), this, SLOT(textAlignRight()) );
     layout->addWidget( m_textAlignRight );
-                
+
     m_textAlignBlock = new KNoteButton( "text_block", tool );
     m_textAlignBlock->setToggleButton( true );
     connect( m_textAlignBlock, SIGNAL(clicked()), this, SLOT(textAlignBlock()) );
     layout->addWidget( m_textAlignBlock );
-                
+
     QButtonGroup *align = new QButtonGroup( this );
     align->setExclusive( true );
     align->hide();
@@ -188,7 +188,7 @@ KNoteEdit::KNoteEdit( QWidget *tool, QWidget* parent, const char* name )
     m_textAlignLeft->setOn( true );  // ???? TODO: really always true?
 
     layout->addSpacing( SEP );
-    
+
     m_textList = new KNoteButton( "enum_list", tool );
     m_textList->setToggleButton( true );
     connect( m_textList, SIGNAL(clicked()), this, SLOT(textList()) );

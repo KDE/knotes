@@ -14,7 +14,7 @@ TODO for KNotes
  * save cursor and scrollbar postion
  * document the config dialog
  * steal some ideas from Stickies (Mac OS X)
- 
+
  * once we have more session configs make KNotes save its notes in
    .kde/share/apps/knotes/<session-name>/
 

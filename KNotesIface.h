@@ -61,9 +61,9 @@ k_dcop:
     /**
      * Hide a note.
      * @param noteId the id of the note to hide
-     */ 
+     */
     virtual ASYNC hideNote( const QString& noteId ) const = 0;
-    
+
     /**
      * Deletes a note forever.
      * @param noteId the id of the note to kill

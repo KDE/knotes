@@ -72,7 +72,7 @@ protected:
 
 private slots:
     void slotReturnPressed();
-    
+
     // this is needed as long as we don't use actions
     void slotSetBold();
     void slotSetItalic();
@@ -126,7 +126,7 @@ private:
     QPushButton *m_textList;
     QPushButton *m_textSuper;
     QPushButton *m_textSub;
-    
+
     QPushButton *m_textIncreaseIndent;
     QPushButton *m_textDecreaseIndent;
 #endif

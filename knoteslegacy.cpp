@@ -83,7 +83,7 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
         test->setGroup( "General" );
         double version = test->readDoubleNumEntry( "version", 1 );
         delete test;
-        
+
         if ( version < 3.0 )
         {
             // create the new note
@@ -93,16 +93,16 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
                 convertKNotes1Config( journal, noteDir, *note );
             else
                 convertKNotes2Config( journal, noteDir, *note );
-            
+
             calendar->addJournal( journal );
             converted = true;
         }
     }
-    
+
     return converted;
 }
 
-void KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir, 
+void KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
         const QString& file )
 {
     QFile infile( noteDir.absFilePath( file ) );
@@ -110,7 +110,7 @@ void KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     if ( !infile.open( IO_ReadOnly ) )
     {
         kdError(5500) << k_funcinfo << "Could not open input file: " << infile.name() << endl;
-        
+
         // TODO: better return false and delete current journal, same in convertKNotes2Config
         return;
     }
@@ -131,10 +131,10 @@ void KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     // TODO: Needed? What about KConfig? This deletes everything else?
     //       Test with a config file that contains a value not set here!
     KSimpleConfig config( configFile );
-    
+
     config.setGroup( "General" );
     config.writeEntry( "version", KNOTES_VERSION );
-    
+
     // use the new default for this group
     config.setGroup( "Actions" );
     config.writeEntry( "mail", "kmail --msg %f" );
@@ -182,10 +182,10 @@ void KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     uint weight = input.readLine().toUInt();
     bool italic = ( input.readLine().toUInt() == 1 );
     QFont font( fontfamily, size, weight, italic );
-    
+
     config.writeEntry( "titlefont", font );
     config.writeEntry( "font", font );
-    
+
     // 3d frame? Not supported yet!
     input.readLine();
 
@@ -198,10 +198,10 @@ void KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     config.writeEntry( "tabsize", 4 );
 
     config.setGroup( "WindowDisplay" );
-    
+
     // hidden
     bool hidden = ( input.readLine().toUInt() == 1 );
-    
+
     int note_desktop = data[0];
     if ( hidden )
         note_desktop = 0;
@@ -223,8 +223,8 @@ void KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     config.sync();
 
     // get the text
-    QString text;    
-    while ( !input.atEnd() ) 
+    QString text;
+    while ( !input.atEnd() )
     {
         text.append( input.readLine() );
         if ( !input.atEnd() )
@@ -233,18 +233,18 @@ void KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
 
     journal->setDescription( text );
     journal->addAttachment( new Attachment( configFile, CONFIG_MIME ) );
-    
+
     infile.close();
     infile.remove();        // TODO: success?
 }
 
-void KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir, 
+void KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
         const QString& file )
 {
     // new name for config file
     noteDir.rename( file, journal->uid() );
     QString configFile = noteDir.absFilePath( journal->uid() );
-    
+
     // update the config
     KConfig config( configFile );
     config.setGroup( "Data" );
@@ -263,9 +263,9 @@ void KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
         journal->setDescription( input.read() );
         infile.close();
         infile.remove();    // TODO: success?
-    } 
+    }
     else
         kdError(5500) << k_funcinfo << "Could not open input file: " << infile.name() << endl;
- 
+
     journal->addAttachment( new Attachment( configFile, CONFIG_MIME ) );
 }

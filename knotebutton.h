@@ -36,11 +36,11 @@ public:
     ~KNoteButton();
 
     virtual QSize sizeHint() const;
-    
+
 protected:
     virtual void enterEvent( QEvent * );
     virtual void leaveEvent( QEvent * );
-    
+
     virtual void drawButton( QPainter *p );
     virtual void drawButtonLabel( QPainter *p );
 

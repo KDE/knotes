@@ -78,8 +78,8 @@ ChangeLog for KNotes
 
 2002/09/30  Michael Brade <brade@kde.org>
 
-    * fixed mouse behaviour to be like kwin: 
-         - raise() and lower() windows already on mouse button press, 
+    * fixed mouse behaviour to be like kwin:
+         - raise() and lower() windows already on mouse button press,
            not on mouse button release
          - MMB moves notes as well
     * reduced code duplication (setColor, updateFocus)
@@ -108,7 +108,7 @@ ChangeLog for KNotes
 
     * fixed printing:
         - do not use private Qt headers
-        - use the correct font 
+        - use the correct font
 
 2002/09/21  Michael Brade <brade@kde.org>
 
@@ -118,8 +118,8 @@ ChangeLog for KNotes
 
 2002/09/10  Michael Brade <brade@kde.org>
 
-    * fixed one more readNumEntry, thanks to Matthias Kiefer 
- 
+    * fixed one more readNumEntry, thanks to Matthias Kiefer
+
 2002/06/17  Wynn Wilkes <wynnw@wilkes.ws>
 
     * fixed a bug where new notes with the version of 2.2 were seen as old notes
@@ -421,7 +421,7 @@ Tue Aug  3 02:23:09 1999  Carsten Pfeiffer  <pfeiffer@kde.org>
 
 	* added standard accelerator keys (new, print, save, help, close, quit)
 	* added "always on top", configurable in the popupmenu
-	* added possibility to play a sound when an alarm is activated, 
+	* added possibility to play a sound when an alarm is activated,
 	  configurable in the defaults dialog
 	* replaced the custom spinboxes with QSpinBoxes and made the dialog use
 	  layout management (still not perfect, yet)
@@ -431,8 +431,8 @@ Tue Aug  3 02:23:09 1999  Carsten Pfeiffer  <pfeiffer@kde.org>
 
 1999-05-22  Dirk A. Mueller  <dmuell@gmx.net>
 
-	* Ported to the Qt DND classes. It accepts QTextDrag, handled by 
-	QMultiLineEdit and QUrlDrag. 
+	* Ported to the Qt DND classes. It accepts QTextDrag, handled by
+	QMultiLineEdit and QUrlDrag.
 
 1999-03-07  Harri Porten  <porten@kde.org>
 
@@ -465,7 +465,7 @@ Tue Feb 16 09:34:25 1999  David Faure  <faure@kde.org>
 
 Fri May 29 05:36:36 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
 
-	* KNotes are now automatically saved all 15 minutes. 
+	* KNotes are now automatically saved all 15 minutes.
 	* added explicit save command on request.
 
 Thu Apr  9 03:21:54 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
@@ -476,7 +476,7 @@ Thu Apr  9 03:21:54 1998  Bernd Johannes Wuebben  <wuebben@math.cornell.edu>
 Thu Aug  7 18:50:59 1997  Bernd Johannes Wuebben  <wuebben@petit.cornell.edu>
 
 	* knotes.cpp: knotes now save themselves on X sever exit
-	
+
 Mon Nov 17 21:32:28 1997  didier Belot <dib@avo.fr>
 
 	* added all necessary stuff for locale (klocale->translate())

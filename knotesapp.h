@@ -54,7 +54,7 @@ public:
     KNotesApp();
     ~KNotesApp();
 
-    QString newNote( const QString& name = QString::null, 
+    QString newNote( const QString& name = QString::null,
                             const QString& text = QString::null );
     QString newNoteFromClipboard( const QString& name = QString::null );
 
@@ -64,16 +64,16 @@ public:
 
     QString name( const QString& id ) const;
     QString text( const QString& id ) const;
-    
+
     void setName( const QString& id, const QString& newName );
     void setText( const QString& id, const QString& newText );
 
     QMap<QString,QString> notes() const;
-    
+
     void sync( const QString& app );
     bool isNew( const QString& app, const QString& id ) const;
     bool isModified( const QString& app, const QString& id ) const;
-    
+
     bool commitData( QSessionManager& );
 
 protected:
@@ -95,7 +95,7 @@ protected slots:
 private slots:
     void updateNoteActions();
     void updateGlobalAccels();
-    
+
     void saveNotes();
 
 private:

@@ -110,7 +110,7 @@ private:
     KNoteButton *m_button;
     KNoteEdit   *m_editor;
     QWidget     *m_tool;
-    
+
     KCal::Journal *m_journal;
     QString        m_configFile;
 
@@ -119,7 +119,7 @@ private:
 
     KPopupMenu *m_menu;
     KPopupMenu *m_edit_menu;
-    
+
     KXMLGUIFactory *factory;
 };
 

@@ -35,14 +35,14 @@ KNoteButton::KNoteButton( const QString& icon, QWidget *parent, const char *name
 {
     setFocusPolicy( NoFocus );
     setSizePolicy( QSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed ) );
-    
+
     m_flat = true;
 
     if ( !icon.isEmpty() )
         setIconSet( KGlobal::iconLoader()->loadIconSet( icon, KIcon::Small, 10 ) );
 }
 
-KNoteButton::~KNoteButton() 
+KNoteButton::~KNoteButton()
 {
 }
 
@@ -105,7 +105,7 @@ void KNoteButton::drawButtonLabel( QPainter* p )
             dx += style().pixelMetric( QStyle::PM_ButtonShiftHorizontal, this );
             dy += style().pixelMetric( QStyle::PM_ButtonShiftVertical, this );
         }
-        
+
         p->drawPixmap( dx, dy, pix );
     }
 }
