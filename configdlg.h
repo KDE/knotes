@@ -39,7 +39,7 @@
 #include <qframe.h>
 
 #include <kcolordlg.h>
-#include <kintlineedit.h>
+#include <knumlineedit.h>
 #include "knotes.h"
 
 class ConfigDlg : public QDialog {
