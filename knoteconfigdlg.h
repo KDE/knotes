@@ -61,22 +61,22 @@ signals:
 private:
     void storeSettings();
 
-    bool _global;
+    bool m_global;
 
-    KConfig *_config;
+    KConfig *m_config;
 
-    KColorButton *_fgColor;
-    KColorButton *_bgColor;
+    KColorButton *m_fgColor;
+    KColorButton *m_bgColor;
+    KIntNumInput *m_widthEdit;
+    KIntNumInput *m_heightEdit;
+    
+    KIntNumInput *m_tabEdit;
+    QCheckBox    *m_autoIndentSwitch;
+    QCheckBox    *m_richTextSwitch;
+    QPushButton  *m_titleFont;
+    QPushButton  *m_textFont;
 
-    KIntNumInput *_widthEdit;
-    KIntNumInput *_heightEdit;
-    KIntNumInput *_tabEdit;
-
-    QCheckBox   *_autoIndentSwitch;
-    QCheckBox   *_richTextSwitch;
-    KLineEdit   *_mailEdit;
-    QPushButton *_titleFont;
-    QPushButton *_textFont;
+    KLineEdit    *m_mailEdit;
 };
 
 #endif
