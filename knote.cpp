@@ -377,7 +377,7 @@ void KNote::slotInsDate()
 void KNote::slotPreferences()
 {
     // launch preferences dialog...
-    KNoteConfigDlg configDlg( m_configFile, i18n("Local Settings"), false );
+    KNoteConfigDlg configDlg( m_configFile, i18n("Local Settings"), false, this );
     connect( &configDlg, SIGNAL(updateConfig()), this, SLOT(slotApplyConfig()) );
     connect( &configDlg, SIGNAL(skipTaskbar(bool)), this, SLOT(slotSkipTaskbar(bool)) );
     configDlg.exec();

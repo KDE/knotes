@@ -30,6 +30,7 @@
 #include <kfontdialog.h>
 #include <kiconloader.h>
 #include <kseparator.h>
+#include <kwin.h>
 
 #include "knoteconfigdlg.h"
 #include "version.h"
@@ -83,9 +84,12 @@ void KNoteConfigDlg::makeDisplayPage()
     l_fgcolor->setBuddy( m_fgColor );
     l_bgcolor->setBuddy( m_bgColor );
 
-    bool check_val = m_config->readBoolEntry( "skipTaskbar", true );
+    m_config->setGroup( "WindowDisplay" );
+    ulong state = m_global ? m_config->readUnsignedLongNumEntry( "state", NET::SkipTaskbar )
+                           : KWin::info( parentWidget()->winId() ).state;
+
     m_skipTaskbarSwitch = new QCheckBox( i18n("&Show Note in Taskbar"), displayPage );
-    m_skipTaskbarSwitch->setChecked( !check_val );
+    m_skipTaskbarSwitch->setChecked( !(state & NET::SkipTaskbar) );
 
     KSeparator *sep = new KSeparator( Horizontal, displayPage );
 
@@ -101,6 +105,7 @@ void KNoteConfigDlg::makeDisplayPage()
         QLabel* l_width  = new QLabel( i18n("Default &width:"), displayPage );
         QLabel* l_height = new QLabel( i18n("Default &height:"), displayPage );
 
+        m_config->setGroup( "Display" );
         uint width = m_config->readUnsignedNumEntry( "width", 200 );
         uint height = m_config->readUnsignedNumEntry( "height", 200 );
 
