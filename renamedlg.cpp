@@ -28,6 +28,7 @@
 
 #include "renamedlg.h"
 #include <kapp.h>
+#include <klocale.h>
 
 RenameDlg::RenameDlg( QWidget *parent, const char *name,
 		      QString *string,QStrList *list)

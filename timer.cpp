@@ -28,6 +28,7 @@
 #include "timer.h"
 #include "knotes.h"
 #include <kwm.h>
+#include <klocale.h>
 
 
 extern KApplication* 	mykapp;

@@ -30,6 +30,7 @@
 
 
 #include "configdlg.h"
+#include <klocale.h>
 
 #include "configdlg.moc"
 

@@ -31,6 +31,7 @@
 #include "alarm.h"
 #include "timer.h"
 #include "knotes.h"
+#include <klocale.h>
 
 extern KApplication* 	mykapp;
 extern DefStruct 	postitdefaults;

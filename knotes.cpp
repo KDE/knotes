@@ -80,6 +80,8 @@ extern bool 	readalarms();
 
 #include <dirent.h>
 #include <sys/stat.h>
+#include <klocale.h>
+#include <drag.h>
 
 
 void testDir( const char *_name )

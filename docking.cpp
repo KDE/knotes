@@ -29,6 +29,7 @@
 
 #include "knotes.h"
 #include "docking.h"
+#include <klocale.h>
 
 //extern QStrList  KPostit::PostitFilesList; // names of all postit files
 extern KApplication *mykapp;

@@ -33,6 +33,7 @@
 
 #include <bwdatetime.h>
 #include <kapp.h>
+#include <klocale.h>
 
 
 BWDateTime:: BWDateTime(QDateTime qdt, QWidget *parent, const char *name) 

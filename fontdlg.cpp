@@ -29,6 +29,7 @@
 
 
 #include "fontdlg.h"
+#include <klocale.h>
 
 #include "fontdlg.moc"
 

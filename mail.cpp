@@ -27,6 +27,7 @@
 
 
 #include "mail.h"
+#include <klocale.h>
 
 
 Mail::Mail(KPostit *parent, const char *name)
