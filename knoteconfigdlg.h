@@ -15,7 +15,7 @@
 class KNoteConfigDlg : public KDialogBase  {
    Q_OBJECT
 public:
-	KNoteConfigDlg( KConfig* curr, QString title, QWidget* parent=0, const char* name=0 );
+	KNoteConfigDlg( KConfig* curr, const QString & title, QWidget* parent=0, const char* name=0 );
 	~KNoteConfigDlg();
 	
 	void makeDisplayPage();

@@ -12,9 +12,9 @@
 
 int main( int argc, char* argv[] )
 {
-	KAboutData aboutData( "knotes", i18n("KNotes"),
-		i18n("2.0pre"), i18n( "KDE Notes" ), KAboutData::License_GPL,
-		i18n("(c) 1997-2000, KNote Developers") );
+	KAboutData aboutData( "knotes", I18N_NOOP("KNotes"),
+		I18N_NOOP("2.0pre"), I18N_NOOP( "KDE Notes" ), KAboutData::License_GPL,
+		I18N_NOOP("(c) 1997-2000, KNote Developers") );
 
 	aboutData.addAuthor("Bernd Johannes Wuebben",0, "wuebben@kde.org");
 	aboutData.addAuthor("Matthias Ettrich",0, "ettrich@kde.org");

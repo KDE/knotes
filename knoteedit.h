@@ -32,7 +32,7 @@ private:
 	bool m_autoIndentMode;
 
 signals:
-	void gotUrlDrop(const char* url);
+	void gotUrlDrop(const QString & url);
 
 };
 

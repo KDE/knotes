@@ -113,7 +113,7 @@ protected:
 		if( painter == NULL ) cerr << "painter is null" << endl;
 		if( isDown() || (isOn() && !flat) )
 		{
-			if ( style() == WindowsStyle )
+			if ( style().guiStyle() == WindowsStyle )
 				qDrawWinButton( painter, 0, 0, width(),
 				                height(), colorGroup(), TRUE );
 			else
@@ -122,7 +122,7 @@ protected:
 		}
 		else if( !flat )
 		{
-			if ( style() == WindowsStyle )
+			if ( style().guiStyle() == WindowsStyle )
 				qDrawWinButton( painter, 0, 0, width(), height(),
 				                colorGroup(), FALSE );
 			else
@@ -132,7 +132,7 @@ protected:
 		
 		int dx = ( width() - pixmap()->width() ) / 2;
 		int dy = ( height() - pixmap()->height() ) / 2;
-		if ( isDown() && style() == WindowsStyle )
+		if ( isDown() && style().guiStyle() == WindowsStyle )
 		{
 			dx++;
 			dy++;

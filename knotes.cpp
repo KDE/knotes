@@ -303,8 +303,8 @@ KPostit::KPostit( QWidget *parent, const char *myname, int  _number,
   edit->installEventFilter(this);
   edit->setFocus();
   edit->setFrameStyle(QFrame::NoFrame);
-  connect(edit, SIGNAL(gotUrlDrop(const char*)), 
-	  this, SLOT(insertNetFile(const char*)));
+  connect(edit, SIGNAL(gotUrlDrop(const QString &)), 
+	  this, SLOT(insertNetFile(const QString &)));
 
   hidden = false;
   number = _number;  // index in popup. Not used anymore, but I'll leave it in

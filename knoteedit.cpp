@@ -159,13 +159,13 @@ QString KNoteEdit::prefixString( QString string )
 
 void KNoteEdit::dragEnterEvent( QDragEnterEvent* event )
 {
-	event->accept( QUrlDrag::canDecode(event) || QTextDrag::canDecode(event) );
+	event->accept( QUriDrag::canDecode(event) || QTextDrag::canDecode(event) );
 }
 
 
 void KNoteEdit::dragMoveEvent( QDragMoveEvent* event )
 {
-	if( QUrlDrag::canDecode(event) )
+	if( QUriDrag::canDecode(event) )
 	{
 		event->accept();
 	}
@@ -180,7 +180,7 @@ void KNoteEdit::dropEvent( QDropEvent* event )
 {
 	QStringList list;
 
-	if ( QUrlDrag::decodeToUnicodeUris( event, list ) )
+	if ( QUriDrag::decodeToUnicodeUris( event, list ) )
 	{
 		emit gotUrlDrop( list.first() );
 	}
