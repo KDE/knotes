@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2001, The KNotes Developers
+ Copyright (c) 1997-2002, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -358,11 +358,10 @@ void KNotesApp::mousePressEvent( QMouseEvent* e )
             m_note_menu->popup( e->globalPos() );
         break;
     case MidButton:
+        newNote();
+        break;
     case RightButton:
         m_context_menu->popup( e->globalPos() );
-        break;
-    default:
-        break;
     }
 }
 
