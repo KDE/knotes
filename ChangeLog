@@ -487,7 +487,7 @@ Tue Feb 16 09:34:25 1999  David Faure  <faure@kde.org>
         saveYourself() signal from the session manager and invoke saving all
         data. This is more robust than having concurring methods in every
         widget and works without the saved_already_for_session_management
-        variable that was NOT unset if the user cancelled the shutdown (bug !)
+        variable that was NOT unset if the user canceled the shutdown (bug !)
 	* renaming: missing slash broke renaming.
         * set atomic flag in cleanup(). Hope to have avoided occasional crash
         leading to data loss.
@@ -522,7 +522,7 @@ Sat Nov 22 13:13:05 1997 Matthias Ettrich <ettrich@kde.org>
 	* feel: moving possible with the label, rmb menu contains toDesktop
 	        and sticky, notes are activated not only raised. Alt-F4
 	        can remove a note now.
-	* invokation: change: siguser1 will give you a new knote (like
+	* invocation: change: siguser1 will give you a new knote (like
 	        taking a new paper from a block).
 	        "-knotes_restore" used for session management.
 	        Do NOT use "-restore" since kapplication filters this!
