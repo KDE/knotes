@@ -433,6 +433,17 @@ void KNotesApp::slotConfigureAccels()
         keys.insert( (*notes)->actionCollection() );
     keys.configure();
 
+    m_globalAccel->writeSettings();
+    updateGlobalAccels();
+
+    // update GUI doc for new notes
+    m_noteGUI.setContent(
+        KXMLGUIFactory::readConfigFile( instance()->instanceName() + "ui.rc", instance() )
+    );
+
+    if ( m_noteList.isEmpty() )
+        return;
+
     notes.toFirst();
     QValueList<KAction *> list = (*notes)->actionCollection()->actions();
     for ( QValueList<KAction *>::iterator it = list.begin(); it != list.end(); ++it )
@@ -445,14 +456,6 @@ void KNotesApp::slotConfigureAccels()
                 toChange->setShortcut( (*it)->shortcut() );
         }
     }
-
-    m_globalAccel->writeSettings();
-    updateGlobalAccels();
-
-    // update GUI doc for new notes
-    m_noteGUI.setContent(
-        KXMLGUIFactory::readConfigFile( instance()->instanceName() + "ui.rc", instance() )
-    );
 }
 
 void KNotesApp::slotNoteKilled( KCal::Journal *journal )
