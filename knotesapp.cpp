@@ -70,7 +70,7 @@ KNotesApp::KNotesApp()
 
     // create the dock widget...
     KWin::setSystemTrayWindowFor( winId(), qt_xrootwin() );
-    QToolTip::add( this, i18n( "KNotes: Sticky notes for KDE." ) );
+    QToolTip::add( this, i18n( "KNotes: Sticky notes for KDE" ) );
     setBackgroundMode( X11ParentRelative );
     setPixmap( KSystemTray::loadIcon( "knotes" ) );
 
