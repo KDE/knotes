@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Notes in Local File
+X-KDE-Library=knotes_local
+Type=Service
+ServiceTypes=KResources/Plugin
+X-KDE-ResourceFamily=notes
+X-KDE-ResourceType=file

@@ -23,14 +23,11 @@
 
 #include <qstring.h>
 #include <qptrlist.h>
-#include <qdict.h>
 #include <qlabel.h>
 
 #include <kapplication.h>
 #include <kxmlguiclient.h>
 #include <kxmlguibuilder.h>
-
-#include "libkcal/calendarlocal.h"
 
 #include "KNotesIface.h"
 
@@ -40,15 +37,14 @@ class KAction;
 class KActionMenu;
 class KGlobalAccel;
 class KXMLGUIFactory;
-
-namespace KCal {
-    class Journal;
-}
+class ResourceManager;
 
 
 class KNotesApp : public QLabel, virtual public KNotesIface, public KSessionManaged,
     public KXMLGUIBuilder, virtual public KXMLGUIClient
 {
+    friend class ResourceManager;
+
     Q_OBJECT
 public:
     KNotesApp();
@@ -89,8 +85,6 @@ protected slots:
     void slotPreferences() const;
     void slotConfigureAccels();
 
-    void slotNoteKilled( KCal::Journal* );
-
     void slotQuit();
 
 private slots:
@@ -110,10 +104,9 @@ private:
         virtual int compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 );
     };
 
-    QDict<KNote>      m_noteList;
-    KNoteActionList   m_noteActions;
+    ResourceManager* m_manager;
 
-    KCal::CalendarLocal m_calendar;
+    KNoteActionList m_noteActions;
 
     KPopupMenu *m_note_menu;
     KPopupMenu *m_context_menu;

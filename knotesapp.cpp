@@ -33,21 +33,16 @@
 #include <khelpmenu.h>
 #include <kkeydialog.h>
 #include <kglobalaccel.h>
-#include <kmessagebox.h>
 #include <ksimpleconfig.h>
 #include <kio/netaccess.h>
 #include <kwin.h>
-
-#include "libkcal/journal.h"
-#include "libkcal/icalformat.h"
 
 #include "knotesapp.h"
 #include "knote.h"
 #include "knoteconfigdlg.h"
 #include "knoteslegacy.h"
+#include "resourcemanager.h"
 #include "version.h"
-
-using namespace KCal;
 
 
 int KNotesApp::KNoteActionList::compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 )
@@ -63,7 +58,6 @@ KNotesApp::KNotesApp()
       KXMLGUIBuilder( this )
 {
     m_noteActions.setAutoDelete( true );
-    m_noteList.setAutoDelete( true );
 
     // create the dock widget...
     KWin::setSystemTrayWindowFor( winId(), qt_xrootwin() );
@@ -109,68 +103,21 @@ KNotesApp::KNotesApp()
     KNotesLegacy::cleanUp();
 
     // read the notes
-    m_calendar.load( KGlobal::dirs()->saveLocation( "appdata" ) + "notes.ics" );
-
-    // TODO
-    // initialize the Calendar
-    //m_calendar.setOwner(..);
-    //m_calendar.setEmail(..);
-
-    // read the old config files into m_calendar and convert them
-    if ( KNotesLegacy::convert( &m_calendar ) )
-        saveNotes();
-
-    QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
-    Journal::List notes = m_calendar.journals();
-    Journal::List::ConstIterator it;
-    for ( it = notes.begin(); it != notes.end(); ++it )
-    {
-        Journal *note = *it;
-        // KOrganizers journals don't have attachments -> use default display config
-        if ( note->attachments(CONFIG_MIME).isEmpty() )
-        {
-            // set the name of the config file...
-            QString file = noteDir.absFilePath( note->uid() );
-
-            // ...and "fill" it with the default config
-            KIO::NetAccess::copy(
-                    KURL( KGlobal::dirs()->findResource( "config", "knotesrc" ) ),
-                    KURL( file )
-            );
-
-            note->addAttachment( new Attachment( file, CONFIG_MIME ) );
-        }
-
-        if ( note->summary().isNull() && note->dtStart().isValid() )
-            note->setSummary( KGlobal::locale()->formatDateTime( note->dtStart() ) );
-
-        KNote* newNote = new KNote( this, domDocument(), note );
-        m_noteList.insert( note->uid(), newNote );
-
-        connect( newNote, SIGNAL(sigNewNote()), this, SLOT(slotNewNote()) );
-        connect( newNote, SIGNAL(sigKillNote( KCal::Journal* )),
-                 this,    SLOT(slotNoteKilled( KCal::Journal* )) );
-        connect( newNote, SIGNAL(sigNameChanged()), this, SLOT(updateNoteActions()) );
-        connect( newNote, SIGNAL(sigSaveData()), this, SLOT(saveNotes()) );
-    }
+    m_manager = new ResourceManager( this );
+    m_manager->load();
     updateNoteActions();
 
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
     kapp->installEventFilter( this );
 
-    if ( m_noteList.count() == 0 && !kapp->isRestored() )
+    if ( m_manager->count() == 0 && !kapp->isRestored() )
         newNote();
 }
 
 KNotesApp::~KNotesApp()
 {
     saveNotes();
-
-    blockSignals( true );
-    m_noteList.clear();
-    blockSignals( false );
-
     delete factory;
 }
 
@@ -184,40 +131,7 @@ bool KNotesApp::commitData( QSessionManager& )
 
 QString KNotesApp::newNote( const QString& name, const QString& text )
 {
-    // create the new note
-    Journal *note = new Journal();
-
-    // set the name of the config file...
-    QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
-    QString file = noteDir.absFilePath( note->uid() );
-
-    // ...and "fill" it with the default config
-    KIO::NetAccess::copy( KURL( KGlobal::dirs()->findResource( "config", "knotesrc" ) ),
-                          KURL( file ) );
-
-    // new notes have the current date/time as title if none was given
-    if ( !name.isNull() )
-        note->setSummary( name );
-    else
-        note->setSummary( KGlobal::locale()->formatDateTime( QDateTime::currentDateTime() ) );
-
-    note->setDescription( text );
-    note->addAttachment( new Attachment( file, CONFIG_MIME ) );
-    m_calendar.addJournal( note );
-
-    KNote* newNote = new KNote( this, domDocument(), note );
-    m_noteList.insert( newNote->noteId(), newNote );
-
-    connect( newNote, SIGNAL(sigNewNote()), this, SLOT(slotNewNote()) );
-    connect( newNote, SIGNAL(sigKillNote( KCal::Journal* )),
-             this,    SLOT(slotNoteKilled( KCal::Journal* )) );
-    connect( newNote, SIGNAL(sigNameChanged()), this, SLOT(updateNoteActions()) );
-    connect( newNote, SIGNAL(sigSaveData()), this, SLOT(saveNotes()) );
-
-    updateNoteActions();
-    showNote( newNote );
-
-    return newNote->noteId();
+    return m_manager->newNote( name, text );
 }
 
 QString KNotesApp::newNoteFromClipboard( const QString& name )
@@ -228,7 +142,7 @@ QString KNotesApp::newNoteFromClipboard( const QString& name )
 
 void KNotesApp::showNote( const QString& id ) const
 {
-    KNote* note = m_noteList[id];
+    KNote* note = m_manager->note( id );
     if ( note )
         showNote( note );
     else
@@ -237,7 +151,7 @@ void KNotesApp::showNote( const QString& id ) const
 
 void KNotesApp::hideNote( const QString& id ) const
 {
-    KNote* note = m_noteList[id];
+    KNote* note = m_manager->note( id );
     if ( note )
         note->hide();
     else
@@ -246,32 +160,27 @@ void KNotesApp::hideNote( const QString& id ) const
 
 void KNotesApp::killNote( const QString& id, bool force ) 
 {
-    KNote* note = m_noteList[id];
+    KNote* note = m_manager->note( id );
     if ( note )
         note->slotKill( force );
     else
         kdWarning(5500) << "No note with id: " << id << endl;
 }
 
-void KNotesApp::killNote( const QString& id ) // "bool force = false" doesn't work with dcop 
+// "bool force = false" doesn't work with dcop 
+void KNotesApp::killNote( const QString& id )
 {
     killNote( id, false );
 }
 
 QMap<QString,QString> KNotesApp::notes() const
 {
-    QMap<QString,QString> notes;
-    QDictIterator<KNote> it( m_noteList );
-
-    for ( ; it.current(); ++it )
-        notes.insert( it.current()->noteId(), it.current()->name() );
-
-    return notes;
+    return m_manager->notes();
 }
 
 QString KNotesApp::name( const QString& id ) const
 {
-    KNote* note = m_noteList[id];
+    KNote* note = m_manager->note( id );
     if ( note )
         return note->name();
     else
@@ -280,7 +189,7 @@ QString KNotesApp::name( const QString& id ) const
 
 QString KNotesApp::text( const QString& id ) const
 {
-    KNote* note = m_noteList[id];
+    KNote* note = m_manager->note( id );
     if ( note )
         return note->text();
     else
@@ -289,7 +198,7 @@ QString KNotesApp::text( const QString& id ) const
 
 void KNotesApp::setName( const QString& id, const QString& newName )
 {
-    KNote* note = m_noteList[id];
+    KNote* note = m_manager->note( id );
     if ( note )
         note->setName( newName );
     else
@@ -298,7 +207,7 @@ void KNotesApp::setName( const QString& id, const QString& newName )
 
 void KNotesApp::setText( const QString& id, const QString& newText )
 {
-    KNote* note = m_noteList[id];
+    KNote* note = m_manager->note( id );
     if ( note )
         note->setText( newText );
     else
@@ -307,15 +216,12 @@ void KNotesApp::setText( const QString& id, const QString& newText )
 
 void KNotesApp::sync( const QString& app )
 {
-    QDictIterator<KNote> it( m_noteList );
-
-    for ( ; it.current(); ++it )
-        it.current()->sync( app );
+    m_manager->sync( app );
 }
 
 bool KNotesApp::isNew( const QString& app, const QString& id ) const
 {
-    KNote* note = m_noteList[id];
+    KNote* note = m_manager->note( id );
     if ( note )
         return note->isNew( app );
     else
@@ -324,7 +230,7 @@ bool KNotesApp::isNew( const QString& app, const QString& id ) const
 
 bool KNotesApp::isModified( const QString& app, const QString& id ) const
 {
-    KNote* note = m_noteList[id];
+    KNote* note = m_manager->note( id );
     if ( note )
         return note->isModified( app );
     else
@@ -342,10 +248,9 @@ void KNotesApp::mousePressEvent( QMouseEvent* e )
     switch ( e->button() )
     {
     case LeftButton:
-        if ( m_noteList.count() == 1 )
+        if ( m_manager->count() == 1 )
         {
-            QDictIterator<KNote> it( m_noteList );
-            showNote( it.toFirst() );
+            showNote( m_manager->first() );
         }
         else if ( m_note_menu->count() > 0 )
             m_note_menu->popup( e->globalPos() );
@@ -367,19 +272,7 @@ bool KNotesApp::eventFilter( QObject* o, QEvent* ev )
 
         if ( ke->key() == Key_BackTab )         // Shift+Tab
         {
-            // show next note
-            QDictIterator<KNote> it( m_noteList );
-            KNote* first = it.toFirst();
-            for ( ; it.current(); ++it )
-                if ( it.current()->hasFocus() )
-                {
-                    if ( ++it )
-                        showNote( it.current() );
-                    else
-                        showNote( first );
-                    break;
-                }
-
+            m_manager->showNextNote();
             ke->accept();
             return true;
         }
@@ -408,20 +301,6 @@ void KNotesApp::slotShowNote()
     // tell the WM to give this note focus
     QString name = QString::fromUtf8( sender()->name() );
     showNote( name );
-}
-
-void KNotesApp::slotNoteKilled( Journal *journal )
-{
-    // this kills the KNote object
-    m_noteList.remove( journal->uid() );
-
-    QString configFile = journal->attachments( CONFIG_MIME ).first()->uri();
-    if ( !QDir::home().remove( configFile ) )
-        kdError(5500) << "Can't remove the note config: " << configFile << endl;
-
-    m_calendar.deleteJournal( journal );
-
-    updateNoteActions();
 }
 
 void KNotesApp::slotPreferences() const
@@ -473,28 +352,12 @@ void KNotesApp::showNote( KNote* note ) const
 
 void KNotesApp::saveConfig()
 {
-    QDictIterator<KNote> it( m_noteList );
-    for ( ; it.current(); ++it )
-        it.current()->saveConfig();
+    m_manager->saveConfigs();
 }
 
 void KNotesApp::saveNotes()
 {
-    ICalFormat format;
-
-    QString file = KGlobal::dirs()->saveLocation( "appdata" ) + "notes.ics";
-    QString backup = file + "~";
-
-    // if the backup fails don't even try to save the current notes
-    // (might just destroy the file that's already there)
-
-    if ( KIO::NetAccess::exists( KURL( file ) ) && !KIO::NetAccess::file_copy( KURL( file ), KURL( backup ), -1, true) )
-        KMessageBox::error(0, i18n("<qt>Unable to save the notes backup to <b>%1</b>! Check that there is sufficient disk space.</qt>")
-                                  .arg( backup ) );
-    else if ( !m_calendar.save( file, &format ) )
-        KMessageBox::error(0, i18n("<qt>Unable to save the notes to <b>%1</b>! Check that there is sufficient disk space.<br>"
-                                   "There should be a backup in <b>%2</b> though.</qt>")
-                                  .arg( file ).arg( backup ) );
+    m_manager->save();
 }
 
 void KNotesApp::updateNoteActions()
@@ -502,11 +365,12 @@ void KNotesApp::updateNoteActions()
     unplugActionList( "notes" );
     m_noteActions.clear();
 
-    for ( QDictIterator<KNote> it( m_noteList ); it.current(); ++it )
+    for ( QDictIterator<KNote> it = m_manager->iterator(); it.current(); ++it )
     {
-        KAction *action = new KAction( it.current()->name().replace( "&", "&&"), KShortcut(),
-                                       this, SLOT(slotShowNote()),
-                                       (QObject*)0, it.current()->noteId().utf8() );
+        KAction *action = new KAction( it.current()->name().replace("&", "&&"),
+                                       KShortcut(), this, SLOT(slotShowNote()),
+                                       (QObject*)0,
+                                       it.current()->noteId().utf8() );
         QPixmap pix( 16, 16 );
         pix.fill( it.current()->paletteBackgroundColor() );
         action->setIconSet( pix );
