@@ -352,6 +352,8 @@ KPostit::KPostit(QWidget *parent, const char *myname,int  _number, QString pname
     }
 
     set_colors();
+    connect(mykapp,SIGNAL(kdisplayPaletteChanged()),this,SLOT(set_colors()));
+
     edit->setFont(font);
     //    label->setFont(font);
 
