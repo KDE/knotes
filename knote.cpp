@@ -45,6 +45,7 @@
 #include <kpopupmenu.h>
 #include <kmdcodec.h>
 #include <kglobalsettings.h>
+#include <kio/netaccess.h>
 
 #include "libkcal/journal.h"
 
@@ -57,13 +58,7 @@
 #include <kwin.h>
 #include <netwm.h>
 
-// fscking X headers
-#ifdef FocusIn
-#undef FocusIn
-#endif
-#ifdef FocusOut
-#undef FocusOut
-#endif
+#include <fixx11h.h>
 
 extern Atom qt_sm_client_id;
 
@@ -83,10 +78,18 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
 
     actionCollection()->setWidget( this );
 
+    // if there is no title yet, use the start date if valid
+    // (KOrganizer's journals don't have titles but a valid start date)
+    if ( m_journal->summary().isNull() && m_journal->dtStart().isValid() )
+    {
+        QString s = KGlobal::locale()->formatDateTime( m_journal->dtStart() );
+        m_journal->setSummary( s );
+    }
+
     // create the menu items for the note - not the editor...
     // rename, mail, print, insert date, close, delete, new note
     new KAction( i18n("New"), "filenew", 0,
-        this, SIGNAL(sigNewNote()), actionCollection(), "new_note" );
+        this, SIGNAL(sigRequestNewNote()), actionCollection(), "new_note" );
     new KAction( i18n("Rename..."), "text", 0,
         this, SLOT(slotRename()), actionCollection(), "rename_note" );
     new KAction( i18n("Hide"), "fileclose" , 0,
@@ -129,11 +132,11 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     m_editor->viewport()->installEventFilter( this );
 
     setDOMDocument( buildDoc );
-    factory = new KXMLGUIFactory( builder, this, "guifactory" );
-    factory->addClient( this );
+    KXMLGUIFactory factory( builder, this, "guifactory" );
+    factory.addClient( this );
 
-    m_menu = static_cast<KPopupMenu*>(factory->container( "note_context", this ));
-    m_edit_menu = static_cast<KPopupMenu*>(factory->container( "note_edit", this ));
+    m_menu = static_cast<KPopupMenu*>(factory.container( "note_context", this ));
+    m_edit_menu = static_cast<KPopupMenu*>(factory.container( "note_edit", this ));
 
     setFocusProxy( m_editor );
 
@@ -162,8 +165,19 @@ KNote::KNote( KXMLGUIBuilder* builder, QDomDocument buildDoc, Journal *j,
     m_editor->setFrameStyle( NoFrame );
     m_editor->setBackgroundMode( PaletteBase );
 
-    // get the config attachment
-    m_configFile = m_journal->attachments(CONFIG_MIME).first()->uri();
+    // the config file
+    m_configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
+    m_configFile += m_journal->uid();
+
+    // no config yet? -> use the default display config
+    if ( !KIO::NetAccess::exists( KURL( m_configFile ), true, 0 ) )
+    {
+        KURL src( KGlobal::dirs()->findResource( "config", "knotesrc" ) );
+        KURL dst( m_configFile );
+
+        // "fill" the config file with the default config
+        KIO::NetAccess::file_copy( src, dst, -1, true, false, 0 );
+    }
 
     // load the display configuration of the note
     KSimpleConfig config( m_configFile );
@@ -224,10 +238,9 @@ void KNote::saveData()
 {
     m_journal->setSummary( m_label->text() );
     m_journal->setDescription( m_editor->text() );
-    m_editor->setModified( false );
 
-    // TODO: call m_calendar.update( this ) in knotesapp?
-    emit sigSaveData();
+    emit sigDataChanged();
+    m_editor->setModified( false );
 }
 
 void KNote::saveConfig() const
@@ -372,6 +385,9 @@ void KNote::slotKill( bool force )
     {
         return;
     }
+
+    if ( !KIO::NetAccess::del( KURL(m_configFile), this ) )
+        kdError(5500) << "Can't remove the note config: " << m_configFile << endl;
 
     emit sigKillNote( m_journal );
 }

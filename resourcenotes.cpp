@@ -30,8 +30,6 @@
  your version.
 *******************************************************************/
 
-#include <libkcal/icalformat.h>
-
 #include "resourcenotes.h"
 
 

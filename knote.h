@@ -32,7 +32,6 @@
 class QLabel;
 
 class KXMLGUIBuilder;
-class KXMLGUIFactory;
 
 class KPopupMenu;
 class KNoteButton;
@@ -83,10 +82,10 @@ public slots:
     void slotUpdateDesktopActions();
 
 signals:
-    void sigNewNote();
-    void sigKillNote( KCal::Journal* );
+    void sigRequestNewNote();
     void sigNameChanged();
-    void sigSaveData();
+    void sigDataChanged();
+    void sigKillNote( KCal::Journal* );
 
 protected:
     virtual void showEvent( QShowEvent* );
@@ -124,8 +123,6 @@ private:
 
     KPopupMenu *m_menu;
     KPopupMenu *m_edit_menu;
-
-    KXMLGUIFactory *factory;
 };
 
 #endif

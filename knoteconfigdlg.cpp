@@ -86,7 +86,7 @@ void KNoteConfigDlg::makeDisplayPage()
 
     m_config->setGroup( "WindowDisplay" );
     ulong state = m_global ? m_config->readUnsignedLongNumEntry( "state", NET::SkipTaskbar )
-                           : KWin::info( parentWidget()->winId() ).state;
+                           : KWin::windowInfo( parentWidget()->winId() ).state();
 
     m_skipTaskbarSwitch = new QCheckBox( i18n("&Show note in taskbar"), displayPage );
     m_skipTaskbarSwitch->setChecked( !(state & NET::SkipTaskbar) );

@@ -1,5 +1,3 @@
-KDE_OPTIONS = nofinal
-
 INCLUDES        = -I$(top_srcdir) $(all_includes)
 
 SUBDIRS         = . pics icons

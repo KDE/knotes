@@ -225,7 +225,6 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     }
 
     journal->setDescription( text );
-    journal->addAttachment( new Attachment( configFile, CONFIG_MIME ) );
 
     if ( !infile.remove() )
         kdWarning(5500) << k_funcinfo << "Could not delete input file: \"" << infile.name() << "\"" << endl;
@@ -268,6 +267,5 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
     else
         kdWarning(5500) << k_funcinfo << "Could not open data file: \"" << infile.name() << "\"" << endl;
 
-    journal->addAttachment( new Attachment( configFile, CONFIG_MIME ) );
     return true;
 }

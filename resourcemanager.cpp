@@ -33,25 +33,13 @@
 
 #include "resourcemanager.h"
 #include "resourcelocal.h"
-#include "knotesapp.h"
-#include "knote.h"
-#include "version.h"
 
 #include <libkcal/journal.h>
-#include <libkcal/attachment.h>
-
-#include <klocale.h>
-#include <kstandarddirs.h>
-#include <kio/netaccess.h>
-
-#include <qdir.h>
 
 
-ResourceManager::ResourceManager( KNotesApp *app )
-    : QObject( app, "Resource Manager" ), m_app( app )
+ResourceManager::ResourceManager()
+    : QObject( 0, "Resource Manager" )
 {
-    m_noteList.setAutoDelete( true );
-
     m_manager = new KRES::Manager<ResourceNotes>( "notes" );
     m_manager->addObserver( this );
     m_manager->readConfig();
@@ -59,9 +47,7 @@ ResourceManager::ResourceManager( KNotesApp *app )
 
 ResourceManager::~ResourceManager()
 {
-    blockSignals( true );
-    m_noteList.clear();
-    blockSignals( false );
+    delete m_manager;
 }
 
 void ResourceManager::load()
@@ -92,125 +78,33 @@ void ResourceManager::save()
         (*it)->save();
 }
 
-void ResourceManager::saveConfigs()
+// when adding a new note, make sure a config file exists!!
+
+void ResourceManager::addNewNote( KCal::Journal *journal )
 {
-    QDictIterator<KNote> it( m_noteList );
-    for ( ; it.current(); ++it )
-        it.current()->saveConfig();
-}
-
-QString ResourceManager::newNote( const QString& name, const QString& text )
-{
-    // create the new note
-    KCal::Journal *note = new KCal::Journal();
-
-    // new notes have the current date/time as title if none was given
-    if ( !name.isEmpty() )
-        note->setSummary( name );
-    else
-        note->setSummary( KGlobal::locale()->formatDateTime( QDateTime::currentDateTime() ) );
-    note->setDescription( text );
-
     // TODO: Make this configurable
     ResourceNotes *resource = m_manager->standardResource();
     if ( resource )
-        resource->addNote( note );
+        resource->addNote( journal );
     else
-        kdDebug(5500) << "ResourceManager::newNote(): no resource" << endl;
-
-    return note->uid();
+        kdWarning(5500) << k_funcinfo << "no resource!" << endl;
 }
 
 void ResourceManager::registerNote( ResourceNotes *resource,
-                                    KCal::Journal *journal, bool loaded )
+    KCal::Journal *journal )
 {
-    // KOrganizers journals don't have attachments -> use default
-    // display config
-    if ( journal->attachments(CONFIG_MIME).isEmpty() )
-    {
-        // Set the name of the config file...
-        QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
-        QString file = noteDir.absFilePath( journal->uid() );
-        KURL src( KGlobal::dirs()->findResource( "config", "knotesrc" ) );
-        KURL dst( file );
-
-        // ...and "fill" it with the default config
-        KIO::NetAccess::file_copy( src, dst, -1, true, m_app );
-        journal->addAttachment( new KCal::Attachment( file, CONFIG_MIME ) );
-    }
-
-    if ( journal->summary().isNull() && journal->dtStart().isValid() )
-    {
-        QString s = KGlobal::locale()->formatDateTime( journal->dtStart() );
-        journal->setSummary( s );
-    }
-
-    // FIXME: if attachment is there but the file isn't: CREATE IT!!!!
-
-    KNote *newNote = new KNote( m_app, m_app->domDocument(), journal );
-    m_noteList.insert( newNote->noteId(), newNote );
-    m_resourceMap[ newNote ] = resource;
-
-    connect( newNote, SIGNAL(sigNewNote()), m_app, SLOT(newNote()) );
-    connect( newNote, SIGNAL(sigKillNote( KCal::Journal* )),
-             this,    SLOT(slotNoteKilled( KCal::Journal* )) );
-    connect( newNote, SIGNAL(sigNameChanged()),
-             this,    SIGNAL(sigNotesChanged()) );
-    connect( newNote, SIGNAL(sigSaveData()), this, SLOT(save()) );
-
-    // FIXME: remove!
-    if( !loaded )
-    {
-        // This is a new note
-        emit sigNotesChanged();
-        m_app->showNote( newNote );
-    }
+    // TODO: only emit the signal if the journal is new?
+    m_resourceMap.insert( journal->uid(), resource );
+    emit sigRegisteredNote( journal );
 }
 
-void ResourceManager::slotNoteKilled( KCal::Journal *journal )
+void ResourceManager::deleteNote( KCal::Journal *journal )
 {
+    QString uid = journal->uid();
+
     // Remove the journal from the resource it came from
-    m_resourceMap[ m_noteList[ journal->uid() ] ]->deleteNote( journal );
-    m_resourceMap.remove( m_noteList[ journal->uid() ] );
-
-    // Kill the KNote object
-    m_noteList.remove( journal->uid() );
-
-    QString configFile = journal->attachments( CONFIG_MIME ).first()->uri();
-    if ( !QDir::home().remove( configFile ) )
-        kdError(5500) << "Can't remove the note config: "
-                      << configFile << endl;
-    save();
-    emit sigNotesChanged();
-}
-
-int ResourceManager::count() const
-{
-    return m_noteList.count();
-}
-
-QMap<QString,QString> ResourceManager::notes() const
-{
-    QMap<QString,QString> notes;
-    QDictIterator<KNote> it( m_noteList );
-
-    for ( ; it.current(); ++it )
-        notes.insert( it.current()->noteId(), it.current()->name() );
-
-    return notes;
-}
-
-void ResourceManager::sync( const QString& app )
-{
-    QDictIterator<KNote> it( m_noteList );
-
-    for ( ; it.current(); ++it )
-        it.current()->sync( app );
-}
-
-KNote *ResourceManager::note( const QString& id )
-{
-    return m_noteList[id];
+    m_resourceMap[ uid ]->deleteNote( journal );
+    m_resourceMap.remove( uid );
 }
 
 void ResourceManager::resourceAdded( ResourceNotes *resource )
@@ -225,12 +119,14 @@ void ResourceManager::resourceAdded( ResourceNotes *resource )
         resource->load();
 }
 
-void ResourceManager::resourceModified( ResourceNotes * /*resource*/ )
+void ResourceManager::resourceModified( ResourceNotes *resource )
 {
+    kdDebug(5500) << "Resource modified: " << resource->resourceName() << endl;
 }
 
-void ResourceManager::resourceDeleted( ResourceNotes * /*resource*/ )
+void ResourceManager::resourceDeleted( ResourceNotes *resource )
 {
+    kdDebug(5500) << "Resource deleted: " << resource->resourceName() << endl;
 }
 
 

@@ -22,6 +22,7 @@
 #define KNOTESAPP_H
 
 #include <qstring.h>
+#include <qdict.h>
 #include <qptrlist.h>
 #include <qlabel.h>
 
@@ -36,15 +37,16 @@ class KPopupMenu;
 class KAction;
 class KActionMenu;
 class KGlobalAccel;
-class KXMLGUIFactory;
 class ResourceManager;
+
+namespace KCal {
+    class Journal;
+}
 
 
 class KNotesApp : public QLabel, virtual public KNotesIface, public KSessionManaged,
     public KXMLGUIBuilder, virtual public KXMLGUIClient
 {
-    friend class ResourceManager;
-
     Q_OBJECT
 public:
     KNotesApp();
@@ -85,14 +87,20 @@ protected slots:
     void slotPreferences() const;
     void slotConfigureAccels();
 
-    void slotQuit();
+    void slotNoteKilled( KCal::Journal *journal );
 
-private slots:
-    void updateNoteActions();
-    void updateGlobalAccels();
+    void slotQuit();
 
 private:
     void showNote( KNote *note ) const;
+    void saveConfigs();
+
+private slots:
+    void saveNotes();
+    void updateNoteActions();
+    void updateGlobalAccels();
+
+    void createNote( KCal::Journal *journal );
 
 private:
     class KNoteActionList : public QPtrList<KAction>
@@ -101,16 +109,15 @@ private:
         virtual int compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 );
     };
 
-    ResourceManager* m_manager;
+    ResourceManager *m_manager;
 
+    QDict<KNote>    m_noteList;
     KNoteActionList m_noteActions;
 
-    KPopupMenu *m_note_menu;
-    KPopupMenu *m_context_menu;
+    KPopupMenu      *m_note_menu;
+    KPopupMenu      *m_context_menu;
 
-    KXMLGUIFactory *factory;
-
-    KGlobalAccel *globalAccel;
+    KGlobalAccel    *m_globalAccel;
 };
 
 #endif

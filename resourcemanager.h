@@ -50,46 +50,28 @@ class ResourceManager : public QObject,
 {
     Q_OBJECT
 public:
-    ResourceManager( KNotesApp *app );
+    ResourceManager();
     virtual ~ResourceManager();
 
     void load();
-    void saveConfigs();
-    void sync( const QString& app );
+    void save();
 
-    QString newNote( const QString& name, const QString& text );
+    void addNewNote( KCal::Journal *journal );
+    void registerNote( ResourceNotes *resource, KCal::Journal *journal );
 
-    int count() const;
-    KNote* note( const QString& );
-    QMap<QString,QString> notes() const;
-
-    QDictIterator<KNote> iterator()
-    {
-        return QDictIterator<KNote>( m_noteList );
-    }
+    void deleteNote( KCal::Journal *journal );
 
     // from the ManagerObserver interface
     virtual void resourceAdded( ResourceNotes *resource );
     virtual void resourceModified( ResourceNotes *resource );
     virtual void resourceDeleted( ResourceNotes *resource );
 
-    void registerNote( ResourceNotes *resource,
-                       KCal::Journal *journal, bool loaded );
 signals:
-    void sigNotesChanged();
-
-public slots:
-    void save();
-
-private slots:
-    void slotNoteKilled( KCal::Journal* );
+    void sigRegisteredNote( KCal::Journal *journal );
 
 private:
     KRES::Manager<ResourceNotes> *m_manager;
-    QMap<KNote *, ResourceNotes *> m_resourceMap;
-    QDict<KNote> m_noteList;
-
-    KNotesApp *m_app;
+    QDict<ResourceNotes> m_resourceMap;
 };
 
 

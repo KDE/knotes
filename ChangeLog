@@ -1,6 +1,21 @@
 ChangeLog for KNotes
 ====================
 
+2004/03/11  Michael Brade <brade@kde.org>
+
+    * massive internal improvements, no hacks anymore, only beautiful and
+      clean code left :-)
+    * ResourceManager now solely responsible for loading and saving the
+      journals and the resources
+    * KNotesApp provides the GUI for managing the KNote objects and KNote is the
+      only class dealing with the display of a particular note including config
+      file handling
+    * no attachments anymore - notes carry their uid and that is the config file
+      name anyway. Dunno why I introduced the attachments at all in the first
+      place...
+    * KNotes is now "network-enabled" regarding config files: it now only uses
+      KIO::NetAccess for the file handling.
+
 2004/03/09  Michael Brade <brade@kde.org>
 
     * fixed #68127: notes are not really deleted if deleting is the last

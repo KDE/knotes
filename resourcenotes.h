@@ -34,14 +34,12 @@
 #define RESOURCENOTES_H
 
 #include <kresources/resource.h>
-#include <libkcal/calendarlocal.h>
 
 class KConfig;
 class ResourceManager;
 
 namespace KCal {
     class Journal;
-    class ICalFormat;
 }
 
 
@@ -75,7 +73,6 @@ public:
     ResourceManager *manager() const            { return mManager; }
 
 protected:
-    KCal::CalendarLocal mCalendar;
     ResourceManager *mManager;
 };
 
