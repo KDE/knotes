@@ -589,6 +589,7 @@ void KNote::slotClose()
 
     m_editor->clearFocus();
     m_config->setHideNote( true );
+    m_config->setPosition( pos() );
 
     // just hide the note so it's still available from the dock window
     hide();
@@ -1006,6 +1007,7 @@ void KNote::showEvent( QShowEvent * )
         slotUpdateKeepAboveBelow();
         slotUpdateShowInTaskbar();
         toDesktop( m_config->desktop() );
+        move( m_config->position() );
         m_config->setHideNote( false );
     }
 }
