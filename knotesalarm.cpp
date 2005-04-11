@@ -69,8 +69,6 @@ void KNotesAlarm::checkAlarms()
         notes += incidence->summary();
     }
 
-    KNotesGlobalConfig::writeConfig();
-
     if ( !notes.isEmpty() )
         KMessageBox::informationList( 0, i18n("The following notes triggered alarms:"), notes, i18n("Alarm") );
 }

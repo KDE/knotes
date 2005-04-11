@@ -580,6 +580,7 @@ void KNotesApp::acceptConnection()
 
 void KNotesApp::saveNotes()
 {
+    KNotesGlobalConfig::writeConfig();
     m_manager->save();
 }
 
