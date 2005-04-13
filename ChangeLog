@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2005/04/13  Michael Brade <brade@kde.org>
+
+    * fixed #103777: save note as plain text actually saved it as richt text
+      and vice versa
+
 2005/04/11  Michael Brade <brade@kde.org>
 
     * fixed #101875: also save the note's position when hiding it

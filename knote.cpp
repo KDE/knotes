@@ -752,9 +752,9 @@ void KNote::slotSaveAs()
         QTextStream stream( &file );
         // convert rich text to plain text first
         if ( convert && convert->isChecked() )
-            stream << text();
-        else
             stream << plainText();
+        else
+            stream << text();
     }
 }
 
