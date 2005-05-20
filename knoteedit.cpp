@@ -174,17 +174,7 @@ void KNoteEdit::setTextFont( const QFont& font )
 
 void KNoteEdit::setTextColor( const QColor& color )
 {
-    if ( textFormat() == PlainText )
-    {
-        int pFrom, pTo, iFrom, iTo;
-        getSelection( &pFrom, &iFrom, &pTo, &iTo );
-        selectAll();
-        setColor( color );
-        setSelection( pFrom, iFrom, pTo, iTo );
-    }
-    else
-        setColor( color );
-
+    setColor( color );
     colorChanged( color );
 }
 

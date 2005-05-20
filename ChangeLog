@@ -1,10 +1,6 @@
 ChangeLog for KNotes
 ====================
 
-2005/05/19  Michael Brade <brade@kde.org>
-
-    * make changing the text color in plain text notes work again
-
 2005/04/13  Michael Brade <brade@kde.org>
 
     * fixed #103777: save note as plain text actually saved it as richt text
