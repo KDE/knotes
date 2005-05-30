@@ -57,8 +57,9 @@ perhaps:
  * transparent notes
  * shadow for the notes
  * icons for the notes (small, put in the note menu and note title)
- * gradients
+ * background images (maybe even SVG)
  * action to keep all notes on top
+ * write an IMAP resource that works without kolab?
 
 older TODOs from Wynn:
  * inserting calendar

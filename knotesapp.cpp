@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2004, The KNotes Developers
+ Copyright (c) 1997-2005, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -103,6 +103,9 @@ KNotesApp::KNotesApp()
     QToolTip::add( this, i18n( "KNotes: Sticky notes for KDE" ) );
     setBackgroundMode( X11ParentRelative );
     setPixmap( KSystemTray::loadIcon( "knotes" ) );
+
+    // set the initial style
+    KNote::setStyle( KNotesGlobalConfig::style() );
 
     // create the GUI...
     new KAction( i18n("New Note"), "filenew", 0,
@@ -477,6 +480,7 @@ void KNotesApp::slotPreferences()
     KNoteConfigDlg *dialog = new KNoteConfigDlg( 0, i18n("Settings"), this,
                                                  "KNotes Settings" );
     connect( dialog, SIGNAL(settingsChanged()), this, SLOT(updateNetworkListener()) );
+    connect( dialog, SIGNAL(settingsChanged()), this, SLOT(updateStyle()) );
     dialog->show();
 }
 
@@ -665,6 +669,15 @@ void KNotesApp::updateNetworkListener()
         m_listener->setPort( KNotesGlobalConfig::port() );
         m_listener->listen();
     }
+}
+
+void KNotesApp::updateStyle()
+{
+    KNote::setStyle( KNotesGlobalConfig::style() );
+
+    QDictIterator<KNote> it( m_noteList );
+    for ( ; it.current(); ++it )
+        QApplication::postEvent( *it, new QEvent( QEvent::LayoutHint ) );
 }
 
 #include "knotesapp.moc"

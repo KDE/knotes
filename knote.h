@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2004, The KNotes Developers
+ Copyright (c) 1997-2005, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -75,6 +75,8 @@ public:
     bool isNew( const QString& app ) const;
     bool isModified( const QString& app ) const;
 
+    static void setStyle( int style );
+
 public slots:
     void slotKill( bool force = false );
 
@@ -89,6 +91,7 @@ signals:
     void sigFindFinished();
 
 protected:
+    virtual void drawFrame( QPainter* );
     virtual void showEvent( QShowEvent* );
     virtual void resizeEvent( QResizeEvent* );
     virtual void closeEvent( QCloseEvent* );
@@ -124,18 +127,25 @@ private slots:
     void slotUpdateShowInTaskbar();
     void slotUpdateDesktopActions();
 
+    void slotUpdateViewport( int, int );
+
 private:
     void updateFocus();
+    void updateMask();
     void updateLayout();
     void updateLabelAlignment();
+    void updateBackground( int offset = -1 );
+
     void setColor( const QColor&, const QColor& );
+
+    void createFold();
 
     void toDesktop( int desktop );
 
     QString toPlainText( const QString& );
 
 private:
-    QLabel        *m_label;
+    QLabel        *m_label, *m_pushpin, *m_fold;
     KNoteButton   *m_button;
     KToolBar      *m_tool;
     KNoteEdit     *m_editor;
@@ -155,6 +165,8 @@ private:
     KToggleAction *m_keepBelow;
 
     KSharedConfig::Ptr m_kwinConf;
+
+    static int s_ppOffset;
 };
 
 #endif

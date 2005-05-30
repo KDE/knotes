@@ -31,4 +31,14 @@
 
     <entry name="KnownHosts" type="StringList"/>
   </group>
+
+  <group name="Style">
+    <entry name="Style" type="Enum">
+      <default>Fancy</default>
+      <choices>
+        <choice name="Plain"/>
+        <choice name="Fancy"/>
+      </choices>
+    </entry>
+  </group>
 </kcfg>

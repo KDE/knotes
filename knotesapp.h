@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2004, The KNotes Developers
+ Copyright (c) 1997-2005, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -112,6 +112,7 @@ private slots:
     void updateNoteActions();
     void updateGlobalAccels();
     void updateNetworkListener();
+    void updateStyle();
 
     void createNote( KCal::Journal *journal );
     void killNote( KCal::Journal *journal );

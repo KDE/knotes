@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2004, The KNotes Developers
+ Copyright (c) 1997-2005, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -105,6 +105,8 @@ int main( int argc, char* argv[] )
     aboutData.addAuthor("Daniel Martin", I18N_NOOP("Network Interface"), "daniel.martin@pirack.com");
     aboutData.addAuthor("Bo Thorsen", I18N_NOOP("Started KDE Resource Framework Integration"), "bo@sonofthor.dk");
 
+    aboutData.addCredit("Bera Debajyoti", I18N_NOOP("Idea and initial code for the new look&feel"),
+                        "debajyotibera@gmail.com");
     aboutData.addCredit("Matthias Ettrich", 0, "ettrich@kde.org");
     aboutData.addCredit("David Faure", 0, "faure@kde.org");
     aboutData.addCredit("Matthias Kiefer", 0, "kiefer@kde.org");

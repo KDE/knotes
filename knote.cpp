@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2004, The KNotes Developers
+ Copyright (c) 1997-2005, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -19,6 +19,7 @@
 *******************************************************************/
 
 #include <qlabel.h>
+#include <qdrawutil.h>
 #include <qsize.h>
 #include <qsizegrip.h>
 #include <qbitmap.h>
@@ -66,6 +67,8 @@
 #include "knotesnetsend.h"
 #include "version.h"
 
+#include "pushpin.xpm"
+
 #include <kwin.h>
 #include <netwm.h>
 
@@ -75,11 +78,13 @@ using namespace KCal;
 
 extern Time qt_x_time;
 
+int KNote::s_ppOffset = 0;
 
 KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *name )
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorder | WDestructiveClose ),
-    m_label( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ), m_config( 0 ),
-    m_journal( j ), m_find( 0 ), m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) )
+    m_label( 0 ), m_pushpin( 0 ), m_fold( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ),
+    m_config( 0 ), m_journal( j ), m_find( 0 ),
+    m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) )
 {
     // be explicit
     KWin::setIcons( winId(), kapp->icon(), kapp->miniIcon() );
@@ -146,6 +151,8 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
     // create the note header, button and label...
     m_label = new QLabel( this );
+    m_label->setFrameStyle( NoFrame );
+    m_label->setLineWidth( 0 );
     m_label->installEventFilter( this );  // receive events (for dragging & action menu)
     setName( m_journal->summary() );      // don't worry, no signals are connected at this stage yet
 
@@ -156,6 +163,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     m_editor = new KNoteEdit( actionCollection(), this );
     m_editor->installEventFilter( this ); // receive events (for modified)
     m_editor->viewport()->installEventFilter( this );
+    connect( m_editor, SIGNAL(contentsMoving( int, int )), this, SLOT(slotUpdateViewport( int, int )));
 
     KXMLGUIBuilder builder( this );
     KXMLGUIFactory factory( &builder, this );
@@ -200,15 +208,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     p.drawPolygon( array );
     p.end();
     m_editor->cornerWidget()->setMask( mask );
-
-    // set up the look&feel of the note
-    setMinimumSize( 20, 20 );
-    setFrameStyle( WinPanel | Raised );
-    setLineWidth( 1 );
-
-    m_editor->setMargin( 5 );
-    m_editor->setFrameStyle( NoFrame );
-    m_editor->setBackgroundMode( PaletteBase );
+    m_editor->cornerWidget()->setBackgroundMode( PaletteBase );
 
     // the config file location
     QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
@@ -247,6 +247,39 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
         m_config->writeConfig();
     }
+
+    // set up the look&feel of the note
+    setMinimumSize( 20, 20 );
+    setLineWidth( 1 );
+    setMargin( 0 );
+
+    m_editor->setMargin( 0 );
+    m_editor->setFrameStyle( NoFrame );
+    m_editor->setBackgroundOrigin( WindowOrigin );
+
+    // can be done here since this doesn't pick up changes while KNotes is running anyway
+    bool closeLeft = false;
+    m_kwinConf->setGroup( "Style" );
+    if ( m_kwinConf->readBoolEntry( "CustomButtonPositions" ) )
+        closeLeft = m_kwinConf->readEntry( "ButtonsOnLeft" ).find( 'X' ) > -1;
+
+    QPixmap pushpin_pix;
+    if ( closeLeft )
+        pushpin_pix = QPixmap( QPixmap( pushpin_xpm ).convertToImage().mirror( true, false ) );
+    else
+        pushpin_pix = QPixmap( pushpin_xpm );
+
+    // the pushpin label at the top left or right corner
+    m_pushpin = new QLabel( this );
+    m_pushpin->setScaledContents( true );
+    m_pushpin->setBackgroundMode( NoBackground );
+    m_pushpin->setPixmap( pushpin_pix );
+    m_pushpin->resize( pushpin_pix.size() );
+
+    // fold label at bottom right corner
+    m_fold = new QLabel( this );
+    m_fold->setScaledContents( true );
+    m_fold->setBackgroundMode( NoBackground );
 
     // load the display configuration of the note
     width = m_config->width();
@@ -292,6 +325,10 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
     // read configuration settings...
     slotApplyConfig();
+
+    // create the mask for the fold---to be done after slotApplyConfig(),
+    // which calls createFold()
+    m_fold->setMask( QRegion( m_fold->pixmap()->createHeuristicMask() ) );
 
     // if this is a new note put on current desktop - we can't use defaults
     // in KConfig XT since only _changes_ will be stored in the config file
@@ -545,6 +582,14 @@ bool KNote::isModified( const QString& app ) const
         return false;
     else
         return true;
+}
+
+void KNote::setStyle( int style )
+{
+    if ( style == KNotesGlobalConfig::EnumStyle::Plain )
+        s_ppOffset = 0;
+    else
+        s_ppOffset = 12;
 }
 
 
@@ -844,6 +889,11 @@ void KNote::slotUpdateDesktopActions()
         m_toDesktop->setCurrentItem( wm_client.desktop() + 1 ); // compensate for separator (+1)
 }
 
+void KNote::slotUpdateViewport( int /*x*/, int y )
+{
+    if ( s_ppOffset )
+        updateBackground( y );
+}
 
 // -------------------- private methods -------------------- //
 
@@ -868,14 +918,20 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
     newpalette.setColor( QColorGroup::Button,     bg );
 
     // the shadow
-    newpalette.setColor( QColorGroup::Midlight, bg.light(110) );
-    newpalette.setColor( QColorGroup::Shadow, bg.dark(116) );  // 132 ?
+    newpalette.setColor( QColorGroup::Midlight, bg.light(150) );
+    newpalette.setColor( QColorGroup::Shadow, bg.dark(116) );
     newpalette.setColor( QColorGroup::Light, bg.light(180) );
-    newpalette.setColor( QColorGroup::Dark, bg.dark(108) );
+    if ( s_ppOffset )
+        newpalette.setColor( QColorGroup::Dark, bg.dark(200) );
+    else
+        newpalette.setColor( QColorGroup::Dark, bg.dark(108) );
     setPalette( newpalette );
 
     // set the text color
     m_editor->setTextColor( fg );
+
+    // set the background color or gradient
+    updateBackground();
 
     // set darker value for the hide button...
     QPalette darker = palette();
@@ -895,9 +951,25 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
 
     m_editor->setSelectionAttributes( 1, sel, true );
 
-    // to set the color of the title
+    // update the color of the fold
+    createFold();
+
+    // update the color of the title
     updateFocus();
     emit sigColorChanged();
+}
+
+void KNote::createFold()
+{
+    QPixmap fold( 15, 15 );
+    QPainter foldp( &fold );
+    foldp.setPen( Qt::NoPen );
+    foldp.setBrush( palette().active().dark() );
+    QPointArray foldpoints( 3 );
+    foldpoints.putPoints( 0, 3, 0, 0, 14, 0, 0, 14 );
+    foldp.drawPolygon( foldpoints );
+    foldp.end();
+    m_fold->setPixmap( fold );
 }
 
 void KNote::updateLabelAlignment()
@@ -932,10 +1004,11 @@ void KNote::updateFocus()
             setGeometry( x(), y(), width(), height() - m_tool->height() );
             updateLayout();     // to update the minimum height
         }
+
+        m_fold->hide();
     }
     else
     {
-        m_label->setBackgroundColor( palette().active().background() );
         m_button->hide();
         m_editor->cornerWidget()->hide();
 
@@ -945,59 +1018,171 @@ void KNote::updateFocus()
             setGeometry( x(), y(), width(), height() - m_tool->height() );
             updateLayout();     // to update the minimum height
         }
+
+        if ( s_ppOffset )
+        {
+            m_label->setBackgroundColor( palette().active().midlight() );
+            m_fold->show();
+        }
+        else
+            m_label->setBackgroundColor( palette().active().background() );
     }
+}
+
+void KNote::updateMask()
+{
+    if ( !s_ppOffset )
+    {
+        clearMask();
+        return;
+    }
+
+    int w = width();
+    int h = height();
+    QRegion reg( 0, s_ppOffset, w, h - s_ppOffset );
+
+    const QBitmap *pushpin_bitmap = m_pushpin->pixmap()->mask();
+    QRegion pushpin_reg( *pushpin_bitmap );
+    m_pushpin->setMask( pushpin_reg );
+    pushpin_reg.translate( m_pushpin->x(), m_pushpin->y() );
+
+    if ( !hasFocus() )
+    {
+        QPointArray foldpoints( 3 );
+        foldpoints.putPoints( 0, 3, w-15, h, w, h-15, w, h );
+        QRegion fold( foldpoints, false );
+        setMask( reg.unite( pushpin_reg ).subtract( fold ) );
+    }
+    else
+        setMask( reg.unite( pushpin_reg ) );
+}
+
+void KNote::updateBackground( int y_offset )
+{
+    if ( !s_ppOffset )
+    {
+        m_editor->setPaper( QBrush( colorGroup().background() ) );
+        return;
+    }
+
+    int w = m_editor->visibleWidth();
+    int h = m_editor->visibleHeight();
+
+    // in case y_offset is not set, calculate y_offset as the content
+    // y-coordinate of the top-left point of the viewport - which is essentially
+    // the vertical scroll amount
+    if ( y_offset == -1 )
+        y_offset = m_editor->contentsY();
+
+    y_offset = y_offset % h;
+
+    QImage grad_img( w, h, 32 );
+    QRgb rgbcol;
+    QColor bg = palette().active().background();
+
+    for ( int i = 0; i < h; ++i )
+    {
+        // if the scrollbar has moved, then adjust the gradient by the amount the
+        // scrollbar moved -- so that the background gradient looks ok when tiled
+
+        // the lightness is calculated as follows:
+        // if i >= y, then lightness = 150 - (i-y)*75/h;
+        // if i < y, then lightness = 150 - (i+h-y)*75/h
+
+        int i_1 = 150 - 75 * ((i - y_offset + h) % h) / h;
+        rgbcol = bg.light( i_1 ).rgb();
+        for ( int j = 0; j < w; ++j )
+            grad_img.setPixel( j, i, rgbcol );
+    }
+
+    // setPaletteBackgroundPixmap makes QTextEdit::color() stop working!!
+    m_editor->setPaper( QBrush( Qt::black, QPixmap( grad_img ) ) );
 }
 
 void KNote::updateLayout()
 {
-    // DAMN, Qt still has no support for widgets with a fixed aspect ratio :-(
-    // So we have to write our own layout manager...
-
     const int headerHeight = m_label->sizeHint().height();
     const int margin = m_editor->margin();
-    static const int border = 2;
     bool closeLeft = false;
 
     m_kwinConf->setGroup( "Style" );
     if ( m_kwinConf->readBoolEntry( "CustomButtonPositions" ) )
         closeLeft = m_kwinConf->readEntry( "ButtonsOnLeft" ).find( 'X' ) > -1;
 
+    if ( s_ppOffset )
+    {
+        if ( !m_editor->paper().pixmap() )  // just changed the style
+            setColor( palette().active().foreground(), palette().active().background() );
+
+        m_pushpin->show();
+        setFrameStyle( Panel | Raised );
+
+        if ( closeLeft )
+            m_pushpin->move( width() - m_pushpin->width(), 0 );
+        else
+            m_pushpin->move( 0, 0 );
+    }
+    else
+    {
+        if ( m_editor->paper().pixmap() )  // just changed the style
+            setColor( palette().active().foreground(), palette().active().background() );
+
+        setFrameStyle( WinPanel | Raised );
+        m_pushpin->hide();
+        m_fold->hide();
+    }
+
     m_button->setGeometry(
-        closeLeft ? frameRect().x() + border
-                  : frameRect().width() - headerHeight - border,
-        frameRect().y() + border,
+        closeLeft ? contentsRect().x() : contentsRect().width() - headerHeight,
+        contentsRect().y() + s_ppOffset,
         headerHeight,
         headerHeight
     );
 
     m_label->setGeometry(
-        frameRect().x() + border, frameRect().y() + border,
-        frameRect().width() - border*2, headerHeight
+        contentsRect().x(), contentsRect().y() + s_ppOffset,
+        contentsRect().width(), headerHeight
     );
 
-    m_editor->setGeometry(
-        contentsRect().x(),
-        contentsRect().y() + headerHeight + border,
-        contentsRect().width(),
-        contentsRect().height() - headerHeight -
-                (m_tool->isHidden() ? 0 : m_tool->height()) - border*2
-    );
+    m_editor->setGeometry( QRect(
+        QPoint( contentsRect().x(),
+                contentsRect().y() + headerHeight + s_ppOffset ),
+        QPoint( contentsRect().right(),
+                contentsRect().bottom() - (m_tool->isHidden() ? 0 : m_tool->height()) )
+    ) );
 
     m_tool->setGeometry(
-        contentsRect().x(), contentsRect().height() - m_tool->height(),
-        contentsRect().width(), m_tool->height()
+        contentsRect().x(),
+        contentsRect().bottom() - m_tool->height() + 1,
+        contentsRect().width(),
+        m_tool->height()
     );
 
+    if ( s_ppOffset )
+        m_fold->move( width() - 15, height() - 15 );
+
     setMinimumSize(
-        m_editor->cornerWidget()->width() + margin*2 + border*2,
-        headerHeight + (m_tool->isHidden() ? 0 : m_tool->height()) +
-                m_editor->cornerWidget()->height() + margin*2 + border*2
+        m_editor->cornerWidget()->width() + margin*2,
+        headerHeight + s_ppOffset + (m_tool->isHidden() ? 0 : m_tool->height()) +
+                m_editor->cornerWidget()->height() + margin*2
     );
 
     updateLabelAlignment();
+    updateMask();
+    updateBackground();
 }
 
 // -------------------- protected methods -------------------- //
+
+void KNote::drawFrame( QPainter *p )
+{
+    QRect r = frameRect();
+    r.setTop( s_ppOffset );
+    if ( s_ppOffset )
+        qDrawShadePanel( p, r, colorGroup(), false, lineWidth() );
+    else
+        qDrawWinPanel( p, r, colorGroup(), false );
+}
 
 void KNote::showEvent( QShowEvent * )
 {

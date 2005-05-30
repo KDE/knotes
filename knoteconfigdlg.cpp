@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2004, The KNotes Developers
+ Copyright (c) 1997-2005, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -21,6 +21,7 @@
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qcheckbox.h>
+#include <qcombobox.h>
 #include <qhgroupbox.h>
 #include <qtabwidget.h>
 
@@ -67,6 +68,8 @@ KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
                  i18n("Action Settings") );
         addPage( makeNetworkPage(), i18n("Network"), "network",
                  i18n("Network Settings") );
+        addPage( makeStylePage(), i18n("Style"), "style",
+                 i18n("Style Settings") );
     }
 
     config->setVersion( KNOTES_VERSION );
@@ -219,6 +222,24 @@ QWidget *KNoteConfigDlg::makeNetworkPage()
     layout->addWidget( kcfg_Port, 2, 1 );
 
     return networkPage;
+}
+
+QWidget *KNoteConfigDlg::makeStylePage()
+{
+    QWidget *stylePage = new QWidget();
+    QGridLayout *layout = new QGridLayout( stylePage, 2, 2, 0, spacingHint() );
+
+    QLabel *label_Style = new QLabel( i18n("&Style:"), stylePage, "label_Style" );
+    layout->addWidget( label_Style, 0, 0 );
+
+    QComboBox *kcfg_Style = new QComboBox( stylePage, "kcfg_Style" );
+    QStringList list;
+    list << "Plain" << "Fancy";
+    kcfg_Style->insertStringList( list );
+    label_Style->setBuddy( kcfg_Style );
+    layout->addWidget( kcfg_Style, 0, 1 );
+
+    return stylePage;
 }
 
 #include "knoteconfigdlg.moc"

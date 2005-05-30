@@ -1,6 +1,12 @@
 ChangeLog for KNotes
 ====================
 
+2005/05/30  Michael Brade <brade@kde.org>
+
+    * wish #99853: give KNotes a new and fancy style, configurable in the
+      global settings. Thanks to Bera Debajyoti for the initial patch and
+      the idea!
+
 2005/04/13  Michael Brade <brade@kde.org>
 
     * fixed #103777: save note as plain text actually saved it as richt text
