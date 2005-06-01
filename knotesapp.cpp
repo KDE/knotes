@@ -435,9 +435,7 @@ void KNotesApp::slotOpenFindDialog()
     KFindDialog findDia( this, "find_dialog" );
     findDia.setHasSelection( false );
     findDia.setHasCursor( false );
-#if KDE_IS_VERSION(3, 3, 90)
     findDia.setSupportsBackwardsFind( false );
-#endif
 
     if ( findDia.exec() != QDialog::Accepted )
         return;
