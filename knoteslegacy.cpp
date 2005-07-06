@@ -176,7 +176,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     // get the font
     QString fontfamily = input.readLine();
     if ( fontfamily.isEmpty() )
-        fontfamily = QString( "helvetica" );
+        fontfamily = QString( "Sans Serif" );
     uint size = input.readLine().toUInt();
     size = QMAX( size, 4 );
     uint weight = input.readLine().toUInt();
