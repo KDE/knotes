@@ -29,7 +29,7 @@ knotes_COMPILE_FIRST = libknotesconfig.la
 
 kde_module_LTLIBRARIES  = knotes_local.la
 knotes_local_la_SOURCES = resourcelocal_plugin.cpp
-knotes_local_la_LDFLAGS = $(KDE_LDFLAGS) -module $(KDE_PLUGIN)
+knotes_local_la_LDFLAGS = $(KDE_LDFLAGS) $(all_libraries) -module $(KDE_PLUGIN)
 knotes_local_la_LIBADD  = libknotesresources.la libknotesconfig.la \
                           $(top_builddir)/libkcal/libkcal.la -lkdeprint
 
