@@ -31,6 +31,7 @@
 *******************************************************************/
 
 #include "resourcelocal.h"
+#include "resourcelocalconfig.h"
 
 
 class LocalNotesFactory
@@ -42,9 +43,9 @@ public:
         return new ResourceLocal( config );
     }
 
-    KRES::ConfigWidget *configWidget( QWidget * )
+    KRES::ConfigWidget *configWidget( QWidget *parent )
     {
-        return 0;
+        return new ResourceLocalConfig(parent);
     }
 };
 
@@ -53,5 +54,15 @@ extern "C"
     void *init_knotes_local()
     {
         return new LocalNotesFactory();
+    }
+
+    KRES::ConfigWidget *config_widget( QWidget* parent )
+    {
+        return new ResourceLocalConfig( parent, "Configure Local Resource" );
+    }
+
+    KRES::Resource *resource( const KConfig* config )
+    {
+        return new ResourceLocal( config );
     }
 }

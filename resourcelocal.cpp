@@ -38,24 +38,43 @@
 #include <libkcal/icalformat.h>
 
 #include "knotes/resourcelocal.h"
+#include "knotes/resourcelocalconfig.h"
 #include "knotes/resourcemanager.h"
+#include "knotes/resourcenotes.h"
 
 
 
 ResourceLocal::ResourceLocal( const KConfig* config )
     : ResourceNotes( config ), mCalendar( QString::fromLatin1( "UTC" ) )
 {
+    kdDebug(5500) << "ResourceLocal::ResourceLocal()" << endl;
+    setType( "file" );
     if ( !config )
-        setType( "file" );
+    {
+        kdDebug(5500) << "No config, setting default notes.ics" << endl;
+        mURL = KGlobal::dirs()->saveLocation( "data" ) + "knotes/notes.ics";
+    }
+    else
+    {
+        mURL = config->readPathEntry( "NotesURL" );
+        if (mURL.isEmpty())
+            mURL = KGlobal::dirs()->saveLocation( "data" ) + "knotes/notes.ics";
+    }
 }
 
 ResourceLocal::~ResourceLocal()
 {
 }
 
+void ResourceLocal::writeConfig( KConfig* config )
+{
+    KRES::Resource::writeConfig( config );
+    config->writePathEntry( "NotesURL", mURL.prettyURL() );
+}
+
 bool ResourceLocal::load()
 {
-    mCalendar.load( KGlobal::dirs()->saveLocation( "data" ) + "knotes/notes.ics" );
+    mCalendar.load( mURL.path() );
 
     KCal::Journal::List notes = mCalendar.journals();
     KCal::Journal::List::ConstIterator it;
@@ -67,15 +86,13 @@ bool ResourceLocal::load()
 
 bool ResourceLocal::save()
 {
-    QString file = KGlobal::dirs()->saveLocation( "data", "knotes/" ) + "notes.ics";
-
-    if ( !mCalendar.save( file, new KCal::ICalFormat() ) )
+    if ( !mCalendar.save( mURL.path(), new KCal::ICalFormat() ) )
     {
         KMessageBox::error( 0,
                             i18n("<qt>Unable to save the notes to <b>%1</b>. "
                                  "Check that there is sufficient disk space."
                                  "<br>There should be a backup in the same directory "
-                                 "though.</qt>").arg( file ) );
+                                 "though.</qt>").arg( mURL.path() ) );
         return false;
     }
 

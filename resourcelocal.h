@@ -35,6 +35,8 @@
 
 #include "resourcenotes.h"
 
+#include <kurl.h>
+
 #include <libkcal/calendarlocal.h>
 
 
@@ -43,6 +45,8 @@ class ResourceLocal : public ResourceNotes
 public:
     ResourceLocal( const KConfig* );
     virtual ~ResourceLocal();
+
+    virtual void writeConfig( KConfig *config );
 
     /**
      * Load resource data.
@@ -54,6 +58,9 @@ public:
      */
     virtual bool save();
 
+    virtual KURL url() const { return mURL; } ;
+    virtual void setURL(const KURL& url) { mURL = url; } ;
+
     virtual bool addNote( KCal::Journal* );
     virtual bool deleteNote( KCal::Journal* );
 
@@ -61,6 +68,7 @@ public:
 
 protected:
     KCal::CalendarLocal mCalendar;
+    KURL mURL;
 };
 
 

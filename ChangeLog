@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2005/08/17  Alejandro Exojo <suy@badopi.org>
+
+    * Allow the selection of the file where the file resource should store the
+      notes. If no file is found in the config, fall back to the standard one.
+
 2005/05/30  Michael Brade <brade@kde.org>
 
     * wish #99853: give KNotes a new and fancy style, configurable in the
