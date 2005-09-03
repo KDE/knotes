@@ -49,7 +49,7 @@
 #include <kfind.h>
 #include <kprocess.h>
 #include <kinputdialog.h>
-#include <kmdcodec.h>
+#include <kcodecs.h>
 #include <kglobalsettings.h>
 #include <kfiledialog.h>
 #include <kio/netaccess.h>
