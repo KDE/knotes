@@ -73,6 +73,7 @@
 #include <netwm.h>
 
 #include <fixx11h.h>
+#include <QX11Info>
 
 using namespace KCal;
 
@@ -409,7 +410,7 @@ void KNote::saveConfig() const
     m_config->setHeight( height() - (m_tool->isHidden() ? 0 : m_tool->height()) );
     m_config->setPosition( pos() );
 
-    NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
+    NETWinInfo wm_client( QX11Info::display(), winId(), QX11Info::appRootWindow(), NET::WMDesktop );
     if ( wm_client.desktop() == NETWinInfo::OnAllDesktops || wm_client.desktop() > 0 )
         m_config->setDesktop( wm_client.desktop() );
 
@@ -455,7 +456,7 @@ void KNote::setName( const QString& name )
         saveData();
 
     // set the window's name for the taskbar entry to be more helpful (#58338)
-    NETWinInfo note_win( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
+    NETWinInfo note_win( QX11Info::display(), winId(), QX11Info::appRootWindow(), NET::WMDesktop );
     note_win.setName( name.utf8() );
 
     emit sigNameChanged();
@@ -628,7 +629,7 @@ void KNote::slotUpdateReadOnly()
 
 void KNote::slotClose()
 {
-    NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
+    NETWinInfo wm_client( QX11Info::display(), winId(), QX11Info::appRootWindow(), NET::WMDesktop );
     if ( wm_client.desktop() == NETWinInfo::OnAllDesktops || wm_client.desktop() > 0 )
         m_config->setDesktop( wm_client.desktop() );
 
@@ -870,8 +871,8 @@ void KNote::slotUpdateShowInTaskbar()
 
 void KNote::slotUpdateDesktopActions()
 {
-    NETRootInfo wm_root( qt_xdisplay(), NET::NumberOfDesktops | NET::DesktopNames );
-    NETWinInfo wm_client( qt_xdisplay(), winId(), qt_xrootwin(), NET::WMDesktop );
+    NETRootInfo wm_root( QX11Info::display(), NET::NumberOfDesktops | NET::DesktopNames );
+    NETWinInfo wm_client( QX11Info::display(), winId(), QX11Info::appRootWindow(), NET::WMDesktop );
 
     QStringList desktops;
     desktops.append( i18n("&All Desktops") );
@@ -1269,8 +1270,8 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             e->button() == LeftButton ? KWin::raiseWindow( winId() )
                                       : KWin::lowerWindow( winId() );
 
-            XUngrabPointer( qt_xdisplay(), qt_x_time );
-            NETRootInfo wm_root( qt_xdisplay(), NET::WMMoveResize );
+            XUngrabPointer( QX11Info::display(), qt_x_time );
+            NETRootInfo wm_root( QX11Info::display(), NET::WMMoveResize );
             wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(), NET::Move );
             return true;
         }

@@ -26,6 +26,7 @@
 
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
+#include <QX11Info>
 
 #include "knotesapp.h"
 #include "version.h"
@@ -43,11 +44,11 @@ void remove_sm_from_client_leader()
     Atom atoms[ 2 ];
     char *atom_names[ 2 ] = { (char*)"WM_CLIENT_LEADER", (char*)"SM_CLIENT_ID" };
 
-    XInternAtoms( qt_xdisplay(), atom_names, 2, False, atoms );
+    XInternAtoms( QX11Info::display(), atom_names, 2, False, atoms );
 
     QWidget w;
     KXErrorHandler handler; // ignore X errors
-    status = XGetWindowProperty( qt_xdisplay(), w.winId(), atoms[ 0 ], 0, 10000,
+    status = XGetWindowProperty( QX11Info::display(), w.winId(), atoms[ 0 ], 0, 10000,
                                  FALSE, XA_WINDOW, &type, &format,
                                  &nitems, &extra, &data );
 
@@ -56,7 +57,7 @@ void remove_sm_from_client_leader()
         if (data && nitems > 0)
         {
             Window leader = *((Window*) data);
-            XDeleteProperty( qt_xdisplay(), leader, atoms[ 1 ] );
+            XDeleteProperty( QX11Info::display(), leader, atoms[ 1 ] );
         }
         XFree(data);
     }

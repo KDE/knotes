@@ -42,6 +42,7 @@
 
 #include <libkcal/journal.h>
 #include <libkcal/calendarlocal.h>
+#include <QX11Info>
 
 #include "knotesapp.h"
 #include "knote.h"
@@ -99,7 +100,7 @@ KNotesApp::KNotesApp()
     m_noteActions.setAutoDelete( true );
 
     // create the dock widget...
-    KWin::setSystemTrayWindowFor( winId(), qt_xrootwin() );
+    KWin::setSystemTrayWindowFor( winId(), QX11Info::appRootWindow() );
     QToolTip::add( this, i18n( "KNotes: Sticky notes for KDE" ) );
     setBackgroundMode( X11ParentRelative );
     setPixmap( KSystemTray::loadIcon( "knotes" ) );
