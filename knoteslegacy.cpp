@@ -120,7 +120,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
         const QString& file )
 {
     QFile infile( noteDir.absFilePath( file ) );
-    if ( !infile.open( IO_ReadOnly ) )
+    if ( !infile.open( QIODevice::ReadOnly ) )
     {
         kdError(5500) << k_funcinfo << "Could not open input file: \""
                       << infile.name() << "\"" << endl;
@@ -162,16 +162,16 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     config.setHeight( props[4].toUInt() );
 
     // get the background color
-    uint red = input.readLine().toUInt();
-    uint green = input.readLine().toUInt();
-    uint blue = input.readLine().toUInt();
-    config.setBgColor( QColor( red, green, blue ) );
+    uint Qt::red = input.readLine().toUInt();
+    uint Qt::green = input.readLine().toUInt();
+    uint Qt::blue = input.readLine().toUInt();
+    config.setBgColor( QColor( Qt::red, Qt::green, Qt::blue ) );
 
     // get the foreground color
-    red = input.readLine().toUInt();
-    green = input.readLine().toUInt();
-    blue = input.readLine().toUInt();
-    config.setFgColor( QColor( red, green, blue ) );
+    Qt::red = input.readLine().toUInt();
+    Qt::green = input.readLine().toUInt();
+    Qt::blue = input.readLine().toUInt();
+    config.setFgColor( QColor( Qt::red, Qt::green, Qt::blue ) );
 
     // get the font
     QString fontfamily = input.readLine();
@@ -255,7 +255,7 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
 
     // load the saved text and put it in the journal
     QFile infile( noteDir.absFilePath( "." + file + "_data" ) );
-    if ( infile.open( IO_ReadOnly ) )
+    if ( infile.open( QIODevice::ReadOnly ) )
     {
         QTextStream input( &infile );
         input.setEncoding( QTextStream::UnicodeUTF8 );

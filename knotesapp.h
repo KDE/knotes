@@ -22,10 +22,12 @@
 #define KNOTESAPP_H
 
 #include <qstring.h>
-#include <qdict.h>
-#include <qptrlist.h>
+#include <q3dict.h>
+#include <q3ptrlist.h>
 #include <qlabel.h>
 #include <qdom.h>
+//Added by qt3to4:
+#include <QMouseEvent>
 
 #include <kapplication.h>
 #include <kxmlguiclient.h>
@@ -118,10 +120,10 @@ private slots:
     void killNote( KCal::Journal *journal );
 
 private:
-    class KNoteActionList : public QPtrList<KAction>
+    class KNoteActionList : public Q3PtrList<KAction>
     {
     public:
-        virtual int compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 );
+        virtual int compareItems( Q3PtrCollection::Item s1, Q3PtrCollection::Item s2 );
     };
 
     KNotesResourceManager *m_manager;
@@ -129,11 +131,11 @@ private:
     KNotesAlarm     *m_alarm;
     KExtendedSocket *m_listener;
 
-    QDict<KNote>    m_noteList;
+    Q3Dict<KNote>    m_noteList;
     KNoteActionList m_noteActions;
 
     KFind           *m_find;
-    QDictIterator<KNote> *m_findPos;
+    Q3DictIterator<KNote> *m_findPos;
 
     KPopupMenu      *m_note_menu;
     KPopupMenu      *m_context_menu;

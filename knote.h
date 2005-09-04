@@ -23,9 +23,16 @@
 
 #include <qstring.h>
 #include <qevent.h>
-#include <qframe.h>
+#include <q3frame.h>
 #include <qpoint.h>
 #include <qcolor.h>
+//Added by qt3to4:
+#include <QDragEnterEvent>
+#include <QLabel>
+#include <QShowEvent>
+#include <QResizeEvent>
+#include <QDropEvent>
+#include <QCloseEvent>
 
 #include <kconfig.h>
 #include <kxmlguiclient.h>
@@ -48,7 +55,7 @@ namespace KCal {
 }
 
 
-class KNote : public QFrame, virtual public KXMLGUIClient
+class KNote : public Q3Frame, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:

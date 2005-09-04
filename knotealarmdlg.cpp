@@ -31,8 +31,8 @@
 
 #include <qlabel.h>
 #include <qradiobutton.h>
-#include <qbuttongroup.h>
-#include <qvbox.h>
+#include <q3buttongroup.h>
+#include <q3vbox.h>
 
 #include <klocale.h>
 
@@ -48,22 +48,22 @@
 KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent, const char *name )
     : KDialogBase( parent, name, true, caption, Ok|Cancel, Ok )
 {
-    QVBox *page = makeVBoxMainWidget();
-    QGroupBox *group = new QGroupBox( 3, Vertical, i18n("Scheduled Alarm"), page );
-    m_buttons = new QButtonGroup( page );
+    Q3VBox *page = makeVBoxMainWidget();
+    Q3GroupBox *group = new Q3GroupBox( 3, Vertical, i18n("Scheduled Alarm"), page );
+    m_buttons = new Q3ButtonGroup( page );
     m_buttons->hide();
 
     QRadioButton *none = new QRadioButton( i18n("&No alarm"), group );
     m_buttons->insert( none );
 
-    QHBox *at = new QHBox( group );
+    Q3HBox *at = new Q3HBox( group );
     QRadioButton *label_at = new QRadioButton( i18n("Alarm &at:"), at );
     m_buttons->insert( label_at );
     m_atDate = new KDateEdit( at );
     m_atTime = new KTimeEdit( at );
     at->setStretchFactor( m_atDate, 1 );
 
-    QHBox *in = new QHBox( group );
+    Q3HBox *in = new Q3HBox( group );
     QRadioButton *label_in = new QRadioButton( i18n("Alarm &in:"), in );
     m_buttons->insert( label_in );
     m_inTime = new KTimeEdit( in );

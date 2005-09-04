@@ -33,7 +33,7 @@
 #include <qstring.h>
 #include <qstringlist.h>
 #include <qlabel.h>
-#include <qvbox.h>
+#include <q3vbox.h>
 
 #include <kdebug.h>
 #include <kglobal.h>
@@ -49,7 +49,7 @@
 KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent, const char *name )
     : KDialogBase( parent, name, true, caption, Ok|Cancel, Ok, true )
 {
-    QVBox *page = makeVBoxMainWidget();
+    Q3VBox *page = makeVBoxMainWidget();
     (void)new QLabel( i18n("Hostname or IP address:"), page );
 
     m_hostCombo = new KHistoryCombo( true, page );

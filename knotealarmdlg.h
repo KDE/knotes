@@ -34,7 +34,7 @@
 
 #include <kdialogbase.h>
 
-class QButtonGroup;
+class Q3ButtonGroup;
 class KDateEdit;
 class KTimeEdit;
 
@@ -58,7 +58,7 @@ private slots:
     void slotButtonChanged( int id );
 
 private:
-    QButtonGroup  *m_buttons;
+    Q3ButtonGroup  *m_buttons;
     KCal::Journal *m_journal;
 
     KDateEdit *m_atDate;

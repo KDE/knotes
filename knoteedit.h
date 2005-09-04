@@ -22,6 +22,9 @@
 #define KNOTEEDIT_H
 
 #include <qwidget.h>
+//Added by qt3to4:
+#include <QDragEnterEvent>
+#include <QDropEvent>
 
 #include <ktextedit.h>
 
@@ -49,7 +52,7 @@ public:
     void setAutoIndentMode( bool newmode );
 
 public slots:
-    virtual void setTextFormat( TextFormat f );
+    virtual void setTextFormat( Qt::TextFormat f );
 
     void textStrikeOut( bool );
 

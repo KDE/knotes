@@ -18,8 +18,12 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include <qdragobject.h>
+#include <q3dragobject.h>
 #include <qfont.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QDragEnterEvent>
+#include <QDropEvent>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -192,7 +196,7 @@ void KNoteEdit::setAutoIndentMode( bool newmode )
 
 /** public slots **/
 
-void KNoteEdit::setTextFormat( TextFormat f )
+void KNoteEdit::setTextFormat( Qt::TextFormat f )
 {
     if ( f == textFormat() )
         return;
@@ -204,7 +208,7 @@ void KNoteEdit::setTextFormat( TextFormat f )
 
         // if the note contains html/xml source try to display it, otherwise
         // get the modified text again and set it to preserve newlines
-        if ( QStyleSheet::mightBeRichText( t ) )
+        if ( Q3StyleSheet::mightBeRichText( t ) )
             setText( t );
         else
             setText( text() );
@@ -302,9 +306,9 @@ void KNoteEdit::textAlignBlock()
 void KNoteEdit::textList()
 {
     if ( m_textList->isChecked() )
-        setParagType( QStyleSheetItem::DisplayListItem, QStyleSheetItem::ListDisc );
+        setParagType( Q3StyleSheetItem::DisplayListItem, Q3StyleSheetItem::ListDisc );
     else
-        setParagType( QStyleSheetItem::DisplayBlock, QStyleSheetItem::ListDisc );
+        setParagType( Q3StyleSheetItem::DisplayBlock, Q3StyleSheetItem::ListDisc );
 }
 
 void KNoteEdit::textSuperScript()

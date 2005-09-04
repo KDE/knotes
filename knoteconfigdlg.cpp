@@ -24,6 +24,8 @@
 #include <qcombobox.h>
 #include <qhgroupbox.h>
 #include <qtabwidget.h>
+//Added by qt3to4:
+#include <QGridLayout>
 
 #include <kapplication.h>
 #include <kconfig.h>
@@ -201,12 +203,12 @@ QWidget *KNoteConfigDlg::makeNetworkPage()
     QWidget *networkPage = new QWidget();
     QGridLayout *layout = new QGridLayout( networkPage, 4, 2, 0, spacingHint() );
 
-    QGroupBox *incoming = new QHGroupBox( i18n("Incoming Notes"), networkPage );
+    Q3GroupBox *incoming = new QHGroupBox( i18n("Incoming Notes"), networkPage );
     layout->addMultiCellWidget( incoming, 0, 0, 0, 1 );
 
     new QCheckBox( i18n("Accept incoming notes"), incoming, "kcfg_ReceiveNotes" );
 
-    QGroupBox *outgoing = new QHGroupBox( i18n("Outgoing Notes"), networkPage );
+    Q3GroupBox *outgoing = new QHGroupBox( i18n("Outgoing Notes"), networkPage );
     layout->addMultiCellWidget( outgoing, 1, 1, 0, 1 );
 
     QLabel *label_SenderID = new QLabel( i18n("&Sender ID:"), outgoing, "label_SenderID" );

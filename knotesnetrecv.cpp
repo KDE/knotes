@@ -33,7 +33,7 @@
 #include <qtimer.h>
 #include <qdatetime.h>
 #include <qregexp.h>
-#include <qcstring.h>
+#include <q3cstring.h>
 
 #include <kextsock.h>
 #include <ksockaddr.h>

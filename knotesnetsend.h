@@ -33,7 +33,7 @@
 #ifndef KNOTESNETSEND_H
 #define KNOTESNETSEND_H
 
-#include <qcstring.h>
+#include <q3cstring.h>
 
 #include <kextsock.h>
 
@@ -55,9 +55,9 @@ protected slots:
     void slotReadyWrite();
 
 private:
-    QCString m_note;
-    QCString m_title;
-    QCString m_sender;
+    Q3CString m_note;
+    Q3CString m_title;
+    Q3CString m_sender;
     uint m_index;
 };
 

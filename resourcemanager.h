@@ -75,7 +75,7 @@ signals:
 
 private:
     KRES::Manager<ResourceNotes> *m_manager;
-    QDict<ResourceNotes> m_resourceMap;
+    Q3Dict<ResourceNotes> m_resourceMap;
 };
 
 

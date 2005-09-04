@@ -25,11 +25,25 @@
 #include <qbitmap.h>
 #include <qcursor.h>
 #include <qpainter.h>
-#include <qpaintdevicemetrics.h>
-#include <qsimplerichtext.h>
-#include <qobjectlist.h>
+#include <q3paintdevicemetrics.h>
+#include <q3simplerichtext.h>
+#include <qobject.h>
 #include <qfile.h>
 #include <qcheckbox.h>
+//Added by qt3to4:
+#include <QResizeEvent>
+#include <QMouseEvent>
+#include <QFocusEvent>
+#include <QShowEvent>
+#include <Q3Frame>
+#include <QEvent>
+#include <QTextStream>
+#include <Q3CString>
+#include <QDropEvent>
+#include <QDragEnterEvent>
+#include <QCloseEvent>
+#include <QPixmap>
+#include <Q3PointArray>
 
 #include <kapplication.h>
 #include <kdebug.h>
@@ -82,7 +96,7 @@ extern Time qt_x_time;
 int KNote::s_ppOffset = 0;
 
 KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *name )
-  : QFrame( parent, name, WStyle_Customize | WStyle_NoBorder | WDestructiveClose ),
+  : Q3Frame( parent, name, Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WDestructiveClose ),
     m_label( 0 ), m_pushpin( 0 ), m_fold( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ),
     m_config( 0 ), m_journal( j ), m_find( 0 ),
     m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) )
@@ -114,7 +128,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
         this, SLOT(slotRename()), actionCollection(), "rename_note" );
     m_readOnly = new KToggleAction( i18n("Lock"), "lock" , 0,
         this, SLOT(slotUpdateReadOnly()), actionCollection(), "lock_note" );
-    new KAction( i18n("Hide"), "fileclose" , Key_Escape,
+    new KAction( i18n("Hide"), "fileclose" , Qt::Key_Escape,
         this, SLOT(slotClose()), actionCollection(), "hide_note" );
     new KAction( i18n("Delete"), "knotes_delete", 0,
         this, SLOT(slotKill()), actionCollection(), "delete_note" );
@@ -147,7 +161,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     connect( m_toDesktop->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(slotUpdateDesktopActions()) );
 
     // invisible action to walk through the notes to make this configurable
-    new KAction( i18n("Walk Through Notes"), 0, SHIFT+Key_BackTab,
+    new KAction( i18n("Walk Through Notes"), 0, Qt::SHIFT+Qt::Key_Backtab,
                  this, SIGNAL(sigShowNextNote()), actionCollection(), "walk_notes" );
 
     // create the note header, button and label...
@@ -200,16 +214,16 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     uint height = m_editor->cornerWidget()->height();
     QBitmap mask;
     mask.resize( width, height );
-    mask.fill( color0 );
-    QPointArray array;
+    mask.fill( Qt::color0 );
+    Q3PointArray array;
     array.setPoints( 3, 0, height, width, height, width, 0 );
     QPainter p;
     p.begin( &mask );
-    p.setBrush( color1 );
+    p.setBrush( Qt::color1 );
     p.drawPolygon( array );
     p.end();
     m_editor->cornerWidget()->setMask( mask );
-    m_editor->cornerWidget()->setBackgroundMode( PaletteBase );
+    m_editor->cornerWidget()->setBackgroundMode( Qt::PaletteBase );
 
     // the config file location
     QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
@@ -273,14 +287,14 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     // the pushpin label at the top left or right corner
     m_pushpin = new QLabel( this );
     m_pushpin->setScaledContents( true );
-    m_pushpin->setBackgroundMode( NoBackground );
+    m_pushpin->setBackgroundMode( Qt::NoBackground );
     m_pushpin->setPixmap( pushpin_pix );
     m_pushpin->resize( pushpin_pix.size() );
 
     // fold label at bottom right corner
     m_fold = new QLabel( this );
     m_fold->setScaledContents( true );
-    m_fold->setBackgroundMode( NoBackground );
+    m_fold->setBackgroundMode( Qt::NoBackground );
 
     // load the display configuration of the note
     width = m_config->width();
@@ -437,7 +451,7 @@ QString KNote::plainText() const
 {
     if ( m_editor->textFormat() == RichText )
     {
-        QTextEdit conv;
+        Q3TextEdit conv;
         conv.setTextFormat( RichText );
         conv.setText( m_editor->text() );
         conv.setTextFormat( PlainText );
@@ -543,7 +557,7 @@ void KNote::sync( const QString& app )
     sep[0] = '\0';
 
     KMD5 hash;
-    QCString result;
+    Q3CString result;
 
     hash.update( m_label->text().utf8() );
     hash.update( sep );
@@ -726,7 +740,7 @@ void KNote::slotPrint()
 
         const int margin = 40;  // pt
 
-        QPaintDeviceMetrics metrics( painter.device() );
+        Q3PaintDeviceMetrics metrics( painter.device() );
         int marginX = margin * metrics.logicalDpiX() / 72;
         int marginY = margin * metrics.logicalDpiY() / 72;
 
@@ -736,11 +750,11 @@ void KNote::slotPrint()
 
         QString content;
         if ( m_editor->textFormat() == PlainText )
-            content = QStyleSheet::convertFromPlainText( m_editor->text() );
+            content = Q3StyleSheet::convertFromPlainText( m_editor->text() );
         else
             content = m_editor->text();
 
-        QSimpleRichText text( content, m_config->font(), m_editor->context(),
+        Q3SimpleRichText text( content, m_config->font(), m_editor->context(),
                               m_editor->styleSheet(), m_editor->mimeSourceFactory(),
                               body.height() /*, linkColor, linkUnderline? */ );
 
@@ -793,7 +807,7 @@ void KNote::slotSaveAs()
         return;
 
     QFile file( fileName );
-    if ( file.open( IO_WriteOnly ) )
+    if ( file.open( QIODevice::WriteOnly ) )
     {
         QTextStream stream( &file );
         // convert rich text to plain text first
@@ -966,7 +980,7 @@ void KNote::createFold()
     QPainter foldp( &fold );
     foldp.setPen( Qt::NoPen );
     foldp.setBrush( palette().active().dark() );
-    QPointArray foldpoints( 3 );
+    Q3PointArray foldpoints( 3 );
     foldpoints.putPoints( 0, 3, 0, 0, 14, 0, 0, 14 );
     foldp.drawPolygon( foldpoints );
     foldp.end();
@@ -993,7 +1007,7 @@ void KNote::updateFocus()
 
         if ( !m_editor->isReadOnly() )
         {
-            if ( m_tool->isHidden() && m_editor->textFormat() == QTextEdit::RichText )
+            if ( m_tool->isHidden() && m_editor->textFormat() == Q3TextEdit::RichText )
             {
                 m_tool->show();
                 setGeometry( x(), y(), width(), height() + m_tool->height() );
@@ -1049,7 +1063,7 @@ void KNote::updateMask()
 
     if ( !hasFocus() )
     {
-        QPointArray foldpoints( 3 );
+        Q3PointArray foldpoints( 3 );
         foldpoints.putPoints( 0, 3, w-15, h, w, h-15, w, h );
         QRegion fold( foldpoints, false );
         setMask( reg.unite( pushpin_reg ).subtract( fold ) );
@@ -1200,7 +1214,7 @@ void KNote::showEvent( QShowEvent * )
 
 void KNote::resizeEvent( QResizeEvent *qre )
 {
-    QFrame::resizeEvent( qre );
+    Q3Frame::resizeEvent( qre );
     updateLayout();
 }
 
@@ -1238,7 +1252,7 @@ bool KNote::event( QEvent *ev )
         return true;
     }
     else
-        return QFrame::event( ev );
+        return Q3Frame::event( ev );
 }
 
 bool KNote::eventFilter( QObject *o, QEvent *ev )

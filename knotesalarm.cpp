@@ -30,6 +30,8 @@
 *******************************************************************/
 
 #include <qstringlist.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include <kmessagebox.h>
 #include <klocale.h>
@@ -59,10 +61,10 @@ void KNotesAlarm::checkAlarms()
         from.setTime_t( 0 );
 
     KNotesGlobalConfig::self()->setAlarmsLastChecked( QDateTime::currentDateTime() );
-    QValueList<KCal::Alarm *> alarms = m_manager->alarms( from, KNotesGlobalConfig::self()->alarmsLastChecked() );
+    Q3ValueList<KCal::Alarm *> alarms = m_manager->alarms( from, KNotesGlobalConfig::self()->alarmsLastChecked() );
 
     QStringList notes;
-    QValueList<KCal::Alarm *>::ConstIterator it;
+    Q3ValueList<KCal::Alarm *>::ConstIterator it;
     for ( it = alarms.begin(); it != alarms.end(); ++it )
     {
         KCal::Incidence *incidence = (*it)->parent();

@@ -20,8 +20,11 @@
 
 #include <qstyle.h>
 #include <qpainter.h>
-#include <qiconset.h>
+#include <qicon.h>
 #include <qsizepolicy.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QEvent>
 
 #include <kglobal.h>
 #include <kicontheme.h>
@@ -86,15 +89,15 @@ void KNoteButton::drawButtonLabel( QPainter* p )
 {
     if ( iconSet() && !iconSet()->isNull() )
     {
-        QIconSet::Mode  mode  = QIconSet::Disabled;
-        QIconSet::State state = QIconSet::Off;
+        QIcon::Mode  mode  = QIcon::Disabled;
+        QIcon::State state = QIcon::Off;
 
         if ( isEnabled() )
-            mode = hasFocus() ? QIconSet::Active : QIconSet::Normal;
+            mode = hasFocus() ? QIcon::Active : QIcon::Normal;
         if ( isToggleButton() && isOn() )
-            state = QIconSet::On;
+            state = QIcon::On;
 
-        QPixmap pix = iconSet()->pixmap( QIconSet::Small, mode, state );
+        QPixmap pix = iconSet()->pixmap( QIcon::Small, mode, state );
 
         int dx = ( width() - pix.width() ) / 2;
         int dy = ( height() - pix.height() ) / 2;

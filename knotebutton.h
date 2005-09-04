@@ -22,6 +22,9 @@
 #define KNOTEBUTTON_H
 
 #include <qpushbutton.h>
+//Added by qt3to4:
+#include <QResizeEvent>
+#include <QEvent>
 
 class QPainter;
 class QEvent;
