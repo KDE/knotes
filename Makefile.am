@@ -28,7 +28,7 @@ knotes_LDADD    = libknote.la libknoteseditor.la libknotesnetwork.la libknotesre
                   libknoteslegacy.la libknotesconfig.la  $(top_builddir)/libkcal/libkcal.la \
                   $(top_builddir)/libkdepim/libkdepim.la $(LIB_KIO) -lkresources -lkdeprint -lkutils
 knotes_LDFLAGS  = $(all_libraries) $(KDE_RPATH)
-knotes_COMPILE_FIRST = libknotesconfig.la
+knotes_COMPILE_FIRST = knoteconfig.h
 
 kde_module_LTLIBRARIES  = knotes_local.la
 knotes_local_la_SOURCES = resourcelocal_plugin.cpp
