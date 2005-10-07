@@ -178,7 +178,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     if ( fontfamily.isEmpty() )
         fontfamily = QString( "Sans Serif" );
     uint size = input.readLine().toUInt();
-    size = QMAX( size, 4 );
+    size = qMax( size, 4 );
     uint weight = input.readLine().toUInt();
     bool italic = ( input.readLine().toUInt() == 1 );
     QFont font( fontfamily, size, weight, italic );
