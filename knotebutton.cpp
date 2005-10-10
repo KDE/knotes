@@ -36,7 +36,7 @@
 KNoteButton::KNoteButton( const QString& icon, QWidget *parent, const char *name )
     : QPushButton( parent, name )
 {
-    setFocusPolicy( NoFocus );
+    setFocusPolicy( Qt::NoFocus );
     setSizePolicy( QSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed ) );
 
     m_flat = true;
@@ -68,18 +68,18 @@ QSize KNoteButton::sizeHint() const
 
 void KNoteButton::drawButton( QPainter* p )
 {
-    QStyle::SFlags flags = QStyle::Style_Default;
+    QStyle::SFlags flags = QStyle::State_Default;
 
     if ( isEnabled() )
-        flags |= QStyle::Style_Enabled;
+        flags |= QStyle::State_Enabled;
     if ( isDown() )
-        flags |= QStyle::Style_Down;
+        flags |= QStyle::State_Down;
     if ( isOn() )
-        flags |= QStyle::Style_On;
+        flags |= QStyle::State_On;
     if ( !isFlat() && !isDown() )
-        flags |= QStyle::Style_Raised;
+        flags |= QStyle::State_Raised;
     if ( !m_flat )
-        flags |= QStyle::Style_MouseOver;
+        flags |= QStyle::State_MouseOver;
 
     style().drawPrimitive( QStyle::PE_ButtonTool, p, rect(), colorGroup(), flags );
     drawButtonLabel( p );
