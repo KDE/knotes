@@ -36,7 +36,7 @@
 
 class KFind;
 class KNote;
-class KPopupMenu;
+class KMenu;
 class KAction;
 class KActionMenu;
 class KGlobalAccel;
@@ -137,8 +137,8 @@ private:
     KFind           *m_find;
     Q3DictIterator<KNote> *m_findPos;
 
-    KPopupMenu      *m_note_menu;
-    KPopupMenu      *m_context_menu;
+    KMenu      *m_note_menu;
+    KMenu      *m_context_menu;
 
     KGlobalAccel    *m_globalAccel;
     KXMLGUIFactory  *m_guiFactory;

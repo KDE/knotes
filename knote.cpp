@@ -51,10 +51,10 @@
 #include <kstdaction.h>
 #include <kcombobox.h>
 #include <ktoolbar.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
-#include <kcolordrag.h>
+#include <k3colordrag.h>
 #include <kiconeffect.h>
 #include <kprinter.h>
 #include <klocale.h>
@@ -184,8 +184,8 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     KXMLGUIFactory factory( &builder, this );
     factory.addClient( this );
 
-    m_menu = static_cast<KPopupMenu*>(factory.container( "note_context", this ));
-    m_edit_menu = static_cast<KPopupMenu*>(factory.container( "note_edit", this ));
+    m_menu = static_cast<KMenu*>(factory.container( "note_context", this ));
+    m_edit_menu = static_cast<KMenu*>(factory.container( "note_edit", this ));
     m_tool = static_cast<KToolBar*>(factory.container( "note_tool", this ));
     m_tool->setIconSize( 10 );
     m_tool->setFixedHeight( 16 );
@@ -1225,13 +1225,13 @@ void KNote::closeEvent( QCloseEvent * )
 
 void KNote::dragEnterEvent( QDragEnterEvent *e )
 {
-    e->accept( KColorDrag::canDecode( e ) );
+    e->accept( K3ColorDrag::canDecode( e ) );
 }
 
 void KNote::dropEvent( QDropEvent *e )
 {
     QColor bg;
-    if ( KColorDrag::decode( e, bg ) )
+    if ( K3ColorDrag::decode( e, bg ) )
     {
         setColor( paletteForegroundColor(), bg );
         m_journal->setCustomProperty( "KNotes", "BgColor", bg.name() );
@@ -1258,14 +1258,14 @@ bool KNote::event( QEvent *ev )
 bool KNote::eventFilter( QObject *o, QEvent *ev )
 {
     if ( ev->type() == QEvent::DragEnter &&
-         KColorDrag::canDecode( static_cast<QDragEnterEvent *>(ev) ) )
+         K3ColorDrag::canDecode( static_cast<QDragEnterEvent *>(ev) ) )
     {
         dragEnterEvent( static_cast<QDragEnterEvent *>(ev) );
         return true;
     }
 
     if ( ev->type() == QEvent::Drop &&
-         KColorDrag::canDecode( static_cast<QDropEvent *>(ev) ) )
+         K3ColorDrag::canDecode( static_cast<QDropEvent *>(ev) ) )
     {
         dropEvent( static_cast<QDropEvent *>(ev) );
         return true;

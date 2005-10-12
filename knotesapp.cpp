@@ -36,7 +36,7 @@
 #include <klocale.h>
 #include <kiconeffect.h>
 #include <kstandarddirs.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <khelpmenu.h>
 #include <kfind.h>
 #include <kfinddialog.h>
@@ -137,8 +137,8 @@ KNotesApp::KNotesApp()
     m_guiFactory = new KXMLGUIFactory( m_guiBuilder, this );
     m_guiFactory->addClient( this );
 
-    m_context_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "knotes_context", this ));
-    m_note_menu = static_cast<KPopupMenu*>(m_guiFactory->container( "notes_menu", this ));
+    m_context_menu = static_cast<KMenu*>(m_guiFactory->container( "knotes_context", this ));
+    m_note_menu = static_cast<KMenu*>(m_guiFactory->container( "notes_menu", this ));
 
     // get the most recent XML UI file
     QString xmlFileName = instance()->instanceName() + "ui.rc";
@@ -208,7 +208,7 @@ KNotesApp::KNotesApp()
     connect( m_listener, SIGNAL(readyAccept()), SLOT(acceptConnection()) );
     updateNetworkListener();
 
-    if ( m_noteList.count() == 0 && !kapp->isRestored() )
+    if ( m_noteList.count() == 0 && !kapp->isSessionRestored() )
         newNote();
 
     updateNoteActions();

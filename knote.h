@@ -42,7 +42,7 @@ class QLabel;
 class KXMLGUIBuilder;
 
 class KFind;
-class KPopupMenu;
+class KMenu;
 class KNoteButton;
 class KNoteEdit;
 class KNoteConfig;
@@ -162,8 +162,8 @@ private:
 
     KFind         *m_find;
 
-    KPopupMenu    *m_menu;
-    KPopupMenu    *m_edit_menu;
+    KMenu    *m_menu;
+    KMenu    *m_edit_menu;
 
     KToggleAction *m_readOnly;
 
