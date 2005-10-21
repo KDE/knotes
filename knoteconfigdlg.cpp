@@ -97,14 +97,16 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
     QLabel *label_FgColor = new QLabel( i18n("&Text color:"), displayPage, "label_FgColor" );
     layout->addWidget( label_FgColor, 0, 0 );
 
-    KColorButton *kcfg_FgColor = new KColorButton( displayPage, "kcfg_FgColor" );
+    KColorButton *kcfg_FgColor = new KColorButton( displayPage );
+kcfg_FgColor->setObjectName( "kcfg_FgColor" );
     label_FgColor->setBuddy( kcfg_FgColor );
     layout->addWidget( kcfg_FgColor, 0, 1 );
 
     QLabel *label_BgColor = new QLabel( i18n("&Background color:"), displayPage, "label_BgColor" );
     layout->addWidget( label_BgColor, 1, 0 );
 
-    KColorButton *kcfg_BgColor = new KColorButton( displayPage, "kcfg_BgColor" );
+    KColorButton *kcfg_BgColor = new KColorButton( displayPage );
+kcfg_BgColor->setObjectName( "kcfg_BgColor" );
     label_BgColor->setBuddy( kcfg_BgColor );
     layout->addWidget( kcfg_BgColor, 1, 1 );
 
