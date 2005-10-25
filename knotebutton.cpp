@@ -81,7 +81,7 @@ void KNoteButton::drawButton( QPainter* p )
     if ( !m_flat )
         flags |= QStyle::State_MouseOver;
 
-    style().drawPrimitive( QStyle::PE_ButtonTool, p, rect(), colorGroup(), flags );
+    style().drawPrimitive( QStyle::PE_PanelButtonTool, p, rect(), colorGroup(), flags );
     drawButtonLabel( p );
 }
 

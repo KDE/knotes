@@ -992,9 +992,9 @@ void KNote::updateLabelAlignment()
     // if the name is too long to fit, left-align it, otherwise center it (#59028)
     QString labelText = m_label->text();
     if ( m_label->fontMetrics().boundingRect( labelText ).width() > m_label->width() )
-        m_label->setAlignment( AlignLeft );
+        m_label->setAlignment( Qt::AlignLeft );
     else
-        m_label->setAlignment( AlignHCenter );
+        m_label->setAlignment( Qt::AlignHCenter );
 }
 
 void KNote::updateFocus()
@@ -1279,9 +1279,9 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             slotRename();
 
         if ( ev->type() == QEvent::MouseButtonPress &&
-             (e->button() == LeftButton || e->button() == MidButton))
+             (e->button() == Qt::LeftButton || e->button() == Qt::MidButton))
         {
-            e->button() == LeftButton ? KWin::raiseWindow( winId() )
+            e->button() == Qt::LeftButton ? KWin::raiseWindow( winId() )
                                       : KWin::lowerWindow( winId() );
 
             XUngrabPointer( QX11Info::display(), qt_x_time );
@@ -1291,7 +1291,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
         }
 
         if ( m_menu && ( ev->type() == QEvent::MouseButtonPress )
-            && ( e->button() == RightButton ) )
+            && ( e->button() == Qt::RightButton ) )
         {
             m_menu->popup( QCursor::pos() );
             return true;
@@ -1323,7 +1323,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
     {
         if ( m_edit_menu &&
              ev->type() == QEvent::MouseButtonPress &&
-             ((QMouseEvent *)ev)->button() == RightButton )
+             ((QMouseEvent *)ev)->button() == Qt::RightButton )
         {
             m_edit_menu->popup( QCursor::pos() );
             return true;
