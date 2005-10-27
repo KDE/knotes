@@ -28,7 +28,7 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kaction.h>
-#include <kurldrag.h>
+#include <k3urldrag.h>
 #include <kstdaction.h>
 #include <kcolordialog.h>
 
@@ -340,7 +340,7 @@ void KNoteEdit::textSubScript()
 
 void KNoteEdit::contentsDragEnterEvent( QDragEnterEvent *e )
 {
-    if ( KURLDrag::canDecode( e ) )
+    if ( K3URLDrag::canDecode( e ) )
         e->accept();
     else
         KTextEdit::contentsDragEnterEvent( e );
@@ -350,7 +350,7 @@ void KNoteEdit::contentsDropEvent( QDropEvent *e )
 {
     KURL::List list;
 
-    if ( KURLDrag::decode( e, list ) )
+    if ( K3URLDrag::decode( e, list ) )
         for ( KURL::List::Iterator it = list.begin(); it != list.end(); ++it )
         {
             if ( it != list.begin() )
