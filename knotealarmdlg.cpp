@@ -49,7 +49,7 @@ KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent, const cha
     : KDialogBase( parent, name, true, caption, Ok|Cancel, Ok )
 {
     KVBox *page = makeVBoxMainWidget();
-    Q3GroupBox *group = new Q3GroupBox( 3, Vertical, i18n("Scheduled Alarm"), page );
+    Q3GroupBox *group = new Q3GroupBox( 3, Qt::Vertical, i18n("Scheduled Alarm"), page );
     m_buttons = new Q3ButtonGroup( page );
     m_buttons->hide();
 
