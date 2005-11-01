@@ -49,6 +49,7 @@
 #include <libkcal/journal.h>
 #include <libkcal/calendarlocal.h>
 #include <QX11Info>
+#include <kiconloader.h>
 
 #include "knotesapp.h"
 #include "knote.h"
@@ -612,7 +613,7 @@ void KNotesApp::updateNoteActions()
                                        (QObject *)0,
                                        it.current()->noteId().utf8() );
         KIconEffect effect;
-        QPixmap icon = effect.apply( kapp->miniIcon(), KIconEffect::Colorize, 1,
+        QPixmap icon = effect.apply( qApp->windowIcon().pixmap(IconSize(KIcon::Small),IconSize(KIcon::Small)), KIconEffect::Colorize, 1,
                                      it.current()->paletteBackgroundColor(), false );
         action->setIconSet( icon );
         m_noteActions.append( action );

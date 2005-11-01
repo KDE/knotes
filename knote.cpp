@@ -88,6 +88,7 @@
 
 #include <fixx11h.h>
 #include <QX11Info>
+#include <kiconloader.h>
 
 using namespace KCal;
 
@@ -102,7 +103,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) )
 {
     // be explicit
-    KWin::setIcons( winId(), kapp->icon(), kapp->miniIcon() );
+    KWin::setIcons( winId(), qApp->windowIcon().pixmap(IconSize(KIcon::Desktop),IconSize(KIcon::Desktop)), qApp->windowIcon().pixmap(IconSize(KIcon::Small),IconSize(KIcon::Small)) );
 
     setAcceptDrops( true );
     actionCollection()->setWidget( this );
@@ -955,8 +956,8 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
 
     // update the icon color
     KIconEffect effect;
-    QPixmap icon = effect.apply( kapp->icon(), KIconEffect::Colorize, 1, bg, false );
-    QPixmap miniIcon = effect.apply( kapp->miniIcon(), KIconEffect::Colorize, 1, bg, false );
+    QPixmap icon = effect.apply( qApp->windowIcon().pixmap(IconSize(KIcon::Desktop),IconSize(KIcon::Desktop)), KIconEffect::Colorize, 1, bg, false );
+    QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap(IconSize(KIcon::Small),IconSize(KIcon::Small)), KIconEffect::Colorize, 1, bg, false );
     KWin::setIcons( winId(), icon, miniIcon );
 
     // set the color for the selection used to highlight the find stuff
