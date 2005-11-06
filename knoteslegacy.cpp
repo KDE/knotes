@@ -75,7 +75,7 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
     QStringList notes = noteDir.entryList( QDir::Files, QDir::Name );
     for ( QStringList::Iterator note = notes.begin(); note != notes.end(); note++ )
     {
-        QString file = noteDir.absFilePath( *note );
+        QString file = noteDir.absoluteFilePath( *note );
         KSimpleConfig* test = new KSimpleConfig( file );
         test->setGroup( "General" );
         double version = test->readDoubleNumEntry( "version", 1.0 );
@@ -119,7 +119,7 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
 bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
         const QString& file )
 {
-    QFile infile( noteDir.absFilePath( file ) );
+    QFile infile( noteDir.absoluteFilePath( file ) );
     if ( !infile.open( QIODevice::ReadOnly ) )
     {
         kdError(5500) << k_funcinfo << "Could not open input file: \""
@@ -144,7 +144,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     }
 
     // the new configfile's name
-    QString configFile = noteDir.absFilePath( journal->uid() );
+    QString configFile = noteDir.absoluteFilePath( journal->uid() );
 
     // set the defaults
     KIO::NetAccess::copy(
@@ -229,13 +229,13 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
 bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
         const QString& file )
 {
-    QString configFile = noteDir.absFilePath( journal->uid() );
+    QString configFile = noteDir.absoluteFilePath( journal->uid() );
 
     // new name for config file
     if ( !noteDir.rename( file, journal->uid() ) )
     {
         kdError(5500) << k_funcinfo << "Could not rename input file: \""
-                      << noteDir.absFilePath( file ) << "\" to \""
+                      << noteDir.absoluteFilePath( file ) << "\" to \""
                       << configFile << "\"!" << endl;
         return false;
     }
@@ -254,7 +254,7 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
     config.deleteEntry( "state" );
 
     // load the saved text and put it in the journal
-    QFile infile( noteDir.absFilePath( "." + file + "_data" ) );
+    QFile infile( noteDir.absoluteFilePath( "." + file + "_data" ) );
     if ( infile.open( QIODevice::ReadOnly ) )
     {
         QTextStream input( &infile );

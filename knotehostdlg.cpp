@@ -68,7 +68,7 @@ KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent, const char 
 KNoteHostDlg::~KNoteHostDlg()
 {
     if ( result() == Accepted )
-        m_hostCombo->addToHistory( m_hostCombo->currentText().stripWhiteSpace() );
+        m_hostCombo->addToHistory( m_hostCombo->currentText().trimmed() );
 
     // Write known hosts to configfile
     KNotesGlobalConfig::setKnownHosts( m_hostCombo->historyItems() );

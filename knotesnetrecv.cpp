@@ -110,20 +110,20 @@ void KNotesNetworkReceiver::slotDataAvailable()
     if ( m_buffer->count() == MAXBUFFER )
         m_sock->closeNow();
     else
-        m_timer->changeInterval( MAXTIME );
+        m_timer->start( MAXTIME );
 }
 
 void KNotesNetworkReceiver::slotConnectionClosed( int /*state*/ )
 {
     if ( m_timer->isActive() )
     {
-        QString noteText = QString( *m_buffer ).stripWhiteSpace();
+        QString noteText = QString( *m_buffer ).trimmed();
 
         // First line is the note title or, in case of ATnotes, the id
         int pos = noteText.find( QRegExp("[\r\n]") );
-        QString noteTitle = noteText.left( pos ).stripWhiteSpace() + m_titleAddon;
+        QString noteTitle = noteText.left( pos ).trimmed() + m_titleAddon;
 
-        noteText = noteText.mid( pos ).stripWhiteSpace();
+        noteText = noteText.mid( pos ).trimmed();
 
         if ( !noteText.isEmpty() )
             emit sigNoteReceived( noteTitle, noteText );

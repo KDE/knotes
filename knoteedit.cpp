@@ -422,10 +422,10 @@ void KNoteEdit::autoIndent()
     int para, index;
     QString string;
     getCursorPosition( &para, &index );
-    while ( para > 0 && string.stripWhiteSpace().isEmpty() )
+    while ( para > 0 && string.trimmed().isEmpty() )
         string = text( --para );
 
-    if ( string.stripWhiteSpace().isEmpty() )
+    if ( string.trimmed().isEmpty() )
         return;
 
     // This routine returns the whitespace before the first non white space
