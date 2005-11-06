@@ -26,6 +26,7 @@
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <qtextformat.h>
+#include <QTextCharFormat>
 
 #include <ktextedit.h>
 
@@ -82,7 +83,7 @@ private slots:
     void fontChanged( const QFont &f );
     void colorChanged( const QColor &c );
     void alignmentChanged( int a );
-    void verticalAlignmentChanged( VerticalAlignment a );
+    void verticalAlignmentChanged( QTextCharFormat::VerticalAlignment a );
 
 private:
     void autoIndent();
