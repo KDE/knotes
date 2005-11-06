@@ -86,9 +86,6 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     m_config( 0 ), m_journal( j ), m_find( 0 ),
     m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) )
 {
-    // be explicit
-    KWin::setIcons( winId(), kapp->icon(), kapp->miniIcon() );
-
     setAcceptDrops( true );
     actionCollection()->setWidget( this );
 
@@ -353,6 +350,12 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
     m_readOnly->setChecked( m_config->readOnly() );
     slotUpdateReadOnly();
+
+    // HACK: update the icon color - again after showing the note, to make kicker aware of the new colors
+    KIconEffect effect;
+    QPixmap icon = effect.apply( kapp->icon(), KIconEffect::Colorize, 1, m_config->bgColor(), false );
+    QPixmap miniIcon = effect.apply( kapp->miniIcon(), KIconEffect::Colorize, 1, m_config->bgColor(), false );
+    KWin::setIcons( winId(), icon, miniIcon );
 }
 
 KNote::~KNote()

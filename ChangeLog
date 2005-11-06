@@ -3,6 +3,10 @@ ChangeLog for KNotes
 
 2005/09/06  Michael Brade <brade@kde.org>
 
+    * make note colors in Kicker work again for new notes and on start-up.
+
+2005/09/06  Michael Brade <brade@kde.org>
+
     * fixed #106724: don't overwrite files without asking for confirmation
       first
 
