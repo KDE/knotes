@@ -73,7 +73,7 @@ void KNoteButton::drawButton( QPainter* p )
     if ( isEnabled() )
         flags |= QStyle::State_Enabled;
     if ( isDown() )
-        flags |= QStyle::State_Down;
+        flags |= QStyle::State_DownArrow;
     if ( isOn() )
         flags |= QStyle::State_On;
     if ( !isFlat() && !isDown() )
