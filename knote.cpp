@@ -450,12 +450,12 @@ QString KNote::text() const
 
 QString KNote::plainText() const
 {
-    if ( m_editor->textFormat() == RichText )
+    if ( m_editor->textFormat() == Qt::RichText )
     {
         Q3TextEdit conv;
-        conv.setTextFormat( RichText );
+        conv.setTextFormat( Qt::RichText );
         conv.setText( m_editor->text() );
-        conv.setTextFormat( PlainText );
+        conv.setTextFormat( Qt::PlainText );
         return conv.text();
     }
     else
@@ -750,7 +750,7 @@ void KNote::slotPrint()
                     metrics.height() - marginY * 2 );
 
         QString content;
-        if ( m_editor->textFormat() == PlainText )
+        if ( m_editor->textFormat() == Qt::PlainText )
             content = Q3StyleSheet::convertFromPlainText( m_editor->text() );
         else
             content = m_editor->text();
@@ -792,7 +792,7 @@ void KNote::slotSaveAs()
 {
     QCheckBox *convert = 0;
 
-    if ( m_editor->textFormat() == RichText )
+    if ( m_editor->textFormat() == Qt::RichText )
     {
         convert = new QCheckBox( 0 );
         convert->setText( i18n("Save note as plain text") );
@@ -830,9 +830,9 @@ void KNote::slotPopupActionToDesktop( int id )
 void KNote::slotApplyConfig()
 {
     if ( m_config->richText() )
-        m_editor->setTextFormat( RichText );
+        m_editor->setTextFormat( Qt::RichText );
     else
-        m_editor->setTextFormat( PlainText );
+        m_editor->setTextFormat( Qt::PlainText );
 
     m_label->setFont( m_config->titleFont() );
     m_editor->setTextFont( m_config->font() );
@@ -1008,7 +1008,7 @@ void KNote::updateFocus()
 
         if ( !m_editor->isReadOnly() )
         {
-            if ( m_tool->isHidden() && m_editor->textFormat() == Q3TextEdit::RichText )
+            if ( m_tool->isHidden() && m_editor->textFormat() == Qt::RichText )
             {
                 m_tool->show();
                 setGeometry( x(), y(), width(), height() + m_tool->height() );

@@ -28,7 +28,7 @@
 #include <qtextformat.h>
 #include <QTextCharFormat>
 
-#include <ktextedit.h>
+#include <k3textedit.h>
 
 class QFont;
 class QColor;
@@ -40,7 +40,7 @@ class KFontAction;
 class KFontSizeAction;
 
 
-class KNoteEdit : public KTextEdit
+class KNoteEdit : public K3TextEdit
 {
     Q_OBJECT
 public:
