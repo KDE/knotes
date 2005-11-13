@@ -35,10 +35,10 @@
 
 #include <q3cstring.h>
 
-#include <kextsock.h>
+#include <kstreamsocket.h>
 
 
-class KNotesNetworkSender : public KExtendedSocket
+class KNotesNetworkSender : public KNetwork::KStreamSocket
 {
     Q_OBJECT
 public:
