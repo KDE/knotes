@@ -1057,7 +1057,7 @@ void KNote::updateMask()
     int h = height();
     QRegion reg( 0, s_ppOffset, w, h - s_ppOffset );
 
-    const QBitmap *pushpin_bitmap = m_pushpin->pixmap()->mask();
+    const QBitmap *pushpin_bitmap = new QBitmap( m_pushpin->pixmap()->mask() );
     QRegion pushpin_reg( *pushpin_bitmap );
     m_pushpin->setMask( pushpin_reg );
     pushpin_reg.translate( m_pushpin->x(), m_pushpin->y() );
