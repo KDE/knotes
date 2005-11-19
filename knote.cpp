@@ -39,6 +39,7 @@
 #include <QEvent>
 #include <QTextStream>
 #include <Q3CString>
+#include <QDesktopWidget>
 #include <QDropEvent>
 #include <QDragEnterEvent>
 #include <QCloseEvent>
