@@ -193,7 +193,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     m_tool->setFixedHeight( 16 );
 
     // if there was just a way of making KComboBox adhere the toolbar height...
-    QObjectList *list = m_tool->queryList( "KComboBox" );
+    QObjectList *list = new QObjectList( m_tool->queryList( "KComboBox" ) );
     QObjectListIt it( *list );
     while ( it.current() != 0 )
     {
