@@ -35,6 +35,7 @@
 #include <q3vbox.h>
 
 #include <klocale.h>
+#include <kvbox.h>
 
 #include <libkdepim/kdateedit.h>
 #include <libkdepim/ktimeedit.h>

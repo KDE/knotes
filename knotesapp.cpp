@@ -152,18 +152,19 @@ KNotesApp::KNotesApp()
     m_noteGUI.setContent( doc );
 
     // create accels for global shortcuts
-    m_globalAccel = new KGlobalAccel( this, "global accel" );
+    m_globalAccel = new KGlobalAccel( this );
+    m_globalAccel->setObjectName( "global accel" );
     m_globalAccel->insert( "global_new_note", i18n("New Note"), "",
-                           ALT+SHIFT+Key_N, ALT+SHIFT+Key_N ,
+                           Qt::ALT+Qt::SHIFT+Qt::Key_N,
                            this, SLOT(newNote()), true, true );
     m_globalAccel->insert( "global_new_note_clipboard", i18n("New Note From Clipboard"), "",
-                           ALT+SHIFT+Key_C, ALT+SHIFT+Key_C,
+                           Qt::ALT+Qt::SHIFT+Qt::Key_C,
                            this, SLOT(newNoteFromClipboard()), true, true );
     m_globalAccel->insert( "global_hide_all_notes", i18n("Hide All Notes"), "",
-                           ALT+SHIFT+Key_H, ALT+SHIFT+Key_H ,
+                           Qt::ALT+Qt::SHIFT+Qt::Key_H,
                            this, SLOT(hideAllNotes()), true, true );
     m_globalAccel->insert( "global_show_all_notes", i18n("Show All Notes"), "",
-                           ALT+SHIFT+Key_S, ALT+SHIFT+Key_S,
+                           Qt::ALT+Qt::SHIFT+Qt::Key_S,
                            this, SLOT(showAllNotes()), true, true );
 
     m_globalAccel->readSettings();
@@ -396,7 +397,7 @@ void KNotesApp::mousePressEvent( QMouseEvent* e )
 
     switch ( e->button() )
     {
-    case LeftButton:
+    case Qt::LeftButton:
         if ( m_noteList.count() == 1 )
         {
             Q3DictIterator<KNote> it( m_noteList );
@@ -405,10 +406,10 @@ void KNotesApp::mousePressEvent( QMouseEvent* e )
         else if ( m_note_menu->count() > 0 )
             m_note_menu->popup( e->globalPos() );
         break;
-    case MidButton:
+    case Qt::MidButton:
         newNote();
         break;
-    case RightButton:
+    case Qt::RightButton:
         m_context_menu->popup( e->globalPos() );
     default: break;
     }
@@ -615,7 +616,7 @@ void KNotesApp::updateNoteActions()
         KIconEffect effect;
         QPixmap icon = effect.apply( qApp->windowIcon().pixmap(IconSize(KIcon::Small),IconSize(KIcon::Small)), KIconEffect::Colorize, 1,
                                      it.current()->paletteBackgroundColor(), false );
-        action->setIconSet( icon );
+        action->setIcon( icon );
         m_noteActions.append( action );
     }
 
@@ -623,7 +624,7 @@ void KNotesApp::updateNoteActions()
 
     if ( m_noteActions.isEmpty() )
     {
-        KAction *action = new KAction( i18n("No Notes") );
+        KAction *action = new KAction( i18n("No Notes"), KShortcut::null(), 0, 0, 0, 0 );
         m_noteActions.append( action );
     }
 

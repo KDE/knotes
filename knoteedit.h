@@ -83,7 +83,7 @@ private slots:
     void fontChanged( const QFont &f );
     void colorChanged( const QColor &c );
     void alignmentChanged( int a );
-    void verticalAlignmentChanged( QTextCharFormat::VerticalAlignment a );
+    void verticalAlignmentChanged( Q3TextEdit::VerticalAlignment a );
 
 private:
     void autoIndent();

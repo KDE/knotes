@@ -162,15 +162,15 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     config.setHeight( props[4].toUInt() );
 
     // get the background color
-    uint Qt::red = input.readLine().toUInt();
-    uint Qt::green = input.readLine().toUInt();
-    uint Qt::blue = input.readLine().toUInt();
+    uint red = input.readLine().toUInt();
+    uint green = input.readLine().toUInt();
+    uint blue = input.readLine().toUInt();
     config.setBgColor( QColor( Qt::red, Qt::green, Qt::blue ) );
 
     // get the foreground color
-    Qt::red = input.readLine().toUInt();
-    Qt::green = input.readLine().toUInt();
-    Qt::blue = input.readLine().toUInt();
+    red = input.readLine().toUInt();
+    green = input.readLine().toUInt();
+    blue = input.readLine().toUInt();
     config.setFgColor( QColor( Qt::red, Qt::green, Qt::blue ) );
 
     // get the font
@@ -178,7 +178,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     if ( fontfamily.isEmpty() )
         fontfamily = QString( "Sans Serif" );
     uint size = input.readLine().toUInt();
-    size = qMax( size, 4 );
+    size = qMax( size, (uint)4 );
     uint weight = input.readLine().toUInt();
     bool italic = ( input.readLine().toUInt() == 1 );
     QFont font( fontfamily, size, weight, italic );

@@ -39,7 +39,7 @@ static const short ICON_SIZE = 10;
 
 
 KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *name )
-    : KTextEdit( parent, name )
+    : K3TextEdit( parent, name )
 {
     setAcceptDrops( true );
     setWordWrap( WidgetWidth );
@@ -70,13 +70,13 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *n
     KStdAction::selectAll( this, SLOT(selectAll()), actions );
 
     // create the actions modifying the text format
-    m_textBold = new KToggleAction( i18n("Bold"), "text_bold", CTRL + Key_B, 0, 0,
+    m_textBold = new KToggleAction( i18n("Bold"), "text_bold", Qt::CTRL + Qt::Key_B, 0, 0,
                                     actions, "format_bold" );
-    m_textItalic = new KToggleAction( i18n("Italic"), "text_italic", CTRL + Key_I, 0, 0,
+    m_textItalic = new KToggleAction( i18n("Italic"), "text_italic", Qt::CTRL + Qt::Key_I, 0, 0,
                                       actions, "format_italic" );
-    m_textUnderline = new KToggleAction( i18n("Underline"), "text_under", CTRL + Key_U, 0, 0,
+    m_textUnderline = new KToggleAction( i18n("Underline"), "text_under", Qt::CTRL + Qt::Key_U, 0, 0,
                                          actions, "format_underline" );
-    m_textStrikeOut = new KToggleAction( i18n("Strike Out"), "text_strike", CTRL + Key_S, 0, 0,
+    m_textStrikeOut = new KToggleAction( i18n("Strike Out"), "text_strike", Qt::CTRL + Qt::Key_S, 0, 0,
                                          actions, "format_strikeout" );
 
     connect( m_textBold, SIGNAL(toggled(bool)), SLOT(setBold(bool)) );
@@ -84,17 +84,17 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *n
     connect( m_textUnderline, SIGNAL(toggled(bool)), SLOT(setUnderline(bool)) );
     connect( m_textStrikeOut, SIGNAL(toggled(bool)), SLOT(textStrikeOut(bool)) );
 
-    m_textAlignLeft = new KToggleAction( i18n("Align Left"), "text_left", ALT + Key_L,
+    m_textAlignLeft = new KToggleAction( i18n("Align Left"), "text_left", Qt::ALT + Qt::Key_L,
                                  this, SLOT(textAlignLeft()),
                                  actions, "format_alignleft" );
     m_textAlignLeft->setChecked( true ); // just a dummy, will be updated later
-    m_textAlignCenter = new KToggleAction( i18n("Align Center"), "text_center", ALT + Key_C,
+    m_textAlignCenter = new KToggleAction( i18n("Align Center"), "text_center", Qt::ALT + Qt::Key_C,
                                  this, SLOT(textAlignCenter()),
                                  actions, "format_aligncenter" );
-    m_textAlignRight = new KToggleAction( i18n("Align Right"), "text_right", ALT + Key_R,
+    m_textAlignRight = new KToggleAction( i18n("Align Right"), "text_right", Qt::ALT + Qt::Key_R,
                                  this, SLOT(textAlignRight()),
                                  actions, "format_alignright" );
-    m_textAlignBlock = new KToggleAction( i18n("Align Block"), "text_block", ALT + Key_B,
+    m_textAlignBlock = new KToggleAction( i18n("Align Block"), "text_block", Qt::ALT + Qt::Key_B,
                                  this, SLOT(textAlignBlock()),
                                  actions, "format_alignblock" );
 
@@ -130,7 +130,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *n
 //                                         actions, "format_decreaseindent" );
 
     QPixmap pix( ICON_SIZE, ICON_SIZE );
-    pix.fill( black );     // just a dummy, gets updated before widget is shown
+    pix.fill( Qt::black );     // just a dummy, gets updated before widget is shown
     m_textColor = new KAction( i18n("Text Color..."), pix, 0, this,
                                   SLOT(textColor()), actions, "format_color" );
 
@@ -164,13 +164,13 @@ void KNoteEdit::setText( const QString& text )
 {
     // to update the font and font size combo box - QTextEdit stopped
     // emitting the currentFontChanged signal with the new optimizations
-    KTextEdit::setText( text );
+    K3TextEdit::setText( text );
     fontChanged( currentFont() );
 }
 
 void KNoteEdit::setTextFont( const QFont& font )
 {
-    if ( textFormat() == PlainText )
+    if ( textFormat() == Qt::PlainText )
         setFont( font );
     else
         setCurrentFont( font );
@@ -201,10 +201,10 @@ void KNoteEdit::setTextFormat( Qt::TextFormat f )
     if ( f == textFormat() )
         return;
 
-    if ( f == RichText )
+    if ( f == Qt::RichText )
     {
         QString t = text();
-        KTextEdit::setTextFormat( f );
+        K3TextEdit::setTextFormat( f );
 
         // if the note contains html/xml source try to display it, otherwise
         // get the modified text again and set it to preserve newlines
@@ -217,7 +217,7 @@ void KNoteEdit::setTextFormat( Qt::TextFormat f )
     }
     else
     {
-        KTextEdit::setTextFormat( f );
+        K3TextEdit::setTextFormat( f );
         QString t = text();
         setText( t );
 
@@ -281,25 +281,25 @@ void KNoteEdit::textColor()
 
 void KNoteEdit::textAlignLeft()
 {
-    setAlignment( AlignLeft );
+    setAlignment( Qt::AlignLeft );
     m_textAlignLeft->setChecked( true );
 }
 
 void KNoteEdit::textAlignCenter()
 {
-    setAlignment( AlignCenter );
+    setAlignment( Qt::AlignCenter );
     m_textAlignCenter->setChecked( true );
 }
 
 void KNoteEdit::textAlignRight()
 {
-    setAlignment( AlignRight );
+    setAlignment( Qt::AlignRight );
     m_textAlignRight->setChecked( true );
 }
 
 void KNoteEdit::textAlignBlock()
 {
-    setAlignment( AlignJustify );
+    setAlignment( Qt::AlignJustify );
     m_textAlignBlock->setChecked( true );
 }
 
@@ -343,7 +343,7 @@ void KNoteEdit::contentsDragEnterEvent( QDragEnterEvent *e )
     if ( K3URLDrag::canDecode( e ) )
         e->accept();
     else
-        KTextEdit::contentsDragEnterEvent( e );
+        K3TextEdit::contentsDragEnterEvent( e );
 }
 
 void KNoteEdit::contentsDropEvent( QDropEvent *e )
@@ -359,7 +359,7 @@ void KNoteEdit::contentsDropEvent( QDropEvent *e )
             insert( (*it).prettyURL() );
         }
     else
-        KTextEdit::contentsDropEvent( e );
+        K3TextEdit::contentsDropEvent( e );
 }
 
 /** private slots **/
@@ -385,23 +385,23 @@ void KNoteEdit::colorChanged( const QColor &c )
 {
     QPixmap pix( ICON_SIZE, ICON_SIZE );
     pix.fill( c );
-    m_textColor->setIconSet( pix );
+    m_textColor->setIcon( pix );
 }
 
 void KNoteEdit::alignmentChanged( int a )
 {
     // TODO: AlignAuto
-    if ( ( a == AlignAuto ) || ( a & AlignLeft ) )
+    if ( ( a == Qt::AlignAuto ) || ( a & Qt::AlignLeft ) )
         m_textAlignLeft->setChecked( true );
-    else if ( ( a & AlignHCenter ) )
+    else if ( ( a & Qt::AlignHCenter ) )
         m_textAlignCenter->setChecked( true );
-    else if ( ( a & AlignRight ) )
+    else if ( ( a & Qt::AlignRight ) )
         m_textAlignRight->setChecked( true );
-    else if ( ( a & AlignJustify ) )
+    else if ( ( a & Qt::AlignJustify ) )
         m_textAlignBlock->setChecked( true );
 }
 
-void KNoteEdit::verticalAlignmentChanged( VerticalAlignment a )
+void KNoteEdit::verticalAlignmentChanged( Q3TextEdit::VerticalAlignment a )
 {
     if ( a == AlignNormal )
     {

@@ -41,6 +41,7 @@
 #include <kstandarddirs.h>
 #include <ksimpleconfig.h>
 #include <kcombobox.h>
+#include <kvbox.h>
 
 #include "knotehostdlg.h"
 #include "knotesglobalconfig.h"

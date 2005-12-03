@@ -22,10 +22,10 @@
 #include <qlayout.h>
 #include <qcheckbox.h>
 #include <qcombobox.h>
-#include <qhgroupbox.h>
 #include <qtabwidget.h>
 //Added by qt3to4:
 #include <QGridLayout>
+#include <Q3GroupBox>
 
 #include <kapplication.h>
 #include <kconfig.h>
@@ -83,7 +83,7 @@ KNoteConfigDlg::~KNoteConfigDlg()
 
 void KNoteConfigDlg::slotUpdateCaption()
 {
-    KNote *note = ::qt_cast<KNote *>(sender());
+    KNote *note = ::qobject_cast<KNote *>(sender());
     if ( note )
         setCaption( note->name() );
 }
@@ -118,7 +118,8 @@ kcfg_BgColor->setObjectName( "kcfg_BgColor" );
         QLabel *label_Width = new QLabel( i18n("Default &width:"), displayPage, "label_Width" );
         layout->addWidget( label_Width, 2, 0 );
 
-        KIntNumInput *kcfg_Width = new KIntNumInput( displayPage, "kcfg_Width" );
+        KIntNumInput *kcfg_Width = new KIntNumInput( displayPage );
+        kcfg_Width->setObjectName( "kcfg_Width" );
         label_Width->setBuddy( kcfg_Width );
         kcfg_Width->setRange( 50, 2000, 10, false );
         layout->addWidget( kcfg_Width, 2, 1 );
@@ -126,7 +127,8 @@ kcfg_BgColor->setObjectName( "kcfg_BgColor" );
         QLabel *label_Height = new QLabel( i18n("Default &height:"), displayPage, "label_Height" );
         layout->addWidget( label_Height, 3, 0 );
 
-        KIntNumInput *kcfg_Height = new KIntNumInput( displayPage, "kcfg_Height" );
+        KIntNumInput *kcfg_Height = new KIntNumInput( displayPage );
+        kcfg_Height->setObjectName( "kcfg_Height" );
         kcfg_Height->setRange( 50, 2000, 10, false );
         label_Height->setBuddy( kcfg_Height );
         layout->addWidget( kcfg_Height, 3, 1 );
@@ -148,7 +150,8 @@ QWidget *KNoteConfigDlg::makeEditorPage( bool defaults )
     QLabel *label_TabSize = new QLabel( i18n( "&Tab size:" ), editorPage, "label_TabSize" );
     layout->addMultiCellWidget( label_TabSize, 0, 0, 0, 1 );
 
-    KIntNumInput *kcfg_TabSize = new KIntNumInput( editorPage, "kcfg_TabSize" );
+    KIntNumInput *kcfg_TabSize = new KIntNumInput( editorPage );
+    kcfg_TabSize->setObjectName( "kcfg_TabSize" );
     kcfg_TabSize->setRange( 0, 40, 1, false );
     label_TabSize->setBuddy( kcfg_TabSize );
     layout->addWidget( kcfg_TabSize, 0, 2 );
@@ -193,7 +196,8 @@ QWidget *KNoteConfigDlg::makeActionsPage()
     QLabel *label_MailAction = new QLabel( i18n("&Mail action:"), actionsPage, "label_MailAction" );
     layout->addWidget( label_MailAction, 0, 0 );
 
-    KLineEdit *kcfg_MailAction = new KLineEdit( actionsPage, "kcfg_MailAction" );
+    KLineEdit *kcfg_MailAction = new KLineEdit( actionsPage );
+    kcfg_MailAction->setObjectName( "kcfg_MailAction" );
     label_MailAction->setBuddy( kcfg_MailAction );
     layout->addWidget( kcfg_MailAction, 0, 1 );
 
@@ -205,22 +209,24 @@ QWidget *KNoteConfigDlg::makeNetworkPage()
     QWidget *networkPage = new QWidget();
     QGridLayout *layout = new QGridLayout( networkPage, 4, 2, 0, spacingHint() );
 
-    Q3GroupBox *incoming = new QHGroupBox( i18n("Incoming Notes"), networkPage );
+    Q3GroupBox *incoming = new Q3GroupBox( i18n("Incoming Notes"), networkPage );
     layout->addMultiCellWidget( incoming, 0, 0, 0, 1 );
 
     new QCheckBox( i18n("Accept incoming notes"), incoming, "kcfg_ReceiveNotes" );
 
-    Q3GroupBox *outgoing = new QHGroupBox( i18n("Outgoing Notes"), networkPage );
+    Q3GroupBox *outgoing = new Q3GroupBox( i18n("Outgoing Notes"), networkPage );
     layout->addMultiCellWidget( outgoing, 1, 1, 0, 1 );
 
     QLabel *label_SenderID = new QLabel( i18n("&Sender ID:"), outgoing, "label_SenderID" );
-    KLineEdit *kcfg_SenderID = new KLineEdit( outgoing, "kcfg_SenderID" );
+    KLineEdit *kcfg_SenderID = new KLineEdit( outgoing );
+    kcfg_SenderID->setObjectName( "kcfg_SenderID" );
     label_SenderID->setBuddy( kcfg_SenderID );
 
     QLabel *label_Port = new QLabel( i18n("&Port:"), networkPage, "label_Port" );
     layout->addWidget( label_Port, 2, 0 );
 
-    KIntNumInput *kcfg_Port = new KIntNumInput( networkPage, "kcfg_Port" );
+    KIntNumInput *kcfg_Port = new KIntNumInput( networkPage );
+    kcfg_Port->setObjectName( "kcfg_Port" );
     kcfg_Port->setRange( 0, 65535, 1, false );
     label_Port->setBuddy( kcfg_Port );
     layout->addWidget( kcfg_Port, 2, 1 );
