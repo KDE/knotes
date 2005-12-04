@@ -44,7 +44,7 @@
 #include <kglobalaccel.h>
 #include <ksimpleconfig.h>
 #include <kwin.h>
-#include <kextsock.h>
+//#include <kextsock.h>
 
 #include <libkcal/journal.h>
 #include <libkcal/calendarlocal.h>
@@ -109,7 +109,7 @@ KNotesApp::KNotesApp()
     // create the dock widget...
     KWin::setSystemTrayWindowFor( winId(), QX11Info::appRootWindow() );
     QToolTip::add( this, i18n( "KNotes: Sticky notes for KDE" ) );
-    setBackgroundMode( X11ParentRelative );
+    setBackgroundMode( Qt::X11ParentRelative );
     setPixmap( KSystemTray::loadIcon( "knotes" ) );
 
     // set the initial style
@@ -205,10 +205,13 @@ KNotesApp::KNotesApp()
     m_alarm = new KNotesAlarm( m_manager, this );
 
     // create the socket and possibly start listening for connections
+#warning Port me!
+#if 0
     m_listener = new KExtendedSocket();
     m_listener->setSocketFlags( KExtendedSocket::passiveSocket | KExtendedSocket::inetSocket );
     connect( m_listener, SIGNAL(readyAccept()), SLOT(acceptConnection()) );
     updateNetworkListener();
+#endif
 
     if ( m_noteList.count() == 0 && !kapp->isSessionRestored() )
         newNote();
@@ -581,12 +584,15 @@ void KNotesApp::killNote( KCal::Journal *journal )
 
 void KNotesApp::acceptConnection()
 {
+#warning Port me!
+#if 0
     // Accept the connection and make KNotesNetworkReceiver do the job
     KExtendedSocket *s;
     m_listener->accept( s );
     KNotesNetworkReceiver *recv = new KNotesNetworkReceiver( s );
     connect( recv, SIGNAL(sigNoteReceived( const QString &, const QString & )),
              this, SLOT(newNote( const QString &, const QString & )) );
+#endif
 }
 
 void KNotesApp::saveNotes()
@@ -611,8 +617,7 @@ void KNotesApp::updateNoteActions()
     {
         KAction *action = new KAction( it.current()->name().replace("&", "&&"),
                                        KShortcut(), this, SLOT(slotShowNote()),
-                                       (QObject *)0,
-                                       it.current()->noteId().utf8() );
+                                       0, it.current()->noteId().utf8() );
         KIconEffect effect;
         QPixmap icon = effect.apply( qApp->windowIcon().pixmap(IconSize(KIcon::Small),IconSize(KIcon::Small)), KIconEffect::Colorize, 1,
                                      it.current()->paletteBackgroundColor(), false );
@@ -628,7 +633,8 @@ void KNotesApp::updateNoteActions()
         m_noteActions.append( action );
     }
 
-    plugActionList( "notes", m_noteActions );
+#warning Port m_noteActions to QList<KAction*>
+//    plugActionList( "notes", m_noteActions );
 }
 
 void KNotesApp::updateGlobalAccels()
@@ -669,6 +675,8 @@ void KNotesApp::updateGlobalAccels()
 
 void KNotesApp::updateNetworkListener()
 {
+#warning Port me!
+#if 0
     m_listener->reset();
 
     if ( KNotesGlobalConfig::receiveNotes() )
@@ -676,6 +684,7 @@ void KNotesApp::updateNetworkListener()
         m_listener->setPort( KNotesGlobalConfig::port() );
         m_listener->listen();
     }
+#endif
 }
 
 void KNotesApp::updateStyle()

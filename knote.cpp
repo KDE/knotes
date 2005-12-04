@@ -697,10 +697,13 @@ void KNote::slotSend()
     }
 
     // Send the note
+#warning Port me!
+#if 0
     KNotesNetworkSender *sender = new KNotesNetworkSender( host, KNotesGlobalConfig::port() );
     sender->setSenderId( KNotesGlobalConfig::senderID() );
     sender->setNote( name(), text() );
     sender->connect();
+#endif
 }
 
 void KNote::slotMail()
@@ -1282,7 +1285,8 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             e->button() == Qt::LeftButton ? KWin::raiseWindow( winId() )
                                       : KWin::lowerWindow( winId() );
 
-            XUngrabPointer( QX11Info::display(), qt_x_time );
+#warning Port me!
+//            XUngrabPointer( QX11Info::display(), qt_x_time );
             NETRootInfo wm_root( QX11Info::display(), NET::WMMoveResize );
             wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(), NET::Move );
             return true;

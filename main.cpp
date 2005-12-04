@@ -18,6 +18,8 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
+#include "knotesapp.h"
+
 #include <kuniqueapplication.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
@@ -28,7 +30,6 @@
 #include <X11/Xatom.h>
 #include <QX11Info>
 
-#include "knotesapp.h"
 #include "version.h"
 #include "main.h"
 

@@ -81,7 +81,8 @@ void KNoteButton::drawButton( QPainter* p )
     if ( !m_flat )
         flags |= QStyle::State_MouseOver;
 
-    style().drawPrimitive( QStyle::PE_PanelButtonTool, p, rect(), colorGroup(), flags );
+#warning Port me!
+//    style()->drawPrimitive( QStyle::PE_PanelButtonTool, p, rect(), colorGroup(), flags );
     drawButtonLabel( p );
 }
 
@@ -105,8 +106,8 @@ void KNoteButton::drawButtonLabel( QPainter* p )
         // Shift button contents if pushed.
         if ( isOn() || isDown() )
         {
-            dx += style().pixelMetric( QStyle::PM_ButtonShiftHorizontal, this );
-            dy += style().pixelMetric( QStyle::PM_ButtonShiftVertical, this );
+            dx += style()->pixelMetric( QStyle::PM_ButtonShiftHorizontal, 0, this );
+            dy += style()->pixelMetric( QStyle::PM_ButtonShiftVertical, 0, this );
         }
 
         p->drawPixmap( dx, dy, pix );
