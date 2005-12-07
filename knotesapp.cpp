@@ -25,7 +25,6 @@
 #include <QPixmap>
 #include <QEvent>
 #include <QLabel>
-#include <Q3ValueList>
 #include <QMouseEvent>
 
 #include <kdebug.h>
@@ -514,8 +513,8 @@ void KNotesApp::slotConfigureAccels()
         return;
 
     notes.toFirst();
-    Q3ValueList<KAction *> list = (*notes)->actionCollection()->actions();
-    for ( Q3ValueList<KAction *>::iterator it = list.begin(); it != list.end(); ++it )
+    QList<KAction *> list = (*notes)->actionCollection()->actions();
+    for ( QList<KAction *>::iterator it = list.begin(); it != list.end(); ++it )
     {
         notes.toFirst();
         for ( ++notes; *notes; ++notes )
