@@ -32,7 +32,7 @@
 #include <qlabel.h>
 #include <qradiobutton.h>
 #include <q3buttongroup.h>
-#include <q3vbox.h>
+
 
 #include <klocale.h>
 #include <kvbox.h>
@@ -57,14 +57,14 @@ KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent, const cha
     QRadioButton *none = new QRadioButton( i18n("&No alarm"), group );
     m_buttons->insert( none );
 
-    Q3HBox *at = new Q3HBox( group );
+    KHBox *at = new KHBox( group );
     QRadioButton *label_at = new QRadioButton( i18n("Alarm &at:"), at );
     m_buttons->insert( label_at );
     m_atDate = new KDateEdit( at );
     m_atTime = new KTimeEdit( at );
     at->setStretchFactor( m_atDate, 1 );
 
-    Q3HBox *in = new Q3HBox( group );
+    KHBox *in = new KHBox( group );
     QRadioButton *label_in = new QRadioButton( i18n("Alarm &in:"), in );
     m_buttons->insert( label_in );
     m_inTime = new KTimeEdit( in );
