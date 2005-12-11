@@ -391,7 +391,7 @@ void KNoteEdit::colorChanged( const QColor &c )
 void KNoteEdit::alignmentChanged( int a )
 {
     // TODO: AlignAuto
-    if ( ( a == Qt::AlignAuto ) || ( a & Qt::AlignLeft ) )
+    if ( ( a == Qt::AlignLeft ) || ( a & Qt::AlignLeft ) )
         m_textAlignLeft->setChecked( true );
     else if ( ( a & Qt::AlignHCenter ) )
         m_textAlignCenter->setChecked( true );

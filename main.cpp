@@ -95,7 +95,7 @@ int main( int argc, char* argv[] )
     KAboutData aboutData(
           "knotes",
           I18N_NOOP("KNotes"),
-          version.latin1(),
+          version.toLatin1(),
           I18N_NOOP( "KDE Notes" ),
           KAboutData::License_GPL,
           I18N_NOOP("(c) 1997-2005, The KNotes Developers")

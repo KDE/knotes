@@ -95,7 +95,7 @@ void KNotesNetworkReceiver::slotDataAvailable()
         // Append to "big buffer", only if we have some space left.
         int curLen = m_buffer->count();
 
-        smallBufferLen = m_sock->readBlock( smallBuffer, SBSIZE );
+        smallBufferLen = m_sock->read( smallBuffer, SBSIZE );
         if ( smallBufferLen > MAXBUFFER - curLen )
             smallBufferLen = ( MAXBUFFER - curLen );   // Limit max transfer over buffer, to avoid overflow.
         if ( smallBufferLen > 0 )
