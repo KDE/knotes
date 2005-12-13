@@ -25,7 +25,6 @@
 #include <qbitmap.h>
 #include <qcursor.h>
 #include <qpainter.h>
-#include <q3paintdevicemetrics.h>
 #include <q3simplerichtext.h>
 #include <qobject.h>
 #include <qfile.h>
@@ -741,13 +740,12 @@ void KNote::slotPrint()
 
         const int margin = 40;  // pt
 
-        Q3PaintDeviceMetrics metrics( painter.device() );
-        int marginX = margin * metrics.logicalDpiX() / 72;
-        int marginY = margin * metrics.logicalDpiY() / 72;
+        int marginX = margin * painter.device()->logicalDpiX() / 72;
+        int marginY = margin * painter.device()->logicalDpiY() / 72;
 
         QRect body( marginX, marginY,
-                    metrics.width() - marginX * 2,
-                    metrics.height() - marginY * 2 );
+                    painter.device()->width() - marginX * 2,
+                    painter.device()->height() - marginY * 2 );
 
         QString content;
         if ( m_editor->textFormat() == Qt::PlainText )
