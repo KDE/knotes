@@ -55,9 +55,9 @@ protected slots:
     void slotReadyWrite();
 
 private:
-    Q3CString m_note;
-    Q3CString m_title;
-    Q3CString m_sender;
+    QByteArray m_note;
+    QByteArray m_title;
+    QByteArray m_sender;
     uint m_index;
 };
 

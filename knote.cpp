@@ -37,7 +37,6 @@
 #include <Q3Frame>
 #include <QEvent>
 #include <QTextStream>
-#include <Q3CString>
 #include <QDesktopWidget>
 #include <QDropEvent>
 #include <QDragEnterEvent>
@@ -553,7 +552,7 @@ void KNote::sync( const QString& app )
     sep[0] = '\0';
 
     KMD5 hash;
-    Q3CString result;
+    QByteArray result;
 
     hash.update( m_label->text().utf8() );
     hash.update( sep );
