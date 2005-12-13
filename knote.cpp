@@ -43,7 +43,6 @@
 #include <QDragEnterEvent>
 #include <QCloseEvent>
 #include <QPixmap>
-#include <Q3PointArray>
 
 #include <kapplication.h>
 #include <kdebug.h>
@@ -212,7 +211,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     QBitmap mask;
     mask.resize( width, height );
     mask.fill( Qt::color0 );
-    Q3PointArray array;
+    QPolygon array;
     array.setPoints( 3, 0, height, width, height, width, 0 );
     QPainter p;
     p.begin( &mask );
@@ -979,7 +978,7 @@ void KNote::createFold()
     QPainter foldp( &fold );
     foldp.setPen( Qt::NoPen );
     foldp.setBrush( palette().active().dark() );
-    Q3PointArray foldpoints( 3 );
+    QPolygon foldpoints( 3 );
     foldpoints.putPoints( 0, 3, 0, 0, 14, 0, 0, 14 );
     foldp.drawPolygon( foldpoints );
     foldp.end();
@@ -1062,7 +1061,7 @@ void KNote::updateMask()
 
     if ( !hasFocus() )
     {
-        Q3PointArray foldpoints( 3 );
+        QPolygon foldpoints( 3 );
         foldpoints.putPoints( 0, 3, w-15, h, w, h-15, w, h );
         QRegion fold( foldpoints, false );
         setMask( reg.unite( pushpin_reg ).subtract( fold ) );
