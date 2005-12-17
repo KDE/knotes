@@ -1303,8 +1303,8 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
         if ( ev->type() == QEvent::FocusOut )
         {
             QFocusEvent *fe = static_cast<QFocusEvent *>(ev);
-            if ( fe->reason() != QFocusEvent::Popup &&
-                 fe->reason() != QFocusEvent::Mouse )
+            if ( fe->reason() != Qt::PopupFocusReason &&
+                 fe->reason() != Qt::MouseFocusReason )
             {
                 updateFocus();
                 if ( m_editor->isModified() )
