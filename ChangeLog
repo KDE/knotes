@@ -1,5 +1,9 @@
 ChangeLog for KNotes
 ====================
+2005/09/06  Michael Brade <brade@kde.org>
+
+    * fixed #106724: don't overwrite files without asking for confirmation
+      first
 
 2005/08/17  Alejandro Exojo <suy@badopi.org>
 

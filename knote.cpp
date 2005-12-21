@@ -804,6 +804,15 @@ void KNote::slotSaveAs()
         return;
 
     QFile file( fileName );
+
+    if ( file.exists() &&
+         KMessageBox::warningContinueCancel( this, i18n("<qt>A file named <b>%1</b> already exists.<br>"
+                           "Are you sure you want to overwrite it?</qt>").arg( QFileInfo(file).fileName() ) )
+         != KMessageBox::Continue )
+    {
+        return;
+    }
+
     if ( file.open( QIODevice::WriteOnly ) )
     {
         QTextStream stream( &file );
@@ -928,6 +937,10 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
     newpalette.setColor( QColorGroup::Base,       bg ); // text background
     newpalette.setColor( QColorGroup::Text,       fg ); // text color
     newpalette.setColor( QColorGroup::Button,     bg );
+    newpalette.setColor( QColorGroup::ButtonText, fg );
+ 
+//    newpalette.setColor( QColorGroup::Highlight,  bg );
+//    newpalette.setColor( QColorGroup::HighlightedText, fg );
 
     // the shadow
     newpalette.setColor( QColorGroup::Midlight, bg.light(150) );
