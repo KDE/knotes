@@ -120,9 +120,10 @@ private slots:
     void killNote( KCal::Journal *journal );
 
 private:
-    class KNoteActionList : public Q3PtrList<KAction>
+    class KNoteActionList : public QList<KAction*>
     {
     public:
+		virtual ~KNoteActionList() {}
         virtual int compareItems( Q3PtrCollection::Item s1, Q3PtrCollection::Item s2 );
     };
 

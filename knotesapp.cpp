@@ -103,7 +103,6 @@ KNotesApp::KNotesApp()
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
     m_noteList.setAutoDelete( true );
-    m_noteActions.setAutoDelete( true );
 
     // create the dock widget...
     KWin::setSystemTrayWindowFor( winId(), QX11Info::appRootWindow() );
@@ -224,6 +223,8 @@ KNotesApp::~KNotesApp()
 
     blockSignals( true );
     m_noteList.clear();
+	qDeleteAll(m_noteActions);
+	m_noteActions.clear();
     blockSignals( false );
 
     delete m_listener;
@@ -624,7 +625,7 @@ void KNotesApp::updateNoteActions()
         m_noteActions.append( action );
     }
 
-    m_noteActions.sort();
+	qSort(m_noteActions.begin(),m_noteActions.end());
 
     if ( m_noteActions.isEmpty() )
     {
