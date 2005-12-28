@@ -548,55 +548,6 @@ bool KNote::isModified() const
     return m_editor->isModified();
 }
 
-// FIXME KDE 4.0: remove sync(), isNew() and isModified()
-void KNote::sync( const QString& app )
-{
-    QByteArray sep( 1 );
-    sep[0] = '\0';
-
-    KMD5 hash;
-    QByteArray result;
-
-    hash.update( m_label->text().utf8() );
-    hash.update( sep );
-    hash.update( m_editor->text().utf8() );
-    hash.hexDigest( result );
-
-    // hacky... not possible with KConfig XT
-    KConfig *config = m_config->config();
-    config->setGroup( "Synchronisation" );
-    config->writeEntry( app, result.data() );
-}
-
-bool KNote::isNew( const QString& app ) const
-{
-    KConfig *config = m_config->config();
-    config->setGroup( "Synchronisation" );
-    QString hash = config->readEntry( app );
-    return hash.isEmpty();
-}
-
-bool KNote::isModified( const QString& app ) const
-{
-    QByteArray sep( 1 );
-    sep[0] = '\0';
-
-    KMD5 hash;
-    hash.update( m_label->text().utf8() );
-    hash.update( sep );
-    hash.update( m_editor->text().utf8() );
-    hash.hexDigest();
-
-    KConfig *config = m_config->config();
-    config->setGroup( "Synchronisation" );
-    QString orig = config->readEntry( app );
-
-    if ( hash.verify( orig.utf8() ) )   // returns false on error!
-        return false;
-    else
-        return true;
-}
-
 void KNote::setStyle( int style )
 {
     if ( style == KNotesGlobalConfig::EnumStyle::Plain )
