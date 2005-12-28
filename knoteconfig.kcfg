@@ -7,11 +7,11 @@
 
   <group name="Display">
     <entry name="BgColor" type="Color" key="bgcolor">
-      <default>yellow</default>
+      <default code="true">Qt::yellow</default>
     </entry>
 
     <entry name="FgColor" type="Color" key="fgcolor">
-      <default>black</default>
+      <default code="true">Qt::black</default>
     </entry>
 
     <entry name="Width" type="UInt" key="width">
