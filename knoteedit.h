@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2004, The KNotes Developers
+ Copyright (c) 1997-2005, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -21,14 +21,13 @@
 #ifndef KNOTEEDIT_H
 #define KNOTEEDIT_H
 
-#include <qwidget.h>
-//Added by qt3to4:
+#include <QWidget>
 #include <QDragEnterEvent>
 #include <QDropEvent>
-#include <qtextformat.h>
+#include <QTextFormat>
 #include <QTextCharFormat>
 
-#include <k3textedit.h>
+#include <ktextedit.h>
 
 class QFont;
 class QColor;
@@ -40,25 +39,26 @@ class KFontAction;
 class KFontSizeAction;
 
 
-class KNoteEdit : public K3TextEdit
+class KNoteEdit : public KTextEdit
 {
     Q_OBJECT
 public:
-    KNoteEdit( KActionCollection *actions, QWidget *parent=0, const char *name=0 );
+    KNoteEdit( KActionCollection *actions, QWidget *parent=0 );
     ~KNoteEdit();
 
     void setText( const QString& text );
     void setTextFont( const QFont& font );
-    void setTextColor( const QColor& color );
+//    void setTextColor( const QColor& color );
     void setTabStop( int tabs );
     void setAutoIndentMode( bool newmode );
 
 public slots:
-    virtual void setTextFormat( Qt::TextFormat f );
+    void setRichText( bool );
 
+    void textBold( bool );
     void textStrikeOut( bool );
 
-    void textColor();
+    void slotTextColor();
 
     void textAlignLeft();
     void textAlignCenter();
@@ -74,22 +74,16 @@ public slots:
     //void textDecreaseIndent();
 
 protected:
-    virtual void contentsDragEnterEvent( QDragEnterEvent *e );
-    virtual void contentsDropEvent( QDropEvent *e );
+    virtual void contextMenuEvent( QContextMenuEvent * );
+    virtual void dragEnterEvent( QDragEnterEvent * );
+    virtual void dropEvent( QDropEvent * );
+    virtual void keyPressEvent( QKeyEvent * );
 
 private slots:
-    void slotReturnPressed();
-
-    void fontChanged( const QFont &f );
-    void colorChanged( const QColor &c );
-    void alignmentChanged( int a );
-    void verticalAlignmentChanged( Q3TextEdit::VerticalAlignment a );
+    void slotCurrentCharFormatChanged( const QTextCharFormat& );
 
 private:
     void autoIndent();
-
-    virtual bool linksEnabled() const { return true; }
-    virtual void emitLinkClicked( const QString &s );
 
     void enableRichTextActions();
     void disableRichTextActions();

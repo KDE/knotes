@@ -21,12 +21,11 @@
 #ifndef KNOTE_H
 #define KNOTE_H
 
-#include <qstring.h>
-#include <qevent.h>
-#include <q3frame.h>
-#include <qpoint.h>
-#include <qcolor.h>
-//Added by qt3to4:
+#include <QString>
+#include <QEvent>
+#include <QFrame>
+#include <QPoint>
+#include <QColor>
 #include <QDragEnterEvent>
 #include <QLabel>
 #include <QShowEvent>
@@ -38,6 +37,7 @@
 #include <kxmlguiclient.h>
 
 class QLabel;
+class QSizeGrip;
 
 class KXMLGUIBuilder;
 
@@ -55,12 +55,11 @@ namespace KCal {
 }
 
 
-class KNote : public Q3Frame, virtual public KXMLGUIClient
+class KNote : public QFrame, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:
-    KNote( QDomDocument buildDoc, KCal::Journal *journal, QWidget *parent = 0,
-           const char *name = 0 );
+    KNote( QDomDocument buildDoc, KCal::Journal *journal, QWidget *parent = 0 );
     ~KNote();
 
     void saveData();
@@ -69,7 +68,6 @@ public:
     QString noteId() const;
     QString name() const;
     QString text() const;
-    QString plainText() const;
 
     void setName( const QString& name );
     void setText( const QString& text );
@@ -77,10 +75,6 @@ public:
     void find( const QString& pattern, long options );
 
     bool isModified() const;
-
-    void sync( const QString& app );
-    bool isNew( const QString& app ) const;
-    bool isModified( const QString& app ) const;
 
     static void setStyle( int style );
 
@@ -98,6 +92,7 @@ signals:
     void sigFindFinished();
 
 protected:
+    virtual void contextMenuEvent( QContextMenuEvent * );
     virtual void drawFrame( QPainter* );
     virtual void showEvent( QShowEvent* );
     virtual void resizeEvent( QResizeEvent* );
@@ -149,10 +144,9 @@ private:
 
     void toDesktop( int desktop );
 
-    QString toPlainText( const QString& );
-
 private:
     QLabel        *m_label, *m_pushpin, *m_fold;
+    QSizeGrip     *m_grip;
     KNoteButton   *m_button;
     KToolBar      *m_tool;
     KNoteEdit     *m_editor;
@@ -162,8 +156,8 @@ private:
 
     KFind         *m_find;
 
-    KMenu    *m_menu;
-    KMenu    *m_edit_menu;
+    KMenu         *m_menu;
+    KMenu         *m_edit_menu;
 
     KToggleAction *m_readOnly;
 

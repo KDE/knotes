@@ -18,23 +18,20 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include <qlabel.h>
-#include <qdrawutil.h>
-#include <qsize.h>
-#include <qsizegrip.h>
-#include <qbitmap.h>
-#include <qcursor.h>
-#include <qpainter.h>
-#include <q3simplerichtext.h>
-#include <qobject.h>
-#include <qfile.h>
-#include <qcheckbox.h>
-//Added by qt3to4:
+#include <QLabel>
+#include <QSize>
+#include <QSizeGrip>
+#include <QScrollBar>
+#include <QBitmap>
+#include <QCursor>
+#include <QPainter>
+#include <QObject>
+#include <QFile>
+#include <QCheckBox>
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QFocusEvent>
 #include <QShowEvent>
-#include <Q3Frame>
 #include <QEvent>
 #include <QTextStream>
 #include <QDesktopWidget>
@@ -90,17 +87,17 @@
 
 using namespace KCal;
 
-extern Time qt_x_time;
-
 int KNote::s_ppOffset = 0;
 
-KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *name )
-  : Q3Frame( parent, name, Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WDestructiveClose ),
-    m_label( 0 ), m_pushpin( 0 ), m_fold( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ),
-    m_config( 0 ), m_journal( j ), m_find( 0 ),
+KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
+  : QFrame( parent, Qt::FramelessWindowHint ),
+    m_label( 0 ), m_pushpin( 0 ), m_fold( 0 ), m_grip( 0 ), m_button( 0 ),
+    m_tool( 0 ), m_editor( 0 ), m_config( 0 ), m_journal( j ), m_find( 0 ),
     m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) )
 {
+    setAttribute( Qt::WA_DeleteOnClose );
     setAcceptDrops( true );
+
     actionCollection()->setWidget( this );
 
     setDOMDocument( buildDoc );
@@ -172,9 +169,11 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
     // create the note editor
     m_editor = new KNoteEdit( actionCollection(), this );
+#warning is the eventfilter the reason for the lacking key events?
     m_editor->installEventFilter( this ); // receive events (for modified)
     m_editor->viewport()->installEventFilter( this );
-    connect( m_editor, SIGNAL(contentsMoving( int, int )), this, SLOT(slotUpdateViewport( int, int )));
+#warning Port contentsMoving: not needed with Qt 4?
+//    connect( m_editor, SIGNAL(contentsMoving( int, int )), this, SLOT(slotUpdateViewport( int, int )));
 
     KXMLGUIBuilder builder( this );
     KXMLGUIFactory factory( &builder, this );
@@ -189,21 +188,22 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     // if there was just a way of making KComboBox adhere the toolbar height...
     //QObjectList *list = new QObjectList( m_tool->queryList( "KComboBox" ) );
     const QList<QObject *> list = m_tool->queryList( "KComboBox" );
-	for (int i = 0; i < list.size(); ++i) {
-		KComboBox *combo = (KComboBox *)list.at(i);
-	   	QFont font = combo->font();
+    for ( int i = 0; i < list.size(); ++i )
+    {
+        KComboBox *combo = (KComboBox *)list.at(i);
+        QFont font = combo->font();
         font.setPointSize( 7 );
-	  	combo->setFont( font );
+        combo->setFont( font );
         combo->setFixedHeight( 14 );				
-	}
+    }
     m_tool->hide();
 
     setFocusProxy( m_editor );
 
     // create the resize handle
-    m_editor->setCornerWidget( new QSizeGrip( this ) );
-    uint width = m_editor->cornerWidget()->width();
-    uint height = m_editor->cornerWidget()->height();
+    m_grip = new QSizeGrip( this );
+    uint width = m_editor->verticalScrollBar()->sizeHint().width();
+    uint height = m_editor->horizontalScrollBar()->sizeHint().height();
     QBitmap mask;
     mask.resize( width, height );
     mask.fill( Qt::color0 );
@@ -214,8 +214,8 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     p.setBrush( Qt::color1 );
     p.drawPolygon( array );
     p.end();
-    m_editor->cornerWidget()->setMask( mask );
-    m_editor->cornerWidget()->setBackgroundMode( Qt::PaletteBase );
+    m_grip->setMask( mask );
+    m_grip->setBackgroundRole( QPalette::Base );
 
     // the config file location
     QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
@@ -257,12 +257,14 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
     // set up the look&feel of the note
     setMinimumSize( 20, 20 );
-    setLineWidth( 1 );
-    setMargin( 0 );
 
-    m_editor->setMargin( 0 );
-    m_editor->setFrameStyle( NoFrame );
-    m_editor->setBackgroundOrigin( WindowOrigin );
+    // the default already
+    //setLineWidth( 1 );
+    //setMargin( 0 );
+    //setContentsMargin( 0, 0, 0, 0 );
+
+    //m_editor->setContentsMargin( 0, 0, 0, 0 );
+    //m_editor->setFrameStyle( NoFrame );
 
     // can be done here since this doesn't pick up changes while KNotes is running anyway
     bool closeLeft = false;
@@ -279,14 +281,14 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     // the pushpin label at the top left or right corner
     m_pushpin = new QLabel( this );
     m_pushpin->setScaledContents( true );
-    m_pushpin->setBackgroundMode( Qt::NoBackground );
+    m_pushpin->setAttribute( Qt::WA_NoSystemBackground );
     m_pushpin->setPixmap( pushpin_pix );
     m_pushpin->resize( pushpin_pix.size() );
 
     // fold label at bottom right corner
     m_fold = new QLabel( this );
     m_fold->setScaledContents( true );
-    m_fold->setBackgroundMode( Qt::NoBackground );
+    m_fold->setAttribute( Qt::WA_NoSystemBackground );
 
     // load the display configuration of the note
     width = m_config->width();
@@ -356,15 +358,17 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     }
 
     m_editor->setText( m_journal->description() );
-    m_editor->setModified( false );
+    m_editor->document()->setModified( false );
 
     m_readOnly->setChecked( m_config->readOnly() );
     slotUpdateReadOnly();
 
     // HACK: update the icon color - again after showing the note, to make kicker aware of the new colors
     KIconEffect effect;
-    QPixmap icon = effect.apply( qApp->windowIcon().pixmap(IconSize(KIcon::Desktop),IconSize(KIcon::Desktop)), KIconEffect::Colorize, 1, m_config->bgColor(), false );
-    QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap(IconSize(KIcon::Small),IconSize(KIcon::Small)), KIconEffect::Colorize, 1, m_config->bgColor(), false );
+    QPixmap icon = effect.apply( qApp->windowIcon().pixmap( IconSize(KIcon::Desktop), IconSize(KIcon::Desktop) ),
+                                 KIconEffect::Colorize, 1, m_config->bgColor(), false );
+    QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap( IconSize(KIcon::Small), IconSize(KIcon::Small) ),
+                                     KIconEffect::Colorize, 1, m_config->bgColor(), false );
     KWin::setIcons( winId(), icon, miniIcon );
 }
 
@@ -407,13 +411,13 @@ void KNote::slotKill( bool force )
 void KNote::saveData()
 {
     m_journal->setSummary( m_label->text() );
-    m_journal->setDescription( m_editor->text() );
+    m_journal->setDescription( m_editor->text() ); // FIXME
     m_journal->setCustomProperty( "KNotes", "FgColor", m_config->fgColor().name() );
     m_journal->setCustomProperty( "KNotes", "BgColor", m_config->bgColor().name() );
     m_journal->setCustomProperty( "KNotes", "RichText", m_config->richText() ? "true" : "false" );
 
     emit sigDataChanged();
-    m_editor->setModified( false );
+    m_editor->document()->setModified( false );
 }
 
 void KNote::saveConfig() const
@@ -442,21 +446,12 @@ QString KNote::name() const
 
 QString KNote::text() const
 {
-    return m_editor->text();
-}
+    // FIXME: textDocmument->text() or something??
 
-QString KNote::plainText() const
-{
-    if ( m_editor->textFormat() == Qt::RichText )
-    {
-        Q3TextEdit conv;
-        conv.setTextFormat( Qt::RichText );
-        conv.setText( m_editor->text() );
-        conv.setTextFormat( Qt::PlainText );
-        return conv.text();
-    }
+    if ( m_editor->acceptRichText() )
+        return m_editor->toHtml();
     else
-        return m_editor->text();
+        return m_editor->toPlainText();
 }
 
 void KNote::setName( const QString& name )
@@ -489,7 +484,7 @@ void KNote::find( const QString& pattern, long options )
              this, SLOT(slotHighlight( const QString &, int, int )) );
     connect( m_find, SIGNAL(findNext()), this, SLOT(slotFindNext()) );
 
-    m_find->setData( plainText() );
+    m_find->setData( m_editor->toPlainText() );
     slotFindNext();
 }
 
@@ -503,7 +498,7 @@ void KNote::slotFindNext()
 
     if ( res == KFind::NoMatch ) // i.e. at end-pos
     {
-        m_editor->removeSelection( 1 );
+        m_editor->textCursor().clearSelection();
         emit sigFindFinished();
         delete m_find;
         m_find = 0;
@@ -515,37 +510,17 @@ void KNote::slotFindNext()
     }
 }
 
-void KNote::slotHighlight( const QString& str, int idx, int len )
+void KNote::slotHighlight( const QString& /*str*/, int idx, int len )
 {
-    int paraFrom = 0, idxFrom = 0, p = 0;
-    for ( ; p < idx; ++p )
-        if ( str[p] == '\n' )
-        {
-            ++paraFrom;
-            idxFrom = 0;
-        }
-        else
-            ++idxFrom;
-
-    int paraTo = paraFrom, idxTo = idxFrom;
-
-    for ( ; p < idx + len; ++p )
-    {
-        if ( str[p] == '\n' )
-        {
-            ++paraTo;
-            idxTo = 0;
-        }
-        else
-            ++idxTo;
-    }
-
-    m_editor->setSelection( paraFrom, idxFrom, paraTo, idxTo, 1 );
+    QTextCursor c = m_editor->textCursor();
+    c.setPosition( idx );
+    c.setPosition( idx + len, QTextCursor::KeepAnchor );
+    // TODO: modify the selection color, use a different QTextCursor?
 }
 
 bool KNote::isModified() const
 {
-    return m_editor->isModified();
+    return m_editor->document()->isModified();
 }
 
 void KNote::setStyle( int style )
@@ -648,11 +623,11 @@ void KNote::slotSend()
     }
 
     // Send the note
-#warning Port me!
+#warning Port network sending!
 #if 0
     KNotesNetworkSender *sender = new KNotesNetworkSender( host, KNotesGlobalConfig::port() );
     sender->setSenderId( KNotesGlobalConfig::senderID() );
-    sender->setNote( name(), text() );
+    sender->setNote( name(), text() ); // FIXME: plainText ??
     sender->connect();
 #endif
 }
@@ -664,10 +639,10 @@ void KNote::slotMail()
 
     KProcess mail;
     for ( QStringList::Iterator it = cmd_list.begin();
-        it != cmd_list.end(); ++it )
+          it != cmd_list.end(); ++it )
     {
         if ( *it == "%f" )
-            mail << plainText().local8Bit();  // convert rich text to plain text
+            mail << m_editor->toPlainText().local8Bit();  // convert rich text to plain text
         else if ( *it == "%t" )
             mail << m_label->text().local8Bit();
         else
@@ -681,7 +656,8 @@ void KNote::slotMail()
 void KNote::slotPrint()
 {
     saveData();
-
+#warning Port printing!
+#if 0
     KPrinter printer;
     printer.setFullPage( true );
 
@@ -699,11 +675,7 @@ void KNote::slotPrint()
                     painter.device()->width() - marginX * 2,
                     painter.device()->height() - marginY * 2 );
 
-        QString content;
-        if ( m_editor->textFormat() == Qt::PlainText )
-            content = Q3StyleSheet::convertFromPlainText( m_editor->text() );
-        else
-            content = m_editor->text();
+        QString content = m_editor->toHtml();
 
         Q3SimpleRichText text( content, m_config->font(), m_editor->context(),
                               m_editor->styleSheet(), m_editor->mimeSourceFactory(),
@@ -736,13 +708,16 @@ void KNote::slotPrint()
 
         painter.end();
     }
+#endif
 }
 
 void KNote::slotSaveAs()
 {
+    // TODO: where to put pdf file support? In the printer??!??!
+
     QCheckBox *convert = 0;
 
-    if ( m_editor->textFormat() == Qt::RichText )
+    if ( m_editor->acceptRichText() )
     {
         convert = new QCheckBox( 0 );
         convert->setText( i18n("Save note as plain text") );
@@ -770,11 +745,10 @@ void KNote::slotSaveAs()
     if ( file.open( QIODevice::WriteOnly ) )
     {
         QTextStream stream( &file );
-        // convert rich text to plain text first
-        if ( convert && convert->isChecked() )
-            stream << plainText();
+        if ( convert && !convert->isChecked() )
+            stream << m_editor->toHtml();
         else
-            stream << text();
+            stream << m_editor->toPlainText();
     }
 }
 
@@ -924,11 +898,13 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
     KWin::setIcons( winId(), icon, miniIcon );
 
     // set the color for the selection used to highlight the find stuff
+#if 0
     QColor sel = palette().color( QPalette::Active, QColorGroup::Base ).dark();
     if ( sel == Qt::black )
         sel = palette().color( QPalette::Active, QColorGroup::Base ).light();
 
     m_editor->setSelectionAttributes( 1, sel, true );
+#endif
 
     // update the color of the fold
     createFold();
@@ -967,11 +943,11 @@ void KNote::updateFocus()
     {
         m_label->setBackgroundColor( palette().active().shadow() );
         m_button->show();
-        m_editor->cornerWidget()->show();
+        m_grip->show();
 
         if ( !m_editor->isReadOnly() )
         {
-            if ( m_tool->isHidden() && m_editor->textFormat() == Qt::RichText )
+            if ( m_tool->isHidden() && m_editor->acceptRichText() )
             {
                 m_tool->show();
                 setGeometry( x(), y(), width(), height() + m_tool->height() );
@@ -989,7 +965,7 @@ void KNote::updateFocus()
     else
     {
         m_button->hide();
-        m_editor->cornerWidget()->hide();
+        m_grip->hide();
 
         if ( !m_tool->isHidden() )
         {
@@ -1020,8 +996,8 @@ void KNote::updateMask()
     int h = height();
     QRegion reg( 0, s_ppOffset, w, h - s_ppOffset );
 
-    const QBitmap *pushpin_bitmap = new QBitmap( m_pushpin->pixmap()->mask() );
-    QRegion pushpin_reg( *pushpin_bitmap );
+    const QBitmap pushpin_bitmap = m_pushpin->pixmap()->mask();
+    QRegion pushpin_reg( pushpin_bitmap );
     m_pushpin->setMask( pushpin_reg );
     pushpin_reg.translate( m_pushpin->x(), m_pushpin->y() );
 
@@ -1038,6 +1014,8 @@ void KNote::updateMask()
 
 void KNote::updateBackground( int y_offset )
 {
+#warning Port background painting!
+#if 0
     if ( !s_ppOffset )
     {
         m_editor->setPaper( QBrush( colorGroup().background() ) );
@@ -1076,12 +1054,13 @@ void KNote::updateBackground( int y_offset )
 
     // setPaletteBackgroundPixmap makes QTextEdit::color() stop working!!
     m_editor->setPaper( QBrush( Qt::black, QPixmap( grad_img ) ) );
+#endif
 }
 
 void KNote::updateLayout()
 {
     const int headerHeight = m_label->sizeHint().height();
-    const int margin = m_editor->margin();
+    const int margin = 0; // FIXME  m_editor->margin();
     bool closeLeft = false;
 
     m_kwinConf->setGroup( "Style" );
@@ -1090,8 +1069,8 @@ void KNote::updateLayout()
 
     if ( s_ppOffset )
     {
-        if ( !m_editor->paper().pixmap() )  // just changed the style
-            setColor( palette().active().foreground(), palette().active().background() );
+//        if ( !m_editor->paper().pixmap() )  // just changed the style
+//            setColor( palette().active().foreground(), palette().active().background() );
 
         m_pushpin->show();
         setFrameStyle( Panel | Raised );
@@ -1103,8 +1082,8 @@ void KNote::updateLayout()
     }
     else
     {
-        if ( m_editor->paper().pixmap() )  // just changed the style
-            setColor( palette().active().foreground(), palette().active().background() );
+//        if ( m_editor->paper().pixmap() )  // just changed the style
+//            setColor( palette().active().foreground(), palette().active().background() );
 
         setFrameStyle( WinPanel | Raised );
         m_pushpin->hide();
@@ -1141,9 +1120,9 @@ void KNote::updateLayout()
         m_fold->move( width() - 15, height() - 15 );
 
     setMinimumSize(
-        m_editor->cornerWidget()->width() + margin*2,
+        /* FIXME m_editor->cornerWidget()->width() + */ margin*2,
         headerHeight + s_ppOffset + (m_tool->isHidden() ? 0 : m_tool->height()) +
-                m_editor->cornerWidget()->height() + margin*2
+                /* m_editor->cornerWidget()->height() + */ margin*2
     );
 
     updateLabelAlignment();
@@ -1162,6 +1141,12 @@ void KNote::drawFrame( QPainter *p )
     else
         qDrawWinPanel( p, r, colorGroup(), false );
 }
+    
+void KNote::contextMenuEvent( QContextMenuEvent * )
+{
+   kdDebug() << k_funcinfo << endl;
+#warning TODO
+}
 
 void KNote::showEvent( QShowEvent * )
 {
@@ -1178,7 +1163,7 @@ void KNote::showEvent( QShowEvent * )
 
 void KNote::resizeEvent( QResizeEvent *qre )
 {
-    Q3Frame::resizeEvent( qre );
+    QFrame::resizeEvent( qre );
     updateLayout();
 }
 
@@ -1216,7 +1201,7 @@ bool KNote::event( QEvent *ev )
         return true;
     }
     else
-        return Q3Frame::event( ev );
+        return QFrame::event( ev );
 }
 
 bool KNote::eventFilter( QObject *o, QEvent *ev )
@@ -1248,8 +1233,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             e->button() == Qt::LeftButton ? KWin::raiseWindow( winId() )
                                       : KWin::lowerWindow( winId() );
 
-#warning Port me!
-//            XUngrabPointer( QX11Info::display(), qt_x_time );
+            XUngrabPointer( QX11Info::display(), QX11Info::appTime() );
             NETRootInfo wm_root( QX11Info::display(), NET::WMMoveResize );
             wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(), NET::Move );
             return true;
@@ -1274,7 +1258,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
                  fe->reason() != Qt::MouseFocusReason )
             {
                 updateFocus();
-                if ( m_editor->isModified() )
+                if ( isModified() )
                     saveData();
             }
         }
@@ -1284,6 +1268,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
         return false;
     }
 
+#warning Port: put the following in contextMenuEvent!
     if ( o == m_editor->viewport() )
     {
         if ( m_edit_menu &&

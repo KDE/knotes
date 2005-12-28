@@ -49,7 +49,8 @@ KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
                      config ? Default|Ok|Apply|Cancel : Default|Ok|Cancel, Ok )
 {
     setCaption( title );
-    KWin::setIcons( winId(), qApp->windowIcon().pixmap(IconSize(KIcon::Desktop),IconSize(KIcon::Desktop)), qApp->windowIcon().pixmap(IconSize(KIcon::Small),IconSize(KIcon::Small)) );
+    KWin::setIcons( winId(), qApp->windowIcon().pixmap( IconSize(KIcon::Desktop),IconSize(KIcon::Desktop) ), 
+                             qApp->windowIcon().pixmap( IconSize(KIcon::Small),IconSize(KIcon::Small) ) );
 
     setIconListAllVisible( true );
     enableButtonSeparator( true );
@@ -98,7 +99,7 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
     layout->addWidget( label_FgColor, 0, 0 );
 
     KColorButton *kcfg_FgColor = new KColorButton( displayPage );
-kcfg_FgColor->setObjectName( "kcfg_FgColor" );
+    kcfg_FgColor->setObjectName( "kcfg_FgColor" );
     label_FgColor->setBuddy( kcfg_FgColor );
     layout->addWidget( kcfg_FgColor, 0, 1 );
 
@@ -106,7 +107,7 @@ kcfg_FgColor->setObjectName( "kcfg_FgColor" );
     layout->addWidget( label_BgColor, 1, 0 );
 
     KColorButton *kcfg_BgColor = new KColorButton( displayPage );
-kcfg_BgColor->setObjectName( "kcfg_BgColor" );
+    kcfg_BgColor->setObjectName( "kcfg_BgColor" );
     label_BgColor->setBuddy( kcfg_BgColor );
     layout->addWidget( kcfg_BgColor, 1, 1 );
 

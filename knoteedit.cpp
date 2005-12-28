@@ -18,9 +18,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include <q3dragobject.h>
-#include <qfont.h>
-//Added by qt3to4:
+#include <QFont>
 #include <QPixmap>
 #include <QDragEnterEvent>
 #include <QDropEvent>
@@ -38,13 +36,13 @@ static const short SEP = 5;
 static const short ICON_SIZE = 10;
 
 
-KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *name )
-    : K3TextEdit( parent, name )
+KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
+    : KTextEdit( parent )
 {
     setAcceptDrops( true );
-    setWordWrap( WidgetWidth );
-    setWrapPolicy( AtWhiteSpace );
-    setLinkUnderline( true );
+    setWordWrapMode( QTextOption::WordWrap );
+    setLineWrapMode( WidgetWidth );
+    setAutoFormatting( AutoAll );
 
     // create the actions for the RMB menu
     KAction* undo = KStdAction::undo( this, SLOT(undo()), actions );
@@ -79,9 +77,9 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *n
     m_textStrikeOut = new KToggleAction( i18n("Strike Out"), "text_strike", Qt::CTRL + Qt::Key_S, 0, 0,
                                          actions, "format_strikeout" );
 
-    connect( m_textBold, SIGNAL(toggled(bool)), SLOT(setBold(bool)) );
-    connect( m_textItalic, SIGNAL(toggled(bool)), SLOT(setItalic(bool)) );
-    connect( m_textUnderline, SIGNAL(toggled(bool)), SLOT(setUnderline(bool)) );
+    connect( m_textBold, SIGNAL(toggled(bool)), SLOT(textBold(bool)) );
+    connect( m_textItalic, SIGNAL(toggled(bool)), SLOT(setFontItalic(bool)) );
+    connect( m_textUnderline, SIGNAL(toggled(bool)), SLOT(setFontUnderline(bool)) );
     connect( m_textStrikeOut, SIGNAL(toggled(bool)), SLOT(textStrikeOut(bool)) );
 
     m_textAlignLeft = new KToggleAction( i18n("Align Left"), "text_left", Qt::ALT + Qt::Key_L,
@@ -132,7 +130,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *n
     QPixmap pix( ICON_SIZE, ICON_SIZE );
     pix.fill( Qt::black );     // just a dummy, gets updated before widget is shown
     m_textColor = new KAction( i18n("Text Color..."), pix, 0, this,
-                                  SLOT(textColor()), actions, "format_color" );
+                                  SLOT(slotTextColor()), actions, "format_color" );
 
     m_textFont = new KFontAction( i18n("Text Font"), "text", KKey(),
                                   actions, "format_font" );
@@ -145,15 +143,10 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *n
              this, SLOT(setPointSize( int )) );
 
     // QTextEdit connections
-    connect( this, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
-    connect( this, SIGNAL(currentFontChanged( const QFont & )),
-             this, SLOT(fontChanged( const QFont & )) );
-    connect( this, SIGNAL(currentColorChanged( const QColor & )),
-             this, SLOT(colorChanged( const QColor & )) );
-    connect( this, SIGNAL(currentAlignmentChanged( int )),
-             this, SLOT(alignmentChanged( int )) );
-    connect( this, SIGNAL(currentVerticalAlignmentChanged( VerticalAlignment )),
-             this, SLOT(verticalAlignmentChanged( VerticalAlignment )) );
+    connect( this, SIGNAL(currentCharFormatChanged( const QTextCharFormat & )),
+             this, SLOT(slotCurrentCharFormatChanged( const QTextCharFormat & )) );
+
+    //slotCurrentCharFormatChanged( currentCharFormat() );
 }
 
 KNoteEdit::~KNoteEdit()
@@ -162,25 +155,30 @@ KNoteEdit::~KNoteEdit()
 
 void KNoteEdit::setText( const QString& text )
 {
+    // FIXME: or use convertFromPlainText, maybe only even if mightBeRichText ???
+    if ( acceptRichText() )
+        setHtml( text );
+    else
+        setPlainText( text );
+ 
+// TODO
     // to update the font and font size combo box - QTextEdit stopped
     // emitting the currentFontChanged signal with the new optimizations
-    K3TextEdit::setText( text );
-    fontChanged( currentFont() );
+//    slotCurrentCharFormatChanged( currentCharFormat() );
 }
 
 void KNoteEdit::setTextFont( const QFont& font )
 {
-    if ( textFormat() == Qt::PlainText )
-        setFont( font );
-    else
-        setCurrentFont( font );
+    setCurrentFont( font );
 }
 
+#if 0
 void KNoteEdit::setTextColor( const QColor& color )
 {
     setColor( color );
     colorChanged( color );
 }
+#endif
 
 void KNoteEdit::setTabStop( int tabs )
 {
@@ -196,84 +194,48 @@ void KNoteEdit::setAutoIndentMode( bool newmode )
 
 /** public slots **/
 
-void KNoteEdit::setTextFormat( Qt::TextFormat f )
+void KNoteEdit::setRichText( bool f )
 {
-    if ( f == textFormat() )
+    if ( f == acceptRichText() )
         return;
 
-    if ( f == Qt::RichText )
-    {
-        QString t = text();
-        K3TextEdit::setTextFormat( f );
+    setAcceptRichText( f );
 
-        // if the note contains html/xml source try to display it, otherwise
-        // get the modified text again and set it to preserve newlines
-        if ( Q3StyleSheet::mightBeRichText( t ) )
-            setText( t );
-        else
-            setText( text() );
+    QString t = toPlainText();
+    if ( f )
+    {
+        // if the note contains html/xml source try to display it
+        if ( !Qt::mightBeRichText( t ) )
+            t = Qt::convertFromPlainText( t );
+           
+        setHtml( t );
 
         enableRichTextActions();
     }
     else
     {
-        K3TextEdit::setTextFormat( f );
-        QString t = text();
-        setText( t );
-
+        setPlainText( t );
         disableRichTextActions();
     }
 }
 
-void KNoteEdit::textStrikeOut( bool s )
+void KNoteEdit::textBold( bool b )
 {
-    // QTextEdit does not support stroke out text (no saving,
-    // no changing of more than one selected character)
-    QFont font;
-
-    if ( !hasSelectedText() )
-    {
-        font = currentFont();
-        font.setStrikeOut( s );
-        setCurrentFont( font );
-    }
-    else
-    {
-        int pFrom, pTo, iFrom, iTo, iF, iT;
-        int cp, ci;
-
-        getSelection( &pFrom, &iFrom, &pTo, &iTo );
-        getCursorPosition( &cp, &ci );
-
-        for ( int p = pFrom; p <= pTo; p++ )
-        {
-            iF = 0;
-            iT = paragraphLength( p );
-
-            if ( p == pFrom )
-                iF = iFrom;
-
-            if ( p == pTo )
-                iT = iTo;
-
-            for ( int i = iF; i < iT; i++ )
-            {
-                setCursorPosition( p, i + 1 );
-                setSelection( p, i, p, i + 1 );
-                font = currentFont();
-                font.setStrikeOut( s );
-                setCurrentFont( font );
-            }
-        }
-
-        setSelection( pFrom, iFrom, pTo, iTo );
-        setCursorPosition( cp, ci );
-    }
+    QTextCharFormat f;
+    f.setFontWeight( b ? QFont::Bold : QFont::Normal );
+    mergeCurrentCharFormat( f );
 }
 
-void KNoteEdit::textColor()
+void KNoteEdit::textStrikeOut( bool s )
 {
-    QColor c = color();
+    QTextCharFormat f;
+    f.setFontStrikeOut( s );
+    mergeCurrentCharFormat( f );
+}
+
+void KNoteEdit::slotTextColor()
+{
+    QColor c = textColor();
     int ret = KColorDialog::getColor( c, this );
     if ( ret == QDialog::Accepted )
         setTextColor( c );
@@ -305,26 +267,54 @@ void KNoteEdit::textAlignBlock()
 
 void KNoteEdit::textList()
 {
+    QTextCursor c = textCursor();
+    c.beginEditBlock();
+
     if ( m_textList->isChecked() )
-        setParagType( Q3StyleSheetItem::DisplayListItem, Q3StyleSheetItem::ListDisc );
+    {
+        QTextListFormat lf;
+        QTextBlockFormat bf = c.blockFormat();
+
+        lf.setIndent( bf.indent() + 1 );
+        bf.setIndent( 0 );
+        
+        lf.setStyle( QTextListFormat::ListDisc );
+
+        c.setBlockFormat( bf );
+        c.createList( lf );
+    }
     else
-        setParagType( Q3StyleSheetItem::DisplayBlock, Q3StyleSheetItem::ListDisc );
+    {
+        QTextBlockFormat bf;
+        bf.setObjectIndex( -1 );
+        c.mergeBlockFormat( bf );
+    }
+
+    c.endEditBlock();
 }
 
 void KNoteEdit::textSuperScript()
 {
+    QTextCharFormat f;
+
     if ( m_textSuper->isChecked() )
-        setVerticalAlignment( AlignSuperScript );
+        f.setVerticalAlignment( QTextCharFormat::AlignSuperScript );
     else
-        setVerticalAlignment( AlignNormal );
+        f.setVerticalAlignment( QTextCharFormat::AlignNormal );
+    
+    mergeCurrentCharFormat( f );
 }
 
 void KNoteEdit::textSubScript()
 {
+    QTextCharFormat f;
+
     if ( m_textSub->isChecked() )
-        setVerticalAlignment( AlignSubScript );
+        f.setVerticalAlignment( QTextCharFormat::AlignSubScript );
     else
-        setVerticalAlignment( AlignNormal );
+        f.setVerticalAlignment( QTextCharFormat::AlignNormal );
+    
+    mergeCurrentCharFormat( f );
 }
 
 //void KNoteEdit::textIncreaseIndent()
@@ -338,15 +328,21 @@ void KNoteEdit::textSubScript()
 
 /** protected methods **/
 
-void KNoteEdit::contentsDragEnterEvent( QDragEnterEvent *e )
+void KNoteEdit::contextMenuEvent( QContextMenuEvent *e )
+{
+   kdDebug() << k_funcinfo << endl;
+#warning TODO
+}
+
+void KNoteEdit::dragEnterEvent( QDragEnterEvent *e )
 {
     if ( K3URLDrag::canDecode( e ) )
         e->accept();
     else
-        K3TextEdit::contentsDragEnterEvent( e );
+        KTextEdit::dragEnterEvent( e );
 }
 
-void KNoteEdit::contentsDropEvent( QDropEvent *e )
+void KNoteEdit::dropEvent( QDropEvent *e )
 {
     KURL::List list;
 
@@ -359,58 +355,57 @@ void KNoteEdit::contentsDropEvent( QDropEvent *e )
             insert( (*it).prettyURL() );
         }
     else
-        K3TextEdit::contentsDropEvent( e );
+        KTextEdit::dropEvent( e );
 }
+
+void KNoteEdit::keyPressEvent( QKeyEvent *e )
+{
+    if ( m_autoIndentMode && (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) )
+        autoIndent();
+
+    e->ignore();
+}
+
 
 /** private slots **/
 
-void KNoteEdit::slotReturnPressed()
+void KNoteEdit::slotCurrentCharFormatChanged( const QTextCharFormat& f )
 {
-    if ( m_autoIndentMode )
-        autoIndent();
-}
+    // font changes
+    m_textFont->setFont( f.fontFamily() );
+    m_textSize->setFontSize( f.fontPointSize() );
 
-void KNoteEdit::fontChanged( const QFont &f )
-{
-    m_textFont->setFont( f.family() );
-    m_textSize->setFontSize( f.pointSize() );
+    m_textBold->setChecked( f.font().bold() );
+    m_textItalic->setChecked( f.fontItalic() );
+    m_textUnderline->setChecked( f.fontUnderline() );
+    m_textStrikeOut->setChecked( f.fontStrikeOut() );
 
-    m_textBold->setChecked( f.bold() );
-    m_textItalic->setChecked( f.italic() );
-    m_textUnderline->setChecked( f.underline() );
-    m_textStrikeOut->setChecked( f.strikeOut() );
-}
-
-void KNoteEdit::colorChanged( const QColor &c )
-{
+    // color changes
     QPixmap pix( ICON_SIZE, ICON_SIZE );
-    pix.fill( c );
+    pix.fill( f.foreground().color() );
     m_textColor->setIcon( pix );
-}
 
-void KNoteEdit::alignmentChanged( int a )
-{
-    // TODO: AlignAuto
-    if ( ( a == Qt::AlignLeft ) || ( a & Qt::AlignLeft ) )
+    // alignment changes
+    Qt::Alignment a = alignment();
+    if ( a & Qt::AlignLeft )
         m_textAlignLeft->setChecked( true );
-    else if ( ( a & Qt::AlignHCenter ) )
+    else if ( a & Qt::AlignHCenter )
         m_textAlignCenter->setChecked( true );
-    else if ( ( a & Qt::AlignRight ) )
+    else if ( a & Qt::AlignRight )
         m_textAlignRight->setChecked( true );
-    else if ( ( a & Qt::AlignJustify ) )
+    else if ( a & Qt::AlignJustify )
         m_textAlignBlock->setChecked( true );
-}
 
-void KNoteEdit::verticalAlignmentChanged( Q3TextEdit::VerticalAlignment a )
-{
-    if ( a == AlignNormal )
+    // vertical alignment changes
+    QTextCharFormat::VerticalAlignment va = f.verticalAlignment();
+    if ( va == QTextCharFormat::AlignNormal )
     {
         m_textSuper->setChecked( false );
         m_textSub->setChecked( false );
     }
-    else if ( a == AlignSuperScript )
+    else if ( va == QTextCharFormat::AlignSuperScript )
         m_textSuper->setChecked( true );
-    else if ( a == AlignSubScript )
+    else if ( va == QTextCharFormat::AlignSubScript )
         m_textSub->setChecked( true );
 }
 
@@ -419,11 +414,15 @@ void KNoteEdit::verticalAlignmentChanged( Q3TextEdit::VerticalAlignment a )
 
 void KNoteEdit::autoIndent()
 {
-    int para, index;
+    QTextCursor c = textCursor();
+    QTextBlock b = c.block();
+
     QString string;
-    getCursorPosition( &para, &index );
-    while ( para > 0 && string.trimmed().isEmpty() )
-        string = text( --para );
+    while ( b.previous().length() > 0 && string.trimmed().isEmpty() )
+    {
+        b = b.previous();
+        string = b.text();
+    }
 
     if ( string.trimmed().isEmpty() )
         return;
@@ -440,12 +439,7 @@ void KNoteEdit::autoIndent()
         indentString += string.at( i++ );
 
     if ( !indentString.isEmpty() )
-        insert( indentString );
-}
-
-void KNoteEdit::emitLinkClicked( const QString &s )
-{
-    kdDebug(5500) << k_funcinfo << s << endl;
+        c.insertText( indentString );
 }
 
 void KNoteEdit::enableRichTextActions()
