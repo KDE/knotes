@@ -364,32 +364,6 @@ void KNotesApp::setText( const QString& id, const QString& newText )
         kdWarning(5500) << "setText: no note with id: " << id << endl;
 }
 
-void KNotesApp::sync( const QString& app )
-{
-    Q3DictIterator<KNote> it( m_noteList );
-
-    for ( ; it.current(); ++it )
-        it.current()->sync( app );
-}
-
-bool KNotesApp::isNew( const QString& app, const QString& id ) const
-{
-    KNote* note = m_noteList[id];
-    if ( note )
-        return note->isNew( app );
-    else
-        return false;
-}
-
-bool KNotesApp::isModified( const QString& app, const QString& id ) const
-{
-    KNote* note = m_noteList[id];
-    if ( note )
-        return note->isModified( app );
-    else
-        return false;
-}
-
 
 // ------------------- protected methods ------------------- //
 
@@ -558,7 +532,9 @@ void KNotesApp::showNote( KNote* note ) const
 
 void KNotesApp::createNote( KCal::Journal *journal )
 {
-    KNote *newNote = new KNote( m_noteGUI, journal, 0, journal->uid().utf8() );
+    KNote *newNote = new KNote( m_noteGUI, journal, 0 );
+    newNote->setObjectName( journal->uid().utf8() );
+
     m_noteList.insert( newNote->noteId(), newNote );
 
     connect( newNote, SIGNAL(sigRequestNewNote()), SLOT(newNote()) );
@@ -619,8 +595,8 @@ void KNotesApp::updateNoteActions()
                                        KShortcut(), this, SLOT(slotShowNote()),
                                        0, it.current()->noteId().utf8() );
         KIconEffect effect;
-        QPixmap icon = effect.apply( qApp->windowIcon().pixmap(IconSize(KIcon::Small),IconSize(KIcon::Small)), KIconEffect::Colorize, 1,
-                                     it.current()->paletteBackgroundColor(), false );
+        QPixmap icon = effect.apply( qApp->windowIcon().pixmap( IconSize(KIcon::Small), IconSize(KIcon::Small) ),
+                                     KIconEffect::Colorize, 1, (*it)->paletteBackgroundColor(), false );
         action->setIcon( icon );
         m_noteActions.append( action );
     }

@@ -133,30 +133,6 @@ k_dcop:
      * Hide all notes.
      */
     virtual ASYNC hideAllNotes() const = 0;
-
-    /**
-     * This tells KNotes that a specific app has synchronized with all the notes.
-     * @param app the app that has synced with KNotes
-     */
-    virtual ASYNC sync( const QString& app ) = 0;
-
-    /**
-     * Test if a note was created new after the last sync.
-     * @param app the app that wants to get the status since the last sync
-     * @param noteId the id of the note
-     * @return true if the note is new, false if not or if the note does
-     *         not exist
-     */
-    virtual bool isNew( const QString& app, const QString& noteId ) const = 0;
-
-    /**
-     * Test if a note was modified since the last sync.
-     * @param app the app that wants to get the status since the last sync
-     * @param noteId the id of the note
-     * @return true if modified (note that this will return true if the note is
-     *         new as well!) and false if the note is not modified or doesn't exist
-     */
-    virtual bool isModified( const QString& app, const QString& noteId ) const = 0;
 };
 
 #endif

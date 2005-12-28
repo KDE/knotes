@@ -21,12 +21,10 @@
 #ifndef KNOTESAPP_H
 #define KNOTESAPP_H
 
-#include <qstring.h>
+#include <QString>
 #include <q3dict.h>
 #include <q3ptrlist.h>
-#include <qlabel.h>
-#include <qdom.h>
-//Added by qt3to4:
+#include <QLabel>
 #include <QMouseEvent>
 
 #include <kapplication.h>
@@ -72,10 +70,6 @@ public:
     void setText( const QString& id, const QString& newText );
 
     QMap<QString,QString> notes() const;
-
-    void sync( const QString& app );
-    bool isNew( const QString& app, const QString& id ) const;
-    bool isModified( const QString& app, const QString& id ) const;
 
     bool commitData( QSessionManager& );
 
