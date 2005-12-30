@@ -257,14 +257,8 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
 
     // set up the look&feel of the note
     setMinimumSize( 20, 20 );
-
-    // the default already
-    //setLineWidth( 1 );
-    //setMargin( 0 );
-    //setContentsMargin( 0, 0, 0, 0 );
-
-    //m_editor->setContentsMargin( 0, 0, 0, 0 );
-    //m_editor->setFrameStyle( NoFrame );
+    m_editor->setContentsMargins( 0, 0, 0, 0 );
+    m_editor->setFrameStyle( NoFrame );
 
     // can be done here since this doesn't pick up changes while KNotes is running anyway
     bool closeLeft = false;
