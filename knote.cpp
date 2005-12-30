@@ -170,11 +170,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
 
     // create the note editor
     m_editor = new KNoteEdit( actionCollection(), this );
-#warning is the eventfilter the reason for the lacking key events?
-//    m_editor->installEventFilter( this ); // receive events (for modified)
-//    m_editor->viewport()->installEventFilter( this );
-#warning Port contentsMoving: not needed with Qt 4?
-//    connect( m_editor, SIGNAL(contentsMoving( int, int )), this, SLOT(slotUpdateViewport( int, int )));
+    m_editor->installEventFilter( this ); // receive focus events for modified
 
     // now that we have created all actions build the gui
     KXMLGUIBuilder builder( this );
