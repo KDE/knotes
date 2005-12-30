@@ -362,10 +362,10 @@ void KNoteEdit::dropEvent( QDropEvent *e )
 
 void KNoteEdit::keyPressEvent( QKeyEvent *e )
 {
+    KTextEdit::keyPressEvent( e );
+    
     if ( m_autoIndentMode && (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) )
         autoIndent();
-
-    e->ignore();
 }
 
 
