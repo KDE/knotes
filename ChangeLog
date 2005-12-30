@@ -1,6 +1,10 @@
 ChangeLog for KNotes
 ====================
 
+2005/12/30  Michael Brade <brade@kde.org>
+
+    * more correct enabling of edit actions when (un)locking a note
+
 2005/09/06  Michael Brade <brade@kde.org>
 
     * make note colors in Kicker work again for new notes and on start-up.

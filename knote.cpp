@@ -622,9 +622,11 @@ void KNote::slotUpdateReadOnly()
     actionCollection()->action( "insert_date" )->setEnabled( !readOnly );
     actionCollection()->action( "delete_note" )->setEnabled( !readOnly );
 
-    // TODO: replace the menu
-    actionCollection()->action( "edit_clear" )->setEnabled( !readOnly );
+    actionCollection()->action( "edit_undo" )->setEnabled( !readOnly && m_editor->isUndoAvailable() );
+    actionCollection()->action( "edit_redo" )->setEnabled( !readOnly && m_editor->isRedoAvailable() );
+    actionCollection()->action( "edit_cut" )->setEnabled( !readOnly && m_editor->hasSelectedText() );
     actionCollection()->action( "edit_paste" )->setEnabled( !readOnly );
+    actionCollection()->action( "edit_clear" )->setEnabled( !readOnly );
 
     updateFocus();
 }
