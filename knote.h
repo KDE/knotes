@@ -129,8 +129,6 @@ private slots:
     void slotUpdateShowInTaskbar();
     void slotUpdateDesktopActions();
 
-    void slotUpdateViewport( int, int );
-
 private:
     void updateFocus();
     void updateMask();

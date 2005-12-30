@@ -2,10 +2,15 @@ ChangeLog for KNotes
 ====================
 
 
+2005/12/30  Michael Brade <brade@kde.org>
+
+    * no Q3* in KNotesApp anymore
+
 2005/12/29  Michael Brade <brade@kde.org>
 
     * use Qt 4's context menu events instead of our own implementation
-    * more porting, finetuning of enabled actions
+    * more porting
+    * more correct enabling of edit actions when (un)locking a note
 
 2005/12/28  Michael Brade <brade@kde.org>
 

@@ -21,17 +21,17 @@
 #ifndef KNOTESAPP_H
 #define KNOTESAPP_H
 
+#include <QMap>
+#include <QList>
 #include <QString>
-#include <q3dict.h>
-#include <q3ptrlist.h>
 #include <QLabel>
-#include <QMouseEvent>
 
 #include <kapplication.h>
 #include <kxmlguiclient.h>
 
 #include "KNotesAppIface.h"
 
+class QMouseEvent;
 class KFind;
 class KNote;
 class KMenu;
@@ -40,7 +40,6 @@ class KActionMenu;
 class KGlobalAccel;
 class KXMLGUIFactory;
 class KXMLGUIBuilder;
-class KExtendedSocket;
 class KNotesAlarm;
 class KNotesResourceManager;
 
@@ -114,26 +113,18 @@ private slots:
     void killNote( KCal::Journal *journal );
 
 private:
-    class KNoteActionList : public QList<KAction*>
-    {
-    public:
-		virtual ~KNoteActionList() {}
-        virtual int compareItems( Q3PtrCollection::Item s1, Q3PtrCollection::Item s2 );
-    };
+    QMap<QString, KNote *> m_notes;
+    QList<KAction *>       m_noteActions;
 
-    KNotesResourceManager *m_manager;
-
-    KNotesAlarm     *m_alarm;
-    KExtendedSocket *m_listener;
-
-    Q3Dict<KNote>    m_noteList;
-    KNoteActionList m_noteActions;
+    KNotesResourceManager  *m_manager;
+    KNotesAlarm            *m_alarm;
+    //KExtendedSocket      *m_listener;
 
     KFind           *m_find;
-    Q3DictIterator<KNote> *m_findPos;
+    QMap<QString, KNote *>::iterator *m_findPos;
 
-    KMenu      *m_note_menu;
-    KMenu      *m_context_menu;
+    KMenu           *m_noteMenu;
+    KMenu           *m_contextMenu;
 
     KGlobalAccel    *m_globalAccel;
     KXMLGUIFactory  *m_guiFactory;

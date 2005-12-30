@@ -18,14 +18,11 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include <qclipboard.h>
-#include <q3ptrlist.h>
-#include <qtooltip.h>
-//Added by qt3to4:
+#include <QClipboard>
+#include <QToolTip>
 #include <QPixmap>
-#include <QEvent>
 #include <QLabel>
-#include <QMouseEvent>
+#include <QX11Info>
 
 #include <kdebug.h>
 #include <kaction.h>
@@ -43,11 +40,9 @@
 #include <kglobalaccel.h>
 #include <ksimpleconfig.h>
 #include <kwin.h>
-//#include <kextsock.h>
 
 #include <libkcal/journal.h>
 #include <libkcal/calendarlocal.h>
-#include <QX11Info>
 #include <kiconloader.h>
 
 #include "knotesapp.h"
@@ -88,26 +83,21 @@ private:
 };
 
 
-int KNotesApp::KNoteActionList::compareItems( Q3PtrCollection::Item s1, Q3PtrCollection::Item s2 )
+static bool kActionLessThan( const KAction *a1, const KAction *a2 )
 {
-    if ( ((KAction*)s1)->text() == ((KAction*)s2)->text() )
-        return 0;
-    return ( ((KAction*)s1)->text() < ((KAction*)s2)->text() ? -1 : 1 );
+    return a1->text() < a2->text();
 }
 
 
 KNotesApp::KNotesApp()
     : DCOPObject("KNotesIface"), QLabel( 0, 0, Qt::WType_TopLevel ),
-      m_alarm( 0 ), m_listener( 0 ), m_find( 0 ), m_findPos( 0 )
+      m_alarm( 0 ), /*m_listener( 0 ),*/ m_find( 0 ), m_findPos( 0 )
 {
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
-
-    m_noteList.setAutoDelete( true );
-
+    
     // create the dock widget...
     KWin::setSystemTrayWindowFor( winId(), QX11Info::appRootWindow() );
-    this->setToolTip( i18n( "KNotes: Sticky notes for KDE" ) );
-    setBackgroundMode( Qt::X11ParentRelative );
+    setToolTip( i18n("KNotes: Sticky notes for KDE") );
     setPixmap( KSystemTray::loadIcon( "knotes" ) );
 
     // set the initial style
@@ -136,8 +126,8 @@ KNotesApp::KNotesApp()
     m_guiFactory = new KXMLGUIFactory( m_guiBuilder, this );
     m_guiFactory->addClient( this );
 
-    m_context_menu = static_cast<KMenu*>(m_guiFactory->container( "knotes_context", this ));
-    m_note_menu = static_cast<KMenu*>(m_guiFactory->container( "notes_menu", this ));
+    m_contextMenu = static_cast<KMenu*>(m_guiFactory->container( "knotes_context", this ));
+    m_noteMenu = static_cast<KMenu*>(m_guiFactory->container( "notes_menu", this ));
 
     // get the most recent XML UI file
     QString xmlFileName = instance()->instanceName() + "ui.rc";
@@ -211,7 +201,7 @@ KNotesApp::KNotesApp()
     updateNetworkListener();
 #endif
 
-    if ( m_noteList.count() == 0 && !kapp->isSessionRestored() )
+    if ( m_notes.size() == 0 && !kapp->isSessionRestored() )
         newNote();
 
     updateNoteActions();
@@ -222,12 +212,13 @@ KNotesApp::~KNotesApp()
     saveNotes();
 
     blockSignals( true );
-    m_noteList.clear();
+    qDeleteAll( m_notes );
+    m_notes.clear();
     qDeleteAll( m_noteActions );
     m_noteActions.clear();
     blockSignals( false );
 
-    delete m_listener;
+    //delete m_listener;
     delete m_manager;
     delete m_guiBuilder;
 }
@@ -269,24 +260,22 @@ QString KNotesApp::newNoteFromClipboard( const QString& name )
 
 void KNotesApp::hideAllNotes() const
 {
-    Q3DictIterator<KNote> it( m_noteList );
-    for ( ; *it; ++it )
-        (*it)->close();
+    foreach ( KNote *note, m_notes )
+        note->close();
 }
 
 void KNotesApp::showAllNotes() const
 {
-    Q3DictIterator<KNote> it( m_noteList );
-    for ( ; *it; ++it )
+    foreach ( KNote *note, m_notes )
     {
-        (*it)->show();
-        (*it)->setFocus();
+        note->show();
+        note->setFocus();
     }
 }
 
 void KNotesApp::showNote( const QString& id ) const
 {
-    KNote* note = m_noteList[id];
+    KNote *note = m_notes.value( id );
     if ( note )
         showNote( note );
     else
@@ -295,7 +284,7 @@ void KNotesApp::showNote( const QString& id ) const
 
 void KNotesApp::hideNote( const QString& id ) const
 {
-    KNote* note = m_noteList[id];
+    KNote *note = m_notes.value( id );
     if ( note )
         note->hide();
     else
@@ -304,7 +293,7 @@ void KNotesApp::hideNote( const QString& id ) const
 
 void KNotesApp::killNote( const QString& id, bool force )
 {
-    KNote* note = m_noteList[id];
+    KNote *note = m_notes.value( id );
     if ( note )
         note->slotKill( force );
     else
@@ -317,38 +306,37 @@ void KNotesApp::killNote( const QString& id )
     killNote( id, false );
 }
 
-QMap<QString,QString> KNotesApp::notes() const
+QMap<QString, QString> KNotesApp::notes() const
 {
-    QMap<QString,QString> notes;
-    Q3DictIterator<KNote> it( m_noteList );
+    QMap<QString, QString> notes;
 
-    for ( ; it.current(); ++it )
-        notes.insert( it.current()->noteId(), it.current()->name() );
+    foreach ( KNote *note, m_notes )
+        notes.insert( note->noteId(), note->name() );
 
     return notes;
 }
 
 QString KNotesApp::name( const QString& id ) const
 {
-    KNote* note = m_noteList[id];
+    KNote *note = m_notes.value( id );
     if ( note )
         return note->name();
     else
-        return QString::null;
+        return QString();
 }
 
 QString KNotesApp::text( const QString& id ) const
 {
-    KNote* note = m_noteList[id];
+    KNote *note = m_notes.value( id );
     if ( note )
         return note->text();
     else
-        return QString::null;
+        return QString();
 }
 
 void KNotesApp::setName( const QString& id, const QString& newName )
 {
-    KNote* note = m_noteList[id];
+    KNote *note = m_notes.value( id );
     if ( note )
         note->setName( newName );
     else
@@ -357,7 +345,7 @@ void KNotesApp::setName( const QString& id, const QString& newName )
 
 void KNotesApp::setText( const QString& id, const QString& newText )
 {
-    KNote* note = m_noteList[id];
+    KNote *note = m_notes.value( id );
     if ( note )
         note->setText( newText );
     else
@@ -367,7 +355,7 @@ void KNotesApp::setText( const QString& id, const QString& newText )
 
 // ------------------- protected methods ------------------- //
 
-void KNotesApp::mousePressEvent( QMouseEvent* e )
+void KNotesApp::mousePressEvent( QMouseEvent *e )
 {
     if ( !rect().contains( e->pos() ) )
         return;
@@ -375,19 +363,16 @@ void KNotesApp::mousePressEvent( QMouseEvent* e )
     switch ( e->button() )
     {
     case Qt::LeftButton:
-        if ( m_noteList.count() == 1 )
-        {
-            Q3DictIterator<KNote> it( m_noteList );
-            showNote( it.toFirst() );
-        }
-        else if ( m_note_menu->count() > 0 )
-            m_note_menu->popup( e->globalPos() );
+        if ( m_notes.size() == 1 )
+            showNote( *m_notes.begin() );
+        else if ( m_notes.size() > 1 )
+            m_noteMenu->popup( e->globalPos() );
         break;
     case Qt::MidButton:
         newNote();
         break;
     case Qt::RightButton:
-        m_context_menu->popup( e->globalPos() );
+        m_contextMenu->popup( e->globalPos() );
     default: break;
     }
 }
@@ -403,15 +388,14 @@ void KNotesApp::slotShowNote()
 void KNotesApp::slotWalkThroughNotes()
 {
     // show next note
-    Q3DictIterator<KNote> it( m_noteList );
-    KNote *first = it.toFirst();
-    for ( ; *it; ++it )
+    QMap<QString, KNote *>::const_iterator it = m_notes.begin();
+    for ( ; it != m_notes.end(); ++it )
         if ( (*it)->hasFocus() )
         {
-            if ( ++it )
+            if ( ++it != m_notes.end() )
                 showNote( *it );
             else
-                showNote( first );
+                showNote( *m_notes.begin() );
             break;
         }
 }
@@ -427,7 +411,8 @@ void KNotesApp::slotOpenFindDialog()
         return;
 
     delete m_findPos;
-    m_findPos = new Q3DictIterator<KNote>( m_noteList );
+    m_findPos = new QMap<QString, KNote *>::iterator();
+    *m_findPos = m_notes.begin();
 
     // this could be in an own method if searching without a dialog should be possible
     delete m_find;
@@ -438,10 +423,9 @@ void KNotesApp::slotOpenFindDialog()
 
 void KNotesApp::slotFindNext()
 {
-    if ( **m_findPos )
+    if ( *m_findPos != m_notes.end() )
     {
-        KNote *note = **m_findPos;
-        ++*m_findPos;
+        KNote *note = *(*m_findPos++);
         note->find( m_find->pattern(), m_find->options() );
     }
     else
@@ -471,9 +455,9 @@ void KNotesApp::slotPreferences()
 void KNotesApp::slotConfigureAccels()
 {
     KNotesKeyDialog keys( m_globalAccel, this );
-    Q3DictIterator<KNote> notes( m_noteList );
-    if ( !m_noteList.isEmpty() )
-        keys.insert( (*notes)->actionCollection() );
+    QMap<QString, KNote *>::const_iterator it = m_notes.begin();
+    if ( !m_notes.isEmpty() )
+        keys.insert( (*it)->actionCollection() );
     keys.configure();
 
     m_globalAccel->writeSettings();
@@ -484,19 +468,18 @@ void KNotesApp::slotConfigureAccels()
         KXMLGUIFactory::readConfigFile( instance()->instanceName() + "ui.rc", instance() )
     );
 
-    if ( m_noteList.isEmpty() )
+    if ( m_notes.isEmpty() )
         return;
 
-    notes.toFirst();
-    QList<KAction *> list = (*notes)->actionCollection()->actions();
-    for ( QList<KAction *>::iterator it = list.begin(); it != list.end(); ++it )
+    QList<KAction *> list = (*it)->actionCollection()->actions();
+    foreach ( KAction *action, list )
     {
-        notes.toFirst();
-        for ( ++notes; *notes; ++notes )
+        it = m_notes.begin();
+        for ( ++it; it != m_notes.end(); ++it )
         {
-            KAction *toChange = (*notes)->actionCollection()->action( (*it)->name() );
-            if ( toChange->shortcut() != (*it)->shortcut() )
-                toChange->setShortcut( (*it)->shortcut() );
+            KAction *toChange = (*it)->actionCollection()->action( action->name() );
+            if ( toChange->shortcut() != action->shortcut() )
+                toChange->setShortcut( action->shortcut() );
         }
     }
 }
@@ -509,11 +492,9 @@ void KNotesApp::slotNoteKilled( KCal::Journal *journal )
 
 void KNotesApp::slotQuit()
 {
-    Q3DictIterator<KNote> it( m_noteList );
-
-    for ( ; *it; ++it )
-        if ( (*it)->isModified() )
-            (*it)->saveData();
+    foreach ( KNote *note, m_notes )
+        if ( note->isModified() )
+            note->saveData();
 
     saveConfigs();
     kapp->quit();
@@ -533,7 +514,7 @@ void KNotesApp::showNote( KNote* note ) const
 void KNotesApp::createNote( KCal::Journal *journal )
 {
     KNote *newNote = new KNote( m_noteGUI, journal, 0 );
-    m_noteList.insert( newNote->noteId(), newNote );
+    m_notes.insert( newNote->noteId(), newNote );
 
     connect( newNote, SIGNAL(sigRequestNewNote()), SLOT(newNote()) );
     connect( newNote, SIGNAL(sigShowNextNote()), SLOT(slotWalkThroughNotes()) );
@@ -552,7 +533,7 @@ void KNotesApp::createNote( KCal::Journal *journal )
 void KNotesApp::killNote( KCal::Journal *journal )
 {
     // this kills the KNote object
-    m_noteList.remove( journal->uid() );
+    delete m_notes.take( journal->uid() );
     updateNoteActions();
 }
 
@@ -577,9 +558,8 @@ void KNotesApp::saveNotes()
 
 void KNotesApp::saveConfigs()
 {
-    Q3DictIterator<KNote> it( m_noteList );
-    for ( ; it.current(); ++it )
-        it.current()->saveConfig();
+    foreach ( KNote *note, m_notes )
+        note->saveConfig();
 }
 
 void KNotesApp::updateNoteActions()
@@ -587,19 +567,20 @@ void KNotesApp::updateNoteActions()
     unplugActionList( "notes" );
     m_noteActions.clear();
 
-    for ( Q3DictIterator<KNote> it( m_noteList ); it.current(); ++it )
+    foreach ( KNote *note, m_notes )
     {
-        KAction *action = new KAction( it.current()->name().replace("&", "&&"),
+#warning utf8: use QString
+        KAction *action = new KAction( note->name().replace("&", "&&"),
                                        KShortcut(), this, SLOT(slotShowNote()),
-                                       0, it.current()->noteId().utf8() );
+                                       0, note->noteId().toUtf8() );
         KIconEffect effect;
         QPixmap icon = effect.apply( qApp->windowIcon().pixmap( IconSize(KIcon::Small), IconSize(KIcon::Small) ),
-                                     KIconEffect::Colorize, 1, (*it)->paletteBackgroundColor(), false );
+                                     KIconEffect::Colorize, 1, note->paletteBackgroundColor(), false );
         action->setIcon( icon );
         m_noteActions.append( action );
     }
 
-	qSort(m_noteActions.begin(),m_noteActions.end());
+	qSort( m_noteActions.begin(), m_noteActions.end(), kActionLessThan );
 
     if ( m_noteActions.isEmpty() )
     {
@@ -607,8 +588,7 @@ void KNotesApp::updateNoteActions()
         m_noteActions.append( action );
     }
 
-#warning Port m_noteActions to QList<KAction*>
-//    plugActionList( "notes", m_noteActions );
+    plugActionList( "notes", m_noteActions );
 }
 
 void KNotesApp::updateGlobalAccels()
@@ -665,9 +645,8 @@ void KNotesApp::updateStyle()
 {
     KNote::setStyle( KNotesGlobalConfig::style() );
 
-    Q3DictIterator<KNote> it( m_noteList );
-    for ( ; it.current(); ++it )
-        QApplication::postEvent( *it, new QEvent( QEvent::LayoutHint ) );
+    foreach ( KNote *note, m_notes )
+        QApplication::postEvent( note, new QEvent( QEvent::LayoutHint ) );
 }
 
 #include "knotesapp.moc"

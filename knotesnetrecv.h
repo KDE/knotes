@@ -35,7 +35,7 @@
 #include <qobject.h>
 
 class QTimer;
-class QExtendedSocket;
+class KExtendedSocket;
 
 
 class KNotesNetworkReceiver : public QObject

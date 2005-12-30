@@ -155,6 +155,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     connect( m_toDesktop->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(slotUpdateDesktopActions()) );
 
     // invisible action to walk through the notes to make this configurable
+//FIXME: this backtab thing doesn't work anymore!
     new KAction( i18n("Walk Through Notes"), 0, Qt::SHIFT+Qt::Key_Backtab,
                  this, SIGNAL(sigShowNextNote()), actionCollection(), "walk_notes" );
 
@@ -839,11 +840,6 @@ void KNote::slotUpdateDesktopActions()
         m_toDesktop->setCurrentItem( wm_client.desktop() + 1 ); // compensate for separator (+1)
 }
 
-void KNote::slotUpdateViewport( int /*x*/, int y )
-{
-    if ( s_ppOffset )
-        updateBackground( y );
-}
 
 // -------------------- private methods -------------------- //
 
