@@ -32,7 +32,7 @@ class KNoteConfigDlg : public KConfigDialog
     Q_OBJECT
 public:
     KNoteConfigDlg( KNoteConfig *config, const QString &title,
-                    QWidget *parent=0, const char *name=0 );
+                    QWidget *parent, const QString& name );
     ~KNoteConfigDlg();
 
 public slots:

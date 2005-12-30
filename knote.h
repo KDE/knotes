@@ -155,9 +155,7 @@ private:
     KCal::Journal *m_journal;
 
     KFind         *m_find;
-
     KMenu         *m_menu;
-    KMenu         *m_edit_menu;
 
     KToggleAction *m_readOnly;
 

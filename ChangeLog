@@ -1,6 +1,20 @@
 ChangeLog for KNotes
 ====================
 
+
+2005/12/29  Michael Brade <brade@kde.org>
+
+    * use Qt 4's context menu events instead of our own implementation
+    * more porting, finetuning of enabled actions
+
+2005/12/28  Michael Brade <brade@kde.org>
+
+    * first port to QText* classes and KDE 4.0
+    * get rid of client-specific code in KNotes, it has to be added in
+	   KPilot directly
+    * fix default color setting of KConfigXT, it is code
+	 * new version
+
 2005/09/06  Michael Brade <brade@kde.org>
 
     * make note colors in Kicker work again for new notes and on start-up.

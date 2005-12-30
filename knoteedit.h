@@ -33,10 +33,11 @@ class QFont;
 class QColor;
 class QPushButton;
 class KAction;
-class KActionCollection;
 class KToggleAction;
 class KFontAction;
 class KFontSizeAction;
+class KActionCollection;
+class KMenu;
 
 
 class KNoteEdit : public KTextEdit
@@ -51,6 +52,11 @@ public:
 //    void setTextColor( const QColor& color );
     void setTabStop( int tabs );
     void setAutoIndentMode( bool newmode );
+
+    void setContextMenu( KMenu *menu ) 
+    {
+        m_editMenu = menu;
+    }
 
 public slots:
     void setRichText( bool );
@@ -92,6 +98,8 @@ private:
     KAction *m_cut;
     KAction *m_copy;
     KAction *m_paste;
+    
+    KMenu   *m_editMenu;
 
     KToggleAction *m_textBold;
     KToggleAction *m_textItalic;

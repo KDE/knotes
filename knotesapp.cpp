@@ -223,8 +223,8 @@ KNotesApp::~KNotesApp()
 
     blockSignals( true );
     m_noteList.clear();
-	qDeleteAll(m_noteActions);
-	m_noteActions.clear();
+    qDeleteAll( m_noteActions );
+    m_noteActions.clear();
     blockSignals( false );
 
     delete m_listener;
@@ -533,8 +533,6 @@ void KNotesApp::showNote( KNote* note ) const
 void KNotesApp::createNote( KCal::Journal *journal )
 {
     KNote *newNote = new KNote( m_noteGUI, journal, 0 );
-    newNote->setObjectName( journal->uid().utf8() );
-
     m_noteList.insert( newNote->noteId(), newNote );
 
     connect( newNote, SIGNAL(sigRequestNewNote()), SLOT(newNote()) );

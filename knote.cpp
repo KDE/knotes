@@ -97,6 +97,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
 {
     setAttribute( Qt::WA_DeleteOnClose );
     setAcceptDrops( true );
+    setObjectName( m_journal->uid() );
 
     actionCollection()->setWidget( this );
 
@@ -170,17 +171,19 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     // create the note editor
     m_editor = new KNoteEdit( actionCollection(), this );
 #warning is the eventfilter the reason for the lacking key events?
-    m_editor->installEventFilter( this ); // receive events (for modified)
-    m_editor->viewport()->installEventFilter( this );
+//    m_editor->installEventFilter( this ); // receive events (for modified)
+//    m_editor->viewport()->installEventFilter( this );
 #warning Port contentsMoving: not needed with Qt 4?
 //    connect( m_editor, SIGNAL(contentsMoving( int, int )), this, SLOT(slotUpdateViewport( int, int )));
 
+    // now that we have created all actions build the gui
     KXMLGUIBuilder builder( this );
     KXMLGUIFactory factory( &builder, this );
     factory.addClient( this );
 
     m_menu = static_cast<KMenu*>(factory.container( "note_context", this ));
-    m_edit_menu = static_cast<KMenu*>(factory.container( "note_edit", this ));
+    m_editor->setContextMenu( static_cast<KMenu*>(factory.container( "note_edit", this )) ); 
+
     m_tool = static_cast<KToolBar*>(factory.container( "note_tool", this ));
     m_tool->setIconSize( 10 );
     m_tool->setFixedHeight( 16 );
@@ -464,7 +467,7 @@ void KNote::setName( const QString& name )
 
     // set the window's name for the taskbar entry to be more helpful (#58338)
     NETWinInfo note_win( QX11Info::display(), winId(), QX11Info::appRootWindow(), NET::WMDesktop );
-    note_win.setName( name.utf8() );
+    note_win.setName( name.toUtf8() );
 
     emit sigNameChanged();
 }
@@ -553,14 +556,16 @@ void KNote::slotUpdateReadOnly()
     m_editor->setReadOnly( readOnly );
     m_config->setReadOnly( readOnly );
 
-    // Enable/disable actions accordingly
+    // enable/disable actions accordingly
     actionCollection()->action( "configure_note" )->setEnabled( !readOnly );
     actionCollection()->action( "insert_date" )->setEnabled( !readOnly );
     actionCollection()->action( "delete_note" )->setEnabled( !readOnly );
 
-    // TODO: replace the menu
-    actionCollection()->action( "edit_clear" )->setEnabled( !readOnly );
+    actionCollection()->action( "edit_undo" )->setEnabled( !readOnly && m_editor->document()->isUndoAvailable() );
+    actionCollection()->action( "edit_redo" )->setEnabled( !readOnly && m_editor->document()->isRedoAvailable() );
+    actionCollection()->action( "edit_cut" )->setEnabled( !readOnly && m_editor->textCursor().hasSelection() );
     actionCollection()->action( "edit_paste" )->setEnabled( !readOnly );
+    actionCollection()->action( "edit_clear" )->setEnabled( !readOnly );
 
     updateFocus();
 }
@@ -596,11 +601,11 @@ void KNote::slotSetAlarm()
 void KNote::slotPreferences()
 {
     // reuse if possible
-    if ( KNoteConfigDlg::showDialog( noteId().utf8() ) )
+    if ( KNoteConfigDlg::showDialog( noteId() ) )
         return;
 
     // create a new preferences dialog...
-    KNoteConfigDlg *dialog = new KNoteConfigDlg( m_config, name(), this, noteId().utf8() );
+    KNoteConfigDlg *dialog = new KNoteConfigDlg( m_config, name(), this, noteId() );
     connect( dialog, SIGNAL(settingsChanged()), this, SLOT(slotApplyConfig()) );
     connect( this, SIGNAL(sigNameChanged()), dialog, SLOT(slotUpdateCaption()) );
     dialog->show();
@@ -1142,10 +1147,10 @@ void KNote::drawFrame( QPainter *p )
         qDrawWinPanel( p, r, colorGroup(), false );
 }
     
-void KNote::contextMenuEvent( QContextMenuEvent * )
+void KNote::contextMenuEvent( QContextMenuEvent *e )
 {
-   kdDebug() << k_funcinfo << endl;
-#warning TODO
+    if ( m_menu )
+        m_menu->popup( e->globalPos() );
 }
 
 void KNote::showEvent( QShowEvent * )
@@ -1206,6 +1211,7 @@ bool KNote::event( QEvent *ev )
 
 bool KNote::eventFilter( QObject *o, QEvent *ev )
 {
+    // TODO: is this code really needed?
     if ( ev->type() == QEvent::DragEnter &&
          K3ColorDrag::canDecode( static_cast<QDragEnterEvent *>(ev) ) )
     {
@@ -1239,13 +1245,6 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             return true;
         }
 
-        if ( m_menu && ( ev->type() == QEvent::MouseButtonPress )
-            && ( e->button() == Qt::RightButton ) )
-        {
-            m_menu->popup( QCursor::pos() );
-            return true;
-        }
-
         return false;
     }
 
@@ -1266,18 +1265,6 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             updateFocus();
 
         return false;
-    }
-
-#warning Port: put the following in contextMenuEvent!
-    if ( o == m_editor->viewport() )
-    {
-        if ( m_edit_menu &&
-             ev->type() == QEvent::MouseButtonPress &&
-             ((QMouseEvent *)ev)->button() == Qt::RightButton )
-        {
-            m_edit_menu->popup( QCursor::pos() );
-            return true;
-        }
     }
 
     return false;

@@ -44,7 +44,7 @@
 
 
 KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
-        QWidget *parent, const char *name )
+        QWidget *parent, const QString& name )
     : KConfigDialog( parent, name, config ? config : KNotesGlobalConfig::self(), IconList,
                      config ? Default|Ok|Apply|Cancel : Default|Ok|Cancel, Ok )
 {

@@ -26,6 +26,7 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kaction.h>
+#include <kmenu.h>
 #include <k3urldrag.h>
 #include <kstdaction.h>
 #include <kcolordialog.h>
@@ -37,7 +38,8 @@ static const short ICON_SIZE = 10;
 
 
 KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
-    : KTextEdit( parent )
+    : KTextEdit( parent ),
+      m_editMenu( 0 )
 {
     setAcceptDrops( true );
     setWordWrapMode( QTextOption::WordWrap );
@@ -47,8 +49,8 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     // create the actions for the RMB menu
     KAction* undo = KStdAction::undo( this, SLOT(undo()), actions );
     KAction* redo = KStdAction::redo( this, SLOT(redo()), actions );
-    undo->setEnabled( isUndoAvailable() );
-    redo->setEnabled( isRedoAvailable() );
+    undo->setEnabled( document()->isUndoAvailable() );
+    redo->setEnabled( document()->isRedoAvailable() );
 
     m_cut = KStdAction::cut( this, SLOT(cut()), actions );
     m_copy = KStdAction::copy( this, SLOT(copy()), actions );
@@ -64,7 +66,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     connect( this, SIGNAL(copyAvailable(bool)), m_cut, SLOT(setEnabled(bool)) );
     connect( this, SIGNAL(copyAvailable(bool)), m_copy, SLOT(setEnabled(bool)) );
 
-    new KAction( KStdGuiItem::clear(), 0, this, SLOT(clear()), actions, "edit_clear" );
+    KStdAction::clear( this, SLOT(clear()), actions );
     KStdAction::selectAll( this, SLOT(selectAll()), actions );
 
     // create the actions modifying the text format
@@ -330,8 +332,8 @@ void KNoteEdit::textSubScript()
 
 void KNoteEdit::contextMenuEvent( QContextMenuEvent *e )
 {
-   kdDebug() << k_funcinfo << endl;
-#warning TODO
+    if ( m_editMenu )
+        m_editMenu->popup( e->globalPos() );
 }
 
 void KNoteEdit::dragEnterEvent( QDragEnterEvent *e )
