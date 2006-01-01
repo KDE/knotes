@@ -1,6 +1,7 @@
 INCLUDES        = -I$(top_srcdir) $(all_includes)
 
-CXXFLAGS = -DQT3_SUPPORT_WARNINGS
+KDE_CXXFLAGS    = -DQT3_SUPPORT_WARNINGS
+#KDE_CXXFLAGS    = -UQT3_SUPPORT
 
 SUBDIRS         = . pics icons
 
