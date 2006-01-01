@@ -968,7 +968,7 @@ void KNote::updateFocus()
             //m_label->setBackgroundColor( palette().midlight() );
             m_fold->show();
         }
-        else
+        //else
             //m_label->setBackgroundColor( palette().window() );
     }
 }
