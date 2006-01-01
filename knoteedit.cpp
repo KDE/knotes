@@ -20,8 +20,6 @@
 
 #include <QFont>
 #include <QPixmap>
-#include <QDragEnterEvent>
-#include <QDropEvent>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -148,7 +146,8 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     connect( this, SIGNAL(currentCharFormatChanged( const QTextCharFormat & )),
              this, SLOT(slotCurrentCharFormatChanged( const QTextCharFormat & )) );
 
-    //slotCurrentCharFormatChanged( currentCharFormat() );
+#warning moving the cursor through alignment changes does not update the button!
+    slotCurrentCharFormatChanged( currentCharFormat() );
 }
 
 KNoteEdit::~KNoteEdit()
@@ -157,30 +156,33 @@ KNoteEdit::~KNoteEdit()
 
 void KNoteEdit::setText( const QString& text )
 {
-    // FIXME: or use convertFromPlainText, maybe only even if mightBeRichText ???
-    if ( acceptRichText() )
+    if ( acceptRichText() && Qt::mightBeRichText( text ) )
         setHtml( text );
     else
         setPlainText( text );
- 
-// TODO
-    // to update the font and font size combo box - QTextEdit stopped
-    // emitting the currentFontChanged signal with the new optimizations
-//    slotCurrentCharFormatChanged( currentCharFormat() );
+}
+
+QString KNoteEdit::text() const
+{
+    if ( acceptRichText() )
+        return toHtml();
+    else
+        return toPlainText();
 }
 
 void KNoteEdit::setTextFont( const QFont& font )
 {
-    setCurrentFont( font );
+    QTextCharFormat f;
+    f.setFont( font );
+    setTextFormat( f );
 }
 
-#if 0
 void KNoteEdit::setTextColor( const QColor& color )
 {
-    setColor( color );
-    colorChanged( color );
+    QTextCharFormat f;
+    f.setForeground( QBrush( color ) );
+    setTextFormat( f );
 }
-#endif
 
 void KNoteEdit::setTabStop( int tabs )
 {
@@ -206,11 +208,11 @@ void KNoteEdit::setRichText( bool f )
     QString t = toPlainText();
     if ( f )
     {
-        // if the note contains html/xml source try to display it
-        if ( !Qt::mightBeRichText( t ) )
-            t = Qt::convertFromPlainText( t );
-           
-        setHtml( t );
+        // if the note contains html source try to render it
+        if ( Qt::mightBeRichText( t ) )
+            setHtml( t );
+        else
+            setPlainText( t );
 
         enableRichTextActions();
     }
@@ -352,9 +354,9 @@ void KNoteEdit::dropEvent( QDropEvent *e )
         for ( KURL::List::Iterator it = list.begin(); it != list.end(); ++it )
         {
             if ( it != list.begin() )
-                insert( ", " );
+                insertPlainText( ", " );
 
-            insert( (*it).prettyURL() );
+            insertPlainText( (*it).prettyURL() );
         }
     else
         KTextEdit::dropEvent( e );
@@ -373,6 +375,7 @@ void KNoteEdit::keyPressEvent( QKeyEvent *e )
 
 void KNoteEdit::slotCurrentCharFormatChanged( const QTextCharFormat& f )
 {
+kdDebug() << k_funcinfo << endl;
     // font changes
     m_textFont->setFont( f.fontFamily() );
     m_textSize->setFontSize( f.fontPointSize() );
@@ -442,6 +445,19 @@ void KNoteEdit::autoIndent()
 
     if ( !indentString.isEmpty() )
         c.insertText( indentString );
+}
+
+void KNoteEdit::setTextFormat( const QTextCharFormat& f )
+{
+    if ( acceptRichText() )
+        textCursor().mergeCharFormat( f );
+    else
+    {
+        QTextCursor c( document() );
+        c.movePosition( QTextCursor::Start );
+        c.movePosition( QTextCursor::End, QTextCursor::KeepAnchor );
+        c.mergeCharFormat( f );
+    }
 }
 
 void KNoteEdit::enableRichTextActions()

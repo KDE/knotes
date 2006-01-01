@@ -90,7 +90,7 @@ static bool kActionLessThan( const KAction *a1, const KAction *a2 )
 
 
 KNotesApp::KNotesApp()
-    : DCOPObject("KNotesIface"), QLabel( 0, 0, Qt::WType_TopLevel ),
+    : DCOPObject("KNotesIface"), QLabel( 0, Qt::Window ),
       m_alarm( 0 ), /*m_listener( 0 ),*/ m_find( 0 ), m_findPos( 0 )
 {
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
@@ -382,7 +382,7 @@ void KNotesApp::mousePressEvent( QMouseEvent *e )
 void KNotesApp::slotShowNote()
 {
     // tell the WM to give this note focus
-    showNote( QString::fromUtf8( sender()->name() ) );
+    showNote( sender()->objectName() );
 }
 
 void KNotesApp::slotWalkThroughNotes()
@@ -477,7 +477,8 @@ void KNotesApp::slotConfigureAccels()
         it = m_notes.begin();
         for ( ++it; it != m_notes.end(); ++it )
         {
-            KAction *toChange = (*it)->actionCollection()->action( action->name() );
+#warning Port KAction::action() to QString
+            KAction *toChange = (*it)->actionCollection()->action( action->objectName().toUtf8().data() );
             if ( toChange->shortcut() != action->shortcut() )
                 toChange->setShortcut( action->shortcut() );
         }
@@ -574,8 +575,10 @@ void KNotesApp::updateNoteActions()
                                        KShortcut(), this, SLOT(slotShowNote()),
                                        0, note->noteId().toUtf8() );
         KIconEffect effect;
-        QPixmap icon = effect.apply( qApp->windowIcon().pixmap( IconSize(KIcon::Small), IconSize(KIcon::Small) ),
-                                     KIconEffect::Colorize, 1, note->paletteBackgroundColor(), false );
+        QPixmap icon = effect.apply( 
+                qApp->windowIcon().pixmap( IconSize(KIcon::Small), IconSize(KIcon::Small) ),
+                KIconEffect::Colorize, 1, note->palette().color( note->backgroundRole() ), false 
+        );
         action->setIcon( icon );
         m_noteActions.append( action );
     }

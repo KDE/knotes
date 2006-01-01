@@ -48,8 +48,10 @@ public:
     ~KNoteEdit();
 
     void setText( const QString& text );
+    QString text() const;
+
     void setTextFont( const QFont& font );
-//    void setTextColor( const QColor& color );
+    void setTextColor( const QColor& color );
     void setTabStop( int tabs );
     void setAutoIndentMode( bool newmode );
 
@@ -90,6 +92,8 @@ private slots:
 
 private:
     void autoIndent();
+
+    void setTextFormat( const QTextCharFormat& );
 
     void enableRichTextActions();
     void disableRichTextActions();

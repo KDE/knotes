@@ -1,5 +1,7 @@
 INCLUDES        = -I$(top_srcdir) $(all_includes)
 
+CXXFLAGS = -DQT3_SUPPORT_WARNINGS
+
 SUBDIRS         = . pics icons
 
 bin_PROGRAMS    = knotes

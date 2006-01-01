@@ -28,16 +28,8 @@
 #include <QObject>
 #include <QFile>
 #include <QCheckBox>
-#include <QResizeEvent>
-#include <QMouseEvent>
-#include <QFocusEvent>
-#include <QShowEvent>
-#include <QEvent>
 #include <QTextStream>
 #include <QDesktopWidget>
-#include <QDropEvent>
-#include <QDragEnterEvent>
-#include <QCloseEvent>
 #include <QPixmap>
 
 #include <kapplication.h>
@@ -184,17 +176,15 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     m_tool = static_cast<KToolBar*>(factory.container( "note_tool", this ));
     m_tool->setIconSize( 10 );
     m_tool->setFixedHeight( 16 );
+    m_tool->setIconText( KToolBar::IconOnly );
 
     // if there was just a way of making KComboBox adhere the toolbar height...
-    //QObjectList *list = new QObjectList( m_tool->queryList( "KComboBox" ) );
-    const QList<QObject *> list = m_tool->queryList( "KComboBox" );
-    for ( int i = 0; i < list.size(); ++i )
+    foreach ( KComboBox *combo, m_tool->findChildren<KComboBox *>() )
     {
-        KComboBox *combo = (KComboBox *)list.at(i);
         QFont font = combo->font();
         font.setPointSize( 7 );
         combo->setFont( font );
-        combo->setFixedHeight( 14 );				
+        combo->setFixedHeight( 14 );
     }
     m_tool->hide();
 
@@ -204,8 +194,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     m_grip = new QSizeGrip( this );
     uint width = m_editor->verticalScrollBar()->sizeHint().width();
     uint height = m_editor->horizontalScrollBar()->sizeHint().height();
-    QBitmap mask;
-    mask.resize( width, height );
+    QBitmap mask( width, height );
     mask.fill( Qt::color0 );
     QPolygon array;
     array.setPoints( 3, 0, height, width, height, width, 0 );
@@ -264,11 +253,11 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     bool closeLeft = false;
     m_kwinConf->setGroup( "Style" );
     if ( m_kwinConf->readBoolEntry( "CustomButtonPositions" ) )
-        closeLeft = m_kwinConf->readEntry( "ButtonsOnLeft" ).find( 'X' ) > -1;
+        closeLeft = m_kwinConf->readEntry( "ButtonsOnLeft" ).contains( 'X' );
 
     QPixmap pushpin_pix;
     if ( closeLeft )
-        pushpin_pix = QPixmap( QPixmap( pushpin_xpm ).convertToImage().mirror( true, false ) );
+        pushpin_pix = QPixmap::fromImage( QPixmap( pushpin_xpm ).toImage().mirrored( true, false ) );
     else
         pushpin_pix = QPixmap( pushpin_xpm );
 
@@ -303,7 +292,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     // of a note need to be visible
     const QPoint& position = m_config->position();
     QRect desk = kapp->desktop()->rect();
-    desk.addCoords( 10, 10, -10, -10 );
+    desk.adjust( 10, 10, -10, -10 );
     if ( desk.intersects( QRect( position, QSize( width, height ) ) ) )
         move( position );           // do before calling show() to avoid flicker
 
@@ -405,7 +394,7 @@ void KNote::slotKill( bool force )
 void KNote::saveData()
 {
     m_journal->setSummary( m_label->text() );
-    m_journal->setDescription( m_editor->text() ); // FIXME
+    m_journal->setDescription( m_editor->text() );
     m_journal->setCustomProperty( "KNotes", "FgColor", m_config->fgColor().name() );
     m_journal->setCustomProperty( "KNotes", "BgColor", m_config->bgColor().name() );
     m_journal->setCustomProperty( "KNotes", "RichText", m_config->richText() ? "true" : "false" );
@@ -440,12 +429,7 @@ QString KNote::name() const
 
 QString KNote::text() const
 {
-    // FIXME: textDocmument->text() or something??
-
-    if ( m_editor->acceptRichText() )
-        return m_editor->toHtml();
-    else
-        return m_editor->toPlainText();
+    return m_editor->text();
 }
 
 void KNote::setName( const QString& name )
@@ -492,6 +476,7 @@ void KNote::slotFindNext()
 
     if ( res == KFind::NoMatch ) // i.e. at end-pos
     {
+        // use a different text cursor!
         m_editor->textCursor().clearSelection();
         emit sigFindFinished();
         delete m_find;
@@ -577,7 +562,7 @@ void KNote::slotClose()
 
 void KNote::slotInsDate()
 {
-    m_editor->insert( KGlobal::locale()->formatDateTime(QDateTime::currentDateTime()) );
+    m_editor->insertPlainText( KGlobal::locale()->formatDateTime(QDateTime::currentDateTime()) );
 }
 
 void KNote::slotSetAlarm()
@@ -597,7 +582,7 @@ void KNote::slotPreferences()
 
     // create a new preferences dialog...
     KNoteConfigDlg *dialog = new KNoteConfigDlg( m_config, name(), this, noteId() );
-    connect( dialog, SIGNAL(settingsChanged()), this, SLOT(slotApplyConfig()) );
+    connect( dialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(slotApplyConfig()) );
     connect( this, SIGNAL(sigNameChanged()), dialog, SLOT(slotUpdateCaption()) );
     dialog->show();
 }
@@ -631,18 +616,17 @@ void KNote::slotSend()
 void KNote::slotMail()
 {
     // get the mail action command
-    QStringList cmd_list = QStringList::split( QChar(' '), KNotesGlobalConfig::mailAction() );
+    QStringList cmd_list = KNotesGlobalConfig::mailAction().split( QChar(' '), QString::SkipEmptyParts );
 
     KProcess mail;
-    for ( QStringList::Iterator it = cmd_list.begin();
-          it != cmd_list.end(); ++it )
+    foreach ( QString cmd, cmd_list )
     {
-        if ( *it == "%f" )
-            mail << m_editor->toPlainText().local8Bit();  // convert rich text to plain text
-        else if ( *it == "%t" )
-            mail << m_label->text().local8Bit();
+        if ( cmd == "%f" )
+            mail << m_editor->toPlainText();
+        else if ( cmd == "%t" )
+            mail << m_label->text();
         else
-            mail << (*it).local8Bit();
+            mail << cmd;
     }
 
     if ( !mail.start( KProcess::DontCare ) )
@@ -758,12 +742,8 @@ void KNote::slotPopupActionToDesktop( int id )
 
 void KNote::slotApplyConfig()
 {
-    if ( m_config->richText() )
-        m_editor->setTextFormat( Qt::RichText );
-    else
-        m_editor->setTextFormat( Qt::PlainText );
-
     m_label->setFont( m_config->titleFont() );
+    m_editor->setRichText( m_config->richText() );
     m_editor->setTextFont( m_config->font() );
     m_editor->setTabStop( m_config->tabSize() );
     m_editor->setAutoIndentMode( m_config->autoIndent() );
@@ -850,42 +830,58 @@ void KNote::toDesktop( int desktop )
 
 void KNote::setColor( const QColor &fg, const QColor &bg )
 {
-    QPalette newpalette = palette();
-    newpalette.setColor( QColorGroup::Background, bg );
-    newpalette.setColor( QColorGroup::Foreground, fg );
-    newpalette.setColor( QColorGroup::Base,       bg ); // text background
-    newpalette.setColor( QColorGroup::Text,       fg ); // text color
-    newpalette.setColor( QColorGroup::Button,     bg );
-    newpalette.setColor( QColorGroup::ButtonText, fg );
+    QPalette p = palette();
+
+    p.setColor( QPalette::Window,     bg );
+    p.setColor( QPalette::WindowText, fg );
+    p.setColor( QPalette::Base,       bg ); // text background
+    p.setColor( QPalette::Text,       fg ); // text color
+    p.setColor( QPalette::Button,     bg );
+    p.setColor( QPalette::ButtonText, fg );
  
-//    newpalette.setColor( QColorGroup::Highlight,  bg );
-//    newpalette.setColor( QColorGroup::HighlightedText, fg );
+//    p.setColor( QColorGroup::Highlight,  bg );
+//    p.setColor( QColorGroup::HighlightedText, fg );
 
+    // order: Light, Midlight, Button, Mid, Dark, Shadow
+    
     // the shadow
-    newpalette.setColor( QColorGroup::Midlight, bg.light(150) );
-    newpalette.setColor( QColorGroup::Shadow, bg.dark(116) );
-    newpalette.setColor( QColorGroup::Light, bg.light(180) );
+    p.setColor( QPalette::Light, bg.light(180) );
+    p.setColor( QPalette::Midlight, bg.light(150) );
+    p.setColor( QPalette::Button, bg.dark(116) );
+//    p.setColor( QPalette::Mid, bg.light(150) );
     if ( s_ppOffset )
-        newpalette.setColor( QColorGroup::Dark, bg.dark(200) );
+        p.setColor( QPalette::Dark, bg.dark(200) );
     else
-        newpalette.setColor( QColorGroup::Dark, bg.dark(108) );
-    setPalette( newpalette );
+        p.setColor( QPalette::Dark, bg.dark(108) );
+    p.setColor( QPalette::Shadow, bg.dark(116) );    // TODO: usually very dark! (black)
+    setPalette( p );
 
+    p.setColor( QPalette::Active, QPalette::Window, bg.dark(116) );
+    //p.setColor( QPalette::Inactive, QPalette::Window, bg );
+
+    m_label->setPalette( p );
+    
     // set the text color
     m_editor->setTextColor( fg );
 
     // set the background color or gradient
     updateBackground();
 
+/*
     // set darker value for the hide button...
     QPalette darker = palette();
-    darker.setColor( QColorGroup::Button, bg.dark(116) );
+    darker.setColor( QPalette::Button, bg.dark(116) );
     m_button->setPalette( darker );
-
+*/
+    
     // update the icon color
     KIconEffect effect;
-    QPixmap icon = effect.apply( qApp->windowIcon().pixmap(IconSize(KIcon::Desktop),IconSize(KIcon::Desktop)), KIconEffect::Colorize, 1, bg, false );
-    QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap(IconSize(KIcon::Small),IconSize(KIcon::Small)), KIconEffect::Colorize, 1, bg, false );
+    QPixmap icon = effect.apply( qApp->windowIcon().pixmap( IconSize(KIcon::Desktop),
+                                                            IconSize(KIcon::Desktop) ),
+                                 KIconEffect::Colorize, 1, bg, false );
+    QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap( IconSize(KIcon::Small), 
+                                                                IconSize(KIcon::Small) ),
+                                     KIconEffect::Colorize, 1, bg, false );
     KWin::setIcons( winId(), icon, miniIcon );
 
     // set the color for the selection used to highlight the find stuff
@@ -910,7 +906,7 @@ void KNote::createFold()
     QPixmap fold( 15, 15 );
     QPainter foldp( &fold );
     foldp.setPen( Qt::NoPen );
-    foldp.setBrush( palette().active().dark() );
+    foldp.setBrush( palette().dark() );
     QPolygon foldpoints( 3 );
     foldpoints.putPoints( 0, 3, 0, 0, 14, 0, 0, 14 );
     foldp.drawPolygon( foldpoints );
@@ -932,7 +928,9 @@ void KNote::updateFocus()
 {
     if ( hasFocus() )
     {
-        m_label->setBackgroundColor( palette().active().shadow() );
+//        QPalette p = palette(); p.setColor( backgroundRole(), c ); setPalette( p );
+
+        //m_label->setBackgroundColor( palette().shadow() );
         m_button->show();
         m_grip->show();
 
@@ -967,11 +965,11 @@ void KNote::updateFocus()
 
         if ( s_ppOffset )
         {
-            m_label->setBackgroundColor( palette().active().midlight() );
+            //m_label->setBackgroundColor( palette().midlight() );
             m_fold->show();
         }
         else
-            m_label->setBackgroundColor( palette().active().background() );
+            //m_label->setBackgroundColor( palette().window() );
     }
 }
 
@@ -996,7 +994,7 @@ void KNote::updateMask()
     {
         QPolygon foldpoints( 3 );
         foldpoints.putPoints( 0, 3, w-15, h, w, h-15, w, h );
-        QRegion fold( foldpoints, false );
+        QRegion fold( foldpoints );
         setMask( reg.unite( pushpin_reg ).subtract( fold ) );
     }
     else
@@ -1056,7 +1054,7 @@ void KNote::updateLayout()
 
     m_kwinConf->setGroup( "Style" );
     if ( m_kwinConf->readBoolEntry( "CustomButtonPositions" ) )
-        closeLeft = m_kwinConf->readEntry( "ButtonsOnLeft" ).find( 'X' ) > -1;
+        closeLeft = m_kwinConf->readEntry( "ButtonsOnLeft" ).contains( 'X' );
 
     if ( s_ppOffset )
     {
@@ -1128,9 +1126,9 @@ void KNote::drawFrame( QPainter *p )
     QRect r = frameRect();
     r.setTop( s_ppOffset );
     if ( s_ppOffset )
-        qDrawShadePanel( p, r, colorGroup(), false, lineWidth() );
+        qDrawShadePanel( p, r, palette(), false, lineWidth() );
     else
-        qDrawWinPanel( p, r, colorGroup(), false );
+        qDrawWinPanel( p, r, palette(), false );
 }
     
 void KNote::contextMenuEvent( QContextMenuEvent *e )
@@ -1165,7 +1163,7 @@ void KNote::closeEvent( QCloseEvent * )
 
 void KNote::dragEnterEvent( QDragEnterEvent *e )
 {
-    e->accept( K3ColorDrag::canDecode( e ) );
+    e->setAccepted( K3ColorDrag::canDecode( e ) );
 }
 
 void KNote::dropEvent( QDropEvent *e )
@@ -1173,7 +1171,7 @@ void KNote::dropEvent( QDropEvent *e )
     QColor bg;
     if ( K3ColorDrag::decode( e, bg ) )
     {
-        setColor( paletteForegroundColor(), bg );
+        setColor( palette().color( foregroundRole() ), bg );
         m_journal->setCustomProperty( "KNotes", "BgColor", bg.name() );
         m_config->setBgColor( bg );
     }
