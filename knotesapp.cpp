@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2005, The KNotes Developers
+ Copyright (c) 1997-2006, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -19,6 +19,7 @@
 *******************************************************************/
 
 #include <QClipboard>
+#include <QMouseEvent>
 #include <QToolTip>
 #include <QPixmap>
 #include <QLabel>
@@ -101,7 +102,8 @@ KNotesApp::KNotesApp()
     setPixmap( KSystemTray::loadIcon( "knotes" ) );
 
     // set the initial style
-    KNote::setStyle( KNotesGlobalConfig::style() );
+#warning FIXME
+//    KNote::setStyle( KNotesGlobalConfig::style() );
 
     // create the GUI...
     new KAction( i18n("New Note"), "filenew", 0,
@@ -646,7 +648,8 @@ void KNotesApp::updateNetworkListener()
 
 void KNotesApp::updateStyle()
 {
-    KNote::setStyle( KNotesGlobalConfig::style() );
+#warning FIXME!
+//    KNote::setStyle( KNotesGlobalConfig::style() );
 
     foreach ( KNote *note, m_notes )
         QApplication::postEvent( note, new QEvent( QEvent::LayoutHint ) );

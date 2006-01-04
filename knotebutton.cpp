@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 2002-2004, The KNotes Developers
+ Copyright (c) 2002-2006, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -18,13 +18,12 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include <qstyle.h>
-#include <qpainter.h>
-#include <qicon.h>
-#include <qsizepolicy.h>
-//Added by qt3to4:
+#include <QStyle>
+#include <QStyleOption>
+#include <QPainter>
+#include <QIcon>
+#include <QSizePolicy>
 #include <QPixmap>
-#include <QEvent>
 
 #include <kglobal.h>
 #include <kicontheme.h>
@@ -33,16 +32,16 @@
 #include "knotebutton.h"
 
 
-KNoteButton::KNoteButton( const QString& icon, QWidget *parent, const char *name )
-    : QPushButton( parent, name )
+KNoteButton::KNoteButton( const QString& icon, QWidget *parent )
+    : QPushButton( parent )
 {
     setFocusPolicy( Qt::NoFocus );
     setSizePolicy( QSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed ) );
 
-    m_flat = true;
+    setFlat( true );
 
     if ( !icon.isEmpty() )
-        setIconSet( KGlobal::iconLoader()->loadIconSet( icon, KIcon::Small, 10 ) );
+        setIcon( KGlobal::iconLoader()->loadIconSet( icon, KIcon::Small, 10 ) );
 }
 
 KNoteButton::~KNoteButton()
@@ -51,14 +50,19 @@ KNoteButton::~KNoteButton()
 
 void KNoteButton::enterEvent( QEvent * )
 {
-    m_flat = false;
-    repaint( false );
+    setFlat( false );
+    repaint();
 }
 
 void KNoteButton::leaveEvent( QEvent * )
 {
-    m_flat = true;
+    setFlat( true );
     repaint();
+}
+
+int KNoteButton::heightForWidth( int w ) const
+{
+    return w;
 }
 
 QSize KNoteButton::sizeHint() const
@@ -66,50 +70,51 @@ QSize KNoteButton::sizeHint() const
     return QSize( QPushButton::sizeHint().height(), QPushButton::sizeHint().height() );
 }
 
-void KNoteButton::drawButton( QPainter* p )
+void KNoteButton::paintEvent( QPaintEvent * )
 {
-    QStyle::SFlags flags = QStyle::State_Default;
+    QPainter p( this );
+
+    // the button
+    QStyleOption opt;
+    opt.initFrom( this );
 
     if ( isEnabled() )
-        flags |= QStyle::State_Enabled;
+        opt.state |= QStyle::State_Enabled;
     if ( isDown() )
-        flags |= QStyle::State_DownArrow;
-    if ( isOn() )
-        flags |= QStyle::State_On;
-    if ( !isFlat() && !isDown() )
-        flags |= QStyle::State_Raised;
-    if ( !m_flat )
-        flags |= QStyle::State_MouseOver;
+        opt.state |= QStyle::State_DownArrow;
+    if ( isChecked() )
+        opt.state |= QStyle::State_On;
+    if ( !isFlat() )
+        if ( !isDown() )
+            opt.state |= QStyle::State_Raised;
+        else
+            opt.state |= QStyle::State_MouseOver;
 
-#warning Port me!
-//    style()->drawPrimitive( QStyle::PE_PanelButtonTool, p, rect(), colorGroup(), flags );
-    drawButtonLabel( p );
-}
+    style()->drawPrimitive( QStyle::PE_PanelButtonTool, &opt, &p, this );
 
-void KNoteButton::drawButtonLabel( QPainter* p )
-{
-    if ( iconSet() && !iconSet()->isNull() )
+    // the button label
+    if ( icon().isNull() )
     {
         QIcon::Mode  mode  = QIcon::Disabled;
         QIcon::State state = QIcon::Off;
 
         if ( isEnabled() )
             mode = hasFocus() ? QIcon::Active : QIcon::Normal;
-        if ( isToggleButton() && isOn() )
+        if ( isCheckable() && isChecked() )
             state = QIcon::On;
 
-        QPixmap pix = iconSet()->pixmap( QIcon::Small, mode, state );
+        QPixmap pix = icon().pixmap( style()->pixelMetric( QStyle::PM_SmallIconSize ), mode, state );
 
         int dx = ( width() - pix.width() ) / 2;
         int dy = ( height() - pix.height() ) / 2;
 
         // Shift button contents if pushed.
-        if ( isOn() || isDown() )
+        if ( isChecked() || isDown() )
         {
-            dx += style()->pixelMetric( QStyle::PM_ButtonShiftHorizontal, 0, this );
-            dy += style()->pixelMetric( QStyle::PM_ButtonShiftVertical, 0, this );
+            dx += style()->pixelMetric( QStyle::PM_ButtonShiftHorizontal );
+            dy += style()->pixelMetric( QStyle::PM_ButtonShiftVertical );
         }
 
-        p->drawPixmap( dx, dy, pix );
+        p.drawPixmap( dx, dy, pix );
     }
 }

@@ -1,6 +1,12 @@
 ChangeLog for KNotes
 ====================
 
+2006/01/04  Michael Brade <brade@kde.org>
+
+    * more porting: 
+	   - KNoteButton almost done (the pixmap isn't shown)
+	   - drawing ported
+	   - Fancy style removed, I'm working on the Qt 4 one
 
 2005/12/30  Michael Brade <brade@kde.org>
 

@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2004, The KNotes Developers
+ Copyright (c) 1997-2006, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -21,34 +21,24 @@
 #ifndef KNOTEBUTTON_H
 #define KNOTEBUTTON_H
 
-#include <qpushbutton.h>
-//Added by qt3to4:
-#include <QResizeEvent>
-#include <QEvent>
-
-class QPainter;
-class QEvent;
-class QResizeEvent;
+#include <QPushButton>
 
 
 class KNoteButton: public QPushButton
 {
     Q_OBJECT
 public:
-    KNoteButton( const QString& icon, QWidget *parent=0, const char *name=0 );
+    KNoteButton( const QString& icon, QWidget *parent=0 );
     ~KNoteButton();
 
+    virtual int heightForWidth( int w ) const;
     virtual QSize sizeHint() const;
 
 protected:
     virtual void enterEvent( QEvent * );
     virtual void leaveEvent( QEvent * );
 
-    virtual void drawButton( QPainter *p );
-    virtual void drawButtonLabel( QPainter *p );
-
-private:
-    bool m_flat;
+    virtual void paintEvent ( QPaintEvent *e );
 };
 
 #endif

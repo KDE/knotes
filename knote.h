@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2005, The KNotes Developers
+ Copyright (c) 1997-2006, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -24,14 +24,7 @@
 #include <QString>
 #include <QEvent>
 #include <QFrame>
-#include <QPoint>
 #include <QColor>
-#include <QDragEnterEvent>
-#include <QLabel>
-#include <QShowEvent>
-#include <QResizeEvent>
-#include <QDropEvent>
-#include <QCloseEvent>
 
 #include <kconfig.h>
 #include <kxmlguiclient.h>
@@ -76,8 +69,6 @@ public:
 
     bool isModified() const;
 
-    static void setStyle( int style );
-
 public slots:
     void slotKill( bool force = false );
 
@@ -93,7 +84,6 @@ signals:
 
 protected:
     virtual void contextMenuEvent( QContextMenuEvent * );
-    virtual void drawFrame( QPainter* );
     virtual void showEvent( QShowEvent* );
     virtual void resizeEvent( QResizeEvent* );
     virtual void closeEvent( QCloseEvent* );
@@ -102,8 +92,6 @@ protected:
 
     virtual bool event( QEvent* );
     virtual bool eventFilter( QObject*, QEvent* );
-
-    virtual bool focusNextPrevChild( bool );
 
 private slots:
     void slotRename();
@@ -131,19 +119,15 @@ private slots:
 
 private:
     void updateFocus();
-    void updateMask();
     void updateLayout();
     void updateLabelAlignment();
-    void updateBackground( int offset = -1 );
 
     void setColor( const QColor&, const QColor& );
-
-    void createFold();
 
     void toDesktop( int desktop );
 
 private:
-    QLabel        *m_label, *m_pushpin, *m_fold;
+    QLabel        *m_label;
     QSizeGrip     *m_grip;
     KNoteButton   *m_button;
     KToolBar      *m_tool;
@@ -162,8 +146,6 @@ private:
     KToggleAction *m_keepBelow;
 
     KSharedConfig::Ptr m_kwinConf;
-
-    static int s_ppOffset;
 };
 
 #endif
