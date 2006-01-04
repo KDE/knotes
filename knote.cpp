@@ -171,6 +171,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     m_tool = static_cast<KToolBar*>(factory.container( "note_tool", this ));
     m_tool->setIconSize( 10 );
     m_tool->setFixedHeight( 16 );
+    m_tool->setIconText( KToolBar::IconOnly );
 
     // if there was just a way of making KComboBox adhere the toolbar height...
     QObjectList *list = m_tool->queryList( "KComboBox" );
@@ -1228,11 +1229,15 @@ void KNote::closeEvent( QCloseEvent * )
 
 void KNote::dragEnterEvent( QDragEnterEvent *e )
 {
-    e->accept( KColorDrag::canDecode( e ) );
+    if ( !m_config->readOnly() )
+        e->accept( KColorDrag::canDecode( e ) );
 }
 
 void KNote::dropEvent( QDropEvent *e )
 {
+    if ( m_config->readOnly() )
+        return;
+
     QColor bg;
     if ( KColorDrag::decode( e, bg ) )
     {
