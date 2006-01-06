@@ -447,6 +447,8 @@ void KNoteEdit::emitLinkClicked( const QString &s )
 void KNoteEdit::enableRichTextActions()
 {
     m_textColor->setEnabled( true );
+    m_textFont->setEnabled( true );
+    m_textSize->setEnabled( true );
 
     m_textBold->setEnabled( true );
     m_textItalic->setEnabled( true );
@@ -469,6 +471,8 @@ void KNoteEdit::enableRichTextActions()
 void KNoteEdit::disableRichTextActions()
 {
     m_textColor->setEnabled( false );
+    m_textFont->setEnabled( false );
+    m_textSize->setEnabled( false );
 
     m_textBold->setEnabled( false );
     m_textItalic->setEnabled( false );

@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2006/01/06  Michael Brade <brade@kde.org>
+
+    * fix enabling/disabling of font and font size combos. Needed especially
+	  for Kontact where the toolbar is not hidden for non-RichText notes.
+
 2006/01/04  Michael Brade <brade@kde.org>
 
     * never show the text of the tool buttons
