@@ -1298,7 +1298,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             return true;
         }
 
-#if KDE_IS_VERSION( 3, 5, 0 )
+#if KDE_IS_VERSION( 3, 5, 1 )
         if ( ev->type() == QEvent::MouseButtonRelease )
         {
             NETRootInfo wm_root( qt_xdisplay(), NET::WMMoveResize );
