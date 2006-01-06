@@ -1298,12 +1298,14 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             return true;
         }
 
+#if KDE_IS_VERSION( 3, 5, 0 )
         if ( ev->type() == QEvent::MouseButtonRelease )
         {
             NETRootInfo wm_root( qt_xdisplay(), NET::WMMoveResize );
             wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(), NET::MoveResizeCancel );
             return false;
         }
+#endif
 
         if ( m_menu && ( ev->type() == QEvent::MouseButtonPress )
             && ( e->button() == RightButton ) )
