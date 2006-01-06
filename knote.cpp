@@ -1047,6 +1047,13 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             return true;
         }
 
+        if ( ev->type() == QEvent::MouseButtonRelease )
+        {
+            NETRootInfo wm_root( QX11Info::display(), NET::WMMoveResize );
+            wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(), NET::MoveResizeCancel );
+            return false;
+        }
+
         return false;
     }
 
