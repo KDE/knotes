@@ -1298,6 +1298,13 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             return true;
         }
 
+        if ( ev->type() == QEvent::MouseButtonRelease )
+        {
+            NETRootInfo wm_root( qt_xdisplay(), NET::WMMoveResize );
+            wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(), NET::MoveResizeCancel );
+            return false;
+        }
+
         if ( m_menu && ( ev->type() == QEvent::MouseButtonPress )
             && ( e->button() == RightButton ) )
         {
