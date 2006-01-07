@@ -3,15 +3,21 @@ ChangeLog for KNotes
 
 2006/01/06  Michael Brade <brade@kde.org>
 
-    * fix enabling/disabling of font and font size combos. Needed especially
+    * fixed #115009: since it doesn't seem clearly visible that the "Lock" menu
+      item is down after clicking on it a different checked state and display a
+      different text ("Unlock") and a different icon.
+
+2006/01/06  Michael Brade <brade@kde.org>
+
+    * fixed enabling/disabling of font and font size combos. Needed especially
       for Kontact where the toolbar is not hidden for non-RichText notes.
 
 2006/01/04  Michael Brade <brade@kde.org>
 
     * more porting: 
-	   - KNoteButton almost done (the pixmap isn't shown)
-	   - drawing ported
-	   - Fancy style removed, I'm working on the Qt 4 one
+       - KNoteButton almost done (the pixmap isn't shown)
+       - drawing ported
+       - Fancy style removed, I'm working on the Qt 4 one
 
 2005/12/30  Michael Brade <brade@kde.org>
 
@@ -27,9 +33,9 @@ ChangeLog for KNotes
 
     * first port to QText* classes and KDE 4.0
     * get rid of client-specific code in KNotes, it has to be added in
-	   KPilot directly
+      KPilot directly
     * fix default color setting of KConfigXT, it is code
-	 * new version
+    * new version
 
 2005/09/06  Michael Brade <brade@kde.org>
 
