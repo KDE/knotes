@@ -1,6 +1,6 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="8">
+<kpartgui name="KNotes" version="9">
 
 <Menu name="note_context" noMerge="1">
     <Action name="insert_date"/>
@@ -50,6 +50,7 @@
     <Action name="edit_cut"/>
     <Action name="edit_copy"/>
     <Action name="edit_paste"/>
+    <Separator/>
     <Action name="edit_clear"/>
     <Separator/>
     <Action name="edit_select_all"/>
