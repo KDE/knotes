@@ -8,6 +8,7 @@ ChangeLog for KNotes
       different text ("Unlock") and a different icon.
     * fixed #103780: Separate "Clear" action visually from Cut/Copy/Paste
       since it's not doing anything with the clipboard.
+    * fixed #110672: added a "Do not show again" box to the delete note dialog
 
 2006/01/06  Michael Brade <brade@kde.org>
 
