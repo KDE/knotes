@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2005, The KNotes Developers
+ Copyright (c) 1997-2006, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -463,6 +463,8 @@ void KNoteEdit::setTextFormat( const QTextCharFormat& f )
 void KNoteEdit::enableRichTextActions()
 {
     m_textColor->setEnabled( true );
+    m_textFont->setEnabled( true );
+    m_textSize->setEnabled( true );
 
     m_textBold->setEnabled( true );
     m_textItalic->setEnabled( true );
@@ -485,6 +487,8 @@ void KNoteEdit::enableRichTextActions()
 void KNoteEdit::disableRichTextActions()
 {
     m_textColor->setEnabled( false );
+    m_textFont->setEnabled( false );
+    m_textSize->setEnabled( false );
 
     m_textBold->setEnabled( false );
     m_textItalic->setEnabled( false );
