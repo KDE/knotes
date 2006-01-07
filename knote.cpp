@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2005, The KNotes Developers
+ Copyright (c) 1997-2006, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -351,6 +351,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
         m_keepAbove->setChecked( false );
         m_keepBelow->setChecked( false );
     }
+    slotUpdateKeepAboveBelow();
 
     // HACK: update the icon color - again after showing the note, to make kicker aware of the new colors
     KIconEffect effect;
