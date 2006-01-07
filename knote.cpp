@@ -284,16 +284,6 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     height = m_config->height();
     resize( width, height );
 
-    if ( m_config->keepAbove() )
-        m_keepAbove->setChecked( true );
-    else if ( m_config->keepBelow() )
-        m_keepBelow->setChecked( true );
-    else
-    {
-        m_keepAbove->setChecked( false );
-        m_keepBelow->setChecked( false );
-    }
-
     // let KWin do the placement if the position is illegal--at least 10 pixels
     // of a note need to be visible
     const QPoint& position = m_config->position();
@@ -351,6 +341,16 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
 
     m_readOnly->setChecked( m_config->readOnly() );
     slotUpdateReadOnly();
+
+    if ( m_config->keepAbove() )
+        m_keepAbove->setChecked( true );
+    else if ( m_config->keepBelow() )
+        m_keepBelow->setChecked( true );
+    else
+    {
+        m_keepAbove->setChecked( false );
+        m_keepBelow->setChecked( false );
+    }
 
     // HACK: update the icon color - again after showing the note, to make kicker aware of the new colors
     KIconEffect effect;
