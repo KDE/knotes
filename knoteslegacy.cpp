@@ -244,7 +244,7 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
     KConfig config( configFile );
     config.setGroup( "Data" );
     journal->setSummary( config.readEntry( "name" ) );
-    config.deleteGroup( "Data", true );
+    config.deleteGroup( "Data", KConfig::NLS );
     config.setGroup( "General" );
     config.writeEntry( "version", KNOTES_VERSION );
     config.setGroup( "WindowDisplay" );
