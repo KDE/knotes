@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2005, The KNotes Developers
+ Copyright (c) 1997-2006, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -38,7 +38,8 @@
 #include <kglobalaccel.h>
 #include <ksimpleconfig.h>
 #include <kwin.h>
-#include <kextsock.h>
+#include <kbufferedsocket.h>
+#include <kserversocket.h>
 
 #include <libkcal/journal.h>
 #include <libkcal/calendarlocal.h>
@@ -52,6 +53,8 @@
 #include "knotesnetrecv.h"
 
 #include "knotes/resourcemanager.h"
+
+using namespace KNetwork;
 
 
 class KNotesKeyDialog : public KDialogBase
@@ -196,8 +199,8 @@ KNotesApp::KNotesApp()
     m_alarm = new KNotesAlarm( m_manager, this );
 
     // create the socket and possibly start listening for connections
-    m_listener = new KExtendedSocket();
-    m_listener->setSocketFlags( KExtendedSocket::passiveSocket | KExtendedSocket::inetSocket );
+    m_listener = new KServerSocket();
+    m_listener->setResolutionEnabled( true );
     connect( m_listener, SIGNAL(readyAccept()), SLOT(acceptConnection()) );
     updateNetworkListener();
 
@@ -573,11 +576,13 @@ void KNotesApp::killNote( KCal::Journal *journal )
 void KNotesApp::acceptConnection()
 {
     // Accept the connection and make KNotesNetworkReceiver do the job
-    KExtendedSocket *s;
-    m_listener->accept( s );
-    KNotesNetworkReceiver *recv = new KNotesNetworkReceiver( s );
-    connect( recv, SIGNAL(sigNoteReceived( const QString &, const QString & )),
-             this, SLOT(newNote( const QString &, const QString & )) );
+    KBufferedSocket *s = static_cast<KBufferedSocket *>(m_listener->accept());
+    if ( s )
+    {
+        KNotesNetworkReceiver *recv = new KNotesNetworkReceiver( s );
+        connect( recv, SIGNAL(sigNoteReceived( const QString &, const QString & )),
+                 this, SLOT(newNote( const QString &, const QString & )) );
+    }
 }
 
 void KNotesApp::saveNotes()
@@ -660,11 +665,12 @@ void KNotesApp::updateGlobalAccels()
 
 void KNotesApp::updateNetworkListener()
 {
-    m_listener->reset();
+    m_listener->close();
 
     if ( KNotesGlobalConfig::receiveNotes() )
     {
-        m_listener->setPort( KNotesGlobalConfig::port() );
+        m_listener->setAddress( QString::number( KNotesGlobalConfig::port() ) );
+        m_listener->bind();
         m_listener->listen();
     }
 }

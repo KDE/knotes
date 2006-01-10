@@ -35,14 +35,17 @@
 #include <qobject.h>
 
 class QTimer;
-class QExtendedSocket;
+
+namespace KNetwork {
+    class KBufferedSocket;
+}
 
 
 class KNotesNetworkReceiver : public QObject
 {
     Q_OBJECT
 public:
-    KNotesNetworkReceiver( KExtendedSocket * );
+    KNotesNetworkReceiver( KNetwork::KBufferedSocket * );
     ~KNotesNetworkReceiver();
 
 signals:
@@ -50,15 +53,15 @@ signals:
 
 private slots:
     void slotDataAvailable();
-    void slotConnectionClosed( int );
-
     void slotReceptionTimeout();
+    void slotConnectionClosed();
+    void slotError( int err );
 
 private:
     QTimer *m_timer;       // to avoid memory and connection floods
 
     QByteArray *m_buffer;
-    KExtendedSocket *m_sock;
+    KNetwork::KBufferedSocket *m_sock;
 
     QString m_titleAddon;
 };

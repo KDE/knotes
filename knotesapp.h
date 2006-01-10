@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2005, The KNotes Developers
+ Copyright (c) 1997-2006, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -40,12 +40,15 @@ class KActionMenu;
 class KGlobalAccel;
 class KXMLGUIFactory;
 class KXMLGUIBuilder;
-class KExtendedSocket;
 class KNotesAlarm;
 class KNotesResourceManager;
 
 namespace KCal {
     class Journal;
+}
+
+namespace KNetwork {
+    class KServerSocket;
 }
 
 
@@ -127,7 +130,7 @@ private:
     KNotesResourceManager *m_manager;
 
     KNotesAlarm     *m_alarm;
-    KExtendedSocket *m_listener;
+    KNetwork::KServerSocket   *m_listener;
 
     QDict<KNote>    m_noteList;
     KNoteActionList m_noteActions;
