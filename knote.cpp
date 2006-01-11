@@ -258,8 +258,8 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     // can be done here since this doesn't pick up changes while KNotes is running anyway
     bool closeLeft = false;
     m_kwinConf->setGroup( "Style" );
-    if ( m_kwinConf->readBoolEntry( "CustomButtonPositions" ) )
-        closeLeft = m_kwinConf->readEntry( "ButtonsOnLeft" ).contains( 'X' );
+    if ( m_kwinConf->readEntry( "CustomButtonPositions",false ) )
+        closeLeft = m_kwinConf->readEntry( "ButtonsOnLeft").contains( 'X' );
 
     // load the display configuration of the note
     width = m_config->width();
@@ -914,7 +914,7 @@ void KNote::updateLayout()
     bool closeLeft = false;
 
     m_kwinConf->setGroup( "Style" );
-    if ( m_kwinConf->readBoolEntry( "CustomButtonPositions" ) )
+    if ( m_kwinConf->readEntry( "CustomButtonPositions",false ) )
         closeLeft = m_kwinConf->readEntry( "ButtonsOnLeft" ).contains( 'X' );
 
     m_button->setGeometry(
