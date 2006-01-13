@@ -54,7 +54,7 @@ void KNotesLegacy::cleanUp()
     if ( QFile::exists( configfile ) ) {
         KSimpleConfig *test = new KSimpleConfig( configfile );
         test->setGroup( "General" );
-        double version = test->readDoubleNumEntry( "version", 1.0 );
+        double version = test->readEntry( "version", 1.0 );
         delete test;
 
         if ( version == 1.0 ) {
@@ -78,7 +78,7 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
         QString file = noteDir.absoluteFilePath( *note );
         KSimpleConfig* test = new KSimpleConfig( file );
         test->setGroup( "General" );
-        double version = test->readDoubleNumEntry( "version", 1.0 );
+        double version = test->readEntry( "version", 1.0 );
 
         if ( version < 3.0 )
         {
