@@ -4,6 +4,16 @@ ChangeLog for KNotes
 2006/01/16  Michael Brade <brade@kde.org>
 
     * fixed #119980: the knotes directory wasn't created in Kontact/KNotes
+	* ported the networking code to KDE 4/KNotes 4
+
+2006/01/09  Michael Brade <brade@kde.org>
+
+    rewrote the networking code to use KNetwork:
+    * fixed #110915: KNetwork has better error reporting than the previous
+      code, now it says "connection actively refused" instead of "No such
+      file or directory"
+    * fixed #110838: this one was caused by an uninitialize variable, so it
+      wasn't reproducible
 
 2006/01/06  Michael Brade <brade@kde.org>
 

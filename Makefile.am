@@ -11,11 +11,8 @@ include_HEADERS = KNotesIface.h KNotesAppIface.h
 noinst_HEADERS  = knotesapp.h knote.h knoteedit.h knotebutton.h \
                   knoteconfigdlg.h knoteslegacy.h resourcemanager.h \
                   resourcenotes.h resourcelocal.h resourcelocalconfig.h \
-                  knotehostdlg.h \
+                  knotesnetrecv.h knotesnetsend.h knotehostdlg.h \
                   knotealarmdlg.h knotesalarm.h
-#KDE4: Port me!
-# temporary disabled excluded KExtendedSocket usage is ported
-#knotesnetrecv.h knotesnetsend.h 
 
 noinst_LTLIBRARIES = libknote.la libknoteseditor.la libknoteslegacy.la libknotesconfig.la \
                      libknotesresources.la libknotesnetwork.la
@@ -23,8 +20,7 @@ noinst_LTLIBRARIES = libknote.la libknoteseditor.la libknoteslegacy.la libknotes
 libknoteslegacy_la_SOURCES = knoteslegacy.cpp
 libknotesconfig_la_SOURCES = knoteconfig.kcfgc knotesglobalconfig.kcfgc
 libknoteseditor_la_SOURCES = knoteedit.cpp
-#KDE4: Port me!
-#libknotesnetwork_la_SOURCES = knotesnetrecv.cpp knotesnetsend.cpp
+libknotesnetwork_la_SOURCES = knotesnetrecv.cpp knotesnetsend.cpp
 libknotesresources_la_SOURCES = resourcemanager.cpp resourcenotes.cpp \
                                 resourcelocal.cpp resourcelocalconfig.cpp
 libknote_la_SOURCES = knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp \

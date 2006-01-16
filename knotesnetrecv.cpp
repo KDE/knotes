@@ -2,7 +2,7 @@
  KNotes -- Notes for the KDE project
 
  Copyright (c) 2003, Daniel Martin <daniel.martin@pirack.com>
-               2004, Michael Brade <brade@kde.org>
+               2004, 2006, Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -35,8 +35,9 @@
 #include <qregexp.h>
 #include <q3cstring.h>
 
-#include <kextsock.h>
-#include <ksockaddr.h>
+#include <kdebug.h>
+#include <kbufferedsocket.h>
+#include <ksocketaddress.h>
 #include <klocale.h>
 #include <kglobal.h>
 
@@ -53,8 +54,10 @@
 // Small buffer's size
 #define SBSIZE 512
 
+using namespace KNetwork;
 
-KNotesNetworkReceiver::KNotesNetworkReceiver( KExtendedSocket *s )
+
+KNotesNetworkReceiver::KNotesNetworkReceiver( KBufferedSocket *s )
   : QObject(),
     m_buffer( new QByteArray() ), m_sock( s )
 {
@@ -63,19 +66,19 @@ KNotesNetworkReceiver::KNotesNetworkReceiver( KExtendedSocket *s )
     // Add the remote IP or hostname and the date to the title, to help the
     // user guess who wrote it.
     m_titleAddon = QString(" [%1, %2]")
-                   .arg( m_sock->peerAddress()->nodeName() )
+                   .arg( m_sock->peerAddress().nodeName() )
                    .arg( date );
+
+    // Setup the communications
+    connect( m_sock, SIGNAL(readyRead()), SLOT(slotDataAvailable()) );
+    connect( m_sock, SIGNAL(closed()), SLOT(slotConnectionClosed()) );
+    connect( m_sock, SIGNAL(gotError( int )), SLOT(slotError( int )) );
+
+    m_sock->enableRead( true );
 
     // Setup the timer
     m_timer = new QTimer( this );
     connect( m_timer, SIGNAL(timeout()), SLOT(slotReceptionTimeout()) );
-
-    // Setup the communications
-    connect( m_sock, SIGNAL(readyRead()), SLOT(slotDataAvailable()) );
-    connect( m_sock, SIGNAL(closed( int )), SLOT(slotConnectionClosed( int )) );
-    m_sock->enableRead( true );
-
-    // Go!
     m_timer->start( MAXTIME, true );
 }
 
@@ -92,12 +95,14 @@ void KNotesNetworkReceiver::slotDataAvailable()
 
     do
     {
-        // Append to "big buffer", only if we have some space left.
+        // Append to "big buffer" only if we have some space left.
         int curLen = m_buffer->count();
 
         smallBufferLen = m_sock->read( smallBuffer, SBSIZE );
-        if ( smallBufferLen > MAXBUFFER - curLen )
-            smallBufferLen = ( MAXBUFFER - curLen );   // Limit max transfer over buffer, to avoid overflow.
+
+        // Limit max transfer over buffer, to avoid overflow.
+        smallBufferLen = qMin( smallBufferLen, MAXBUFFER - curLen );
+
         if ( smallBufferLen > 0 )
         {
             m_buffer->resize( curLen + smallBufferLen );
@@ -108,12 +113,17 @@ void KNotesNetworkReceiver::slotDataAvailable()
 
     // If we are overflowing, close connection.
     if ( m_buffer->count() == MAXBUFFER )
-        m_sock->closeNow();
+        m_sock->close();
     else
         m_timer->start( MAXTIME );
 }
 
-void KNotesNetworkReceiver::slotConnectionClosed( int /*state*/ )
+void KNotesNetworkReceiver::slotReceptionTimeout()
+{
+    m_sock->close();
+}
+
+void KNotesNetworkReceiver::slotConnectionClosed()
 {
     if ( m_timer->isActive() )
     {
@@ -129,12 +139,14 @@ void KNotesNetworkReceiver::slotConnectionClosed( int /*state*/ )
             emit sigNoteReceived( noteTitle, noteText );
     }
 
-    delete this;
+    deleteLater();
 }
 
-void KNotesNetworkReceiver::slotReceptionTimeout()
+void KNotesNetworkReceiver::slotError( int err )
 {
-    m_sock->closeNow();
+    kdWarning() << k_funcinfo
+                << KSocketBase::errorString( static_cast<KSocketBase::SocketError>(err) ) 
+                << endl;
 }
 
 #include "knotesnetrecv.moc"

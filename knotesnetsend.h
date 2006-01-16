@@ -2,7 +2,7 @@
  KNotes -- Notes for the KDE project
 
  Copyright (c) 2003, Daniel Martin <daniel.martin@pirack.com>
-               2004, Michael Brade <brade@kde.org>
+               2004, 2006, Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -35,22 +35,25 @@
 
 #include <q3cstring.h>
 
-#include <kstreamsocket.h>
+#include <kbufferedsocket.h>
+#include <ksocketaddress.h>
+
+using namespace KNetwork;
 
 
-class KNotesNetworkSender : public KNetwork::KStreamSocket
+class KNotesNetworkSender : public KNetwork::KBufferedSocket
 {
     Q_OBJECT
 public:
-    KNotesNetworkSender( const QString &host, int port );
+    KNotesNetworkSender( const QString& host, int port );
 
     void setSenderId( const QString& sender );
-    void setNote( const QString &title, const QString &text );
+    void setNote( const QString& title, const QString& text );
 
 protected slots:
-    void slotConnected();
+    void slotConnected( const KResolverEntry& );
     void slotError( int );
-    void slotClosed( int );
+    void slotClosed();
 
     void slotReadyWrite();
 

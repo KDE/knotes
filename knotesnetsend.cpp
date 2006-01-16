@@ -2,7 +2,7 @@
  KNotes -- Notes for the KDE project
 
  Copyright (c) 2003, Daniel Martin <daniel.martin@pirack.com>
-               2004, Michael Brade <brade@kde.org>
+               2004, 2006, Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -32,25 +32,26 @@
 
 #include <klocale.h>
 #include <kmessagebox.h>
-#include <ksockaddr.h>
 
 #include "knotesnetsend.h"
 
-// This comes in seconds!
-#define CONNECT_TIMEOUT 10
+#define CONNECT_TIMEOUT 10000
 
 
 KNotesNetworkSender::KNotesNetworkSender( const QString& hostname, int port )
-  : KExtendedSocket( hostname, port )
+  : KBufferedSocket( hostname, QString::number( port ) ),
+    m_note( 0 ), m_title( 0 ), m_sender( 0 ), m_index( 0 )
 {
     enableRead( false );
     enableWrite( false );
-    setBlockingMode( true );    // Recommended by documentation.
     setTimeout( CONNECT_TIMEOUT );
 
-    QObject::connect( this, SIGNAL(connectionSuccess()), SLOT(slotConnected()) );
-    QObject::connect( this, SIGNAL(connectionFailed( int )), SLOT(slotError( int )) );
-    QObject::connect( this, SIGNAL(closed( int )), SLOT(slotClosed( int )) );
+    // QObject:: prefix needed, otherwise the KStreamSocket::connect()
+    // mehtod is called!!!
+    QObject::connect( this, SIGNAL(connected( const KResolverEntry& )), 
+                            SLOT(slotConnected( const KResolverEntry& )) );
+    QObject::connect( this, SIGNAL(gotError( int )), SLOT(slotError( int )) );
+    QObject::connect( this, SIGNAL(closed()), SLOT(slotClosed()) );
     QObject::connect( this, SIGNAL(readyWrite()), SLOT(slotReadyWrite()) );
 }
 
@@ -61,14 +62,14 @@ void KNotesNetworkSender::setSenderId( const QString& sender )
 
 void KNotesNetworkSender::setNote( const QString& title, const QString& text )
 {
-    // TODO: support for unicode and richtext.
+    // TODO: support for unicode and rich text.
     // Mmmmmm... how to behave with such heterogeneous environment?
     // AFAIK, ATnotes does not allow UNICODE.
     m_title = title.ascii();
     m_note = text.ascii();
 }
 
-void KNotesNetworkSender::slotConnected()
+void KNotesNetworkSender::slotConnected( const KResolverEntry& )
 {
     if ( m_sender.isEmpty() )
         m_note.prepend( m_title + "\n");
@@ -84,19 +85,20 @@ void KNotesNetworkSender::slotReadyWrite()
 
     // If end of text reached, close connection
     if ( m_index == m_note.length() )
-        closeNow();
+        close();
 }
 
-void KNotesNetworkSender::slotError( int errorCode )
+void KNotesNetworkSender::slotError( int err )
 {
-    KMessageBox::sorry( 0, i18n("Communication error: %1").arg(
-                                strError( status(), errorCode ) ) );
-    slotClosed( 0 );
+    KMessageBox::sorry( 0, i18n("Communication error: %1")
+           .arg( KSocketBase::errorString( static_cast<KSocketBase::SocketError>(err) ) )
+    );
+    slotClosed();
 }
 
-void KNotesNetworkSender::slotClosed( int /*state*/ )
+void KNotesNetworkSender::slotClosed()
 {
-    delete this;
+    deleteLater();
 }
 
 #include "knotesnetsend.moc"
