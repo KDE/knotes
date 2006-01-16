@@ -1,6 +1,10 @@
 ChangeLog for KNotes
 ====================
 
+2006/01/16  Michael Brade <brade@kde.org>
+
+    * fixed #119980: the knotes directory wasn't created in Kontact/KNotes
+
 2006/01/06  Michael Brade <brade@kde.org>
 
     * fixed #115009: since it doesn't seem clearly visible that the "Lock" menu
