@@ -2,7 +2,7 @@
  This file is part of KNotes.
 
  Copyright (c) 2004, Bo Thorsen <bo@sonofthor.dk>
-               2004, 2005, Michael Brade <brade@kde.org>
+               2004-2006, Michael Brade <brade@kde.org>
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -44,21 +44,18 @@
 
 
 
-ResourceLocal::ResourceLocal( const KConfig* config )
+ResourceLocal::ResourceLocal( const KConfig *config )
     : ResourceNotes( config ), mCalendar( QString::fromLatin1( "UTC" ) )
 {
     kdDebug(5500) << "ResourceLocal::ResourceLocal()" << endl;
     setType( "file" );
-    if ( !config )
+    mURL = KGlobal::dirs()->saveLocation( "data", "knotes/" ) + "notes.ics";
+
+    if ( config )
     {
-        kdDebug(5500) << "No config, setting default notes.ics" << endl;
-        mURL = KGlobal::dirs()->saveLocation( "data" ) + "knotes/notes.ics";
-    }
-    else
-    {
-        mURL = config->readPathEntry( "NotesURL" );
-        if (mURL.isEmpty())
-            mURL = KGlobal::dirs()->saveLocation( "data" ) + "knotes/notes.ics";
+        KURL u = config->readPathEntry( "NotesURL" );
+        if ( !u.isEmpty() )
+            mURL = u;
     }
 }
 
@@ -66,7 +63,7 @@ ResourceLocal::~ResourceLocal()
 {
 }
 
-void ResourceLocal::writeConfig( KConfig* config )
+void ResourceLocal::writeConfig( KConfig *config )
 {
     KRES::Resource::writeConfig( config );
     config->writePathEntry( "NotesURL", mURL.prettyURL() );
@@ -99,13 +96,13 @@ bool ResourceLocal::save()
     return true;
 }
 
-bool ResourceLocal::addNote( KCal::Journal* journal )
+bool ResourceLocal::addNote( KCal::Journal *journal )
 {
     mCalendar.addJournal( journal );
     return true;
 }
 
-bool ResourceLocal::deleteNote( KCal::Journal* journal )
+bool ResourceLocal::deleteNote( KCal::Journal *journal )
 {
     mCalendar.deleteJournal( journal );
     return true;
