@@ -1,6 +1,11 @@
 ChangeLog for KNotes
 ====================
 
+2006/01/16  Michael Brade <brade@kde.org>
+
+    * fixed #119980: the knotes directory wasn't created in Kontact/KNotes
+	* new version number: 3.6
+
 2006/01/09  Michael Brade <brade@kde.org>
 
     rewrote the networking code to use KNetwork:
