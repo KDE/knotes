@@ -38,7 +38,7 @@ ResourceLocalConfig::ResourceLocalConfig( QWidget *parent,  const char *name )
     QHBoxLayout *layout = new QHBoxLayout( this );
 
     QLabel *label = new QLabel( i18n( "Location:" ), this );
-    mURL = new KURLRequester( this );
+    mURL = new KUrlRequester( this );
     KFile::Mode mode = static_cast<KFile::Mode>( KFile::File |
                                                  KFile::LocalOnly );
     mURL->setMode( mode );
