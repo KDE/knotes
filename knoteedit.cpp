@@ -348,10 +348,10 @@ void KNoteEdit::dragEnterEvent( QDragEnterEvent *e )
 
 void KNoteEdit::dropEvent( QDropEvent *e )
 {
-    KURL::List list;
+    KUrl::List list;
 
     if ( K3URLDrag::decode( e, list ) )
-        for ( KURL::List::Iterator it = list.begin(); it != list.end(); ++it )
+        for ( KUrl::List::Iterator it = list.begin(); it != list.end(); ++it )
         {
             if ( it != list.begin() )
                 insertPlainText( ", " );

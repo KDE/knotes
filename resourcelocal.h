@@ -58,8 +58,8 @@ public:
      */
     virtual bool save();
 
-    virtual KURL url() const { return mURL; } ;
-    virtual void setURL(const KURL& url) { mURL = url; } ;
+    virtual KUrl url() const { return mURL; } ;
+    virtual void setURL(const KUrl& url) { mURL = url; } ;
 
     virtual bool addNote( KCal::Journal* );
     virtual bool deleteNote( KCal::Journal* );
@@ -68,7 +68,7 @@ public:
 
 protected:
     KCal::CalendarLocal mCalendar;
-    KURL mURL;
+    KUrl mURL;
 };
 
 

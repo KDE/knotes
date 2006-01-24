@@ -53,7 +53,7 @@ ResourceLocal::ResourceLocal( const KConfig *config )
 
     if ( config )
     {
-        KURL u = config->readPathEntry( "NotesURL" );
+        KUrl u = config->readPathEntry( "NotesURL" );
         if ( !u.isEmpty() )
             mURL = u;
     }
