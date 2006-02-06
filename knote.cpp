@@ -366,7 +366,7 @@ void KNote::slotKill( bool force )
     configFile += m_journal->uid();
 
     if ( !KIO::NetAccess::del( KUrl::fromPathOrURL( configFile ), this ) )
-        kdError(5500) << "Can't remove the note config: " << configFile << endl;
+        kError(5500) << "Can't remove the note config: " << configFile << endl;
 
     emit sigKillNote( m_journal );
 }

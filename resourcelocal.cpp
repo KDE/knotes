@@ -47,7 +47,7 @@
 ResourceLocal::ResourceLocal( const KConfig *config )
     : ResourceNotes( config ), mCalendar( QString::fromLatin1( "UTC" ) )
 {
-    kdDebug(5500) << "ResourceLocal::ResourceLocal()" << endl;
+    kDebug(5500) << "ResourceLocal::ResourceLocal()" << endl;
     setType( "file" );
     mURL = KGlobal::dirs()->saveLocation( "data", "knotes/" ) + "notes.ics";
 

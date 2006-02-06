@@ -282,7 +282,7 @@ void KNotesApp::showNote( const QString& id ) const
     if ( note )
         showNote( note );
     else
-        kdWarning(5500) << "showNote: no note with id: " << id << endl;
+        kWarning(5500) << "showNote: no note with id: " << id << endl;
 }
 
 void KNotesApp::hideNote( const QString& id ) const
@@ -291,7 +291,7 @@ void KNotesApp::hideNote( const QString& id ) const
     if ( note )
         note->hide();
     else
-        kdWarning(5500) << "hideNote: no note with id: " << id << endl;
+        kWarning(5500) << "hideNote: no note with id: " << id << endl;
 }
 
 void KNotesApp::killNote( const QString& id, bool force )
@@ -300,7 +300,7 @@ void KNotesApp::killNote( const QString& id, bool force )
     if ( note )
         note->slotKill( force );
     else
-        kdWarning(5500) << "killNote: no note with id: " << id << endl;
+        kWarning(5500) << "killNote: no note with id: " << id << endl;
 }
 
 // "bool force = false" doesn't work with dcop
@@ -343,7 +343,7 @@ void KNotesApp::setName( const QString& id, const QString& newName )
     if ( note )
         note->setName( newName );
     else
-        kdWarning(5500) << "setName: no note with id: " << id << endl;
+        kWarning(5500) << "setName: no note with id: " << id << endl;
 }
 
 void KNotesApp::setText( const QString& id, const QString& newText )
@@ -352,7 +352,7 @@ void KNotesApp::setText( const QString& id, const QString& newText )
     if ( note )
         note->setText( newText );
     else
-        kdWarning(5500) << "setText: no note with id: " << id << endl;
+        kWarning(5500) << "setText: no note with id: " << id << endl;
 }
 
 

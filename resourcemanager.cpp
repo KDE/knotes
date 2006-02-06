@@ -54,7 +54,7 @@ void KNotesResourceManager::load()
 {
     if ( !m_manager->standardResource() )
     {
-        kdWarning(5500) << "No standard resource yet." << endl;
+        kWarning(5500) << "No standard resource yet." << endl;
         ResourceNotes *resource = new ResourceLocal( 0 );
         m_manager->add( resource );
         m_manager->setStandardResource( resource );
@@ -64,7 +64,7 @@ void KNotesResourceManager::load()
     KRES::Manager<ResourceNotes>::ActiveIterator it;
     for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it )
     {
-        kdDebug(5500) << "Opening resource " + (*it)->resourceName() << endl;
+        kDebug(5500) << "Opening resource " + (*it)->resourceName() << endl;
         (*it)->setManager( this );
         if ( (*it)->open() )
             (*it)->load();
@@ -90,7 +90,7 @@ void KNotesResourceManager::addNewNote( KCal::Journal *journal )
         registerNote( resource, journal );
     }
     else
-        kdWarning(5500) << k_funcinfo << "no resource!" << endl;
+        kWarning(5500) << k_funcinfo << "no resource!" << endl;
 }
 
 void KNotesResourceManager::registerNote( ResourceNotes *resource,
@@ -132,7 +132,7 @@ KCal::Alarm::List KNotesResourceManager::alarms( const QDateTime& from, const QD
 
 void KNotesResourceManager::resourceAdded( ResourceNotes *resource )
 {
-    kdDebug(5500) << "Resource added: " << resource->resourceName() << endl;
+    kDebug(5500) << "Resource added: " << resource->resourceName() << endl;
 
     if ( !resource->isActive() )
         return;
@@ -144,12 +144,12 @@ void KNotesResourceManager::resourceAdded( ResourceNotes *resource )
 
 void KNotesResourceManager::resourceModified( ResourceNotes *resource )
 {
-    kdDebug(5500) << "Resource modified: " << resource->resourceName() << endl;
+    kDebug(5500) << "Resource modified: " << resource->resourceName() << endl;
 }
 
 void KNotesResourceManager::resourceDeleted( ResourceNotes *resource )
 {
-    kdDebug(5500) << "Resource deleted: " << resource->resourceName() << endl;
+    kDebug(5500) << "Resource deleted: " << resource->resourceName() << endl;
 }
 
 

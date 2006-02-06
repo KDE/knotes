@@ -375,7 +375,7 @@ void KNoteEdit::keyPressEvent( QKeyEvent *e )
 
 void KNoteEdit::slotCurrentCharFormatChanged( const QTextCharFormat& f )
 {
-kdDebug() << k_funcinfo << endl;
+kDebug() << k_funcinfo << endl;
     // font changes
     m_textFont->setFont( f.fontFamily() );
     m_textSize->setFontSize( f.fontPointSize() );

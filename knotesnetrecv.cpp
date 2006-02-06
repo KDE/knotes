@@ -144,7 +144,7 @@ void KNotesNetworkReceiver::slotConnectionClosed()
 
 void KNotesNetworkReceiver::slotError( int err )
 {
-    kdWarning() << k_funcinfo
+    kWarning() << k_funcinfo
                 << KSocketBase::errorString( static_cast<KSocketBase::SocketError>(err) ) 
                 << endl;
 }
