@@ -148,8 +148,8 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
 
     // set the defaults
     KIO::NetAccess::copy(
-        KURL( KGlobal::dirs()->saveLocation( "config" ) + "knotesrc" ),
-        KURL( configFile ),
+        KUrl( KGlobal::dirs()->saveLocation( "config" ) + "knotesrc" ),
+        KUrl( configFile ),
         0
     );
 
