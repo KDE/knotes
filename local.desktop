@@ -1,6 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Notes in Local File
+Name[fr]=Notes dans un fichier local
 Name[x-test]=xxNotes in Local Filexx
 X-KDE-Library=knotes_local
 Type=Service

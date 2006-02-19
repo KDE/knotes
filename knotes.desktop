@@ -7,6 +7,7 @@ Terminal=false
 Type=Application
 
 GenericName=Popup Notes
+GenericName[fr]=Éditeur de petites notes
 GenericName[x-test]=xxPopup Notesxx
 
 Name=KNotes
