@@ -110,6 +110,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
         this, SLOT(slotRename()), actionCollection(), "rename_note" );
     m_readOnly = new KToggleAction( i18n("Lock"), "lock" , 0,
         this, SLOT(slotUpdateReadOnly()), actionCollection(), "lock_note" );
+    m_readOnly->setCheckedState( KGuiItem( i18n("Unlock"), "unlock" ) );
     new KAction( i18n("Hide"), "fileclose" , Key_Escape,
         this, SLOT(slotClose()), actionCollection(), "hide_note" );
     new KAction( i18n("Delete"), "knotes_delete", 0,
