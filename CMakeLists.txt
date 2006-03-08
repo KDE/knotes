@@ -8,7 +8,22 @@ include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_D
 
 ########### next target ###############
 
-set(knotes_SRCS main.cpp knotesapp.cpp )
+set(libknoteseditor_SRCS  knoteedit.cpp )
+
+set(libknotesnetwork_SRCS knotesnetrecv.cpp knotesnetsend.cpp)
+
+set(libknotesresources_SRCS resourcemanager.cpp resourcenotes.cpp resourcelocal.cpp resourcelocalconfig.cpp)
+
+set(libknoteslegacy_SRCS  knoteslegacy.cpp )
+
+set(libknote_SRCS knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp )
+
+
+set(knotes_SRCS main.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS} ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})
+
+set( libknotesconfig_SRCS knoteconfig.kcfgc knotesglobalconfig.kcfgc )
+
+kde4_add_kcfg_files(knotes_SRCS ${libknotesconfig_SRCS})
 
 kde4_automoc(${knotes_SRCS})
 
@@ -16,40 +31,24 @@ kde4_add_dcop_skels(knotes_SRCS KNotesAppIface.h )
 
 kde4_add_executable(knotes ${knotes_SRCS})
 
-target_link_libraries(knotes  ${QT_AND_KDECORE_LIBS} knote knoteseditor knotesnetwork knotesresources knoteslegacy knotesconfig kcal kdepim kio kresources kdeprint kutils )
+target_link_libraries(knotes  ${LIB_KIO} kcal kdepim kresources kdeprint kutils )
 
 install_targets(/bin knotes )
 
 
 ########### next target ###############
 
-
-########### next target ###############
-
-
-########### next target ###############
-
-
-########### next target ###############
-
-
-########### next target ###############
-
-
-########### next target ###############
-
-
-########### next target ###############
-
-set(knotes_local_PART_SRCS resourcelocal_plugin.cpp )
+set(knotes_local_PART_SRCS resourcelocal_plugin.cpp ${libknotesresources_SRCS})
 
 kde4_automoc(${knotes_local_PART_SRCS})
+
+kde4_add_kcfg_files(knotes_local_PART_SRCS ${libknotesconfig_SRCS})
 
 kde4_add_plugin(knotes_local ${knotes_local_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} knotes_local )
 
-target_link_libraries(knotes_local  ${QT_AND_KDECORE_LIBS} knotesresources knotesconfig kcal kdeprint )
+target_link_libraries(knotes_local  ${LIB_KIO}  kcal kdeprint )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 knotes_local )
 
