@@ -50,7 +50,7 @@ void remove_sm_from_client_leader()
     QWidget w;
     KXErrorHandler handler; // ignore X errors
     status = XGetWindowProperty( QX11Info::display(), w.winId(), atoms[ 0 ], 0, 10000,
-                                 FALSE, XA_WINDOW, &type, &format,
+                                 false, XA_WINDOW, &type, &format,
                                  &nitems, &extra, &data );
 
     if (status  == Success && !handler.error( false ))
