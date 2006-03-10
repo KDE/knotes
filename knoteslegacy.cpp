@@ -132,7 +132,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     // get the name
     journal->setSummary( input.readLine() );
 
-    QStringList props = QStringList::split( '+', input.readLine() );
+    QStringList props = input.readLine().split( '+', QString::SkipEmptyParts );
 
     // robustness
     if ( props.count() != 13 )
