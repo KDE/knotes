@@ -49,8 +49,8 @@ KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
                      config ? Default|Ok|Apply|Cancel : Default|Ok|Cancel, Ok )
 {
     setCaption( title );
-    KWin::setIcons( winId(), qApp->windowIcon().pixmap( IconSize(KIcon::Desktop),IconSize(KIcon::Desktop) ), 
-                             qApp->windowIcon().pixmap( IconSize(KIcon::Small),IconSize(KIcon::Small) ) );
+    KWin::setIcons( winId(), qApp->windowIcon().pixmap( IconSize(K3Icon::Desktop),IconSize(K3Icon::Desktop) ), 
+                             qApp->windowIcon().pixmap( IconSize(K3Icon::Small),IconSize(K3Icon::Small) ) );
 
     setIconListAllVisible( true );
     enableButtonSeparator( true );

@@ -330,9 +330,9 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
 
     // HACK: update the icon color - again after showing the note, to make kicker aware of the new colors
     KIconEffect effect;
-    QPixmap icon = effect.apply( qApp->windowIcon().pixmap( IconSize(KIcon::Desktop), IconSize(KIcon::Desktop) ),
+    QPixmap icon = effect.apply( qApp->windowIcon().pixmap( IconSize(K3Icon::Desktop), IconSize(K3Icon::Desktop) ),
                                  KIconEffect::Colorize, 1, m_config->bgColor(), false );
-    QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap( IconSize(KIcon::Small), IconSize(KIcon::Small) ),
+    QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap( IconSize(K3Icon::Small), IconSize(K3Icon::Small) ),
                                      KIconEffect::Colorize, 1, m_config->bgColor(), false );
     KWin::setIcons( winId(), icon, miniIcon );
 }
@@ -847,11 +847,11 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
     
     // update the icon color
     KIconEffect effect;
-    QPixmap icon = effect.apply( qApp->windowIcon().pixmap( IconSize(KIcon::Desktop),
-                                                            IconSize(KIcon::Desktop) ),
+    QPixmap icon = effect.apply( qApp->windowIcon().pixmap( IconSize(K3Icon::Desktop),
+                                                            IconSize(K3Icon::Desktop) ),
                                  KIconEffect::Colorize, 1, bg, false );
-    QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap( IconSize(KIcon::Small), 
-                                                                IconSize(KIcon::Small) ),
+    QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap( IconSize(K3Icon::Small), 
+                                                                IconSize(K3Icon::Small) ),
                                      KIconEffect::Colorize, 1, bg, false );
     KWin::setIcons( winId(), icon, miniIcon );
 

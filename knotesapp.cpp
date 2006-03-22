@@ -578,7 +578,7 @@ void KNotesApp::updateNoteActions()
                                        0, note->noteId().toUtf8() );
         KIconEffect effect;
         QPixmap icon = effect.apply( 
-                qApp->windowIcon().pixmap( IconSize(KIcon::Small), IconSize(KIcon::Small) ),
+                qApp->windowIcon().pixmap( IconSize(K3Icon::Small), IconSize(K3Icon::Small) ),
                 KIconEffect::Colorize, 1, note->palette().color( note->backgroundRole() ), false 
         );
         action->setIcon( icon );
