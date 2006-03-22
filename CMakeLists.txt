@@ -29,7 +29,7 @@ kde4_add_dcop_skels(knotes_SRCS KNotesAppIface.h )
 
 kde4_add_executable(knotes ${knotes_SRCS})
 
-target_link_libraries(knotes  ${LIB_KIO} kcal kdepim kresources kdeprint kutils )
+target_link_libraries(knotes  ${KDE4_KIO_LIBRARIES} kcal kdepim kresources kdeprint kutils )
 
 install_targets(/bin knotes )
 
@@ -46,7 +46,7 @@ kde4_add_plugin(knotes_local ${knotes_local_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} knotes_local )
 
-target_link_libraries(knotes_local  ${LIB_KIO}  kcal kdeprint )
+target_link_libraries(knotes_local  ${KDE4_KIO_LIBRARIES}  kcal kdeprint )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 knotes_local )
 
