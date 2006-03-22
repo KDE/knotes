@@ -132,16 +132,16 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     new KAction( i18n("Preferences..."), "configure", 0,
         this, SLOT(slotPreferences()), actionCollection(), "configure_note" );
 
-    m_kab = new QActionGroup( this );
-    m_kab->setExclusive( true );
+    kab = new QActionGroup( this );
+    kab->setExclusive( true );
 
     m_keepAbove = new KToggleAction( i18n("Keep Above Others"), "up", 0,
         this, SLOT(slotUpdateKeepAboveBelow()), actionCollection(), "keep_above" );
-    m_actiongroup->addAction( m_keepAbove );
+    kab->addAction( m_keepAbove );
 
     m_keepBelow = new KToggleAction( i18n("Keep Below Others"), "down", 0,
         this, SLOT(slotUpdateKeepAboveBelow()), actionCollection(), "keep_below" );
-    m_actiongroup->addAction( m_keepBelow );
+    kab->addAction( m_keepBelow );
 
     m_toDesktop = new KSelectAction( i18n("To Desktop"), 0,
         this, SLOT(slotPopupActionToDesktop(int)), actionCollection(), "to_desktop" );

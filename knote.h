@@ -31,7 +31,6 @@
 
 class QLabel;
 class QSizeGrip;
-class QActionGroup;
 
 class KXMLGUIBuilder;
 
@@ -142,7 +141,6 @@ private:
     KToggleAction *m_readOnly;
 
     KSelectAction   *m_toDesktop;
-    QActionGroup  *m_kab;
     KToggleAction *m_keepAbove;
     KToggleAction *m_keepBelow;
 
