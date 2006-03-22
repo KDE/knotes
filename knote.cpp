@@ -88,7 +88,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     setAcceptDrops( true );
     setObjectName( m_journal->uid() );
 
-    actionCollection()->setWidget( this );
+    actionCollection()->setAssociatedWidget( this );
 
     setDOMDocument( buildDoc );
 
@@ -176,7 +176,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     m_tool = static_cast<KToolBar*>(factory.container( "note_tool", this ));
     m_tool->setIconSize( QSize(10,10) );
     m_tool->setFixedHeight( 16 );
-    m_tool->setIconText( KToolBar::IconOnly );
+    m_tool->setToolButtonStyle( Qt::ToolButtonIconOnly );
 
     // if there was just a way of making KComboBox adhere the toolbar height...
     foreach ( KComboBox *combo, m_tool->findChildren<KComboBox *>() )
