@@ -40,9 +40,8 @@ class KNoteButton;
 class KNoteEdit;
 class KNoteConfig;
 class KToolBar;
-class KListAction;
 class KToggleAction;
-
+class KSelectAction;
 namespace KCal {
     class Journal;
 }
@@ -141,7 +140,7 @@ private:
 
     KToggleAction *m_readOnly;
 
-    KListAction   *m_toDesktop;
+    KSelectAction   *m_toDesktop;
     KToggleAction *m_keepAbove;
     KToggleAction *m_keepBelow;
 

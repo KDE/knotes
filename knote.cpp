@@ -140,7 +140,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
         this, SLOT(slotUpdateKeepAboveBelow()), actionCollection(), "keep_below" );
     m_keepBelow->setExclusiveGroup( "keepAB" );
 
-    m_toDesktop = new KListAction( i18n("To Desktop"), 0,
+    m_toDesktop = new KSelectAction( i18n("To Desktop"), 0,
         this, SLOT(slotPopupActionToDesktop(int)), actionCollection(), "to_desktop" );
     connect( m_toDesktop->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(slotUpdateDesktopActions()) );
 
