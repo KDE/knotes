@@ -174,7 +174,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     m_editor->setContextMenu( static_cast<KMenu*>(factory.container( "note_edit", this )) ); 
 
     m_tool = static_cast<KToolBar*>(factory.container( "note_tool", this ));
-    m_tool->setIconSize( 10 );
+    m_tool->setIconSize( QSize(10,10) );
     m_tool->setFixedHeight( 16 );
     m_tool->setIconText( KToolBar::IconOnly );
 
