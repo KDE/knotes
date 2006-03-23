@@ -96,16 +96,18 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
                                  this, SLOT(textAlignBlock()),
                                  actions, "format_alignblock" );
 
-    m_textAlignLeft->setExclusiveGroup( "align" );
-    m_textAlignCenter->setExclusiveGroup( "align" );
-    m_textAlignRight->setExclusiveGroup( "align" );
-    m_textAlignBlock->setExclusiveGroup( "align" );
+    QActionGroup *group = new QActionGroup( this );
+    group->addAction( m_textAlignLeft );
+    group->addAction( m_textAlignCenter );
+    group->addAction( m_textAlignRight );
+    group->addAction( m_textAlignBlock );
 
     m_textList = new KToggleAction( i18n("List"), "enum_list", 0,
                                     this, SLOT(textList()),
                                     actions, "format_list" );
 
-    m_textList->setExclusiveGroup( "style" );
+    group = new QActionGroup( this );
+    group->addAction( m_textList );
 
     m_textSuper = new KToggleAction( i18n("Superscript"), "text_super", 0,
                                      this, SLOT(textSuperScript()),
@@ -114,8 +116,9 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
                                    this, SLOT(textSubScript()),
                                    actions, "format_sub" );
 
-    m_textSuper->setExclusiveGroup( "valign" );
-    m_textSub->setExclusiveGroup( "valign" );
+    group = new QActionGroup( this );
+    group->addAction( m_textSuper );
+    group->addAction( m_textSub );
 
 // There is no easy possibility to implement text indenting with QTextEdit
 //
@@ -388,7 +391,8 @@ kDebug() << k_funcinfo << endl;
     // color changes
     QPixmap pix( ICON_SIZE, ICON_SIZE );
     pix.fill( f.foreground().color() );
-    m_textColor->setIcon( pix );
+#warning Port me: setting a QPixmap as action icon doesn't seem to be possible currently
+//    m_textColor->setIcon( pix ); 
 
     // alignment changes
     Qt::Alignment a = alignment();

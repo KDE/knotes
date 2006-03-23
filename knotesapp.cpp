@@ -581,7 +581,8 @@ void KNotesApp::updateNoteActions()
                 qApp->windowIcon().pixmap( IconSize(K3Icon::Small), IconSize(K3Icon::Small) ),
                 KIconEffect::Colorize, 1, note->palette().color( note->backgroundRole() ), false 
         );
-        action->setIcon( icon );
+#warning Port me: setting a QPixmap as an action icon doesn't seem to be possible
+//        action->setIcon( icon );
         m_noteActions.append( action );
     }
 

@@ -132,7 +132,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     new KAction( i18n("Preferences..."), "configure", 0,
         this, SLOT(slotPreferences()), actionCollection(), "configure_note" );
 
-    kab = new QActionGroup( this );
+    QActionGroup *kab = new QActionGroup( this );
     kab->setExclusive( true );
 
     m_keepAbove = new KToggleAction( i18n("Keep Above Others"), "up", 0,
