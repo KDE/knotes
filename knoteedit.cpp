@@ -391,8 +391,7 @@ kDebug() << k_funcinfo << endl;
     // color changes
     QPixmap pix( ICON_SIZE, ICON_SIZE );
     pix.fill( f.foreground().color() );
-#warning Port me: setting a QPixmap as action icon doesn't seem to be possible currently
-//    m_textColor->setIcon( pix ); 
+    m_textColor->QAction::setIcon( pix ); 
 
     // alignment changes
     Qt::Alignment a = alignment();
