@@ -49,7 +49,7 @@ ResourceLocal::ResourceLocal( const KConfig *config )
 {
     kDebug(5500) << "ResourceLocal::ResourceLocal()" << endl;
     setType( "file" );
-    mURL = KGlobal::dirs()->saveLocation( "data", "knotes/" ) + "notes.ics";
+    mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", "knotes/" ) + "notes.ics" );
 
     if ( config )
     {
