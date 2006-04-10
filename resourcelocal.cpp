@@ -89,7 +89,7 @@ bool ResourceLocal::save()
                             i18n("<qt>Unable to save the notes to <b>%1</b>. "
                                  "Check that there is sufficient disk space."
                                  "<br>There should be a backup in the same directory "
-                                 "though.</qt>").arg( mURL.path() ) );
+                                 "though.</qt>", mURL.path() ) );
         return false;
     }
 

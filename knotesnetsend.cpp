@@ -90,8 +90,8 @@ void KNotesNetworkSender::slotReadyWrite()
 
 void KNotesNetworkSender::slotError( int err )
 {
-    KMessageBox::sorry( 0, i18n("Communication error: %1")
-           .arg( KSocketBase::errorString( static_cast<KSocketBase::SocketError>(err) ) )
+    KMessageBox::sorry( 0, i18n("Communication error: %1",
+             KSocketBase::errorString( static_cast<KSocketBase::SocketError>(err) ) )
     );
     slotClosed();
 }

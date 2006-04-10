@@ -352,7 +352,7 @@ void KNote::slotKill( bool force )
 {
     if ( !force &&
          KMessageBox::warningContinueCancel( this,
-             i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>").arg( m_label->text() ),
+             i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>", m_label->text() ),
              i18n("Confirm Delete"), KGuiItem( i18n("&Delete"), "editdelete" ),
              "ConfirmDeleteNote"
          )
@@ -567,7 +567,7 @@ void KNote::slotPreferences()
 void KNote::slotSend()
 {
     // pop up dialog to get the IP
-    KNoteHostDlg hostDlg( i18n("Send \"%1\"").arg( name() ), this );
+    KNoteHostDlg hostDlg( i18n("Send \"%1\"", name() ), this );
     bool ok = (hostDlg.exec() == QDialog::Accepted);
     QString host = hostDlg.host();
 
@@ -618,7 +618,7 @@ void KNote::slotPrint()
     KPrinter printer;
     printer.setFullPage( true );
 
-    if ( printer.setup( 0, i18n("Print %1").arg(name()) ) )
+    if ( printer.setup( 0, i18n("Print %1", name()) ) )
     {
         QPainter painter;
         painter.begin( &printer );
@@ -693,7 +693,7 @@ void KNote::slotSaveAs()
 
     if ( file.exists() &&
          KMessageBox::warningContinueCancel( this, i18n("<qt>A file named <b>%1</b> already exists.<br>"
-                           "Are you sure you want to overwrite it?</qt>").arg( QFileInfo(file).fileName() ) )
+                           "Are you sure you want to overwrite it?</qt>", QFileInfo(file).fileName() ) )
          != KMessageBox::Continue )
     {
         return;
