@@ -67,7 +67,8 @@ public:
     KNotesKeyDialog( KGlobalAccel *globals, QWidget *parent, const char* name = 0 )
         : KDialogBase( parent, name, true, i18n("Configure Shortcuts"), Default|Ok|Cancel, Ok )
     {
-        m_keyChooser = new KKeyChooser( globals, this );
+#warning Port me!
+//        m_keyChooser = new KKeyChooser( globals, this );
         setMainWidget( m_keyChooser );
         connect( this, SIGNAL(defaultClicked()), m_keyChooser, SLOT(allDefault()) );
     }
@@ -146,7 +147,8 @@ KNotesApp::KNotesApp()
     m_noteGUI.setContent( doc );
 
     // create accels for global shortcuts
-    m_globalAccel = new KGlobalAccel( this );
+#warning Port me!
+/*    m_globalAccel = new KGlobalAccel( this );
     m_globalAccel->setObjectName( "global accel" );
     m_globalAccel->insert( "global_new_note", i18n("New Note"), "",
                            Qt::ALT+Qt::SHIFT+Qt::Key_N,
@@ -159,9 +161,9 @@ KNotesApp::KNotesApp()
                            this, SLOT(hideAllNotes()), true, true );
     m_globalAccel->insert( "global_show_all_notes", i18n("Show All Notes"), "",
                            Qt::ALT+Qt::SHIFT+Qt::Key_S,
-                           this, SLOT(showAllNotes()), true, true );
+                           this, SLOT(showAllNotes()), true, true );*/
 
-    m_globalAccel->readSettings();
+    KGlobalAccel::self()->readSettings();
 
     KConfig *config = KGlobal::config();
     config->setGroup( "Global Keybindings" );
@@ -602,7 +604,8 @@ void KNotesApp::updateGlobalAccels()
     if ( m_globalAccel->isEnabled() )
     {
         KAction *action = actionCollection()->action( "new_note" );
-        if ( action )
+#warning Port me!
+/*        if ( action )
             action->setShortcut( m_globalAccel->shortcut( "global_new_note" ) );
         action = actionCollection()->action( "new_note_clipboard" );
         if ( action )
@@ -614,7 +617,7 @@ void KNotesApp::updateGlobalAccels()
         if ( action )
             action->setShortcut( m_globalAccel->shortcut( "global_show_all_notes" ) );
 
-        m_globalAccel->updateConnections();
+        m_globalAccel->updateConnections();*/
     }
     else
     {
