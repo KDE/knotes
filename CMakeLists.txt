@@ -48,7 +48,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} knotes_local )
 
 target_link_libraries(knotes_local  ${KDE4_KIO_LIBS}  kcal kdeprint )
 
-install_targets(${LIB_INSTALL_DIR}/kde4 knotes_local )
+install_targets(${PLUGIN_INSTALL_DIR} knotes_local )
 
 
 ########### install files ###############
