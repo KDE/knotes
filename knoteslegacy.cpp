@@ -123,7 +123,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     if ( !infile.open( QIODevice::ReadOnly ) )
     {
         kError(5500) << k_funcinfo << "Could not open input file: \""
-                      << infile.name() << "\"" << endl;
+                      << infile.fileName() << "\"" << endl;
         return false;
     }
 
@@ -137,7 +137,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     // robustness
     if ( props.count() != 13 )
     {
-        kWarning(5500) << k_funcinfo << "The file \"" << infile.name()
+        kWarning(5500) << k_funcinfo << "The file \"" << infile.fileName()
                         << "\" lacks version information but is not a valid "
                         << "KNotes 1 config file either!" << endl;
         return false;
@@ -221,7 +221,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     journal->setDescription( text );
 
     if ( !infile.remove() )
-        kWarning(5500) << k_funcinfo << "Could not delete input file: \"" << infile.name() << "\"" << endl;
+        kWarning(5500) << k_funcinfo << "Could not delete input file: \"" << infile.fileName() << "\"" << endl;
 
     return true;
 }
@@ -261,10 +261,10 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
         input.setEncoding( QTextStream::UnicodeUTF8 );
         journal->setDescription( input.read() );
         if ( !infile.remove() )
-            kWarning(5500) << k_funcinfo << "Could not delete data file: \"" << infile.name() << "\"" << endl;
+            kWarning(5500) << k_funcinfo << "Could not delete data file: \"" << infile.fileName() << "\"" << endl;
     }
     else
-        kWarning(5500) << k_funcinfo << "Could not open data file: \"" << infile.name() << "\"" << endl;
+        kWarning(5500) << k_funcinfo << "Could not open data file: \"" << infile.fileName() << "\"" << endl;
 
     return true;
 }
