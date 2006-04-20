@@ -149,7 +149,7 @@ QWidget *KNoteConfigDlg::makeEditorPage( bool defaults )
                                            defaults ? marginHint() : 0, spacingHint() );
 
     QLabel *label_TabSize = new QLabel( i18n( "&Tab size:" ), editorPage, "label_TabSize" );
-    layout->addMultiCellWidget( label_TabSize, 0, 0, 0, 1 );
+    layout->addWidget( label_TabSize, 0, 0, 1, 2 );
 
     KIntNumInput *kcfg_TabSize = new KIntNumInput( editorPage );
     kcfg_TabSize->setObjectName( "kcfg_TabSize" );
@@ -158,7 +158,7 @@ QWidget *KNoteConfigDlg::makeEditorPage( bool defaults )
     layout->addWidget( kcfg_TabSize, 0, 2 );
 
     QCheckBox *kcfg_AutoIndent = new QCheckBox( i18n("Auto &indent"), editorPage, "kcfg_AutoIndent" );
-    layout->addMultiCellWidget( kcfg_AutoIndent, 1, 1, 0, 1 );
+    layout->addWidget( kcfg_AutoIndent, 1, 0, 1, 2 );
 
     QCheckBox *kcfg_RichText = new QCheckBox( i18n("&Rich text"), editorPage, "kcfg_RichText" );
     layout->addWidget( kcfg_RichText, 1, 2 );
@@ -168,14 +168,14 @@ QWidget *KNoteConfigDlg::makeEditorPage( bool defaults )
 
     KFontRequester *kcfg_Font = new KFontRequester( editorPage, "kcfg_Font" );
     kcfg_Font->setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
-    layout->addMultiCellWidget( kcfg_Font, 3, 3, 1, 2 );
+    layout->addWidget( kcfg_Font, 3, 1, 1, 2 );
 
     QLabel *label_TitleFont = new QLabel( i18n("Title font:"), editorPage, "label_TitleFont" );
     layout->addWidget( label_TitleFont, 2, 0 );
 
     KFontRequester *kcfg_TitleFont = new KFontRequester( editorPage, "kcfg_TitleFont" );
     kcfg_TitleFont->setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
-    layout->addMultiCellWidget( kcfg_TitleFont, 2, 2, 1, 2 );
+    layout->addWidget( kcfg_TitleFont, 2, 1, 1, 2 );
 
     return editorPage;
 }
@@ -211,12 +211,12 @@ QWidget *KNoteConfigDlg::makeNetworkPage()
     QGridLayout *layout = new QGridLayout( networkPage, 4, 2, 0, spacingHint() );
 
     Q3GroupBox *incoming = new Q3GroupBox( i18n("Incoming Notes"), networkPage );
-    layout->addMultiCellWidget( incoming, 0, 0, 0, 1 );
+    layout->addWidget( incoming, 0, 0, 1, 2 );
 
     new QCheckBox( i18n("Accept incoming notes"), incoming, "kcfg_ReceiveNotes" );
 
     Q3GroupBox *outgoing = new Q3GroupBox( i18n("Outgoing Notes"), networkPage );
-    layout->addMultiCellWidget( outgoing, 1, 1, 0, 1 );
+    layout->addWidget( outgoing, 1, 0, 1, 2 );
 
     QLabel *label_SenderID = new QLabel( i18n("&Sender ID:"), outgoing, "label_SenderID" );
     KLineEdit *kcfg_SenderID = new KLineEdit( outgoing );
