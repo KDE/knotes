@@ -243,10 +243,11 @@ QWidget *KNoteConfigDlg::makeStylePage()
     QLabel *label_Style = new QLabel( i18n("&Style:"), stylePage, "label_Style" );
     layout->addWidget( label_Style, 0, 0 );
 
-    QComboBox *kcfg_Style = new QComboBox( stylePage, "kcfg_Style" );
+    QComboBox *kcfg_Style = new QComboBox( stylePage );
+    kcfg_Style->setObjectName( "kcfg_Style" );
     QStringList list;
     list << "Plain" << "Fancy";
-    kcfg_Style->insertStringList( list );
+    kcfg_Style->addItems( list );
     label_Style->setBuddy( kcfg_Style );
     layout->addWidget( kcfg_Style, 0, 1 );
 
