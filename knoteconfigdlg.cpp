@@ -92,8 +92,7 @@ void KNoteConfigDlg::slotUpdateCaption()
 QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
 {
     QWidget *displayPage = new QWidget();
-    QGridLayout *layout = new QGridLayout( displayPage, 2, 2,
-                                           defaults ? marginHint() : 0, spacingHint() );
+    QGridLayout *layout = new QGridLayout( displayPage, 2, 2, defaults ? marginHint() : 0, spacingHint() );
 
     QLabel *label_FgColor = new QLabel( i18n("&Text color:"), displayPage, "label_FgColor" );
     layout->addWidget( label_FgColor, 0, 0 );
@@ -145,8 +144,7 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
 QWidget *KNoteConfigDlg::makeEditorPage( bool defaults )
 {
     QWidget *editorPage = new QWidget();
-    QGridLayout *layout = new QGridLayout( editorPage, 4, 3,
-                                           defaults ? marginHint() : 0, spacingHint() );
+    QGridLayout *layout = new QGridLayout( editorPage, 4, 3, defaults ? marginHint() : 0, spacingHint() );
 
     QLabel *label_TabSize = new QLabel( i18n( "&Tab size:" ), editorPage, "label_TabSize" );
     layout->addWidget( label_TabSize, 0, 0, 1, 2 );
