@@ -105,9 +105,11 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
         // window state changed for version 3.2
         else if ( version < 3.2 )
         {
+#ifdef Q_WS_X11
             uint state = test->readUnsignedLongNumEntry( "state", NET::SkipTaskbar );
             test->writeEntry( "ShowInTaskbar", (state & NET::SkipTaskbar) ? false : true );
             test->writeEntry( "KeepAbove", (state & NET::KeepAbove) ? true : false );
+#endif
             test->deleteEntry( "state" );
             delete test;
         }
@@ -200,8 +202,10 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     // hidden or on all desktops?
     if ( input.readLine().toUInt() == 1 )
         note_desktop = 0;
+#ifdef Q_WS_X11
     else if ( props[11].toUInt() == 1 )
         note_desktop = NETWinInfo::OnAllDesktops;
+#endif
 
     config.setDesktop( note_desktop );
     config.setPosition( QPoint( props[1].toUInt(), props[2].toUInt() ) );
@@ -248,9 +252,11 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
     config.setGroup( "General" );
     config.writeEntry( "version", KNOTES_VERSION );
     config.setGroup( "WindowDisplay" );
+#ifdef Q_WS_X11
     uint state = config.readUnsignedLongNumEntry( "state", NET::SkipTaskbar );
     config.writeEntry( "ShowInTaskbar", (state & NET::SkipTaskbar) ? false : true );
     config.writeEntry( "KeepAbove", (state & NET::KeepAbove) ? true : false );
+#endif
     config.deleteEntry( "state" );
 
     // load the saved text and put it in the journal

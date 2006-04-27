@@ -304,8 +304,10 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     // if this is a new note put on current desktop - we can't use defaults
     // in KConfig XT since only _changes_ will be stored in the config file
     int desktop = m_config->desktop();
+#ifdef Q_WS_X11
     if ( desktop < 0 && desktop != NETWinInfo::OnAllDesktops )
         desktop = KWin::currentDesktop();
+#endif
 
     // show the note if desired
     if ( desktop != 0 && !m_config->hideNote() )
@@ -315,8 +317,10 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
         show();
 
         // because KWin forgets about that for hidden windows
+#ifdef Q_WS_X11
         if ( desktop == NETWinInfo::OnAllDesktops )
             toDesktop( desktop );
+#endif
     }
 
     m_readOnly->setChecked( m_config->readOnly() );
@@ -752,13 +756,17 @@ void KNote::slotUpdateKeepAboveBelow()
     {
         m_config->setKeepAbove( true );
         m_config->setKeepBelow( false );
+#ifdef Q_WS_X11
         KWin::setState( winId(), info.state() | NET::KeepAbove );
+#endif
     }
     else if ( m_keepBelow->isChecked() )
     {
         m_config->setKeepAbove( false );
         m_config->setKeepBelow( true );
+#ifdef Q_WS_X11
         KWin::setState( winId(), info.state() | NET::KeepBelow );
+#endif
     }
     else
     {
@@ -766,16 +774,20 @@ void KNote::slotUpdateKeepAboveBelow()
         KWin::clearState( winId(), NET::KeepAbove );
 
         m_config->setKeepBelow( false );
+#ifdef Q_WS_X11
         KWin::clearState( winId(), NET::KeepBelow );
+#endif
     }
 }
 
 void KNote::slotUpdateShowInTaskbar()
 {
+#ifdef Q_WS_X11
     if ( !m_config->showInTaskbar() )
         KWin::setState( winId(), KWin::windowInfo(winId()).state() | NET::SkipTaskbar );
     else
         KWin::clearState( winId(), NET::SkipTaskbar );
+#endif
 }
 
 void KNote::slotUpdateDesktopActions()
@@ -809,10 +821,12 @@ void KNote::toDesktop( int desktop )
     if ( desktop == 0 )
         return;
 
+#ifdef Q_WS_X11
     if ( desktop == NETWinInfo::OnAllDesktops )
         KWin::setOnAllDesktops( winId(), true );
     else
         KWin::setOnDesktop( winId(), desktop );
+#endif
 }
 
 void KNote::setColor( const QColor &fg, const QColor &bg )
