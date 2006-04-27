@@ -23,7 +23,9 @@
 #include <QToolTip>
 #include <QPixmap>
 #include <QLabel>
+#ifdef Q_WS_X11
 #include <QX11Info>
+#endif
 
 #include <kdebug.h>
 #include <kaction.h>
@@ -102,7 +104,9 @@ KNotesApp::KNotesApp()
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
     
     // create the dock widget...
+#ifdef Q_WS_X11.
     KWin::setSystemTrayWindowFor( winId(), QX11Info::appRootWindow() );
+#endif
     setToolTip( i18n("KNotes: Sticky notes for KDE") );
     setPixmap( KSystemTray::loadIcon( "knotes" ) );
 

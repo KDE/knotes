@@ -71,8 +71,10 @@
 #include <kwin.h>
 #include <netwm.h>
 
+#ifdef Q_WS_X11
 #include <fixx11h.h>
 #include <QX11Info>
+#endif
 #include <kiconloader.h>
 
 using namespace KCal;
@@ -395,9 +397,11 @@ void KNote::saveConfig() const
     m_config->setHeight( height() - (m_tool->isHidden() ? 0 : m_tool->height()) );
     m_config->setPosition( pos() );
 
+#ifdef Q_WS_X11
     NETWinInfo wm_client( QX11Info::display(), winId(), QX11Info::appRootWindow(), NET::WMDesktop );
     if ( wm_client.desktop() == NETWinInfo::OnAllDesktops || wm_client.desktop() > 0 )
         m_config->setDesktop( wm_client.desktop() );
+#endif
 
     // actually store the config on disk
     m_config->writeConfig();
@@ -426,9 +430,11 @@ void KNote::setName( const QString& name )
     if ( m_editor )    // not called from CTOR?
         saveData();
 
+#ifdef Q_WS_X11
     // set the window's name for the taskbar entry to be more helpful (#58338)
     NETWinInfo note_win( QX11Info::display(), winId(), QX11Info::appRootWindow(), NET::WMDesktop );
     note_win.setName( name.toUtf8() );
+#endif
 
     emit sigNameChanged();
 }
@@ -525,9 +531,11 @@ void KNote::slotUpdateReadOnly()
 
 void KNote::slotClose()
 {
+#ifdef Q_WS_X11
     NETWinInfo wm_client( QX11Info::display(), winId(), QX11Info::appRootWindow(), NET::WMDesktop );
     if ( wm_client.desktop() == NETWinInfo::OnAllDesktops || wm_client.desktop() > 0 )
         m_config->setDesktop( wm_client.desktop() );
+#endif
 
     m_editor->clearFocus();
     m_config->setHideNote( true );
@@ -772,6 +780,7 @@ void KNote::slotUpdateShowInTaskbar()
 
 void KNote::slotUpdateDesktopActions()
 {
+#ifdef Q_WS_X11
     NETRootInfo wm_root( QX11Info::display(), NET::NumberOfDesktops | NET::DesktopNames );
     NETWinInfo wm_client( QX11Info::display(), winId(), QX11Info::appRootWindow(), NET::WMDesktop );
 
@@ -789,6 +798,7 @@ void KNote::slotUpdateDesktopActions()
         m_toDesktop->setCurrentItem( 0 );
     else
         m_toDesktop->setCurrentItem( wm_client.desktop() + 1 ); // compensate for separator (+1)
+#endif
 }
 
 
@@ -1047,16 +1057,20 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             e->button() == Qt::LeftButton ? KWin::raiseWindow( winId() )
                                       : KWin::lowerWindow( winId() );
 
+#ifdef Q_WS_X11
             XUngrabPointer( QX11Info::display(), QX11Info::appTime() );
             NETRootInfo wm_root( QX11Info::display(), NET::WMMoveResize );
             wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(), NET::Move );
+#endif
             return true;
         }
 
         if ( ev->type() == QEvent::MouseButtonRelease )
         {
+#ifdef Q_WS_X11
             NETRootInfo wm_root( QX11Info::display(), NET::WMMoveResize );
             wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(), NET::MoveResizeCancel );
+#endif
             return false;
         }
 

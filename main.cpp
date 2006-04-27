@@ -26,9 +26,11 @@
 #include <klocale.h>
 #include <kxerrorhandler.h>
 
+#ifdef Q_WS_X11
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <QX11Info>
+#endif
 
 #include "version.h"
 #include "main.h"
@@ -36,6 +38,7 @@
 
 void remove_sm_from_client_leader()
 {
+#ifdef Q_WS_X11
     Atom type;
     int format, status;
     unsigned long nitems = 0;
@@ -62,6 +65,7 @@ void remove_sm_from_client_leader()
         }
         XFree(data);
     }
+#endif
 }
 
 
