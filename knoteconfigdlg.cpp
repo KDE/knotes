@@ -96,7 +96,8 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
     layout->setSpacing( spacingHint() );
     layout->setMargin( defaults ? marginHint() : 0 );
 
-    QLabel *label_FgColor = new QLabel( i18n("&Text color:"), displayPage, "label_FgColor" );
+    QLabel *label_FgColor = new QLabel( i18n("&Text color:"), displayPage );
+    label_FgColor->setObjectName( "label_FgColor" );
     layout->addWidget( label_FgColor, 0, 0 );
 
     KColorButton *kcfg_FgColor = new KColorButton( displayPage );
@@ -104,7 +105,8 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
     label_FgColor->setBuddy( kcfg_FgColor );
     layout->addWidget( kcfg_FgColor, 0, 1 );
 
-    QLabel *label_BgColor = new QLabel( i18n("&Background color:"), displayPage, "label_BgColor" );
+    QLabel *label_BgColor = new QLabel( i18n("&Background color:"), displayPage );
+    label_BgColor->setObjectName( "label_BgColor" );
     layout->addWidget( label_BgColor, 1, 0 );
 
     KColorButton *kcfg_BgColor = new KColorButton( displayPage );
@@ -117,7 +119,8 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
 
     if ( defaults )
     {
-        QLabel *label_Width = new QLabel( i18n("Default &width:"), displayPage, "label_Width" );
+        QLabel *label_Width = new QLabel( i18n("Default &width:"), displayPage );
+        label_Width->setObjectName( "label_Width" );
         layout->addWidget( label_Width, 2, 0 );
 
         KIntNumInput *kcfg_Width = new KIntNumInput( displayPage );
@@ -126,7 +129,8 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
         kcfg_Width->setRange( 50, 2000, 10, false );
         layout->addWidget( kcfg_Width, 2, 1 );
 
-        QLabel *label_Height = new QLabel( i18n("Default &height:"), displayPage, "label_Height" );
+        QLabel *label_Height = new QLabel( i18n("Default &height:"), displayPage );
+        label_Height->setObjectName( "label_Height" );
         layout->addWidget( label_Height, 3, 0 );
 
         KIntNumInput *kcfg_Height = new KIntNumInput( displayPage );
@@ -150,7 +154,8 @@ QWidget *KNoteConfigDlg::makeEditorPage( bool defaults )
     layout->setSpacing( spacingHint() );
     layout->setMargin( defaults ? marginHint() : 0 );
 
-    QLabel *label_TabSize = new QLabel( i18n( "&Tab size:" ), editorPage, "label_TabSize" );
+    QLabel *label_TabSize = new QLabel( i18n( "&Tab size:" ), editorPage );
+    label_TabSize->setObjectName( "label_TabSize" );
     layout->addWidget( label_TabSize, 0, 0, 1, 2 );
 
     KIntNumInput *kcfg_TabSize = new KIntNumInput( editorPage );
@@ -165,14 +170,16 @@ QWidget *KNoteConfigDlg::makeEditorPage( bool defaults )
     QCheckBox *kcfg_RichText = new QCheckBox( i18n("&Rich text"), editorPage, "kcfg_RichText" );
     layout->addWidget( kcfg_RichText, 1, 2 );
 
-    QLabel *label_Font = new QLabel( i18n("Text font:"), editorPage, "label_Font" );
+    QLabel *label_Font = new QLabel( i18n("Text font:"), editorPage );
+    label_Font->setObjectName( "label_Font" );
     layout->addWidget( label_Font, 3, 0 );
 
     KFontRequester *kcfg_Font = new KFontRequester( editorPage, "kcfg_Font" );
     kcfg_Font->setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
     layout->addWidget( kcfg_Font, 3, 1, 1, 2 );
 
-    QLabel *label_TitleFont = new QLabel( i18n("Title font:"), editorPage, "label_TitleFont" );
+    QLabel *label_TitleFont = new QLabel( i18n("Title font:"), editorPage );
+    label_TitleFont->setObjectName( "label_TitleFont" );
     layout->addWidget( label_TitleFont, 2, 0 );
 
     KFontRequester *kcfg_TitleFont = new KFontRequester( editorPage, "kcfg_TitleFont" );
@@ -198,7 +205,8 @@ QWidget *KNoteConfigDlg::makeActionsPage()
     layout->setSpacing( spacingHint() );
     layout->setMargin( 0 );
 
-    QLabel *label_MailAction = new QLabel( i18n("&Mail action:"), actionsPage, "label_MailAction" );
+    QLabel *label_MailAction = new QLabel( i18n("&Mail action:"), actionsPage );
+    label_MailAction->setObjectName( "label_MailAction" );
     layout->addWidget( label_MailAction, 0, 0 );
 
     KLineEdit *kcfg_MailAction = new KLineEdit( actionsPage );
@@ -224,12 +232,14 @@ QWidget *KNoteConfigDlg::makeNetworkPage()
     Q3GroupBox *outgoing = new Q3GroupBox( i18n("Outgoing Notes"), networkPage );
     layout->addWidget( outgoing, 1, 0, 1, 2 );
 
-    QLabel *label_SenderID = new QLabel( i18n("&Sender ID:"), outgoing, "label_SenderID" );
+    QLabel *label_SenderID = new QLabel( i18n("&Sender ID:"), outgoing );
+    label_SenderID->setObjectName( "label_SenderID" );
     KLineEdit *kcfg_SenderID = new KLineEdit( outgoing );
     kcfg_SenderID->setObjectName( "kcfg_SenderID" );
     label_SenderID->setBuddy( kcfg_SenderID );
 
-    QLabel *label_Port = new QLabel( i18n("&Port:"), networkPage, "label_Port" );
+    QLabel *label_Port = new QLabel( i18n("&Port:"), networkPage );
+    label_Port->setObjectName( "label_Port" );
     layout->addWidget( label_Port, 2, 0 );
 
     KIntNumInput *kcfg_Port = new KIntNumInput( networkPage );
@@ -248,7 +258,8 @@ QWidget *KNoteConfigDlg::makeStylePage()
     layout->setSpacing( spacingHint() );
     layout->setMargin( 0 );
 
-    QLabel *label_Style = new QLabel( i18n("&Style:"), stylePage, "label_Style" );
+    QLabel *label_Style = new QLabel( i18n("&Style:"), stylePage );
+    label_Style->setObjectName( "label_Style" );
     layout->addWidget( label_Style, 0, 0 );
 
     QComboBox *kcfg_Style = new QComboBox( stylePage );
