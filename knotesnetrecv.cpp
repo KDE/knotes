@@ -130,7 +130,7 @@ void KNotesNetworkReceiver::slotConnectionClosed()
         QString noteText = QString( *m_buffer ).trimmed();
 
         // First line is the note title or, in case of ATnotes, the id
-        int pos = noteText.find( QRegExp("[\r\n]") );
+        int pos = noteText.indexOf( QRegExp("[\r\n]") );
         QString noteTitle = noteText.left( pos ).trimmed() + m_titleAddon;
 
         noteText = noteText.mid( pos ).trimmed();
