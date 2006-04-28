@@ -43,9 +43,10 @@
 
 
 KNotesAlarm::KNotesAlarm( KNotesResourceManager *manager, QObject *parent, const char *name )
-  : QObject( parent, name ),
+  : QObject( parent ),
     m_manager( manager )
 {
+    setObjectName( name );
     // TODO: fix timezone stuff?
 
     connect( &m_checkTimer, SIGNAL(timeout()), SLOT(checkAlarms()) );

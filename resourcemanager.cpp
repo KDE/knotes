@@ -38,8 +38,9 @@
 
 
 KNotesResourceManager::KNotesResourceManager()
-    : QObject( 0, "KNotes Resource Manager" )
+    : QObject( 0 )
 {
+    setObjectName( "KNotes Resource Manager" );
     m_manager = new KRES::Manager<ResourceNotes>( "notes" );
     m_manager->addObserver( this );
     m_manager->readConfig();
