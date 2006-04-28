@@ -57,7 +57,7 @@ KNotesNetworkSender::KNotesNetworkSender( const QString& hostname, int port )
 
 void KNotesNetworkSender::setSenderId( const QString& sender )
 {
-    m_sender = sender.ascii();
+    m_sender = sender.toAscii();
 }
 
 void KNotesNetworkSender::setNote( const QString& title, const QString& text )
@@ -65,8 +65,8 @@ void KNotesNetworkSender::setNote( const QString& title, const QString& text )
     // TODO: support for unicode and rich text.
     // Mmmmmm... how to behave with such heterogeneous environment?
     // AFAIK, ATnotes does not allow UNICODE.
-    m_title = title.ascii();
-    m_note = text.ascii();
+    m_title = title.toAscii();
+    m_note = text.toAscii();
 }
 
 void KNotesNetworkSender::slotConnected( const KResolverEntry& )
