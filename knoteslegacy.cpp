@@ -106,7 +106,7 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
         else if ( version < 3.2 )
         {
 #ifdef Q_WS_X11
-            uint state = test->readUnsignedLongNumEntry( "state", NET::SkipTaskbar );
+            uint state = test->readEntry( "state", uint(NET::SkipTaskbar) );
             test->writeEntry( "ShowInTaskbar", (state & NET::SkipTaskbar) ? false : true );
             test->writeEntry( "KeepAbove", (state & NET::KeepAbove) ? true : false );
 #endif
@@ -253,7 +253,7 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
     config.writeEntry( "version", KNOTES_VERSION );
     config.setGroup( "WindowDisplay" );
 #ifdef Q_WS_X11
-    uint state = config.readUnsignedLongNumEntry( "state", NET::SkipTaskbar );
+    uint state = config.readEntry( "state", uint(NET::SkipTaskbar) );
     config.writeEntry( "ShowInTaskbar", (state & NET::SkipTaskbar) ? false : true );
     config.writeEntry( "KeepAbove", (state & NET::KeepAbove) ? true : false );
 #endif
