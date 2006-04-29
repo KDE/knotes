@@ -40,7 +40,7 @@
 
 KNotesNetworkSender::KNotesNetworkSender( const QString& hostname, int port )
   : KBufferedSocket( hostname, QString::number( port ) ),
-    m_note( 0 ), m_title( 0 ), m_sender( 0 ), m_index( 0 )
+    m_note(), m_title(), m_sender(), m_index( 0 )
 {
     enableRead( false );
     enableWrite( false );
