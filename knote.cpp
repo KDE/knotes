@@ -849,8 +849,8 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
     p.setColor( QPalette::Button,     bg.dark(116) );
     p.setColor( QPalette::ButtonText, fg );
 
-    //p.setColor( QColorGroup::Highlight,  bg );
-    //p.setColor( QColorGroup::HighlightedText, fg );
+    //p.setColor( QPalette::Highlight,  bg );
+    //p.setColor( QPalette::HighlightedText, fg );
 
     // order: Light, Midlight, Button, Mid, Dark, Shadow
     
