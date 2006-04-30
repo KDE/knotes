@@ -115,7 +115,8 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
     layout->addWidget( kcfg_BgColor, 1, 1 );
 
     QCheckBox *kcfg_ShowInTaskbar = new QCheckBox( i18n("&Show note in taskbar"),
-                                                   displayPage, "kcfg_ShowInTaskbar" );
+                                                   displayPage );
+    kcfg_ShowInTaskbar->setObjectName( "kcfg_ShowInTaskbar" );
 
     if ( defaults )
     {
@@ -164,17 +165,20 @@ QWidget *KNoteConfigDlg::makeEditorPage( bool defaults )
     label_TabSize->setBuddy( kcfg_TabSize );
     layout->addWidget( kcfg_TabSize, 0, 2 );
 
-    QCheckBox *kcfg_AutoIndent = new QCheckBox( i18n("Auto &indent"), editorPage, "kcfg_AutoIndent" );
+    QCheckBox *kcfg_AutoIndent = new QCheckBox( i18n("Auto &indent"), editorPage );
+    kcfg_AutoIndent->setObjectName( "kcfg_AutoIndent" );
     layout->addWidget( kcfg_AutoIndent, 1, 0, 1, 2 );
 
-    QCheckBox *kcfg_RichText = new QCheckBox( i18n("&Rich text"), editorPage, "kcfg_RichText" );
+    QCheckBox *kcfg_RichText = new QCheckBox( i18n("&Rich text"), editorPage);
+    kcfg_RichText->setObjectName( "kcfg_RichText" );
     layout->addWidget( kcfg_RichText, 1, 2 );
 
     QLabel *label_Font = new QLabel( i18n("Text font:"), editorPage );
     label_Font->setObjectName( "label_Font" );
     layout->addWidget( label_Font, 3, 0 );
 
-    KFontRequester *kcfg_Font = new KFontRequester( editorPage, "kcfg_Font" );
+    KFontRequester *kcfg_Font = new KFontRequester( editorPage);
+    kcfg_Font->setObjectName( "kcfg_Font" );
     kcfg_Font->setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
     layout->addWidget( kcfg_Font, 3, 1, 1, 2 );
 
@@ -182,7 +186,8 @@ QWidget *KNoteConfigDlg::makeEditorPage( bool defaults )
     label_TitleFont->setObjectName( "label_TitleFont" );
     layout->addWidget( label_TitleFont, 2, 0 );
 
-    KFontRequester *kcfg_TitleFont = new KFontRequester( editorPage, "kcfg_TitleFont" );
+    KFontRequester *kcfg_TitleFont = new KFontRequester( editorPage);
+    kcfg_TitleFont->setObjectName( "kcfg_TitleFont" );
     kcfg_TitleFont->setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
     layout->addWidget( kcfg_TitleFont, 2, 1, 1, 2 );
 
@@ -227,7 +232,8 @@ QWidget *KNoteConfigDlg::makeNetworkPage()
     Q3GroupBox *incoming = new Q3GroupBox( i18n("Incoming Notes"), networkPage );
     layout->addWidget( incoming, 0, 0, 1, 2 );
 
-    new QCheckBox( i18n("Accept incoming notes"), incoming, "kcfg_ReceiveNotes" );
+    QCheckBox *tmpChkB=new QCheckBox( i18n("Accept incoming notes"), incoming);
+    tmpChkB->setObjectName( "kcfg_ReceiveNotes" );
 
     Q3GroupBox *outgoing = new Q3GroupBox( i18n("Outgoing Notes"), networkPage );
     layout->addWidget( outgoing, 1, 0, 1, 2 );
