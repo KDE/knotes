@@ -264,8 +264,8 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
     if ( infile.open( QIODevice::ReadOnly ) )
     {
         QTextStream input( &infile );
-        input.setEncoding( QTextStream::UnicodeUTF8 );
-        journal->setDescription( input.read() );
+        input.setCodec( "UTF-8" );
+        journal->setDescription( input.readAll() );
         if ( !infile.remove() )
             kWarning(5500) << k_funcinfo << "Could not delete data file: \"" << infile.fileName() << "\"" << endl;
     }
