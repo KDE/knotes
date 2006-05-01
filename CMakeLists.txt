@@ -60,8 +60,6 @@ install_files( ${SERVICES_INSTALL_DIR}/kresources FILES knotes_manager.desktop )
 install_files( /include FILES KNotesIface.h KNotesAppIface.h )
 install_files( ${DATA_INSTALL_DIR}/knotes FILES knotesappui.rc knotesui.rc )
 
-kde4_create_doxygen_docs(  )
-
 kde4_footer()
 
 
