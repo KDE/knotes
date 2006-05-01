@@ -55,7 +55,5 @@ managerdir      = $(kde_servicesdir)/kresources
 
 KDE_OPTIONS = nofinal
 
-messages: rc.cpp
-	$(XGETTEXT) *.cpp -o $(podir)/knotes.pot
 
 include $(top_srcdir)/admin/Doxyfile.am
