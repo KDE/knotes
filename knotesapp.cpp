@@ -596,7 +596,7 @@ void KNotesApp::updateNoteActions()
 
     if ( m_noteActions.isEmpty() )
     {
-        KAction *action = new KAction( i18n("No Notes"), KShortcut::null(), 0, 0, 0, 0 );
+        KAction *action = new KAction( i18n("No Notes"), 0, 0 );
         m_noteActions.append( action );
     }
 
