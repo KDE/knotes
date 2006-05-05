@@ -107,32 +107,33 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
 
     // create the menu items for the note - not the editor...
     // rename, mail, print, save as, insert date, alarm, close, delete, new note
-    new KAction( i18n("New"), "filenew", 0,
-        this, SIGNAL(sigRequestNewNote()), actionCollection(), "new_note" );
-    new KAction( i18n("Rename..."), "text", 0,
-        this, SLOT(slotRename()), actionCollection(), "rename_note" );
+    KAction *action = new KAction(KIcon("filenew"),  i18n("New"), actionCollection(), "new_note" );
+    connect(action, SIGNAL(triggered(bool)), SIGNAL(sigRequestNewNote()));
+    action = new KAction(KIcon("text"),  i18n("Rename..."), actionCollection(), "rename_note" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotRename()));
     m_readOnly = new KToggleAction( i18n("Lock"), "lock" , 0,
         this, SLOT(slotUpdateReadOnly()), actionCollection(), "lock_note" );
     m_readOnly->setCheckedState( KGuiItem( i18n("Unlock"), "unlock" ) );
-    new KAction( i18n("Hide"), "fileclose" , Qt::Key_Escape,
-        this, SLOT(slotClose()), actionCollection(), "hide_note" );
-    new KAction( i18n("Delete"), "knotes_delete", 0,
-        this, SLOT(slotKill()), actionCollection(), "delete_note" );
+    action = new KAction(KIcon("fileclose"),  i18n("Hide"), actionCollection(), "hide_note" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotClose()));
+    action->setShortcut(Qt::Key_Escape);
+    action = new KAction(KIcon("knotes_delete"),  i18n("Delete"), actionCollection(), "delete_note" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotKill()));
 
-    new KAction( i18n("Insert Date"), "knotes_date", 0 ,
-        this, SLOT(slotInsDate()), actionCollection(), "insert_date" );
-    new KAction( i18n("Set Alarm..."), "knotes_alarm", 0 ,
-        this, SLOT(slotSetAlarm()), actionCollection(), "set_alarm" );
+    action = new KAction(KIcon("knotes_date"),  i18n("Insert Date"), actionCollection(), "insert_date" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotInsDate()));
+    action = new KAction(KIcon("knotes_alarm"),  i18n("Set Alarm..."), actionCollection(), "set_alarm" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotSetAlarm()));
 
-    new KAction( i18n("Send..."), "network", 0,
-        this, SLOT(slotSend()), actionCollection(), "send_note" );
-    new KAction( i18n("Mail..."), "mail_send", 0,
-        this, SLOT(slotMail()), actionCollection(), "mail_note" );
-    new KAction( i18n("Save As..."), "filesaveas", 0,
-        this, SLOT(slotSaveAs()), actionCollection(), "save_note" );
+    action = new KAction(KIcon("network"),  i18n("Send..."), actionCollection(), "send_note" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotSend()));
+    action = new KAction(KIcon("mail_send"),  i18n("Mail..."), actionCollection(), "mail_note" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotMail()));
+    action = new KAction(KIcon("filesaveas"),  i18n("Save As..."), actionCollection(), "save_note" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotSaveAs()));
     KStdAction::print( this, SLOT(slotPrint()), actionCollection(), "print_note" );
-    new KAction( i18n("Preferences..."), "configure", 0,
-        this, SLOT(slotPreferences()), actionCollection(), "configure_note" );
+    action = new KAction(KIcon("configure"),  i18n("Preferences..."), actionCollection(), "configure_note" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotPreferences()));
 
     QActionGroup *kab = new QActionGroup( this );
     kab->setExclusive( true );
@@ -176,7 +177,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     factory.addClient( this );
 
     m_menu = static_cast<KMenu*>(factory.container( "note_context", this ));
-    m_editor->setContextMenu( static_cast<KMenu*>(factory.container( "note_edit", this )) ); 
+    m_editor->setContextMenu( static_cast<KMenu*>(factory.container( "note_edit", this )) );
 
     m_tool = static_cast<KToolBar*>(factory.container( "note_tool", this ));
     m_tool->setIconSize( QSize(10,10) );
@@ -853,7 +854,7 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
     //p.setColor( QPalette::HighlightedText, fg );
 
     // order: Light, Midlight, Button, Mid, Dark, Shadow
-    
+
     // the shadow
     p.setColor( QPalette::Light, bg.light(180) );
     p.setColor( QPalette::Midlight, bg.light(150) );
@@ -867,17 +868,17 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
     p.setColor( QPalette::Active, QPalette::Base, bg.dark(116) );
 
     m_label->setPalette( p );
-    
+
     // set the text color
     m_editor->setTextColor( fg );
 
-    
+
     // update the icon color
     KIconEffect effect;
     QPixmap icon = effect.apply( qApp->windowIcon().pixmap( IconSize(K3Icon::Desktop),
                                                             IconSize(K3Icon::Desktop) ),
                                  KIconEffect::Colorize, 1, bg, false );
-    QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap( IconSize(K3Icon::Small), 
+    QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap( IconSize(K3Icon::Small),
                                                                 IconSize(K3Icon::Small) ),
                                      KIconEffect::Colorize, 1, bg, false );
     KWin::setIcons( winId(), icon, miniIcon );
