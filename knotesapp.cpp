@@ -102,7 +102,7 @@ KNotesApp::KNotesApp()
       m_alarm( 0 ), /*m_listener( 0 ),*/ m_find( 0 ), m_findPos( 0 )
 {
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
-    
+
     // create the dock widget...
 #ifdef Q_WS_X11.
     KWin::setSystemTrayWindowFor( winId(), QX11Info::appRootWindow() );
@@ -115,14 +115,14 @@ KNotesApp::KNotesApp()
 //    KNote::setStyle( KNotesGlobalConfig::style() );
 
     // create the GUI...
-    new KAction( i18n("New Note"), "filenew", 0,
-        this, SLOT(newNote()), actionCollection(), "new_note" );
-    new KAction( i18n("New Note From Clipboard"), "editpaste", 0,
-        this, SLOT(newNoteFromClipboard()), actionCollection(), "new_note_clipboard" );
-    new KAction( i18n("Show All Notes"), "knotes", 0,
-        this, SLOT(showAllNotes()), actionCollection(), "show_all_notes" );
-    new KAction( i18n("Hide All Notes"), "fileclose", 0,
-        this, SLOT(hideAllNotes()), actionCollection(), "hide_all_notes" );
+    KAction *action = new KAction(KIcon("filenew"),  i18n("New Note"), actionCollection(), "new_note" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(newNote()));
+    action = new KAction(KIcon("editpaste"),  i18n("New Note From Clipboard"), actionCollection(), "new_note_clipboard" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(newNoteFromClipboard()));
+    action = new KAction(KIcon("knotes"),  i18n("Show All Notes"), actionCollection(), "show_all_notes" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(showAllNotes()));
+    action = new KAction(KIcon("fileclose"),  i18n("Hide All Notes"), actionCollection(), "hide_all_notes" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(hideAllNotes()));
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
     KStdAction::find( this, SLOT(slotOpenFindDialog()), actionCollection() );
@@ -583,9 +583,9 @@ void KNotesApp::updateNoteActions()
                                        KShortcut(), this, SLOT(slotShowNote()),
                                        0, note->noteId().toUtf8() );
         KIconEffect effect;
-        QPixmap icon = effect.apply( 
+        QPixmap icon = effect.apply(
                 qApp->windowIcon().pixmap( IconSize(K3Icon::Small), IconSize(K3Icon::Small) ),
-                KIconEffect::Colorize, 1, note->palette().color( note->backgroundRole() ), false 
+                KIconEffect::Colorize, 1, note->palette().color( note->backgroundRole() ), false
         );
 #warning Port me: setting a QPixmap as an action icon doesn't seem to be possible
 //        action->setIcon( icon );

@@ -152,8 +152,9 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
 
     // invisible action to walk through the notes to make this configurable
 //FIXME: this backtab thing doesn't work anymore!
-    new KAction( i18n("Walk Through Notes"), 0, Qt::SHIFT+Qt::Key_Backtab,
-                 this, SIGNAL(sigShowNextNote()), actionCollection(), "walk_notes" );
+    action = new KAction( i18n("Walk Through Notes"), actionCollection(), "walk_notes" );
+    connect(action, SIGNAL(triggered(bool)), SIGNAL(sigShowNextNote()));
+    action->setShortcut(Qt::SHIFT+Qt::Key_Backtab);
 
     // create the note header, button and label...
     m_label = new QLabel( this );
