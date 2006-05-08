@@ -33,10 +33,13 @@
 #include <QPixmap>
 
 #include <kapplication.h>
+#include <kactioncollection.h>
 #include <kdebug.h>
 #include <kaction.h>
 #include <kstdaction.h>
 #include <kcombobox.h>
+#include <kselectaction.h>
+#include <ktoggleaction.h>
 #include <ktoolbar.h>
 #include <kmenu.h>
 #include <kxmlguibuilder.h>

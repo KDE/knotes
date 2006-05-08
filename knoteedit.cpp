@@ -24,10 +24,13 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kaction.h>
+#include <kfontaction.h>
+#include <kfontsizeaction.h>
 #include <kmenu.h>
 #include <k3urldrag.h>
 #include <kstdaction.h>
 #include <kcolordialog.h>
+#include <ktoggleaction.h>
 
 #include "knoteedit.h"
 

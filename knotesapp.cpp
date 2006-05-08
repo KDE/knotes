@@ -29,6 +29,7 @@
 
 #include <kdebug.h>
 #include <kaction.h>
+#include <kactioncollection.h>
 #include <kxmlguifactory.h>
 #include <kxmlguibuilder.h>
 #include <ksystemtray.h>
@@ -45,6 +46,7 @@
 #include <kwin.h>
 #include <kbufferedsocket.h>
 #include <kserversocket.h>
+#include <kstdaction.h>
 
 #include <libkcal/journal.h>
 #include <libkcal/calendarlocal.h>
