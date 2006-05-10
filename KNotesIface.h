@@ -22,8 +22,8 @@
 #ifndef __KNotesIface_h__
 #define __KNotesIface_h__
 
-#include <qstring.h>
-#include <qmap.h>
+#include <QString>
+#include <QMap>
 
 #include <dcopobject.h>
 

@@ -18,10 +18,10 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include <qfile.h>
-#include <qfont.h>
-#include <qpoint.h>
-#include <qcolor.h>
+#include <QFile>
+#include <QFont>
+#include <QPoint>
+#include <QColor>
 #include <qstringlist.h>
 #include <qtextstream.h>
 

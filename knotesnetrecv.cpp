@@ -32,7 +32,7 @@
 
 #include <qtimer.h>
 #include <qdatetime.h>
-#include <qregexp.h>
+#include <QRegExp>
 #include <q3cstring.h>
 
 #include <kdebug.h>

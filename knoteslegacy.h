@@ -21,8 +21,8 @@
 #ifndef KNOTESLEGACY_H
 #define KNOTESLEGACY_H
 
-#include <qstring.h>
-#include <qdir.h>
+#include <QString>
+#include <QDir>
 
 namespace KCal {
     class CalendarLocal;

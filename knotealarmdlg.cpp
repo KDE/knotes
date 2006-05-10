@@ -29,7 +29,7 @@
  your version.
 *******************************************************************/
 
-#include <qlabel.h>
+#include <QLabel>
 #include <qradiobutton.h>
 #include <q3buttongroup.h>
 

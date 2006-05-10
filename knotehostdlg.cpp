@@ -30,9 +30,9 @@
  your version.
 *******************************************************************/
 
-#include <qstring.h>
+#include <QString>
 #include <qstringlist.h>
-#include <qlabel.h>
+#include <QLabel>
 #include <q3vbox.h>
 
 #include <kdebug.h>
