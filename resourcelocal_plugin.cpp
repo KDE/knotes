@@ -51,7 +51,7 @@ public:
 
 extern "C"
 {
-    void *init_knotes_local()
+    KDE_EXPORT void *init_knotes_local()
     {
         return new LocalNotesFactory();
     }

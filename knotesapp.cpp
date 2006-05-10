@@ -173,9 +173,10 @@ KNotesApp::KNotesApp()
 
     KConfig *config = KGlobal::config();
     config->setGroup( "Global Keybindings" );
-    m_globalAccel->setEnabled( config->readEntry( "Enabled", true ) );
+#warning Port me!
+/*    m_globalAccel->setEnabled( config->readEntry( "Enabled", true ) );
 
-    updateGlobalAccels();
+    updateGlobalAccels();*/
 
     // clean up old config files
     KNotesLegacy::cleanUp();
