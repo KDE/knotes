@@ -85,19 +85,19 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     connect( m_textUnderline, SIGNAL(toggled(bool)), SLOT(setFontUnderline(bool)) );
     connect( m_textStrikeOut, SIGNAL(toggled(bool)), SLOT(textStrikeOut(bool)) );
 
-    m_textAlignLeft = new KToggleAction( i18n("Align Left"), "text_left", Qt::ALT + Qt::Key_L,
-                                 this, SLOT(textAlignLeft()),
-                                 actions, "format_alignleft" );
+    m_textAlignLeft = new KToggleAction(KIcon("text_left"),  i18n("Align Left"), actions, "format_alignleft" );
+    connect(m_textAlignLeft, SIGNAL(triggered(bool) ), SLOT(textAlignLeft()));
+    m_textAlignLeft->setShortcut(Qt::ALT + Qt::Key_L);
     m_textAlignLeft->setChecked( true ); // just a dummy, will be updated later
-    m_textAlignCenter = new KToggleAction( i18n("Align Center"), "text_center", Qt::ALT + Qt::Key_C,
-                                 this, SLOT(textAlignCenter()),
-                                 actions, "format_aligncenter" );
-    m_textAlignRight = new KToggleAction( i18n("Align Right"), "text_right", Qt::ALT + Qt::Key_R,
-                                 this, SLOT(textAlignRight()),
-                                 actions, "format_alignright" );
-    m_textAlignBlock = new KToggleAction( i18n("Align Block"), "text_block", Qt::ALT + Qt::Key_B,
-                                 this, SLOT(textAlignBlock()),
-                                 actions, "format_alignblock" );
+    m_textAlignCenter = new KToggleAction(KIcon("text_center"),  i18n("Align Center"), actions, "format_aligncenter" );
+    connect(m_textAlignCenter, SIGNAL(triggered(bool) ), SLOT(textAlignCenter()));
+    m_textAlignCenter->setShortcut(Qt::ALT + Qt::Key_C);
+    m_textAlignRight = new KToggleAction(KIcon("text_right"),  i18n("Align Right"), actions, "format_alignright" );
+    connect(m_textAlignRight, SIGNAL(triggered(bool) ), SLOT(textAlignRight()));
+    m_textAlignRight->setShortcut(Qt::ALT + Qt::Key_R);
+    m_textAlignBlock = new KToggleAction(KIcon("text_block"),  i18n("Align Block"), actions, "format_alignblock" );
+    connect(m_textAlignBlock, SIGNAL(triggered(bool) ), SLOT(textAlignBlock()));
+    m_textAlignBlock->setShortcut(Qt::ALT + Qt::Key_B);
 
     QActionGroup *group = new QActionGroup( this );
     group->addAction( m_textAlignLeft );
@@ -105,19 +105,16 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     group->addAction( m_textAlignRight );
     group->addAction( m_textAlignBlock );
 
-    m_textList = new KToggleAction( i18n("List"), "enum_list", 0,
-                                    this, SLOT(textList()),
-                                    actions, "format_list" );
+    m_textList = new KToggleAction(KIcon("enum_list"),  i18n("List"), actions, "format_list" );
+    connect(m_textList, SIGNAL(triggered(bool) ), SLOT(textList()));
 
     group = new QActionGroup( this );
     group->addAction( m_textList );
 
-    m_textSuper = new KToggleAction( i18n("Superscript"), "text_super", 0,
-                                     this, SLOT(textSuperScript()),
-                                     actions, "format_super" );
-    m_textSub = new KToggleAction( i18n("Subscript"), "text_sub", 0,
-                                   this, SLOT(textSubScript()),
-                                   actions, "format_sub" );
+    m_textSuper = new KToggleAction(KIcon("text_super"),  i18n("Superscript"), actions, "format_super" );
+    connect(m_textSuper, SIGNAL(triggered(bool) ), SLOT(textSuperScript()));
+    m_textSub = new KToggleAction(KIcon("text_sub"),  i18n("Subscript"), actions, "format_sub" );
+    connect(m_textSub, SIGNAL(triggered(bool) ), SLOT(textSubScript()));
 
     group = new QActionGroup( this );
     group->addAction( m_textSuper );
