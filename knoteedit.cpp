@@ -71,14 +71,14 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     KStdAction::selectAll( this, SLOT(selectAll()), actions );
 
     // create the actions modifying the text format
-    m_textBold = new KToggleAction( i18n("Bold"), "text_bold", Qt::CTRL + Qt::Key_B, 0, 0,
-                                    actions, "format_bold" );
-    m_textItalic = new KToggleAction( i18n("Italic"), "text_italic", Qt::CTRL + Qt::Key_I, 0, 0,
-                                      actions, "format_italic" );
-    m_textUnderline = new KToggleAction( i18n("Underline"), "text_under", Qt::CTRL + Qt::Key_U, 0, 0,
-                                         actions, "format_underline" );
-    m_textStrikeOut = new KToggleAction( i18n("Strike Out"), "text_strike", Qt::CTRL + Qt::Key_S, 0, 0,
-                                         actions, "format_strikeout" );
+    m_textBold = new KToggleAction(KIcon("text_bold"),  i18n("Bold"), actions, "format_bold" );
+    m_textBold->setShortcut(Qt::CTRL + Qt::Key_B);
+    m_textItalic = new KToggleAction(KIcon("text_italic"),  i18n("Italic"), actions, "format_italic" );
+    m_textItalic->setShortcut(Qt::CTRL + Qt::Key_I);
+    m_textUnderline = new KToggleAction(KIcon("text_under"),  i18n("Underline"), actions, "format_underline" );
+    m_textUnderline->setShortcut(Qt::CTRL + Qt::Key_U);
+    m_textStrikeOut = new KToggleAction(KIcon("text_strike"),  i18n("Strike Out"), actions, "format_strikeout" );
+    m_textStrikeOut->setShortcut(Qt::CTRL + Qt::Key_S);
 
     connect( m_textBold, SIGNAL(toggled(bool)), SLOT(textBold(bool)) );
     connect( m_textItalic, SIGNAL(toggled(bool)), SLOT(setFontItalic(bool)) );

@@ -114,8 +114,8 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     connect(action, SIGNAL(triggered(bool)), SIGNAL(sigRequestNewNote()));
     action = new KAction(KIcon("text"),  i18n("Rename..."), actionCollection(), "rename_note" );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotRename()));
-    m_readOnly = new KToggleAction( i18n("Lock"), "lock" , 0,
-        this, SLOT(slotUpdateReadOnly()), actionCollection(), "lock_note" );
+    m_readOnly = new KToggleAction(KIcon("lock"),  i18n("Lock"), actionCollection(), "lock_note" );
+    connect(m_readOnly, SIGNAL(triggered(bool) ), SLOT(slotUpdateReadOnly()));
     m_readOnly->setCheckedState( KGuiItem( i18n("Unlock"), "unlock" ) );
     action = new KAction(KIcon("fileclose"),  i18n("Hide"), actionCollection(), "hide_note" );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotClose()));
@@ -141,12 +141,12 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     QActionGroup *kab = new QActionGroup( this );
     kab->setExclusive( true );
 
-    m_keepAbove = new KToggleAction( i18n("Keep Above Others"), "up", 0,
-        this, SLOT(slotUpdateKeepAboveBelow()), actionCollection(), "keep_above" );
+    m_keepAbove = new KToggleAction(KIcon("up"),  i18n("Keep Above Others"), actionCollection(), "keep_above" );
+    connect(m_keepAbove, SIGNAL(triggered(bool) ), SLOT(slotUpdateKeepAboveBelow()));
     kab->addAction( m_keepAbove );
 
-    m_keepBelow = new KToggleAction( i18n("Keep Below Others"), "down", 0,
-        this, SLOT(slotUpdateKeepAboveBelow()), actionCollection(), "keep_below" );
+    m_keepBelow = new KToggleAction(KIcon("down"),  i18n("Keep Below Others"), actionCollection(), "keep_below" );
+    connect(m_keepBelow, SIGNAL(triggered(bool) ), SLOT(slotUpdateKeepAboveBelow()));
     kab->addAction( m_keepBelow );
 
     m_toDesktop = new KSelectAction( i18n("To Desktop"), 0,
