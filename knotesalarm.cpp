@@ -29,7 +29,7 @@
  your version.
 *******************************************************************/
 
-#include <qstringlist.h>
+#include <QStringList>
 
 #include <kmessagebox.h>
 #include <klocale.h>

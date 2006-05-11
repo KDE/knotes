@@ -32,7 +32,7 @@
 #ifndef KNOTESNETRECV_H
 #define KNOTESNETRECV_H
 
-#include <qobject.h>
+#include <QObject>
 
 class QTimer;
 
