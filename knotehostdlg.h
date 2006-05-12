@@ -41,11 +41,11 @@ class KHistoryCombo;
 /**
  * A dialog to request a hostname or IP address.
  */
-class KNoteHostDlg : public KDialogBase
+class KNoteHostDlg : public KDialog
 {
     Q_OBJECT
 public:
-    KNoteHostDlg( const QString& caption, QWidget *parent=0, const char *name=0 );
+    KNoteHostDlg( const QString& caption, QWidget *parent=0 );
     ~KNoteHostDlg();
 
     QString host() const;

@@ -22,8 +22,8 @@
 #include <QFont>
 #include <QPoint>
 #include <QColor>
-#include <qstringlist.h>
-#include <qtextstream.h>
+#include <QStringList>
+#include <QTextStream>
 
 #include <kdebug.h>
 #include <kapplication.h>

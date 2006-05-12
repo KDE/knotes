@@ -22,7 +22,7 @@
 #include <QLayout>
 #include <QCheckBox>
 #include <QComboBox>
-#include <qtabwidget.h>
+#include <QTabWidget>
 //Added by qt3to4:
 #include <QGridLayout>
 #include <Q3GroupBox>

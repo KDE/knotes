@@ -65,12 +65,13 @@
 using namespace KNetwork;
 
 
-class KNotesKeyDialog : public KDialogBase
+class KNotesKeyDialog : public KDialog
 {
 public:
-    KNotesKeyDialog( KGlobalAccel *globals, QWidget *parent, const char* name = 0 )
-        : KDialogBase( parent, name, true, i18n("Configure Shortcuts"), Default|Ok|Cancel, Ok )
+    KNotesKeyDialog( KGlobalAccel *globals, QWidget *parent )
+        : KDialog( parent, i18n("Configure Shortcuts"), Default|Ok|Cancel )
     {
+        setDefaultButton( Ok );
 #warning Port me!
 //        m_keyChooser = new KKeyChooser( globals, this );
         setMainWidget( m_keyChooser );

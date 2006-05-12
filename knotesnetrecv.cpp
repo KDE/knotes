@@ -30,8 +30,8 @@
  your version.
 *******************************************************************/
 
-#include <qtimer.h>
-#include <qdatetime.h>
+#include <QTimer>
+#include <QDateTime>
 #include <QRegExp>
 #include <q3cstring.h>
 

@@ -30,7 +30,7 @@
 *******************************************************************/
 
 #include <QLabel>
-#include <qradiobutton.h>
+#include <QRadioButton>
 #include <q3buttongroup.h>
 
 
@@ -46,10 +46,12 @@
 #include "knotealarmdlg.h"
 
 
-KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent, const char *name )
-    : KDialogBase( parent, name, true, caption, Ok|Cancel, Ok )
+KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent )
+    : KDialog( parent, caption, Ok|Cancel )
 {
-    KVBox *page = makeVBoxMainWidget();
+    setDefaultButton( Ok );
+    KVBox *page = new KVBox( this );
+    setMainWidget( page );
     Q3GroupBox *group = new Q3GroupBox( 3, Qt::Vertical, i18n("Scheduled Alarm"), page );
     m_buttons = new Q3ButtonGroup( page );
     m_buttons->hide();
@@ -73,6 +75,7 @@ KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent, const cha
     label_in->setEnabled( false ); // TODO
 
     connect( m_buttons, SIGNAL(clicked( int )), SLOT(slotButtonChanged( int )) );
+    connect( this, SIGNAL( okClicked() ), SLOT( slotOk() ) );
 }
 
 
@@ -126,7 +129,6 @@ void KNoteAlarmDlg::slotOk()
     if ( m_buttons->selectedId() == 0 )
     {
         m_journal->clearAlarms();
-        KDialogBase::slotOk();
         return;
     }
 
@@ -146,8 +148,6 @@ void KNoteAlarmDlg::slotOk()
     {
         // TODO
     }
-
-    KDialogBase::slotOk();
 }
 
 #include "knotealarmdlg.moc"

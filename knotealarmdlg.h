@@ -32,7 +32,7 @@
 #ifndef KNOTEALARMDLG_H
 #define KNOTEALARMDLG_H
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 class Q3ButtonGroup;
 class KDateEdit;
@@ -43,11 +43,11 @@ namespace KCal {
 }
 
 
-class KNoteAlarmDlg : public KDialogBase
+class KNoteAlarmDlg : public KDialog
 {
     Q_OBJECT
 public:
-    KNoteAlarmDlg( const QString& caption, QWidget *parent=0, const char *name=0 );
+    KNoteAlarmDlg( const QString& caption, QWidget *parent=0 );
 
     void setIncidence( KCal::Journal *journal );
 

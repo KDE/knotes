@@ -31,7 +31,7 @@
 *******************************************************************/
 
 #include <QString>
-#include <qstringlist.h>
+#include <QStringList>
 #include <QLabel>
 #include <q3vbox.h>
 
@@ -47,10 +47,12 @@
 #include "knotesglobalconfig.h"
 
 
-KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent, const char *name )
-    : KDialogBase( parent, name, true, caption, Ok|Cancel, Ok, true )
+KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
+    : KDialog( parent, caption, Ok|Cancel )
 {
-    KVBox *page = makeVBoxMainWidget();
+    setDefaultButton( Ok );
+    KVBox *page = new KVBox( this );
+    setMainWidget( page );
     (void)new QLabel( i18n("Hostname or IP address:"), page );
 
     m_hostCombo = new KHistoryCombo( true, page );
