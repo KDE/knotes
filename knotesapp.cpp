@@ -71,7 +71,6 @@ public:
     KNotesKeyDialog( KGlobalAccel *globals, QWidget *parent )
         : KDialog( parent, i18n("Configure Shortcuts"), Default|Ok|Cancel )
     {
-        setDefaultButton( Ok );
 #warning Port me!
 //        m_keyChooser = new KKeyChooser( globals, this );
         setMainWidget( m_keyChooser );

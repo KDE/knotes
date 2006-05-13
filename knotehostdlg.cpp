@@ -50,7 +50,6 @@
 KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
     : KDialog( parent, caption, Ok|Cancel )
 {
-    setDefaultButton( Ok );
     KVBox *page = new KVBox( this );
     setMainWidget( page );
     (void)new QLabel( i18n("Hostname or IP address:"), page );
