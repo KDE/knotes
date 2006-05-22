@@ -66,7 +66,7 @@ ResourceLocal::~ResourceLocal()
 void ResourceLocal::writeConfig( KConfig *config )
 {
     KRES::Resource::writeConfig( config );
-    config->writePathEntry( "NotesURL", mURL.prettyURL() );
+    config->writePathEntry( "NotesURL", mURL.prettyUrl() );
 }
 
 bool ResourceLocal::load()

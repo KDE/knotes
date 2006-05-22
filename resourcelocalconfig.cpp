@@ -54,7 +54,7 @@ void ResourceLocalConfig::loadSettings( KRES::Resource *resource )
 {
     ResourceLocal *res = dynamic_cast<ResourceLocal *>( resource );
     if ( res )
-        mURL->setURL( res->url().prettyURL() );
+        mURL->setURL( res->url().prettyUrl() );
     else
         kDebug() << "ERROR: ResourceLocalConfig::loadSettings(): no ResourceLocal, cast failed" << endl;
 }

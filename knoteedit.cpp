@@ -359,7 +359,7 @@ void KNoteEdit::dropEvent( QDropEvent *e )
             if ( it != list.begin() )
                 insertPlainText( ", " );
 
-            insertPlainText( (*it).prettyURL() );
+            insertPlainText( (*it).prettyUrl() );
         }
     else
         KTextEdit::dropEvent( e );
