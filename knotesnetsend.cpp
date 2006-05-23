@@ -84,7 +84,7 @@ void KNotesNetworkSender::slotReadyWrite()
     m_index += write( m_note.data() + m_index, m_note.length() - m_index );
 
     // If end of text reached, close connection
-    if ( m_index == m_note.length() )
+    if ( (int)m_index == m_note.length() )
         close();
 }
 
