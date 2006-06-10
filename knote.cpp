@@ -372,7 +372,7 @@ KNote::~KNote()
 void KNote::slotKill( bool force )
 {
     if ( !force &&
-         KMessageBox::warningContinueCancel( this, 
+         KMessageBox::warningContinueCancel( this,
              i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>").arg( m_label->text() ),
              i18n("Confirm Delete"), KGuiItem( i18n("&Delete"), "editdelete" ),
              "ConfirmDeleteNote"
@@ -472,6 +472,74 @@ void KNote::setText( const QString& text )
 {
     m_editor->setText( text );
     saveData();
+}
+
+QColor KNote::fgColor() const
+{
+    return m_config->fgColor();
+}
+
+QColor KNote::bgColor() const
+{
+    return m_config->bgColor();
+}
+
+void KNote::setColor( const QColor& fg, const QColor& bg )
+{
+    m_config->setFgColor( fg );
+    m_config->setBgColor( bg );
+
+    QPalette newpalette = palette();
+    newpalette.setColor( QColorGroup::Background, bg );
+    newpalette.setColor( QColorGroup::Foreground, fg );
+    newpalette.setColor( QColorGroup::Base,       bg ); // text background
+    newpalette.setColor( QColorGroup::Text,       fg ); // text color
+    newpalette.setColor( QColorGroup::Button,     bg );
+    newpalette.setColor( QColorGroup::ButtonText, fg );
+
+//    newpalette.setColor( QColorGroup::Highlight,  bg );
+//    newpalette.setColor( QColorGroup::HighlightedText, fg );
+
+    // the shadow
+    newpalette.setColor( QColorGroup::Midlight, bg.light(150) );
+    newpalette.setColor( QColorGroup::Shadow, bg.dark(116) );
+    newpalette.setColor( QColorGroup::Light, bg.light(180) );
+    if ( s_ppOffset )
+        newpalette.setColor( QColorGroup::Dark, bg.dark(200) );
+    else
+        newpalette.setColor( QColorGroup::Dark, bg.dark(108) );
+    setPalette( newpalette );
+
+    // set the text color
+    m_editor->setTextColor( fg );
+
+    // set the background color or gradient
+    updateBackground();
+
+    // set darker value for the hide button...
+    QPalette darker = palette();
+    darker.setColor( QColorGroup::Button, bg.dark(116) );
+    m_button->setPalette( darker );
+
+    // update the icon color
+    KIconEffect effect;
+    QPixmap icon = effect.apply( kapp->icon(), KIconEffect::Colorize, 1, bg, false );
+    QPixmap miniIcon = effect.apply( kapp->miniIcon(), KIconEffect::Colorize, 1, bg, false );
+    KWin::setIcons( winId(), icon, miniIcon );
+
+    // set the color for the selection used to highlight the find stuff
+    QColor sel = palette().color( QPalette::Active, QColorGroup::Base ).dark();
+    if ( sel == Qt::black )
+        sel = palette().color( QPalette::Active, QColorGroup::Base ).light();
+
+    m_editor->setSelectionAttributes( 1, sel, true );
+
+    // update the color of the fold
+    createFold();
+
+    // update the color of the title
+    updateFocus();
+    emit sigColorChanged();
 }
 
 void KNote::find( const QString& pattern, long options )
@@ -924,61 +992,6 @@ void KNote::toDesktop( int desktop )
         KWin::setOnAllDesktops( winId(), true );
     else
         KWin::setOnDesktop( winId(), desktop );
-}
-
-void KNote::setColor( const QColor &fg, const QColor &bg )
-{
-    QPalette newpalette = palette();
-    newpalette.setColor( QColorGroup::Background, bg );
-    newpalette.setColor( QColorGroup::Foreground, fg );
-    newpalette.setColor( QColorGroup::Base,       bg ); // text background
-    newpalette.setColor( QColorGroup::Text,       fg ); // text color
-    newpalette.setColor( QColorGroup::Button,     bg );
-    newpalette.setColor( QColorGroup::ButtonText, fg );
-    
-//    newpalette.setColor( QColorGroup::Highlight,  bg );
-//    newpalette.setColor( QColorGroup::HighlightedText, fg );
-
-    // the shadow
-    newpalette.setColor( QColorGroup::Midlight, bg.light(150) );
-    newpalette.setColor( QColorGroup::Shadow, bg.dark(116) );
-    newpalette.setColor( QColorGroup::Light, bg.light(180) );
-    if ( s_ppOffset )
-        newpalette.setColor( QColorGroup::Dark, bg.dark(200) );
-    else
-        newpalette.setColor( QColorGroup::Dark, bg.dark(108) );
-    setPalette( newpalette );
-
-    // set the text color
-    m_editor->setTextColor( fg );
-
-    // set the background color or gradient
-    updateBackground();
-
-    // set darker value for the hide button...
-    QPalette darker = palette();
-    darker.setColor( QColorGroup::Button, bg.dark(116) );
-    m_button->setPalette( darker );
-
-    // update the icon color
-    KIconEffect effect;
-    QPixmap icon = effect.apply( kapp->icon(), KIconEffect::Colorize, 1, bg, false );
-    QPixmap miniIcon = effect.apply( kapp->miniIcon(), KIconEffect::Colorize, 1, bg, false );
-    KWin::setIcons( winId(), icon, miniIcon );
-
-    // set the color for the selection used to highlight the find stuff
-    QColor sel = palette().color( QPalette::Active, QColorGroup::Base ).dark();
-    if ( sel == Qt::black )
-        sel = palette().color( QPalette::Active, QColorGroup::Base ).light();
-
-    m_editor->setSelectionAttributes( 1, sel, true );
-
-    // update the color of the fold
-    createFold();
-
-    // update the color of the title
-    updateFocus();
-    emit sigColorChanged();
 }
 
 void KNote::createFold()

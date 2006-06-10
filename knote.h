@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2005, The KNotes Developers
+ Copyright (c) 1997-2006, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -60,12 +60,17 @@ public:
     void saveConfig() const;
 
     QString noteId() const;
+
     QString name() const;
     QString text() const;
     QString plainText() const;
 
     void setName( const QString& name );
     void setText( const QString& text );
+
+    QColor fgColor() const;
+    QColor bgColor() const;
+    void setColor( const QColor& fg, const QColor& bg );
 
     void find( const QString& pattern, long options );
 
@@ -135,8 +140,6 @@ private:
     void updateLayout();
     void updateLabelAlignment();
     void updateBackground( int offset = -1 );
-
-    void setColor( const QColor&, const QColor& );
 
     void createFold();
 
