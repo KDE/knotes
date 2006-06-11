@@ -2,6 +2,10 @@ ChangeLog for KNotes
 ====================
 
 
+2006/06/10  Michael Brade <brade@kde.org>
+
+    * added DCOP methods to get and change the color of a note
+
 2006/02/20  Michael Brade <brade@kde.org>
 
     * fixed #115009: since it doesn't seem clearly visible that the "Lock" menu

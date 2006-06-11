@@ -72,6 +72,12 @@ public:
     void setName( const QString& id, const QString& newName );
     void setText( const QString& id, const QString& newText );
 
+    QString fgColor( const QString& id ) const;
+    QString bgColor( const QString& id ) const;
+
+    void setColor( const QString& id, const QString& fgColor,
+                                      const QString& bgColor );
+
     QMap<QString,QString> notes() const;
 
     void sync( const QString& app );

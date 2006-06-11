@@ -486,8 +486,14 @@ QColor KNote::bgColor() const
 
 void KNote::setColor( const QColor& fg, const QColor& bg )
 {
+    m_journal->setCustomProperty( "KNotes", "FgColor", fg.name() );
+    m_journal->setCustomProperty( "KNotes", "BgColor", bg.name() );
     m_config->setFgColor( fg );
     m_config->setBgColor( bg );
+
+    m_journal->updated();  // because setCustomProperty() doesn't call it!!
+    emit sigDataChanged();
+    m_config->writeConfig();
 
     QPalette newpalette = palette();
     newpalette.setColor( QColorGroup::Background, bg );
@@ -1256,11 +1262,7 @@ void KNote::dropEvent( QDropEvent *e )
 
     QColor bg;
     if ( KColorDrag::decode( e, bg ) )
-    {
         setColor( paletteForegroundColor(), bg );
-        m_journal->setCustomProperty( "KNotes", "BgColor", bg.name() );
-        m_config->setBgColor( bg );
-    }
 }
 
 bool KNote::focusNextPrevChild( bool )

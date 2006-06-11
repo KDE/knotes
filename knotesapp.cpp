@@ -355,6 +355,33 @@ void KNotesApp::setText( const QString& id, const QString& newText )
         kdWarning(5500) << "setText: no note with id: " << id << endl;
 }
 
+QString KNotesApp::fgColor( const QString& id ) const
+{
+    KNote* note = m_noteList[id];
+    if ( note )
+        return note->fgColor().name();
+    else
+        return QString::null;
+}
+
+QString KNotesApp::bgColor( const QString& id ) const
+{
+    KNote* note = m_noteList[id];
+    if ( note )
+        return note->bgColor().name();
+    else
+        return QString::null;
+}
+
+void KNotesApp::setColor( const QString& id, const QString& fgColor, const QString& bgColor )
+{
+    KNote* note = m_noteList[id];
+    if ( note )
+        note->setColor( QColor( fgColor ), QColor( bgColor ) );
+    else
+        kdWarning(5500) << "setColor: no note with id: " << id << endl;
+}
+
 void KNotesApp::sync( const QString& app )
 {
     QDictIterator<KNote> it( m_noteList );

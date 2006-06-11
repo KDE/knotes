@@ -96,6 +96,29 @@ k_dcop:
     virtual ASYNC setText( const QString& noteId, const QString& newText ) = 0;
 
     /**
+     * Returns the foreground/text color of a note.
+     * @param noteId the id of the note in question
+     * @return the foreground/text color as a QString
+     */
+    virtual QString fgColor( const QString& noteId ) const = 0;
+
+    /**
+     * Returns the background color of a note.
+     * @param noteId the id of the note in question
+     * @return the background color as a QString
+     */
+    virtual QString bgColor( const QString& noteId ) const = 0;
+
+    /**
+     * Sets the color (foreground and background color) of a note.
+     * @param noteId the id of the note
+     * @param fgColor the new text color for the note
+     * @param bgColor the new background color for the note
+     */
+    virtual ASYNC setColor( const QString& noteId, const QString& fgColor,
+                                                   const QString& bgColor ) = 0;
+
+    /**
      * Returns the title/name of a note.
      * @param noteId the id of the note in question
      * @return the name as a QString
