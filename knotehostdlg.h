@@ -33,7 +33,7 @@
 #ifndef KNOTEHOSTDLG_H
 #define KNOTEHOSTDLG_H
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 class KHistoryCombo;
 

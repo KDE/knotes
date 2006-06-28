@@ -29,7 +29,6 @@
 #include <kapplication.h>
 #include <kxmlguiclient.h>
 
-#include "KNotesAppIface.h"
 
 class QMouseEvent;
 class KFind;
@@ -52,8 +51,7 @@ namespace KNetwork {
 }
 
 
-class KNotesApp : public QLabel, public KSessionManaged, virtual public KXMLGUIClient,
-    virtual public KNotesAppIface
+class KNotesApp : public QLabel, public KSessionManaged, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:

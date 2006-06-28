@@ -16,15 +16,13 @@ set(libknoteslegacy_SRCS  knoteslegacy.cpp )
 set(libknote_SRCS knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp )
 
 
-set(knotes_SRCS main.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS} ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})
+set(knotes_SRCS main.cpp knotesapp.cpp knoteadaptor.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS} ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})
 
 set( libknotesconfig_SRCS knoteconfig.kcfgc knotesglobalconfig.kcfgc )
 
 kde4_add_kcfg_files(knotes_SRCS ${libknotesconfig_SRCS})
 
 kde4_automoc(${knotes_SRCS})
-
-kde4_add_dcop_skels(knotes_SRCS KNotesAppIface.h )
 
 kde4_add_executable(knotes ${knotes_SRCS})
 
@@ -35,7 +33,7 @@ install_targets(/bin knotes )
 
 ########### next target ###############
 
-set(knotes_local_PART_SRCS resourcelocal_plugin.cpp ${libknotesresources_SRCS})
+set(knotes_local_PART_SRCS resourcelocal_plugin.cpp knoteadaptor.cpp ${libknotesresources_SRCS})
 
 kde4_automoc(${knotes_local_PART_SRCS})
 

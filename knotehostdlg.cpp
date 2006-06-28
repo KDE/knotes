@@ -48,8 +48,10 @@
 
 
 KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
-    : KDialog( parent, caption, Ok|Cancel )
+    : KDialog( parent)
 {
+    setCaption( caption );
+    setButtons( Ok|Cancel );
     KVBox *page = new KVBox( this );
     setMainWidget( page );
     (void)new QLabel( i18n("Hostname or IP address:"), page );
@@ -80,7 +82,7 @@ KNoteHostDlg::~KNoteHostDlg()
 
 void KNoteHostDlg::slotTextChanged( const QString& text )
 {
-    enableButtonOK( !text.isEmpty() );
+    enableButton(Ok, !text.isEmpty() );
 }
 
 QString KNoteHostDlg::host() const

@@ -51,6 +51,7 @@
 #include <libkcal/journal.h>
 #include <libkcal/calendarlocal.h>
 #include <kiconloader.h>
+#include <dbus/qdbus.h>
 
 #include "knotesapp.h"
 #include "knote.h"
@@ -59,7 +60,7 @@
 #include "knotesglobalconfig.h"
 #include "knoteslegacy.h"
 #include "knotesnetrecv.h"
-
+#include "knoteadaptor.h"
 #include "knotes/resourcemanager.h"
 
 using namespace KNetwork;
@@ -69,8 +70,10 @@ class KNotesKeyDialog : public KDialog
 {
 public:
     KNotesKeyDialog( KGlobalAccel *globals, QWidget *parent )
-        : KDialog( parent, i18n("Configure Shortcuts"), Default|Ok|Cancel )
+        : KDialog( parent)
     {
+        setCaption( i18n("Configure Shortcuts") );
+        setButtons( Default|Ok|Cancel );
 #warning Port me!
 //        m_keyChooser = new KKeyChooser( globals, this );
         setMainWidget( m_keyChooser );
@@ -100,9 +103,11 @@ static bool kActionLessThan( const KAction *a1, const KAction *a2 )
 
 
 KNotesApp::KNotesApp()
-    : DCOPObject("KNotesIface"), QLabel( 0, Qt::Window ),
+    : QLabel( 0, Qt::Window ),
       m_alarm( 0 ), /*m_listener( 0 ),*/ m_find( 0 ), m_findPos( 0 )
 {
+    new KNotesAdaptor( this );
+    QDBus::sessionBus().registerObject("/KNotes", this);
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
     // create the dock widget...

@@ -45,14 +45,16 @@
 
 KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
         QWidget *parent, const QString& name )
-    : KConfigDialog( parent, name, config ? config : KNotesGlobalConfig::self(), IconList,
-                     config ? Default|Ok|Apply|Cancel : Default|Ok|Cancel, Ok )
+    : KConfigDialog( parent, name, config ? config : KNotesGlobalConfig::self(), KPageDialog::List )
 {
+    setButtons( config ? Default|Ok|Apply|Cancel : Default|Ok|Cancel );
+    setDefaultButton( Ok );
+
     setCaption( title );
-    KWin::setIcons( winId(), qApp->windowIcon().pixmap( IconSize(K3Icon::Desktop),IconSize(K3Icon::Desktop) ), 
+    KWin::setIcons( winId(), qApp->windowIcon().pixmap( IconSize(K3Icon::Desktop),IconSize(K3Icon::Desktop) ),
                              qApp->windowIcon().pixmap( IconSize(K3Icon::Small),IconSize(K3Icon::Small) ) );
 
-    setIconListAllVisible( true );
+    //setIconListAllVisible( true );
     enableButtonSeparator( true );
 
     if ( config )
