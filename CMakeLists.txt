@@ -16,7 +16,8 @@ set(libknoteslegacy_SRCS  knoteslegacy.cpp )
 set(libknote_SRCS knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp )
 
 
-set(knotes_SRCS main.cpp knotesapp.cpp knoteadaptor.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS} ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})
+set(knotes_SRCS main.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS} ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})
+qt4_add_dbus_adaptors(knotes_SRCS org.kde.KNotes.xml)
 
 set( libknotesconfig_SRCS knoteconfig.kcfgc knotesglobalconfig.kcfgc )
 
@@ -33,7 +34,8 @@ install_targets(/bin knotes )
 
 ########### next target ###############
 
-set(knotes_local_PART_SRCS resourcelocal_plugin.cpp knoteadaptor.cpp ${libknotesresources_SRCS})
+set(knotes_local_PART_SRCS resourcelocal_plugin.cpp ${libknotesresources_SRCS})
+qt4_add_dbus_adaptors(knotes_local_PART_SRCS org.kde.KNotes.xml)
 
 kde4_automoc(${knotes_local_PART_SRCS})
 
