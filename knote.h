@@ -25,6 +25,7 @@
 #include <QEvent>
 #include <QFrame>
 #include <QColor>
+#include <QDomDocument>
 
 #include <kconfig.h>
 #include <kxmlguiclient.h>

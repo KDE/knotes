@@ -25,6 +25,7 @@
 #include <QList>
 #include <QString>
 #include <QLabel>
+#include <QDomDocument>
 
 #include <kapplication.h>
 #include <kxmlguiclient.h>
