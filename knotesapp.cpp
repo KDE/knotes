@@ -51,7 +51,7 @@
 #include <libkcal/journal.h>
 #include <libkcal/calendarlocal.h>
 #include <kiconloader.h>
-#include <dbus/qdbus.h>
+#include <QtDBus>
 
 #include "knotesapp.h"
 #include "knote.h"
@@ -60,7 +60,7 @@
 #include "knotesglobalconfig.h"
 #include "knoteslegacy.h"
 #include "knotesnetrecv.h"
-#include "knoteadaptor.h"
+#include "knotesadaptor.h"
 #include "knotes/resourcemanager.h"
 
 using namespace KNetwork;
@@ -111,7 +111,7 @@ KNotesApp::KNotesApp()
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
     // create the dock widget...
-#ifdef Q_WS_X11.
+#ifdef Q_WS_X11
     KWin::setSystemTrayWindowFor( winId(), QX11Info::appRootWindow() );
 #endif
     setToolTip( i18n("KNotes: Sticky notes for KDE") );

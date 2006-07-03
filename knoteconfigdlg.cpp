@@ -55,7 +55,7 @@ KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
                              qApp->windowIcon().pixmap( IconSize(K3Icon::Small),IconSize(K3Icon::Small) ) );
 
     //setIconListAllVisible( true );
-    enableButtonSeparator( true );
+    showButtonSeparator( true );
 
     if ( config )
     {
