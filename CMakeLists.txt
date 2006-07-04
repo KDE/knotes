@@ -35,7 +35,6 @@ install_targets(/bin knotes )
 ########### next target ###############
 
 set(knotes_local_PART_SRCS resourcelocal_plugin.cpp ${libknotesresources_SRCS})
-qt4_add_dbus_adaptor(knotes_local_PART_SRCS org.kde.KNotes.xml knotesapp.h KNotesApp )
 
 kde4_automoc(${knotes_local_PART_SRCS})
 

@@ -58,7 +58,7 @@ void KNotesLegacy::cleanUp()
         delete test;
 
         if ( version == 1.0 ) {
-            if ( !( checkAccess( configfile, W_OK ) &&
+            if ( !( KStandardDirs::checkAccess( configfile, W_OK ) &&
                     QFile::remove( configfile ) ) )
             {
                 kError(5500) << k_funcinfo << "Could not delete old config file " << configfile << endl;
