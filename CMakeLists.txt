@@ -29,7 +29,7 @@ kde4_add_executable(knotes ${knotes_SRCS})
 
 target_link_libraries(knotes  ${KDE4_KIO_LIBS} kcal kdepim kresources kdeprint kutils )
 
-install_targets(/bin knotes )
+install(TARGETS knotes  DESTINATION ${BIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -46,17 +46,17 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} knotes_local )
 
 target_link_libraries(knotes_local  ${KDE4_KIO_LIBS}  kcal kdeprint )
 
-install_targets(${PLUGIN_INSTALL_DIR} knotes_local )
+install(TARGETS knotes_local  DESTINATION ${PLUGIN_INSTALL_DIR})
 
 
 ########### install files ###############
 
-install_files( ${XDG_APPS_DIR} FILES knotes.desktop )
-install_files( ${KCFG_INSTALL_DIR} FILES knoteconfig.kcfg knotesglobalconfig.kcfg )
-install_files( ${SERVICES_INSTALL_DIR}/kresources/knotes FILES local.desktop )
-install_files( ${SERVICES_INSTALL_DIR}/kresources FILES knotes_manager.desktop )
-install_files( /include FILES KNotesIface.h KNotesAppIface.h )
-install_files( ${DATA_INSTALL_DIR}/knotes FILES knotesappui.rc knotesui.rc )
+install( FILES knotes.desktop  DESTINATION ${XDG_APPS_DIR})
+install( FILES knoteconfig.kcfg knotesglobalconfig.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
+install( FILES local.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources/knotes)
+install( FILES knotes_manager.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources)
+install( FILES KNotesIface.h KNotesAppIface.h  DESTINATION ${INCLUDE_INSTALL_DIR} )
+install( FILES knotesappui.rc knotesui.rc  DESTINATION ${DATA_INSTALL_DIR}/knotes)
 
 
 
