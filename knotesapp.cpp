@@ -382,6 +382,42 @@ void KNotesApp::setColor( const QString& id, const QString& fgColor, const QStri
         kdWarning(5500) << "setColor: no note with id: " << id << endl;
 }
 
+int KNotesApp::width( const QString& id ) const
+{
+    KNote* note = m_noteList[id];
+    if ( note )
+        return note->width();
+    else
+        return 0;
+}
+
+int KNotesApp::height( const QString& id ) const
+{
+    KNote* note = m_noteList[id];
+    if ( note )
+        return note->height();
+    else
+        return 0;
+}
+
+void KNotesApp::move( const QString& id, int x, int y ) const
+{
+    KNote* note = m_noteList[id];
+    if ( note )
+        return note->move( x, y );
+    else
+        kdWarning(5500) << "move: no note with id: " << id << endl;
+}
+
+void KNotesApp::resize( const QString& id, int width, int height ) const
+{
+    KNote* note = m_noteList[id];
+    if ( note )
+        return note->resize( width, height );
+    else
+        kdWarning(5500) << "resize: no note with id: " << id << endl;
+}
+
 void KNotesApp::sync( const QString& app )
 {
     QDictIterator<KNote> it( m_noteList );

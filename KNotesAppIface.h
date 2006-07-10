@@ -158,6 +158,36 @@ k_dcop:
     virtual ASYNC hideAllNotes() const = 0;
 
     /**
+     * Returns the width of a note.
+     * @param noteId the id of the note in question
+     * @return the width as a uint
+     */
+    virtual int width( const QString& noteId ) const = 0;
+
+    /**
+     * Returns the height of a note.
+     * @param noteId the id of the note in question
+     * @return the height as a uint
+     */
+    virtual int height( const QString& noteId ) const = 0;
+
+    /**
+     * Repositions a note.
+     * @param noteId the id of the note to be moved
+     * @param x the new x-coordinate of the note
+     * @param y the new y-coordinate of the note
+     */
+    virtual ASYNC move( const QString& noteId, int x, int y ) const = 0;
+
+    /**
+     * Changes the size of a note.
+     * @param noteId the id of the note to be resized
+     * @param width the new width of the note
+     * @param height the new height of the note
+     */
+    virtual ASYNC resize( const QString& noteId, int width, int height ) const = 0;
+
+    /**
      * This tells KNotes that a specific app has synchronized with all the notes.
      * @param app the app that has synced with KNotes
      */

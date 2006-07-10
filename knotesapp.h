@@ -80,6 +80,12 @@ public:
 
     QMap<QString,QString> notes() const;
 
+    int width( const QString& noteId ) const;
+    int height( const QString& noteId ) const;
+
+    void move( const QString& noteId, int x, int y ) const;
+    void resize( const QString& noteId, int width, int height ) const;
+
     void sync( const QString& app );
     bool isNew( const QString& app, const QString& id ) const;
     bool isModified( const QString& app, const QString& id ) const;
