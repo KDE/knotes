@@ -1,6 +1,10 @@
 ChangeLog for KNotes
 ====================
 
+2006/07/10  Michael Brade <brade@kde.org>
+
+    * added DCOP methods to get and change geometry:
+	  height(), width(), move(), resize()
 
 2006/06/10  Michael Brade <brade@kde.org>
 
