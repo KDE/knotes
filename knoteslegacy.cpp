@@ -39,8 +39,8 @@
 #include "knoteconfig.h"
 #include "version.h"
 
-#include "libkcal/calendarlocal.h"
-#include "libkcal/journal.h"
+#include <kcal/calendarlocal.h>
+#include <kcal/journal.h>
 
 #include <netwm.h>
 

@@ -35,7 +35,7 @@
 
 #include <kresources/resource.h>
 #include <kdepimmacros.h>
-#include <libkcal/alarm.h>
+#include <kcal/alarm.h>
 
 class KConfig;
 class KNotesResourceManager;

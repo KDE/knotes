@@ -35,7 +35,7 @@
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
 
-#include <libkcal/icalformat.h>
+#include <kcal/icalformat.h>
 
 #include "knotes/resourcelocal.h"
 #include "knotes/resourcelocalconfig.h"

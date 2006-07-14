@@ -48,8 +48,8 @@
 #include <kserversocket.h>
 #include <kstdaction.h>
 
-#include <libkcal/journal.h>
-#include <libkcal/calendarlocal.h>
+#include <kcal/journal.h>
+#include <kcal/calendarlocal.h>
 #include <kiconloader.h>
 #include <QtDBus>
 

@@ -34,7 +34,7 @@
 #include "knotes/resourcemanager.h"
 #include "knotes/resourcelocal.h"
 
-#include <libkcal/journal.h>
+#include <kcal/journal.h>
 
 
 KNotesResourceManager::KNotesResourceManager()

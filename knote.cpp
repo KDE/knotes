@@ -58,7 +58,7 @@
 #include <kfiledialog.h>
 #include <kio/netaccess.h>
 
-#include <libkcal/journal.h>
+#include <kcal/journal.h>
 
 #include "knote.h"
 #include "knotebutton.h"

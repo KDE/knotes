@@ -34,7 +34,7 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include <libkcal/calendarresources.h>
+#include <kcal/calendarresources.h>
 
 #include "knotes/resourcemanager.h"
 

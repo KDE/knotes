@@ -37,7 +37,7 @@
 #include <knotes/resourcenotes.h>
 #include <kresources/manager.h>
 
-#include <libkcal/alarm.h>
+#include <kcal/alarm.h>
 #include <Q3Dict>
 class KNotesApp;
 class KNote;

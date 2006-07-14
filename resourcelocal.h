@@ -37,7 +37,7 @@
 
 #include <kurl.h>
 
-#include <libkcal/calendarlocal.h>
+#include <kcal/calendarlocal.h>
 
 
 class ResourceLocal : public ResourceNotes

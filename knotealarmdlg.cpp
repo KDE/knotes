@@ -40,8 +40,8 @@
 #include <libkdepim/kdateedit.h>
 #include <libkdepim/ktimeedit.h>
 
-#include <libkcal/journal.h>
-#include <libkcal/alarm.h>
+#include <kcal/journal.h>
+#include <kcal/alarm.h>
 
 #include "knotealarmdlg.h"
 
