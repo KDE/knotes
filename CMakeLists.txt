@@ -44,7 +44,7 @@ kde4_add_plugin(knotes_local ${knotes_local_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} knotes_local )
 
-target_link_libraries(knotes_local  ${KDE4_KIO_LIBS}  kcal kdeprint )
+target_link_libraries(knotes_local  ${KDE4_KIO_LIBS}  kresources kcal kdeprint )
 
 install(TARGETS knotes_local  DESTINATION ${PLUGIN_INSTALL_DIR})
 
