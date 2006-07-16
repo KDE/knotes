@@ -587,8 +587,8 @@ void KNotesApp::updateNoteActions()
     foreach ( KNote *note, m_notes )
     {
 #warning utf8: use QString
-        KAction *action = new KAction( note->name().replace("&", "&&"),
-                                       KShortcut(), this, SLOT(slotShowNote()), 0, note->noteId().toUtf8() );
+        KAction *action = new KAction( note->name().replace("&", "&&"), 0, note->noteId().toUtf8() );
+        connect(action, SIGNAL(triggered(bool)), SLOT(slotShowNote()));
         KIconEffect effect;
         QPixmap icon = effect.apply(
                 qApp->windowIcon().pixmap( IconSize(K3Icon::Small), IconSize(K3Icon::Small) ),
