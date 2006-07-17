@@ -27,7 +27,7 @@ kde4_automoc(${knotes_SRCS})
 
 kde4_add_executable(knotes ${knotes_SRCS})
 
-target_link_libraries(knotes  ${KDE4_KIO_LIBS} kcal kdepim kresources kdeprint kutils )
+target_link_libraries(knotes  ${KDE4_KIO_LIBS} ${KDE4_KCAL_LIBS} kdepim kresources kdeprint kutils )
 
 install(TARGETS knotes  DESTINATION ${BIN_INSTALL_DIR} )
 
@@ -44,7 +44,7 @@ kde4_add_plugin(knotes_local ${knotes_local_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} knotes_local )
 
-target_link_libraries(knotes_local  ${KDE4_KIO_LIBS}  kresources kcal kdeprint )
+target_link_libraries(knotes_local  ${KDE4_KIO_LIBS}  kresources ${KDE4_KCAL_LIBS} kdeprint )
 
 install(TARGETS knotes_local  DESTINATION ${PLUGIN_INSTALL_DIR})
 
