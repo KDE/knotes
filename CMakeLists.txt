@@ -1,4 +1,4 @@
-
+project(knotes)
 add_subdirectory( pics ) 
 add_subdirectory( icons ) 
 
