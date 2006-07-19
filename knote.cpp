@@ -149,8 +149,8 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     connect(m_keepBelow, SIGNAL(triggered(bool) ), SLOT(slotUpdateKeepAboveBelow()));
     kab->addAction( m_keepBelow );
 
-    m_toDesktop = new KSelectAction( i18n("To Desktop"), 0,
-        this, SLOT(slotPopupActionToDesktop(int)), actionCollection(), "to_desktop" );
+    m_toDesktop = new KSelectAction( i18n("To Desktop"), actionCollection(), "to_desktop" );
+    connect(m_toDesktop, SIGNAL(triggered(int)), SLOT(slotPopupActionToDesktop(int)));
     connect( m_toDesktop->menu(), SIGNAL(aboutToShow()), this, SLOT(slotUpdateDesktopActions()) );
 
     // invisible action to walk through the notes to make this configurable
