@@ -55,7 +55,6 @@ install( FILES knotes.desktop  DESTINATION ${XDG_APPS_DIR})
 install( FILES knoteconfig.kcfg knotesglobalconfig.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
 install( FILES local.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources/knotes)
 install( FILES knotes_manager.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources)
-install( FILES KNotesIface.h KNotesAppIface.h  DESTINATION ${INCLUDE_INSTALL_DIR} )
 install( FILES knotesappui.rc knotesui.rc  DESTINATION ${DATA_INSTALL_DIR}/knotes)
 
 
