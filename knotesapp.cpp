@@ -32,7 +32,7 @@
 #include <kactioncollection.h>
 #include <kxmlguifactory.h>
 #include <kxmlguibuilder.h>
-#include <ksystemtray.h>
+#include <ksystemtrayicon.h>
 #include <klocale.h>
 #include <kiconeffect.h>
 #include <kstandarddirs.h>
@@ -115,7 +115,7 @@ KNotesApp::KNotesApp()
     KWin::setSystemTrayWindowFor( winId(), QX11Info::appRootWindow() );
 #endif
     setToolTip( i18n("KNotes: Sticky notes for KDE") );
-    setPixmap( KSystemTray::loadIcon( "knotes" ) );
+    setPixmap( KSystemTrayIcon::loadIcon( "knotes" ).pixmap() );
 
     // set the initial style
 #warning FIXME
