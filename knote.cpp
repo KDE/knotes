@@ -486,7 +486,7 @@ void KNote::slotFindNext()
     else
     {
         show();
-        KWin::setCurrentDesktop( KWin::windowInfo( winId() ).desktop() );
+        KWin::setCurrentDesktop( KWin::windowInfo( winId(), NET::WMDesktop ).desktop() );
     }
 }
 
@@ -755,7 +755,7 @@ void KNote::slotApplyConfig()
 
 void KNote::slotUpdateKeepAboveBelow()
 {
-    KWin::WindowInfo info( KWin::windowInfo( winId() ) );
+    KWin::WindowInfo info( KWin::windowInfo( winId(), NET::WMState ) );
 
     if ( m_keepAbove->isChecked() )
     {
@@ -789,7 +789,7 @@ void KNote::slotUpdateShowInTaskbar()
 {
 #ifdef Q_WS_X11
     if ( !m_config->showInTaskbar() )
-        KWin::setState( winId(), KWin::windowInfo(winId()).state() | NET::SkipTaskbar );
+        KWin::setState( winId(), KWin::windowInfo(winId(), NET::WMState).state() | NET::SkipTaskbar );
     else
         KWin::clearState( winId(), NET::SkipTaskbar );
 #endif

@@ -524,7 +524,7 @@ void KNotesApp::slotQuit()
 void KNotesApp::showNote( KNote* note ) const
 {
     note->show();
-    KWin::setCurrentDesktop( KWin::windowInfo( note->winId() ).desktop() );
+    KWin::setCurrentDesktop( KWin::windowInfo( note->winId(), NET::WMDesktop ).desktop() );
     KWin::forceActiveWindow( note->winId() );
     note->setFocus();
 }
