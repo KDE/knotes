@@ -51,10 +51,8 @@ public:
 
     void setIncidence( KCal::Journal *journal );
 
-protected:
-    virtual void slotOk();
-
 private slots:
+    void slotOk();
     void slotButtonChanged( int id );
 
 private:
