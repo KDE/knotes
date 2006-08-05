@@ -47,6 +47,7 @@
 #include <kbufferedsocket.h>
 #include <kserversocket.h>
 #include <kstdaction.h>
+#include <kicon.h>
 
 #include <kcal/journal.h>
 #include <kcal/calendarlocal.h>

@@ -31,6 +31,7 @@
 #include <kstdaction.h>
 #include <kcolordialog.h>
 #include <ktoggleaction.h>
+#include <kicon.h>
 
 #include "knoteedit.h"
 

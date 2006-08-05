@@ -59,6 +59,7 @@
 #include <kio/netaccess.h>
 
 #include <kcal/journal.h>
+#include <kicon.h>
 
 #include "knote.h"
 #include "knotebutton.h"
