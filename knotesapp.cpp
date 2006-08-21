@@ -108,7 +108,7 @@ KNotesApp::KNotesApp()
       m_alarm( 0 ), /*m_listener( 0 ),*/ m_find( 0 ), m_findPos( 0 )
 {
     new KNotesAdaptor( this );
-    QDBus::sessionBus().registerObject("/KNotes", this);
+    QDBusConnection::sessionBus().registerObject("/KNotes", this);
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
     // create the dock widget...
