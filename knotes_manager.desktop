@@ -2,6 +2,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Notes
+Name[x-test]=xxNotesxx
 Type=Service
 ServiceTypes=KResources/Manager
 
