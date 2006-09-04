@@ -39,8 +39,7 @@ ResourceLocalConfig::ResourceLocalConfig( QWidget *parent,  const char *name )
 
     QLabel *label = new QLabel( i18n( "Location:" ), this );
     mURL = new KUrlRequester( this );
-    KFile::Mode mode = static_cast<KFile::Mode>( KFile::File |
-                                                 KFile::LocalOnly );
+    KFile::Modes mode = KFile::File | KFile::LocalOnly;
     mURL->setMode( mode );
     layout->addWidget( label );
     layout->addWidget( mURL );
