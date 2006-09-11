@@ -71,7 +71,8 @@ public:
     virtual bool addNote( KCal::Journal * ) = 0;
     virtual bool deleteNote( KCal::Journal * ) = 0;
 
-    virtual KCal::Alarm::List alarms( const QDateTime& from, const QDateTime& to ) = 0;
+    virtual KCal::Alarm::List alarms( const KDateTime& from, const KDateTime& to ) = 0;
+    virtual KDE_DEPRECATED KCal::Alarm::List alarms( const QDateTime& from, const QDateTime& to ) = 0;
 
     void setManager( KNotesResourceManager *manager ) { mManager = manager; }
     KNotesResourceManager *manager() const            { return mManager; }

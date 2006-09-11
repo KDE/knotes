@@ -62,7 +62,8 @@ public:
 
     void deleteNote( KCal::Journal *journal );
 
-    KCal::Alarm::List alarms( const QDateTime& from, const QDateTime& to );
+    KCal::Alarm::List alarms( const KDateTime& from, const KDateTime& to );
+    KDE_DEPRECATED KCal::Alarm::List alarms( const QDateTime& from, const QDateTime& to );
 
     // from the ManagerObserver interface
     virtual void resourceAdded( ResourceNotes *resource );
