@@ -80,6 +80,7 @@ Name[sl]=KNotice
 Name[sv]=Knotes
 Name[ta]=கேகுறிப்புகள்
 Name[th]=บันทึกช่วยจำ
+Name[zh_TW]=KNotes 便利貼
 
 X-KDE-StartupNotify=true
 X-DCOP-ServiceType=Unique
