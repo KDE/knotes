@@ -25,7 +25,9 @@
 #include <QTabWidget>
 //Added by qt3to4:
 #include <QGridLayout>
-#include <Q3GroupBox>
+#include <QGroupBox>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
 #include <kapplication.h>
 #include <kconfig.h>
@@ -227,35 +229,51 @@ QWidget *KNoteConfigDlg::makeActionsPage()
 QWidget *KNoteConfigDlg::makeNetworkPage()
 {
     QWidget *networkPage = new QWidget();
-    QGridLayout *layout = new QGridLayout( networkPage );
+    QVBoxLayout *layout = new QVBoxLayout;
     layout->setSpacing( spacingHint() );
     layout->setMargin( 0 );
 
-    Q3GroupBox *incoming = new Q3GroupBox( i18n("Incoming Notes"), networkPage );
-    layout->addWidget( incoming, 0, 0, 1, 2 );
 
-    QCheckBox *tmpChkB=new QCheckBox( i18n("Accept incoming notes"), incoming);
+    QGroupBox *incoming = new QGroupBox( i18n("Incoming Notes"));
+    QHBoxLayout *tmpLayout = new QHBoxLayout;
+
+
+    QCheckBox *tmpChkB=new QCheckBox( i18n("Accept incoming notes"));
     tmpChkB->setObjectName( "kcfg_ReceiveNotes" );
+    tmpLayout->addWidget(tmpChkB);
+    incoming->setLayout(tmpLayout);
+    layout->addWidget(incoming);
 
-    Q3GroupBox *outgoing = new Q3GroupBox( i18n("Outgoing Notes"), networkPage );
-    layout->addWidget( outgoing, 1, 0, 1, 2 );
 
-    QLabel *label_SenderID = new QLabel( i18n("&Sender ID:"), outgoing );
+    QGroupBox *outgoing = new QGroupBox( i18n("Outgoing Notes") );
+    tmpLayout = new QHBoxLayout;
+
+    QLabel *label_SenderID = new QLabel( i18n("&Sender ID:"));
     label_SenderID->setObjectName( "label_SenderID" );
-    KLineEdit *kcfg_SenderID = new KLineEdit( outgoing );
+    KLineEdit *kcfg_SenderID = new KLineEdit;
     kcfg_SenderID->setObjectName( "kcfg_SenderID" );
     label_SenderID->setBuddy( kcfg_SenderID );
+    tmpLayout->addWidget(label_SenderID);
+    tmpLayout->addWidget(kcfg_SenderID);
+    outgoing->setLayout(tmpLayout);
+    layout->addWidget(outgoing);
 
-    QLabel *label_Port = new QLabel( i18n("&Port:"), networkPage );
+    
+    tmpLayout = new QHBoxLayout;
+
+    QLabel *label_Port = new QLabel( i18n("&Port:") );
     label_Port->setObjectName( "label_Port" );
-    layout->addWidget( label_Port, 2, 0 );
 
-    KIntNumInput *kcfg_Port = new KIntNumInput( networkPage );
+    tmpLayout->addWidget(label_Port);
+
+    KIntNumInput *kcfg_Port = new KIntNumInput;
     kcfg_Port->setObjectName( "kcfg_Port" );
     kcfg_Port->setRange( 0, 65535, 1, false );
     label_Port->setBuddy( kcfg_Port );
-    layout->addWidget( kcfg_Port, 2, 1 );
+    tmpLayout->addWidget(kcfg_Port);
+    layout->addLayout(tmpLayout);
 
+    networkPage->setLayout(layout);
     return networkPage;
 }
 
