@@ -21,7 +21,7 @@ qt4_add_dbus_adaptor(knotes_SRCS org.kde.KNotes.xml knotesapp.h KNotesApp )
 
 set( libknotesconfig_SRCS knoteconfig.kcfgc knotesglobalconfig.kcfgc )
 
-kde4_add_kcfg_files(knotes_SRCS ${libknotesconfig_SRCS})
+kde4_add_kcfg_files(knotes knotes_SRCS ${libknotesconfig_SRCS})
 
 kde4_automoc(knotes ${knotes_SRCS})
 
@@ -38,7 +38,7 @@ set(knotes_local_PART_SRCS resourcelocal_plugin.cpp ${libknotesresources_SRCS})
 
 kde4_automoc(knotes_local ${knotes_local_PART_SRCS})
 
-kde4_add_kcfg_files(knotes_local_PART_SRCS ${libknotesconfig_SRCS})
+kde4_add_kcfg_files(knotes_local knotes_local_PART_SRCS ${libknotesconfig_SRCS})
 
 kde4_add_plugin(knotes_local ${knotes_local_PART_SRCS})
 
