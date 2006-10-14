@@ -65,7 +65,6 @@ public:
     virtual bool deleteNote( KCal::Journal* );
 
     virtual KCal::Alarm::List alarms( const KDateTime& from, const KDateTime& to );
-    virtual KDE_DEPRECATED KCal::Alarm::List alarms( const QDateTime& from, const QDateTime& to );
 
 protected:
     KCal::CalendarLocal mCalendar;

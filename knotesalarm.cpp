@@ -59,8 +59,9 @@ void KNotesAlarm::checkAlarms()
     if ( !from.isValid() )
         from.setTime_t( 0 );
 
-    KNotesGlobalConfig::self()->setAlarmsLastChecked( QDateTime::currentDateTime() );
-    QList<KCal::Alarm *> alarms = m_manager->alarms( from, KNotesGlobalConfig::self()->alarmsLastChecked() );
+    KDateTime now = KDateTime::currentLocalDateTime();
+    KNotesGlobalConfig::self()->setAlarmsLastChecked( now.dateTime() );
+    QList<KCal::Alarm *> alarms = m_manager->alarms( KDateTime( from, KDateTime::LocalZone ), now );
 
     QStringList notes;
     QList<KCal::Alarm *>::ConstIterator it;

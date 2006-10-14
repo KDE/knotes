@@ -130,10 +130,3 @@ KCal::Alarm::List ResourceLocal::alarms( const KDateTime& from, const KDateTime&
 
     return alarms;
 }
-
-// DEPRECATED methods
-#include <kcal/icaltimezones.h>
-KCal::Alarm::List ResourceLocal::alarms( const QDateTime& from, const QDateTime& to )
-{
-    return alarms(KDateTime(from, mCalendar.timeSpec()), KDateTime(to, mCalendar.timeSpec()));
-}

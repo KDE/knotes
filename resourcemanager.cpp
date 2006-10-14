@@ -155,20 +155,3 @@ void KNotesResourceManager::resourceDeleted( ResourceNotes *resource )
 
 
 #include "resourcemanager.moc"
-
-// DEPRECATED methods
-KCal::Alarm::List KNotesResourceManager::alarms( const QDateTime& from, const QDateTime& to )
-{
-    KCal::Alarm::List result;
-
-    KRES::Manager<ResourceNotes>::ActiveIterator it;
-    for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it )
-    {
-        KCal::Alarm::List list = (*it)->alarms( from, to );
-        KCal::Alarm::List::Iterator it;
-        for ( it = list.begin(); it != list.end(); ++it )
-            result.append( *it );
-    }
-
-    return result;
-}
