@@ -698,7 +698,8 @@ void KNote::slotSaveAs()
         convert->setText( i18n("Save note as plain text") );
     }
 
-    KFileDialog dlg( KUrl(), QString::null, this, convert );
+    KUrl url;
+    KFileDialog dlg( url, QString(), this, convert );
     dlg.setOperationMode( KFileDialog::Saving );
     dlg.setCaption( i18n("Save As") );
     dlg.exec();
