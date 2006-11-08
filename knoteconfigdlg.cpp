@@ -53,9 +53,10 @@ KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
     setDefaultButton( Ok );
 
     setCaption( title );
+#ifdef Q_WS_X11    
     KWin::setIcons( winId(), qApp->windowIcon().pixmap( IconSize(K3Icon::Desktop),IconSize(K3Icon::Desktop) ),
                              qApp->windowIcon().pixmap( IconSize(K3Icon::Small),IconSize(K3Icon::Small) ) );
-
+#endif
     //setIconListAllVisible( true );
     showButtonSeparator( true );
 
