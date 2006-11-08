@@ -349,7 +349,9 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
                                  KIconEffect::Colorize, 1, m_config->bgColor(), false );
     QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap( IconSize(K3Icon::Small), IconSize(K3Icon::Small) ),
                                      KIconEffect::Colorize, 1, m_config->bgColor(), false );
+#ifdef Q_WS_X11    
     KWin::setIcons( winId(), icon, miniIcon );
+#endif    
 }
 
 KNote::~KNote()
@@ -487,7 +489,9 @@ void KNote::slotFindNext()
     else
     {
         show();
+#ifdef Q_WS_X11	
         KWin::setCurrentDesktop( KWin::windowInfo( winId(), NET::WMDesktop ).desktop() );
+#endif	
     }
 }
 
@@ -757,8 +761,9 @@ void KNote::slotApplyConfig()
 
 void KNote::slotUpdateKeepAboveBelow()
 {
+#ifdef Q_WS_X11	
     KWin::WindowInfo info( KWin::windowInfo( winId(), NET::WMState ) );
-
+#endif
     if ( m_keepAbove->isChecked() )
     {
         m_config->setKeepAbove( true );
@@ -778,8 +783,9 @@ void KNote::slotUpdateKeepAboveBelow()
     else
     {
         m_config->setKeepAbove( false );
+#ifdef Q_WS_X11	
         KWin::clearState( winId(), NET::KeepAbove );
-
+#endif
         m_config->setKeepBelow( false );
 #ifdef Q_WS_X11
         KWin::clearState( winId(), NET::KeepBelow );
@@ -887,8 +893,9 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
     QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap( IconSize(K3Icon::Small),
                                                                 IconSize(K3Icon::Small) ),
                                      KIconEffect::Colorize, 1, bg, false );
+#ifdef Q_WS_X11
     KWin::setIcons( winId(), icon, miniIcon );
-
+#endif
     // update the color of the title
     updateFocus();
     emit sigColorChanged();
@@ -1075,10 +1082,10 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
         if ( ev->type() == QEvent::MouseButtonPress &&
              (e->button() == Qt::LeftButton || e->button() == Qt::MidButton))
         {
+#ifdef Q_WS_X11		
             e->button() == Qt::LeftButton ? KWin::raiseWindow( winId() )
                                       : KWin::lowerWindow( winId() );
 
-#ifdef Q_WS_X11
             XUngrabPointer( QX11Info::display(), QX11Info::appTime() );
             NETRootInfo wm_root( QX11Info::display(), NET::WMMoveResize );
             wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(), NET::Move );
