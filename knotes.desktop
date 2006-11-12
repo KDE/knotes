@@ -14,5 +14,5 @@ Name=KNotes
 Name[x-test]=xxKNotesxx
 
 X-KDE-StartupNotify=true
-X-DCOP-ServiceType=Unique
+X-DBUS-StartupType=Unique
 Categories=Qt;KDE;Utility;X-KDE-Utilities-Desktop;
