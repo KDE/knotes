@@ -34,7 +34,7 @@
 #define RESOURCENOTES_H
 
 #include <kresources/resource.h>
-#include <kdepimmacros.h>
+#include <kdemacros.h>
 #include <kcal/alarm.h>
 
 class KConfig;
