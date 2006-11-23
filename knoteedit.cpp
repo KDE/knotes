@@ -27,11 +27,11 @@
 #include <kfontaction.h>
 #include <kfontsizeaction.h>
 #include <kmenu.h>
-#include <k3urldrag.h>
 #include <kstdaction.h>
 #include <kcolordialog.h>
 #include <ktoggleaction.h>
 #include <kicon.h>
+#include <kurl.h>
 
 #include "knoteedit.h"
 
@@ -345,7 +345,8 @@ void KNoteEdit::contextMenuEvent( QContextMenuEvent *e )
 
 void KNoteEdit::dragEnterEvent( QDragEnterEvent *e )
 {
-    if ( K3URLDrag::canDecode( e ) )
+    const QMimeData *md = e->mimeData();
+    if ( KUrl::List::canDecode( md ) )
         e->accept();
     else
         KTextEdit::dragEnterEvent( e );
@@ -353,9 +354,9 @@ void KNoteEdit::dragEnterEvent( QDragEnterEvent *e )
 
 void KNoteEdit::dropEvent( QDropEvent *e )
 {
-    KUrl::List list;
-
-    if ( K3URLDrag::decode( e, list ) )
+    const QMimeData *md = e->mimeData();
+    if ( KUrl::List::canDecode( md ) ) {
+        KUrl::List list = KUrl::List::fromMimeData( md );
         for ( KUrl::List::Iterator it = list.begin(); it != list.end(); ++it )
         {
             if ( it != list.begin() )
@@ -363,7 +364,7 @@ void KNoteEdit::dropEvent( QDropEvent *e )
 
             insertPlainText( (*it).prettyUrl() );
         }
-    else
+    } else
         KTextEdit::dropEvent( e );
 }
 
