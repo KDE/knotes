@@ -1028,7 +1028,7 @@ void KNote::closeEvent( QCloseEvent * )
 void KNote::dragEnterEvent( QDragEnterEvent *e )
 {
     if ( !m_config->readOnly() )
-        e->setAccepted( K3ColorDrag::canDecode( e ) );
+        e->setAccepted( e->mimeData()->hasColor() );
 }
 
 void KNote::dropEvent( QDropEvent *e )
@@ -1036,9 +1036,10 @@ void KNote::dropEvent( QDropEvent *e )
     if ( m_config->readOnly() )
         return;
 
-    QColor bg;
-    if ( K3ColorDrag::decode( e, bg ) )
+    const QMimeData *md = e->mimeData();
+    if ( md->hasColor() ) 
     {
+        QColor bg =  qvariant_cast<QColor>( md->colorData() );
         setColor( palette().color( foregroundRole() ), bg );
         m_journal->setCustomProperty( "KNotes", "BgColor", bg.name() );
         m_config->setBgColor( bg );
@@ -1059,14 +1060,14 @@ bool KNote::event( QEvent *ev )
 bool KNote::eventFilter( QObject *o, QEvent *ev )
 {
     if ( ev->type() == QEvent::DragEnter &&
-         K3ColorDrag::canDecode( static_cast<QDragEnterEvent *>(ev) ) )
+         static_cast<QDragEnterEvent*>(ev)->mimeData()->hasColor() )
     {
         dragEnterEvent( static_cast<QDragEnterEvent *>(ev) );
         return true;
     }
 
     if ( ev->type() == QEvent::Drop &&
-         K3ColorDrag::canDecode( static_cast<QDropEvent *>(ev) ) )
+         static_cast<QDropEvent *>(ev)->mimeData()->hasColor() )
     {
         dropEvent( static_cast<QDropEvent *>(ev) );
         return true;
