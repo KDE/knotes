@@ -73,13 +73,13 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
 
     // create the actions modifying the text format
     m_textBold = new KToggleAction(KIcon("text_bold"),  i18n("Bold"), actions, "format_bold" );
-    m_textBold->setShortcut(Qt::CTRL + Qt::Key_B);
+    m_textBold->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_B));
     m_textItalic = new KToggleAction(KIcon("text_italic"),  i18n("Italic"), actions, "format_italic" );
-    m_textItalic->setShortcut(Qt::CTRL + Qt::Key_I);
+    m_textItalic->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
     m_textUnderline = new KToggleAction(KIcon("text_under"),  i18n("Underline"), actions, "format_underline" );
-    m_textUnderline->setShortcut(Qt::CTRL + Qt::Key_U);
+    m_textUnderline->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_U));
     m_textStrikeOut = new KToggleAction(KIcon("text_strike"),  i18n("Strike Out"), actions, "format_strikeout" );
-    m_textStrikeOut->setShortcut(Qt::CTRL + Qt::Key_S);
+    m_textStrikeOut->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
 
     connect( m_textBold, SIGNAL(toggled(bool)), SLOT(textBold(bool)) );
     connect( m_textItalic, SIGNAL(toggled(bool)), SLOT(setFontItalic(bool)) );
@@ -88,17 +88,17 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
 
     m_textAlignLeft = new KToggleAction(KIcon("text_left"),  i18n("Align Left"), actions, "format_alignleft" );
     connect(m_textAlignLeft, SIGNAL(triggered(bool) ), SLOT(textAlignLeft()));
-    m_textAlignLeft->setShortcut(Qt::ALT + Qt::Key_L);
+    m_textAlignLeft->setShortcut(QKeySequence(Qt::ALT + Qt::Key_L));
     m_textAlignLeft->setChecked( true ); // just a dummy, will be updated later
     m_textAlignCenter = new KToggleAction(KIcon("text_center"),  i18n("Align Center"), actions, "format_aligncenter" );
     connect(m_textAlignCenter, SIGNAL(triggered(bool) ), SLOT(textAlignCenter()));
-    m_textAlignCenter->setShortcut(Qt::ALT + Qt::Key_C);
+    m_textAlignCenter->setShortcut(QKeySequence(Qt::ALT + Qt::Key_C));
     m_textAlignRight = new KToggleAction(KIcon("text_right"),  i18n("Align Right"), actions, "format_alignright" );
     connect(m_textAlignRight, SIGNAL(triggered(bool) ), SLOT(textAlignRight()));
-    m_textAlignRight->setShortcut(Qt::ALT + Qt::Key_R);
+    m_textAlignRight->setShortcut(QKeySequence(Qt::ALT + Qt::Key_R));
     m_textAlignBlock = new KToggleAction(KIcon("text_block"),  i18n("Align Block"), actions, "format_alignblock" );
     connect(m_textAlignBlock, SIGNAL(triggered(bool) ), SLOT(textAlignBlock()));
-    m_textAlignBlock->setShortcut(Qt::ALT + Qt::Key_B);
+    m_textAlignBlock->setShortcut(QKeySequence(Qt::ALT + Qt::Key_B));
 
     QActionGroup *group = new QActionGroup( this );
     group->addAction( m_textAlignLeft );

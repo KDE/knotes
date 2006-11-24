@@ -120,7 +120,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     m_readOnly->setCheckedState( KGuiItem( i18n("Unlock"), "unlock" ) );
     action = new KAction(KIcon("fileclose"),  i18n("Hide"), actionCollection(), "hide_note" );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotClose()));
-    action->setShortcut(Qt::Key_Escape);
+    action->setShortcut(QKeySequence(Qt::Key_Escape));
     action = new KAction(KIcon("knotes_delete"),  i18n("Delete"), actionCollection(), "delete_note" );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotKill()));
 
@@ -158,7 +158,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
 //FIXME: this backtab thing doesn't work anymore!
     action = new KAction( i18n("Walk Through Notes"), actionCollection(), "walk_notes" );
     connect(action, SIGNAL(triggered(bool)), SIGNAL(sigShowNextNote()));
-    action->setShortcut(Qt::SHIFT+Qt::Key_Backtab);
+    action->setShortcut(QKeySequence(Qt::SHIFT+Qt::Key_Backtab));
 
     // create the note header, button and label...
     m_label = new QLabel( this );
