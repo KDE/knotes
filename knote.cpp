@@ -181,13 +181,16 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     KXMLGUIFactory factory( &builder, this );
     factory.addClient( this );
 
-    m_menu = static_cast<KMenu*>(factory.container( "note_context", this ));
-    m_editor->setContextMenu( static_cast<KMenu*>(factory.container( "note_edit", this )) );
+    m_menu = dynamic_cast<KMenu*>(factory.container( "note_context", this ));
+    m_editor->setContextMenu( dynamic_cast<KMenu*>(factory.container( "note_edit", this )) );
 
-    m_tool = static_cast<KToolBar*>(factory.container( "note_tool", this ));
-    m_tool->setIconSize( QSize(10,10) );
-    m_tool->setFixedHeight( 16 );
-    m_tool->setToolButtonStyle( Qt::ToolButtonIconOnly );
+    m_tool = dynamic_cast<KToolBar*>(factory.container( "note_tool", this ));
+
+    if ( m_tool ) {
+      m_tool->setIconSize( QSize(10,10) );
+      m_tool->setFixedHeight( 16 );
+      m_tool->setToolButtonStyle( Qt::ToolButtonIconOnly );
+    }
 
     // if there was just a way of making KComboBox adhere the toolbar height...
     foreach ( KComboBox *combo, m_tool->findChildren<KComboBox *>() )
@@ -349,9 +352,9 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
                                  KIconEffect::Colorize, 1, m_config->bgColor(), false );
     QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap( IconSize(K3Icon::Small), IconSize(K3Icon::Small) ),
                                      KIconEffect::Colorize, 1, m_config->bgColor(), false );
-#ifdef Q_WS_X11    
+#ifdef Q_WS_X11
     KWin::setIcons( winId(), icon, miniIcon );
-#endif    
+#endif
 }
 
 KNote::~KNote()
@@ -406,7 +409,10 @@ void KNote::saveData()
 void KNote::saveConfig() const
 {
     m_config->setWidth( width() );
-    m_config->setHeight( height() - (m_tool->isHidden() ? 0 : m_tool->height()) );
+    if ( m_tool )
+      m_config->setHeight( height() - (m_tool->isHidden() ? 0 : m_tool->height()) );
+    else
+      m_config->setHeight( 0 );
     m_config->setPosition( pos() );
 
 #ifdef Q_WS_X11
@@ -489,9 +495,9 @@ void KNote::slotFindNext()
     else
     {
         show();
-#ifdef Q_WS_X11	
+#ifdef Q_WS_X11
         KWin::setCurrentDesktop( KWin::windowInfo( winId(), NET::WMDesktop ).desktop() );
-#endif	
+#endif
     }
 }
 
@@ -761,7 +767,7 @@ void KNote::slotApplyConfig()
 
 void KNote::slotUpdateKeepAboveBelow()
 {
-#ifdef Q_WS_X11	
+#ifdef Q_WS_X11
     KWin::WindowInfo info( KWin::windowInfo( winId(), NET::WMState ) );
 #endif
     if ( m_keepAbove->isChecked() )
@@ -783,7 +789,7 @@ void KNote::slotUpdateKeepAboveBelow()
     else
     {
         m_config->setKeepAbove( false );
-#ifdef Q_WS_X11	
+#ifdef Q_WS_X11
         KWin::clearState( winId(), NET::KeepAbove );
 #endif
         m_config->setKeepBelow( false );
@@ -920,13 +926,13 @@ void KNote::updateFocus()
 
         if ( !m_editor->isReadOnly() )
         {
-            if ( m_tool->isHidden() && m_editor->acceptRichText() )
+            if ( m_tool && m_tool->isHidden() && m_editor->acceptRichText() )
             {
                 m_tool->show();
                 setGeometry( x(), y(), width(), height() + m_tool->height() );
             }
         }
-        else if ( !m_tool->isHidden() )
+        else if ( m_tool && !m_tool->isHidden() )
         {
             m_tool->hide();
             setGeometry( x(), y(), width(), height() - m_tool->height() );
@@ -938,7 +944,7 @@ void KNote::updateFocus()
         m_button->hide();
         m_grip->hide();
 
-        if ( !m_tool->isHidden() )
+        if ( m_tool && !m_tool->isHidden() )
         {
             m_tool->hide();
             setGeometry( x(), y(), width(), height() - m_tool->height() );
@@ -974,19 +980,21 @@ void KNote::updateLayout()
         QPoint( contentsRect().x(),
                 contentsRect().y() + headerHeight ),
         QPoint( contentsRect().right(),
-                contentsRect().bottom() - (m_tool->isHidden() ? 0 : m_tool->height()) )
+                contentsRect().bottom() - ( m_tool ? (m_tool->isHidden() ? 0 : m_tool->height()) : 0 ) )
     ) );
 
-    m_tool->setGeometry(
-        contentsRect().x(),
-        contentsRect().bottom() - m_tool->height() + 1,
-        contentsRect().width(),
-        m_tool->height()
-    );
+    if( m_tool ) {
+      m_tool->setGeometry(
+          contentsRect().x(),
+          contentsRect().bottom() - m_tool->height() + 1,
+          contentsRect().width(),
+          m_tool->height()
+      );
+    }
 
     setMinimumSize(
         /* FIXME m_editor->cornerWidget()->width() + */ margin*2,
-        headerHeight + (m_tool->isHidden() ? 0 : m_tool->height()) +
+        headerHeight + ( m_tool ? (m_tool->isHidden() ? 0 : m_tool->height()) : 0 ) +
                 /* m_editor->cornerWidget()->height() + */ margin*2
     );
 
@@ -1083,7 +1091,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
         if ( ev->type() == QEvent::MouseButtonPress &&
              (e->button() == Qt::LeftButton || e->button() == Qt::MidButton))
         {
-#ifdef Q_WS_X11		
+#ifdef Q_WS_X11
             e->button() == Qt::LeftButton ? KWin::raiseWindow( winId() )
                                       : KWin::lowerWindow( winId() );
 
