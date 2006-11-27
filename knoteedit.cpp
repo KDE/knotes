@@ -137,12 +137,12 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     ((QAction*)m_textColor)->setIcon(pix);
     connect(m_textColor, SIGNAL(triggered(bool)), SLOT(slotTextColor()));
 
-    m_textFont = new KFontAction( i18n("Text Font"), "text", 0,
+    m_textFont = new KFontAction( i18n("Text Font"), "text", KShortcut(),
                                   actions, "format_font" );
     connect( m_textFont, SIGNAL(triggered( const QString & )),
              this, SLOT(setFontFamily( const QString & )) );
 
-    m_textSize = new KFontSizeAction( i18n("Text Size"), 0, 0,
+    m_textSize = new KFontSizeAction( i18n("Text Size"), 0, KShortcut(),
                                       actions, "format_size" );
     connect( m_textSize, SIGNAL(fontSizeChanged( int )),
              this, SLOT(setFontWeight ( int )) );
