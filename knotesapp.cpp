@@ -97,7 +97,7 @@ private:
 };
 
 
-static bool kActionLessThan( const KAction *a1, const KAction *a2 )
+static bool qActionLessThan( const QAction *a1, const QAction *a2 )
 {
     return a1->text() < a2->text();
 }
@@ -489,16 +489,14 @@ void KNotesApp::slotConfigureAccels()
     if ( m_notes.isEmpty() )
         return;
 
-    QList<KAction *> list = (*it)->actionCollection()->actions();
-    foreach ( KAction *action, list )
+    foreach ( QAction *action, (*it)->actionCollection()->actions() )
     {
         it = m_notes.begin();
         for ( ++it; it != m_notes.end(); ++it )
         {
 #warning Port KAction::action() to QString
-            KAction *toChange = (*it)->actionCollection()->action( action->objectName().toUtf8().data() );
-            if ( toChange->shortcut() != action->shortcut() )
-                toChange->setShortcut( action->shortcut() );
+            QAction *toChange = (*it)->actionCollection()->action( action->objectName().toUtf8().data() );
+            toChange->setShortcuts( action->shortcuts() );
         }
     }
 }
@@ -602,7 +600,7 @@ void KNotesApp::updateNoteActions()
         m_noteActions.append( action );
     }
 
-	qSort( m_noteActions.begin(), m_noteActions.end(), kActionLessThan );
+	qSort( m_noteActions.begin(), m_noteActions.end(), qActionLessThan );
 
     if ( m_noteActions.isEmpty() )
     {
@@ -615,11 +613,12 @@ void KNotesApp::updateNoteActions()
 
 void KNotesApp::updateGlobalAccels()
 {
+#warning Port me!
+/*
     if ( m_globalAccel->isEnabled() )
     {
-        KAction *action = actionCollection()->action( "new_note" );
-#warning Port me!
-/*        if ( action )
+        QAction *action = actionCollection()->action( "new_note" );
+        if ( action )
             action->setShortcut( m_globalAccel->shortcut( "global_new_note" ) );
         action = actionCollection()->action( "new_note_clipboard" );
         if ( action )
@@ -631,11 +630,11 @@ void KNotesApp::updateGlobalAccels()
         if ( action )
             action->setShortcut( m_globalAccel->shortcut( "global_show_all_notes" ) );
 
-        m_globalAccel->updateConnections();*/
+        m_globalAccel->updateConnections();
     }
     else
     {
-        KAction *action = actionCollection()->action( "new_note" );
+        QAction *action = actionCollection()->action( "new_note" );
         if ( action )
             action->setShortcut( 0 );
         action = actionCollection()->action( "new_note_clipboard" );
@@ -648,6 +647,7 @@ void KNotesApp::updateGlobalAccels()
         if ( action )
             action->setShortcut( 0 );
     }
+*/
 }
 
 void KNotesApp::updateNetworkListener()

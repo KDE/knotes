@@ -117,7 +117,7 @@ private slots:
 
 private:
     QMap<QString, KNote *> m_notes;
-    QList<KAction *>       m_noteActions;
+    QList<QAction *>       m_noteActions;
 
     KNotesResourceManager  *m_manager;
     KNotesAlarm            *m_alarm;
