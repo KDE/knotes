@@ -200,7 +200,8 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
         combo->setFont( font );
         combo->setFixedHeight( 14 );
     }
-    m_tool->hide();
+    if (m_tool)
+       m_tool->hide();
 
     setFocusProxy( m_editor );
 
