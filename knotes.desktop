@@ -8,7 +8,6 @@ Type=Application
 
 GenericName=Popup Notes
 GenericName[af]=Opspring Notas
-GenericName[ar]=ملاحظات قافزة
 GenericName[bg]=Лепящи се бележки
 GenericName[bs]=Popup bilješke
 GenericName[ca]=Notes emergents
@@ -66,7 +65,6 @@ GenericName[zu]=Amapheshana Abhaliwe Aziphumelayo
 
 Name=KNotes
 Name[af]=Knotas
-Name[ar]=كنوتس
 Name[be]=K Нататкі
 Name[cy]=KNodiadau
 Name[eo]=Notoj
