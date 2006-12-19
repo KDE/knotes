@@ -36,7 +36,7 @@
 #include <kactioncollection.h>
 #include <kdebug.h>
 #include <kaction.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 #include <kcombobox.h>
 #include <kselectaction.h>
 #include <ktoggleaction.h>
@@ -135,7 +135,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     connect(action, SIGNAL(triggered(bool)), SLOT(slotMail()));
     action = new KAction(KIcon("filesaveas"),  i18n("Save As..."), actionCollection(), "save_note" );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotSaveAs()));
-    KStdAction::print( this, SLOT(slotPrint()), actionCollection(), "print_note" );
+    KStandardAction::print( this, SLOT(slotPrint()), actionCollection(), "print_note" );
     action = new KAction(KIcon("configure"),  i18n("Preferences..."), actionCollection(), "configure_note" );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotPreferences()));
 

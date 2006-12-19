@@ -27,7 +27,7 @@
 #include <kfontaction.h>
 #include <kfontsizeaction.h>
 #include <kmenu.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 #include <kcolordialog.h>
 #include <ktoggleaction.h>
 #include <kicon.h>
@@ -49,14 +49,14 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     setAutoFormatting( AutoAll );
 
     // create the actions for the RMB menu
-    KAction* undo = KStdAction::undo( this, SLOT(undo()), actions );
-    KAction* redo = KStdAction::redo( this, SLOT(redo()), actions );
+    KAction* undo = KStandardAction::undo( this, SLOT(undo()), actions );
+    KAction* redo = KStandardAction::redo( this, SLOT(redo()), actions );
     undo->setEnabled( document()->isUndoAvailable() );
     redo->setEnabled( document()->isRedoAvailable() );
 
-    m_cut = KStdAction::cut( this, SLOT(cut()), actions );
-    m_copy = KStdAction::copy( this, SLOT(copy()), actions );
-    m_paste = KStdAction::paste( this, SLOT(paste()), actions );
+    m_cut = KStandardAction::cut( this, SLOT(cut()), actions );
+    m_copy = KStandardAction::copy( this, SLOT(copy()), actions );
+    m_paste = KStandardAction::paste( this, SLOT(paste()), actions );
 
     m_cut->setEnabled( false );
     m_copy->setEnabled( false );
@@ -68,8 +68,8 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     connect( this, SIGNAL(copyAvailable(bool)), m_cut, SLOT(setEnabled(bool)) );
     connect( this, SIGNAL(copyAvailable(bool)), m_copy, SLOT(setEnabled(bool)) );
 
-    KStdAction::clear( this, SLOT(clear()), actions );
-    KStdAction::selectAll( this, SLOT(selectAll()), actions );
+    KStandardAction::clear( this, SLOT(clear()), actions );
+    KStandardAction::selectAll( this, SLOT(selectAll()), actions );
 
     // create the actions modifying the text format
     m_textBold = new KToggleAction(KIcon("text_bold"),  i18n("Bold"), actions, "format_bold" );

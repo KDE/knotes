@@ -46,7 +46,7 @@
 #include <kwin.h>
 #include <kbufferedsocket.h>
 #include <kserversocket.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 #include <kicon.h>
 
 #include <kcal/journal.h>
@@ -133,11 +133,11 @@ KNotesApp::KNotesApp()
     connect(action, SIGNAL(triggered(bool)), SLOT(hideAllNotes()));
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
-    KStdAction::find( this, SLOT(slotOpenFindDialog()), actionCollection() );
-    KStdAction::preferences( this, SLOT(slotPreferences()), actionCollection() );
-    KStdAction::keyBindings( this, SLOT(slotConfigureAccels()), actionCollection() );
+    KStandardAction::find( this, SLOT(slotOpenFindDialog()), actionCollection() );
+    KStandardAction::preferences( this, SLOT(slotPreferences()), actionCollection() );
+    KStandardAction::keyBindings( this, SLOT(slotConfigureAccels()), actionCollection() );
     //FIXME: no shortcut removing!?
-    KStdAction::quit( this, SLOT(slotQuit()), actionCollection() )->setShortcut( 0 );
+    KStandardAction::quit( this, SLOT(slotQuit()), actionCollection() )->setShortcut( 0 );
 
     setXMLFile( instance()->instanceName() + "appui.rc" );
 
