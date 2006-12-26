@@ -56,5 +56,5 @@ install( FILES knoteconfig.kcfg knotesglobalconfig.kcfg  DESTINATION ${KCFG_INST
 install( FILES local.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources/knotes)
 install( FILES knotes_manager.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources)
 install( FILES knotesappui.rc knotesui.rc  DESTINATION ${DATA_INSTALL_DIR}/knotes)
-
+install( FILES org.kde.KNotes.xml DESTINATION ${DBUS_INTERFACES_DIR}) 
 
