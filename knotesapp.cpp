@@ -247,7 +247,7 @@ bool KNotesApp::commitData( QSessionManager& )
     return true;
 }
 
-// -------------------- public DCOP interface -------------------- //
+// -------------------- public D-Bus interface -------------------- //
 
 QString KNotesApp::newNote( const QString& name, const QString& text )
 {
