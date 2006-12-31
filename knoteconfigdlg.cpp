@@ -202,8 +202,8 @@ QWidget *KNoteConfigDlg::makeEditorPage( bool defaults )
 QWidget *KNoteConfigDlg::makeDefaultsPage()
 {
     QTabWidget *defaultsPage = new QTabWidget();
-    defaultsPage->addTab( makeDisplayPage( true ), SmallIconSet( "knotes" ), i18n("Displa&y") );
-    defaultsPage->addTab( makeEditorPage( true ), SmallIconSet( "edit" ), i18n("&Editor") );
+    defaultsPage->addTab( makeDisplayPage( true ), KIcon( "knotes" ), i18n("Displa&y") );
+    defaultsPage->addTab( makeEditorPage( true ), KIcon( "edit" ), i18n("&Editor") );
 
     return defaultsPage;
 }
