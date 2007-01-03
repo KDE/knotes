@@ -27,6 +27,7 @@
 #include <QLabel>
 #include <QDomDocument>
 
+#include <ksessionmanager.h>
 #include <kapplication.h>
 #include <kxmlguiclient.h>
 
@@ -52,7 +53,7 @@ namespace KNetwork {
 }
 
 
-class KNotesApp : public QLabel, public KSessionManaged, virtual public KXMLGUIClient
+class KNotesApp : public QLabel, public KSessionManager, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:
