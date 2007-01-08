@@ -25,7 +25,6 @@
 #include <QSizePolicy>
 #include <QPixmap>
 
-#include <kapplication.h>
 #include <kicontheme.h>
 #include <kiconloader.h>
 
@@ -41,7 +40,7 @@ KNoteButton::KNoteButton( const QString& icon, QWidget *parent )
     setFlat( true );
 
     if ( !icon.isEmpty() )
-        setIcon( kapp->iconLoader()->loadIconSet( icon, K3Icon::Small, 10 ) );
+        setIcon( KIconLoader::global()->loadIconSet( icon, K3Icon::Small, 10 ) );
 }
 
 KNoteButton::~KNoteButton()
