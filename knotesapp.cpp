@@ -123,13 +123,17 @@ KNotesApp::KNotesApp()
 //    KNote::setStyle( KNotesGlobalConfig::style() );
 
     // create the GUI...
-    KAction *action = new KAction(KIcon("filenew"),  i18n("New Note"), actionCollection(), "new_note" );
+    KAction *action  = new KAction(KIcon("filenew"), i18n("New Note"), this);
+    actionCollection()->addAction("new_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(newNote()));
-    action = new KAction(KIcon("editpaste"),  i18n("New Note From Clipboard"), actionCollection(), "new_note_clipboard" );
+    action  = new KAction(KIcon("editpaste"), i18n("New Note From Clipboard"), this);
+    actionCollection()->addAction("new_note_clipboard", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(newNoteFromClipboard()));
-    action = new KAction(KIcon("knotes"),  i18n("Show All Notes"), actionCollection(), "show_all_notes" );
+    action  = new KAction(KIcon("knotes"), i18n("Show All Notes"), this);
+    actionCollection()->addAction("show_all_notes", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(showAllNotes()));
-    action = new KAction(KIcon("fileclose"),  i18n("Hide All Notes"), actionCollection(), "hide_all_notes" );
+    action  = new KAction(KIcon("fileclose"), i18n("Hide All Notes"), this);
+    actionCollection()->addAction("hide_all_notes", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(hideAllNotes()));
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
@@ -588,7 +592,7 @@ void KNotesApp::updateNoteActions()
     foreach ( KNote *note, m_notes )
     {
 #warning utf8: use QString
-        KAction *action = new KAction( note->name().replace("&", "&&"), 0, note->noteId().toUtf8() );
+        KAction *action = new KAction( note->name().replace("&", "&&"), this);
         connect(action, SIGNAL(triggered(bool)), SLOT(slotShowNote()));
         KIconEffect effect;
         QPixmap icon = effect.apply(
@@ -604,7 +608,7 @@ void KNotesApp::updateNoteActions()
 
     if ( m_noteActions.isEmpty() )
     {
-        KAction *action = new KAction( i18n("No Notes"), 0, 0 );
+        KAction *action = new KAction( i18n("No Notes"), this);
         m_noteActions.append( action );
     }
 

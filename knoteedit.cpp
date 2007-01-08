@@ -23,6 +23,7 @@
 
 #include <kdebug.h>
 #include <klocale.h>
+#include <kactioncollection.h>
 #include <kaction.h>
 #include <kfontaction.h>
 #include <kfontsizeaction.h>
@@ -49,8 +50,8 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     setAutoFormatting( AutoAll );
 
     // create the actions for the RMB menu
-    KAction* undo = KStandardAction::undo( this, SLOT(undo()), actions );
-    KAction* redo = KStandardAction::redo( this, SLOT(redo()), actions );
+    QAction * undo = KStandardAction::undo( this, SLOT(undo()), actions );
+    QAction * redo = KStandardAction::redo( this, SLOT(redo()), actions );
     undo->setEnabled( document()->isUndoAvailable() );
     redo->setEnabled( document()->isRedoAvailable() );
 
@@ -72,13 +73,17 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     KStandardAction::selectAll( this, SLOT(selectAll()), actions );
 
     // create the actions modifying the text format
-    m_textBold = new KToggleAction(KIcon("text_bold"),  i18n("Bold"), actions, "format_bold" );
+    m_textBold  = new KToggleAction(KIcon("text_bold"), i18n("Bold"), this);
+    actions->addAction("format_bold", m_textBold );
     m_textBold->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_B));
-    m_textItalic = new KToggleAction(KIcon("text_italic"),  i18n("Italic"), actions, "format_italic" );
+    m_textItalic  = new KToggleAction(KIcon("text_italic"), i18n("Italic"), this);
+    actions->addAction("format_italic", m_textItalic );
     m_textItalic->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
-    m_textUnderline = new KToggleAction(KIcon("text_under"),  i18n("Underline"), actions, "format_underline" );
+    m_textUnderline  = new KToggleAction(KIcon("text_under"), i18n("Underline"), this);
+    actions->addAction("format_underline", m_textUnderline );
     m_textUnderline->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_U));
-    m_textStrikeOut = new KToggleAction(KIcon("text_strike"),  i18n("Strike Out"), actions, "format_strikeout" );
+    m_textStrikeOut  = new KToggleAction(KIcon("text_strike"), i18n("Strike Out"), this);
+    actions->addAction("format_strikeout", m_textStrikeOut );
     m_textStrikeOut->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
 
     connect( m_textBold, SIGNAL(toggled(bool)), SLOT(textBold(bool)) );
@@ -86,17 +91,21 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     connect( m_textUnderline, SIGNAL(toggled(bool)), SLOT(setFontUnderline(bool)) );
     connect( m_textStrikeOut, SIGNAL(toggled(bool)), SLOT(textStrikeOut(bool)) );
 
-    m_textAlignLeft = new KToggleAction(KIcon("text_left"),  i18n("Align Left"), actions, "format_alignleft" );
+    m_textAlignLeft  = new KToggleAction(KIcon("text_left"), i18n("Align Left"), this);
+    actions->addAction("format_alignleft", m_textAlignLeft );
     connect(m_textAlignLeft, SIGNAL(triggered(bool) ), SLOT(textAlignLeft()));
     m_textAlignLeft->setShortcut(QKeySequence(Qt::ALT + Qt::Key_L));
     m_textAlignLeft->setChecked( true ); // just a dummy, will be updated later
-    m_textAlignCenter = new KToggleAction(KIcon("text_center"),  i18n("Align Center"), actions, "format_aligncenter" );
+    m_textAlignCenter  = new KToggleAction(KIcon("text_center"), i18n("Align Center"), this);
+    actions->addAction("format_aligncenter", m_textAlignCenter );
     connect(m_textAlignCenter, SIGNAL(triggered(bool) ), SLOT(textAlignCenter()));
     m_textAlignCenter->setShortcut(QKeySequence(Qt::ALT + Qt::Key_C));
-    m_textAlignRight = new KToggleAction(KIcon("text_right"),  i18n("Align Right"), actions, "format_alignright" );
+    m_textAlignRight  = new KToggleAction(KIcon("text_right"), i18n("Align Right"), this);
+    actions->addAction("format_alignright", m_textAlignRight );
     connect(m_textAlignRight, SIGNAL(triggered(bool) ), SLOT(textAlignRight()));
     m_textAlignRight->setShortcut(QKeySequence(Qt::ALT + Qt::Key_R));
-    m_textAlignBlock = new KToggleAction(KIcon("text_block"),  i18n("Align Block"), actions, "format_alignblock" );
+    m_textAlignBlock  = new KToggleAction(KIcon("text_block"), i18n("Align Block"), this);
+    actions->addAction("format_alignblock", m_textAlignBlock );
     connect(m_textAlignBlock, SIGNAL(triggered(bool) ), SLOT(textAlignBlock()));
     m_textAlignBlock->setShortcut(QKeySequence(Qt::ALT + Qt::Key_B));
 
@@ -106,15 +115,18 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     group->addAction( m_textAlignRight );
     group->addAction( m_textAlignBlock );
 
-    m_textList = new KToggleAction(KIcon("enum_list"),  i18n("List"), actions, "format_list" );
+    m_textList  = new KToggleAction(KIcon("enum_list"), i18n("List"), this);
+    actions->addAction("format_list", m_textList );
     connect(m_textList, SIGNAL(triggered(bool) ), SLOT(textList()));
 
     group = new QActionGroup( this );
     group->addAction( m_textList );
 
-    m_textSuper = new KToggleAction(KIcon("text_super"),  i18n("Superscript"), actions, "format_super" );
+    m_textSuper  = new KToggleAction(KIcon("text_super"), i18n("Superscript"), this);
+    actions->addAction("format_super", m_textSuper );
     connect(m_textSuper, SIGNAL(triggered(bool) ), SLOT(textSuperScript()));
-    m_textSub = new KToggleAction(KIcon("text_sub"),  i18n("Subscript"), actions, "format_sub" );
+    m_textSub  = new KToggleAction(KIcon("text_sub"), i18n("Subscript"), this);
+    actions->addAction("format_sub", m_textSub );
     connect(m_textSub, SIGNAL(triggered(bool) ), SLOT(textSubScript()));
 
     group = new QActionGroup( this );
@@ -133,17 +145,18 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
 
     QPixmap pix( ICON_SIZE, ICON_SIZE );
     pix.fill( Qt::black );     // just a dummy, gets updated before widget is shown
-    m_textColor = new KAction( i18n("Text Color..."), actions, "format_color" );
+    m_textColor  = new KAction(i18n("Text Color..."), this);
+    actions->addAction("format_color", m_textColor );
     ((QAction*)m_textColor)->setIcon(pix);
     connect(m_textColor, SIGNAL(triggered(bool)), SLOT(slotTextColor()));
 
-    m_textFont = new KFontAction( i18n("Text Font"), "text", KShortcut(),
-                                  actions, "format_font" );
+    m_textFont  = new KFontAction(i18n("Text Font"), this);
+    actions->addAction("format_font", m_textFont );
     connect( m_textFont, SIGNAL(triggered( const QString & )),
              this, SLOT(setFontFamily( const QString & )) );
 
-    m_textSize = new KFontSizeAction( i18n("Text Size"), 0, KShortcut(),
-                                      actions, "format_size" );
+    m_textSize  = new KFontSizeAction(i18n("Text Size"), this);
+    actions->addAction("format_size", m_textSize );
     connect( m_textSize, SIGNAL(fontSizeChanged( int )),
              this, SLOT(setFontWeight ( int )) );
 

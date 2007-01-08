@@ -111,52 +111,67 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
 
     // create the menu items for the note - not the editor...
     // rename, mail, print, save as, insert date, alarm, close, delete, new note
-    KAction *action = new KAction(KIcon("filenew"),  i18n("New"), actionCollection(), "new_note" );
+    KAction *action  = new KAction(KIcon("filenew"), i18n("New"), this);
+    actionCollection()->addAction("new_note", action );
     connect(action, SIGNAL(triggered(bool)), SIGNAL(sigRequestNewNote()));
-    action = new KAction(KIcon("text"),  i18n("Rename..."), actionCollection(), "rename_note" );
+    action  = new KAction(KIcon("text"), i18n("Rename..."), this);
+    actionCollection()->addAction("rename_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotRename()));
-    m_readOnly = new KToggleAction(KIcon("lock"),  i18n("Lock"), actionCollection(), "lock_note" );
+    m_readOnly  = new KToggleAction(KIcon("lock"), i18n("Lock"), this);
+    actionCollection()->addAction("lock_note", m_readOnly );
     connect(m_readOnly, SIGNAL(triggered(bool) ), SLOT(slotUpdateReadOnly()));
     m_readOnly->setCheckedState( KGuiItem( i18n("Unlock"), "unlock" ) );
-    action = new KAction(KIcon("fileclose"),  i18n("Hide"), actionCollection(), "hide_note" );
+    action  = new KAction(KIcon("fileclose"), i18n("Hide"), this);
+    actionCollection()->addAction("hide_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotClose()));
     action->setShortcut(QKeySequence(Qt::Key_Escape));
-    action = new KAction(KIcon("knotes_delete"),  i18n("Delete"), actionCollection(), "delete_note" );
+    action  = new KAction(KIcon("knotes_delete"), i18n("Delete"), this);
+    actionCollection()->addAction("delete_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotKill()));
 
-    action = new KAction(KIcon("knotes_date"),  i18n("Insert Date"), actionCollection(), "insert_date" );
+    action  = new KAction(KIcon("knotes_date"), i18n("Insert Date"), this);
+    actionCollection()->addAction("insert_date", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotInsDate()));
-    action = new KAction(KIcon("knotes_alarm"),  i18n("Set Alarm..."), actionCollection(), "set_alarm" );
+    action  = new KAction(KIcon("knotes_alarm"), i18n("Set Alarm..."), this);
+    actionCollection()->addAction("set_alarm", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotSetAlarm()));
 
-    action = new KAction(KIcon("network"),  i18n("Send..."), actionCollection(), "send_note" );
+    action  = new KAction(KIcon("network"), i18n("Send..."), this);
+    actionCollection()->addAction("send_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotSend()));
-    action = new KAction(KIcon("mail_send"),  i18n("Mail..."), actionCollection(), "mail_note" );
+    action  = new KAction(KIcon("mail_send"), i18n("Mail..."), this);
+    actionCollection()->addAction("mail_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotMail()));
-    action = new KAction(KIcon("filesaveas"),  i18n("Save As..."), actionCollection(), "save_note" );
+    action  = new KAction(KIcon("filesaveas"), i18n("Save As..."), this);
+    actionCollection()->addAction("save_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotSaveAs()));
-    KStandardAction::print( this, SLOT(slotPrint()), actionCollection(), "print_note" );
-    action = new KAction(KIcon("configure"),  i18n("Preferences..."), actionCollection(), "configure_note" );
+actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(slotPrint()));
+    action  = new KAction(KIcon("configure"), i18n("Preferences..."), this);
+    actionCollection()->addAction("configure_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotPreferences()));
 
     QActionGroup *kab = new QActionGroup( this );
     kab->setExclusive( true );
 
-    m_keepAbove = new KToggleAction(KIcon("up"),  i18n("Keep Above Others"), actionCollection(), "keep_above" );
+    m_keepAbove  = new KToggleAction(KIcon("up"), i18n("Keep Above Others"), this);
+    actionCollection()->addAction("keep_above", m_keepAbove );
     connect(m_keepAbove, SIGNAL(triggered(bool) ), SLOT(slotUpdateKeepAboveBelow()));
     kab->addAction( m_keepAbove );
 
-    m_keepBelow = new KToggleAction(KIcon("down"),  i18n("Keep Below Others"), actionCollection(), "keep_below" );
+    m_keepBelow  = new KToggleAction(KIcon("down"), i18n("Keep Below Others"), this);
+    actionCollection()->addAction("keep_below", m_keepBelow );
     connect(m_keepBelow, SIGNAL(triggered(bool) ), SLOT(slotUpdateKeepAboveBelow()));
     kab->addAction( m_keepBelow );
 
-    m_toDesktop = new KSelectAction( i18n("To Desktop"), actionCollection(), "to_desktop" );
+    m_toDesktop  = new KSelectAction(i18n("To Desktop"), this);
+    actionCollection()->addAction("to_desktop", m_toDesktop );
     connect(m_toDesktop, SIGNAL(triggered(int)), SLOT(slotPopupActionToDesktop(int)));
     connect( m_toDesktop->menu(), SIGNAL(aboutToShow()), this, SLOT(slotUpdateDesktopActions()) );
 
     // invisible action to walk through the notes to make this configurable
 //FIXME: this backtab thing doesn't work anymore!
-    action = new KAction( i18n("Walk Through Notes"), actionCollection(), "walk_notes" );
+    action  = new KAction(i18n("Walk Through Notes"), this);
+    actionCollection()->addAction("walk_notes", action );
     connect(action, SIGNAL(triggered(bool)), SIGNAL(sigShowNextNote()));
     action->setShortcut(QKeySequence(Qt::SHIFT+Qt::Key_Backtab));
 
