@@ -75,7 +75,9 @@ public:
     {
         setCaption( i18n("Configure Shortcuts") );
         setButtons( Default|Ok|Cancel );
+#ifdef __GNUC__
 #warning Port me!
+#endif
 //        m_keyChooser = new KKeyChooser( globals, this );
         setMainWidget( m_keyChooser );
         connect( this, SIGNAL(defaultClicked()), m_keyChooser, SLOT(allDefault()) );
@@ -119,7 +121,9 @@ KNotesApp::KNotesApp()
     setPixmap( KSystemTrayIcon::loadIcon( "knotes" ).pixmap() );
 
     // set the initial style
+#ifdef __GNUC__
 #warning FIXME
+#endif
 //    KNote::setStyle( KNotesGlobalConfig::style() );
 
     // create the GUI...
@@ -163,7 +167,9 @@ KNotesApp::KNotesApp()
     m_noteGUI.setContent( doc );
 
     // create accels for global shortcuts
+#ifdef __GNUC__
 #warning Port me!
+#endif
 /*    m_globalAccel = new KGlobalAccel( this );
     m_globalAccel->setObjectName( "global accel" );
     m_globalAccel->insert( "global_new_note", i18n("New Note"), "",
@@ -183,7 +189,9 @@ KNotesApp::KNotesApp()
 
     KConfig *config = KGlobal::config();
     config->setGroup( "Global Keybindings" );
+#ifdef __GNUC__
 #warning Port me!
+#endif
 /*    m_globalAccel->setEnabled( config->readEntry( "Enabled", true ) );
 
     updateGlobalAccels();*/
@@ -498,7 +506,9 @@ void KNotesApp::slotConfigureAccels()
         it = m_notes.begin();
         for ( ++it; it != m_notes.end(); ++it )
         {
+#ifdef __GNUC__
 #warning Port KAction::action() to QString
+#endif
             QAction *toChange = (*it)->actionCollection()->action( action->objectName().toUtf8().data() );
             toChange->setShortcuts( action->shortcuts() );
         }
@@ -591,7 +601,9 @@ void KNotesApp::updateNoteActions()
 
     foreach ( KNote *note, m_notes )
     {
+#ifdef __GNUC__
 #warning utf8: use QString
+#endif
         KAction *action = new KAction( note->name().replace("&", "&&"), this);
         connect(action, SIGNAL(triggered(bool)), SLOT(slotShowNote()));
         KIconEffect effect;
@@ -599,7 +611,9 @@ void KNotesApp::updateNoteActions()
                 qApp->windowIcon().pixmap( IconSize(K3Icon::Small), IconSize(K3Icon::Small) ),
                 KIconEffect::Colorize, 1, note->palette().color( note->backgroundRole() ), false
         );
+#ifdef __GNUC__
 #warning Port me: setting a QPixmap as an action icon does not seem to be possible
+#endif
 //        action->setIcon( icon );
         m_noteActions.append( action );
     }
@@ -617,7 +631,9 @@ void KNotesApp::updateNoteActions()
 
 void KNotesApp::updateGlobalAccels()
 {
+#ifdef __GNUC__
 #warning Port me!
+#endif
 /*
     if ( m_globalAccel->isEnabled() )
     {
@@ -668,7 +684,9 @@ void KNotesApp::updateNetworkListener()
 
 void KNotesApp::updateStyle()
 {
+#ifdef __GNUC__
 #warning FIXME!
+#endif
 //    KNote::setStyle( KNotesGlobalConfig::style() );
 
     foreach ( KNote *note, m_notes )

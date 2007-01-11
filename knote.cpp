@@ -625,7 +625,9 @@ void KNote::slotSend()
     }
 
     // Send the note
+#ifdef __GNUC__
 #warning Port network sending!
+#endif
 #if 0
     KNotesNetworkSender *sender = new KNotesNetworkSender( host, KNotesGlobalConfig::port() );
     sender->setSenderId( KNotesGlobalConfig::senderID() );
@@ -657,7 +659,9 @@ void KNote::slotMail()
 void KNote::slotPrint()
 {
     saveData();
+#ifdef __GNUC__
 #warning Port printing!
+#endif
 #if 0
     KPrinter printer;
     printer.setFullPage( true );

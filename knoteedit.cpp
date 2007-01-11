@@ -164,7 +164,9 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     connect( this, SIGNAL(currentCharFormatChanged( const QTextCharFormat & )),
              this, SLOT(slotCurrentCharFormatChanged( const QTextCharFormat & )) );
 
+#ifdef __GNUC__
 #warning moving the cursor through alignment changes does not update the button!
+#endif
     slotCurrentCharFormatChanged( currentCharFormat() );
 }
 
