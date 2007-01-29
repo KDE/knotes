@@ -139,7 +139,7 @@ KNotesApp::KNotesApp()
     action  = new KAction(KIcon("fileclose"), i18n("Hide All Notes"), this);
     actionCollection()->addAction("hide_all_notes", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(hideAllNotes()));
-    new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
+    new KHelpMenu( this, KGlobal::mainComponent().aboutData(), false, actionCollection() );
 
     KStandardAction::find( this, SLOT(slotOpenFindDialog()), actionCollection() );
     KStandardAction::preferences( this, SLOT(slotPreferences()), actionCollection() );
@@ -147,7 +147,7 @@ KNotesApp::KNotesApp()
     //FIXME: no shortcut removing!?
     KStandardAction::quit( this, SLOT(slotQuit()), actionCollection() )->setShortcut( 0 );
 
-    setXMLFile( instance()->instanceName() + "appui.rc" );
+    setXMLFile( componentData().componentName() + "appui.rc" );
 
     m_guiBuilder = new KXMLGUIBuilder( this );
     m_guiFactory = new KXMLGUIFactory( m_guiBuilder, this );
@@ -157,10 +157,10 @@ KNotesApp::KNotesApp()
     m_noteMenu = static_cast<KMenu*>(m_guiFactory->container( "notes_menu", this ));
 
     // get the most recent XML UI file
-    QString xmlFileName = instance()->instanceName() + "ui.rc";
-    QString filter = QString::fromLatin1( instance()->instanceName() + '/' ) + xmlFileName;
-    QStringList fileList = instance()->dirs()->findAllResources( "data", filter ) +
-                           instance()->dirs()->findAllResources( "data", xmlFileName );
+    QString xmlFileName = componentData().componentName() + "ui.rc";
+    QString filter = QString::fromLatin1( componentData().componentName() + '/' ) + xmlFileName;
+    QStringList fileList = componentData().dirs()->findAllResources( "data", filter ) +
+                           componentData().dirs()->findAllResources( "data", xmlFileName );
 
     QString doc;
     KXMLGUIClient::findMostRecentXMLFile( fileList, doc );
@@ -187,7 +187,7 @@ KNotesApp::KNotesApp()
 
     KGlobalAccel::self()->readSettings();
 
-    KConfig *config = KGlobal::config();
+    KSharedConfig::Ptr config = KGlobal::config();
     config->setGroup( "Global Keybindings" );
 #ifdef __GNUC__
 #warning Port me!
@@ -495,7 +495,7 @@ void KNotesApp::slotConfigureAccels()
 
     // update GUI doc for new notes
     m_noteGUI.setContent(
-        KXMLGUIFactory::readConfigFile( instance()->instanceName() + "ui.rc", instance() )
+        KXMLGUIFactory::readConfigFile( componentData().componentName() + "ui.rc", componentData() )
     );
 
     if ( m_notes.isEmpty() )

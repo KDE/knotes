@@ -99,7 +99,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     setDOMDocument( buildDoc );
 
     // just set the name of the file to save the actions to, do NOT reparse it
-    setXMLFile( instance()->instanceName() + "ui.rc", false, false );
+    setXMLFile( componentData().componentName() + "ui.rc", false, false );
 
     // if there is no title yet, use the start date if valid
     // (KOrganizer's journals don't have titles but a valid start date)
