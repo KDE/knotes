@@ -30,7 +30,7 @@
 #include <kglobal.h>
 #include <kurl.h>
 #include <kstandarddirs.h>
-#include <ksimpleconfig.h>
+#include <kconfig.h>
 #include <kio/netaccess.h>
 
 #include <unistd.h>
@@ -52,10 +52,8 @@ void KNotesLegacy::cleanUp()
     // remove old (KDE 1.x) local config file if it still exists
     QString configfile = KGlobal::dirs()->saveLocation( "config" ) + "knotesrc";
     if ( QFile::exists( configfile ) ) {
-        KSimpleConfig *test = new KSimpleConfig( configfile );
-        test->setGroup( "General" );
-        double version = test->readEntry( "version", 1.0 );
-        delete test;
+        KConfigGroup test(KSharedConfig::openConfig( configfile, KConfig::OnlyLocal), "General" );
+        double version = test.readEntry( "version", 1.0 );
 
         if ( version == 1.0 ) {
             if ( !( KStandardDirs::checkAccess( configfile, W_OK ) &&
@@ -76,7 +74,7 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
     for ( QStringList::Iterator note = notes.begin(); note != notes.end(); note++ )
     {
         QString file = noteDir.absoluteFilePath( *note );
-        KSimpleConfig* test = new KSimpleConfig( file );
+        KConfig* test = new KConfig( file, KConfig::OnlyLocal);
         test->setGroup( "General" );
         double version = test->readEntry( "version", 1.0 );
 
@@ -155,7 +153,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
         0
     );
 
-    KNoteConfig config( KSharedConfig::openConfig( configFile, false, false ) );
+    KNoteConfig config( KSharedConfig::openConfig(configFile, KConfig::NoGlobals) );
     config.readConfig();
     config.setVersion( KNOTES_VERSION );
 

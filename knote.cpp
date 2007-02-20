@@ -88,7 +88,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
   : QFrame( parent, Qt::FramelessWindowHint ),
     m_label( 0 ), m_grip( 0 ), m_button( 0 ),
     m_tool( 0 ), m_editor( 0 ), m_config( 0 ), m_journal( j ), m_find( 0 ),
-    m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) )
+    m_kwinConf( KSharedConfig::openConfig( "kwinrc" ) )
 {
     setAttribute( Qt::WA_DeleteOnClose );
     setAcceptDrops( true );
@@ -244,7 +244,7 @@ actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(
     // we want to write to configFile, so use "false"
     bool newNote = !KIO::NetAccess::exists( KUrl( configFile ), false, 0 );
 
-    m_config = new KNoteConfig( KSharedConfig::openConfig( configFile, false, false ) );
+    m_config = new KNoteConfig( KSharedConfig::openConfig(configFile, KConfig::NoGlobals) );
     m_config->readConfig();
     m_config->setVersion( KNOTES_VERSION );
 
@@ -1065,7 +1065,7 @@ void KNote::dropEvent( QDropEvent *e )
         return;
 
     const QMimeData *md = e->mimeData();
-    if ( md->hasColor() ) 
+    if ( md->hasColor() )
     {
         QColor bg =  qvariant_cast<QColor>( md->colorData() );
         setColor( palette().color( foregroundRole() ), bg );

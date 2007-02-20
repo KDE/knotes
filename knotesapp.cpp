@@ -42,7 +42,7 @@
 #include <kfinddialog.h>
 #include <kkeydialog.h>
 #include <kglobalaccel.h>
-#include <ksimpleconfig.h>
+#include <kconfig.h>
 #include <kwin.h>
 #include <kbufferedsocket.h>
 #include <kserversocket.h>
@@ -187,8 +187,7 @@ KNotesApp::KNotesApp()
 
     KGlobalAccel::self()->readSettings();
 
-    KSharedConfig::Ptr config = KGlobal::config();
-    config->setGroup( "Global Keybindings" );
+    KConfigGroup config(KGlobal::config(), "Global Keybindings");
 #ifdef __GNUC__
 #warning Port me!
 #endif

@@ -40,7 +40,7 @@
 #include <kglobal.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
-#include <ksimpleconfig.h>
+#include <kconfig.h>
 #include <kcombobox.h>
 #include <kvbox.h>
 
