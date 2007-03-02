@@ -290,7 +290,7 @@ QString KNotesApp::newNoteFromClipboard( const QString& name )
 void KNotesApp::hideAllNotes() const
 {
     foreach ( KNote *note, m_notes )
-        note->close();
+        note->hide();
 }
 
 void KNotesApp::showAllNotes() const
@@ -604,6 +604,7 @@ void KNotesApp::updateNoteActions()
 #warning utf8: use QString
 #endif
         KAction *action = new KAction( note->name().replace("&", "&&"), this);
+		action->setObjectName( note->noteId() );
         connect(action, SIGNAL(triggered(bool)), SLOT(slotShowNote()));
         KIconEffect effect;
         QPixmap icon = effect.apply(
