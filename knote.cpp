@@ -111,17 +111,17 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
 
     // create the menu items for the note - not the editor...
     // rename, mail, print, save as, insert date, alarm, close, delete, new note
-    KAction *action  = new KAction(KIcon("filenew"), i18n("New"), this);
+    KAction *action  = new KAction(KIcon("document-new"), i18n("New"), this);
     actionCollection()->addAction("new_note", action );
     connect(action, SIGNAL(triggered(bool)), SIGNAL(sigRequestNewNote()));
     action  = new KAction(KIcon("text"), i18n("Rename..."), this);
     actionCollection()->addAction("rename_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotRename()));
-    m_readOnly  = new KToggleAction(KIcon("lock"), i18n("Lock"), this);
+    m_readOnly  = new KToggleAction(KIcon("system-lock-screen"), i18n("Lock"), this);
     actionCollection()->addAction("lock_note", m_readOnly );
     connect(m_readOnly, SIGNAL(triggered(bool) ), SLOT(slotUpdateReadOnly()));
     m_readOnly->setCheckedState( KGuiItem( i18n("Unlock"), "unlock" ) );
-    action  = new KAction(KIcon("fileclose"), i18n("Hide"), this);
+    action  = new KAction(KIcon("window-close"), i18n("Hide"), this);
     actionCollection()->addAction("hide_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotClose()));
     action->setShortcut(QKeySequence(Qt::Key_Escape));
@@ -136,13 +136,13 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     actionCollection()->addAction("set_alarm", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotSetAlarm()));
 
-    action  = new KAction(KIcon("network"), i18n("Send..."), this);
+    action  = new KAction(KIcon("network-wired"), i18n("Send..."), this);
     actionCollection()->addAction("send_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotSend()));
-    action  = new KAction(KIcon("mail_send"), i18n("Mail..."), this);
+    action  = new KAction(KIcon("mail-send"), i18n("Mail..."), this);
     actionCollection()->addAction("mail_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotMail()));
-    action  = new KAction(KIcon("filesaveas"), i18n("Save As..."), this);
+    action  = new KAction(KIcon("document-save-as"), i18n("Save As..."), this);
     actionCollection()->addAction("save_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotSaveAs()));
 actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(slotPrint()));
@@ -153,12 +153,12 @@ actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(
     QActionGroup *kab = new QActionGroup( this );
     kab->setExclusive( true );
 
-    m_keepAbove  = new KToggleAction(KIcon("up"), i18n("Keep Above Others"), this);
+    m_keepAbove  = new KToggleAction(KIcon("go-up"), i18n("Keep Above Others"), this);
     actionCollection()->addAction("keep_above", m_keepAbove );
     connect(m_keepAbove, SIGNAL(triggered(bool) ), SLOT(slotUpdateKeepAboveBelow()));
     kab->addAction( m_keepAbove );
 
-    m_keepBelow  = new KToggleAction(KIcon("down"), i18n("Keep Below Others"), this);
+    m_keepBelow  = new KToggleAction(KIcon("go-down"), i18n("Keep Below Others"), this);
     actionCollection()->addAction("keep_below", m_keepBelow );
     connect(m_keepBelow, SIGNAL(triggered(bool) ), SLOT(slotUpdateKeepAboveBelow()));
     kab->addAction( m_keepBelow );
@@ -386,7 +386,7 @@ void KNote::slotKill( bool force )
     if ( !force &&
          KMessageBox::warningContinueCancel( this,
              i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>", m_label->text() ),
-             i18n("Confirm Delete"), KGuiItem( i18n("&Delete"), "editdelete" ),
+             i18n("Confirm Delete"), KGuiItem( i18n("&Delete"), "edit-delete" ),
              "ConfirmDeleteNote"
          )
          != KMessageBox::Continue )

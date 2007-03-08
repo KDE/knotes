@@ -73,16 +73,16 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     KStandardAction::selectAll( this, SLOT(selectAll()), actions );
 
     // create the actions modifying the text format
-    m_textBold  = new KToggleAction(KIcon("text_bold"), i18n("Bold"), this);
+    m_textBold  = new KToggleAction(KIcon("format-text-bold"), i18n("Bold"), this);
     actions->addAction("format_bold", m_textBold );
     m_textBold->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_B));
-    m_textItalic  = new KToggleAction(KIcon("text_italic"), i18n("Italic"), this);
+    m_textItalic  = new KToggleAction(KIcon("format-text-italic"), i18n("Italic"), this);
     actions->addAction("format_italic", m_textItalic );
     m_textItalic->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
-    m_textUnderline  = new KToggleAction(KIcon("text_under"), i18n("Underline"), this);
+    m_textUnderline  = new KToggleAction(KIcon("format-text-underline"), i18n("Underline"), this);
     actions->addAction("format_underline", m_textUnderline );
     m_textUnderline->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_U));
-    m_textStrikeOut  = new KToggleAction(KIcon("text_strike"), i18n("Strike Out"), this);
+    m_textStrikeOut  = new KToggleAction(KIcon("format-text-strikethrough"), i18n("Strike Out"), this);
     actions->addAction("format_strikeout", m_textStrikeOut );
     m_textStrikeOut->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
 
@@ -104,7 +104,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     actions->addAction("format_alignright", m_textAlignRight );
     connect(m_textAlignRight, SIGNAL(triggered(bool) ), SLOT(textAlignRight()));
     m_textAlignRight->setShortcut(QKeySequence(Qt::ALT + Qt::Key_R));
-    m_textAlignBlock  = new KToggleAction(KIcon("text_block"), i18n("Align Block"), this);
+    m_textAlignBlock  = new KToggleAction(KIcon("format-justify-fill"), i18n("Align Block"), this);
     actions->addAction("format_alignblock", m_textAlignBlock );
     connect(m_textAlignBlock, SIGNAL(triggered(bool) ), SLOT(textAlignBlock()));
     m_textAlignBlock->setShortcut(QKeySequence(Qt::ALT + Qt::Key_B));

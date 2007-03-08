@@ -74,7 +74,7 @@ KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
                  i18n("Default Settings for New Notes") );
         addPage( makeActionsPage(), i18n("Actions"), "misc",
                  i18n("Action Settings") );
-        addPage( makeNetworkPage(), i18n("Network"), "network",
+        addPage( makeNetworkPage(), i18n("Network"), "network-wired",
                  i18n("Network Settings") );
         addPage( makeStylePage(), i18n("Style"), "style",
                  i18n("Style Settings") );
