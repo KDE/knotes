@@ -56,7 +56,7 @@ void KNotesResourceManager::load()
     if ( !m_manager->standardResource() )
     {
         kWarning(5500) << "No standard resource yet." << endl;
-        ResourceNotes *resource = new ResourceLocal( 0 );
+        ResourceNotes *resource = new ResourceLocal();
         m_manager->add( resource );
         m_manager->setStandardResource( resource );
     }

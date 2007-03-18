@@ -33,11 +33,15 @@
 #include "resourcenotes.h"
 
 
-ResourceNotes::ResourceNotes( const KConfig *config )
-    : KRES::Resource( config ), mManager( 0 )
+ResourceNotes::ResourceNotes()
+    : KRES::Resource(), mManager( 0 )
 {
-    if ( !config )
-        setResourceName( "Notes" );
+    setResourceName( "Notes" );
+}
+
+ResourceNotes::ResourceNotes( const KConfigGroup &group )
+    : KRES::Resource( group ), mManager( 0 )
+{
 }
 
 ResourceNotes::~ResourceNotes()

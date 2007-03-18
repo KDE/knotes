@@ -37,7 +37,6 @@
 #include <kdemacros.h>
 #include <kcal/alarm.h>
 
-class KConfig;
 class KNotesResourceManager;
 
 namespace KCal {
@@ -55,7 +54,8 @@ namespace KCal {
 class KDE_EXPORT ResourceNotes : public KRES::Resource
 {
 public:
-    ResourceNotes( const KConfig * );
+    ResourceNotes();
+    explicit ResourceNotes( const KConfigGroup &group );
     virtual ~ResourceNotes();
 
     /**

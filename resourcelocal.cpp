@@ -44,29 +44,34 @@
 
 
 
-ResourceLocal::ResourceLocal( const KConfig *config )
-    : ResourceNotes( config ), mCalendar( QString::fromLatin1( "UTC" ) )
+ResourceLocal::ResourceLocal()
+    : ResourceNotes(), mCalendar( QString::fromLatin1( "UTC" ) )
+{
+    kDebug(5500) << "ResourceLocal::ResourceLocal()" << endl;
+    setType( "file" );
+    mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", "knotes/" ) + "notes.ics" );
+}
+
+ResourceLocal::ResourceLocal( const KConfigGroup &group )
+    : ResourceNotes( group ), mCalendar( QString::fromLatin1( "UTC" ) )
 {
     kDebug(5500) << "ResourceLocal::ResourceLocal()" << endl;
     setType( "file" );
     mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", "knotes/" ) + "notes.ics" );
 
-    if ( config )
-    {
-        KUrl u = config->readPathEntry( "NotesURL" );
-        if ( !u.isEmpty() )
-            mURL = u;
-    }
+    KUrl u = group.readPathEntry( "NotesURL" );
+    if ( !u.isEmpty() )
+        mURL = u;
 }
 
 ResourceLocal::~ResourceLocal()
 {
 }
 
-void ResourceLocal::writeConfig( KConfig *config )
+void ResourceLocal::writeConfig( KConfigGroup &group )
 {
-    KRES::Resource::writeConfig( config );
-    config->writePathEntry( "NotesURL", mURL.prettyUrl() );
+    KRES::Resource::writeConfig( group );
+    group.writePathEntry( "NotesURL", mURL.prettyUrl() );
 }
 
 bool ResourceLocal::load()

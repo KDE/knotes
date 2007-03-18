@@ -43,10 +43,11 @@
 class ResourceLocal : public ResourceNotes
 {
 public:
-    ResourceLocal( const KConfig* );
+    ResourceLocal();
+    explicit ResourceLocal( const KConfigGroup &group );
     virtual ~ResourceLocal();
 
-    virtual void writeConfig( KConfig *config );
+    virtual void writeConfig( KConfigGroup &group );
 
     /**
      * Load resource data.
