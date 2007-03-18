@@ -144,7 +144,7 @@ void KNoteAlarmDlg::slotOk()
         alarm = m_journal->alarms().first();
 
     if ( m_buttons->selectedId() == 1 )
-        alarm->setTime( QDateTime( m_atDate->date(), m_atTime->getTime() ) );
+        alarm->setTime( KDateTime( m_atDate->date(), m_atTime->getTime(), KDateTime::LocalZone ) );
     else
     {
         // TODO
