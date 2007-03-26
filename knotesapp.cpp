@@ -85,7 +85,7 @@ public:
 
     void insert( KActionCollection *actions )
     {
-        m_keyChooser->insert( actions, i18n("Note Actions") );
+        m_keyChooser->addCollection( actions, i18n("Note Actions") );
     }
 
     void configure()
