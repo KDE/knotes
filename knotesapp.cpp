@@ -40,7 +40,7 @@
 #include <khelpmenu.h>
 #include <kfind.h>
 #include <kfinddialog.h>
-#include <kkeydialog.h>
+#include <kshortcutsdialog.h>
 #include <kglobalaccel.h>
 #include <kconfig.h>
 #include <kwin.h>
@@ -78,7 +78,7 @@ public:
 #ifdef __GNUC__
 #warning Port me!
 #endif
-//        m_keyChooser = new KKeyChooser( globals, this );
+        //m_keyChooser = new KShortcutsEditor( globals, this );
         setMainWidget( m_keyChooser );
         connect( this, SIGNAL(defaultClicked()), m_keyChooser, SLOT(allDefault()) );
     }
@@ -95,7 +95,7 @@ public:
     }
 
 private:
-    KKeyChooser *m_keyChooser;
+    KShortcutsEditor *m_keyChooser;
 };
 
 
