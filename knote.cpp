@@ -387,7 +387,7 @@ void KNote::slotKill( bool force )
          KMessageBox::warningContinueCancel( this,
              i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>", m_label->text() ),
              i18n("Confirm Delete"), KGuiItem( i18n("&Delete"), "edit-delete" ),
-             "ConfirmDeleteNote"
+             KStandardGuiItem::cancel(), "ConfirmDeleteNote"
          )
          != KMessageBox::Continue )
     {
