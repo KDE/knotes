@@ -37,7 +37,7 @@
 #include <knuminput.h>
 #include <klineedit.h>
 #include <kfontrequester.h>
-#include <kwin.h>
+#include <kwm.h>
 
 #include "knote.h"
 #include "knoteconfigdlg.h"
@@ -54,7 +54,7 @@ KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
 
     setCaption( title );
 #ifdef Q_WS_X11    
-    KWin::setIcons( winId(), qApp->windowIcon().pixmap( IconSize(K3Icon::Desktop),IconSize(K3Icon::Desktop) ),
+    KWM::setIcons( winId(), qApp->windowIcon().pixmap( IconSize(K3Icon::Desktop),IconSize(K3Icon::Desktop) ),
                              qApp->windowIcon().pixmap( IconSize(K3Icon::Small),IconSize(K3Icon::Small) ) );
 #endif
     //setIconListAllVisible( true );
