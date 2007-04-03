@@ -38,9 +38,14 @@ class LocalNotesFactory
     : public KRES::PluginFactoryBase
 {
 public:
-    KRES::Resource *resource( const KConfigGroup &group )
+    virtual KRES::Resource *resource( const KConfigGroup &group )
     {
         return new ResourceLocal( group );
+    }
+
+    virtual KRES::Resource *resource()
+    {
+      return new ResourceLocal();
     }
 
     KRES::ConfigWidget *configWidget( QWidget *parent )
