@@ -35,7 +35,7 @@
 
 #include <q3cstring.h>
 
-#include <kbufferedsocket.h>
+#include <k3bufferedsocket.h>
 #include <ksocketaddress.h>
 
 using namespace KNetwork;
