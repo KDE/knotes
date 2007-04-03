@@ -36,7 +36,7 @@
 #include <q3cstring.h>
 
 #include <kdebug.h>
-#include <kbufferedsocket.h>
+#include <k3bufferedsocket.h>
 #include <ksocketaddress.h>
 #include <klocale.h>
 #include <kglobal.h>

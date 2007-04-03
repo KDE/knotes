@@ -44,7 +44,7 @@
 #include <kglobalaccel.h>
 #include <kconfig.h>
 #include <kwm.h>
-#include <kbufferedsocket.h>
+#include <k3bufferedsocket.h>
 #include <kserversocket.h>
 #include <kstandardaction.h>
 #include <kicon.h>
