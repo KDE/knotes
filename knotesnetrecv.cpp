@@ -37,7 +37,7 @@
 
 #include <kdebug.h>
 #include <k3bufferedsocket.h>
-#include <ksocketaddress.h>
+#include <k3socketaddress.h>
 #include <klocale.h>
 #include <kglobal.h>
 
