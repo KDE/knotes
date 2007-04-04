@@ -45,7 +45,7 @@
 #include <kconfig.h>
 #include <kwm.h>
 #include <k3bufferedsocket.h>
-#include <kserversocket.h>
+#include <k3serversocket.h>
 #include <kstandardaction.h>
 #include <kicon.h>
 
