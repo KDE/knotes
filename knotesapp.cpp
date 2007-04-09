@@ -21,6 +21,7 @@
 #include <QClipboard>
 #include <QMouseEvent>
 #include <QToolTip>
+#include <QTcpServer>
 #include <QPixmap>
 #include <QLabel>
 #ifdef Q_WS_X11
@@ -44,8 +45,6 @@
 #include <kglobalaccel.h>
 #include <kconfig.h>
 #include <kwm.h>
-#include <k3bufferedsocket.h>
-#include <k3serversocket.h>
 #include <kstandardaction.h>
 #include <kicon.h>
 
@@ -63,9 +62,6 @@
 #include "knotesnetrecv.h"
 #include "knotesadaptor.h"
 #include "knotes/resourcemanager.h"
-
-using namespace KNetwork;
-
 
 class KNotesKeyDialog : public KDialog
 {
@@ -227,9 +223,8 @@ KNotesApp::KNotesApp()
     m_alarm = new KNotesAlarm( m_manager, this );
 
     // create the socket and possibly start listening for connections
-    m_listener = new KServerSocket();
-    m_listener->setResolutionEnabled( true );
-    connect( m_listener, SIGNAL(readyAccept()), SLOT(acceptConnection()) );
+    m_listener = new QTcpServer();
+    connect( m_listener, SIGNAL(newConnection()), SLOT(acceptConnection()) );
     updateNetworkListener();
 
     if ( m_notes.size() == 0 && !kapp->isSessionRestored() )
@@ -574,7 +569,7 @@ void KNotesApp::killNote( KCal::Journal *journal )
 void KNotesApp::acceptConnection()
 {
     // Accept the connection and make KNotesNetworkReceiver do the job
-    KBufferedSocket *s = static_cast<KBufferedSocket *>(m_listener->accept());
+    QTcpSocket *s = m_listener->nextPendingConnection();
     if ( s )
     {
         KNotesNetworkReceiver *recv = new KNotesNetworkReceiver( s );
@@ -678,9 +673,7 @@ void KNotesApp::updateNetworkListener()
 
     if ( KNotesGlobalConfig::receiveNotes() )
     {
-        m_listener->setAddress( QString::number( KNotesGlobalConfig::port() ) );
-        m_listener->bind();
-        m_listener->listen();
+        m_listener->listen( QHostAddress::Any, KNotesGlobalConfig::port() );
     }
 }
 

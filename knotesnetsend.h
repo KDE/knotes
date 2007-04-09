@@ -33,35 +33,27 @@
 #ifndef KNOTESNETSEND_H
 #define KNOTESNETSEND_H
 
-#include <q3cstring.h>
+#include <QTcpSocket>
 
-#include <k3bufferedsocket.h>
-#include <k3socketaddress.h>
-
-using namespace KNetwork;
-
-
-class KNotesNetworkSender : public KNetwork::KBufferedSocket
+class KNotesNetworkSender : public QTcpSocket
 {
     Q_OBJECT
 public:
-    KNotesNetworkSender( const QString& host, int port );
+    KNotesNetworkSender(  );
 
     void setSenderId( const QString& sender );
     void setNote( const QString& title, const QString& text );
 
 protected slots:
-    void slotConnected( const KResolverEntry& );
-    void slotError( int );
+    void slotConnected();
+    void slotError();
     void slotClosed();
-
-    void slotReadyWrite();
+    void slotWritten(qint64);
 
 private:
     QByteArray m_note;
     QByteArray m_title;
     QByteArray m_sender;
-    uint m_index;
 };
 
 #endif

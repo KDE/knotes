@@ -33,11 +33,9 @@
 #include <QTimer>
 #include <QDateTime>
 #include <QRegExp>
-#include <q3cstring.h>
+#include <QTcpSocket>
+#include <QHostAddress>
 
-#include <kdebug.h>
-#include <k3bufferedsocket.h>
-#include <k3socketaddress.h>
 #include <klocale.h>
 #include <kglobal.h>
 
@@ -54,10 +52,7 @@
 // Small buffer's size
 #define SBSIZE 512
 
-using namespace KNetwork;
-
-
-KNotesNetworkReceiver::KNotesNetworkReceiver( KBufferedSocket *s )
+KNotesNetworkReceiver::KNotesNetworkReceiver( QTcpSocket *s )
   : QObject(),
     m_buffer( new QByteArray() ), m_sock( s )
 {
@@ -66,15 +61,13 @@ KNotesNetworkReceiver::KNotesNetworkReceiver( KBufferedSocket *s )
     // Add the remote IP or hostname and the date to the title, to help the
     // user guess who wrote it.
     m_titleAddon = QString(" [%1, %2]")
-                   .arg( m_sock->peerAddress().nodeName() )
+                   .arg( m_sock->peerAddress().toString() )
                    .arg( date );
 
     // Setup the communications
     connect( m_sock, SIGNAL(readyRead()), SLOT(slotDataAvailable()) );
-    connect( m_sock, SIGNAL(closed()), SLOT(slotConnectionClosed()) );
-    connect( m_sock, SIGNAL(gotError( int )), SLOT(slotError( int )) );
-
-    m_sock->enableRead( true );
+    connect( m_sock, SIGNAL(disconnected()), SLOT(slotConnectionClosed()) );
+    connect( m_sock, SIGNAL(error( int )), SLOT(slotError( int )) );
 
     // Setup the timer
     m_timer = new QTimer( this );
@@ -93,7 +86,6 @@ void KNotesNetworkReceiver::slotDataAvailable()
 {
     char smallBuffer[SBSIZE];
     int smallBufferLen;
-
     do
     {
         // Append to "big buffer" only if we have some space left.
@@ -146,7 +138,7 @@ void KNotesNetworkReceiver::slotConnectionClosed()
 void KNotesNetworkReceiver::slotError( int err )
 {
     kWarning() << k_funcinfo
-                << KSocketBase::errorString( static_cast<KSocketBase::SocketError>(err) ) 
+                << err << " " << m_sock->errorString() 
                 << endl;
 }
 

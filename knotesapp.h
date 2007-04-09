@@ -33,6 +33,7 @@
 
 
 class QMouseEvent;
+class QTcpServer;
 class KFind;
 class KNote;
 class KMenu;
@@ -46,10 +47,6 @@ class KNotesResourceManager;
 
 namespace KCal {
     class Journal;
-}
-
-namespace KNetwork {
-    class KServerSocket;
 }
 
 
@@ -122,7 +119,7 @@ private:
 
     KNotesResourceManager  *m_manager;
     KNotesAlarm            *m_alarm;
-    KNetwork::KServerSocket   *m_listener;
+    QTcpServer   *m_listener;
 
     KFind           *m_find;
     QMap<QString, KNote *>::iterator *m_findPos;

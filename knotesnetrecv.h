@@ -36,16 +36,13 @@
 
 class QTimer;
 
-namespace KNetwork {
-    class KBufferedSocket;
-}
-
+class QTcpSocket;
 
 class KNotesNetworkReceiver : public QObject
 {
     Q_OBJECT
 public:
-    KNotesNetworkReceiver( KNetwork::KBufferedSocket * );
+    KNotesNetworkReceiver( QTcpSocket * );
     ~KNotesNetworkReceiver();
 
 signals:
@@ -61,7 +58,7 @@ private:
     QTimer *m_timer;       // to avoid memory and connection floods
 
     QByteArray *m_buffer;
-    KNetwork::KBufferedSocket *m_sock;
+    QTcpSocket *m_sock;
 
     QString m_titleAddon;
 };

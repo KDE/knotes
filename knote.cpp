@@ -625,15 +625,10 @@ void KNote::slotSend()
     }
 
     // Send the note
-#ifdef __GNUC__
-#warning Port network sending!
-#endif
-#if 0
-    KNotesNetworkSender *sender = new KNotesNetworkSender( host, KNotesGlobalConfig::port() );
+    KNotesNetworkSender *sender = new KNotesNetworkSender( );
     sender->setSenderId( KNotesGlobalConfig::senderID() );
     sender->setNote( name(), text() ); // FIXME: plainText ??
-    sender->connect();
-#endif
+    sender->connectToHost(host, KNotesGlobalConfig::port());
 }
 
 void KNote::slotMail()

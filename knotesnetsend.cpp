@@ -35,24 +35,19 @@
 
 #include "knotesnetsend.h"
 
-#define CONNECT_TIMEOUT 10000
 
-
-KNotesNetworkSender::KNotesNetworkSender( const QString& hostname, int port )
-  : KBufferedSocket( hostname, QString::number( port ) ),
-    m_note(), m_title(), m_sender(), m_index( 0 )
+KNotesNetworkSender::KNotesNetworkSender()
+  : QTcpSocket(),
+    m_note(), m_title(), m_sender()
 {
-    enableRead( false );
-    enableWrite( false );
-    setTimeout( CONNECT_TIMEOUT );
 
     // QObject:: prefix needed, otherwise the KStreamSocket::connect()
     // mehtod is called!!!
-    QObject::connect( this, SIGNAL(connected( const KResolverEntry& )), 
-                            SLOT(slotConnected( const KResolverEntry& )) );
-    QObject::connect( this, SIGNAL(gotError( int )), SLOT(slotError( int )) );
-    QObject::connect( this, SIGNAL(closed()), SLOT(slotClosed()) );
-    QObject::connect( this, SIGNAL(readyWrite()), SLOT(slotReadyWrite()) );
+    QObject::connect( this, SIGNAL(connected()), 
+                            SLOT(slotConnected( )) );
+    QObject::connect( this, SIGNAL(error( QAbstractSocket::SocketError )), SLOT(slotError( QAbstractSocket::SocketError )) );
+    QObject::connect( this, SIGNAL(disconnected()), SLOT(slotClosed()) );
+    QObject::connect( this, SIGNAL(bytesWritten(qint64)), SLOT(slotWritten(qint64)) );
 }
 
 void KNotesNetworkSender::setSenderId( const QString& sender )
@@ -69,30 +64,26 @@ void KNotesNetworkSender::setNote( const QString& title, const QString& text )
     m_note = text.toAscii();
 }
 
-void KNotesNetworkSender::slotConnected( const KResolverEntry& )
+void KNotesNetworkSender::slotConnected()
 {
     if ( m_sender.isEmpty() )
         m_note.prepend( m_title + "\n");
     else
         m_note.prepend( m_title + " (" + m_sender + ")\n" );
 
-    enableWrite( true );
+    write(m_note);
 }
 
-void KNotesNetworkSender::slotReadyWrite()
+void KNotesNetworkSender::slotWritten(qint64)
 {
-    m_index += write( m_note.data() + m_index, m_note.length() - m_index );
-
     // If end of text reached, close connection
-    if ( (int)m_index == m_note.length() )
+    if ( bytesToWrite() == 0 )
         close();
 }
 
-void KNotesNetworkSender::slotError( int err )
+void KNotesNetworkSender::slotError()
 {
-    KMessageBox::sorry( 0, i18n("Communication error: %1",
-             KSocketBase::errorString( static_cast<KSocketBase::SocketError>(err) ) )
-    );
+    KMessageBox::sorry( 0, i18n("Communication error: %1",errorString() ) );
     slotClosed();
 }
 
