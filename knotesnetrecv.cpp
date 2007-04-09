@@ -56,7 +56,7 @@ KNotesNetworkReceiver::KNotesNetworkReceiver( QTcpSocket *s )
   : QObject(),
     m_buffer( new QByteArray() ), m_sock( s )
 {
-    QString date = KGlobal::locale()->formatDateTime( QDateTime::currentDateTime(), true, false );
+    QString date = KGlobal::locale()->formatDateTime( QDateTime::currentDateTime(), KLocale::ShortDate, false );
 
     // Add the remote IP or hostname and the date to the title, to help the
     // user guess who wrote it.
