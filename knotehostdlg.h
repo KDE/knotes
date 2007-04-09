@@ -35,7 +35,7 @@
 
 #include <kdialog.h>
 
-class KHistoryCombo;
+class KHistoryComboBox;
 
 
 /**
@@ -54,7 +54,7 @@ private slots:
     void slotTextChanged( const QString & );
 
 private:
-    KHistoryCombo *m_hostCombo;
+    KHistoryComboBox *m_hostCombo;
 };
 
 #endif

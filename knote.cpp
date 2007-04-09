@@ -288,9 +288,9 @@ actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(
 
     // can be done here since this doesn't pick up changes while KNotes is running anyway
     bool closeLeft = false;
-    m_kwinConf->setGroup( "Style" );
-    if ( m_kwinConf->readEntry( "CustomButtonPositions",false ) )
-        closeLeft = m_kwinConf->readEntry( "ButtonsOnLeft").contains( 'X' );
+    KConfigGroup styleGroup( m_kwinConf, "Style" );
+    if ( styleGroup.readEntry( "CustomButtonPositions",false ) )
+        closeLeft = styleGroup.readEntry( "ButtonsOnLeft").contains( 'X' );
 
     // load the display configuration of the note
     width = m_config->width();
@@ -787,7 +787,7 @@ void KNote::slotApplyConfig()
 void KNote::slotUpdateKeepAboveBelow()
 {
 #ifdef Q_WS_X11
-    KWM::WindowInfo info( KWM::windowInfo( winId(), NET::WMState ) );
+    KWindowInfo info( KWM::windowInfo( winId(), NET::WMState ) );
 #endif
     if ( m_keepAbove->isChecked() )
     {
@@ -979,9 +979,9 @@ void KNote::updateLayout()
     const int margin = 0; // FIXME  m_editor->margin();
     bool closeLeft = false;
 
-    m_kwinConf->setGroup( "Style" );
-    if ( m_kwinConf->readEntry( "CustomButtonPositions",false ) )
-        closeLeft = m_kwinConf->readEntry( "ButtonsOnLeft" ).contains( 'X' );
+    KConfigGroup styleGroup( m_kwinConf, "Style" );
+    if ( styleGroup.readEntry( "CustomButtonPositions",false ) )
+        closeLeft = styleGroup.readEntry( "ButtonsOnLeft" ).contains( 'X' );
 
     m_button->setGeometry(
         closeLeft ? contentsRect().x() : contentsRect().width() - headerHeight,
