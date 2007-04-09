@@ -36,18 +36,23 @@
 #include "knotesnetsend.h"
 
 
-KNotesNetworkSender::KNotesNetworkSender()
-  : QTcpSocket(),
-    m_note(), m_title(), m_sender()
+KNotesNetworkSender::KNotesNetworkSender(QTcpSocket* socket)
+  : QObject(),
+    m_socket(socket), m_note(), m_title(), m_sender()
 {
 
     // QObject:: prefix needed, otherwise the KStreamSocket::connect()
     // mehtod is called!!!
-    QObject::connect( this, SIGNAL(connected()), 
+    QObject::connect( m_socket, SIGNAL(connected()), 
                             SLOT(slotConnected( )) );
-    QObject::connect( this, SIGNAL(error( QAbstractSocket::SocketError )), SLOT(slotError( QAbstractSocket::SocketError )) );
-    QObject::connect( this, SIGNAL(disconnected()), SLOT(slotClosed()) );
-    QObject::connect( this, SIGNAL(bytesWritten(qint64)), SLOT(slotWritten(qint64)) );
+    QObject::connect( m_socket, SIGNAL(error( QAbstractSocket::SocketError )), SLOT(slotError( QAbstractSocket::SocketError )) );
+    QObject::connect( m_socket, SIGNAL(disconnected()), SLOT(slotClosed()) );
+    QObject::connect( m_socket, SIGNAL(bytesWritten(qint64)), SLOT(slotWritten(qint64)) );
+}
+
+KNotesNetworkSender::~KNotesNetworkSender()
+{
+    delete m_socket;
 }
 
 void KNotesNetworkSender::setSenderId( const QString& sender )
@@ -71,19 +76,19 @@ void KNotesNetworkSender::slotConnected()
     else
         m_note.prepend( m_title + " (" + m_sender + ")\n" );
 
-    write(m_note);
+    m_socket->write(m_note);
 }
 
 void KNotesNetworkSender::slotWritten(qint64)
 {
     // If end of text reached, close connection
-    if ( bytesToWrite() == 0 )
-        close();
+    if ( m_socket->bytesToWrite() == 0 )
+        m_socket->close();
 }
 
 void KNotesNetworkSender::slotError()
 {
-    KMessageBox::sorry( 0, i18n("Communication error: %1",errorString() ) );
+    KMessageBox::sorry( 0, i18n("Communication error: %1",m_socket->errorString() ) );
     slotClosed();
 }
 

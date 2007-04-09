@@ -42,6 +42,7 @@
 #include <kfind.h>
 #include <kfinddialog.h>
 #include <kshortcutsdialog.h>
+#include <ksocketfactory.h>
 #include <kglobalaccel.h>
 #include <kconfig.h>
 #include <kwm.h>
@@ -103,7 +104,7 @@ static bool qActionLessThan( const QAction *a1, const QAction *a2 )
 
 KNotesApp::KNotesApp()
     : QLabel( 0, Qt::Window ),
-      m_alarm( 0 ), /*m_listener( 0 ),*/ m_find( 0 ), m_findPos( 0 )
+      m_alarm( 0 ), m_listener( 0 ), m_find( 0 ), m_findPos( 0 )
 {
     new KNotesAdaptor( this );
     QDBusConnection::sessionBus().registerObject("/KNotes", this);
@@ -222,9 +223,6 @@ KNotesApp::KNotesApp()
     // is used as a check if updateNoteActions has to be called for a new note
     m_alarm = new KNotesAlarm( m_manager, this );
 
-    // create the socket and possibly start listening for connections
-    m_listener = new QTcpServer();
-    connect( m_listener, SIGNAL(newConnection()), SLOT(acceptConnection()) );
     updateNetworkListener();
 
     if ( m_notes.size() == 0 && !kapp->isSessionRestored() )
@@ -669,11 +667,14 @@ void KNotesApp::updateGlobalAccels()
 
 void KNotesApp::updateNetworkListener()
 {
-    m_listener->close();
+    delete m_listener;
+    m_listener=0;
 
     if ( KNotesGlobalConfig::receiveNotes() )
     {
-        m_listener->listen( QHostAddress::Any, KNotesGlobalConfig::port() );
+        // create the socket and start listening for connections
+        m_listener=KSocketFactory::listen("knotes",QHostAddress::Any, KNotesGlobalConfig::port() );
+        connect( m_listener, SIGNAL(newConnection()), SLOT(acceptConnection()) );
     }
 }
 

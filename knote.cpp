@@ -52,6 +52,7 @@
 #include <kmessagebox.h>
 #include <kfind.h>
 #include <k3process.h>
+#include <ksocketfactory.h>
 #include <kinputdialog.h>
 #include <kcodecs.h>
 #include <kglobalsettings.h>
@@ -625,10 +626,10 @@ void KNote::slotSend()
     }
 
     // Send the note
-    KNotesNetworkSender *sender = new KNotesNetworkSender( );
+    
+    KNotesNetworkSender *sender = new KNotesNetworkSender( KSocketFactory::connectToHost("knotes", host, KNotesGlobalConfig::port()));
     sender->setSenderId( KNotesGlobalConfig::senderID() );
     sender->setNote( name(), text() ); // FIXME: plainText ??
-    sender->connectToHost(host, KNotesGlobalConfig::port());
 }
 
 void KNote::slotMail()
@@ -657,7 +658,7 @@ void KNote::slotPrint()
 #ifdef __GNUC__
 #warning Port printing!
 #endif
-#if 0
+//#if 0
     KPrinter printer;
     printer.setFullPage( true );
 
@@ -677,19 +678,21 @@ void KNote::slotPrint()
 
         QString content = m_editor->toHtml();
 
-        Q3SimpleRichText text( content, m_config->font(), m_editor->context(),
-                              m_editor->styleSheet(), m_editor->mimeSourceFactory(),
-                              body.height() /*, linkColor, linkUnderline? */ );
+	QTextDocument* text=m_editor->document()->clone();
+//        Q3SimpleRichText text( content, m_config->font(), m_editor->context(),
+//                              m_editor->styleSheet(), m_editor->mimeSourceFactory(),
+//                              body.height() /*, linkColor, linkUnderline? */ );
 
-        text.setWidth( &painter, body.width() );
+//        text.setWidth( &painter, body.width() );
+	text->setPageSize(QSize(painter.device()->width() - marginX * 2,painter.device()->height() - marginY * 2 ));
         QRect view( body );
 
         int page = 1;
 
         for (;;)
         {
-            text.draw( &painter, body.left(), body.top(), view, colorGroup() );
-            view.moveBy( 0, body.height() );
+            text->drawContents( &painter, view);
+            view.translate( 0, body.height() );
             painter.translate( 0, -body.height() );
 
             // page numbers
@@ -699,7 +702,7 @@ void KNote::slotPrint()
                 view.bottom() + painter.fontMetrics().ascent() + 5, QString::number( page )
             );
 
-            if ( view.top() >= text.height() )
+            if ( view.top() >= text->size().height() )
                 break;
 
             printer.newPage();
@@ -707,8 +710,9 @@ void KNote::slotPrint()
         }
 
         painter.end();
+	delete text;
     }
-#endif
+//#endif
 }
 
 void KNote::slotSaveAs()
