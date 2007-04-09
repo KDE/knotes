@@ -41,7 +41,7 @@
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <kconfig.h>
-#include <kcombobox.h>
+#include <khistorycombobox.h>
 #include <kvbox.h>
 
 #include "knotehostdlg.h"
@@ -57,7 +57,7 @@ KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
     setMainWidget( page );
     (void)new QLabel( i18n("Hostname or IP address:"), page );
 
-    m_hostCombo = new KHistoryCombo( true, page );
+    m_hostCombo = new KHistoryComboBox( true, page );
     m_hostCombo->setMinimumWidth( fontMetrics().maxWidth() * 15 );
     m_hostCombo->setDuplicatesEnabled( false );
 
