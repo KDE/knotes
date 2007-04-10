@@ -24,12 +24,13 @@
 #include <QMap>
 #include <QList>
 #include <QString>
-#include <QLabel>
+#include <QWidget>
 #include <QDomDocument>
 
 #include <ksessionmanager.h>
 #include <kapplication.h>
 #include <kxmlguiclient.h>
+#include <ksystemtrayicon.h>
 
 
 class QMouseEvent;
@@ -50,7 +51,7 @@ namespace KCal {
 }
 
 
-class KNotesApp : public QLabel, public KSessionManager, virtual public KXMLGUIClient
+class KNotesApp : public QWidget, public KSessionManager, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:
@@ -81,10 +82,8 @@ public slots:
     void hideAllNotes() const;
     void showAllNotes() const;
 
-protected:
-    void mousePressEvent( QMouseEvent* );
-
 protected slots:
+    void slotActivated(QSystemTrayIcon::ActivationReason);
     void slotShowNote();
     void slotWalkThroughNotes();
 
@@ -130,6 +129,7 @@ private:
     KGlobalAccel    *m_globalAccel;
     KXMLGUIFactory  *m_guiFactory;
     KXMLGUIBuilder  *m_guiBuilder;
+    KSystemTrayIcon *m_tray;
 
     QDomDocument    m_noteGUI;
 };

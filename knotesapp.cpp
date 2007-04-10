@@ -103,7 +103,7 @@ static bool qActionLessThan( const QAction *a1, const QAction *a2 )
 
 
 KNotesApp::KNotesApp()
-    : QLabel( 0, Qt::Window ),
+    : QWidget(),
       m_alarm( 0 ), m_listener( 0 ), m_find( 0 ), m_findPos( 0 )
 {
     new KNotesAdaptor( this );
@@ -111,13 +111,11 @@ KNotesApp::KNotesApp()
     connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
 
     // create the dock widget...
-#ifdef Q_WS_X11
-#ifdef __GNUC__
-#warning Port to KSystemTrayIcon
-#endif
-#endif
-    setToolTip( i18n("KNotes: Sticky notes for KDE") );
-    setPixmap( KSystemTrayIcon::loadIcon( "knotes" ).pixmap() );
+    m_tray = new KSystemTrayIcon();
+    
+    m_tray->setToolTip( i18n("KNotes: Sticky notes for KDE") );
+    m_tray->setIcon(KSystemTrayIcon::loadIcon( "knotes"));
+    connect(m_tray,SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(slotActivated(QSystemTrayIcon::ActivationReason)));
 
     // set the initial style
 #ifdef __GNUC__
@@ -154,7 +152,7 @@ KNotesApp::KNotesApp()
 
     m_contextMenu = static_cast<KMenu*>(m_guiFactory->container( "knotes_context", this ));
     m_noteMenu = static_cast<KMenu*>(m_guiFactory->container( "notes_menu", this ));
-
+    m_tray->setContextMenu(m_contextMenu);
     // get the most recent XML UI file
     QString xmlFileName = componentData().componentName() + "ui.rc";
     QString filter = QString::fromLatin1( componentData().componentName() + '/' ) + xmlFileName;
@@ -229,6 +227,7 @@ KNotesApp::KNotesApp()
         newNote();
 
     updateNoteActions();
+    m_tray->show();
 }
 
 KNotesApp::~KNotesApp()
@@ -245,6 +244,7 @@ KNotesApp::~KNotesApp()
     //delete m_listener;
     delete m_manager;
     delete m_guiBuilder;
+    delete m_tray;
 }
 
 bool KNotesApp::commitData( QSessionManager& )
@@ -376,32 +376,28 @@ void KNotesApp::setText( const QString& id, const QString& newText )
         kWarning(5500) << "setText: no note with id: " << id << endl;
 }
 
+// -------------------- protected slots -------------------- //
 
-// ------------------- protected methods ------------------- //
-
-void KNotesApp::mousePressEvent( QMouseEvent *e )
+void KNotesApp::slotActivated(QSystemTrayIcon::ActivationReason r)
 {
-    if ( !rect().contains( e->pos() ) )
-        return;
-
-    switch ( e->button() )
-    {
-    case Qt::LeftButton:
+    switch (r) {
+    case QSystemTrayIcon::Trigger:
         if ( m_notes.size() == 1 )
             showNote( *m_notes.begin() );
         else if ( m_notes.size() > 1 )
-            m_noteMenu->popup( e->globalPos() );
+#ifdef __GNUC__
+#warning Port me!
+#endif
+//            m_noteMenu->popup( e->globalPos() );
+            m_noteMenu->popup( QPoint(100,100) );
         break;
-    case Qt::MidButton:
+    case QSystemTrayIcon::MiddleClick:
         newNote();
         break;
-    case Qt::RightButton:
-        m_contextMenu->popup( e->globalPos() );
-    default: break;
+    default:
+	break;
     }
 }
-
-// -------------------- protected slots -------------------- //
 
 void KNotesApp::slotShowNote()
 {

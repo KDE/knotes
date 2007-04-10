@@ -84,7 +84,7 @@ int Application::newInstance()
     if ( !mMainWindow )
     {
         mMainWindow = new KNotesApp();
-        mMainWindow->show();
+//        mMainWindow->show();
     }
     else
         mMainWindow->newNote();
