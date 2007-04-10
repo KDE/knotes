@@ -655,10 +655,6 @@ void KNote::slotMail()
 void KNote::slotPrint()
 {
     saveData();
-#ifdef __GNUC__
-#warning Port printing!
-#endif
-//#if 0
     KPrinter printer;
     printer.setFullPage( true );
 
@@ -676,19 +672,12 @@ void KNote::slotPrint()
                     painter.device()->width() - marginX * 2,
                     painter.device()->height() - marginY * 2 );
 
-        QString content = m_editor->toHtml();
-
 	QTextDocument* text=m_editor->document()->clone();
-//        Q3SimpleRichText text( content, m_config->font(), m_editor->context(),
-//                              m_editor->styleSheet(), m_editor->mimeSourceFactory(),
-//                              body.height() /*, linkColor, linkUnderline? */ );
-
-//        text.setWidth( &painter, body.width() );
 	text->setPageSize(QSize(painter.device()->width() - marginX * 2,painter.device()->height() - marginY * 2 ));
-        QRect view( body );
+        QRect view( 0,0, painter.device()->width() - marginX * 2, painter.device()->height() - marginY * 2  );
 
         int page = 1;
-
+	painter.translate(marginX, marginY);
         for (;;)
         {
             text->drawContents( &painter, view);
@@ -712,7 +701,6 @@ void KNote::slotPrint()
         painter.end();
 	delete text;
     }
-//#endif
 }
 
 void KNote::slotSaveAs()
