@@ -34,7 +34,6 @@
 #include <QStringList>
 #include <QLabel>
 #include <QLineEdit>
-#include <q3vbox.h>
 
 #include <kdebug.h>
 #include <kglobal.h>
