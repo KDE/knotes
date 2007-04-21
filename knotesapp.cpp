@@ -20,7 +20,7 @@
 
 #include <QClipboard>
 #include <QMouseEvent>
-#include <QToolTip>
+
 #include <QTcpServer>
 #include <QPixmap>
 #include <QLabel>
