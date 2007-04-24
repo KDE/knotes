@@ -422,7 +422,8 @@ void KNotesApp::slotWalkThroughNotes()
 
 void KNotesApp::slotOpenFindDialog()
 {
-    KFindDialog findDia( this, "find_dialog" );
+    KFindDialog findDia( this);
+    findDia.setObjectName("find_dialog" );
     findDia.setHasSelection( false );
     findDia.setHasCursor( false );
     findDia.setSupportsBackwardsFind( false );

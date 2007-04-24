@@ -47,8 +47,9 @@
 
 KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString& title,
         QWidget *parent, const QString& name )
-    : KConfigDialog( parent, name, config ? config : KNotesGlobalConfig::self(), KPageDialog::List )
+    : KConfigDialog( parent, name, config ? config : KNotesGlobalConfig::self())
 {
+    setFaceType(KPageDialog::List );
     setButtons( config ? Default|Ok|Apply|Cancel : Default|Ok|Cancel );
     setDefaultButton( Ok );
 
