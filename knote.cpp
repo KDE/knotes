@@ -73,7 +73,7 @@
 #include "knotesnetsend.h"
 #include "version.h"
 
-#include <kwm.h>
+#include <kwindowsystem.h>
 #include <netwm.h>
 
 #ifdef Q_WS_X11
@@ -332,7 +332,7 @@ actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(
     int desktop = m_config->desktop();
 #ifdef Q_WS_X11
     if ( desktop < 0 && desktop != NETWinInfo::OnAllDesktops )
-        desktop = KWM::currentDesktop();
+        desktop = KWindowSystem::currentDesktop();
 #endif
 
     // show the note if desired
@@ -370,7 +370,7 @@ actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(
     QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap( IconSize(K3Icon::Small), IconSize(K3Icon::Small) ),
                                      KIconEffect::Colorize, 1, m_config->bgColor(), false );
 #ifdef Q_WS_X11
-    KWM::setIcons( winId(), icon, miniIcon );
+    KWindowSystem::setIcons( winId(), icon, miniIcon );
 #endif
 }
 
@@ -513,7 +513,7 @@ void KNote::slotFindNext()
     {
         show();
 #ifdef Q_WS_X11
-        KWM::setCurrentDesktop( KWM::windowInfo( winId(), NET::WMDesktop ).desktop() );
+        KWindowSystem::setCurrentDesktop( KWindowSystem::windowInfo( winId(), NET::WMDesktop ).desktop() );
 #endif
     }
 }
@@ -775,14 +775,14 @@ void KNote::slotApplyConfig()
 void KNote::slotUpdateKeepAboveBelow()
 {
 #ifdef Q_WS_X11
-    KWindowInfo info( KWM::windowInfo( winId(), NET::WMState ) );
+    KWindowInfo info( KWindowSystem::windowInfo( winId(), NET::WMState ) );
 #endif
     if ( m_keepAbove->isChecked() )
     {
         m_config->setKeepAbove( true );
         m_config->setKeepBelow( false );
 #ifdef Q_WS_X11
-        KWM::setState( winId(), info.state() | NET::KeepAbove );
+        KWindowSystem::setState( winId(), info.state() | NET::KeepAbove );
 #endif
     }
     else if ( m_keepBelow->isChecked() )
@@ -790,18 +790,18 @@ void KNote::slotUpdateKeepAboveBelow()
         m_config->setKeepAbove( false );
         m_config->setKeepBelow( true );
 #ifdef Q_WS_X11
-        KWM::setState( winId(), info.state() | NET::KeepBelow );
+        KWindowSystem::setState( winId(), info.state() | NET::KeepBelow );
 #endif
     }
     else
     {
         m_config->setKeepAbove( false );
 #ifdef Q_WS_X11
-        KWM::clearState( winId(), NET::KeepAbove );
+        KWindowSystem::clearState( winId(), NET::KeepAbove );
 #endif
         m_config->setKeepBelow( false );
 #ifdef Q_WS_X11
-        KWM::clearState( winId(), NET::KeepBelow );
+        KWindowSystem::clearState( winId(), NET::KeepBelow );
 #endif
     }
 }
@@ -810,9 +810,9 @@ void KNote::slotUpdateShowInTaskbar()
 {
 #ifdef Q_WS_X11
     if ( !m_config->showInTaskbar() )
-        KWM::setState( winId(), KWM::windowInfo(winId(), NET::WMState).state() | NET::SkipTaskbar );
+        KWindowSystem::setState( winId(), KWindowSystem::windowInfo(winId(), NET::WMState).state() | NET::SkipTaskbar );
     else
-        KWM::clearState( winId(), NET::SkipTaskbar );
+        KWindowSystem::clearState( winId(), NET::SkipTaskbar );
 #endif
 }
 
@@ -849,9 +849,9 @@ void KNote::toDesktop( int desktop )
 
 #ifdef Q_WS_X11
     if ( desktop == NETWinInfo::OnAllDesktops )
-        KWM::setOnAllDesktops( winId(), true );
+        KWindowSystem::setOnAllDesktops( winId(), true );
     else
-        KWM::setOnDesktop( winId(), desktop );
+        KWindowSystem::setOnDesktop( winId(), desktop );
 #endif
 }
 
@@ -907,7 +907,7 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
                                                                 IconSize(K3Icon::Small) ),
                                      KIconEffect::Colorize, 1, bg, false );
 #ifdef Q_WS_X11
-    KWM::setIcons( winId(), icon, miniIcon );
+    KWindowSystem::setIcons( winId(), icon, miniIcon );
 #endif
     // update the color of the title
     updateFocus();
@@ -1099,8 +1099,8 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
              (e->button() == Qt::LeftButton || e->button() == Qt::MidButton))
         {
 #ifdef Q_WS_X11
-            e->button() == Qt::LeftButton ? KWM::raiseWindow( winId() )
-                                      : KWM::lowerWindow( winId() );
+            e->button() == Qt::LeftButton ? KWindowSystem::raiseWindow( winId() )
+                                      : KWindowSystem::lowerWindow( winId() );
 
             XUngrabPointer( QX11Info::display(), QX11Info::appTime() );
             NETRootInfo wm_root( QX11Info::display(), NET::WMMoveResize );

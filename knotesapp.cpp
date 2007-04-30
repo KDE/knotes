@@ -45,7 +45,7 @@
 #include <ksocketfactory.h>
 #include <kglobalaccel.h>
 #include <kconfig.h>
-#include <kwm.h>
+#include <kwindowsystem.h>
 #include <kstandardaction.h>
 #include <kicon.h>
 
@@ -529,8 +529,8 @@ void KNotesApp::showNote( KNote* note ) const
 {
     note->show();
 #ifdef Q_WS_X11    
-    KWM::setCurrentDesktop( KWM::windowInfo( note->winId(), NET::WMDesktop ).desktop() );
-    KWM::forceActiveWindow( note->winId() );
+    KWindowSystem::setCurrentDesktop( KWindowSystem::windowInfo( note->winId(), NET::WMDesktop ).desktop() );
+    KWindowSystem::forceActiveWindow( note->winId() );
 #endif    
     note->setFocus();
 }
