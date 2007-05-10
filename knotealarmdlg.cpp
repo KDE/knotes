@@ -31,8 +31,9 @@
 
 #include <QLabel>
 #include <QRadioButton>
-#include <q3buttongroup.h>
-
+#include <QGroupBox>
+#include <QVBoxLayout>
+#include <QButtonGroup>
 
 #include <klocale.h>
 #include <kvbox.h>
@@ -53,29 +54,32 @@ KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent )
     setButtons( Ok|Cancel );
     KVBox *page = new KVBox( this );
     setMainWidget( page );
-    Q3GroupBox *group = new Q3GroupBox( 3, Qt::Vertical, i18n("Scheduled Alarm"), page );
-    m_buttons = new Q3ButtonGroup( page );
-    m_buttons->hide();
+   
+    m_buttons = new QButtonGroup(this); 
+    QGroupBox *group = new QGroupBox(i18n("Scheduled Alarm"),page);
+    QVBoxLayout *layout = new QVBoxLayout;
+    QRadioButton *none = new QRadioButton( i18n("&No alarm"));
+    layout->addWidget(none);
+    m_buttons->addButton(none,0);
+    
+    group->setLayout(layout);
 
-    QRadioButton *none = new QRadioButton( i18n("&No alarm"), group );
-    m_buttons->insert( none );
-
-    KHBox *at = new KHBox( group );
-    QRadioButton *label_at = new QRadioButton( i18n("Alarm &at:"), at );
-    m_buttons->insert( label_at );
+    KHBox *at = new KHBox;
+    QRadioButton *label_at = new QRadioButton( i18n("Alarm &at:"),at);
     m_atDate = new KDateEdit( at );
     m_atTime = new KTimeEdit( at );
     at->setStretchFactor( m_atDate, 1 );
+    layout->addWidget(at);
+    m_buttons->addButton(label_at,1);
 
-    KHBox *in = new KHBox( group );
+    KHBox *in = new KHBox;
     QRadioButton *label_in = new QRadioButton( i18n("Alarm &in:"), in );
-    m_buttons->insert( label_in );
     m_inTime = new KTimeEdit( in );
-    QLabel *in_min = new QLabel( i18n("hours/minutes"), in );
-
     label_in->setEnabled( false ); // TODO
+    layout->addWidget(in);
+    m_buttons->addButton(label_in,2);
 
-    connect( m_buttons, SIGNAL(clicked( int )), SLOT(slotButtonChanged( int )) );
+    connect( m_buttons, SIGNAL(buttonClicked(int)), SLOT(slotButtonChanged(int)) );
     connect( this, SIGNAL( okClicked() ), SLOT( slotOk() ) );
 }
 
@@ -83,25 +87,24 @@ KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent )
 void KNoteAlarmDlg::setIncidence( KCal::Journal *journal )
 {
     m_journal = journal;
-
     if ( !m_journal->alarms().isEmpty() )
     {
         KCal::Alarm *alarm = m_journal->alarms().first();
         if ( alarm->hasTime() )
         {
-            m_buttons->setButton( 1 );
+            m_buttons->button(1)->setChecked( true );
             m_atDate->setDate( alarm->time().date() );
             m_atTime->setTime( alarm->time().time() );
         }
         else if ( alarm->hasStartOffset() )
-            m_buttons->setButton( 2 );
+            m_buttons->button(2)->setChecked( true );
         else
-            m_buttons->setButton( 0 );
+	    m_buttons->button(0)->setChecked( true );
     }
     else
-        m_buttons->setButton( 0 );
+	m_buttons->button(0)->setChecked( true );
 
-    slotButtonChanged( m_buttons->selectedId() );
+    slotButtonChanged( m_buttons->checkedId() );
 }
 
 void KNoteAlarmDlg::slotButtonChanged( int id )
@@ -127,7 +130,7 @@ void KNoteAlarmDlg::slotButtonChanged( int id )
 
 void KNoteAlarmDlg::slotOk()
 {
-    if ( m_buttons->selectedId() == 0 )
+    if ( m_buttons->checkedId() == 0 )
     {
         m_journal->clearAlarms();
         return;
@@ -135,7 +138,7 @@ void KNoteAlarmDlg::slotOk()
 
     KCal::Alarm *alarm;
     if ( m_journal->alarms().isEmpty() )
-    {
+   {
         alarm = m_journal->newAlarm();
         alarm->setEnabled( true );
         alarm->setType( KCal::Alarm::Display );
@@ -143,7 +146,7 @@ void KNoteAlarmDlg::slotOk()
     else
         alarm = m_journal->alarms().first();
 
-    if ( m_buttons->selectedId() == 1 )
+    if ( m_buttons->checkedId() == 1 )
         alarm->setTime( KDateTime( m_atDate->date(), m_atTime->getTime(), KDateTime::LocalZone ) );
     else
     {
