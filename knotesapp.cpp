@@ -76,6 +76,7 @@ public:
 #warning Port me!
 #endif
         //m_keyChooser = new KShortcutsEditor( globals, this );
+        m_keyChooser = new KShortcutsEditor(  this );
         setMainWidget( m_keyChooser );
         connect( this, SIGNAL(defaultClicked()), m_keyChooser, SLOT(allDefault()) );
     }
