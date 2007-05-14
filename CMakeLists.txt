@@ -45,7 +45,7 @@ kde4_add_plugin(knotes_local ${knotes_local_PART_SRCS})
 
 
 
-target_link_libraries(knotes_local  ${KDE4_KIO_LIBS}  ${KDE4_KRESOURCES_LIBS} ${KDE4_KCAL_LIBS} ${KDE4_KDEPRINT_LIBS} )
+target_link_libraries(knotes_local  ${KDE4_KIO_LIBS}  ${KDE4_KRESOURCES_LIBS} ${KDE4_KCAL_LIBS} ${KDE4_KDEPRINT_LIBS} ${QT_QT3SUPPORT_LIBRARY})
 
 install(TARGETS knotes_local  DESTINATION ${PLUGIN_INSTALL_DIR})
 
