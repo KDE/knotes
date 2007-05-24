@@ -77,7 +77,7 @@ KNoteHostDlg::~KNoteHostDlg()
     // Write known hosts to configfile
     KNotesGlobalConfig::setKnownHosts( m_hostCombo->historyItems() );
     //KNotesGlobalConfig::setHostCompletions( m_hostCombo->completionObject()->items() );
-    KNotesGlobalConfig::writeConfig();
+    KNotesGlobalConfig::self()->writeConfig();
 }
 
 void KNoteHostDlg::slotTextChanged( const QString& text )
