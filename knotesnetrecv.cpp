@@ -77,7 +77,7 @@ KNotesNetworkReceiver::KNotesNetworkReceiver( KBufferedSocket *s )
     m_sock->enableRead( true );
 
     // Setup the timer
-    m_timer = new QTimer( this );
+    m_timer = new QTimer( this, "m_timer" );
     connect( m_timer, SIGNAL(timeout()), SLOT(slotReceptionTimeout()) );
     m_timer->start( MAXTIME, true );
 }
