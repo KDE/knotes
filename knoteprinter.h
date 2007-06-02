@@ -8,6 +8,7 @@
 class QMimeSourceFactory;
 class QStyleSheet;
 template <class T> class QValueList;
+class KPrinter;
 
 namespace KCal {
     class Journal;
@@ -39,6 +40,8 @@ public:
     QMimeSourceFactory* mimeSourceFactory() const;
 
 private:
+    void doPrint( KPrinter& printer, QPainter& painter,
+                  const QString& content ) const;
 
     QColorGroup m_colorGroup;
     QFont m_font;
