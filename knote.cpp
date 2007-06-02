@@ -42,7 +42,6 @@
 #include <kxmlguifactory.h>
 #include <kcolordrag.h>
 #include <kiconeffect.h>
-#include <kprinter.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
@@ -65,6 +64,7 @@
 #include "knotealarmdlg.h"
 #include "knotehostdlg.h"
 #include "knotesnetsend.h"
+#include "knoteprinter.h"
 #include "version.h"
 
 #include "pushpin.xpm"
@@ -804,61 +804,19 @@ void KNote::slotPrint()
 {
     saveData();
 
-    KPrinter printer;
-    printer.setFullPage( true );
+    QString content;
+    if ( m_editor->textFormat() == PlainText )
+        content = QStyleSheet::convertFromPlainText( m_editor->text() );
+    else
+        content = m_editor->text();
 
-    if ( printer.setup( 0, i18n("Print %1").arg(name()) ) )
-    {
-        QPainter painter;
-        painter.begin( &printer );
-
-        const int margin = 40;  // pt
-
-        QPaintDeviceMetrics metrics( painter.device() );
-        int marginX = margin * metrics.logicalDpiX() / 72;
-        int marginY = margin * metrics.logicalDpiY() / 72;
-
-        QRect body( marginX, marginY,
-                    metrics.width() - marginX * 2,
-                    metrics.height() - marginY * 2 );
-
-        QString content;
-        if ( m_editor->textFormat() == PlainText )
-            content = QStyleSheet::convertFromPlainText( m_editor->text() );
-        else
-            content = m_editor->text();
-
-        QSimpleRichText text( content, m_config->font(), m_editor->context(),
-                              m_editor->styleSheet(), m_editor->mimeSourceFactory(),
-                              body.height() /*, linkColor, linkUnderline? */ );
-
-        text.setWidth( &painter, body.width() );
-        QRect view( body );
-
-        int page = 1;
-
-        for (;;)
-        {
-            text.draw( &painter, body.left(), body.top(), view, colorGroup() );
-            view.moveBy( 0, body.height() );
-            painter.translate( 0, -body.height() );
-
-            // page numbers
-            painter.setFont( m_config->font() );
-            painter.drawText(
-                view.right() - painter.fontMetrics().width( QString::number( page ) ),
-                view.bottom() + painter.fontMetrics().ascent() + 5, QString::number( page )
-            );
-
-            if ( view.top() >= text.height() )
-                break;
-
-            printer.newPage();
-            page++;
-        }
-
-        painter.end();
-    }
+    KNotePrinter printer;
+    printer.setMimeSourceFactory( m_editor->mimeSourceFactory() );
+    printer.setFont( m_config->font() );
+    printer.setContext( m_editor->context() );
+    printer.setStyleSheet( m_editor->styleSheet() );
+    printer.setColorGroup( colorGroup() );
+    printer.printNote( QString(), content );
 }
 
 void KNote::slotSaveAs()
