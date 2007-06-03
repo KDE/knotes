@@ -1,6 +1,6 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="9">
+<kpartgui name="KNotes" version="390">
 
 <Menu name="note_context" noMerge="1">
     <Action name="insert_date"/>

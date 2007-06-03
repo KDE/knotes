@@ -1,6 +1,6 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="3">
+<kpartgui name="KNotes" version="390">
 
 <Menu name="knotes_context" noMerge="1"><text>KNotes</text>
     <title icon="knotes">KNotes</title>
