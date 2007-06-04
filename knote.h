@@ -33,7 +33,6 @@
 class QLabel;
 class QSizeGrip;
 
-class KXMLGUIBuilder;
 
 class KFind;
 class KMenu;

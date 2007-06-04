@@ -31,7 +31,6 @@
 
 class QFont;
 class QColor;
-class QPushButton;
 class KAction;
 class KToggleAction;
 class KFontAction;

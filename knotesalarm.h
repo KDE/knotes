@@ -38,8 +38,7 @@
 class KNotesResourceManager;
 
 namespace KCal {
-    class Incidence;
-}
+    }
 
 
 class KNotesAlarm : public QObject

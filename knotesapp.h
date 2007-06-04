@@ -33,13 +33,11 @@
 #include <ksystemtrayicon.h>
 
 
-class QMouseEvent;
 class QTcpServer;
 class KFind;
 class KNote;
 class KMenu;
 class KAction;
-class KActionMenu;
 class KGlobalAccel;
 class KXMLGUIFactory;
 class KXMLGUIBuilder;

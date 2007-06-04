@@ -39,7 +39,6 @@
 
 #include <kcal/alarm.h>
 #include <Q3Dict>
-class KNotesApp;
 class KNote;
 
 namespace KCal {
