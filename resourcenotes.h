@@ -33,8 +33,8 @@
 #ifndef RESOURCENOTES_H
 #define RESOURCENOTES_H
 
+#include "knotes_export.h"
 #include <kresources/resource.h>
-#include <kdemacros.h>
 #include <kcal/alarm.h>
 
 class KNotesResourceManager;
@@ -51,7 +51,7 @@ namespace KCal {
  * \warning This code is still under heavy development. Don't expect source or
  *          binary compatibility in future versions.
  */
-class KDE_EXPORT ResourceNotes : public KRES::Resource
+class KNOTES_EXPORT ResourceNotes : public KRES::Resource
 {
 public:
     ResourceNotes();
