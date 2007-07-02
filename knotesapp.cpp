@@ -156,7 +156,7 @@ KNotesApp::KNotesApp()
     m_tray->setContextMenu(m_contextMenu);
     // get the most recent XML UI file
     QString xmlFileName = componentData().componentName() + "ui.rc";
-    QString filter = QString::fromLatin1( componentData().componentName() + '/' ) + xmlFileName;
+    QString filter = componentData().componentName() + '/' + xmlFileName;
     QStringList fileList = componentData().dirs()->findAllResources( "data", filter ) +
                            componentData().dirs()->findAllResources( "data", xmlFileName );
 

@@ -97,31 +97,31 @@ int main( int argc, char* argv[] )
     QString version = QString::number( KNOTES_VERSION );
 
     KAboutData aboutData(
-          "knotes",
-          I18N_NOOP("KNotes"),
+          "knotes", 0,
+          ki18n("KNotes"),
           version.toLatin1(),
-          I18N_NOOP( "KDE Notes" ),
+          ki18n( "KDE Notes" ),
           KAboutData::License_GPL,
-          I18N_NOOP("(c) 1997-2006, The KNotes Developers")
+          ki18n("(c) 1997-2006, The KNotes Developers")
     );
 
-    aboutData.addAuthor("Michael Brade", I18N_NOOP("Maintainer"), "brade@kde.org");
-    aboutData.addAuthor("Bernd Johannes Wuebben", I18N_NOOP("Original KNotes Author"), "wuebben@kde.org");
-    aboutData.addAuthor("Wynn Wilkes", I18N_NOOP("Ported KNotes to KDE 2"), "wynnw@calderasystems.com");
-    aboutData.addAuthor("Daniel Martin", I18N_NOOP("Network Interface"), "daniel.martin@pirack.com");
-    aboutData.addAuthor("Bo Thorsen", I18N_NOOP("Started KDE Resource Framework Integration"), "bo@sonofthor.dk");
+    aboutData.addAuthor(ki18n("Michael Brade"), ki18n("Maintainer"), "brade@kde.org");
+    aboutData.addAuthor(ki18n("Bernd Johannes Wuebben"), ki18n("Original KNotes Author"), "wuebben@kde.org");
+    aboutData.addAuthor(ki18n("Wynn Wilkes"), ki18n("Ported KNotes to KDE 2"), "wynnw@calderasystems.com");
+    aboutData.addAuthor(ki18n("Daniel Martin"), ki18n("Network Interface"), "daniel.martin@pirack.com");
+    aboutData.addAuthor(ki18n("Bo Thorsen"), ki18n("Started KDE Resource Framework Integration"), "bo@sonofthor.dk");
 
-    aboutData.addCredit("Bera Debajyoti", I18N_NOOP("Idea and initial code for the new look&feel"),
+    aboutData.addCredit(ki18n("Bera Debajyoti"), ki18n("Idea and initial code for the new look&feel"),
                         "debajyotibera@gmail.com");
-    aboutData.addCredit("Matthias Ettrich", 0, "ettrich@kde.org");
-    aboutData.addCredit("David Faure", 0, "faure@kde.org");
-    aboutData.addCredit("Matthias Kiefer", 0, "kiefer@kde.org");
-    aboutData.addCredit("Luboš Luňák", 0, "l.lunak@kde.org");
-    aboutData.addCredit("Laurent Montel", 0, "montel@kde.org");
-    aboutData.addCredit("Dirk A. Mueller", 0, "dmuell@gmx.net");
-    aboutData.addCredit("Carsten Pfeiffer", 0, "pfeiffer@kde.org");
-    aboutData.addCredit("Harri Porten", 0, "porten@kde.org");
-    aboutData.addCredit("Espen Sand", 0, "espen@kde.org");
+    aboutData.addCredit(ki18n("Matthias Ettrich"), KLocalizedString(), "ettrich@kde.org");
+    aboutData.addCredit(ki18n("David Faure"), KLocalizedString(), "faure@kde.org");
+    aboutData.addCredit(ki18n("Matthias Kiefer"), KLocalizedString(), "kiefer@kde.org");
+    aboutData.addCredit(ki18n("Luboš Luňák"), KLocalizedString(), "l.lunak@kde.org");
+    aboutData.addCredit(ki18n("Laurent Montel"), KLocalizedString(), "montel@kde.org");
+    aboutData.addCredit(ki18n("Dirk A. Mueller"), KLocalizedString(), "dmuell@gmx.net");
+    aboutData.addCredit(ki18n("Carsten Pfeiffer"), KLocalizedString(), "pfeiffer@kde.org");
+    aboutData.addCredit(ki18n("Harri Porten"), KLocalizedString(), "porten@kde.org");
+    aboutData.addCredit(ki18n("Espen Sand"), KLocalizedString(), "espen@kde.org");
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 
