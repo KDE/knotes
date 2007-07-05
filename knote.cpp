@@ -51,7 +51,7 @@
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
 #include <kfind.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <ksocketfactory.h>
 #include <kinputdialog.h>
 #include <kcodecs.h>
@@ -637,7 +637,7 @@ void KNote::slotMail()
     // get the mail action command
     QStringList cmd_list = KNotesGlobalConfig::mailAction().split( QChar(' '), QString::SkipEmptyParts );
 
-    K3Process mail;
+    KProcess mail;
     foreach ( QString cmd, cmd_list )
     {
         if ( cmd == "%f" )
@@ -648,7 +648,7 @@ void KNote::slotMail()
             mail << cmd;
     }
 
-    if ( !mail.start( K3Process::DontCare ) )
+    if ( !mail.startDetached() )
         KMessageBox::sorry( this, i18n("Unable to start the mail process.") );
 }
 
