@@ -24,7 +24,6 @@ set( libknotesconfig_SRCS knoteconfig.kcfgc knotesglobalconfig.kcfgc )
 
 kde4_add_kcfg_files(knotes_SRCS ${libknotesconfig_SRCS})
 
-kde4_automoc(${knotes_SRCS})
 
 kde4_add_executable(knotes ${knotes_SRCS})
 
@@ -37,7 +36,6 @@ install(TARGETS knotes  DESTINATION ${BIN_INSTALL_DIR} )
 
 set(knotes_local_PART_SRCS resourcelocal_plugin.cpp ${libknotesresources_SRCS})
 
-kde4_automoc(${knotes_local_PART_SRCS})
 
 kde4_add_kcfg_files(knotes_local_PART_SRCS ${libknotesconfig_SRCS})
 
