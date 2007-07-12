@@ -51,7 +51,7 @@ namespace KCal {
  * \warning This code is still under heavy development. Don't expect source or
  *          binary compatibility in future versions.
  */
-class KNOTES_EXPORT ResourceNotes : public KRES::Resource
+class ResourceNotes : public KRES::Resource
 {
 public:
     ResourceNotes();
