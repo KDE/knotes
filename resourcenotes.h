@@ -53,6 +53,7 @@ namespace KCal {
  */
 class ResourceNotes : public KRES::Resource
 {
+Q_OBJECT
 public:
     ResourceNotes();
     explicit ResourceNotes( const KConfigGroup &group );
@@ -73,8 +74,8 @@ public:
 
     virtual KCal::Alarm::List alarms( const KDateTime& from, const KDateTime& to ) = 0;
 
-    void setManager( KNotesResourceManager *manager ) { mManager = manager; }
-    KNotesResourceManager *manager() const            { return mManager; }
+    void setManager( KNotesResourceManager *manager );
+    KNotesResourceManager *manager() const;
 
 protected:
     KNotesResourceManager *mManager;

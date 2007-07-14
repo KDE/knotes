@@ -47,3 +47,15 @@ ResourceNotes::ResourceNotes( const KConfigGroup &group )
 ResourceNotes::~ResourceNotes()
 {
 }
+
+void ResourceNotes::setManager( KNotesResourceManager *manager )
+{
+  mManager = manager; 
+}
+
+KNotesResourceManager * ResourceNotes::manager() const
+{
+  return mManager;
+}
+
+#include "resourcenotes.moc"
