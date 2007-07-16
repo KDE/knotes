@@ -183,7 +183,7 @@ KNotesApp::KNotesApp()
                            Qt::ALT+Qt::SHIFT+Qt::Key_S,
                            this, SLOT(showAllNotes()), true, true );*/
 
-    KGlobalAccel::self()->readSettings();
+    //KGlobalAccel::self()->readSettings();
 
     KConfigGroup config(KGlobal::config(), "Global Keybindings");
 #ifdef __GNUC__
@@ -482,7 +482,7 @@ void KNotesApp::slotConfigureAccels()
         keys.insert( (*it)->actionCollection() );
     keys.configure();
 
-    m_globalAccel->writeSettings();
+    //m_globalAccel->writeSettings();
     updateGlobalAccels();
 
     // update GUI doc for new notes
