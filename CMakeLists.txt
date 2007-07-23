@@ -50,10 +50,10 @@ install(TARGETS knotes_local  DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### install files ###############
 
-install( FILES knotes.desktop  DESTINATION ${XDG_APPS_DIR})
+install( FILES knotes.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
 install( FILES knoteconfig.kcfg knotesglobalconfig.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
 install( FILES local.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources/knotes)
 install( FILES knotes_manager.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources)
 install( FILES knotesappui.rc knotesui.rc  DESTINATION ${DATA_INSTALL_DIR}/knotes)
-install( FILES org.kde.KNotes.xml DESTINATION ${DBUS_INTERFACES_DIR}) 
+install( FILES org.kde.KNotes.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR}) 
 
