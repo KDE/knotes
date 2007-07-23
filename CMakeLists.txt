@@ -14,7 +14,7 @@ set(libknotesnetwork_SRCS knotesnetrecv.cpp knotesnetsend.cpp)
 
 set(libknoteslegacy_SRCS  knoteslegacy.cpp )
 
-set(libknote_SRCS knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp )
+set(libknote_SRCS knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp knoteprinter.cpp )
 
 
 set(knotes_SRCS main.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS} ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})

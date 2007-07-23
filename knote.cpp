@@ -46,7 +46,6 @@
 #include <kxmlguifactory.h>
 #include <k3colordrag.h>
 #include <kiconeffect.h>
-#include <kprinter.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
@@ -71,6 +70,7 @@
 #include "knotealarmdlg.h"
 #include "knotehostdlg.h"
 #include "knotesnetsend.h"
+#include "knoteprinter.h"
 #include "version.h"
 
 #include <kwindowsystem.h>
@@ -655,52 +655,21 @@ void KNote::slotMail()
 void KNote::slotPrint()
 {
     saveData();
-    KPrinter printer;
-    printer.setFullPage( true );
+    QString content;
+    if ( m_editor->textFormat() == Qt::PlainText )
+        content = Qt::convertFromPlainText( m_editor->text() );
+    else
+        content = m_editor->text();
 
-    if ( printer.setup( 0, i18n("Print %1", name()) ) )
-    {
-        QPainter painter;
-        painter.begin( &printer );
-
-        const int margin = 40;  // pt
-
-        int marginX = margin * painter.device()->logicalDpiX() / 72;
-        int marginY = margin * painter.device()->logicalDpiY() / 72;
-
-        QRect body( marginX, marginY,
-                    painter.device()->width() - marginX * 2,
-                    painter.device()->height() - marginY * 2 );
-
-	QTextDocument* text=m_editor->document()->clone();
-	text->setPageSize(QSize(painter.device()->width() - marginX * 2,painter.device()->height() - marginY * 2 ));
-        QRect view( 0,0, painter.device()->width() - marginX * 2, painter.device()->height() - marginY * 2  );
-
-        int page = 1;
-	painter.translate(marginX, marginY);
-        for (;;)
-        {
-            text->drawContents( &painter, view);
-            view.translate( 0, body.height() );
-            painter.translate( 0, -body.height() );
-
-            // page numbers
-            painter.setFont( m_config->font() );
-            painter.drawText(
-                view.right() - painter.fontMetrics().width( QString::number( page ) ),
-                view.bottom() + painter.fontMetrics().ascent() + 5, QString::number( page )
-            );
-
-            if ( view.top() >= text->size().height() )
-                break;
-
-            printer.newPage();
-            page++;
-        }
-
-        painter.end();
-	delete text;
-    }
+    KNotePrinter printer;
+#if PORT_ME_TO_KDE4
+    printer.setMimeSourceFactory( m_editor->mimeSourceFactory() );
+    printer.setContext( m_editor->context() );
+    printer.setStyleSheet( m_editor->styleSheet() );
+#endif
+    printer.setFont( m_config->font() );
+    printer.setColorGroup( colorGroup() );
+    printer.printNote( QString(), content );
 }
 
 void KNote::slotSaveAs()
