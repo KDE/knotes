@@ -13,9 +13,8 @@ set(libknotesnetwork_SRCS knotesnetrecv.cpp knotesnetsend.cpp)
 
 
 set(libknoteslegacy_SRCS  knoteslegacy.cpp )
-set(libknotesprinting_SRCS knoteprinter.cpp)
 
-set(libknote_SRCS knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp )
+set(libknote_SRCS knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp knoteprinter.cpp )
 
 
 set(knotes_SRCS main.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS} ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})
@@ -25,12 +24,10 @@ set( libknotesconfig_SRCS knoteconfig.kcfgc knotesglobalconfig.kcfgc )
 
 kde4_add_kcfg_files(knotes_SRCS ${libknotesconfig_SRCS})
 
-kde4_add_library(knotesprinting STATIC ${libknotesprinting_SRCS})
-target_link_libraries( knotesprinting ${KDE4_KDEPRINT_LIBS} )
 
 kde4_add_executable(knotes ${knotes_SRCS})
 
-target_link_libraries(knotes  ${KDE4_KCAL_LIBS} kdepim ${KDE4_KRESOURCES_LIBS} ${KDE4_KUTILS_LIBS} knotesprinting)
+target_link_libraries(knotes  ${KDE4_KCAL_LIBS} kdepim ${KDE4_KRESOURCES_LIBS} ${KDE4_KDEPRINT_LIBS} ${KDE4_KUTILS_LIBS} )
 
 install(TARGETS knotes  DESTINATION ${BIN_INSTALL_DIR} )
 
