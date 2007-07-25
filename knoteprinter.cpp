@@ -114,7 +114,7 @@ void KNotePrinter::printNote( const QString& name, const QString& content ) cons
     KPrinter printer;
     printer.setFullPage( true );
 
-    if ( !printer.setup( 0, i18n("Print %1").arg(name) ) )
+    if ( !printer.setup( 0, i18n("Print %1", name ) ) )
         return;
     QPainter painter;
     painter.begin( &printer );
