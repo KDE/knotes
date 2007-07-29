@@ -662,14 +662,8 @@ void KNote::slotPrint()
         content = m_editor->text();
 
     KNotePrinter printer;
-#if PORT_ME_TO_KDE4
-    printer.setMimeSourceFactory( m_editor->mimeSourceFactory() );
-    printer.setContext( m_editor->context() );
-    printer.setStyleSheet( m_editor->styleSheet() );
-#endif
-    printer.setFont( m_config->font() );
-    printer.setColorGroup( colorGroup() );
-    printer.printNote( QString(), content );
+    printer.setDefaultFont( m_config->font() );
+    printer.printNote( name(), content );
 }
 
 void KNote::slotSaveAs()
