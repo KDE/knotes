@@ -33,6 +33,9 @@
     <Action name="format_alignright"/>
     <Action name="format_alignblock"/>
     <Separator/>
+    <Action name="format_increaseindent"/>
+    <Action name="format_decreaseindent"/>
+    <Separator/>
     <Action name="format_list"/>
     <Action name="format_super"/>
     <Action name="format_sub"/>

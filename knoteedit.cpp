@@ -133,15 +133,19 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
     group->addAction( m_textSuper );
     group->addAction( m_textSub );
 
-// There is no easy possibility to implement text indenting with QTextEdit
-//
-//     m_textIncreaseIndent = new KAction( i18n("Increase Indent"), "format_increaseindent", 0,
-//                                         this, SLOT(textIncreaseIndent()),
-//                                         actions, "format_increaseindent" );
-//
-//     m_textDecreaseIndent = new KAction( i18n("Decrease Indent"), "format_decreaseindent", 0,
-//                                         this, SLOT(textDecreaseIndent()),
-//                                         actions, "format_decreaseindent" );
+    m_textIncreaseIndent = new KAction( i18n( "Increase Indent" ), this );
+    actions->addAction( "format_increaseindent", m_textIncreaseIndent );
+    m_textIncreaseIndent->setShortcut( QKeySequence( Qt::CTRL + Qt::ALT + Qt::Key_I ) );
+    connect( m_textIncreaseIndent, SIGNAL( triggered( bool ) ), SLOT( textIncreaseIndent() ) );
+
+    m_textDecreaseIndent = new KAction( i18n( "Decrease Indent" ), this );
+    actions->addAction( "format_decreaseindent", m_textDecreaseIndent );
+    m_textDecreaseIndent->setShortcut( QKeySequence( Qt::CTRL + Qt::ALT + Qt::Key_D ) );
+    connect( m_textDecreaseIndent, SIGNAL( triggered( bool ) ), SLOT( textDecreaseIndent() ) );
+
+    group = new QActionGroup( this );
+    group->addAction( m_textIncreaseIndent );
+    group->addAction( m_textDecreaseIndent );
 
     QPixmap pix( ICON_SIZE, ICON_SIZE );
     pix.fill( Qt::black );     // just a dummy, gets updated before widget is shown
@@ -301,7 +305,7 @@ void KNoteEdit::textList()
 
         lf.setIndent( bf.indent() + 1 );
         bf.setIndent( 0 );
-        
+
         lf.setStyle( QTextListFormat::ListDisc );
 
         c.setBlockFormat( bf );
@@ -325,7 +329,7 @@ void KNoteEdit::textSuperScript()
         f.setVerticalAlignment( QTextCharFormat::AlignSuperScript );
     else
         f.setVerticalAlignment( QTextCharFormat::AlignNormal );
-    
+
     mergeCurrentCharFormat( f );
 }
 
@@ -337,17 +341,27 @@ void KNoteEdit::textSubScript()
         f.setVerticalAlignment( QTextCharFormat::AlignSubScript );
     else
         f.setVerticalAlignment( QTextCharFormat::AlignNormal );
-    
+
     mergeCurrentCharFormat( f );
 }
 
-//void KNoteEdit::textIncreaseIndent()
-//{
-//}
+void KNoteEdit::textIncreaseIndent()
+{
+    QTextBlockFormat f = textCursor().blockFormat();
+    f.setIndent( f.indent() + 1 );
+    textCursor().setBlockFormat( f );
+}
 
-//void KNoteEdit::textDecreaseIndent()
-//{
-//}
+void KNoteEdit::textDecreaseIndent()
+{
+    QTextBlockFormat f = textCursor().blockFormat();
+    short int curIndent = f.indent();
+
+    if ( curIndent > 0 )
+        f.setIndent( curIndent - 1 );
+
+    textCursor().setBlockFormat( f );
+}
 
 
 /** protected methods **/
@@ -386,7 +400,7 @@ void KNoteEdit::dropEvent( QDropEvent *e )
 void KNoteEdit::keyPressEvent( QKeyEvent *e )
 {
     KTextEdit::keyPressEvent( e );
-    
+
     if ( m_autoIndentMode && (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) )
         autoIndent();
 }
@@ -409,7 +423,7 @@ kDebug() << k_funcinfo << endl;
     // color changes
     QPixmap pix( ICON_SIZE, ICON_SIZE );
     pix.fill( f.foreground().color() );
-    m_textColor->QAction::setIcon( pix ); 
+    m_textColor->QAction::setIcon( pix );
 
     // alignment changes
     Qt::Alignment a = alignment();
@@ -501,8 +515,8 @@ void KNoteEdit::enableRichTextActions()
     m_textSuper->setEnabled( true );
     m_textSub->setEnabled( true );
 
-//    m_textIncreaseIndent->setEnabled( true );
-//    m_textDecreaseIndent->setEnabled( true );
+    m_textIncreaseIndent->setEnabled( true );
+    m_textDecreaseIndent->setEnabled( true );
 }
 
 void KNoteEdit::disableRichTextActions()
@@ -525,8 +539,8 @@ void KNoteEdit::disableRichTextActions()
     m_textSuper->setEnabled( false );
     m_textSub->setEnabled( false );
 
-//    m_textIncreaseIndent->setEnabled( false );
-//    m_textDecreaseIndent->setEnabled( false );
+    m_textIncreaseIndent->setEnabled( false );
+    m_textDecreaseIndent->setEnabled( false );
 }
 
 #include "knoteedit.moc"

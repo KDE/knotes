@@ -43,7 +43,6 @@
 #include <kfinddialog.h>
 #include <kshortcutsdialog.h>
 #include <ksocketfactory.h>
-#include <kglobalaccel.h>
 #include <kconfig.h>
 #include <kwindowsystem.h>
 #include <kstandardaction.h>
@@ -67,18 +66,15 @@
 class KNotesKeyDialog : public KDialog
 {
 public:
-    KNotesKeyDialog( KGlobalAccel *globals, QWidget *parent )
+    KNotesKeyDialog( KActionCollection *globals, QWidget *parent )
         : KDialog( parent)
     {
         setCaption( i18n("Configure Shortcuts") );
         setButtons( Default|Ok|Cancel );
-#ifdef __GNUC__
-#warning Port me!
-#endif
-        //m_keyChooser = new KShortcutsEditor( globals, this );
-        m_keyChooser = new KShortcutsEditor(  this );
+
+        m_keyChooser = new KShortcutsEditor( globals, this );
         setMainWidget( m_keyChooser );
-        connect( this, SIGNAL(defaultClicked()), m_keyChooser, SLOT(allDefault()) );
+        connect( this, SIGNAL( defaultClicked() ), m_keyChooser, SLOT( allDefault() ) );
     }
 
     void insert( KActionCollection *actions )
@@ -108,15 +104,15 @@ KNotesApp::KNotesApp()
       m_alarm( 0 ), m_listener( 0 ), m_find( 0 ), m_findPos( 0 )
 {
     new KNotesAdaptor( this );
-    QDBusConnection::sessionBus().registerObject("/KNotes", this);
-    connect( kapp, SIGNAL(lastWindowClosed()), kapp, SLOT(quit()) );
+    QDBusConnection::sessionBus().registerObject( "/KNotes" , this );
+    connect( kapp, SIGNAL( lastWindowClosed() ), kapp, SLOT( quit() ) );
 
     // create the dock widget...
     m_tray = new KSystemTrayIcon();
-    
-    m_tray->setToolTip( i18n("KNotes: Sticky notes for KDE") );
-    m_tray->setIcon(KSystemTrayIcon::loadIcon( "knotes"));
-    connect(m_tray,SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(slotActivated(QSystemTrayIcon::ActivationReason)));
+
+    m_tray->setToolTip( i18n( "KNotes: Sticky notes for KDE" ) );
+    m_tray->setIcon( KSystemTrayIcon::loadIcon( "knotes" ) );
+    connect( m_tray, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ), this, SLOT( slotActivated( QSystemTrayIcon::ActivationReason ) ) );
 
     // set the initial style
 #ifdef __GNUC__
@@ -125,18 +121,26 @@ KNotesApp::KNotesApp()
 //    KNote::setStyle( KNotesGlobalConfig::style() );
 
     // create the GUI...
-    KAction *action  = new KAction(KIcon("document-new"), i18n("New Note"), this);
-    actionCollection()->addAction("new_note", action );
-    connect(action, SIGNAL(triggered(bool)), SLOT(newNote()));
-    action  = new KAction(KIcon("edit-paste"), i18n("New Note From Clipboard"), this);
-    actionCollection()->addAction("new_note_clipboard", action );
-    connect(action, SIGNAL(triggered(bool)), SLOT(newNoteFromClipboard()));
-    action  = new KAction(KIcon("knotes"), i18n("Show All Notes"), this);
-    actionCollection()->addAction("show_all_notes", action );
-    connect(action, SIGNAL(triggered(bool)), SLOT(showAllNotes()));
-    action  = new KAction(KIcon("window-close"), i18n("Hide All Notes"), this);
-    actionCollection()->addAction("hide_all_notes", action );
-    connect(action, SIGNAL(triggered(bool)), SLOT(hideAllNotes()));
+    KAction *action  = new KAction( KIcon( "document-new" ), i18n( "New Note" ), this );
+    action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_N ), KAction::DefaultShortcut );
+    actionCollection()->addAction( "new_note", action );
+    connect( action, SIGNAL( triggered() ), SLOT( newNote() ) );
+
+    action  = new KAction( KIcon( "edit-paste" ), i18n( "New Note From Clipboard" ), this );
+    action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_C ), KAction::DefaultShortcut );
+    actionCollection()->addAction( "new_note_clipboard", action );
+    connect( action, SIGNAL( triggered() ), SLOT( newNoteFromClipboard() ) );
+
+    action  = new KAction( KIcon( "knotes" ), i18n( "Show All Notes" ), this );
+    action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_S ), KAction::DefaultShortcut );
+    actionCollection()->addAction( "show_all_notes", action );
+    connect( action, SIGNAL( triggered() ), SLOT( showAllNotes() ) );
+
+    action  = new KAction( KIcon( "window-close" ), i18n( "Hide All Notes" ), this );
+    action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_H ), KAction::DefaultShortcut );
+    actionCollection()->addAction( "hide_all_notes", action );
+    connect( action, SIGNAL( triggered() ), SLOT( hideAllNotes() ) );
+
     new KHelpMenu( this, KGlobal::mainComponent().aboutData(), false, actionCollection() );
 
     KStandardAction::find( this, SLOT(slotOpenFindDialog()), actionCollection() );
@@ -164,34 +168,7 @@ KNotesApp::KNotesApp()
     KXMLGUIClient::findMostRecentXMLFile( fileList, doc );
     m_noteGUI.setContent( doc );
 
-    // create accels for global shortcuts
-#ifdef __GNUC__
-#warning Port me!
-#endif
-/*    m_globalAccel = new KGlobalAccel( this );
-    m_globalAccel->setObjectName( "global accel" );
-    m_globalAccel->insert( "global_new_note", i18n("New Note"), "",
-                           Qt::ALT+Qt::SHIFT+Qt::Key_N,
-                           this, SLOT(newNote()), true, true );
-    m_globalAccel->insert( "global_new_note_clipboard", i18n("New Note From Clipboard"), "",
-                           Qt::ALT+Qt::SHIFT+Qt::Key_C,
-                           this, SLOT(newNoteFromClipboard()), true, true );
-    m_globalAccel->insert( "global_hide_all_notes", i18n("Hide All Notes"), "",
-                           Qt::ALT+Qt::SHIFT+Qt::Key_H,
-                           this, SLOT(hideAllNotes()), true, true );
-    m_globalAccel->insert( "global_show_all_notes", i18n("Show All Notes"), "",
-                           Qt::ALT+Qt::SHIFT+Qt::Key_S,
-                           this, SLOT(showAllNotes()), true, true );*/
-
-    //KGlobalAccel::self()->readSettings();
-
-    KConfigGroup config(KGlobal::config(), "Global Keybindings");
-#ifdef __GNUC__
-#warning Port me!
-#endif
-/*    m_globalAccel->setEnabled( config->readEntry( "Enabled", true ) );
-
-    updateGlobalAccels();*/
+    KConfigGroup config( KGlobal::config(), "Global Keybindings" );
 
     // clean up old config files
     KNotesLegacy::cleanUp();
@@ -386,11 +363,7 @@ void KNotesApp::slotActivated(QSystemTrayIcon::ActivationReason r)
         if ( m_notes.size() == 1 )
             showNote( *m_notes.begin() );
         else if ( m_notes.size() > 1 )
-#ifdef __GNUC__
-#warning Port me!
-#endif
-//            m_noteMenu->popup( e->globalPos() );
-            m_noteMenu->popup( QPoint(100,100) );
+            m_noteMenu->popup( QCursor::pos () );
         break;
     case QSystemTrayIcon::MiddleClick:
         newNote();
@@ -476,14 +449,14 @@ void KNotesApp::slotPreferences()
 
 void KNotesApp::slotConfigureAccels()
 {
-    KNotesKeyDialog keys( m_globalAccel, this );
+    KNotesKeyDialog keys( actionCollection(), this );
+
     QMap<QString, KNote *>::const_iterator it = m_notes.begin();
+
     if ( !m_notes.isEmpty() )
         keys.insert( (*it)->actionCollection() );
-    keys.configure();
 
-    //m_globalAccel->writeSettings();
-    updateGlobalAccels();
+    keys.configure();
 
     // update GUI doc for new notes
     m_noteGUI.setContent(
@@ -498,13 +471,20 @@ void KNotesApp::slotConfigureAccels()
         it = m_notes.begin();
         for ( ++it; it != m_notes.end(); ++it )
         {
+/*
+            // Not sure if this is what this message has in mind but since both action->objectName() and KAction::action() are QStrings, this might be fine.
+            // Corrent me if I am wrong... ~ gamaral
 #ifdef __GNUC__
 #warning Port KAction::action() to QString
 #endif
-            QAction *toChange = (*it)->actionCollection()->action( action->objectName().toUtf8().data() );
-            toChange->setShortcuts( action->shortcuts() );
+*/
+            QAction *toChange = (*it)->actionCollection()->action( action->objectName() );
+
+            if (toChange)
+                toChange->setShortcuts( action->shortcuts() );
         }
     }
+
 }
 
 void KNotesApp::slotNoteKilled( KCal::Journal *journal )
@@ -529,10 +509,10 @@ void KNotesApp::slotQuit()
 void KNotesApp::showNote( KNote* note ) const
 {
     note->show();
-#ifdef Q_WS_X11    
+#ifdef Q_WS_X11
     KWindowSystem::setCurrentDesktop( KWindowSystem::windowInfo( note->winId(), NET::WMDesktop ).desktop() );
     KWindowSystem::forceActiveWindow( note->winId() );
-#endif    
+#endif
     note->setFocus();
 }
 
@@ -593,6 +573,7 @@ void KNotesApp::updateNoteActions()
 
     foreach ( KNote *note, m_notes )
     {
+        // what does this actually mean? ~gamaral
 #ifdef __GNUC__
 #warning utf8: use QString
 #endif
@@ -604,10 +585,8 @@ void KNotesApp::updateNoteActions()
                 qApp->windowIcon().pixmap( IconSize(K3Icon::Small), IconSize(K3Icon::Small) ),
                 KIconEffect::Colorize, 1, note->palette().color( note->backgroundRole() ), false
         );
-#ifdef __GNUC__
-#warning Port me: setting a QPixmap as an action icon does not seem to be possible
-#endif
-//        action->setIcon( icon );
+
+        action->setIcon( icon );
         m_noteActions.append( action );
     }
 
@@ -620,47 +599,6 @@ void KNotesApp::updateNoteActions()
     }
 
     plugActionList( "notes", m_noteActions );
-}
-
-void KNotesApp::updateGlobalAccels()
-{
-#ifdef __GNUC__
-#warning Port me!
-#endif
-/*
-    if ( m_globalAccel->isEnabled() )
-    {
-        QAction *action = actionCollection()->action( "new_note" );
-        if ( action )
-            action->setShortcut( m_globalAccel->shortcut( "global_new_note" ) );
-        action = actionCollection()->action( "new_note_clipboard" );
-        if ( action )
-            action->setShortcut( m_globalAccel->shortcut( "global_new_note_clipboard" ) );
-        action = actionCollection()->action( "hide_all_notes" );
-        if ( action )
-            action->setShortcut( m_globalAccel->shortcut( "global_hide_all_notes" ) );
-        action = actionCollection()->action( "show_all_notes" );
-        if ( action )
-            action->setShortcut( m_globalAccel->shortcut( "global_show_all_notes" ) );
-
-        m_globalAccel->updateConnections();
-    }
-    else
-    {
-        QAction *action = actionCollection()->action( "new_note" );
-        if ( action )
-            action->setShortcut( 0 );
-        action = actionCollection()->action( "new_note_clipboard" );
-        if ( action )
-            action->setShortcut( 0 );
-        action = actionCollection()->action( "hide_all_notes" );
-        if ( action )
-            action->setShortcut( 0 );
-        action = actionCollection()->action( "show_all_notes" );
-        if ( action )
-            action->setShortcut( 0 );
-    }
-*/
 }
 
 void KNotesApp::updateNetworkListener()

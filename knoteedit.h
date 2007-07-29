@@ -54,7 +54,7 @@ public:
     void setTabStop( int tabs );
     void setAutoIndentMode( bool newmode );
 
-    void setContextMenu( KMenu *menu ) 
+    void setContextMenu( KMenu *menu )
     {
         m_editMenu = menu;
     }
@@ -77,8 +77,8 @@ public slots:
     void textSuperScript();
     void textSubScript();
 
-    //void textIncreaseIndent();
-    //void textDecreaseIndent();
+    void textIncreaseIndent();
+    void textDecreaseIndent();
 
 protected:
     virtual void contextMenuEvent( QContextMenuEvent * );
@@ -101,7 +101,7 @@ private:
     KAction *m_cut;
     KAction *m_copy;
     KAction *m_paste;
-    
+
     KMenu   *m_editMenu;
 
     KToggleAction *m_textBold;
@@ -118,8 +118,8 @@ private:
     KToggleAction *m_textSuper;
     KToggleAction *m_textSub;
 
-    //KAction       *m_textIncreaseIndent;
-    //KAction       *m_textDecreaseIndent;
+    KAction       *m_textIncreaseIndent;
+    KAction       *m_textDecreaseIndent;
 
     KAction         *m_textColor;
     KFontAction     *m_textFont;

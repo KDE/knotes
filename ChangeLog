@@ -1,10 +1,16 @@
 ChangeLog for KNotes
 ====================
 
+2007/07/29  Guillermo Antonio Amaral Bastidas <me@guillermoamaral.com>
+
+    * porting KNotes to KDE 4/KNotes 4:
+        - re-implemented indentation for rich text notes
+        - misc work
+
 2006/01/16  Michael Brade <brade@kde.org>
 
     * fixed #119980: the knotes directory wasn't created in Kontact/KNotes
-	* ported the networking code to KDE 4/KNotes 4
+    * ported the networking code to KDE 4/KNotes 4
 
 2006/01/09  Michael Brade <brade@kde.org>
 

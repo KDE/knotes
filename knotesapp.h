@@ -38,7 +38,6 @@ class KFind;
 class KNote;
 class KMenu;
 class KAction;
-class KGlobalAccel;
 class KXMLGUIFactory;
 class KXMLGUIBuilder;
 class KNotesAlarm;
@@ -103,7 +102,6 @@ private slots:
     void acceptConnection();
     void saveNotes();
     void updateNoteActions();
-    void updateGlobalAccels();
     void updateNetworkListener();
     void updateStyle();
 
@@ -124,7 +122,6 @@ private:
     KMenu           *m_noteMenu;
     KMenu           *m_contextMenu;
 
-    KGlobalAccel    *m_globalAccel;
     KXMLGUIFactory  *m_guiFactory;
     KXMLGUIBuilder  *m_guiBuilder;
     KSystemTrayIcon *m_tray;
