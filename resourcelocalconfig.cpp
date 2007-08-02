@@ -55,7 +55,7 @@ void ResourceLocalConfig::loadSettings( KRES::Resource *resource )
     if ( res )
         mURL->setUrl( res->url().prettyUrl() );
     else
-        kDebug() << "ERROR: ResourceLocalConfig::loadSettings(): no ResourceLocal, cast failed" << endl;
+        kDebug() <<"ERROR: ResourceLocalConfig::loadSettings(): no ResourceLocal, cast failed";
 }
 
 void ResourceLocalConfig::saveSettings( KRES::Resource *resource )
@@ -64,7 +64,7 @@ void ResourceLocalConfig::saveSettings( KRES::Resource *resource )
     if ( res )
         res->setURL( mURL->url() );
     else
-        kDebug() << "ERROR: ResourceLocalConfig::saveSettings(): no ResourceLocal, cast failed" << endl;
+        kDebug() <<"ERROR: ResourceLocalConfig::saveSettings(): no ResourceLocal, cast failed";
 }
 
 #include "resourcelocalconfig.moc"

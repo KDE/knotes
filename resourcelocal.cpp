@@ -47,7 +47,7 @@
 ResourceLocal::ResourceLocal()
     : ResourceNotes(), mCalendar( QString::fromLatin1( "UTC" ) )
 {
-    kDebug(5500) << "ResourceLocal::ResourceLocal()" << endl;
+    kDebug(5500) <<"ResourceLocal::ResourceLocal()";
     setType( "file" );
     mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", "knotes/" ) + "notes.ics" );
 }
@@ -55,7 +55,7 @@ ResourceLocal::ResourceLocal()
 ResourceLocal::ResourceLocal( const KConfigGroup &group )
     : ResourceNotes( group ), mCalendar( QString::fromLatin1( "UTC" ) )
 {
-    kDebug(5500) << "ResourceLocal::ResourceLocal()" << endl;
+    kDebug(5500) <<"ResourceLocal::ResourceLocal()";
     setType( "file" );
     mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", "knotes/" ) + "notes.ics" );
 

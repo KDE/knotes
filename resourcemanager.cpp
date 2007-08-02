@@ -55,7 +55,7 @@ void KNotesResourceManager::load()
 {
     if ( !m_manager->standardResource() )
     {
-        kWarning(5500) << "No standard resource yet." << endl;
+        kWarning(5500) <<"No standard resource yet.";
         ResourceNotes *resource = new ResourceLocal();
         m_manager->add( resource );
         m_manager->setStandardResource( resource );
@@ -65,7 +65,7 @@ void KNotesResourceManager::load()
     KRES::Manager<ResourceNotes>::ActiveIterator it;
     for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it )
     {
-        kDebug(5500) << "Opening resource " + (*it)->resourceName() << endl;
+        kDebug(5500) <<"Opening resource" + (*it)->resourceName();
         (*it)->setManager( this );
         if ( (*it)->open() )
             (*it)->load();
@@ -91,7 +91,7 @@ void KNotesResourceManager::addNewNote( KCal::Journal *journal )
         registerNote( resource, journal );
     }
     else
-        kWarning(5500) << k_funcinfo << "no resource!" << endl;
+        kWarning(5500) << k_funcinfo <<"no resource!";
 }
 
 void KNotesResourceManager::registerNote( ResourceNotes *resource,
@@ -133,7 +133,7 @@ KCal::Alarm::List KNotesResourceManager::alarms( const KDateTime& from, const KD
 
 void KNotesResourceManager::resourceAdded( ResourceNotes *resource )
 {
-    kDebug(5500) << "Resource added: " << resource->resourceName() << endl;
+    kDebug(5500) <<"Resource added:" << resource->resourceName();
 
     if ( !resource->isActive() )
         return;
@@ -145,12 +145,12 @@ void KNotesResourceManager::resourceAdded( ResourceNotes *resource )
 
 void KNotesResourceManager::resourceModified( ResourceNotes *resource )
 {
-    kDebug(5500) << "Resource modified: " << resource->resourceName() << endl;
+    kDebug(5500) <<"Resource modified:" << resource->resourceName();
 }
 
 void KNotesResourceManager::resourceDeleted( ResourceNotes *resource )
 {
-    kDebug(5500) << "Resource deleted: " << resource->resourceName() << endl;
+    kDebug(5500) <<"Resource deleted:" << resource->resourceName();
 }
 
 
