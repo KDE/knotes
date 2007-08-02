@@ -123,7 +123,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     if ( !infile.open( QIODevice::ReadOnly ) )
     {
         kError(5500) << k_funcinfo <<"Could not open input file: \""
-                      << infile.fileName() << "\"" << endl;
+                      << infile.fileName() << "\"";
         return false;
     }
 
@@ -138,8 +138,8 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     if ( props.count() != 13 )
     {
         kWarning(5500) << k_funcinfo <<"The file \"" << infile.fileName()
-                        << "\" lacks version information but is not a valid "
-                        << "KNotes 1 config file either!" << endl;
+                        << "\" lacks version information but is not a valid"
+                        << "KNotes 1 config file either!";
         return false;
     }
 
@@ -238,7 +238,7 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
     {
         kError(5500) << k_funcinfo <<"Could not rename input file: \""
                       << noteDir.absoluteFilePath( file ) << "\" to \""
-                      << configFile << "\"!" << endl;
+                      << configFile << "\"!";
         return false;
     }
 
