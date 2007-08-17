@@ -537,7 +537,7 @@ void KNote::slotRename()
 {
     // pop up dialog to get the new name
     bool ok;
-    QString newName = KInputDialog::getText( QString::null,
+    QString newName = KInputDialog::getText( QString::null,	//krazy:exclude=nullstrassign for old broken gcc
         i18n("Please enter the new name:"), m_label->text(), &ok, this );
     if ( !ok ) // handle cancel
         return;
@@ -787,7 +787,7 @@ void KNote::slotUpdateDesktopActions()
 
     QStringList desktops;
     desktops.append( i18n("&All Desktops") );
-    desktops.append( QString::null );           // Separator
+    desktops.append( QString::null );           // Separator	//krazy:exclude=nullstrassign for old broken gcc
 
     int count = wm_root.numberOfDesktops();
     for ( int n = 1; n <= count; n++ )

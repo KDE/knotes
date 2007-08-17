@@ -72,9 +72,9 @@ public:
     bool commitData( QSessionManager& );
 
 public slots:
-    QString newNote( const QString& name = QString::null,
-                     const QString& text = QString::null );
-    QString newNoteFromClipboard( const QString& name = QString::null );
+    QString newNote( const QString& name = QString::null,	//krazy:exclude=nullstrassign for old broken gcc
+                     const QString& text = QString::null );	//krazy:exclude=nullstrassign for old broken gcc
+    QString newNoteFromClipboard( const QString& name = QString::null );	//krazy:exclude=nullstrassign for old broken gcc
 
     void hideAllNotes() const;
     void showAllNotes() const;
