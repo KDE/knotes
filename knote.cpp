@@ -243,7 +243,7 @@ actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(
 
     // no config file yet? -> use the default display config if available
     // we want to write to configFile, so use "false"
-    bool newNote = !KIO::NetAccess::exists( KUrl( configFile ), false, 0 );
+    bool newNote = !KIO::NetAccess::exists( KUrl( configFile ), KIO::NetAccess::DestinationSide, 0 );
 
     m_config = new KNoteConfig( KSharedConfig::openConfig(configFile, KConfig::NoGlobals) );
     m_config->readConfig();
