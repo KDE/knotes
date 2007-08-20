@@ -137,7 +137,7 @@ void KNotesNetworkReceiver::slotConnectionClosed()
 
 void KNotesNetworkReceiver::slotError( int err )
 {
-    kWarning() << k_funcinfo
+    kWarning() 
                 << err << m_sock->errorString();
 }
 

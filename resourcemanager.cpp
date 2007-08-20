@@ -91,7 +91,7 @@ void KNotesResourceManager::addNewNote( KCal::Journal *journal )
         registerNote( resource, journal );
     }
     else
-        kWarning(5500) << k_funcinfo <<"no resource!";
+        kWarning(5500) <<"no resource!";
 }
 
 void KNotesResourceManager::registerNote( ResourceNotes *resource,

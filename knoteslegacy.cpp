@@ -59,7 +59,7 @@ void KNotesLegacy::cleanUp()
             if ( !( KStandardDirs::checkAccess( configfile, W_OK ) &&
                     QFile::remove( configfile ) ) )
             {
-                kError(5500) << k_funcinfo <<"Could not delete old config file" << configfile;
+                kError(5500) <<"Could not delete old config file" << configfile;
             }
         }
     }
@@ -122,7 +122,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     QFile infile( noteDir.absoluteFilePath( file ) );
     if ( !infile.open( QIODevice::ReadOnly ) )
     {
-        kError(5500) << k_funcinfo <<"Could not open input file: \""
+        kError(5500) <<"Could not open input file: \""
                       << infile.fileName() << "\"";
         return false;
     }
@@ -137,7 +137,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     // robustness
     if ( props.count() != 13 )
     {
-        kWarning(5500) << k_funcinfo <<"The file \"" << infile.fileName()
+        kWarning(5500) <<"The file \"" << infile.fileName()
                         << "\" lacks version information but is not a valid"
                         << "KNotes 1 config file either!";
         return false;
@@ -223,7 +223,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     journal->setDescription( text );
 
     if ( !infile.remove() )
-        kWarning(5500) << k_funcinfo <<"Could not delete input file: \"" << infile.fileName() <<"\"";
+        kWarning(5500) <<"Could not delete input file: \"" << infile.fileName() <<"\"";
 
     return true;
 }
@@ -236,7 +236,7 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
     // new name for config file
     if ( !noteDir.rename( file, journal->uid() ) )
     {
-        kError(5500) << k_funcinfo <<"Could not rename input file: \""
+        kError(5500) <<"Could not rename input file: \""
                       << noteDir.absoluteFilePath( file ) << "\" to \""
                       << configFile << "\"!";
         return false;
@@ -265,10 +265,10 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
         input.setCodec( "UTF-8" );
         journal->setDescription( input.readAll() );
         if ( !infile.remove() )
-            kWarning(5500) << k_funcinfo <<"Could not delete data file: \"" << infile.fileName() <<"\"";
+            kWarning(5500) <<"Could not delete data file: \"" << infile.fileName() <<"\"";
     }
     else
-        kWarning(5500) << k_funcinfo <<"Could not open data file: \"" << infile.fileName() <<"\"";
+        kWarning(5500) <<"Could not open data file: \"" << infile.fileName() <<"\"";
 
     return true;
 }
