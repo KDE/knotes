@@ -99,7 +99,7 @@ void KNotePrinter::printNotes( const QList<KCal::Journal*>& journals ) const
             htmlText += "<hr />";
     }
 
-    QString dialogCaption = i18np( "Print Note", "Print %n notes", journals.count() );
+    QString dialogCaption = i18np( "Print Note", "Print %1 notes", journals.count() );
     doPrint( htmlText, dialogCaption );
 
 #if 0
@@ -127,7 +127,7 @@ void KNotePrinter::printNotes( const QList<KCal::Journal*>& journals ) const
             retC.insertFragment( QTextDocumentFragment( &separator ) );
     }
 
-    QString dialogCaption = i18np( "Print Note", "Print %n notes", journals.count() );
+    QString dialogCaption = i18np( "Print Note", "Print %1 notes", journals.count() );
     doPrint( ret.toHtml(), dialogCaption );
 #endif
 }

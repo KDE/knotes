@@ -93,7 +93,7 @@ bool ResourceLocal::save()
         KMessageBox::error( 0,
                             i18n("<qt>Unable to save the notes to <b>%1</b>. "
                                  "Check that there is sufficient disk space."
-                                 "<br>There should be a backup in the same directory "
+                                 "<br />There should be a backup in the same directory "
                                  "though.</qt>", mURL.path() ) );
         return false;
     }

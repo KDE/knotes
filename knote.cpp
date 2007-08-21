@@ -691,7 +691,7 @@ void KNote::slotSaveAs()
     QFile file( fileName );
 
     if ( file.exists() &&
-         KMessageBox::warningContinueCancel( this, i18n("<qt>A file named <b>%1</b> already exists.<br>"
+         KMessageBox::warningContinueCancel( this, i18n("<qt>A file named <b>%1</b> already exists.<br />"
                            "Are you sure you want to overwrite it?</qt>", QFileInfo(file).fileName() ) )
          != KMessageBox::Continue )
     {
