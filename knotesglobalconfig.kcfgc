@@ -1,6 +1,0 @@
-File=knotesglobalconfig.kcfg
-ClassName=KNotesGlobalConfig
-Mutators=true
-Singleton=true
-IncludeFiles=knoteconfig.h
-Inherits=KNoteConfig
