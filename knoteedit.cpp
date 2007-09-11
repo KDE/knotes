@@ -405,15 +405,29 @@ void KNoteEdit::keyPressEvent( QKeyEvent *e )
         autoIndent();
 }
 
+void KNoteEdit::focusInEvent( QFocusEvent *e )
+{
+    KTextEdit::focusInEvent( e );
+
+    setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
+    setHorizontalScrollBarPolicy( Qt::ScrollBarAsNeeded );
+}
+
+void KNoteEdit::focusOutEvent( QFocusEvent *e )
+{
+    setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+    setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+
+    KTextEdit::focusOutEvent( e );
+}
 
 /** private slots **/
 
 void KNoteEdit::slotCurrentCharFormatChanged( const QTextCharFormat& f )
 {
-kDebug() ;
     // font changes
     m_textFont->setFont( f.fontFamily() );
-    m_textSize->setFontSize( f.fontPointSize() );
+    m_textSize->setFontSize( (int) f.fontPointSize() );
 
     m_textBold->setChecked( f.font().bold() );
     m_textItalic->setChecked( f.fontItalic() );

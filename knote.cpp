@@ -146,7 +146,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     action  = new KAction(KIcon("document-save-as"), i18n("Save As..."), this);
     actionCollection()->addAction("save_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotSaveAs()));
-actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(slotPrint()));
+    actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(slotPrint()));
     action  = new KAction(KIcon("configure"), i18n("Preferences..."), this);
     actionCollection()->addAction("configure_note", action );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotPreferences()));
@@ -170,7 +170,7 @@ actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(
     connect( m_toDesktop->menu(), SIGNAL(aboutToShow()), this, SLOT(slotUpdateDesktopActions()) );
 
     // invisible action to walk through the notes to make this configurable
-//FIXME: this backtab thing doesn't work anymore!
+    //FIXME: this backtab thing doesn't work anymore!
     action  = new KAction(i18n("Walk Through Notes"), this);
     actionCollection()->addAction("walk_notes", action );
     connect(action, SIGNAL(triggered(bool)), SIGNAL(sigShowNextNote()));
@@ -202,7 +202,8 @@ actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(
 
     m_tool = dynamic_cast<KToolBar*>(factory.container( "note_tool", this ));
 
-    if ( m_tool ) {
+    if ( m_tool )
+    {
       m_tool->setIconSize( QSize(10,10) );
       m_tool->setFixedHeight( 16 );
       m_tool->setToolButtonStyle( Qt::ToolButtonIconOnly );
@@ -222,7 +223,7 @@ actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(
     setFocusProxy( m_editor );
 
     // create the resize handle
-    m_grip = new QSizeGrip( this );
+    m_grip = new QSizeGrip( 0 );
     uint width = m_editor->verticalScrollBar()->sizeHint().width();
     uint height = m_editor->horizontalScrollBar()->sizeHint().height();
     QBitmap mask( width, height );
@@ -236,6 +237,7 @@ actionCollection()->addAction(KStandardAction::Print,  "print_note", this, SLOT(
     p.end();
     m_grip->setMask( mask );
     m_grip->setBackgroundRole( QPalette::Base );
+    m_editor->setCornerWidget( m_grip );
 
     // the config file location
     QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
@@ -626,7 +628,7 @@ void KNote::slotSend()
     }
 
     // Send the note
-    
+
     KNotesNetworkSender *sender = new KNotesNetworkSender( KSocketFactory::connectToHost("knotes", host, KNotesGlobalConfig::port()));
     sender->setSenderId( KNotesGlobalConfig::senderID() );
     sender->setNote( name(), text() ); // FIXME: plainText ??
@@ -731,7 +733,7 @@ void KNote::slotApplyConfig()
 
     setColor( m_config->fgColor(), m_config->bgColor() );
 
-    updateLabelAlignment();
+    updateLayout();
     slotUpdateShowInTaskbar();
 }
 
@@ -927,8 +929,10 @@ void KNote::updateFocus()
 void KNote::updateLayout()
 {
     const int headerHeight = m_label->sizeHint().height();
-    const int margin = 0; // FIXME  m_editor->margin();
     bool closeLeft = false;
+    int marginLeft, marginTop, marginRight, marginBottom;
+
+    m_editor->getContentsMargins( &marginLeft, &marginTop, &marginRight, &marginBottom );
 
     KConfigGroup styleGroup( m_kwinConf, "Style" );
     if ( styleGroup.readEntry( "CustomButtonPositions",false ) )
@@ -963,9 +967,9 @@ void KNote::updateLayout()
     }
 
     setMinimumSize(
-        /* FIXME m_editor->cornerWidget()->width() + */ margin*2,
+        m_editor->cornerWidget()->width() + marginLeft + marginRight,
         headerHeight + ( m_tool ? (m_tool->isHidden() ? 0 : m_tool->height()) : 0 ) +
-                /* m_editor->cornerWidget()->height() + */ margin*2
+            m_editor->cornerWidget()->height() + marginTop + marginBottom
     );
 
     updateLabelAlignment();

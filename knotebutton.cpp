@@ -92,7 +92,7 @@ void KNoteButton::paintEvent( QPaintEvent * )
     style()->drawPrimitive( QStyle::PE_PanelButtonTool, &opt, &p, this );
 
     // the button label
-    if ( icon().isNull() )
+    if ( !icon().isNull() )
     {
         QIcon::Mode  mode  = QIcon::Disabled;
         QIcon::State state = QIcon::Off;
