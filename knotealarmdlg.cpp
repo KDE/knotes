@@ -46,6 +46,7 @@
 
 #include "knotealarmdlg.h"
 
+using namespace KPIM;
 
 KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent )
     : KDialog( parent)
@@ -54,14 +55,14 @@ KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent )
     setButtons( Ok|Cancel );
     KVBox *page = new KVBox( this );
     setMainWidget( page );
-   
-    m_buttons = new QButtonGroup(this); 
+
+    m_buttons = new QButtonGroup(this);
     QGroupBox *group = new QGroupBox(i18n("Scheduled Alarm"),page);
     QVBoxLayout *layout = new QVBoxLayout;
     QRadioButton *none = new QRadioButton( i18n("&No alarm"));
     layout->addWidget(none);
     m_buttons->addButton(none,0);
-    
+
     group->setLayout(layout);
 
     KHBox *at = new KHBox;
