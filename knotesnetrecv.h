@@ -34,32 +34,33 @@
 
 #include <QObject>
 
+class QTcpSocket;
 class QTimer;
 
-class QTcpSocket;
 
-class KNotesNetworkReceiver : public QObject
+class KNotesNetworkReceiver
+  : public QObject
 {
-    Q_OBJECT
-public:
+  Q_OBJECT
+  public:
     KNotesNetworkReceiver( QTcpSocket * );
     ~KNotesNetworkReceiver();
-
-signals:
+    
+  signals:
     void sigNoteReceived( const QString &, const QString & );
-
-private slots:
+    
+  private slots:
     void slotDataAvailable();
     void slotReceptionTimeout();
     void slotConnectionClosed();
     void slotError( int err );
-
-private:
+    
+  private:
     QTimer *m_timer;       // to avoid memory and connection floods
-
+    
     QByteArray *m_buffer;
     QTcpSocket *m_sock;
-
+    
     QString m_titleAddon;
 };
 

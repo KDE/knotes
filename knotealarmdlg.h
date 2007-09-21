@@ -34,32 +34,34 @@
 
 #include <kdialog.h>
 
-namespace KPIM {
-    class KDateEdit;
-    class KTimeEdit;
-}
-
-namespace KCal {
-    class Journal;
-}
-
 class QButtonGroup;
 
-class KNoteAlarmDlg : public KDialog
+namespace KCal {
+class Journal;
+}
+
+namespace KPIM {
+class KDateEdit;
+class KTimeEdit;
+}
+
+
+class KNoteAlarmDlg
+  : public KDialog
 {
-    Q_OBJECT
-public:
-    KNoteAlarmDlg( const QString& caption, QWidget *parent=0 );
-
+  Q_OBJECT
+  public:
+    KNoteAlarmDlg( const QString &caption, QWidget *parent = 0 );
+    
     void setIncidence( KCal::Journal *journal );
-
-private slots:
+    
+  private slots:
     void slotOk();
-    void slotButtonChanged(int);
-
-private:
+    void slotButtonChanged( int );
+    
+  private:
     KCal::Journal *m_journal;
-
+    
     KPIM::KDateEdit *m_atDate;
     KPIM::KTimeEdit *m_atTime, *m_inTime;
     QButtonGroup *m_buttons;

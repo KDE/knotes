@@ -35,24 +35,26 @@
 
 #include <QTcpSocket>
 
-class KNotesNetworkSender : public QObject
+
+class KNotesNetworkSender
+  : public QObject
 {
-    Q_OBJECT
-public:
-    KNotesNetworkSender(  QTcpSocket* socket );
+  Q_OBJECT
+  public:
+    KNotesNetworkSender(  QTcpSocket *socket );
     ~KNotesNetworkSender();
-
-    void setSenderId( const QString& sender );
-    void setNote( const QString& title, const QString& text );
-
-protected slots:
+    
+    void setSenderId( const QString &sender );
+    void setNote( const QString &title, const QString &text );
+    
+  protected slots:
     void slotConnected();
     void slotError();
     void slotClosed();
-    void slotWritten(qint64);
-
-private:
-    QTcpSocket* m_socket;
+    void slotWritten( qint64 );
+    
+  private:
+    QTcpSocket *m_socket;
     QByteArray m_note;
     QByteArray m_title;
     QByteArray m_sender;

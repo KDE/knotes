@@ -33,41 +33,43 @@
 #ifndef RESOURCELOCAL_H
 #define RESOURCELOCAL_H
 
-#include "resourcenotes.h"
-
 #include <kurl.h>
 
 #include <kcal/calendarlocal.h>
 
+#include "resourcenotes.h"
 
-class ResourceLocal : public ResourceNotes
+
+class ResourceLocal
+  : public ResourceNotes
 {
-public:
+  public:
     ResourceLocal();
     explicit ResourceLocal( const KConfigGroup &group );
     virtual ~ResourceLocal();
-
+    
     virtual void writeConfig( KConfigGroup &group );
-
+    
     /**
      * Load resource data.
      */
     virtual bool load();
-
+    
     /**
      * Save resource data.
      */
     virtual bool save();
-
+    
     virtual KUrl url() const { return mURL; } ;
-    virtual void setURL(const KUrl& url) { mURL = url; } ;
-
-    virtual bool addNote( KCal::Journal* );
-    virtual bool deleteNote( KCal::Journal* );
-
-    virtual KCal::Alarm::List alarms( const KDateTime& from, const KDateTime& to );
-
-protected:
+    virtual void setURL( const KUrl &url ) { mURL = url; } ;
+    
+    virtual bool addNote( KCal::Journal * );
+    virtual bool deleteNote( KCal::Journal * );
+    
+    virtual KCal::Alarm::List alarms( const KDateTime &from,
+                                      const KDateTime &to );
+    
+  protected:
     KCal::CalendarLocal mCalendar;
     KUrl mURL;
 };

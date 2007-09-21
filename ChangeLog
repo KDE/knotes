@@ -1,6 +1,16 @@
 ChangeLog for KNotes
 ====================
 
+2007/09/21  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
+
+    * final-merge : format code to fit into KDEPIM Coding Guidelines
+                   http://pim.kde.org/development/coding.php
+
+2007/09/19  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
+
+    * first-pass : format code to fit into KDEPIM Coding Guidelines
+                   http://pim.kde.org/development/coding.php
+
 2007/07/29  Guillermo Antonio Amaral Bastidas <me@guillermoamaral.com>
 
     * porting KNotes to KDE 4/KNotes 4:

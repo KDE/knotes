@@ -21,11 +21,11 @@
 #ifndef KNOTE_H
 #define KNOTE_H
 
-#include <QString>
-#include <QEvent>
-#include <QFrame>
 #include <QColor>
 #include <QDomDocument>
+#include <QEvent>
+#include <QFrame>
+#include <QString>
 
 #include <kconfig.h>
 #include <kxmlguiclient.h>
@@ -33,117 +33,118 @@
 class QLabel;
 class QSizeGrip;
 
-
 class KFind;
 class KMenu;
 class KNoteButton;
-class KNoteEdit;
 class KNoteConfig;
-class KToolBar;
-class KToggleAction;
+class KNoteEdit;
 class KSelectAction;
+class KToggleAction;
+class KToolBar;
+
 namespace KCal {
-    class Journal;
+class Journal;
 }
 
 
-class KNote : public QFrame, virtual public KXMLGUIClient
+class KNote
+  : public QFrame, virtual public KXMLGUIClient
 {
-    Q_OBJECT
-public:
+  Q_OBJECT
+  public:
     KNote( QDomDocument buildDoc, KCal::Journal *journal, QWidget *parent = 0 );
     ~KNote();
-
+    
     void saveData();
     void saveConfig() const;
-
+    
     QString noteId() const;
     QString name() const;
     QString text() const;
-
-    void setName( const QString& name );
-    void setText( const QString& text );
-
-    void find( const QString& pattern, long options );
-
+    
+    void setName( const QString &name );
+    void setText( const QString &text );
+    
+    void find( const QString &pattern, long options );
+    
     bool isModified() const;
-
-public slots:
+    
+  public slots:
     void slotKill( bool force = false );
-
-signals:
+    
+  signals:
     void sigRequestNewNote();
     void sigShowNextNote();
     void sigNameChanged();
     void sigDataChanged();
     void sigColorChanged();
-    void sigKillNote( KCal::Journal* );
-
+    void sigKillNote( KCal::Journal * );
+    
     void sigFindFinished();
-
-protected:
+    
+  protected:
     virtual void contextMenuEvent( QContextMenuEvent * );
-    virtual void showEvent( QShowEvent* );
-    virtual void resizeEvent( QResizeEvent* );
-    virtual void closeEvent( QCloseEvent* );
-    virtual void dropEvent( QDropEvent* );
-    virtual void dragEnterEvent( QDragEnterEvent* );
-
-    virtual bool event( QEvent* );
-    virtual bool eventFilter( QObject*, QEvent* );
-
-private slots:
+    virtual void showEvent( QShowEvent * );
+    virtual void resizeEvent( QResizeEvent * );
+    virtual void closeEvent( QCloseEvent * );
+    virtual void dropEvent( QDropEvent * );
+    virtual void dragEnterEvent( QDragEnterEvent * );
+    
+    virtual bool event( QEvent * );
+    virtual bool eventFilter( QObject *, QEvent * );
+    
+  private slots:
     void slotRename();
     void slotUpdateReadOnly();
     void slotClose();
-
+    
     void slotSend();
     void slotMail();
     void slotPrint();
     void slotSaveAs();
-
+    
     void slotInsDate();
     void slotSetAlarm();
-
+    
     void slotPreferences();
     void slotPopupActionToDesktop( int id );
-
+    
     void slotFindNext();
-    void slotHighlight( const QString& txt, int idx, int len );
-
+    void slotHighlight( const QString &txt, int idx, int len );
+    
     void slotApplyConfig();
     void slotUpdateKeepAboveBelow();
     void slotUpdateShowInTaskbar();
     void slotUpdateDesktopActions();
-
-private:
+    
+  private:
     void updateFocus();
     void updateLayout();
     void updateLabelAlignment();
-
-    void setColor( const QColor&, const QColor& );
-
+    
+    void setColor( const QColor &, const QColor & );
+    
     void toDesktop( int desktop );
-
-private:
+    
+  private:
     QLabel        *m_label;
     QSizeGrip     *m_grip;
     KNoteButton   *m_button;
     KToolBar      *m_tool;
     KNoteEdit     *m_editor;
-
+    
     KNoteConfig   *m_config;
     KCal::Journal *m_journal;
-
+    
     KFind         *m_find;
     KMenu         *m_menu;
-
+    
     KToggleAction *m_readOnly;
-
+    
     KSelectAction   *m_toDesktop;
     KToggleAction *m_keepAbove;
     KToggleAction *m_keepBelow;
-
+    
     KSharedConfig::Ptr m_kwinConf;
 };
 

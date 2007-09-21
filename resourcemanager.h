@@ -34,45 +34,47 @@
 #ifndef KNOTES_RESOURCEMANAGER_H
 #define KNOTES_RESOURCEMANAGER_H
 
+#include <Q3Dict>
+
+#include <kcal/alarm.h>
 #include <knotes/resourcenotes.h>
 #include <kresources/manager.h>
 
-#include <kcal/alarm.h>
-#include <Q3Dict>
 class KNote;
 
 namespace KCal {
-    class Journal;
+class Journal;
 }
 
 
-class KNotesResourceManager : public QObject, public KRES::ManagerObserver<ResourceNotes>
+class KNotesResourceManager
+  : public QObject, public KRES::ManagerObserver<ResourceNotes>
 {
-    Q_OBJECT
-public:
+  Q_OBJECT
+  public:
     KNotesResourceManager();
     virtual ~KNotesResourceManager();
-
+    
     void load();
     void save();
-
+    
     void addNewNote( KCal::Journal *journal );
     void registerNote( ResourceNotes *resource, KCal::Journal *journal );
-
+    
     void deleteNote( KCal::Journal *journal );
-
-    KCal::Alarm::List alarms( const KDateTime& from, const KDateTime& to );
-
+    
+    KCal::Alarm::List alarms( const KDateTime &from, const KDateTime &to );
+    
     // from the ManagerObserver interface
     virtual void resourceAdded( ResourceNotes *resource );
     virtual void resourceModified( ResourceNotes *resource );
     virtual void resourceDeleted( ResourceNotes *resource );
-
-signals:
+    
+  signals:
     void sigRegisteredNote( KCal::Journal *journal );
     void sigDeregisteredNote( KCal::Journal *journal );
-
-private:
+    
+  private:
     KRES::Manager<ResourceNotes> *m_manager;
     Q3Dict<ResourceNotes> m_resourceMap;
 };

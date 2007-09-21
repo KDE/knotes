@@ -32,25 +32,28 @@
 #ifndef KNOTESALARM_H
 #define KNOTESALARM_H
 
-#include <QTimer>
 #include <QDateTime>
+#include <QTimer>
 
 class KNotesResourceManager;
 
 namespace KCal {
-    }
+}
 
 
-class KNotesAlarm : public QObject
+class KNotesAlarm
+  : public QObject
 {
-    Q_OBJECT
-public:
-    KNotesAlarm( KNotesResourceManager *manager, QObject *parent = 0, const char *name = 0 );
-
-private slots:
+  Q_OBJECT
+  public:
+    KNotesAlarm( KNotesResourceManager *manager,
+                 QObject *parent = 0,
+                 const char *name = 0 );
+    
+  private slots:
     void checkAlarms();
-
-private:
+    
+  private:
     KNotesResourceManager *m_manager;
     QTimer m_checkTimer;
 };

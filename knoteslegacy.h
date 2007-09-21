@@ -21,12 +21,12 @@
 #ifndef KNOTESLEGACY_H
 #define KNOTESLEGACY_H
 
-#include <QString>
 #include <QDir>
+#include <QString>
 
 namespace KCal {
-    class CalendarLocal;
-    class Journal;
+class CalendarLocal;
+class Journal;
 }
 
 
@@ -35,12 +35,15 @@ namespace KCal {
  */
 class KNotesLegacy
 {
-public:
+  public:
     static void cleanUp();
     static bool convert( KCal::CalendarLocal *calendar );
-private:
-    static bool convertKNotes1Config( KCal::Journal *j, QDir& dir, const QString& file );
-    static bool convertKNotes2Config( KCal::Journal *j, QDir& dir, const QString& file );
+    
+  private:
+    static bool convertKNotes1Config( KCal::Journal *j, QDir &dir,
+                                      const QString &file );
+    static bool convertKNotes2Config( KCal::Journal *j, QDir &dir,
+                                      const QString &file );
 };
 
 #endif

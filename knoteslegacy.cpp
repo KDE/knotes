@@ -49,154 +49,153 @@ using namespace KCal;
 
 void KNotesLegacy::cleanUp()
 {
-    // remove old (KDE 1.x) local config file if it still exists
-    QString configfile = KGlobal::dirs()->saveLocation( "config" ) + "knotesrc";
-    if ( QFile::exists( configfile ) ) {
-        KConfigGroup test(KSharedConfig::openConfig( configfile, KConfig::OnlyLocal), "General" );
-        double version = test.readEntry( "version", 1.0 );
-
-        if ( version == 1.0 ) {
-            if ( !( KStandardDirs::checkAccess( configfile, W_OK ) &&
-                    QFile::remove( configfile ) ) )
-            {
-                kError(5500) <<"Could not delete old config file" << configfile;
-            }
-        }
+  // remove old (KDE 1.x) local config file if it still exists
+  QString configfile = KGlobal::dirs()->saveLocation( "config" ) + "knotesrc";
+  if ( QFile::exists( configfile ) ) {
+    KConfigGroup test(
+      KSharedConfig::openConfig( configfile, KConfig::OnlyLocal ), 
+      "General" );
+    double version = test.readEntry( "version", 1.0 );
+    
+    if ( version == 1.0 ) {
+      if ( !( KStandardDirs::checkAccess( configfile, W_OK ) &&
+        QFile::remove( configfile ) ) ) {
+          kError( 5500 ) <<"Could not delete old config file" << configfile;
+      }
     }
+  }
 }
 
 bool KNotesLegacy::convert( CalendarLocal *calendar )
 {
-    bool converted = false;
-
-    QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
-    QStringList notes = noteDir.entryList( QDir::Files, QDir::Name );
-    for ( QStringList::Iterator note = notes.begin(); note != notes.end(); note++ )
-    {
-        QString file = noteDir.absoluteFilePath( *note );
-        KConfig* test = new KConfig( file, KConfig::OnlyLocal);
-        test->setGroup( "General" );
-        double version = test->readEntry( "version", 1.0 );
-
-        if ( version < 3.0 )
-        {
-            delete test;
-
-            // create the new note
-            Journal *journal = new Journal();
-            bool success;
-
-            if ( version < 2.0 )
-                success = convertKNotes1Config( journal, noteDir, *note );
-            else
-                success = convertKNotes2Config( journal, noteDir, *note );
-
-            // could not convert file => do not add a new note
-            if ( !success )
-                delete journal;
-            else
-            {
-                calendar->addJournal( journal );
-                converted = true;
-            }
-        }
-        // window state changed for version 3.2
-        else if ( version < 3.2 )
-        {
+  bool converted = false;
+  
+  QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
+  QStringList notes = noteDir.entryList( QDir::Files, QDir::Name );
+  for ( QStringList::Iterator note = notes.begin(); note != notes.end();
+        note++ ) {
+    QString file = noteDir.absoluteFilePath( *note );
+    KConfig *test = new KConfig( file, KConfig::OnlyLocal );
+    test->setGroup( "General" );
+    double version = test->readEntry( "version", 1.0 );
+    
+    if ( version < 3.0 ) {
+      delete test;
+      
+      // create the new note
+      Journal *journal = new Journal();
+      bool success;
+      
+      if ( version < 2.0 ) {
+        success = convertKNotes1Config( journal, noteDir, *note );
+      } else {
+        success = convertKNotes2Config( journal, noteDir, *note );
+      }
+      
+      // could not convert file => do not add a new note
+      if ( !success ) {
+        delete journal;
+      } else {
+        calendar->addJournal( journal );
+        converted = true;
+      }
+    } else if ( version < 3.2 ) { // window state changed for version 3.2
 #ifdef Q_WS_X11
-            uint state = test->readEntry( "state", uint(NET::SkipTaskbar) );
-            test->writeEntry( "ShowInTaskbar", (state & NET::SkipTaskbar) ? false : true );
-            test->writeEntry( "KeepAbove", (state & NET::KeepAbove) ? true : false );
+      uint state = test->readEntry( "state", uint( NET::SkipTaskbar ) );
+      
+      test->writeEntry( "ShowInTaskbar",
+                        ( state & NET::SkipTaskbar ) ? false : true );
+      test->writeEntry( "KeepAbove", 
+                        ( state & NET::KeepAbove ) ? true : false );
 #endif
-            test->deleteEntry( "state" );
-            delete test;
-        }
+      test->deleteEntry( "state" );
+      delete test;
     }
-
-    return converted;
+  }
+  
+  return converted;
 }
 
-bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
-        const QString& file )
+bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
+                                         const QString &file )
 {
     QFile infile( noteDir.absoluteFilePath( file ) );
-    if ( !infile.open( QIODevice::ReadOnly ) )
-    {
-        kError(5500) <<"Could not open input file: \""
-                      << infile.fileName() << "\"";
+    if ( !infile.open( QIODevice::ReadOnly ) ) {
+        kError( 5500 ) << "Could not open input file: \""
+                       << infile.fileName() << "\"";
         return false;
     }
-
+    
     QTextStream input( &infile );
-
+    
     // get the name
     journal->setSummary( input.readLine() );
-
+    
     QStringList props = input.readLine().split( '+', QString::SkipEmptyParts );
-
+    
     // robustness
-    if ( props.count() != 13 )
-    {
-        kWarning(5500) <<"The file \"" << infile.fileName()
-                        << "\" lacks version information but is not a valid"
-                        << "KNotes 1 config file either!";
-        return false;
+    if ( props.count() != 13 ) {
+      kWarning( 5500 ) <<"The file \"" << infile.fileName()
+                       << "\" lacks version information but is not a valid"
+                       << "KNotes 1 config file either!";
+      return false;
     }
-
+    
     // the new configfile's name
     QString configFile = noteDir.absoluteFilePath( journal->uid() );
-
+    
     // set the defaults
     KIO::NetAccess::copy(
         KUrl( KGlobal::dirs()->saveLocation( "config" ) + "knotesrc" ),
         KUrl( configFile ),
         0
     );
-
-    KNoteConfig config( KSharedConfig::openConfig(configFile, KConfig::NoGlobals) );
+    
+    KNoteConfig config( KSharedConfig::openConfig( configFile,
+                                                   KConfig::NoGlobals ) );
     config.readConfig();
     config.setVersion( KNOTES_VERSION );
-
+    
     // get the geometry
     config.setWidth( props[3].toUInt() );
     config.setHeight( props[4].toUInt() );
-
+    
     // get the background color
     uint red = input.readLine().toUInt();
     uint green = input.readLine().toUInt();
     uint blue = input.readLine().toUInt();
     config.setBgColor( QColor( Qt::red, Qt::green, Qt::blue ) );
-
+    
     // get the foreground color
     red = input.readLine().toUInt();
     green = input.readLine().toUInt();
     blue = input.readLine().toUInt();
     config.setFgColor( QColor( Qt::red, Qt::green, Qt::blue ) );
-
+    
     // get the font
     QString fontfamily = input.readLine();
     if ( fontfamily.isEmpty() )
         fontfamily = QString( "Sans Serif" );
     uint size = input.readLine().toUInt();
-    size = qMax( size, (uint)4 );
+    size = qMax( size, ( uint ) 4 );
     uint weight = input.readLine().toUInt();
     bool italic = ( input.readLine().toUInt() == 1 );
     QFont font( fontfamily, size, weight, italic );
-
+    
     config.setTitleFont( font );
     config.setFont( font );
-
+    
     // 3d frame? Not supported yet!
     input.readLine();
-
+    
     // autoindent
     config.setAutoIndent( input.readLine().toUInt() == 1 );
-
+    
     // KNotes 1 never had rich text
     config.setRichText( false );
-
+    
     int note_desktop = props[0].toUInt();
-
+    
     // hidden or on all desktops?
     if ( input.readLine().toUInt() == 1 )
         note_desktop = 0;
@@ -204,71 +203,77 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir& noteDir,
     else if ( props[11].toUInt() == 1 )
         note_desktop = NETWinInfo::OnAllDesktops;
 #endif
-
+    
     config.setDesktop( note_desktop );
     config.setPosition( QPoint( props[1].toUInt(), props[2].toUInt() ) );
     config.setKeepAbove( props[12].toUInt() & 2048 );
-
+    
     config.writeConfig();
-
+    
     // get the text
     QString text;
-    while ( !input.atEnd() )
-    {
-        text.append( input.readLine() );
-        if ( !input.atEnd() )
-            text.append( '\n' );
+    while ( !input.atEnd() ) {
+      text.append( input.readLine() );
+      if ( !input.atEnd() ) {
+        text.append( '\n' );
+      }
     }
-
+    
     journal->setDescription( text );
-
+    
     if ( !infile.remove() )
-        kWarning(5500) <<"Could not delete input file: \"" << infile.fileName() <<"\"";
-
+    {
+      kWarning( 5500 ) << "Could not delete input file: \"" << infile.fileName()
+                       << "\"";
+    }
+    
     return true;
 }
 
-bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir& noteDir,
-        const QString& file )
+bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir &noteDir,
+                                         const QString &file )
 {
-    QString configFile = noteDir.absoluteFilePath( journal->uid() );
-
-    // new name for config file
-    if ( !noteDir.rename( file, journal->uid() ) )
-    {
-        kError(5500) <<"Could not rename input file: \""
-                      << noteDir.absoluteFilePath( file ) << "\" to \""
-                      << configFile << "\"!";
-        return false;
-    }
-
-    // update the config
-    KConfig config( configFile );
-    config.setGroup( "Data" );
-    journal->setSummary( config.readEntry( "name" ) );
-    config.deleteGroup( "Data", KConfig::NLS );
-    config.setGroup( "General" );
-    config.writeEntry( "version", KNOTES_VERSION );
-    config.setGroup( "WindowDisplay" );
+  QString configFile = noteDir.absoluteFilePath( journal->uid() );
+  
+  // new name for config file
+  if ( !noteDir.rename( file, journal->uid() ) ) {
+    kError( 5500 ) << "Could not rename input file: \""
+                   << noteDir.absoluteFilePath( file ) << "\" to \""
+                   << configFile << "\"!";
+    return false;
+  }
+  
+  // update the config
+  KConfig config( configFile );
+  config.setGroup( "Data" );
+  journal->setSummary( config.readEntry( "name" ) );
+  config.deleteGroup( "Data", KConfig::NLS );
+  config.setGroup( "General" );
+  config.writeEntry( "version", KNOTES_VERSION );
+  config.setGroup( "WindowDisplay" );
 #ifdef Q_WS_X11
-    uint state = config.readEntry( "state", uint(NET::SkipTaskbar) );
-    config.writeEntry( "ShowInTaskbar", (state & NET::SkipTaskbar) ? false : true );
-    config.writeEntry( "KeepAbove", (state & NET::KeepAbove) ? true : false );
+  uint state = config.readEntry( "state", uint( NET::SkipTaskbar ) );
+  config.writeEntry( "ShowInTaskbar", 
+                     ( state & NET::SkipTaskbar ) ? false : true );
+  config.writeEntry( "KeepAbove", 
+                      ( state & NET::KeepAbove ) ? true : false );
 #endif
-    config.deleteEntry( "state" );
-
-    // load the saved text and put it in the journal
-    QFile infile( noteDir.absoluteFilePath( "." + file + "_data" ) );
-    if ( infile.open( QIODevice::ReadOnly ) )
-    {
-        QTextStream input( &infile );
-        input.setCodec( "UTF-8" );
-        journal->setDescription( input.readAll() );
-        if ( !infile.remove() )
-            kWarning(5500) <<"Could not delete data file: \"" << infile.fileName() <<"\"";
+  config.deleteEntry( "state" );
+  
+  // load the saved text and put it in the journal
+  QFile infile( noteDir.absoluteFilePath( "." + file + "_data" ) );
+  if ( infile.open( QIODevice::ReadOnly ) ) {
+    QTextStream input( &infile );
+    input.setCodec( "UTF-8" );
+    journal->setDescription( input.readAll() );
+    if ( !infile.remove() ) {
+      kWarning( 5500 ) << "Could not delete data file: \"" << infile.fileName()
+                       << "\"";
     }
-    else
-        kWarning(5500) <<"Could not open data file: \"" << infile.fileName() <<"\"";
-
+  }
+  else
+    kWarning( 5500 ) << "Could not open data file: \"" << infile.fileName()
+                   << "\"";
+    
     return true;
 }

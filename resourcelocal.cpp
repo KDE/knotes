@@ -43,25 +43,27 @@
 #include "knotes/resourcenotes.h"
 
 
-
 ResourceLocal::ResourceLocal()
-    : ResourceNotes(), mCalendar( QString::fromLatin1( "UTC" ) )
+  : ResourceNotes(), mCalendar( QString::fromLatin1( "UTC" ) )
 {
-    kDebug(5500) <<"ResourceLocal::ResourceLocal()";
-    setType( "file" );
-    mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", "knotes/" ) + "notes.ics" );
+  kDebug( 5500 ) << "ResourceLocal::ResourceLocal()";
+  setType( "file" );
+  mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", "knotes/" ) +
+                         "notes.ics" );
 }
 
 ResourceLocal::ResourceLocal( const KConfigGroup &group )
-    : ResourceNotes( group ), mCalendar( QString::fromLatin1( "UTC" ) )
+  : ResourceNotes( group ), mCalendar( QString::fromLatin1( "UTC" ) )
 {
-    kDebug(5500) <<"ResourceLocal::ResourceLocal()";
-    setType( "file" );
-    mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", "knotes/" ) + "notes.ics" );
-
-    KUrl u = group.readPathEntry( "NotesURL" );
-    if ( !u.isEmpty() )
-        mURL = u;
+  kDebug( 5500 ) << "ResourceLocal::ResourceLocal()";
+  setType( "file" );
+  mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", "knotes/" ) +
+                         "notes.ics" );
+  
+  KUrl u = group.readPathEntry( "NotesURL" );
+  if ( !u.isEmpty() ) {
+    mURL = u;
+  }
 }
 
 ResourceLocal::~ResourceLocal()
@@ -70,68 +72,68 @@ ResourceLocal::~ResourceLocal()
 
 void ResourceLocal::writeConfig( KConfigGroup &group )
 {
-    KRES::Resource::writeConfig( group );
-    group.writePathEntry( "NotesURL", mURL.prettyUrl() );
+  KRES::Resource::writeConfig( group );
+  group.writePathEntry( "NotesURL", mURL.prettyUrl() );
 }
 
 bool ResourceLocal::load()
 {
-    mCalendar.load( mURL.path() );
-
-    KCal::Journal::List notes = mCalendar.journals();
-    KCal::Journal::List::ConstIterator it;
-    for ( it = notes.begin(); it != notes.end(); ++it )
-        manager()->registerNote( this, *it );
-
-    return true;
+  mCalendar.load( mURL.path() );
+  
+  KCal::Journal::List notes = mCalendar.journals();
+  KCal::Journal::List::ConstIterator it;
+  for ( it = notes.begin(); it != notes.end(); ++it ) {
+    manager()->registerNote( this, *it );
+  }
+  
+  return true;
 }
 
 bool ResourceLocal::save()
 {
-    if ( !mCalendar.save( mURL.path(), new KCal::ICalFormat() ) )
-    {
-        KMessageBox::error( 0,
-                            i18n("<qt>Unable to save the notes to <b>%1</b>. "
+  if ( !mCalendar.save( mURL.path(), new KCal::ICalFormat() ) ) {
+    KMessageBox::error( 0, i18n( "<qt>Unable to save the notes to <b>%1</b>. "
                                  "Check that there is sufficient disk space."
-                                 "<br />There should be a backup in the same directory "
-                                 "though.</qt>", mURL.path() ) );
-        return false;
-    }
-
+                                 "<br />There should be a backup in the same "
+                                 "directory though.</qt>", mURL.path() ) );
+    return false;
+  }
+  
     return true;
 }
 
 bool ResourceLocal::addNote( KCal::Journal *journal )
 {
-    mCalendar.addJournal( journal );
-    return true;
+  mCalendar.addJournal( journal );
+  return true;
 }
 
 bool ResourceLocal::deleteNote( KCal::Journal *journal )
 {
-    mCalendar.deleteJournal( journal );
-    return true;
+  mCalendar.deleteJournal( journal );
+  return true;
 }
 
-KCal::Alarm::List ResourceLocal::alarms( const KDateTime& from, const KDateTime& to )
+KCal::Alarm::List ResourceLocal::alarms( const KDateTime &from,
+                                         const KDateTime &to )
 {
-    KCal::Alarm::List alarms;
-    KCal::Journal::List notes = mCalendar.journals();
-    KCal::Journal::List::ConstIterator note;
-    for ( note = notes.begin(); note != notes.end(); ++note )
-    {
-        KDateTime preTime = from.addSecs( -1 );
-        KCal::Alarm::List::ConstIterator it;
-        for( it = (*note)->alarms().begin(); it != (*note)->alarms().end(); ++it )
-        {
-            if ( (*it)->enabled() )
-            {
-                KDateTime dt = (*it)->nextRepetition( preTime );
-                if ( dt.isValid() && dt <= to )
-                    alarms.append( *it );
-            }
+  KCal::Alarm::List alarms;
+  KCal::Journal::List notes = mCalendar.journals();
+  KCal::Journal::List::ConstIterator note;
+  
+  for ( note = notes.begin(); note != notes.end(); ++note ) {
+    KDateTime preTime = from.addSecs( -1 );
+    KCal::Alarm::List::ConstIterator it;
+    for( it = ( *note )->alarms().begin();
+         it != ( *note )->alarms().end(); ++it ) {
+      if ( ( *it )->enabled() ) {
+        KDateTime dt = ( *it )->nextRepetition( preTime );
+        if ( dt.isValid() && dt <= to ) {
+          alarms.append( *it );
         }
+      }
     }
-
-    return alarms;
+  }
+  
+  return alarms;
 }

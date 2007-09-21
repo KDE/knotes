@@ -41,19 +41,20 @@ class KHistoryComboBox;
 /**
  * A dialog to request a hostname or IP address.
  */
-class KNoteHostDlg : public KDialog
+class KNoteHostDlg
+  : public KDialog
 {
-    Q_OBJECT
-public:
-    KNoteHostDlg( const QString& caption, QWidget *parent=0 );
+  Q_OBJECT
+  public:
+    KNoteHostDlg( const QString &caption, QWidget *parent = 0 );
     ~KNoteHostDlg();
-
+    
     QString host() const;
-
-private slots:
+    
+  private slots:
     void slotTextChanged( const QString & );
-
-private:
+    
+  private:
     KHistoryComboBox *m_hostCombo;
 };
 

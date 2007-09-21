@@ -18,29 +18,30 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
+#include <QIcon>
+#include <QPainter>
+#include <QPixmap>
+#include <QSizePolicy>
 #include <QStyle>
 #include <QStyleOption>
-#include <QPainter>
-#include <QIcon>
-#include <QSizePolicy>
-#include <QPixmap>
 
-#include <kicontheme.h>
 #include <kiconloader.h>
+#include <kicontheme.h>
 
 #include "knotebutton.h"
 
 
-KNoteButton::KNoteButton( const QString& icon, QWidget *parent )
-    : QPushButton( parent )
+KNoteButton::KNoteButton( const QString &icon, QWidget *parent )
+  : QPushButton( parent )
 {
-    setFocusPolicy( Qt::NoFocus );
-    setSizePolicy( QSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed ) );
-
-    setFlat( true );
-
-    if ( !icon.isEmpty() )
-        setIcon( KIconLoader::global()->loadIconSet( icon, K3Icon::Small, 10 ) );
+  setFocusPolicy( Qt::NoFocus );
+  setSizePolicy( QSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed ) );
+  
+  setFlat( true );
+  
+  if ( !icon.isEmpty() ) {
+    setIcon( KIconLoader::global()->loadIconSet( icon, K3Icon::Small, 10 ) );
+  }
 }
 
 KNoteButton::~KNoteButton()
@@ -49,71 +50,78 @@ KNoteButton::~KNoteButton()
 
 void KNoteButton::enterEvent( QEvent * )
 {
-    setFlat( false );
-    repaint();
+  setFlat( false );
+  repaint();
 }
 
 void KNoteButton::leaveEvent( QEvent * )
 {
-    setFlat( true );
-    repaint();
+  setFlat( true );
+  repaint();
 }
 
 int KNoteButton::heightForWidth( int w ) const
 {
-    return w;
+  return w;
 }
 
 QSize KNoteButton::sizeHint() const
 {
-    return QSize( QPushButton::sizeHint().height(), QPushButton::sizeHint().height() );
+  return QSize( QPushButton::sizeHint().height(),
+                QPushButton::sizeHint().height() );
 }
 
 void KNoteButton::paintEvent( QPaintEvent * )
 {
-    QPainter p( this );
-
-    // the button
-    QStyleOption opt;
-    opt.initFrom( this );
-
-    if ( isEnabled() )
-        opt.state |= QStyle::State_Enabled;
-    if ( isDown() )
-        opt.state |= QStyle::State_DownArrow;
-    if ( isChecked() )
-        opt.state |= QStyle::State_On;
-    if ( !isFlat() )
-        if ( !isDown() )
-            opt.state |= QStyle::State_Raised;
-        else
-            opt.state |= QStyle::State_MouseOver;
-
-    style()->drawPrimitive( QStyle::PE_PanelButtonTool, &opt, &p, this );
-
-    // the button label
-    if ( !icon().isNull() )
-    {
-        QIcon::Mode  mode  = QIcon::Disabled;
-        QIcon::State state = QIcon::Off;
-
-        if ( isEnabled() )
-            mode = hasFocus() ? QIcon::Active : QIcon::Normal;
-        if ( isCheckable() && isChecked() )
-            state = QIcon::On;
-
-        QPixmap pix = icon().pixmap( style()->pixelMetric( QStyle::PM_SmallIconSize ), mode, state );
-
-        int dx = ( width() - pix.width() ) / 2;
-        int dy = ( height() - pix.height() ) / 2;
-
-        // Shift button contents if pushed.
-        if ( isChecked() || isDown() )
-        {
-            dx += style()->pixelMetric( QStyle::PM_ButtonShiftHorizontal );
-            dy += style()->pixelMetric( QStyle::PM_ButtonShiftVertical );
-        }
-
-        p.drawPixmap( dx, dy, pix );
+  QPainter p( this );
+  
+  // the button
+  QStyleOption opt;
+  opt.initFrom( this );
+  
+  if ( isEnabled() ) {
+    opt.state |= QStyle::State_Enabled;
+  }
+  if ( isDown() ) {
+    opt.state |= QStyle::State_DownArrow;
+  }
+  if ( isChecked() ) {
+    opt.state |= QStyle::State_On;
+  }
+  if ( !isFlat() ) {
+    if ( !isDown() ) {
+      opt.state |= QStyle::State_Raised;
+    } else {
+      opt.state |= QStyle::State_MouseOver;
     }
+  }
+  
+  style()->drawPrimitive( QStyle::PE_PanelButtonTool, &opt, &p, this );
+  
+  // the button label
+  if ( !icon().isNull() ) {
+    QIcon::Mode  mode  = QIcon::Disabled;
+    QIcon::State state = QIcon::Off;
+    
+    if ( isEnabled() ) {
+      mode = hasFocus() ? QIcon::Active : QIcon::Normal;
+    }
+    if ( isCheckable() && isChecked() ) {
+      state = QIcon::On;
+    }
+    
+    QPixmap pix = icon().pixmap( style()->pixelMetric(
+                                 QStyle::PM_SmallIconSize ), mode, state );
+    
+    int dx = ( width() - pix.width() ) / 2;
+    int dy = ( height() - pix.height() ) / 2;
+    
+    // Shift button contents if pushed.
+    if ( isChecked() || isDown() ) {
+      dx += style()->pixelMetric( QStyle::PM_ButtonShiftHorizontal );
+      dy += style()->pixelMetric( QStyle::PM_ButtonShiftVertical );
+    }
+    
+    p.drawPixmap( dx, dy, pix );
+  }
 }

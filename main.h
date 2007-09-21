@@ -26,15 +26,16 @@
 class KNotesApp;
 
 
-class Application : public KUniqueApplication
+class Application
+  : public KUniqueApplication
 {
-public:
+  public:
     Application();
     ~Application();
-
+    
     virtual int newInstance();
-
-private:
+    
+  private:
     KNotesApp *mMainWindow;
 };
 

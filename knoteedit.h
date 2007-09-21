@@ -21,111 +21,114 @@
 #ifndef KNOTEEDIT_H
 #define KNOTEEDIT_H
 
-#include <QWidget>
 #include <QDragEnterEvent>
 #include <QDropEvent>
-#include <QTextFormat>
 #include <QTextCharFormat>
+#include <QTextFormat>
+#include <QWidget>
 
 #include <ktextedit.h>
 
-class QFont;
 class QColor;
+class QFont;
+
 class KAction;
-class KToggleAction;
+class KActionCollection;
 class KFontAction;
 class KFontSizeAction;
-class KActionCollection;
 class KMenu;
+class KToggleAction;
 
 
-class KNoteEdit : public KTextEdit
+class KNoteEdit
+  : public KTextEdit
 {
-    Q_OBJECT
-public:
-    KNoteEdit( KActionCollection *actions, QWidget *parent=0 );
+  Q_OBJECT
+  public:
+    KNoteEdit( KActionCollection *actions, QWidget *parent = 0 );
     ~KNoteEdit();
-
-    void setText( const QString& text );
+    
+    void setText( const QString &text );
     QString text() const;
-
-    void setTextFont( const QFont& font );
-    void setTextColor( const QColor& color );
+    
+    void setTextFont( const QFont &font );
+    void setTextColor( const QColor &color );
     void setTabStop( int tabs );
     void setAutoIndentMode( bool newmode );
-
+    
     void setContextMenu( KMenu *menu )
     {
         m_editMenu = menu;
     }
 
-public slots:
+  public slots:
     void setRichText( bool );
-
+    
     void textBold( bool );
     void textStrikeOut( bool );
-
+    
     void slotTextColor();
-
+    
     void textAlignLeft();
     void textAlignCenter();
     void textAlignRight();
     void textAlignBlock();
-
+    
     void textList();
-
+    
     void textSuperScript();
     void textSubScript();
-
+    
     void textIncreaseIndent();
     void textDecreaseIndent();
-
-protected:
+    
+  protected:
     virtual void contextMenuEvent( QContextMenuEvent * );
     virtual void dragEnterEvent( QDragEnterEvent * );
     virtual void dropEvent( QDropEvent * );
     virtual void keyPressEvent( QKeyEvent * );
     virtual void focusInEvent( QFocusEvent * );
     virtual void focusOutEvent( QFocusEvent * );
-private slots:
-    void slotCurrentCharFormatChanged( const QTextCharFormat& );
-
-private:
+    
+  private slots:
+    void slotCurrentCharFormatChanged( const QTextCharFormat & );
+    
+  private:
     void autoIndent();
-
-    void setTextFormat( const QTextCharFormat& );
-
+    
+    void setTextFormat( const QTextCharFormat & );
+    
     void enableRichTextActions();
     void disableRichTextActions();
-
-private:
+    
+  private:
     KAction *m_cut;
     KAction *m_copy;
     KAction *m_paste;
-
+    
     KMenu   *m_editMenu;
-
+    
     KToggleAction *m_textBold;
     KToggleAction *m_textItalic;
     KToggleAction *m_textUnderline;
     KToggleAction *m_textStrikeOut;
-
+    
     KToggleAction *m_textAlignLeft;
     KToggleAction *m_textAlignCenter;
     KToggleAction *m_textAlignRight;
     KToggleAction *m_textAlignBlock;
-
+    
     KToggleAction *m_textList;
     KToggleAction *m_textSuper;
     KToggleAction *m_textSub;
-
+    
     KAction       *m_textIncreaseIndent;
     KAction       *m_textDecreaseIndent;
-
+    
     KAction         *m_textColor;
     KFontAction     *m_textFont;
     KFontSizeAction *m_textSize;
-
+    
     bool m_autoIndentMode;
 };
 
