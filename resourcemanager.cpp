@@ -31,126 +31,128 @@
  your version.
 *******************************************************************/
 
-#include "knotes/resourcemanager.h"
 #include "knotes/resourcelocal.h"
+#include "knotes/resourcemanager.h"
 
 #include <kcal/journal.h>
 
 
 KNotesResourceManager::KNotesResourceManager()
-    : QObject( 0 )
+  : QObject( 0 )
 {
-    setObjectName( "KNotes Resource Manager" );
-    m_manager = new KRES::Manager<ResourceNotes>( "notes" );
-    m_manager->addObserver( this );
-    m_manager->readConfig();
+  setObjectName( "KNotes Resource Manager" );
+  m_manager = new KRES::Manager<ResourceNotes>( "notes" );
+  m_manager->addObserver( this );
+  m_manager->readConfig();
 }
 
 KNotesResourceManager::~KNotesResourceManager()
 {
-    delete m_manager;
+  delete m_manager;
 }
 
 void KNotesResourceManager::load()
 {
-    if ( !m_manager->standardResource() )
-    {
-        kWarning(5500) <<"No standard resource yet.";
-        ResourceNotes *resource = new ResourceLocal();
-        m_manager->add( resource );
-        m_manager->setStandardResource( resource );
+  if ( !m_manager->standardResource() ) {
+    kWarning( 5500 ) << "No standard resource yet.";
+    ResourceNotes *resource = new ResourceLocal();
+    m_manager->add( resource );
+    m_manager->setStandardResource( resource );
+  }
+  
+  // Open all active resources
+  KRES::Manager<ResourceNotes>::ActiveIterator it;
+  for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it ) {
+    kDebug( 5500 ) << "Opening resource" + ( *it )->resourceName();
+    ( *it )->setManager( this );
+    if ( ( *it )->open() ) {
+      ( *it )->load();
     }
-
-    // Open all active resources
-    KRES::Manager<ResourceNotes>::ActiveIterator it;
-    for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it )
-    {
-        kDebug(5500) <<"Opening resource" + (*it)->resourceName();
-        (*it)->setManager( this );
-        if ( (*it)->open() )
-            (*it)->load();
-    }
+  }
 }
 
 void KNotesResourceManager::save()
 {
-    KRES::Manager<ResourceNotes>::ActiveIterator it;
-    for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it )
-        (*it)->save();
+  KRES::Manager<ResourceNotes>::ActiveIterator it;
+  for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it ) {
+    ( *it )->save();
+  }
 }
 
 // when adding a new note, make sure a config file exists!!
 
 void KNotesResourceManager::addNewNote( KCal::Journal *journal )
 {
-    // TODO: Make this configurable
-    ResourceNotes *resource = m_manager->standardResource();
-    if ( resource )
-    {
-        resource->addNote( journal );
-        registerNote( resource, journal );
-    }
-    else
-        kWarning(5500) <<"no resource!";
+  // TODO: Make this configurable
+  ResourceNotes *resource = m_manager->standardResource();
+  if ( resource ) {
+    resource->addNote( journal );
+    registerNote( resource, journal );
+  } else {
+    kWarning( 5500 ) << "no resource!";
+  }
 }
 
 void KNotesResourceManager::registerNote( ResourceNotes *resource,
-    KCal::Journal *journal )
+                                          KCal::Journal *journal )
 {
-    // TODO: only emit the signal if the journal is new?
-    m_resourceMap.insert( journal->uid(), resource );
-    emit sigRegisteredNote( journal );
+  // TODO: only emit the signal if the journal is new?
+  m_resourceMap.insert( journal->uid(), resource );
+  emit sigRegisteredNote( journal );
 }
 
 void KNotesResourceManager::deleteNote( KCal::Journal *journal )
 {
-    QString uid = journal->uid();
-
-    // Remove the journal from the resource it came from
-    m_resourceMap[ uid ]->deleteNote( journal );
-    m_resourceMap.remove( uid );
-
-    // libkcal does not delete the journal immediately, therefore it is ok to
-    // emit the journal here
-    emit sigDeregisteredNote( journal );
+  QString uid = journal->uid();
+  
+  // Remove the journal from the resource it came from
+  m_resourceMap[ uid ]->deleteNote( journal );
+  m_resourceMap.remove( uid );
+  
+  // libkcal does not delete the journal immediately, therefore it is ok to
+  // emit the journal here
+  emit sigDeregisteredNote( journal );
 }
 
-KCal::Alarm::List KNotesResourceManager::alarms( const KDateTime& from, const KDateTime& to )
+KCal::Alarm::List KNotesResourceManager::alarms( const KDateTime &from,
+                                                 const KDateTime &to )
 {
-    KCal::Alarm::List result;
-
-    KRES::Manager<ResourceNotes>::ActiveIterator it;
-    for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it )
-    {
-        KCal::Alarm::List list = (*it)->alarms( from, to );
-        KCal::Alarm::List::Iterator it;
-        for ( it = list.begin(); it != list.end(); ++it )
-            result.append( *it );
+  KCal::Alarm::List result;
+  
+  KRES::Manager<ResourceNotes>::ActiveIterator it;
+  for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it ) {
+    KCal::Alarm::List list = ( *it )->alarms( from, to );
+    KCal::Alarm::List::Iterator it;
+    for ( it = list.begin(); it != list.end(); ++it ) {
+      result.append( *it );
     }
-
-    return result;
+  }
+  
+  return result;
 }
 
 void KNotesResourceManager::resourceAdded( ResourceNotes *resource )
 {
-    kDebug(5500) <<"Resource added:" << resource->resourceName();
-
-    if ( !resource->isActive() )
-        return;
-
-    resource->setManager( this );
-    if ( resource->open() )
-        resource->load();
+  kDebug( 5500 ) << "Resource added:" << resource->resourceName();
+  
+  if ( !resource->isActive() ) {
+    return;
+  }
+  
+  resource->setManager( this );
+  if ( resource->open() ) {
+    resource->load();
+  }
 }
 
 void KNotesResourceManager::resourceModified( ResourceNotes *resource )
 {
-    kDebug(5500) <<"Resource modified:" << resource->resourceName();
+  kDebug( 5500 ) << "Resource modified:" << resource->resourceName();
 }
 
 void KNotesResourceManager::resourceDeleted( ResourceNotes *resource )
 {
-    kDebug(5500) <<"Resource deleted:" << resource->resourceName();
+  kDebug( 5500 ) << "Resource deleted:" << resource->resourceName();
 }
 
 

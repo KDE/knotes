@@ -24,24 +24,26 @@
 #include <kconfigdialog.h>
 
 class QString;
+
 class KNoteConfig;
 
 
-class KNoteConfigDlg : public KConfigDialog
+class KNoteConfigDlg
+  : public KConfigDialog
 {
-    Q_OBJECT
-public:
+  Q_OBJECT
+  public:
     KNoteConfigDlg( KNoteConfig *config, const QString &title,
-                    QWidget *parent, const QString& name );
+                    QWidget *parent, const QString &name );
     ~KNoteConfigDlg();
-
-public slots:
+    
+  public slots:
     void slotUpdateCaption();
-
-protected:
+    
+  protected:
     QWidget *makeDisplayPage( bool );
     QWidget *makeEditorPage( bool );
-
+    
     QWidget *makeDefaultsPage();
     QWidget *makeActionsPage();
     QWidget *makeNetworkPage();

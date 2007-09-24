@@ -30,17 +30,17 @@
  your version.
 *******************************************************************/
 
-#include <QString>
-#include <QStringList>
 #include <QLabel>
 #include <QLineEdit>
+#include <QString>
+#include <QStringList>
 
+#include <kconfig.h>
 #include <kdebug.h>
 #include <kglobal.h>
+#include <khistorycombobox.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
-#include <kconfig.h>
-#include <khistorycombobox.h>
 #include <kvbox.h>
 
 #include "knotehostdlg.h"
@@ -48,46 +48,49 @@
 
 
 KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
-    : KDialog( parent)
+  : KDialog( parent )
 {
-    setCaption( caption );
-    setButtons( Ok|Cancel );
-    KVBox *page = new KVBox( this );
-    setMainWidget( page );
-    (void)new QLabel( i18n("Hostname or IP address:"), page );
-
-    m_hostCombo = new KHistoryComboBox( true, page );
-    m_hostCombo->setMinimumWidth( fontMetrics().maxWidth() * 15 );
-    m_hostCombo->setDuplicatesEnabled( false );
-
-    // Read known hosts from configfile
-    m_hostCombo->setHistoryItems( KNotesGlobalConfig::knownHosts(), true );
-    m_hostCombo->setFocus();
-    //m_hostCombo->completionObject()->setItems( KNotesGlobalConfig::hostCompletions() );
-    connect( m_hostCombo->lineEdit(), SIGNAL( textChanged ( const QString & ) ),
-             this, SLOT( slotTextChanged( const QString & ) ) );
-    slotTextChanged( m_hostCombo->lineEdit()->text() );
+  setCaption( caption );
+  setButtons( Ok|Cancel );
+  KVBox *page = new KVBox( this );
+  setMainWidget( page );
+  ( void ) new QLabel( i18n("Hostname or IP address:"), page );
+  
+  m_hostCombo = new KHistoryComboBox( true, page );
+  m_hostCombo->setMinimumWidth( fontMetrics().maxWidth() * 15 );
+  m_hostCombo->setDuplicatesEnabled( false );
+  
+  // Read known hosts from configfile
+  m_hostCombo->setHistoryItems( KNotesGlobalConfig::knownHosts(), true );
+  m_hostCombo->setFocus();
+  // m_hostCombo->completionObject()->setItems(
+  //   KNotesGlobalConfig::hostCompletions() );
+  connect( m_hostCombo->lineEdit(), SIGNAL( textChanged ( const QString & ) ),
+           this, SLOT( slotTextChanged( const QString & ) ) );
+  slotTextChanged( m_hostCombo->lineEdit()->text() );
 }
 
 KNoteHostDlg::~KNoteHostDlg()
 {
-    if ( result() == Accepted )
-        m_hostCombo->addToHistory( m_hostCombo->currentText().trimmed() );
-
-    // Write known hosts to configfile
-    KNotesGlobalConfig::setKnownHosts( m_hostCombo->historyItems() );
-    //KNotesGlobalConfig::setHostCompletions( m_hostCombo->completionObject()->items() );
-    KNotesGlobalConfig::self()->writeConfig();
+  if ( result() == Accepted ) {
+    m_hostCombo->addToHistory( m_hostCombo->currentText().trimmed() );
+  }
+  
+  // Write known hosts to configfile
+  KNotesGlobalConfig::setKnownHosts( m_hostCombo->historyItems() );
+  //KNotesGlobalConfig::setHostCompletions(
+  //  m_hostCombo->completionObject()->items() );
+  KNotesGlobalConfig::self()->writeConfig();
 }
 
-void KNoteHostDlg::slotTextChanged( const QString& text )
+void KNoteHostDlg::slotTextChanged( const QString &text )
 {
-    enableButton(Ok, !text.isEmpty() );
+  enableButton( Ok, !text.isEmpty() );
 }
 
 QString KNoteHostDlg::host() const
 {
-    return m_hostCombo->currentText();
+  return m_hostCombo->currentText();
 }
 
 

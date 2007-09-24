@@ -33,14 +33,15 @@
 #ifndef RESOURCENOTES_H
 #define RESOURCENOTES_H
 
-#include "knotes_export.h"
-#include <kresources/resource.h>
 #include <kcal/alarm.h>
+#include <kresources/resource.h>
+
+#include "knotes_export.h"
 
 class KNotesResourceManager;
 
 namespace KCal {
-    class Journal;
+class Journal;
 }
 
 
@@ -51,33 +52,35 @@ namespace KCal {
  * \warning This code is still under heavy development. Don't expect source or
  *          binary compatibility in future versions.
  */
-class ResourceNotes : public KRES::Resource
+class ResourceNotes
+  : public KRES::Resource
 {
-Q_OBJECT
-public:
+  Q_OBJECT
+  public:
     ResourceNotes();
     explicit ResourceNotes( const KConfigGroup &group );
     virtual ~ResourceNotes();
-
+    
     /**
      * Load resource data.
      */
     virtual bool load() = 0;
-
+    
     /**
      * Save resource data.
      */
     virtual bool save() = 0;
-
+    
     virtual bool addNote( KCal::Journal * ) = 0;
     virtual bool deleteNote( KCal::Journal * ) = 0;
-
-    virtual KCal::Alarm::List alarms( const KDateTime& from, const KDateTime& to ) = 0;
-
+    
+    virtual KCal::Alarm::List alarms( const KDateTime &from,
+                                      const KDateTime &to ) = 0;
+    
     void setManager( KNotesResourceManager *manager );
     KNotesResourceManager *manager() const;
-
-protected:
+    
+  protected:
     KNotesResourceManager *mManager;
 };
 

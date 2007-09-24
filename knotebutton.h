@@ -24,20 +24,21 @@
 #include <QPushButton>
 
 
-class KNoteButton: public QPushButton
+class KNoteButton
+  : public QPushButton
 {
-    Q_OBJECT
-public:
-    KNoteButton( const QString& icon, QWidget *parent=0 );
+  Q_OBJECT
+  public:
+    KNoteButton( const QString &icon, QWidget *parent = 0 );
     ~KNoteButton();
-
+    
     virtual int heightForWidth( int w ) const;
     virtual QSize sizeHint() const;
-
-protected:
+    
+  protected:
     virtual void enterEvent( QEvent * );
     virtual void leaveEvent( QEvent * );
-
+    
     virtual void paintEvent ( QPaintEvent *e );
 };
 

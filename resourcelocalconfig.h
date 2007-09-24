@@ -25,19 +25,21 @@
 
 class KUrlRequester;
 
-class ResourceLocalConfig : public KRES::ConfigWidget
+
+class ResourceLocalConfig
+  : public KRES::ConfigWidget
 {
-    Q_OBJECT
-    public:
-        ResourceLocalConfig( QWidget *parent = 0, const char *name = 0 );
-        virtual ~ResourceLocalConfig();
-
-    public slots:
-        virtual void loadSettings( KRES::Resource* resource );
-        virtual void saveSettings( KRES::Resource* resource );
-
-    private:
-        KUrlRequester *mURL;
+  Q_OBJECT
+  public:
+    ResourceLocalConfig( QWidget *parent = 0, const char *name = 0 );
+    virtual ~ResourceLocalConfig();
+    
+  public slots:
+    virtual void loadSettings( KRES::Resource *resource );
+    virtual void saveSettings( KRES::Resource *resource );
+    
+  private:
+    KUrlRequester *mURL;
 };
 
 #endif
