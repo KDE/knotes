@@ -389,13 +389,13 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
   // aware of the new colors
   KIconEffect effect;
   QPixmap icon = effect.apply( qApp->windowIcon().pixmap(
-                                 IconSize( K3Icon::Desktop ),
-                                 IconSize( K3Icon::Desktop ) ),
+                                 IconSize( KIconLoader::Desktop ),
+                                 IconSize( KIconLoader::Desktop ) ),
                                KIconEffect::Colorize,
                                1, m_config->bgColor(), false );
   QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap(
-                                     IconSize( K3Icon::Small ),
-                                     IconSize( K3Icon::Small ) ),
+                                     IconSize( KIconLoader::Small ),
+                                     IconSize( KIconLoader::Small ) ),
                                    KIconEffect::Colorize,
                                    1, m_config->bgColor(), false );
 #ifdef Q_WS_X11
@@ -927,12 +927,12 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
   // update the icon color
   KIconEffect effect;
   QPixmap icon = effect.apply( qApp->windowIcon().pixmap(
-                                 IconSize( K3Icon::Desktop ),
-                                 IconSize( K3Icon::Desktop ) ),
+                                 IconSize( KIconLoader::Desktop ),
+                                 IconSize( KIconLoader::Desktop ) ),
                                KIconEffect::Colorize, 1, bg, false );
   QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap(
-                                     IconSize( K3Icon::Small ),
-                                     IconSize( K3Icon::Small ) ),
+                                     IconSize( KIconLoader::Small ),
+                                     IconSize( KIconLoader::Small ) ),
                                    KIconEffect::Colorize, 1, bg, false );
 #ifdef Q_WS_X11
   KWindowSystem::setIcons( winId(), icon, miniIcon );

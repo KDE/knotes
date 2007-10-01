@@ -635,8 +635,8 @@ void KNotesApp::updateNoteActions()
     connect( action, SIGNAL( triggered( bool ) ), SLOT( slotShowNote() ) );
     KIconEffect effect;
     QPixmap icon =
-      effect.apply( qApp->windowIcon().pixmap( IconSize( K3Icon::Small ),
-                                               IconSize( K3Icon::Small ) ),
+      effect.apply( qApp->windowIcon().pixmap( IconSize( KIconLoader::Small ),
+                                               IconSize( KIconLoader::Small ) ),
                     KIconEffect::Colorize,
                     1,
                     note->palette().color( note->backgroundRole() ),

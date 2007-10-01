@@ -40,7 +40,7 @@ KNoteButton::KNoteButton( const QString &icon, QWidget *parent )
   setFlat( true );
   
   if ( !icon.isEmpty() ) {
-    setIcon( KIconLoader::global()->loadIconSet( icon, K3Icon::Small, 10 ) );
+    setIcon( KIconLoader::global()->loadIconSet( icon, KIconLoader::Small, 10 ) );
   }
 }
 
