@@ -56,11 +56,11 @@ KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString &title,
 #ifdef Q_WS_X11
   KWindowSystem::setIcons( winId(),
                            qApp->windowIcon().pixmap(
-                             IconSize( K3Icon::Desktop ),
-                             IconSize( K3Icon::Desktop ) ),
+                             IconSize( KIconLoader::Desktop ),
+                             IconSize( KIconLoader::Desktop ) ),
                            qApp->windowIcon().pixmap(
-                             IconSize( K3Icon::Small ),
-                             IconSize( K3Icon::Small ) ) );
+                             IconSize( KIconLoader::Small ),
+                             IconSize( KIconLoader::Small ) ) );
 #endif
   //setIconListAllVisible( true );
   showButtonSeparator( true );
