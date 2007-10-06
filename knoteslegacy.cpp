@@ -76,8 +76,8 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
         note++ ) {
     QString file = noteDir.absoluteFilePath( *note );
     KConfig *test = new KConfig( file, KConfig::OnlyLocal );
-    test->setGroup( "General" );
-    double version = test->readEntry( "version", 1.0 );
+    KConfigGroup grp = test->group( "General" );
+    double version = grp.readEntry( "version", 1.0 );
     
     if ( version < 3.0 ) {
       delete test;
@@ -101,14 +101,14 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
       }
     } else if ( version < 3.2 ) { // window state changed for version 3.2
 #ifdef Q_WS_X11
-      uint state = test->readEntry( "state", uint( NET::SkipTaskbar ) );
+      uint state = grp.readEntry( "state", uint( NET::SkipTaskbar ) );
       
-      test->writeEntry( "ShowInTaskbar",
+      grp.writeEntry( "ShowInTaskbar",
                         ( state & NET::SkipTaskbar ) ? false : true );
-      test->writeEntry( "KeepAbove", 
+      grp.writeEntry( "KeepAbove", 
                         ( state & NET::KeepAbove ) ? true : false );
 #endif
-      test->deleteEntry( "state" );
+      grp.deleteEntry( "state" );
       delete test;
     }
   }
@@ -245,20 +245,20 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir &noteDir,
   
   // update the config
   KConfig config( configFile );
-  config.setGroup( "Data" );
-  journal->setSummary( config.readEntry( "name" ) );
-  config.deleteGroup( "Data", KConfig::NLS );
-  config.setGroup( "General" );
-  config.writeEntry( "version", KNOTES_VERSION );
-  config.setGroup( "WindowDisplay" );
+  KConfigGroup grp = config.group( "Data" );
+  journal->setSummary( grp.readEntry( "name" ) );
+  grp.deleteGroup( KConfig::NLS );
+  grp.group( "General" );
+  grp.writeEntry( "version", KNOTES_VERSION );
+  grp = config.group( "WindowDisplay" );
 #ifdef Q_WS_X11
-  uint state = config.readEntry( "state", uint( NET::SkipTaskbar ) );
-  config.writeEntry( "ShowInTaskbar", 
+  uint state = grp.readEntry( "state", uint( NET::SkipTaskbar ) );
+  grp.writeEntry( "ShowInTaskbar", 
                      ( state & NET::SkipTaskbar ) ? false : true );
-  config.writeEntry( "KeepAbove", 
+  grp.writeEntry( "KeepAbove", 
                       ( state & NET::KeepAbove ) ? true : false );
 #endif
-  config.deleteEntry( "state" );
+  grp.deleteEntry( "state" );
   
   // load the saved text and put it in the journal
   QFile infile( noteDir.absoluteFilePath( "." + file + "_data" ) );
