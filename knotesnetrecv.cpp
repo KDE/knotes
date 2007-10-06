@@ -35,7 +35,7 @@
 #include <QRegExp>
 #include <QTcpSocket>
 #include <QTimer>
-
+#include <kdebug.h>
 #include <kglobal.h>
 #include <klocale.h>
 
