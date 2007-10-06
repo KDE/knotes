@@ -76,7 +76,8 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
         note++ ) {
     QString file = noteDir.absoluteFilePath( *note );
     KConfig *test = new KConfig( file, KConfig::OnlyLocal );
-    KConfigGroup grp = test->group( "General" );
+    KConfigGroup grp( test, "General" );
+    test->setGroup( "General" );
     double version = grp.readEntry( "version", 1.0 );
     
     if ( version < 3.0 ) {
@@ -245,12 +246,13 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir &noteDir,
   
   // update the config
   KConfig config( configFile );
-  KConfigGroup grp = config.group( "Data" );
+  KConfigGroup grp( &config, "Data" );
+  config.setGroup( "Data" );
   journal->setSummary( grp.readEntry( "name" ) );
-  grp.deleteGroup( KConfig::NLS );
-  grp.group( "General" );
+  config.deleteGroup( "Data", KConfig::NLS );
+  config.setGroup( "General" );
   grp.writeEntry( "version", KNOTES_VERSION );
-  grp = config.group( "WindowDisplay" );
+  config.setGroup( "WindowDisplay" );
 #ifdef Q_WS_X11
   uint state = grp.readEntry( "state", uint( NET::SkipTaskbar ) );
   grp.writeEntry( "ShowInTaskbar", 
