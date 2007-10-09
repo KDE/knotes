@@ -34,6 +34,7 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
+#include <kconfiggroup.h>
 
 #include <kcal/icalformat.h>
 
