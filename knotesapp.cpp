@@ -293,6 +293,9 @@ void KNotesApp::hideAllNotes() const
 void KNotesApp::showAllNotes() const
 {
   foreach ( KNote *note, m_notes ) {
+    // workaround to BUG 149116
+    note->hide();
+    
     note->show();
     note->setFocus();
   }
