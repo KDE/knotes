@@ -27,7 +27,7 @@ kde4_add_kcfg_files(knotes_SRCS ${libknotesconfig_SRCS})
 
 kde4_add_executable(knotes ${knotes_SRCS})
 
-target_link_libraries(knotes  ${KDE4_KCAL_LIBS} kdepim ${KDE4_KRESOURCES_LIBS} ${KDE4_KDEPRINT_LIBS} ${KDE4_KUTILS_LIBS} )
+target_link_libraries(knotes  ${KDE4_KCAL_LIBS} kdepim ${KDE4_KRESOURCES_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KUTILS_LIBS} )
 
 install(TARGETS knotes  DESTINATION ${BIN_INSTALL_DIR} )
 
@@ -43,7 +43,7 @@ kde4_add_plugin(knotes_local ${knotes_local_PART_SRCS})
 
 
 
-target_link_libraries(knotes_local  ${KDE4_KIO_LIBS}  ${KDE4_KRESOURCES_LIBS} ${KDE4_KCAL_LIBS} ${KDE4_KDEPRINT_LIBS} ${QT_QT3SUPPORT_LIBRARY})
+target_link_libraries(knotes_local  ${KDE4_KIO_LIBS}  ${KDE4_KRESOURCES_LIBS} ${KDE4_KCAL_LIBS} ${QT_QT3SUPPORT_LIBRARY})
 
 install(TARGETS knotes_local  DESTINATION ${PLUGIN_INSTALL_DIR})
 
