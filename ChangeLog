@@ -3,6 +3,10 @@ ChangeLog for KNotes
 
 2007/10/13  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
 
+    * added Remember Desktop option to notes
+
+2007/10/13  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
+
     * removed Qt3 support dependencies found
     * stripped main.cpp, application class implemented in application.cpp
     * moved main.h to application.h

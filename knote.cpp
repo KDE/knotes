@@ -285,6 +285,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
     m_config->setHideNote( globalConfig->hideNote() );
     m_config->setPosition( globalConfig->position() );
     m_config->setShowInTaskbar( globalConfig->showInTaskbar() );
+    m_config->setRememberDesktop( globalConfig->rememberDesktop() );
     m_config->setKeepAbove( globalConfig->keepAbove() );
     m_config->setKeepBelow( globalConfig->keepBelow() );
     
@@ -353,8 +354,10 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
   // if this is a new note put on current desktop - we can't use defaults
   // in KConfig XT since only _changes_ will be stored in the config file
   int desktop = m_config->desktop();
+  
 #ifdef Q_WS_X11
-  if ( desktop < 0 && desktop != NETWinInfo::OnAllDesktops )
+  if ( ( desktop < 0 && desktop != NETWinInfo::OnAllDesktops ) ||
+       !m_config->rememberDesktop() )
     desktop = KWindowSystem::currentDesktop();
 #endif
   
