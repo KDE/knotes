@@ -1,6 +1,15 @@
 ChangeLog for KNotes
 ====================
 
+2007/10/13  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
+
+    * removed Qt3 support dependencies found
+    * stripped main.cpp, application class implemented in application.cpp
+    * moved main.h to application.h
+    * updated maintainer information
+    * updated CMakeLists.txt
+    * implemented command line option --skip-note
+
 2007/09/21  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
 
     * final-merge : format code to fit into KDEPIM Coding Guidelines

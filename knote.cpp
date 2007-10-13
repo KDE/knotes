@@ -713,7 +713,7 @@ void KNote::slotPrint()
 {
   saveData();
   QString content;
-  if ( m_editor->textFormat() == Qt::PlainText ) {
+  if ( !Qt::mightBeRichText( m_editor->text() ) ) {
     content = Qt::convertFromPlainText( m_editor->text() );
   } else {
     content = m_editor->text();
@@ -1090,7 +1090,7 @@ void KNote::dropEvent( QDropEvent *e )
 
 bool KNote::event( QEvent *ev )
 {
-  if ( ev->type() == QEvent::LayoutHint ) {
+  if ( ev->type() == QEvent::LayoutRequest ) {
     updateLayout();
     return true;
   } else {

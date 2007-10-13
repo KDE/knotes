@@ -3,8 +3,8 @@ add_subdirectory( pics )
 add_subdirectory( icons ) 
 
 
-
-add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
+## QT3_SUPPORT disabled ~gamaral
+## add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
 
 ########### next target ###############
 
@@ -17,7 +17,7 @@ set(libknoteslegacy_SRCS  knoteslegacy.cpp )
 set(libknote_SRCS knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp knoteprinter.cpp )
 
 
-set(knotes_SRCS main.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS} ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})
+set(knotes_SRCS main.cpp application.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS} ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})
 qt4_add_dbus_adaptor(knotes_SRCS org.kde.KNotes.xml knotesapp.h KNotesApp )
 
 set( libknotesconfig_SRCS knoteconfig.kcfgc knotesglobalconfig.kcfgc )

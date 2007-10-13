@@ -678,7 +678,7 @@ void KNotesApp::updateStyle()
   //    KNote::setStyle( KNotesGlobalConfig::style() );
   
   foreach ( KNote *note, m_notes ) {
-    QApplication::postEvent( note, new QEvent( QEvent::LayoutHint ) );
+    QApplication::postEvent( note, new QEvent( QEvent::LayoutRequest ) );
   }
 }
 

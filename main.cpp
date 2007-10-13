@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2006, The KNotes Developers
+ Copyright (c) 1997-2007, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -18,8 +18,6 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include "knotesapp.h"
-
 #include <kuniqueapplication.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
@@ -33,61 +31,12 @@
 #endif
 
 #include "version.h"
-#include "main.h"
+#include "application.h"
 
 
-void remove_sm_from_client_leader()
-{
-#ifdef Q_WS_X11
-  Atom type;
-  int format, status;
-  unsigned long nitems = 0;
-  unsigned long extra = 0;
-  unsigned char *data = 0;
-
-  Atom atoms[ 2 ];
-  char *atom_names[ 2 ] = { ( char * ) "WM_CLIENT_LEADER",
-                            ( char * ) "SM_CLIENT_ID" };
-
-  XInternAtoms( QX11Info::display(), atom_names, 2, False, atoms );
-
-  QWidget w;
-  KXErrorHandler handler; // ignore X errors
-  status = XGetWindowProperty( QX11Info::display(), w.winId(), atoms[ 0 ], 0,
-                               10000, false, XA_WINDOW, &type, &format, &nitems,
-                               &extra, &data );
-
-  if ( ( status == Success ) && !handler.error( false ) ) {
-      if ( data && ( nitems > 0 ) ) {
-          Window leader = * ( ( Window * ) data );
-          XDeleteProperty( QX11Info::display(), leader, atoms[ 1 ] );
-      }
-      XFree( data );
-  }
-#endif
-}
-
-
-Application::Application()
-  : KUniqueApplication(), mMainWindow( 0 )
-{
-}
-
-Application::~Application()
-{
-  delete mMainWindow;
-}
-
-int Application::newInstance()
-{
-  if ( !mMainWindow ) {
-    mMainWindow = new KNotesApp();
-    // mMainWindow->show();
-  } else {
-        mMainWindow->newNote();
-  }
-  return KUniqueApplication::newInstance();
-}
+void remove_sm_from_client_leader();
+KCmdLineOptions knotesOptions();
+void knotesAuthors(  KAboutData &aboutData );
 
 int main( int argc, char *argv[] )
 {
@@ -99,10 +48,79 @@ int main( int argc, char *argv[] )
                          version.toLatin1(),
                          ki18n( "KDE Notes" ),
                          KAboutData::License_GPL,
-                         ki18n( "(c) 1997-2006, The KNotes Developers" ) );
+                         ki18n( "(c) 1997-2007, The KNotes Developers" ) );
   
-  aboutData.addAuthor( ki18n( "Michael Brade" ),
+  knotesAuthors( aboutData );
+  
+  KCmdLineArgs::init( argc, argv, &aboutData );
+  
+  // Command line options
+  
+  KCmdLineArgs::addCmdLineOptions( knotesOptions() );
+  
+  KUniqueApplication::addCmdLineOptions();
+  
+  
+  // Create Application
+  
+  Application app;
+  
+  app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
+  
+  remove_sm_from_client_leader();
+  
+  return app.exec();
+}
+
+void remove_sm_from_client_leader()
+{
+#ifdef Q_WS_X11
+  Atom type;
+  int format, status;
+  unsigned long nitems = 0;
+  unsigned long extra = 0;
+  unsigned char *data = 0;
+  
+  Atom atoms[ 2 ];
+  char *atom_names[ 2 ] = { ( char * ) "WM_CLIENT_LEADER",
+                            ( char * ) "SM_CLIENT_ID" };
+  
+  XInternAtoms( QX11Info::display(), atom_names, 2, False, atoms );
+  
+  QWidget w;
+  KXErrorHandler handler; // ignore X errors
+  status = XGetWindowProperty( QX11Info::display(), w.winId(), atoms[ 0 ], 0,
+                               10000, false, XA_WINDOW, &type, &format, &nitems,
+                               &extra, &data );
+  
+  if ( ( status == Success ) && !handler.error( false ) ) {
+      if ( data && ( nitems > 0 ) ) {
+          Window leader = * ( ( Window * ) data );
+          XDeleteProperty( QX11Info::display(), leader, atoms[ 1 ] );
+      }
+      XFree( data );
+  }
+#endif
+}
+
+KCmdLineOptions knotesOptions()
+{
+  KCmdLineOptions options;
+  
+  options.add( "skip-note", 
+               ki18n( "Suppress creation of a new note "
+                      "on a non-unique instance." ) );
+  
+  return options;
+}
+
+void knotesAuthors(  KAboutData &aboutData )
+{
+  aboutData.addAuthor( ki18n( "Guillermo Antonio Amaral Bastidas" ),
                        ki18n( "Maintainer" ),
+                       "me@guillermoamaral.com" );
+  aboutData.addAuthor( ki18n( "Michael Brade" ),
+                       ki18n( "Previous Maintainer" ),
                        "brade@kde.org" );
   aboutData.addAuthor( ki18n( "Bernd Johannes Wuebben" ),
                        ki18n( "Original KNotes Author" ),
@@ -147,17 +165,4 @@ int main( int argc, char *argv[] )
   aboutData.addCredit( ki18n( "Espen Sand" ),
                        KLocalizedString(),
                        "espen@kde.org" );
-  
-  KCmdLineArgs::init( argc, argv, &aboutData );
-  
-  KUniqueApplication::addCmdLineOptions();
-  
-  Application app;
-  app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
-  
-  remove_sm_from_client_leader();
-  
-  int rval = app.exec();
-  
-  return rval;
 }
