@@ -128,7 +128,7 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
   kcfg_ShowInTaskbar->setObjectName( "kcfg_ShowInTaskbar" );
   
   QCheckBox *kcfg_RememberDesktop = 
-      new QCheckBox( i18n( "&Remember Desktop" ), displayPage );
+      new QCheckBox( i18n( "&Remember desktop" ), displayPage );
   kcfg_RememberDesktop->setObjectName( "kcfg_RememberDesktop" );
   
   if ( defaults ) {

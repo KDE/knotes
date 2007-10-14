@@ -1,6 +1,14 @@
 ChangeLog for KNotes
 ====================
 
+2007/10/14  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
+
+    * added HACKING
+    * added ISSUES
+    * updated README and AUTHORS
+    * modified knoteconfigdlg.cpp 
+	       renamed "Remember Desktop" to "Remember desktop"
+
 2007/10/13  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
 
     * added Remember Desktop option to notes
