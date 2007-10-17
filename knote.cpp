@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2006, The KNotes Developers
+ Copyright (c) 1997-2007, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -151,8 +151,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
   connect( action, SIGNAL( triggered( bool ) ), SLOT( slotSaveAs() ) );
   actionCollection()->addAction( KStandardAction::Print,  "print_note", this,
                                  SLOT( slotPrint() ) );
-  action  = new KAction( KIcon( "configure" ), i18n( "Preferences..." ), this
-);
+  action  = new KAction( KIcon( "configure" ), i18n( "Preferences..." ), this );
   actionCollection()->addAction( "configure_note", action );
   connect( action, SIGNAL( triggered( bool ) ), SLOT( slotPreferences() ) );
   
@@ -218,7 +217,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
   
   if ( m_tool ) {
     m_tool->setIconSize( QSize( 10, 10 ) );
-    m_tool->setFixedHeight( 16 );
+    m_tool->setFixedHeight( 24 );
     m_tool->setToolButtonStyle( Qt::ToolButtonIconOnly );
   }
   
@@ -236,7 +235,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
   setFocusProxy( m_editor );
   
   // create the resize handle
-  m_grip = new QSizeGrip( 0 );
+  m_grip = new QSizeGrip( m_editor );
   uint width = m_editor->verticalScrollBar()->sizeHint().width();
   uint height = m_editor->horizontalScrollBar()->sizeHint().height();
   QBitmap mask( width, height );
@@ -307,7 +306,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
   // running anyway
   bool closeLeft = false;
   KConfigGroup styleGroup( m_kwinConf, "Style" );
-  if ( styleGroup.readEntry( "CustomButtonPositions",false ) ) {
+  if ( styleGroup.readEntry( "CustomButtonPositions", false ) ) {
     closeLeft = styleGroup.readEntry( "ButtonsOnLeft" ).contains( 'X' );
   }
   
@@ -519,6 +518,7 @@ void KNote::setName( const QString& name )
 void KNote::setText( const QString& text )
 {
   m_editor->setText( text );
+  
   saveData();
 }
 
@@ -656,8 +656,7 @@ void KNote::slotPreferences()
   }
   
   // create a new preferences dialog...
-  KNoteConfigDlg *dialog = new KNoteConfigDlg( m_config, name(), this, noteId()
-);
+  KNoteConfigDlg *dialog = new KNoteConfigDlg( m_config, name(), this, noteId() );
   connect( dialog, SIGNAL( settingsChanged( const QString & ) ) , this,
            SLOT( slotApplyConfig() ) );
   connect( this, SIGNAL( sigNameChanged() ), dialog,
@@ -672,8 +671,9 @@ void KNote::slotSend()
   bool ok = ( hostDlg.exec() == QDialog::Accepted );
   QString host = hostDlg.host();
   
-  if ( !ok ) // handle cancel
+  if ( !ok ) { // handle cancel
     return;
+  }
   
   if ( host.isEmpty() ) {
     KMessageBox::sorry( this, i18n( "The host cannot be empty." ) );
@@ -697,8 +697,7 @@ void KNote::slotMail()
   
   KProcess mail;
   foreach ( QString cmd, cmd_list ) {
-    if ( cmd == "%f" )
-    {
+    if ( cmd == "%f" ) {
       mail << m_editor->toPlainText();
     } else if ( cmd == "%t" ) {
       mail << m_label->text();
@@ -1000,10 +999,10 @@ void KNote::updateLayout()
   }
   
   m_button->setGeometry(
-    closeLeft ? contentsRect().x() : contentsRect().width() - headerHeight,
-    contentsRect().y(),
-    headerHeight,
-    headerHeight
+    closeLeft ? contentsRect().x() : contentsRect().width() - headerHeight + 1,
+    contentsRect().y() + 1,
+    headerHeight - 2,
+    headerHeight - 2
   );
   
   m_label->setGeometry(
@@ -1028,11 +1027,17 @@ void KNote::updateLayout()
     );
   }
   
+  //  setMinimumSize(
+  //  m_editor->cornerWidget()->width() + marginLeft + marginRight,
+  //  headerHeight + (
+  //    m_tool ? ( m_tool->isHidden() ? 0 : m_tool->height() ) : 0 ) +
+  //  m_editor->cornerWidget()->height() + marginTop + marginBottom );
+
   setMinimumSize(
-    m_editor->cornerWidget()->width() + marginLeft + marginRight,
+    marginLeft + marginRight,
     headerHeight + (
       m_tool ? ( m_tool->isHidden() ? 0 : m_tool->height() ) : 0 ) +
-    m_editor->cornerWidget()->height() + marginTop + marginBottom );
+     marginTop + marginBottom );
   
   updateLabelAlignment();
 }
