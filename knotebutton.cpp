@@ -85,7 +85,7 @@ void KNoteButton::paintEvent( QPaintEvent * )
   if ( isDown() ) {
     opt.state |= QStyle::State_DownArrow;
   }
-  if ( isChecked() ) {
+  if ( isCheckable() && isChecked() ) {
     opt.state |= QStyle::State_On;
   }
   if ( !isFlat() ) {
@@ -96,17 +96,19 @@ void KNoteButton::paintEvent( QPaintEvent * )
     }
   }
   
-  style()->drawPrimitive( QStyle::PE_PanelButtonTool, &opt, &p, this );
+  if ( ( opt.state & QStyle::State_MouseOver ) && ( ! ( opt.state & QStyle::State_DownArrow ) ) ) {
+     style()->drawPrimitive( QStyle::PE_PanelButtonTool, &opt, &p, this );
+  }
   
   // the button label
   if ( !icon().isNull() ) {
     QIcon::Mode  mode  = QIcon::Disabled;
     QIcon::State state = QIcon::Off;
     
-    if ( isEnabled() ) {
+    if ( opt.state & QStyle::State_Enabled ) {
       mode = hasFocus() ? QIcon::Active : QIcon::Normal;
     }
-    if ( isCheckable() && isChecked() ) {
+    if ( opt.state & QStyle::State_On ) {
       state = QIcon::On;
     }
     
@@ -116,9 +118,12 @@ void KNoteButton::paintEvent( QPaintEvent * )
     int dx = ( width() - pix.width() ) / 2;
     int dy = ( height() - pix.height() ) / 2;
     
+    // Tweak image offset
+    dx += 1;
+    
     // Shift button contents if pushed.
-    if ( isChecked() || isDown() ) {
-      dx += style()->pixelMetric( QStyle::PM_ButtonShiftHorizontal );
+    if ( ( opt.state & QStyle::State_On ) && ( opt.state & QStyle::State_DownArrow ) ) {
+      // dx += style()->pixelMetric( QStyle::PM_ButtonShiftHorizontal );
       dy += style()->pixelMetric( QStyle::PM_ButtonShiftVertical );
     }
     
