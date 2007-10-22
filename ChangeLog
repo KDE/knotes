@@ -1,6 +1,13 @@
 ChangeLog for KNotes
 ====================
 
+2007/10/22  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
+    
+    * split knote constructor into multiple procedures.
+    * new QLayout based knote layout.
+    * fixed always on vertical scrollbar size grip bug.
+    * modified knotebutton behaviour and size on note.
+
 2007/10/14  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
 
     * added HACKING

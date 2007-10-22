@@ -439,7 +439,7 @@ void KNoteEdit::focusInEvent( QFocusEvent *e )
 {
   KTextEdit::focusInEvent( e );
   
-  setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
+  setVerticalScrollBarPolicy( Qt::ScrollBarAsNeeded );
   setHorizontalScrollBarPolicy( Qt::ScrollBarAsNeeded );
 }
 

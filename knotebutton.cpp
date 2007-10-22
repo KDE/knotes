@@ -118,12 +118,9 @@ void KNoteButton::paintEvent( QPaintEvent * )
     int dx = ( width() - pix.width() ) / 2;
     int dy = ( height() - pix.height() ) / 2;
     
-    // Tweak image offset
-    dx += 1;
-    
     // Shift button contents if pushed.
-    if ( ( opt.state & QStyle::State_On ) && ( opt.state & QStyle::State_DownArrow ) ) {
-      // dx += style()->pixelMetric( QStyle::PM_ButtonShiftHorizontal );
+    if ( ( opt.state & QStyle::State_On ) || ( opt.state & QStyle::State_DownArrow ) ) {
+      dx += style()->pixelMetric( QStyle::PM_ButtonShiftHorizontal );
       dy += style()->pixelMetric( QStyle::PM_ButtonShiftVertical );
     }
     
