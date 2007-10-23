@@ -127,6 +127,10 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
       new QCheckBox( i18n( "&Show note in taskbar" ), displayPage );
   kcfg_ShowInTaskbar->setObjectName( "kcfg_ShowInTaskbar" );
   
+  QCheckBox *kcfg_RememberDesktop = 
+      new QCheckBox( i18n( "&Remember desktop" ), displayPage );
+  kcfg_RememberDesktop->setObjectName( "kcfg_RememberDesktop" );
+  
   if ( defaults ) {
     QLabel *label_Width = new QLabel( i18n( "Default &width:" ), displayPage );
   
@@ -151,8 +155,10 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
     layout->addWidget( kcfg_Height, 3, 1 );
     
     layout->addWidget( kcfg_ShowInTaskbar, 4, 0 );
+    layout->addWidget( kcfg_RememberDesktop, 5, 0 );
   } else {
     layout->addWidget( kcfg_ShowInTaskbar, 2, 0 );
+    layout->addWidget( kcfg_RememberDesktop, 3, 0 );
   }
   return displayPage;
 }
@@ -297,7 +303,7 @@ QWidget *KNoteConfigDlg::makeStylePage()
   QComboBox *kcfg_Style = new QComboBox( stylePage );
   kcfg_Style->setObjectName( "kcfg_Style" );
   QStringList list;
-  list << "Plain" << "Fancy";
+  list << "Plain";
   kcfg_Style->addItems( list );
   label_Style->setBuddy( kcfg_Style );
   layout->addWidget( kcfg_Style, 0, 1 );

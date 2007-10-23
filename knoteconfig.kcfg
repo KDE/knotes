@@ -22,6 +22,10 @@
     <entry name="Height" type="UInt" key="height">
       <default>200</default>
     </entry>
+
+    <entry name="RememberDesktop" type="Bool">
+      <default>true</default>
+    </entry>    
   </group>
 
   <group name="Editor">

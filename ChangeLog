@@ -1,6 +1,34 @@
 ChangeLog for KNotes
 ====================
 
+2007/10/22  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
+    
+    * split knote constructor into multiple procedures.
+    * new QLayout based knote layout.
+    * fixed always on vertical scrollbar size grip bug.
+    * modified knotebutton behaviour and size on note.
+
+2007/10/14  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
+
+    * added HACKING
+    * added ISSUES
+    * updated README and AUTHORS
+    * modified knoteconfigdlg.cpp 
+	       renamed "Remember Desktop" to "Remember desktop"
+
+2007/10/13  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
+
+    * added Remember Desktop option to notes
+
+2007/10/13  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
+
+    * removed Qt3 support dependencies found
+    * stripped main.cpp, application class implemented in application.cpp
+    * moved main.h to application.h
+    * updated maintainer information
+    * updated CMakeLists.txt
+    * implemented command line option --skip-note
+
 2007/09/21  Guillermo Antonio Amaral Bastidas (gamaral) <me@guillermoamaral.com>
 
     * final-merge : format code to fit into KDEPIM Coding Guidelines

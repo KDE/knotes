@@ -1,0 +1,29 @@
+Coding Style
+============
+
+  KNotes conforms to the KDEPIM Coding Standard:
+
+    http://kdepim.kde.org/development/coding.php
+
+
+Rules
+=====
+
+  You are free to hack away :-)
+
+  But *please* remember to:
+
+    * Update the ChangeLog
+    * Update the AUTHORS
+    * Update the TODO
+
+  Any major changes must be approved and might require 
+you to branch off and merge when finished. :-)
+
+
+Need Help
+=========
+
+  Feel free to contact me,
+
+    gamaral   Guillermo Antonio Amaral Bastidas <me@guillermoamaral.com>

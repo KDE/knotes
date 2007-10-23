@@ -3,8 +3,8 @@ add_subdirectory( pics )
 add_subdirectory( icons ) 
 
 
-
-add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
+## QT3_SUPPORT disabled ~gamaral
+## add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
 
 ########### next target ###############
 
@@ -17,7 +17,7 @@ set(libknoteslegacy_SRCS  knoteslegacy.cpp )
 set(libknote_SRCS knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp knoteprinter.cpp )
 
 
-set(knotes_SRCS main.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS} ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})
+set(knotes_SRCS main.cpp application.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS} ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})
 qt4_add_dbus_adaptor(knotes_SRCS org.kde.KNotes.xml knotesapp.h KNotesApp )
 
 set( libknotesconfig_SRCS knoteconfig.kcfgc knotesglobalconfig.kcfgc )
@@ -27,7 +27,7 @@ kde4_add_kcfg_files(knotes_SRCS ${libknotesconfig_SRCS})
 
 kde4_add_executable(knotes ${knotes_SRCS})
 
-target_link_libraries(knotes  ${KDE4_KCAL_LIBS} kdepim ${KDE4_KRESOURCES_LIBS} ${KDE4_KDEPRINT_LIBS} ${KDE4_KUTILS_LIBS} )
+target_link_libraries(knotes  ${KDE4_KCAL_LIBS} kdepim ${KDE4_KRESOURCES_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KUTILS_LIBS} )
 
 install(TARGETS knotes  DESTINATION ${BIN_INSTALL_DIR} )
 
@@ -43,7 +43,7 @@ kde4_add_plugin(knotes_local ${knotes_local_PART_SRCS})
 
 
 
-target_link_libraries(knotes_local  ${KDE4_KIO_LIBS}  ${KDE4_KRESOURCES_LIBS} ${KDE4_KCAL_LIBS} ${KDE4_KDEPRINT_LIBS} ${QT_QT3SUPPORT_LIBRARY})
+target_link_libraries(knotes_local  ${KDE4_KIO_LIBS}  ${KDE4_KRESOURCES_LIBS} ${KDE4_KCAL_LIBS} ${QT_QT3SUPPORT_LIBRARY})
 
 install(TARGETS knotes_local  DESTINATION ${PLUGIN_INSTALL_DIR})
 

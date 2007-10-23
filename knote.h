@@ -31,6 +31,7 @@
 #include <kxmlguiclient.h>
 
 class QLabel;
+class QLayout;
 class QSizeGrip;
 
 class KFind;
@@ -118,6 +119,13 @@ class KNote
     void slotUpdateDesktopActions();
     
   private:
+    void buildGui();
+    void createActions();
+    void createNoteEditor();
+    void createNoteFooter();
+    void createNoteHeader();
+    void prepare();
+    
     void updateFocus();
     void updateLayout();
     void updateLabelAlignment();
@@ -127,6 +135,7 @@ class KNote
     void toDesktop( int desktop );
     
   private:
+    QLayout       *m_noteLayout;
     QLabel        *m_label;
     QSizeGrip     *m_grip;
     KNoteButton   *m_button;

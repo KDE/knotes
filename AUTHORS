@@ -1,20 +1,121 @@
-Current maintainer:
-  Michael Brade <brade@kde.org>
+Maintainer
+==========
 
-Started by:
-  Bernd Johannes Wuebben <wuebben@math.cornell.edu>, <wuebben@kde.org>
+  gamaral  Guillermo Antonio Amaral Bastidas <me@guillermoamaral.com>
 
-Ported to KDE 2 by:
-  Wynn Wilkes <wynnw@calderasystems.com>
+Previous Maintainers
+====================
 
-Contributions from:
-  Matthias Ettrich <ettrich@kde.org>
-  David Faure <faure@kde.org>
-  Matthias Kiefer <kiefer@kde.org>
-  Luboš Luňák <l.lunak@kde.org>
-  Laurent Montel <montel@kde.org>
-  Dirk A. Mueller <dmuell@gmx.net>
-  Carsten Pfeiffer <pfeiffer@kde.org>
-  Harri Porten <porten@kde.org>
-  Espen Sand <espen@kde.org>
-  Bo Thorsen <bo@sonofthor.dk>
+  brade    Michael Brade <brade@kde.org>
+
+Creator
+=======
+
+  wuebben  Bernd Johannes Wuebben <wuebben@math.cornell.edu>, 
+                                  <wuebamantiaben@kde.org>
+
+Ports
+=====
+
+  -------- Wynn Wilkes <wynnw@calderasystems.com>
+           Ported to KDE 2
+
+Contributions
+=============
+
+  adridg    Adriaan de Groot <groot@kde.org>
+  ahrtmetz  Andreas Hartmetz <ahartmetz@gmail.com>
+  amantia   Andras Mantia <amantia@kde.org>
+  amth      Arto Hytönen <amthpublic@gmail.com>
+  antlarr   Antonio Larrosa Jimenez <larrosa@kde.org>
+  apaku     Andreas Pakulat <apaku@gmx.de>
+  aseigo    Aaron J. Seigo <aseigo@kde.org>
+  bieker    Hans Petter Bieker <bieker@kde.org>
+  binner    Stephan Binner <binner@kde.org>
+  bmeyer    Benjamin Meyer <ben@meyerhome.net>
+  bram      Bram Schoenmakers <bramschoenmakers@kde.nl>
+  charles   Charles Samuels <charles@kde.org>
+  coolo     Stephan Kulow <coolo@kde.org>
+  cschumac  Cornelius Schumacher <schumacher@kde.org>
+  danimo    Dianiel Molkentin <molkentin@kde.org>
+  deller    Helge Deller <deller@kde.org>
+  dfaure    David Faure <faure@kde.org>
+  djarvie   David Jarvie <software@astrojar.org.uk>
+  ereslibre Rafael Fernández López <ereslibre@kde.org>
+  espen     Espen Sand <espen@kde.org>
+  ettrich   Matthias Ettrich <ettrich@kde.org>
+  faure     David Faure <faure@kde.org>
+  gjw       Gerold J. Wucherpfennig <gjwucherpfennig@gmx.net>
+  glenebob  Glen Parker <glenebob@nwlink.com>
+  granroth  Kurt Granroth <granroth@kde.org>
+  gyurco    Szombathelyi György <gyurco@freemail.hu>
+  hadacek   Nicolas Hadacek <hadacek@kde.org>
+  hausmann  Simon Hausmann <hausmann@kde.org>
+  helio     Helio Chissini de Castro <helio@kde.org>
+  hoelzer   Matthias Hoelzer-Kluepfel <hoelzer@kde.org>
+  ilic      Chusslove Illich <caslav.ilic@gmx.net>
+  jansen    Tim Jansen <tim@tjansen.de>
+  jlayt     John Layt <john@layt.net>
+  jones     Martin Jones <mjones@kde.org>
+  jriddell  Jonathan Riddell <jr@jriddell.org>
+  juraj     Juraj Bednar <bednar@isternet.sk>
+  kainhofe  Reinhold Kainhofer <reinhold@kainhofer.com>
+  kalle     Kalle Dalheimer <kalle@kde.org>
+  karli     Frank Karlitschek <frank@kde-look.org>
+  kiefer    Matthias Kiefer <kiefer@kde.org>
+  kiefer    Matthias Kiefer <matthias.kiefer@gmx.de>
+  kloecker  Ingo Klöcker <kloecker@kde.org>
+  konold    Martin Konold <konold@kde.org>
+  kwwii     Kenneth Wimer <kwwii@bootsplash.org>
+  lanius    Heinrich Wendel <h_wendel@cojobo.net>
+  lukas     Lukáš Tinkl <lukas@kde.org>
+  lunakl    Luboš Luňák <l.lunak@kde.org>
+  malte     Malte Knoerr <malte@knoerr.escape.de>
+  mattr     Matt Rogers <mattr@kde.org>
+  matz      Michael Matz <matz@kde.org>
+  mhunter   Malcolm Hunter <malcolm.hunter@gmx.co.uk>
+  miroslav  Miroslav Flidr <flidr@kky.zcu.cz>
+  mkretz    Matthias Kretz  <kretz@kde.org>
+  mlaurent  Laurent Montel <montel@kde.org> 
+  mosfet    Daniel M. Duley <daniel.duley@verizon.net>
+  amu       Andreas Mueller <amu@tr.debian.net>
+  mueller   Dirk A. Mueller <dmuell@gmx.net>
+  neundorf  Alexander Neundorf <neundorf@kde.org>
+  nhasan    Nadeem Hasan <nhasan@kde.org>
+  onurf     Ismail Onur Filiz <onurf@su.sabanciuniv.edu>
+  orlovich  Maks Orlovich <maksim@kde.org>
+  ossi      Oswald Buddenhagen <ossi@kde.org>
+  osterfeld Frank Osterfeld <frank.osterfeld@kdemail.net>
+  pedretti  Fabio Pedretti <fabio.ped@libero.it>
+  pere      Petter Reinholdtsen <pere@hungry.com>
+  pfeiffer  Carsten Pfeiffer <pfeiffer@kde.org>
+  pilone    Mike Pilone <mpilone@slac.com>
+  pino      Pino Toscano <toscano.pino@tiscali.it>
+  porten    Harri Porten <porten@kde.org>
+  qbast     Jakub Stachowski <qbast@go2.pl>
+  rahn      Torsten Rahn <tackat@kde.org>
+  rikkus    Rik Hemsley <rik@kde.org>
+  rodda     Hamish Rodda <rodda@kde.org>
+  scripty   Script Kiddy <sysadmin@kde.org>
+  shaheed   Shaheed Haque <srhaque@theiet.org>
+  sleiber   Sven Leiber <s.leiber@web.de>
+  sschiman  Stefan Schimanski <schimmi@kde.org>
+  suy       Alejandro Exojo <suy@badopi.org >
+  tfry      Thomas Friedrichsmeier <thomas.friedrichsmeier@ruhr-uni-bochum.de>
+  thiago    Thiago Macieira <thiago@kde.org>
+  thorsen   Bo Thorsen <bo@sonofthor.dk>
+  thrsen    Bo Thorsen <bo@sonofthor.dk>
+  tilladam  Till Adam <adam@kde.org>
+  tmcguire  Thomas McGuire <Thomas.McGuire@gmx.net>
+  tokoe     Tobias Koenig <tokoe@kde.org>
+  torben    Torben Weis <weis@kde.org>
+  tstaerk   Thorsten Staerk <dev@staerk.de>
+  vkrause   Volker Krause <vkrause@kde.org>
+  waba      Waldo Bastian <bastian@kde.org>
+  wildfox   Nikolas Zimmermann <wildfox@kde.org>
+  winterz   Allen Winter <winter@kde.org>
+  woebbe    André Wöbbeking <woebbeking@kde.org>
+  wstephens Will Stephenson <wstephenson@kde.org>
+  yang      Yang Sheng <yasker@gmail.com>
+  zelenko   Eugene Zelenko <greendeath@mail.ru>
+  --------  John Layt <john@layt.net>

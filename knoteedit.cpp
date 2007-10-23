@@ -154,14 +154,16 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   group->addAction( m_textSuper );
   group->addAction( m_textSub );
   
-  m_textIncreaseIndent = new KAction( i18n( "Increase Indent" ), this );
+  m_textIncreaseIndent = new KAction( KIcon( "format_increaseindent" ),
+                                      i18n( "Increase Indent" ), this );
   actions->addAction( "format_increaseindent", m_textIncreaseIndent );
   m_textIncreaseIndent->setShortcut( QKeySequence( Qt::CTRL + Qt::ALT +
                                                    Qt::Key_I ) );
   connect( m_textIncreaseIndent, SIGNAL( triggered( bool ) ),
            SLOT( textIncreaseIndent() ) );
   
-  m_textDecreaseIndent = new KAction( i18n( "Decrease Indent" ), this );
+  m_textDecreaseIndent = new KAction(  KIcon( "format_decreaseindent" ),
+                                       i18n( "Decrease Indent" ), this );
   actions->addAction( "format_decreaseindent", m_textDecreaseIndent );
   m_textDecreaseIndent->setShortcut( QKeySequence( Qt::CTRL + Qt::ALT +
                                                    Qt::Key_D ) );
@@ -437,7 +439,7 @@ void KNoteEdit::focusInEvent( QFocusEvent *e )
 {
   KTextEdit::focusInEvent( e );
   
-  setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOn );
+  setVerticalScrollBarPolicy( Qt::ScrollBarAsNeeded );
   setHorizontalScrollBarPolicy( Qt::ScrollBarAsNeeded );
 }
 

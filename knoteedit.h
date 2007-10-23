@@ -60,7 +60,7 @@ class KNoteEdit
     {
         m_editMenu = menu;
     }
-
+    
   public slots:
     void setRichText( bool );
     

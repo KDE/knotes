@@ -4,11 +4,12 @@
 #include <QPainter>
 #include <QTextDocument>
 #include <QTextDocumentFragment>
+#include <QtGui/QPrinter>
+#include <QtGui/QPrintDialog>
 
 #include <kcal/journal.h>
 
 #include <klocale.h>
-#include <kprinter.h>
 
 
 KNotePrinter::KNotePrinter()
@@ -28,9 +29,11 @@ QFont KNotePrinter::defaultFont() const
 void KNotePrinter::doPrint( const QString &htmlText,
                             const QString &dialogCaption ) const
 {
-  KPrinter printer( true, QPrinter::HighResolution );
+  QPrinter printer( QPrinter::HighResolution );
   //printer.setFullPage( true );  //disabled, causes asymmetric margins
-  if ( !printer.setup( 0, dialogCaption ) ) {
+  QPrintDialog printDialog( &printer, 0 );
+  printDialog.setWindowTitle( dialogCaption );
+  if ( !printDialog.exec() ) {
     return;
   }
   

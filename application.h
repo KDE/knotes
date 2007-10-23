@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2005, The KNotes Developers
+ Copyright (c) 1997-2007, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -18,13 +18,13 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
 #include <kuniqueapplication.h>
+#include <kcmdlineargs.h>
 
 class KNotesApp;
-
 
 class Application
   : public KUniqueApplication
@@ -34,9 +34,10 @@ class Application
     ~Application();
     
     virtual int newInstance();
-    
+    KCmdLineArgs *args() const;
   private:
     KNotesApp *mMainWindow;
+    KCmdLineArgs *mCmdLineArguments;
 };
 
 #endif

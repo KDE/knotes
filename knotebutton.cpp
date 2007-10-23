@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 2002-2006, The KNotes Developers
+ Copyright (c) 2002-2007, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -40,7 +40,7 @@ KNoteButton::KNoteButton( const QString &icon, QWidget *parent )
   setFlat( true );
   
   if ( !icon.isEmpty() ) {
-    setIcon( KIconLoader::global()->loadIconSet( icon, KIconLoader::Small, 10 ) );
+    setIcon( KIconLoader::global()->loadIcon( icon, KIconLoader::Small, 10 ) );
   }
 }
 
@@ -85,7 +85,7 @@ void KNoteButton::paintEvent( QPaintEvent * )
   if ( isDown() ) {
     opt.state |= QStyle::State_DownArrow;
   }
-  if ( isChecked() ) {
+  if ( isCheckable() && isChecked() ) {
     opt.state |= QStyle::State_On;
   }
   if ( !isFlat() ) {
@@ -96,17 +96,19 @@ void KNoteButton::paintEvent( QPaintEvent * )
     }
   }
   
-  style()->drawPrimitive( QStyle::PE_PanelButtonTool, &opt, &p, this );
+  if ( ( opt.state & QStyle::State_MouseOver ) && ( ! ( opt.state & QStyle::State_DownArrow ) ) ) {
+     style()->drawPrimitive( QStyle::PE_PanelButtonTool, &opt, &p, this );
+  }
   
   // the button label
   if ( !icon().isNull() ) {
     QIcon::Mode  mode  = QIcon::Disabled;
     QIcon::State state = QIcon::Off;
     
-    if ( isEnabled() ) {
+    if ( opt.state & QStyle::State_Enabled ) {
       mode = hasFocus() ? QIcon::Active : QIcon::Normal;
     }
-    if ( isCheckable() && isChecked() ) {
+    if ( opt.state & QStyle::State_On ) {
       state = QIcon::On;
     }
     
@@ -117,7 +119,7 @@ void KNoteButton::paintEvent( QPaintEvent * )
     int dy = ( height() - pix.height() ) / 2;
     
     // Shift button contents if pushed.
-    if ( isChecked() || isDown() ) {
+    if ( ( opt.state & QStyle::State_On ) || ( opt.state & QStyle::State_DownArrow ) ) {
       dx += style()->pixelMetric( QStyle::PM_ButtonShiftHorizontal );
       dy += style()->pixelMetric( QStyle::PM_ButtonShiftVertical );
     }
