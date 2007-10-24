@@ -53,7 +53,7 @@ void KNotesLegacy::cleanUp()
   QString configfile = KGlobal::dirs()->saveLocation( "config" ) + "knotesrc";
   if ( QFile::exists( configfile ) ) {
     KConfigGroup test(
-      KSharedConfig::openConfig( configfile, KConfig::OnlyLocal ), 
+      KSharedConfig::openConfig( configfile, KConfig::SimpleConfig ), 
       "General" );
     double version = test.readEntry( "version", 1.0 );
     
@@ -75,7 +75,7 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
   for ( QStringList::Iterator note = notes.begin(); note != notes.end();
         note++ ) {
     QString file = noteDir.absoluteFilePath( *note );
-    KConfig *test = new KConfig( file, KConfig::OnlyLocal );
+    KConfig *test = new KConfig( file, KConfig::SimpleConfig );
     KConfigGroup grp( test, "General" );
     double version = grp.readEntry( "version", 1.0 );
     
