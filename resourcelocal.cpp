@@ -61,7 +61,7 @@ ResourceLocal::ResourceLocal( const KConfigGroup &group )
   mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", "knotes/" ) +
                          "notes.ics" );
   
-  KUrl u = group.readPathEntry( "NotesURL" );
+  KUrl u = group.readPathEntry( "NotesURL", QString() );
   if ( !u.isEmpty() ) {
     mURL = u;
   }
