@@ -600,8 +600,6 @@ void KNote::buildGui()
 
 void KNote::createActions()
 {
-  actionCollection()->setAssociatedWidget( this );
-  
   // create the menu items for the note - not the editor...
   // rename, mail, print, save as, insert date, alarm, close, delete, new note
   KAction *action;
@@ -687,6 +685,8 @@ void KNote::createActions()
   actionCollection()->addAction( "walk_notes", action );
   connect( action, SIGNAL( triggered( bool ) ), SIGNAL( sigShowNextNote() ) );
   action->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_Backtab ) );
+
+  actionCollection()->associateWidget( this );
 }
 
 void KNote::createNoteHeader()
