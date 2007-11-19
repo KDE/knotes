@@ -1,6 +1,5 @@
 # KDE Config File
 [Desktop Entry]
-Encoding=UTF-8
 Name=Notes
 Name[af]=Notas
 Name[be]=Заметкі
@@ -55,6 +54,6 @@ Name[x-test]=xxNotesxx
 Name[zh_CN]=便笺
 Name[zh_TW]=備忘錄
 Type=Service
-ServiceTypes=KResources/Manager
+X-KDE-ServiceTypes=KResources/Manager
 
 X-KDE-ResourceFamily=notes

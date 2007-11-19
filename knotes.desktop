@@ -1,6 +1,5 @@
 [Desktop Entry]
-Encoding=UTF-8
-DocPath=knotes/index.html
+X-DocPath=knotes/index.html
 Exec=knotes
 Icon=knotes
 Terminal=false
