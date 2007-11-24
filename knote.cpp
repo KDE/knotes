@@ -686,7 +686,7 @@ void KNote::createActions()
   connect( action, SIGNAL( triggered( bool ) ), SIGNAL( sigShowNextNote() ) );
   action->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_Backtab ) );
 
-  actionCollection()->associateWidget( this );
+  actionCollection()->setAssociatedWidget( this );
 }
 
 void KNote::createNoteHeader()
