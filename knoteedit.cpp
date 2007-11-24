@@ -140,12 +140,12 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   group = new QActionGroup( this );
   group->addAction( m_textList );
   
-  m_textSuper  = new KToggleAction( KIcon( "text_super" ),
+  m_textSuper  = new KToggleAction( KIcon( "format-text-superscript" ),
                                     i18n( "Superscript" ), this );
   actions->addAction( "format_super", m_textSuper );
   connect( m_textSuper, SIGNAL( triggered( bool ) ),
            SLOT( textSuperScript() ) );
-  m_textSub  = new KToggleAction( KIcon( "text_sub" ), i18n( "Subscript" ),
+  m_textSub  = new KToggleAction( KIcon( "format-text-subscript" ), i18n( "Subscript" ),
                                   this );
   actions->addAction( "format_sub", m_textSub );
   connect( m_textSub, SIGNAL( triggered( bool ) ), SLOT( textSubScript() ) );
@@ -154,7 +154,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   group->addAction( m_textSuper );
   group->addAction( m_textSub );
   
-  m_textIncreaseIndent = new KAction( KIcon( "format_increaseindent" ),
+  m_textIncreaseIndent = new KAction( KIcon( "format-indent-more" ),
                                       i18n( "Increase Indent" ), this );
   actions->addAction( "format_increaseindent", m_textIncreaseIndent );
   m_textIncreaseIndent->setShortcut( QKeySequence( Qt::CTRL + Qt::ALT +
@@ -162,7 +162,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   connect( m_textIncreaseIndent, SIGNAL( triggered( bool ) ),
            SLOT( textIncreaseIndent() ) );
   
-  m_textDecreaseIndent = new KAction(  KIcon( "format_decreaseindent" ),
+  m_textDecreaseIndent = new KAction(  KIcon( "format-indent-less" ),
                                        i18n( "Decrease Indent" ), this );
   actions->addAction( "format_decreaseindent", m_textDecreaseIndent );
   m_textDecreaseIndent->setShortcut( QKeySequence( Qt::CTRL + Qt::ALT +
