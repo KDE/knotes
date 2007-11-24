@@ -133,7 +133,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   group->addAction( m_textAlignRight );
   group->addAction( m_textAlignBlock );
   
-  m_textList  = new KToggleAction( KIcon( "enum_list" ), i18n( "List" ), this );
+  m_textList  = new KToggleAction( KIcon( "format-list-ordered" ), i18n( "List" ), this );
   actions->addAction( "format_list", m_textList );
   connect( m_textList, SIGNAL( triggered( bool ) ), SLOT( textList() ) );
   
