@@ -66,6 +66,7 @@
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
 #include <netwm.h>
+#include <kdeversion.h>
 
 #ifdef Q_WS_X11
 #include <fixx11h.h>
@@ -686,7 +687,13 @@ void KNote::createActions()
   connect( action, SIGNAL( triggered( bool ) ), SIGNAL( sigShowNextNote() ) );
   action->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_Backtab ) );
 
-  actionCollection()->associateWidget( this );
+  actionCollection()->addAssociatedWidget( this );
+  foreach (QAction* action, actionCollection()->actions())
+#if QT_VERSION < KDE_MAKE_VERSION(4,4,0)
+    action->setShortcutContext(Qt::WidgetShortcut); // remove after Qt4.4 becomes mandatory
+#else
+    action->setShortcutContext(Qt::WidgetWithChildrenShortcut);
+#endif
 }
 
 void KNote::createNoteHeader()
