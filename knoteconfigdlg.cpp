@@ -68,17 +68,17 @@ KNoteConfigDlg::KNoteConfigDlg( KNoteConfig *config, const QString &title,
   if ( config ) {
     addPage( makeDisplayPage( false ), i18n( "Display" ), "knotes",
              i18n( "Display Settings" ) );
-    addPage( makeEditorPage( false ), i18n( "Editor" ), "edit",
+    addPage( makeEditorPage( false ), i18n( "Editor" ), "accessories-text-editor",
              i18n( "Editor Settings" ) );
   } else {
     config = KNotesGlobalConfig::self();
     addPage( makeDefaultsPage(), i18n( "Defaults" ), "knotes",
              i18n( "Default Settings for New Notes" ) );
-    addPage( makeActionsPage(), i18n( "Actions" ), "misc",
+    addPage( makeActionsPage(), i18n( "Actions" ), "preferences-other",
              i18n( "Action Settings" ) );
     addPage( makeNetworkPage(), i18n( "Network" ), "network-wired",
              i18n( "Network Settings" ) );
-    addPage( makeStylePage(), i18n( "Style" ), "style",
+    addPage( makeStylePage(), i18n( "Style" ), "preferences-desktop-theme",
              i18n( "Style Settings" ) );
   }
   
@@ -217,7 +217,7 @@ QWidget *KNoteConfigDlg::makeDefaultsPage()
   QTabWidget *defaultsPage = new QTabWidget();
   defaultsPage->addTab( makeDisplayPage( true ), KIcon( "knotes" ),
                         i18n( "Displa&y" ) );
-  defaultsPage->addTab( makeEditorPage( true ), KIcon( "edit" ),
+  defaultsPage->addTab( makeEditorPage( true ), KIcon( "document-properties" ),
                         i18n( "&Editor" ) );
   
   return defaultsPage;
