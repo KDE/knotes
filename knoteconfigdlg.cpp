@@ -140,7 +140,8 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
     KIntNumInput *kcfg_Width = new KIntNumInput( displayPage );
     kcfg_Width->setObjectName( "kcfg_Width" );
     label_Width->setBuddy( kcfg_Width );
-    kcfg_Width->setRange( 50, 2000, 10, false );
+    kcfg_Width->setRange( 50, 2000, 10 );
+    kcfg_Width->setSliderEnabled( false );
     layout->addWidget( kcfg_Width, 2, 1 );
     
     QLabel *label_Height = new QLabel( i18n( "Default &height:" ),
@@ -150,7 +151,8 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
     
     KIntNumInput *kcfg_Height = new KIntNumInput( displayPage );
     kcfg_Height->setObjectName( "kcfg_Height" );
-    kcfg_Height->setRange( 50, 2000, 10, false );
+    kcfg_Height->setRange( 50, 2000, 10 );
+    kcfg_Height->setSliderEnabled( false );
     label_Height->setBuddy( kcfg_Height );
     layout->addWidget( kcfg_Height, 3, 1 );
     
@@ -176,7 +178,8 @@ QWidget *KNoteConfigDlg::makeEditorPage( bool defaults )
   
   KIntNumInput *kcfg_TabSize = new KIntNumInput( editorPage );
   kcfg_TabSize->setObjectName( "kcfg_TabSize" );
-  kcfg_TabSize->setRange( 0, 40, 1, false );
+  kcfg_TabSize->setRange( 0, 40 );
+  kcfg_TabSize->setSliderEnabled( false );
   label_TabSize->setBuddy( kcfg_TabSize );
   layout->addWidget( kcfg_TabSize, 0, 2 );
   
@@ -280,7 +283,8 @@ QWidget *KNoteConfigDlg::makeNetworkPage()
   
   KIntNumInput *kcfg_Port = new KIntNumInput;
   kcfg_Port->setObjectName( "kcfg_Port" );
-  kcfg_Port->setRange( 0, 65535, 1, false );
+  kcfg_Port->setRange( 0, 65535 );
+  kcfg_Port->setSliderEnabled( false );
   label_Port->setBuddy( kcfg_Port );
   tmpLayout->addWidget( kcfg_Port );
   layout->addLayout( tmpLayout );
