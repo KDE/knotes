@@ -101,20 +101,20 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   connect( m_textStrikeOut, SIGNAL( toggled( bool ) ),
            SLOT( textStrikeOut( bool ) ) );
   
-  m_textAlignLeft = new KToggleAction( KIcon( "text_left" ),
+  m_textAlignLeft = new KToggleAction( KIcon( "format-justify-left" ),
                                        i18n( "Align Left" ), this );
   actions->addAction( "format_alignleft", m_textAlignLeft );
   connect( m_textAlignLeft, SIGNAL( triggered( bool ) ),
            SLOT( textAlignLeft() ) );
   m_textAlignLeft->setShortcut( QKeySequence( Qt::ALT + Qt::Key_L ) );
   m_textAlignLeft->setChecked( true ); // just a dummy, will be updated later
-  m_textAlignCenter  = new KToggleAction( KIcon( "text_center" ),
+  m_textAlignCenter  = new KToggleAction( KIcon( "format-justify-center" ),
                                           i18n( "Align Center" ), this );
   actions->addAction( "format_aligncenter", m_textAlignCenter );
   connect( m_textAlignCenter, SIGNAL( triggered( bool ) ),
           SLOT( textAlignCenter() ) );
   m_textAlignCenter->setShortcut( QKeySequence( Qt::ALT + Qt::Key_C ) );
-  m_textAlignRight = new KToggleAction( KIcon( "text_right" ),
+  m_textAlignRight = new KToggleAction( KIcon( "format-justify-right" ),
                                         i18n( "Align Right" ), this );
   actions->addAction( "format_alignright", m_textAlignRight );
   connect( m_textAlignRight, SIGNAL( triggered( bool ) ),
