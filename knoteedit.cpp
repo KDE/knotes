@@ -101,20 +101,20 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   connect( m_textStrikeOut, SIGNAL( toggled( bool ) ),
            SLOT( textStrikeOut( bool ) ) );
   
-  m_textAlignLeft = new KToggleAction( KIcon( "text_left" ),
+  m_textAlignLeft = new KToggleAction( KIcon( "format-justify-left" ),
                                        i18n( "Align Left" ), this );
   actions->addAction( "format_alignleft", m_textAlignLeft );
   connect( m_textAlignLeft, SIGNAL( triggered( bool ) ),
            SLOT( textAlignLeft() ) );
   m_textAlignLeft->setShortcut( QKeySequence( Qt::ALT + Qt::Key_L ) );
   m_textAlignLeft->setChecked( true ); // just a dummy, will be updated later
-  m_textAlignCenter  = new KToggleAction( KIcon( "text_center" ),
+  m_textAlignCenter  = new KToggleAction( KIcon( "format-justify-center" ),
                                           i18n( "Align Center" ), this );
   actions->addAction( "format_aligncenter", m_textAlignCenter );
   connect( m_textAlignCenter, SIGNAL( triggered( bool ) ),
           SLOT( textAlignCenter() ) );
   m_textAlignCenter->setShortcut( QKeySequence( Qt::ALT + Qt::Key_C ) );
-  m_textAlignRight = new KToggleAction( KIcon( "text_right" ),
+  m_textAlignRight = new KToggleAction( KIcon( "format-justify-right" ),
                                         i18n( "Align Right" ), this );
   actions->addAction( "format_alignright", m_textAlignRight );
   connect( m_textAlignRight, SIGNAL( triggered( bool ) ),
@@ -133,19 +133,19 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   group->addAction( m_textAlignRight );
   group->addAction( m_textAlignBlock );
   
-  m_textList  = new KToggleAction( KIcon( "enum_list" ), i18n( "List" ), this );
+  m_textList  = new KToggleAction( KIcon( "format-list-ordered" ), i18n( "List" ), this );
   actions->addAction( "format_list", m_textList );
   connect( m_textList, SIGNAL( triggered( bool ) ), SLOT( textList() ) );
   
   group = new QActionGroup( this );
   group->addAction( m_textList );
   
-  m_textSuper  = new KToggleAction( KIcon( "text_super" ),
+  m_textSuper  = new KToggleAction( KIcon( "format-text-superscript" ),
                                     i18n( "Superscript" ), this );
   actions->addAction( "format_super", m_textSuper );
   connect( m_textSuper, SIGNAL( triggered( bool ) ),
            SLOT( textSuperScript() ) );
-  m_textSub  = new KToggleAction( KIcon( "text_sub" ), i18n( "Subscript" ),
+  m_textSub  = new KToggleAction( KIcon( "format-text-subscript" ), i18n( "Subscript" ),
                                   this );
   actions->addAction( "format_sub", m_textSub );
   connect( m_textSub, SIGNAL( triggered( bool ) ), SLOT( textSubScript() ) );
@@ -154,7 +154,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   group->addAction( m_textSuper );
   group->addAction( m_textSub );
   
-  m_textIncreaseIndent = new KAction( KIcon( "format_increaseindent" ),
+  m_textIncreaseIndent = new KAction( KIcon( "format-indent-more" ),
                                       i18n( "Increase Indent" ), this );
   actions->addAction( "format_increaseindent", m_textIncreaseIndent );
   m_textIncreaseIndent->setShortcut( QKeySequence( Qt::CTRL + Qt::ALT +
@@ -162,7 +162,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   connect( m_textIncreaseIndent, SIGNAL( triggered( bool ) ),
            SLOT( textIncreaseIndent() ) );
   
-  m_textDecreaseIndent = new KAction(  KIcon( "format_decreaseindent" ),
+  m_textDecreaseIndent = new KAction(  KIcon( "format-indent-less" ),
                                        i18n( "Decrease Indent" ), this );
   actions->addAction( "format_decreaseindent", m_textDecreaseIndent );
   m_textDecreaseIndent->setShortcut( QKeySequence( Qt::CTRL + Qt::ALT +
