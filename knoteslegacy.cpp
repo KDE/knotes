@@ -145,7 +145,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
     QString configFile = noteDir.absoluteFilePath( journal->uid() );
     
     // set the defaults
-    KIO::NetAccess::copy(
+    KIO::NetAccess::file_copy(
         KUrl( KGlobal::dirs()->saveLocation( "config" ) + "knotesrc" ),
         KUrl( configFile ),
         0
