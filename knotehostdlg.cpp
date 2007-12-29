@@ -31,9 +31,8 @@
 *******************************************************************/
 
 #include <QLabel>
-#include <QLineEdit>
 #include <QString>
-#include <QStringList>
+#include <QLineEdit>
 
 #include <kconfig.h>
 #include <kdebug.h>

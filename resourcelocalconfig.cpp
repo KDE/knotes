@@ -20,7 +20,6 @@
 
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QLayout>
 
 #include <kdebug.h>
 #include <klocale.h>
