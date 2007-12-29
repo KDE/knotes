@@ -32,7 +32,6 @@
 #ifndef KNOTESALARM_H
 #define KNOTESALARM_H
 
-#include <QDateTime>
 #include <QTimer>
 
 class KNotesResourceManager;

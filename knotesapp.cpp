@@ -18,16 +18,11 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include <QClipboard>
-#include <QMouseEvent>
 
-#include <QLabel>
 #include <QPixmap>
-#include <QTcpServer>
 
-#ifdef Q_WS_X11
-#include <QX11Info>
-#endif
+#include <QClipboard>
+#include <QTcpServer>
 
 #include <kaction.h>
 #include <kactioncollection.h>
@@ -49,7 +44,6 @@
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
 
-#include <QtDBus>
 #include <kcal/calendarlocal.h>
 #include <kcal/journal.h>
 #include <kiconloader.h>

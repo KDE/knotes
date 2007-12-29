@@ -24,7 +24,6 @@
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <QTextCharFormat>
-#include <QTextFormat>
 #include <QWidget>
 
 #include <ktextedit.h>

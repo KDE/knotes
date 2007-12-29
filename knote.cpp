@@ -18,23 +18,18 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include <QBitmap>
 #include <QBoxLayout>
 #include <QCheckBox>
-#include <QCursor>
-#include <QDesktopWidget>
 #include <QFile>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QObject>
-#include <QPainter>
 #include <QPixmap>
-#include <QScrollBar>
 #include <QSize>
 #include <QSizeGrip>
-#include <QStatusBar>
 #include <QTextStream>
 #include <QVBoxLayout>
+#include <QDesktopWidget>
 
 #include <k3colordrag.h>
 #include <kaction.h>

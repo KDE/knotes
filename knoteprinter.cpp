@@ -1,9 +1,9 @@
 #include "knoteprinter.h"
 
-#include <QAbstractTextDocumentLayout>
 #include <QPainter>
 #include <QTextDocument>
 #include <QTextDocumentFragment>
+#include <QAbstractTextDocumentLayout>
 #include <QtGui/QPrinter>
 #include <QtGui/QPrintDialog>
 
