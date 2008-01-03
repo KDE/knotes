@@ -604,7 +604,7 @@ void KNote::createActions()
   actionCollection()->addAction( "new_note", action );
   connect( action, SIGNAL( triggered( bool ) ), SIGNAL( sigRequestNewNote() ) );
 
-  action  = new KAction( KIcon( "text" ), i18n( "Rename..." ), this );
+  action  = new KAction( KIcon( "edit-rename" ), i18n( "Rename..." ), this );
   actionCollection()->addAction( "rename_note", action );
   connect( action, SIGNAL( triggered( bool ) ), SLOT( slotRename() ) );
 
@@ -620,7 +620,7 @@ void KNote::createActions()
   connect( action, SIGNAL( triggered( bool ) ), SLOT( slotClose() ) );
   action->setShortcut( QKeySequence( Qt::Key_Escape ) );
 
-  action  = new KAction( KIcon( "knotes_delete" ), i18n( "Delete" ), this );
+  action  = new KAction( KIcon( "edit-delete" ), i18n( "Delete" ), this );
   actionCollection()->addAction( "delete_note", action );
   connect( action, SIGNAL( triggered( bool ) ), SLOT( slotKill() ) );
   
