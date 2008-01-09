@@ -76,7 +76,7 @@ KDateTime::LocalZone ), now );
   
   if ( !notes.isEmpty() ) {
     KMessageBox::informationList( 0,
-                                  i18n( "The following notes triggered"
+                                  i18n( "The following notes triggered "
                                         "alarms:" ),
                                   notes,
                                   i18n( "Alarm" ) );
