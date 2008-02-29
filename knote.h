@@ -150,7 +150,9 @@ class KNote
     
     KToggleAction *m_readOnly;
     
+#ifdef Q_WS_X11
     KSelectAction   *m_toDesktop;
+#endif
     KToggleAction *m_keepAbove;
     KToggleAction *m_keepBelow;
     
