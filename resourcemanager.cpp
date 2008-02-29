@@ -63,7 +63,7 @@ void KNotesResourceManager::load()
   // Open all active resources
   KRES::Manager<ResourceNotes>::ActiveIterator it;
   for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it ) {
-    kDebug( 5500 ) << "Opening resource" + ( *it )->resourceName();
+    kDebug( 5500 ) << "Opening resource " + ( *it )->resourceName();
     ( *it )->setManager( this );
     if ( ( *it )->open() ) {
       ( *it )->load();
