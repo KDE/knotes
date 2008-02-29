@@ -669,12 +669,14 @@ void KNote::createActions()
            SLOT( slotUpdateKeepAboveBelow() ) );
   kab->addAction( m_keepBelow );
   
+#ifdef Q_WS_X11
   m_toDesktop  = new KSelectAction( i18n( "To Desktop" ), this );
   actionCollection()->addAction( "to_desktop", m_toDesktop );
   connect( m_toDesktop, SIGNAL( triggered( int ) ),
            SLOT( slotPopupActionToDesktop( int ) ) );
   connect( m_toDesktop->menu(), SIGNAL( aboutToShow() ),
            SLOT( slotUpdateDesktopActions() ) );
+#endif
   
   // invisible action to walk through the notes to make this configurable
   action  = new KAction( i18n( "Walk Through Notes" ), this );
