@@ -506,29 +506,23 @@ void KNote::slotApplyConfig()
 void KNote::slotUpdateKeepAboveBelow()
 {
 #ifdef Q_WS_X11
-  KWindowInfo info( KWindowSystem::windowInfo( winId(), NET::WMState ) );
+  unsigned long state = KWindowInfo( KWindowSystem::windowInfo( winId(), NET::WMState ) ).state();
+#else
+  unsigned long state = 0; // neutral state, TODO
 #endif
   if ( m_keepAbove->isChecked() ) {
     m_config->setKeepAbove( true );
     m_config->setKeepBelow( false );
-#ifdef Q_WS_X11
-    KWindowSystem::setState( winId(), info.state() | NET::KeepAbove );
-#endif
+    KWindowSystem::setState( winId(), state | NET::KeepAbove );
   } else if ( m_keepBelow->isChecked() ) {
     m_config->setKeepAbove( false );
     m_config->setKeepBelow( true );
-#ifdef Q_WS_X11
-    KWindowSystem::setState( winId(), info.state() | NET::KeepBelow );
-#endif
+    KWindowSystem::setState( winId(), state | NET::KeepBelow );
   } else {
     m_config->setKeepAbove( false );
-#ifdef Q_WS_X11
     KWindowSystem::clearState( winId(), NET::KeepAbove );
-#endif
     m_config->setKeepBelow( false );
-#ifdef Q_WS_X11
     KWindowSystem::clearState( winId(), NET::KeepBelow );
-#endif
   }
 }
 
