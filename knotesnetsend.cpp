@@ -43,7 +43,7 @@ KNotesNetworkSender::KNotesNetworkSender( QTcpSocket *socket )
   // method is called!!!
   QObject::connect( m_socket, SIGNAL( connected() ), SLOT( slotConnected() ) );
   QObject::connect( m_socket, SIGNAL( error( QAbstractSocket::SocketError ) ),
-                    SLOT( slotError( QAbstractSocket::SocketError ) ) );
+                    SLOT( slotError( ) ) );
   QObject::connect( m_socket, SIGNAL( disconnected() ), SLOT( slotClosed() ) );
   QObject::connect( m_socket, SIGNAL( bytesWritten( qint64 ) ),
                     SLOT( slotWritten( qint64 ) ) );
