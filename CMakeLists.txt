@@ -24,6 +24,7 @@ set( libknotesconfig_SRCS knoteconfig.kcfgc knotesglobalconfig.kcfgc )
 
 kde4_add_kcfg_files(knotes_SRCS ${libknotesconfig_SRCS})
 
+kde4_add_app_icon(knotes_SRCS "${KDE4_ICON_DIR}/oxygen/*/apps/knotes.png")
 
 kde4_add_executable(knotes ${knotes_SRCS})
 
