@@ -54,7 +54,9 @@ public:
   }
 };
 
-extern "C"
+K_EXPORT_PLUGIN( LocalNotesFactory )
+
+/*extern "C"
 {
   KDE_EXPORT void *init_knotes_local()
   {
@@ -70,4 +72,4 @@ extern "C"
   {
     return new ResourceLocal( group );
   }
-}
+}*/
