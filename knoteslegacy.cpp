@@ -110,7 +110,10 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
 #endif
       grp.deleteEntry( "state" );
       delete test;
+    }  else {
+      delete test;
     }
+    
   }
   
   return converted;
