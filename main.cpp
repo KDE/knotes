@@ -18,7 +18,9 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include <kuniqueapplication.h>
+#include "version.h"
+#include "application.h"
+
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
 #include <klocale.h>
@@ -30,10 +32,6 @@
 #include <QX11Info>
 #endif
 
-#include "version.h"
-#include "application.h"
-
-
 void remove_sm_from_client_leader();
 KCmdLineOptions knotesOptions();
 void knotesAuthors(  KAboutData &aboutData );
@@ -41,7 +39,7 @@ void knotesAuthors(  KAboutData &aboutData );
 int main( int argc, char *argv[] )
 {
   QString version = QString::number( KNOTES_VERSION );
-  
+
   KAboutData aboutData( "knotes",
                          0,
                          ki18n( "KNotes" ),
@@ -49,26 +47,26 @@ int main( int argc, char *argv[] )
                          ki18n( "KDE Notes" ),
                          KAboutData::License_GPL,
                          ki18n( "(c) 1997-2007, The KNotes Developers" ) );
-  
+
   knotesAuthors( aboutData );
-  
+
   KCmdLineArgs::init( argc, argv, &aboutData );
-  
+
   // Command line options
-  
+
   KCmdLineArgs::addCmdLineOptions( knotesOptions() );
-  
+
   KUniqueApplication::addCmdLineOptions();
-  
-  
+
+
   // Create Application
-  
+
   Application app;
-  
+
   app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
-  
+
   remove_sm_from_client_leader();
-  
+
   return app.exec();
 }
 
@@ -80,19 +78,19 @@ void remove_sm_from_client_leader()
   unsigned long nitems = 0;
   unsigned long extra = 0;
   unsigned char *data = 0;
-  
+
   Atom atoms[ 2 ];
   char *atom_names[ 2 ] = { ( char * ) "WM_CLIENT_LEADER",
                             ( char * ) "SM_CLIENT_ID" };
-  
+
   XInternAtoms( QX11Info::display(), atom_names, 2, False, atoms );
-  
+
   QWidget w;
   KXErrorHandler handler; // ignore X errors
   status = XGetWindowProperty( QX11Info::display(), w.winId(), atoms[ 0 ], 0,
                                10000, false, XA_WINDOW, &type, &format, &nitems,
                                &extra, &data );
-  
+
   if ( ( status == Success ) && !handler.error( false ) ) {
       if ( data && ( nitems > 0 ) ) {
           Window leader = * ( ( Window * ) data );
@@ -106,11 +104,11 @@ void remove_sm_from_client_leader()
 KCmdLineOptions knotesOptions()
 {
   KCmdLineOptions options;
-  
-  options.add( "skip-note", 
+
+  options.add( "skip-note",
                ki18n( "Suppress creation of a new note "
                       "on a non-unique instance." ) );
-  
+
   return options;
 }
 
@@ -134,7 +132,7 @@ void knotesAuthors(  KAboutData &aboutData )
   aboutData.addAuthor( ki18n( "Bo Thorsen" ),
                        ki18n( "Started KDE Resource Framework Integration" ),
                        "bo@sonofthor.dk" );
-  
+
   aboutData.addCredit( ki18n( "Bera Debajyoti" ),
                        ki18n( "Idea and initial code for the new look & feel" ),
                        "debajyotibera@gmail.com" );

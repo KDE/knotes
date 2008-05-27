@@ -21,18 +21,17 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <kuniqueapplication.h>
-#include <kcmdlineargs.h>
-
+#include <libkdepim/pimapplication.h>
+class KCmdLineArgs;
 class KNotesApp;
 
 class Application
-  : public KUniqueApplication
+    : public KPIM::PimApplication
 {
   public:
     Application();
     ~Application();
-    
+
     virtual int newInstance();
     KCmdLineArgs *args() const;
   private:
