@@ -17,7 +17,9 @@ set(libknoteslegacy_SRCS  knoteslegacy.cpp )
 set(libknote_SRCS knote.cpp knotebutton.cpp knoteconfigdlg.cpp knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp knoteprinter.cpp )
 
 
-set(knotes_SRCS main.cpp application.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS} ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})
+set(knotes_SRCS main.cpp application.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS}
+                ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})
+
 qt4_add_dbus_adaptor(knotes_SRCS org.kde.KNotes.xml knotesapp.h KNotesApp )
 
 set( libknotesconfig_SRCS knoteconfig.kcfgc knotesglobalconfig.kcfgc )
@@ -28,7 +30,8 @@ kde4_add_app_icon(knotes_SRCS "${KDE4_ICON_DIR}/oxygen/*/apps/knotes.png")
 
 kde4_add_executable(knotes ${knotes_SRCS})
 
-target_link_libraries(knotes  ${KDE4_KCAL_LIBS} kdepim ${KDE4_KRESOURCES_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KUTILS_LIBS} )
+target_link_libraries(knotes ${KDE4_KCAL_LIBS} ${KDEPIM_LIBRARIES} ${KDE4_KRESOURCES_LIBS} ${KDE4_KIO_LIBS}
+                             ${KDE4_KUTILS_LIBS} ${QT_QT3SUPPORT_LIBRARY} ${X11_X11_LIB})
 
 install(TARGETS knotes  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
