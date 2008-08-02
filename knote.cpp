@@ -404,7 +404,7 @@ void KNote::slotMail()
       QString::SkipEmptyParts );
   
   KProcess mail;
-  foreach ( QString cmd, cmd_list ) {
+  foreach ( const QString& cmd, cmd_list ) {
     if ( cmd == "%f" ) {
       mail << m_editor->toPlainText();
     } else if ( cmd == "%t" ) {
