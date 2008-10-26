@@ -750,11 +750,13 @@ void KNote::createNoteFooter()
   m_noteLayout->addItem( gripLayout );
   
   // if there was just a way of making KComboBox adhere the toolbar height...
-  foreach ( KComboBox *combo, m_tool->findChildren<KComboBox *>() ) {
-    QFont font = combo->font();
-    font.setPointSize( 7 );
-    combo->setFont( font );
-    combo->setFixedHeight( 14 );
+  if ( m_tool ) {
+    foreach ( KComboBox *combo, m_tool->findChildren<KComboBox *>() ) {
+      QFont font = combo->font();
+      font.setPointSize( 7 );
+      combo->setFont( font );
+      combo->setFixedHeight( 14 );
+    }
   }
 }
 
