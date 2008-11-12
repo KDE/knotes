@@ -202,7 +202,7 @@ KNotesApp::KNotesApp()
   if ( KNotesLegacy::convert( &calendar ) ) {
     KCal::Journal::List notes = calendar.journals();
     KCal::Journal::List::ConstIterator it;
-    for ( it = notes.begin(); it != notes.end(); ++it ) {
+    for ( it = notes.constBegin(); it != notes.constEnd(); ++it ) {
       m_manager->addNewNote( *it );
     }
     
@@ -415,13 +415,13 @@ void KNotesApp::slotShowNote()
 void KNotesApp::slotWalkThroughNotes()
 {
   // show next note
-  QMap<QString, KNote *>::const_iterator it = m_notes.begin();
-  for ( ; it != m_notes.end(); ++it ) {
+  QMap<QString, KNote *>::const_iterator it = m_notes.constBegin();
+  for ( ; it != m_notes.constEnd(); ++it ) {
     if ( ( *it )->hasFocus() ) {
-      if ( ++it != m_notes.end() ) {
+      if ( ++it != m_notes.constEnd() ) {
         showNote( *it );
       } else {
-        showNote( *m_notes.begin() );
+        showNote( *m_notes.constBegin() );
       }
       break;
     }
@@ -487,7 +487,7 @@ void KNotesApp::slotConfigureAccels()
 {
   KNotesKeyDialog keys( actionCollection(), this );
   
-  QMap<QString, KNote *>::const_iterator it = m_notes.begin();
+  QMap<QString, KNote *>::const_iterator it = m_notes.constBegin();
   
   if ( !m_notes.isEmpty() ) {
     keys.insert( ( *it )->actionCollection() );
@@ -506,8 +506,8 @@ void KNotesApp::slotConfigureAccels()
   }
   
   foreach ( QAction *action, ( *it )->actionCollection()->actions() ) {
-    it = m_notes.begin();
-    for ( ++it; it != m_notes.end(); ++it ) {
+    it = m_notes.constBegin();
+    for ( ++it; it != m_notes.constEnd(); ++it ) {
 /*
     // Not sure if this is what this message has in mind but since both
     // action->objectName() and KAction::action() are QStrings, this
