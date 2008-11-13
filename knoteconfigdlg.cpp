@@ -306,7 +306,7 @@ QWidget *KNoteConfigDlg::makeStylePage()
   QComboBox *kcfg_Style = new QComboBox( stylePage );
   kcfg_Style->setObjectName( "kcfg_Style" );
   QStringList list;
-  list << "Plain";
+  list << i18n( "Plain" );
   kcfg_Style->addItems( list );
   label_Style->setBuddy( kcfg_Style );
   layout->addWidget( kcfg_Style, 0, 1 );
