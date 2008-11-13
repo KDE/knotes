@@ -61,7 +61,6 @@
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
 #include <netwm.h>
-#include <kdeversion.h>
 
 #ifdef Q_WS_X11
 #include <fixx11h.h>
