@@ -36,10 +36,12 @@
 #include <kdialog.h>
 
 class KHistoryComboBox;
+class QTableView;
+class QModelIndex;
 
 
 /**
- * A dialog to request a hostname or IP address.
+ * A dialog that allows to select network service or request a hostname or IP address.
  */
 class KNoteHostDlg
   : public KDialog
@@ -50,12 +52,18 @@ class KNoteHostDlg
     ~KNoteHostDlg();
     
     QString host() const;
+    /**
+     * Returns 0 if port was not specified
+     */
+    quint16 port() const;
     
   private slots:
     void slotTextChanged( const QString & );
+    void serviceSelected( const QModelIndex& );
     
   private:
     KHistoryComboBox *m_hostCombo;
+    QTableView *m_servicesView;
 };
 
 #endif

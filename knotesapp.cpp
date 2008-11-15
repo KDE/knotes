@@ -48,6 +48,8 @@
 #include <kcal/journal.h>
 #include <kiconloader.h>
 
+#include <dnssd/publicservice.h>
+
 #include "knote.h"
 #include "knoteconfigdlg.h"
 #include "knotes/resourcemanager.h"
@@ -98,7 +100,7 @@ static bool qActionLessThan( const QAction *a1, const QAction *a2 )
 
 
 KNotesApp::KNotesApp()
-  : QWidget(), m_alarm( 0 ), m_listener( 0 ), m_find( 0 ), m_findPos( 0 )
+  : QWidget(), m_alarm( 0 ), m_listener( 0 ), m_publisher( 0 ), m_find( 0 ), m_findPos( 0 )
 {
   new KNotesAdaptor( this );
   QDBusConnection::sessionBus().registerObject( "/KNotes" , this );
@@ -657,6 +659,8 @@ void KNotesApp::updateNetworkListener()
 {
     delete m_listener;
     m_listener=0;
+    delete m_publisher;
+    m_publisher=0;
     
     if ( KNotesGlobalConfig::receiveNotes() ) {
         // create the socket and start listening for connections
@@ -664,6 +668,8 @@ void KNotesApp::updateNetworkListener()
                                            KNotesGlobalConfig::port() );
         connect( m_listener, SIGNAL( newConnection() ),
                  SLOT( acceptConnection() ) );
+        m_publisher=new DNSSD::PublicService(KNotesGlobalConfig::senderID(), "_knotes._tcp", KNotesGlobalConfig::port());
+        m_publisher->publishAsync();
     }
 }
 

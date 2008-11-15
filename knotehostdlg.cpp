@@ -33,6 +33,8 @@
 #include <QLabel>
 #include <QString>
 #include <QLineEdit>
+#include <QTableView>
+#include <QSortFilterProxyModel>
 
 #include <kconfig.h>
 #include <kdebug.h>
@@ -41,10 +43,11 @@
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <kvbox.h>
+#include <dnssd/servicemodel.h>
+#include <dnssd/servicebrowser.h>
 
 #include "knotehostdlg.h"
 #include "knotesglobalconfig.h"
-
 
 KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
   : KDialog( parent )
@@ -53,6 +56,22 @@ KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
   setButtons( Ok|Cancel );
   KVBox *page = new KVBox( this );
   setMainWidget( page );
+  ( void ) new QLabel( i18n("Select recipient:"), page );
+  
+  m_servicesView = new QTableView( page );
+  m_servicesView->setShowGrid( false );
+  DNSSD::ServiceModel* mdl = new DNSSD::ServiceModel( new DNSSD::ServiceBrowser( "_knotes._tcp", true ) );
+  mdl->setParent( m_servicesView );
+  m_servicesView->setModel( mdl );
+  m_servicesView->setSelectionBehavior( QAbstractItemView::SelectRows );
+  m_servicesView->hideColumn( DNSSD::ServiceModel::Port );
+  connect( m_servicesView->selectionModel(), SIGNAL( currentRowChanged( const QModelIndex&, const QModelIndex& ) ),
+    SLOT( serviceSelected( const QModelIndex& ) ) );
+  connect( m_servicesView, SIGNAL( activated( const QModelIndex& ) ),
+    SLOT( serviceSelected( const QModelIndex& ) ) );
+  connect( m_servicesView, SIGNAL( clicked( const QModelIndex& ) ),
+    SLOT( serviceSelected( const QModelIndex& ) ) );
+  
   ( void ) new QLabel( i18n("Hostname or IP address:"), page );
   
   m_hostCombo = new KHistoryComboBox( true, page );
@@ -87,10 +106,20 @@ void KNoteHostDlg::slotTextChanged( const QString &text )
   enableButton( Ok, !text.isEmpty() );
 }
 
-QString KNoteHostDlg::host() const
+void KNoteHostDlg::serviceSelected( const QModelIndex& idx ) 
 {
-  return m_hostCombo->currentText();
+  DNSSD::RemoteService::Ptr srv=idx.data( DNSSD::ServiceModel::ServicePtrRole ).value<DNSSD::RemoteService::Ptr>();
+  m_hostCombo->lineEdit()->setText( srv->hostName() + ":" + QString::number( srv->port() ) );
 }
 
+QString KNoteHostDlg::host() const
+{
+  return m_hostCombo->currentText().section( ':', 0, 0 );
+}
+
+quint16 KNoteHostDlg::port() const 
+{
+  return m_hostCombo->currentText().section( ':', 1 ).toUShort();
+}
 
 #include "knotehostdlg.moc"

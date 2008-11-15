@@ -30,7 +30,7 @@ kde4_add_app_icon(knotes_SRCS "${KDE4_ICON_DIR}/oxygen/*/apps/knotes.png")
 
 kde4_add_executable(knotes ${knotes_SRCS})
 
-target_link_libraries(knotes ${KDE4_KCAL_LIBS} kdepim ${KDE4_KRESOURCES_LIBS} ${KDE4_KIO_LIBS}
+target_link_libraries(knotes ${KDE4_KCAL_LIBS} kdepim ${KDE4_KRESOURCES_LIBS} ${KDE4_KIO_LIBS}  ${KDE4_KDNSSD_LIBS}
                              ${KDE4_KUTILS_LIBS} ${QT_QT3SUPPORT_LIBRARY} ${X11_X11_LIB})
 
 install(TARGETS knotes  ${INSTALL_TARGETS_DEFAULT_ARGS} )

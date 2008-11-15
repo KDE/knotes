@@ -376,12 +376,17 @@ void KNote::slotSend()
   // pop up dialog to get the IP
   KNoteHostDlg hostDlg( i18n( "Send \"%1\"", name() ), this );
   bool ok = ( hostDlg.exec() == QDialog::Accepted );
-  QString host = hostDlg.host();
   
   if ( !ok ) { // handle cancel
     return;
   }
+  QString host = hostDlg.host();
+  quint16 port = hostDlg.port();
   
+  if ( !port ) { // not specified, use default
+    port = KNotesGlobalConfig::port();
+  }
+
   if ( host.isEmpty() ) {
     KMessageBox::sorry( this, i18n( "The host cannot be empty." ) );
     return;
@@ -390,8 +395,7 @@ void KNote::slotSend()
   // Send the note
   
   KNotesNetworkSender *sender = new KNotesNetworkSender(
-    KSocketFactory::connectToHost( "knotes", host,
-                                   KNotesGlobalConfig::port() ) );
+    KSocketFactory::connectToHost( "knotes", host, port ) );
   sender->setSenderId( KNotesGlobalConfig::senderID() );
   sender->setNote( name(), text() ); // FIXME: plainText ??
 }

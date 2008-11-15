@@ -46,7 +46,9 @@ class KXMLGUIFactory;
 namespace KCal {
 class Journal;
 }
-
+namespace DNSSD {
+class PublicService;
+}
 
 class KNotesApp
   : public QWidget, public KSessionManager, virtual public KXMLGUIClient
@@ -116,6 +118,7 @@ class KNotesApp
     KNotesResourceManager  *m_manager;
     KNotesAlarm            *m_alarm;
     QTcpServer             *m_listener;
+    DNSSD::PublicService   *m_publisher;
     
     KFind           *m_find;
     QMap<QString, KNote *>::iterator *m_findPos;
