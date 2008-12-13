@@ -82,6 +82,8 @@ public:
 
     static void setStyle( int style );
 
+    void deleteWhenIdle();
+
 public slots:
     void slotKill( bool force = false );
 
@@ -107,6 +109,10 @@ protected:
     virtual bool eventFilter( QObject*, QEvent* );
 
     virtual bool focusNextPrevChild( bool );
+
+    /// Protect against deletion while we are running a sub-eventloop
+    void aboutToEnterEventLoop();
+    void eventLoopLeft();
 
 private slots:
     void slotRename();
@@ -170,6 +176,9 @@ private:
     KSharedConfig::Ptr m_kwinConf;
 
     static int s_ppOffset;
+
+    int m_busy;
+    bool m_deleteWhenIdle;
 };
 
 #endif

@@ -84,7 +84,8 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
   : QFrame( parent, name, WStyle_Customize | WStyle_NoBorder | WDestructiveClose ),
     m_label( 0 ), m_pushpin( 0 ), m_fold( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ),
     m_config( 0 ), m_journal( j ), m_find( 0 ),
-    m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) )
+    m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) ),
+    m_busy( 0 ), m_deleteWhenIdle( false )
 {
     setAcceptDrops( true );
     actionCollection()->setWidget( this );
@@ -686,8 +687,10 @@ void KNote::slotRename()
 {
     // pop up dialog to get the new name
     bool ok;
+    aboutToEnterEventLoop();
     QString newName = KInputDialog::getText( QString::null,
         i18n("Please enter the new name:"), m_label->text(), &ok, this );
+    eventLoopLeft();
     if ( !ok ) // handle cancel
         return;
 
@@ -739,8 +742,10 @@ void KNote::slotSetAlarm()
     KNoteAlarmDlg dlg( name(), this );
     dlg.setIncidence( m_journal );
 
+    aboutToEnterEventLoop();
     if ( dlg.exec() == QDialog::Accepted )
         emit sigDataChanged();
+    eventLoopLeft();
 }
 
 void KNote::slotPreferences()
@@ -760,7 +765,9 @@ void KNote::slotSend()
 {
     // pop up dialog to get the IP
     KNoteHostDlg hostDlg( i18n("Send \"%1\"").arg( name() ), this );
+    aboutToEnterEventLoop();
     bool ok = (hostDlg.exec() == QDialog::Accepted);
+    eventLoopLeft();
     QString host = hostDlg.host();
 
     if ( !ok ) // handle cancel
@@ -832,7 +839,9 @@ void KNote::slotSaveAs()
     KFileDialog dlg( QString::null, QString::null, this, "filedialog", true, convert );
     dlg.setOperationMode( KFileDialog::Saving );
     dlg.setCaption( i18n("Save As") );
+    aboutToEnterEventLoop();
     dlg.exec();
+    eventLoopLeft();
 
     QString fileName = dlg.selectedFile();
     if ( fileName.isEmpty() )
@@ -1332,6 +1341,26 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
     }
 
     return false;
+}
+
+void KNote::deleteWhenIdle()
+{
+  if ( m_busy <= 0 )
+    deleteLater();
+  else
+    m_deleteWhenIdle = true;
+}
+
+void KNote::aboutToEnterEventLoop()
+{
+  ++m_busy;
+}
+
+void KNote::eventLoopLeft()
+{
+  --m_busy;
+  if ( m_busy <= 0 && m_deleteWhenIdle )
+    deleteLater();
 }
 
 
