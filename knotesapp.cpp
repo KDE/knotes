@@ -457,11 +457,11 @@ void KNotesApp::slotOpenFindDialog()
 void KNotesApp::slotFindNext()
 {
   if ( *m_findPos != m_notes.end() ) {
-    KNote *note = * ( *m_findPos++ );
-    note->find( m_find->pattern(), m_find->options() );
+    KNote *note = * ( (*m_findPos)++ );
+    note->find( m_find );
   } else {
     m_find->displayFinalDialog();
-    delete m_find;
+    m_find->deleteLater(); //we can't delete m_find now because its the signal emitter
     m_find = 0;
     delete m_findPos;
     m_findPos = 0;

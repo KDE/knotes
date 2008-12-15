@@ -66,13 +66,13 @@ class KNote
     void setName( const QString &name );
     void setText( const QString &text );
     
-    void find( const QString &pattern, long options );
+    void find( KFind* kfind );
     
     bool isModified() const;
     
   public slots:
     void slotKill( bool force = false );
-    
+
   signals:
     void sigRequestNewNote();
     void sigShowNextNote();
@@ -112,7 +112,7 @@ class KNote
     
     void slotFindNext();
     void slotHighlight( const QString &txt, int idx, int len );
-    
+
     void slotApplyConfig();
     void slotUpdateKeepAboveBelow();
     void slotUpdateShowInTaskbar();

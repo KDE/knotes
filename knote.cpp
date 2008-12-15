@@ -229,11 +229,10 @@ void KNote::setText( const QString& text )
   saveData();
 }
 
-void KNote::find( const QString& pattern, long options )
+void KNote::find( KFind* kfind )
 {
-  delete m_find;
-  m_find = new KFind( pattern, options, this );
-  
+  m_find = kfind;
+  disconnect( m_find ); 
   connect( m_find, SIGNAL( highlight( const QString &, int, int ) ),
            this, SLOT( slotHighlight( const QString &, int, int ) ) );
   connect( m_find, SIGNAL( findNext() ), this, SLOT( slotFindNext() ) );
@@ -245,19 +244,21 @@ void KNote::find( const QString& pattern, long options )
 void KNote::slotFindNext()
 {
   // TODO: honor FindBackwards
-  // TODO: dialogClosed() -> delete m_find
-
+ 
   // Let KFind inspect the text fragment, and display a dialog if a match is
   // found
   KFind::Result res = m_find->find();
-  
+ 
   if ( res == KFind::NoMatch ) { // i.e. at end-pos
-    // use a different text cursor!
-    m_editor->textCursor().clearSelection();
+   
+    QTextCursor c = m_editor->textCursor(); //doesn't return by reference, so we use setTextCursor
+    c.clearSelection();
+    m_editor->setTextCursor( c );
+
+    disconnect( m_find, 0, this, 0 );
     emit sigFindFinished();
-    delete m_find;
-    m_find = 0;
   } else {
+	
     show();
 #ifdef Q_WS_X11
     KWindowSystem::setCurrentDesktop( KWindowSystem::windowInfo( winId(),
@@ -268,9 +269,9 @@ void KNote::slotFindNext()
 
 void KNote::slotHighlight( const QString& /*str*/, int idx, int len )
 {
-  QTextCursor c = m_editor->textCursor();
-  c.setPosition( idx );
-  c.setPosition( idx + len, QTextCursor::KeepAnchor );
+  m_editor->textCursor().clearSelection();
+  m_editor->highlightWord( len, idx );
+
   // TODO: modify the selection color, use a different QTextCursor?
 }
 
