@@ -104,8 +104,8 @@ KNotesApp::KNotesApp()
 {
   new KNotesAdaptor( this );
   QDBusConnection::sessionBus().registerObject( "/KNotes" , this );
-  connect( kapp, SIGNAL( lastWindowClosed() ), kapp, SLOT( quit() ) );
-  
+  kapp->setQuitOnLastWindowClosed( false );
+
   // create the dock widget...
   m_tray = new KSystemTrayIcon();
   

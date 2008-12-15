@@ -63,7 +63,6 @@ int main( int argc, char *argv[] )
 
   Application app;
 
-  app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 
   remove_sm_from_client_leader();
 
