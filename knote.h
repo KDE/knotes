@@ -66,7 +66,7 @@ class KNote
     void setName( const QString &name );
     void setText( const QString &text );
     
-    void find( const QString &pattern, long options );
+    void find( KFind* kfind );
     
     bool isModified() const;
     
