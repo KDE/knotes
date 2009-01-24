@@ -80,4 +80,4 @@ Name[zh_TW]=KNotes 便利貼
 
 X-KDE-StartupNotify=true
 X-DBUS-StartupType=Unique
-Categories=Qt;KDE;Utility;X-KDE-Utilities-Desktop;
+Categories=Qt;KDE;Utility;TextTools;X-KDE-Utilities-Desktop;
