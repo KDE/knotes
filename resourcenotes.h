@@ -36,8 +36,6 @@
 #include <kcal/alarm.h>
 #include <kresources/resource.h>
 
-#include "knotes_export.h"
-
 class KNotesResourceManager;
 
 namespace KCal {
