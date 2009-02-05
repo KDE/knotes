@@ -633,8 +633,11 @@ void KNotesApp::killNote( KCal::Journal *journal )
 {
     // this kills the KNote object
     KNote *note = m_noteList.take( journal->uid() );
-    note->deleteWhenIdle();
-    updateNoteActions();
+    if ( note )
+    {
+        note->deleteWhenIdle();
+        updateNoteActions();
+    }
 }
 
 void KNotesApp::acceptConnection()
