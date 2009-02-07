@@ -461,7 +461,7 @@ void KNotesApp::slotFindNext()
     note->find( m_find );
   } else {
     m_find->displayFinalDialog();
-    m_find->deleteLater(); //we can't delete m_find now because its the signal emitter
+    m_find->deleteLater(); //we can't delete m_find now because it is the signal emitter
     m_find = 0;
     delete m_findPos;
     m_findPos = 0;
