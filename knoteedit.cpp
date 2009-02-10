@@ -47,7 +47,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   setWordWrapMode( QTextOption::WordWrap );
   setLineWrapMode( WidgetWidth );
   setAutoFormatting( AutoAll );
-
+  setCheckSpellingEnabled( true );
   // create the actions for the RMB menu
   QAction * undo = KStandardAction::undo( this, SLOT( undo() ), actions );
   QAction * redo = KStandardAction::redo( this, SLOT( redo() ), actions );
