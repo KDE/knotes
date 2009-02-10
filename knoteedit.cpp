@@ -147,9 +147,6 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   actions->addAction( "format_sub", m_textSub );
   connect( m_textSub, SIGNAL( triggered( bool ) ), SLOT( textSubScript() ) );
 
-  group = new QActionGroup( this );
-  group->addAction( m_textSuper );
-  group->addAction( m_textSub );
 
   m_textIncreaseIndent = new KAction( KIcon( "format-indent-more" ),
                                       i18n( "Increase Indent" ), this );
@@ -349,6 +346,8 @@ void KNoteEdit::textSuperScript()
 {
   QTextCharFormat f;
   if ( m_textSuper->isChecked() ) {
+      if ( m_textSub->isChecked() )
+          m_textSub->setChecked( false );
     f.setVerticalAlignment( QTextCharFormat::AlignSuperScript );
   } else {
     f.setVerticalAlignment( QTextCharFormat::AlignNormal );
@@ -359,9 +358,10 @@ void KNoteEdit::textSuperScript()
 void KNoteEdit::textSubScript()
 {
   QTextCharFormat f;
-
   if ( m_textSub->isChecked() ) {
-    f.setVerticalAlignment( QTextCharFormat::AlignSubScript );
+      if ( m_textSuper->isChecked() )
+          m_textSuper->setChecked( false );
+      f.setVerticalAlignment( QTextCharFormat::AlignSubScript );
   } else {
     f.setVerticalAlignment( QTextCharFormat::AlignNormal );
   }
