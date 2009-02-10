@@ -137,9 +137,6 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   actions->addAction( "format_list", m_textList );
   connect( m_textList, SIGNAL( triggered( bool ) ), SLOT( textList() ) );
 
-  group = new QActionGroup( this );
-  group->addAction( m_textList );
-
   m_textSuper  = new KToggleAction( KIcon( "format-text-superscript" ),
                                     i18n( "Superscript" ), this );
   actions->addAction( "format_super", m_textSuper );
@@ -324,33 +321,33 @@ void KNoteEdit::textAlignBlock()
 
 void KNoteEdit::textList()
 {
-  QTextCursor c = textCursor();
-  c.beginEditBlock();
+    QTextCursor c = textCursor();
+    c.beginEditBlock();
 
-  if ( m_textList->isChecked() ) {
-    QTextListFormat lf;
-    QTextBlockFormat bf = c.blockFormat();
+    if ( m_textList->isChecked() ) {
+        QTextListFormat lf;
+        QTextBlockFormat bf = c.blockFormat();
 
-    lf.setIndent( bf.indent() + 1 );
-    bf.setIndent( 0 );
+        lf.setIndent( bf.indent() + 1 );
+        bf.setIndent( 0 );
 
-    lf.setStyle( QTextListFormat::ListDisc );
+        lf.setStyle( QTextListFormat::ListDisc );
 
-    c.setBlockFormat( bf );
-    c.createList( lf );
-  } else {
-    QTextBlockFormat bf;
-    bf.setObjectIndex( -1 );
-    c.mergeBlockFormat( bf );
-  }
+        c.setBlockFormat( bf );
+        c.createList( lf );
+    } else {
+        QTextBlockFormat bf;
+        bf.setObjectIndex( -1 );
+        c.setBlockFormat( bf );
 
-  c.endEditBlock();
+    }
+
+    c.endEditBlock();
 }
 
 void KNoteEdit::textSuperScript()
 {
   QTextCharFormat f;
-
   if ( m_textSuper->isChecked() ) {
     f.setVerticalAlignment( QTextCharFormat::AlignSuperScript );
   } else {
