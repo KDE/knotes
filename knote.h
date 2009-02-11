@@ -55,21 +55,21 @@ class KNote
   public:
     KNote( QDomDocument buildDoc, KCal::Journal *journal, QWidget *parent = 0 );
     ~KNote();
-    
+
     void saveData();
     void saveConfig() const;
-    
+
     QString noteId() const;
     QString name() const;
     QString text() const;
-    
+
     void setName( const QString &name );
     void setText( const QString &text );
-    
+
     void find( KFind* kfind );
-    
+
     bool isModified() const;
-    
+
   public slots:
     void slotKill( bool force = false );
 
@@ -80,9 +80,9 @@ class KNote
     void sigDataChanged();
     void sigColorChanged();
     void sigKillNote( KCal::Journal * );
-    
+
     void sigFindFinished();
-    
+
   protected:
     virtual void contextMenuEvent( QContextMenuEvent * );
     virtual void showEvent( QShowEvent * );
@@ -90,26 +90,26 @@ class KNote
     virtual void closeEvent( QCloseEvent * );
     virtual void dropEvent( QDropEvent * );
     virtual void dragEnterEvent( QDragEnterEvent * );
-    
+
     virtual bool event( QEvent * );
     virtual bool eventFilter( QObject *, QEvent * );
-    
+
   private slots:
     void slotRename();
     void slotUpdateReadOnly();
     void slotClose();
-    
+
     void slotSend();
     void slotMail();
     void slotPrint();
     void slotSaveAs();
-    
+
     void slotInsDate();
     void slotSetAlarm();
-    
+
     void slotPreferences();
     void slotPopupActionToDesktop( int id );
-    
+
     void slotFindNext();
     void slotHighlight( const QString &txt, int idx, int len );
 
@@ -117,7 +117,10 @@ class KNote
     void slotUpdateKeepAboveBelow();
     void slotUpdateShowInTaskbar();
     void slotUpdateDesktopActions();
-    
+
+    void slotKeepAbove();
+    void slotKeepBelow();
+
   private:
     void buildGui();
     void createActions();
@@ -125,15 +128,15 @@ class KNote
     void createNoteFooter();
     void createNoteHeader();
     void prepare();
-    
+
     void updateFocus();
     void updateLayout();
     void updateLabelAlignment();
-    
+
     void setColor( const QColor &, const QColor & );
-    
+
     void toDesktop( int desktop );
-    
+
   private:
     QLayout       *m_noteLayout;
     QLabel        *m_label;
@@ -141,21 +144,21 @@ class KNote
     KNoteButton   *m_button;
     KToolBar      *m_tool;
     KNoteEdit     *m_editor;
-    
+
     KNoteConfig   *m_config;
     KCal::Journal *m_journal;
-    
+
     KFind         *m_find;
     KMenu         *m_menu;
-    
+
     KToggleAction *m_readOnly;
-    
+
 #ifdef Q_WS_X11
     KSelectAction   *m_toDesktop;
 #endif
     KToggleAction *m_keepAbove;
     KToggleAction *m_keepBelow;
-    
+
     KSharedConfig::Ptr m_kwinConf;
 };
 
