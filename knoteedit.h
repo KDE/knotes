@@ -67,6 +67,7 @@ public slots:
 
     //void textIncreaseIndent();
     //void textDecreaseIndent();
+    void slotCutEnabled( bool );
 
 protected:
     virtual void contentsDragEnterEvent( QDragEnterEvent *e );
