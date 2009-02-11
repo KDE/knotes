@@ -59,7 +59,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *n
     connect( this, SIGNAL(undoAvailable(bool)), undo, SLOT(setEnabled(bool)) );
     connect( this, SIGNAL(redoAvailable(bool)), redo, SLOT(setEnabled(bool)) );
 
-    connect( this, SIGNAL(copyAvailable(bool)), m_cut, SLOT(setEnabled(bool)) );
+    connect( this, SIGNAL(copyAvailable(bool)), this, SLOT( slotCutEnabled( bool ) ) );
     connect( this, SIGNAL(copyAvailable(bool)), m_copy, SLOT(setEnabled(bool)) );
 
     new KAction( KStdGuiItem::clear(), 0, this, SLOT(clear()), actions, "edit_clear" );
@@ -154,6 +154,11 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *n
 
 KNoteEdit::~KNoteEdit()
 {
+}
+
+void KNoteEdit::slotCutEnabled( bool b )
+{
+    m_cut->setEnabled( b && !isReadOnly() );
 }
 
 void KNoteEdit::setText( const QString& text )
