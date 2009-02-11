@@ -80,7 +80,6 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
     double version = grp.readEntry( "version", 1.0 );
     
     if ( version < 3.0 ) {
-      delete test;
       
       // create the new note
       Journal *journal = new Journal();
@@ -109,11 +108,8 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
                         ( state & NET::KeepAbove ) ? true : false );
 #endif
       grp.deleteEntry( "state" );
-      delete test;
-    }  else {
-      delete test;
     }
-    
+    delete test;
   }
   
   return converted;
