@@ -82,7 +82,6 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
 
         if ( version < 3.0 )
         {
-            delete test;
 
             // create the new note
             Journal *journal = new Journal();
@@ -109,8 +108,8 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
             test->writeEntry( "ShowInTaskbar", (state & NET::SkipTaskbar) ? false : true );
             test->writeEntry( "KeepAbove", (state & NET::KeepAbove) ? true : false );
             test->deleteEntry( "state" );
-            delete test;
         }
+        delete test;
     }
 
     return converted;
