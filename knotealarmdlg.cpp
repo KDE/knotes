@@ -70,7 +70,8 @@ KNoteAlarmDlg::KNoteAlarmDlg( const QString& caption, QWidget *parent, const cha
     QLabel *in_min = new QLabel( i18n("hours/minutes"), in );
 
     label_in->setEnabled( false ); // TODO
-
+    in->hide(); //show it and enable it when feature will implement
+ 
     connect( m_buttons, SIGNAL(clicked( int )), SLOT(slotButtonChanged( int )) );
 }
 
