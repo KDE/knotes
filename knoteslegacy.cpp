@@ -247,17 +247,17 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir &noteDir,
   KConfigGroup grp( &config, "Data" );
   journal->setSummary( grp.readEntry( "name" ) );
   config.deleteGroup( "Data", KConfig::Localized );
-  grp.changeGroup( "General" ); // XXX right?
-  grp.writeEntry( "version", KNOTES_VERSION );
-  grp.changeGroup( "WindowDisplay" ); // XXX right?
+  KConfigGroup grp2(&config, "General" ); // XXX right?
+  grp2.writeEntry( "version", KNOTES_VERSION );
+  KConfigGroup grp3(&config, "WindowDisplay" ); // XXX right?
 #ifdef Q_WS_X11
-  uint state = grp.readEntry( "state", uint( NET::SkipTaskbar ) );
-  grp.writeEntry( "ShowInTaskbar", 
+  uint state = grp3.readEntry( "state", uint( NET::SkipTaskbar ) );
+  grp3.writeEntry( "ShowInTaskbar", 
                      ( state & NET::SkipTaskbar ) ? false : true );
-  grp.writeEntry( "KeepAbove", 
+  grp3.writeEntry( "KeepAbove", 
                       ( state & NET::KeepAbove ) ? true : false );
 #endif
-  grp.deleteEntry( "state" );
+  grp3.deleteEntry( "state" );
   
   // load the saved text and put it in the journal
   QFile infile( noteDir.absoluteFilePath( "." + file + "_data" ) );
