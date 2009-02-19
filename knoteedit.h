@@ -91,7 +91,8 @@ class KNoteEdit
     
   private slots:
     void slotCurrentCharFormatChanged( const QTextCharFormat & );
-    
+    void slotCutEnabled( bool );
+
   private:
     void autoIndent();
     
