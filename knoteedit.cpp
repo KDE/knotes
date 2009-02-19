@@ -68,7 +68,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
            redo, SLOT( setEnabled( bool ) ) );
 
   connect( this, SIGNAL( copyAvailable( bool ) ),
-           m_cut, SLOT( setEnabled( bool ) ) );
+           this, SLOT( slotCutEnabled( bool ) ) );
   connect( this, SIGNAL( copyAvailable( bool ) ),
            m_copy, SLOT( setEnabled( bool ) ) );
 
@@ -198,7 +198,12 @@ KNoteEdit::~KNoteEdit()
 {
 }
 
-void KNoteEdit::setText( const QString &text )
+void KNoteEdit::slotCutEnabled( bool b )
+{
+    m_cut->setEnabled( b && !isReadOnly() );
+}
+
+void KNoteEdit::setText( const QString& text )
 {
   if ( acceptRichText() && Qt::mightBeRichText( text ) ) {
     setHtml( text );
