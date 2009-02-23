@@ -458,7 +458,7 @@ void KNoteEdit::slotCurrentCharFormatChanged( const QTextCharFormat &f )
 {
   // font changes
   m_textFont->setFont( f.fontFamily() );
-  m_textSize->setFontSize( ( int ) f.fontPointSize() );
+  m_textSize->setFontSize( (f.fontPointSize()>0 ) ?  ( int ) f.fontPointSize() :10);
 
   m_textBold->setChecked( f.font().bold() );
   m_textItalic->setChecked( f.fontItalic() );
