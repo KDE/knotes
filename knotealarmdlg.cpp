@@ -77,7 +77,7 @@ KNoteAlarmDlg::KNoteAlarmDlg( const QString &caption, QWidget *parent )
   QRadioButton *label_in = new QRadioButton( i18n( "Alarm &in:" ), in );
   m_inTime = new KTimeEdit( in );
   label_in->setEnabled( false ); // TODO
-  layout->addWidget( in );
+  //layout->addWidget( in );  //show it and enable it when feature will implemented
   m_buttons->addButton( label_in, 2 );
   
   connect( m_buttons, SIGNAL( buttonClicked( int ) ),
