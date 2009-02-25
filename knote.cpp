@@ -504,6 +504,24 @@ void KNote::slotApplyConfig()
   slotUpdateShowInTaskbar();
 }
 
+void KNote::slotKeepAbove()
+{
+    if ( m_keepBelow->isChecked() )
+    {
+        m_keepBelow->setChecked( false );
+    }
+    slotUpdateKeepAboveBelow();
+}
+
+void KNote::slotKeepBelow()
+{
+    if ( m_keepAbove->isChecked() )
+    {
+        m_keepAbove->setChecked( false );
+    }
+    slotUpdateKeepAboveBelow();
+}
+
 void KNote::slotUpdateKeepAboveBelow()
 {
 #ifdef Q_WS_X11
@@ -647,22 +665,18 @@ void KNote::createActions()
   actionCollection()->addAction( "configure_note", action );
   connect( action, SIGNAL( triggered( bool ) ), SLOT( slotPreferences() ) );
   
-  QActionGroup *kab = new QActionGroup( this );
-  kab->setExclusive( true );
   
   m_keepAbove  = new KToggleAction( KIcon( "go-up" ),
                                     i18n( "Keep Above Others" ), this );
   actionCollection()->addAction( "keep_above", m_keepAbove );
   connect( m_keepAbove, SIGNAL( triggered( bool ) ),
-           SLOT( slotUpdateKeepAboveBelow() ) );
-  kab->addAction( m_keepAbove );
+           SLOT( slotKeepAbove() ) );
   
   m_keepBelow  = new KToggleAction( KIcon( "go-down" ),
                                     i18n( "Keep Below Others" ), this );
   actionCollection()->addAction( "keep_below", m_keepBelow );
   connect( m_keepBelow, SIGNAL( triggered( bool ) ),
-           SLOT( slotUpdateKeepAboveBelow() ) );
-  kab->addAction( m_keepBelow );
+           SLOT( slotKeepBelow() ) );
   
 #ifdef Q_WS_X11
   m_toDesktop  = new KSelectAction( i18n( "To Desktop" ), this );
