@@ -72,6 +72,7 @@ public slots:
 protected:
     virtual void contentsDragEnterEvent( QDragEnterEvent *e );
     virtual void contentsDropEvent( QDropEvent *e );
+    virtual QPopupMenu *createPopupMenu( const QPoint &pos );
 
 private slots:
     void slotReturnPressed();
@@ -80,6 +81,7 @@ private slots:
     void colorChanged( const QColor &c );
     void alignmentChanged( int a );
     void verticalAlignmentChanged( VerticalAlignment a );
+    void slotAllowTab();
 
 private:
     void autoIndent();

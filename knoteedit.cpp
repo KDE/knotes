@@ -27,7 +27,8 @@
 #include <kurldrag.h>
 #include <kstdaction.h>
 #include <kcolordialog.h>
-
+#include <qpopupmenu.h>
+#include <kiconloader.h>
 #include "knoteedit.h"
 
 static const short SEP = 5;
@@ -41,7 +42,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *n
     setWordWrap( WidgetWidth );
     setWrapPolicy( AtWhiteSpace );
     setLinkUnderline( true );
-
+    setCheckSpellingEnabled(false);
     // create the actions for the RMB menu
     KAction* undo = KStdAction::undo( this, SLOT(undo()), actions );
     KAction* redo = KStdAction::redo( this, SLOT(redo()), actions );
@@ -495,6 +496,43 @@ void KNoteEdit::disableRichTextActions()
 
 //    m_textIncreaseIndent->setEnabled( false );
 //    m_textDecreaseIndent->setEnabled( false );
+}
+
+void KNoteEdit::slotAllowTab()
+{
+    setTabChangesFocus(!tabChangesFocus());
+}
+
+QPopupMenu *KNoteEdit::createPopupMenu( const QPoint &pos )
+{
+    enum { IdUndo, IdRedo, IdSep1, IdCut, IdCopy, IdPaste, IdClear, IdSep2, IdSelectAll };
+
+    QPopupMenu *menu = QTextEdit::createPopupMenu( pos );
+
+    if ( isReadOnly() )
+      menu->changeItem( menu->idAt(0), SmallIconSet("editcopy"), menu->text( menu->idAt(0) ) );
+    else {
+      int id = menu->idAt(0);
+      menu->changeItem( id - IdUndo, SmallIconSet("undo"), menu->text( id - IdUndo) );
+      menu->changeItem( id - IdRedo, SmallIconSet("redo"), menu->text( id - IdRedo) );
+      menu->changeItem( id - IdCut, SmallIconSet("editcut"), menu->text( id - IdCut) );
+      menu->changeItem( id - IdCopy, SmallIconSet("editcopy"), menu->text( id - IdCopy) );
+      menu->changeItem( id - IdPaste, SmallIconSet("editpaste"), menu->text( id - IdPaste) );
+      menu->changeItem( id - IdClear, SmallIconSet("editclear"), menu->text( id - IdClear) );
+
+        menu->insertSeparator();
+        id = menu->insertItem( SmallIconSet( "spellcheck" ), i18n( "Check Spelling..." ),
+                                   this, SLOT( checkSpelling() ) );
+
+        if( text().isEmpty() )
+            menu->setItemEnabled( id, false );
+
+	menu->insertSeparator();
+	id=menu->insertItem(i18n("Allow Tabulations"),this,SLOT(slotAllowTab()));
+	menu->setItemChecked(id, !tabChangesFocus());
+    }
+
+    return menu;
 }
 
 #include "knoteedit.moc"
