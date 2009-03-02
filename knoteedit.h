@@ -80,6 +80,7 @@ class KNoteEdit
 
     void textIncreaseIndent();
     void textDecreaseIndent();
+    void setTextFontSize( int );
 
   protected:
     virtual void contextMenuEvent( QContextMenuEvent * );

@@ -188,7 +188,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   m_textSize  = new KFontSizeAction( i18n( "Text Size" ), this );
   actions->addAction( "format_size", m_textSize );
   connect( m_textSize, SIGNAL( fontSizeChanged( int ) ),
-           this, SLOT( setFontWeight ( int ) ) );
+           this, SLOT( setTextFontSize( int ) ) );
 
   // QTextEdit connections
   connect( this, SIGNAL( currentCharFormatChanged( const QTextCharFormat & ) ),
@@ -235,6 +235,13 @@ void KNoteEdit::setTextFont( const QFont &font )
 {
   QTextCharFormat f;
   f.setFont( font );
+  setTextFormat( f );
+}
+
+void KNoteEdit::setTextFontSize( int size )
+{
+  QTextCharFormat f;
+  f.setFontPointSize( size );
   setTextFormat( f );
 }
 
