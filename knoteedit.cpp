@@ -75,6 +75,11 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   KStandardAction::clear( this, SLOT( clear() ), actions );
   KStandardAction::selectAll( this, SLOT( selectAll() ), actions );
 
+  KToggleAction *autoSpellChecking = new KToggleAction( i18n( "Auto Spell Check" ), this );
+  autoSpellChecking->setChecked( true );
+  actions->addAction( "auto_spellchecking",autoSpellChecking );
+  connect( autoSpellChecking, SIGNAL( toggled( bool ) ), SLOT( slotAutoSpellChecking( bool ) ) );
+
   // create the actions modifying the text format
   m_textBold  = new KToggleAction( KIcon( "format-text-bold" ), i18n( "Bold" ),
                                    this );
@@ -196,6 +201,11 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
 
 KNoteEdit::~KNoteEdit()
 {
+}
+
+void KNoteEdit::slotAutoSpellChecking( bool b)
+{
+    setCheckSpellingEnabled( b );
 }
 
 void KNoteEdit::slotCutEnabled( bool b )

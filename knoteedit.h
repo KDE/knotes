@@ -93,7 +93,7 @@ class KNoteEdit
     void slotCurrentCharFormatChanged( const QTextCharFormat & );
     void slotCursorPositionChanged();
     void slotCutEnabled( bool );
-
+    void slotAutoSpellChecking( bool );
   private:
     void autoIndent();
 
