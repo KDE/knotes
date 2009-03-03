@@ -309,15 +309,6 @@ void KNote::slotUpdateReadOnly()
   actionCollection()->action( "insert_date" )->setEnabled( !readOnly );
   actionCollection()->action( "delete_note" )->setEnabled( !readOnly );
 
-  actionCollection()->action( "edit_undo" )->setEnabled( !readOnly &&
-                              m_editor->document()->isUndoAvailable() );
-  actionCollection()->action( "edit_redo" )->setEnabled( !readOnly &&
-                              m_editor->document()->isRedoAvailable() );
-  actionCollection()->action( "edit_cut" )->setEnabled( !readOnly &&
-                              m_editor->textCursor().hasSelection() );
-  actionCollection()->action( "edit_paste" )->setEnabled( !readOnly );
-  actionCollection()->action( "edit_clear" )->setEnabled( !readOnly );
-
   updateFocus();
 }
 
@@ -603,8 +594,6 @@ void KNote::buildGui()
   factory.addClient( this );
 
   m_menu = dynamic_cast<KMenu*>( factory.container( "note_context", this ) );
-  m_editor->setContextMenu( dynamic_cast<KMenu *>(
-                              factory.container( "note_edit", this ) ) );
   m_tool = dynamic_cast<KToolBar*>( factory.container( "note_tool", this ) );
 
   createNoteFooter();

@@ -55,11 +55,6 @@ class KNoteEdit
     void setTabStop( int tabs );
     void setAutoIndentMode( bool newmode );
 
-    void setContextMenu( KMenu *menu )
-    {
-        m_editMenu = menu;
-    }
-
   public slots:
     void setRichText( bool );
 
@@ -83,7 +78,6 @@ class KNoteEdit
     void setTextFontSize( int );
 
   protected:
-    virtual void contextMenuEvent( QContextMenuEvent * );
     virtual void dragEnterEvent( QDragEnterEvent * );
     virtual void dropEvent( QDropEvent * );
     virtual void keyPressEvent( QKeyEvent * );
@@ -93,8 +87,6 @@ class KNoteEdit
   private slots:
     void slotCurrentCharFormatChanged( const QTextCharFormat & );
     void slotCursorPositionChanged();
-    void slotCutEnabled( bool );
-    void slotAutoSpellChecking( bool );
   private:
     void autoIndent();
 
@@ -104,11 +96,6 @@ class KNoteEdit
     void disableRichTextActions();
 
   private:
-    KAction *m_cut;
-    KAction *m_copy;
-    KAction *m_paste;
-
-    KMenu   *m_editMenu;
 
     KToggleAction *m_textBold;
     KToggleAction *m_textItalic;

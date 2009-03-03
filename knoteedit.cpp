@@ -41,44 +41,13 @@ static const short ICON_SIZE = 10;
 
 
 KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
-  : KTextEdit( parent ), m_editMenu( 0 )
+  : KTextEdit( parent )
 {
   setAcceptDrops( true );
   setWordWrapMode( QTextOption::WordWrap );
   setLineWrapMode( WidgetWidth );
   setAutoFormatting( AutoAll );
   setCheckSpellingEnabled( true );
-  // create the actions for the RMB menu
-  QAction * undo = KStandardAction::undo( this, SLOT( undo() ), actions );
-  QAction * redo = KStandardAction::redo( this, SLOT( redo() ), actions );
-  undo->setEnabled( document()->isUndoAvailable() );
-  redo->setEnabled( document()->isRedoAvailable() );
-
-  m_cut = KStandardAction::cut( this, SLOT( cut() ), actions );
-  m_copy = KStandardAction::copy( this, SLOT( copy() ), actions );
-  m_paste = KStandardAction::paste( this, SLOT( paste() ), actions );
-
-  m_cut->setEnabled( false );
-  m_copy->setEnabled( false );
-  m_paste->setEnabled( true );
-
-  connect( this, SIGNAL( undoAvailable( bool ) ),
-           undo, SLOT( setEnabled( bool ) ) );
-  connect( this, SIGNAL( redoAvailable( bool ) ),
-           redo, SLOT( setEnabled( bool ) ) );
-
-  connect( this, SIGNAL( copyAvailable( bool ) ),
-           this, SLOT( slotCutEnabled( bool ) ) );
-  connect( this, SIGNAL( copyAvailable( bool ) ),
-           m_copy, SLOT( setEnabled( bool ) ) );
-
-  KStandardAction::clear( this, SLOT( clear() ), actions );
-  KStandardAction::selectAll( this, SLOT( selectAll() ), actions );
-
-  KToggleAction *autoSpellChecking = new KToggleAction( i18n( "Auto Spell Check" ), this );
-  autoSpellChecking->setChecked( true );
-  actions->addAction( "auto_spellchecking",autoSpellChecking );
-  connect( autoSpellChecking, SIGNAL( toggled( bool ) ), SLOT( slotAutoSpellChecking( bool ) ) );
 
   // create the actions modifying the text format
   m_textBold  = new KToggleAction( KIcon( "format-text-bold" ), i18n( "Bold" ),
@@ -203,15 +172,6 @@ KNoteEdit::~KNoteEdit()
 {
 }
 
-void KNoteEdit::slotAutoSpellChecking( bool b)
-{
-    setCheckSpellingEnabled( b );
-}
-
-void KNoteEdit::slotCutEnabled( bool b )
-{
-    m_cut->setEnabled( b && !isReadOnly() );
-}
 
 void KNoteEdit::setText( const QString& text )
 {
@@ -410,13 +370,6 @@ void KNoteEdit::textDecreaseIndent()
 
 
 /** protected methods **/
-
-void KNoteEdit::contextMenuEvent( QContextMenuEvent *e )
-{
-  if ( m_editMenu ) {
-    m_editMenu->popup( e->globalPos() );
-  }
-}
 
 void KNoteEdit::dragEnterEvent( QDragEnterEvent *e )
 {
