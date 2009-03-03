@@ -146,7 +146,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   pix.fill( Qt::black ); // just a dummy, gets updated before widget is shown
   m_textColor  = new KAction( i18n( "Text Color..." ), this );
   actions->addAction( "format_color", m_textColor );
-  ( ( QAction * )m_textColor )->setIcon( pix );
+  m_textColor->setIcon( pix );
   connect( m_textColor, SIGNAL( triggered( bool ) ), SLOT( slotTextColor() ) );
 
   m_textFont  = new KFontAction( i18n( "Text Font" ), this );
