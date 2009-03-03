@@ -61,7 +61,8 @@ void KNotesAlarm::checkAlarms()
 
     KNotesGlobalConfig::self()->setAlarmsLastChecked( QDateTime::currentDateTime() );
     QValueList<KCal::Alarm *> alarms = m_manager->alarms( from, KNotesGlobalConfig::self()->alarmsLastChecked() );
-
+    if( alarms.isEmpty())
+        return;
     QStringList notes;
     QValueList<KCal::Alarm *>::ConstIterator it;
     for ( it = alarms.begin(); it != alarms.end(); ++it )
