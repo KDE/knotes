@@ -688,10 +688,11 @@ void KNote::slotRename()
     // pop up dialog to get the new name
     bool ok;
     aboutToEnterEventLoop();
+    QString oldName = m_label->text();
     QString newName = KInputDialog::getText( QString::null,
         i18n("Please enter the new name:"), m_label->text(), &ok, this );
     eventLoopLeft();
-    if ( !ok ) // handle cancel
+    if ( !ok || ( oldName == newName) ) // handle cancel
         return;
 
     setName( newName );
