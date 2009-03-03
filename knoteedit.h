@@ -77,6 +77,8 @@ class KNoteEdit
     void textDecreaseIndent();
     void setTextFontSize( int );
 
+    void slotTextBackgroundColor();
+
   protected:
     virtual void dragEnterEvent( QDragEnterEvent * );
     virtual void dropEvent( QDropEvent * );

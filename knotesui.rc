@@ -1,6 +1,6 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="392">
+<kpartgui name="KNotes" version="393">
 
 <Menu name="note_context" noMerge="1">
     <Action name="insert_date"/>
@@ -41,6 +41,7 @@
     <Action name="format_sub"/>
     <Separator/>
     <Action name="format_color"/>
+    <Action name="text_background_color"/>
     <Separator/>
     <Action name="format_font"/>
     <Action name="format_size"/>

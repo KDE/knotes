@@ -149,6 +149,10 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   m_textColor->setIcon( pix );
   connect( m_textColor, SIGNAL( triggered( bool ) ), SLOT( slotTextColor() ) );
 
+  KAction *act = new KAction(KIcon( "format-fill-color" ), i18n( "Text Backgroun Color..." ), this );
+  actions->addAction( "text_background_color", act );
+  connect( act, SIGNAL( triggered( bool ) ), SLOT( slotTextBackgroundColor() ) );
+
   m_textFont  = new KFontAction( i18n( "Text Font" ), this );
   actions->addAction( "format_font", m_textFont );
   connect( m_textFont, SIGNAL( triggered( const QString & ) ),
@@ -271,6 +275,16 @@ void KNoteEdit::slotTextColor()
 
   if ( ret == QDialog::Accepted ) {
     setTextColor( c );
+  }
+}
+
+void KNoteEdit::slotTextBackgroundColor()
+{
+  QColor c = textBackgroundColor();
+  int ret = KColorDialog::getColor( c, this );
+
+  if ( ret == QDialog::Accepted ) {
+    setTextBackgroundColor( c );
   }
 }
 
