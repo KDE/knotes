@@ -46,7 +46,7 @@ int main( int argc, char *argv[] )
                          version.toLatin1(),
                          ki18n( "KDE Notes" ),
                          KAboutData::License_GPL,
-                         ki18n( "(c) 1997-2007, The KNotes Developers" ) );
+                         ki18n( "(c) 1997-2009, The KNotes Developers" ) );
 
   knotesAuthors( aboutData );
 
