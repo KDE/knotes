@@ -61,19 +61,22 @@ void KNotesAlarm::checkAlarms()
   if ( !from.isValid() ) {
     from.setTime_t( 0 );
   }
-  
+
   KDateTime now = KDateTime::currentLocalDateTime();
   KNotesGlobalConfig::self()->setAlarmsLastChecked( now.dateTime() );
   QList<KCal::Alarm *> alarms = m_manager->alarms( KDateTime( from,
-KDateTime::LocalZone ), now );
-  
+                                                   KDateTime::LocalZone ), now );
+
+  if( alarms.isEmpty() )
+    return;
+
   QStringList notes;
   QList<KCal::Alarm *>::ConstIterator it;
   for ( it = alarms.begin(); it != alarms.end(); ++it ) {
     KCal::Incidence *incidence = ( *it )->parent();
     notes += incidence->summary();
   }
-  
+
   if ( !notes.isEmpty() ) {
     KMessageBox::informationList( 0,
                                   i18n( "The following notes triggered "
