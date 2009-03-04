@@ -149,7 +149,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   m_textColor->setIcon( pix );
   connect( m_textColor, SIGNAL( triggered( bool ) ), SLOT( slotTextColor() ) );
 
-  KAction *act = new KAction(KIcon( "format-fill-color" ), i18n( "Text Backgroun Color..." ), this );
+  KAction *act = new KAction(KIcon( "format-fill-color" ), i18n( "Text Background Color..." ), this );
   actions->addAction( "text_background_color", act );
   connect( act, SIGNAL( triggered( bool ) ), SLOT( slotTextBackgroundColor() ) );
 
