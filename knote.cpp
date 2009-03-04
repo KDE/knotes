@@ -303,7 +303,6 @@ void KNote::slotUpdateReadOnly()
   const bool readOnly = m_readOnly->isChecked();
 
   m_editor->setReadOnly( readOnly );
-  m_editor->setUndoRedoEnabled(!readOnly);
   m_config->setReadOnly( readOnly );
 
   // enable/disable actions accordingly
