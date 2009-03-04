@@ -44,8 +44,8 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *n
     setLinkUnderline( true );
     setCheckSpellingEnabled(false);
     // create the actions for the RMB menu
-    KAction* undo = KStdAction::undo( this, SLOT(undo()), actions );
-    KAction* redo = KStdAction::redo( this, SLOT(redo()), actions );
+    undo = KStdAction::undo( this, SLOT(undo()), actions );
+    redo = KStdAction::redo( this, SLOT(redo()), actions );
     undo->setEnabled( isUndoAvailable() );
     redo->setEnabled( isRedoAvailable() );
 
@@ -57,8 +57,8 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *n
     m_copy->setEnabled( false );
     m_paste->setEnabled( true );
 
-    connect( this, SIGNAL(undoAvailable(bool)), undo, SLOT(setEnabled(bool)) );
-    connect( this, SIGNAL(redoAvailable(bool)), redo, SLOT(setEnabled(bool)) );
+    connect( this, SIGNAL(undoAvailable(bool)), this, SLOT(setEnabledUndo(bool)) );
+    connect( this, SIGNAL(redoAvailable(bool)), this, SLOT(setEnabledRedo(bool)) );
 
     connect( this, SIGNAL(copyAvailable(bool)), this, SLOT( slotCutEnabled( bool ) ) );
     connect( this, SIGNAL(copyAvailable(bool)), m_copy, SLOT(setEnabled(bool)) );
@@ -155,6 +155,16 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *n
 
 KNoteEdit::~KNoteEdit()
 {
+}
+
+void KNoteEdit::setEnabledRedo( bool b )
+{
+    redo->setEnabled( b && !isReadOnly() );
+}
+
+void KNoteEdit::setEnabledUndo( bool b )
+{
+    undo->setEnabled( b && !isReadOnly() );
 }
 
 void KNoteEdit::slotCutEnabled( bool b )

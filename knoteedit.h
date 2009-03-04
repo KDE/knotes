@@ -83,6 +83,9 @@ private slots:
     void verticalAlignmentChanged( VerticalAlignment a );
     void slotAllowTab();
 
+    void setEnabledRedo( bool b );
+    void setEnabledUndo( bool b );
+
 private:
     void autoIndent();
 
@@ -117,7 +120,8 @@ private:
     KAction         *m_textColor;
     KFontAction     *m_textFont;
     KFontSizeAction *m_textSize;
-
+    KAction* undo;
+    KAction* redo;
     bool m_autoIndentMode;
 };
 
