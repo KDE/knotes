@@ -715,6 +715,7 @@ void KNote::slotUpdateReadOnly()
     actionCollection()->action( "edit_cut" )->setEnabled( !readOnly && m_editor->hasSelectedText() );
     actionCollection()->action( "edit_paste" )->setEnabled( !readOnly );
     actionCollection()->action( "edit_clear" )->setEnabled( !readOnly );
+    actionCollection()->action( "rename_note" )->setEnabled( !readOnly );
 
     updateFocus();
 }
