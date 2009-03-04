@@ -302,10 +302,10 @@ void KNote::slotRename()
 void KNote::slotUpdateReadOnly()
 {
   const bool readOnly = m_readOnly->isChecked();
-  
+
   m_editor->setReadOnly( readOnly );
   m_config->setReadOnly( readOnly );
-  
+
   // enable/disable actions accordingly
   actionCollection()->action( "configure_note" )->setEnabled( !readOnly );
   actionCollection()->action( "insert_date" )->setEnabled( !readOnly );
@@ -319,7 +319,8 @@ void KNote::slotUpdateReadOnly()
                               m_editor->textCursor().hasSelection() );
   actionCollection()->action( "edit_paste" )->setEnabled( !readOnly );
   actionCollection()->action( "edit_clear" )->setEnabled( !readOnly );
-  
+  actionCollection()->action( "rename_note" )->setEnabled( !readOnly );
+
   updateFocus();
 }
 
