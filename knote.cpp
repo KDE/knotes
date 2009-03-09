@@ -351,12 +351,12 @@ void KNote::slotSetAlarm()
 void KNote::slotPreferences()
 {
   // reuse if possible
-  if ( KNoteConfigDlg::showDialog( noteId() ) ) {
+  if ( KNoteSimpleConfigDlg::showDialog( noteId() ) ) {
     return;
   }
 
   // create a new preferences dialog...
-  KNoteConfigDlg *dialog = new KNoteConfigDlg( m_config, name(), this, noteId() );
+  KNoteSimpleConfigDlg *dialog = new KNoteSimpleConfigDlg( m_config, name(), this, noteId() );
   connect( dialog, SIGNAL( settingsChanged( const QString & ) ) , this,
            SLOT( slotApplyConfig() ) );
   connect( this, SIGNAL( sigNameChanged() ), dialog,

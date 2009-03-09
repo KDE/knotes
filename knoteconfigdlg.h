@@ -22,32 +22,114 @@
 #define KNOTECONFIGDLG_H
 
 #include <kconfigdialog.h>
+#include <kcmodule.h>
+#include <kcmultidialog.h>
 
 class QString;
 
 class KNoteConfig;
 
-
-class KNoteConfigDlg
-  : public KConfigDialog
+class KNoteSimpleConfigDlg
+    : public KConfigDialog
 {
   Q_OBJECT
   public:
-    KNoteConfigDlg( KNoteConfig *config, const QString &title,
+    KNoteSimpleConfigDlg( KNoteConfig *config, const QString &title,
                     QWidget *parent, const QString &name );
-    ~KNoteConfigDlg();
-    
+    ~KNoteSimpleConfigDlg() {}
+
   public slots:
     void slotUpdateCaption();
-    
-  protected:
-    QWidget *makeDisplayPage( bool );
-    QWidget *makeEditorPage( bool );
-    
-    QWidget *makeDefaultsPage();
-    QWidget *makeActionsPage();
-    QWidget *makeNetworkPage();
-    QWidget *makeStylePage();
+};
+
+class KNoteConfigDlg
+  : public KCMultiDialog
+{
+  Q_OBJECT
+  public:
+    KNoteConfigDlg( const QString &title,
+                    QWidget *parent );
+    ~KNoteConfigDlg();
+
+public slots:
+    void slotOk();
+};
+
+
+class KNoteDisplayConfig : public KCModule
+{
+    Q_OBJECT
+public:
+    KNoteDisplayConfig( const KComponentData &inst, QWidget *parent );
+    /** Reimplemented from KCModule. */
+    virtual void load();
+    virtual void save();
+};
+
+class KNoteEditorConfig : public KCModule
+{
+    Q_OBJECT
+public:
+    KNoteEditorConfig( const KComponentData &inst, QWidget *parent );
+    /** Reimplemented from KCModule. */
+    virtual void load();
+    virtual void save();
+};
+
+
+class KNoteActionConfig : public KCModule
+{
+    Q_OBJECT
+public:
+    KNoteActionConfig( const KComponentData &inst, QWidget *parent );
+    /** Reimplemented from KCModule. */
+    virtual void load();
+    virtual void save();
+};
+
+class KNoteNetworkConfig : public KCModule
+{
+    Q_OBJECT
+public:
+    KNoteNetworkConfig( const KComponentData &inst, QWidget *parent );
+    /** Reimplemented from KCModule. */
+    virtual void load();
+    virtual void save();
+};
+
+class KNoteStyleConfig : public KCModule
+{
+    Q_OBJECT
+public:
+    KNoteStyleConfig( const KComponentData &inst, QWidget *parent );
+    /** Reimplemented from KCModule. */
+    virtual void load();
+    virtual void save();
+};
+
+/*
+class KNoteDisplayConfig : public KCModule
+{
+    Q_OBJECT
+public:
+    KNoteDisplayConfig( const KComponentData &inst, QWidget *parent, bool defaults );
+    //virtual void load();
+    //virtual void save();
+};
+*/
+
+class KNoteDisplayConfigWidget :public QWidget
+{
+    Q_OBJECT
+public:
+    KNoteDisplayConfigWidget( bool defaults );
+};
+
+class KNoteEditorConfigWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    KNoteEditorConfigWidget( bool defaults );
 };
 
 #endif
