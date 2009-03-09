@@ -219,7 +219,7 @@ void KNote::setName( const QString& name )
   note_win.setName( name.toUtf8() );
 #endif
 
-  emit sigNameChanged();
+  emit sigNameChanged(name);
 }
 
 void KNote::setText( const QString& text )
@@ -359,8 +359,8 @@ void KNote::slotPreferences()
   KNoteSimpleConfigDlg *dialog = new KNoteSimpleConfigDlg( m_config, name(), this, noteId() );
   connect( dialog, SIGNAL( settingsChanged( const QString & ) ) , this,
            SLOT( slotApplyConfig() ) );
-  connect( this, SIGNAL( sigNameChanged() ), dialog,
-           SLOT( slotUpdateCaption() ) );
+  connect( this, SIGNAL( sigNameChanged(const QString &) ), dialog,
+           SLOT( slotUpdateCaption(const QString &) ) );
            dialog->show();
 }
 

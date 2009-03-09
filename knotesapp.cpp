@@ -565,7 +565,7 @@ void KNotesApp::createNote( KCal::Journal *journal )
            SLOT( slotWalkThroughNotes() ) ) ;
   connect( newNote, SIGNAL( sigKillNote( KCal::Journal * ) ),
            SLOT( slotNoteKilled( KCal::Journal * ) ) );
-  connect( newNote, SIGNAL( sigNameChanged() ),
+  connect( newNote, SIGNAL( sigNameChanged(const QString &) ),
            SLOT( updateNoteActions() ) );
   connect( newNote, SIGNAL( sigDataChanged() ),
            SLOT( saveNotes() ) );

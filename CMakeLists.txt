@@ -3,9 +3,6 @@ add_subdirectory( pics )
 add_subdirectory( icons ) 
 
 
-## QT3_SUPPORT disabled ~gamaral
-## add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
-
 ########### next target ###############
 
 
@@ -51,7 +48,7 @@ target_link_libraries(knotes_local  ${KDE4_KIO_LIBS}  ${KDE4_KRESOURCES_LIBS} ${
 install(TARGETS knotes_local  DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### next target ###############
-set(kcm_knotes_PART_SRCS  knoteconfigdlg.cpp )
+set(kcm_knotes_PART_SRCS knoteconfigdlg.cpp )
 
 set( libknotesconfig_SRCS knoteconfig.kcfgc knotesglobalconfig.kcfgc )
 

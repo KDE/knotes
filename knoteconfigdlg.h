@@ -39,7 +39,7 @@ class KNoteSimpleConfigDlg
     ~KNoteSimpleConfigDlg() {}
 
   public slots:
-    void slotUpdateCaption();
+    void slotUpdateCaption(const QString &);
 };
 
 class KNoteConfigDlg

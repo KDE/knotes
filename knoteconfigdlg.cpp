@@ -70,12 +70,9 @@ KNoteSimpleConfigDlg::KNoteSimpleConfigDlg( KNoteConfig *config, const QString &
 }
 
 
-void KNoteSimpleConfigDlg::slotUpdateCaption()
+void KNoteSimpleConfigDlg::slotUpdateCaption(const QString & name)
 {
-    //KNote *note = ::qobject_cast<KNote *>( sender() );
-    //if ( note ) {
-    //setCaption( note->name() );
-    //}
+    setCaption( name );
 }
 
 

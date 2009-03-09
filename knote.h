@@ -76,7 +76,7 @@ class KNote
   signals:
     void sigRequestNewNote();
     void sigShowNextNote();
-    void sigNameChanged();
+    void sigNameChanged(const QString &);
     void sigDataChanged();
     void sigColorChanged();
     void sigKillNote( KCal::Journal * );
