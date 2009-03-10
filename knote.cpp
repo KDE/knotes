@@ -1022,11 +1022,11 @@ void KNote::updateFocus()
 {
   if ( hasFocus() ) {
     m_button->show();
-    m_grip->show();
 
     if ( !m_editor->isReadOnly() ) {
       if ( m_tool && m_tool->isHidden() && m_editor->acceptRichText() ) {
         m_tool->show();
+	m_grip->show();
         setGeometry( x(), y(), width(), height() + m_tool->height() );
       }
     } else if ( m_tool && !m_tool->isHidden() ) {
