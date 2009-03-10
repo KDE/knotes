@@ -1170,6 +1170,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
                fe->reason() != Qt::MouseFocusReason ) {
             updateFocus();
             if ( isModified() ) {
+              saveConfig();
               saveData();
             }
           }
