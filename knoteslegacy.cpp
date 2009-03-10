@@ -72,8 +72,8 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
     bool converted = false;
 
     QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
-    QStringList notes = noteDir.entryList( QDir::Files, QDir::Name );
-    for ( QStringList::Iterator note = notes.begin(); note != notes.end(); note++ )
+    const QStringList notes = noteDir.entryList( QDir::Files, QDir::Name );
+    for ( QStringList::ConstIterator note = notes.constBegin(); note != notes.constEnd(); ++note )
     {
         QString file = noteDir.absFilePath( *note );
         KSimpleConfig* test = new KSimpleConfig( file );
@@ -109,7 +109,7 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
             test->writeEntry( "KeepAbove", (state & NET::KeepAbove) ? true : false );
             test->deleteEntry( "state" );
         }
-        delete test;
+        delete test;	
     }
 
     return converted;

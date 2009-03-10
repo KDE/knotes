@@ -363,13 +363,17 @@ void KNoteEdit::contentsDropEvent( QDropEvent *e )
     KURL::List list;
 
     if ( KURLDrag::decode( e, list ) )
-        for ( KURL::List::Iterator it = list.begin(); it != list.end(); ++it )
+    {
+	KURL::List::ConstIterator begin = list.constBegin();
+	KURL::List::ConstIterator end = list.constEnd();
+        for ( KURL::List::ConstIterator it = begin; it != end; ++it )
         {
-            if ( it != list.begin() )
+            if ( it != begin )
                 insert( ", " );
 
             insert( (*it).prettyURL() );
         }
+    }
     else
         KTextEdit::contentsDropEvent( e );
 }

@@ -188,7 +188,7 @@ KNotesApp::KNotesApp()
     {
         KCal::Journal::List notes = calendar.journals();
         KCal::Journal::List::ConstIterator it;
-        for ( it = notes.begin(); it != notes.end(); ++it )
+        for ( it = notes.constBegin(); it != notes.constEnd(); ++it )
             m_manager->addNewNote( *it );
 
         m_manager->save();
@@ -583,6 +583,7 @@ void KNotesApp::slotConfigureAccels()
 
 void KNotesApp::slotNoteKilled( KCal::Journal *journal )
 {
+    kdDebug()<<" void KNotesApp::slotNoteKilled( KCal::Journal *journal ) \n";	    
     m_manager->deleteNote( journal );
     saveNotes();
 }

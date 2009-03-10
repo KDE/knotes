@@ -791,11 +791,11 @@ void KNote::slotSend()
 void KNote::slotMail()
 {
     // get the mail action command
-    QStringList cmd_list = QStringList::split( QChar(' '), KNotesGlobalConfig::mailAction() );
+    const QStringList cmd_list = QStringList::split( QChar(' '), KNotesGlobalConfig::mailAction() );
 
     KProcess mail;
-    for ( QStringList::Iterator it = cmd_list.begin();
-        it != cmd_list.end(); ++it )
+    for ( QStringList::ConstIterator it = cmd_list.constBegin();
+        it != cmd_list.constEnd(); ++it )
     {
         if ( *it == "%f" )
             mail << plainText().local8Bit();  // convert rich text to plain text

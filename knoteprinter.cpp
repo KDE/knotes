@@ -4,7 +4,7 @@
 
 #include <klocale.h>
 #include <kprinter.h>
-
+#include <kdebug.h>
 #include <qfont.h>
 #include <qpaintdevicemetrics.h>
 #include <qpainter.h>
@@ -79,6 +79,9 @@ void KNotePrinter::doPrint( KPrinter& printer, QPainter& painter,
             metrics.width() - marginX * 2,
             metrics.height() - marginY * 2 );
 
+    kdDebug()<<" content :"<<content<<endl;
+    kdDebug()<<" m_styleSheet :"<<m_styleSheet<<endl;
+    //kdDebug()<<" m_font :"<<m_font;
     QSimpleRichText text( content, m_font, m_context,
             m_styleSheet, m_mimeSourceFactory,
             body.height() /*, linkColor, linkUnderline? */ );
