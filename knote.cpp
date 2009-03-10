@@ -309,7 +309,22 @@ void KNote::slotUpdateReadOnly()
   actionCollection()->action( "configure_note" )->setEnabled( !readOnly );
   actionCollection()->action( "insert_date" )->setEnabled( !readOnly );
   actionCollection()->action( "delete_note" )->setEnabled( !readOnly );
-
+  actionCollection()->action( "format_bold" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_italic" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_underline" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_strikeout" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_alignleft" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_aligncenter" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_alignright" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_alignblock" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_list" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_super" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_sub" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_increaseindent" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_decreaseindent" )->setEnabled( !readOnly );
+  actionCollection()->action( "text_background_color" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_size" )->setEnabled( !readOnly );
+  actionCollection()->action( "format_color" )->setEnabled( !readOnly );
   updateFocus();
 }
 
