@@ -139,8 +139,8 @@ void KNotePrinter::printNotes( const QValueList<KCal::Journal*>& journals ) cons
     QPainter painter;
     painter.begin( &printer );
     QString content;
-    QValueListConstIterator<KCal::Journal*> it( journals.begin() );
-    QValueListConstIterator<KCal::Journal*> end( journals.end() );
+    QValueListConstIterator<KCal::Journal*> it( journals.constBegin() );
+    QValueListConstIterator<KCal::Journal*> end( journals.constEnd() );
     while ( it != end ) {
         KCal::Journal *j = *it;
         it++;
