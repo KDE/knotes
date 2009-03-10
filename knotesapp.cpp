@@ -236,6 +236,8 @@ KNotesApp::~KNotesApp()
   m_noteActions.clear();
   blockSignals( false );
 
+  delete m_findPos;
+  m_findPos = 0;
   //delete m_listener;
   delete m_manager;
   delete m_guiBuilder;
