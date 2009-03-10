@@ -770,10 +770,9 @@ void KNote::slotSend()
     aboutToEnterEventLoop();
     bool ok = (hostDlg.exec() == QDialog::Accepted);
     eventLoopLeft();
-    QString host = hostDlg.host();
-
     if ( !ok ) // handle cancel
         return;
+    QString host = hostDlg.host();
 
     if ( host.isEmpty() )
     {
