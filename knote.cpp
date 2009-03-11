@@ -306,6 +306,7 @@ void KNote::slotUpdateReadOnly()
   actionCollection()->action( "configure_note" )->setEnabled( !readOnly );
   actionCollection()->action( "insert_date" )->setEnabled( !readOnly );
   actionCollection()->action( "delete_note" )->setEnabled( !readOnly );
+  actionCollection()->action( "rename_note" )->setEnabled( !readOnly );
   actionCollection()->action( "format_bold" )->setEnabled( !readOnly );
   actionCollection()->action( "format_italic" )->setEnabled( !readOnly );
   actionCollection()->action( "format_underline" )->setEnabled( !readOnly );
@@ -323,6 +324,7 @@ void KNote::slotUpdateReadOnly()
   actionCollection()->action( "format_size" )->setEnabled( !readOnly );
   actionCollection()->action( "format_color" )->setEnabled( !readOnly );
   actionCollection()->action( "rename_note" )->setEnabled( !readOnly);
+
   updateFocus();
 }
 
