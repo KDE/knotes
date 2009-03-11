@@ -131,14 +131,12 @@ void KNote::slotKill( bool force )
          "ConfirmDeleteNote" ) != KMessageBox::Continue ) ) {
     return;
   }
-
   // delete the configuration first, then the corresponding file
   delete m_config;
   m_config = 0;
 
   QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
   configFile += m_journal->uid();
-
   if ( !KIO::NetAccess::del( KUrl( configFile ), this ) ) {
     kError( 5500 ) <<"Can't remove the note config:" << configFile;
   }
@@ -324,6 +322,7 @@ void KNote::slotUpdateReadOnly()
   actionCollection()->action( "text_background_color" )->setEnabled( !readOnly );
   actionCollection()->action( "format_size" )->setEnabled( !readOnly );
   actionCollection()->action( "format_color" )->setEnabled( !readOnly );
+  actionCollection()->action( "rename_note" )->setEnabled( !readOnly);
   updateFocus();
 }
 
@@ -1134,7 +1133,8 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
     QMouseEvent *e = ( QMouseEvent * )ev;
 
     if ( ev->type() == QEvent::MouseButtonDblClick ) {
-      slotRename();
+       if(!m_editor->isReadOnly())
+          slotRename();
     }
 
     if ( ev->type() == QEvent::MouseButtonPress &&
