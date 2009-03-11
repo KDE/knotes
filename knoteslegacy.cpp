@@ -71,8 +71,8 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
   bool converted = false;
   
   QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
-  QStringList notes = noteDir.entryList( QDir::Files, QDir::Name );
-  for ( QStringList::Iterator note = notes.begin(); note != notes.end();
+  const QStringList notes = noteDir.entryList( QDir::Files, QDir::Name );
+  for ( QStringList::ConstIterator note = notes.constBegin(); note != notes.constEnd();
         note++ ) {
     QString file = noteDir.absoluteFilePath( *note );
     KConfig *test = new KConfig( file, KConfig::SimpleConfig );

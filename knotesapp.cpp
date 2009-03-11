@@ -202,7 +202,7 @@ KNotesApp::KNotesApp()
   if ( KNotesLegacy::convert( &calendar ) ) {
     KCal::Journal::List notes = calendar.journals();
     KCal::Journal::List::ConstIterator it;
-    for ( it = notes.begin(); it != notes.end(); ++it ) {
+    for ( it = notes.constBegin(); it != notes.constEnd(); ++it ) {
       m_manager->addNewNote( *it );
     }
     

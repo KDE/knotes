@@ -403,11 +403,11 @@ void KNote::slotSend()
 void KNote::slotMail()
 {
   // get the mail action command
-  QStringList cmd_list = KNotesGlobalConfig::mailAction().split( QChar(' '),
+  const QStringList cmd_list = KNotesGlobalConfig::mailAction().split( QChar(' '),
       QString::SkipEmptyParts );
   
   KProcess mail;
-  foreach ( QString cmd, cmd_list ) {
+  foreach ( const QString &cmd, cmd_list ) {
     if ( cmd == "%f" ) {
       mail << m_editor->toPlainText();
     } else if ( cmd == "%t" ) {

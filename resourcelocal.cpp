@@ -83,7 +83,7 @@ bool ResourceLocal::load()
   
   KCal::Journal::List notes = mCalendar.journals();
   KCal::Journal::List::ConstIterator it;
-  for ( it = notes.begin(); it != notes.end(); ++it ) {
+  for ( it = notes.constBegin(); it != notes.constEnd(); ++it ) {
     manager()->registerNote( this, *it );
   }
   
@@ -122,11 +122,11 @@ KCal::Alarm::List ResourceLocal::alarms( const KDateTime &from,
   KCal::Journal::List notes = mCalendar.journals();
   KCal::Journal::List::ConstIterator note;
   
-  for ( note = notes.begin(); note != notes.end(); ++note ) {
+  for ( note = notes.constBegin(); note != notes.constEnd(); ++note ) {
     KDateTime preTime = from.addSecs( -1 );
     KCal::Alarm::List::ConstIterator it;
-    for( it = ( *note )->alarms().begin();
-         it != ( *note )->alarms().end(); ++it ) {
+    for( it = ( *note )->alarms().constBegin();
+         it != ( *note )->alarms().constEnd(); ++it ) {
       if ( ( *it )->enabled() ) {
         KDateTime dt = ( *it )->nextRepetition( preTime );
         if ( dt.isValid() && dt <= to ) {

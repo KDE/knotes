@@ -72,7 +72,7 @@ void KNotesAlarm::checkAlarms()
 
   QStringList notes;
   QList<KCal::Alarm *>::ConstIterator it;
-  for ( it = alarms.begin(); it != alarms.end(); ++it ) {
+  for ( it = alarms.constBegin(); it != alarms.constEnd(); ++it ) {
     KCal::Incidence *incidence = ( *it )->parent();
     notes += incidence->summary();
   }
