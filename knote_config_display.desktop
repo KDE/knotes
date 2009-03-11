@@ -13,4 +13,14 @@ X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
 Name=Display
+Name[ga]=Taispeáint
+Name[pt_BR]=Exibir
+Name[sv]=Skärm
+Name[uk]=Показ
+Name[zh_TW]=顯示：
 Comment=Setup display for notes
+Comment[ga]=Socraigh taispeáint na nótaí
+Comment[pt_BR]=Configurar exibição para notas
+Comment[sv]=Ställ in skärm för anteckningslappar
+Comment[uk]=Налаштуйте показ нотаток
+Comment[zh_TW]=設定備忘的顯示

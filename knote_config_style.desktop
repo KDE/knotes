@@ -13,4 +13,14 @@ X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
 Name=Style
+Name[ga]=Stíl
+Name[pt_BR]=Estilo
+Name[sv]=Stil
+Name[uk]=Стиль
+Name[zh_TW]=樣式
 Comment=Style Settings
+Comment[ga]=Socruithe Stíle
+Comment[pt_BR]=Configurações de estilo
+Comment[sv]=Stilinställningar
+Comment[uk]=Параметри стилю
+Comment[zh_TW]=樣式設定
