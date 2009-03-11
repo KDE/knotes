@@ -1292,8 +1292,10 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
         QMouseEvent *e = (QMouseEvent *)ev;
 
         if ( ev->type() == QEvent::MouseButtonDblClick )
-            slotRename();
-
+	{
+	    if( !m_editor->isReadOnly())
+               slotRename();
+        }
         if ( ev->type() == QEvent::MouseButtonPress &&
              (e->button() == LeftButton || e->button() == MidButton))
         {
