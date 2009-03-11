@@ -57,7 +57,7 @@ KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
   KVBox *page = new KVBox( this );
   setMainWidget( page );
   ( void ) new QLabel( i18n("Select recipient:"), page );
-  
+
   m_servicesView = new QTableView( page );
   m_servicesView->setShowGrid( false );
   DNSSD::ServiceModel* mdl = new DNSSD::ServiceModel( new DNSSD::ServiceBrowser( "_knotes._tcp", true ) );
@@ -71,18 +71,16 @@ KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
     SLOT( serviceSelected( const QModelIndex& ) ) );
   connect( m_servicesView, SIGNAL( clicked( const QModelIndex& ) ),
     SLOT( serviceSelected( const QModelIndex& ) ) );
-  
+
   ( void ) new QLabel( i18n("Hostname or IP address:"), page );
-  
+
   m_hostCombo = new KHistoryComboBox( true, page );
   m_hostCombo->setMinimumWidth( fontMetrics().maxWidth() * 15 );
   m_hostCombo->setDuplicatesEnabled( false );
-  
+
   // Read known hosts from configfile
   m_hostCombo->setHistoryItems( KNotesGlobalConfig::knownHosts(), true );
   m_hostCombo->setFocus();
-  // m_hostCombo->completionObject()->setItems(
-  //   KNotesGlobalConfig::hostCompletions() );
   connect( m_hostCombo->lineEdit(), SIGNAL( textChanged ( const QString & ) ),
            this, SLOT( slotTextChanged( const QString & ) ) );
   slotTextChanged( m_hostCombo->lineEdit()->text() );
@@ -93,11 +91,9 @@ KNoteHostDlg::~KNoteHostDlg()
   if ( result() == Accepted ) {
     m_hostCombo->addToHistory( m_hostCombo->currentText().trimmed() );
   }
-  
+
   // Write known hosts to configfile
   KNotesGlobalConfig::setKnownHosts( m_hostCombo->historyItems() );
-  //KNotesGlobalConfig::setHostCompletions(
-  //  m_hostCombo->completionObject()->items() );
   KNotesGlobalConfig::self()->writeConfig();
 }
 
@@ -106,7 +102,7 @@ void KNoteHostDlg::slotTextChanged( const QString &text )
   enableButton( Ok, !text.isEmpty() );
 }
 
-void KNoteHostDlg::serviceSelected( const QModelIndex& idx ) 
+void KNoteHostDlg::serviceSelected( const QModelIndex& idx )
 {
   DNSSD::RemoteService::Ptr srv=idx.data( DNSSD::ServiceModel::ServicePtrRole ).value<DNSSD::RemoteService::Ptr>();
   m_hostCombo->lineEdit()->setText( srv->hostName() + ":" + QString::number( srv->port() ) );
@@ -117,7 +113,7 @@ QString KNoteHostDlg::host() const
   return m_hostCombo->currentText().section( ':', 0, 0 );
 }
 
-quint16 KNoteHostDlg::port() const 
+quint16 KNoteHostDlg::port() const
 {
   return m_hostCombo->currentText().section( ':', 1 ).toUShort();
 }
