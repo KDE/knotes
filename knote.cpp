@@ -380,11 +380,12 @@ void KNote::slotSend()
   // pop up dialog to get the IP
   KNoteHostDlg hostDlg( i18n( "Send \"%1\"", name() ), this );
   bool ok = ( hostDlg.exec() == QDialog::Accepted );
-  QString host = hostDlg.host();
-  
+
   if ( !ok ) { // handle cancel
     return;
   }
+
+  QString host = hostDlg.host();
   
   if ( host.isEmpty() ) {
     KMessageBox::sorry( this, i18n( "The host cannot be empty." ) );
