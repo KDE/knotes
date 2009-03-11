@@ -85,7 +85,7 @@ using namespace KCal;
 KNote::KNote( const QDomDocument& buildDoc, Journal *j, QWidget *parent )
   : QFrame( parent, Qt::FramelessWindowHint ), m_label( 0 ), m_grip( 0 ),
     m_button( 0 ), m_tool( 0 ), m_editor( 0 ), m_config( 0 ), m_journal( j ),
-    m_find( 0 ), m_kwinConf( KSharedConfig::openConfig( "kwinrc" ) )
+    m_find( 0 ), m_kwinConf( KSharedConfig::openConfig( "kwinrc" ) ), m_blockEmitDataChanged( false )
 {
   setAcceptDrops( true );
   setAttribute( Qt::WA_DeleteOnClose );
@@ -306,7 +306,6 @@ void KNote::slotUpdateReadOnly()
   actionCollection()->action( "configure_note" )->setEnabled( !readOnly );
   actionCollection()->action( "insert_date" )->setEnabled( !readOnly );
   actionCollection()->action( "delete_note" )->setEnabled( !readOnly );
-  actionCollection()->action( "rename_note" )->setEnabled( !readOnly );
   actionCollection()->action( "format_bold" )->setEnabled( !readOnly );
   actionCollection()->action( "format_italic" )->setEnabled( !readOnly );
   actionCollection()->action( "format_underline" )->setEnabled( !readOnly );
@@ -355,12 +354,14 @@ void KNote::slotInsDate()
 
 void KNote::slotSetAlarm()
 {
+    m_blockEmitDataChanged = true;
   KNoteAlarmDlg dlg( name(), this );
   dlg.setIncidence( m_journal );
 
   if ( dlg.exec() == QDialog::Accepted ) {
     emit sigDataChanged();
   }
+  m_blockEmitDataChanged = false;
 }
 
 void KNote::slotPreferences()
@@ -1171,7 +1172,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
           if ( fe->reason() != Qt::PopupFocusReason &&
                fe->reason() != Qt::MouseFocusReason ) {
             updateFocus();
-            if ( isModified() ) {
+            if ( isModified() && !m_blockEmitDataChanged ) {
               saveConfig();
               saveData();
             }
