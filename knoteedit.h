@@ -92,7 +92,10 @@ class KNoteEdit
   private slots:
     void slotCurrentCharFormatChanged( const QTextCharFormat & );
     void slotCutEnabled( bool );
-    
+
+    void setEnabledRedo( bool b );
+    void setEnabledUndo( bool b );
+
   private:
     void autoIndent();
     
@@ -128,7 +131,10 @@ class KNoteEdit
     KAction         *m_textColor;
     KFontAction     *m_textFont;
     KFontSizeAction *m_textSize;
-    
+
+    KAction* undo;
+    KAction* redo;
+
     bool m_autoIndentMode;
 };
 

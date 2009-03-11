@@ -49,8 +49,8 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   setAutoFormatting( AutoAll );
   
   // create the actions for the RMB menu
-  QAction * undo = KStandardAction::undo( this, SLOT( undo() ), actions );
-  QAction * redo = KStandardAction::redo( this, SLOT( redo() ), actions );
+  undo = KStandardAction::undo( this, SLOT( undo() ), actions );
+  redo = KStandardAction::redo( this, SLOT( redo() ), actions );
   undo->setEnabled( document()->isUndoAvailable() );
   redo->setEnabled( document()->isRedoAvailable() );
   
@@ -63,9 +63,9 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   m_paste->setEnabled( true );
   
   connect( this, SIGNAL( undoAvailable( bool ) ),
-           undo, SLOT( setEnabled( bool ) ) );
+           this, SLOT( setEnabledUndo( bool ) ) );
   connect( this, SIGNAL( redoAvailable( bool ) ),
-           redo, SLOT( setEnabled( bool ) ) );
+           this, SLOT( setEnabledRedo( bool ) ) );
   
   connect( this, SIGNAL( copyAvailable( bool ) ),
            this, SLOT( slotCutEnabled( bool ) ) );
@@ -203,6 +203,16 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
 
 KNoteEdit::~KNoteEdit()
 {
+}
+
+void KNoteEdit::setEnabledRedo( bool b )
+{
+    redo->setEnabled( b && !isReadOnly() );
+}
+
+void KNoteEdit::setEnabledUndo( bool b )
+{
+    undo->setEnabled( b && !isReadOnly() );
 }
 
 void KNoteEdit::slotCutEnabled( bool b )
