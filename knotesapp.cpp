@@ -69,25 +69,25 @@ class KNotesKeyDialog
     {
       setCaption( i18n( "Configure Shortcuts" ) );
       setButtons( Default | Ok | Cancel );
-      
+
       m_keyChooser = new KShortcutsEditor( globals, this );
       setMainWidget( m_keyChooser );
       connect( this, SIGNAL( defaultClicked() ),
                m_keyChooser, SLOT( allDefault() ) );
     }
-    
+
     void insert( KActionCollection *actions )
     {
         m_keyChooser->addCollection( actions, i18n( "Note Actions" ) );
     }
-    
+
     void configure()
     {
         if ( exec() == Accepted ) {
             m_keyChooser->save();
         }
     }
-    
+
   private:
     KShortcutsEditor *m_keyChooser;
 };
@@ -108,18 +108,18 @@ KNotesApp::KNotesApp()
 
   // create the dock widget...
   m_tray = new KSystemTrayIcon();
-  
+
   m_tray->setToolTip( i18n( "KNotes: Sticky notes for KDE" ) );
   m_tray->setIcon( KSystemTrayIcon::loadIcon( "knotes" ) );
   connect( m_tray, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
            SLOT( slotActivated( QSystemTrayIcon::ActivationReason ) ) );
-  
+
   // set the initial style
 #ifdef __GNUC__
 #warning FIXME
 #endif
   //    KNote::setStyle( KNotesGlobalConfig::style() );
-  
+
   // create the GUI...
   KAction *action  = new KAction( KIcon( "document-new" ),
                                   i18n( "New Note" ), this );
@@ -127,31 +127,31 @@ KNotesApp::KNotesApp()
                              KAction::DefaultShortcut );
   actionCollection()->addAction( "new_note", action );
   connect( action, SIGNAL( triggered() ), SLOT( newNote() ) );
-  
+
   action  = new KAction( KIcon( "edit-paste" ),
                          i18n( "New Note From Clipboard" ), this );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_C ),
                              KAction::DefaultShortcut );
   actionCollection()->addAction( "new_note_clipboard", action );
   connect( action, SIGNAL( triggered() ), SLOT( newNoteFromClipboard() ) );
-  
+
   action  = new KAction( KIcon( "knotes" ), i18n( "Show All Notes" ), this );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_S ),
                              KAction::DefaultShortcut );
   actionCollection()->addAction( "show_all_notes", action );
   connect( action, SIGNAL( triggered() ), SLOT( showAllNotes() ) );
-  
+
   action  = new KAction( KIcon( "window-close" ),
                          i18n( "Hide All Notes" ), this );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_H ),
                              KAction::DefaultShortcut );
   actionCollection()->addAction( "hide_all_notes", action );
   connect( action, SIGNAL( triggered() ), SLOT( hideAllNotes() ) );
-  
+
   new KHelpMenu( this, KGlobal::mainComponent().aboutData(), false,
                  actionCollection() );
-  
-  KStandardAction::find( this, SLOT( slotOpenFindDialog() ),
+
+  m_findAction = KStandardAction::find( this, SLOT( slotOpenFindDialog() ),
                          actionCollection() );
   KStandardAction::preferences( this, SLOT( slotPreferences() ),
                          actionCollection() );
@@ -160,13 +160,13 @@ KNotesApp::KNotesApp()
   //FIXME: no shortcut removing!?
   KStandardAction::quit( this, SLOT( slotQuit() ),
                          actionCollection() )->setShortcut( 0 );
-  
+
   setXMLFile( componentData().componentName() + "appui.rc" );
-  
+
   m_guiBuilder = new KXMLGUIBuilder( this );
   m_guiFactory = new KXMLGUIFactory( m_guiBuilder, this );
   m_guiFactory->addClient( this );
-  
+
   m_contextMenu = static_cast<KMenu *>( m_guiFactory->container(
                                         "knotes_context",
                                         this ) );
@@ -179,26 +179,26 @@ KNotesApp::KNotesApp()
   QStringList fileList =
       componentData().dirs()->findAllResources( "data", filter ) +
       componentData().dirs()->findAllResources( "data", xmlFileName );
-  
+
   QString doc;
   KXMLGUIClient::findMostRecentXMLFile( fileList, doc );
   m_noteGUI.setContent( doc );
-  
+
   KConfigGroup config( KGlobal::config(), "Global Keybindings" );
-  
+
   // clean up old config files
   KNotesLegacy::cleanUp();
-  
+
   // create the resource manager
   m_manager = new KNotesResourceManager();
   connect( m_manager, SIGNAL( sigRegisteredNote( KCal::Journal * ) ),
            this,      SLOT( createNote( KCal::Journal * ) ) );
   connect( m_manager, SIGNAL( sigDeregisteredNote( KCal::Journal * ) ),
            this,      SLOT( killNote( KCal::Journal * ) ) );
-  
+
   // read the notes
   m_manager->load();
-  
+
   // read the old config files, convert and add them
   KCal::CalendarLocal calendar( QString::fromLatin1( "UTC" ) );
   if ( KNotesLegacy::convert( &calendar ) ) {
@@ -207,20 +207,20 @@ KNotesApp::KNotesApp()
     for ( it = notes.constBegin(); it != notes.constEnd(); ++it ) {
       m_manager->addNewNote( *it );
     }
-    
+
     m_manager->save();
   }
-  
+
   // set up the alarm reminder - do it after loading the notes because this
   // is used as a check if updateNoteActions has to be called for a new note
   m_alarm = new KNotesAlarm( m_manager, this );
-  
+
    updateNetworkListener();
-  
+
   if ( m_notes.size() == 0 && !kapp->isSessionRestored() ) {
       newNote();
   }
-  
+
   updateNoteActions();
   m_tray->show();
 }
@@ -228,14 +228,14 @@ KNotesApp::KNotesApp()
 KNotesApp::~KNotesApp()
 {
   saveNotes();
-  
+
   blockSignals( true );
   qDeleteAll( m_notes );
   m_notes.clear();
   qDeleteAll( m_noteActions );
   m_noteActions.clear();
   blockSignals( false );
-  
+
   //delete m_listener;
   delete m_manager;
   delete m_guiBuilder;
@@ -254,7 +254,7 @@ QString KNotesApp::newNote( const QString &name, const QString &text )
 {
   // create the new note
   KCal::Journal *journal = new KCal::Journal();
-  
+
   // new notes have the current date/time as title if none was given
   if ( !name.isEmpty() ) {
     journal->setSummary( name );
@@ -262,14 +262,14 @@ QString KNotesApp::newNote( const QString &name, const QString &text )
     journal->setSummary( KGlobal::locale()->formatDateTime(
                                                QDateTime::currentDateTime() ) );
   }
-  
+
   // the body of the note
   journal->setDescription( text );
-  
+
   m_manager->addNewNote( journal );
-  
+
   showNote( journal->uid() );
-  
+
   return journal->uid();
 }
 
@@ -291,7 +291,7 @@ void KNotesApp::showAllNotes() const
   foreach ( KNote *note, m_notes ) {
     // workaround to BUG 149116
     note->hide();
-    
+
     note->show();
     note->setFocus();
   }
@@ -336,11 +336,11 @@ void KNotesApp::killNote( const QString &id )
 QMap<QString, QString> KNotesApp::notes() const
 {
   QMap<QString, QString> notes;
-  
+
   foreach ( KNote *note, m_notes ) {
     notes.insert( note->noteId(), note->name() );
   }
-  
+
   return notes;
 }
 
@@ -437,20 +437,20 @@ void KNotesApp::slotOpenFindDialog()
   findDia.setHasSelection( false );
   findDia.setHasCursor( false );
   findDia.setSupportsBackwardsFind( false );
-  
+
   if ( findDia.exec() != QDialog::Accepted ) {
     return;
   }
-  
+
   delete m_findPos;
   m_findPos = new QMap<QString, KNote *>::iterator();
   *m_findPos = m_notes.begin();
-  
+
   // this could be in an own method if searching without a dialog
   // should be possible
   delete m_find;
   m_find = new KFind( findDia.pattern(), findDia.options(), this );
-  
+
   slotFindNext();
 }
 
@@ -488,25 +488,25 @@ void KNotesApp::slotPreferences()
 void KNotesApp::slotConfigureAccels()
 {
   KNotesKeyDialog keys( actionCollection(), this );
-  
+
   QMap<QString, KNote *>::const_iterator it = m_notes.constBegin();
-  
+
   if ( !m_notes.isEmpty() ) {
     keys.insert( ( *it )->actionCollection() );
   }
-  
+
   keys.configure();
-  
+
   // update GUI doc for new notes
   m_noteGUI.setContent(
     KXMLGUIFactory::readConfigFile( componentData().componentName() + "ui.rc",
                                     componentData() )
                       );
-  
+
   if ( m_notes.isEmpty() ) {
     return;
   }
-  
+
   foreach ( QAction *action, ( *it )->actionCollection()->actions() ) {
     it = m_notes.constBegin();
     for ( ++it; it != m_notes.constEnd(); ++it ) {
@@ -521,7 +521,7 @@ void KNotesApp::slotConfigureAccels()
 */
       QAction *toChange =
         ( *it )->actionCollection()->action( action->objectName() );
-      
+
       if ( toChange ) {
         toChange->setShortcuts( action->shortcuts() );
       }
@@ -542,7 +542,7 @@ void KNotesApp::slotQuit()
       note->saveData();
     }
   }
-  
+
   saveConfigs();
   kapp->quit();
 }
@@ -564,7 +564,7 @@ void KNotesApp::createNote( KCal::Journal *journal )
 {
   KNote *newNote = new KNote( m_noteGUI, journal, 0 );
   m_notes.insert( newNote->noteId(), newNote );
-  
+
   connect( newNote, SIGNAL( sigRequestNewNote() ),
            SLOT( newNote() ) );
   connect( newNote, SIGNAL( sigShowNextNote() ),
@@ -579,7 +579,7 @@ void KNotesApp::createNote( KCal::Journal *journal )
            SLOT( updateNoteActions() ) );
   connect( newNote, SIGNAL( sigFindFinished() ),
            SLOT( slotFindNext() ) );
-  
+
   // don't call this during startup for each and every loaded note
   if ( m_alarm ) {
     updateNoteActions();
@@ -601,7 +601,7 @@ void KNotesApp::acceptConnection()
 {
   // Accept the connection and make KNotesNetworkReceiver do the job
   QTcpSocket *s = m_listener->nextPendingConnection();
-  
+
   if ( s ) {
     KNotesNetworkReceiver *recv = new KNotesNetworkReceiver( s );
     connect( recv,
@@ -644,17 +644,26 @@ void KNotesApp::updateNoteActions()
                     1,
                     note->palette().color( note->backgroundRole() ),
                     false );
-    
+
     action->setIcon( icon );
     m_noteActions.append( action );
   }
-  
+
   if ( m_noteActions.isEmpty() ) {
+      actionCollection()->action( "hide_all_notes" )->setEnabled( false );
+      actionCollection()->action( "show_all_notes" )->setEnabled( false );
+      m_findAction->setEnabled( false );
     KAction *action = new KAction( i18n( "No Notes" ), this );
     m_noteActions.append( action );
   }
   else
-	 qSort( m_noteActions.begin(), m_noteActions.end(), qActionLessThan ); 
+  {
+      qSort( m_noteActions.begin(), m_noteActions.end(), qActionLessThan );
+      actionCollection()->action( "hide_all_notes" )->setEnabled( true );
+      actionCollection()->action( "show_all_notes" )->setEnabled( true );
+      m_findAction->setEnabled( true );
+  }
+
   plugActionList( "notes", m_noteActions );
 }
 
@@ -664,7 +673,7 @@ void KNotesApp::updateNetworkListener()
     m_listener=0;
     delete m_publisher;
     m_publisher=0;
-    
+
     if ( KNotesGlobalConfig::receiveNotes() ) {
         // create the socket and start listening for connections
         m_listener=KSocketFactory::listen( "knotes" , QHostAddress::Any,
@@ -682,7 +691,7 @@ void KNotesApp::updateStyle()
 #warning FIXME!
 #endif
   //    KNote::setStyle( KNotesGlobalConfig::style() );
-  
+
   foreach ( KNote *note, m_notes ) {
     QApplication::postEvent( note, new QEvent( QEvent::LayoutRequest ) );
   }
