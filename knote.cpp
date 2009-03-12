@@ -134,7 +134,6 @@ void KNote::slotKill( bool force )
   // delete the configuration first, then the corresponding file
   delete m_config;
   m_config = 0;
-
   QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
   configFile += m_journal->uid();
   if ( !KIO::NetAccess::del( KUrl( configFile ), this ) ) {
@@ -647,7 +646,7 @@ void KNote::createActions()
 
   action  = new KAction( KIcon( "edit-delete" ), i18n( "Delete" ), this );
   actionCollection()->addAction( "delete_note", action );
-  connect( action, SIGNAL( triggered( bool ) ), SLOT( slotKill() ) );
+  connect( action, SIGNAL( triggered( bool ) ), SLOT( slotKill() ),Qt::QueuedConnection );
 
   action  = new KAction( KIcon( "knotes_date" ), i18n( "Insert Date" ), this );
   actionCollection()->addAction( "insert_date", action );
