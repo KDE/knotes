@@ -58,18 +58,18 @@ KNotesNetworkReceiver::KNotesNetworkReceiver( QTcpSocket *s )
   QString date =
     KGlobal::locale()->formatDateTime( QDateTime::currentDateTime(),
                                        KLocale::ShortDate, false );
-  
+
   // Add the remote IP or hostname and the date to the title, to help the
   // user guess who wrote it.
   m_titleAddon = QString( " [%1, %2]" )
                   .arg( m_sock->peerAddress().toString() )
                   .arg( date );
-  
+
   // Setup the communications
   connect( m_sock, SIGNAL( readyRead() ), SLOT( slotDataAvailable() ) );
   connect( m_sock, SIGNAL( disconnected() ), SLOT( slotConnectionClosed() ) );
-  connect( m_sock, SIGNAL( error( int ) ), SLOT( slotError( int ) ) );
-  
+  connect( m_sock, SIGNAL(error(QAbstractSocket::SocketError)), SLOT(slotError(QAbstractSocket::SocketError)));
+
   // Setup the timer
   m_timer = new QTimer( this );
   m_timer->setSingleShot( true );
@@ -87,22 +87,22 @@ void KNotesNetworkReceiver::slotDataAvailable()
 {
   char smallBuffer[SBSIZE];
   int smallBufferLen;
-  
+
   do {
     // Append to "big buffer" only if we have some space left.
     int curLen = m_buffer->count();
-    
+
     smallBufferLen = m_sock->read( smallBuffer, SBSIZE );
-    
+
     // Limit max transfer over buffer, to avoid overflow.
     smallBufferLen = qMin( smallBufferLen, MAXBUFFER - curLen );
-    
+
     if ( smallBufferLen > 0 ) {
       m_buffer->resize( curLen + smallBufferLen );
       memcpy( m_buffer->data() + curLen, smallBuffer, smallBufferLen );
     }
   } while ( smallBufferLen == SBSIZE );
-  
+
   // If we are overflowing, close connection.
   if ( m_buffer->count() == MAXBUFFER ) {
     m_sock->close();
@@ -120,24 +120,24 @@ void KNotesNetworkReceiver::slotConnectionClosed()
 {
   if ( m_timer->isActive() ) {
     QString noteText = QString( *m_buffer ).trimmed();
-    
+
     // First line is the note title or, in case of ATnotes, the id
     int pos = noteText.indexOf( QRegExp( "[\r\n]" ) );
     QString noteTitle = noteText.left( pos ).trimmed() + m_titleAddon;
-    
+
     noteText = noteText.mid( pos ).trimmed();
-    
+
     if ( !noteText.isEmpty() ) {
         emit sigNoteReceived( noteTitle, noteText );
     }
   }
-  
+
   deleteLater();
 }
 
-void KNotesNetworkReceiver::slotError( int err )
+void KNotesNetworkReceiver::slotError( QAbstractSocket::SocketError error )
 {
-  kWarning( 5500 ) << err << m_sock->errorString();
+    kWarning( 5500 ) <<"error type :"<< ( int ) error <<" error string : "<<m_sock->errorString();
 }
 
 #include "knotesnetrecv.moc"
