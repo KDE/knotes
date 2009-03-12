@@ -14,12 +14,15 @@ X-KDE-Weight=200
 
 Name=Display
 Name[ga]=Taispeáint
+Name[nds]=Dorstellen
+Name[pt]=Ecrã
 Name[pt_BR]=Exibir
 Name[sv]=Skärm
 Name[uk]=Показ
 Name[zh_TW]=顯示：
 Comment=Setup display for notes
 Comment[ga]=Socraigh taispeáint na nótaí
+Comment[nds]=Dorstellen för Notizen inrichten
 Comment[pt_BR]=Configurar exibição para notas
 Comment[sv]=Ställ in skärm för anteckningslappar
 Comment[uk]=Налаштуйте показ нотаток

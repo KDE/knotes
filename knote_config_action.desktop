@@ -14,11 +14,14 @@ X-KDE-Weight=200
 
 Name=Actions
 Name[ga]=Gníomhartha
+Name[nds]=Akschonen
+Name[pt]=Acções
 Name[pt_BR]=Ações
 Name[sv]=Åtgärder
 Name[uk]=Дії
 Name[zh_TW]=動作
 Comment=Setup actions for notes
+Comment[nds]=Akschonen för Notizen inrichten
 Comment[pt_BR]=Configurar ações para notas
 Comment[sv]=Ställ in åtgärder för anteckningslappar
 Comment[uk]=Налаштуйте дії для нотаток
