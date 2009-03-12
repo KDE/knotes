@@ -747,6 +747,7 @@ void KNote::createNoteEditor()
 {
   m_editor = new KNoteEdit( actionCollection(), this );
   m_noteLayout->addWidget( m_editor );
+  m_editor->setNote( this );
   m_editor->installEventFilter( this ); // receive focus events for modified
   setFocusProxy( m_editor );
 }

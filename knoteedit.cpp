@@ -35,13 +35,13 @@
 #include <kurl.h>
 
 #include "knoteedit.h"
-
+#include "knote.h"
 static const short SEP = 5;
 static const short ICON_SIZE = 10;
 
 
 KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
-  : KTextEdit( parent )
+  : KTextEdit( parent ), m_note( 0 )
 {
   setAcceptDrops( true );
   setWordWrapMode( QTextOption::WordWrap );
@@ -270,22 +270,30 @@ void KNoteEdit::textStrikeOut( bool s )
 
 void KNoteEdit::slotTextColor()
 {
+  if ( m_note )
+      m_note->blockEmitDataChanged( true );
   QColor c = textColor();
   int ret = KColorDialog::getColor( c, this );
 
   if ( ret == QDialog::Accepted ) {
     setTextColor( c );
   }
+  if ( m_note )
+      m_note->blockEmitDataChanged( false );
 }
 
 void KNoteEdit::slotTextBackgroundColor()
 {
+  if ( m_note )
+      m_note->blockEmitDataChanged( true );
   QColor c = textBackgroundColor();
   int ret = KColorDialog::getColor( c, this );
 
   if ( ret == QDialog::Accepted ) {
     setTextBackgroundColor( c );
   }
+  if ( m_note )
+      m_note->blockEmitDataChanged( false );
 }
 
 void KNoteEdit::textAlignLeft()

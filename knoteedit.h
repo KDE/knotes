@@ -37,7 +37,7 @@ class KFontAction;
 class KFontSizeAction;
 class KMenu;
 class KToggleAction;
-
+class KNote;
 
 class KNoteEdit
   : public KTextEdit
@@ -47,6 +47,9 @@ class KNoteEdit
     KNoteEdit( KActionCollection *actions, QWidget *parent = 0 );
     ~KNoteEdit();
 
+    void setNote( KNote *_note ) {
+        m_note = _note;
+    }
     void setText( const QString &text );
     QString text() const;
 
@@ -119,7 +122,7 @@ class KNoteEdit
     KAction         *m_textColor;
     KFontAction     *m_textFont;
     KFontSizeAction *m_textSize;
-
+    KNote           *m_note;
     bool m_autoIndentMode;
 };
 
