@@ -638,7 +638,7 @@ void KNote::createActions()
 
   action  = new KAction( KIcon( "edit-delete" ), i18n( "Delete" ), this );
   actionCollection()->addAction( "delete_note", action );
-  connect( action, SIGNAL( triggered( bool ) ), SLOT( slotKill() ) );
+  connect( action, SIGNAL( triggered( bool ) ), SLOT( slotKill() ) ,Qt::QueuedConnection);
   
   action  = new KAction( KIcon( "knotes_date" ), i18n( "Insert Date" ), this );
   actionCollection()->addAction( "insert_date", action );
