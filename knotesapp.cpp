@@ -649,13 +649,12 @@ void KNotesApp::updateNoteActions()
     m_noteActions.append( action );
   }
   
-	qSort( m_noteActions.begin(), m_noteActions.end(), qActionLessThan );
-  
   if ( m_noteActions.isEmpty() ) {
     KAction *action = new KAction( i18n( "No Notes" ), this );
     m_noteActions.append( action );
   }
-  
+  else
+	 qSort( m_noteActions.begin(), m_noteActions.end(), qActionLessThan ); 
   plugActionList( "notes", m_noteActions );
 }
 
