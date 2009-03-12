@@ -151,7 +151,7 @@ KNotesApp::KNotesApp()
   new KHelpMenu( this, KGlobal::mainComponent().aboutData(), false,
                  actionCollection() );
 
-  KStandardAction::find( this, SLOT( slotOpenFindDialog() ),
+  m_findAction = KStandardAction::find( this, SLOT( slotOpenFindDialog() ),
                          actionCollection() );
   KStandardAction::preferences( this, SLOT( slotPreferences() ),
                          actionCollection() );
@@ -650,12 +650,19 @@ void KNotesApp::updateNoteActions()
   }
 
   if ( m_noteActions.isEmpty() ) {
+      actionCollection()->action( "hide_all_notes" )->setEnabled( false );
+      actionCollection()->action( "show_all_notes" )->setEnabled( false );
+      m_findAction->setEnabled( false );
     KAction *action = new KAction( i18n( "No Notes" ), this );
     m_noteActions.append( action );
   }
   else
+  {
       qSort( m_noteActions.begin(), m_noteActions.end(), qActionLessThan );
-
+      actionCollection()->action( "hide_all_notes" )->setEnabled( true );
+      actionCollection()->action( "show_all_notes" )->setEnabled( true );
+      m_findAction->setEnabled( true );
+  }
   plugActionList( "notes", m_noteActions );
 }
 

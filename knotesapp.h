@@ -57,79 +57,80 @@ class KNotesApp
   public:
     KNotesApp();
     ~KNotesApp();
-    
+
     void showNote( const QString &id ) const;
     void hideNote( const QString &id ) const;
-    
+
     void killNote( const QString &id );
     void killNote( const QString &id, bool force );
-    
+
     QString name( const QString &id ) const;
     QString text( const QString &id ) const;
-    
+
     void setName( const QString &id, const QString &newName );
     void setText( const QString &id, const QString &newText );
-    
+
     QMap<QString,QString> notes() const;
-    
+
     bool commitData( QSessionManager & );
-    
+
   public slots:
     QString newNote( const QString &name = QString(),
                      const QString &text = QString() );
     QString newNoteFromClipboard( const QString &name = QString() );
-    
+
     void hideAllNotes() const;
     void showAllNotes() const;
-    
+
   protected slots:
     void slotActivated( QSystemTrayIcon::ActivationReason );
     void slotShowNote();
     void slotWalkThroughNotes();
-    
+
     void slotOpenFindDialog();
     void slotFindNext();
-    
+
     void slotPreferences();
     void slotConfigureAccels();
-    
+
     void slotNoteKilled( KCal::Journal *journal );
-    
+
     void slotQuit();
-    
+
   private:
     void showNote( KNote *note ) const;
     void saveConfigs();
-    
+
   private slots:
     void acceptConnection();
     void saveNotes();
     void updateNoteActions();
     void updateNetworkListener();
     void updateStyle();
-    
+
     void createNote( KCal::Journal *journal );
     void killNote( KCal::Journal *journal );
-    
+
   private:
     QMap<QString, KNote *> m_notes;
     QList<QAction *>       m_noteActions;
-    
+
     KNotesResourceManager  *m_manager;
     KNotesAlarm            *m_alarm;
     QTcpServer             *m_listener;
     DNSSD::PublicService   *m_publisher;
-    
+
     KFind           *m_find;
     QMap<QString, KNote *>::iterator *m_findPos;
-    
+
     KMenu           *m_noteMenu;
     KMenu           *m_contextMenu;
-    
+
     KXMLGUIFactory  *m_guiFactory;
     KXMLGUIBuilder  *m_guiBuilder;
     KSystemTrayIcon *m_tray;
-    
+    KAction         *m_findAction;
+
     QDomDocument    m_noteGUI;
 };
 
