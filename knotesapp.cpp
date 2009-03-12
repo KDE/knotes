@@ -399,7 +399,7 @@ void KNotesApp::slotActivated( QSystemTrayIcon::ActivationReason r )
     case QSystemTrayIcon::Trigger:
       if ( m_notes.size() == 1 ) {
         showNote( *m_notes.begin() );
-      } else if ( m_notes.size() > 1 ) {
+      } else if ( m_notes.size() != 1 ) {
         m_noteMenu->popup( QCursor::pos () );
       }
       break;
@@ -655,7 +655,6 @@ void KNotesApp::updateNoteActions()
     KAction *action = new KAction( i18n( "No Notes" ), this );
     m_noteActions.append( action );
   }
-
   plugActionList( "notes", m_noteActions );
 }
 
