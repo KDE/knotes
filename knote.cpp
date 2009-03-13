@@ -1337,8 +1337,10 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
                  fe->reason() != QFocusEvent::Mouse )
             {
                 updateFocus();
-                if ( m_editor->isModified() )
-                    saveData();
+                if ( m_editor->isModified() ) {
+			saveConfig();
+    			saveData();
+		}
             }
         }
         else if ( ev->type() == QEvent::FocusIn )
