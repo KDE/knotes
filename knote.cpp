@@ -837,7 +837,6 @@ void KNote::prepare()
   m_editor->setBackgroundRole( QPalette::Base );
   m_editor->setFrameStyle( NoFrame );
   m_editor->setText( m_journal->description() );
-  m_editor->document()->setModified( false );
 
   // load the display configuration of the note
   uint width = m_config->width();
@@ -933,6 +932,7 @@ void KNote::prepare()
 #ifdef Q_WS_X11
   KWindowSystem::setIcons( winId(), icon, miniIcon );
 #endif
+  m_editor->document()->setModified( false );
 }
 
 void KNote::toDesktop( int desktop )
