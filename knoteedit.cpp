@@ -415,7 +415,9 @@ void KNoteEdit::dropEvent( QDropEvent *e )
       }
       insertPlainText( ( *it ).prettyUrl() );
     }
-  } else { KTextEdit::dropEvent( e ); }
+  } else {
+      KTextEdit::dropEvent( e );
+  }
 }
 
 void KNoteEdit::keyPressEvent( QKeyEvent *e )
