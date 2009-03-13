@@ -30,13 +30,14 @@
 #include <qpopupmenu.h>
 #include <kiconloader.h>
 #include "knoteedit.h"
+#include "knote.h"
 
 static const short SEP = 5;
 static const short ICON_SIZE = 10;
 
 
 KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent, const char *name )
-    : KTextEdit( parent, name )
+    : KTextEdit( parent, name ), m_note( 0 )
 {
     setAcceptDrops( true );
     setWordWrap( WidgetWidth );
@@ -285,10 +286,14 @@ void KNoteEdit::textStrikeOut( bool s )
 
 void KNoteEdit::textColor()
 {
+    if ( m_note )
+        m_note->blockEmitDataChanged( true );
     QColor c = color();
     int ret = KColorDialog::getColor( c, this );
     if ( ret == QDialog::Accepted )
         setTextColor( c );
+    if ( m_note )
+        m_note->blockEmitDataChanged( false );
 }
 
 void KNoteEdit::textAlignLeft()

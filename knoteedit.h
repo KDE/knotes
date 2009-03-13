@@ -24,7 +24,7 @@
 #include <qwidget.h>
 
 #include <ktextedit.h>
-
+class KNote;
 class QFont;
 class QColor;
 class QPushButton;
@@ -41,7 +41,9 @@ class KNoteEdit : public KTextEdit
 public:
     KNoteEdit( KActionCollection *actions, QWidget *parent=0, const char *name=0 );
     ~KNoteEdit();
-
+    void setNote( KNote *_note ) {
+        m_note = _note;
+    }
     void setText( const QString& text );
     void setTextFont( const QFont& font );
     void setTextColor( const QColor& color );
@@ -123,6 +125,7 @@ private:
     KAction* undo;
     KAction* redo;
     bool m_autoIndentMode;
+    KNote           *m_note;
 };
 
 #endif
