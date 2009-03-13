@@ -478,9 +478,9 @@ void KNotesApp::slotPreferences()
 {
   // create a new preferences dialog...
   KNoteConfigDlg *dialog = new KNoteConfigDlg( i18n( "Settings" ), this);
-  connect( dialog, SIGNAL( changed( bool ) ),
+  connect( dialog, SIGNAL( configCommitted( ) ),
            this,   SLOT( updateNetworkListener() ) );
-  connect( dialog, SIGNAL( changed( b ) ),
+  connect( dialog, SIGNAL( configCommitted(  ) ),
            this,   SLOT( updateStyle() ) );
   dialog->show();
 }
