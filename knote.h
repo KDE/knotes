@@ -83,7 +83,7 @@ public:
     static void setStyle( int style );
 
     void deleteWhenIdle();
-
+    void blockEmitDataChanged( bool _b ) { m_blockEmitDataChanged = _b;}
 public slots:
     void slotKill( bool force = false );
 
@@ -179,6 +179,7 @@ private:
 
     int m_busy;
     bool m_deleteWhenIdle;
+    bool m_blockEmitDataChanged;
 };
 
 #endif

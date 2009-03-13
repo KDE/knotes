@@ -85,7 +85,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     m_label( 0 ), m_pushpin( 0 ), m_fold( 0 ), m_button( 0 ), m_tool( 0 ), m_editor( 0 ),
     m_config( 0 ), m_journal( j ), m_find( 0 ),
     m_kwinConf( KSharedConfig::openConfig( "kwinrc", true ) ),
-    m_busy( 0 ), m_deleteWhenIdle( false )
+    m_busy( 0 ), m_deleteWhenIdle( false ), m_blockEmitDataChanged( false )
 {
     setAcceptDrops( true );
     actionCollection()->setWidget( this );
@@ -685,6 +685,7 @@ void KNote::setStyle( int style )
 
 void KNote::slotRename()
 {
+    m_blockEmitDataChanged = true;
     // pop up dialog to get the new name
     bool ok;
     aboutToEnterEventLoop();
@@ -692,6 +693,7 @@ void KNote::slotRename()
     QString newName = KInputDialog::getText( QString::null,
         i18n("Please enter the new name:"), m_label->text(), &ok, this );
     eventLoopLeft();
+    m_blockEmitDataChanged = false;
     if ( !ok || ( oldName == newName) ) // handle cancel
         return;
 
@@ -755,6 +757,7 @@ void KNote::slotInsDate()
 
 void KNote::slotSetAlarm()
 {
+    m_blockEmitDataChanged = true;
     KNoteAlarmDlg dlg( name(), this );
     dlg.setIncidence( m_journal );
 
@@ -762,6 +765,7 @@ void KNote::slotSetAlarm()
     if ( dlg.exec() == QDialog::Accepted )
         emit sigDataChanged();
     eventLoopLeft();
+    m_blockEmitDataChanged = false;
 }
 
 void KNote::slotPreferences()
@@ -779,11 +783,13 @@ void KNote::slotPreferences()
 
 void KNote::slotSend()
 {
+    m_blockEmitDataChanged = true;
     // pop up dialog to get the IP
     KNoteHostDlg hostDlg( i18n("Send \"%1\"").arg( name() ), this );
     aboutToEnterEventLoop();
     bool ok = (hostDlg.exec() == QDialog::Accepted);
     eventLoopLeft();
+    m_blockEmitDataChanged = false;
     if ( !ok ) // handle cancel
         return;
     QString host = hostDlg.host();
@@ -1339,7 +1345,8 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
                 updateFocus();
                 if ( m_editor->isModified() ) {
 			saveConfig();
-    			saveData();
+                        if ( !m_blockEmitDataChanged )
+                            saveData();
 		}
             }
         }
