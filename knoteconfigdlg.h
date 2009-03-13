@@ -107,16 +107,6 @@ public:
     virtual void save();
 };
 
-/*
-class KNoteDisplayConfig : public KCModule
-{
-    Q_OBJECT
-public:
-    KNoteDisplayConfig( const KComponentData &inst, QWidget *parent, bool defaults );
-    //virtual void load();
-    //virtual void save();
-};
-*/
 
 class KNoteDisplayConfigWidget :public QWidget
 {
