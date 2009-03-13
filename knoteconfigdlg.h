@@ -53,6 +53,8 @@ class KNoteConfigDlg
 
 public slots:
     void slotOk();
+signals:
+    void configWrote();
 };
 
 

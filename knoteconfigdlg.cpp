@@ -114,6 +114,7 @@ KNoteConfigDlg::~KNoteConfigDlg()
 
 void KNoteConfigDlg::slotOk() {
   KNotesGlobalConfig::self()->writeConfig();
+  emit configWrote();
 }
 
 
