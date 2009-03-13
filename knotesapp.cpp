@@ -121,7 +121,7 @@ KNotesApp::KNotesApp()
         this, SLOT(hideAllNotes()), actionCollection(), "hide_all_notes" );
     new KHelpMenu( this, kapp->aboutData(), false, actionCollection() );
 
-    KStdAction::find( this, SLOT(slotOpenFindDialog()), actionCollection() );
+    m_findAction = KStdAction::find( this, SLOT(slotOpenFindDialog()), actionCollection() );
     KStdAction::preferences( this, SLOT(slotPreferences()), actionCollection() );
     KStdAction::keyBindings( this, SLOT(slotConfigureAccels()), actionCollection() );
     //FIXME: no shortcut removing!?
@@ -583,7 +583,7 @@ void KNotesApp::slotConfigureAccels()
 
 void KNotesApp::slotNoteKilled( KCal::Journal *journal )
 {
-    kdDebug()<<" void KNotesApp::slotNoteKilled( KCal::Journal *journal ) \n";	    
+    kdDebug()<<" void KNotesApp::slotNoteKilled( KCal::Journal *journal ) \n";
     m_manager->deleteNote( journal );
     saveNotes();
 }
@@ -686,11 +686,19 @@ void KNotesApp::updateNoteActions()
 
     if ( m_noteActions.isEmpty() )
     {
+        actionCollection()->action( "hide_all_notes" )->setEnabled( false );
+        actionCollection()->action( "show_all_notes" )->setEnabled( false );
+        m_findAction->setEnabled( false );
         KAction *action = new KAction( i18n("No Notes") );
         m_noteActions.append( action );
     }
     else
-	    m_noteActions.sort();
+    {
+        actionCollection()->action( "hide_all_notes" )->setEnabled( true );
+        actionCollection()->action( "show_all_notes" )->setEnabled( true );
+        m_findAction->setEnabled( true );
+        m_noteActions.sort();
+    }
     plugActionList( "notes", m_noteActions );
 }
 

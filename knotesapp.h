@@ -158,6 +158,7 @@ private:
     KXMLGUIBuilder  *m_guiBuilder;
 
     QDomDocument    m_noteGUI;
+    KAction         *m_findAction;
 };
 
 #endif
