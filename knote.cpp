@@ -1017,19 +1017,20 @@ void KNote::updateFocus()
     {
         m_label->setBackgroundColor( palette().active().shadow() );
         m_button->show();
-        m_editor->cornerWidget()->show();
 
         if ( !m_editor->isReadOnly() )
         {
             if ( m_tool && m_tool->isHidden() && m_editor->textFormat() == QTextEdit::RichText )
             {
                 m_tool->show();
+		m_editor->cornerWidget()->show();
                 setGeometry( x(), y(), width(), height() + m_tool->height() );
             }
         }
         else if ( m_tool && !m_tool->isHidden() )
         {
             m_tool->hide();
+	    m_editor->cornerWidget()->hide();
             setGeometry( x(), y(), width(), height() - m_tool->height() );
             updateLayout();     // to update the minimum height
         }
