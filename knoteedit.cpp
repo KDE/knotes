@@ -235,13 +235,6 @@ void KNoteEdit::setTextFont( const QFont &font )
   setTextFormat( f );
 }
 
-void KNoteEdit::setTextColor( const QColor &color )
-{
-  QTextCharFormat f;
-  f.setForeground( QBrush( color ) );
-  setTextFormat( f );
-}
-
 void KNoteEdit::setTabStop( int tabs )
 {
   QFontMetrics fm( font() );
