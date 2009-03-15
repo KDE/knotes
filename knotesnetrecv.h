@@ -45,22 +45,22 @@ class KNotesNetworkReceiver
   public:
     KNotesNetworkReceiver( QTcpSocket * );
     ~KNotesNetworkReceiver();
-    
+
   signals:
     void sigNoteReceived( const QString &, const QString & );
-    
+
   private slots:
     void slotDataAvailable();
     void slotReceptionTimeout();
     void slotConnectionClosed();
-    void slotError( int err );
-    
+    void slotError( QAbstractSocket::SocketError );
+
   private:
     QTimer *m_timer;       // to avoid memory and connection floods
-    
+
     QByteArray *m_buffer;
     QTcpSocket *m_sock;
-    
+
     QString m_titleAddon;
 };
 
