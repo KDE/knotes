@@ -714,7 +714,7 @@ void KNote::createNoteHeader()
     }
   }
 
-  QBoxLayout *headerLayout = new QBoxLayout( headerLayoutDirection, this );
+  QBoxLayout *headerLayout = new QBoxLayout( headerLayoutDirection);
 
 
   // create header label
@@ -753,7 +753,7 @@ void KNote::createNoteFooter()
   }
 
   // create size grip
-  QHBoxLayout *gripLayout = new QHBoxLayout( this );
+  QHBoxLayout *gripLayout = new QHBoxLayout;
   m_grip = new QSizeGrip( this );
   m_grip->setFixedSize( m_grip->sizeHint() );
 
