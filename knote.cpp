@@ -31,7 +31,6 @@
 #include <QVBoxLayout>
 #include <QDesktopWidget>
 
-#include <k3colordrag.h>
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <kapplication.h>
