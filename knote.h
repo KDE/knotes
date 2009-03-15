@@ -69,6 +69,7 @@ class KNote
     void find( KFind* kfind );
 
     bool isModified() const;
+    void blockEmitDataChanged( bool _b ) { m_blockEmitDataChanged = _b;}
 
   public slots:
     void slotKill( bool force = false );
@@ -160,6 +161,7 @@ class KNote
     KToggleAction *m_keepBelow;
 
     KSharedConfig::Ptr m_kwinConf;
+    bool m_blockEmitDataChanged;
 };
 
 #endif
