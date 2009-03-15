@@ -405,7 +405,7 @@ void KNote::slotSend()
 void KNote::slotMail()
 {
   // get the mail action command
-  QStringList cmd_list = KNotesGlobalConfig::mailAction().split( QChar(' '),
+  const QStringList cmd_list = KNotesGlobalConfig::mailAction().split( QChar(' '),
       QString::SkipEmptyParts );
 
   KProcess mail;
