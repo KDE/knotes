@@ -95,7 +95,6 @@ KNote::KNote( const QDomDocument& buildDoc, Journal *j, QWidget *parent )
 
   // create the main layout
   m_noteLayout = new QVBoxLayout( this );
-  setLayout( m_noteLayout );
   m_noteLayout->setMargin( 0 );
 
   // if there is no title yet, use the start date if valid
