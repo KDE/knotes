@@ -1170,9 +1170,10 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
           if ( fe->reason() != Qt::PopupFocusReason &&
                fe->reason() != Qt::MouseFocusReason ) {
             updateFocus();
-            if ( isModified() && !m_blockEmitDataChanged ) {
+            if ( isModified() ) {
               saveConfig();
-              saveData();
+              if ( !m_blockEmitDataChanged )
+                  saveData();
             }
           }
     } else if ( ev->type() == QEvent::FocusIn ) {
