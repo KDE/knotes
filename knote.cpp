@@ -376,6 +376,7 @@ KNote::~KNote()
 
 void KNote::slotKill( bool force )
 {
+    m_blockEmitDataChanged = true;
     if ( !force &&
          KMessageBox::warningContinueCancel( this,
              i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>").arg( m_label->text() ),
@@ -384,6 +385,7 @@ void KNote::slotKill( bool force )
          )
          != KMessageBox::Continue )
     {
+	m_blockEmitDataChanged = false;
         return;
     }
 
