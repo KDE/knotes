@@ -458,7 +458,7 @@ void KNote::slotSaveAs()
     convert = new QCheckBox( 0 );
     convert->setText( i18n( "Save note as plain text" ) );
   }
-
+  m_blockEmitDataChanged = true;
   KUrl url;
   KFileDialog dlg( url, QString(), this, convert );
   dlg.setOperationMode( KFileDialog::Saving );
@@ -467,6 +467,7 @@ void KNote::slotSaveAs()
 
   QString fileName = dlg.selectedFile();
   if ( fileName.isEmpty() ) {
+      m_blockEmitDataChanged = false;
     return;
   }
 
@@ -477,6 +478,7 @@ void KNote::slotSaveAs()
           i18n( "<qt>A file named <b>%1</b> already exists.<br />"
                 "Are you sure you want to overwrite it?</qt>",
                 QFileInfo( file ).fileName() ) ) != KMessageBox::Continue ) {
+      m_blockEmitDataChanged = false;
     return;
   }
 
@@ -488,6 +490,7 @@ void KNote::slotSaveAs()
       stream << m_editor->toPlainText();
     }
   }
+  m_blockEmitDataChanged = false;
 }
 
 void KNote::slotPopupActionToDesktop( int id )
