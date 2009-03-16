@@ -852,6 +852,7 @@ void KNote::slotPrint()
 
 void KNote::slotSaveAs()
 {
+    m_blockEmitDataChanged = true;
     QCheckBox *convert = 0;
 
     if ( m_editor->textFormat() == RichText )
@@ -869,8 +870,10 @@ void KNote::slotSaveAs()
 
     QString fileName = dlg.selectedFile();
     if ( fileName.isEmpty() )
+    {
+	m_blockEmitDataChanged = false;
         return;
-
+    }
     QFile file( fileName );
 
     if ( file.exists() &&
@@ -878,6 +881,7 @@ void KNote::slotSaveAs()
                            "Are you sure you want to overwrite it?</qt>").arg( QFileInfo(file).fileName() ) )
          != KMessageBox::Continue )
     {
+	m_blockEmitDataChanged = false;
         return;
     }
 
@@ -890,6 +894,7 @@ void KNote::slotSaveAs()
         else
             stream << text();
     }
+    m_blockEmitDataChanged = false;
 }
 
 void KNote::slotPopupActionToDesktop( int id )
