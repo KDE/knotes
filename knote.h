@@ -56,7 +56,7 @@ class KNote
     KNote( const QDomDocument& buildDoc, KCal::Journal *journal, QWidget *parent = 0 );
     ~KNote();
 
-    void saveData();
+    void saveData( bool update = true);
     void saveConfig() const;
 
     QString noteId() const;

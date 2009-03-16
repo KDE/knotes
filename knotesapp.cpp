@@ -539,10 +539,9 @@ void KNotesApp::slotQuit()
 {
   foreach ( KNote *note, m_notes ) {
     if ( note->isModified() ) {
-      note->saveData();
+      note->saveData(false);
     }
   }
-
   saveConfigs();
   kapp->quit();
 }

@@ -147,7 +147,7 @@ void KNote::slotKill( bool force )
 
 // -------------------- public member functions -------------------- //
 
-void KNote::saveData()
+void KNote::saveData(bool update )
 {
   m_journal->setSummary( m_label->text() );
   m_journal->setDescription( m_editor->text() );
@@ -158,8 +158,11 @@ void KNote::saveData()
   m_journal->setCustomProperty( "KNotes", "RichText",
                                 m_config->richText() ? "true" : "false" );
 
-  emit sigDataChanged();
-  m_editor->document()->setModified( false );
+  if(update)
+  {
+     emit sigDataChanged();
+     m_editor->document()->setModified( false );
+  }
 }
 
 void KNote::saveConfig() const
