@@ -73,7 +73,7 @@ class KNote
 
   public slots:
     void slotKill( bool force = false );
-
+    void slotClose();
   signals:
     void sigRequestNewNote();
     void sigShowNextNote();
@@ -98,7 +98,6 @@ class KNote
   private slots:
     void slotRename();
     void slotUpdateReadOnly();
-    void slotClose();
 
     void slotSend();
     void slotMail();

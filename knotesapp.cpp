@@ -288,7 +288,7 @@ QString KNotesApp::newNoteFromClipboard( const QString &name )
 void KNotesApp::hideAllNotes() const
 {
   foreach ( KNote *note, m_notes ) {
-    note->hide();
+    note->slotClose();
   }
 }
 
