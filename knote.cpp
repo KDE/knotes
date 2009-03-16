@@ -336,7 +336,7 @@ void KNote::slotClose()
   m_editor->clearFocus();
   m_config->setHideNote( true );
   m_config->setPosition( pos() );
-
+  m_config->writeConfig();
   // just hide the note so it's still available from the dock window
   hide();
 }
