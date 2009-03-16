@@ -365,10 +365,7 @@ void KNote::slotSetAlarm()
 
 void KNote::slotPreferences()
 {
-  // reuse if possible
-  if ( KNoteSimpleConfigDlg::showDialog( noteId() ) ) {
-    return;
-  }
+    m_blockEmitDataChanged = true;
 
   // create a new preferences dialog...
   KNoteSimpleConfigDlg *dialog = new KNoteSimpleConfigDlg( m_config, name(), this, noteId() );
@@ -376,7 +373,10 @@ void KNote::slotPreferences()
            SLOT( slotApplyConfig() ) );
   connect( this, SIGNAL( sigNameChanged(const QString &) ), dialog,
            SLOT( slotUpdateCaption(const QString &) ) );
-           dialog->show();
+  dialog->exec();
+  delete dialog;
+  m_blockEmitDataChanged = false;
+  saveData();
 }
 
 void KNote::slotSend()
@@ -503,12 +503,6 @@ void KNote::slotApplyConfig()
   m_editor->setTextFont( m_config->font() );
   m_editor->setTabStop( m_config->tabSize() );
   m_editor->setAutoIndentMode( m_config->autoIndent() );
-
-  // if called as a slot, save the text, we might have changed the
-  // text format - otherwise the journal will not be updated
-  if ( sender() ) {
-    saveData();
-  }
 
   setColor( m_config->fgColor(), m_config->bgColor() );
 
