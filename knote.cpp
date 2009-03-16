@@ -115,6 +115,10 @@ KNote::~KNote()
   delete m_config;
 }
 
+void KNote::changeJournal(KCal::Journal *journal)
+{
+   m_journal = journal;
+}
 
 // -------------------- public slots -------------------- //
 
@@ -160,7 +164,7 @@ void KNote::saveData(bool update )
 
   if(update)
   {
-     emit sigDataChanged();
+     emit sigDataChanged(m_journal->uid());
      m_editor->document()->setModified( false );
   }
 }
@@ -363,7 +367,7 @@ void KNote::slotSetAlarm()
   dlg.setIncidence( m_journal );
 
   if ( dlg.exec() == QDialog::Accepted ) {
-    emit sigDataChanged();
+    emit sigDataChanged(noteId());
   }
   m_blockEmitDataChanged = false;
 }

@@ -56,6 +56,7 @@ class KNote
     KNote( const QDomDocument& buildDoc, KCal::Journal *journal, QWidget *parent = 0 );
     ~KNote();
 
+    void changeJournal(KCal::Journal *);
     void saveData( bool update = true);
     void saveConfig() const;
 
@@ -78,7 +79,7 @@ class KNote
     void sigRequestNewNote();
     void sigShowNextNote();
     void sigNameChanged(const QString &);
-    void sigDataChanged();
+    void sigDataChanged(const QString &);
     void sigColorChanged();
     void sigKillNote( KCal::Journal * );
 

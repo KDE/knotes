@@ -104,6 +104,7 @@ class KNotesApp
   private slots:
     void acceptConnection();
     void saveNotes();
+    void saveNotes( const QString & uid );
     void updateNoteActions();
     void updateNetworkListener();
     void updateStyle();
@@ -132,6 +133,7 @@ class KNotesApp
     KAction         *m_findAction;
 
     QDomDocument    m_noteGUI;
+    QString m_noteUidModify;
 };
 
 #endif
