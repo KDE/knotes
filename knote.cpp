@@ -374,10 +374,7 @@ KNote::~KNote()
 
 void KNote::slotRequestNewNote()
 {
-    //Be sure to save before to request a new note
-   
-    saveData();
-    QTimer::singleShot ( 1000, this,SLOT(slotEmitCreateNewNote())  );
+    emit sigRequestNewNote();
 }
 
 void KNote::slotEmitCreateNewNote()
@@ -1373,7 +1370,9 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
                 if ( m_editor->isModified() ) {
 			saveConfig();
                         if ( !m_blockEmitDataChanged )
-                            saveData();
+                        {
+                            QTimer::singleShot ( 100, this,SLOT(slotSaveData())  );
+                        }
 		}
             }
         }
@@ -1395,6 +1394,11 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
     }
 
     return false;
+}
+
+void KNote::slotSaveData()
+{
+    saveData();
 }
 
 void KNote::deleteWhenIdle()
