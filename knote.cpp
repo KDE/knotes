@@ -762,6 +762,7 @@ void KNote::createNoteEditor()
 void KNote::slotRequestNewNote()
 {
     //Be sure to save before to request a new note
+    saveConfig();
     saveData();
     emit sigRequestNewNote();
 }
