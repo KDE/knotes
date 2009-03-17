@@ -75,10 +75,10 @@ class KNote
     void slotKill( bool force = false );
     void slotClose();
   signals:
-    void sigRequestNewNote(const QString &);
+    void sigRequestNewNote();
     void sigShowNextNote();
     void sigNameChanged();
-    void sigDataChanged();
+    void sigDataChanged(const QString &);
     void sigColorChanged();
     void sigKillNote( KCal::Journal * );
 
