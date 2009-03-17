@@ -271,7 +271,6 @@ void KNotesApp::showAllNotes() const
     for ( ; *it; ++it )
     {
         (*it)->show();
-        (*it)->setFocus();
     }
 }
 
