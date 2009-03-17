@@ -393,12 +393,10 @@ void KNote::slotPreferences()
 
 void KNote::slotSend()
 {
-    m_blockEmitDataChanged = true;
   // pop up dialog to get the IP
   KNoteHostDlg hostDlg( i18n( "Send \"%1\"", name() ), this );
   bool ok = ( hostDlg.exec() == QDialog::Accepted );
 
-  m_blockEmitDataChanged = false;
   if ( !ok ) { // handle cancel
     return;
   }
@@ -634,7 +632,7 @@ void KNote::createActions()
 
   action  = new KAction( KIcon( "document-new" ), i18n( "New" ),  this );
   actionCollection()->addAction( "new_note", action );
-  connect( action, SIGNAL( triggered( bool ) ), SIGNAL( sigRequestNewNote() ) );
+  connect( action, SIGNAL( triggered( bool ) ), SLOT( slotRequestNewNote() ) );
 
   action  = new KAction( KIcon( "edit-rename" ), i18n( "Rename..." ), this );
   actionCollection()->addAction( "rename_note", action );
@@ -759,6 +757,13 @@ void KNote::createNoteEditor()
   m_editor->setNote( this );
   m_editor->installEventFilter( this ); // receive focus events for modified
   setFocusProxy( m_editor );
+}
+
+void KNote::slotRequestNewNote()
+{
+    //Be sure to save before to request a new note
+    saveData();
+    emit sigRequestNewNote();
 }
 
 void KNote::createNoteFooter()

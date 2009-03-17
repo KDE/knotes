@@ -122,6 +122,7 @@ class KNote
     void slotKeepAbove();
     void slotKeepBelow();
 
+    void slotRequestNewNote();
   private:
     void buildGui();
     void createActions();
