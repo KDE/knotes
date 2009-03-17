@@ -55,8 +55,8 @@ class KNote
   public:
     KNote( const QDomDocument& buildDoc, KCal::Journal *journal, QWidget *parent = 0 );
     ~KNote();
-
-    void saveData();
+    void changeJournal(KCal::Journal *);
+    void saveData(bool update = true);
     void saveConfig() const;
 
     QString noteId() const;
@@ -75,7 +75,7 @@ class KNote
     void slotKill( bool force = false );
     void slotClose();
   signals:
-    void sigRequestNewNote();
+    void sigRequestNewNote(const QString &);
     void sigShowNextNote();
     void sigNameChanged();
     void sigDataChanged();
@@ -121,6 +121,7 @@ class KNote
     void slotKeepAbove();
     void slotKeepBelow();
 
+    void slotRequestNewNote();
   private:
     void buildGui();
     void createActions();

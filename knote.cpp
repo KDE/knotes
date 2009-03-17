@@ -115,6 +115,12 @@ KNote::~KNote()
   delete m_config;
 }
 
+void KNote::changeJournal(KCal::Journal *journal)
+{
+   m_journal = journal;
+   m_editor->setText( m_journal->description() );
+   setName( m_journal->summary() ); 
+}
 
 // -------------------- public slots -------------------- //
 
@@ -148,7 +154,7 @@ void KNote::slotKill( bool force )
 
 // -------------------- public member functions -------------------- //
 
-void KNote::saveData()
+void KNote::saveData( bool update )
 {
   m_journal->setSummary( m_label->text() );
   m_journal->setDescription( m_editor->text() );
@@ -159,8 +165,10 @@ void KNote::saveData()
   m_journal->setCustomProperty( "KNotes", "RichText",
                                 m_config->richText() ? "true" : "false" );
 
-  emit sigDataChanged();
+  if(update) {
+  emit sigDataChanged(m_journal->uid());
   m_editor->document()->setModified( false );
+  }
 }
 
 void KNote::saveConfig() const
@@ -354,7 +362,7 @@ void KNote::slotSetAlarm()
   dlg.setIncidence( m_journal );
 
   if ( dlg.exec() == QDialog::Accepted ) {
-    emit sigDataChanged();
+    emit sigDataChanged(noteId());
   }
   m_blockEmitDataChanged = false;
 }
@@ -377,12 +385,10 @@ void KNote::slotPreferences()
 
 void KNote::slotSend()
 {
-    m_blockEmitDataChanged = true;
   // pop up dialog to get the IP
   KNoteHostDlg hostDlg( i18n( "Send \"%1\"", name() ), this );
   bool ok = ( hostDlg.exec() == QDialog::Accepted );
 
-  m_blockEmitDataChanged = false;
   if ( !ok ) { // handle cancel
     return;
   }
@@ -626,7 +632,7 @@ void KNote::createActions()
 
   action  = new KAction( KIcon( "document-new" ), i18n( "New" ),  this );
   actionCollection()->addAction( "new_note", action );
-  connect( action, SIGNAL( triggered( bool ) ), SIGNAL( sigRequestNewNote() ) );
+  connect( action, SIGNAL( triggered( bool ) ), SLOT( slotRequestNewNote() ) );
 
   action  = new KAction( KIcon( "edit-rename" ), i18n( "Rename..." ), this );
   actionCollection()->addAction( "rename_note", action );
@@ -750,6 +756,14 @@ void KNote::createNoteEditor()
   m_noteLayout->addWidget( m_editor );
   m_editor->installEventFilter( this ); // receive focus events for modified
   setFocusProxy( m_editor );
+}
+
+
+void KNote::slotRequestNewNote()
+{
+    //Be sure to save before to request a new note
+    saveData();
+    emit sigRequestNewNote();
 }
 
 void KNote::createNoteFooter()
