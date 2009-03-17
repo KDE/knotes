@@ -124,6 +124,7 @@ private:
 private slots:
     void acceptConnection();
     void saveNotes();
+    void saveNotes( const QString & uid );
     void updateNoteActions();
     void updateGlobalAccels();
     void updateNetworkListener();
@@ -159,6 +160,7 @@ private:
 
     QDomDocument    m_noteGUI;
     KAction         *m_findAction;
+    QString m_noteUidModify;
 };
 
 #endif

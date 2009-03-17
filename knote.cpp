@@ -30,6 +30,7 @@
 #include <qobjectlist.h>
 #include <qfile.h>
 #include <qcheckbox.h>
+#include <qtimer.h>
 
 #include <kapplication.h>
 #include <kdebug.h>
@@ -106,7 +107,7 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent, const char *na
     // create the menu items for the note - not the editor...
     // rename, mail, print, save as, insert date, alarm, close, delete, new note
     new KAction( i18n("New"), "filenew", 0,
-        this, SIGNAL(sigRequestNewNote()), actionCollection(), "new_note" );
+        this,SLOT(slotRequestNewNote()) , actionCollection(), "new_note" );
     new KAction( i18n("Rename..."), "text", 0,
         this, SLOT(slotRename()), actionCollection(), "rename_note" );
     m_readOnly = new KToggleAction( i18n("Lock"), "lock" , 0,
@@ -371,6 +372,25 @@ KNote::~KNote()
     delete m_config;
 }
 
+void KNote::slotRequestNewNote()
+{
+    //Be sure to save before to request a new note
+   
+    saveData();
+    QTimer::singleShot ( 1000, this,SLOT(slotEmitCreateNewNote())  );
+}
+
+void KNote::slotEmitCreateNewNote()
+{
+    emit sigRequestNewNote();
+}
+
+void KNote::changeJournal(KCal::Journal *journal)
+{
+   m_journal = journal;
+   m_editor->setText( m_journal->description() );
+   setName( m_journal->summary() );
+}
 
 // -------------------- public slots -------------------- //
 
@@ -405,16 +425,17 @@ void KNote::slotKill( bool force )
 
 // -------------------- public member functions -------------------- //
 
-void KNote::saveData()
+void KNote::saveData(bool update)
 {
     m_journal->setSummary( m_label->text() );
     m_journal->setDescription( m_editor->text() );
     m_journal->setCustomProperty( "KNotes", "FgColor", m_config->fgColor().name() );
     m_journal->setCustomProperty( "KNotes", "BgColor", m_config->bgColor().name() );
     m_journal->setCustomProperty( "KNotes", "RichText", m_config->richText() ? "true" : "false" );
-
-    emit sigDataChanged();
+    if(update) {
+    emit sigDataChanged(m_journal->uid());
     m_editor->setModified( false );
+    }
 }
 
 void KNote::saveConfig() const
@@ -502,7 +523,7 @@ void KNote::setColor( const QColor& fg, const QColor& bg )
     m_config->setBgColor( bg );
 
     m_journal->updated();  // because setCustomProperty() doesn't call it!!
-    emit sigDataChanged();
+    emit sigDataChanged(noteId());
     m_config->writeConfig();
 
     QPalette newpalette = palette();
@@ -766,7 +787,7 @@ void KNote::slotSetAlarm()
 
     aboutToEnterEventLoop();
     if ( dlg.exec() == QDialog::Accepted )
-        emit sigDataChanged();
+        emit sigDataChanged(noteId());
     eventLoopLeft();
     m_blockEmitDataChanged = false;
 }
@@ -786,13 +807,11 @@ void KNote::slotPreferences()
 
 void KNote::slotSend()
 {
-    m_blockEmitDataChanged = true;
     // pop up dialog to get the IP
     KNoteHostDlg hostDlg( i18n("Send \"%1\"").arg( name() ), this );
     aboutToEnterEventLoop();
     bool ok = (hostDlg.exec() == QDialog::Accepted);
     eventLoopLeft();
-    m_blockEmitDataChanged = false;
     if ( !ok ) // handle cancel
         return;
     QString host = hostDlg.host();

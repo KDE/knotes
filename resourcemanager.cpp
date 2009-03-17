@@ -122,8 +122,8 @@ KCal::Alarm::List KNotesResourceManager::alarms( const QDateTime& from, const QD
     for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it )
     {
         KCal::Alarm::List list = (*it)->alarms( from, to );
-        KCal::Alarm::List::Iterator it;
-        for ( it = list.begin(); it != list.end(); ++it )
+        KCal::Alarm::List::ConstIterator it;
+        for ( it = list.constBegin(); it != list.constEnd(); ++it )
             result.append( *it );
     }
 

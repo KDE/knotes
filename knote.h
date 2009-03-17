@@ -56,7 +56,8 @@ public:
            const char *name = 0 );
     ~KNote();
 
-    void saveData();
+    void changeJournal(KCal::Journal *);
+    void saveData( bool update = true);
     void saveConfig() const;
 
     QString noteId() const;
@@ -91,7 +92,7 @@ signals:
     void sigRequestNewNote();
     void sigShowNextNote();
     void sigNameChanged();
-    void sigDataChanged();
+    void sigDataChanged(const QString &);
     void sigColorChanged();
     void sigKillNote( KCal::Journal* );
 
@@ -139,7 +140,8 @@ private slots:
     void slotUpdateDesktopActions();
 
     void slotUpdateViewport( int, int );
-
+    void slotRequestNewNote();
+    void slotEmitCreateNewNote();
 private:
     void updateFocus();
     void updateMask();
