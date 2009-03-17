@@ -564,14 +564,13 @@ void KNotesApp::createNote( KCal::Journal *journal )
 {
   if( journal->uid() == m_noteUidModify)
   {
-	  KNote *note = m_notes.value( m_noteUidModify );
-	  if ( note )
-		  note->changeJournal(journal);
-
-	  return;
+      KNote *note = m_notes.value( m_noteUidModify );
+      if ( note )
+          note->changeJournal(journal);
+      return;
   }
 
-
+  m_noteUidModify = journal->uid();
   KNote *newNote = new KNote( m_noteGUI, journal, 0 );
   m_notes.insert( newNote->noteId(), newNote );
 
