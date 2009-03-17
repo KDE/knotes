@@ -299,7 +299,7 @@ void KNotesApp::showAllNotes() const
     note->hide();
 
     note->show();
-    note->setFocus();
+    //note->setFocus();
   }
 }
 
