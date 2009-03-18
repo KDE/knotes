@@ -169,7 +169,7 @@ void KNote::saveData(bool update )
 
   if(update)
   {
-     emit sigDataChanged(m_journal->uid());
+     emit sigDataChanged(noteId());
      m_editor->document()->setModified( false );
   }
 }
