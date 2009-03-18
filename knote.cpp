@@ -120,7 +120,9 @@ void KNote::changeJournal(KCal::Journal *journal)
 {
    m_journal = journal;
    m_editor->setText( m_journal->description() );
-   setName( m_journal->summary() ); 
+   m_label->setText( m_journal->summary() );
+   updateLabelAlignment();
+
 }
 
 // -------------------- public slots -------------------- //
