@@ -121,6 +121,7 @@ KNote::~KNote()
 
 void KNote::slotKill( bool force )
 {
+  m_blockEmitDataChanged = true;
   if ( !force &&
        ( KMessageBox::warningContinueCancel( this,
          i18n( "<qt>Do you really want to delete note <b>%1</b>?</qt>",
@@ -129,7 +130,8 @@ void KNote::slotKill( bool force )
          KGuiItem( i18n( "&Delete" ), "edit-delete" ),
          KStandardGuiItem::cancel(),
          "ConfirmDeleteNote" ) != KMessageBox::Continue ) ) {
-    return;
+     m_blockEmitDataChanged = false;
+     return;
   }
   // delete the configuration first, then the corresponding file
   delete m_config;
