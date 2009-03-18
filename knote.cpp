@@ -406,7 +406,7 @@ void KNote::slotKill( bool force )
 	m_blockEmitDataChanged = false;
         return;
     }
-
+    aboutToEnterEventLoop();
     // delete the configuration first, then the corresponding file
     delete m_config;
     m_config = 0;
@@ -418,6 +418,8 @@ void KNote::slotKill( bool force )
         kdError(5500) << "Can't remove the note config: " << configFile << endl;
 
     emit sigKillNote( m_journal );
+    eventLoopLeft();
+
 }
 
 
