@@ -91,21 +91,21 @@ KNote::KNote( QDomDocument buildDoc, Journal *j, QWidget *parent )
   setAcceptDrops( true );
   setAttribute( Qt::WA_DeleteOnClose );
   setDOMDocument( buildDoc );
-  setObjectName( m_journal->uid() );  
+  setObjectName( m_journal->uid() );
   setXMLFile( componentData().componentName() + "ui.rc", false, false );
-  
+
   // create the main layout
   m_noteLayout = new QVBoxLayout( this );
   setLayout( m_noteLayout );
   m_noteLayout->setMargin( 0 );
-   
+
   // if there is no title yet, use the start date if valid
   // (KOrganizer's journals don't have titles but a valid start date)
   if ( m_journal->summary().isNull() && m_journal->dtStart().isValid() ) {
     QString s = KGlobal::locale()->formatDateTime( m_journal->dtStart() );
     m_journal->setSummary( s );
   }
-  
+
   createActions();
 
   buildGui();
@@ -133,18 +133,18 @@ void KNote::slotKill( bool force )
          "ConfirmDeleteNote" ) != KMessageBox::Continue ) ) {
     return;
   }
-  
+
   // delete the configuration first, then the corresponding file
   delete m_config;
   m_config = 0;
-  
+
   QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
   configFile += m_journal->uid();
-  
+
   if ( !KIO::NetAccess::del( KUrl( configFile ), this ) ) {
     kError( 5500 ) <<"Can't remove the note config:" << configFile;
   }
-  
+
   emit sigKillNote( m_journal );
 }
 
@@ -161,7 +161,7 @@ void KNote::saveData()
                                 m_config->bgColor().name() );
   m_journal->setCustomProperty( "KNotes", "RichText",
                                 m_config->richText() ? "true" : "false" );
-  
+
   emit sigDataChanged();
   m_editor->document()->setModified( false );
 }
@@ -176,7 +176,7 @@ void KNote::saveConfig() const
     m_config->setHeight( 0 );
   }
   m_config->setPosition( pos() );
-  
+
 #ifdef Q_WS_X11
   NETWinInfo wm_client( QX11Info::display(), winId(),
                         QX11Info::appRootWindow(), NET::WMDesktop );
@@ -185,7 +185,7 @@ void KNote::saveConfig() const
     m_config->setDesktop( wm_client.desktop() );
   }
 #endif
-  
+
   // actually store the config on disk
   m_config->writeConfig();
 }
@@ -209,7 +209,7 @@ void KNote::setName( const QString& name )
 {
   m_label->setText( name );
   updateLabelAlignment();
-  
+
   if ( m_editor ) {    // not called from CTOR?
     saveData();
   }
@@ -219,25 +219,25 @@ void KNote::setName( const QString& name )
                        NET::WMDesktop );
   note_win.setName( name.toUtf8() );
 #endif
-  
+
   emit sigNameChanged();
 }
 
 void KNote::setText( const QString& text )
 {
   m_editor->setText( text );
-  
+
   saveData();
 }
 
 void KNote::find( KFind* kfind )
 {
   m_find = kfind;
-  disconnect( m_find ); 
+  disconnect( m_find );
   connect( m_find, SIGNAL( highlight( const QString &, int, int ) ),
            this, SLOT( slotHighlight( const QString &, int, int ) ) );
   connect( m_find, SIGNAL( findNext() ), this, SLOT( slotFindNext() ) );
-  
+
   m_find->setData( m_editor->toPlainText() );
   slotFindNext();
 }
@@ -249,9 +249,9 @@ void KNote::slotFindNext()
   // Let KFind inspect the text fragment, and display a dialog if a match is
   // found
   KFind::Result res = m_find->find();
-  
+
   if ( res == KFind::NoMatch ) { // i.e. at end-pos
-   
+
     QTextCursor c = m_editor->textCursor(); //doesn't return by reference, so we use setTextCursor
     c.clearSelection();
     m_editor->setTextCursor( c );
@@ -259,7 +259,7 @@ void KNote::slotFindNext()
     disconnect( m_find, 0, this, 0 );
     emit sigFindFinished();
   } else {
-	
+
     show();
 #ifdef Q_WS_X11
     KWindowSystem::setCurrentDesktop( KWindowSystem::windowInfo( winId(),
@@ -310,7 +310,7 @@ void KNote::slotUpdateReadOnly()
   actionCollection()->action( "configure_note" )->setEnabled( !readOnly );
   actionCollection()->action( "insert_date" )->setEnabled( !readOnly );
   actionCollection()->action( "delete_note" )->setEnabled( !readOnly );
-  
+
   actionCollection()->action( "edit_undo" )->setEnabled( !readOnly &&
                               m_editor->document()->isUndoAvailable() );
   actionCollection()->action( "edit_redo" )->setEnabled( !readOnly &&
@@ -334,11 +334,11 @@ void KNote::slotClose()
     m_config->setDesktop( wm_client.desktop() );
   }
 #endif
-  
+
   m_editor->clearFocus();
   m_config->setHideNote( true );
   m_config->setPosition( pos() );
-  
+
   // just hide the note so it's still available from the dock window
   hide();
 }
@@ -353,7 +353,7 @@ void KNote::slotSetAlarm()
 {
   KNoteAlarmDlg dlg( name(), this );
   dlg.setIncidence( m_journal );
-  
+
   if ( dlg.exec() == QDialog::Accepted ) {
     emit sigDataChanged();
   }
@@ -365,7 +365,7 @@ void KNote::slotPreferences()
   if ( KNoteConfigDlg::showDialog( noteId() ) ) {
     return;
   }
-  
+
   // create a new preferences dialog...
   KNoteConfigDlg *dialog = new KNoteConfigDlg( m_config, name(), this, noteId() );
   connect( dialog, SIGNAL( settingsChanged( const QString & ) ) , this,
@@ -386,14 +386,14 @@ void KNote::slotSend()
   }
 
   QString host = hostDlg.host();
-  
+
   if ( host.isEmpty() ) {
     KMessageBox::sorry( this, i18n( "The host cannot be empty." ) );
     return;
   }
-  
+
   // Send the note
-  
+
   KNotesNetworkSender *sender = new KNotesNetworkSender(
     KSocketFactory::connectToHost( "knotes", host,
                                    KNotesGlobalConfig::port() ) );
@@ -406,7 +406,7 @@ void KNote::slotMail()
   // get the mail action command
   const QStringList cmd_list = KNotesGlobalConfig::mailAction().split( QChar(' '),
       QString::SkipEmptyParts );
-  
+
   KProcess mail;
   foreach ( const QString &cmd, cmd_list ) {
     if ( cmd == "%f" ) {
@@ -417,7 +417,7 @@ void KNote::slotMail()
       mail << cmd;
     }
   }
-  
+
   if ( !mail.startDetached() ) {
     KMessageBox::sorry( this, i18n( "Unable to start the mail process." ) );
   }
@@ -440,27 +440,27 @@ void KNote::slotPrint()
 void KNote::slotSaveAs()
 {
   // TODO: where to put pdf file support? In the printer??!??!
-  
+
   QCheckBox *convert = 0;
-  
+
   if ( m_editor->acceptRichText() ) {
     convert = new QCheckBox( 0 );
     convert->setText( i18n( "Save note as plain text" ) );
   }
-  
+
   KUrl url;
   KFileDialog dlg( url, QString(), this, convert );
   dlg.setOperationMode( KFileDialog::Saving );
   dlg.setCaption( i18n( "Save As" ) );
   dlg.exec();
-  
+
   QString fileName = dlg.selectedFile();
   if ( fileName.isEmpty() ) {
     return;
   }
-  
+
   QFile file( fileName );
-  
+
   if ( file.exists() &&
        KMessageBox::warningContinueCancel( this,
           i18n( "<qt>A file named <b>%1</b> already exists.<br />"
@@ -468,7 +468,7 @@ void KNote::slotSaveAs()
                 QFileInfo( file ).fileName() ) ) != KMessageBox::Continue ) {
     return;
   }
-  
+
   if ( file.open( QIODevice::WriteOnly ) ) {
     QTextStream stream( &file );
     if ( convert && !convert->isChecked() ) {
@@ -494,15 +494,15 @@ void KNote::slotApplyConfig()
   m_editor->setTextFont( m_config->font() );
   m_editor->setTabStop( m_config->tabSize() );
   m_editor->setAutoIndentMode( m_config->autoIndent() );
-  
+
   // if called as a slot, save the text, we might have changed the
   // text format - otherwise the journal will not be updated
   if ( sender() ) {
     saveData();
   }
-  
+
   setColor( m_config->fgColor(), m_config->bgColor() );
-  
+
   updateLayout();
   slotUpdateShowInTaskbar();
 }
@@ -567,20 +567,20 @@ void KNote::slotUpdateDesktopActions()
                        NET::DesktopNames );
   NETWinInfo wm_client( QX11Info::display(), winId(),
                         QX11Info::appRootWindow(), NET::WMDesktop );
-  
+
   QStringList desktops;
   desktops.append( i18n( "&All Desktops" ) );
   desktops.append( QString::null );           // Separator
                                               // krazy:exclude=nullstrassign
                                               // for old broken gcc
-  
+
   int count = wm_root.numberOfDesktops();
   for ( int n = 1; n <= count; n++ ) {
     desktops.append( QString( "&%1 %2" ).arg( n ).arg(
       QString::fromUtf8( wm_root.desktopName( n ) ) ) );
   }
   m_toDesktop->setItems( desktops );
-  
+
   if ( wm_client.desktop() == NETWinInfo::OnAllDesktops ) {
     m_toDesktop->setCurrentItem( 0 );
   } else {
@@ -595,13 +595,13 @@ void KNote::slotUpdateDesktopActions()
 
 void KNote::buildGui()
 {
-  createNoteHeader();  
+  createNoteHeader();
   createNoteEditor();
-  
+
   KXMLGUIBuilder builder( this );
   KXMLGUIFactory factory( &builder, this );
   factory.addClient( this );
-  
+
   m_menu = dynamic_cast<KMenu*>( factory.container( "note_context", this ) );
   m_editor->setContextMenu( dynamic_cast<KMenu *>(
                               factory.container( "note_edit", this ) ) );
@@ -624,12 +624,12 @@ void KNote::createActions()
   actionCollection()->addAction( "rename_note", action );
   connect( action, SIGNAL( triggered( bool ) ), SLOT( slotRename() ) );
 
-  m_readOnly  = new KToggleAction( KIcon( "system-lock-screen" ),
+  m_readOnly  = new KToggleAction( KIcon( "object-locked" ),
                                    i18n( "Lock" ), this );
   actionCollection()->addAction( "lock_note", m_readOnly );
   connect( m_readOnly, SIGNAL( triggered( bool ) ),
           SLOT( slotUpdateReadOnly() ) );
-  m_readOnly->setCheckedState( KGuiItem( i18n( "Unlock" ), "unlock" ) );
+  m_readOnly->setCheckedState( KGuiItem( i18n( "Unlock" ), "object-unlocked" ) );
 
   action  = new KAction( KIcon( "window-close" ), i18n( "Hide" ), this );
   actionCollection()->addAction( "hide_note", action );
@@ -639,7 +639,7 @@ void KNote::createActions()
   action  = new KAction( KIcon( "edit-delete" ), i18n( "Delete" ), this );
   actionCollection()->addAction( "delete_note", action );
   connect( action, SIGNAL( triggered( bool ) ), SLOT( slotKill() ) ,Qt::QueuedConnection);
-  
+
   action  = new KAction( KIcon( "knotes_date" ), i18n( "Insert Date" ), this );
   actionCollection()->addAction( "insert_date", action );
   connect( action, SIGNAL( triggered( bool ) ), SLOT( slotInsDate() ) );
@@ -648,7 +648,7 @@ void KNote::createActions()
                          this );
   actionCollection()->addAction( "set_alarm", action );
   connect( action, SIGNAL( triggered( bool ) ), SLOT( slotSetAlarm() ) );
-  
+
   action  = new KAction( KIcon( "network-wired" ), i18n( "Send..." ), this );
   actionCollection()->addAction( "send_note", action );
   connect( action, SIGNAL( triggered( bool ) ), SLOT( slotSend() ) );
@@ -667,20 +667,20 @@ void KNote::createActions()
   action  = new KAction( KIcon( "configure" ), i18n( "Preferences..." ), this );
   actionCollection()->addAction( "configure_note", action );
   connect( action, SIGNAL( triggered( bool ) ), SLOT( slotPreferences() ) );
-  
-  
+
+
   m_keepAbove  = new KToggleAction( KIcon( "go-up" ),
                                     i18n( "Keep Above Others" ), this );
   actionCollection()->addAction( "keep_above", m_keepAbove );
   connect( m_keepAbove, SIGNAL( triggered( bool ) ),
            SLOT( slotKeepAbove() ) );
-  
+
   m_keepBelow  = new KToggleAction( KIcon( "go-down" ),
                                     i18n( "Keep Below Others" ), this );
   actionCollection()->addAction( "keep_below", m_keepBelow );
   connect( m_keepBelow, SIGNAL( triggered( bool ) ),
            SLOT( slotKeepBelow() ) );
-  
+
 #ifdef Q_WS_X11
   m_toDesktop  = new KSelectAction( i18n( "To Desktop" ), this );
   actionCollection()->addAction( "to_desktop", m_toDesktop );
@@ -689,7 +689,7 @@ void KNote::createActions()
   connect( m_toDesktop->menu(), SIGNAL( aboutToShow() ),
            SLOT( slotUpdateDesktopActions() ) );
 #endif
-  
+
   // invisible action to walk through the notes to make this configurable
   action  = new KAction( i18n( "Walk Through Notes" ), this );
   actionCollection()->addAction( "walk_notes", action );
@@ -705,18 +705,18 @@ void KNote::createNoteHeader()
 {
   // load style configuration
   KConfigGroup styleGroup( m_kwinConf, "Style" );
-  
+
   QBoxLayout::Direction headerLayoutDirection = QBoxLayout::LeftToRight;
-  
+
   if ( styleGroup.readEntry( "CustomButtonPositions", false ) ) {
     if ( styleGroup.readEntry( "ButtonsOnLeft" ).contains( 'X' ) ) {
       headerLayoutDirection = QBoxLayout::RightToLeft;
     }
   }
-  
+
   QBoxLayout *headerLayout = new QBoxLayout( headerLayoutDirection, this );
-  
-  
+
+
   // create header label
   m_label = new QLabel( this );
   headerLayout->addWidget( m_label );
@@ -730,9 +730,9 @@ void KNote::createNoteHeader()
                                         // connected at this stage yet
   m_button = new KNoteButton( "knotes_close", this );
   headerLayout->addWidget( m_button );
-  
+
   connect( m_button, SIGNAL( clicked() ), this, SLOT( slotClose() ) );
-  
+
   m_noteLayout->addItem( headerLayout );
 }
 
@@ -741,7 +741,7 @@ void KNote::createNoteEditor()
   m_editor = new KNoteEdit( actionCollection(), this );
   m_noteLayout->addWidget( m_editor );
   m_editor->installEventFilter( this ); // receive focus events for modified
-  setFocusProxy( m_editor );  
+  setFocusProxy( m_editor );
 }
 
 void KNote::createNoteFooter()
@@ -751,22 +751,22 @@ void KNote::createNoteFooter()
     m_tool->setFixedHeight( 24 );
     m_tool->setToolButtonStyle( Qt::ToolButtonIconOnly );
   }
-  
+
   // create size grip
   QHBoxLayout *gripLayout = new QHBoxLayout( this );
   m_grip = new QSizeGrip( this );
   m_grip->setFixedSize( m_grip->sizeHint() );
-  
+
   if ( m_tool ) {
     gripLayout->addWidget( m_tool );
     gripLayout->setAlignment( m_tool, Qt::AlignBottom | Qt::AlignLeft );
     m_tool->hide();
   }
-  
+
   gripLayout->addWidget( m_grip );
   gripLayout->setAlignment( m_grip, Qt::AlignBottom | Qt::AlignRight );
   m_noteLayout->addItem( gripLayout );
-  
+
   // if there was just a way of making KComboBox adhere the toolbar height...
   if ( m_tool ) {
     foreach ( KComboBox *combo, m_tool->findChildren<KComboBox *>() ) {
@@ -783,17 +783,17 @@ void KNote::prepare()
   // the config file location
   QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
   configFile += m_journal->uid();
-  
+
   // no config file yet? -> use the default display config if available
   // we want to write to configFile, so use "false"
   bool newNote = !KIO::NetAccess::exists( KUrl( configFile ),
                                           KIO::NetAccess::DestinationSide, 0 );
-  
+
   m_config = new KNoteConfig( KSharedConfig::openConfig( configFile,
                                                          KConfig::NoGlobals ) );
   m_config->readConfig();
   m_config->setVersion( KNOTES_VERSION );
-  
+
   if ( newNote ) {
     // until kdelibs provides copying of KConfigSkeletons (KDE 3.4)
     KNotesGlobalConfig *globalConfig = KNotesGlobalConfig::self();
@@ -801,14 +801,14 @@ void KNote::prepare()
     m_config->setFgColor( globalConfig->fgColor() );
     m_config->setWidth( globalConfig->width() );
     m_config->setHeight( globalConfig->height() );
-    
+
     m_config->setFont( globalConfig->font() );
     m_config->setTitleFont( globalConfig->titleFont() );
     m_config->setAutoIndent( globalConfig->autoIndent() );
     m_config->setRichText( globalConfig->richText() );
     m_config->setTabSize( globalConfig->tabSize() );
     m_config->setReadOnly( globalConfig->readOnly() );
-    
+
     m_config->setDesktop( globalConfig->desktop() );
     m_config->setHideNote( globalConfig->hideNote() );
     m_config->setPosition( globalConfig->position() );
@@ -816,25 +816,25 @@ void KNote::prepare()
     m_config->setRememberDesktop( globalConfig->rememberDesktop() );
     m_config->setKeepAbove( globalConfig->keepAbove() );
     m_config->setKeepBelow( globalConfig->keepBelow() );
-    
+
     m_config->writeConfig();
   }
-  
+
   // set up the look&feel of the note
   setFrameStyle( Panel | Raised );
   setMinimumSize( 20, 20 );
   setBackgroundRole( QPalette::Base );
-  
+
   m_editor->setContentsMargins( 0, 0, 0, 0 );
   m_editor->setBackgroundRole( QPalette::Base );
   m_editor->setFrameStyle( NoFrame );
   m_editor->setText( m_journal->description() );
-  
+
   // load the display configuration of the note
   uint width = m_config->width();
   uint height = m_config->height();
   resize( width, height );
-  
+
   // let KWin do the placement if the position is illegal--at least 10 pixels
   // of a note need to be visible
   const QPoint& position = m_config->position();
@@ -843,7 +843,7 @@ void KNote::prepare()
   if ( desk.intersects( QRect( position, QSize( width, height ) ) ) ) {
     move( position );           // do before calling show() to avoid flicker
   }
-  
+
   // config items in the journal have priority
   QString property = m_journal->customProperty( "KNotes", "FgColor" );
   if ( !property.isNull() ) {
@@ -852,7 +852,7 @@ void KNote::prepare()
     m_journal->setCustomProperty( "KNotes", "FgColor",
                                   m_config->fgColor().name() );
   }
-  
+
   property = m_journal->customProperty( "KNotes", "BgColor" );
   if ( !property.isNull() ) {
     m_config->setBgColor( QColor( property ) );
@@ -867,26 +867,26 @@ void KNote::prepare()
     m_journal->setCustomProperty( "KNotes", "RichText",
                                   m_config->richText() ? "true" : "false" );
   }
-  
+
   // read configuration settings...
   slotApplyConfig();
-  
+
   // if this is a new note put on current desktop - we can't use defaults
   // in KConfig XT since only _changes_ will be stored in the config file
   int desktop = m_config->desktop();
-  
+
 #ifdef Q_WS_X11
   if ( ( desktop < 0 && desktop != NETWinInfo::OnAllDesktops ) ||
        !m_config->rememberDesktop() )
     desktop = KWindowSystem::currentDesktop();
 #endif
-  
+
   // show the note if desired
   if ( desktop != 0 && !m_config->hideNote() ) {
     // to avoid flicker, call this before show()
     toDesktop( desktop );
     show();
-    
+
     // because KWin forgets about that for hidden windows
 #ifdef Q_WS_X11
     if ( desktop == NETWinInfo::OnAllDesktops ) {
@@ -894,10 +894,10 @@ void KNote::prepare()
     }
 #endif
   }
-  
+
   m_readOnly->setChecked( m_config->readOnly() );
   slotUpdateReadOnly();
-  
+
   if ( m_config->keepAbove() ) {
     m_keepAbove->setChecked( true );
   } else if ( m_config->keepBelow() ) {
@@ -907,7 +907,7 @@ void KNote::prepare()
     m_keepBelow->setChecked( false );
   }
   slotUpdateKeepAboveBelow();
-  
+
   // HACK: update the icon color - again after showing the note, to make kicker
   // aware of the new colors
   KIconEffect effect;
@@ -932,7 +932,7 @@ void KNote::toDesktop( int desktop )
   if ( desktop == 0 ) {
     return;
   }
-  
+
 #ifdef Q_WS_X11
   if ( desktop == NETWinInfo::OnAllDesktops ) {
     KWindowSystem::setOnAllDesktops( winId(), true );
@@ -945,45 +945,45 @@ void KNote::toDesktop( int desktop )
 void KNote::setColor( const QColor &fg, const QColor &bg )
 {
   QPalette p = palette();
-  
+
   // better: from light(150) to light(100) to light(75)
   // QLinearGradient g( width()/2, 0, width()/2, height() );
   // g.setColorAt( 0, bg );
   // g.setColorAt( 1, bg.dark(150) );
-  
+
   p.setColor( QPalette::Window,     bg );
   // p.setBrush( QPalette::Window,     g );
   p.setColor( QPalette::Base,       bg );
   // p.setBrush( QPalette::Base,       g );
-  
+
   p.setColor( QPalette::WindowText, fg );
   p.setColor( QPalette::Text,       fg );
-  
+
   p.setColor( QPalette::Button,     bg.dark( 116 ) );
   p.setColor( QPalette::ButtonText, fg );
-  
+
   //p.setColor( QPalette::Highlight,  bg );
   //p.setColor( QPalette::HighlightedText, fg );
-  
+
   // order: Light, Midlight, Button, Mid, Dark, Shadow
-  
+
   // the shadow
   p.setColor( QPalette::Light, bg.light( 180 ) );
   p.setColor( QPalette::Midlight, bg.light( 150 ) );
   p.setColor( QPalette::Mid, bg.light( 150 ) );
   p.setColor( QPalette::Dark, bg.dark( 108 ) );
   p.setColor( QPalette::Shadow, bg.dark( 116 ) );
-  
+
   setPalette( p );
-  
+
   // darker values for the active label
   p.setColor( QPalette::Active, QPalette::Base, bg.dark( 116 ) );
-  
+
   m_label->setPalette( p );
-  
+
   // set the text color
   m_editor->setTextColor( fg );
-  
+
   // update the icon color
   KIconEffect effect;
   QPixmap icon = effect.apply( qApp->windowIcon().pixmap(
@@ -1019,7 +1019,7 @@ void KNote::updateFocus()
   if ( hasFocus() ) {
     m_button->show();
     m_grip->show();
-    
+
     if ( !m_editor->isReadOnly() ) {
       if ( m_tool && m_tool->isHidden() && m_editor->acceptRichText() ) {
         m_tool->show();
@@ -1033,7 +1033,7 @@ void KNote::updateFocus()
   } else {
     m_button->hide();
     m_grip->hide();
-    
+
     if ( m_tool && !m_tool->isHidden() ) {
       m_tool->hide();
       setGeometry( x(), y(), width(), height() - m_tool->height() );
@@ -1092,7 +1092,7 @@ void KNote::dropEvent( QDropEvent *e )
   if ( m_config->readOnly() ) {
     return;
   }
-  
+
   const QMimeData *md = e->mimeData();
   if ( md->hasColor() ) {
        QColor bg =  qvariant_cast<QColor>( md->colorData() );
@@ -1119,26 +1119,26 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
     dragEnterEvent( static_cast<QDragEnterEvent *>( ev ) );
     return true;
   }
-  
+
   if ( ev->type() == QEvent::Drop &&
        static_cast<QDropEvent *>( ev )->mimeData()->hasColor() ) {
     dropEvent( static_cast<QDropEvent *>( ev ) );
     return true;
   }
-  
+
   if ( o == m_label ) {
     QMouseEvent *e = ( QMouseEvent * )ev;
-    
+
     if ( ev->type() == QEvent::MouseButtonDblClick ) {
       slotRename();
     }
-    
+
     if ( ev->type() == QEvent::MouseButtonPress &&
         ( e->button() == Qt::LeftButton || e->button() == Qt::MidButton ) ) {
 #ifdef Q_WS_X11
       e->button() == Qt::LeftButton ? KWindowSystem::raiseWindow( winId() )
                                     : KWindowSystem::lowerWindow( winId() );
-      
+
       XUngrabPointer( QX11Info::display(), QX11Info::appTime() );
       NETRootInfo wm_root( QX11Info::display(), NET::WMMoveResize );
       wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(),
@@ -1146,7 +1146,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
 #endif
       return true;
     }
-    
+
     if ( ev->type() == QEvent::MouseButtonRelease ) {
 #ifdef Q_WS_X11
         NETRootInfo wm_root( QX11Info::display(), NET::WMMoveResize );
@@ -1155,10 +1155,10 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
 #endif
         return false;
     }
-    
+
     return false;
   }
-  
+
   if ( o == m_editor ) {
     if ( ev->type() == QEvent::FocusOut ) {
           QFocusEvent *fe = static_cast<QFocusEvent *>( ev );
@@ -1173,10 +1173,10 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
     } else if ( ev->type() == QEvent::FocusIn ) {
       updateFocus();
     }
-    
+
     return false;
   }
-  
+
   return false;
 }
 
