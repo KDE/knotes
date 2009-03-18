@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2006, The KNotes Developers
+ Copyright (c) 1997-2009, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -176,7 +176,7 @@ KNotesApp::KNotesApp()
   // get the most recent XML UI file
   QString xmlFileName = componentData().componentName() + "ui.rc";
   QString filter = componentData().componentName() + '/' + xmlFileName;
-  QStringList fileList =
+  const QStringList fileList =
       componentData().dirs()->findAllResources( "data", filter ) +
       componentData().dirs()->findAllResources( "data", xmlFileName );
 
