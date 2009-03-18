@@ -282,13 +282,14 @@ bool KNote::isModified() const
 
 void KNote::slotRename()
 {
+    m_blockEmitDataChanged = true;
   // pop up dialog to get the new name
   bool ok;
   const QString oldName = m_label->text();
   QString newName = KInputDialog::getText( QString::null,
     //krazy:exclude=nullstrassign for old broken gcc
     i18n( "Please enter the new name:" ), m_label->text(), &ok, this );
-
+  m_blockEmitDataChanged = false;
   if ( !ok || oldName == newName ) { // handle cancel
     return;
   }
@@ -377,10 +378,12 @@ void KNote::slotPreferences()
 
 void KNote::slotSend()
 {
+    m_blockEmitDataChanged = true;
   // pop up dialog to get the IP
   KNoteHostDlg hostDlg( i18n( "Send \"%1\"", name() ), this );
   bool ok = ( hostDlg.exec() == QDialog::Accepted );
 
+  m_blockEmitDataChanged = false;
   if ( !ok ) { // handle cancel
     return;
   }
