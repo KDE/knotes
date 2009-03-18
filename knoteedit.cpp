@@ -197,16 +197,12 @@ QString KNoteEdit::text() const
 
 void KNoteEdit::setTextFont( const QFont &font )
 {
-  QTextCharFormat f;
-  f.setFont( font );
-  setTextFormat( f );
+    setCurrentFont( font );
 }
 
 void KNoteEdit::setTextFontSize( int size )
 {
-  QTextCharFormat f;
-  f.setFontPointSize( size );
-  setTextFormat( f );
+  setFontPointSize( size );
 }
 
 void KNoteEdit::setTabStop( int tabs )
