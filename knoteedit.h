@@ -51,7 +51,6 @@ class KNoteEdit
     QString text() const;
     
     void setTextFont( const QFont &font );
-    void setTextColor( const QColor &color );
     void setTabStop( int tabs );
     void setAutoIndentMode( bool newmode );
     
