@@ -402,8 +402,10 @@ void KNoteEdit::dropEvent( QDropEvent *e )
 
   if ( KUrl::List::canDecode( md ) ) {
     KUrl::List list = KUrl::List::fromMimeData( md );
-    for ( KUrl::List::Iterator it = list.begin(); it != list.end(); ++it ) {
-      if ( it != list.begin() ) {
+    KUrl::List::ConstIterator begin = list.constBegin();
+    KUrl::List::ConstIterator end = list.constEnd();
+    for ( KUrl::List::ConstIterator it = begin; it != end; ++it ) {
+      if ( it != begin ) {
         insertPlainText( ", " );
       }
       insertPlainText( ( *it ).prettyUrl() );

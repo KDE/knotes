@@ -125,8 +125,8 @@ KCal::Alarm::List ResourceLocal::alarms( const KDateTime &from,
   for ( note = notes.constBegin(); note != notes.constEnd(); ++note ) {
     KDateTime preTime = from.addSecs( -1 );
     KCal::Alarm::List::ConstIterator it;
-    for( it = ( *note )->alarms().begin();
-         it != ( *note )->alarms().end(); ++it ) {
+    for( it = ( *note )->alarms().constBegin();
+         it != ( *note )->alarms().constEnd(); ++it ) {
       if ( ( *it )->enabled() ) {
         KDateTime dt = ( *it )->nextRepetition( preTime );
         if ( dt.isValid() && dt <= to ) {

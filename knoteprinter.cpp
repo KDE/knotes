@@ -10,7 +10,7 @@
 #include <kcal/journal.h>
 
 #include <klocale.h>
-
+#include <kdebug.h>
 
 KNotePrinter::KNotePrinter()
 {
