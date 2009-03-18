@@ -533,6 +533,7 @@ void KNotesApp::slotConfigureAccels()
 
 void KNotesApp::slotNoteKilled( KCal::Journal *journal )
 {
+  m_noteUidModify.clear();
   m_manager->deleteNote( journal );
   saveNotes();
 }
@@ -541,7 +542,7 @@ void KNotesApp::slotQuit()
 {
   foreach ( KNote *note, m_notes ) {
     if ( note->isModified() ) {
-      note->saveData();
+      note->saveData(false);
     }
   }
 
@@ -564,6 +565,15 @@ void KNotesApp::showNote( KNote *note ) const
 
 void KNotesApp::createNote( KCal::Journal *journal )
 {
+  if( journal->uid() == m_noteUidModify)
+  {
+         KNote *note = m_notes.value( m_noteUidModify );
+         if ( note )
+                 note->changeJournal(journal);
+
+         return;
+  }
+  m_noteUidModify = journal->uid();
   KNote *newNote = new KNote( m_noteGUI, journal, 0 );
   m_notes.insert( newNote->noteId(), newNote );
 
@@ -575,8 +585,8 @@ void KNotesApp::createNote( KCal::Journal *journal )
            SLOT( slotNoteKilled( KCal::Journal * ) ) );
   connect( newNote, SIGNAL( sigNameChanged() ),
            SLOT( updateNoteActions() ) );
-  connect( newNote, SIGNAL( sigDataChanged() ),
-           SLOT( saveNotes() ) );
+  connect( newNote, SIGNAL( sigDataChanged(const QString &) ),
+           SLOT( saveNotes(const QString &) ) );
   connect( newNote, SIGNAL( sigColorChanged() ),
            SLOT( updateNoteActions() ) );
   connect( newNote, SIGNAL( sigFindFinished() ),
@@ -590,6 +600,10 @@ void KNotesApp::createNote( KCal::Journal *journal )
 
 void KNotesApp::killNote( KCal::Journal *journal )
 {
+  if(m_noteUidModify == journal->uid())
+  {
+         return;
+  }
   // this kills the KNote object
   KNote *note = m_notes.take( journal->uid() );
   if ( note )
@@ -597,6 +611,12 @@ void KNotesApp::killNote( KCal::Journal *journal )
     delete note;
     updateNoteActions();
   }
+}
+
+void KNotesApp::saveNotes( const QString & uid )
+{
+  m_noteUidModify = uid;
+  saveNotes();
 }
 
 void KNotesApp::acceptConnection()
