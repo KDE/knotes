@@ -391,7 +391,7 @@ void KNotesApp::slotActivated( QSystemTrayIcon::ActivationReason r )
     case QSystemTrayIcon::Trigger:
       if ( m_notes.size() == 1 ) {
         showNote( *m_notes.begin() );
-      } else if ( m_notes.size() > 1 ) {
+      } else if ( m_notes.size() != 1 ) {
         m_noteMenu->popup( QCursor::pos () );
       }
       break;
