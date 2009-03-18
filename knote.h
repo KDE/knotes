@@ -53,7 +53,7 @@ class KNote
 {
   Q_OBJECT
   public:
-    KNote( QDomDocument buildDoc, KCal::Journal *journal, QWidget *parent = 0 );
+    KNote( const QDomDocument& buildDoc, KCal::Journal *journal, QWidget *parent = 0 );
     ~KNote();
 
     void saveData();
