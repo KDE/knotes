@@ -452,7 +452,7 @@ void KNote::slotPrint()
 void KNote::slotSaveAs()
 {
   // TODO: where to put pdf file support? In the printer??!??!
-
+  m_blockEmitDataChanged = true;
   QCheckBox *convert = 0;
 
   if ( m_editor->acceptRichText() ) {
@@ -468,7 +468,7 @@ void KNote::slotSaveAs()
 
   QString fileName = dlg.selectedFile();
   if ( fileName.isEmpty() ) {
-      m_blockEmitDataChanged = false;
+    m_blockEmitDataChanged = false;
     return;
   }
 
@@ -479,7 +479,7 @@ void KNote::slotSaveAs()
           i18n( "<qt>A file named <b>%1</b> already exists.<br />"
                 "Are you sure you want to overwrite it?</qt>",
                 QFileInfo( file ).fileName() ) ) != KMessageBox::Continue ) {
-      m_blockEmitDataChanged = false;
+    m_blockEmitDataChanged = false;
     return;
   }
 
