@@ -14,11 +14,13 @@ X-KDE-Weight=200
 
 Name=Editor
 Name[ga]=Eagarthóir
+Name[nb]=Redigerer
 Name[uk]=Редактор
 Name[x-test]=xxEditorxx
 Name[zh_TW]=編輯器
 Comment=Setup editor
 Comment[ga]=Socraigh an t-eagarthóir
+Comment[nb]=Sett opp redigering
 Comment[nds]=Editor inrichten
 Comment[pt]=Configurar o editor
 Comment[pt_BR]=Configurar editor
