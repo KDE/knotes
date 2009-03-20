@@ -73,7 +73,7 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
   QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
   const QStringList notes = noteDir.entryList( QDir::Files, QDir::Name );
   for ( QStringList::ConstIterator note = notes.constBegin(); note != notes.constEnd();
-        note++ ) {
+        ++note ) {
     QString file = noteDir.absoluteFilePath( *note );
     KConfig *test = new KConfig( file, KConfig::SimpleConfig );
     KConfigGroup grp( test, "General" );
@@ -260,7 +260,7 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir &noteDir,
   grp.deleteEntry( "state" );
   
   // load the saved text and put it in the journal
-  QFile infile( noteDir.absoluteFilePath( "." + file + "_data" ) );
+  QFile infile( noteDir.absoluteFilePath( '.' + file + "_data" ) );
   if ( infile.open( QIODevice::ReadOnly ) ) {
     QTextStream input( &infile );
     input.setCodec( "UTF-8" );
