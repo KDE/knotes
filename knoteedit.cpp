@@ -64,9 +64,9 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   m_paste->setEnabled( true );
 
   connect( this, SIGNAL( undoAvailable( bool ) ),
-           this, SLOT( setEnabled( bool ) ) );
+           undo, SLOT( setEnabled( bool ) ) );
   connect( this, SIGNAL( redoAvailable( bool ) ),
-           this, SLOT( setEnabled( bool ) ) );
+           redo, SLOT( setEnabled( bool ) ) );
 
   connect( this, SIGNAL( copyAvailable( bool ) ),
            this, SLOT( slotCutEnabled( bool ) ) );
