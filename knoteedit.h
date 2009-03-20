@@ -95,9 +95,6 @@ class KNoteEdit
     void slotCurrentCharFormatChanged( const QTextCharFormat & );
     void slotCutEnabled( bool );
 
-    void setEnabledRedo( bool b );
-    void setEnabledUndo( bool b );
-
   private:
     void autoIndent();
 
