@@ -131,8 +131,6 @@ class KNoteEdit
     KFontAction     *m_textFont;
     KFontSizeAction *m_textSize;
 
-    KAction* undo;
-    KAction* redo;
     bool m_autoIndentMode;
     KNote *m_note;
 };

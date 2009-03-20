@@ -50,8 +50,8 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   setAutoFormatting( AutoAll );
 
   // create the actions for the RMB menu
-  undo = KStandardAction::undo( this, SLOT( undo() ), actions );
-  redo = KStandardAction::redo( this, SLOT( redo() ), actions );
+  QAction *undo = KStandardAction::undo( this, SLOT( undo() ), actions );
+  QAction *redo = KStandardAction::redo( this, SLOT( redo() ), actions );
   undo->setEnabled( document()->isUndoAvailable() );
   redo->setEnabled( document()->isRedoAvailable() );
 
@@ -190,7 +190,7 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   m_textSize  = new KFontSizeAction( i18n( "Text Size" ), this );
   actions->addAction( "format_size", m_textSize );
   connect( m_textSize, SIGNAL( fontSizeChanged( int ) ),
-           this, SLOT( setFontWeight ( int ) ) );
+           this, SLOT( setTextFontSize ( int ) ) );
 
   // QTextEdit connections
   connect( this, SIGNAL( currentCharFormatChanged( const QTextCharFormat & ) ),
@@ -231,9 +231,12 @@ QString KNoteEdit::text() const
 
 void KNoteEdit::setTextFont( const QFont &font )
 {
-  QTextCharFormat f;
-  f.setFont( font );
-  setTextFormat( f );
+  setCurrentFont(font);
+}
+
+void KNoteEdit::setTextFontSize( int size )
+{
+          setFontPointSize( size );
 }
 
 void KNoteEdit::setTabStop( int tabs )
