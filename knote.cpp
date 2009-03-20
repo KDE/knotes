@@ -453,7 +453,7 @@ void KNote::slotPrint()
 void KNote::slotSaveAs()
 {
   // TODO: where to put pdf file support? In the printer??!??!
-
+  m_blockEmitDataChanged = true;
   QCheckBox *convert = 0;
 
   if ( m_editor->acceptRichText() ) {
