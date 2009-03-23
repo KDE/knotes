@@ -76,7 +76,7 @@ class KNotesResourceManager
     
   private:
     KRES::Manager<ResourceNotes> *m_manager;
-    Q3Dict<ResourceNotes> m_resourceMap;
+    QMultiHash<QString,ResourceNotes*> m_resourceMap;
 };
 
 

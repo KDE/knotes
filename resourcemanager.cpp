@@ -106,7 +106,7 @@ void KNotesResourceManager::deleteNote( KCal::Journal *journal )
   QString uid = journal->uid();
   
   // Remove the journal from the resource it came from
-  m_resourceMap[ uid ]->deleteNote( journal );
+  m_resourceMap.value( uid )->deleteNote( journal );
   m_resourceMap.remove( uid );
   
   // libkcal does not delete the journal immediately, therefore it is ok to
