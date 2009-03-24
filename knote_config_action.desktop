@@ -13,6 +13,7 @@ X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
 Name=Actions
+Name[et]=Toimingud
 Name[ga]=Gníomhartha
 Name[nb]=Handlinger
 Name[nds]=Akschonen
@@ -24,6 +25,7 @@ Name[uk]=Дії
 Name[x-test]=xxActionsxx
 Name[zh_TW]=動作
 Comment=Setup actions for notes
+Comment[et]=Märkmete toimingute seadistamine
 Comment[nb]=Sett opp handlinger for notater
 Comment[nds]=Akschonen för Notizen inrichten
 Comment[pt]=Configurar as acções das notas

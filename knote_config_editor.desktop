@@ -13,6 +13,7 @@ X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
 Name=Editor
+Name[et]=Redaktor
 Name[ga]=Eagarthóir
 Name[nb]=Redigerer
 Name[tr]=Düzenleyici
@@ -20,6 +21,7 @@ Name[uk]=Редактор
 Name[x-test]=xxEditorxx
 Name[zh_TW]=編輯器
 Comment=Setup editor
+Comment[et]=Redaktori seadistamine
 Comment[ga]=Socraigh an t-eagarthóir
 Comment[nb]=Sett opp redigering
 Comment[nds]=Editor inrichten

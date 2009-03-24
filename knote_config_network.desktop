@@ -13,6 +13,7 @@ X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
 Name=Network
+Name[et]=Võrk
 Name[ga]=Líonra
 Name[nb]=Nettverk
 Name[nds]=Nettwark
@@ -24,6 +25,7 @@ Name[uk]=Мережа
 Name[x-test]=xxNetworkxx
 Name[zh_TW]=網路
 Comment=Network Settings
+Comment[et]=Võrguseadistused
 Comment[ga]=Socruithe Líonra
 Comment[nb]=Nettverksinnstillinger
 Comment[nds]=Nettwark instellen
