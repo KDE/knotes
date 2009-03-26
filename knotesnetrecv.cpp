@@ -30,6 +30,8 @@
  your version.
 *******************************************************************/
 
+#include "knotesnetrecv.h"
+
 #include <QDateTime>
 #include <QHostAddress>
 #include <QRegExp>
@@ -39,7 +41,6 @@
 #include <kglobal.h>
 #include <klocale.h>
 
-#include "knotesnetrecv.h"
 
 // Maximum note size in chars we are going to accept,
 // to prevent "note floods".

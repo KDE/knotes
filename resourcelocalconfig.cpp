@@ -18,16 +18,17 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 *******************************************************************/
 
-#include <QHBoxLayout>
-#include <QLabel>
+#include "resourcelocalconfig.h"
+#include "resourcelocal.h"
 
 #include <kdebug.h>
 #include <klocale.h>
 #include <kresources/configwidget.h>
 #include <kurlrequester.h>
 
-#include "resourcelocal.h"
-#include "resourcelocalconfig.h"
+#include <QHBoxLayout>
+#include <QLabel>
+
 
 ResourceLocalConfig::ResourceLocalConfig( QWidget *parent,  const char *name )
   : KRES::ConfigWidget( parent )

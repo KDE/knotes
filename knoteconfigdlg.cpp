@@ -18,13 +18,11 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include <QCheckBox>
-#include <QComboBox>
-#include <QGridLayout>
-#include <QGroupBox>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QVBoxLayout>
+
+#include "knoteconfigdlg.h"
+#include "knote.h"
+#include "knotesglobalconfig.h"
+#include "version.h"
 
 #include <kapplication.h>
 #include <kcolorbutton.h>
@@ -36,10 +34,14 @@
 #include <knuminput.h>
 #include <kwindowsystem.h>
 
-#include "knote.h"
-#include "knoteconfigdlg.h"
-#include "knotesglobalconfig.h"
-#include "version.h"
+#include <QCheckBox>
+#include <QComboBox>
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QVBoxLayout>
+
 
 KNoteSimpleConfigDlg::KNoteSimpleConfigDlg( KNoteConfig *config, const QString &title,
                                 QWidget *parent, const QString &name )

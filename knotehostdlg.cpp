@@ -30,11 +30,8 @@
  your version.
 *******************************************************************/
 
-#include <QLabel>
-#include <QString>
-#include <QLineEdit>
-#include <QTableView>
-#include <QSortFilterProxyModel>
+#include "knotehostdlg.h"
+#include "knotesglobalconfig.h"
 
 #include <kconfig.h>
 #include <kdebug.h>
@@ -46,8 +43,12 @@
 #include <dnssd/servicemodel.h>
 #include <dnssd/servicebrowser.h>
 
-#include "knotehostdlg.h"
-#include "knotesglobalconfig.h"
+#include <QLabel>
+#include <QString>
+#include <QLineEdit>
+#include <QTableView>
+#include <QSortFilterProxyModel>
+
 
 KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
   : KDialog( parent )

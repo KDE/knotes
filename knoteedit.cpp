@@ -18,8 +18,8 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include <QFont>
-#include <QPixmap>
+#include "knoteedit.h"
+#include "knote.h"
 
 #include <kaction.h>
 #include <kactioncollection.h>
@@ -34,8 +34,9 @@
 #include <ktoggleaction.h>
 #include <kurl.h>
 
-#include "knoteedit.h"
-#include "knote.h"
+#include <QFont>
+#include <QPixmap>
+
 static const short SEP = 5;
 static const short ICON_SIZE = 10;
 

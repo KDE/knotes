@@ -31,17 +31,17 @@
  your version.
 *******************************************************************/
 
+#include "knotes/resourcelocal.h"
+#include "knotes/resourcelocalconfig.h"
+#include "knotes/resourcemanager.h"
+#include "knotes/resourcenotes.h"
+
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
 #include <kconfiggroup.h>
 
 #include <kcal/icalformat.h>
-
-#include "knotes/resourcelocal.h"
-#include "knotes/resourcelocalconfig.h"
-#include "knotes/resourcemanager.h"
-#include "knotes/resourcenotes.h"
 
 
 ResourceLocal::ResourceLocal()

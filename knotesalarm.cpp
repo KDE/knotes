@@ -29,17 +29,17 @@
  your version.
 *******************************************************************/
 
-#include <QStringList>
-
-#include <kmessagebox.h>
-#include <klocale.h>
-
-#include <kcal/calendarresources.h>
+#include "knotesalarm.h"
+#include "knotesglobalconfig.h"
 
 #include "knotes/resourcemanager.h"
 
-#include "knotesalarm.h"
-#include "knotesglobalconfig.h"
+#include <kmessagebox.h>
+#include <klocale.h>
+#include <kcal/calendarresources.h>
+
+#include <QStringList>
+
 
 
 KNotesAlarm::KNotesAlarm( KNotesResourceManager *manager, QObject *parent,

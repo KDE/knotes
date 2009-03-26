@@ -29,10 +29,7 @@
  your version.
 *******************************************************************/
 
-#include <QButtonGroup>
-#include <QGroupBox>
-#include <QRadioButton>
-#include <QVBoxLayout>
+#include "knotealarmdlg.h"
 
 #include <klocale.h>
 #include <kvbox.h>
@@ -43,7 +40,10 @@
 #include <kcal/alarm.h>
 #include <kcal/journal.h>
 
-#include "knotealarmdlg.h"
+#include <QButtonGroup>
+#include <QGroupBox>
+#include <QRadioButton>
+#include <QVBoxLayout>
 
 using namespace KPIM;
 

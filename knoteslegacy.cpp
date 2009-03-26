@@ -18,6 +18,10 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
+#include "knoteslegacy.h"
+#include "knoteconfig.h"
+#include "version.h"
+
 #include <QFile>
 #include <QFont>
 #include <QPoint>
@@ -32,16 +36,10 @@
 #include <kstandarddirs.h>
 #include <kconfig.h>
 #include <kio/netaccess.h>
-
-#include <unistd.h>
-
-#include "knoteslegacy.h"
-#include "knoteconfig.h"
-#include "version.h"
-
 #include <kcal/calendarlocal.h>
 #include <kcal/journal.h>
 
+#include <unistd.h>
 #include <netwm.h>
 
 using namespace KCal;

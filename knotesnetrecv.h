@@ -33,6 +33,7 @@
 #define KNOTESNETRECV_H
 
 #include <QObject>
+#include <QAbstractSocket>
 
 class QTcpSocket;
 class QTimer;

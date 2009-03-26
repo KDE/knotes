@@ -29,6 +29,7 @@
 
 #include <kconfig.h>
 #include <kxmlguiclient.h>
+#include <KSharedConfig>
 
 class QLabel;
 class QLayout;

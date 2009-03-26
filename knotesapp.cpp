@@ -18,11 +18,15 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-
-#include <QPixmap>
-
-#include <QClipboard>
-#include <QTcpServer>
+#include "knoteconfigdlg.h"
+#include "knote.h"
+#include "knotes/resourcemanager.h"
+#include "knotesadaptor.h"
+#include "knotesalarm.h"
+#include "knotesapp.h"
+#include "knotesglobalconfig.h"
+#include "knoteslegacy.h"
+#include "knotesnetrecv.h"
 
 #include <kaction.h>
 #include <kactioncollection.h>
@@ -48,17 +52,12 @@
 #include <kcal/journal.h>
 #include <kiconloader.h>
 
+#include <QPixmap>
+#include <QClipboard>
+#include <QTcpServer>
+
 #include <dnssd/publicservice.h>
 
-#include "knote.h"
-#include "knoteconfigdlg.h"
-#include "knotes/resourcemanager.h"
-#include "knotesadaptor.h"
-#include "knotesalarm.h"
-#include "knotesapp.h"
-#include "knotesglobalconfig.h"
-#include "knoteslegacy.h"
-#include "knotesnetrecv.h"
 
 class KNotesKeyDialog
   : public KDialog
@@ -517,7 +516,7 @@ void KNotesApp::slotConfigureAccels()
     // Not sure if this is what this message has in mind but since both
     // action->objectName() and KAction::action() are QStrings, this
     // might be fine.
-    // Corrent me if I am wrong... ~ gamaral
+    // Correct me if I am wrong... ~ gamaral
 #ifdef __GNUC__
 #warning Port KAction::action() to QString
 #endif

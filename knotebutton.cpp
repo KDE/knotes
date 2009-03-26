@@ -18,17 +18,17 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
+#include "knotebutton.h"
+
+#include <kiconloader.h>
+#include <kicontheme.h>
+
 #include <QIcon>
 #include <QPainter>
 #include <QPixmap>
 #include <QSizePolicy>
 #include <QStyle>
 #include <QStyleOption>
-
-#include <kiconloader.h>
-#include <kicontheme.h>
-
-#include "knotebutton.h"
 
 
 KNoteButton::KNoteButton( const QString &icon, QWidget *parent )

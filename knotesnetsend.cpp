@@ -30,10 +30,10 @@
  your version.
 *******************************************************************/
 
+#include "knotesnetsend.h"
+
 #include <klocale.h>
 #include <kmessagebox.h>
-
-#include "knotesnetsend.h"
 
 
 KNotesNetworkSender::KNotesNetworkSender( QTcpSocket *socket )

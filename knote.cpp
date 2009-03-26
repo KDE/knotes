@@ -18,18 +18,17 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include <QBoxLayout>
-#include <QCheckBox>
-#include <QFile>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QObject>
-#include <QPixmap>
-#include <QSize>
-#include <QSizeGrip>
-#include <QTextStream>
-#include <QVBoxLayout>
-#include <QDesktopWidget>
+#include "knote.h"
+#include "knotealarmdlg.h"
+#include "knotebutton.h"
+#include "knoteconfig.h"
+#include "knoteconfigdlg.h"
+#include "knoteedit.h"
+#include "knotehostdlg.h"
+#include "knoteprinter.h"
+#include "knotesglobalconfig.h"
+#include "knotesnetsend.h"
+#include "version.h"
 
 #include <kaction.h>
 #include <kactioncollection.h>
@@ -61,22 +60,23 @@
 #include <kxmlguifactory.h>
 #include <netwm.h>
 
+#include <QBoxLayout>
+#include <QCheckBox>
+#include <QFile>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QObject>
+#include <QPixmap>
+#include <QSize>
+#include <QSizeGrip>
+#include <QTextStream>
+#include <QVBoxLayout>
+#include <QDesktopWidget>
+
 #ifdef Q_WS_X11
 #include <fixx11h.h>
 #include <QX11Info>
 #endif
-
-#include "knote.h"
-#include "knotealarmdlg.h"
-#include "knotebutton.h"
-#include "knoteconfig.h"
-#include "knoteconfigdlg.h"
-#include "knoteedit.h"
-#include "knotehostdlg.h"
-#include "knoteprinter.h"
-#include "knotesglobalconfig.h"
-#include "knotesnetsend.h"
-#include "version.h"
 
 using namespace KCal;
 
@@ -297,8 +297,7 @@ void KNote::slotRename()
   // pop up dialog to get the new name
   bool ok;
   QString oldName = m_label->text();
-  QString newName = KInputDialog::getText( QString::null,
-    //krazy:exclude=nullstrassign for old broken gcc
+  QString newName = KInputDialog::getText( QString::null, //krazy:exclude=nullstrassign for old broken gcc
     i18n( "Please enter the new name:" ), m_label->text(), &ok, this );
   m_blockEmitDataChanged = false;
   if ( !ok || (oldName == newName) ) { // handle cancel
