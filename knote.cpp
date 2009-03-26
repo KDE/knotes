@@ -436,7 +436,6 @@ void KNote::slotMail()
 
 void KNote::slotPrint()
 {
-  saveData();
   QString content;
   if ( !Qt::mightBeRichText( m_editor->text() ) ) {
     content = Qt::convertFromPlainText( m_editor->text() );
