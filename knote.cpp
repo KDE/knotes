@@ -852,8 +852,6 @@ void KNote::slotMail()
 
 void KNote::slotPrint()
 {
-    saveData();
-
     QString content;
     if ( m_editor->textFormat() == PlainText )
         content = QStyleSheet::convertFromPlainText( m_editor->text() );
