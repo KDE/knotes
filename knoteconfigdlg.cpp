@@ -125,11 +125,12 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
   QCheckBox *kcfg_ShowInTaskbar = 
       new QCheckBox( i18n( "&Show note in taskbar" ), displayPage );
   kcfg_ShowInTaskbar->setObjectName( "kcfg_ShowInTaskbar" );
-  
+
+#ifdef Q_WS_X11  
   QCheckBox *kcfg_RememberDesktop = 
       new QCheckBox( i18n( "&Remember desktop" ), displayPage );
   kcfg_RememberDesktop->setObjectName( "kcfg_RememberDesktop" );
-  
+#endif
   if ( defaults ) {
     QLabel *label_Width = new QLabel( i18n( "Default &width:" ), displayPage );
   
@@ -156,10 +157,14 @@ QWidget *KNoteConfigDlg::makeDisplayPage( bool defaults )
     layout->addWidget( kcfg_Height, 3, 1 );
     
     layout->addWidget( kcfg_ShowInTaskbar, 4, 0 );
+#ifdef Q_WS_X11
     layout->addWidget( kcfg_RememberDesktop, 5, 0 );
+#endif    
   } else {
     layout->addWidget( kcfg_ShowInTaskbar, 2, 0 );
+#ifdef Q_WS_X11
     layout->addWidget( kcfg_RememberDesktop, 3, 0 );
+#endif
   }
   return displayPage;
 }
