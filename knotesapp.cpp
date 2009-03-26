@@ -443,7 +443,7 @@ void KNotesApp::slotOpenFindDialog()
   findDia.setHasCursor( false );
   findDia.setSupportsBackwardsFind( false );
 
-  if ( (findDia.exec() != QDialog::Accepted) || findDia.pattern().isEmpty() ) {
+  if ( (findDia.exec() != QDialog::Accepted) ) {
       delete m_findPos;
       m_findPos = 0;
       delete m_find;
