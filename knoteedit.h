@@ -28,14 +28,12 @@
 
 #include <ktextedit.h>
 
-class QColor;
 class QFont;
 
 class KAction;
 class KActionCollection;
 class KFontAction;
 class KFontSizeAction;
-class KMenu;
 class KToggleAction;
 class KNote;
 
