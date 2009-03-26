@@ -34,7 +34,6 @@
 #ifndef KNOTES_RESOURCEMANAGER_H
 #define KNOTES_RESOURCEMANAGER_H
 
-#include <Q3Dict>
 
 #include <kcal/alarm.h>
 #include <knotes/resourcenotes.h>

@@ -24,7 +24,6 @@
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QTabWidget>
 #include <QVBoxLayout>
 
 #include <kapplication.h>
