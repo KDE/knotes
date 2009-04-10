@@ -1039,25 +1039,36 @@ void KNote::updateLabelAlignment()
 
 void KNote::updateFocus()
 {
-  if ( hasFocus() ) {
+  if ( hasFocus() )
+  {
     m_button->show();
 
-    if ( !m_editor->isReadOnly() ) {
-      if ( m_tool && m_tool->isHidden() && m_editor->acceptRichText() ) {
-        m_tool->show();
-	m_grip->show();
-        setGeometry( x(), y(), width(), height() + m_tool->height() );
-      }
-    } else if ( m_tool && !m_tool->isHidden() ) {
-      m_tool->hide();
-      setGeometry( x(), y(), width(), height() - m_tool->height() );
-      updateLayout();     // to update the minimum height
+    if ( !m_editor->isReadOnly() )
+    {
+        if ( m_tool && m_tool->isHidden() && m_editor->acceptRichText() )
+        {
+            m_tool->show();
+            setGeometry( x(), y(), width(), height() + m_tool->height() );
+        }
+        m_grip->show();
     }
-  } else {
+    else
+    {
+        if ( m_tool && !m_tool->isHidden() ) {
+            m_tool->hide();
+            setGeometry( x(), y(), width(), height() - m_tool->height() );
+            updateLayout();     // to update the minimum height
+        }
+        m_grip->hide();
+    }
+  }
+  else
+  {
     m_button->hide();
     m_grip->hide();
 
-    if ( m_tool && !m_tool->isHidden() ) {
+    if ( m_tool && !m_tool->isHidden() )
+    {
       m_tool->hide();
       setGeometry( x(), y(), width(), height() - m_tool->height() );
       updateLayout();     // to update the minimum height
