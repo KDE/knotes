@@ -70,6 +70,7 @@ class KNote
 
     bool isModified() const;
     void blockEmitDataChanged( bool _b ) { m_blockEmitDataChanged = _b;}
+    void commitData();
 
   public slots:
     void slotKill( bool force = false );
@@ -162,6 +163,7 @@ class KNote
 
     KSharedConfig::Ptr m_kwinConf;
     bool m_blockEmitDataChanged;
+    bool mBlockWriteConfigDuringCommitData;
 };
 
 #endif
