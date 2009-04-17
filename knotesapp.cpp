@@ -249,6 +249,9 @@ KNotesApp::~KNotesApp()
 
 bool KNotesApp::commitData( QSessionManager & )
 {
+  foreach ( KNote *note, m_notes ) {
+    note->commitData();
+  }
   saveConfigs();
   return true;
 }
