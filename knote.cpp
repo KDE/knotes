@@ -85,7 +85,7 @@ using namespace KCal;
 KNote::KNote( const QDomDocument& buildDoc, Journal *j, QWidget *parent )
   : QFrame( parent, Qt::FramelessWindowHint ), m_label( 0 ), m_grip( 0 ),
     m_button( 0 ), m_tool( 0 ), m_editor( 0 ), m_config( 0 ), m_journal( j ),
-    m_find( 0 ), m_kwinConf( KSharedConfig::openConfig( "kwinrc" ) ), m_blockEmitDataChanged( false )
+    m_find( 0 ), m_kwinConf( KSharedConfig::openConfig( "kwinrc" ) ), m_blockEmitDataChanged( false ),mBlockWriteConfigDuringCommitData( false )
 {
   setAcceptDrops( true );
   setAttribute( Qt::WA_DeleteOnClose );
@@ -333,6 +333,12 @@ void KNote::slotUpdateReadOnly()
   updateFocus();
 }
 
+
+void KNote::commitData()
+{
+  mBlockWriteConfigDuringCommitData = true;
+}
+
 void KNote::slotClose()
 {
 #ifdef Q_WS_X11
@@ -345,9 +351,12 @@ void KNote::slotClose()
 #endif
 
   m_editor->clearFocus();
-  m_config->setHideNote( true );
-  m_config->setPosition( pos() );
-  m_config->writeConfig();
+  if( !mBlockWriteConfigDuringCommitData )
+  {
+    m_config->setHideNote( true );
+    m_config->setPosition( pos() );
+    m_config->writeConfig();
+  }
   // just hide the note so it's still available from the dock window
   hide();
 }
