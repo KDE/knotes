@@ -123,29 +123,30 @@ KNotesApp::KNotesApp()
   // create the GUI...
   KAction *action  = new KAction( KIcon( "document-new" ),
                                   i18n( "New Note" ), this );
+  actionCollection()->addAction( "new_note", action );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_N ),
                              KAction::DefaultShortcut );
-  actionCollection()->addAction( "new_note", action );
+
   connect( action, SIGNAL( triggered() ), SLOT( newNote() ) );
 
   action  = new KAction( KIcon( "edit-paste" ),
                          i18n( "New Note From Clipboard" ), this );
+  actionCollection()->addAction( "new_note_clipboard", action );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_C ),
                              KAction::DefaultShortcut );
-  actionCollection()->addAction( "new_note_clipboard", action );
   connect( action, SIGNAL( triggered() ), SLOT( newNoteFromClipboard() ) );
 
   action  = new KAction( KIcon( "knotes" ), i18n( "Show All Notes" ), this );
+  actionCollection()->addAction( "show_all_notes", action );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_S ),
                              KAction::DefaultShortcut );
-  actionCollection()->addAction( "show_all_notes", action );
   connect( action, SIGNAL( triggered() ), SLOT( showAllNotes() ) );
 
   action  = new KAction( KIcon( "window-close" ),
                          i18n( "Hide All Notes" ), this );
+  actionCollection()->addAction( "hide_all_notes", action );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_H ),
                              KAction::DefaultShortcut );
-  actionCollection()->addAction( "hide_all_notes", action );
   connect( action, SIGNAL( triggered() ), SLOT( hideAllNotes() ) );
 
   new KHelpMenu( this, KGlobal::mainComponent().aboutData(), false,
