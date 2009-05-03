@@ -75,6 +75,7 @@ class KNote
     void commitData();
 
   public slots:
+    void slotRename();
     void slotKill( bool force = false );
     void slotClose();
   signals:
@@ -99,7 +100,6 @@ class KNote
     virtual bool eventFilter( QObject *, QEvent * );
 
   private slots:
-    void slotRename();
     void slotUpdateReadOnly();
 
     void slotSend();

@@ -599,6 +599,11 @@ void KNotesApp::createNote( KCal::Journal *journal )
   if ( m_alarm ) {
     updateNoteActions();
   }
+  if (m_tray->isVisible()) {
+    // we already booted, so this is a new note
+    // sucks, semantically speaking
+    newNote->slotRename();
+  }
 }
 
 void KNotesApp::killNote( KCal::Journal *journal )
