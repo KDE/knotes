@@ -13,6 +13,7 @@ X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
 Name=Actions
+Name[da]=Handlinger
 Name[de]=Aktionen
 Name[el]=Ενέργειες
 Name[et]=Toimingud
@@ -32,6 +33,7 @@ Name[uk]=Дії
 Name[x-test]=xxActionsxx
 Name[zh_TW]=動作
 Comment=Setup actions for notes
+Comment[da]=Opsætning af handlinger til noter
 Comment[el]=Ρύθμιση ενεργειών για τις σημειώσεις
 Comment[et]=Märkmete toimingute seadistamine
 Comment[gl]=Configurar as accións das notas

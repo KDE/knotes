@@ -13,6 +13,7 @@ X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
 Name=Display
+Name[da]=Vis
 Name[el]=Εμφάνιση
 Name[et]=Vaade
 Name[ga]=Taispeáint
@@ -30,6 +31,7 @@ Name[uk]=Показ
 Name[x-test]=xxDisplayxx
 Name[zh_TW]=顯示：
 Comment=Setup display for notes
+Comment[da]=Opsæt visning af noter
 Comment[el]=Ρύθμιση εμφάνισης για τις σημειώσεις
 Comment[et]=Märkmete vaate seadistamine
 Comment[ga]=Socraigh taispeáint na nótaí

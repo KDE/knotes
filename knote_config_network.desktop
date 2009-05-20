@@ -13,6 +13,7 @@ X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
 Name=Network
+Name[da]=Netværk
 Name[de]=Netzwerk
 Name[el]=Δίκτυο
 Name[et]=Võrk
@@ -31,6 +32,7 @@ Name[uk]=Мережа
 Name[x-test]=xxNetworkxx
 Name[zh_TW]=網路
 Comment=Network Settings
+Comment[da]=Netværksindstillinger
 Comment[de]=Netzwerkeinstellungen
 Comment[el]=Ρυθμίσεις δικτύου
 Comment[et]=Võrguseadistused
