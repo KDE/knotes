@@ -228,7 +228,7 @@ void KNoteEdit::setRichText( bool f )
 
   setAcceptRichText( f );
 
-  QString t = toPlainText();
+  const QString t = toPlainText();
   if ( f ) {
     // if the note contains html source try to render it
     if ( Qt::mightBeRichText( t ) ) {
@@ -507,7 +507,7 @@ void KNoteEdit::autoIndent()
   // ie \n \r \t \v \f and space
   QString indentString;
 
-  int len = string.length();
+  const int len = string.length();
   int i = 0;
   while ( i < len && string.at( i ).isSpace() ) {
     indentString += string.at( i++ );

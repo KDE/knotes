@@ -48,7 +48,7 @@ using namespace KCal;
 void KNotesLegacy::cleanUp()
 {
   // remove old (KDE 1.x) local config file if it still exists
-  QString configfile = KGlobal::dirs()->saveLocation( "config" ) + "knotesrc";
+  const QString configfile = KGlobal::dirs()->saveLocation( "config" ) + "knotesrc";
   if ( QFile::exists( configfile ) ) {
     KConfigGroup test(
       KSharedConfig::openConfig( configfile, KConfig::SimpleConfig ), 
@@ -128,7 +128,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
     // get the name
     journal->setSummary( input.readLine() );
     
-    QStringList props = input.readLine().split( '+', QString::SkipEmptyParts );
+    const QStringList props = input.readLine().split( '+', QString::SkipEmptyParts );
     
     // robustness
     if ( props.count() != 13 ) {
@@ -139,7 +139,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
     }
     
     // the new configfile's name
-    QString configFile = noteDir.absoluteFilePath( journal->uid() );
+    const QString configFile = noteDir.absoluteFilePath( journal->uid() );
     
     // set the defaults
     KIO::NetAccess::file_copy(
@@ -230,7 +230,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
 bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir &noteDir,
                                          const QString &file )
 {
-  QString configFile = noteDir.absoluteFilePath( journal->uid() );
+  const QString configFile = noteDir.absoluteFilePath( journal->uid() );
   
   // new name for config file
   if ( !noteDir.rename( file, journal->uid() ) ) {

@@ -99,7 +99,7 @@ KNote::KNote( const QDomDocument& buildDoc, Journal *j, QWidget *parent )
   // if there is no title yet, use the start date if valid
   // (KOrganizer's journals don't have titles but a valid start date)
   if ( m_journal->summary().isNull() && m_journal->dtStart().isValid() ) {
-    QString s = KGlobal::locale()->formatDateTime( m_journal->dtStart() );
+    const QString s = KGlobal::locale()->formatDateTime( m_journal->dtStart() );
     m_journal->setSummary( s );
   }
 
@@ -296,8 +296,8 @@ void KNote::slotRename()
     m_blockEmitDataChanged = true;
   // pop up dialog to get the new name
   bool ok;
-  QString oldName = m_label->text();
-  QString newName = KInputDialog::getText( QString::null, //krazy:exclude=nullstrassign for old broken gcc
+  const QString oldName = m_label->text();
+  const QString newName = KInputDialog::getText( QString::null, //krazy:exclude=nullstrassign for old broken gcc
     i18n( "Please enter the new name:" ), m_label->text(), &ok, this );
   m_blockEmitDataChanged = false;
   if ( !ok || (oldName == newName) ) { // handle cancel
@@ -405,12 +405,12 @@ void KNote::slotSend()
 {
   // pop up dialog to get the IP
   KNoteHostDlg hostDlg( i18n( "Send \"%1\"", name() ), this );
-  bool ok = ( hostDlg.exec() == QDialog::Accepted );
+  const bool ok = ( hostDlg.exec() == QDialog::Accepted );
 
   if ( !ok ) { // handle cancel
     return;
   }
-  QString host = hostDlg.host();
+  const QString host = hostDlg.host();
   quint16 port = hostDlg.port();
 
   if ( !port ) { // not specified, use default
@@ -599,7 +599,7 @@ void KNote::slotUpdateDesktopActions()
                                               // krazy:exclude=nullstrassign
                                               // for old broken gcc
 
-  int count = wm_root.numberOfDesktops();
+  const int count = wm_root.numberOfDesktops();
   for ( int n = 1; n <= count; n++ ) {
     desktops.append( QString( "&%1 %2" ).arg( n ).arg(
       QString::fromUtf8( wm_root.desktopName( n ) ) ) );
@@ -813,12 +813,11 @@ void KNote::createNoteFooter()
 void KNote::prepare()
 {
   // the config file location
-  QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
-  configFile += m_journal->uid();
+  const QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" ) + m_journal->uid();
 
   // no config file yet? -> use the default display config if available
   // we want to write to configFile, so use "false"
-  bool newNote = !KIO::NetAccess::exists( KUrl( configFile ),
+  const bool newNote = !KIO::NetAccess::exists( KUrl( configFile ),
                                           KIO::NetAccess::DestinationSide, 0 );
 
   m_config = new KNoteConfig( KSharedConfig::openConfig( configFile,
@@ -1037,7 +1036,7 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
 void KNote::updateLabelAlignment()
 {
   // if the name is too long to fit, left-align it, otherwise center it (#59028)
-  QString labelText = m_label->text();
+  const QString labelText = m_label->text();
   if ( m_label->fontMetrics().boundingRect( labelText ).width() >
        m_label->width() ) {
     m_label->setAlignment( Qt::AlignLeft );
