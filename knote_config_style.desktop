@@ -13,6 +13,7 @@ X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
 Name=Style
+Name[cs]=Styl
 Name[da]=Stil
 Name[de]=Stil
 Name[el]=Στυλ
@@ -38,6 +39,7 @@ Name[x-test]=xxStylexx
 Name[zh_CN]=风格
 Name[zh_TW]=樣式
 Comment=Style Settings
+Comment[cs]=Nastavení stylu
 Comment[da]=Indstilling af stil
 Comment[de]=Stil-Einstellungen
 Comment[el]=Ρυθμίσεις στυλ
