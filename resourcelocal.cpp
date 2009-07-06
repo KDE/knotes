@@ -60,7 +60,7 @@ ResourceLocal::ResourceLocal( const KConfigGroup &group )
   setType( "file" );
   mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", "knotes/" ) +
                          "notes.ics" );
-  
+
   KUrl u = group.readPathEntry( "NotesURL", QString() );
   if ( !u.isEmpty() ) {
     mURL = u;
@@ -79,27 +79,27 @@ void ResourceLocal::writeConfig( KConfigGroup &group )
 
 bool ResourceLocal::load()
 {
-  mCalendar.load( mURL.path() );
-  
+  mCalendar.load( mURL.toLocalFile() );
+
   KCal::Journal::List notes = mCalendar.journals();
   KCal::Journal::List::ConstIterator it;
   for ( it = notes.constBegin(); it != notes.constEnd(); ++it ) {
     manager()->registerNote( this, *it );
   }
-  
+
   return true;
 }
 
 bool ResourceLocal::save()
 {
-  if ( !mCalendar.save( mURL.path(), new KCal::ICalFormat() ) ) {
+  if ( !mCalendar.save( mURL.toLocalFile(), new KCal::ICalFormat() ) ) {
     KMessageBox::error( 0, i18n( "<qt>Unable to save the notes to <b>%1</b>. "
                                  "Check that there is sufficient disk space."
                                  "<br />There should be a backup in the same "
-                                 "directory though.</qt>", mURL.path() ) );
+                                 "directory though.</qt>", mURL.toLocalFile() ) );
     return false;
   }
-  
+
     return true;
 }
 
@@ -121,7 +121,7 @@ KCal::Alarm::List ResourceLocal::alarms( const KDateTime &from,
   KCal::Alarm::List alarms;
   KCal::Journal::List notes = mCalendar.journals();
   KCal::Journal::List::ConstIterator note;
-  
+
   for ( note = notes.constBegin(); note != notes.constEnd(); ++note ) {
     KDateTime preTime = from.addSecs( -1 );
     KCal::Alarm::List::ConstIterator it;
@@ -135,6 +135,6 @@ KCal::Alarm::List ResourceLocal::alarms( const KDateTime &from,
       }
     }
   }
-  
+
   return alarms;
 }
