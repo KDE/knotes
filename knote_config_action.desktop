@@ -13,6 +13,7 @@ X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
 Name=Actions
+Name[ca]=Accions
 Name[cs]=Činnosti
 Name[da]=Handlinger
 Name[de]=Aktionen
@@ -39,6 +40,7 @@ Name[x-test]=xxActionsxx
 Name[zh_CN]=动作
 Name[zh_TW]=動作
 Comment=Setup actions for notes
+Comment[ca]=Arranja les accions per les notes
 Comment[cs]=Nastavení akcí pro poznámky
 Comment[da]=Opsætning af handlinger til noter
 Comment[de]=Aktionen für Notizen einrichten
