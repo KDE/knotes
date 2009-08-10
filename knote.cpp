@@ -1049,7 +1049,6 @@ void KNote::updateFocus()
 {
   if ( hasFocus() )
   {
-    m_button->show();
 
     if ( !m_editor->isReadOnly() )
     {
@@ -1072,7 +1071,6 @@ void KNote::updateFocus()
   }
   else
   {
-    m_button->hide();
     m_grip->hide();
 
     if ( m_tool && !m_tool->isHidden() )
