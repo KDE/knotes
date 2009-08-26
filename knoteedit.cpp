@@ -47,7 +47,11 @@ KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
   setAcceptDrops( true );
   setWordWrapMode( QTextOption::WordWrap );
   setLineWrapMode( WidgetWidth );
-  setAutoFormatting( AutoAll );
+  if ( acceptRichText() ) {
+    setAutoFormatting( AutoAll );
+  } else {
+    setAutoFormatting( AutoNone );
+  }
   setCheckSpellingEnabled( true );
 
   // create the actions modifying the text format
@@ -227,6 +231,12 @@ void KNoteEdit::setRichText( bool f )
   }
 
   setAcceptRichText( f );
+
+  if ( f ) {
+    setAutoFormatting( AutoAll );
+  } else {
+    setAutoFormatting( AutoNone );
+  }
 
   const QString t = toPlainText();
   if ( f ) {
