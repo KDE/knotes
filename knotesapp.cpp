@@ -47,6 +47,7 @@
 #include <kwindowsystem.h>
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
+#include <KNotificationItem>
 
 #include <kcal/calendarlocal.h>
 #include <kcal/journal.h>
@@ -106,12 +107,15 @@ KNotesApp::KNotesApp()
   kapp->setQuitOnLastWindowClosed( false );
 
   // create the dock widget...
-  m_tray = new KSystemTrayIcon();
+  m_tray = new KNotificationItem(0);
 
-  m_tray->setToolTip( i18n( "KNotes: Sticky notes for KDE" ) );
-  m_tray->setIcon( KSystemTrayIcon::loadIcon( "knotes" ) );
-  connect( m_tray, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
-           SLOT( slotActivated( QSystemTrayIcon::ActivationReason ) ) );
+  m_tray->setToolTipTitle( i18n( "KNotes: Sticky notes for KDE" ) );
+  m_tray->setIconByName( "knotes" );
+  m_tray->setStatus( KNotificationItem::Active );
+  m_tray->setCategory( KNotificationItem::ApplicationStatus );
+  m_tray->setStandardActionsEnabled(false);
+  connect( m_tray, SIGNAL( activateRequested(bool, const QPoint &) ), this, SLOT( slotActivateRequested( bool, const QPoint& ) ) );
+  connect( m_tray, SIGNAL( secondaryActivateRequested( const QPoint & ) ), this, SLOT( slotSecondaryActivateRequested( const QPoint& ) ) );
 
   // set the initial style
 #ifdef __GNUC__
@@ -222,7 +226,6 @@ KNotesApp::KNotesApp()
   }
 
   updateNoteActions();
-  m_tray->show();
 }
 
 KNotesApp::~KNotesApp()
@@ -394,26 +397,18 @@ void KNotesApp::setText( const QString &id, const QString &newText )
 
 // -------------------- protected slots -------------------- //
 
-void KNotesApp::slotActivated( QSystemTrayIcon::ActivationReason r )
+void KNotesApp::slotActivateRequested( bool, const QPoint&)
 {
-  switch ( r ) {
-
-    case QSystemTrayIcon::Trigger:
-      if ( m_notes.size() == 1 ) {
+    if ( m_notes.size() == 1 ) {
         showNote( *m_notes.begin() );
-      } else if ( m_notes.size() != 1 ) {
-        m_noteMenu->popup( QCursor::pos () );
-      }
-      break;
+    } else if ( m_notes.size() != 1 ) {
+        m_noteMenu->popup( QCursor::pos ());
+    }
+}
 
-    case QSystemTrayIcon::MiddleClick:
-      newNote();
-      break;
-
-    default:
-    break;
-
-  }
+void KNotesApp::slotSecondaryActivateRequested( const QPoint & )
+{
+    newNote();
 }
 
 void KNotesApp::slotShowNote()
@@ -599,11 +594,14 @@ void KNotesApp::createNote( KCal::Journal *journal )
   if ( m_alarm ) {
     updateNoteActions();
   }
+  //TODO
+#if 0
   if (m_tray->isVisible()) {
     // we already booted, so this is a new note
     // sucks, semantically speaking
     newNote->slotRename();
   }
+#endif
 }
 
 void KNotesApp::killNote( KCal::Journal *journal )
