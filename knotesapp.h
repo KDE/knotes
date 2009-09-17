@@ -29,7 +29,6 @@
 
 #include <kapplication.h>
 #include <ksessionmanager.h>
-#include <ksystemtrayicon.h>
 #include <kxmlguiclient.h>
 
 class QTcpServer;
@@ -42,6 +41,7 @@ class KNotesAlarm;
 class KNotesResourceManager;
 class KXMLGUIBuilder;
 class KXMLGUIFactory;
+class KNotificationItem;
 
 namespace KCal {
 class Journal;
@@ -83,7 +83,8 @@ class KNotesApp
     void showAllNotes() const;
 
   protected slots:
-    void slotActivated( QSystemTrayIcon::ActivationReason );
+    void slotActivateRequested( bool, const QPoint& pos);
+    void slotSecondaryActivateRequested( const QPoint& );
     void slotShowNote();
     void slotWalkThroughNotes();
 
@@ -129,7 +130,7 @@ class KNotesApp
 
     KXMLGUIFactory  *m_guiFactory;
     KXMLGUIBuilder  *m_guiBuilder;
-    KSystemTrayIcon *m_tray;
+    KNotificationItem *m_tray;
     KAction         *m_findAction;
 
     QDomDocument    m_noteGUI;
