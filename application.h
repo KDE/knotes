@@ -21,12 +21,12 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <libkdepim/pimapplication.h>
+#include <kontactinterface/pimuniqueapplication.h>
 class KCmdLineArgs;
 class KNotesApp;
 
 class Application
-    : public KPIM::PimApplication
+    : public KontactInterface::PimUniqueApplication
 {
   public:
     Application();

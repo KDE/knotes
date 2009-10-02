@@ -21,10 +21,11 @@
 #include "application.h"
 #include "knotesapp.h"
 #include <kcmdlineargs.h>
+#include <kontactinterface/pimuniqueapplication.h>
 
 
 Application::Application()
-    : KPIM::PimApplication(), mMainWindow( 0 )
+    : KontactInterface::PimUniqueApplication(), mMainWindow( 0 )
 {
   mCmdLineArguments = KCmdLineArgs::parsedArgs();
 }
