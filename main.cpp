@@ -62,7 +62,7 @@ int main( int argc, char *argv[] )
   // Create Application
 
   Application app;
-
+  KGlobal::locale()->insertCatalog("libkdepim");
 
   remove_sm_from_client_leader();
 
