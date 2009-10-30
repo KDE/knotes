@@ -47,7 +47,7 @@
 #include <kwindowsystem.h>
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
-#include <KNotificationItem>
+#include <KStatusNotifierItem>
 
 #include <kcal/calendarlocal.h>
 #include <kcal/journal.h>
@@ -107,12 +107,12 @@ KNotesApp::KNotesApp()
   kapp->setQuitOnLastWindowClosed( false );
 
   // create the dock widget...
-  m_tray = new KNotificationItem(0);
+  m_tray = new KStatusNotifierItem(0);
 
   m_tray->setToolTipTitle( i18n( "KNotes: Sticky notes for KDE" ) );
   m_tray->setIconByName( "knotes" );
-  m_tray->setStatus( KNotificationItem::Active );
-  m_tray->setCategory( KNotificationItem::ApplicationStatus );
+  m_tray->setStatus( KStatusNotifierItem::Active );
+  m_tray->setCategory( KStatusNotifierItem::ApplicationStatus );
   m_tray->setStandardActionsEnabled(false);
   connect( m_tray, SIGNAL( activateRequested(bool, const QPoint &) ), this, SLOT( slotActivateRequested( bool, const QPoint& ) ) );
   connect( m_tray, SIGNAL( secondaryActivateRequested( const QPoint & ) ), this, SLOT( slotSecondaryActivateRequested( const QPoint& ) ) );
