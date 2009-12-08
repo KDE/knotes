@@ -13,6 +13,7 @@ X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
 Name=Editor
+Name[ar]=المحرّر
 Name[cs]=Editor
 Name[da]=Redigering
 Name[de]=Editor
@@ -44,6 +45,7 @@ Name[x-test]=xxEditorxx
 Name[zh_CN]=编辑器
 Name[zh_TW]=編輯器
 Comment=Setup editor
+Comment[ar]=إعداد المحرر
 Comment[cs]=Nastavení editoru
 Comment[da]=Opsætning af redigering
 Comment[de]=Editor einrichten

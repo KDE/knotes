@@ -13,6 +13,7 @@ X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
 Name=Display
+Name[ar]=العرض
 Name[cs]=Zobrazení
 Name[da]=Vis
 Name[de]=Anzeige
@@ -44,6 +45,7 @@ Name[x-test]=xxDisplayxx
 Name[zh_CN]=显示
 Name[zh_TW]=顯示：
 Comment=Setup display for notes
+Comment[ar]=تهيئة عرض الملاحظات
 Comment[cs]=Nastavení zobrazení poznámek
 Comment[da]=Opsæt visning af noter
 Comment[de]=Anzeige von Notizen einrichten
