@@ -35,6 +35,7 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 
+#include <QTextCodec>
 
 KNotesNetworkSender::KNotesNetworkSender( QTcpSocket *socket )
   : QObject(), m_socket( socket ), m_note(), m_title(), m_sender()
@@ -56,16 +57,15 @@ KNotesNetworkSender::~KNotesNetworkSender()
 
 void KNotesNetworkSender::setSenderId( const QString &sender )
 {
-  m_sender = sender.toAscii();
+  QTextCodec *codec = QTextCodec::codecForLocale();
+  m_sender = codec->fromUnicode( sender );
 }
 
 void KNotesNetworkSender::setNote( const QString &title, const QString &text )
 {
-  // TODO: support for unicode and rich text.
-  // Mmmmmm... how to behave with such heterogeneous environment?
-  // AFAIK, ATnotes does not allow UNICODE.
-  m_title = title.toAscii();
-  m_note = text.toAscii();
+  QTextCodec *codec = QTextCodec::codecForLocale();
+  m_title = codec->fromUnicode( title );
+  m_note = codec->fromUnicode( text );
 }
 
 void KNotesNetworkSender::slotConnected()

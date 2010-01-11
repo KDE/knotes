@@ -37,6 +37,7 @@
 #include <QRegExp>
 #include <QTcpSocket>
 #include <QTimer>
+#include <QTextCodec>
 #include <kdebug.h>
 #include <kglobal.h>
 #include <klocale.h>
@@ -119,8 +120,10 @@ void KNotesNetworkReceiver::slotReceptionTimeout()
 
 void KNotesNetworkReceiver::slotConnectionClosed()
 {
+  QTextCodec *codec = QTextCodec::codecForLocale();
+
   if ( m_timer->isActive() ) {
-    QString noteText = QString( *m_buffer ).trimmed();
+    QString noteText = QString( codec->toUnicode( *m_buffer ) ).trimmed();
 
     // First line is the note title or, in case of ATnotes, the id
     int pos = noteText.indexOf( QRegExp( "[\r\n]" ) );
