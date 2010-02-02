@@ -1266,8 +1266,9 @@ void KNote::resizeEvent( QResizeEvent *qre )
     updateLayout();
 }
 
-void KNote::closeEvent( QCloseEvent * )
+void KNote::closeEvent( QCloseEvent *event )
 {
+    event->ignore(); //We don't want to close (and delete the widget). Just hide it
     slotClose();
 }
 
