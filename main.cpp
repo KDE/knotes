@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2007, The KNotes Developers
+ Copyright (c) 1997-2010, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -46,7 +46,7 @@ int main( int argc, char *argv[] )
                          version.toLatin1(),
                          ki18n( "KDE Notes" ),
                          KAboutData::License_GPL,
-                         ki18n( "(c) 1997-2009, The KNotes Developers" ) );
+                         ki18n( "Copyright © 1997–2010 KNotes authors" ) );
 
   knotesAuthors( aboutData );
 
