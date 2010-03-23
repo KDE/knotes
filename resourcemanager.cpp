@@ -103,15 +103,21 @@ void KNotesResourceManager::registerNote( ResourceNotes *resource,
 
 void KNotesResourceManager::deleteNote( KCal::Journal *journal )
 {
+    if ( !journal )
+        return;
+
     QString uid = journal->uid();
 
     // Remove the journal from the resource it came from
-    m_resourceMap[ uid ]->deleteNote( journal );
-    m_resourceMap.remove( uid );
+    ResourceNotes *res = m_resourceMap[ uid ];
+    if ( res ) {
+        res->deleteNote( journal );
+        m_resourceMap.remove( uid );
 
-    // libkcal does not delete the journal immediately, therefore it is ok to
-    // emit the journal here
-    emit sigDeregisteredNote( journal );
+        // libkcal does not delete the journal immediately, therefore it is ok to
+        // emit the journal here
+        emit sigDeregisteredNote( journal );
+    }
 }
 
 KCal::Alarm::List KNotesResourceManager::alarms( const QDateTime& from, const QDateTime& to )
