@@ -245,10 +245,9 @@ QString KNotesApp::newNote( const QString& name, const QString& text )
     // the body of the note
     journal->setDescription( text );
 
-    m_manager->addNewNote( journal );
-
-    showNote( journal->uid() );
-
+    if ( m_manager->addNewNote( journal ) ) {
+        showNote( journal->uid() );
+    }
     return journal->uid();
 }
 

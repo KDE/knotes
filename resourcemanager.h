@@ -57,7 +57,7 @@ public:
     void load();
     void save();
 
-    void addNewNote( KCal::Journal *journal );
+    bool addNewNote( KCal::Journal *journal );
     void registerNote( ResourceNotes *resource, KCal::Journal *journal );
 
     void deleteNote( KCal::Journal *journal );
