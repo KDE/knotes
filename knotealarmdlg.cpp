@@ -148,7 +148,7 @@ void KNoteAlarmDlg::slotOk()
   }
   
   if ( m_buttons->checkedId() == 1 ) {
-    alarm->setTime( KDateTime( m_atDate->date(), m_atTime->getTime(),
+    alarm->setTime( KDateTime( m_atDate->date(), m_atTime->time(),
                                KDateTime::LocalZone ) );
   } else {
     // TODO
