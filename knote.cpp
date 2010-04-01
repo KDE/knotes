@@ -374,11 +374,9 @@ KNote::~KNote()
 
 void KNote::slotRequestNewNote()
 {
-    emit sigRequestNewNote();
-}
-
-void KNote::slotEmitCreateNewNote()
-{
+    //Be sure to save before to request a new note
+    saveConfig();
+    saveData();
     emit sigRequestNewNote();
 }
 
@@ -433,7 +431,7 @@ void KNote::saveData(bool update)
     m_journal->setCustomProperty( "KNotes", "BgColor", m_config->bgColor().name() );
     m_journal->setCustomProperty( "KNotes", "RichText", m_config->richText() ? "true" : "false" );
     if(update) {
-    emit sigDataChanged(m_journal->uid());
+    emit sigDataChanged( noteId() );
     m_editor->setModified( false );
     }
 }
@@ -1360,26 +1358,21 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
         return false;
     }
 
-    if ( o == m_editor )
-    {
-        if ( ev->type() == QEvent::FocusOut )
-        {
+    if ( o == m_editor ) {
+        if ( ev->type() == QEvent::FocusOut ) {
             QFocusEvent *fe = static_cast<QFocusEvent *>(ev);
             if ( fe->reason() != QFocusEvent::Popup &&
-                 fe->reason() != QFocusEvent::Mouse )
-            {
+                 fe->reason() != QFocusEvent::Mouse ) {
                 updateFocus();
-                if ( m_editor->isModified() ) {
+                if ( isModified() ) {
 			saveConfig();
                         if ( !m_blockEmitDataChanged )
-                        {
-                            QTimer::singleShot ( 100, this,SLOT(slotSaveData())  );
-                        }
+                            saveData();
 		}
             }
-        }
-        else if ( ev->type() == QEvent::FocusIn )
+        } else if ( ev->type() == QEvent::FocusIn ) {
             updateFocus();
+        }
 
         return false;
     }

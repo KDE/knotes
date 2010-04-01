@@ -141,7 +141,6 @@ private slots:
 
     void slotUpdateViewport( int, int );
     void slotRequestNewNote();
-    void slotEmitCreateNewNote();
     void slotSaveData();
 private:
     void updateFocus();
