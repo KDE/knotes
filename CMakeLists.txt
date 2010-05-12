@@ -29,7 +29,7 @@ kde4_add_app_icon(knotes_SRCS "${KDE4_ICON_DIR}/oxygen/*/apps/knotes.png")
 kde4_add_executable(knotes ${knotes_SRCS})
 
 target_link_libraries(knotes ${KDEPIMLIBS_KCAL_LIBS} kdepim ${KDEPIMLIBS_KRESOURCES_LIBS} ${KDE4_KIO_LIBS}  ${KDE4_KDNSSD_LIBS}
-                             ${KDE4_KUTILS_LIBS} ${X11_X11_LIB} ${KDEPIMLIBS_KONTACTINTERFACE_LIBS})
+                             ${KDE4_KCMUTILS_LIBS} ${X11_X11_LIB} ${KDEPIMLIBS_KONTACTINTERFACE_LIBS})
 
 install(TARGETS knotes  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
@@ -56,7 +56,7 @@ kde4_add_kcfg_files(libknotesconfig_SRCS ${libknotesconfig_SRCS})
 
 kde4_add_plugin(kcm_knote ${kcm_knotes_PART_SRCS} ${libknotesconfig_SRCS})
 
-target_link_libraries(kcm_knote  ${KDE4_KDEUI_LIBS} ${KDE4_KUTILS_LIBS})
+target_link_libraries(kcm_knote  ${KDE4_KDEUI_LIBS} ${KDE4_KCMUTILS_LIBS})
 
 install(TARGETS kcm_knote DESTINATION ${PLUGIN_INSTALL_DIR})
 
