@@ -53,26 +53,26 @@ class KNotesResourceManager
   public:
     KNotesResourceManager();
     virtual ~KNotesResourceManager();
-    
+
     void load();
     void save();
-    
-    void addNewNote( KCal::Journal *journal );
+
+    bool addNewNote( KCal::Journal *journal );
     void registerNote( ResourceNotes *resource, KCal::Journal *journal );
-    
+
     void deleteNote( KCal::Journal *journal );
-    
+
     KCal::Alarm::List alarms( const KDateTime &from, const KDateTime &to );
-    
+
     // from the ManagerObserver interface
     virtual void resourceAdded( ResourceNotes *resource );
     virtual void resourceModified( ResourceNotes *resource );
     virtual void resourceDeleted( ResourceNotes *resource );
-    
+
   signals:
     void sigRegisteredNote( KCal::Journal *journal );
     void sigDeregisteredNote( KCal::Journal *journal );
-    
+
   private:
     KRES::Manager<ResourceNotes> *m_manager;
     QMultiHash<QString,ResourceNotes*> m_resourceMap;
