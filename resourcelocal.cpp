@@ -105,14 +105,12 @@ bool ResourceLocal::save()
 
 bool ResourceLocal::addNote( KCal::Journal *journal )
 {
-  mCalendar.addJournal( journal );
-  return true;
+  return mCalendar.addJournal( journal );
 }
 
 bool ResourceLocal::deleteNote( KCal::Journal *journal )
 {
-  mCalendar.deleteJournal( journal );
-  return true;
+  return mCalendar.deleteJournal( journal );
 }
 
 KCal::Alarm::List ResourceLocal::alarms( const KDateTime &from,

@@ -59,13 +59,18 @@ void KNotesResourceManager::load()
     m_manager->add( resource );
     m_manager->setStandardResource( resource );
   }
-  
+
   // Open all active resources
   KRES::Manager<ResourceNotes>::ActiveIterator it;
   for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it ) {
-    kDebug( 5500 ) << "Opening resource " + ( *it )->resourceName();
-    ( *it )->setManager( this );
-    if ( ( *it )->open() ) {
+    if ( (*it)->isOpen() ) {
+      kDebug(5500) << (*it)->resourceName() << " is already open";
+      continue;
+    }
+
+    kDebug( 5500 ) << "Opening resource " + (*it)->resourceName();
+    (*it)->setManager( this );
+    if ( (*it)->open() ) {
       ( *it )->load();
     }
   }
@@ -81,16 +86,19 @@ void KNotesResourceManager::save()
 
 // when adding a new note, make sure a config file exists!!
 
-void KNotesResourceManager::addNewNote( KCal::Journal *journal )
+bool KNotesResourceManager::addNewNote( KCal::Journal *journal )
 {
   // TODO: Make this configurable
   ResourceNotes *resource = m_manager->standardResource();
   if ( resource ) {
-    resource->addNote( journal );
-    registerNote( resource, journal );
+    if ( resource->addNote( journal ) ) {
+      registerNote( resource, journal );
+      return true;
+    }
   } else {
     kWarning( 5500 ) << "no resource!";
   }
+  return false;
 }
 
 void KNotesResourceManager::registerNote( ResourceNotes *resource,
@@ -103,22 +111,29 @@ void KNotesResourceManager::registerNote( ResourceNotes *resource,
 
 void KNotesResourceManager::deleteNote( KCal::Journal *journal )
 {
+  if ( !journal ) {
+      return;
+  }
+
   const QString uid = journal->uid();
-  
+
   // Remove the journal from the resource it came from
-  m_resourceMap.value( uid )->deleteNote( journal );
-  m_resourceMap.remove( uid );
-  
-  // libkcal does not delete the journal immediately, therefore it is ok to
-  // emit the journal here
-  emit sigDeregisteredNote( journal );
+  ResourceNotes *res = m_resourceMap.value( uid );
+  if ( res ) {
+    res->deleteNote( journal );
+    m_resourceMap.remove( uid );
+
+    // libkcal does not delete the journal immediately, therefore it is ok to
+    // emit the journal here
+    emit sigDeregisteredNote( journal );
+  }
 }
 
 KCal::Alarm::List KNotesResourceManager::alarms( const KDateTime &from,
                                                  const KDateTime &to )
 {
   KCal::Alarm::List result;
-  
+
   KRES::Manager<ResourceNotes>::ActiveIterator it;
   for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it ) {
     KCal::Alarm::List list = ( *it )->alarms( from, to );
@@ -127,18 +142,23 @@ KCal::Alarm::List KNotesResourceManager::alarms( const KDateTime &from,
       result.append( *it );
     }
   }
-  
+
   return result;
 }
 
 void KNotesResourceManager::resourceAdded( ResourceNotes *resource )
 {
   kDebug( 5500 ) << "Resource added:" << resource->resourceName();
-  
+
   if ( !resource->isActive() ) {
     return;
   }
-  
+
+  if ( resource->isOpen() ) {
+    kDebug(5500) << resource->resourceName() << " is already open";
+    return;
+  }
+
   resource->setManager( this );
   if ( resource->open() ) {
     resource->load();
