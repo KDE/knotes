@@ -344,9 +344,9 @@ void KNotesApp::killNote( const QString &id )
   killNote( id, false );
 }
 
-QMap<QString, QString> KNotesApp::notes() const
+QVariantMap KNotesApp::notes() const
 {
-  QMap<QString, QString> notes;
+  QVariantMap notes;
 
   foreach ( KNote *note, m_notes ) {
     notes.insert( note->noteId(), note->name() );

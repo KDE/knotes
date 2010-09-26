@@ -70,7 +70,7 @@ class KNotesApp
     void setName( const QString &id, const QString &newName );
     void setText( const QString &id, const QString &newText );
 
-    QMap<QString,QString> notes() const;
+    QVariantMap notes() const;
 
     bool commitData( QSessionManager & );
 
