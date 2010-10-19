@@ -71,7 +71,7 @@ install(FILES
 
 ########### install files ###############
 
-install( FILES knotes.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
+install( PROGRAMS knotes.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
 install( FILES knoteconfig.kcfg knotesglobalconfig.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
 install( FILES local.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources/knotes)
 install( FILES knotes_manager.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources)
