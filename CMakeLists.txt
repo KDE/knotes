@@ -24,7 +24,7 @@ kde4_add_kcfg_files(knotes_SRCS ${libknotesconfig_SRCS})
 
 qt4_add_dbus_adaptor(knotes_SRCS org.kde.KNotes.xml knotesapp.h KNotesApp )
 
-kde4_add_app_icon(knotes_SRCS "${KDE4_ICON_DIR}/oxygen/*/apps/knotes.png")
+kde4_add_app_icon(knotes_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-apps-knotes.png")
 
 kde4_add_executable(knotes ${knotes_SRCS})
 
