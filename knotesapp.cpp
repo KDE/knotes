@@ -111,6 +111,7 @@ KNotesApp::KNotesApp()
 
   m_tray->setToolTipTitle( i18n( "KNotes: Sticky notes for KDE" ) );
   m_tray->setIconByName( "knotes" );
+  m_tray->setToolTipIconByName( "knotes" );
   m_tray->setStatus( KStatusNotifierItem::Active );
   m_tray->setCategory( KStatusNotifierItem::ApplicationStatus );
   m_tray->setStandardActionsEnabled(false);
