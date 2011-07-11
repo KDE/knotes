@@ -20,7 +20,7 @@
 
 #include "knoteslegacy.h"
 #include "knoteconfig.h"
-#include "version.h"
+#include "kdepim-version.h"
 
 #include <QFile>
 #include <QFont>
@@ -151,7 +151,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
     KNoteConfig config( KSharedConfig::openConfig( configFile,
                                                    KConfig::NoGlobals ) );
     config.readConfig();
-    config.setVersion( KNOTES_VERSION );
+    config.setVersion( KDEPIM_VERSION );
     
     // get the geometry
     config.setWidth( props[3].toUInt() );
@@ -246,7 +246,7 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir &noteDir,
   journal->setSummary( grp.readEntry( "name" ) );
   config.deleteGroup( "Data", KConfig::Localized );
   KConfigGroup _grp2(&config, "General" ); // XXX right?
-  _grp2.writeEntry( "version", KNOTES_VERSION );
+  _grp2.writeEntry( "version", KDEPIM_VERSION );
   KConfigGroup _grp3(&config, "WindowDisplay" ); // XXX right?
 #ifdef Q_WS_X11
   uint state = _grp3.readEntry( "state", uint( NET::SkipTaskbar ) );

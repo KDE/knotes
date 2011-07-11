@@ -18,7 +18,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include "version.h"
+#include "kdepim-version.h"
 #include "application.h"
 
 #include <kcmdlineargs.h>
@@ -38,12 +38,10 @@ void knotesAuthors(  KAboutData &aboutData );
 
 int main( int argc, char *argv[] )
 {
-  QString version = QString::number( KNOTES_VERSION );
-
   KAboutData aboutData( "knotes",
                          0,
                          ki18n( "KNotes" ),
-                         version.toLatin1(),
+                         KDEPIM_VERSION,
                          ki18n( "KDE Notes" ),
                          KAboutData::License_GPL,
                          ki18n( "Copyright © 1997–2010 KNotes authors" ) );
