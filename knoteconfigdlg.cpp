@@ -22,7 +22,8 @@
 #include "knoteconfigdlg.h"
 #include "knote.h"
 #include "knotesglobalconfig.h"
-#include "version.h"
+
+#include "kdepim-version.h"
 
 #include <kapplication.h>
 #include <kcolorbutton.h>
@@ -67,7 +68,7 @@ KNoteSimpleConfigDlg::KNoteSimpleConfigDlg( KNoteConfig *config, const QString &
              i18n( "Display Settings" ) );
   addPage( new KNoteEditorConfigWidget( false ), i18n( "Editor" ), "accessories-text-editor",
              i18n( "Editor Settings" ) );
-  config->setVersion( KNOTES_VERSION );
+  config->setVersion( KDEPIM_VERSION );
 }
 
 
@@ -104,7 +105,7 @@ KNoteConfigDlg::KNoteConfigDlg( const QString &title,
   addModule( "knote_config_network" );
   addModule( "knote_config_style" );
 
-  KNotesGlobalConfig::self()->setVersion( KNOTES_VERSION );
+  KNotesGlobalConfig::self()->setVersion( KDEPIM_VERSION );
   connect( this, SIGNAL(okClicked()), SLOT(slotOk()) );
 
 }

@@ -28,7 +28,7 @@
 #include "knoteprinter.h"
 #include "knotesglobalconfig.h"
 #include "knotesnetsend.h"
-#include "version.h"
+#include "kdepim-version.h"
 
 #include <kaction.h>
 #include <kactioncollection.h>
@@ -823,7 +823,7 @@ void KNote::prepare()
   m_config = new KNoteConfig( KSharedConfig::openConfig( configFile,
                                                          KConfig::NoGlobals ) );
   m_config->readConfig();
-  m_config->setVersion( KNOTES_VERSION );
+  m_config->setVersion( KDEPIM_VERSION );
 
   if ( newNote ) {
     // until kdelibs provides copying of KConfigSkeletons (KDE 3.4)
