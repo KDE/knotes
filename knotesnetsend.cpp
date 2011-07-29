@@ -42,12 +42,12 @@ KNotesNetworkSender::KNotesNetworkSender( QTcpSocket *socket )
 {
   // QObject:: prefix needed, otherwise the KStreamSocket::connect()
   // method is called!!!
-  QObject::connect( m_socket, SIGNAL( connected() ), SLOT( slotConnected() ) );
-  QObject::connect( m_socket, SIGNAL( error( QAbstractSocket::SocketError ) ),
-                    SLOT( slotError( ) ) );
-  QObject::connect( m_socket, SIGNAL( disconnected() ), SLOT( slotClosed() ) );
-  QObject::connect( m_socket, SIGNAL( bytesWritten( qint64 ) ),
-                    SLOT( slotWritten( qint64 ) ) );
+  QObject::connect( m_socket, SIGNAL(connected()), SLOT(slotConnected()) );
+  QObject::connect( m_socket, SIGNAL(error(QAbstractSocket::SocketError)),
+                    SLOT(slotError()) );
+  QObject::connect( m_socket, SIGNAL(disconnected()), SLOT(slotClosed()) );
+  QObject::connect( m_socket, SIGNAL(bytesWritten(qint64)),
+                    SLOT(slotWritten(qint64)) );
 }
 
 KNotesNetworkSender::~KNotesNetworkSender()

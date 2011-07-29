@@ -66,12 +66,12 @@ KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
   m_servicesView->setModel( mdl );
   m_servicesView->setSelectionBehavior( QAbstractItemView::SelectRows );
   m_servicesView->hideColumn( DNSSD::ServiceModel::Port );
-  connect( m_servicesView->selectionModel(), SIGNAL( currentRowChanged( const QModelIndex&, const QModelIndex& ) ),
-    SLOT( serviceSelected( const QModelIndex& ) ) );
-  connect( m_servicesView, SIGNAL( activated( const QModelIndex& ) ),
-    SLOT( serviceSelected( const QModelIndex& ) ) );
-  connect( m_servicesView, SIGNAL( clicked( const QModelIndex& ) ),
-    SLOT( serviceSelected( const QModelIndex& ) ) );
+  connect( m_servicesView->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
+    SLOT(serviceSelected(QModelIndex)) );
+  connect( m_servicesView, SIGNAL(activated(QModelIndex)),
+    SLOT(serviceSelected(QModelIndex)) );
+  connect( m_servicesView, SIGNAL(clicked(QModelIndex)),
+    SLOT(serviceSelected(QModelIndex)) );
 
   ( void ) new QLabel( i18n("Hostname or IP address:"), page );
 
@@ -82,8 +82,8 @@ KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
   // Read known hosts from configfile
   m_hostCombo->setHistoryItems( KNotesGlobalConfig::knownHosts(), true );
   m_hostCombo->setFocus();
-  connect( m_hostCombo->lineEdit(), SIGNAL( textChanged ( const QString & ) ),
-           this, SLOT( slotTextChanged( const QString & ) ) );
+  connect( m_hostCombo->lineEdit(), SIGNAL(textChanged(QString)),
+           this, SLOT(slotTextChanged(QString)) );
   slotTextChanged( m_hostCombo->lineEdit()->text() );
 }
 

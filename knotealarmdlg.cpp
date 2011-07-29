@@ -80,9 +80,9 @@ KNoteAlarmDlg::KNoteAlarmDlg( const QString &caption, QWidget *parent )
   //layout->addWidget( in );  //show it and enable it when feature will implemented
   m_buttons->addButton( label_in, 2 );
   
-  connect( m_buttons, SIGNAL( buttonClicked( int ) ),
-           SLOT( slotButtonChanged( int ) ) );
-  connect( this, SIGNAL( okClicked() ), SLOT( slotOk() ) );
+  connect( m_buttons, SIGNAL(buttonClicked(int)),
+           SLOT(slotButtonChanged(int)) );
+  connect( this, SIGNAL(okClicked()), SLOT(slotOk()) );
 }
 
 

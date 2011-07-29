@@ -72,8 +72,8 @@ class KNotesKeyDialog
 
       m_keyChooser = new KShortcutsEditor( globals, this );
       setMainWidget( m_keyChooser );
-      connect( this, SIGNAL( defaultClicked() ),
-               m_keyChooser, SLOT( allDefault() ) );
+      connect( this, SIGNAL(defaultClicked()),
+               m_keyChooser, SLOT(allDefault()) );
     }
 
     void insert( KActionCollection *actions )
@@ -115,8 +115,8 @@ KNotesApp::KNotesApp()
   m_tray->setStatus( KStatusNotifierItem::Active );
   m_tray->setCategory( KStatusNotifierItem::ApplicationStatus );
   m_tray->setStandardActionsEnabled(false);
-  connect( m_tray, SIGNAL( activateRequested(bool, const QPoint &) ), this, SLOT( slotActivateRequested( bool, const QPoint& ) ) );
-  connect( m_tray, SIGNAL( secondaryActivateRequested( const QPoint & ) ), this, SLOT( slotSecondaryActivateRequested( const QPoint& ) ) );
+  connect( m_tray, SIGNAL(activateRequested(bool,QPoint)), this, SLOT(slotActivateRequested(bool,QPoint)) );
+  connect( m_tray, SIGNAL(secondaryActivateRequested(QPoint)), this, SLOT(slotSecondaryActivateRequested(QPoint)) );
 
   // set the initial style
 #ifdef __GNUC__
@@ -131,39 +131,39 @@ KNotesApp::KNotesApp()
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_N ),
                              KAction::DefaultShortcut );
 
-  connect( action, SIGNAL( triggered() ), SLOT( newNote() ) );
+  connect( action, SIGNAL(triggered()), SLOT(newNote()) );
 
   action  = new KAction( KIcon( "edit-paste" ),
                          i18n( "New Note From Clipboard" ), this );
   actionCollection()->addAction( "new_note_clipboard", action );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_C ),
                              KAction::DefaultShortcut );
-  connect( action, SIGNAL( triggered() ), SLOT( newNoteFromClipboard() ) );
+  connect( action, SIGNAL(triggered()), SLOT(newNoteFromClipboard()) );
 
   action  = new KAction( KIcon( "knotes" ), i18n( "Show All Notes" ), this );
   actionCollection()->addAction( "show_all_notes", action );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_S ),
                              KAction::DefaultShortcut );
-  connect( action, SIGNAL( triggered() ), SLOT( showAllNotes() ) );
+  connect( action, SIGNAL(triggered()), SLOT(showAllNotes()) );
 
   action  = new KAction( KIcon( "window-close" ),
                          i18n( "Hide All Notes" ), this );
   actionCollection()->addAction( "hide_all_notes", action );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_H ),
                              KAction::DefaultShortcut );
-  connect( action, SIGNAL( triggered() ), SLOT( hideAllNotes() ) );
+  connect( action, SIGNAL(triggered()), SLOT(hideAllNotes()) );
 
   new KHelpMenu( this, KGlobal::mainComponent().aboutData(), false,
                  actionCollection() );
 
-  m_findAction = KStandardAction::find( this, SLOT( slotOpenFindDialog() ),
+  m_findAction = KStandardAction::find( this, SLOT(slotOpenFindDialog()),
                          actionCollection() );
-  KStandardAction::preferences( this, SLOT( slotPreferences() ),
+  KStandardAction::preferences( this, SLOT(slotPreferences()),
                          actionCollection() );
-  KStandardAction::keyBindings( this, SLOT( slotConfigureAccels() ),
+  KStandardAction::keyBindings( this, SLOT(slotConfigureAccels()),
                          actionCollection() );
   //FIXME: no shortcut removing!?
-  KStandardAction::quit( this, SLOT( slotQuit() ),
+  KStandardAction::quit( this, SLOT(slotQuit()),
                          actionCollection() )->setShortcut( 0 );
 
   setXMLFile( componentData().componentName() + "appui.rc" );
@@ -196,10 +196,10 @@ KNotesApp::KNotesApp()
 
   // create the resource manager
   m_manager = new KNotesResourceManager();
-  connect( m_manager, SIGNAL( sigRegisteredNote( KCal::Journal * ) ),
-           this,      SLOT( createNote( KCal::Journal * ) ) );
-  connect( m_manager, SIGNAL( sigDeregisteredNote( KCal::Journal * ) ),
-           this,      SLOT( killNote( KCal::Journal * ) ) );
+  connect( m_manager, SIGNAL(sigRegisteredNote(KCal::Journal*)),
+           this,      SLOT(createNote(KCal::Journal*)) );
+  connect( m_manager, SIGNAL(sigDeregisteredNote(KCal::Journal*)),
+           this,      SLOT(killNote(KCal::Journal*)) );
 
   // read the notes
   m_manager->load();
@@ -480,10 +480,10 @@ void KNotesApp::slotPreferences()
 {
   // create a new preferences dialog...
   KNoteConfigDlg *dialog = new KNoteConfigDlg( i18n( "Settings" ), this);
-  connect( dialog, SIGNAL( configWrote( ) ),
-           this,   SLOT( updateNetworkListener() ) );
-  connect( dialog, SIGNAL( configWrote(  ) ),
-           this,   SLOT( updateStyle() ) );
+  connect( dialog, SIGNAL(configWrote()),
+           this,   SLOT(updateNetworkListener()) );
+  connect( dialog, SIGNAL(configWrote()),
+           this,   SLOT(updateStyle()) );
   dialog->show();
 }
 
@@ -576,20 +576,20 @@ void KNotesApp::createNote( KCal::Journal *journal )
   KNote *newNote = new KNote( m_noteGUI, journal, 0 );
   m_notes.insert( newNote->noteId(), newNote );
 
-  connect( newNote, SIGNAL( sigRequestNewNote() ),
-           SLOT( newNote() ) );
-  connect( newNote, SIGNAL( sigShowNextNote() ),
-           SLOT( slotWalkThroughNotes() ) ) ;
-  connect( newNote, SIGNAL( sigKillNote( KCal::Journal * ) ),
-           SLOT( slotNoteKilled( KCal::Journal * ) ) );
-  connect( newNote, SIGNAL( sigNameChanged(const QString &) ),
-           SLOT( updateNoteActions() ) );
-  connect( newNote, SIGNAL( sigDataChanged(const QString &) ),
-           SLOT( saveNotes(const QString &) ) );
-  connect( newNote, SIGNAL( sigColorChanged() ),
-           SLOT( updateNoteActions() ) );
-  connect( newNote, SIGNAL( sigFindFinished() ),
-           SLOT( slotFindNext() ) );
+  connect( newNote, SIGNAL(sigRequestNewNote()),
+           SLOT(newNote()) );
+  connect( newNote, SIGNAL(sigShowNextNote()),
+           SLOT(slotWalkThroughNotes()) ) ;
+  connect( newNote, SIGNAL(sigKillNote(KCal::Journal*)),
+           SLOT(slotNoteKilled(KCal::Journal*)) );
+  connect( newNote, SIGNAL(sigNameChanged(QString)),
+           SLOT(updateNoteActions()) );
+  connect( newNote, SIGNAL(sigDataChanged(QString)),
+           SLOT(saveNotes(QString)) );
+  connect( newNote, SIGNAL(sigColorChanged()),
+           SLOT(updateNoteActions()) );
+  connect( newNote, SIGNAL(sigFindFinished()),
+           SLOT(slotFindNext()) );
 
   // don't call this during startup for each and every loaded note
   if ( m_alarm ) {
@@ -628,8 +628,8 @@ void KNotesApp::acceptConnection()
   if ( s ) {
     KNotesNetworkReceiver *recv = new KNotesNetworkReceiver( s );
     connect( recv,
-             SIGNAL( sigNoteReceived( const QString &, const QString & ) ),
-             SLOT( newNote( const QString &, const QString & ) ) );
+             SIGNAL(sigNoteReceived(QString,QString)),
+             SLOT(newNote(QString,QString)) );
   }
 }
 
@@ -664,7 +664,7 @@ void KNotesApp::updateNoteActions()
 #endif
     KAction *action = new KAction( note->name().replace( "&", "&&" ), this );
 		action->setObjectName( note->noteId() );
-    connect( action, SIGNAL( triggered( bool ) ), SLOT( slotShowNote() ) );
+    connect( action, SIGNAL(triggered(bool)), SLOT(slotShowNote()) );
     KIconEffect effect;
     QPixmap icon =
       effect.apply( qApp->windowIcon().pixmap( IconSize( KIconLoader::Small ),
@@ -706,8 +706,8 @@ void KNotesApp::updateNetworkListener()
         // create the socket and start listening for connections
         m_listener=KSocketFactory::listen( "knotes" , QHostAddress::Any,
                                            KNotesGlobalConfig::port() );
-        connect( m_listener, SIGNAL( newConnection() ),
-                 SLOT( acceptConnection() ) );
+        connect( m_listener, SIGNAL(newConnection()),
+                 SLOT(acceptConnection()) );
         m_publisher=new DNSSD::PublicService(KNotesGlobalConfig::senderID(), "_knotes._tcp", KNotesGlobalConfig::port());
         m_publisher->publishAsync();
     }

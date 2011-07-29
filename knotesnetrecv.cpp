@@ -68,14 +68,14 @@ KNotesNetworkReceiver::KNotesNetworkReceiver( QTcpSocket *s )
                   .arg( date );
 
   // Setup the communications
-  connect( m_sock, SIGNAL( readyRead() ), SLOT( slotDataAvailable() ) );
-  connect( m_sock, SIGNAL( disconnected() ), SLOT( slotConnectionClosed() ) );
+  connect( m_sock, SIGNAL(readyRead()), SLOT(slotDataAvailable()) );
+  connect( m_sock, SIGNAL(disconnected()), SLOT(slotConnectionClosed()) );
   connect( m_sock, SIGNAL(error(QAbstractSocket::SocketError)), SLOT(slotError(QAbstractSocket::SocketError)));
 
   // Setup the timer
   m_timer = new QTimer( this );
   m_timer->setSingleShot( true );
-  connect( m_timer, SIGNAL( timeout() ), SLOT( slotReceptionTimeout() ) );
+  connect( m_timer, SIGNAL(timeout()), SLOT(slotReceptionTimeout()) );
   m_timer->start( MAXTIME );
 }
 

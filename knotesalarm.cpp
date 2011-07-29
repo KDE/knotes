@@ -49,7 +49,7 @@ KNotesAlarm::KNotesAlarm( KNotesResourceManager *manager, QObject *parent,
   setObjectName( name );
   // TODO: fix timezone stuff?
 
-  connect( &m_checkTimer, SIGNAL( timeout() ), SLOT( checkAlarms() ) );
+  connect( &m_checkTimer, SIGNAL(timeout()), SLOT(checkAlarms()) );
 
   // interval in seconds
   m_checkTimer.start( 1000 * KNotesGlobalConfig::self()->checkInterval() );
