@@ -32,19 +32,14 @@
 #ifndef KNOTEALARMDLG_H
 #define KNOTEALARMDLG_H
 
-#include <kdialog.h>
-
-class QButtonGroup;
+#include <KDialog>
 
 namespace KCal {
-class Journal;
+  class Journal;
 }
-
-namespace KPIM {
-class KDateEdit;
-class KTimeEdit;
-}
-
+class KDateComboBox;
+class KTimeComboBox;
+class QButtonGroup;
 
 class KNoteAlarmDlg
   : public KDialog
@@ -52,18 +47,18 @@ class KNoteAlarmDlg
   Q_OBJECT
   public:
     KNoteAlarmDlg( const QString &caption, QWidget *parent = 0 );
-    
+
     void setIncidence( KCal::Journal *journal );
-    
+
   private slots:
     void slotOk();
     void slotButtonChanged( int );
-    
+
   private:
     KCal::Journal *m_journal;
-    
-    KPIM::KDateEdit *m_atDate;
-    KPIM::KTimeEdit *m_atTime, *m_inTime;
+
+    KDateComboBox *m_atDate;
+    KTimeComboBox *m_atTime, *m_inTime;
     QButtonGroup *m_buttons;
 };
 
