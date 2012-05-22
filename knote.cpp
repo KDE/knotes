@@ -1117,6 +1117,9 @@ void KNote::resizeEvent( QResizeEvent *qre )
 
 void KNote::closeEvent( QCloseEvent * event )
 {
+  if ( kapp->sessionSaving() ) {
+    return;
+  }
   event->ignore(); //We don't want to close (and delete the widget). Just hide it
   slotClose();
 }
