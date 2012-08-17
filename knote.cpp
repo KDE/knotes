@@ -851,16 +851,6 @@ void KNote::prepare()
     m_config->writeConfig();
   }
 
-  // set up the look&feel of the note
-  setFrameStyle( Panel | Raised );
-  setMinimumSize( 20, 20 );
-  setBackgroundRole( QPalette::Base );
-
-  m_editor->setContentsMargins( 0, 0, 0, 0 );
-  m_editor->setBackgroundRole( QPalette::Base );
-  m_editor->setFrameStyle( NoFrame );
-  m_editor->setText( m_journal->description() );
-
   // load the display configuration of the note
   uint width = m_config->width();
   uint height = m_config->height();
@@ -955,6 +945,17 @@ void KNote::prepare()
 #ifdef Q_WS_X11
   KWindowSystem::setIcons( winId(), icon, miniIcon );
 #endif
+
+  // set up the look&feel of the note
+  setFrameStyle( Panel | Raised );
+  setMinimumSize( 20, 20 );
+  setBackgroundRole( QPalette::Base );
+
+  m_editor->setContentsMargins( 0, 0, 0, 0 );
+  m_editor->setBackgroundRole( QPalette::Base );
+  m_editor->setFrameStyle( NoFrame );
+  m_editor->setText( m_journal->description() );
+
   m_editor->document()->setModified( false );
 }
 

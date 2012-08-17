@@ -203,6 +203,10 @@ QString KNoteEdit::text() const
 void KNoteEdit::setTextFont( const QFont &font )
 {
     setCurrentFont( font );
+
+    // make this font default so that if user deletes note content
+    // font is remembered
+    document()->setDefaultFont( font );
 }
 
 void KNoteEdit::setTextFontSize( int size )
