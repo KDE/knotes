@@ -4,8 +4,8 @@
 #include <QTextDocument>
 #include <QTextDocumentFragment>
 #include <QAbstractTextDocumentLayout>
-#include <QtGui/QPrinter>
-#include <QtGui/QPrintDialog>
+#include <QPrinter>
+#include <QPrintDialog>
 
 #include <kcal/journal.h>
 
