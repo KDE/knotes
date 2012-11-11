@@ -177,12 +177,7 @@ void KNote::saveData(bool update )
 void KNote::saveConfig() const
 {
   m_config->setWidth( width() );
-  if ( m_tool ) {
-    m_config->setHeight(
-        height() - ( m_tool->isHidden() ? 0 : m_tool->height() ) );
-  } else {
-    m_config->setHeight( 0 );
-  }
+  m_config->setHeight( height() );
   m_config->setPosition( pos() );
 
 #ifdef Q_WS_X11
@@ -1056,7 +1051,7 @@ void KNote::updateFocus()
         if ( m_tool && m_tool->isHidden() && m_editor->acceptRichText() )
         {
             m_tool->show();
-            setGeometry( x(), y(), width(), height() + m_tool->height() );
+            updateLayout();
         }
         m_grip->show();
     }
@@ -1064,7 +1059,6 @@ void KNote::updateFocus()
     {
         if ( m_tool && !m_tool->isHidden() ) {
             m_tool->hide();
-            setGeometry( x(), y(), width(), height() - m_tool->height() );
             updateLayout();     // to update the minimum height
         }
         m_grip->hide();
@@ -1077,7 +1071,6 @@ void KNote::updateFocus()
     if ( m_tool && !m_tool->isHidden() )
     {
       m_tool->hide();
-      setGeometry( x(), y(), width(), height() - m_tool->height() );
       updateLayout();     // to update the minimum height
     }
   }
