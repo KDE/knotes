@@ -44,7 +44,7 @@ class KNotesNetworkReceiver
 {
   Q_OBJECT
   public:
-    KNotesNetworkReceiver( QTcpSocket * );
+    explicit KNotesNetworkReceiver( QTcpSocket * );
     ~KNotesNetworkReceiver();
 
   signals:

@@ -29,7 +29,7 @@ class KNoteButton
 {
   Q_OBJECT
   public:
-    KNoteButton( const QString &icon, QWidget *parent = 0 );
+    explicit KNoteButton( const QString &icon, QWidget *parent = 0 );
     ~KNoteButton();
     
     virtual int heightForWidth( int w ) const;

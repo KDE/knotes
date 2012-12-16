@@ -46,7 +46,7 @@ class KNoteAlarmDlg
 {
   Q_OBJECT
   public:
-    KNoteAlarmDlg( const QString &caption, QWidget *parent = 0 );
+    explicit KNoteAlarmDlg( const QString &caption, QWidget *parent = 0 );
 
     void setIncidence( KCal::Journal *journal );
 

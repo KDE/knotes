@@ -45,7 +45,7 @@ class KNotesAlarm
 {
   Q_OBJECT
   public:
-    KNotesAlarm( KNotesResourceManager *manager,
+    explicit KNotesAlarm( KNotesResourceManager *manager,
                  QObject *parent = 0,
                  const char *name = 0 );
     

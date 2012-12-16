@@ -114,14 +114,14 @@ class KNoteDisplayConfigWidget :public QWidget
 {
     Q_OBJECT
 public:
-    KNoteDisplayConfigWidget( bool defaults );
+    explicit KNoteDisplayConfigWidget( bool defaults );
 };
 
 class KNoteEditorConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
-    KNoteEditorConfigWidget( bool defaults );
+    explicit KNoteEditorConfigWidget( bool defaults );
 };
 
 #endif

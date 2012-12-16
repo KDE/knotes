@@ -48,7 +48,7 @@ class KNoteHostDlg
 {
   Q_OBJECT
   public:
-    KNoteHostDlg( const QString &caption, QWidget *parent = 0 );
+    explicit KNoteHostDlg( const QString &caption, QWidget *parent = 0 );
     ~KNoteHostDlg();
     
     QString host() const;

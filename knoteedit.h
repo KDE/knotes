@@ -42,7 +42,7 @@ class KNoteEdit
 {
   Q_OBJECT
   public:
-    KNoteEdit( KActionCollection *actions, QWidget *parent = 0 );
+    explicit KNoteEdit( KActionCollection *actions, QWidget *parent = 0 );
     ~KNoteEdit();
 
     void setNote( KNote *_note ) {

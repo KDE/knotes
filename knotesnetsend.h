@@ -41,7 +41,7 @@ class KNotesNetworkSender
 {
   Q_OBJECT
   public:
-    KNotesNetworkSender(  QTcpSocket *socket );
+    explicit KNotesNetworkSender(  QTcpSocket *socket );
     ~KNotesNetworkSender();
     
     void setSenderId( const QString &sender );
