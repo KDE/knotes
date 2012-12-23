@@ -14,7 +14,6 @@ X-KDE-Weight=200
 
 Name=Network
 Name[ar]=الشبكة
-Name[bs]=Mreža
 Name[ca]=Xarxa
 Name[ca@valencia]=Xarxa
 Name[cs]=Síť
@@ -63,7 +62,6 @@ Name[zh_CN]=网络
 Name[zh_TW]=網路
 Comment=Network Settings
 Comment[ar]=إعدادات الشبكة 
-Comment[bs]=Postavke mreže
 Comment[ca]=Arranjament de la xarxa
 Comment[ca@valencia]=Arranjament de la xarxa
 Comment[cs]=Nastavení sítě

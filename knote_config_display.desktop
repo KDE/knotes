@@ -14,7 +14,6 @@ X-KDE-Weight=200
 
 Name=Display
 Name[ar]=العرض
-Name[bs]=Prikaz
 Name[ca]=Visor
 Name[ca@valencia]=Visor
 Name[cs]=Zobrazení
@@ -63,7 +62,6 @@ Name[zh_CN]=显示
 Name[zh_TW]=顯示
 Comment=Setup display for notes
 Comment[ar]=تهيئة عرض الملاحظات
-Comment[bs]=Postavi prikaz za bilješke
 Comment[ca]=Arranja el visor per les notes
 Comment[ca@valencia]=Arranja el visor per les notes
 Comment[cs]=Nastavení zobrazení poznámek

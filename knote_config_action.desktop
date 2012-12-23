@@ -14,7 +14,6 @@ X-KDE-Weight=200
 
 Name=Actions
 Name[ar]=الإجراءات
-Name[bs]=Akcije
 Name[ca]=Accions
 Name[ca@valencia]=Accions
 Name[cs]=Činnosti
@@ -62,7 +61,6 @@ Name[zh_CN]=动作
 Name[zh_TW]=動作
 Comment=Setup actions for notes
 Comment[ar]=إعداد إجراءات الملاحظات
-Comment[bs]=Postavi radnje za bilješke
 Comment[ca]=Arranja les accions per les notes
 Comment[ca@valencia]=Arranja les accions per les notes
 Comment[cs]=Nastavení činností pro poznámky
