@@ -14,7 +14,6 @@ X-KDE-Weight=200
 
 Name=Style
 Name[ar]=النمط
-Name[bs]=Stil
 Name[ca]=Estil
 Name[ca@valencia]=Estil
 Name[cs]=Styl
@@ -62,7 +61,6 @@ Name[zh_CN]=风格
 Name[zh_TW]=樣式
 Comment=Style Settings
 Comment[ar]=إعدادات النمط
-Comment[bs]=Postavke stila
 Comment[ca]=Arranjament d'estil
 Comment[ca@valencia]=Arranjament d'estil
 Comment[cs]=Nastavení stylu

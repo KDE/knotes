@@ -14,7 +14,6 @@ X-KDE-Weight=200
 
 Name=Editor
 Name[ar]=المحرّر
-Name[bs]=Uređivač
 Name[ca]=Editor
 Name[ca@valencia]=Editor
 Name[cs]=Editor
@@ -64,7 +63,6 @@ Name[zh_CN]=编辑器
 Name[zh_TW]=編輯器
 Comment=Setup editor
 Comment[ar]=إعداد المحرر
-Comment[bs]=Postavi uređivač
 Comment[ca]=Arranja l'editor
 Comment[ca@valencia]=Arranja l'editor
 Comment[cs]=Nastavení editoru
