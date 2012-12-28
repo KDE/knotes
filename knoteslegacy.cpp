@@ -161,13 +161,13 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
     uint red = input.readLine().toUInt();
     uint green = input.readLine().toUInt();
     uint blue = input.readLine().toUInt();
-    config.setBgColor( QColor( Qt::red, Qt::green, Qt::blue ) );
+    config.setBgColor( QColor( red, green, blue ) );
 
     // get the foreground color
     red = input.readLine().toUInt();
     green = input.readLine().toUInt();
     blue = input.readLine().toUInt();
-    config.setFgColor( QColor( Qt::red, Qt::green, Qt::blue ) );
+    config.setFgColor( QColor( red, green, blue ) );
 
     // get the font
     QString fontfamily = input.readLine();
