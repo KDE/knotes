@@ -550,8 +550,12 @@ void KNotesApp::showNote( KNote *note ) const
 {
   note->show();
 #ifdef Q_WS_X11
-  KWindowSystem::setCurrentDesktop( KWindowSystem::windowInfo( note->winId(),
-                                    NET::WMDesktop ).desktop() );
+  if ( !note->isDesktopAssigned() ) {
+    note->toDesktop( KWindowSystem::currentDesktop() );
+  } else {
+    KWindowSystem::setCurrentDesktop(
+      KWindowSystem::windowInfo( note->winId(), NET::WMDesktop ).desktop() );
+  }
   KWindowSystem::forceActiveWindow( note->winId() );
 #endif
   note->setFocus();
