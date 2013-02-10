@@ -245,6 +245,11 @@ void KNote::find( KFind* kfind )
   slotFindNext();
 }
 
+bool KNote::isDesktopAssigned() const
+{
+  return m_config->rememberDesktop();
+}
+
 void KNote::slotFindNext()
 {
   // TODO: honor FindBackwards

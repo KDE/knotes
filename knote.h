@@ -71,13 +71,17 @@ class KNote
     void find( KFind* kfind );
 
     bool isModified() const;
+    bool isDesktopAssigned() const;
     void blockEmitDataChanged( bool _b ) { m_blockEmitDataChanged = _b;}
     void commitData();
+
+    void toDesktop( int desktop );
 
   public slots:
     void slotRename();
     void slotKill( bool force = false );
     void slotClose();
+
   signals:
     void sigRequestNewNote();
     void sigShowNextNote();
@@ -125,6 +129,7 @@ class KNote
     void slotKeepBelow();
 
     void slotRequestNewNote();
+
   private:
     void buildGui();
     void createActions();
@@ -138,8 +143,6 @@ class KNote
     void updateLabelAlignment();
 
     void setColor( const QColor &, const QColor & );
-
-    void toDesktop( int desktop );
 
   private:
     QLayout       *m_noteLayout;
