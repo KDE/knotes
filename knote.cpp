@@ -600,7 +600,7 @@ void KNote::slotUpdateDesktopActions()
                                               // for old broken gcc
 
   const int count = wm_root.numberOfDesktops();
-  for ( int n = 1; n <= count; n++ ) {
+  for ( int n = 1; n <= count; ++n ) {
     desktops.append( QString( "&%1 %2" ).arg( n ).arg(
       QString::fromUtf8( wm_root.desktopName( n ) ) ) );
   }
