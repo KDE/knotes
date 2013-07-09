@@ -48,18 +48,18 @@ ResourceLocal::ResourceLocal()
   : ResourceNotes(), mCalendar( QString::fromLatin1( "UTC" ) )
 {
   kDebug( 5500 ) << "ResourceLocal::ResourceLocal()";
-  setType( "file" );
-  mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", "knotes/" ) +
-                         "notes.ics" );
+  setType( QLatin1String("file") );
+  mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", QLatin1String("knotes/") ) +
+                         QLatin1String("notes.ics") );
 }
 
 ResourceLocal::ResourceLocal( const KConfigGroup &group )
   : ResourceNotes( group ), mCalendar( QString::fromLatin1( "UTC" ) )
 {
   kDebug( 5500 ) << "ResourceLocal::ResourceLocal()";
-  setType( "file" );
-  mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", "knotes/" ) +
-                         "notes.ics" );
+  setType( QLatin1String("file") );
+  mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", QLatin1String("knotes/") ) +
+                         QLatin1String("notes.ics") );
 
   KUrl u = group.readPathEntry( "NotesURL", QString() );
   if ( !u.isEmpty() ) {

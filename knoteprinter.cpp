@@ -91,7 +91,7 @@ void KNotePrinter::printNotes( const QList<KCal::Journal *>& journals ) const
   QListIterator<KCal::Journal *> it( journals );
   while ( it.hasNext() ) {
     KCal::Journal *j = it.next();
-    htmlText += "<h2>" + j->summary() + "</h2>";
+    htmlText += QLatin1String("<h2>") + j->summary() + QLatin1String("</h2>");
     
     //### ensureHtmlText() is a hack.
     //Possible solution:
@@ -104,7 +104,7 @@ void KNotePrinter::printNotes( const QList<KCal::Journal *>& journals ) const
     htmlText += ensureHtmlText( j->description() );
     
     if ( it.hasNext() ) {
-      htmlText += "<hr />";
+      htmlText += QLatin1String("<hr />");
     }
   }
   

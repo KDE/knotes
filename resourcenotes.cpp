@@ -36,7 +36,7 @@
 ResourceNotes::ResourceNotes()
   : KRES::Resource(), mManager( 0 )
 {
-  setResourceName( "Notes" );
+  setResourceName( QLatin1String("Notes") );
 }
 
 ResourceNotes::ResourceNotes( const KConfigGroup &group )

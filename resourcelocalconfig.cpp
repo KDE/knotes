@@ -33,7 +33,7 @@
 ResourceLocalConfig::ResourceLocalConfig( QWidget *parent,  const char *name )
   : KRES::ConfigWidget( parent )
 {
-  setObjectName( name );
+  setObjectName( QLatin1String(name) );
   QHBoxLayout *layout = new QHBoxLayout( this );
   
   QLabel *label = new QLabel( i18n( "Location:" ), this );

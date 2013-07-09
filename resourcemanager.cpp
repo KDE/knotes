@@ -40,8 +40,8 @@
 KNotesResourceManager::KNotesResourceManager()
   : QObject( 0 )
 {
-  setObjectName( "KNotes Resource Manager" );
-  m_manager = new KRES::Manager<ResourceNotes>( "notes" );
+  setObjectName( QLatin1String("KNotes Resource Manager") );
+  m_manager = new KRES::Manager<ResourceNotes>( QLatin1String("notes") );
   m_manager->addObserver( this );
   m_manager->readConfig();
 }
@@ -68,7 +68,7 @@ void KNotesResourceManager::load()
       continue;
     }
 
-    kDebug( 5500 ) << "Opening resource " + (*it)->resourceName();
+    kDebug( 5500 ) << QLatin1String("Opening resource ") + (*it)->resourceName();
     (*it)->setManager( this );
     if ( (*it)->open() ) {
       ( *it )->load();
