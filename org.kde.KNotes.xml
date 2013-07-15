@@ -46,7 +46,7 @@
     </method>
     <method name="notes">
       <arg name="m" type="a{sv}" direction="out"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.Out0" value="QVariantMap"/>
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QVariantMap"/>
     </method>
     <method name="showAllNotes"/>
     <method name="hideAllNotes"/>
