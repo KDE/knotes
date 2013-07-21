@@ -608,7 +608,7 @@ void KNotesApp::killNote( KCal::Journal *journal )
 {
   if(m_noteUidModify == journal->uid())
   {
-	  return;
+          return;
   }
   // this kills the KNote object
   KNote *note = m_notes.take( journal->uid() );
@@ -662,7 +662,7 @@ void KNotesApp::updateNoteActions()
 #warning utf8: use QString
 #endif
     KAction *action = new KAction( note->name().replace( "&", "&&" ), this );
-		action->setObjectName( note->noteId() );
+                action->setObjectName( note->noteId() );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotShowNote()) );
     KIconEffect effect;
     QPixmap icon =
