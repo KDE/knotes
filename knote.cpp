@@ -711,6 +711,8 @@ void KNote::createActions()
            SLOT(slotPopupActionToDesktop(int)) );
   connect( m_toDesktop->menu(), SIGNAL(aboutToShow()),
            SLOT(slotUpdateDesktopActions()) );
+  // initially populate it, otherwise stays disabled
+  slotUpdateDesktopActions();
 #endif
 
   // invisible action to walk through the notes to make this configurable
