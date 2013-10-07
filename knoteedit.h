@@ -80,8 +80,6 @@ class KNoteEdit
     void slotTextBackgroundColor();
 
   protected:
-    virtual void dragEnterEvent( QDragEnterEvent * );
-    virtual void dropEvent( QDropEvent * );
     virtual void keyPressEvent( QKeyEvent * );
     virtual void focusInEvent( QFocusEvent * );
     virtual void focusOutEvent( QFocusEvent * );
