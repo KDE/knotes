@@ -397,35 +397,6 @@ void KNoteEdit::textDecreaseIndent()
 
 /** protected methods **/
 
-void KNoteEdit::dragEnterEvent( QDragEnterEvent *e )
-{
-  const QMimeData *md = e->mimeData();
-  if ( KUrl::List::canDecode( md ) ) {
-    e->accept();
-  } else {
-    KTextEdit::dragEnterEvent( e );
-  }
-}
-
-void KNoteEdit::dropEvent( QDropEvent *e )
-{
-  const QMimeData *md = e->mimeData();
-
-  if ( KUrl::List::canDecode( md ) ) {
-    KUrl::List list = KUrl::List::fromMimeData( md );
-    KUrl::List::ConstIterator begin = list.constBegin();
-    KUrl::List::ConstIterator end = list.constEnd();
-    for ( KUrl::List::ConstIterator it = begin; it != end; ++it ) {
-      if ( it != begin ) {
-        insertPlainText( QLatin1String(", ") );
-      }
-      insertPlainText( ( *it ).prettyUrl() );
-    }
-  } else {
-      KTextEdit::dropEvent( e );
-  }
-}
-
 void KNoteEdit::keyPressEvent( QKeyEvent *e )
 {
   KTextEdit::keyPressEvent( e );
