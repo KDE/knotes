@@ -378,6 +378,7 @@ KNoteNetworkConfig::KNoteNetworkConfig(const KComponentData &inst, QWidget *pare
 
     QLabel *label_SenderID = new QLabel( i18n( "&Sender ID:" ) );
     KLineEdit *kcfg_SenderID = new KLineEdit;
+    kcfg_SenderID->setClearButtonShown(true);
     kcfg_SenderID->setObjectName( QLatin1String("kcfg_SenderID") );
     label_SenderID->setBuddy( kcfg_SenderID );
     tmpLayout->addWidget( label_SenderID );
