@@ -21,11 +21,9 @@
 #ifndef KNOTE_H
 #define KNOTE_H
 
-#include <QColor>
 #include <QDomDocument>
 #include <QEvent>
 #include <QFrame>
-#include <QString>
 
 #include <kconfig.h>
 #include <kxmlguiclient.h>
