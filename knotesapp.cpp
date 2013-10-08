@@ -103,15 +103,15 @@ KNotesApp::KNotesApp()
   : QWidget(), m_alarm( 0 ), m_listener( 0 ), m_publisher( 0 ), m_find( 0 ), m_findPos( 0 )
 {
   new KNotesAdaptor( this );
-  QDBusConnection::sessionBus().registerObject( "/KNotes" , this );
+  QDBusConnection::sessionBus().registerObject( QLatin1String("/KNotes") , this );
   kapp->setQuitOnLastWindowClosed( false );
 
   // create the dock widget...
   m_tray = new KStatusNotifierItem(0);
 
   m_tray->setToolTipTitle( i18n( "KNotes: Sticky notes for KDE" ) );
-  m_tray->setIconByName( "knotes" );
-  m_tray->setToolTipIconByName( "knotes" );
+  m_tray->setIconByName( QLatin1String("knotes") );
+  m_tray->setToolTipIconByName( QLatin1String("knotes") );
   m_tray->setStatus( KStatusNotifierItem::Active );
   m_tray->setCategory( KStatusNotifierItem::ApplicationStatus );
   m_tray->setStandardActionsEnabled(false);
@@ -125,26 +125,26 @@ KNotesApp::KNotesApp()
   //    KNote::setStyle( KNotesGlobalConfig::style() );
 
   // create the GUI...
-  KAction *action  = new KAction( KIcon( "document-new" ),
+  KAction *action  = new KAction( KIcon( QLatin1String("document-new") ),
                                   i18n( "New Note" ), this );
-  actionCollection()->addAction( "new_note", action );
+  actionCollection()->addAction( QLatin1String("new_note"), action );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_N ));
   connect( action, SIGNAL(triggered()), SLOT(newNote()) );
 
-  action  = new KAction( KIcon( "edit-paste" ),
+  action  = new KAction( KIcon( QLatin1String("edit-paste") ),
                          i18n( "New Note From Clipboard" ), this );
-  actionCollection()->addAction( "new_note_clipboard", action );
+  actionCollection()->addAction( QLatin1String("new_note_clipboard"), action );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_C ));
   connect( action, SIGNAL(triggered()), SLOT(newNoteFromClipboard()) );
 
-  action  = new KAction( KIcon( "knotes" ), i18n( "Show All Notes" ), this );
-  actionCollection()->addAction( "show_all_notes", action );
+  action  = new KAction( KIcon(QLatin1String( "knotes") ), i18n( "Show All Notes" ), this );
+  actionCollection()->addAction( QLatin1String("show_all_notes"), action );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_S ));
   connect( action, SIGNAL(triggered()), SLOT(showAllNotes()) );
 
-  action  = new KAction( KIcon( "window-close" ),
+  action  = new KAction( KIcon( QLatin1String("window-close") ),
                          i18n( "Hide All Notes" ), this );
-  actionCollection()->addAction( "hide_all_notes", action );
+  actionCollection()->addAction( QLatin1String("hide_all_notes"), action );
   action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_H ));
   connect( action, SIGNAL(triggered()), SLOT(hideAllNotes()) );
 
@@ -161,21 +161,21 @@ KNotesApp::KNotesApp()
   KStandardAction::quit( this, SLOT(slotQuit()),
                          actionCollection() )->setShortcut( 0 );
 
-  setXMLFile( componentData().componentName() + "appui.rc" );
+  setXMLFile( componentData().componentName() + QLatin1String("appui.rc") );
 
   m_guiBuilder = new KXMLGUIBuilder( this );
   m_guiFactory = new KXMLGUIFactory( m_guiBuilder, this );
   m_guiFactory->addClient( this );
 
   m_contextMenu = static_cast<KMenu *>( m_guiFactory->container(
-                                        "knotes_context",
+                                        QLatin1String("knotes_context"),
                                         this ) );
   m_noteMenu = static_cast<KMenu *>( m_guiFactory->container(
-                                      "notes_menu", this ) );
+                                      QLatin1String("notes_menu"), this ) );
   m_tray->setContextMenu( m_contextMenu );
   // get the most recent XML UI file
-  QString xmlFileName = componentData().componentName() + "ui.rc";
-  QString filter = componentData().componentName() + '/' + xmlFileName;
+  QString xmlFileName = componentData().componentName() + QLatin1String("ui.rc");
+  QString filter = componentData().componentName() + QLatin1Char('/') + xmlFileName;
   const QStringList fileList =
       componentData().dirs()->findAllResources( "data", filter ) +
       componentData().dirs()->findAllResources( "data", xmlFileName );
@@ -202,7 +202,8 @@ KNotesApp::KNotesApp()
   if ( KNotesLegacy::convert( &calendar ) ) {
     KCal::Journal::List notes = calendar.journals();
     KCal::Journal::List::ConstIterator it;
-    for ( it = notes.constBegin(); it != notes.constEnd(); ++it ) {
+    KCal::Journal::List::ConstIterator end(notes.constEnd());
+    for ( it = notes.constBegin(); it != end; ++it ) {
       m_manager->addNewNote( *it );
     }
 
@@ -430,7 +431,7 @@ void KNotesApp::slotWalkThroughNotes()
 void KNotesApp::slotOpenFindDialog()
 {
   KFindDialog findDia( this );
-  findDia.setObjectName( "find_dialog" );
+  findDia.setObjectName( QLatin1String("find_dialog") );
   findDia.setHasSelection( false );
   findDia.setHasCursor( false );
   findDia.setSupportsBackwardsFind( false );
@@ -494,7 +495,7 @@ void KNotesApp::slotConfigureAccels()
 
   // update GUI doc for new notes
   m_noteGUI.setContent(
-    KXMLGUIFactory::readConfigFile( componentData().componentName() + "ui.rc",
+    KXMLGUIFactory::readConfigFile( componentData().componentName() + QLatin1String("ui.rc"),
                                     componentData() )
                       );
 
@@ -651,7 +652,7 @@ void KNotesApp::saveConfigs()
 
 void KNotesApp::updateNoteActions()
 {
-  unplugActionList( "notes" );
+  unplugActionList( QLatin1String("notes") );
   m_noteActions.clear();
 
   foreach ( KNote *note, m_notes ) {
@@ -659,7 +660,7 @@ void KNotesApp::updateNoteActions()
 #ifdef __GNUC__
 #warning utf8: use QString
 #endif
-    KAction *action = new KAction( note->name().replace( "&", "&&" ), this );
+    KAction *action = new KAction( note->name().replace( QLatin1String("&"), QLatin1String("&&") ), this );
                 action->setObjectName( note->noteId() );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotShowNote()) );
     KIconEffect effect;
@@ -676,8 +677,8 @@ void KNotesApp::updateNoteActions()
   }
 
   if ( m_noteActions.isEmpty() ) {
-      actionCollection()->action( "hide_all_notes" )->setEnabled( false );
-      actionCollection()->action( "show_all_notes" )->setEnabled( false );
+      actionCollection()->action( QLatin1String("hide_all_notes") )->setEnabled( false );
+      actionCollection()->action( QLatin1String("show_all_notes") )->setEnabled( false );
       m_findAction->setEnabled( false );
     KAction *action = new KAction( i18n( "No Notes" ), this );
     m_noteActions.append( action );
@@ -685,11 +686,11 @@ void KNotesApp::updateNoteActions()
   else
   {
       qSort( m_noteActions.begin(), m_noteActions.end(), qActionLessThan );
-      actionCollection()->action( "hide_all_notes" )->setEnabled( true );
-      actionCollection()->action( "show_all_notes" )->setEnabled( true );
+      actionCollection()->action( QLatin1String("hide_all_notes") )->setEnabled( true );
+      actionCollection()->action( QLatin1String("show_all_notes") )->setEnabled( true );
       m_findAction->setEnabled( true );
   }
-  plugActionList( "notes", m_noteActions );
+  plugActionList( QLatin1String("notes"), m_noteActions );
 }
 
 void KNotesApp::updateNetworkListener()
@@ -701,11 +702,11 @@ void KNotesApp::updateNetworkListener()
 
     if ( KNotesGlobalConfig::receiveNotes() ) {
         // create the socket and start listening for connections
-        m_listener=KSocketFactory::listen( "knotes" , QHostAddress::Any,
+        m_listener=KSocketFactory::listen( QLatin1String("knotes") , QHostAddress::Any,
                                            KNotesGlobalConfig::port() );
         connect( m_listener, SIGNAL(newConnection()),
                  SLOT(acceptConnection()) );
-        m_publisher=new DNSSD::PublicService(KNotesGlobalConfig::senderID(), "_knotes._tcp", KNotesGlobalConfig::port());
+        m_publisher=new DNSSD::PublicService(KNotesGlobalConfig::senderID(), QLatin1String("_knotes._tcp"), KNotesGlobalConfig::port());
         m_publisher->publishAsync();
     }
 }

@@ -48,7 +48,7 @@ using namespace KCal;
 void KNotesLegacy::cleanUp()
 {
   // remove old (KDE 1.x) local config file if it still exists
-  const QString configfile = KGlobal::dirs()->saveLocation( "config" ) + "knotesrc";
+  const QString configfile = KGlobal::dirs()->saveLocation( "config" ) + QLatin1String("knotesrc");
   if ( QFile::exists( configfile ) ) {
     KConfigGroup test(
       KSharedConfig::openConfig( configfile, KConfig::SimpleConfig ),
@@ -68,7 +68,7 @@ bool KNotesLegacy::convert( CalendarLocal *calendar )
 {
   bool converted = false;
 
-  QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", "notes/" ) );
+  QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", QLatin1String("notes/") ) );
   const QStringList notes = noteDir.entryList( QDir::Files, QDir::Name );
   for ( QStringList::ConstIterator note = notes.constBegin(); note != notes.constEnd();
         ++note ) {
@@ -128,7 +128,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
     // get the name
     journal->setSummary( input.readLine() );
 
-    const QStringList props = input.readLine().split( '+', QString::SkipEmptyParts );
+    const QStringList props = input.readLine().split( QLatin1Char('+'), QString::SkipEmptyParts );
 
     // robustness
     if ( props.count() != 13 ) {
@@ -143,7 +143,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
 
     // set the defaults
     KIO::NetAccess::file_copy(
-        KUrl( KGlobal::dirs()->saveLocation( "config" ) + "knotesrc" ),
+        KUrl( KGlobal::dirs()->saveLocation( "config" ) + QLatin1String("knotesrc") ),
         KUrl( configFile ),
         0
     );
@@ -151,7 +151,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
     KNoteConfig config( KSharedConfig::openConfig( configFile,
                                                    KConfig::NoGlobals ) );
     config.readConfig();
-    config.setVersion( KDEPIM_VERSION );
+    config.setVersion( QLatin1String(KDEPIM_VERSION) );
 
     // get the geometry
     config.setWidth( props[3].toUInt() );
@@ -172,7 +172,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
     // get the font
     QString fontfamily = input.readLine();
     if ( fontfamily.isEmpty() )
-        fontfamily = QString( "Sans Serif" );
+        fontfamily = QLatin1String( "Sans Serif" );
     uint size = input.readLine().toUInt();
     size = qMax( size, ( uint ) 4 );
     uint weight = input.readLine().toUInt();
@@ -212,7 +212,7 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
     while ( !input.atEnd() ) {
       text.append( input.readLine() );
       if ( !input.atEnd() ) {
-        text.append( '\n' );
+        text.append( QLatin1Char('\n') );
       }
     }
 
@@ -258,7 +258,7 @@ bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir &noteDir,
   _grp3.deleteEntry( "state" );
 
   // load the saved text and put it in the journal
-  QFile infile( noteDir.absoluteFilePath( '.' + file + "_data" ) );
+  QFile infile( noteDir.absoluteFilePath( QLatin1Char('.') + file + QLatin1String("_data") ) );
   if ( infile.open( QIODevice::ReadOnly ) ) {
     QTextStream input( &infile );
     input.setCodec( "UTF-8" );

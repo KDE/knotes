@@ -63,7 +63,7 @@ KNotesNetworkReceiver::KNotesNetworkReceiver( QTcpSocket *s )
 
   // Add the remote IP or hostname and the date to the title, to help the
   // user guess who wrote it.
-  m_titleAddon = QString( " [%1, %2]" )
+  m_titleAddon = QString::fromLatin1( " [%1, %2]" )
                   .arg( m_sock->peerAddress().toString() )
                   .arg( date );
 
@@ -126,7 +126,7 @@ void KNotesNetworkReceiver::slotConnectionClosed()
     QString noteText = QString( codec->toUnicode( *m_buffer ) ).trimmed();
 
     // First line is the note title or, in case of ATnotes, the id
-    int pos = noteText.indexOf( QRegExp( "[\r\n]" ) );
+    int pos = noteText.indexOf( QRegExp( QLatin1String("[\r\n]") ) );
     QString noteTitle = noteText.left( pos ).trimmed() + m_titleAddon;
 
     noteText = noteText.mid( pos ).trimmed();
