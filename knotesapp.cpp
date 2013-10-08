@@ -184,8 +184,6 @@ KNotesApp::KNotesApp()
   KXMLGUIClient::findMostRecentXMLFile( fileList, doc );
   m_noteGUI.setContent( doc );
 
-  KConfigGroup config( KGlobal::config(), "Global Keybindings" );
-
   // clean up old config files
   KNotesLegacy::cleanUp();
 
