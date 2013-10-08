@@ -240,9 +240,10 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults )
 KNoteDisplayConfig::KNoteDisplayConfig( const KComponentData &inst, QWidget *parent )
     :KCModule( inst, parent )
 {
-    QHBoxLayout *lay = new QHBoxLayout( this );
+    QVBoxLayout *lay = new QVBoxLayout( this );
     QWidget * w =  new KNoteDisplayConfigWidget( true );
     lay->addWidget( w );
+    lay->addStretch();
     addConfig( KNotesGlobalConfig::self(), w );
     load();
 }
@@ -303,15 +304,15 @@ KNoteEditorConfigWidget::KNoteEditorConfigWidget( bool defaults )
     kcfg_TitleFont->setSizePolicy( QSizePolicy( QSizePolicy::Minimum,
                                                 QSizePolicy::Fixed ) );
     layout->addWidget( kcfg_TitleFont, 2, 1, 1, 2 );
-
 }
 
 KNoteEditorConfig::KNoteEditorConfig( const KComponentData &inst, QWidget *parent )
     :KCModule( inst, parent )
 {
-    QHBoxLayout *lay = new QHBoxLayout( this );
+    QVBoxLayout *lay = new QVBoxLayout( this );
     QWidget * w =  new KNoteEditorConfigWidget( true );
     lay->addWidget( w );
+    lay->addStretch();
     addConfig( KNotesGlobalConfig::self(), w );
     load();
 }
@@ -329,7 +330,7 @@ void KNoteEditorConfig::load()
 KNoteActionConfig::KNoteActionConfig(const KComponentData &inst, QWidget *parent )
     :KCModule( inst, parent )
 {
-    QHBoxLayout *lay = new QHBoxLayout( this );
+    QVBoxLayout *lay = new QVBoxLayout( this );
     QWidget * w =  new QWidget( this );
     lay->addWidget( w );
     QGridLayout *layout = new QGridLayout( w );
@@ -345,6 +346,7 @@ KNoteActionConfig::KNoteActionConfig(const KComponentData &inst, QWidget *parent
     label_MailAction->setBuddy( kcfg_MailAction );
     layout->addWidget( kcfg_MailAction, 0, 1 );
     addConfig( KNotesGlobalConfig::self(), w );
+    lay->addStretch();
     load();
 }
 
@@ -361,7 +363,7 @@ void KNoteActionConfig::load()
 KNoteNetworkConfig::KNoteNetworkConfig(const KComponentData &inst, QWidget *parent )
     :KCModule( inst, parent )
 {
-    QHBoxLayout *lay = new QHBoxLayout( this );
+    QVBoxLayout *lay = new QVBoxLayout( this );
     QWidget * w =  new QWidget( this );
     lay->addWidget( w );
     QVBoxLayout *layout = new QVBoxLayout( w );
@@ -404,6 +406,7 @@ KNoteNetworkConfig::KNoteNetworkConfig(const KComponentData &inst, QWidget *pare
     label_Port->setBuddy( kcfg_Port );
     tmpLayout->addWidget( kcfg_Port );
     layout->addLayout( tmpLayout );
+    lay->addStretch();
     addConfig( KNotesGlobalConfig::self(), w );
     load();
 }
@@ -421,7 +424,7 @@ void KNoteNetworkConfig::load()
 KNoteStyleConfig::KNoteStyleConfig(const KComponentData &inst, QWidget *parent )
     :KCModule( inst, parent )
 {
-    QHBoxLayout *lay = new QHBoxLayout( this );
+    QVBoxLayout *lay = new QVBoxLayout( this );
     QWidget * w =  new QWidget( this );
     lay->addWidget( w );
     QGridLayout *layout = new QGridLayout( w );
@@ -439,6 +442,7 @@ KNoteStyleConfig::KNoteStyleConfig(const KComponentData &inst, QWidget *parent )
     kcfg_Style->addItems( list );
     label_Style->setBuddy( kcfg_Style );
     layout->addWidget( kcfg_Style, 0, 1 );
+    lay->addStretch();
     addConfig( KNotesGlobalConfig::self(), w );
     load();
 }
