@@ -61,7 +61,7 @@ KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
 
   m_servicesView = new QTableView( page );
   m_servicesView->setShowGrid( false );
-  DNSSD::ServiceModel* mdl = new DNSSD::ServiceModel( new DNSSD::ServiceBrowser( "_knotes._tcp", true ) );
+  DNSSD::ServiceModel* mdl = new DNSSD::ServiceModel( new DNSSD::ServiceBrowser( QLatin1String("_knotes._tcp"), true ) );
   mdl->setParent( m_servicesView );
   m_servicesView->setModel( mdl );
   m_servicesView->setSelectionBehavior( QAbstractItemView::SelectRows );
@@ -106,17 +106,17 @@ void KNoteHostDlg::slotTextChanged( const QString &text )
 void KNoteHostDlg::serviceSelected( const QModelIndex& idx )
 {
   DNSSD::RemoteService::Ptr srv=idx.data( DNSSD::ServiceModel::ServicePtrRole ).value<DNSSD::RemoteService::Ptr>();
-  m_hostCombo->lineEdit()->setText( srv->hostName() + ":" + QString::number( srv->port() ) );
+  m_hostCombo->lineEdit()->setText( srv->hostName() + QLatin1String(":") + QString::number( srv->port() ) );
 }
 
 QString KNoteHostDlg::host() const
 {
-  return m_hostCombo->currentText().section( ':', 0, 0 );
+  return m_hostCombo->currentText().section( QLatin1Char(':'), 0, 0 );
 }
 
 quint16 KNoteHostDlg::port() const
 {
-  return m_hostCombo->currentText().section( ':', 1 ).toUShort();
+  return m_hostCombo->currentText().section( QLatin1Char(':'), 1 ).toUShort();
 }
 
 #include "knotehostdlg.moc"

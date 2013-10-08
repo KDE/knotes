@@ -84,13 +84,13 @@ using namespace KCal;
 KNote::KNote( const QDomDocument& buildDoc, Journal *j, QWidget *parent )
   : QFrame( parent, Qt::FramelessWindowHint ), m_label( 0 ), m_grip( 0 ),
     m_button( 0 ), m_tool( 0 ), m_editor( 0 ), m_config( 0 ), m_journal( j ),
-    m_find( 0 ), m_kwinConf( KSharedConfig::openConfig( "kwinrc" ) ), m_blockEmitDataChanged( false ),mBlockWriteConfigDuringCommitData( false )
+    m_find( 0 ), m_kwinConf( KSharedConfig::openConfig( QLatin1String("kwinrc") ) ), m_blockEmitDataChanged( false ),mBlockWriteConfigDuringCommitData( false )
 {
   setAcceptDrops( true );
   setAttribute( Qt::WA_DeleteOnClose );
   setDOMDocument( buildDoc );
   setObjectName( m_journal->uid() );
-  setXMLFile( componentData().componentName() + "ui.rc", false, false );
+  setXMLFile( componentData().componentName() + QLatin1String("ui.rc"), false, false );
 
   // create the main layout
   m_noteLayout = new QVBoxLayout( this );
@@ -135,16 +135,16 @@ void KNote::slotKill( bool force )
          i18n( "<qt>Do you really want to delete note <b>%1</b>?</qt>",
                m_label->text() ),
          i18n( "Confirm Delete" ),
-         KGuiItem( i18n( "&Delete" ), "edit-delete" ),
+         KGuiItem( i18n( "&Delete" ), QLatin1String("edit-delete") ),
          KStandardGuiItem::cancel(),
-         "ConfirmDeleteNote" ) != KMessageBox::Continue ) ) {
+         QLatin1String("ConfirmDeleteNote") ) != KMessageBox::Continue ) ) {
      m_blockEmitDataChanged = false;
      return;
   }
   // delete the configuration first, then the corresponding file
   delete m_config;
   m_config = 0;
-  QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" );
+  QString configFile = KGlobal::dirs()->saveLocation( "appdata", QLatin1String("notes/") );
   configFile += m_journal->uid();
   if ( !KIO::NetAccess::del( KUrl( configFile ), this ) ) {
     kError( 5500 ) <<"Can't remove the note config:" << configFile;
@@ -165,7 +165,7 @@ void KNote::saveData(bool update )
   m_journal->setCustomProperty( "KNotes", "BgColor",
                                 m_config->bgColor().name() );
   m_journal->setCustomProperty( "KNotes", "RichText",
-                                m_config->richText() ? "true" : "false" );
+                                m_config->richText() ? QLatin1String("true") : QLatin1String("false") );
 
   if(update)
   {
@@ -315,26 +315,26 @@ void KNote::slotUpdateReadOnly()
   m_config->setReadOnly( readOnly );
 
   // enable/disable actions accordingly
-  actionCollection()->action( "configure_note" )->setEnabled( !readOnly );
-  actionCollection()->action( "insert_date" )->setEnabled( !readOnly );
-  actionCollection()->action( "delete_note" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_bold" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_italic" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_underline" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_strikeout" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_alignleft" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_aligncenter" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_alignright" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_alignblock" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_list" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_super" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_sub" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_increaseindent" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_decreaseindent" )->setEnabled( !readOnly );
-  actionCollection()->action( "text_background_color" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_size" )->setEnabled( !readOnly );
-  actionCollection()->action( "format_color" )->setEnabled( !readOnly );
-  actionCollection()->action( "rename_note" )->setEnabled( !readOnly);
+  actionCollection()->action( QLatin1String("configure_note") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("insert_date") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("delete_note") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_bold") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_italic") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_underline") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_strikeout") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_alignleft") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_aligncenter") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_alignright") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_alignblock" ))->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_list") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_super") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_sub") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_increaseindent" ))->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_decreaseindent") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("text_background_color") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_size") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("format_color") )->setEnabled( !readOnly );
+  actionCollection()->action( QLatin1String("rename_note") )->setEnabled( !readOnly);
 
   updateFocus();
 }
@@ -425,7 +425,7 @@ void KNote::slotSend()
   // Send the note
 
   KNotesNetworkSender *sender = new KNotesNetworkSender(
-    KSocketFactory::connectToHost( "knotes", host, port ) );
+    KSocketFactory::connectToHost( QLatin1String("knotes"), host, port ) );
   sender->setSenderId( KNotesGlobalConfig::senderID() );
   sender->setNote( name(), text() ); // FIXME: plainText ??
 }
@@ -433,14 +433,14 @@ void KNote::slotSend()
 void KNote::slotMail()
 {
   // get the mail action command
-  const QStringList cmd_list = KNotesGlobalConfig::mailAction().split( QChar(' '),
+  const QStringList cmd_list = KNotesGlobalConfig::mailAction().split( QLatin1Char(' '),
       QString::SkipEmptyParts );
 
   KProcess mail;
   foreach ( const QString &cmd, cmd_list ) {
-    if ( cmd == "%f" ) {
+    if ( cmd == QLatin1String("%f") ) {
       mail << m_editor->toPlainText();
-    } else if ( cmd == "%t" ) {
+    } else if ( cmd == QLatin1String("%t") ) {
       mail << m_label->text();
     } else {
       mail << cmd;
@@ -601,7 +601,7 @@ void KNote::slotUpdateDesktopActions()
 
   const int count = wm_root.numberOfDesktops();
   for ( int n = 1; n <= count; ++n ) {
-    desktops.append( QString( "&%1 %2" ).arg( n ).arg(
+    desktops.append( QString::fromLatin1( "&%1 %2" ).arg( n ).arg(
       QString::fromUtf8( wm_root.desktopName( n ) ) ) );
   }
   m_toDesktop->setItems( desktops );
@@ -627,8 +627,8 @@ void KNote::buildGui()
   KXMLGUIFactory factory( &builder, this );
   factory.addClient( this );
 
-  m_menu = dynamic_cast<KMenu*>( factory.container( "note_context", this ) );
-  m_tool = dynamic_cast<KToolBar*>( factory.container( "note_tool", this ) );
+  m_menu = dynamic_cast<KMenu*>( factory.container( QLatin1String("note_context"), this ) );
+  m_tool = dynamic_cast<KToolBar*>( factory.container( QLatin1String("note_tool"), this ) );
 
   createNoteFooter();
 }
@@ -639,74 +639,74 @@ void KNote::createActions()
   // rename, mail, print, save as, insert date, alarm, close, delete, new note
   KAction *action;
 
-  action  = new KAction( KIcon( "document-new" ), i18n( "New" ),  this );
-  actionCollection()->addAction( "new_note", action );
+  action  = new KAction( KIcon( QLatin1String("document-new") ), i18n( "New" ),  this );
+  actionCollection()->addAction( QLatin1String("new_note"), action );
   connect( action, SIGNAL(triggered(bool)), SLOT(slotRequestNewNote()) );
 
-  action  = new KAction( KIcon( "edit-rename" ), i18n( "Rename..." ), this );
-  actionCollection()->addAction( "rename_note", action );
+  action  = new KAction( KIcon( QLatin1String("edit-rename") ), i18n( "Rename..." ), this );
+  actionCollection()->addAction( QLatin1String("rename_note"), action );
   connect( action, SIGNAL(triggered(bool)), SLOT(slotRename()) );
 
-  m_readOnly  = new KToggleAction( KIcon( "object-locked" ),
+  m_readOnly  = new KToggleAction( KIcon( QLatin1String("object-locked") ),
                                    i18n( "Lock" ), this );
-  actionCollection()->addAction( "lock_note", m_readOnly );
+  actionCollection()->addAction( QLatin1String("lock_note"), m_readOnly );
   connect( m_readOnly, SIGNAL(triggered(bool)),
           SLOT(slotUpdateReadOnly()) );
-  m_readOnly->setCheckedState( KGuiItem( i18n( "Unlock" ), "object-unlocked" ) );
+  m_readOnly->setCheckedState( KGuiItem( i18n( "Unlock" ), QLatin1String("object-unlocked") ) );
 
-  action  = new KAction( KIcon( "window-close" ), i18n( "Hide" ), this );
-  actionCollection()->addAction( "hide_note", action );
+  action  = new KAction( KIcon( QLatin1String("window-close") ), i18n( "Hide" ), this );
+  actionCollection()->addAction( QLatin1String("hide_note"), action );
   connect( action, SIGNAL(triggered(bool)), SLOT(slotClose()) );
   action->setShortcut( QKeySequence( Qt::Key_Escape ) );
 
-  action  = new KAction( KIcon( "edit-delete" ), i18n( "Delete" ), this );
-  actionCollection()->addAction( "delete_note", action );
+  action  = new KAction( KIcon( QLatin1String("edit-delete") ), i18n( "Delete" ), this );
+  actionCollection()->addAction( QLatin1String("delete_note"), action );
   connect( action, SIGNAL(triggered(bool)), SLOT(slotKill()),Qt::QueuedConnection );
 
-  action  = new KAction( KIcon( "knotes_date" ), i18n( "Insert Date" ), this );
-  actionCollection()->addAction( "insert_date", action );
+  action  = new KAction( KIcon( QLatin1String("knotes_date") ), i18n( "Insert Date" ), this );
+  actionCollection()->addAction( QLatin1String("insert_date"), action );
   connect( action, SIGNAL(triggered(bool)), SLOT(slotInsDate()) );
 
-  action  = new KAction( KIcon( "knotes_alarm" ), i18n( "Set Alarm..." ),
+  action  = new KAction( KIcon( QLatin1String("knotes_alarm") ), i18n( "Set Alarm..." ),
                          this );
-  actionCollection()->addAction( "set_alarm", action );
+  actionCollection()->addAction( QLatin1String("set_alarm"), action );
   connect( action, SIGNAL(triggered(bool)), SLOT(slotSetAlarm()) );
 
-  action  = new KAction( KIcon( "network-wired" ), i18n( "Send..." ), this );
-  actionCollection()->addAction( "send_note", action );
+  action  = new KAction( KIcon( QLatin1String("network-wired") ), i18n( "Send..." ), this );
+  actionCollection()->addAction( QLatin1String("send_note"), action );
   connect( action, SIGNAL(triggered(bool)), SLOT(slotSend()) );
 
-  action  = new KAction( KIcon( "mail-send" ), i18n( "Mail..." ), this );
-  actionCollection()->addAction( "mail_note", action );
+  action  = new KAction( KIcon( QLatin1String("mail-send") ), i18n( "Mail..." ), this );
+  actionCollection()->addAction( QLatin1String("mail_note"), action );
   connect( action, SIGNAL(triggered(bool)), SLOT(slotMail()) );
 
-  action  = new KAction( KIcon( "document-save-as" ), i18n( "Save As..." ),
+  action  = new KAction( KIcon( QLatin1String("document-save-as") ), i18n( "Save As..." ),
                                 this );
-  actionCollection()->addAction( "save_note", action );
+  actionCollection()->addAction( QLatin1String("save_note"), action );
   connect( action, SIGNAL(triggered(bool)), SLOT(slotSaveAs()) );
-  actionCollection()->addAction( KStandardAction::Print,  "print_note", this,
+  actionCollection()->addAction( KStandardAction::Print,  QLatin1String("print_note"), this,
                                  SLOT(slotPrint()) );
 
-  action  = new KAction( KIcon( "configure" ), i18n( "Preferences..." ), this );
-  actionCollection()->addAction( "configure_note", action );
+  action  = new KAction( KIcon( QLatin1String("configure") ), i18n( "Preferences..." ), this );
+  actionCollection()->addAction( QLatin1String("configure_note"), action );
   connect( action, SIGNAL(triggered(bool)), SLOT(slotPreferences()) );
 
 
-  m_keepAbove  = new KToggleAction( KIcon( "go-up" ),
+  m_keepAbove  = new KToggleAction( KIcon( QLatin1String("go-up") ),
                                     i18n( "Keep Above Others" ), this );
-  actionCollection()->addAction( "keep_above", m_keepAbove );
+  actionCollection()->addAction( QLatin1String("keep_above"), m_keepAbove );
   connect( m_keepAbove, SIGNAL(triggered(bool)),
            SLOT(slotKeepAbove()) );
 
-  m_keepBelow  = new KToggleAction( KIcon( "go-down" ),
+  m_keepBelow  = new KToggleAction( KIcon( QLatin1String("go-down") ),
                                     i18n( "Keep Below Others" ), this );
-  actionCollection()->addAction( "keep_below", m_keepBelow );
+  actionCollection()->addAction( QLatin1String("keep_below"), m_keepBelow );
   connect( m_keepBelow, SIGNAL(triggered(bool)),
            SLOT(slotKeepBelow()) );
 
 #ifdef Q_WS_X11
   m_toDesktop  = new KSelectAction( i18n( "To Desktop" ), this );
-  actionCollection()->addAction( "to_desktop", m_toDesktop );
+  actionCollection()->addAction( QLatin1String("to_desktop"), m_toDesktop );
   connect( m_toDesktop, SIGNAL(triggered(int)),
            SLOT(slotPopupActionToDesktop(int)) );
   connect( m_toDesktop->menu(), SIGNAL(aboutToShow()),
@@ -717,7 +717,7 @@ void KNote::createActions()
 
   // invisible action to walk through the notes to make this configurable
   action  = new KAction( i18n( "Walk Through Notes" ), this );
-  actionCollection()->addAction( "walk_notes", action );
+  actionCollection()->addAction( QLatin1String("walk_notes"), action );
   connect( action, SIGNAL(triggered(bool)), SIGNAL(sigShowNextNote()) );
   action->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_Backtab ) );
 
@@ -734,7 +734,7 @@ void KNote::createNoteHeader()
   QBoxLayout::Direction headerLayoutDirection = QBoxLayout::LeftToRight;
 
   if ( styleGroup.readEntry( "CustomButtonPositions", false ) ) {
-    if ( styleGroup.readEntry( "ButtonsOnLeft" ).contains( 'X' ) ) {
+    if ( styleGroup.readEntry( "ButtonsOnLeft" ).contains( QLatin1Char('X') ) ) {
       headerLayoutDirection = QBoxLayout::RightToLeft;
     }
   }
@@ -753,7 +753,7 @@ void KNote::createNoteHeader()
                                         // action menu )
   setName( m_journal->summary() );      // don't worry, no signals are
                                         // connected at this stage yet
-  m_button = new KNoteButton( "knotes_close", this );
+  m_button = new KNoteButton( QLatin1String("knotes_close"), this );
   headerLayout->addWidget( m_button );
 
   connect( m_button, SIGNAL(clicked()), this, SLOT(slotClose()) );
@@ -815,7 +815,7 @@ void KNote::createNoteFooter()
 void KNote::prepare()
 {
   // the config file location
-  const QString configFile = KGlobal::dirs()->saveLocation( "appdata", "notes/" ) + m_journal->uid();
+  const QString configFile = KGlobal::dirs()->saveLocation( "appdata", QLatin1String("notes/") ) + m_journal->uid();
 
   // no config file yet? -> use the default display config if available
   // we want to write to configFile, so use "false"
@@ -825,7 +825,7 @@ void KNote::prepare()
   m_config = new KNoteConfig( KSharedConfig::openConfig( configFile,
                                                          KConfig::NoGlobals ) );
   m_config->readConfig();
-  m_config->setVersion( KDEPIM_VERSION );
+  m_config->setVersion( QLatin1String(KDEPIM_VERSION) );
 
   if ( newNote ) {
     // until kdelibs provides copying of KConfigSkeletons (KDE 3.4)
@@ -885,10 +885,10 @@ void KNote::prepare()
   }
   property = m_journal->customProperty( "KNotes", "RichText" );
   if ( !property.isNull() ) {
-    m_config->setRichText( property == "true" ? true : false );
+    m_config->setRichText( property == QLatin1String("true") ? true : false );
   } else {
     m_journal->setCustomProperty( "KNotes", "RichText",
-                                  m_config->richText() ? "true" : "false" );
+                                  m_config->richText() ? QLatin1String("true") : QLatin1String("false") );
   }
 
   // read configuration settings...
