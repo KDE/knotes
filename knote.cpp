@@ -267,8 +267,11 @@ void KNote::slotFindNext()
     disconnect( m_find, 0, this, 0 );
     emit sigFindFinished();
   } else {
-
-    show();
+      if (isHidden()) {
+          show();
+      } else {
+          raise();
+      }
 #ifdef Q_WS_X11
     KWindowSystem::setCurrentDesktop( KWindowSystem::windowInfo( winId(),
                                       NET::WMDesktop ).desktop() );
