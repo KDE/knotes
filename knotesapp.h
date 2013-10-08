@@ -41,7 +41,7 @@ class KNotesAlarm;
 class KNotesResourceManager;
 class KXMLGUIBuilder;
 class KXMLGUIFactory;
-class KStatusNotifierItem;
+class KNotesTray;
 
 namespace KCal {
 class Journal;
@@ -131,7 +131,7 @@ class KNotesApp
 
     KXMLGUIFactory  *m_guiFactory;
     KXMLGUIBuilder  *m_guiBuilder;
-    KStatusNotifierItem *m_tray;
+    KNotesTray *m_tray;
     KAction         *m_findAction;
 
     QDomDocument    m_noteGUI;
