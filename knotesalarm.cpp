@@ -71,7 +71,8 @@ KDateTime::LocalZone ), now );
 
   QStringList notes;
   QList<KCal::Alarm *>::ConstIterator it;
-  for ( it = alarms.constBegin(); it != alarms.constEnd(); ++it ) {
+  QList<KCal::Alarm *>::ConstIterator end(alarms.constEnd());
+  for ( it = alarms.constBegin(); it != end; ++it ) {
     KCal::Incidence *incidence = ( *it )->parent();
     notes += incidence->summary();
   }

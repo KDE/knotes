@@ -56,7 +56,7 @@ void KNotePrinter::doPrint( const QString &htmlText,
   painter.translate( marginX, marginY );
   clip.translate( -marginX, -marginY );
   
-  for ( int page = 1; page <= textDoc.pageCount(); page++ ) {
+  for ( int page = 1; page <= textDoc.pageCount(); ++page ) {
     textDoc.drawContents( &painter, clip );
     clip.translate( 0, typeArea.height() );
     painter.translate( 0, -typeArea.height() );

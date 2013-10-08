@@ -393,7 +393,7 @@ void KNote::slotPreferences()
     m_blockEmitDataChanged = true;
 
   // create a new preferences dialog...
-  KNoteSimpleConfigDlg *dialog = new KNoteSimpleConfigDlg( m_config, name(), this, noteId() );
+  QPointer<KNoteSimpleConfigDlg> dialog = new KNoteSimpleConfigDlg( m_config, name(), this, noteId() );
   connect( dialog, SIGNAL(settingsChanged(QString)) , this,
            SLOT(slotApplyConfig()) );
   connect( this, SIGNAL(sigNameChanged(QString)), dialog,

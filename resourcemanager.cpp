@@ -62,7 +62,8 @@ void KNotesResourceManager::load()
 
   // Open all active resources
   KRES::Manager<ResourceNotes>::ActiveIterator it;
-  for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it ) {
+  KRES::Manager<ResourceNotes>::ActiveIterator end( m_manager->activeEnd() );
+  for ( it = m_manager->activeBegin(); it != end; ++it ) {
     if ( (*it)->isOpen() ) {
       kDebug(5500) << (*it)->resourceName() << " is already open";
       continue;
@@ -79,7 +80,8 @@ void KNotesResourceManager::load()
 void KNotesResourceManager::save()
 {
   KRES::Manager<ResourceNotes>::ActiveIterator it;
-  for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it ) {
+  KRES::Manager<ResourceNotes>::ActiveIterator end(m_manager->activeEnd());
+  for ( it = m_manager->activeBegin(); it != end; ++it ) {
     ( *it )->save();
   }
 }

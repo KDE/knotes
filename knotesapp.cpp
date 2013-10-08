@@ -100,7 +100,12 @@ static bool qActionLessThan( const QAction *a1, const QAction *a2 )
 
 
 KNotesApp::KNotesApp()
-  : QWidget(), m_alarm( 0 ), m_listener( 0 ), m_publisher( 0 ), m_find( 0 ), m_findPos( 0 )
+  : QWidget(),
+    m_alarm( 0 ),
+    m_listener( 0 ),
+    m_publisher( 0 ),
+    m_find( 0 ),
+    m_findPos( 0 )
 {
   new KNotesAdaptor( this );
   QDBusConnection::sessionBus().registerObject( QLatin1String("/KNotes") , this );
@@ -390,7 +395,7 @@ void KNotesApp::slotActivateRequested( bool, const QPoint&)
 {
     if ( m_notes.size() == 1 ) {
         showNote( *m_notes.begin() );
-    } else if ( m_notes.size() != 1 ) {
+    } else {
         m_noteMenu->popup( QCursor::pos ());
     }
 }
