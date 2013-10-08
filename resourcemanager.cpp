@@ -137,9 +137,10 @@ KCal::Alarm::List KNotesResourceManager::alarms( const KDateTime &from,
   KRES::Manager<ResourceNotes>::ActiveIterator it;
   for ( it = m_manager->activeBegin(); it != m_manager->activeEnd(); ++it ) {
     KCal::Alarm::List list = ( *it )->alarms( from, to );
-    KCal::Alarm::List::ConstIterator it;
-    for ( it = list.constBegin(); it != list.constEnd(); ++it ) {
-      result.append( *it );
+    KCal::Alarm::List::ConstIterator itList;
+    KCal::Alarm::List::ConstIterator end(list.constEnd());
+    for ( itList = list.constBegin(); itList != end; ++itList ) {
+      result.append( *itList );
     }
   }
 

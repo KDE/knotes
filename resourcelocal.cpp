@@ -83,7 +83,8 @@ bool ResourceLocal::load()
 
   KCal::Journal::List notes = mCalendar.journals();
   KCal::Journal::List::ConstIterator it;
-  for ( it = notes.constBegin(); it != notes.constEnd(); ++it ) {
+  KCal::Journal::List::ConstIterator end(notes.constEnd());
+  for ( it = notes.constBegin(); it != end; ++it ) {
     manager()->registerNote( this, *it );
   }
 
