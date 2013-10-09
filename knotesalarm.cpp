@@ -62,10 +62,9 @@ void KNotesAlarm::checkAlarms()
     from.setTime_t( 0 );
   }
 
-  KDateTime now = KDateTime::currentLocalDateTime();
+  const KDateTime now = KDateTime::currentLocalDateTime();
   KNotesGlobalConfig::self()->setAlarmsLastChecked( now.dateTime() );
-  QList<KCal::Alarm *> alarms = m_manager->alarms( KDateTime( from,
-KDateTime::LocalZone ), now );
+  QList<KCal::Alarm *> alarms = m_manager->alarms( KDateTime( from, KDateTime::LocalZone ), now );
   if ( alarms.isEmpty() )
       return;
 

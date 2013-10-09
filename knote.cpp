@@ -72,6 +72,7 @@
 #include <QTextStream>
 #include <QVBoxLayout>
 #include <QDesktopWidget>
+#include <QPointer>
 
 #ifdef Q_WS_X11
 #include <fixx11h.h>
@@ -480,12 +481,17 @@ void KNote::slotSaveAs()
   }
   m_blockEmitDataChanged = true;
   KUrl url;
-  KFileDialog dlg( url, QString(), this, convert );
-  dlg.setOperationMode( KFileDialog::Saving );
-  dlg.setCaption( i18n( "Save As" ) );
-  dlg.exec();
+  QPointer<KFileDialog> dlg = new KFileDialog( url, QString(), this, convert );
+  dlg->setOperationMode( KFileDialog::Saving );
+  dlg->setCaption( i18n( "Save As" ) );
+  if( !dlg->exec() ) {
+      m_blockEmitDataChanged = false;
+      delete dlg;
+      return;
+  }
 
-  QString fileName = dlg.selectedFile();
+  QString fileName = dlg->selectedFile();
+  delete dlg;
   if ( fileName.isEmpty() ) {
     m_blockEmitDataChanged = false;
     return;

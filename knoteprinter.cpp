@@ -76,7 +76,7 @@ void KNotePrinter::doPrint( const QString &htmlText,
 void KNotePrinter::printNote( const QString &name,
                               const QString &htmlText ) const
 {
-  QString dialogCaption = i18n( "Print %1", name );
+  const QString dialogCaption = i18n( "Print %1", name );
   doPrint( htmlText, dialogCaption );
 }
 
@@ -108,7 +108,7 @@ void KNotePrinter::printNotes( const QList<KCal::Journal *>& journals ) const
     }
   }
   
-  QString dialogCaption = i18np( "Print Note", "Print %1 notes",
+  const QString dialogCaption = i18np( "Print Note", "Print %1 notes",
                                  journals.count() );
   doPrint( htmlText, dialogCaption );
   
