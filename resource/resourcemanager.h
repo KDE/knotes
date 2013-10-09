@@ -36,7 +36,7 @@
 
 
 #include <kcal/alarm.h>
-#include <knotes/resourcenotes.h>
+#include <knotes/resource/resourcenotes.h>
 #include <kresources/manager.h>
 
 class KNote;

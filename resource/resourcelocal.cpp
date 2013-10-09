@@ -31,10 +31,10 @@
  your version.
 *******************************************************************/
 
-#include "knotes/resourcelocal.h"
-#include "knotes/resourcelocalconfig.h"
-#include "knotes/resourcemanager.h"
-#include "knotes/resourcenotes.h"
+#include "knotes/resource/resourcelocal.h"
+#include "knotes/resource/resourcelocalconfig.h"
+#include "knotes/resource/resourcemanager.h"
+#include "knotes/resource/resourcenotes.h"
 
 #include <klocale.h>
 #include <kmessagebox.h>

@@ -31,8 +31,8 @@
  your version.
 *******************************************************************/
 
-#include "knotes/resourcemanager.h"
-#include "knotes/resourcelocal.h"
+#include "knotes/resource/resourcemanager.h"
+#include "knotes/resource/resourcelocal.h"
 
 #include <kcal/journal.h>
 
