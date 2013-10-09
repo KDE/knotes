@@ -17,19 +17,23 @@
 
 #include "knotestray.h"
 
+#include <KIconLoader>
+#include <KGlobalSettings>
 #include <KLocale>
+#include <KColorScheme>
 
+#include <QPainter>
 #include <QWidget>
 
 KNotesTray::KNotesTray(QWidget *parent)
     : KStatusNotifierItem(parent)
 {
     setToolTipTitle( i18n( "KNotes: Sticky notes for KDE" ) );
-    setIconByName( QLatin1String("knotes") );
     setToolTipIconByName( QLatin1String("knotes") );
     setStatus( KStatusNotifierItem::Active );
     setCategory( KStatusNotifierItem::ApplicationStatus );
     setStandardActionsEnabled(false);
+    mIcon = KIcon( QLatin1String("knotes") );
 }
 
 KNotesTray::~KNotesTray()
@@ -38,7 +42,43 @@ KNotesTray::~KNotesTray()
 
 void KNotesTray::updateNumberOfNotes(int value)
 {
-    //TODO
+    const int overlaySize = KIconLoader::SizeSmallMedium;
+
+    const QString countString = QString::number( value );
+    QFont countFont = KGlobalSettings::generalFont();
+    countFont.setBold(true);
+
+    // decrease the size of the font for the number of unread messages if the
+    // number doesn't fit into the available space
+    float countFontSize = countFont.pointSizeF();
+    QFontMetrics qfm( countFont );
+    const int width = qfm.width( countString );
+    if ( width > (overlaySize - 2) ) {
+        countFontSize *= float( overlaySize - 2 ) / float( width );
+        countFont.setPointSizeF( countFontSize );
+    }
+
+    // Paint the number in a pixmap
+    QPixmap overlayPixmap( overlaySize, overlaySize );
+    overlayPixmap.fill( Qt::transparent );
+
+    QPainter p( &overlayPixmap );
+    p.setFont( countFont );
+    KColorScheme scheme( QPalette::Active, KColorScheme::View );
+
+    p.setBrush( Qt::NoBrush );
+    p.setPen( scheme.foreground( KColorScheme::LinkText ).color() );
+    p.setOpacity( 1.0 );
+    p.drawText( overlayPixmap.rect(),Qt::AlignCenter, countString );
+    p.end();
+
+    QPixmap iconPixmap = mIcon.pixmap(overlaySize, overlaySize);
+
+    QPainter pp(&iconPixmap);
+    pp.drawPixmap(0, 0, overlayPixmap);
+    pp.end();
+
+    setIconByPixmap( iconPixmap );
 }
 
 #include "knotestray.moc"
