@@ -34,7 +34,11 @@ KNotesTray::KNotesTray(QWidget *parent)
 
 KNotesTray::~KNotesTray()
 {
+}
 
+void KNotesTray::updateNumberOfNotes(int value)
+{
+    //TODO
 }
 
 #include "knotestray.moc"

@@ -532,6 +532,7 @@ void KNotesApp::slotNoteKilled( KCal::Journal *journal )
   m_noteUidModify.clear();
   m_manager->deleteNote( journal );
   saveNotes();
+  m_tray->updateNumberOfNotes(m_notes.count());
 }
 
 void KNotesApp::slotQuit()
@@ -595,6 +596,7 @@ void KNotesApp::createNote( KCal::Journal *journal )
   if ( m_alarm ) {
     updateNoteActions();
   }
+  m_tray->updateNumberOfNotes(m_notes.count());
   //TODO
 #if 0
   if (m_tray->isVisible()) {

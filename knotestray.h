@@ -26,6 +26,8 @@ class KNotesTray : public KStatusNotifierItem
 public:
     explicit KNotesTray(QWidget *parent=0);
     ~KNotesTray();
+
+    void updateNumberOfNotes(int value);
 };
 
 #endif // KNOTESTRAY_H
