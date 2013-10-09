@@ -1,6 +1,6 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="393">
+<kpartgui name="KNotes" version="394">
 
 <Menu name="note_context" noMerge="1">
     <Action name="insert_date"/>
@@ -8,6 +8,7 @@
     <Action name="send_note"/>
     <Action name="mail_note"/>
     <Action name="print_note"/>
+    <Action name="print_preview_note"/>
     <Action name="save_note"/>
     <Action name="configure_note"/>
     <Separator/>

@@ -32,7 +32,7 @@
 #include "knotesalarm.h"
 #include "knotesglobalconfig.h"
 
-#include "knotes/resourcemanager.h"
+#include "knotes/resource/resourcemanager.h"
 
 #include <kmessagebox.h>
 #include <klocale.h>

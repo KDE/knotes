@@ -20,7 +20,7 @@
 
 #include "knoteconfigdlg.h"
 #include "knote.h"
-#include "knotes/resourcemanager.h"
+#include "knotes/resource/resourcemanager.h"
 #include "knotesadaptor.h"
 #include "knotesalarm.h"
 #include "knotesapp.h"

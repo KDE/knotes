@@ -466,8 +466,22 @@ void KNote::slotPrint()
   }
   KNotePrinter printer;
   printer.setDefaultFont( m_config->font() );
-  printer.printNote( name(), content );
+  printer.printNote( name(), content, false );
 }
+
+void KNote::slotPrintPreview()
+{
+  QString content;
+  if ( !Qt::mightBeRichText( m_editor->text() ) ) {
+    content = Qt::convertFromPlainText( m_editor->text() );
+  } else {
+    content = m_editor->text();
+  }
+  KNotePrinter printer;
+  printer.setDefaultFont( m_config->font() );
+  printer.printNote( name(), content, true );
+}
+
 
 void KNote::slotSaveAs()
 {
@@ -695,6 +709,9 @@ void KNote::createActions()
   connect( action, SIGNAL(triggered(bool)), SLOT(slotSaveAs()) );
   actionCollection()->addAction( KStandardAction::Print,  QLatin1String("print_note"), this,
                                  SLOT(slotPrint()) );
+
+  actionCollection()->addAction( KStandardAction::PrintPreview,  QLatin1String("print_preview_note"), this,
+                                 SLOT(slotPrintPreview()) );
 
   action  = new KAction( KIcon( QLatin1String("configure") ), i18n( "Preferences..." ), this );
   actionCollection()->addAction( QLatin1String("configure_note"), action );

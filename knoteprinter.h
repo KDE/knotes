@@ -2,7 +2,7 @@
 #define KNOTEPRINTER_H
 
 #include <QFont>
-#include <QString>
+#include <QPrinter>
 
 template <class T> class QList;
 
@@ -16,16 +16,19 @@ class KNotePrinter
   public:
     KNotePrinter();
     
-    void printNote( const QString &name,
-                    const QString &htmlText ) const;
+
+    void printNote(const QString &name,
+                    const QString &htmlText , bool preview);
     
-    void printNotes( const QList<KCal::Journal *> &journals ) const;
+    void printNotes( const QList<KCal::Journal *> &journals );
     
     void setDefaultFont( const QFont &font );
     QFont defaultFont() const;
     
   private:
-    void doPrint( const QString &content, const QString &dialogCaption ) const;
+    void print(QPrinter &printer, const QString &htmlText);
+    void doPrint( const QString &content, const QString &dialogCaption );
+    void doPrintPreview(const QString &htmlText);
     inline QString ensureHtmlText( const QString &maybeRichText ) const;
     
     QFont m_defaultFont;

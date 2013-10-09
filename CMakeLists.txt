@@ -30,14 +30,14 @@ kde4_add_app_icon(knotes_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-apps-knotes
 kde4_add_executable(knotes ${knotes_SRCS})
 
 target_link_libraries(knotes ${KDEPIMLIBS_KCAL_LIBS} kdepim ${KDEPIMLIBS_KRESOURCES_LIBS} ${KDE4_KIO_LIBS}  ${KDE4_KDNSSD_LIBS}
-                             ${KDE4_KCMUTILS_LIBS} ${X11_X11_LIB} ${KDEPIMLIBS_KONTACTINTERFACE_LIBS})
+                             ${KDE4_KCMUTILS_LIBS} ${X11_X11_LIB} ${KDEPIMLIBS_KONTACTINTERFACE_LIBS} ${KDE4_KPRINTUTILS_LIBS})
 
 install(TARGETS knotes  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
 ########### next target ###############
 
-set(knotes_local_PART_SRCS resourcelocal_plugin.cpp ${libknotesresources_SRCS})
+set(knotes_local_PART_SRCS resource/resourcelocal_plugin.cpp ${libknotesresources_SRCS})
 
 
 kde4_add_plugin(knotes_local ${knotes_local_PART_SRCS})

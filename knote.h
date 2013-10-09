@@ -107,6 +107,7 @@ class KNote
     void slotSend();
     void slotMail();
     void slotPrint();
+    void slotPrintPreview();
     void slotSaveAs();
 
     void slotInsDate();
