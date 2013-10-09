@@ -8,6 +8,7 @@
 #include <QPrintDialog>
 
 #include <kcal/journal.h>
+#include <kdeprintdialog.h>
 
 #include <klocale.h>
 #include <kdebug.h>
@@ -43,7 +44,7 @@ void KNotePrinter::doPrint( const QString &htmlText,
 {
   QPrinter printer( QPrinter::HighResolution );
   //printer.setFullPage( true );  //disabled, causes asymmetric margins
-  QPrintDialog printDialog( &printer, 0 );
+  QPrintDialog printDialog(KdePrint::createPrintDialog(&printer));
   printDialog.setWindowTitle( dialogCaption );
   if ( !printDialog.exec() ) {
     return;
