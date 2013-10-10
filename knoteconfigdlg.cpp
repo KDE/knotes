@@ -77,7 +77,6 @@ void KNoteSimpleConfigDlg::slotUpdateCaption(const QString & name)
     setCaption( name );
 }
 
-
 KNoteConfigDlg::KNoteConfigDlg( const QString &title,
                                 QWidget *parent )
   : KCMultiDialog( parent )
@@ -96,7 +95,6 @@ KNoteConfigDlg::KNoteConfigDlg( const QString &title,
                              IconSize( KIconLoader::Small ),
                              IconSize( KIconLoader::Small ) ) );
 #endif
-  //setIconListAllVisible( true );
   showButtonSeparator( true );
 
   addModule( QLatin1String("knote_config_display") );
@@ -107,7 +105,6 @@ KNoteConfigDlg::KNoteConfigDlg( const QString &title,
 
   KNotesGlobalConfig::self()->setVersion( QLatin1String(KDEPIM_VERSION) );
   connect( this, SIGNAL(okClicked()), SLOT(slotOk()) );
-
 }
 
 KNoteConfigDlg::~KNoteConfigDlg()

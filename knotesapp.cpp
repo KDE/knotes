@@ -239,7 +239,6 @@ KNotesApp::~KNotesApp()
   m_publisher=0;
   delete m_findPos;
   m_findPos = 0;
-  //delete m_listener;
   delete m_manager;
   delete m_guiBuilder;
   delete m_tray;

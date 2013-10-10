@@ -45,9 +45,8 @@ class KNotesAlarm
 {
   Q_OBJECT
   public:
-    explicit KNotesAlarm( KNotesResourceManager *manager,
-                 QObject *parent = 0,
-                 const char *name = 0 );
+    explicit KNotesAlarm(KNotesResourceManager *manager,
+                 QObject *parent = 0);
     
   private slots:
     void checkAlarms();

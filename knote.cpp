@@ -83,9 +83,18 @@ using namespace KCal;
 
 
 KNote::KNote( const QDomDocument& buildDoc, Journal *j, QWidget *parent )
-  : QFrame( parent, Qt::FramelessWindowHint ), m_label( 0 ), m_grip( 0 ),
-    m_button( 0 ), m_tool( 0 ), m_editor( 0 ), m_config( 0 ), m_journal( j ),
-    m_find( 0 ), m_kwinConf( KSharedConfig::openConfig( QLatin1String("kwinrc") ) ), m_blockEmitDataChanged( false ),mBlockWriteConfigDuringCommitData( false )
+  : QFrame( parent, Qt::FramelessWindowHint ),
+    m_label( 0 ),
+    m_grip( 0 ),
+    m_button( 0 ),
+    m_tool( 0 ),
+    m_editor( 0 ),
+    m_config( 0 ),
+    m_journal( j ),
+    m_find( 0 ),
+    m_kwinConf( KSharedConfig::openConfig( QLatin1String("kwinrc") ) ),
+    m_blockEmitDataChanged( false ),
+    mBlockWriteConfigDuringCommitData( false )
 {
   setAcceptDrops( true );
   setAttribute( Qt::WA_DeleteOnClose );
