@@ -83,16 +83,21 @@ class KNoteEdit : public PimCommon::CustomTextEdit
     virtual void focusInEvent( QFocusEvent * );
     virtual void focusOutEvent( QFocusEvent * );
 
+protected slots:
+    void mousePopupMenuImplementation(const QPoint& pos);
+
   private slots:
     void slotCurrentCharFormatChanged( const QTextCharFormat & );
     void slotCursorPositionChanged();
+    void slotUpperCase();
+    void slotLowerCase();
+
   private:
     void autoIndent();
 
     void setTextFormat( const QTextCharFormat & );
 
-    void enableRichTextActions();
-    void disableRichTextActions();
+    void enableRichTextActions(bool enabled);
 
   private:
 
@@ -117,6 +122,7 @@ class KNoteEdit : public PimCommon::CustomTextEdit
     KFontAction     *m_textFont;
     KFontSizeAction *m_textSize;
     KNote           *m_note;
+    KActionCollection *m_actions;
     bool m_autoIndentMode;
 };
 

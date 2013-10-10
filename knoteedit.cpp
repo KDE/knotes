@@ -43,7 +43,8 @@ static const short ICON_SIZE = 10;
 
 KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWidget *parent )
     : PimCommon::CustomTextEdit(configFile, parent ),
-      m_note( 0 )
+      m_note( 0 ),
+      m_actions( actions )
 {
   setAcceptDrops( true );
   setWordWrapMode( QTextOption::WordWrap );
@@ -169,6 +170,15 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
   connect( m_textSize, SIGNAL(fontSizeChanged(int)),
            this, SLOT(setTextFontSize(int)) );
 
+  KAction *action = new KAction( i18n("Uppercase"), this );
+  actions->addAction( QLatin1String("change_to_uppercase"), action );
+  connect( action, SIGNAL(triggered(bool)), this, SLOT(slotUpperCase()) );
+
+  action = new KAction( i18n("Lowercase"), this );
+  actions->addAction( QLatin1String("change_to_lowercase"), action );
+  connect( action, SIGNAL(triggered(bool)), this, SLOT(slotLowerCase()) );
+
+
   // QTextEdit connections
   connect( this, SIGNAL(currentCharFormatChanged(QTextCharFormat)),
            SLOT(slotCurrentCharFormatChanged(QTextCharFormat)) );
@@ -182,6 +192,44 @@ KNoteEdit::~KNoteEdit()
 {
 }
 
+void KNoteEdit::slotUpperCase()
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.hasSelection()) {
+        const QString newText = cursor.selectedText().toUpper();
+        cursor.insertText(newText);
+    }
+}
+
+void KNoteEdit::slotLowerCase()
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.hasSelection()) {
+        const QString newText = cursor.selectedText().toLower();
+        cursor.insertText(newText);
+    }
+}
+
+
+void KNoteEdit::mousePopupMenuImplementation(const QPoint& pos)
+{
+    QMenu *popup = mousePopupMenu();
+    if ( popup ) {
+        QTextCursor cursor = textCursor();
+        if (!isReadOnly() && cursor.hasSelection()) {
+            popup->addSeparator();
+            QMenu *changeCaseMenu = new QMenu(i18n("Change case..."), popup);
+            QAction * act = m_actions->action(QLatin1String("change_to_lowercase"));
+            changeCaseMenu->addAction(act);
+            act = m_actions->action(QLatin1String("change_to_uppercase"));
+            changeCaseMenu->addAction(act);
+            popup->addMenu(changeCaseMenu);
+        }
+        aboutToShowContextMenu(popup);
+        popup->exec( pos );
+        delete popup;
+    }
+}
 
 void KNoteEdit::setText( const QString& text )
 {
@@ -252,10 +300,10 @@ void KNoteEdit::setRichText( bool f )
       setPlainText( t );
     }
 
-    enableRichTextActions();
+    enableRichTextActions(true);
   } else {
     setPlainText( t );
-    disableRichTextActions();
+    enableRichTextActions(false);
   }
 }
 
@@ -516,52 +564,28 @@ void KNoteEdit::setTextFormat( const QTextCharFormat &f )
   }
 }
 
-void KNoteEdit::enableRichTextActions()
+void KNoteEdit::enableRichTextActions(bool enabled)
 {
-  m_textColor->setEnabled( true );
-  m_textFont->setEnabled( true );
-  m_textSize->setEnabled( true );
+  m_textColor->setEnabled( enabled );
+  m_textFont->setEnabled( enabled );
+  m_textSize->setEnabled( enabled );
 
-  m_textBold->setEnabled( true );
-  m_textItalic->setEnabled( true );
-  m_textUnderline->setEnabled( true );
-  m_textStrikeOut->setEnabled( true );
+  m_textBold->setEnabled( enabled );
+  m_textItalic->setEnabled( enabled );
+  m_textUnderline->setEnabled( enabled );
+  m_textStrikeOut->setEnabled( enabled );
 
-  m_textAlignLeft->setEnabled( true );
-  m_textAlignCenter->setEnabled( true );
-  m_textAlignRight->setEnabled( true );
-  m_textAlignBlock->setEnabled( true );
+  m_textAlignLeft->setEnabled( enabled );
+  m_textAlignCenter->setEnabled( enabled );
+  m_textAlignRight->setEnabled( enabled );
+  m_textAlignBlock->setEnabled( enabled );
 
-  m_textList->setEnabled( true );
-  m_textSuper->setEnabled( true );
-  m_textSub->setEnabled( true );
+  m_textList->setEnabled( enabled );
+  m_textSuper->setEnabled( enabled );
+  m_textSub->setEnabled( enabled );
 
-  m_textIncreaseIndent->setEnabled( true );
-  m_textDecreaseIndent->setEnabled( true );
-}
-
-void KNoteEdit::disableRichTextActions()
-{
-  m_textColor->setEnabled( false );
-  m_textFont->setEnabled( false );
-  m_textSize->setEnabled( false );
-
-  m_textBold->setEnabled( false );
-  m_textItalic->setEnabled( false );
-  m_textUnderline->setEnabled( false );
-  m_textStrikeOut->setEnabled( false );
-
-  m_textAlignLeft->setEnabled( false );
-  m_textAlignCenter->setEnabled( false );
-  m_textAlignRight->setEnabled( false );
-  m_textAlignBlock->setEnabled( false );
-
-  m_textList->setEnabled( false );
-  m_textSuper->setEnabled( false );
-  m_textSub->setEnabled( false );
-
-  m_textIncreaseIndent->setEnabled( false );
-  m_textDecreaseIndent->setEnabled( false );
+  m_textIncreaseIndent->setEnabled( enabled );
+  m_textDecreaseIndent->setEnabled( enabled );
 }
 
 #include "knoteedit.moc"
