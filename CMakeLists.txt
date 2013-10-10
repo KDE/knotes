@@ -13,7 +13,7 @@ include_directories(
 set(libknotesnetwork_SRCS knotesnetrecv.cpp knotesnetsend.cpp)
 
 
-set(libknoteslegacy_SRCS  knoteslegacy.cpp )
+set(libknoteslegacy_SRCS  migrations/knoteslegacy.cpp )
 
 set(libknote_SRCS knoteconfigdlg.cpp knote.cpp knotebutton.cpp knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp knoteprinter.cpp )
 

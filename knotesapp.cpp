@@ -25,7 +25,7 @@
 #include "knotesalarm.h"
 #include "knotesapp.h"
 #include "knotesglobalconfig.h"
-#include "knoteslegacy.h"
+#include "migrations/knoteslegacy.h"
 #include "knotesnetrecv.h"
 #include "knotestray.h"
 
