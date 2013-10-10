@@ -26,7 +26,7 @@
 #include <QTextCharFormat>
 #include <QWidget>
 
-#include <ktextedit.h>
+#include "pimcommon/widgets/customtextedit.h"
 
 class QFont;
 
@@ -37,8 +37,7 @@ class KFontSizeAction;
 class KToggleAction;
 class KNote;
 
-class KNoteEdit
-  : public KTextEdit
+class KNoteEdit : public PimCommon::CustomTextEdit
 {
   Q_OBJECT
   public:

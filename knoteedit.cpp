@@ -42,7 +42,8 @@ static const short ICON_SIZE = 10;
 
 
 KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
-  : KTextEdit( parent ), m_note( 0 )
+    : PimCommon::CustomTextEdit(QLatin1String("knotesrc"), parent ),
+      m_note( 0 )
 {
   setAcceptDrops( true );
   setWordWrapMode( QTextOption::WordWrap );
