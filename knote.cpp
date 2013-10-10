@@ -106,7 +106,9 @@ KNote::KNote( const QDomDocument& buildDoc, Journal *j, QWidget *parent )
 
   createActions();
 
-  buildGui();
+  const QString configFile = createConfig();
+
+  buildGui(configFile);
 
   prepare();
 }
@@ -114,6 +116,49 @@ KNote::KNote( const QDomDocument& buildDoc, Journal *j, QWidget *parent )
 KNote::~KNote()
 {
   delete m_config;
+}
+
+QString KNote::createConfig()
+{
+    // the config file location
+    const QString configFile = KGlobal::dirs()->saveLocation( "appdata", QLatin1String("notes/") ) + m_journal->uid();
+
+    // no config file yet? -> use the default display config if available
+    // we want to write to configFile, so use "false"
+    const bool newNote = !KIO::NetAccess::exists( KUrl( configFile ),
+                                            KIO::NetAccess::DestinationSide, 0 );
+
+    m_config = new KNoteConfig( KSharedConfig::openConfig( configFile,
+                                                           KConfig::NoGlobals ) );
+    m_config->readConfig();
+    m_config->setVersion( QLatin1String(KDEPIM_VERSION) );
+
+    if ( newNote ) {
+      // until kdelibs provides copying of KConfigSkeletons (KDE 3.4)
+      KNotesGlobalConfig *globalConfig = KNotesGlobalConfig::self();
+      m_config->setBgColor( globalConfig->bgColor() );
+      m_config->setFgColor( globalConfig->fgColor() );
+      m_config->setWidth( globalConfig->width() );
+      m_config->setHeight( globalConfig->height() );
+
+      m_config->setFont( globalConfig->font() );
+      m_config->setTitleFont( globalConfig->titleFont() );
+      m_config->setAutoIndent( globalConfig->autoIndent() );
+      m_config->setRichText( globalConfig->richText() );
+      m_config->setTabSize( globalConfig->tabSize() );
+      m_config->setReadOnly( globalConfig->readOnly() );
+
+      m_config->setDesktop( globalConfig->desktop() );
+      m_config->setHideNote( globalConfig->hideNote() );
+      m_config->setPosition( globalConfig->position() );
+      m_config->setShowInTaskbar( globalConfig->showInTaskbar() );
+      m_config->setRememberDesktop( globalConfig->rememberDesktop() );
+      m_config->setKeepAbove( globalConfig->keepAbove() );
+      m_config->setKeepBelow( globalConfig->keepBelow() );
+
+      m_config->writeConfig();
+    }
+    return configFile;
 }
 
 void KNote::changeJournal(KCal::Journal *journal)
@@ -641,10 +686,10 @@ void KNote::slotUpdateDesktopActions()
 
 // -------------------- private methods -------------------- //
 
-void KNote::buildGui()
+void KNote::buildGui(const QString &configFile)
 {
   createNoteHeader();
-  createNoteEditor();
+  createNoteEditor(configFile);
 
   KXMLGUIBuilder builder( this );
   KXMLGUIFactory factory( &builder, this );
@@ -787,9 +832,9 @@ void KNote::createNoteHeader()
   m_noteLayout->addItem( headerLayout );
 }
 
-void KNote::createNoteEditor()
+void KNote::createNoteEditor(const QString &configFile)
 {
-  m_editor = new KNoteEdit( actionCollection(), this );
+  m_editor = new KNoteEdit( configFile, actionCollection(), this );
   m_noteLayout->addWidget( m_editor );
   m_editor->setNote( this );
   m_editor->installEventFilter( this ); // receive focus events for modified

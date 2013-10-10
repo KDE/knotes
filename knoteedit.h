@@ -41,7 +41,7 @@ class KNoteEdit : public PimCommon::CustomTextEdit
 {
   Q_OBJECT
   public:
-    explicit KNoteEdit( KActionCollection *actions, QWidget *parent = 0 );
+    explicit KNoteEdit(const QString &configFile, KActionCollection *actions, QWidget *parent = 0 );
     ~KNoteEdit();
 
     void setNote( KNote *_note ) {

@@ -41,8 +41,8 @@ static const short SEP = 5;
 static const short ICON_SIZE = 10;
 
 
-KNoteEdit::KNoteEdit( KActionCollection *actions, QWidget *parent )
-    : PimCommon::CustomTextEdit(QLatin1String("knotesrc"), parent ),
+KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWidget *parent )
+    : PimCommon::CustomTextEdit(configFile, parent ),
       m_note( 0 )
 {
   setAcceptDrops( true );

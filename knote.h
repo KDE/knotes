@@ -130,9 +130,10 @@ class KNote
     void slotRequestNewNote();
 
   private:
-    void buildGui();
+    QString createConfig();
+    void buildGui(const QString &configFile);
     void createActions();
-    void createNoteEditor();
+    void createNoteEditor(const QString &configFile);
     void createNoteFooter();
     void createNoteHeader();
     void prepare();
