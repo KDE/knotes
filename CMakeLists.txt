@@ -18,7 +18,7 @@ set(libknoteslegacy_SRCS  migrations/knoteslegacy.cpp )
 set(libknote_SRCS knoteconfigdlg.cpp knote.cpp knotebutton.cpp knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp knoteprinter.cpp )
 
 
-set(knotes_SRCS main.cpp knotestray.cpp application.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS}
+set(knotes_SRCS main.cpp knoteskeydialog.cpp knotestray.cpp application.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS}
                 ${libknotesresources_SRCS} ${libknoteslegacy_SRCS} ${libknote_SRCS})
 
 set( libknotesconfig_SRCS settings/knoteconfig.kcfgc settings/knotesglobalconfig.kcfgc )

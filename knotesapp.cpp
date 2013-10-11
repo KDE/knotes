@@ -28,6 +28,7 @@
 #include "migrations/knoteslegacy.h"
 #include "knotesnetrecv.h"
 #include "knotestray.h"
+#include "knoteskeydialog.h"
 
 #include <kaction.h>
 #include <kactioncollection.h>
@@ -58,40 +59,6 @@
 #include <QTcpServer>
 
 #include <dnssd/publicservice.h>
-
-
-class KNotesKeyDialog
-  : public KDialog
-{
-  public:
-    KNotesKeyDialog( KActionCollection *globals, QWidget *parent )
-      : KDialog( parent )
-    {
-      setCaption( i18n( "Configure Shortcuts" ) );
-      setButtons( Default | Ok | Cancel );
-
-      m_keyChooser = new KShortcutsEditor( globals, this );
-      setMainWidget( m_keyChooser );
-      connect( this, SIGNAL(defaultClicked()),
-               m_keyChooser, SLOT(allDefault()) );
-    }
-
-    void insert( KActionCollection *actions )
-    {
-        m_keyChooser->addCollection( actions, i18n( "Note Actions" ) );
-    }
-
-    void configure()
-    {
-        if ( exec() == Accepted ) {
-            m_keyChooser->save();
-        }
-    }
-
-  private:
-    KShortcutsEditor *m_keyChooser;
-};
-
 
 static bool qActionLessThan( const QAction *a1, const QAction *a2 )
 {
@@ -484,30 +451,31 @@ void KNotesApp::slotConfigUpdated()
 
 void KNotesApp::slotConfigureAccels()
 {
-  KNotesKeyDialog keys( actionCollection(), this );
+    QPointer<KNotesKeyDialog> keys = new KNotesKeyDialog( actionCollection(), this );
 
-  QMap<QString, KNote *>::const_iterator it = m_notes.constBegin();
+    QMap<QString, KNote *>::const_iterator it = m_notes.constBegin();
 
-  if ( !m_notes.isEmpty() ) {
-    keys.insert( ( *it )->actionCollection() );
-  }
+    if ( !m_notes.isEmpty() ) {
+        keys->insert( ( *it )->actionCollection() );
+    }
 
-  keys.configure();
+    if (keys->exec()) {
+        keys->save();
 
-  // update GUI doc for new notes
-  m_noteGUI.setContent(
-    KXMLGUIFactory::readConfigFile( componentData().componentName() + QLatin1String("ui.rc"),
-                                    componentData() )
-                      );
+        // update GUI doc for new notes
+        m_noteGUI.setContent(
+                    KXMLGUIFactory::readConfigFile( componentData().componentName() + QLatin1String("ui.rc"),
+                                                    componentData() )
+                    );
 
-  if ( m_notes.isEmpty() ) {
-    return;
-  }
+        if ( !m_notes.isEmpty() ) {
+            QMap<QString, KNote *>::const_iterator end = m_notes.constEnd();
 
-  foreach ( QAction *action, ( *it )->actionCollection()->actions() ) {
-    it = m_notes.constBegin();
-    for ( ++it; it != m_notes.constEnd(); ++it ) {
-/*
+            foreach ( QAction *action, ( *it )->actionCollection()->actions() ) {
+                it = m_notes.constBegin();
+
+                for ( ++it; it != end; ++it ) {
+                    /*
     // Not sure if this is what this message has in mind but since both
     // action->objectName() and KAction::action() are QStrings, this
     // might be fine.
@@ -516,14 +484,15 @@ void KNotesApp::slotConfigureAccels()
 #warning Port KAction::action() to QString
 #endif
 */
-      QAction *toChange =
-        ( *it )->actionCollection()->action( action->objectName() );
-
-      if ( toChange ) {
-        toChange->setShortcuts( action->shortcuts() );
-      }
+                    QAction *toChange = ( *it )->actionCollection()->action( action->objectName() );
+                    if ( toChange ) {
+                        toChange->setShortcuts( action->shortcuts() );
+                    }
+                }
+            }
+        }
     }
-  }
+    delete keys;
 }
 
 void KNotesApp::slotNoteKilled( KCal::Journal *journal )

@@ -434,13 +434,14 @@ void KNote::slotInsDate()
 void KNote::slotSetAlarm()
 {
     m_blockEmitDataChanged = true;
-  KNoteAlarmDlg dlg( name(), this );
-  dlg.setIncidence( m_journal );
+    QPointer<KNoteAlarmDlg> dlg = new KNoteAlarmDlg( name(), this );
+    dlg->setIncidence( m_journal );
 
-  if ( dlg.exec() == QDialog::Accepted ) {
-    emit sigDataChanged(noteId());
-  }
-  m_blockEmitDataChanged = false;
+    if ( dlg->exec() ) {
+        emit sigDataChanged(noteId());
+    }
+    delete dlg;
+    m_blockEmitDataChanged = false;
 }
 
 void KNote::slotPreferences()
@@ -461,31 +462,30 @@ void KNote::slotPreferences()
 
 void KNote::slotSend()
 {
-  // pop up dialog to get the IP
-  KNoteHostDlg hostDlg( i18n( "Send \"%1\"", name() ), this );
-  const bool ok = ( hostDlg.exec() == QDialog::Accepted );
+    // pop up dialog to get the IP
+    QPointer<KNoteHostDlg> hostDlg = new KNoteHostDlg( i18n( "Send \"%1\"", name() ), this );
+    if( hostDlg->exec() ) {
 
-  if ( !ok ) { // handle cancel
-    return;
-  }
-  const QString host = hostDlg.host();
-  quint16 port = hostDlg.port();
+        const QString host = hostDlg->host();
+        quint16 port = hostDlg->port();
 
-  if ( !port ) { // not specified, use default
-    port = KNotesGlobalConfig::port();
-  }
+        if ( !port ) { // not specified, use default
+            port = KNotesGlobalConfig::port();
+        }
 
-  if ( host.isEmpty() ) {
-    KMessageBox::sorry( this, i18n( "The host cannot be empty." ) );
-    return;
-  }
+        if ( host.isEmpty() ) {
+            KMessageBox::sorry( this, i18n( "The host cannot be empty." ) );
+            return;
+        }
 
-  // Send the note
+        // Send the note
 
-  KNotesNetworkSender *sender = new KNotesNetworkSender(
-    KSocketFactory::connectToHost( QLatin1String("knotes"), host, port ) );
-  sender->setSenderId( KNotesGlobalConfig::senderID() );
-  sender->setNote( name(), text() ); // FIXME: plainText ??
+        KNotesNetworkSender *sender = new KNotesNetworkSender(
+                    KSocketFactory::connectToHost( QLatin1String("knotes"), host, port ) );
+        sender->setSenderId( KNotesGlobalConfig::senderID() );
+        sender->setNote( name(), text() ); // FIXME: plainText ??
+    }
+    delete hostDlg;
 }
 
 void KNote::slotMail()
