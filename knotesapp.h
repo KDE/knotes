@@ -114,7 +114,6 @@ class KNotesApp
 
   private:
     void updateNetworkListener();
-    void updateStyle();
     QMap<QString, KNote *> m_notes;
     QList<QAction *>       m_noteActions;
 

@@ -84,12 +84,6 @@ KNotesApp::KNotesApp()
   connect( m_tray, SIGNAL(activateRequested(bool,QPoint)), this, SLOT(slotActivateRequested(bool,QPoint)) );
   connect( m_tray, SIGNAL(secondaryActivateRequested(QPoint)), this, SLOT(slotSecondaryActivateRequested(QPoint)) );
 
-  // set the initial style
-#ifdef __GNUC__
-#warning FIXME
-#endif
-  //    KNote::setStyle( KNotesGlobalConfig::style() );
-
   // create the GUI...
   KAction *action  = new KAction( KIcon( QLatin1String("document-new") ),
                                   i18n( "New Note" ), this );
@@ -446,7 +440,6 @@ void KNotesApp::slotPreferences()
 void KNotesApp::slotConfigUpdated()
 {
     updateNetworkListener();
-    updateStyle();
 }
 
 void KNotesApp::slotConfigureAccels()
@@ -681,18 +674,6 @@ void KNotesApp::updateNetworkListener()
         m_publisher=new DNSSD::PublicService(KNotesGlobalConfig::senderID(), QLatin1String("_knotes._tcp"), KNotesGlobalConfig::port());
         m_publisher->publishAsync();
     }
-}
-
-void KNotesApp::updateStyle()
-{
-#ifdef __GNUC__
-#warning FIXME!
-#endif
-  //    KNote::setStyle( KNotesGlobalConfig::style() );
-
-  foreach ( KNote *note, m_notes ) {
-    QApplication::postEvent( note, new QEvent( QEvent::LayoutRequest ) );
-  }
 }
 
 #include "knotesapp.moc"

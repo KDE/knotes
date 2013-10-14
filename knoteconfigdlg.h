@@ -99,17 +99,6 @@ public:
     virtual void save();
 };
 
-class KNoteStyleConfig : public KCModule
-{
-    Q_OBJECT
-public:
-    KNoteStyleConfig( const KComponentData &inst, QWidget *parent );
-    /** Reimplemented from KCModule. */
-    virtual void load();
-    virtual void save();
-};
-
-
 class KNoteDisplayConfigWidget :public QWidget
 {
     Q_OBJECT

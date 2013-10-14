@@ -101,7 +101,6 @@ KNoteConfigDlg::KNoteConfigDlg( const QString &title,
   addModule( QLatin1String("knote_config_editor") );
   addModule( QLatin1String("knote_config_action") );
   addModule( QLatin1String("knote_config_network") );
-  addModule( QLatin1String("knote_config_style") );
 
   KNotesGlobalConfig::self()->setVersion( QLatin1String(KDEPIM_VERSION) );
   connect( this, SIGNAL(okClicked()), SLOT(slotOk()) );
@@ -150,16 +149,6 @@ extern "C"
   {
       KComponentData instance( "kcmnote_config_network" );
       return new KNoteNetworkConfig( instance, parent );
-  }
-}
-
-
-extern "C"
-{
-  KDE_EXPORT KCModule *create_knote_config_style( QWidget *parent )
-  {
-      KComponentData instance( "kcmnote_config_style" );
-      return new KNoteStyleConfig( instance, parent );
   }
 }
 
@@ -407,41 +396,6 @@ void KNoteNetworkConfig::save()
 }
 
 void KNoteNetworkConfig::load()
-{
-    KCModule::load();
-}
-
-KNoteStyleConfig::KNoteStyleConfig(const KComponentData &inst, QWidget *parent )
-    :KCModule( inst, parent )
-{
-    QVBoxLayout *lay = new QVBoxLayout( this );
-    QWidget * w =  new QWidget( this );
-    lay->addWidget( w );
-    QGridLayout *layout = new QGridLayout( w );
-    layout->setSpacing( KDialog::spacingHint() );
-    layout->setMargin( 0 );
-
-    QLabel *label_Style = new QLabel( i18n( "&Style:" ), this );
-    layout->addWidget( label_Style, 0, 0 );
-
-    QComboBox *kcfg_Style = new QComboBox( this );
-    kcfg_Style->setObjectName( QLatin1String("kcfg_Style") );
-    QStringList list;
-    list << i18n( "Plain" );
-    kcfg_Style->addItems( list );
-    label_Style->setBuddy( kcfg_Style );
-    layout->addWidget( kcfg_Style, 0, 1 );
-    lay->addStretch();
-    addConfig( KNotesGlobalConfig::self(), w );
-    load();
-}
-
-void KNoteStyleConfig::save()
-{
-    KCModule::save();
-}
-
-void KNoteStyleConfig::load()
 {
     KCModule::load();
 }
