@@ -34,7 +34,6 @@
 #include <kactioncollection.h>
 #include <kapplication.h>
 #include <kcal/journal.h>
-#include <kcodecs.h>
 #include <kcombobox.h>
 #include <kdebug.h>
 #include <kfiledialog.h>
