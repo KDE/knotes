@@ -143,9 +143,11 @@ KNotesApp::KNotesApp()
   QString doc;
   KXMLGUIClient::findMostRecentXMLFile( fileList, doc );
   m_noteGUI.setContent( doc );
-
-  // clean up old config files
-  KNotesLegacy::cleanUp();
+  const bool needConvert = (KNotesGlobalConfig::self()->notesVersion()<1);
+  if ( needConvert ) {
+      // clean up old config files
+      KNotesLegacy::cleanUp();
+  }
 
   // create the resource manager
   m_manager = new KNotesResourceManager();
@@ -157,18 +159,22 @@ KNotesApp::KNotesApp()
   // read the notes
   m_manager->load();
 
-  // read the old config files, convert and add them
-  KCal::CalendarLocal calendar( QString::fromLatin1( "UTC" ) );
-  if ( KNotesLegacy::convert( &calendar ) ) {
-    KCal::Journal::List notes = calendar.journals();
-    KCal::Journal::List::ConstIterator it;
-    KCal::Journal::List::ConstIterator end(notes.constEnd());
-    for ( it = notes.constBegin(); it != end; ++it ) {
-      m_manager->addNewNote( *it );
-    }
+  if (needConvert) {
+      // read the old config files, convert and add them
+      KCal::CalendarLocal calendar( QString::fromLatin1( "UTC" ) );
+      if ( KNotesLegacy::convert( &calendar ) ) {
+          KCal::Journal::List notes = calendar.journals();
+          KCal::Journal::List::ConstIterator it;
+          KCal::Journal::List::ConstIterator end(notes.constEnd());
+          for ( it = notes.constBegin(); it != end; ++it ) {
+              m_manager->addNewNote( *it );
+          }
 
-    m_manager->save();
+          m_manager->save();
+      }
+      KNotesGlobalConfig::self()->setNotesVersion(1);
   }
+
 
   // set up the alarm reminder - do it after loading the notes because this
   // is used as a check if updateNoteActions has to be called for a new note
