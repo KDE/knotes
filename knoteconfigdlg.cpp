@@ -235,6 +235,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults )
         layout->addWidget( kcfg_RememberDesktop, 3, 0 );
 #endif
     }
+    layout->setRowStretch(4,1);
 }
 
 KNoteDisplayConfig::KNoteDisplayConfig( const KComponentData &inst, QWidget *parent )
@@ -304,6 +305,7 @@ KNoteEditorConfigWidget::KNoteEditorConfigWidget( bool defaults )
     kcfg_TitleFont->setSizePolicy( QSizePolicy( QSizePolicy::Minimum,
                                                 QSizePolicy::Fixed ) );
     layout->addWidget( kcfg_TitleFont, 2, 1, 1, 2 );
+    layout->setRowStretch(4,1);
 }
 
 KNoteEditorConfig::KNoteEditorConfig( const KComponentData &inst, QWidget *parent )
