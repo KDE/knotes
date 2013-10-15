@@ -84,6 +84,7 @@ KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
   connect( m_hostCombo->lineEdit(), SIGNAL(textChanged(QString)),
            this, SLOT(slotTextChanged(QString)) );
   slotTextChanged( m_hostCombo->lineEdit()->text() );
+  readConfig();
 }
 
 KNoteHostDlg::~KNoteHostDlg()
@@ -94,7 +95,16 @@ KNoteHostDlg::~KNoteHostDlg()
 
   // Write known hosts to configfile
   KNotesGlobalConfig::setKnownHosts( m_hostCombo->historyItems() );
+  KNotesGlobalConfig::setNoteHostDialogSize(size());
   KNotesGlobalConfig::self()->writeConfig();
+}
+
+void KNoteHostDlg::readConfig()
+{
+    const QSize size = KNotesGlobalConfig::noteHostDialogSize();
+    if ( size.isValid() ) {
+        resize( size );
+    }
 }
 
 void KNoteHostDlg::slotTextChanged( const QString &text )

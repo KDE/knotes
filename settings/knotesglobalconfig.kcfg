@@ -35,6 +35,7 @@
     <entry name="SenderID" type="String"/>
 
     <entry name="KnownHosts" type="StringList"/>
+    <entry name="NoteHostDialogSize" type="Size"/>
   </group>
 
 </kcfg>

@@ -62,6 +62,7 @@ class KNoteHostDlg
     void serviceSelected( const QModelIndex& );
     
   private:
+    void readConfig();
     KHistoryComboBox *m_hostCombo;
     QTableView *m_servicesView;
 };
