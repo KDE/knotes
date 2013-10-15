@@ -26,7 +26,7 @@
 #include "knotesapp.h"
 #include "knotesglobalconfig.h"
 #include "migrations/knoteslegacy.h"
-#include "knotesnetrecv.h"
+#include "network/knotesnetrecv.h"
 #include "knotestray.h"
 #include "knoteskeydialog.h"
 

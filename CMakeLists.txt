@@ -10,12 +10,12 @@ include_directories(
 ########### next target ###############
 
 
-set(libknotesnetwork_SRCS knotesnetrecv.cpp knotesnetsend.cpp)
+set(libknotesnetwork_SRCS network/knotesnetrecv.cpp network/knotesnetsend.cpp)
 
 
 set(libknoteslegacy_SRCS  migrations/knoteslegacy.cpp )
 
-set(libknote_SRCS knoteconfigdlg.cpp knote.cpp knotebutton.cpp knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp knoteprinter.cpp )
+set(libknote_SRCS knoteconfigdlg.cpp knote.cpp knotebutton.cpp network/knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp knoteprinter.cpp )
 
 
 set(knotes_SRCS main.cpp knoteskeydialog.cpp knotestray.cpp application.cpp knotesapp.cpp ${libknoteseditor_SRCS} ${libknotesnetwork_SRCS}

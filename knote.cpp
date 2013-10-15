@@ -24,10 +24,10 @@
 #include "knoteconfig.h"
 #include "knoteconfigdlg.h"
 #include "knoteedit.h"
-#include "knotehostdlg.h"
+#include "network/knotehostdlg.h"
 #include "knoteprinter.h"
 #include "knotesglobalconfig.h"
-#include "knotesnetsend.h"
+#include "network/knotesnetsend.h"
 #include "kdepim-version.h"
 
 #include <kaction.h>
