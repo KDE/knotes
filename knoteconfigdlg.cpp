@@ -42,7 +42,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QVBoxLayout>
-
+#include <QWhatsThis>
 
 KNoteSimpleConfigDlg::KNoteSimpleConfigDlg( KNoteConfig *config, const QString &title,
                                 QWidget *parent, const QString &name )
@@ -327,9 +327,29 @@ KNoteActionConfig::KNoteActionConfig(const KComponentData &inst, QWidget *parent
     kcfg_MailAction->setObjectName( QLatin1String("kcfg_MailAction") );
     label_MailAction->setBuddy( kcfg_MailAction );
     layout->addWidget( kcfg_MailAction, 0, 1 );
+
+    QLabel *howItWorks = new QLabel(i18n( "<a href=\"whatsthis\">How does this work?</a>" ));
+    connect( howItWorks, SIGNAL(linkActivated(QString)),SLOT(slotHelpLinkClicked(QString)) );
+    layout->addWidget( howItWorks, 1, 0 );
+
     addConfig( KNotesGlobalConfig::self(), w );
     lay->addStretch();
     load();
+}
+
+void KNoteActionConfig::slotHelpLinkClicked(const QString &)
+{
+    const QString help =
+            i18n( "<qt>"
+                  "<p>You can customize command line. "
+                  "You can use:</p>"
+                  "<ul>"
+                  "<li>%t returns current note title</li>"
+                  "<li>%f returns current note text</li>"
+                  "</ul>"
+                  "</qt>" );
+
+    QWhatsThis::showText( QCursor::pos(), help );
 }
 
 void KNoteActionConfig::save()

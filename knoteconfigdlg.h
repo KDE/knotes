@@ -87,6 +87,9 @@ public:
     /** Reimplemented from KCModule. */
     virtual void load();
     virtual void save();
+
+private Q_SLOTS:
+    void slotHelpLinkClicked(const QString &);
 };
 
 class KNoteNetworkConfig : public KCModule
