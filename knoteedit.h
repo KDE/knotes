@@ -77,6 +77,7 @@ class KNoteEdit : public PimCommon::CustomTextEdit
     void setTextFontSize( int );
 
     void slotTextBackgroundColor();
+    void slotInsertDate();
 
   protected:
     virtual void keyPressEvent( QKeyEvent * );

@@ -216,14 +216,19 @@ void KNoteEdit::mousePopupMenuImplementation(const QPoint& pos)
     QMenu *popup = mousePopupMenu();
     if ( popup ) {
         QTextCursor cursor = textCursor();
-        if (!isReadOnly() && cursor.hasSelection()) {
+        if (!isReadOnly() ) {
+            if (cursor.hasSelection()) {
+                popup->addSeparator();
+                QMenu *changeCaseMenu = new QMenu(i18n("Change case..."), popup);
+                QAction * act = m_actions->action(QLatin1String("change_to_lowercase"));
+                changeCaseMenu->addAction(act);
+                act = m_actions->action(QLatin1String("change_to_uppercase"));
+                changeCaseMenu->addAction(act);
+                popup->addMenu(changeCaseMenu);
+            }
             popup->addSeparator();
-            QMenu *changeCaseMenu = new QMenu(i18n("Change case..."), popup);
-            QAction * act = m_actions->action(QLatin1String("change_to_lowercase"));
-            changeCaseMenu->addAction(act);
-            act = m_actions->action(QLatin1String("change_to_uppercase"));
-            changeCaseMenu->addAction(act);
-            popup->addMenu(changeCaseMenu);
+            QAction * act = m_actions->action(QLatin1String("insert_date"));
+            popup->addAction(act);
         }
         aboutToShowContextMenu(popup);
         popup->exec( pos );
@@ -502,7 +507,7 @@ void KNoteEdit::slotCurrentCharFormatChanged( const QTextCharFormat &f )
 void KNoteEdit::slotCursorPositionChanged()
 {
     // alignment changes
-    Qt::Alignment a = alignment();
+    const Qt::Alignment a = alignment();
     if ( a & Qt::AlignLeft ) {
         m_textAlignLeft->setChecked( true );
     } else if ( a & Qt::AlignHCenter ) {
@@ -583,5 +588,11 @@ void KNoteEdit::enableRichTextActions(bool enabled)
   m_textIncreaseIndent->setEnabled( enabled );
   m_textDecreaseIndent->setEnabled( enabled );
 }
+
+void KNoteEdit::slotInsertDate()
+{
+  insertPlainText( KGlobal::locale()->formatDateTime( QDateTime::currentDateTime() ) );
+}
+
 
 #include "knoteedit.moc"

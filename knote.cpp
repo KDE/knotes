@@ -426,8 +426,7 @@ void KNote::slotClose()
 
 void KNote::slotInsDate()
 {
-  m_editor->insertPlainText(
-    KGlobal::locale()->formatDateTime( QDateTime::currentDateTime() ) );
+  m_editor->slotInsertDate();
 }
 
 void KNote::slotSetAlarm()
