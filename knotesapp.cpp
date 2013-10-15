@@ -381,9 +381,10 @@ void KNotesApp::slotWalkThroughNotes()
 {
   // show next note
   QMap<QString, KNote *>::const_iterator it = m_notes.constBegin();
-  for ( ; it != m_notes.constEnd(); ++it ) {
+  QMap<QString, KNote *>::const_iterator end(m_notes.constEnd());
+  for ( ; it != end; ++it ) {
     if ( ( *it )->hasFocus() ) {
-      if ( ++it != m_notes.constEnd() ) {
+      if ( ++it != end ) {
         showNote( *it );
       } else {
         showNote( *m_notes.constBegin() );
@@ -576,14 +577,12 @@ void KNotesApp::createNote( KCal::Journal *journal )
 
 void KNotesApp::killNote( KCal::Journal *journal )
 {
-  if(m_noteUidModify == journal->uid())
-  {
-          return;
+  if(m_noteUidModify == journal->uid()) {
+      return;
   }
   // this kills the KNote object
   KNote *note = m_notes.take( journal->uid() );
-  if ( note )
-  {
+  if ( note ) {
     delete note;
     updateNoteActions();
   }

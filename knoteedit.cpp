@@ -326,9 +326,7 @@ void KNoteEdit::slotTextColor()
   if ( m_note )
       m_note->blockEmitDataChanged( true );
   QColor c = textColor();
-  int ret = KColorDialog::getColor( c, this );
-
-  if ( ret == QDialog::Accepted ) {
+  if ( KColorDialog::getColor( c, this ) ) {
     setTextColor( c );
   }
   if ( m_note )
@@ -340,9 +338,7 @@ void KNoteEdit::slotTextBackgroundColor()
   if ( m_note )
       m_note->blockEmitDataChanged( true );
   QColor c = textBackgroundColor();
-  int ret = KColorDialog::getColor( c, this );
-
-  if ( ret == QDialog::Accepted ) {
+  if ( KColorDialog::getColor( c, this ) ) {
     setTextBackgroundColor( c );
   }
   if ( m_note )
