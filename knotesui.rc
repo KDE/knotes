@@ -1,15 +1,20 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="394">
+<kpartgui name="KNotes" version="400">
 
 <Menu name="note_context" noMerge="1">
     <Action name="insert_date"/>
+    <Separator/>
     <Action name="set_alarm"/>
+    <Separator/>
     <Action name="send_note"/>
     <Action name="mail_note"/>
+    <Separator/>
     <Action name="print_note"/>
     <Action name="print_preview_note"/>
+    <Separator/>
     <Action name="save_note"/>
+    <Separator/>
     <Action name="configure_note"/>
     <Separator/>
     <Action name="new_note"/>
