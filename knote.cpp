@@ -58,6 +58,7 @@
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
 #include <netwm.h>
+#include <KPrintPreview>
 
 #include <QBoxLayout>
 #include <QCheckBox>
@@ -758,9 +759,10 @@ void KNote::createActions()
   actionCollection()->addAction( KStandardAction::Print,  QLatin1String("print_note"), this,
                                  SLOT(slotPrint()) );
 
-  actionCollection()->addAction( KStandardAction::PrintPreview,  QLatin1String("print_preview_note"), this,
-                                 SLOT(slotPrintPreview()) );
-
+  if (KPrintPreview::isAvailable()) {
+      actionCollection()->addAction( KStandardAction::PrintPreview,  QLatin1String("print_preview_note"), this,
+                                     SLOT(slotPrintPreview()) );
+  }
   action  = new KAction( KIcon( QLatin1String("configure") ), i18n( "Preferences..." ), this );
   actionCollection()->addAction( QLatin1String("configure_note"), action );
   connect( action, SIGNAL(triggered(bool)), SLOT(slotPreferences()) );
