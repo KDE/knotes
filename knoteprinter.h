@@ -1,6 +1,7 @@
 #ifndef KNOTEPRINTER_H
 #define KNOTEPRINTER_H
 
+#include "knotes_export.h"
 #include <QFont>
 #include <QPrinter>
 
@@ -11,7 +12,7 @@ class Journal;
 }
 
 
-class KNotePrinter
+class KNOTES_EXPORT KNotePrinter
 {
   public:
     KNotePrinter();

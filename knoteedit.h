@@ -21,6 +21,7 @@
 #ifndef KNOTEEDIT_H
 #define KNOTEEDIT_H
 
+#include "knotes_export.h"
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <QTextCharFormat>
@@ -37,7 +38,7 @@ class KFontSizeAction;
 class KToggleAction;
 class KNote;
 
-class KNoteEdit : public PimCommon::CustomTextEdit
+class KNOTES_EXPORT KNoteEdit : public PimCommon::CustomTextEdit
 {
   Q_OBJECT
   public:

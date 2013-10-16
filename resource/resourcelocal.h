@@ -36,11 +36,11 @@
 #include <kurl.h>
 
 #include <kcal/calendarlocal.h>
-
+#include "knotes_export.h"
 #include "resourcenotes.h"
 
 
-class ResourceLocal
+class KNOTES_EXPORT ResourceLocal
   : public ResourceNotes
 {
   public:

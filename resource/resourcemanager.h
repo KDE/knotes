@@ -34,7 +34,7 @@
 #ifndef KNOTES_RESOURCEMANAGER_H
 #define KNOTES_RESOURCEMANAGER_H
 
-
+#include "knotes_export.h"
 #include <kcal/alarm.h>
 #include <knotes/resource/resourcenotes.h>
 #include <kresources/manager.h>
@@ -46,7 +46,7 @@ class Journal;
 }
 
 
-class KNotesResourceManager
+class KNOTES_EXPORT KNotesResourceManager
   : public QObject, public KRES::ManagerObserver<ResourceNotes>
 {
   Q_OBJECT

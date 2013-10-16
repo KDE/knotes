@@ -33,6 +33,7 @@
 #ifndef RESOURCENOTES_H
 #define RESOURCENOTES_H
 
+#include "knotes_export.h"
 #include <kcal/alarm.h>
 #include <kresources/resource.h>
 
@@ -50,7 +51,7 @@ class Journal;
  * \warning This code is still under heavy development. Don't expect source or
  *          binary compatibility in future versions.
  */
-class ResourceNotes
+class KNOTES_EXPORT ResourceNotes
   : public KRES::Resource
 {
   Q_OBJECT

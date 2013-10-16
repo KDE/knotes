@@ -22,12 +22,11 @@
 #define RESOURCELOCALCONFIG_H
 
 #include <kresources/configwidget.h>
-
+#include "knotes_export.h"
 class KUrlRequester;
 
 
-class ResourceLocalConfig
-  : public KRES::ConfigWidget
+class KNOTES_EXPORT ResourceLocalConfig : public KRES::ConfigWidget
 {
   Q_OBJECT
   public:
