@@ -1,3 +1,5 @@
 File=knoteconfig.kcfg
 ClassName=KNoteConfig
 Mutators=true
+Visibility=KNOTES_EXPORT
+IncludeFiles=knotes_export.h

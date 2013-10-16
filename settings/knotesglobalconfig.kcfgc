@@ -1,6 +1,7 @@
 File=knotesglobalconfig.kcfg
 ClassName=KNotesGlobalConfig
+Visibility=KNOTES_EXPORT
 Mutators=true
 Singleton=true
-IncludeFiles=knoteconfig.h
+IncludeFiles=knoteconfig.h, knotes_export.h
 Inherits=KNoteConfig

@@ -9,7 +9,7 @@ include_directories(
 
 ########### next target ###############
 
-set(libknotesprivate_lib 
+set(libknotesprivate_lib_SRCS
     resource/resourcemanager.cpp
     resource/resourcenotes.cpp
     resource/resourcelocal.cpp
@@ -18,8 +18,11 @@ set(libknotesprivate_lib
     knoteprinter.cpp
 )
 
+set( libknotesprivate_kcfg_lib_SRCS settings/knoteconfig.kcfgc settings/knotesglobalconfig.kcfgc )
 
-kde4_add_library(knotesprivate ${LIBRARY_TYPE} ${libknotesprivate_lib})
+kde4_add_kcfg_files(libknotesprivate_kcfg_lib_SRCS ${libknotesprivate_kcfg_lib_SRCS})
+
+kde4_add_library(knotesprivate ${LIBRARY_TYPE} ${libknotesprivate_lib_SRCS} ${libknotesprivate_kcfg_lib_SRCS} )
 
 target_link_libraries(knotesprivate ${KDEPIMLIBS_KCAL_LIBS} kdepim ${KDEPIMLIBS_KRESOURCES_LIBS} ${KDE4_KIO_LIBS} pimcommon ${KDE4_KPRINTUTILS_LIBS})
 
@@ -40,10 +43,6 @@ set(libknote_SRCS knoteconfigdlg.cpp knote.cpp knotebutton.cpp network/knotehost
 
 set(knotes_SRCS main.cpp knoteskeydialog.cpp knotestray.cpp application.cpp knotesapp.cpp ${libknotesnetwork_SRCS}
                 ${libknoteslegacy_SRCS} ${libknote_SRCS})
-
-set( libknotesconfig_SRCS settings/knoteconfig.kcfgc settings/knotesglobalconfig.kcfgc )
-
-kde4_add_kcfg_files(knotes_SRCS ${libknotesconfig_SRCS})
 
 
 qt4_add_dbus_adaptor(knotes_SRCS org.kde.KNotes.xml knotesapp.h KNotesApp )
@@ -74,13 +73,9 @@ install(TARGETS knotes_local  DESTINATION ${PLUGIN_INSTALL_DIR})
 ########### next target ###############
 set(kcm_knotes_PART_SRCS knoteconfigdlg.cpp )
 
-set( libknotesconfig_SRCS settings/knoteconfig.kcfgc settings/knotesglobalconfig.kcfgc )
-
-kde4_add_kcfg_files(libknotesconfig_SRCS ${libknotesconfig_SRCS})
-
 kde4_add_plugin(kcm_knote ${kcm_knotes_PART_SRCS} ${libknotesconfig_SRCS})
 
-target_link_libraries(kcm_knote  ${KDE4_KDEUI_LIBS} ${KDE4_KCMUTILS_LIBS})
+target_link_libraries(kcm_knote knotesprivate ${KDE4_KDEUI_LIBS} ${KDE4_KCMUTILS_LIBS})
 
 install(TARGETS kcm_knote DESTINATION ${PLUGIN_INSTALL_DIR})
 
