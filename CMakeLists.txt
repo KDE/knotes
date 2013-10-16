@@ -90,7 +90,6 @@ install(FILES
 	data/knote_config_display.desktop
 	data/knote_config_editor.desktop
 	data/knote_config_network.desktop
-	data/knote_config_style.desktop
 	DESTINATION ${SERVICES_INSTALL_DIR})
 
 ########### install files ###############
