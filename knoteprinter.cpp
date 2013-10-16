@@ -44,7 +44,7 @@ void KNotePrinter::doPrint( const QString &htmlText,
 {
   QPrinter printer( QPrinter::HighResolution );
   //printer.setFullPage( true );  //disabled, causes asymmetric margins
-  QPrintDialog printDialog(KdePrint::createPrintDialog(&printer));
+  QPrintDialog printDialog(/*KdePrint::createPrintDialog*/(&printer));
   printDialog.setWindowTitle( dialogCaption );
   if ( !printDialog.exec() ) {
     return;
