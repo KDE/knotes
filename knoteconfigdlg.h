@@ -24,30 +24,17 @@
 #include <kconfigdialog.h>
 #include <kcmodule.h>
 #include <kcmultidialog.h>
-
+#include "knotes_export.h"
 class QString;
 
 class KNoteConfig;
 
-class KNoteSimpleConfigDlg
-    : public KConfigDialog
-{
-  Q_OBJECT
-  public:
-    KNoteSimpleConfigDlg( KNoteConfig *config, const QString &title,
-                    QWidget *parent, const QString &name );
-    ~KNoteSimpleConfigDlg() {}
-
-  public slots:
-    void slotUpdateCaption(const QString &);
-};
-
-class KNoteConfigDlg
+class KNOTES_EXPORT KNoteConfigDlg
   : public KCMultiDialog
 {
   Q_OBJECT
   public:
-    KNoteConfigDlg( const QString &title,
+    explicit KNoteConfigDlg( const QString &title,
                     QWidget *parent );
     ~KNoteConfigDlg();
 

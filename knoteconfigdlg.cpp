@@ -44,39 +44,6 @@
 #include <QVBoxLayout>
 #include <QWhatsThis>
 
-KNoteSimpleConfigDlg::KNoteSimpleConfigDlg( KNoteConfig *config, const QString &title,
-                                QWidget *parent, const QString &name )
-  : KConfigDialog( parent, name, config )
-{
-  setFaceType( KPageDialog::List );
-  setButtons( Default | Ok | Apply | Cancel  );
-  setDefaultButton( Ok );
-
-  setCaption( title );
-#ifdef Q_WS_X11
-  KWindowSystem::setIcons( winId(),
-                           qApp->windowIcon().pixmap(
-                             IconSize( KIconLoader::Desktop ),
-                             IconSize( KIconLoader::Desktop ) ),
-                           qApp->windowIcon().pixmap(
-                             IconSize( KIconLoader::Small ),
-                             IconSize( KIconLoader::Small ) ) );
-#endif
-  showButtonSeparator( true );
-
-  addPage( new KNoteDisplayConfigWidget( false ), i18n( "Display" ), QLatin1String("knotes"),
-             i18n( "Display Settings" ) );
-  addPage( new KNoteEditorConfigWidget( false ), i18n( "Editor" ), QLatin1String("accessories-text-editor"),
-             i18n( "Editor Settings" ) );
-  config->setVersion( QLatin1String(KDEPIM_VERSION) );
-}
-
-
-void KNoteSimpleConfigDlg::slotUpdateCaption(const QString & name)
-{
-    setCaption( name );
-}
-
 KNoteConfigDlg::KNoteConfigDlg( const QString &title,
                                 QWidget *parent )
   : KCMultiDialog( parent )

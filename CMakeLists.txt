@@ -16,6 +16,9 @@ set(libknotesprivate_lib_SRCS
     resource/resourcelocalconfig.cpp
     knoteedit.cpp
     knoteprinter.cpp
+    knotesimpleconfigdialog.cpp
+    knoteconfigdlg.cpp
+    knoteutils.cpp
 )
 
 set( libknotesprivate_kcfg_lib_SRCS settings/knoteconfig.kcfgc settings/knotesglobalconfig.kcfgc )
@@ -24,7 +27,7 @@ kde4_add_kcfg_files(libknotesprivate_kcfg_lib_SRCS ${libknotesprivate_kcfg_lib_S
 
 kde4_add_library(knotesprivate ${LIBRARY_TYPE} ${libknotesprivate_lib_SRCS} ${libknotesprivate_kcfg_lib_SRCS} )
 
-target_link_libraries(knotesprivate ${KDEPIMLIBS_KCAL_LIBS} kdepim ${KDEPIMLIBS_KRESOURCES_LIBS} ${KDE4_KIO_LIBS} pimcommon ${KDE4_KPRINTUTILS_LIBS})
+target_link_libraries(knotesprivate ${KDEPIMLIBS_KCAL_LIBS} kdepim ${KDEPIMLIBS_KRESOURCES_LIBS} ${KDE4_KIO_LIBS} pimcommon ${KDE4_KPRINTUTILS_LIBS} ${KDE4_KCMUTILS_LIBS})
 
 set_target_properties(knotesprivate
   PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION}
@@ -38,7 +41,7 @@ set(libknotesnetwork_SRCS network/knotesnetrecv.cpp network/knotesnetsend.cpp)
 
 set(libknoteslegacy_SRCS  migrations/knoteslegacy.cpp )
 
-set(libknote_SRCS knoteconfigdlg.cpp knote.cpp knotebutton.cpp network/knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp )
+set(libknote_SRCS knote.cpp knotebutton.cpp network/knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp )
 
 
 set(knotes_SRCS main.cpp knoteskeydialog.cpp knotestray.cpp application.cpp knotesapp.cpp ${libknotesnetwork_SRCS}

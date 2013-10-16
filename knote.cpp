@@ -20,8 +20,10 @@
 
 #include "knote.h"
 #include "knotealarmdlg.h"
+#include "knotesimpleconfigdialog.h"
 #include "knotebutton.h"
 #include "knoteconfig.h"
+#include "knoteutils.h"
 #include "knoteconfigdlg.h"
 #include "knoteedit.h"
 #include "network/knotehostdlg.h"
@@ -115,7 +117,8 @@ KNote::KNote( const QDomDocument& buildDoc, Journal *j, QWidget *parent )
 
   createActions();
 
-  const QString configFile = createConfig();
+  QString configFile;
+  m_config = KNoteUtils::createConfig(m_journal, configFile);
 
   buildGui(configFile);
 
@@ -125,49 +128,6 @@ KNote::KNote( const QDomDocument& buildDoc, Journal *j, QWidget *parent )
 KNote::~KNote()
 {
   delete m_config;
-}
-
-QString KNote::createConfig()
-{
-    // the config file location
-    const QString configFile = KGlobal::dirs()->saveLocation( "appdata", QLatin1String("notes/") ) + m_journal->uid();
-
-    // no config file yet? -> use the default display config if available
-    // we want to write to configFile, so use "false"
-    const bool newNote = !KIO::NetAccess::exists( KUrl( configFile ),
-                                            KIO::NetAccess::DestinationSide, 0 );
-
-    m_config = new KNoteConfig( KSharedConfig::openConfig( configFile,
-                                                           KConfig::NoGlobals ) );
-    m_config->readConfig();
-    m_config->setVersion( QLatin1String(KDEPIM_VERSION) );
-
-    if ( newNote ) {
-      // until kdelibs provides copying of KConfigSkeletons (KDE 3.4)
-      KNotesGlobalConfig *globalConfig = KNotesGlobalConfig::self();
-      m_config->setBgColor( globalConfig->bgColor() );
-      m_config->setFgColor( globalConfig->fgColor() );
-      m_config->setWidth( globalConfig->width() );
-      m_config->setHeight( globalConfig->height() );
-
-      m_config->setFont( globalConfig->font() );
-      m_config->setTitleFont( globalConfig->titleFont() );
-      m_config->setAutoIndent( globalConfig->autoIndent() );
-      m_config->setRichText( globalConfig->richText() );
-      m_config->setTabSize( globalConfig->tabSize() );
-      m_config->setReadOnly( globalConfig->readOnly() );
-
-      m_config->setDesktop( globalConfig->desktop() );
-      m_config->setHideNote( globalConfig->hideNote() );
-      m_config->setPosition( globalConfig->position() );
-      m_config->setShowInTaskbar( globalConfig->showInTaskbar() );
-      m_config->setRememberDesktop( globalConfig->rememberDesktop() );
-      m_config->setKeepAbove( globalConfig->keepAbove() );
-      m_config->setKeepBelow( globalConfig->keepBelow() );
-
-      m_config->writeConfig();
-    }
-    return configFile;
 }
 
 void KNote::changeJournal(KCal::Journal *journal)
@@ -199,11 +159,7 @@ void KNote::slotKill( bool force )
   // delete the configuration first, then the corresponding file
   delete m_config;
   m_config = 0;
-  QString configFile = KGlobal::dirs()->saveLocation( "appdata", QLatin1String("notes/") );
-  configFile += m_journal->uid();
-  if ( !KIO::NetAccess::del( KUrl( configFile ), this ) ) {
-    kError( 5500 ) <<"Can't remove the note config:" << configFile;
-  }
+  KNoteUtils::removeNote(m_journal, this);
 
   emit sigKillNote( m_journal );
 }
@@ -448,7 +404,7 @@ void KNote::slotPreferences()
     m_blockEmitDataChanged = true;
 
   // create a new preferences dialog...
-  QPointer<KNoteSimpleConfigDlg> dialog = new KNoteSimpleConfigDlg( m_config, name(), this, noteId() );
+  QPointer<KNoteSimpleConfigDialog> dialog = new KNoteSimpleConfigDialog( m_config, name(), this, noteId() );
   connect( dialog, SIGNAL(settingsChanged(QString)) , this,
            SLOT(slotApplyConfig()) );
   connect( this, SIGNAL(sigNameChanged(QString)), dialog,
@@ -890,45 +846,6 @@ void KNote::createNoteFooter()
 
 void KNote::prepare()
 {
-  // the config file location
-  const QString configFile = KGlobal::dirs()->saveLocation( "appdata", QLatin1String("notes/") ) + m_journal->uid();
-
-  // no config file yet? -> use the default display config if available
-  // we want to write to configFile, so use "false"
-  const bool newNote = !KIO::NetAccess::exists( KUrl( configFile ),
-                                          KIO::NetAccess::DestinationSide, 0 );
-
-  m_config = new KNoteConfig( KSharedConfig::openConfig( configFile,
-                                                         KConfig::NoGlobals ) );
-  m_config->readConfig();
-  m_config->setVersion( QLatin1String(KDEPIM_VERSION) );
-
-  if ( newNote ) {
-    // until kdelibs provides copying of KConfigSkeletons (KDE 3.4)
-    KNotesGlobalConfig *globalConfig = KNotesGlobalConfig::self();
-    m_config->setBgColor( globalConfig->bgColor() );
-    m_config->setFgColor( globalConfig->fgColor() );
-    m_config->setWidth( globalConfig->width() );
-    m_config->setHeight( globalConfig->height() );
-
-    m_config->setFont( globalConfig->font() );
-    m_config->setTitleFont( globalConfig->titleFont() );
-    m_config->setAutoIndent( globalConfig->autoIndent() );
-    m_config->setRichText( globalConfig->richText() );
-    m_config->setTabSize( globalConfig->tabSize() );
-    m_config->setReadOnly( globalConfig->readOnly() );
-
-    m_config->setDesktop( globalConfig->desktop() );
-    m_config->setHideNote( globalConfig->hideNote() );
-    m_config->setPosition( globalConfig->position() );
-    m_config->setShowInTaskbar( globalConfig->showInTaskbar() );
-    m_config->setRememberDesktop( globalConfig->rememberDesktop() );
-    m_config->setKeepAbove( globalConfig->keepAbove() );
-    m_config->setKeepBelow( globalConfig->keepBelow() );
-
-    m_config->writeConfig();
-  }
-
   // load the display configuration of the note
   uint width = m_config->width();
   uint height = m_config->height();
@@ -943,29 +860,7 @@ void KNote::prepare()
     move( position );           // do before calling show() to avoid flicker
   }
 
-  // config items in the journal have priority
-  QString property = m_journal->customProperty( "KNotes", "FgColor" );
-  if ( !property.isNull() ) {
-    m_config->setFgColor( QColor( property ) );
-  } else {
-    m_journal->setCustomProperty( "KNotes", "FgColor",
-                                  m_config->fgColor().name() );
-  }
-
-  property = m_journal->customProperty( "KNotes", "BgColor" );
-  if ( !property.isNull() ) {
-    m_config->setBgColor( QColor( property ) );
-  } else {
-    m_journal->setCustomProperty( "KNotes", "BgColor",
-                                  m_config->bgColor().name() );
-  }
-  property = m_journal->customProperty( "KNotes", "RichText" );
-  if ( !property.isNull() ) {
-    m_config->setRichText( property == QLatin1String("true") ? true : false );
-  } else {
-    m_journal->setCustomProperty( "KNotes", "RichText",
-                                  m_config->richText() ? QLatin1String("true") : QLatin1String("false") );
-  }
+  KNoteUtils::setProperty(m_journal, m_config);
 
   // read configuration settings...
   slotApplyConfig();
