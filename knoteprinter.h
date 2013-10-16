@@ -20,7 +20,7 @@ class KNotePrinter
     void printNote(const QString &name,
                     const QString &htmlText , bool preview);
     
-    void printNotes( const QList<KCal::Journal *> &journals );
+    void printNotes(const QList<KCal::Journal *> &journals , bool preview);
     
     void setDefaultFont( const QFont &font );
     QFont defaultFont() const;
