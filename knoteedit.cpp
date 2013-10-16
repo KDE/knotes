@@ -54,7 +54,6 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
   } else {
     setAutoFormatting( AutoNone );
   }
-  setCheckSpellingEnabled( true );
 
   // create the actions modifying the text format
   m_textBold  = new KToggleAction( KIcon( QLatin1String("format-text-bold") ), i18n( "Bold" ),
