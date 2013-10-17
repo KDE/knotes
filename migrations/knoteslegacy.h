@@ -21,6 +21,7 @@
 #ifndef KNOTESLEGACY_H
 #define KNOTESLEGACY_H
 
+#include "knotes_export.h"
 #include <QDir>
 #include <QString>
 
@@ -33,13 +34,13 @@ class Journal;
 /**
  * This converts and removes old note storage and config files.
  */
-class KNotesLegacy
+class KNOTES_EXPORT KNotesLegacy
 {
-  public:
+public:
     static void cleanUp();
     static bool convert( KCal::CalendarLocal *calendar );
     
-  private:
+private:
     static bool convertKNotes1Config( KCal::Journal *j, QDir &dir,
                                       const QString &file );
     static bool convertKNotes2Config( KCal::Journal *j, QDir &dir,

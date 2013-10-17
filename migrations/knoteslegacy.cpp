@@ -47,70 +47,70 @@ using namespace KCal;
 
 void KNotesLegacy::cleanUp()
 {
-  // remove old (KDE 1.x) local config file if it still exists
-  const QString configfile = KGlobal::dirs()->saveLocation( "config" ) + QLatin1String("knotesrc");
-  if ( QFile::exists( configfile ) ) {
-    KConfigGroup test(
-      KSharedConfig::openConfig( configfile, KConfig::SimpleConfig ),
-      "General" );
-    double version = test.readEntry( "version", 9999999.99 );
+    // remove old (KDE 1.x) local config file if it still exists
+    const QString configfile = KGlobal::dirs()->saveLocation( "config" ) + QLatin1String("knotesrc");
+    if ( QFile::exists( configfile ) ) {
+        KConfigGroup test(
+                    KSharedConfig::openConfig( configfile, KConfig::SimpleConfig ),
+                    "General" );
+        double version = test.readEntry( "version", 9999999.99 );
 
-    if ( version == 1.0 ) {
-      if ( !( KStandardDirs::checkAccess( configfile, W_OK ) &&
-        QFile::remove( configfile ) ) ) {
-          kError( 5500 ) << "Could not delete old config file" << configfile;
-      }
+        if ( version == 1.0 ) {
+            if ( !( KStandardDirs::checkAccess( configfile, W_OK ) &&
+                    QFile::remove( configfile ) ) ) {
+                kError( 5500 ) << "Could not delete old config file" << configfile;
+            }
+        }
     }
-  }
 }
 
 bool KNotesLegacy::convert( CalendarLocal *calendar )
 {
-  bool converted = false;
+    bool converted = false;
 
-  QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", QLatin1String("notes/") ) );
-  const QStringList notes = noteDir.entryList( QDir::Files, QDir::Name );
-  for ( QStringList::ConstIterator note = notes.constBegin(); note != notes.constEnd();
-        ++note ) {
-    QString file = noteDir.absoluteFilePath( *note );
-    KConfig *test = new KConfig( file, KConfig::SimpleConfig );
-    KConfigGroup grp( test, "General" );
-    double version = grp.readEntry( "version", 1.0 );
+    QDir noteDir( KGlobal::dirs()->saveLocation( "appdata", QLatin1String("notes/") ) );
+    const QStringList notes = noteDir.entryList( QDir::Files, QDir::Name );
+    for ( QStringList::ConstIterator note = notes.constBegin(); note != notes.constEnd();
+          ++note ) {
+        QString file = noteDir.absoluteFilePath( *note );
+        KConfig *test = new KConfig( file, KConfig::SimpleConfig );
+        KConfigGroup grp( test, "General" );
+        double version = grp.readEntry( "version", 1.0 );
 
-    if ( version < 3.0 ) {
+        if ( version < 3.0 ) {
 
-      // create the new note
-      Journal *journal = new Journal();
-      bool success;
+            // create the new note
+            Journal *journal = new Journal();
+            bool success;
 
-      if ( version < 2.0 ) {
-        success = convertKNotes1Config( journal, noteDir, *note );
-      } else {
-        success = convertKNotes2Config( journal, noteDir, *note );
-      }
+            if ( version < 2.0 ) {
+                success = convertKNotes1Config( journal, noteDir, *note );
+            } else {
+                success = convertKNotes2Config( journal, noteDir, *note );
+            }
 
-      // could not convert file => do not add a new note
-      if ( !success ) {
-        delete journal;
-      } else {
-        calendar->addJournal( journal );
-        converted = true;
-      }
-    } else if ( version < 3.2 ) { // window state changed for version 3.2
+            // could not convert file => do not add a new note
+            if ( !success ) {
+                delete journal;
+            } else {
+                calendar->addJournal( journal );
+                converted = true;
+            }
+        } else if ( version < 3.2 ) { // window state changed for version 3.2
 #ifdef Q_WS_X11
-      uint state = grp.readEntry( "state", uint( NET::SkipTaskbar ) );
+            uint state = grp.readEntry( "state", uint( NET::SkipTaskbar ) );
 
-      grp.writeEntry( "ShowInTaskbar",
-                        ( state & NET::SkipTaskbar ) ? false : true );
-      grp.writeEntry( "KeepAbove",
-                        ( state & NET::KeepAbove ) ? true : false );
+            grp.writeEntry( "ShowInTaskbar",
+                            ( state & NET::SkipTaskbar ) ? false : true );
+            grp.writeEntry( "KeepAbove",
+                            ( state & NET::KeepAbove ) ? true : false );
 #endif
-      grp.deleteEntry( "state" );
+            grp.deleteEntry( "state" );
+        }
+        delete test;
     }
-    delete test;
-  }
 
-  return converted;
+    return converted;
 }
 
 bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
@@ -132,10 +132,10 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
 
     // robustness
     if ( props.count() != 13 ) {
-      kWarning( 5500 ) <<"The file \"" << infile.fileName()
-                       << "\" lacks version information but is not a valid"
-                       << "KNotes 1 config file either!";
-      return false;
+        kWarning( 5500 ) <<"The file \"" << infile.fileName()
+                        << "\" lacks version information but is not a valid"
+                        << "KNotes 1 config file either!";
+        return false;
     }
 
     // the new configfile's name
@@ -143,10 +143,10 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
 
     // set the defaults
     KIO::NetAccess::file_copy(
-        KUrl( KGlobal::dirs()->saveLocation( "config" ) + QLatin1String("knotesrc") ),
-        KUrl( configFile ),
-        0
-    );
+                KUrl( KGlobal::dirs()->saveLocation( "config" ) + QLatin1String("knotesrc") ),
+                KUrl( configFile ),
+                0
+                );
 
     KNoteConfig config( KSharedConfig::openConfig( configFile,
                                                    KConfig::NoGlobals ) );
@@ -210,18 +210,18 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
     // get the text
     QString text;
     while ( !input.atEnd() ) {
-      text.append( input.readLine() );
-      if ( !input.atEnd() ) {
-        text.append( QLatin1Char('\n') );
-      }
+        text.append( input.readLine() );
+        if ( !input.atEnd() ) {
+            text.append( QLatin1Char('\n') );
+        }
     }
 
     journal->setDescription( text );
 
     if ( !infile.remove() )
     {
-      kWarning( 5500 ) << "Could not delete input file: \"" << infile.fileName()
-                       << "\"";
+        kWarning( 5500 ) << "Could not delete input file: \"" << infile.fileName()
+                         << "\"";
     }
 
     return true;
@@ -230,47 +230,47 @@ bool KNotesLegacy::convertKNotes1Config( Journal *journal, QDir &noteDir,
 bool KNotesLegacy::convertKNotes2Config( Journal *journal, QDir &noteDir,
                                          const QString &file )
 {
-  const QString configFile = noteDir.absoluteFilePath( journal->uid() );
+    const QString configFile = noteDir.absoluteFilePath( journal->uid() );
 
-  // new name for config file
-  if ( !noteDir.rename( file, journal->uid() ) ) {
-    kError( 5500 ) << "Could not rename input file: \""
-                   << noteDir.absoluteFilePath( file ) << "\" to \""
-                   << configFile << "\"!";
-    return false;
-  }
+    // new name for config file
+    if ( !noteDir.rename( file, journal->uid() ) ) {
+        kError( 5500 ) << "Could not rename input file: \""
+                       << noteDir.absoluteFilePath( file ) << "\" to \""
+                       << configFile << "\"!";
+        return false;
+    }
 
-  // update the config
-  KConfig config( configFile );
-  KConfigGroup grp( &config, "Data" );
-  journal->setSummary( grp.readEntry( "name" ) );
-  config.deleteGroup( "Data", KConfig::Localized );
-  KConfigGroup _grp2(&config, "General" ); // XXX right?
-  _grp2.writeEntry( "version", KDEPIM_VERSION );
-  KConfigGroup _grp3(&config, "WindowDisplay" ); // XXX right?
+    // update the config
+    KConfig config( configFile );
+    KConfigGroup grp( &config, "Data" );
+    journal->setSummary( grp.readEntry( "name" ) );
+    config.deleteGroup( "Data", KConfig::Localized );
+    KConfigGroup _grp2(&config, "General" ); // XXX right?
+    _grp2.writeEntry( "version", KDEPIM_VERSION );
+    KConfigGroup _grp3(&config, "WindowDisplay" ); // XXX right?
 #ifdef Q_WS_X11
-  uint state = _grp3.readEntry( "state", uint( NET::SkipTaskbar ) );
-  _grp3.writeEntry( "ShowInTaskbar",
-                     ( state & NET::SkipTaskbar ) ? false : true );
-  _grp3.writeEntry( "KeepAbove",
+    uint state = _grp3.readEntry( "state", uint( NET::SkipTaskbar ) );
+    _grp3.writeEntry( "ShowInTaskbar",
+                      ( state & NET::SkipTaskbar ) ? false : true );
+    _grp3.writeEntry( "KeepAbove",
                       ( state & NET::KeepAbove ) ? true : false );
 #endif
-  _grp3.deleteEntry( "state" );
+    _grp3.deleteEntry( "state" );
 
-  // load the saved text and put it in the journal
-  QFile infile( noteDir.absoluteFilePath( QLatin1Char('.') + file + QLatin1String("_data") ) );
-  if ( infile.open( QIODevice::ReadOnly ) ) {
-    QTextStream input( &infile );
-    input.setCodec( "UTF-8" );
-    journal->setDescription( input.readAll() );
-    if ( !infile.remove() ) {
-      kWarning( 5500 ) << "Could not delete data file: \"" << infile.fileName()
-                       << "\"";
+    // load the saved text and put it in the journal
+    QFile infile( noteDir.absoluteFilePath( QLatin1Char('.') + file + QLatin1String("_data") ) );
+    if ( infile.open( QIODevice::ReadOnly ) ) {
+        QTextStream input( &infile );
+        input.setCodec( "UTF-8" );
+        journal->setDescription( input.readAll() );
+        if ( !infile.remove() ) {
+            kWarning( 5500 ) << "Could not delete data file: \"" << infile.fileName()
+                             << "\"";
+        }
     }
-  }
-  else
-    kWarning( 5500 ) << "Could not open data file: \"" << infile.fileName()
-                   << "\"";
+    else
+        kWarning( 5500 ) << "Could not open data file: \"" << infile.fileName()
+                         << "\"";
 
     return true;
 }

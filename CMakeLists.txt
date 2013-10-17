@@ -19,6 +19,7 @@ set(libknotesprivate_lib_SRCS
     knotesimpleconfigdialog.cpp
     knoteconfigdlg.cpp
     knoteutils.cpp
+    migrations/knoteslegacy.cpp
 )
 
 set( libknotesprivate_kcfg_lib_SRCS settings/knoteconfig.kcfgc settings/knotesglobalconfig.kcfgc )
@@ -39,13 +40,11 @@ install(TARGETS knotesprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_S
 set(libknotesnetwork_SRCS network/knotesnetrecv.cpp network/knotesnetsend.cpp)
 
 
-set(libknoteslegacy_SRCS  migrations/knoteslegacy.cpp )
-
 set(libknote_SRCS knote.cpp knotebutton.cpp network/knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp )
 
 
 set(knotes_SRCS main.cpp knoteskeydialog.cpp knotestray.cpp application.cpp knotesapp.cpp ${libknotesnetwork_SRCS}
-                ${libknoteslegacy_SRCS} ${libknote_SRCS})
+                ${libknote_SRCS})
 
 
 qt4_add_dbus_adaptor(knotes_SRCS org.kde.KNotes.xml knotesapp.h KNotesApp )
