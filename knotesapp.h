@@ -51,10 +51,10 @@ class PublicService;
 }
 
 class KNotesApp
-  : public QWidget, public KSessionManager, virtual public KXMLGUIClient
+        : public QWidget, public KSessionManager, virtual public KXMLGUIClient
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     KNotesApp();
     ~KNotesApp();
 
@@ -74,7 +74,7 @@ class KNotesApp
 
     bool commitData( QSessionManager & );
 
-  public slots:
+public slots:
     QString newNote( const QString &name = QString(),
                      const QString &text = QString() );
     QString newNoteFromClipboard( const QString &name = QString() );
@@ -82,7 +82,7 @@ class KNotesApp
     void hideAllNotes() const;
     void showAllNotes() const;
 
-  protected slots:
+protected slots:
     void slotActivateRequested( bool, const QPoint& pos);
     void slotSecondaryActivateRequested( const QPoint& );
     void slotShowNote();
@@ -98,11 +98,11 @@ class KNotesApp
 
     void slotQuit();
 
-  private:
+private:
     void showNote( KNote *note ) const;
     void saveConfigs();
 
-  private slots:
+private slots:
     void slotConfigUpdated();
     void acceptConnection();
     void saveNotes();
@@ -112,7 +112,7 @@ class KNotesApp
     void createNote( KCal::Journal *journal );
     void killNote( KCal::Journal *journal );
 
-  private:
+private:
     void updateNetworkListener();
     QMap<QString, KNote *> m_notes;
     QList<QAction *>       m_noteActions;

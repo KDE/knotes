@@ -48,10 +48,10 @@ class Journal;
 
 
 class KNote
-  : public QFrame, virtual public KXMLGUIClient
+        : public QFrame, virtual public KXMLGUIClient
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     KNote( const QDomDocument& buildDoc, KCal::Journal *journal, QWidget *parent = 0 );
     ~KNote();
 
@@ -75,12 +75,12 @@ class KNote
 
     void toDesktop( int desktop );
 
-  public slots:
+public slots:
     void slotRename();
     void slotKill( bool force = false );
     void slotClose();
 
-  signals:
+signals:
     void sigRequestNewNote();
     void sigShowNextNote();
     void sigNameChanged(const QString &);
@@ -90,7 +90,7 @@ class KNote
 
     void sigFindFinished();
 
-  protected:
+protected:
     virtual void contextMenuEvent( QContextMenuEvent * );
     virtual void showEvent( QShowEvent * );
     virtual void resizeEvent( QResizeEvent * );
@@ -101,7 +101,7 @@ class KNote
     virtual bool event( QEvent * );
     virtual bool eventFilter( QObject *, QEvent * );
 
-  private slots:
+private slots:
     void slotUpdateReadOnly();
 
     void slotSend();
@@ -129,7 +129,7 @@ class KNote
 
     void slotRequestNewNote();
 
-  private:
+private:
     QString createConfig();
     void buildGui(const QString &configFile);
     void createActions();
@@ -143,8 +143,9 @@ class KNote
     void updateLabelAlignment();
 
     void setColor( const QColor &, const QColor & );
+    void print(bool preview);
 
-  private:
+private:
     QLayout       *m_noteLayout;
     QLabel        *m_label;
     QSizeGrip     *m_grip;
