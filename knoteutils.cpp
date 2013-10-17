@@ -40,6 +40,7 @@ KNoteConfig *KNoteUtils::createConfig(KCal::Journal *journal, QString &configPat
     config->readConfig();
     config->setVersion( QLatin1String(KDEPIM_VERSION) );
 
+    qDebug()<<" NEW NOTE !!!!!!!!!!!!!!!!"<<newNote;
     if ( newNote ) {
         // until kdelibs provides copying of KConfigSkeletons (KDE 3.4)
         KNotesGlobalConfig *globalConfig = KNotesGlobalConfig::self();
@@ -104,5 +105,16 @@ void KNoteUtils::removeNote(KCal::Journal *journal, QWidget *parent)
     if ( !KIO::NetAccess::del( KUrl( configFile ), parent ) ) {
         qDebug() <<"Can't remove the note config:" << configFile;
     }
+
+}
+
+void KNoteUtils::savePreferences( KCal::Journal *journal, KNoteConfig *config)
+{
+    journal->setCustomProperty( "KNotes", "FgColor",
+                                  config->fgColor().name() );
+    journal->setCustomProperty( "KNotes", "BgColor",
+                                  config->bgColor().name() );
+    journal->setCustomProperty( "KNotes", "RichText",
+                                  config->richText() ? QLatin1String("true") : QLatin1String("false") );
 
 }

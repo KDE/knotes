@@ -171,12 +171,7 @@ void KNote::saveData(bool update )
 {
   m_journal->setSummary( m_label->text() );
   m_journal->setDescription( m_editor->text() );
-  m_journal->setCustomProperty( "KNotes", "FgColor",
-                                m_config->fgColor().name() );
-  m_journal->setCustomProperty( "KNotes", "BgColor",
-                                m_config->bgColor().name() );
-  m_journal->setCustomProperty( "KNotes", "RichText",
-                                m_config->richText() ? QLatin1String("true") : QLatin1String("false") );
+  KNoteUtils::savePreferences( m_journal, m_config);
 
   if(update)
   {
