@@ -43,44 +43,44 @@
 
 
 KNotesAlarm::KNotesAlarm( KNotesResourceManager *manager, QObject *parent)
-  : QObject( parent ), m_manager( manager )
+    : QObject( parent ), m_manager( manager )
 {
-  // TODO: fix timezone stuff?
+    // TODO: fix timezone stuff?
 
-  connect( &m_checkTimer, SIGNAL(timeout()), SLOT(checkAlarms()) );
+    connect( &m_checkTimer, SIGNAL(timeout()), SLOT(checkAlarms()) );
 
-  // interval in seconds
-  m_checkTimer.start( 1000 * KNotesGlobalConfig::self()->checkInterval() );
+    // interval in seconds
+    m_checkTimer.start( 1000 * KNotesGlobalConfig::self()->checkInterval() );
 }
 
 void KNotesAlarm::checkAlarms()
 {
-  QDateTime from = KNotesGlobalConfig::self()->alarmsLastChecked().addSecs( 1 );
-  if ( !from.isValid() ) {
-    from.setTime_t( 0 );
-  }
+    QDateTime from = KNotesGlobalConfig::self()->alarmsLastChecked().addSecs( 1 );
+    if ( !from.isValid() ) {
+        from.setTime_t( 0 );
+    }
 
-  const KDateTime now = KDateTime::currentLocalDateTime();
-  KNotesGlobalConfig::self()->setAlarmsLastChecked( now.dateTime() );
-  QList<KCal::Alarm *> alarms = m_manager->alarms( KDateTime( from, KDateTime::LocalZone ), now );
-  if ( alarms.isEmpty() )
-      return;
+    const KDateTime now = KDateTime::currentLocalDateTime();
+    KNotesGlobalConfig::self()->setAlarmsLastChecked( now.dateTime() );
+    QList<KCal::Alarm *> alarms = m_manager->alarms( KDateTime( from, KDateTime::LocalZone ), now );
+    if ( alarms.isEmpty() )
+        return;
 
-  QStringList notes;
-  QList<KCal::Alarm *>::ConstIterator it;
-  QList<KCal::Alarm *>::ConstIterator end(alarms.constEnd());
-  for ( it = alarms.constBegin(); it != end; ++it ) {
-    KCal::Incidence *incidence = ( *it )->parent();
-    notes += incidence->summary();
-  }
+    QStringList notes;
+    QList<KCal::Alarm *>::ConstIterator it;
+    QList<KCal::Alarm *>::ConstIterator end(alarms.constEnd());
+    for ( it = alarms.constBegin(); it != end; ++it ) {
+        KCal::Incidence *incidence = ( *it )->parent();
+        notes += incidence->summary();
+    }
 
-  if ( !notes.isEmpty() ) {
-    KMessageBox::informationList( 0,
-                                  i18n( "The following notes triggered "
-                                        "alarms:" ),
-                                  notes,
-                                  i18n( "Alarm" ) );
-  }
+    if ( !notes.isEmpty() ) {
+        KMessageBox::informationList( 0,
+                                      i18n( "The following notes triggered "
+                                            "alarms:" ),
+                                      notes,
+                                      i18n( "Alarm" ) );
+    }
 }
 
 

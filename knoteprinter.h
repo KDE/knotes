@@ -14,19 +14,19 @@ class Journal;
 
 class KNOTES_EXPORT KNotePrinter
 {
-  public:
+public:
     KNotePrinter();
     
 
     void printNote(const QString &name,
-                    const QString &htmlText , bool preview);
+                   const QString &htmlText , bool preview);
     
     void printNotes(const QList<KCal::Journal *> &journals , bool preview);
     
     void setDefaultFont( const QFont &font );
     QFont defaultFont() const;
     
-  private:
+private:
     void print(QPrinter &printer, const QString &htmlText);
     void doPrint( const QString &content, const QString &dialogCaption );
     void doPrintPreview(const QString &htmlText);

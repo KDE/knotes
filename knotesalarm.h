@@ -41,17 +41,17 @@ namespace KCal {
 
 
 class KNotesAlarm
-  : public QObject
+        : public QObject
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     explicit KNotesAlarm(KNotesResourceManager *manager,
-                 QObject *parent = 0);
+                         QObject *parent = 0);
     
-  private slots:
+private slots:
     void checkAlarms();
     
-  private:
+private:
     KNotesResourceManager *m_manager;
     QTimer m_checkTimer;
 };
