@@ -15,7 +15,8 @@ set(libknotesprivate_lib_SRCS
     resource/resourcelocal.cpp
     resource/resourcelocalconfig.cpp
     knoteedit.cpp
-    knoteprinter.cpp
+    print/knoteprinter.cpp
+    print/knoteprintobject.cpp
     knotesimpleconfigdialog.cpp
     knoteconfigdlg.cpp
     knoteutils.cpp
@@ -37,14 +38,8 @@ set_target_properties(knotesprivate
 install(TARGETS knotesprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
 
-set(libknotesnetwork_SRCS network/knotesnetrecv.cpp network/knotesnetsend.cpp)
-
-
-set(libknote_SRCS knote.cpp knotebutton.cpp network/knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp )
-
-
-set(knotes_SRCS main.cpp knoteskeydialog.cpp knotestray.cpp application.cpp knotesapp.cpp ${libknotesnetwork_SRCS}
-                ${libknote_SRCS})
+set(knotes_SRCS main.cpp knoteskeydialog.cpp knotestray.cpp application.cpp knotesapp.cpp print/knoteprintselectednotesdialog.cpp network/knotesnetrecv.cpp network/knotesnetsend.cpp 
+                knote.cpp knotebutton.cpp network/knotehostdlg.cpp knotealarmdlg.cpp knotesalarm.cpp)
 
 
 qt4_add_dbus_adaptor(knotes_SRCS org.kde.KNotes.xml knotesapp.h KNotesApp )

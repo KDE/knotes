@@ -1,0 +1,45 @@
+/*
+  Copyright (c) 2013 Montel Laurent <montel@kde.org>
+
+  This program is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License, version 2, as
+  published by the Free Software Foundation.
+
+  This program is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  General Public License for more details.
+
+  You should have received a copy of the GNU General Public License along
+  with this program; if not, write to the Free Software Foundation, Inc.,
+  51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
+#ifndef KNOTEPRINTOBJECT_H
+#define KNOTEPRINTOBJECT_H
+
+#include <QObject>
+
+#include "knotes_export.h"
+
+namespace KCal {
+class Journal;
+}
+
+class KNOTES_EXPORT KNotePrintObject : public QObject
+{
+    Q_OBJECT
+    Q_PROPERTY(QString description READ description)
+    Q_PROPERTY(QString name READ name)
+public:
+    explicit KNotePrintObject(KCal::Journal *journal, QObject *parent);
+    ~KNotePrintObject();
+
+    QString description() const;
+    QString name() const;
+
+private:
+    KCal::Journal *mJournal;
+};
+
+#endif // KNOTEPRINTOBJECT_H

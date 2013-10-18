@@ -1,6 +1,6 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="390">
+<kpartgui name="KNotes" version="400">
 
 <Menu name="knotes_context" noMerge="1"><text>KNotes</text>
     <title icon="knotes">KNotes</title>
@@ -8,6 +8,8 @@
     <Action name="new_note_clipboard"/>
     <Separator/>
     <Action name="edit_find"/>
+    <Separator/>
+    <Action name="print_selected_notes"/>
     <Separator/>
     <Action name="show_all_notes"/>
     <Action name="hide_all_notes"/>

@@ -27,7 +27,7 @@
 #include "knoteconfigdlg.h"
 #include "knoteedit.h"
 #include "network/knotehostdlg.h"
-#include "knoteprinter.h"
+#include "print/knoteprinter.h"
 #include "knotesglobalconfig.h"
 #include "network/knotesnetsend.h"
 #include "kdepim-version.h"

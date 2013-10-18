@@ -111,6 +111,7 @@ private slots:
 
     void createNote( KCal::Journal *journal );
     void killNote( KCal::Journal *journal );
+    void slotPrintSelectedNotes();
 
 private:
     void updateNetworkListener();

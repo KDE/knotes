@@ -29,6 +29,7 @@
 #include "network/knotesnetrecv.h"
 #include "knotestray.h"
 #include "knoteskeydialog.h"
+#include "print/knoteprintselectednotesdialog.h"
 
 #include <kaction.h>
 #include <kactioncollection.h>
@@ -107,6 +108,12 @@ KNotesApp::KNotesApp()
     actionCollection()->addAction( QLatin1String("hide_all_notes"), action );
     action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_H ));
     connect( action, SIGNAL(triggered()), SLOT(hideAllNotes()) );
+
+    action = new KAction( KIcon( QLatin1String("document-print") ),
+                          i18nc( "@action:inmenu", "Print Selected Notes..." ), this );
+    actionCollection()->addAction( QLatin1String("print_selected_notes"), action );
+    connect( action, SIGNAL(triggered()), SLOT(slotPrintSelectedNotes()) );
+
 
     new KHelpMenu( this, KGlobal::mainComponent().aboutData(), false,
                    actionCollection() );
@@ -649,6 +656,7 @@ void KNotesApp::updateNoteActions()
     if ( m_noteActions.isEmpty() ) {
         actionCollection()->action( QLatin1String("hide_all_notes") )->setEnabled( false );
         actionCollection()->action( QLatin1String("show_all_notes") )->setEnabled( false );
+        actionCollection()->action( QLatin1String("print_selected_notes") )->setEnabled( false );
         m_findAction->setEnabled( false );
         KAction *action = new KAction( i18n( "No Notes" ), this );
         m_noteActions.append( action );
@@ -658,6 +666,7 @@ void KNotesApp::updateNoteActions()
         qSort( m_noteActions.begin(), m_noteActions.end(), qActionLessThan );
         actionCollection()->action( QLatin1String("hide_all_notes") )->setEnabled( true );
         actionCollection()->action( QLatin1String("show_all_notes") )->setEnabled( true );
+        actionCollection()->action( QLatin1String("print_selected_notes") )->setEnabled( true );
         m_findAction->setEnabled( true );
     }
     plugActionList( QLatin1String("notes"), m_noteActions );
@@ -679,6 +688,15 @@ void KNotesApp::updateNetworkListener()
         m_publisher=new DNSSD::PublicService(KNotesGlobalConfig::senderID(), QLatin1String("_knotes._tcp"), KNotesGlobalConfig::port());
         m_publisher->publishAsync();
     }
+}
+
+void KNotesApp::slotPrintSelectedNotes()
+{
+    QPointer<KNotePrintSelectedNotesDialog> dlg = new KNotePrintSelectedNotesDialog(this);
+    if (dlg->exec()) {
+        //TODO
+    }
+    delete dlg;
 }
 
 #include "knotesapp.moc"
