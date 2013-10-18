@@ -26,15 +26,15 @@ class KCmdLineArgs;
 class KNotesApp;
 
 class Application
-    : public KontactInterface::PimUniqueApplication
+        : public KontactInterface::PimUniqueApplication
 {
-  public:
+public:
     Application();
     ~Application();
 
     virtual int newInstance();
     KCmdLineArgs *args() const;
-  private:
+private:
     KNotesApp *mMainWindow;
     KCmdLineArgs *mCmdLineArguments;
 };

@@ -25,30 +25,31 @@
 
 
 Application::Application()
-    : KontactInterface::PimUniqueApplication(), mMainWindow( 0 )
+    : KontactInterface::PimUniqueApplication(),
+      mMainWindow( 0 )
 {
-  mCmdLineArguments = KCmdLineArgs::parsedArgs();
+    mCmdLineArguments = KCmdLineArgs::parsedArgs();
 }
 
 Application::~Application()
 {
-  delete mMainWindow;
+    delete mMainWindow;
 }
 
 int Application::newInstance()
 {
-  if ( !mMainWindow ) {
-    mMainWindow = new KNotesApp();
-  } else {
-    if ( !args()->isSet( "skip-note" ) ) {
-      mMainWindow->newNote();
+    if ( !mMainWindow ) {
+        mMainWindow = new KNotesApp();
+    } else {
+        if ( !args()->isSet( "skip-note" ) ) {
+            mMainWindow->newNote();
+        }
     }
-  }
 
-  return KUniqueApplication::newInstance();
+    return KUniqueApplication::newInstance();
 }
 
 KCmdLineArgs *Application::args() const
 {
-  return mCmdLineArguments;
+    return mCmdLineArguments;
 }
