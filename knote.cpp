@@ -37,7 +37,6 @@
 #include <kapplication.h>
 #include <kcal/journal.h>
 #include <kcombobox.h>
-#include <kdebug.h>
 #include <kfiledialog.h>
 #include <kfind.h>
 #include <kglobalsettings.h>
@@ -75,6 +74,7 @@
 #include <QVBoxLayout>
 #include <QDesktopWidget>
 #include <QPointer>
+#include <QFocusEvent>
 
 #ifdef Q_WS_X11
 #include <fixx11h.h>

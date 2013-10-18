@@ -22,8 +22,6 @@
 #define KNOTEEDIT_H
 
 #include "knotes_export.h"
-#include <QDragEnterEvent>
-#include <QDropEvent>
 #include <QTextCharFormat>
 #include <QWidget>
 
@@ -40,8 +38,8 @@ class KNote;
 
 class KNOTES_EXPORT KNoteEdit : public PimCommon::CustomTextEdit
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     explicit KNoteEdit(const QString &configFile, KActionCollection *actions, QWidget *parent = 0 );
     ~KNoteEdit();
 
@@ -55,7 +53,7 @@ class KNOTES_EXPORT KNoteEdit : public PimCommon::CustomTextEdit
     void setTabStop( int tabs );
     void setAutoIndentMode( bool newmode );
 
-  public slots:
+public slots:
     void setRichText( bool );
 
     void textBold( bool );
@@ -80,7 +78,7 @@ class KNOTES_EXPORT KNoteEdit : public PimCommon::CustomTextEdit
     void slotTextBackgroundColor();
     void slotInsertDate();
 
-  protected:
+protected:
     virtual void keyPressEvent( QKeyEvent * );
     virtual void focusInEvent( QFocusEvent * );
     virtual void focusOutEvent( QFocusEvent * );
@@ -88,20 +86,20 @@ class KNOTES_EXPORT KNoteEdit : public PimCommon::CustomTextEdit
 protected slots:
     void mousePopupMenuImplementation(const QPoint& pos);
 
-  private slots:
+private slots:
     void slotCurrentCharFormatChanged( const QTextCharFormat & );
     void slotCursorPositionChanged();
     void slotUpperCase();
     void slotLowerCase();
 
-  private:
+private:
     void autoIndent();
 
     void setTextFormat( const QTextCharFormat & );
 
     void enableRichTextActions(bool enabled);
 
-  private:
+private:
 
     KToggleAction *m_textBold;
     KToggleAction *m_textItalic;
