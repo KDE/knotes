@@ -24,6 +24,8 @@
 #include "knotesadaptor.h"
 #include "knotesalarm.h"
 #include "knotesapp.h"
+#include "print/knoteprinter.h"
+#include "print/knoteprintobject.h"
 #include "knotesglobalconfig.h"
 #include "migrations/knoteslegacy.h"
 #include "network/knotesnetrecv.h"
@@ -697,9 +699,14 @@ void KNotesApp::slotPrintSelectedNotes()
     dlg->setNotes(m_notes);
     if (dlg->exec()) {
         const QList<KNotePrintObject *> lst = dlg->selectedNotes();
-        const QString selectedTheme = dlg->selectedTheme();
-        qDebug()<<" dlg2->select()"<<dlg->selectedTheme();
-        //TODO
+        if (!lst.isEmpty()) {
+            const QString selectedTheme = dlg->selectedTheme();
+            qDebug()<<" dlg2->select()"<<dlg->selectedTheme();
+
+            KNotePrinter printer;
+            printer.printNotes( lst, selectedTheme );
+            qDeleteAll(lst);
+        }
     }
     delete dlg;
 }

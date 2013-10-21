@@ -1,4 +1,5 @@
 #include "knoteprinter.h"
+#include "print/knoteprintobject.h"
 
 #include <QPainter>
 #include <QTextDocument>
@@ -20,23 +21,14 @@
 
 
 KNotePrinter::KNotePrinter()
+    : mEngine(0)
 {
-    mEngine = new Grantlee::Engine;
-    mTemplateLoader = Grantlee::FileSystemTemplateLoader::Ptr( new Grantlee::FileSystemTemplateLoader );
-
-    // TODO mTemplateLoader->setTemplateDirs( QStringList() << themePath );
-    mEngine->addTemplateLoader( mTemplateLoader );
-
-    mSelfcontainedTemplate = mEngine->loadByName( QLatin1String("print.html") );
-    QString mErrorMessage;
-    if ( mSelfcontainedTemplate->error() ) {
-         mErrorMessage += mSelfcontainedTemplate->errorString() + QLatin1String("<br>");
-    }
 }
 
 KNotePrinter::~KNotePrinter()
 {
-    delete mEngine;
+    //fIXME
+    //delete mEngine;
 }
 
 void KNotePrinter::setDefaultFont( const QFont &font )
@@ -119,6 +111,23 @@ void KNotePrinter::printNote( const QString &name,
         doPrintPreview(htmlText);
     else
         doPrint( htmlText, dialogCaption );
+}
+
+void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString &themePath)
+{
+    mEngine = new Grantlee::Engine;
+    mTemplateLoader = Grantlee::FileSystemTemplateLoader::Ptr( new Grantlee::FileSystemTemplateLoader );
+
+    mTemplateLoader->setTemplateDirs( QStringList() << themePath );
+    mEngine->addTemplateLoader( mTemplateLoader );
+
+    mSelfcontainedTemplate = mEngine->loadByName( QLatin1String("theme.html") );
+    QString mErrorMessage;
+    if ( mSelfcontainedTemplate->error() ) {
+         mErrorMessage += mSelfcontainedTemplate->errorString() + QLatin1String("<br>");
+    }
+    qDebug()<<" mErrorMessage"<<mErrorMessage;
+
 }
 
 void KNotePrinter::printNotes( const QList<KCal::Journal *>& journals, bool preview )

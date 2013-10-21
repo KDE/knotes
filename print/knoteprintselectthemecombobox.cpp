@@ -59,8 +59,7 @@ void KNotePrintSelectThemeComboBox::loadThemes()
             KConfig config( themeInfoFile );
             KConfigGroup group( &config, QLatin1String( "Desktop Entry" ) );
             QString name = group.readEntry( "Name", QString() );
-            const QString filename = group.readEntry( "FileName", QString() );
-            if (name.isEmpty() || filename.isEmpty()) {
+            if (name.isEmpty()) {
                 continue;
             }
             if (alreadyLoadedThemeName.contains(name)) {
@@ -71,7 +70,7 @@ void KNotePrintSelectThemeComboBox::loadThemes()
                     ++i;
                 }
             }
-            const QString printThemePath(dirIt.filePath() + QDir::separator() + filename);
+            const QString printThemePath(dirIt.filePath() + QDir::separator());
             if (!printThemePath.isEmpty()) {
                 alreadyLoadedThemeName << name;
                 addItem(name, printThemePath);

@@ -18,6 +18,7 @@ class Engine;
 }
 
 class QPrinter;
+class KNotePrintObject;
 class KNOTES_EXPORT KNotePrinter
 {
 public:
@@ -28,7 +29,7 @@ public:
                    const QString &htmlText , bool preview);
     
     void printNotes(const QList<KCal::Journal *> &journals , bool preview);
-    
+    void printNotes(const QList<KNotePrintObject *> lst, const QString &themePath);
     void setDefaultFont( const QFont &font );
     QFont defaultFont() const;
     
