@@ -76,6 +76,7 @@ void KNotePrinter::print(QPrinter &printer, const QString &htmlText)
                     printer.width() - marginX * 2,
                     printer.height() - marginY * 2 );
 
+    qDebug()<<" htmlText :"<<htmlText;
     QTextDocument textDoc;
     textDoc.setHtml( htmlText );
     textDoc.documentLayout()->setPaintDevice( &printer );
@@ -131,15 +132,6 @@ void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString
             doPrint( htmlText, dialogCaption );
     } else {
         KMessageBox::error(0, i18n("Printing theme was not found."), i18n("Printing error"));
-    }
-}
-
-inline QString KNotePrinter::ensureHtmlText( const QString &maybeRichText ) const
-{
-    if ( Qt::mightBeRichText( maybeRichText ) ) {
-        return maybeRichText; //... now probablyRichText
-    } else {
-        return Qt::convertFromPlainText( maybeRichText );
     }
 }
 

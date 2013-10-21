@@ -27,7 +27,6 @@ private:
     void print(QPrinter &printer, const QString &htmlText);
     void doPrint( const QString &content, const QString &dialogCaption );
     void doPrintPreview(const QString &htmlText);
-    inline QString ensureHtmlText( const QString &maybeRichText ) const;
     
     QFont m_defaultFont;
     Grantlee::Engine *mEngine;

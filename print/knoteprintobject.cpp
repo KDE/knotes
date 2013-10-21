@@ -17,6 +17,8 @@
 
 #include "knoteprintobject.h"
 
+#include <QTextDocument>
+
 #include <kcal/journal.h>
 
 KNotePrintObject::KNotePrintObject(KCal::Journal *journal, QObject *parent)
@@ -38,6 +40,15 @@ QString KNotePrintObject::description() const
 QString KNotePrintObject::name() const
 {
     return mJournal->summary();
+}
+
+inline QString KNotePrintObject::ensureHtmlText( const QString &maybeRichText ) const
+{
+    if ( Qt::mightBeRichText( maybeRichText ) ) {
+        return maybeRichText; //... now probablyRichText
+    } else {
+        return Qt::convertFromPlainText( maybeRichText );
+    }
 }
 
 #include "knoteprintobject.moc"
