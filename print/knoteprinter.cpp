@@ -14,8 +14,29 @@
 #include <kdebug.h>
 #include <KPrintPreview>
 
+#include <grantlee/context.h>
+#include <grantlee/engine.h>
+#include <grantlee/templateloader.h>
+
+
 KNotePrinter::KNotePrinter()
 {
+    mEngine = new Grantlee::Engine;
+    mTemplateLoader = Grantlee::FileSystemTemplateLoader::Ptr( new Grantlee::FileSystemTemplateLoader );
+
+    // TODO mTemplateLoader->setTemplateDirs( QStringList() << themePath );
+    mEngine->addTemplateLoader( mTemplateLoader );
+
+    mSelfcontainedTemplate = mEngine->loadByName( QLatin1String("print.html") );
+    QString mErrorMessage;
+    if ( mSelfcontainedTemplate->error() ) {
+         mErrorMessage += mSelfcontainedTemplate->errorString() + QLatin1String("<br>");
+    }
+}
+
+KNotePrinter::~KNotePrinter()
+{
+    delete mEngine;
 }
 
 void KNotePrinter::setDefaultFont( const QFont &font )
