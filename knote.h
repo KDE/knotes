@@ -63,6 +63,8 @@ public:
     QString name() const;
     QString text() const;
 
+    KCal::Journal *journal() const;
+
     void setName( const QString &name );
     void setText( const QString &text );
 

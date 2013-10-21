@@ -37,13 +37,14 @@ public:
     QList<KNotePrintObject *> selectedNotes() const;
 
 private:
-    enum IconViewData {
+    enum listViewData {
         JournalId = Qt::UserRole + 1
     };
 
     void writeConfig();
     void readConfig();
     QListWidget *mListNotes;
+    QMap<QString, KNote *> mNotes;
 };
 
 #endif // KNOTEPRINTSELECTEDNOTESDIALOG_H

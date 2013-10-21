@@ -19,11 +19,27 @@
 
 #include <KLocale>
 
+#include <QComboBox>
+#include <QHBoxLayout>
+#include <QLabel>
+
 KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
     : KDialog(parent)
 {
     setCaption( i18n( "Select theme" ) );
     setButtons( Ok | Cancel );
+
+    QWidget *w = new QWidget;
+    QHBoxLayout *lay = new QHBoxLayout;
+    w->setLayout(lay);
+
+    QLabel *lab = new QLabel(i18n("Themes:"));
+    lay->addWidget(lab);
+
+    mThemes = new QComboBox;
+    lay->addWidget(mThemes);
+
+    setMainWidget(w);
 }
 
 KNotePrintSelectThemeDialog::~KNotePrintSelectThemeDialog()
@@ -34,6 +50,12 @@ KNotePrintSelectThemeDialog::~KNotePrintSelectThemeDialog()
 void KNotePrintSelectThemeDialog::loadThemes()
 {
     //TODO
+}
+
+QString KNotePrintSelectThemeDialog::selectedTheme() const
+{
+    //TODO
+    return QString();
 }
 
 #include "knoteprintselectthemedialog.moc"

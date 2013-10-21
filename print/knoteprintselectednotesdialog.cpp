@@ -42,6 +42,7 @@ KNotePrintSelectedNotesDialog::~KNotePrintSelectedNotesDialog()
 
 void KNotePrintSelectedNotesDialog::setNotes(const QMap<QString, KNote *> &notes)
 {
+    mNotes = notes;
     QMapIterator<QString, KNote *> i(notes);
     while (i.hasNext()) {
         i.next();
@@ -56,8 +57,11 @@ QList<KNotePrintObject *> KNotePrintSelectedNotesDialog::selectedNotes() const
     QList<KNotePrintObject *> lstPrintObj;
     QList<QListWidgetItem *> lst = mListNotes->selectedItems ();
     Q_FOREACH(QListWidgetItem *item, lst) {
-        //KNotePrintObject *obj = new KNotePrintObject()
-        //TODO
+        const QString journalId = item->data(JournalId).toString();
+        if (!journalId.isEmpty()) {
+            KNotePrintObject *obj = new KNotePrintObject(mNotes.value(journalId)->journal());
+            lstPrintObj.append(obj);
+        }
     }
     return lstPrintObj;
 }

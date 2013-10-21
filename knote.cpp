@@ -214,6 +214,11 @@ QString KNote::text() const
     return m_editor->text();
 }
 
+KCal::Journal *KNote::journal() const
+{
+    return m_journal;
+}
+
 void KNote::setName( const QString& name )
 {
     m_label->setText( name );

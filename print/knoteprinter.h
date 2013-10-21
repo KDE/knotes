@@ -3,7 +3,6 @@
 
 #include "knotes_export.h"
 #include <QFont>
-#include <QPrinter>
 
 template <class T> class QList;
 
@@ -11,7 +10,7 @@ namespace KCal {
 class Journal;
 }
 
-
+class QPrinter;
 class KNOTES_EXPORT KNotePrinter
 {
 public:
