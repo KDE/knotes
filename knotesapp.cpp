@@ -32,7 +32,6 @@
 #include "knotestray.h"
 #include "knoteskeydialog.h"
 #include "print/knoteprintselectednotesdialog.h"
-#include "print/knoteprintselectthemedialog.h"
 
 #include <kaction.h>
 #include <kactioncollection.h>

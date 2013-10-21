@@ -10,6 +10,7 @@
 
 #include <kcal/journal.h>
 #include <kdeprintdialog.h>
+#include <KMessageBox>
 
 #include <klocale.h>
 #include <kdebug.h>
@@ -141,8 +142,7 @@ void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString
         else
             doPrint( htmlText, dialogCaption );
     } else {
-        //FIXME
-        qDebug()<<" mErrorMessage"<<mErrorMessage;
+        KMessageBox::error(0, i18n("Printing theme was not found."), i18n("Printing error"));
     }
 }
 
