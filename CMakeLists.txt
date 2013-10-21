@@ -19,6 +19,7 @@ set(libknotesprivate_lib_SRCS
     print/knoteprinter.cpp
     print/knoteprintobject.cpp
     print/knoteprintselectthemedialog.cpp
+    print/knoteprintselectthemecombobox.cpp
     knotesimpleconfigdialog.cpp
     knoteconfigdlg.cpp
     knoteutils.cpp

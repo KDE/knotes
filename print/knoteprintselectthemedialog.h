@@ -22,8 +22,7 @@
 #include <KDialog>
 #include "knotes_export.h"
 
-class QComboBox;
-
+class KNotePrintSelectThemeComboBox;
 class KNOTES_EXPORT KNotePrintSelectThemeDialog : public KDialog
 {
     Q_OBJECT
@@ -34,8 +33,7 @@ public:
     QString selectedTheme() const;
 
 private:
-    void loadThemes();
-    QComboBox *mThemes;
+    KNotePrintSelectThemeComboBox *mThemes;
 };
 
 #endif // KNOTEPRINTSELECTTHEMEDIALOG_H

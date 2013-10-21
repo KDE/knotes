@@ -697,12 +697,9 @@ void KNotesApp::slotPrintSelectedNotes()
     dlg->setNotes(m_notes);
     if (dlg->exec()) {
         const QList<KNotePrintObject *> lst = dlg->selectedNotes();
-        QPointer<KNotePrintSelectThemeDialog> dlg2 = new KNotePrintSelectThemeDialog(this);
-        if (dlg2->exec()) {
-            qDebug()<<" dlg2->select()"<<dlg2->selectedTheme();
-            //TODO
-        }
-        delete dlg2;
+        const QString selectedTheme = dlg->selectedTheme();
+        qDebug()<<" dlg2->select()"<<dlg->selectedTheme();
+        //TODO
     }
     delete dlg;
 }

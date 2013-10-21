@@ -15,39 +15,23 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef KNOTEPRINTSELECTEDNOTESDIALOG_H
-#define KNOTEPRINTSELECTEDNOTESDIALOG_H
+#ifndef KNOTEPRINTSELECTTHEMECOMBOBOX_H
+#define KNOTEPRINTSELECTTHEMECOMBOBOX_H
 
-#include <KDialog>
-namespace KCal {
-class Journal;
-}
-class QListWidget;
-class KNote;
-class KNotePrintObject;
-class KNotePrintSelectThemeComboBox;
-class KNotePrintSelectedNotesDialog : public KDialog
+#include <QComboBox>
+#include "knotes_export.h"
+
+class KNOTES_EXPORT KNotePrintSelectThemeComboBox : public QComboBox
 {
     Q_OBJECT
 public:
-    explicit KNotePrintSelectedNotesDialog(QWidget *parent=0);
-    ~KNotePrintSelectedNotesDialog();
+    explicit KNotePrintSelectThemeComboBox(QWidget *parent=0);
+    ~KNotePrintSelectThemeComboBox();
 
-    void setNotes(const QMap<QString, KNote *> &notes);
-
-    QList<KNotePrintObject *> selectedNotes() const;
     QString selectedTheme() const;
 
 private:
-    enum listViewData {
-        JournalId = Qt::UserRole + 1
-    };
-
-    void writeConfig();
-    void readConfig();
-    QListWidget *mListNotes;
-    QMap<QString, KNote *> mNotes;
-    KNotePrintSelectThemeComboBox *mTheme;
+    void loadThemes();
 };
 
-#endif // KNOTEPRINTSELECTEDNOTESDIALOG_H
+#endif // KNOTEPRINTSELECTTHEMECOMBOBOX_H

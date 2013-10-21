@@ -16,6 +16,7 @@
 */
 
 #include "knoteprintselectednotesdialog.h"
+#include "knoteprintselectthemecombobox.h"
 #include "knoteprintobject.h"
 #include "knote.h"
 
@@ -23,15 +24,31 @@
 #include <KConfigGroup>
 
 #include <QListWidget>
+#include <QHBoxLayout>
+#include <QLabel>
 
 KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     : KDialog(parent)
 {
     setCaption( i18n( "Select notes" ) );
     setButtons( Ok | Cancel );
+    QWidget *w = new QWidget;
+    QVBoxLayout *vbox = new QVBoxLayout;
+    w->setLayout(vbox);
+
     mListNotes = new QListWidget;
     mListNotes->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    setMainWidget(mListNotes);
+    vbox->addWidget(mListNotes);
+
+    QHBoxLayout *lay = new QHBoxLayout;
+    lay->setMargin(0);
+    vbox->addLayout(lay);
+    QLabel *lab = new QLabel(i18n("Printing theme:"));
+    lay->addWidget(lab);
+    mTheme = new KNotePrintSelectThemeComboBox;
+    lay->addWidget(mTheme);
+
+    setMainWidget(w);
     readConfig();
 }
 
@@ -64,6 +81,11 @@ QList<KNotePrintObject *> KNotePrintSelectedNotesDialog::selectedNotes() const
         }
     }
     return lstPrintObj;
+}
+
+QString KNotePrintSelectedNotesDialog::selectedTheme() const
+{
+    return mTheme->selectedTheme();
 }
 
 void KNotePrintSelectedNotesDialog::readConfig()

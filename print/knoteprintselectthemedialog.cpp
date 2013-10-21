@@ -16,17 +16,13 @@
 */
 
 #include "knoteprintselectthemedialog.h"
+#include "knoteprintselectthemecombobox.h"
 
 #include <KLocale>
-#include <KStandardDirs>
 #include <KGlobal>
 
-#include <QComboBox>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QDir>
-#include <QDebug>
-#include <QDirIterator>
 
 KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
     : KDialog(parent)
@@ -41,9 +37,8 @@ KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
     QLabel *lab = new QLabel(i18n("Themes:"));
     lay->addWidget(lab);
 
-    mThemes = new QComboBox;
+    mThemes = new KNotePrintSelectThemeComboBox;
     lay->addWidget(mThemes);
-    loadThemes();
     setMainWidget(w);
 }
 
@@ -52,54 +47,9 @@ KNotePrintSelectThemeDialog::~KNotePrintSelectThemeDialog()
 
 }
 
-void KNotePrintSelectThemeDialog::loadThemes()
-{
-    const QString relativePath = QLatin1String("knotes/print/themes/");
-    QStringList themesDirectories = KGlobal::dirs()->findDirs("data", relativePath);
-    if (themesDirectories.count() < 2) {
-        //Make sure to add local directory
-        const QString localDirectory = KStandardDirs::locateLocal("data", relativePath);
-        if (!themesDirectories.contains(localDirectory)) {
-            themesDirectories.append(localDirectory);
-        }
-    }
-
-    Q_FOREACH (const QString &directory, themesDirectories) {
-        QDirIterator dirIt( directory, QStringList(), QDir::AllDirs | QDir::NoDotAndDotDot );
-        QStringList alreadyLoadedThemeName;
-        while ( dirIt.hasNext() ) {
-            dirIt.next();
-            const QString dirName = dirIt.fileName();
-            qDebug()<<" dirName "<<dirName;
-
-            const QString themeInfoFile = dirIt.filePath() + QDir::separator() + QLatin1String("theme.desktop");
-            KConfig config( themeInfoFile );
-            KConfigGroup group( &config, QLatin1String( "Desktop Entry" ) );
-            QString name = group.readEntry( "Name", QString() );
-            const QString filename = group.readEntry( "FileName", QString() );
-            if (name.isEmpty() || filename.isEmpty()) {
-                continue;
-            }
-            if (alreadyLoadedThemeName.contains(name)) {
-                int i = 2;
-                const QString originalName(name);
-                while (alreadyLoadedThemeName.contains(name)) {
-                    name = originalName + QString::fromLatin1(" (%1)").arg(i);
-                    ++i;
-                }
-            }
-            const QString printThemePath(dirIt.filePath() + QDir::separator() + filename);
-            if (!printThemePath.isEmpty()) {
-                alreadyLoadedThemeName << name;
-                mThemes->addItem(name, printThemePath);
-            }
-        }
-    }
-}
-
 QString KNotePrintSelectThemeDialog::selectedTheme() const
 {
-    return mThemes->itemData(mThemes->currentIndex()).toString();
+    return mThemes->selectedTheme();
 }
 
 #include "knoteprintselectthemedialog.moc"
