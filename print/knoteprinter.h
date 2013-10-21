@@ -19,13 +19,10 @@ public:
     KNotePrinter();
     ~KNotePrinter();
 
-    void printNote(const QString &name,
-                   const QString &htmlText , bool preview);
-    
-    void printNotes(const QList<KNotePrintObject *> lst, const QString &themePath, bool preview);
     void setDefaultFont( const QFont &font );
     QFont defaultFont() const;
-    
+    void printNotes(const QList<KNotePrintObject *> lst, const QString &themePath, bool preview);
+
 private:
     void print(QPrinter &printer, const QString &htmlText);
     void doPrint( const QString &content, const QString &dialogCaption );

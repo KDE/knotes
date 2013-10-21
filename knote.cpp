@@ -21,6 +21,7 @@
 #include "knote.h"
 #include "knotealarmdlg.h"
 #include "knotesimpleconfigdialog.h"
+#include "print/knoteprintselectthemedialog.h"
 #include "knotebutton.h"
 #include "knoteconfig.h"
 #include "knoteutils.h"
@@ -28,6 +29,7 @@
 #include "knoteedit.h"
 #include "network/knotehostdlg.h"
 #include "print/knoteprinter.h"
+#include "print/knoteprintobject.h"
 #include "knotesglobalconfig.h"
 #include "network/knotesnetsend.h"
 #include "kdepim-version.h"
@@ -476,6 +478,7 @@ void KNote::slotPrintPreview()
 
 void KNote::print(bool preview)
 {
+
     QString content;
     if ( !Qt::mightBeRichText( m_editor->text() ) ) {
         content = Qt::convertFromPlainText( m_editor->text() );
@@ -483,8 +486,22 @@ void KNote::print(bool preview)
         content = m_editor->text();
     }
     KNotePrinter printer;
+    QList<KNotePrintObject*> lst;
+    lst.append(new KNotePrintObject(m_journal));
     printer.setDefaultFont( m_config->font() );
-    printer.printNote( name(), content, preview );
+
+    KNotesGlobalConfig *globalConfig = KNotesGlobalConfig::self();
+    QString printingTheme = globalConfig->theme();
+    if (printingTheme.isEmpty()) {
+        QPointer<KNotePrintSelectThemeDialog> dlg = new KNotePrintSelectThemeDialog(this);
+        if (dlg->exec()) {
+            printingTheme = dlg->selectedTheme();
+        }
+        delete dlg;
+    }
+    if (!printingTheme.isEmpty()) {
+        printer.printNotes( lst, printingTheme, preview );
+    }
 }
 
 void KNote::slotSaveAs()

@@ -22,14 +22,14 @@
 
 
 KNotePrinter::KNotePrinter()
-    : mEngine(0)
+    : mEngine(new Grantlee::Engine)
 {
+    mTemplateLoader = Grantlee::FileSystemTemplateLoader::Ptr( new Grantlee::FileSystemTemplateLoader );
 }
 
 KNotePrinter::~KNotePrinter()
 {
-    if (mEngine)
-        mEngine->deleteLater();
+    mEngine->deleteLater();
 }
 
 void KNotePrinter::setDefaultFont( const QFont &font )
@@ -104,21 +104,8 @@ void KNotePrinter::print(QPrinter &printer, const QString &htmlText)
     }
 }
 
-void KNotePrinter::printNote( const QString &name,
-                              const QString &htmlText, bool preview )
-{
-    const QString dialogCaption = i18n( "Print %1", name );
-    if (preview)
-        doPrintPreview(htmlText);
-    else
-        doPrint( htmlText, dialogCaption );
-}
-
 void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString &themePath, bool preview)
 {
-    mEngine = new Grantlee::Engine;
-    mTemplateLoader = Grantlee::FileSystemTemplateLoader::Ptr( new Grantlee::FileSystemTemplateLoader );
-
     mTemplateLoader->setTemplateDirs( QStringList() << themePath );
     mEngine->addTemplateLoader( mTemplateLoader );
 
