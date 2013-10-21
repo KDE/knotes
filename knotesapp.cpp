@@ -30,6 +30,7 @@
 #include "knotestray.h"
 #include "knoteskeydialog.h"
 #include "print/knoteprintselectednotesdialog.h"
+#include "print/knoteprintselectthemedialog.h"
 
 #include <kaction.h>
 #include <kactioncollection.h>
@@ -693,8 +694,15 @@ void KNotesApp::updateNetworkListener()
 void KNotesApp::slotPrintSelectedNotes()
 {
     QPointer<KNotePrintSelectedNotesDialog> dlg = new KNotePrintSelectedNotesDialog(this);
+    dlg->setNotes(m_notes);
     if (dlg->exec()) {
-        //TODO
+        const QList<KNotePrintObject *> lst = dlg->selectedNotes();
+        QPointer<KNotePrintSelectThemeDialog> dlg2 = new KNotePrintSelectThemeDialog(this);
+        if (dlg2->exec()) {
+            qDebug()<<" dlg2->select()"<<dlg2->selectedTheme();
+            //TODO
+        }
+        delete dlg2;
     }
     delete dlg;
 }

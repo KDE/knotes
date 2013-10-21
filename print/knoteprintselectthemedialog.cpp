@@ -43,7 +43,7 @@ KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
 
     mThemes = new QComboBox;
     lay->addWidget(mThemes);
-
+    loadThemes();
     setMainWidget(w);
 }
 
