@@ -147,42 +147,6 @@ void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString
     }
 }
 
-void KNotePrinter::printNotes( const QList<KCal::Journal *>& journals, bool preview )
-{
-    if ( journals.isEmpty() ) {
-        return;
-    }
-
-    QString htmlText;
-
-    QListIterator<KCal::Journal *> it( journals );
-    while ( it.hasNext() ) {
-        KCal::Journal *j = it.next();
-        htmlText += QLatin1String("<h2>") + j->summary() + QLatin1String("</h2>");
-
-        //### ensureHtmlText() is a hack.
-        //Possible solution:
-        //port most parts of KNotes to HTML (aka rich) text - it is easy enough to
-        //pass plaintext as rich text (Qt:convertFromPlainText()) and the way back
-        //should be doable, too.
-        //Gold star solution: cleanly separate the two types - just never
-        //pass a chunk of text without explicit type. Probably not worth it.
-
-        htmlText += ensureHtmlText( j->description() );
-
-        if ( it.hasNext() ) {
-            htmlText += QLatin1String("<hr />");
-        }
-    }
-
-    const QString dialogCaption = i18np( "Print Note", "Print %1 notes",
-                                         journals.count() );
-    if (preview)
-        doPrintPreview(htmlText);
-    else
-        doPrint( htmlText, dialogCaption );
-}
-
 inline QString KNotePrinter::ensureHtmlText( const QString &maybeRichText ) const
 {
     if ( Qt::mightBeRichText( maybeRichText ) ) {
