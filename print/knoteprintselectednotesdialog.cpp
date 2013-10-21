@@ -16,6 +16,7 @@
 */
 
 #include "knoteprintselectednotesdialog.h"
+#include "knoteprintobject.h"
 #include "knote.h"
 
 #include <KLocale>
@@ -50,14 +51,15 @@ void KNotePrintSelectedNotesDialog::setNotes(const QMap<QString, KNote *> &notes
     }
 }
 
-QList<KCal::Journal *> KNotePrintSelectedNotesDialog::selectedNotes() const
+QList<KNotePrintObject *> KNotePrintSelectedNotesDialog::selectedNotes() const
 {
-    QList<KCal::Journal *> lstJournal;
+    QList<KNotePrintObject *> lstPrintObj;
     QList<QListWidgetItem *> lst = mListNotes->selectedItems ();
     Q_FOREACH(QListWidgetItem *item, lst) {
+        //KNotePrintObject *obj = new KNotePrintObject()
         //TODO
     }
-    return lstJournal;
+    return lstPrintObj;
 }
 
 void KNotePrintSelectedNotesDialog::readConfig()
