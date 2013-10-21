@@ -27,8 +27,7 @@ KNotePrinter::KNotePrinter()
 
 KNotePrinter::~KNotePrinter()
 {
-    //fIXME
-    //delete mEngine;
+    mEngine->deleteLater();
 }
 
 void KNotePrinter::setDefaultFont( const QFont &font )
@@ -113,7 +112,7 @@ void KNotePrinter::printNote( const QString &name,
         doPrint( htmlText, dialogCaption );
 }
 
-void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString &themePath)
+void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString &themePath, bool preview)
 {
     mEngine = new Grantlee::Engine;
     mTemplateLoader = Grantlee::FileSystemTemplateLoader::Ptr( new Grantlee::FileSystemTemplateLoader );
@@ -126,16 +125,25 @@ void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString
     if ( mSelfcontainedTemplate->error() ) {
          mErrorMessage += mSelfcontainedTemplate->errorString() + QLatin1String("<br>");
     }
-    qDebug()<<" mErrorMessage"<<mErrorMessage;
-    QVariantList notes;
-    Q_FOREACH(KNotePrintObject *n, lst)
-        notes << QVariant::fromValue(static_cast<QObject*>(n));
-    Grantlee::Context c;
-    c.insert(QLatin1String("notes"), notes);
 
-    const QString result = mSelfcontainedTemplate->render(&c);
-    qDebug()<<" result"<<result;
+    if (mErrorMessage.isEmpty()) {
+        QVariantList notes;
+        Q_FOREACH(KNotePrintObject *n, lst)
+            notes << QVariant::fromValue(static_cast<QObject*>(n));
+        Grantlee::Context c;
+        c.insert(QLatin1String("notes"), notes);
 
+        const QString htmlText = mSelfcontainedTemplate->render(&c);
+        const QString dialogCaption = i18np( "Print Note", "Print %1 notes",
+                                             lst.count() );
+        if (preview)
+            doPrintPreview(htmlText);
+        else
+            doPrint( htmlText, dialogCaption );
+    } else {
+        //FIXME
+        qDebug()<<" mErrorMessage"<<mErrorMessage;
+    }
 }
 
 void KNotePrinter::printNotes( const QList<KCal::Journal *>& journals, bool preview )

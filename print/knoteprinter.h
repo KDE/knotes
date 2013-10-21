@@ -29,7 +29,7 @@ public:
                    const QString &htmlText , bool preview);
     
     void printNotes(const QList<KCal::Journal *> &journals , bool preview);
-    void printNotes(const QList<KNotePrintObject *> lst, const QString &themePath);
+    void printNotes(const QList<KNotePrintObject *> lst, const QString &themePath, bool preview);
     void setDefaultFont( const QFont &font );
     QFont defaultFont() const;
     

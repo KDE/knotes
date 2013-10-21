@@ -701,8 +701,6 @@ void KNotesApp::slotPrintSelectedNotes()
         const QList<KNotePrintObject *> lst = dlg->selectedNotes();
         if (!lst.isEmpty()) {
             const QString selectedTheme = dlg->selectedTheme();
-            qDebug()<<" dlg2->select()"<<dlg->selectedTheme();
-
             KNotePrinter printer;
             printer.printNotes( lst, selectedTheme );
             qDeleteAll(lst);
