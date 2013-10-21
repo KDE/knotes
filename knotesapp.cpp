@@ -189,7 +189,7 @@ KNotesApp::KNotesApp()
 
     updateNetworkListener();
 
-    if ( m_notes.size() == 0 && !kapp->isSessionRestored() ) {
+    if ( m_notes.isEmpty() && !kapp->isSessionRestored() ) {
         newNote();
     }
 
