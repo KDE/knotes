@@ -19,7 +19,7 @@
 #define KNOTEPRINTOBJECT_H
 
 #include <QObject>
-
+#include <qmetatype.h>
 #include "knotes_export.h"
 
 namespace KCal {
@@ -42,4 +42,5 @@ private:
     KCal::Journal *mJournal;
 };
 
+Q_DECLARE_METATYPE(QList<KNotePrintObject*>)
 #endif // KNOTEPRINTOBJECT_H

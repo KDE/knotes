@@ -127,6 +127,14 @@ void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString
          mErrorMessage += mSelfcontainedTemplate->errorString() + QLatin1String("<br>");
     }
     qDebug()<<" mErrorMessage"<<mErrorMessage;
+    QVariantList notes;
+    Q_FOREACH(KNotePrintObject *n, lst)
+        notes << QVariant::fromValue(static_cast<QObject*>(n));
+    Grantlee::Context c;
+    c.insert(QLatin1String("notes"), notes);
+
+    const QString result = mSelfcontainedTemplate->render(&c);
+    qDebug()<<" result"<<result;
 
 }
 
