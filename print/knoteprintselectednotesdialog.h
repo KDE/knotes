@@ -19,7 +19,11 @@
 #define KNOTEPRINTSELECTEDNOTESDIALOG_H
 
 #include <KDialog>
+namespace KCal {
+class Journal;
+}
 class QListWidget;
+class KNote;
 class KNotePrintSelectedNotesDialog : public KDialog
 {
     Q_OBJECT
@@ -27,9 +31,15 @@ public:
     explicit KNotePrintSelectedNotesDialog(QWidget *parent=0);
     ~KNotePrintSelectedNotesDialog();
 
-    void setNotes();
+    void setNotes(const QMap<QString, KNote *> &notes);
+
+    QList<KCal::Journal *> selectedNotes() const;
 
 private:
+    enum IconViewData {
+        JournalId = Qt::UserRole + 1
+    };
+
     void writeConfig();
     void readConfig();
     QListWidget *mListNotes;

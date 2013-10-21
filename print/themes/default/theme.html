@@ -1,0 +1,13 @@
+<html>
+
+{% if notes %}
+{% for note in notes %}
+<p>{{ note.name }}</p>
+<p>{{ note.description }}</p>
+<br>
+<br>
+{% endfor %}
+{% endif %}
+
+</html>
+

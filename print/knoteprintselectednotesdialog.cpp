@@ -16,6 +16,7 @@
 */
 
 #include "knoteprintselectednotesdialog.h"
+#include "knote.h"
 
 #include <KLocale>
 #include <KConfigGroup>
@@ -28,6 +29,7 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     setCaption( i18n( "Select notes" ) );
     setButtons( Ok | Cancel );
     mListNotes = new QListWidget;
+    mListNotes->setSelectionMode(QAbstractItemView::ExtendedSelection);
     setMainWidget(mListNotes);
     readConfig();
 }
@@ -37,9 +39,25 @@ KNotePrintSelectedNotesDialog::~KNotePrintSelectedNotesDialog()
     writeConfig();
 }
 
-void KNotePrintSelectedNotesDialog::setNotes()
+void KNotePrintSelectedNotesDialog::setNotes(const QMap<QString, KNote *> &notes)
 {
-    //TODO
+    QMapIterator<QString, KNote *> i(notes);
+    while (i.hasNext()) {
+        i.next();
+        QListWidgetItem *item =new QListWidgetItem(mListNotes);
+        item->setText(i.value()->name());
+        item->setData(JournalId, i.key());
+    }
+}
+
+QList<KCal::Journal *> KNotePrintSelectedNotesDialog::selectedNotes() const
+{
+    QList<KCal::Journal *> lstJournal;
+    QList<QListWidgetItem *> lst = mListNotes->selectedItems ();
+    Q_FOREACH(QListWidgetItem *item, lst) {
+        //TODO
+    }
+    return lstJournal;
 }
 
 void KNotePrintSelectedNotesDialog::readConfig()
