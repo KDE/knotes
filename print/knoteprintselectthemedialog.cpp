@@ -25,10 +25,11 @@
 #include <QLabel>
 
 KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
-    : KDialog(parent)
+    : KDialog(parent),
+      mPreview(false)
 {
     setCaption( i18n( "Select theme" ) );
-    setButtons( Ok | Cancel );
+    setButtons( User1 | Ok | Cancel );
 
     QWidget *w = new QWidget;
     QHBoxLayout *lay = new QHBoxLayout;
@@ -40,11 +41,25 @@ KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
     mThemes = new KNotePrintSelectThemeComboBox;
     lay->addWidget(mThemes);
     setMainWidget(w);
+    setButtonText(User1, i18n("Preview"));
+    setButtonText(Ok, i18n("Print"));
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotPreview()));
 }
 
 KNotePrintSelectThemeDialog::~KNotePrintSelectThemeDialog()
 {
 
+}
+
+bool KNotePrintSelectThemeDialog::preview() const
+{
+    return mPreview;
+}
+
+void KNotePrintSelectThemeDialog::slotPreview()
+{
+    mPreview = true;
+    accept();
 }
 
 QString KNotePrintSelectThemeDialog::selectedTheme() const

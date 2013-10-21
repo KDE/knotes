@@ -32,8 +32,14 @@ public:
 
     QString selectedTheme() const;
 
+    bool preview() const;
+
+private Q_SLOTS:
+    void slotPreview();
+
 private:
     KNotePrintSelectThemeComboBox *mThemes;
+    bool mPreview;
 };
 
 #endif // KNOTEPRINTSELECTTHEMEDIALOG_H

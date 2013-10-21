@@ -702,7 +702,7 @@ void KNotesApp::slotPrintSelectedNotes()
         if (!lst.isEmpty()) {
             const QString selectedTheme = dlg->selectedTheme();
             KNotePrinter printer;
-            printer.printNotes( lst, selectedTheme );
+            printer.printNotes( lst, selectedTheme, dlg->preview() );
             qDeleteAll(lst);
         }
     }

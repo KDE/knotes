@@ -38,6 +38,11 @@ public:
     QList<KNotePrintObject *> selectedNotes() const;
     QString selectedTheme() const;
 
+    bool preview() const;
+
+private Q_SLOTS:
+    void slotPreview();
+
 private:
     enum listViewData {
         JournalId = Qt::UserRole + 1
@@ -48,6 +53,7 @@ private:
     QListWidget *mListNotes;
     QMap<QString, KNote *> mNotes;
     KNotePrintSelectThemeComboBox *mTheme;
+    bool mPreview;
 };
 
 #endif // KNOTEPRINTSELECTEDNOTESDIALOG_H

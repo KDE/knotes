@@ -28,10 +28,11 @@
 #include <QLabel>
 
 KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
-    : KDialog(parent)
+    : KDialog(parent),
+      mPreview(false)
 {
     setCaption( i18n( "Select notes" ) );
-    setButtons( Ok | Cancel );
+    setButtons( User1 | Ok | Cancel );
     QWidget *w = new QWidget;
     QVBoxLayout *vbox = new QVBoxLayout;
     w->setLayout(vbox);
@@ -48,6 +49,9 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     mTheme = new KNotePrintSelectThemeComboBox;
     lay->addWidget(mTheme);
 
+    setButtonText(User1, i18n("Preview"));
+    setButtonText(Ok, i18n("Print"));
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotPreview()));
     setMainWidget(w);
     readConfig();
 }
@@ -88,6 +92,11 @@ QString KNotePrintSelectedNotesDialog::selectedTheme() const
     return mTheme->selectedTheme();
 }
 
+bool KNotePrintSelectedNotesDialog::preview() const
+{
+    return mPreview;
+}
+
 void KNotePrintSelectedNotesDialog::readConfig()
 {
     KConfigGroup grp( KGlobal::config(), "KNotePrintSelectedNotesDialog" );
@@ -102,6 +111,12 @@ void KNotePrintSelectedNotesDialog::writeConfig()
     KConfigGroup grp( KGlobal::config(), "KNotePrintSelectedNotesDialog" );
     grp.writeEntry( "Size", size() );
     grp.sync();
+}
+
+void KNotePrintSelectedNotesDialog::slotPreview()
+{
+    mPreview = true;
+    accept();
 }
 
 #include "knoteprintselectednotesdialog.moc"
