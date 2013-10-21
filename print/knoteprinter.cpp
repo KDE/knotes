@@ -28,7 +28,8 @@ KNotePrinter::KNotePrinter()
 
 KNotePrinter::~KNotePrinter()
 {
-    mEngine->deleteLater();
+    if (mEngine)
+        mEngine->deleteLater();
 }
 
 void KNotePrinter::setDefaultFont( const QFont &font )
