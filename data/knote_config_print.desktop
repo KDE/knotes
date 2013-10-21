@@ -1,0 +1,16 @@
+[Desktop Entry]
+Icon=preferences-other
+Type=Service
+X-KDE-ServiceTypes=KCModule
+
+X-KDE-ModuleType=Library
+X-KDE-Library=kcm_knote
+X-KDE-FactoryName=knote_config_print
+X-KDE-HasReadOnlyMode=false
+X-KDE-ParentApp=knotes
+X-KDE-ParentComponents=knotes,kontact_knotesplugin
+X-KDE-CfgDlgHierarchy=KNotes
+X-KDE-Weight=200
+
+Name=Print
+Comment=Setup printing for notes

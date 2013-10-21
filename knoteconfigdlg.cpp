@@ -21,6 +21,7 @@
 
 #include "knoteconfigdlg.h"
 #include "knote.h"
+#include "print/knoteprintselectthemecombobox.h"
 #include "knotesglobalconfig.h"
 
 #include "kdepim-version.h"
@@ -68,6 +69,7 @@ KNoteConfigDlg::KNoteConfigDlg( const QString &title,
   addModule( QLatin1String("knote_config_editor") );
   addModule( QLatin1String("knote_config_action") );
   addModule( QLatin1String("knote_config_network") );
+  addModule( QLatin1String("knote_config_print") );
 
   KNotesGlobalConfig::self()->setVersion( QLatin1String(KDEPIM_VERSION) );
   connect( this, SIGNAL(okClicked()), SLOT(slotOk()) );
@@ -118,6 +120,16 @@ extern "C"
       return new KNoteNetworkConfig( instance, parent );
   }
 }
+
+extern "C"
+{
+  KDE_EXPORT KCModule *create_knote_config_print( QWidget *parent )
+  {
+      KComponentData instance( "kcmnote_config_print" );
+      return new KNotePrintConfig( instance, parent );
+  }
+}
+
 
 KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults )
     :QWidget( 0 )
@@ -388,5 +400,41 @@ void KNoteNetworkConfig::load()
 {
     KCModule::load();
 }
+
+
+KNotePrintConfig::KNotePrintConfig(const KComponentData &inst, QWidget *parent )
+    :KCModule( inst, parent )
+{
+    QVBoxLayout *lay = new QVBoxLayout( this );
+    QWidget * w =  new QWidget( this );
+    lay->addWidget( w );
+    QGridLayout *layout = new QGridLayout( w );
+    layout->setSpacing( KDialog::spacingHint() );
+    layout->setMargin( 0 );
+
+    QLabel *label_PrintAction = new QLabel( i18n( "Theme:" ), this );
+    layout->addWidget( label_PrintAction, 0, 0 );
+
+    KNotePrintSelectThemeComboBox *kcfg_PrintAction = new KNotePrintSelectThemeComboBox(this);
+    kcfg_PrintAction->setObjectName( QLatin1String("kcfg_Theme") );
+    label_PrintAction->setBuddy( kcfg_PrintAction );
+    layout->addWidget( kcfg_PrintAction, 0, 1 );
+
+    addConfig( KNotesGlobalConfig::self(), w );
+    lay->addStretch();
+    load();
+}
+
+
+void KNotePrintConfig::save()
+{
+    KCModule::save();
+}
+
+void KNotePrintConfig::load()
+{
+    KCModule::load();
+}
+
 
 #include "knoteconfigdlg.moc"

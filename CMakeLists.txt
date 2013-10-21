@@ -26,6 +26,8 @@ set(libknotesprivate_lib_SRCS
     migrations/knoteslegacy.cpp
 )
 
+configure_file(settings/knotesglobalconfig.kcfg.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg )
+
 set( libknotesprivate_kcfg_lib_SRCS settings/knoteconfig.kcfgc settings/knotesglobalconfig.kcfgc )
 
 kde4_add_kcfg_files(libknotesprivate_kcfg_lib_SRCS ${libknotesprivate_kcfg_lib_SRCS})
@@ -85,12 +87,13 @@ install(FILES
 	data/knote_config_display.desktop
 	data/knote_config_editor.desktop
 	data/knote_config_network.desktop
+        data/knote_config_print.desktop
 	DESTINATION ${SERVICES_INSTALL_DIR})
 
 ########### install files ###############
 
 install( PROGRAMS data/knotes.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
-install( FILES settings/knoteconfig.kcfg settings/knotesglobalconfig.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
+install( FILES settings/knoteconfig.kcfg ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
 install( FILES data/local.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources/knotes)
 install( FILES data/knotes_manager.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources)
 install( FILES knotesappui.rc knotesui.rc  DESTINATION ${DATA_INSTALL_DIR}/knotes)

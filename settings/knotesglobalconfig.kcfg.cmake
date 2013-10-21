@@ -8,6 +8,13 @@
         <default>0</default>
      </entry>
   </group>
+
+  <group name="Printing">
+     <entry name="Theme" type="String">
+        <default>${DATA_INSTALL_DIR}/knotes/print/themes/default/</default>
+     </entry>
+  </group>
+
   <group name="Actions">
     <entry name="MailAction" type="String">
       <default>kmail --subject %t --body %f</default>
