@@ -39,7 +39,6 @@ public:
     QString name() const;
 
 private:
-    inline QString ensureHtmlText( const QString &maybeRichText ) const;
     KCal::Journal *mJournal;
 };
 
