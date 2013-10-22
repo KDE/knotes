@@ -76,7 +76,6 @@ void KNotePrinter::print(QPrinter &printer, const QString &htmlText)
                     printer.width() - marginX * 2,
                     printer.height() - marginY * 2 );
 
-    qDebug()<<" htmlText :"<<htmlText;
     QTextDocument textDoc;
     textDoc.setHtml( htmlText );
     textDoc.documentLayout()->setPaintDevice( &printer );
@@ -94,10 +93,11 @@ void KNotePrinter::print(QPrinter &printer, const QString &htmlText)
         painter.translate( 0, -typeArea.height() );
 
         painter.setFont( m_defaultFont );
+        const QString pageNumber(QString::number( page ));
         painter.drawText(
-                    clip.right() - painter.fontMetrics().width( QString::number( page ) ),
+                    clip.right() - painter.fontMetrics().width( pageNumber ),
                     clip.bottom() + painter.fontMetrics().ascent() + 5,
-                    QString::number( page ) );
+                    pageNumber );
 
         if ( page < textDoc.pageCount() ) {
             printer.newPage();
