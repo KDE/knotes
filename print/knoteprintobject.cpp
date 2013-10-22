@@ -35,7 +35,11 @@ KNotePrintObject::~KNotePrintObject()
 
 QString KNotePrintObject::description() const
 {
-    return mJournal->description().replace(QLatin1Char('\n'), QLatin1String("<br>"));
+    if ( Qt::mightBeRichText( mJournal->description() ) ) {
+        return mJournal->description();
+    } else {
+        return mJournal->description().replace(QLatin1Char('\n'), QLatin1String("<br>"));
+    }
 }
 
 QString KNotePrintObject::name() const
