@@ -31,12 +31,14 @@ class KNOTES_EXPORT KNotePrintObject : public QObject
     Q_OBJECT
     Q_PROPERTY(QString description READ description)
     Q_PROPERTY(QString name READ name)
+    Q_PROPERTY(QString currentDateTime READ currentDateTime)
 public:
     explicit KNotePrintObject(KCal::Journal *journal, QObject *parent=0);
     ~KNotePrintObject();
 
     QString description() const;
     QString name() const;
+    QString currentDateTime() const;
 
 private:
     KCal::Journal *mJournal;
