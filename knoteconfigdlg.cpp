@@ -415,25 +415,26 @@ KNotePrintConfig::KNotePrintConfig(const KComponentData &inst, QWidget *parent )
     QLabel *label_PrintAction = new QLabel( i18n( "Theme:" ), this );
     layout->addWidget( label_PrintAction, 0, 0 );
 
-    KNotePrintSelectThemeComboBox *kcfg_PrintAction = new KNotePrintSelectThemeComboBox(this);
-    kcfg_PrintAction->setObjectName( QLatin1String("kcfg_Theme") );
-    label_PrintAction->setBuddy( kcfg_PrintAction );
-    layout->addWidget( kcfg_PrintAction, 0, 1 );
-
-    addConfig( KNotesGlobalConfig::self(), w );
+    mSelectTheme = new KNotePrintSelectThemeComboBox(this);
+    connect(mSelectTheme, SIGNAL(activated(int)), SLOT(slotThemeChanged()));
+    label_PrintAction->setBuddy( mSelectTheme );
+    layout->addWidget( mSelectTheme, 0, 1 );
     lay->addStretch();
     load();
 }
 
+void KNotePrintConfig::slotThemeChanged()
+{
+    Q_EMIT changed(true);
+}
 
 void KNotePrintConfig::save()
 {
-    KCModule::save();
+    KNotesGlobalConfig::self()->setTheme(mSelectTheme->selectedTheme());
 }
 
 void KNotePrintConfig::load()
 {
-    KCModule::load();
 }
 
 

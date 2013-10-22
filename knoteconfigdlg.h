@@ -25,9 +25,7 @@
 #include <kcmodule.h>
 #include <kcmultidialog.h>
 #include "knotes_export.h"
-class QString;
-
-class KNoteConfig;
+class KNotePrintSelectThemeComboBox;
 
 class KNOTES_EXPORT KNoteConfigDlg
   : public KCMultiDialog
@@ -111,6 +109,12 @@ public:
     /** Reimplemented from KCModule. */
     virtual void load();
     virtual void save();
+
+private Q_SLOTS:
+    void slotThemeChanged();
+
+private:
+    KNotePrintSelectThemeComboBox *mSelectTheme;
 };
 
 

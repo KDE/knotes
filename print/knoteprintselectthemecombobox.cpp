@@ -16,6 +16,7 @@
 */
 
 #include "knoteprintselectthemecombobox.h"
+#include "knotesglobalconfig.h"
 
 #include <KStandardDirs>
 #include <KConfigGroup>
@@ -37,6 +38,8 @@ KNotePrintSelectThemeComboBox::~KNotePrintSelectThemeComboBox()
 
 void KNotePrintSelectThemeComboBox::loadThemes()
 {
+    const QString defaultTheme = KNotesGlobalConfig::self()->theme();
+
     const QString relativePath = QLatin1String("knotes/print/themes/");
     QStringList themesDirectories = KGlobal::dirs()->findDirs("data", relativePath);
     if (themesDirectories.count() < 2) {
@@ -47,14 +50,13 @@ void KNotePrintSelectThemeComboBox::loadThemes()
         }
     }
 
+    int index = 0;
+    int themeIndex = 0;
     Q_FOREACH (const QString &directory, themesDirectories) {
         QDirIterator dirIt( directory, QStringList(), QDir::AllDirs | QDir::NoDotAndDotDot );
         QStringList alreadyLoadedThemeName;
         while ( dirIt.hasNext() ) {
             dirIt.next();
-            const QString dirName = dirIt.fileName();
-            qDebug()<<" dirName "<<dirName;
-
             const QString themeInfoFile = dirIt.filePath() + QDir::separator() + QLatin1String("theme.desktop");
             KConfig config( themeInfoFile );
             KConfigGroup group( &config, QLatin1String( "Desktop Entry" ) );
@@ -73,10 +75,15 @@ void KNotePrintSelectThemeComboBox::loadThemes()
             const QString printThemePath(dirIt.filePath() + QDir::separator());
             if (!printThemePath.isEmpty()) {
                 alreadyLoadedThemeName << name;
+                if (defaultTheme == printThemePath) {
+                    themeIndex = index;
+                }
                 addItem(name, printThemePath);
+                ++index;
             }
         }
     }
+    setCurrentIndex(themeIndex);
 }
 
 QString KNotePrintSelectThemeComboBox::selectedTheme() const
