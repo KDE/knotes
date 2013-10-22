@@ -49,7 +49,9 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     mTheme = new KNotePrintSelectThemeComboBox;
     lay->addWidget(mTheme);
 
+    setButtonIcon(User1, KIcon(QLatin1String("document-print-preview")));
     setButtonText(User1, i18n("Preview"));
+    setButtonIcon(Ok, KIcon(QLatin1String("document-print")));
     setButtonText(Ok, i18n("Print"));
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotPreview()));
     setMainWidget(w);
