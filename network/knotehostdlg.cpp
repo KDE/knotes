@@ -48,55 +48,56 @@
 #include <QLineEdit>
 #include <QTableView>
 #include <QSortFilterProxyModel>
+#include <QHeaderView>
 
 
 KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
-  : KDialog( parent )
+    : KDialog( parent )
 {
-  setCaption( caption );
-  setButtons( Ok|Cancel );
-  KVBox *page = new KVBox( this );
-  setMainWidget( page );
-  ( void ) new QLabel( i18n("Select recipient:"), page );
+    setCaption( caption );
+    setButtons( Ok|Cancel );
+    KVBox *page = new KVBox( this );
+    setMainWidget( page );
+    ( void ) new QLabel( i18n("Select recipient:"), page );
 
-  m_servicesView = new QTableView( page );
-  m_servicesView->setShowGrid( false );
-  DNSSD::ServiceModel* mdl = new DNSSD::ServiceModel( new DNSSD::ServiceBrowser( QLatin1String("_knotes._tcp"), true ), this );
-  m_servicesView->setModel( mdl );
-  m_servicesView->setSelectionBehavior( QAbstractItemView::SelectRows );
-  m_servicesView->hideColumn( DNSSD::ServiceModel::Port );
-  connect( m_servicesView->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
-    SLOT(serviceSelected(QModelIndex)) );
-  connect( m_servicesView, SIGNAL(activated(QModelIndex)),
-    SLOT(serviceSelected(QModelIndex)) );
-  connect( m_servicesView, SIGNAL(clicked(QModelIndex)),
-    SLOT(serviceSelected(QModelIndex)) );
+    m_servicesView = new QTableView( page );
+    m_servicesView->setShowGrid( false );
+    DNSSD::ServiceModel* mdl = new DNSSD::ServiceModel( new DNSSD::ServiceBrowser( QLatin1String("_knotes._tcp"), true ), this );
+    m_servicesView->setModel( mdl );
+    m_servicesView->setSelectionBehavior( QAbstractItemView::SelectRows );
+    m_servicesView->hideColumn( DNSSD::ServiceModel::Port );
+    connect( m_servicesView->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
+             SLOT(serviceSelected(QModelIndex)) );
+    connect( m_servicesView, SIGNAL(activated(QModelIndex)),
+             SLOT(serviceSelected(QModelIndex)) );
+    connect( m_servicesView, SIGNAL(clicked(QModelIndex)),
+             SLOT(serviceSelected(QModelIndex)) );
 
-  ( void ) new QLabel( i18n("Hostname or IP address:"), page );
+    ( void ) new QLabel( i18n("Hostname or IP address:"), page );
 
-  m_hostCombo = new KHistoryComboBox( true, page );
-  m_hostCombo->setMinimumWidth( fontMetrics().maxWidth() * 15 );
-  m_hostCombo->setDuplicatesEnabled( false );
+    m_hostCombo = new KHistoryComboBox( true, page );
+    m_hostCombo->setMinimumWidth( fontMetrics().maxWidth() * 15 );
+    m_hostCombo->setDuplicatesEnabled( false );
 
-  // Read known hosts from configfile
-  m_hostCombo->setHistoryItems( KNotesGlobalConfig::knownHosts(), true );
-  m_hostCombo->setFocus();
-  connect( m_hostCombo->lineEdit(), SIGNAL(textChanged(QString)),
-           this, SLOT(slotTextChanged(QString)) );
-  slotTextChanged( m_hostCombo->lineEdit()->text() );
-  readConfig();
+    // Read known hosts from configfile
+    m_hostCombo->setHistoryItems( KNotesGlobalConfig::knownHosts(), true );
+    m_hostCombo->setFocus();
+    connect( m_hostCombo->lineEdit(), SIGNAL(textChanged(QString)),
+             this, SLOT(slotTextChanged(QString)) );
+    slotTextChanged( m_hostCombo->lineEdit()->text() );
+    readConfig();
 }
 
 KNoteHostDlg::~KNoteHostDlg()
 {
-  if ( result() == Accepted ) {
-    m_hostCombo->addToHistory( m_hostCombo->currentText().trimmed() );
-  }
+    if ( result() == Accepted ) {
+        m_hostCombo->addToHistory( m_hostCombo->currentText().trimmed() );
+    }
 
-  // Write known hosts to configfile
-  KNotesGlobalConfig::setKnownHosts( m_hostCombo->historyItems() );
-  KNotesGlobalConfig::setNoteHostDialogSize(size());
-  KNotesGlobalConfig::self()->writeConfig();
+    // Write known hosts to configfile
+    KNotesGlobalConfig::setKnownHosts( m_hostCombo->historyItems() );
+    KNotesGlobalConfig::setNoteHostDialogSize(size());
+    KNotesGlobalConfig::self()->writeConfig();
 }
 
 void KNoteHostDlg::readConfig()
@@ -109,23 +110,23 @@ void KNoteHostDlg::readConfig()
 
 void KNoteHostDlg::slotTextChanged( const QString &text )
 {
-  enableButton( Ok, !text.isEmpty() );
+    enableButton( Ok, !text.isEmpty() );
 }
 
 void KNoteHostDlg::serviceSelected( const QModelIndex& idx )
 {
-  DNSSD::RemoteService::Ptr srv=idx.data( DNSSD::ServiceModel::ServicePtrRole ).value<DNSSD::RemoteService::Ptr>();
-  m_hostCombo->lineEdit()->setText( srv->hostName() + QLatin1String(":") + QString::number( srv->port() ) );
+    DNSSD::RemoteService::Ptr srv=idx.data( DNSSD::ServiceModel::ServicePtrRole ).value<DNSSD::RemoteService::Ptr>();
+    m_hostCombo->lineEdit()->setText( srv->hostName() + QLatin1String(":") + QString::number( srv->port() ) );
 }
 
 QString KNoteHostDlg::host() const
 {
-  return m_hostCombo->currentText().section( QLatin1Char(':'), 0, 0 );
+    return m_hostCombo->currentText().section( QLatin1Char(':'), 0, 0 );
 }
 
 quint16 KNoteHostDlg::port() const
 {
-  return m_hostCombo->currentText().section( QLatin1Char(':'), 1 ).toUShort();
+    return m_hostCombo->currentText().section( QLatin1Char(':'), 1 ).toUShort();
 }
 
 #include "knotehostdlg.moc"

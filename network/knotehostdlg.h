@@ -44,10 +44,10 @@ class QModelIndex;
  * A dialog that allows to select network service or request a hostname or IP address.
  */
 class KNoteHostDlg
-  : public KDialog
+        : public KDialog
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     explicit KNoteHostDlg( const QString &caption, QWidget *parent = 0 );
     ~KNoteHostDlg();
     
@@ -57,11 +57,11 @@ class KNoteHostDlg
      */
     quint16 port() const;
     
-  private slots:
+private slots:
     void slotTextChanged( const QString & );
     void serviceSelected( const QModelIndex& );
     
-  private:
+private:
     void readConfig();
     KHistoryComboBox *m_hostCombo;
     QTableView *m_servicesView;
