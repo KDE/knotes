@@ -4,7 +4,7 @@
 {% for note in notes %}
 <h2>{{ note.name }}</h2>
 <br>
-<p>{{ note.description }}</p>
+<p>{{ note.description|safe }}</p>
 <br>
 <br>
 {% endfor %}
