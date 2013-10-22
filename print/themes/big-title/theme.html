@@ -1,0 +1,14 @@
+<html>
+
+{% if notes %}
+{% for note in notes %}
+<h1 align="center" style="background-color:red;">{{ note.name }}</h1>
+<br>
+<p>{{ note.description|safe }}</p>
+<br>
+<br>
+{% endfor %}
+{% endif %}
+
+</html>
+

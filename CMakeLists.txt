@@ -104,3 +104,9 @@ install(FILES
   print/themes/default/theme.html
   DESTINATION ${DATA_INSTALL_DIR}/knotes/print/themes/default/
 )
+install(FILES
+  print/themes/big-title/theme.desktop
+  print/themes/big-title/theme.html
+  DESTINATION ${DATA_INSTALL_DIR}/knotes/print/themes/big-title/
+)
+
