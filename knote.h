@@ -47,12 +47,11 @@ class Journal;
 }
 
 
-class KNote
-        : public QFrame, virtual public KXMLGUIClient
+class KNote : public QFrame, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:
-    KNote( const QDomDocument& buildDoc, KCal::Journal *journal, QWidget *parent = 0 );
+    explicit KNote( const QDomDocument& buildDoc, KCal::Journal *journal, QWidget *parent = 0 );
     ~KNote();
 
     void changeJournal(KCal::Journal *);

@@ -20,8 +20,8 @@ set(libknotesprivate_lib_SRCS
     print/knoteprintobject.cpp
     print/knoteprintselectthemedialog.cpp
     print/knoteprintselectthemecombobox.cpp
-    knotesimpleconfigdialog.cpp
-    knoteconfigdlg.cpp
+    configdialog/knotesimpleconfigdialog.cpp
+    configdialog/knoteconfigdlg.cpp
     knoteutils.cpp
     migrations/knoteslegacy.cpp
     alarms/knotesalarm.cpp
@@ -78,7 +78,7 @@ target_link_libraries(knotes_local  knotesprivate ${KDE4_KIO_LIBS}  ${KDEPIMLIBS
 install(TARGETS knotes_local  DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### next target ###############
-set(kcm_knotes_PART_SRCS knoteconfigdlg.cpp )
+set(kcm_knotes_PART_SRCS configdialog/knoteconfigdlg.cpp )
 
 kde4_add_plugin(kcm_knote ${kcm_knotes_PART_SRCS} ${libknotesconfig_SRCS})
 

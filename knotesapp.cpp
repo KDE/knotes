@@ -18,7 +18,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include "knoteconfigdlg.h"
+#include "configdialog/knoteconfigdlg.h"
 #include "knote.h"
 #include "knotes/resource/resourcemanager.h"
 #include "knotesadaptor.h"
