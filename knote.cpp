@@ -27,11 +27,9 @@
 #include "knoteutils.h"
 #include "knoteconfigdlg.h"
 #include "knoteedit.h"
-#include "network/knotehostdlg.h"
 #include "print/knoteprinter.h"
 #include "print/knoteprintobject.h"
 #include "knotesglobalconfig.h"
-#include "network/knotesnetsend.h"
 #include "kdepim-version.h"
 
 #include <kaction.h>
@@ -418,30 +416,7 @@ void KNote::slotPreferences()
 
 void KNote::slotSend()
 {
-    // pop up dialog to get the IP
-    QPointer<KNoteHostDlg> hostDlg = new KNoteHostDlg( i18n( "Send \"%1\"", name() ), this );
-    if( hostDlg->exec() ) {
-
-        const QString host = hostDlg->host();
-        quint16 port = hostDlg->port();
-
-        if ( !port ) { // not specified, use default
-            port = KNotesGlobalConfig::port();
-        }
-
-        if ( host.isEmpty() ) {
-            KMessageBox::sorry( this, i18n( "The host cannot be empty." ) );
-            return;
-        }
-
-        // Send the note
-
-        KNotesNetworkSender *sender = new KNotesNetworkSender(
-                    KSocketFactory::connectToHost( QLatin1String("knotes"), host, port ) );
-        sender->setSenderId( KNotesGlobalConfig::senderID() );
-        sender->setNote( name(), text() ); // FIXME: plainText ??
-    }
-    delete hostDlg;
+    KNoteUtils::sendToNetwork(this, name(), text());
 }
 
 void KNote::slotMail()
