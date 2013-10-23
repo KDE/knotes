@@ -34,10 +34,9 @@
 #define KNOTESNETSEND_H
 
 #include <QTcpSocket>
+#include "knotes_export.h"
 
-
-class KNotesNetworkSender
-        : public QObject
+class KNOTES_EXPORT KNotesNetworkSender : public QObject
 {
     Q_OBJECT
 public:

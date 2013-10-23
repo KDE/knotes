@@ -34,7 +34,7 @@
 #define KNOTEHOSTDLG_H
 
 #include <kdialog.h>
-
+#include "knotes_export.h"
 class KHistoryComboBox;
 class QTableView;
 class QModelIndex;
@@ -43,7 +43,7 @@ class QModelIndex;
 /**
  * A dialog that allows to select network service or request a hostname or IP address.
  */
-class KNoteHostDlg
+class KNOTES_EXPORT KNoteHostDlg
         : public KDialog
 {
     Q_OBJECT

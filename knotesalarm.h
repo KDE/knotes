@@ -33,10 +33,10 @@
 #define KNOTESALARM_H
 
 #include <QTimer>
-
+#include "knotes_export.h"
 class KNotesResourceManager;
 
-class KNotesAlarm : public QObject
+class KNOTES_EXPORT KNotesAlarm : public QObject
 {
     Q_OBJECT
 public:

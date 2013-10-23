@@ -33,7 +33,7 @@
 #define KNOTEALARMDLG_H
 
 #include <KDialog>
-
+#include "knotes_export.h"
 namespace KCal {
 class Journal;
 }
@@ -41,8 +41,7 @@ class KDateComboBox;
 class KTimeComboBox;
 class QButtonGroup;
 
-class KNoteAlarmDlg
-        : public KDialog
+class KNOTES_EXPORT KNoteAlarmDlg : public KDialog
 {
     Q_OBJECT
 public:

@@ -32,6 +32,7 @@
 #ifndef KNOTESNETRECV_H
 #define KNOTESNETRECV_H
 
+#include "knotes_export.h"
 #include <QObject>
 #include <QAbstractSocket>
 
@@ -39,8 +40,7 @@ class QTcpSocket;
 class QTimer;
 
 
-class KNotesNetworkReceiver
-        : public QObject
+class KNOTES_EXPORT KNotesNetworkReceiver : public QObject
 {
     Q_OBJECT
 public:
