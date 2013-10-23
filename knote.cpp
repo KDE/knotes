@@ -19,7 +19,7 @@
 *******************************************************************/
 
 #include "knote.h"
-#include "knotealarmdlg.h"
+#include "alarms/knotealarmdlg.h"
 #include "knotesimpleconfigdialog.h"
 #include "print/knoteprintselectthemedialog.h"
 #include "knotebutton.h"

@@ -22,7 +22,7 @@
 #include "knote.h"
 #include "knotes/resource/resourcemanager.h"
 #include "knotesadaptor.h"
-#include "knotesalarm.h"
+#include "alarms/knotesalarm.h"
 #include "knotesapp.h"
 #include "print/knoteprinter.h"
 #include "print/knoteprintobject.h"

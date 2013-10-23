@@ -24,11 +24,11 @@ set(libknotesprivate_lib_SRCS
     knoteconfigdlg.cpp
     knoteutils.cpp
     migrations/knoteslegacy.cpp
-    knotesalarm.cpp
+    alarms/knotesalarm.cpp
+    alarms/knotealarmdlg.cpp
     network/knotesnetrecv.cpp
     network/knotesnetsend.cpp
     network/knotehostdlg.cpp
-    knotealarmdlg.cpp
 )
 
 configure_file(settings/knotesglobalconfig.kcfg.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg )
