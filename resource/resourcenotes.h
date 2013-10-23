@@ -52,10 +52,10 @@ class Journal;
  *          binary compatibility in future versions.
  */
 class KNOTES_EXPORT ResourceNotes
-  : public KRES::Resource
+        : public KRES::Resource
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     ResourceNotes();
     explicit ResourceNotes( const KConfigGroup &group );
     virtual ~ResourceNotes();
@@ -79,7 +79,7 @@ class KNOTES_EXPORT ResourceNotes
     void setManager( KNotesResourceManager *manager );
     KNotesResourceManager *manager() const;
     
-  protected:
+protected:
     KNotesResourceManager *mManager;
 };
 

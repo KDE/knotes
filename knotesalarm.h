@@ -36,12 +36,7 @@
 
 class KNotesResourceManager;
 
-namespace KCal {
-}
-
-
-class KNotesAlarm
-        : public QObject
+class KNotesAlarm : public QObject
 {
     Q_OBJECT
 public:

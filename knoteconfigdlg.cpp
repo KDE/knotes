@@ -47,32 +47,32 @@
 
 KNoteConfigDlg::KNoteConfigDlg( const QString &title,
                                 QWidget *parent )
-  : KCMultiDialog( parent )
+    : KCMultiDialog( parent )
 {
-  setFaceType( KPageDialog::List );
-  setButtons( Default | Ok | Cancel );
-  setDefaultButton( Ok );
+    setFaceType( KPageDialog::List );
+    setButtons( Default | Ok | Cancel );
+    setDefaultButton( Ok );
 
-  setCaption( title );
+    setCaption( title );
 #ifdef Q_WS_X11
-  KWindowSystem::setIcons( winId(),
-                           qApp->windowIcon().pixmap(
-                             IconSize( KIconLoader::Desktop ),
-                             IconSize( KIconLoader::Desktop ) ),
-                           qApp->windowIcon().pixmap(
-                             IconSize( KIconLoader::Small ),
-                             IconSize( KIconLoader::Small ) ) );
+    KWindowSystem::setIcons( winId(),
+                             qApp->windowIcon().pixmap(
+                                 IconSize( KIconLoader::Desktop ),
+                                 IconSize( KIconLoader::Desktop ) ),
+                             qApp->windowIcon().pixmap(
+                                 IconSize( KIconLoader::Small ),
+                                 IconSize( KIconLoader::Small ) ) );
 #endif
-  showButtonSeparator( true );
+    showButtonSeparator( true );
 
-  addModule( QLatin1String("knote_config_display") );
-  addModule( QLatin1String("knote_config_editor") );
-  addModule( QLatin1String("knote_config_action") );
-  addModule( QLatin1String("knote_config_network") );
-  addModule( QLatin1String("knote_config_print") );
+    addModule( QLatin1String("knote_config_display") );
+    addModule( QLatin1String("knote_config_editor") );
+    addModule( QLatin1String("knote_config_action") );
+    addModule( QLatin1String("knote_config_network") );
+    addModule( QLatin1String("knote_config_print") );
 
-  KNotesGlobalConfig::self()->setVersion( QLatin1String(KDEPIM_VERSION) );
-  connect( this, SIGNAL(okClicked()), SLOT(slotOk()) );
+    KNotesGlobalConfig::self()->setVersion( QLatin1String(KDEPIM_VERSION) );
+    connect( this, SIGNAL(okClicked()), SLOT(slotOk()) );
 }
 
 KNoteConfigDlg::~KNoteConfigDlg()
@@ -80,54 +80,54 @@ KNoteConfigDlg::~KNoteConfigDlg()
 }
 
 void KNoteConfigDlg::slotOk() {
-  KNotesGlobalConfig::self()->writeConfig();
-  emit configWrote();
+    KNotesGlobalConfig::self()->writeConfig();
+    emit configWrote();
 }
 
 
 extern "C"
 {
-  KDE_EXPORT KCModule *create_knote_config_display( QWidget *parent )
-  {
-      KComponentData instance( "kcmnote_config_display" );
-      return new KNoteDisplayConfig( instance, parent );
-  }
+KDE_EXPORT KCModule *create_knote_config_display( QWidget *parent )
+{
+    KComponentData instance( "kcmnote_config_display" );
+    return new KNoteDisplayConfig( instance, parent );
+}
 }
 
 extern "C"
 {
-  KDE_EXPORT KCModule *create_knote_config_editor( QWidget *parent )
-  {
-      KComponentData instance( "kcmnote_config_editor" );
-      return new KNoteEditorConfig( instance, parent );
-  }
+KDE_EXPORT KCModule *create_knote_config_editor( QWidget *parent )
+{
+    KComponentData instance( "kcmnote_config_editor" );
+    return new KNoteEditorConfig( instance, parent );
+}
 }
 
 extern "C"
 {
-  KDE_EXPORT KCModule *create_knote_config_action( QWidget *parent )
-  {
-      KComponentData instance( "kcmnote_config_action" );
-      return new KNoteActionConfig( instance, parent );
-  }
+KDE_EXPORT KCModule *create_knote_config_action( QWidget *parent )
+{
+    KComponentData instance( "kcmnote_config_action" );
+    return new KNoteActionConfig( instance, parent );
+}
 }
 
 extern "C"
 {
-  KDE_EXPORT KCModule *create_knote_config_network( QWidget *parent )
-  {
-      KComponentData instance( "kcmnote_config_network" );
-      return new KNoteNetworkConfig( instance, parent );
-  }
+KDE_EXPORT KCModule *create_knote_config_network( QWidget *parent )
+{
+    KComponentData instance( "kcmnote_config_network" );
+    return new KNoteNetworkConfig( instance, parent );
+}
 }
 
 extern "C"
 {
-  KDE_EXPORT KCModule *create_knote_config_print( QWidget *parent )
-  {
-      KComponentData instance( "kcmnote_config_print" );
-      return new KNotePrintConfig( instance, parent );
-  }
+KDE_EXPORT KCModule *create_knote_config_print( QWidget *parent )
+{
+    KComponentData instance( "kcmnote_config_print" );
+    return new KNotePrintConfig( instance, parent );
+}
 }
 
 
@@ -158,11 +158,11 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults )
     layout->addWidget( kcfg_BgColor, 1, 1 );
 
     QCheckBox *kcfg_ShowInTaskbar =
-        new QCheckBox( i18n( "&Show note in taskbar" ), this );
+            new QCheckBox( i18n( "&Show note in taskbar" ), this );
     kcfg_ShowInTaskbar->setObjectName( QLatin1String("kcfg_ShowInTaskbar") );
 #ifdef Q_WS_X11
     QCheckBox *kcfg_RememberDesktop =
-        new QCheckBox( i18n( "&Remember desktop" ), this );
+            new QCheckBox( i18n( "&Remember desktop" ), this );
     kcfg_RememberDesktop->setObjectName( QLatin1String("kcfg_RememberDesktop") );
 #endif
     if ( defaults ) {

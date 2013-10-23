@@ -192,6 +192,11 @@ KNoteEdit::~KNoteEdit()
 {
 }
 
+void KNoteEdit::setNote( KNote *_note )
+{
+    m_note = _note;
+}
+
 void KNoteEdit::slotUpperCase()
 {
     QTextCursor cursor = textCursor();

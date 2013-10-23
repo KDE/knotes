@@ -31,17 +31,17 @@
 
 
 ResourceLocalConfig::ResourceLocalConfig( QWidget *parent,  const char *name )
-  : KRES::ConfigWidget( parent )
+    : KRES::ConfigWidget( parent )
 {
-  setObjectName( QLatin1String(name) );
-  QHBoxLayout *layout = new QHBoxLayout( this );
-  
-  QLabel *label = new QLabel( i18n( "Location:" ), this );
-  mURL = new KUrlRequester( this );
-  KFile::Modes mode = KFile::File | KFile::LocalOnly;
-  mURL->setMode( mode );
-  layout->addWidget( label );
-  layout->addWidget( mURL );
+    setObjectName( QLatin1String(name) );
+    QHBoxLayout *layout = new QHBoxLayout( this );
+
+    QLabel *label = new QLabel( i18n( "Location:" ), this );
+    mURL = new KUrlRequester( this );
+    KFile::Modes mode = KFile::File | KFile::LocalOnly;
+    mURL->setMode( mode );
+    layout->addWidget( label );
+    layout->addWidget( mURL );
 }
 
 ResourceLocalConfig::~ResourceLocalConfig()
@@ -50,24 +50,24 @@ ResourceLocalConfig::~ResourceLocalConfig()
 
 void ResourceLocalConfig::loadSettings( KRES::Resource *resource )
 {
-  ResourceLocal *res = dynamic_cast<ResourceLocal *>( resource );
-  if ( res ) {
-    mURL->setUrl( res->url().prettyUrl() );
-  } else {
-    kDebug( 5500 ) << "ERROR: ResourceLocalConfig::loadSettings(): "
-                      "no ResourceLocal, cast failed";
-  }
+    ResourceLocal *res = dynamic_cast<ResourceLocal *>( resource );
+    if ( res ) {
+        mURL->setUrl( res->url().prettyUrl() );
+    } else {
+        kDebug( 5500 ) << "ERROR: ResourceLocalConfig::loadSettings(): "
+                          "no ResourceLocal, cast failed";
+    }
 }
 
 void ResourceLocalConfig::saveSettings( KRES::Resource *resource )
 {
-  ResourceLocal *res = dynamic_cast<ResourceLocal *>( resource );
-  if ( res ) {
-    res->setURL( mURL->url() );
-  } else {
-    kDebug() <<"ERROR: ResourceLocalConfig::saveSettings(): "
-                "no ResourceLocal, cast failed";
-  }
+    ResourceLocal *res = dynamic_cast<ResourceLocal *>( resource );
+    if ( res ) {
+        res->setURL( mURL->url() );
+    } else {
+        kDebug() <<"ERROR: ResourceLocalConfig::saveSettings(): "
+                   "no ResourceLocal, cast failed";
+    }
 }
 
 #include "resourcelocalconfig.moc"

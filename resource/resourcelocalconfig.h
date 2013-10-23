@@ -28,16 +28,16 @@ class KUrlRequester;
 
 class KNOTES_EXPORT ResourceLocalConfig : public KRES::ConfigWidget
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     explicit ResourceLocalConfig( QWidget *parent = 0, const char *name = 0 );
     virtual ~ResourceLocalConfig();
     
-  public slots:
+public slots:
     virtual void loadSettings( KRES::Resource *resource );
     virtual void saveSettings( KRES::Resource *resource );
     
-  private:
+private:
     KUrlRequester *mURL;
 };
 

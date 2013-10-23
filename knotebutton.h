@@ -25,17 +25,17 @@
 
 
 class KNoteButton
-  : public QPushButton
+        : public QPushButton
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     explicit KNoteButton( const QString &icon, QWidget *parent = 0 );
     ~KNoteButton();
     
     virtual int heightForWidth( int w ) const;
     virtual QSize sizeHint() const;
     
-  protected:
+protected:
     virtual void enterEvent( QEvent * );
     virtual void leaveEvent( QEvent * );
     

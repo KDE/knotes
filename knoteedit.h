@@ -43,9 +43,8 @@ public:
     explicit KNoteEdit(const QString &configFile, KActionCollection *actions, QWidget *parent = 0 );
     ~KNoteEdit();
 
-    void setNote( KNote *_note ) {
-        m_note = _note;
-    }
+    void setNote( KNote *_note );
+
     void setText( const QString &text );
     QString text() const;
 

@@ -47,10 +47,10 @@ class Journal;
 
 
 class KNOTES_EXPORT KNotesResourceManager
-  : public QObject, public KRES::ManagerObserver<ResourceNotes>
+        : public QObject, public KRES::ManagerObserver<ResourceNotes>
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     KNotesResourceManager();
     virtual ~KNotesResourceManager();
 
@@ -69,11 +69,11 @@ class KNOTES_EXPORT KNotesResourceManager
     virtual void resourceModified( ResourceNotes *resource );
     virtual void resourceDeleted( ResourceNotes *resource );
 
-  signals:
+signals:
     void sigRegisteredNote( KCal::Journal *journal );
     void sigDeregisteredNote( KCal::Journal *journal );
 
-  private:
+private:
     KRES::Manager<ResourceNotes> *m_manager;
     QMultiHash<QString,ResourceNotes*> m_resourceMap;
 };

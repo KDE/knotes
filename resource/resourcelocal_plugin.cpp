@@ -35,41 +35,23 @@
 
 
 class LocalNotesFactory
-  : public KRES::PluginFactoryBase
+        : public KRES::PluginFactoryBase
 {
 public:
-  virtual KRES::Resource *resource( const KConfigGroup &group )
-  {
-    return new ResourceLocal( group );
-  }
-  
-  virtual KRES::Resource *resource()
-  {
-    return new ResourceLocal();
-  }
-  
-  KRES::ConfigWidget *configWidget( QWidget *parent )
-  {
-    return new ResourceLocalConfig( parent );
-  }
+    virtual KRES::Resource *resource( const KConfigGroup &group )
+    {
+        return new ResourceLocal( group );
+    }
+
+    virtual KRES::Resource *resource()
+    {
+        return new ResourceLocal();
+    }
+
+    KRES::ConfigWidget *configWidget( QWidget *parent )
+    {
+        return new ResourceLocalConfig( parent );
+    }
 };
 
 K_EXPORT_PLUGIN( LocalNotesFactory )
-
-/*extern "C"
-{
-  KDE_EXPORT void *init_knotes_local()
-  {
-    return new LocalNotesFactory();
-  }
-  
-  KRES::ConfigWidget *config_widget( QWidget *parent )
-  {
-    return new ResourceLocalConfig( parent, "Configure Local Resource" );
-  }
-  
-  KRES::Resource *resource( const KConfigGroup &group )
-  {
-    return new ResourceLocal( group );
-  }
-}*/

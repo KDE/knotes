@@ -41,9 +41,9 @@
 
 
 class KNOTES_EXPORT ResourceLocal
-  : public ResourceNotes
+        : public ResourceNotes
 {
-  public:
+public:
     ResourceLocal();
     explicit ResourceLocal( const KConfigGroup &group );
     virtual ~ResourceLocal();
@@ -69,7 +69,7 @@ class KNOTES_EXPORT ResourceLocal
     virtual KCal::Alarm::List alarms( const KDateTime &from,
                                       const KDateTime &to );
     
-  protected:
+protected:
     KCal::CalendarLocal mCalendar;
     KUrl mURL;
 };

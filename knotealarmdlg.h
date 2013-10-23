@@ -35,26 +35,26 @@
 #include <KDialog>
 
 namespace KCal {
-  class Journal;
+class Journal;
 }
 class KDateComboBox;
 class KTimeComboBox;
 class QButtonGroup;
 
 class KNoteAlarmDlg
-  : public KDialog
+        : public KDialog
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     explicit KNoteAlarmDlg( const QString &caption, QWidget *parent = 0 );
 
     void setIncidence( KCal::Journal *journal );
 
-  private slots:
+private slots:
     void slotOk();
     void slotButtonChanged( int );
 
-  private:
+private:
     KCal::Journal *m_journal;
 
     KDateComboBox *m_atDate;

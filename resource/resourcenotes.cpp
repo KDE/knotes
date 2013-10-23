@@ -34,13 +34,13 @@
 
 
 ResourceNotes::ResourceNotes()
-  : KRES::Resource(), mManager( 0 )
+    : KRES::Resource(), mManager( 0 )
 {
-  setResourceName( QLatin1String("Notes") );
+    setResourceName( QLatin1String("Notes") );
 }
 
 ResourceNotes::ResourceNotes( const KConfigGroup &group )
-  : KRES::Resource( group ), mManager( 0 )
+    : KRES::Resource( group ), mManager( 0 )
 {
 }
 
@@ -50,12 +50,12 @@ ResourceNotes::~ResourceNotes()
 
 void ResourceNotes::setManager( KNotesResourceManager *manager )
 {
-  mManager = manager;
+    mManager = manager;
 }
 
 KNotesResourceManager * ResourceNotes::manager() const
 {
-  return mManager;
+    return mManager;
 }
 
 #include "resourcenotes.moc"
