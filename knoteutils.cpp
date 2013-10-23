@@ -26,6 +26,9 @@ using namespace KCal;
 #include <KIO/NetAccess>
 #include <KSharedConfig>
 #include <KStandardDirs>
+#include <KProcess>
+#include <KMessageBox>
+#include <KLocale>
 
 KNoteConfig *KNoteUtils::createConfig(KCal::Journal *journal, QString &configPath)
 {
@@ -114,5 +117,25 @@ void KNoteUtils::savePreferences( KCal::Journal *journal, KNoteConfig *config)
                                   config->bgColor().name() );
     journal->setCustomProperty( "KNotes", "RichText",
                                   config->richText() ? QLatin1String("true") : QLatin1String("false") );
+}
 
+
+void KNoteUtils::sendMail(QWidget *parent, const QString &title, const QString &message)
+{
+    // get the mail action command
+    const QStringList cmd_list = KNotesGlobalConfig::mailAction().split( QLatin1Char(' '), QString::SkipEmptyParts );
+    KProcess mail;
+    foreach ( const QString &cmd, cmd_list ) {
+        if ( cmd == QLatin1String("%f") ) {
+            mail << message;
+        } else if ( cmd == QLatin1String("%t") ) {
+            mail << title;
+        } else {
+            mail << cmd;
+        }
+    }
+
+    if ( !mail.startDetached() ) {
+        KMessageBox::sorry( parent, i18n( "Unable to start the mail process." ) );
+    }
 }

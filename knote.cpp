@@ -446,24 +446,7 @@ void KNote::slotSend()
 
 void KNote::slotMail()
 {
-    // get the mail action command
-    const QStringList cmd_list = KNotesGlobalConfig::mailAction().split( QLatin1Char(' '),
-                                                                         QString::SkipEmptyParts );
-
-    KProcess mail;
-    foreach ( const QString &cmd, cmd_list ) {
-        if ( cmd == QLatin1String("%f") ) {
-            mail << m_editor->toPlainText();
-        } else if ( cmd == QLatin1String("%t") ) {
-            mail << m_label->text();
-        } else {
-            mail << cmd;
-        }
-    }
-
-    if ( !mail.startDetached() ) {
-        KMessageBox::sorry( this, i18n( "Unable to start the mail process." ) );
-    }
+    KNoteUtils::sendMail(this, m_label->text(), m_editor->toPlainText());
 }
 
 void KNote::slotPrint()

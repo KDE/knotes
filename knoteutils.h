@@ -31,6 +31,7 @@ KNOTES_EXPORT KNoteConfig *createConfig(KCal::Journal *journal, QString &configP
 KNOTES_EXPORT void setProperty(KCal::Journal *journal, KNoteConfig *config);
 KNOTES_EXPORT void removeNote(KCal::Journal *journal, QWidget *parent);
 KNOTES_EXPORT void savePreferences( KCal::Journal *journal, KNoteConfig *config);
+KNOTES_EXPORT void sendMail(QWidget *parent, const QString &title, const QString &message);
 }
 
 #endif // KNOTEUTILS_H
