@@ -330,7 +330,6 @@ void KNote::slotUpdateReadOnly()
 
     // enable/disable actions accordingly
     actionCollection()->action( QLatin1String("configure_note") )->setEnabled( !readOnly );
-    actionCollection()->action( QLatin1String("insert_date") )->setEnabled( !readOnly );
     actionCollection()->action( QLatin1String("delete_note") )->setEnabled( !readOnly );
     actionCollection()->action( QLatin1String("format_bold") )->setEnabled( !readOnly );
     actionCollection()->action( QLatin1String("format_italic") )->setEnabled( !readOnly );
@@ -378,11 +377,6 @@ void KNote::slotClose()
     }
     // just hide the note so it's still available from the dock window
     hide();
-}
-
-void KNote::slotInsDate()
-{
-    m_editor->slotInsertDate();
 }
 
 void KNote::slotSetAlarm()
@@ -666,10 +660,6 @@ void KNote::createActions()
     action  = new KAction( KIcon( QLatin1String("edit-delete") ), i18n( "Delete" ), this );
     actionCollection()->addAction( QLatin1String("delete_note"), action );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotKill()),Qt::QueuedConnection );
-
-    action  = new KAction( KIcon( QLatin1String("knotes_date") ), i18n( "Insert Date" ), this );
-    actionCollection()->addAction( QLatin1String("insert_date"), action );
-    connect( action, SIGNAL(triggered(bool)), SLOT(slotInsDate()) );
 
     action  = new KAction( KIcon( QLatin1String("knotes_alarm") ), i18n( "Set Alarm..." ),
                            this );

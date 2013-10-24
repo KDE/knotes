@@ -111,7 +111,6 @@ private slots:
     void slotPrintPreview();
     void slotSaveAs();
 
-    void slotInsDate();
     void slotSetAlarm();
 
     void slotPreferences();

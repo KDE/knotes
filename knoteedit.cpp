@@ -178,6 +178,9 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
     actions->addAction( QLatin1String("change_to_lowercase"), action );
     connect( action, SIGNAL(triggered(bool)), this, SLOT(slotLowerCase()) );
 
+    action  = new KAction( KIcon( QLatin1String("knotes_date") ), i18n( "Insert Date" ), this );
+    actions->addAction( QLatin1String("insert_date"), action );
+    connect( action, SIGNAL(triggered(bool)), SLOT(slotInsertDate()) );
 
     // QTextEdit connections
     connect( this, SIGNAL(currentCharFormatChanged(QTextCharFormat)),
