@@ -1,3 +1,25 @@
 [Desktop Entry]
 Name=Big Title
+Name[ca]=Títol gran
+Name[de]=Großer Titel
+Name[ia]=Titulo grande
+Name[kk]=Үлкен атауы
+Name[nl]=Grote titel
+Name[pt]=Título Grande
+Name[pt_BR]=Título grande
+Name[sk]=Veľký titulok
+Name[sv]=Stor rubrik
+Name[uk]=Великий заголовок
+Name[x-test]=xxBig Titlexx
 Description=KNote printing theme with big title
+Description[ca]=Tema d'impressió de KNotes amb títols grans
+Description[de]=KNote-Druckdesign mit großem Titel
+Description[ia]=Thema de imprimer de KNote con titulo grande
+Description[kk]=Атауы үлкен KNote басып шығару нақышы
+Description[nl]=Afdrukthema van KNote met grote titel
+Description[pt]=Tema de impressão do KNotes com títulos grandes
+Description[pt_BR]=Tema de impressão do KNotes com títulos grandes
+Description[sk]=Tlačová téma KNote s veľkým titulkom
+Description[sv]=Utskriftstema för anteckningslappar med stor rubrik
+Description[uk]=Тема друку KNote з великим заголовком
+Description[x-test]=xxKNote printing theme with big titlexx
