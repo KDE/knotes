@@ -19,7 +19,7 @@
 *******************************************************************/
 
 #include "knote.h"
-#include "alarms/knotealarmdlg.h"
+#include "alarms/knotealarmdialog.h"
 #include "configdialog/knotesimpleconfigdialog.h"
 #include "print/knoteprintselectthemedialog.h"
 #include "knotebutton.h"
@@ -382,7 +382,7 @@ void KNote::slotClose()
 void KNote::slotSetAlarm()
 {
     m_blockEmitDataChanged = true;
-    QPointer<KNoteAlarmDlg> dlg = new KNoteAlarmDlg( name(), this );
+    QPointer<KNoteAlarmDialog> dlg = new KNoteAlarmDialog( name(), this );
     dlg->setIncidence( m_journal );
 
     if ( dlg->exec() ) {

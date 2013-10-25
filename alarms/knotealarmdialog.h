@@ -29,8 +29,8 @@
  your version.
 *******************************************************************/
 
-#ifndef KNOTEALARMDLG_H
-#define KNOTEALARMDLG_H
+#ifndef KNOTEALARMDIALOG_H
+#define KNOTEALARMDIALOG_H
 
 #include <KDialog>
 #include "knotes_export.h"
@@ -41,11 +41,11 @@ class KDateComboBox;
 class KTimeComboBox;
 class QButtonGroup;
 
-class KNOTES_EXPORT KNoteAlarmDlg : public KDialog
+class KNOTES_EXPORT KNoteAlarmDialog : public KDialog
 {
     Q_OBJECT
 public:
-    explicit KNoteAlarmDlg( const QString &caption, QWidget *parent = 0 );
+    explicit KNoteAlarmDialog( const QString &caption, QWidget *parent = 0 );
 
     void setIncidence( KCal::Journal *journal );
 

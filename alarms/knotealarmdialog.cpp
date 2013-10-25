@@ -29,7 +29,7 @@
  your version.
 *******************************************************************/
 
-#include "knotealarmdlg.h"
+#include "knotealarmdialog.h"
 
 #include <kcal/alarm.h>
 #include <kcal/journal.h>
@@ -44,7 +44,7 @@
 #include <QRadioButton>
 #include <QVBoxLayout>
 
-KNoteAlarmDlg::KNoteAlarmDlg( const QString &caption, QWidget *parent )
+KNoteAlarmDialog::KNoteAlarmDialog( const QString &caption, QWidget *parent )
     : KDialog( parent )
 {
     setCaption( caption );
@@ -82,7 +82,7 @@ KNoteAlarmDlg::KNoteAlarmDlg( const QString &caption, QWidget *parent )
 }
 
 
-void KNoteAlarmDlg::setIncidence( KCal::Journal *journal )
+void KNoteAlarmDialog::setIncidence( KCal::Journal *journal )
 {
     m_journal = journal;
 
@@ -103,7 +103,7 @@ void KNoteAlarmDlg::setIncidence( KCal::Journal *journal )
     }
 }
 
-void KNoteAlarmDlg::slotButtonChanged( int id )
+void KNoteAlarmDialog::slotButtonChanged( int id )
 {
     switch ( id ) {
 
@@ -127,7 +127,7 @@ void KNoteAlarmDlg::slotButtonChanged( int id )
     }
 }
 
-void KNoteAlarmDlg::slotOk()
+void KNoteAlarmDialog::slotOk()
 {
     if ( m_buttons->checkedId() == 0 ) {
         m_journal->clearAlarms();
@@ -151,4 +151,4 @@ void KNoteAlarmDlg::slotOk()
     }
 }
 
-#include "knotealarmdlg.moc"
+#include "knotealarmdialog.moc"

@@ -25,7 +25,7 @@ set(libknotesprivate_lib_SRCS
     knoteutils.cpp
     migrations/knoteslegacy.cpp
     alarms/knotesalarm.cpp
-    alarms/knotealarmdlg.cpp
+    alarms/knotealarmdialog.cpp
     network/knotesnetrecv.cpp
     network/knotesnetsend.cpp
     network/knotehostdlg.cpp
