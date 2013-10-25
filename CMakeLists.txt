@@ -29,6 +29,7 @@ set(libknotesprivate_lib_SRCS
     network/knotesnetrecv.cpp
     network/knotesnetsend.cpp
     network/knotehostdialog.cpp
+    widgets/knotesselectnoteswidget.cpp
 )
 
 configure_file(settings/knotesglobalconfig.kcfg.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg )
