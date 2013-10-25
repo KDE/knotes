@@ -27,14 +27,14 @@
 #include "knotes_export.h"
 class KNotePrintSelectThemeComboBox;
 
-class KNOTES_EXPORT KNoteConfigDlg
+class KNOTES_EXPORT KNoteConfigDialog
   : public KCMultiDialog
 {
   Q_OBJECT
   public:
-    explicit KNoteConfigDlg( const QString &title,
+    explicit KNoteConfigDialog( const QString &title,
                     QWidget *parent );
-    ~KNoteConfigDlg();
+    ~KNoteConfigDialog();
 
 public slots:
     void slotOk();

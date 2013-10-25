@@ -25,7 +25,7 @@
 #include "knotebutton.h"
 #include "knoteconfig.h"
 #include "knoteutils.h"
-#include "configdialog/knoteconfigdlg.h"
+#include "configdialog/knoteconfigdialog.h"
 #include "knoteedit.h"
 #include "print/knoteprinter.h"
 #include "print/knoteprintobject.h"

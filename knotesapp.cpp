@@ -18,7 +18,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include "configdialog/knoteconfigdlg.h"
+#include "configdialog/knoteconfigdialog.h"
 #include "knote.h"
 #include "knotes/resource/resourcemanager.h"
 #include "knotesadaptor.h"
@@ -448,7 +448,7 @@ void KNotesApp::slotFindNext()
 void KNotesApp::slotPreferences()
 {
     // create a new preferences dialog...
-    KNoteConfigDlg *dialog = new KNoteConfigDlg( i18n( "Settings" ), this);
+    KNoteConfigDialog *dialog = new KNoteConfigDialog( i18n( "Settings" ), this);
     connect( dialog, SIGNAL(configWrote()), this, SLOT(slotConfigUpdated()));
     dialog->show();
 }

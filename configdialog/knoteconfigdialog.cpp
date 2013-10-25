@@ -19,7 +19,7 @@
 *******************************************************************/
 
 
-#include "knoteconfigdlg.h"
+#include "knoteconfigdialog.h"
 #include "knote.h"
 #include "print/knoteprintselectthemecombobox.h"
 #include "knotesglobalconfig.h"
@@ -45,7 +45,7 @@
 #include <QVBoxLayout>
 #include <QWhatsThis>
 
-KNoteConfigDlg::KNoteConfigDlg( const QString &title,
+KNoteConfigDialog::KNoteConfigDialog( const QString &title,
                                 QWidget *parent )
     : KCMultiDialog( parent )
 {
@@ -75,11 +75,11 @@ KNoteConfigDlg::KNoteConfigDlg( const QString &title,
     connect( this, SIGNAL(okClicked()), SLOT(slotOk()) );
 }
 
-KNoteConfigDlg::~KNoteConfigDlg()
+KNoteConfigDialog::~KNoteConfigDialog()
 {
 }
 
-void KNoteConfigDlg::slotOk() {
+void KNoteConfigDialog::slotOk() {
     KNotesGlobalConfig::self()->writeConfig();
     emit configWrote();
 }
@@ -438,4 +438,4 @@ void KNotePrintConfig::load()
 }
 
 
-#include "knoteconfigdlg.moc"
+#include "knoteconfigdialog.moc"
