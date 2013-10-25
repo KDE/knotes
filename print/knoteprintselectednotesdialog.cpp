@@ -54,13 +54,22 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     setButtonIcon(Ok, KIcon(QLatin1String("document-print")));
     setButtonText(Ok, i18n("Print"));
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotPreview()));
+    connect(mListNotes, SIGNAL(itemSelectionChanged()), this, SLOT(slotSelectionChanged()));
     setMainWidget(w);
     readConfig();
+    slotSelectionChanged();
 }
 
 KNotePrintSelectedNotesDialog::~KNotePrintSelectedNotesDialog()
 {
     writeConfig();
+}
+
+void KNotePrintSelectedNotesDialog::slotSelectionChanged()
+{
+    const bool hasSelection = (mListNotes->selectedItems().count() > 0);
+    enableButton(User1, hasSelection);
+    enableButtonOk(hasSelection);
 }
 
 void KNotePrintSelectedNotesDialog::setNotes(const QMap<QString, KNote *> &notes)

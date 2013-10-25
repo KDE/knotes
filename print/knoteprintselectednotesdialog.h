@@ -42,6 +42,7 @@ public:
 
 private Q_SLOTS:
     void slotPreview();
+    void slotSelectionChanged();
 
 private:
     enum listViewData {
