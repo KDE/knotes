@@ -30,7 +30,7 @@
  your version.
 *******************************************************************/
 
-#include "knotehostdlg.h"
+#include "knotehostdialog.h"
 #include "knotesglobalconfig.h"
 
 #include <kconfig.h>
@@ -51,7 +51,7 @@
 #include <QHeaderView>
 
 
-KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
+KNoteHostDialog::KNoteHostDialog( const QString &caption, QWidget *parent )
     : KDialog( parent )
 {
     setCaption( caption );
@@ -88,7 +88,7 @@ KNoteHostDlg::KNoteHostDlg( const QString &caption, QWidget *parent )
     readConfig();
 }
 
-KNoteHostDlg::~KNoteHostDlg()
+KNoteHostDialog::~KNoteHostDialog()
 {
     if ( result() == Accepted ) {
         m_hostCombo->addToHistory( m_hostCombo->currentText().trimmed() );
@@ -100,7 +100,7 @@ KNoteHostDlg::~KNoteHostDlg()
     KNotesGlobalConfig::self()->writeConfig();
 }
 
-void KNoteHostDlg::readConfig()
+void KNoteHostDialog::readConfig()
 {
     const QSize size = KNotesGlobalConfig::noteHostDialogSize();
     if ( size.isValid() ) {
@@ -108,25 +108,25 @@ void KNoteHostDlg::readConfig()
     }
 }
 
-void KNoteHostDlg::slotTextChanged( const QString &text )
+void KNoteHostDialog::slotTextChanged( const QString &text )
 {
     enableButton( Ok, !text.isEmpty() );
 }
 
-void KNoteHostDlg::serviceSelected( const QModelIndex& idx )
+void KNoteHostDialog::serviceSelected( const QModelIndex& idx )
 {
     DNSSD::RemoteService::Ptr srv=idx.data( DNSSD::ServiceModel::ServicePtrRole ).value<DNSSD::RemoteService::Ptr>();
     m_hostCombo->lineEdit()->setText( srv->hostName() + QLatin1String(":") + QString::number( srv->port() ) );
 }
 
-QString KNoteHostDlg::host() const
+QString KNoteHostDialog::host() const
 {
     return m_hostCombo->currentText().section( QLatin1Char(':'), 0, 0 );
 }
 
-quint16 KNoteHostDlg::port() const
+quint16 KNoteHostDialog::port() const
 {
     return m_hostCombo->currentText().section( QLatin1Char(':'), 1 ).toUShort();
 }
 
-#include "knotehostdlg.moc"
+#include "knotehostdialog.moc"

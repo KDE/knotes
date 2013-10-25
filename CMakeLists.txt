@@ -28,7 +28,7 @@ set(libknotesprivate_lib_SRCS
     alarms/knotealarmdialog.cpp
     network/knotesnetrecv.cpp
     network/knotesnetsend.cpp
-    network/knotehostdlg.cpp
+    network/knotehostdialog.cpp
 )
 
 configure_file(settings/knotesglobalconfig.kcfg.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg )

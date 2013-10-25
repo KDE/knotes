@@ -30,8 +30,8 @@
  your version.
 *******************************************************************/
 
-#ifndef KNOTEHOSTDLG_H
-#define KNOTEHOSTDLG_H
+#ifndef KNOTEHOSTDIALOG_H
+#define KNOTEHOSTDIALOG_H
 
 #include <kdialog.h>
 #include "knotes_export.h"
@@ -43,13 +43,13 @@ class QModelIndex;
 /**
  * A dialog that allows to select network service or request a hostname or IP address.
  */
-class KNOTES_EXPORT KNoteHostDlg
+class KNOTES_EXPORT KNoteHostDialog
         : public KDialog
 {
     Q_OBJECT
 public:
-    explicit KNoteHostDlg( const QString &caption, QWidget *parent = 0 );
-    ~KNoteHostDlg();
+    explicit KNoteHostDialog( const QString &caption, QWidget *parent = 0 );
+    ~KNoteHostDialog();
     
     QString host() const;
     /**

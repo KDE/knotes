@@ -17,7 +17,7 @@
 
 #include "knoteutils.h"
 #include "knoteconfig.h"
-#include "network/knotehostdlg.h"
+#include "network/knotehostdialog.h"
 #include "network/knotesnetsend.h"
 #include "kdepim-version.h"
 #include "knotes/knotesglobalconfig.h"
@@ -149,7 +149,7 @@ void KNoteUtils::sendMail(QWidget *parent, const QString &title, const QString &
 void KNoteUtils::sendToNetwork(QWidget *parent, const QString &title, const QString &message)
 {
     // pop up dialog to get the IP
-    QPointer<KNoteHostDlg> hostDlg = new KNoteHostDlg( i18n( "Send \"%1\"", title ), parent );
+    QPointer<KNoteHostDialog> hostDlg = new KNoteHostDialog( i18n( "Send \"%1\"", title ), parent );
     if( hostDlg->exec() ) {
 
         const QString host = hostDlg->host();
