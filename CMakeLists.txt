@@ -104,14 +104,6 @@ install( FILES data/knotes_manager.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/
 install( FILES knotesappui.rc knotesui.rc  DESTINATION ${DATA_INSTALL_DIR}/knotes)
 install( FILES org.kde.KNotes.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR}) 
 
-install(FILES
-  print/themes/default/theme.desktop
-  print/themes/default/theme.html
-  DESTINATION ${DATA_INSTALL_DIR}/knotes/print/themes/default/
-)
-install(FILES
-  print/themes/big-title/theme.desktop
-  print/themes/big-title/theme.html
-  DESTINATION ${DATA_INSTALL_DIR}/knotes/print/themes/big-title/
-)
+install(DIRECTORY print/themes/ DESTINATION ${DATA_INSTALL_DIR}/knotes/print/themes )
+
 
