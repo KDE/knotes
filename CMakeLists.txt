@@ -55,8 +55,8 @@ set(knotes_SRCS main.cpp
                 application.cpp 
                 knotesapp.cpp 
                 print/knoteprintselectednotesdialog.cpp 
-                knote.cpp 
-                knotebutton.cpp 
+                notes/knote.cpp 
+                notes/knotebutton.cpp 
 )
 
 

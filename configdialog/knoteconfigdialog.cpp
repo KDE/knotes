@@ -20,7 +20,7 @@
 
 
 #include "knoteconfigdialog.h"
-#include "knote.h"
+#include "notes/knote.h"
 #include "print/knoteprintselectthemecombobox.h"
 #include "knotesglobalconfig.h"
 

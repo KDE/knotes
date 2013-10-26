@@ -19,7 +19,7 @@
 *******************************************************************/
 
 #include "knoteedit.h"
-#include "knote.h"
+#include "notes/knote.h"
 
 #include <kaction.h>
 #include <kactioncollection.h>

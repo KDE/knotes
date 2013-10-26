@@ -19,7 +19,7 @@
 *******************************************************************/
 
 #include "configdialog/knoteconfigdialog.h"
-#include "knote.h"
+#include "notes/knote.h"
 #include "knotes/resource/resourcemanager.h"
 #include "knotesadaptor.h"
 #include "alarms/knotesalarm.h"

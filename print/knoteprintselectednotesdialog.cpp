@@ -18,7 +18,7 @@
 #include "knoteprintselectednotesdialog.h"
 #include "knoteprintselectthemecombobox.h"
 #include "knoteprintobject.h"
-#include "knote.h"
+#include "notes/knote.h"
 
 #include <KLocale>
 #include <KConfigGroup>
