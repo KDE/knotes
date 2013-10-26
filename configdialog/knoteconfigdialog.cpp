@@ -435,6 +435,7 @@ void KNotePrintConfig::save()
 
 void KNotePrintConfig::load()
 {
+    //Nothing it's done in KNotePrintSelectThemeComboBox directly
 }
 
 
