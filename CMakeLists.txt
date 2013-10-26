@@ -49,8 +49,15 @@ set_target_properties(knotesprivate
 install(TARGETS knotesprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
 
-set(knotes_SRCS main.cpp knoteskeydialog.cpp knotestray.cpp application.cpp knotesapp.cpp print/knoteprintselectednotesdialog.cpp 
-                knote.cpp knotebutton.cpp )
+set(knotes_SRCS main.cpp 
+                knoteskeydialog.cpp 
+                knotestray.cpp 
+                application.cpp 
+                knotesapp.cpp 
+                print/knoteprintselectednotesdialog.cpp 
+                knote.cpp 
+                knotebutton.cpp 
+)
 
 
 qt4_add_dbus_adaptor(knotes_SRCS org.kde.KNotes.xml knotesapp.h KNotesApp )
