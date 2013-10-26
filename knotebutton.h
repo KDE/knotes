@@ -24,8 +24,7 @@
 #include <QPushButton>
 
 
-class KNoteButton
-        : public QPushButton
+class KNoteButton : public QPushButton
 {
     Q_OBJECT
 public:
@@ -36,10 +35,10 @@ public:
     virtual QSize sizeHint() const;
     
 protected:
-    virtual void enterEvent( QEvent * );
-    virtual void leaveEvent( QEvent * );
+    void enterEvent( QEvent * );
+    void leaveEvent( QEvent * );
     
-    virtual void paintEvent ( QPaintEvent *e );
+    void paintEvent ( QPaintEvent *e );
 };
 
 #endif

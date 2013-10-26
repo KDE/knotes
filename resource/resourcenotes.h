@@ -51,8 +51,7 @@ class Journal;
  * \warning This code is still under heavy development. Don't expect source or
  *          binary compatibility in future versions.
  */
-class KNOTES_EXPORT ResourceNotes
-        : public KRES::Resource
+class KNOTES_EXPORT ResourceNotes : public KRES::Resource
 {
     Q_OBJECT
 public:

@@ -150,7 +150,7 @@ void KNoteUtils::sendToNetwork(QWidget *parent, const QString &title, const QStr
 {
     // pop up dialog to get the IP
     QPointer<KNoteHostDialog> hostDlg = new KNoteHostDialog( i18n( "Send \"%1\"", title ), parent );
-    if( hostDlg->exec() ) {
+    if ( hostDlg->exec() ) {
 
         const QString host = hostDlg->host();
         quint16 port = hostDlg->port();

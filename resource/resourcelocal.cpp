@@ -61,7 +61,7 @@ ResourceLocal::ResourceLocal( const KConfigGroup &group )
     mURL = KUrl::fromPath( KGlobal::dirs()->saveLocation( "data", QLatin1String("knotes/") ) +
                            QLatin1String("notes.ics") );
 
-    KUrl u = group.readPathEntry( "NotesURL", QString() );
+    const KUrl u = group.readPathEntry( "NotesURL", QString() );
     if ( !u.isEmpty() ) {
         mURL = u;
     }
@@ -114,8 +114,7 @@ bool ResourceLocal::deleteNote( KCal::Journal *journal )
     return mCalendar.deleteJournal( journal );
 }
 
-KCal::Alarm::List ResourceLocal::alarms( const KDateTime &from,
-                                         const KDateTime &to )
+KCal::Alarm::List ResourceLocal::alarms( const KDateTime &from, const KDateTime &to )
 {
     KCal::Alarm::List alarms;
     KCal::Journal::List notes = mCalendar.journals();
@@ -124,8 +123,8 @@ KCal::Alarm::List ResourceLocal::alarms( const KDateTime &from,
     for ( note = notes.constBegin(); note != notes.constEnd(); ++note ) {
         KDateTime preTime = from.addSecs( -1 );
         KCal::Alarm::List::ConstIterator it;
-        for( it = ( *note )->alarms().constBegin();
-             it != ( *note )->alarms().constEnd(); ++it ) {
+        KCal::Alarm::List::ConstIterator itEnd(( *note )->alarms().constEnd());
+        for( it = ( *note )->alarms().constBegin(); it != itEnd; ++it ) {
             if ( ( *it )->enabled() ) {
                 KDateTime dt = ( *it )->nextRepetition( preTime );
                 if ( dt.isValid() && dt <= to ) {
