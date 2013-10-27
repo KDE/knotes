@@ -662,9 +662,7 @@ void KNotesApp::updateNoteActions()
         m_findAction->setEnabled( false );
         KAction *action = new KAction( i18n( "No Notes" ), this );
         m_noteActions.append( action );
-    }
-    else
-    {
+    } else {
         qSort( m_noteActions.begin(), m_noteActions.end(), qActionLessThan );
         actionCollection()->action( QLatin1String("hide_all_notes") )->setEnabled( true );
         actionCollection()->action( QLatin1String("show_all_notes") )->setEnabled( true );
