@@ -20,6 +20,8 @@
 #include "knoteprintobject.h"
 #include "notes/knote.h"
 
+#include <kcal/journal.h>
+
 #include <KLocale>
 #include <KConfigGroup>
 
@@ -80,6 +82,7 @@ void KNotePrintSelectedNotesDialog::setNotes(const QMap<QString, KNote *> &notes
         i.next();
         QListWidgetItem *item =new QListWidgetItem(mListNotes);
         item->setText(i.value()->name());
+        item->setToolTip(i.value()->journal()->description());
         item->setData(JournalId, i.key());
     }
 }
