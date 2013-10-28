@@ -41,7 +41,7 @@ QString KNotePrintObject::description() const
     if ( Qt::mightBeRichText( mJournal->description() ) ) {
         return mJournal->description();
     } else {
-        return mJournal->description().replace(QLatin1Char('\n'), QLatin1String("<br>"));
+        return Qt::convertFromPlainText(mJournal->description()).replace(QLatin1Char('\n'), QLatin1String("<br>"));
     }
 }
 
