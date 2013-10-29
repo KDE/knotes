@@ -16,11 +16,11 @@
     </entry>
 
     <entry name="Width" type="UInt" key="width">
-      <default>200</default>
+      <default>300</default>
     </entry>
 
     <entry name="Height" type="UInt" key="height">
-      <default>200</default>
+      <default>300</default>
     </entry>
 
     <entry name="RememberDesktop" type="Bool">
