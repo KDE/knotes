@@ -19,7 +19,7 @@
 *******************************************************************/
 
 #include "kdepim-version.h"
-#include "application.h"
+#include "apps/application.h"
 
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>

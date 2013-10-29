@@ -50,16 +50,16 @@ install(TARGETS knotesprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_S
 
 set(knotes_SRCS main.cpp 
                 knoteskeydialog.cpp 
-                knotestray.cpp 
-                application.cpp 
-                knotesapp.cpp 
+                apps/knotestray.cpp 
+                apps/application.cpp 
+                apps/knotesapp.cpp 
                 print/knoteprintselectednotesdialog.cpp 
                 notes/knote.cpp 
                 notes/knotebutton.cpp 
 )
 
 
-qt4_add_dbus_adaptor(knotes_SRCS org.kde.KNotes.xml knotesapp.h KNotesApp )
+qt4_add_dbus_adaptor(knotes_SRCS org.kde.KNotes.xml apps/knotesapp.h KNotesApp )
 
 kde4_add_app_icon(knotes_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-apps-knotes.png")
 
