@@ -2,6 +2,7 @@
 Name=Big Title
 Name[ca]=Títol gran
 Name[de]=Großer Titel
+Name[es]=Título grande
 Name[ia]=Titulo grande
 Name[kk]=Үлкен атауы
 Name[nl]=Grote titel
@@ -18,6 +19,7 @@ Name[x-test]=xxBig Titlexx
 Description=KNote printing theme with big title
 Description[ca]=Tema d'impressió de KNotes amb títols grans
 Description[de]=KNote-Druckdesign mit großem Titel
+Description[es]=Tema de impresión de KNote con título grande
 Description[ia]=Thema de imprimer de KNote con titulo grande
 Description[kk]=Атауы үлкен KNote басып шығару нақышы
 Description[nl]=Afdrukthema van KNote met grote titel
