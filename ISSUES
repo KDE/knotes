@@ -1,8 +1,6 @@
 Known Issues
 ============
 
-  * Printing is a work in progress.
-  
   * Network notes are currently limited to plain text ASCII.
   
   * Rich Text mode is a bit buggy.

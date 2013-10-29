@@ -49,7 +49,7 @@ install(TARGETS knotesprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_S
 
 
 set(knotes_SRCS main.cpp 
-                knoteskeydialog.cpp 
+                dialog/knoteskeydialog.cpp 
                 apps/knotestray.cpp 
                 apps/application.cpp 
                 apps/knotesapp.cpp 

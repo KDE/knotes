@@ -30,7 +30,7 @@
 #include "migrations/knoteslegacy.h"
 #include "network/knotesnetrecv.h"
 #include "knotestray.h"
-#include "knoteskeydialog.h"
+#include "dialog/knoteskeydialog.h"
 #include "print/knoteprintselectednotesdialog.h"
 
 #include <kaction.h>

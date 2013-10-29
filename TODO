@@ -10,7 +10,7 @@ features:
  * improve printing:
     - width of the text on the paper should fit note width if not bigger
       than the paper width
-    - print the note title as well
+    - print the note title as well (DONE)
  * the config dialog:
     - make the frame configurable (3d -> normal)
     - make the keybindings configurable
