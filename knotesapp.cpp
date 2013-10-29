@@ -191,10 +191,13 @@ KNotesApp::KNotesApp()
 
     updateNetworkListener();
 
+    /*
     if ( m_notes.isEmpty() && !kapp->isSessionRestored() ) {
         newNote();
     }
+    */
 
+    m_tray->updateNumberOfNotes(m_notes.count());
     updateNoteActions();
 }
 
