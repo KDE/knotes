@@ -109,7 +109,7 @@ install( PROGRAMS data/knotes.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
 install( FILES settings/knoteconfig.kcfg ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
 install( FILES data/local.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources/knotes)
 install( FILES data/knotes_manager.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kresources)
-install( FILES knotesappui.rc knotesui.rc  DESTINATION ${DATA_INSTALL_DIR}/knotes)
+install( FILES data/knotesappui.rc data/knotesui.rc  DESTINATION ${DATA_INSTALL_DIR}/knotes)
 install( FILES org.kde.KNotes.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR}) 
 
 install(DIRECTORY print/themes/ DESTINATION ${DATA_INSTALL_DIR}/knotes/print/themes )
