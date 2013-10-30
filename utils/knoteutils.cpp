@@ -129,6 +129,10 @@ void KNoteUtils::sendMail(QWidget *parent, const QString &title, const QString &
 {
     // get the mail action command
     const QStringList cmd_list = KNotesGlobalConfig::mailAction().split( QLatin1Char(' '), QString::SkipEmptyParts );
+    if (cmd_list.isEmpty()) {
+        KMessageBox::sorry( parent, i18n( "Please configure send mail action." ) );
+        return;
+    }
     KProcess mail;
     foreach ( const QString &cmd, cmd_list ) {
         if ( cmd == QLatin1String("%f") ) {

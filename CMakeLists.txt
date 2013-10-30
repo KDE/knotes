@@ -22,7 +22,7 @@ set(libknotesprivate_lib_SRCS
     print/knoteprintselectthemecombobox.cpp
     configdialog/knotesimpleconfigdialog.cpp
     configdialog/knoteconfigdialog.cpp
-    knoteutils.cpp
+    utils/knoteutils.cpp
     migrations/knoteslegacy.cpp
     alarms/knotesalarm.cpp
     alarms/knotealarmdialog.cpp
