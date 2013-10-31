@@ -48,7 +48,7 @@ set_target_properties(knotesprivate
 install(TARGETS knotesprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
 
-set(knotes_SRCS main.cpp 
+set(knotes_SRCS apps/main.cpp 
                 dialog/knoteskeydialog.cpp 
                 apps/knotestray.cpp 
                 apps/application.cpp 
