@@ -596,18 +596,6 @@ void KNoteEdit::autoIndent()
     }
 }
 
-void KNoteEdit::setTextFormat( const QTextCharFormat &f )
-{
-    if ( acceptRichText() ) {
-        textCursor().mergeCharFormat( f );
-    } else {
-        QTextCursor c( document() );
-        c.movePosition( QTextCursor::Start );
-        c.movePosition( QTextCursor::End, QTextCursor::KeepAnchor );
-        c.mergeCharFormat( f );
-    }
-}
-
 void KNoteEdit::enableRichTextActions(bool enabled)
 {
     m_textColor->setEnabled( enabled );

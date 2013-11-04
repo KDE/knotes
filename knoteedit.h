@@ -94,8 +94,6 @@ private slots:
 private:
     void autoIndent();
 
-    void setTextFormat( const QTextCharFormat & );
-
     void enableRichTextActions(bool enabled);
 
 private:
