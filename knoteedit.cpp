@@ -515,6 +515,9 @@ void KNoteEdit::focusOutEvent( QFocusEvent *e )
 
 void KNoteEdit::slotCurrentCharFormatChanged( const QTextCharFormat &f )
 {
+    if (!acceptRichText())
+        return;
+
     // font changes
     m_textFont->setFont( f.fontFamily() );
     m_textSize->setFontSize( (f.fontPointSize()>0 ) ?  ( int ) f.fontPointSize() :10);
@@ -544,6 +547,8 @@ void KNoteEdit::slotCurrentCharFormatChanged( const QTextCharFormat &f )
 
 void KNoteEdit::slotCursorPositionChanged()
 {
+    if (!acceptRichText())
+        return;
     // alignment changes
     const Qt::Alignment a = alignment();
     if ( a & Qt::AlignLeft ) {
