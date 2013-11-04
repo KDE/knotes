@@ -322,6 +322,9 @@ void KNoteEdit::setRichText( bool f )
 
 void KNoteEdit::textBold( bool b )
 {
+    if (!acceptRichText())
+        return;
+
     QTextCharFormat f;
     f.setFontWeight( b ? QFont::Bold : QFont::Normal );
     mergeCurrentCharFormat( f );
@@ -329,6 +332,9 @@ void KNoteEdit::textBold( bool b )
 
 void KNoteEdit::textStrikeOut( bool s )
 {
+    if (!acceptRichText())
+        return;
+
     QTextCharFormat f;
     f.setFontStrikeOut( s );
     mergeCurrentCharFormat( f );
@@ -336,6 +342,9 @@ void KNoteEdit::textStrikeOut( bool s )
 
 void KNoteEdit::slotTextColor()
 {
+    if (!acceptRichText())
+        return;
+
     if ( m_note )
         m_note->blockEmitDataChanged( true );
     QColor c = textColor();
@@ -348,6 +357,9 @@ void KNoteEdit::slotTextColor()
 
 void KNoteEdit::slotTextBackgroundColor()
 {
+    if (!acceptRichText())
+        return;
+
     if ( m_note )
         m_note->blockEmitDataChanged( true );
     QColor c = textBackgroundColor();
@@ -360,30 +372,40 @@ void KNoteEdit::slotTextBackgroundColor()
 
 void KNoteEdit::textAlignLeft()
 {
+    if (!acceptRichText())
+        return;
     setAlignment( Qt::AlignLeft );
     m_textAlignLeft->setChecked( true );
 }
 
 void KNoteEdit::textAlignCenter()
 {
+    if (!acceptRichText())
+        return;
     setAlignment( Qt::AlignCenter );
     m_textAlignCenter->setChecked( true );
 }
 
 void KNoteEdit::textAlignRight()
 {
+    if (!acceptRichText())
+        return;
     setAlignment( Qt::AlignRight );
     m_textAlignRight->setChecked( true );
 }
 
 void KNoteEdit::textAlignBlock()
 {
+    if (!acceptRichText())
+        return;
     setAlignment( Qt::AlignJustify );
     m_textAlignBlock->setChecked( true );
 }
 
 void KNoteEdit::textList()
 {
+    if (!acceptRichText())
+        return;
     QTextCursor c = textCursor();
     c.beginEditBlock();
 
@@ -410,6 +432,8 @@ void KNoteEdit::textList()
 
 void KNoteEdit::textSuperScript()
 {
+    if (!acceptRichText())
+        return;
     QTextCharFormat f;
     if ( m_textSuper->isChecked() ) {
         if ( m_textSub->isChecked() )
@@ -423,6 +447,8 @@ void KNoteEdit::textSuperScript()
 
 void KNoteEdit::textSubScript()
 {
+    if (!acceptRichText())
+        return;
     QTextCharFormat f;
     if ( m_textSub->isChecked() ) {
         if ( m_textSuper->isChecked() )
@@ -436,6 +462,8 @@ void KNoteEdit::textSubScript()
 
 void KNoteEdit::textIncreaseIndent()
 {
+    if (!acceptRichText())
+        return;
     QTextBlockFormat f = textCursor().blockFormat();
     f.setIndent( f.indent() + 1 );
     textCursor().setBlockFormat( f );
@@ -443,6 +471,8 @@ void KNoteEdit::textIncreaseIndent()
 
 void KNoteEdit::textDecreaseIndent()
 {
+    if (!acceptRichText())
+        return;
     QTextBlockFormat f = textCursor().blockFormat();
     short int curIndent = f.indent();
 
