@@ -31,11 +31,11 @@
       <arg name="newText" type="s" direction="in"/>
     </method>
     <method name="name">
-      <arg name="id" type="s" direction="in"/>
+      <arg name="noteId" type="s" direction="in"/>
       <arg type="s" direction="out"/>
     </method>
     <method name="text">
-      <arg name="id" type="s" direction="in"/>
+      <arg name="noteId" type="s" direction="in"/>
       <arg type="s" direction="out"/>
     </method>
     <method name="showNote">
