@@ -33,6 +33,7 @@ Name[x-test]=xxPrintxx
 Name[zh_TW]=列印
 Comment=Setup printing for notes
 Comment[ca]=Arranja la impressió per a les notes
+Comment[cs]=Nastavení tisku pro poznámky
 Comment[de]=Drucken für Notizen einrichten
 Comment[es]=Configurar impresión para notas
 Comment[fr]=Configuration de l'impression pour les notes
