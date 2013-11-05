@@ -1165,4 +1165,3 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
 }
 
 
-#include "knote.moc"

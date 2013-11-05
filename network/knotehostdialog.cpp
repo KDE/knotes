@@ -129,4 +129,3 @@ quint16 KNoteHostDialog::port() const
     return m_hostCombo->currentText().section( QLatin1Char(':'), 1 ).toUShort();
 }
 
-#include "knotehostdialog.moc"

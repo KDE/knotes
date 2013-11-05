@@ -134,4 +134,3 @@ void KNotePrintSelectedNotesDialog::slotPreview()
     accept();
 }
 
-#include "knoteprintselectednotesdialog.moc"

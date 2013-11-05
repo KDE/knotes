@@ -81,4 +81,3 @@ void KNotesTray::updateNumberOfNotes(int value)
     setIconByPixmap( iconPixmap );
 }
 
-#include "knotestray.moc"

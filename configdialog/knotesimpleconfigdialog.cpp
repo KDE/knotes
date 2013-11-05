@@ -63,4 +63,3 @@ void KNoteSimpleConfigDialog::slotUpdateCaption(const QString & name)
     setCaption( name );
 }
 
-#include "knotesimpleconfigdialog.moc"

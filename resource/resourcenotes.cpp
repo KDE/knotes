@@ -58,4 +58,3 @@ KNotesResourceManager * ResourceNotes::manager() const
     return mManager;
 }
 
-#include "resourcenotes.moc"

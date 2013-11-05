@@ -151,4 +151,3 @@ void KNoteAlarmDialog::slotOk()
     }
 }
 
-#include "knotealarmdialog.moc"

@@ -709,4 +709,3 @@ void KNotesApp::slotPrintSelectedNotes()
     delete dlg;
 }
 
-#include "knotesapp.moc"

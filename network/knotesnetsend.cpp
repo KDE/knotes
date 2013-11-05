@@ -99,4 +99,3 @@ void KNotesNetworkSender::slotClosed()
     deleteLater();
 }
 
-#include "knotesnetsend.moc"

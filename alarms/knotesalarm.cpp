@@ -84,4 +84,3 @@ void KNotesAlarm::checkAlarms()
 }
 
 
-#include "knotesalarm.moc"

@@ -70,4 +70,3 @@ void ResourceLocalConfig::saveSettings( KRES::Resource *resource )
     }
 }
 
-#include "resourcelocalconfig.moc"

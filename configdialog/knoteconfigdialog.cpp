@@ -464,4 +464,3 @@ void KNotePrintConfig::defaults()
     Q_EMIT changed(true);
 }
 
-#include "knoteconfigdialog.moc"

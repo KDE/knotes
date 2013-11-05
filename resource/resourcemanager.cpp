@@ -179,4 +179,3 @@ void KNotesResourceManager::resourceDeleted( ResourceNotes *resource )
 }
 
 
-#include "resourcemanager.moc"

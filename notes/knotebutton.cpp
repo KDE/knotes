@@ -128,4 +128,3 @@ void KNoteButton::paintEvent( QPaintEvent * )
     }
 }
 
-#include "knotebutton.moc"
