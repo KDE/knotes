@@ -440,6 +440,7 @@ void KNotePrintConfig::slotDownloadNewThemes()
             mSelectTheme->loadThemes();
         }
     }
+    delete downloadThemesDialog;
 }
 
 void KNotePrintConfig::slotThemeChanged()
