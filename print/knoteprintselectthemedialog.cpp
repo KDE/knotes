@@ -38,6 +38,7 @@ KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
     lay->addWidget(lab);
 
     mThemes = new KNotePrintSelectThemeComboBox;
+    mThemes->loadThemes();
     lay->addWidget(mThemes);
     setMainWidget(w);
 }

@@ -435,8 +435,13 @@ void KNotePrintConfig::save()
 
 void KNotePrintConfig::load()
 {
-    //Nothing it's done in KNotePrintSelectThemeComboBox directly
+    mSelectTheme->loadThemes();
 }
 
+void KNotePrintConfig::defaults()
+{
+    mSelectTheme->setCurrentIndex(0);
+    Q_EMIT changed(true);
+}
 
 #include "knoteconfigdialog.moc"

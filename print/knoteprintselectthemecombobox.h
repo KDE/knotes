@@ -30,7 +30,6 @@ public:
 
     QString selectedTheme() const;
 
-private:
     void loadThemes();
 };
 
