@@ -109,6 +109,7 @@ public:
     /** Reimplemented from KCModule. */
     virtual void load();
     virtual void save();
+    virtual void defaults();
 
 private Q_SLOTS:
     void slotThemeChanged();
