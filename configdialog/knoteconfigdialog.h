@@ -27,6 +27,10 @@
 #include "knotes_export.h"
 class KNotePrintSelectThemeComboBox;
 
+namespace KNS3 {
+class DownloadDialog;
+}
+
 class KNOTES_EXPORT KNoteConfigDialog
   : public KCMultiDialog
 {
@@ -113,9 +117,11 @@ public:
 
 private Q_SLOTS:
     void slotThemeChanged();
+    void slotDownloadNewThemes();
 
 private:
     KNotePrintSelectThemeComboBox *mSelectTheme;
+    QWeakPointer<KNS3::DownloadDialog> downloadThemesDialog;
 };
 
 

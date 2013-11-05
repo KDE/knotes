@@ -35,6 +35,8 @@
 #include <klocale.h>
 #include <knuminput.h>
 #include <kwindowsystem.h>
+#include <KIcon>
+#include <KNS3/DownloadDialog>
 
 #include <QCheckBox>
 #include <QComboBox>
@@ -44,6 +46,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QWhatsThis>
+#include <QToolButton>
 
 KNoteConfigDialog::KNoteConfigDialog( const QString &title,
                                 QWidget *parent )
@@ -419,8 +422,24 @@ KNotePrintConfig::KNotePrintConfig(const KComponentData &inst, QWidget *parent )
     connect(mSelectTheme, SIGNAL(activated(int)), SLOT(slotThemeChanged()));
     label_PrintAction->setBuddy( mSelectTheme );
     layout->addWidget( mSelectTheme, 0, 1 );
+
+    QToolButton *getNewTheme = new QToolButton;
+    getNewTheme->setIcon(KIcon(QLatin1String("get-hot-new-stuff")));
+    getNewTheme->setToolTip(i18n("Download new printing themes"));
+    connect(getNewTheme, SIGNAL(clicked()), SLOT(slotDownloadNewThemes()));
+    layout->addWidget( getNewTheme, 0, 2 );
     lay->addStretch();
     load();
+}
+
+void KNotePrintConfig::slotDownloadNewThemes()
+{
+    QPointer<KNS3::DownloadDialog> downloadThemesDialog = new KNS3::DownloadDialog(QLatin1String("knotes_printing_theme.knsrc"));
+    if (downloadThemesDialog->exec()) {
+        if (!downloadThemesDialog->changedEntries().isEmpty()) {
+            mSelectTheme->loadThemes();
+        }
+    }
 }
 
 void KNotePrintConfig::slotThemeChanged()
