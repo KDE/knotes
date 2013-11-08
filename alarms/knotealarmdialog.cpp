@@ -69,13 +69,6 @@ KNoteAlarmDialog::KNoteAlarmDialog( const QString &caption, QWidget *parent )
     layout->addWidget( at );
     m_buttons->addButton( label_at, 1 );
 
-    KHBox *in = new KHBox;
-    QRadioButton *label_in = new QRadioButton( i18n( "Alarm &in:" ), in );
-    m_inTime = new KTimeComboBox( in );
-    label_in->setEnabled( false ); // TODO
-    //layout->addWidget( in );  //show it and enable it when feature will implemented
-    m_buttons->addButton( label_in, 2 );
-
     connect( m_buttons, SIGNAL(buttonClicked(int)),
              SLOT(slotButtonChanged(int)) );
     connect( this, SIGNAL(okClicked()), SLOT(slotOk()) );
@@ -92,8 +85,6 @@ void KNoteAlarmDialog::setIncidence( KCal::Journal *journal )
             m_buttons->button( 1 )->setChecked( true );
             m_atDate->setDate( alarm->time().date() );
             m_atTime->setTime( alarm->time().time() );
-        } else if ( alarm->hasStartOffset() ) {
-            m_buttons->button( 2 )->setChecked( true );
         } else {
             m_buttons->button( 0 )->setChecked( true );
         }
@@ -110,19 +101,11 @@ void KNoteAlarmDialog::slotButtonChanged( int id )
     case 0:
         m_atDate->setEnabled( false );
         m_atTime->setEnabled( false );
-        m_inTime->setEnabled( false );
         break;
 
     case 1:
         m_atDate->setEnabled( true );
         m_atTime->setEnabled( true );
-        m_inTime->setEnabled( false );
-        break;
-
-    case 2:
-        m_atDate->setEnabled( false );
-        m_atTime->setEnabled( false );
-        m_inTime->setEnabled( true );
         break;
     }
 }
@@ -146,8 +129,6 @@ void KNoteAlarmDialog::slotOk()
     if ( m_buttons->checkedId() == 1 ) {
         alarm->setTime( KDateTime( m_atDate->date(), m_atTime->time(),
                                    KDateTime::LocalZone ) );
-    } else {
-        // TODO
-    }
+    } 
 }
 
