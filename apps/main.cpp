@@ -111,8 +111,11 @@ KCmdLineOptions knotesOptions()
 
 void knotesAuthors(  KAboutData &aboutData )
 {
-    aboutData.addAuthor( ki18n( "Guillermo Antonio Amaral Bastidas" ),
+    aboutData.addCredit( ki18n( "Laurent Montel" ),
                          ki18n( "Maintainer" ),
+                         "montel@kde.org" );
+    aboutData.addAuthor( ki18n( "Guillermo Antonio Amaral Bastidas" ),
+                         ki18n( "Previous Maintainer" ),
                          "me@guillermoamaral.com" );
     aboutData.addAuthor( ki18n( "Michael Brade" ),
                          ki18n( "Previous Maintainer" ),
@@ -129,7 +132,6 @@ void knotesAuthors(  KAboutData &aboutData )
     aboutData.addAuthor( ki18n( "Bo Thorsen" ),
                          ki18n( "Started KDE Resource Framework Integration" ),
                          "bo@sonofthor.dk" );
-
     aboutData.addCredit( ki18n( "Bera Debajyoti" ),
                          ki18n( "Idea and initial code for the new look & feel" ),
                          "debajyotibera@gmail.com" );
