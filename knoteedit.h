@@ -78,9 +78,9 @@ public slots:
     void slotInsertDate();
 
 protected:
-    virtual void keyPressEvent( QKeyEvent * );
-    virtual void focusInEvent( QFocusEvent * );
-    virtual void focusOutEvent( QFocusEvent * );
+    void keyPressEvent( QKeyEvent * );
+    void focusInEvent( QFocusEvent * );
+    void focusOutEvent( QFocusEvent * );
 
 protected slots:
     void mousePopupMenuImplementation(const QPoint& pos);
