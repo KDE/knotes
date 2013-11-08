@@ -57,7 +57,7 @@ private:
     KCal::Journal *m_journal;
 
     KDateComboBox *m_atDate;
-    KTimeComboBox *m_atTime, *m_inTime;
+    KTimeComboBox *m_atTime;
     QButtonGroup *m_buttons;
 };
 
