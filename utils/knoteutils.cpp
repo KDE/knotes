@@ -18,7 +18,7 @@
 #include "knoteutils.h"
 #include "knoteconfig.h"
 #include "network/knotehostdialog.h"
-#include "network/knotesnetsend.h"
+#include "noteshared/network/notesnetworksender.h"
 #include "kdepim-version.h"
 #include "knotes/knotesglobalconfig.h"
 
@@ -171,7 +171,7 @@ void KNoteUtils::sendToNetwork(QWidget *parent, const QString &title, const QStr
 
         // Send the note
 
-        KNotesNetworkSender *sender = new KNotesNetworkSender(
+        NoteShared::NotesNetworkSender *sender = new NoteShared::NotesNetworkSender(
                     KSocketFactory::connectToHost( QLatin1String("knotes"), host, port ) );
         sender->setSenderId( KNotesGlobalConfig::senderID() );
         sender->setNote( title, message ); // FIXME: plainText ??
