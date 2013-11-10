@@ -28,7 +28,7 @@
 #include "print/knoteprintobject.h"
 #include "knotesglobalconfig.h"
 #include "migrations/knoteslegacy.h"
-#include "network/knotesnetrecv.h"
+#include "noteshared/network/notesnetworkreceiver.h"
 #include "knotestray.h"
 #include "dialog/knoteskeydialog.h"
 #include "print/knoteprintselectednotesdialog.h"
@@ -606,9 +606,9 @@ void KNotesApp::acceptConnection()
     QTcpSocket *s = m_listener->nextPendingConnection();
 
     if ( s ) {
-        KNotesNetworkReceiver *recv = new KNotesNetworkReceiver( s );
+        NoteShared::NotesNetworkReceiver *recv = new NoteShared::KNotesNetworkReceiver( s );
         connect( recv,
-                 SIGNAL(sigNoteReceived(QString,QString)),
+                 SIGNAL(noteReceived(QString,QString)),
                  SLOT(newNote(QString,QString)) );
     }
 }
