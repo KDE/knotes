@@ -38,7 +38,11 @@
 #include <QTextCodec>
 
 KNotesNetworkSender::KNotesNetworkSender( QTcpSocket *socket )
-    : QObject(), m_socket( socket ), m_note(), m_title(), m_sender()
+    : QObject(),
+      m_socket( socket ),
+      m_note(),
+      m_title(),
+      m_sender()
 {
     // QObject:: prefix needed, otherwise the KStreamSocket::connect()
     // method is called!!!

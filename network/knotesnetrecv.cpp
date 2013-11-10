@@ -55,9 +55,11 @@
 #define SBSIZE 512
 
 KNotesNetworkReceiver::KNotesNetworkReceiver( QTcpSocket *s )
-    : QObject(), m_buffer( new QByteArray() ), m_sock( s )
+    : QObject(),
+      m_buffer( new QByteArray() ),
+      m_sock( s )
 {
-    QString date =
+    const QString date =
             KGlobal::locale()->formatDateTime( QDateTime::currentDateTime(),
                                                KLocale::ShortDate, false );
 
