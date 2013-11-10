@@ -606,7 +606,7 @@ void KNotesApp::acceptConnection()
     QTcpSocket *s = m_listener->nextPendingConnection();
 
     if ( s ) {
-        NoteShared::NotesNetworkReceiver *recv = new NoteShared::KNotesNetworkReceiver( s );
+        NoteShared::NotesNetworkReceiver *recv = new NoteShared::NotesNetworkReceiver( s );
         connect( recv,
                  SIGNAL(noteReceived(QString,QString)),
                  SLOT(newNote(QString,QString)) );
