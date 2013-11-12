@@ -316,7 +316,7 @@ KNoteActionConfig::KNoteActionConfig(const KComponentData &inst, QWidget *parent
     connect( howItWorks, SIGNAL(linkActivated(QString)),SLOT(slotHelpLinkClicked(QString)) );
     layout->addWidget( howItWorks, 1, 0 );
 
-    addConfig( KNotesGlobalConfig::self(), w );
+    addConfig( NoteSharedGlobalConfig::self(), w );
     lay->addStretch();
     load();
 }
@@ -392,20 +392,18 @@ KNoteNetworkConfig::KNoteNetworkConfig(const KComponentData &inst, QWidget *pare
     tmpLayout->addWidget( kcfg_Port );
     layout->addLayout( tmpLayout );
     lay->addStretch();
-    addConfig( KNotesGlobalConfig::self(), w );
+    addConfig( NoteSharedGlobalConfig::self(), w );
     load();
 }
 
 void KNoteNetworkConfig::save()
 {
     KCModule::save();
-    //TODO save noteshared
 }
 
 void KNoteNetworkConfig::load()
 {
     KCModule::load();
-    //TODO load noteshared
 }
 
 
