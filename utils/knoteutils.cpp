@@ -29,12 +29,7 @@ using namespace KCal;
 #include <KIO/NetAccess>
 #include <KSharedConfig>
 #include <KStandardDirs>
-#include <KProcess>
-#include <KMessageBox>
 #include <KLocale>
-#include <ksocketfactory.h>
-
-#include <QPointer>
 
 KNoteConfig *KNoteUtils::createConfig(KCal::Journal *journal, QString &configPath)
 {
@@ -123,34 +118,5 @@ void KNoteUtils::savePreferences( KCal::Journal *journal, KNoteConfig *config)
                                   config->bgColor().name() );
     journal->setCustomProperty( "KNotes", "RichText",
                                   config->richText() ? QLatin1String("true") : QLatin1String("false") );
-}
-
-void KNoteUtils::sendToNetwork(QWidget *parent, const QString &title, const QString &message)
-{
-    // pop up dialog to get the IP
-    QPointer<NoteShared::NoteHostDialog> hostDlg = new NoteShared::NoteHostDialog( i18n( "Send \"%1\"", title ), parent );
-    if ( hostDlg->exec() ) {
-
-        const QString host = hostDlg->host();
-        quint16 port = hostDlg->port();
-
-        if ( !port ) { // not specified, use default
-            port = NoteShared::NoteSharedGlobalConfig::port();
-        }
-
-        if ( host.isEmpty() ) {
-            KMessageBox::sorry( parent, i18n( "The host cannot be empty." ) );
-            delete hostDlg;
-            return;
-        }
-
-        // Send the note
-
-        NoteShared::NotesNetworkSender *sender = new NoteShared::NotesNetworkSender(
-                    KSocketFactory::connectToHost( QLatin1String("knotes"), host, port ) );
-        sender->setSenderId( NoteShared::NoteSharedGlobalConfig::senderID() );
-        sender->setNote( title, message ); // FIXME: plainText ??
-    }
-    delete hostDlg;
 }
 

@@ -411,7 +411,7 @@ void KNote::slotPreferences()
 
 void KNote::slotSend()
 {
-    KNoteUtils::sendToNetwork(this, name(), text());
+    NoteShared::NoteUtils::sendToNetwork(this, name(), text());
 }
 
 void KNote::slotMail()
