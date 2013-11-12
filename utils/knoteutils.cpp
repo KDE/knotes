@@ -17,8 +17,8 @@
 
 #include "knoteutils.h"
 #include "knoteconfig.h"
-#include "network/knotehostdialog.h"
 #include "noteshared/network/notesnetworksender.h"
+#include "noteshared/network/notehostdialog.h"
 #include "kdepim-version.h"
 #include "knotes/knotesglobalconfig.h"
 
@@ -153,7 +153,7 @@ void KNoteUtils::sendMail(QWidget *parent, const QString &title, const QString &
 void KNoteUtils::sendToNetwork(QWidget *parent, const QString &title, const QString &message)
 {
     // pop up dialog to get the IP
-    QPointer<KNoteHostDialog> hostDlg = new KNoteHostDialog( i18n( "Send \"%1\"", title ), parent );
+    QPointer<NoteShared::NoteHostDialog> hostDlg = new NoteShared::NoteHostDialog( i18n( "Send \"%1\"", title ), parent );
     if ( hostDlg->exec() ) {
 
         const QString host = hostDlg->host();
