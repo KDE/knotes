@@ -135,7 +135,7 @@ void KNoteUtils::sendToNetwork(QWidget *parent, const QString &title, const QStr
         quint16 port = hostDlg->port();
 
         if ( !port ) { // not specified, use default
-            port = NoteSharedGlobalConfig::port();
+            port = NoteShared::NoteSharedGlobalConfig::port();
         }
 
         if ( host.isEmpty() ) {
@@ -148,7 +148,7 @@ void KNoteUtils::sendToNetwork(QWidget *parent, const QString &title, const QStr
 
         NoteShared::NotesNetworkSender *sender = new NoteShared::NotesNetworkSender(
                     KSocketFactory::connectToHost( QLatin1String("knotes"), host, port ) );
-        sender->setSenderId( NoteSharedGlobalConfig::senderID() );
+        sender->setSenderId( NoteShared::NoteSharedGlobalConfig::senderID() );
         sender->setNote( title, message ); // FIXME: plainText ??
     }
     delete hostDlg;

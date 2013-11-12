@@ -683,13 +683,13 @@ void KNotesApp::updateNetworkListener()
     delete m_publisher;
     m_publisher=0;
 
-    if ( NoteSharedGlobalConfig::receiveNotes() ) {
+    if ( NoteShared::NoteSharedGlobalConfig::receiveNotes() ) {
         // create the socket and start listening for connections
         m_listener=KSocketFactory::listen( QLatin1String("knotes") , QHostAddress::Any,
-                                           NoteSharedGlobalConfig::port() );
+                                           NoteShared::NoteSharedGlobalConfig::port() );
         connect( m_listener, SIGNAL(newConnection()),
                  SLOT(acceptConnection()) );
-        m_publisher=new DNSSD::PublicService(NoteSharedGlobalConfig::senderID(), QLatin1String("_knotes._tcp"), NoteSharedGlobalConfig::port());
+        m_publisher=new DNSSD::PublicService(NoteShared::NoteSharedGlobalConfig::senderID(), QLatin1String("_knotes._tcp"), NoteShared::NoteSharedGlobalConfig::port());
         m_publisher->publishAsync();
     }
 }

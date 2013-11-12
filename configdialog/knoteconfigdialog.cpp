@@ -85,7 +85,7 @@ KNoteConfigDialog::~KNoteConfigDialog()
 
 void KNoteConfigDialog::slotOk() {
     KNotesGlobalConfig::self()->writeConfig();
-    NoteSharedGlobalConfig::self()->writeConfig();
+    NoteShared::NoteSharedGlobalConfig::self()->writeConfig();
     emit configWrote();
 }
 
@@ -316,7 +316,7 @@ KNoteActionConfig::KNoteActionConfig(const KComponentData &inst, QWidget *parent
     connect( howItWorks, SIGNAL(linkActivated(QString)),SLOT(slotHelpLinkClicked(QString)) );
     layout->addWidget( howItWorks, 1, 0 );
 
-    addConfig( NoteSharedGlobalConfig::self(), w );
+    addConfig( NoteShared::NoteSharedGlobalConfig::self(), w );
     lay->addStretch();
     load();
 }
@@ -392,7 +392,7 @@ KNoteNetworkConfig::KNoteNetworkConfig(const KComponentData &inst, QWidget *pare
     tmpLayout->addWidget( kcfg_Port );
     layout->addLayout( tmpLayout );
     lay->addStretch();
-    addConfig( NoteSharedGlobalConfig::self(), w );
+    addConfig( NoteShared::NoteSharedGlobalConfig::self(), w );
     load();
 }
 
