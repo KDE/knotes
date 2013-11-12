@@ -63,30 +63,6 @@ public:
     virtual void save();
 };
 
-
-class KNoteActionConfig : public KCModule
-{
-    Q_OBJECT
-public:
-    KNoteActionConfig( const KComponentData &inst, QWidget *parent );
-    /** Reimplemented from KCModule. */
-    virtual void load();
-    virtual void save();
-
-private Q_SLOTS:
-    void slotHelpLinkClicked(const QString &);
-};
-
-class KNoteNetworkConfig : public KCModule
-{
-    Q_OBJECT
-public:
-    KNoteNetworkConfig( const KComponentData &inst, QWidget *parent );
-    /** Reimplemented from KCModule. */
-    virtual void load();
-    virtual void save();
-};
-
 class KNoteDisplayConfigWidget :public QWidget
 {
     Q_OBJECT

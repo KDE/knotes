@@ -24,6 +24,8 @@
 #include "print/knoteprintselectthemecombobox.h"
 #include "knotesglobalconfig.h"
 #include "notesharedglobalconfig.h"
+#include "noteshared/config/noteactionconfig.h"
+#include "noteshared/config/notenetworkconfig.h"
 
 #include "kdepim-version.h"
 
@@ -113,7 +115,7 @@ extern "C"
 KDE_EXPORT KCModule *create_knote_config_action( QWidget *parent )
 {
     KComponentData instance( "kcmnote_config_action" );
-    return new KNoteActionConfig( instance, parent );
+    return new NoteShared::NoteActionConfig( instance, parent );
 }
 }
 
@@ -122,7 +124,7 @@ extern "C"
 KDE_EXPORT KCModule *create_knote_config_network( QWidget *parent )
 {
     KComponentData instance( "kcmnote_config_network" );
-    return new KNoteNetworkConfig( instance, parent );
+    return new NoteShared::NoteNetworkConfig( instance, parent );
 }
 }
 
@@ -293,119 +295,6 @@ void KNoteEditorConfig::load()
 {
     KCModule::load();
 }
-
-KNoteActionConfig::KNoteActionConfig(const KComponentData &inst, QWidget *parent )
-    :KCModule( inst, parent )
-{
-    QVBoxLayout *lay = new QVBoxLayout( this );
-    QWidget * w =  new QWidget( this );
-    lay->addWidget( w );
-    QGridLayout *layout = new QGridLayout( w );
-    layout->setSpacing( KDialog::spacingHint() );
-    layout->setMargin( 0 );
-
-    QLabel *label_MailAction = new QLabel( i18n( "&Mail action:" ), this );
-    layout->addWidget( label_MailAction, 0, 0 );
-
-    KLineEdit *kcfg_MailAction = new KLineEdit( this );
-    kcfg_MailAction->setObjectName( QLatin1String("kcfg_MailAction") );
-    label_MailAction->setBuddy( kcfg_MailAction );
-    layout->addWidget( kcfg_MailAction, 0, 1 );
-
-    QLabel *howItWorks = new QLabel(i18n( "<a href=\"whatsthis\">How does this work?</a>" ));
-    connect( howItWorks, SIGNAL(linkActivated(QString)),SLOT(slotHelpLinkClicked(QString)) );
-    layout->addWidget( howItWorks, 1, 0 );
-
-    addConfig( NoteShared::NoteSharedGlobalConfig::self(), w );
-    lay->addStretch();
-    load();
-}
-
-void KNoteActionConfig::slotHelpLinkClicked(const QString &)
-{
-    const QString help =
-            i18n( "<qt>"
-                  "<p>You can customize command line. "
-                  "You can use:</p>"
-                  "<ul>"
-                  "<li>%t returns current note title</li>"
-                  "<li>%f returns current note text</li>"
-                  "</ul>"
-                  "</qt>" );
-
-    QWhatsThis::showText( QCursor::pos(), help );
-}
-
-void KNoteActionConfig::save()
-{
-    KCModule::save();
-}
-
-void KNoteActionConfig::load()
-{
-    KCModule::load();
-}
-
-KNoteNetworkConfig::KNoteNetworkConfig(const KComponentData &inst, QWidget *parent )
-    :KCModule( inst, parent )
-{
-    QVBoxLayout *lay = new QVBoxLayout( this );
-    QWidget * w =  new QWidget( this );
-    lay->addWidget( w );
-    QVBoxLayout *layout = new QVBoxLayout( w );
-    layout->setSpacing( KDialog::spacingHint() );
-    layout->setMargin( 0 );
-
-    QGroupBox *incoming = new QGroupBox( i18n( "Incoming Notes" ) );
-    QHBoxLayout *tmpLayout = new QHBoxLayout;
-
-    QCheckBox *tmpChkB=new QCheckBox( i18n( "Accept incoming notes" ) );
-    tmpChkB->setObjectName( QLatin1String("kcfg_ReceiveNotes") );
-    tmpLayout->addWidget( tmpChkB );
-    incoming->setLayout( tmpLayout );
-    layout->addWidget( incoming );
-
-    QGroupBox *outgoing = new QGroupBox( i18n( "Outgoing Notes" ) );
-    tmpLayout = new QHBoxLayout;
-
-    QLabel *label_SenderID = new QLabel( i18n( "&Sender ID:" ) );
-    KLineEdit *kcfg_SenderID = new KLineEdit;
-    kcfg_SenderID->setClearButtonShown(true);
-    kcfg_SenderID->setObjectName( QLatin1String("kcfg_SenderID") );
-    label_SenderID->setBuddy( kcfg_SenderID );
-    tmpLayout->addWidget( label_SenderID );
-    tmpLayout->addWidget( kcfg_SenderID );
-    outgoing->setLayout( tmpLayout );
-    layout->addWidget( outgoing );
-
-    tmpLayout = new QHBoxLayout;
-
-    QLabel *label_Port = new QLabel( i18n( "&Port:" ) );
-
-    tmpLayout->addWidget( label_Port );
-
-    KIntNumInput *kcfg_Port = new KIntNumInput;
-    kcfg_Port->setObjectName( QLatin1String("kcfg_Port") );
-    kcfg_Port->setRange( 0, 65535 );
-    kcfg_Port->setSliderEnabled( false );
-    label_Port->setBuddy( kcfg_Port );
-    tmpLayout->addWidget( kcfg_Port );
-    layout->addLayout( tmpLayout );
-    lay->addStretch();
-    addConfig( NoteShared::NoteSharedGlobalConfig::self(), w );
-    load();
-}
-
-void KNoteNetworkConfig::save()
-{
-    KCModule::save();
-}
-
-void KNoteNetworkConfig::load()
-{
-    KCModule::load();
-}
-
 
 KNotePrintConfig::KNotePrintConfig(const KComponentData &inst, QWidget *parent )
     :KCModule( inst, parent )
