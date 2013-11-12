@@ -23,6 +23,7 @@
 #include "notes/knote.h"
 #include "print/knoteprintselectthemecombobox.h"
 #include "knotesglobalconfig.h"
+#include "notesharedglobalconfig.h"
 
 #include "kdepim-version.h"
 
@@ -84,6 +85,7 @@ KNoteConfigDialog::~KNoteConfigDialog()
 
 void KNoteConfigDialog::slotOk() {
     KNotesGlobalConfig::self()->writeConfig();
+    NoteSharedGlobalConfig::self()->writeConfig();
     emit configWrote();
 }
 
@@ -397,11 +399,13 @@ KNoteNetworkConfig::KNoteNetworkConfig(const KComponentData &inst, QWidget *pare
 void KNoteNetworkConfig::save()
 {
     KCModule::save();
+    //TODO save noteshared
 }
 
 void KNoteNetworkConfig::load()
 {
     KCModule::load();
+    //TODO load noteshared
 }
 
 

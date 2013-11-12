@@ -15,34 +15,12 @@
      </entry>
   </group>
 
-  <group name="Actions">
-    <entry name="MailAction" type="String">
-      <default>kmail --subject %t --body %f</default>
-    </entry>
-  </group>
-
   <group name="Alarms">
     <entry name="CheckInterval" type="UInt">
       <default>60</default>
     </entry>
 
     <entry name="AlarmsLastChecked" type="DateTime"/>
-  </group>
-
-  <group name="Network">
-    <entry name="ReceiveNotes" type="Bool">
-      <default>false</default>
-    </entry>
-
-    <entry name="Port" type="UInt">
-      <label>The port KNotes will listen on and send notes to.</label>
-      <default>24837</default>
-    </entry>
-
-    <entry name="SenderID" type="String"/>
-
-    <entry name="KnownHosts" type="StringList"/>
-    <entry name="NoteHostDialogSize" type="Size"/>
   </group>
 
 </kcfg>

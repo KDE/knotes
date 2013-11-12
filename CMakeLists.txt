@@ -7,6 +7,7 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/pimcommon
   ${Grantlee_INCLUDE_DIRS}
   ${CMAKE_SOURCE_DIR}/noteshared
+  ${CMAKE_BINARY_DIR}/noteshared
 )
 
 ########### next target ###############
@@ -87,7 +88,7 @@ set(kcm_knotes_PART_SRCS configdialog/knoteconfigdialog.cpp )
 
 kde4_add_plugin(kcm_knote ${kcm_knotes_PART_SRCS} ${libknotesconfig_SRCS})
 
-target_link_libraries(kcm_knote knotesprivate ${KDE4_KDEUI_LIBS} ${KDE4_KCMUTILS_LIBS} ${KDE4_KNEWSTUFF3_LIBS})
+target_link_libraries(kcm_knote knotesprivate ${KDE4_KDEUI_LIBS} ${KDE4_KCMUTILS_LIBS} ${KDE4_KNEWSTUFF3_LIBS} noteshared)
 
 install(TARGETS kcm_knote DESTINATION ${PLUGIN_INSTALL_DIR})
 

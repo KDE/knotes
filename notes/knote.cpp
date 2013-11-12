@@ -19,6 +19,7 @@
 *******************************************************************/
 
 #include "knote.h"
+#include "noteshared/noteutils.h"
 #include "alarms/knotealarmdialog.h"
 #include "configdialog/knotesimpleconfigdialog.h"
 #include "print/knoteprintselectthemedialog.h"
@@ -415,7 +416,7 @@ void KNote::slotSend()
 
 void KNote::slotMail()
 {
-    KNoteUtils::sendMail(this, m_label->text(), m_editor->toPlainText());
+    NoteShared::NoteUtils::sendToMail(this, m_label->text(), m_editor->toPlainText());
 }
 
 void KNote::slotPrint()

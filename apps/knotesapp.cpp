@@ -19,6 +19,7 @@
 *******************************************************************/
 
 #include "configdialog/knoteconfigdialog.h"
+#include "notesharedglobalconfig.h"
 #include "notes/knote.h"
 #include "knotes/resource/resourcemanager.h"
 #include "knotesadaptor.h"
@@ -682,13 +683,13 @@ void KNotesApp::updateNetworkListener()
     delete m_publisher;
     m_publisher=0;
 
-    if ( KNotesGlobalConfig::receiveNotes() ) {
+    if ( NoteSharedGlobalConfig::receiveNotes() ) {
         // create the socket and start listening for connections
         m_listener=KSocketFactory::listen( QLatin1String("knotes") , QHostAddress::Any,
-                                           KNotesGlobalConfig::port() );
+                                           NoteSharedGlobalConfig::port() );
         connect( m_listener, SIGNAL(newConnection()),
                  SLOT(acceptConnection()) );
-        m_publisher=new DNSSD::PublicService(KNotesGlobalConfig::senderID(), QLatin1String("_knotes._tcp"), KNotesGlobalConfig::port());
+        m_publisher=new DNSSD::PublicService(NoteSharedGlobalConfig::senderID(), QLatin1String("_knotes._tcp"), NoteSharedGlobalConfig::port());
         m_publisher->publishAsync();
     }
 }
