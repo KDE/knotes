@@ -35,11 +35,20 @@ KNotesAkonadiTray::KNotesAkonadiTray(QWidget *parent)
     setStandardActionsEnabled(false);
     mIcon = KIcon( QLatin1String("knotes") );
     //TODO remove it
+#if 0
+    connect( kmkernel->folderCollectionMonitor(), SIGNAL(collectionStatisticsChanged(Akonadi::Collection::Id,Akonadi::CollectionStatistics)),
+             SLOT(slotCollectionStatisticsChanged(Akonadi::Collection::Id,Akonadi::CollectionStatistics)) );
+#endif
     updateNumberOfNotes(1);
 }
 
 KNotesAkonadiTray::~KNotesAkonadiTray()
 {
+}
+
+void KNotesAkonadiTray::slotUpdateSystemTray()
+{
+    //TODO
 }
 
 void KNotesAkonadiTray::updateNumberOfNotes(int value)

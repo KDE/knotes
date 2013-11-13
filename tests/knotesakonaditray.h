@@ -29,6 +29,9 @@ public:
 
     void updateNumberOfNotes(int value);
 
+private Q_SLOTS:
+    void slotUpdateSystemTray();
+
 private:
     KIcon mIcon;
 };

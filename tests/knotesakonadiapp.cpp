@@ -17,10 +17,12 @@
 
 #include "knotesakonadiapp.h"
 #include "knotesakonaditray.h"
+#include <akonadi/control.h>
 
 KNotesAkonadiApp::KNotesAkonadiApp(QWidget *parent)
     : QWidget(parent)
 {
+    Akonadi::Control::widgetNeedsAkonadi(this);
     mTray = new KNotesAkonadiTray(0);
 }
 
