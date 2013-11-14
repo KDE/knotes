@@ -17,13 +17,16 @@
 
 #include "knotesakonadiapp.h"
 #include "knotesakonaditray.h"
+#include "knoteschangerecorder.h"
 #include <akonadi/control.h>
 
 KNotesAkonadiApp::KNotesAkonadiApp(QWidget *parent)
     : QWidget(parent)
 {
+    mNoteRecorder = new KNotesChangeRecorder(this);
     Akonadi::Control::widgetNeedsAkonadi(this);
-    mTray = new KNotesAkonadiTray(0);
+
+    mTray = new KNotesAkonadiTray(mNoteRecorder->changeRecorder(), 0);
 }
 
 KNotesAkonadiApp::~KNotesAkonadiApp()

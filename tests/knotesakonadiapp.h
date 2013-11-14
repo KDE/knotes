@@ -20,6 +20,7 @@
 
 #include <QWidget>
 class KNotesAkonadiTray;
+class KNotesChangeRecorder;
 class KNotesAkonadiApp : public QWidget
 {
     Q_OBJECT
@@ -29,6 +30,7 @@ public:
 
 private:
     KNotesAkonadiTray *mTray;
+    KNotesChangeRecorder *mNoteRecorder;
 };
 
 #endif // KNOTESAKONADIAPP_H

@@ -20,11 +20,14 @@
 
 #include <KStatusNotifierItem>
 #include <KIcon>
+namespace Akonadi {
+class ChangeRecorder;
+}
 class KNotesAkonadiTray : public KStatusNotifierItem
 {
     Q_OBJECT
 public:
-    explicit KNotesAkonadiTray(QWidget *parent=0);
+    explicit KNotesAkonadiTray(Akonadi::ChangeRecorder *recorder, QWidget *parent=0);
     ~KNotesAkonadiTray();
 
     void updateNumberOfNotes(int value);
