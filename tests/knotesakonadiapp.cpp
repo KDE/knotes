@@ -17,8 +17,14 @@
 
 #include "knotesakonadiapp.h"
 #include "knotesakonaditray.h"
+#include "knoteakonadinote.h"
 #include "knoteschangerecorder.h"
 #include <akonadi/control.h>
+#include <Akonadi/ChangeRecorder>
+#include <Akonadi/Item>
+#include <Akonadi/Collection>
+
+#include <QDebug>
 
 KNotesAkonadiApp::KNotesAkonadiApp(QWidget *parent)
     : QWidget(parent)
@@ -27,9 +33,25 @@ KNotesAkonadiApp::KNotesAkonadiApp(QWidget *parent)
     Akonadi::Control::widgetNeedsAkonadi(this);
 
     mTray = new KNotesAkonadiTray(mNoteRecorder->changeRecorder(), 0);
+    connect(mNoteRecorder->changeRecorder(), SIGNAL(itemsRemoved(Akonadi::Item::List)), SLOT(slotItemsRemove(Akonadi::Item::List)));
+    connect(mNoteRecorder->changeRecorder(), SIGNAL(itemAdded(Akonadi::Item,Akonadi::Collection)), SLOT(slotItemAdded(Akonadi::Item,Akonadi::Collection)));
 }
 
 KNotesAkonadiApp::~KNotesAkonadiApp()
 {
 
+}
+
+void KNotesAkonadiApp::slotItemAdded(const Akonadi::Item &, const Akonadi::Collection &)
+{
+    //TODO
+    qDebug()<<" item added !";
+    KNoteAkonadiNote *note = new KNoteAkonadiNote(0);
+    note->show();
+
+}
+
+void KNotesAkonadiApp::slotItemsRemove(const Akonadi::Item::List &)
+{
+    qDebug()<<" items removed !";
 }

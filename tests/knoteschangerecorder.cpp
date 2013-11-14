@@ -18,15 +18,26 @@
 #include "knoteschangerecorder.h"
 #include <Akonadi/ChangeRecorder>
 #include <Akonadi/CollectionFetchScope>
+#include <Akonadi/ItemFetchScope>
 #include "akonadi_next/note.h"
+#include "noteshared/attributes/notealarmattribute.h"
+#include "noteshared/attributes/notelockattribute.h"
+#include "noteshared/attributes/notedisplayattribute.h"
 
 KNotesChangeRecorder::KNotesChangeRecorder(QObject *parent)
     : QObject(parent)
 {
+    Akonadi::ItemFetchScope scope;
+    scope.fetchFullPayload( true ); // Need to have full item when adding it to the internal data structure
+    scope.fetchAttribute< NoteShared::NoteLockAttribute >();
+    scope.fetchAttribute< NoteShared::NoteDisplayAttribute >();
+    scope.fetchAttribute< NoteShared::NoteAlarmAttribute >();
+
     mChangeRecorder = new Akonadi::ChangeRecorder( this );
     mChangeRecorder->setMimeTypeMonitored( Akonotes::Note::mimeType() );
     mChangeRecorder->fetchCollectionStatistics( true );
     mChangeRecorder->setAllMonitored( true );
+    mChangeRecorder->setCollectionMonitored( Akonadi::Collection::root() );
     mChangeRecorder->collectionFetchScope().setIncludeStatistics( true );
 }
 

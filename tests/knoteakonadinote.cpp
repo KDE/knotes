@@ -15,30 +15,24 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef KNOTESAKONADIAPP_H
-#define KNOTESAKONADIAPP_H
+#include "knoteakonadinote.h"
 
-#include <QWidget>
-#include <Akonadi/Item>
-class KNotesAkonadiTray;
-class KNotesChangeRecorder;
-namespace Akonadi {
-class Collection;
+#include <QTextEdit>
+#include <QVBoxLayout>
+
+KNoteAkonadiNote::KNoteAkonadiNote(QWidget *parent)
+    : QFrame(parent)
+{
+    // create the main layout
+    QVBoxLayout *lay = new QVBoxLayout;
+    lay->setMargin( 0 );
+    QTextEdit *edit = new QTextEdit;
+    lay->addWidget(edit);
+    setLayout(lay);
+    resize(200,200);
 }
 
-class KNotesAkonadiApp : public QWidget
+KNoteAkonadiNote::~KNoteAkonadiNote()
 {
-    Q_OBJECT
-public:
-    explicit KNotesAkonadiApp(QWidget *parent=0);
-    ~KNotesAkonadiApp();
 
-private Q_SLOTS:
-    void slotItemAdded(const Akonadi::Item &, const Akonadi::Collection &);
-    void slotItemsRemove(const Akonadi::Item::List &);
-private:
-    KNotesAkonadiTray *mTray;
-    KNotesChangeRecorder *mNoteRecorder;
-};
-
-#endif // KNOTESAKONADIAPP_H
+}

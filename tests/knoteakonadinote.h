@@ -15,30 +15,17 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef KNOTESAKONADIAPP_H
-#define KNOTESAKONADIAPP_H
+#ifndef KNOTEAKONADINOTE_H
+#define KNOTEAKONADINOTE_H
 
-#include <QWidget>
-#include <Akonadi/Item>
-class KNotesAkonadiTray;
-class KNotesChangeRecorder;
-namespace Akonadi {
-class Collection;
-}
+#include <QFrame>
 
-class KNotesAkonadiApp : public QWidget
+class KNoteAkonadiNote : public QFrame
 {
     Q_OBJECT
 public:
-    explicit KNotesAkonadiApp(QWidget *parent=0);
-    ~KNotesAkonadiApp();
-
-private Q_SLOTS:
-    void slotItemAdded(const Akonadi::Item &, const Akonadi::Collection &);
-    void slotItemsRemove(const Akonadi::Item::List &);
-private:
-    KNotesAkonadiTray *mTray;
-    KNotesChangeRecorder *mNoteRecorder;
+    explicit KNoteAkonadiNote(QWidget *parent = 0);
+    ~KNoteAkonadiNote();
 };
 
-#endif // KNOTESAKONADIAPP_H
+#endif // KNOTEAKONADINOTE_H

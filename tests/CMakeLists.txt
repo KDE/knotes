@@ -1,5 +1,12 @@
 
-set(knotes_akonadi_SRCS main.cpp knotesakonaditray.cpp knotesakonadiapp.cpp knoteschangerecorder.cpp)
+include_directories(
+  ${CMAKE_SOURCE_DIR}/pimcommon
+  ${CMAKE_SOURCE_DIR}/noteshared
+  ${CMAKE_BINARY_DIR}/noteshared
+)
+
+
+set(knotes_akonadi_SRCS main.cpp knotesakonaditray.cpp knotesakonadiapp.cpp knoteschangerecorder.cpp knoteakonadinote.cpp)
 kde4_add_executable(knotes_akonadi_test TEST ${knotes_akonadi_SRCS})
 target_link_libraries(knotes_akonadi_test
   ${QT_QTTEST_LIBRARY}
@@ -9,5 +16,6 @@ target_link_libraries(knotes_akonadi_test
   ${KDE4_KDEUI_LIBS}
   ${KDEPIMLIBS_AKONADI_LIBS}
   akonadi_next
+  noteshared
 )
 
