@@ -15,34 +15,17 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef KNOTESAKONADIAPP_H
-#define KNOTESAKONADIAPP_H
+#ifndef KNOTESAKONADITREEMODEL_H
+#define KNOTESAKONADITREEMODEL_H
 
-#include <QWidget>
-#include <Akonadi/Item>
-class KNotesAkonadiTray;
-class KNotesChangeRecorder;
-namespace Akonadi {
-class Collection;
-}
-class QModelIndex;
-class KNotesAkonadiTreeModel;
-class KNotesAkonadiApp : public QWidget
+#include <Akonadi/EntityTreeModel>
+
+class KNotesAkonadiTreeModel : public Akonadi::EntityTreeModel
 {
     Q_OBJECT
 public:
-    explicit KNotesAkonadiApp(QWidget *parent=0);
-    ~KNotesAkonadiApp();
-
-private Q_SLOTS:
-    void slotRowInserted(const QModelIndex &, int, int end);
-    void slotRowRemoved(const QModelIndex &, int, int);
-    void slotDataChanged(const QModelIndex &, const QModelIndex &);
-
-private:
-    KNotesAkonadiTray *mTray;
-    KNotesChangeRecorder *mNoteRecorder;
-    KNotesAkonadiTreeModel *mNoteTreeModel;
+    explicit KNotesAkonadiTreeModel(Akonadi::ChangeRecorder *changeRecorder, QObject *parent = 0);
+    ~KNotesAkonadiTreeModel();
 };
 
-#endif // KNOTESAKONADIAPP_H
+#endif // KNOTESAKONADITREEMODEL_H
