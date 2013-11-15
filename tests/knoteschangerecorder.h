@@ -23,7 +23,6 @@
 namespace Akonadi {
 class ChangeRecorder;
 }
-
 class KNotesChangeRecorder : public QObject
 {
     Q_OBJECT

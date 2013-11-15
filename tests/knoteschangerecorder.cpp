@@ -38,7 +38,8 @@ KNotesChangeRecorder::KNotesChangeRecorder(QObject *parent)
     mChangeRecorder->fetchCollectionStatistics( true );
     mChangeRecorder->setAllMonitored( true );
     mChangeRecorder->setCollectionMonitored( Akonadi::Collection::root() );
-    mChangeRecorder->collectionFetchScope().setIncludeStatistics( true );
+    mChangeRecorder->collectionFetchScope().setIncludeStatistics( true );    
+    mChangeRecorder->fetchCollection( true );
 }
 
 Akonadi::ChangeRecorder *KNotesChangeRecorder::changeRecorder() const

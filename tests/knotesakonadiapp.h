@@ -25,7 +25,7 @@ class KNotesChangeRecorder;
 namespace Akonadi {
 class Collection;
 }
-
+class QModelIndex;
 class KNotesAkonadiApp : public QWidget
 {
     Q_OBJECT
@@ -36,6 +36,8 @@ public:
 private Q_SLOTS:
     void slotItemAdded(const Akonadi::Item &, const Akonadi::Collection &);
     void slotItemsRemove(const Akonadi::Item::List &);
+    void slotRowInserted(const QModelIndex &, int, int);
+
 private:
     KNotesAkonadiTray *mTray;
     KNotesChangeRecorder *mNoteRecorder;

@@ -23,6 +23,7 @@
 #include <Akonadi/ChangeRecorder>
 #include <Akonadi/Item>
 #include <Akonadi/Collection>
+#include <Akonadi/EntityTreeModel>
 
 #include <QDebug>
 
@@ -30,6 +31,11 @@ KNotesAkonadiApp::KNotesAkonadiApp(QWidget *parent)
     : QWidget(parent)
 {
     mNoteRecorder = new KNotesChangeRecorder(this);
+    Akonadi::EntityTreeModel *model = new Akonadi::EntityTreeModel( mNoteRecorder->changeRecorder(), this );
+    model->setItemPopulationStrategy( Akonadi::EntityTreeModel::ImmediatePopulation );
+    connect( model, SIGNAL(rowsInserted(QModelIndex,int,int)),
+             SLOT(slotRowInserted(QModelIndex,int,int)));
+
     Akonadi::Control::widgetNeedsAkonadi(this);
 
     mTray = new KNotesAkonadiTray(mNoteRecorder->changeRecorder(), 0);
@@ -42,13 +48,19 @@ KNotesAkonadiApp::~KNotesAkonadiApp()
 
 }
 
+void KNotesAkonadiApp::slotRowInserted(const QModelIndex &,int,int)
+{
+    qDebug()<<" note inserted";
+    KNoteAkonadiNote *note = new KNoteAkonadiNote(0);
+    note->show();
+}
+
 void KNotesAkonadiApp::slotItemAdded(const Akonadi::Item &, const Akonadi::Collection &)
 {
     //TODO
     qDebug()<<" item added !";
     KNoteAkonadiNote *note = new KNoteAkonadiNote(0);
     note->show();
-
 }
 
 void KNotesAkonadiApp::slotItemsRemove(const Akonadi::Item::List &)
