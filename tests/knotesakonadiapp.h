@@ -34,9 +34,9 @@ public:
     ~KNotesAkonadiApp();
 
 private Q_SLOTS:
-    void slotItemAdded(const Akonadi::Item &, const Akonadi::Collection &);
-    void slotItemsRemove(const Akonadi::Item::List &);
     void slotRowInserted(const QModelIndex &, int, int);
+    void slotRowRemoved(const QModelIndex &, int, int);
+    void slotDataChanged(const QModelIndex &, int, int);
 
 private:
     KNotesAkonadiTray *mTray;

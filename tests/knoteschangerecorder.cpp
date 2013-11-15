@@ -34,12 +34,12 @@ KNotesChangeRecorder::KNotesChangeRecorder(QObject *parent)
     scope.fetchAttribute< NoteShared::NoteAlarmAttribute >();
 
     mChangeRecorder = new Akonadi::ChangeRecorder( this );
-    mChangeRecorder->setMimeTypeMonitored( Akonotes::Note::mimeType() );
+    mChangeRecorder->setItemFetchScope( scope );
+    mChangeRecorder->fetchCollection( true );
     mChangeRecorder->fetchCollectionStatistics( true );
-    mChangeRecorder->setAllMonitored( true );
     mChangeRecorder->setCollectionMonitored( Akonadi::Collection::root() );
     mChangeRecorder->collectionFetchScope().setIncludeStatistics( true );    
-    mChangeRecorder->fetchCollection( true );
+    mChangeRecorder->setMimeTypeMonitored( Akonotes::Note::mimeType() );
 }
 
 Akonadi::ChangeRecorder *KNotesChangeRecorder::changeRecorder() const

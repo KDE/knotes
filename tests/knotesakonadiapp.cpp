@@ -24,28 +24,37 @@
 #include <Akonadi/Item>
 #include <Akonadi/Collection>
 #include <Akonadi/EntityTreeModel>
+#include <Akonadi/Session>
 
 #include <QDebug>
 
 KNotesAkonadiApp::KNotesAkonadiApp(QWidget *parent)
     : QWidget(parent)
 {
+    Akonadi::Session *session = new Akonadi::Session( "KNotes Session", this );
+    Akonadi::Control::widgetNeedsAkonadi(this);
     mNoteRecorder = new KNotesChangeRecorder(this);
+    mNoteRecorder->changeRecorder()->setSession(session);
+    mTray = new KNotesAkonadiTray(mNoteRecorder->changeRecorder(), 0);
+
     Akonadi::EntityTreeModel *model = new Akonadi::EntityTreeModel( mNoteRecorder->changeRecorder(), this );
     model->setItemPopulationStrategy( Akonadi::EntityTreeModel::ImmediatePopulation );
     connect( model, SIGNAL(rowsInserted(QModelIndex,int,int)),
              SLOT(slotRowInserted(QModelIndex,int,int)));
-
-    Akonadi::Control::widgetNeedsAkonadi(this);
-
-    mTray = new KNotesAkonadiTray(mNoteRecorder->changeRecorder(), 0);
-    connect(mNoteRecorder->changeRecorder(), SIGNAL(itemsRemoved(Akonadi::Item::List)), SLOT(slotItemsRemove(Akonadi::Item::List)));
-    connect(mNoteRecorder->changeRecorder(), SIGNAL(itemAdded(Akonadi::Item,Akonadi::Collection)), SLOT(slotItemAdded(Akonadi::Item,Akonadi::Collection)));
+    connect( model, SIGNAL(rowsRemoved(QModelIndex,int,int)),
+             SLOT(slotRowRemoved(QModelIndex,int,int)) );
+    connect( model, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
+             SLOT(slotDataChanged(QModelIndex,int,int)) );
 }
 
 KNotesAkonadiApp::~KNotesAkonadiApp()
 {
 
+}
+
+void KNotesAkonadiApp::slotDataChanged(const QModelIndex & ,int,int)
+{
+    qDebug()<<" Data changed";
 }
 
 void KNotesAkonadiApp::slotRowInserted(const QModelIndex &,int,int)
@@ -55,15 +64,7 @@ void KNotesAkonadiApp::slotRowInserted(const QModelIndex &,int,int)
     note->show();
 }
 
-void KNotesAkonadiApp::slotItemAdded(const Akonadi::Item &, const Akonadi::Collection &)
+void KNotesAkonadiApp::slotRowRemoved(const QModelIndex &,int,int)
 {
-    //TODO
-    qDebug()<<" item added !";
-    KNoteAkonadiNote *note = new KNoteAkonadiNote(0);
-    note->show();
-}
-
-void KNotesAkonadiApp::slotItemsRemove(const Akonadi::Item::List &)
-{
-    qDebug()<<" items removed !";
+    qDebug()<<" note removed";
 }
