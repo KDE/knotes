@@ -36,7 +36,7 @@ public:
 
 private Q_SLOTS:
     void slotRowInserted(const QModelIndex &, int, int end);
-    void slotRowRemoved(const QModelIndex &, int, int);
+    void slotRowRemoved(const QModelIndex &parent, int start, int end);
     void slotDataChanged(const QModelIndex &, const QModelIndex &);
 
 private:

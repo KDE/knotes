@@ -64,7 +64,6 @@ void KNotesAkonadiApp::slotRowInserted(const QModelIndex &parent, int start, int
     for ( int i = start; i <= end; ++i) {
         if ( mNoteTreeModel->hasIndex( i, 0, parent ) ) {
             const QModelIndex child = mNoteTreeModel->index( i, 0, parent );
-            qDebug()<<" child "<<child;
             Akonadi::Item item =
                     mNoteTreeModel->data( child, Akonadi::EntityTreeModel::ItemRole ).value<Akonadi::Item>();
             qDebug()<<" BEFORE !!!!!!!!!!!!";
@@ -77,7 +76,16 @@ void KNotesAkonadiApp::slotRowInserted(const QModelIndex &parent, int start, int
     }
 }
 
-void KNotesAkonadiApp::slotRowRemoved(const QModelIndex &,int, int)
+void KNotesAkonadiApp::slotRowRemoved(const QModelIndex &parent,int start, int end)
 {
-    qDebug()<<" note removed";
+    for ( int i = start; i <= end; ++i) {
+        if ( mNoteTreeModel->hasIndex( i, 0, parent ) ) {
+            const QModelIndex child = mNoteTreeModel->index( i, 0, parent );
+            Akonadi::Item item =
+                    mNoteTreeModel->data( child, Akonadi::EntityTreeModel::ItemRole ).value<Akonadi::Item>();
+            if ( !item.hasPayload<KMime::Message::Ptr>() )
+                continue;
+            qDebug()<<" note removed"<<item.id();
+        }
+    }
 }
