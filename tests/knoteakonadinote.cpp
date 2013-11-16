@@ -18,14 +18,19 @@
 #include "knoteakonadinote.h"
 
 #include <QTextEdit>
+#include <QLineEdit>
 #include <QVBoxLayout>
 
 KNoteAkonadiNote::KNoteAkonadiNote(QWidget *parent)
     : QFrame(parent)
 {
     // create the main layout
+
     QVBoxLayout *lay = new QVBoxLayout;
     lay->setMargin( 0 );
+    mTitle = new QLineEdit;
+    lay->addWidget(mTitle);
+
     mEdit = new QTextEdit;
     lay->addWidget(mEdit);
     setLayout(lay);
