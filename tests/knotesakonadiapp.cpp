@@ -48,10 +48,9 @@ KNotesAkonadiApp::KNotesAkonadiApp(QWidget *parent)
 
     connect( mNoteTreeModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
              SLOT(slotRowInserted(QModelIndex,int,int)));
-    connect( mNoteTreeModel, SIGNAL(rowsRemoved(QModelIndex,int,int)),
-             SLOT(slotRowRemoved(QModelIndex,int,int)) );
-    connect( mNoteTreeModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
-             SLOT(slotDataChanged(QModelIndex,QModelIndex)) );
+
+    connect( mNoteRecorder->changeRecorder(), SIGNAL(itemChanged(Akonadi::Item,QSet<QByteArray>)), SLOT(slotItemChanged(Akonadi::Item,QSet<QByteArray>)));
+    connect( mNoteRecorder->changeRecorder(), SIGNAL(itemRemoved(Akonadi::Item)), SLOT(slotItemRemoved(Akonadi::Item)) );
 }
 
 KNotesAkonadiApp::~KNotesAkonadiApp()
@@ -59,9 +58,23 @@ KNotesAkonadiApp::~KNotesAkonadiApp()
     qDeleteAll(mHashNotes);
 }
 
-void KNotesAkonadiApp::slotDataChanged(const QModelIndex & ,const QModelIndex &)
+void KNotesAkonadiApp::slotItemRemoved(const Akonadi::Item &item)
 {
-    qDebug()<<" Data changed";
+    qDebug()<<" note removed"<<item.id();
+    if (mHashNotes.contains(item.id())) {
+        delete mHashNotes.find(item.id()).value();
+        mHashNotes.remove(item.id());
+    }
+}
+
+void KNotesAkonadiApp::slotItemChanged(const Akonadi::Item &item, const QSet<QByteArray> &set)
+{
+    if (mHashNotes.contains(item.id())) {
+        qDebug()<<" item changed "<<item.id()<<" info "<<set.toList();
+        if (set.contains("KJotsLockAttribute")) {
+            mHashNotes.find(item.id()).value()->setEnabled(item.hasAttribute<NoteShared::NoteLockAttribute>());
+        }
+    }
 }
 
 void KNotesAkonadiApp::slotRowInserted(const QModelIndex &parent, int start, int end)
@@ -88,24 +101,6 @@ void KNotesAkonadiApp::slotRowInserted(const QModelIndex &parent, int start, int
             }
             mHashNotes.insert(item.id(), note);
             note->show();
-        }
-    }
-}
-
-void KNotesAkonadiApp::slotRowRemoved(const QModelIndex &parent,int start, int end)
-{
-    for ( int i = start; i <= end; ++i) {
-        if ( mNoteTreeModel->hasIndex( i, 0, parent ) ) {
-            const QModelIndex child = mNoteTreeModel->index( i, 0, parent );
-            Akonadi::Item item =
-                    mNoteTreeModel->data( child, Akonadi::EntityTreeModel::ItemRole ).value<Akonadi::Item>();
-            if ( !item.hasPayload<KMime::Message::Ptr>() )
-                continue;
-            qDebug()<<" note removed"<<item.id();
-            if (mHashNotes.contains(item.id())) {
-                delete mHashNotes.find(item.id()).value();
-                mHashNotes.remove(item.id());
-            }
         }
     }
 }

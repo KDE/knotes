@@ -36,9 +36,9 @@ public:
     ~KNotesAkonadiApp();
 
 private Q_SLOTS:
-    void slotRowInserted(const QModelIndex &, int, int end);
-    void slotRowRemoved(const QModelIndex &parent, int start, int end);
-    void slotDataChanged(const QModelIndex &, const QModelIndex &);
+    void slotRowInserted(const QModelIndex &, int, int end);    
+    void slotItemRemoved(const Akonadi::Item &item);
+    void slotItemChanged(const Akonadi::Item &item, const QSet<QByteArray> &);
 
 private:
     QHash<Akonadi::Item::Id, KNoteAkonadiNote*> mHashNotes;
