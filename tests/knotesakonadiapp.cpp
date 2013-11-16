@@ -66,11 +66,11 @@ void KNotesAkonadiApp::slotRowInserted(const QModelIndex &parent, int start, int
             const QModelIndex child = mNoteTreeModel->index( i, 0, parent );
             qDebug()<<" child "<<child;
             Akonadi::Item item =
-                    mNoteTreeModel->data( child, Akonadi::EntityTreeModel::ItemIdRole ).value<Akonadi::Item>();
+                    mNoteTreeModel->data( child, Akonadi::EntityTreeModel::ItemRole ).value<Akonadi::Item>();
             qDebug()<<" BEFORE !!!!!!!!!!!!";
             if ( !item.hasPayload<KMime::Message::Ptr>() )
                 continue;
-            qDebug()<<" note inserted";
+            qDebug()<<" note inserted"<<item.id();
             KNoteAkonadiNote *note = new KNoteAkonadiNote(0);
             note->show();
         }
