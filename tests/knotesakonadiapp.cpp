@@ -71,8 +71,21 @@ void KNotesAkonadiApp::slotItemChanged(const Akonadi::Item &item, const QSet<QBy
 {
     if (mHashNotes.contains(item.id())) {
         qDebug()<<" item changed "<<item.id()<<" info "<<set.toList();
-        if (set.contains("KJotsLockAttribute")) {
-            mHashNotes.find(item.id()).value()->setEnabled(item.hasAttribute<NoteShared::NoteLockAttribute>());
+        if (set.contains("ATR:KJotsLockAttribute")) {
+            mHashNotes.find(item.id()).value()->setEnabled(!item.hasAttribute<NoteShared::NoteLockAttribute>());
+        }
+        if (set.contains("PLD:RFC822")) {
+            KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
+            KNoteAkonadiNote *note = mHashNotes.find(item.id()).value();
+            qDebug()<<" note ->"<<note->title()->text();
+            note->title()->setText(noteMessage->subject(false)->asUnicodeString());
+            if ( noteMessage->contentType()->isHTMLText() ) {
+                note->editor()->setAcceptRichText(true);
+                note->editor()->setHtml(noteMessage->mainBodyPart()->decodedText());
+            } else {
+                note->editor()->setAcceptRichText(false);
+                note->editor()->setPlainText(noteMessage->mainBodyPart()->decodedText());
+            }
         }
     }
 }
