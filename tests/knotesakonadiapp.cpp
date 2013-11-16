@@ -28,6 +28,7 @@
 #include <Akonadi/Session>
 #include <KMime/KMimeMessage>
 
+#include <QTextEdit>
 #include <QDebug>
 
 KNotesAkonadiApp::KNotesAkonadiApp(QWidget *parent)
@@ -70,7 +71,16 @@ void KNotesAkonadiApp::slotRowInserted(const QModelIndex &parent, int start, int
             if ( !item.hasPayload<KMime::Message::Ptr>() )
                 continue;
             qDebug()<<" note inserted"<<item.id();
+            KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
             KNoteAkonadiNote *note = new KNoteAkonadiNote(0);
+            if ( noteMessage->contentType()->isHTMLText() ) {
+                note->editor()->setAcceptRichText(true);
+                note->editor()->setHtml(noteMessage->mainBodyPart()->decodedText());
+            } else {
+                note->editor()->setAcceptRichText(false);
+                note->editor()->setPlainText(noteMessage->mainBodyPart()->decodedText());
+            }
+
             note->show();
         }
     }

@@ -26,8 +26,8 @@ KNoteAkonadiNote::KNoteAkonadiNote(QWidget *parent)
     // create the main layout
     QVBoxLayout *lay = new QVBoxLayout;
     lay->setMargin( 0 );
-    QTextEdit *edit = new QTextEdit;
-    lay->addWidget(edit);
+    mEdit = new QTextEdit;
+    lay->addWidget(mEdit);
     setLayout(lay);
     resize(200,200);
 }
@@ -36,3 +36,4 @@ KNoteAkonadiNote::~KNoteAkonadiNote()
 {
 
 }
+
