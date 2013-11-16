@@ -20,9 +20,11 @@
 #include "knotesakonaditreemodel.h"
 #include "knoteakonadinote.h"
 #include "knoteschangerecorder.h"
+
+#include "noteshared/attributes/notelockattribute.h"
+
 #include <akonadi/control.h>
 #include <Akonadi/ChangeRecorder>
-#include <Akonadi/Item>
 #include <Akonadi/Collection>
 #include <Akonadi/EntityTreeModel>
 #include <Akonadi/Session>
@@ -31,6 +33,7 @@
 #include <QTextEdit>
 #include <QLineEdit>
 #include <QDebug>
+#include <QHash>
 
 KNotesAkonadiApp::KNotesAkonadiApp(QWidget *parent)
     : QWidget(parent)
@@ -53,7 +56,7 @@ KNotesAkonadiApp::KNotesAkonadiApp(QWidget *parent)
 
 KNotesAkonadiApp::~KNotesAkonadiApp()
 {
-
+    qDeleteAll(mHashNotes);
 }
 
 void KNotesAkonadiApp::slotDataChanged(const QModelIndex & ,const QModelIndex &)
@@ -80,6 +83,10 @@ void KNotesAkonadiApp::slotRowInserted(const QModelIndex &parent, int start, int
                 note->editor()->setAcceptRichText(false);
                 note->editor()->setPlainText(noteMessage->mainBodyPart()->decodedText());
             }
+            if ( item.hasAttribute<NoteShared::NoteLockAttribute>() ) {
+                note->setEnabled(false);
+            }
+            mHashNotes.insert(item.id(), note);
             note->show();
         }
     }
@@ -95,6 +102,10 @@ void KNotesAkonadiApp::slotRowRemoved(const QModelIndex &parent,int start, int e
             if ( !item.hasPayload<KMime::Message::Ptr>() )
                 continue;
             qDebug()<<" note removed"<<item.id();
+            if (mHashNotes.contains(item.id())) {
+                delete mHashNotes.find(item.id()).value();
+                mHashNotes.remove(item.id());
+            }
         }
     }
 }

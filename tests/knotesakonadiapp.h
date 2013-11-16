@@ -27,6 +27,7 @@ class Collection;
 }
 class QModelIndex;
 class KNotesAkonadiTreeModel;
+class KNoteAkonadiNote;
 class KNotesAkonadiApp : public QWidget
 {
     Q_OBJECT
@@ -40,6 +41,7 @@ private Q_SLOTS:
     void slotDataChanged(const QModelIndex &, const QModelIndex &);
 
 private:
+    QHash<Akonadi::Item::Id, KNoteAkonadiNote*> mHashNotes;
     KNotesAkonadiTray *mTray;
     KNotesChangeRecorder *mNoteRecorder;
     KNotesAkonadiTreeModel *mNoteTreeModel;
