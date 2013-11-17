@@ -89,6 +89,7 @@ void KNotesAkonadiApp::slotItemChanged(const Akonadi::Item &item, const QSet<QBy
             }
         }
         if (set.contains("ATR:NoteDisplayAttribute")) {
+
             //TODO
         }
         if (set.contains("ATR:NoteAlarmAttribute")) {
@@ -121,12 +122,20 @@ void KNotesAkonadiApp::slotRowInserted(const QModelIndex &parent, int start, int
             }
             if ( item.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
                 //TODO add display attribute
+                NoteShared::NoteDisplayAttribute *attr = item.attribute<NoteShared::NoteDisplayAttribute>();
+                if (attr->isHidden()) {
+                    note->hide();
+                } else {
+                    note->show();
+                }
+                note->resize(attr->size());
+            } else {
+                note->show();
             }
             if ( item.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
                 //TODO add alarm attribute
             }
             mHashNotes.insert(item.id(), note);
-            note->show();
         }
     }
 }
