@@ -17,9 +17,9 @@
 
 #include "knotesakonadiapp.h"
 #include "knotesakonaditray.h"
-#include "knotesakonaditreemodel.h"
+#include "../akonadi/knotesakonaditreemodel.h"
 #include "knoteakonadinote.h"
-#include "knoteschangerecorder.h"
+#include "../akonadi/knoteschangerecorder.h"
 
 #include "noteshared/attributes/notelockattribute.h"
 #include "noteshared/attributes/notedisplayattribute.h"
