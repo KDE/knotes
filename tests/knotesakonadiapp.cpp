@@ -22,6 +22,8 @@
 #include "knoteschangerecorder.h"
 
 #include "noteshared/attributes/notelockattribute.h"
+#include "noteshared/attributes/notedisplayattribute.h"
+#include "noteshared/attributes/notealarmattribute.h"
 
 #include <akonadi/control.h>
 #include <Akonadi/ChangeRecorder>
@@ -86,6 +88,12 @@ void KNotesAkonadiApp::slotItemChanged(const Akonadi::Item &item, const QSet<QBy
                 note->editor()->setPlainText(noteMessage->mainBodyPart()->decodedText());
             }
         }
+        if (set.contains("ATR:NoteDisplayAttribute")) {
+            //TODO
+        }
+        if (set.contains("ATR:NoteAlarmAttribute")) {
+            //TODO
+        }
     }
 }
 
@@ -110,6 +118,12 @@ void KNotesAkonadiApp::slotRowInserted(const QModelIndex &parent, int start, int
             }
             if ( item.hasAttribute<NoteShared::NoteLockAttribute>() ) {
                 note->setEnabled(false);
+            }
+            if ( item.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
+                //TODO add display attribute
+            }
+            if ( item.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
+                //TODO add alarm attribute
             }
             mHashNotes.insert(item.id(), note);
             note->show();
