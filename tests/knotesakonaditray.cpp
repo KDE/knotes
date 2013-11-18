@@ -42,7 +42,7 @@ KNotesAkonadiTray::KNotesAkonadiTray(Akonadi::ChangeRecorder *recorder, QWidget 
              SLOT(slotCollectionStatisticsChanged(Akonadi::Collection::Id,Akonadi::CollectionStatistics)) );
 #endif
     connect(recorder, SIGNAL(collectionStatisticsChanged(Akonadi::Collection::Id,Akonadi::CollectionStatistics)), SLOT(slotUpdateSystemTray()));
-    updateNumberOfNotes(1);
+    updateNumberOfNotes();
 }
 
 KNotesAkonadiTray::~KNotesAkonadiTray()
@@ -52,14 +52,14 @@ KNotesAkonadiTray::~KNotesAkonadiTray()
 void KNotesAkonadiTray::slotUpdateSystemTray()
 {
     qDebug()<<" void KNotesAkonadiTray::slotUpdateSystemTray()";
-    //TODO
+    updateNumberOfNotes();
 }
 
-void KNotesAkonadiTray::updateNumberOfNotes(int value)
+void KNotesAkonadiTray::updateNumberOfNotes()
 {
     const int overlaySize = KIconLoader::SizeSmallMedium;
 
-    const QString countString = QString::number( value );
+    const QString countString = QString::number( 1 );
     QFont countFont = KGlobalSettings::generalFont();
     countFont.setBold(true);
 

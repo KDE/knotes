@@ -30,7 +30,7 @@ public:
     explicit KNotesAkonadiTray(Akonadi::ChangeRecorder *recorder, QWidget *parent=0);
     ~KNotesAkonadiTray();
 
-    void updateNumberOfNotes(int value);
+    void updateNumberOfNotes();
 
 private Q_SLOTS:
     void slotUpdateSystemTray();
