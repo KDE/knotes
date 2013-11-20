@@ -27,7 +27,13 @@
 #include <QCheckBox>
 
 KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults, QWidget *parent )
-    : QWidget( parent )
+    : QWidget( parent ),
+      kcfg_FgColor(0),
+      kcfg_BgColor(0),
+      kcfg_ShowInTaskbar(0),
+      kcfg_RememberDesktop(0),
+      kcfg_Width(0),
+      kcfg_Height(0)
 {
     QGridLayout *layout = new QGridLayout( this );
     layout->setSpacing( KDialog::spacingHint() );
@@ -37,7 +43,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults, QWidget *pare
     label_FgColor->setObjectName( QLatin1String("label_FgColor") );
     layout->addWidget( label_FgColor, 0, 0 );
 
-    KColorButton *kcfg_FgColor = new KColorButton( this );
+    kcfg_FgColor = new KColorButton( this );
     kcfg_FgColor->setObjectName( QLatin1String("kcfg_FgColor") );
     label_FgColor->setBuddy( kcfg_FgColor );
     layout->addWidget( kcfg_FgColor, 0, 1 );
@@ -47,16 +53,16 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults, QWidget *pare
     label_BgColor->setObjectName( QLatin1String("label_BgColor") );
     layout->addWidget( label_BgColor, 1, 0 );
 
-    KColorButton *kcfg_BgColor = new KColorButton( this );
+    kcfg_BgColor = new KColorButton( this );
     kcfg_BgColor->setObjectName( QLatin1String("kcfg_BgColor") );
     label_BgColor->setBuddy( kcfg_BgColor );
     layout->addWidget( kcfg_BgColor, 1, 1 );
 
-    QCheckBox *kcfg_ShowInTaskbar =
+    kcfg_ShowInTaskbar =
             new QCheckBox( i18n( "&Show note in taskbar" ), this );
     kcfg_ShowInTaskbar->setObjectName( QLatin1String("kcfg_ShowInTaskbar") );
 #ifdef Q_WS_X11
-    QCheckBox *kcfg_RememberDesktop =
+    kcfg_RememberDesktop =
             new QCheckBox( i18n( "&Remember desktop" ), this );
     kcfg_RememberDesktop->setObjectName( QLatin1String("kcfg_RememberDesktop") );
 #endif
@@ -65,7 +71,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults, QWidget *pare
 
         layout->addWidget( label_Width, 2, 0 );
 
-        KIntNumInput *kcfg_Width = new KIntNumInput( this );
+        kcfg_Width = new KIntNumInput( this );
         kcfg_Width->setObjectName( QLatin1String("kcfg_Width") );
         label_Width->setBuddy( kcfg_Width );
         kcfg_Width->setRange( 50, 2000, 10 );
@@ -76,7 +82,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults, QWidget *pare
                                            this );
         layout->addWidget( label_Height, 3, 0 );
 
-        KIntNumInput *kcfg_Height = new KIntNumInput( this );
+        kcfg_Height = new KIntNumInput( this );
         kcfg_Height->setObjectName( QLatin1String("kcfg_Height") );
         kcfg_Height->setRange( 50, 2000, 10 );
         kcfg_Height->setSliderEnabled( false );
@@ -94,4 +100,9 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults, QWidget *pare
 #endif
     }
     layout->setRowStretch(4,1);
+}
+
+KNoteDisplayConfigWidget::~KNoteDisplayConfigWidget()
+{
+
 }

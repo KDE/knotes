@@ -20,12 +20,22 @@
 #define KNOTEEDITORCONFIGWIDGET_H
 
 #include <QWidget>
-
+class KIntNumInput;
+class QCheckBox;
+class KFontRequester;
 class KNoteEditorConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit KNoteEditorConfigWidget(bool defaults , QWidget *parent = 0);
+    ~KNoteEditorConfigWidget();
+
+private:
+    KIntNumInput *kcfg_TabSize;
+    QCheckBox *kcfg_AutoIndent;
+    QCheckBox *kcfg_RichText;
+    KFontRequester *kcfg_Font;
+    KFontRequester *kcfg_TitleFont;
 };
 
 #endif // KNOTEEDITORCONFIGWIDGET_H

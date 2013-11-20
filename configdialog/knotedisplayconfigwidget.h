@@ -19,12 +19,23 @@
 #define KNOTEDISPLAYCONFIGWIDGET_H
 
 #include <QWidget>
-
+class KColorButton;
+class QCheckBox;
+class KIntNumInput;
 class KNoteDisplayConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit KNoteDisplayConfigWidget(bool defaults , QWidget *parent = 0);
+    ~KNoteDisplayConfigWidget();
+
+private:
+    KColorButton *kcfg_FgColor;
+    KColorButton *kcfg_BgColor;
+    QCheckBox *kcfg_ShowInTaskbar;
+    QCheckBox *kcfg_RememberDesktop;
+    KIntNumInput *kcfg_Width;
+    KIntNumInput *kcfg_Height;
 };
 
 
