@@ -27,7 +27,7 @@
 #include <QCheckBox>
 
 KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults, QWidget *parent )
-    :QWidget( parent )
+    : QWidget( parent )
 {
     QGridLayout *layout = new QGridLayout( this );
     layout->setSpacing( KDialog::spacingHint() );
