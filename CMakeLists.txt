@@ -89,7 +89,7 @@ install(TARGETS knotes_local  DESTINATION ${PLUGIN_INSTALL_DIR})
 ########### next target ###############
 set(kcm_knotes_PART_SRCS configdialog/knoteconfigdialog.cpp configdialog/knotedisplayconfigwidget.cpp configdialog/knoteeditorconfigwidget.cpp)
 
-kde4_add_plugin(kcm_knote ${kcm_knotes_PART_SRCS} ${libknotesconfig_SRCS})
+kde4_add_plugin(kcm_knote ${kcm_knotes_PART_SRCS} )
 
 target_link_libraries(kcm_knote knotesprivate ${KDE4_KDEUI_LIBS} ${KDE4_KCMUTILS_LIBS} ${KDE4_KNEWSTUFF3_LIBS} noteshared)
 
