@@ -10,9 +10,7 @@ include_directories(
 set(knotes_akonadi_SRCS main.cpp 
                         knotesakonaditray.cpp 
                         knotesakonadiapp.cpp 
-                        ../akonadi/knoteschangerecorder.cpp 
                         knoteakonadinote.cpp
-                        ../akonadi/knotesakonaditreemodel.cpp 
 )
 kde4_add_executable(knotes_akonadi_test TEST ${knotes_akonadi_SRCS})
 target_link_libraries(knotes_akonadi_test

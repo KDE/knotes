@@ -21,12 +21,14 @@
 #include <QWidget>
 #include <Akonadi/Item>
 class KNotesAkonadiTray;
-class KNotesChangeRecorder;
 namespace Akonadi {
 class Collection;
 }
+namespace NoteShared {
+class NotesChangeRecorder;
+class NotesAkonadiTreeModel;
+}
 class QModelIndex;
-class KNotesAkonadiTreeModel;
 class KNoteAkonadiNote;
 class KNotesAkonadiApp : public QWidget
 {
@@ -43,8 +45,8 @@ private Q_SLOTS:
 private:
     QHash<Akonadi::Item::Id, KNoteAkonadiNote*> mHashNotes;
     KNotesAkonadiTray *mTray;
-    KNotesChangeRecorder *mNoteRecorder;
-    KNotesAkonadiTreeModel *mNoteTreeModel;
+    NoteShared::NotesChangeRecorder *mNoteRecorder;
+    NoteShared::NotesAkonadiTreeModel *mNoteTreeModel;
 };
 
 #endif // KNOTESAKONADIAPP_H

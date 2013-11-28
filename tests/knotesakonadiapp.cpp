@@ -17,9 +17,9 @@
 
 #include "knotesakonadiapp.h"
 #include "knotesakonaditray.h"
-#include "../akonadi/knotesakonaditreemodel.h"
+#include "noteshared/akonadi/notesakonaditreemodel.h"
 #include "knoteakonadinote.h"
-#include "../akonadi/knoteschangerecorder.h"
+#include "noteshared/akonadi/noteschangerecorder.h"
 
 #include "noteshared/attributes/notelockattribute.h"
 #include "noteshared/attributes/notedisplayattribute.h"
@@ -42,11 +42,11 @@ KNotesAkonadiApp::KNotesAkonadiApp(QWidget *parent)
 {
     Akonadi::Session *session = new Akonadi::Session( "KNotes Session", this );
     Akonadi::Control::widgetNeedsAkonadi(this);
-    mNoteRecorder = new KNotesChangeRecorder(this);
+    mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
     mNoteRecorder->changeRecorder()->setSession(session);
     mTray = new KNotesAkonadiTray(mNoteRecorder->changeRecorder(), 0);
 
-    mNoteTreeModel = new KNotesAkonadiTreeModel(mNoteRecorder->changeRecorder(), this);
+    mNoteTreeModel = new NoteShared::NotesAkonadiTreeModel(mNoteRecorder->changeRecorder(), this);
 
     connect( mNoteTreeModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
              SLOT(slotRowInserted(QModelIndex,int,int)));
