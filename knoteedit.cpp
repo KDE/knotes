@@ -21,6 +21,7 @@
 #include "knoteedit.h"
 #include "notes/knote.h"
 #include "noteshared/editor/noteeditorutils.h"
+#include "pimcommon/util/editorutil.h"
 
 #include <kaction.h>
 #include <kactioncollection.h>
@@ -204,13 +205,13 @@ void KNoteEdit::setNote( KNote *_note )
 void KNoteEdit::slotUpperCase()
 {
     QTextCursor cursor = textCursor();
-    NoteShared::NoteEditorUtils::upperCase(cursor);
+    PimCommon::EditorUtil::upperCase(cursor);
 }
 
 void KNoteEdit::slotLowerCase()
 {
     QTextCursor cursor = textCursor();
-    NoteShared::NoteEditorUtils::lowerCase(cursor);
+    PimCommon::EditorUtil::lowerCase(cursor);
 }
 
 void KNoteEdit::mousePopupMenuImplementation(const QPoint& pos)
