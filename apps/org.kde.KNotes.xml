@@ -5,48 +5,20 @@
     <method name="newNote">
       <arg name="name" type="s" direction="in"/>
       <arg name="text" type="s" direction="in"/>
-      <arg type="s" direction="out"/>
-    </method>
-    <method name="newNoteFromClipboard">
-      <arg name="name" type="s" direction="in"/>
-      <arg type="s" direction="out"/>
-    </method>
-    <method name="killNote">
-    <annotation name="org.freedesktop.DBus.Method.NoReply" value="true"/>
-      <arg name="name" type="s" direction="in"/>
-    </method>
-    <method name="killNote">
-    <annotation name="org.freedesktop.DBus.Method.NoReply" value="true"/>
-      <arg name="name" type="s" direction="in"/>
-      <arg name="force" type="b" direction="in"/>
-    </method>
-    <method name="setName">
-    <annotation name="org.freedesktop.DBus.Method.NoReply" value="true"/>
-      <arg name="noteId" type="s" direction="in"/>
-      <arg name="newText" type="s" direction="in"/>
-    </method>
-    <method name="setText">
-    <annotation name="org.freedesktop.DBus.Method.NoReply" value="true"/>
-      <arg name="noteId" type="s" direction="in"/>
-      <arg name="newText" type="s" direction="in"/>
     </method>
     <method name="name">
-      <arg name="noteId" type="s" direction="in"/>
+      <arg name="noteId" type="x" direction="in"/>
       <arg type="s" direction="out"/>
     </method>
     <method name="text">
-      <arg name="noteId" type="s" direction="in"/>
+      <arg name="noteId" type="x" direction="in"/>
       <arg type="s" direction="out"/>
     </method>
     <method name="showNote">
-      <arg name="noteId" type="s" direction="in"/>
+      <arg name="noteId" type="x" direction="in"/>
     </method>
     <method name="hideNote">
-      <arg name="noteId" type="s" direction="in"/>
-    </method>
-    <method name="notes">
-      <arg name="m" type="a{sv}" direction="out"/>
-      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QVariantMap"/>
+      <arg name="noteId" type="x" direction="in"/>
     </method>
     <method name="showAllNotes"/>
     <method name="hideAllNotes"/>

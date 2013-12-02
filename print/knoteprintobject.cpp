@@ -19,15 +19,15 @@
 
 #include <QTextDocument>
 
-#include <kcal/journal.h>
+#include <KMime/KMimeMessage>
 
 #include <KLocale>
 #include <KGlobal>
 #include <KDateTime>
 
-KNotePrintObject::KNotePrintObject(KCal::Journal *journal, QObject *parent)
+KNotePrintObject::KNotePrintObject(const Akonadi::Item &item, QObject *parent)
     : QObject(parent),
-      mJournal(journal)
+      mItem(item)
 {
 }
 
@@ -38,16 +38,18 @@ KNotePrintObject::~KNotePrintObject()
 
 QString KNotePrintObject::description() const
 {
-    if ( Qt::mightBeRichText( mJournal->description() ) ) {
-        return mJournal->description();
+    KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
+    if ( noteMessage->contentType()->isHTMLText() ) {
+        return noteMessage->mainBodyPart()->decodedText();
     } else {
-        return Qt::convertFromPlainText(mJournal->description()).replace(QLatin1Char('\n'), QLatin1String("<br>"));
+        return noteMessage->mainBodyPart()->decodedText().replace(QLatin1Char('\n'), QLatin1String("<br>"));
     }
 }
 
 QString KNotePrintObject::name() const
 {
-    return mJournal->summary();
+    KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
+    return noteMessage->subject(false)->asUnicodeString();
 }
 
 QString KNotePrintObject::currentDateTime() const
@@ -55,4 +57,3 @@ QString KNotePrintObject::currentDateTime() const
     const QDateTime now = QDateTime::currentDateTime();
     return KGlobal::locale()->formatDateTime( now );
 }
-

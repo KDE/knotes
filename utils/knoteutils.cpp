@@ -16,107 +16,86 @@
 */
 
 #include "knoteutils.h"
-#include "notesharedglobalconfig.h"
-#include "knoteconfig.h"
-#include "noteshared/network/notesnetworksender.h"
-#include "noteshared/network/notehostdialog.h"
-#include "kdepim-version.h"
-#include "knotes/knotesglobalconfig.h"
 
-#include <KCal/Journal>
-using namespace KCal;
-
-#include <KIO/NetAccess>
-#include <KSharedConfig>
 #include <KStandardDirs>
+#include <KMessageBox>
 #include <KLocale>
+#include <KProcess>
+#include <KDebug>
+#include <KConfigGroup>
 
-KNoteConfig *KNoteUtils::createConfig(KCal::Journal *journal, QString &configPath)
+#include <QFileInfo>
+
+void KNoteUtils::migrateToAkonadi()
 {
-    // the config file location
-    configPath = KGlobal::dirs()->saveLocation( "data", QLatin1String("knotes/") ) + QLatin1String("notes/") + journal->uid();
+    bool needMigration = true;
 
-    // no config file yet? -> use the default display config if available
-    // we want to write to configFile, so use "false"
-    const bool newNote = !KIO::NetAccess::exists( KUrl( configPath ), KIO::NetAccess::DestinationSide, 0 );
-
-    KNoteConfig *config = new KNoteConfig( KSharedConfig::openConfig( configPath, KConfig::NoGlobals ) );
-    config->readConfig();
-    config->setVersion( QLatin1String(KDEPIM_VERSION) );
-
-    if ( newNote ) {
-        // until kdelibs provides copying of KConfigSkeletons (KDE 3.4)
-        KNotesGlobalConfig *globalConfig = KNotesGlobalConfig::self();
-        config->setBgColor( globalConfig->bgColor() );
-        config->setFgColor( globalConfig->fgColor() );
-        config->setWidth( globalConfig->width() );
-        config->setHeight( globalConfig->height() );
-
-        config->setFont( globalConfig->font() );
-        config->setTitleFont( globalConfig->titleFont() );
-        config->setAutoIndent( globalConfig->autoIndent() );
-        config->setRichText( globalConfig->richText() );
-        config->setTabSize( globalConfig->tabSize() );
-        config->setReadOnly( globalConfig->readOnly() );
-
-        config->setDesktop( globalConfig->desktop() );
-        config->setHideNote( globalConfig->hideNote() );
-        config->setPosition( globalConfig->position() );
-        config->setShowInTaskbar( globalConfig->showInTaskbar() );
-        config->setRememberDesktop( globalConfig->rememberDesktop() );
-        config->setKeepAbove( globalConfig->keepAbove() );
-        config->setKeepBelow( globalConfig->keepBelow() );
-
-        config->writeConfig();
+    const QFileInfo oldDataDirFileInfo( KStandardDirs::locateLocal( "data", QLatin1String("knotes") ) );
+    if ( !oldDataDirFileInfo.exists() || !oldDataDirFileInfo.isDir() ) {
+        // neither config or data, the migrator cannot do anything useful anyways
+        needMigration = false;
     }
-    return config;
-}
 
+    KConfig config( QLatin1String("knotes-migratorrc") );
+    KConfigGroup migrationCfg( &config, "Migration" );
+    if ( needMigration ) {
+        const bool enabled = migrationCfg.readEntry( "Enabled", true );
+        const int currentVersion = migrationCfg.readEntry( "Version", 0 );
+        const int targetVersion = migrationCfg.readEntry( "TargetVersion", 1 );
+        if ( enabled && currentVersion < targetVersion ) {
+            const int choice = KMessageBox::questionYesNoCancel( 0, i18n(
+                                                                     "<b>Thanks for using KNotes!</b>"
+                                                                     "<p>KNotes uses a new storage technology that requires migration of your current KMail data and configuration.</p>\n"
+                                                                     "<p>The conversion process can take a lot of time (depending on the amount of email you have) and it <em>must not be interrupted</em>.</p>\n"
+                                                                     "<p>You can:</p><ul>"
+                                                                     "<li>Migrate now (be prepared to wait)</li>"
+                                                                     "<li>Skip the migration and start with fresh data and configuration</li>"
+                                                                     "<li>Cancel and exit KNotes.</li>"
+                                                                     "</ul>"
+                                                                     "<p><a href=\"http://userbase.kde.org/Akonadi\">More Information...</a></p>"
+                                                                     ), i18n( "KNotes Migration" ), KGuiItem(i18n( "Migrate Now" )), KGuiItem(i18n( "Skip Migration" )), KStandardGuiItem::cancel(),
+                                                                 QString(), KMessageBox::Notify | KMessageBox::Dangerous | KMessageBox::AllowLink );
+            if ( choice == KMessageBox::Cancel )
+                exit( 1 );
 
-void KNoteUtils::setProperty(KCal::Journal *journal, KNoteConfig *config)
-{
-    // config items in the journal have priority
-    QString property = journal->customProperty( "KNotes", "FgColor" );
-    if ( !property.isNull() ) {
-        config->setFgColor( QColor( property ) );
+            if ( choice != KMessageBox::Yes ) {  // user skipped migration
+                // we only will make one attempt at this
+                migrationCfg.writeEntry( "Version", targetVersion );
+                migrationCfg.sync();
+
+                return;
+            }
+
+            kDebug() << "Performing Akonadi migration. Good luck!";
+            KProcess proc;
+            QStringList args = QStringList() << QLatin1String("--interactive-on-change");
+            const QString path = KStandardDirs::findExe( QLatin1String("knotes-migrator" ) );
+            proc.setProgram( path, args );
+            proc.start();
+            bool result = proc.waitForStarted();
+            if ( result ) {
+                result = proc.waitForFinished( -1 );
+            }
+            if ( result && proc.exitCode() == 0 ) {
+                kDebug() << "Akonadi migration has been successful";
+            } else {
+                // exit code 1 means it is already running, so we are probably called by a migrator instance
+                kError() << "Akonadi migration failed!";
+                kError() << "command was: " << proc.program();
+                kError() << "exit code: " << proc.exitCode();
+                kError() << "stdout: " << proc.readAllStandardOutput();
+                kError() << "stderr: " << proc.readAllStandardError();
+
+                KMessageBox::error( 0, i18n("Migration to KNotes failed. In case you want to try again, run 'kmail-migrator --interactive' manually."),
+                                    i18n( "Migration Failed" ) );
+                return;
+            }
+        }
     } else {
-        journal->setCustomProperty( "KNotes", "FgColor",
-                                      config->fgColor().name() );
-    }
-
-    property = journal->customProperty( "KNotes", "BgColor" );
-    if ( !property.isNull() ) {
-        config->setBgColor( QColor( property ) );
-    } else {
-        journal->setCustomProperty( "KNotes", "BgColor",
-                                      config->bgColor().name() );
-    }
-    property = journal->customProperty( "KNotes", "RichText" );
-    if ( !property.isNull() ) {
-        config->setRichText( property == QLatin1String("true") ? true : false );
-    } else {
-        journal->setCustomProperty( "KNotes", "RichText",
-                                      config->richText() ? QLatin1String("true") : QLatin1String("false") );
+        if (migrationCfg.hasKey("Enabled") && (migrationCfg.readEntry("Enabled", false) == false)) {
+            return;
+        }
+        migrationCfg.writeEntry( "Enabled", false );
+        migrationCfg.sync();
     }
 }
-
-
-void KNoteUtils::removeNote(KCal::Journal *journal, QWidget *parent)
-{
-    const QString configFile = KGlobal::dirs()->saveLocation( "data", QLatin1String("knotes/") ) + QLatin1String("notes/") + journal->uid();
-    if ( !KIO::NetAccess::del( KUrl( configFile ), parent ) ) {
-        qDebug() <<"Can't remove the note config:" << configFile;
-    }
-
-}
-
-void KNoteUtils::savePreferences( KCal::Journal *journal, KNoteConfig *config)
-{
-    journal->setCustomProperty( "KNotes", "FgColor",
-                                  config->fgColor().name() );
-    journal->setCustomProperty( "KNotes", "BgColor",
-                                  config->bgColor().name() );
-    journal->setCustomProperty( "KNotes", "RichText",
-                                  config->richText() ? QLatin1String("true") : QLatin1String("false") );
-}
-

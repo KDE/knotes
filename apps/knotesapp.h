@@ -31,25 +31,26 @@
 #include <ksessionmanager.h>
 #include <kxmlguiclient.h>
 
-class QTcpServer;
+#include <Akonadi/Item>
 
-class KAction;
-class KFind;
+class QTcpServer;
+class KNotesAkonadiTray;
 class KMenu;
 class KNote;
+class KAction;
 class KNotesAlarm;
-class KNotesResourceManager;
 class KXMLGUIBuilder;
 class KXMLGUIFactory;
-class KNotesTray;
-
-namespace KCal {
-class Journal;
+namespace NoteShared {
+class NotesChangeRecorder;
+class NotesAkonadiTreeModel;
 }
+
 namespace DNSSD {
 class PublicService;
 }
-
+class KJob;
+class QModelIndex;
 class KNotesApp
         : public QWidget, public KSessionManager, virtual public KXMLGUIClient
 {
@@ -58,84 +59,64 @@ public:
     KNotesApp();
     ~KNotesApp();
 
-    void showNote( const QString &id ) const;
-    void hideNote( const QString &id ) const;
-
-    void killNote( const QString &id );
-    void killNote( const QString &id, bool force );
-
-    QString name( const QString &id ) const;
-    QString text( const QString &id ) const;
-
-    void setName( const QString &id, const QString &newName );
-    void setText( const QString &id, const QString &newText );
-
-    QVariantMap notes() const;
-
     bool commitData( QSessionManager & );
 
 public slots:
-    QString newNote( const QString &name = QString(),
+    void newNote( const QString &name = QString(),
                      const QString &text = QString() );
-    QString newNoteFromClipboard( const QString &name = QString() );
-
+    void newNoteFromClipboard( const QString &name = QString() );
     void hideAllNotes() const;
     void showAllNotes() const;
-
-protected slots:
-    void slotActivateRequested( bool, const QPoint& pos);
-    void slotSecondaryActivateRequested( const QPoint& );
-    void slotShowNote();
-    void slotWalkThroughNotes();
-
-    void slotOpenFindDialog();
-    void slotFindNext();
-
-    void slotPreferences();
-    void slotConfigureAccels();
-
-    void slotNoteKilled( KCal::Journal *journal );
-
-    void slotQuit();
+    void showNote( const Akonadi::Item::Id &id ) const;
+    void hideNote(const Akonadi::Item::Id &id ) const;
+    QString name( const Akonadi::Item::Id &id ) const;
+    QString text( const Akonadi::Item::Id &id ) const;
+    void setName(const Akonadi::Item::Id &id, const QString &newName );
+    void setText( const Akonadi::Item::Id &id, const QString &newText );
 
 private:
     void showNote( KNote *note ) const;
-    void saveConfigs();
 
-private slots:
+
+private Q_SLOTS:
+    void slotPreferences();
     void slotConfigUpdated();
-    void acceptConnection();
-    void saveNotes();
-    void saveNotes( const QString & uid );
+    void slotAcceptConnection();
+    void slotNoteCreationFinished(KJob*);
+    void slotNoteDeleteFinished(KJob*);
+    void slotRowInserted(const QModelIndex &, int, int end);
+    void slotItemRemoved(const Akonadi::Item &item);
+    void slotItemChanged(const Akonadi::Item &item, const QSet<QByteArray> &);
     void updateNoteActions();
-
-    void createNote( KCal::Journal *journal );
-    void killNote( KCal::Journal *journal );
+    void slotActivateRequested( bool, const QPoint& pos);
+    void slotSecondaryActivateRequested( const QPoint& );
     void slotPrintSelectedNotes();
+    void slotQuit();
+    void slotConfigureAccels();
+    void slotShowNote();
+    void slotWalkThroughNotes();
+    void slotNoteKilled( Akonadi::Item::Id );
+    void slotDebugNepomukSelectedNotes();    
+    void slotOpenFindDialog();
 
 private:
+    void saveNotes();
     void updateNetworkListener();
-    QMap<QString, KNote *> m_notes;
-    QList<QAction *>       m_noteActions;
-
-    KNotesResourceManager  *m_manager;
-    KNotesAlarm            *m_alarm;
-    QTcpServer             *m_listener;
-    DNSSD::PublicService   *m_publisher;
-
-    KFind           *m_find;
-    QMap<QString, KNote *>::iterator *m_findPos;
-
-    KMenu           *m_noteMenu;
-    KMenu           *m_contextMenu;
-
+    void updateSystray();
     KXMLGUIFactory  *m_guiFactory;
     KXMLGUIBuilder  *m_guiBuilder;
-    KNotesTray *m_tray;
-    KAction         *m_findAction;
-
     QDomDocument    m_noteGUI;
-    QString m_noteUidModify;
+    KNotesAkonadiTray *mTray;
+    KMenu           *m_noteMenu;
+    KMenu           *m_contextMenu;
+    QList<QAction *>       m_noteActions;
+    QTcpServer             *m_listener;
+    DNSSD::PublicService   *m_publisher;
+    QHash<Akonadi::Item::Id, KNote*> mNotes;
+    NoteShared::NotesChangeRecorder *mNoteRecorder;
+    NoteShared::NotesAkonadiTreeModel *mNoteTreeModel;
+    KNotesAlarm            *m_alarm;
+    KAction *mFindAction;
 };
 
 #endif

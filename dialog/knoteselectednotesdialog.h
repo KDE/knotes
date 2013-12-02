@@ -15,31 +15,25 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef KNOTEPRINTSELECTEDNOTESDIALOG_H
-#define KNOTEPRINTSELECTEDNOTESDIALOG_H
+#ifndef KNOTESELECTEDNOTESDIALOG_H
+#define KNOTESELECTEDNOTESDIALOG_H
 
 #include <KDialog>
 #include <Akonadi/Item>
 class QListWidget;
 class KNote;
-class KNotePrintObject;
-class KNotePrintSelectThemeComboBox;
-class KNotePrintSelectedNotesDialog : public KDialog
+class KNoteSelectedNotesDialog : public KDialog
 {
     Q_OBJECT
 public:
-    explicit KNotePrintSelectedNotesDialog(QWidget *parent=0);
-    ~KNotePrintSelectedNotesDialog();
+    explicit KNoteSelectedNotesDialog(QWidget *parent=0);
+    ~KNoteSelectedNotesDialog();
 
     void setNotes(const QHash<Akonadi::Item::Id, KNote*> &notes);
 
-    QList<KNotePrintObject *> selectedNotes() const;
-    QString selectedTheme() const;
-
-    bool preview() const;
+    QStringList selectedNotes() const;
 
 private Q_SLOTS:
-    void slotPreview();
     void slotSelectionChanged();
 
 private:
@@ -51,8 +45,6 @@ private:
     void readConfig();
     QListWidget *mListNotes;
     QHash<Akonadi::Item::Id, KNote*> mNotes;
-    KNotePrintSelectThemeComboBox *mTheme;
-    bool mPreview;
 };
 
-#endif // KNOTEPRINTSELECTEDNOTESDIALOG_H
+#endif // KNOTESELECTEDNOTESDIALOG_H

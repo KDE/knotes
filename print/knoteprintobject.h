@@ -22,9 +22,7 @@
 #include <qmetatype.h>
 #include "knotes_export.h"
 
-namespace KCal {
-class Journal;
-}
+#include <Akonadi/Item>
 
 class KNOTES_EXPORT KNotePrintObject : public QObject
 {
@@ -33,7 +31,7 @@ class KNOTES_EXPORT KNotePrintObject : public QObject
     Q_PROPERTY(QString name READ name)
     Q_PROPERTY(QString currentDateTime READ currentDateTime)
 public:
-    explicit KNotePrintObject(KCal::Journal *journal, QObject *parent=0);
+    explicit KNotePrintObject(const Akonadi::Item &item, QObject *parent=0);
     ~KNotePrintObject();
 
     QString description() const;
@@ -41,7 +39,7 @@ public:
     QString currentDateTime() const;
 
 private:
-    KCal::Journal *mJournal;
+    Akonadi::Item mItem;
 };
 
 Q_DECLARE_METATYPE(QList<KNotePrintObject*>)

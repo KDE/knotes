@@ -16,11 +16,9 @@
 */
 
 #include "knoteprintselectednotesdialog.h"
-#include "knoteprintselectthemecombobox.h"
+#include "knotes/print/knoteprintselectthemecombobox.h"
 #include "knoteprintobject.h"
 #include "notes/knote.h"
-
-#include <kcal/journal.h>
 
 #include <KLocale>
 #include <KConfigGroup>
@@ -75,16 +73,16 @@ void KNotePrintSelectedNotesDialog::slotSelectionChanged()
     enableButtonOk(hasSelection);
 }
 
-void KNotePrintSelectedNotesDialog::setNotes(const QMap<QString, KNote *> &notes)
+void KNotePrintSelectedNotesDialog::setNotes(const QHash<Akonadi::Item::Id, KNote*> &notes)
 {
     mNotes = notes;
-    QMapIterator<QString, KNote *> i(notes);
+    QHashIterator<Akonadi::Item::Id, KNote *> i(notes);
     while (i.hasNext()) {
         i.next();
         QListWidgetItem *item =new QListWidgetItem(mListNotes);
         item->setText(i.value()->name());
-        item->setToolTip(i.value()->journal()->description());
-        item->setData(JournalId, i.key());
+        item->setToolTip(i.value()->text());
+        item->setData(AkonadiId, i.key());
     }
 }
 
@@ -93,9 +91,9 @@ QList<KNotePrintObject *> KNotePrintSelectedNotesDialog::selectedNotes() const
     QList<KNotePrintObject *> lstPrintObj;
     QList<QListWidgetItem *> lst = mListNotes->selectedItems ();
     Q_FOREACH(QListWidgetItem *item, lst) {
-        const QString journalId = item->data(JournalId).toString();
-        if (!journalId.isEmpty()) {
-            KNotePrintObject *obj = new KNotePrintObject(mNotes.value(journalId)->journal());
+        Akonadi::Item::Id akonadiId = item->data(AkonadiId).toLongLong();
+        if (akonadiId != -1) {
+            KNotePrintObject *obj = new KNotePrintObject(mNotes.value(akonadiId)->item());
             lstPrintObj.append(obj);
         }
     }

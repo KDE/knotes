@@ -3,5 +3,4 @@ ClassName=KNotesGlobalConfig
 Visibility=KNOTES_EXPORT
 Mutators=true
 Singleton=true
-IncludeFiles=knoteconfig.h, knotes_export.h
-Inherits=KNoteConfig
+IncludeFiles=knotes_export.h

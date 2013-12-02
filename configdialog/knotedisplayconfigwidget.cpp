@@ -17,6 +17,9 @@
 
 #include "knotedisplayconfigwidget.h"
 
+
+#include "noteshared/attributes/notedisplayattribute.h"
+
 #include <KLocale>
 #include <KColorButton>
 #include <KIntNumInput>
@@ -105,4 +108,37 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults, QWidget *pare
 KNoteDisplayConfigWidget::~KNoteDisplayConfigWidget()
 {
 
+}
+
+void KNoteDisplayConfigWidget::load(NoteShared::NoteDisplayAttribute *attr)
+{
+    if (attr) {
+        kcfg_FgColor->setColor(attr->foregroundColor());
+        kcfg_BgColor->setColor(attr->backgroundColor());
+        kcfg_ShowInTaskbar->setChecked(attr->showInTaskbar());
+        if (kcfg_RememberDesktop) {
+            kcfg_RememberDesktop->setChecked(attr->rememberDesktop());
+        }
+        if (kcfg_Height) {
+            kcfg_Height->setValue(kcfg_RememberDesktop->size().height());
+        }
+        if (kcfg_Width) {
+            kcfg_Width->setValue(kcfg_RememberDesktop->size().width());
+        }
+    }
+}
+
+void KNoteDisplayConfigWidget::save(NoteShared::NoteDisplayAttribute *attr)
+{
+    if (attr) {
+        attr->setForegroundColor(kcfg_FgColor->color());
+        attr->setBackgroundColor(kcfg_BgColor->color());
+        attr->setShowInTaskbar(kcfg_ShowInTaskbar->isChecked());
+        if (kcfg_RememberDesktop) {
+            attr->setRememberDesktop(kcfg_RememberDesktop->isChecked());
+        }
+        if (kcfg_Height && kcfg_Width) {
+            attr->setSize(QSize(kcfg_Width->value(), kcfg_Height->value()));
+        }
+    }
 }

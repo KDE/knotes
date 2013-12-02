@@ -34,20 +34,17 @@
 
 #include <QTimer>
 #include "knotes_export.h"
-class KNotesResourceManager;
 
 class KNOTES_EXPORT KNotesAlarm : public QObject
 {
     Q_OBJECT
 public:
-    explicit KNotesAlarm(KNotesResourceManager *manager,
-                         QObject *parent = 0);
+    explicit KNotesAlarm(QObject *parent = 0);
     
 private slots:
     void checkAlarms();
     
 private:
-    KNotesResourceManager *m_manager;
     QTimer m_checkTimer;
 };
 

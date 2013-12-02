@@ -25,7 +25,6 @@
 #include <QPrinter>
 #include <QPrintDialog>
 
-#include <kcal/journal.h>
 #include <kdeprintdialog.h>
 #include <KMessageBox>
 

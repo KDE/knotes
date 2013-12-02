@@ -15,14 +15,21 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef KNOTEUTILS_H
-#define KNOTEUTILS_H
-#include "knotes_export.h"
+#ifndef SELECTEDNOTEFOLDERDIALOG_H
+#define SELECTEDNOTEFOLDERDIALOG_H
 
+#include <Akonadi/CollectionDialog>
 
-namespace KNoteUtils
+class SelectedNotefolderDialog : public Akonadi::CollectionDialog
 {
-KNOTES_EXPORT void migrateToAkonadi();
-}
+    Q_OBJECT
+public:
+    explicit SelectedNotefolderDialog(QWidget *parent = 0);
+    ~SelectedNotefolderDialog();
 
-#endif // KNOTEUTILS_H
+private:
+    void readConfig();
+    void writeConfig();
+};
+
+#endif // SELECTEDNOTEFOLDERDIALOG_H

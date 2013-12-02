@@ -15,14 +15,23 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef KNOTEUTILS_H
-#define KNOTEUTILS_H
+#ifndef KNOTEFINDDIALOG_H
+#define KNOTEFINDDIALOG_H
+
+#include <KDialog>
 #include "knotes_export.h"
+class QPushButton;
 
-
-namespace KNoteUtils
+class KNOTES_EXPORT KNoteFindDialog : public KDialog
 {
-KNOTES_EXPORT void migrateToAkonadi();
-}
+    Q_OBJECT
+public:
+    explicit KNoteFindDialog(QWidget *parent=0);
+    ~KNoteFindDialog();
 
-#endif // KNOTEUTILS_H
+private:
+    QPushButton *mSearchNote;
+
+};
+
+#endif // KNOTEFINDDIALOG_H

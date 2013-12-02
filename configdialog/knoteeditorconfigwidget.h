@@ -23,12 +23,19 @@
 class KIntNumInput;
 class QCheckBox;
 class KFontRequester;
+namespace NoteShared {
+class NoteDisplayAttribute;
+}
+
 class KNoteEditorConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit KNoteEditorConfigWidget(bool defaults , QWidget *parent = 0);
     ~KNoteEditorConfigWidget();
+
+    void load(NoteShared::NoteDisplayAttribute *attr);
+    void save(NoteShared::NoteDisplayAttribute *attr);
 
 private:
     KIntNumInput *kcfg_TabSize;

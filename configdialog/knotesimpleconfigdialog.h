@@ -19,20 +19,30 @@
 #ifndef KNoteSimpleConfigDialog_H
 #define KNoteSimpleConfigDialog_H
 #include "knotes_export.h"
-
-#include <KConfigDialog>
-class KNoteConfig;
-
-class KNOTES_EXPORT KNoteSimpleConfigDialog : public KConfigDialog
+#include <Akonadi/Item>
+#include <KDialog>
+class QTabWidget;
+class KNoteEditorConfigWidget;
+class KNoteDisplayConfigWidget;
+class KNOTES_EXPORT KNoteSimpleConfigDialog : public KDialog
 {
     Q_OBJECT
 public:
-    explicit KNoteSimpleConfigDialog( KNoteConfig *config, const QString &title,
-                    QWidget *parent, const QString &name );
+    explicit KNoteSimpleConfigDialog( const QString &title, QWidget *parent=0 );
     ~KNoteSimpleConfigDialog();
+
+    void load(Akonadi::Item &item);
+    void save(Akonadi::Item &item);
 
 public Q_SLOTS:
     void slotUpdateCaption(const QString & name);
+
+private:
+    void readConfig();
+    void writeConfig();
+    QTabWidget *mTabWidget;
+    KNoteEditorConfigWidget *mEditorConfigWidget;
+    KNoteDisplayConfigWidget *mDisplayConfigWidget;
 };
 
 #endif // KNoteSimpleConfigDialog_H

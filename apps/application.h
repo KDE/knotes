@@ -34,6 +34,7 @@ public:
 
     virtual int newInstance();
     KCmdLineArgs *args() const;
+
 private:
     KNotesApp *mMainWindow;
     KCmdLineArgs *mCmdLineArguments;

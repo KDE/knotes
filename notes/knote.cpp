@@ -23,20 +23,27 @@
 #include "alarms/knotealarmdialog.h"
 #include "configdialog/knotesimpleconfigdialog.h"
 #include "print/knoteprintselectthemedialog.h"
-#include "knotebutton.h"
-#include "knoteconfig.h"
+#include "knotes/notes/knotebutton.h"
 #include "utils/knoteutils.h"
 #include "configdialog/knoteconfigdialog.h"
 #include "knoteedit.h"
 #include "print/knoteprinter.h"
 #include "print/knoteprintobject.h"
 #include "knotesglobalconfig.h"
-#include "kdepim-version.h"
+
+#include "knotedisplaysettings.h"
+
+#include "noteshared/attributes/notelockattribute.h"
+#include "noteshared/attributes/notedisplayattribute.h"
+#include "noteshared/attributes/notealarmattribute.h"
+
+#include "pimcommon/nepomukdebug/searchdebugnepomukshowdialog.h"
+
+#include <KMime/KMimeMessage>
 
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <kapplication.h>
-#include <kcal/journal.h>
 #include <kcombobox.h>
 #include <kfiledialog.h>
 #include <kfind.h>
@@ -62,6 +69,8 @@
 #include <netwm.h>
 #include <KPrintPreview>
 
+#include <Akonadi/ItemModifyJob>
+
 #include <QBoxLayout>
 #include <QCheckBox>
 #include <QFile>
@@ -82,70 +91,100 @@
 #include <QX11Info>
 #endif
 
-using namespace KCal;
 
-
-KNote::KNote( const QDomDocument& buildDoc, Journal *j, QWidget *parent )
+KNote::KNote(const QDomDocument& buildDoc, const Akonadi::Item &item, QWidget *parent )
     : QFrame( parent, Qt::FramelessWindowHint ),
+      mItem(item),
       m_label( 0 ),
       m_grip( 0 ),
       m_button( 0 ),
       m_tool( 0 ),
       m_editor( 0 ),
-      m_config( 0 ),
-      m_journal( j ),
-      m_find( 0 ),
       m_kwinConf( KSharedConfig::openConfig( QLatin1String("kwinrc") ) ),
-      m_blockEmitDataChanged( false ),
-      mBlockWriteConfigDuringCommitData( false )
+      mBlockWriteConfigDuringCommitData( false ),
+      mDisplayAttribute(new KNoteDisplaySettings)
 {
+    if ( mItem.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
+        mDisplayAttribute->setDisplayAttribute(mItem.attribute<NoteShared::NoteDisplayAttribute>());
+    } else {
+        setDisplayDefaultValue();
+        //save default display value
+    }
     setAcceptDrops( true );
     setAttribute( Qt::WA_DeleteOnClose );
     setDOMDocument( buildDoc );
-    setObjectName( m_journal->uid() );
     setXMLFile( componentData().componentName() + QLatin1String("ui.rc"), false, false );
 
     // create the main layout
     m_noteLayout = new QVBoxLayout( this );
     m_noteLayout->setMargin( 0 );
-
-    // if there is no title yet, use the start date if valid
-    // (KOrganizer's journals don't have titles but a valid start date)
-    if ( m_journal->summary().isNull() && m_journal->dtStart().isValid() ) {
-        const QString s = KGlobal::locale()->formatDateTime( m_journal->dtStart() );
-        m_journal->setSummary( s );
-    }
-
     createActions();
 
     QString configFile;
-    m_config = KNoteUtils::createConfig(m_journal, configFile);
-
     buildGui(configFile);
-
     prepare();
 }
 
 KNote::~KNote()
 {
-    delete m_config;
+    delete mDisplayAttribute;
 }
 
-void KNote::changeJournal(KCal::Journal *journal)
+void KNote::setDisplayDefaultValue()
 {
-    m_journal = journal;
-    m_editor->setText( m_journal->description() );
-    m_editor->document()->setModified( false );
-    m_label->setText( m_journal->summary() );
-    updateLabelAlignment();
-
+    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
+    attribute->setBackgroundColor(KNotesGlobalConfig::self()->bgColor());
+    attribute->setForegroundColor(KNotesGlobalConfig::self()->fgColor());
+    attribute->setSize(QSize(KNotesGlobalConfig::self()->width(), KNotesGlobalConfig::self()->height()));
+    attribute->setRememberDesktop(KNotesGlobalConfig::self()->rememberDesktop());
+    attribute->setTabSize(KNotesGlobalConfig::self()->tabSize());
+    attribute->setFont(KNotesGlobalConfig::self()->font());
+    attribute->setTitleFont(KNotesGlobalConfig::self()->titleFont());
+    attribute->setDesktop(KNotesGlobalConfig::self()->desktop());
+    attribute->setIsHidden(KNotesGlobalConfig::self()->hideNote());
+    attribute->setPosition(KNotesGlobalConfig::self()->position());
+    attribute->setShowInTaskbar(KNotesGlobalConfig::self()->showInTaskbar());
+    attribute->setKeepAbove(KNotesGlobalConfig::self()->keepAbove());
+    attribute->setKeepBelow(KNotesGlobalConfig::self()->keepBelow());
+    attribute->setAutoIndent(KNotesGlobalConfig::self()->autoIndent());
+    Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+    connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
 }
 
-// -------------------- public slots -------------------- //
+void KNote::setChangeItem(const Akonadi::Item &item, const QSet<QByteArray> &set)
+{
+    mItem = item;
+    if ( item.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
+        mDisplayAttribute->setDisplayAttribute(item.attribute<NoteShared::NoteDisplayAttribute>());
+    }
+    if (set.contains("ATR:KJotsLockAttribute")) {
+        m_editor->setReadOnly(item.hasAttribute<NoteShared::NoteLockAttribute>());
+    }
+    if (set.contains("PLD:RFC822")) {
+        KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
+        setName(noteMessage->subject(false)->asUnicodeString());
+        if ( noteMessage->contentType()->isHTMLText() ) {
+            m_editor->setAcceptRichText(true);
+            m_editor->setHtml(noteMessage->mainBodyPart()->decodedText());
+        } else {
+            m_editor->setAcceptRichText(false);
+            m_editor->setPlainText(noteMessage->mainBodyPart()->decodedText());
+        }
+    }
+    if (set.contains("ATR:NoteDisplayAttribute")) {
+        qDebug()<<" ATR:NoteDisplayAttribute";
+        slotApplyConfig();
+    }
+    if (set.contains("ATR:NoteAlarmAttribute")) {
+        //TODO
+    }
+
+    //TODO update display/content etc.
+    updateLabelAlignment();
+}
 
 void KNote::slotKill( bool force )
 {
-    m_blockEmitDataChanged = true;
     if ( !force &&
          ( KMessageBox::warningContinueCancel( this,
                                                i18n( "<qt>Do you really want to delete note <b>%1</b>?</qt>",
@@ -154,55 +193,60 @@ void KNote::slotKill( bool force )
                                                KGuiItem( i18n( "&Delete" ), QLatin1String("edit-delete") ),
                                                KStandardGuiItem::cancel(),
                                                QLatin1String("ConfirmDeleteNote") ) != KMessageBox::Continue ) ) {
-        m_blockEmitDataChanged = false;
         return;
     }
-    // delete the configuration first, then the corresponding file
-    delete m_config;
-    m_config = 0;
-    KNoteUtils::removeNote(m_journal, this);
 
-    emit sigKillNote( m_journal );
+    Q_EMIT sigKillNote( mItem.id() );
 }
 
 
 // -------------------- public member functions -------------------- //
 
-void KNote::saveData(bool update )
+void KNote::saveNote()
 {
-    m_journal->setSummary( m_label->text() );
-    m_journal->setDescription( m_editor->text() );
-    KNoteUtils::savePreferences( m_journal, m_config);
-
-    if(update)
-    {
-        emit sigDataChanged(noteId());
-        m_editor->document()->setModified( false );
-    }
-}
-
-void KNote::saveConfig() const
-{
-    m_config->setWidth( width() );
-    m_config->setHeight( height() );
-    m_config->setPosition( pos() );
-
+    if (!m_editor->document()->isModified())
+        return;
+    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>( Akonadi::Entity::AddIfMissing );
+    attribute->setPosition(pos());
+    attribute->setSize(QSize(width(), height()));
 #ifdef Q_WS_X11
     NETWinInfo wm_client( QX11Info::display(), winId(),
                           QX11Info::appRootWindow(), NET::WMDesktop );
     if ( ( wm_client.desktop() == NETWinInfo::OnAllDesktops ) ||
          ( wm_client.desktop() > 0 ) ) {
-        m_config->setDesktop( wm_client.desktop() );
+        attribute->setDesktop( wm_client.desktop() );
     }
 #endif
+    KMime::Message::Ptr message = mItem.payload<KMime::Message::Ptr>();
+    const QByteArray encoding( "utf-8" );
+    message->subject( true )->fromUnicodeString( name(), encoding );
+    message->contentType( true )->setMimeType( m_editor->acceptRichText() ? "text/html" : "text/plain" );
+    message->contentType()->setCharset(encoding);
+    message->contentTransferEncoding(true)->setEncoding(KMime::Headers::CEquPr);
+    message->date( true )->setDateTime( KDateTime::currentLocalDateTime() );
+    message->mainBodyPart()->fromUnicodeString( text().isEmpty() ? QString::fromLatin1( " " ) : text());
 
-    // actually store the config on disk
-    m_config->writeConfig();
+    message->assemble();
+
+    mItem.setPayload( message );
+
+    Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+    connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
 }
 
-QString KNote::noteId() const
+void KNote::slotNoteSaved(KJob *job)
 {
-    return m_journal->uid();
+    qDebug()<<" void KNote::slotNoteSaved(KJob *job)";
+    if ( job->error() ) {
+        qDebug()<<" problem during save note:"<<job->errorString();
+    } else {
+        m_editor->document()->setModified( false );
+    }
+}
+
+Akonadi::Item::Id KNote::noteId() const
+{
+    return mItem.id();
 }
 
 QString KNote::name() const
@@ -215,18 +259,13 @@ QString KNote::text() const
     return m_editor->text();
 }
 
-KCal::Journal *KNote::journal() const
-{
-    return m_journal;
-}
-
 void KNote::setName( const QString& name )
 {
     m_label->setText( name );
     updateLabelAlignment();
 
     if ( m_editor ) {    // not called from CTOR?
-        saveData();
+        saveNote();
     }
 #ifdef Q_WS_X11
     // set the window's name for the taskbar entry to be more helpful (#58338)
@@ -242,61 +281,12 @@ void KNote::setText( const QString& text )
 {
     m_editor->setText( text );
 
-    saveData();
-}
-
-void KNote::find( KFind* kfind )
-{
-    m_find = kfind;
-    disconnect( m_find );
-    connect( m_find, SIGNAL(highlight(QString,int,int)),
-             this, SLOT(slotHighlight(QString,int,int)) );
-    connect( m_find, SIGNAL(findNext()), this, SLOT(slotFindNext()) );
-
-    m_find->setData( m_editor->toPlainText() );
-    slotFindNext();
+    saveNote();
 }
 
 bool KNote::isDesktopAssigned() const
 {
-    return m_config->rememberDesktop();
-}
-
-void KNote::slotFindNext()
-{
-    // TODO: honor FindBackwards
-
-    // Let KFind inspect the text fragment, and display a dialog if a match is
-    // found
-    KFind::Result res = m_find->find();
-
-    if ( res == KFind::NoMatch ) { // i.e. at end-pos
-
-        QTextCursor c = m_editor->textCursor(); //doesn't return by reference, so we use setTextCursor
-        c.clearSelection();
-        m_editor->setTextCursor( c );
-
-        disconnect( m_find, 0, this, 0 );
-        emit sigFindFinished();
-    } else {
-        if (isHidden()) {
-            show();
-        } else {
-            raise();
-        }
-#ifdef Q_WS_X11
-        KWindowSystem::setCurrentDesktop( KWindowSystem::windowInfo( winId(),
-                                                                     NET::WMDesktop ).desktop() );
-#endif
-    }
-}
-
-void KNote::slotHighlight( const QString& /*str*/, int idx, int len )
-{
-    m_editor->textCursor().clearSelection();
-    m_editor->highlightWord( len, idx );
-
-    // TODO: modify the selection color, use a different QTextCursor?
+    return mDisplayAttribute->rememberDesktop();
 }
 
 bool KNote::isModified() const
@@ -308,13 +298,11 @@ bool KNote::isModified() const
 
 void KNote::slotRename()
 {
-    m_blockEmitDataChanged = true;
     // pop up dialog to get the new name
     bool ok;
     const QString oldName = m_label->text();
     const QString newName = KInputDialog::getText( QString::null, //krazy:exclude=nullstrassign for old broken gcc
                                                    i18n( "Please enter the new name:" ), m_label->text(), &ok, this );
-    m_blockEmitDataChanged = false;
     if ( !ok || (oldName == newName) ) { // handle cancel
         return;
     }
@@ -327,7 +315,20 @@ void KNote::slotUpdateReadOnly()
     const bool readOnly = m_readOnly->isChecked();
 
     m_editor->setReadOnly( readOnly );
-    m_config->setReadOnly( readOnly );
+
+    if (mItem.hasAttribute<NoteShared::NoteLockAttribute>()) {
+        if (!readOnly) {
+            mItem.removeAttribute<NoteShared::NoteLockAttribute>();
+        }
+    } else {
+        if (readOnly) {
+            mItem.attribute<NoteShared::NoteLockAttribute>( Akonadi::Entity::AddIfMissing );
+        }
+    }
+    //Verify it!
+    Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+    connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+
 
     // enable/disable actions accordingly
     actionCollection()->action( QLatin1String("configure_note") )->setEnabled( !readOnly );
@@ -361,52 +362,69 @@ void KNote::commitData()
 
 void KNote::slotClose()
 {
+    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
 #ifdef Q_WS_X11
     NETWinInfo wm_client( QX11Info::display(), winId(),
                           QX11Info::appRootWindow(), NET::WMDesktop );
     if ( ( wm_client.desktop() == NETWinInfo::OnAllDesktops ) ||
          ( wm_client.desktop() > 0 ) ) {
-        m_config->setDesktop( wm_client.desktop() );
+        attribute->setDesktop(wm_client.desktop());
     }
 #endif
 
     m_editor->clearFocus();
-    if( !mBlockWriteConfigDuringCommitData ) {
-        m_config->setHideNote( true );
-        m_config->setPosition( pos() );
-        m_config->writeConfig();
-    }
+    //if( !mBlockWriteConfigDuringCommitData ) {
+        attribute->setIsHidden(true);
+        attribute->setPosition(pos());
+        Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+        connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+    //}
     // just hide the note so it's still available from the dock window
     hide();
 }
 
 void KNote::slotSetAlarm()
 {
-    m_blockEmitDataChanged = true;
     QPointer<KNoteAlarmDialog> dlg = new KNoteAlarmDialog( name(), this );
-    dlg->setIncidence( m_journal );
-
+    if (mItem.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
+        dlg->setAlarm(mItem.attribute<NoteShared::NoteAlarmAttribute>()->dateTime());
+    }
     if ( dlg->exec() ) {
-        emit sigDataChanged(noteId());
+        bool needToModify = true;
+        KDateTime dateTime = dlg->alarm();
+        if (dateTime.isValid()) {
+            NoteShared::NoteAlarmAttribute *attribute =  mItem.attribute<NoteShared::NoteAlarmAttribute>( Akonadi::Entity::AddIfMissing );
+            attribute->setDateTime(dateTime);
+        } else {
+            if (mItem.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
+                mItem.removeAttribute<NoteShared::NoteAlarmAttribute>();
+            } else {
+                needToModify = false;
+            }
+        }
+        if (needToModify) {
+            //Verify it!
+            Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+            connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+        }
     }
     delete dlg;
-    m_blockEmitDataChanged = false;
 }
 
 void KNote::slotPreferences()
 {
-    m_blockEmitDataChanged = true;
-
     // create a new preferences dialog...
-    QPointer<KNoteSimpleConfigDialog> dialog = new KNoteSimpleConfigDialog( m_config, name(), this, noteId() );
-    connect( dialog, SIGNAL(settingsChanged(QString)) , this,
-             SLOT(slotApplyConfig()) );
+    QPointer<KNoteSimpleConfigDialog> dialog = new KNoteSimpleConfigDialog( name(), this );
+    dialog->load(mItem);
     connect( this, SIGNAL(sigNameChanged(QString)), dialog,
              SLOT(slotUpdateCaption(QString)) );
-    dialog->exec();
+    if (dialog->exec() ) {
+        dialog->save(mItem);
+        //Verify it.
+        Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+        connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+    }
     delete dialog;
-    m_blockEmitDataChanged = false;
-    saveData();
 }
 
 void KNote::slotSend()
@@ -438,16 +456,12 @@ void KNote::print(bool preview)
         content = m_editor->text();
     }
     if ( isModified() ) {
-        saveConfig();
-        if ( !m_blockEmitDataChanged ) {
-            saveData();
-        }
+        saveNote();
     }
-
     KNotePrinter printer;
     QList<KNotePrintObject*> lst;
-    lst.append(new KNotePrintObject(m_journal));
-    printer.setDefaultFont( m_config->font() );
+    lst.append(new KNotePrintObject(mItem));
+    printer.setDefaultFont( mDisplayAttribute->font() );
 
     KNotesGlobalConfig *globalConfig = KNotesGlobalConfig::self();
     QString printingTheme = globalConfig->theme();
@@ -466,20 +480,16 @@ void KNote::print(bool preview)
 void KNote::slotSaveAs()
 {
     // TODO: where to put pdf file support? In the printer??!??!
-    m_blockEmitDataChanged = true;
     QCheckBox *convert = 0;
-
     if ( m_editor->acceptRichText() ) {
         convert = new QCheckBox( 0 );
         convert->setText( i18n( "Save note as plain text" ) );
     }
-    m_blockEmitDataChanged = true;
     KUrl url;
     QPointer<KFileDialog> dlg = new KFileDialog( url, QString(), this, convert );
     dlg->setOperationMode( KFileDialog::Saving );
     dlg->setCaption( i18n( "Save As" ) );
     if( !dlg->exec() ) {
-        m_blockEmitDataChanged = false;
         delete dlg;
         return;
     }
@@ -487,7 +497,6 @@ void KNote::slotSaveAs()
     QString fileName = dlg->selectedFile();
     delete dlg;
     if ( fileName.isEmpty() ) {
-        m_blockEmitDataChanged = false;
         return;
     }
 
@@ -498,7 +507,6 @@ void KNote::slotSaveAs()
                                              i18n( "<qt>A file named <b>%1</b> already exists.<br />"
                                                    "Are you sure you want to overwrite it?</qt>",
                                                    QFileInfo( file ).fileName() ) ) != KMessageBox::Continue ) {
-        m_blockEmitDataChanged = false;
         return;
     }
 
@@ -510,7 +518,6 @@ void KNote::slotSaveAs()
             stream << m_editor->toPlainText();
         }
     }
-    m_blockEmitDataChanged = false;
 }
 
 void KNote::slotPopupActionToDesktop( int id )
@@ -523,17 +530,18 @@ void KNote::slotPopupActionToDesktop( int id )
 
 void KNote::slotApplyConfig()
 {
-    m_label->setFont( m_config->titleFont() );
-    m_editor->setRichText( m_config->richText() );
-    m_editor->setTextFont( m_config->font() );
-    m_editor->setTabStop( m_config->tabSize() );
-    m_editor->setAutoIndentMode( m_config->autoIndent() );
+    m_label->setFont( mDisplayAttribute->titleFont() );
+    //FIXME m_editor->setRichText( m_config->richText() );
+    m_editor->setTextFont( mDisplayAttribute->font() );
+    m_editor->setTabStop( mDisplayAttribute->tabSize() );
+    m_editor->setAutoIndentMode( mDisplayAttribute->autoIndent() );
 
-    setColor( m_config->fgColor(), m_config->bgColor() );
+    setColor( mDisplayAttribute->foregroundColor(), mDisplayAttribute->backgroundColor() );
 
     updateLayout();
     slotUpdateShowInTaskbar();
 }
+
 
 void KNote::slotKeepAbove()
 {
@@ -560,26 +568,29 @@ void KNote::slotUpdateKeepAboveBelow()
 #else
     unsigned long state = 0; // neutral state, TODO
 #endif
+    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
     if ( m_keepAbove->isChecked() ) {
-        m_config->setKeepAbove( true );
-        m_config->setKeepBelow( false );
+        attribute->setKeepAbove(true);
+        attribute->setKeepBelow(false);
         KWindowSystem::setState( winId(), state | NET::KeepAbove );
     } else if ( m_keepBelow->isChecked() ) {
-        m_config->setKeepAbove( false );
-        m_config->setKeepBelow( true );
+        attribute->setKeepAbove(false);
+        attribute->setKeepBelow(true);
         KWindowSystem::setState( winId(), state | NET::KeepBelow );
     } else {
-        m_config->setKeepAbove( false );
+        attribute->setKeepAbove(false);
+        attribute->setKeepBelow(false);
         KWindowSystem::clearState( winId(), NET::KeepAbove );
-        m_config->setKeepBelow( false );
         KWindowSystem::clearState( winId(), NET::KeepBelow );
     }
+    Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+    connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
 }
 
 void KNote::slotUpdateShowInTaskbar()
 {
 #ifdef Q_WS_X11
-    if ( !m_config->showInTaskbar() ) {
+    if ( !mDisplayAttribute->showInTaskbar() ) {
         KWindowSystem::setState( winId(), KWindowSystem::windowInfo( winId(),
                                                                      NET::WMState ).state() | NET::SkipTaskbar );
     } else {
@@ -713,6 +724,11 @@ void KNote::createActions()
     // initially populate it, otherwise stays disabled
     slotUpdateDesktopActions();
 #endif
+#if !defined(NDEBUG)
+    action  = new KAction( i18n( "Debug nepomuk..." ), this );
+    actionCollection()->addAction( QLatin1String("debug_nepomuk"), action );
+    connect( action, SIGNAL(triggered(bool)), SLOT(slotDebugNepomuk()) );
+#endif
 
     // invisible action to walk through the notes to make this configurable
     action  = new KAction( i18n( "Walk Through Notes" ), this );
@@ -750,7 +766,7 @@ void KNote::createNoteHeader()
     m_label->setAutoFillBackground( true );
     m_label->installEventFilter( this );  // receive events ( for dragging &
     // action menu )
-    setName( m_journal->summary() );      // don't worry, no signals are
+    //FIXME setName( m_journal->summary() );      // don't worry, no signals are
     // connected at this stage yet
     m_button = new KNoteButton( QLatin1String("knotes_close"), this );
     headerLayout->addWidget( m_button );
@@ -772,8 +788,7 @@ void KNote::createNoteEditor(const QString &configFile)
 void KNote::slotRequestNewNote()
 {
     //Be sure to save before to request a new note
-    saveConfig();
-    saveData();
+    saveNote();
     emit sigRequestNewNote();
 }
 
@@ -813,37 +828,52 @@ void KNote::createNoteFooter()
 
 void KNote::prepare()
 {
-    // load the display configuration of the note
-    uint width = m_config->width();
-    uint height = m_config->height();
-    resize( width, height );
-
-    // let KWin do the placement if the position is illegal--at least 10 pixels
-    // of a note need to be visible
-    const QPoint& position = m_config->position();
-    QRect desk = kapp->desktop()->rect();
-    desk.adjust( 10, 10, -10, -10 );
-    if ( desk.intersects( QRect( position, QSize( width, height ) ) ) ) {
-        move( position );           // do before calling show() to avoid flicker
+    KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
+    setName(noteMessage->subject(false)->asUnicodeString());
+    if ( noteMessage->contentType()->isHTMLText() ) {
+        m_editor->setAcceptRichText(true);
+        m_editor->setHtml(noteMessage->mainBodyPart()->decodedText());
+    } else {
+        m_editor->setAcceptRichText(false);
+        m_editor->setPlainText(noteMessage->mainBodyPart()->decodedText());
     }
 
-    KNoteUtils::setProperty(m_journal, m_config);
-
+    resize(mDisplayAttribute->size());
+    const QPoint& position = mDisplayAttribute->position();
+    QRect desk = kapp->desktop()->rect();
+    desk.adjust( 10, 10, -10, -10 );
+    if ( desk.intersects( QRect( position, mDisplayAttribute->size() ) ) ) {
+        move( position );           // do before calling show() to avoid flicker
+    }
+    if ( mItem.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
+        //TODO add alarm attribute
+    }
+    if (mDisplayAttribute->isHidden())
+        hide();
+    else
+        show();
     // read configuration settings...
     slotApplyConfig();
 
+    if ( mItem.hasAttribute<NoteShared::NoteLockAttribute>() ) {
+        m_editor->setReadOnly(true);
+        m_readOnly->setChecked( true );
+    } else {
+        m_readOnly->setChecked( false );
+    }
+    slotUpdateReadOnly();
     // if this is a new note put on current desktop - we can't use defaults
     // in KConfig XT since only _changes_ will be stored in the config file
-    int desktop = m_config->desktop();
+    int desktop = mDisplayAttribute->desktop();
 
 #ifdef Q_WS_X11
     if ( ( desktop < 0 && desktop != NETWinInfo::OnAllDesktops ) ||
-         !m_config->rememberDesktop() )
+         !mDisplayAttribute->rememberDesktop() )
         desktop = KWindowSystem::currentDesktop();
 #endif
 
     // show the note if desired
-    if ( desktop != 0 && !m_config->hideNote() ) {
+    if ( desktop != 0 && !mDisplayAttribute->isHidden() ) {
         // to avoid flicker, call this before show()
         toDesktop( desktop );
         show();
@@ -856,19 +886,16 @@ void KNote::prepare()
 #endif
     }
 
-    m_readOnly->setChecked( m_config->readOnly() );
-    slotUpdateReadOnly();
-
-    if ( m_config->keepAbove() ) {
+    if ( mDisplayAttribute->keepAbove() ) {
         m_keepAbove->setChecked( true );
-    } else if ( m_config->keepBelow() ) {
+    } else if ( mDisplayAttribute->keepBelow() ) {
         m_keepBelow->setChecked( true );
     } else {
         m_keepAbove->setChecked( false );
         m_keepBelow->setChecked( false );
     }
-    slotUpdateKeepAboveBelow();
 
+    slotUpdateKeepAboveBelow();
     // HACK: update the icon color - again after showing the note, to make kicker
     // aware of the new colors
     KIconEffect effect;
@@ -876,12 +903,12 @@ void KNote::prepare()
                                      IconSize( KIconLoader::Desktop ),
                                      IconSize( KIconLoader::Desktop ) ),
                                  KIconEffect::Colorize,
-                                 1, m_config->bgColor(), false );
+                                 1, mDisplayAttribute->backgroundColor(), false );
     QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap(
                                          IconSize( KIconLoader::Small ),
                                          IconSize( KIconLoader::Small ) ),
                                      KIconEffect::Colorize,
-                                     1, m_config->bgColor(), false );
+                                     1, mDisplayAttribute->backgroundColor(), false );
 #ifdef Q_WS_X11
     KWindowSystem::setIcons( winId(), icon, miniIcon );
 #endif
@@ -894,8 +921,6 @@ void KNote::prepare()
     m_editor->setContentsMargins( 0, 0, 0, 0 );
     m_editor->setBackgroundRole( QPalette::Base );
     m_editor->setFrameStyle( NoFrame );
-    m_editor->setText( m_journal->description() );
-
     m_editor->document()->setModified( false );
 }
 
@@ -988,33 +1013,24 @@ void KNote::updateLabelAlignment()
 
 void KNote::updateFocus()
 {
-    if ( hasFocus() )
-    {
-
-        if ( !m_editor->isReadOnly() )
-        {
-            if ( m_tool && m_tool->isHidden() && m_editor->acceptRichText() )
-            {
+    if ( hasFocus() ) {
+        if ( !m_editor->isReadOnly() ) {
+            if ( m_tool && m_tool->isHidden() && m_editor->acceptRichText() ) {
                 m_tool->show();
                 updateLayout();
             }
             m_grip->show();
-        }
-        else
-        {
+        } else {
             if ( m_tool && !m_tool->isHidden() ) {
                 m_tool->hide();
                 updateLayout();     // to update the minimum height
             }
             m_grip->hide();
         }
-    }
-    else
-    {
+    } else {
         m_grip->hide();
 
-        if ( m_tool && !m_tool->isHidden() )
-        {
+        if ( m_tool && !m_tool->isHidden() ) {
             m_tool->hide();
             updateLayout();     // to update the minimum height
         }
@@ -1038,13 +1054,13 @@ void KNote::contextMenuEvent( QContextMenuEvent *e )
 
 void KNote::showEvent( QShowEvent * )
 {
-    if ( m_config->hideNote() ) {
+    if ( mDisplayAttribute->isHidden() ) {
         // KWin does not preserve these properties for hidden windows
         slotUpdateKeepAboveBelow();
         slotUpdateShowInTaskbar();
-        toDesktop( m_config->desktop() );
-        move( m_config->position() );
-        m_config->setHideNote( false );
+        toDesktop( mDisplayAttribute->desktop() );
+        move( mDisplayAttribute->position() );
+        //FIXME !!!!!!!!!! m_config->setHideNote( false );
     }
 }
 
@@ -1065,23 +1081,27 @@ void KNote::closeEvent( QCloseEvent * event )
 
 void KNote::dragEnterEvent( QDragEnterEvent *e )
 {
-    if ( !m_config->readOnly() ) {
+    if ( !m_editor->isReadOnly() ) {
         e->setAccepted( e->mimeData()->hasColor() );
     }
 }
 
 void KNote::dropEvent( QDropEvent *e )
 {
-    if ( m_config->readOnly() ) {
+    if ( m_editor->isReadOnly() ) {
         return;
     }
 
     const QMimeData *md = e->mimeData();
     if ( md->hasColor() ) {
-        QColor bg =  qvariant_cast<QColor>( md->colorData() );
+        const QColor bg =  qvariant_cast<QColor>( md->colorData() );
         setColor( palette().color( foregroundRole() ), bg );
-        m_journal->setCustomProperty( "KNotes", "BgColor", bg.name() );
-        m_config->setBgColor( bg );
+
+        //Verify it!
+        NoteShared::NoteDisplayAttribute *attr =  mItem.attribute<NoteShared::NoteDisplayAttribute>( Akonadi::Entity::AddIfMissing );
+        attr->setForegroundColor(bg);
+        Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+        connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
     }
 }
 
@@ -1150,9 +1170,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
                  fe->reason() != Qt::MouseFocusReason ) {
                 updateFocus();
                 if ( isModified() ) {
-                    saveConfig();
-                    if ( !m_blockEmitDataChanged )
-                        saveData();
+                    saveNote();
                 }
             }
         } else if ( ev->type() == QEvent::FocusIn ) {
@@ -1165,4 +1183,16 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
     return false;
 }
 
+Akonadi::Item KNote::item() const
+{
+    return mItem;
+}
 
+void KNote::slotDebugNepomuk()
+{
+    if (mItem.isValid()) {
+        QPointer<PimCommon::SearchDebugNepomukShowDialog> dlg = new PimCommon::SearchDebugNepomukShowDialog(QString::fromLatin1("akonadi:?item=%1").arg(mItem.id()), this);
+        dlg->exec();
+        delete dlg;
+    }
+}

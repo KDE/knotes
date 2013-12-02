@@ -19,21 +19,20 @@
 #include "knoteconfigdialog.h"
 #include "knotedisplayconfigwidget.h"
 #include "knoteeditorconfigwidget.h"
-#include "knoteconfig.h"
-#include "kdepim-version.h"
+
+#include "noteshared/attributes/notedisplayattribute.h"
 
 #include <KLocale>
 #include <KWindowSystem>
 
-
+#include <QTabWidget>
 #include <QApplication>
 
-KNoteSimpleConfigDialog::KNoteSimpleConfigDialog( KNoteConfig *config, const QString &title,
-                                                  QWidget *parent, const QString &name )
-    : KConfigDialog( parent, name, config )
+KNoteSimpleConfigDialog::KNoteSimpleConfigDialog( const QString &title,
+                                                  QWidget *parent )
+    : KDialog( parent )
 {
-    setFaceType( KPageDialog::List );
-    setButtons( Default | Ok | Apply | Cancel  );
+    setButtons( /*Default |*/ Ok | Cancel  );
     setDefaultButton( Ok );
 
     setCaption( title );
@@ -47,16 +46,28 @@ KNoteSimpleConfigDialog::KNoteSimpleConfigDialog( KNoteConfig *config, const QSt
                                  IconSize( KIconLoader::Small ) ) );
 #endif
     showButtonSeparator( true );
+    mTabWidget = new QTabWidget;
 
-    addPage( new KNoteDisplayConfigWidget( false ), i18n( "Display" ), QLatin1String("knotes"),
-             i18n( "Display Settings" ) );
-    addPage( new KNoteEditorConfigWidget( false ), i18n( "Editor" ), QLatin1String("accessories-text-editor"),
-             i18n( "Editor Settings" ) );
-    config->setVersion( QLatin1String(KDEPIM_VERSION) );
+    mEditorConfigWidget = new KNoteEditorConfigWidget(false, this);
+    mTabWidget->addTab(mEditorConfigWidget, i18n( "Editor Settings" ));
+
+    mDisplayConfigWidget = new KNoteDisplayConfigWidget(false, this);
+    mTabWidget->addTab(mDisplayConfigWidget, i18n( "Display Settings" ));
+
+    setMainWidget(mTabWidget);
+    readConfig();
 }
 
 KNoteSimpleConfigDialog::~KNoteSimpleConfigDialog()
 {
+    writeConfig();
+}
+
+void KNoteSimpleConfigDialog::load(Akonadi::Item &item)
+{
+    NoteShared::NoteDisplayAttribute *attr = item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
+    mEditorConfigWidget->load(attr);
+    mDisplayConfigWidget->load(attr);
 }
 
 
@@ -65,3 +76,25 @@ void KNoteSimpleConfigDialog::slotUpdateCaption(const QString & name)
     setCaption( name );
 }
 
+void KNoteSimpleConfigDialog::save(Akonadi::Item &item)
+{
+    NoteShared::NoteDisplayAttribute *attr =  item.attribute<NoteShared::NoteDisplayAttribute>( Akonadi::Entity::AddIfMissing );
+    mEditorConfigWidget->save(attr);
+    mDisplayConfigWidget->save(attr);
+}
+
+void KNoteSimpleConfigDialog::readConfig()
+{
+    KConfigGroup group( KGlobal::config(), "KNoteSimpleConfigDialog" );
+    const QSize size = group.readEntry( "Size", QSize(600, 400) );
+    if ( size.isValid() ) {
+        resize( size );
+    }
+}
+
+void KNoteSimpleConfigDialog::writeConfig()
+{
+    KConfigGroup group( KGlobal::config(), "KNoteSimpleConfigDialog" );
+    group.writeEntry( "Size", size() );
+    group.sync();
+}

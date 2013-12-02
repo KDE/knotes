@@ -19,8 +19,9 @@
 *******************************************************************/
 
 #include "kdepim-version.h"
+#include "knotes_options.h"
 #include "apps/application.h"
-
+#include <KUniqueApplication>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
 #include <klocale.h>
@@ -96,17 +97,6 @@ void remove_sm_from_client_leader()
         XFree( data );
     }
 #endif
-}
-
-KCmdLineOptions knotesOptions()
-{
-    KCmdLineOptions options;
-
-    options.add( "skip-note",
-                 ki18n( "Suppress creation of a new note "
-                        "on a non-unique instance." ) );
-
-    return options;
 }
 
 void knotesAuthors(  KAboutData &aboutData )

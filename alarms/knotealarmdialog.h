@@ -34,28 +34,23 @@
 
 #include <KDialog>
 #include "knotes_export.h"
-namespace KCal {
-class Journal;
-}
 class KDateComboBox;
 class KTimeComboBox;
 class QButtonGroup;
+class KDateTime;
 
 class KNOTES_EXPORT KNoteAlarmDialog : public KDialog
 {
     Q_OBJECT
 public:
     explicit KNoteAlarmDialog( const QString &caption, QWidget *parent = 0 );
-
-    void setIncidence( KCal::Journal *journal );
+    void setAlarm(const KDateTime &dateTime);
+    KDateTime alarm() const;
 
 private slots:
-    void slotOk();
     void slotButtonChanged( int );
 
 private:
-    KCal::Journal *m_journal;
-
     KDateComboBox *m_atDate;
     KTimeComboBox *m_atTime;
     QButtonGroup *m_buttons;

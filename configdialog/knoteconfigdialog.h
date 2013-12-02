@@ -26,9 +26,9 @@
 #include <kcmultidialog.h>
 #include "knotes_export.h"
 class KNotePrintSelectThemeComboBox;
+class KNoteCollectionConfigWidget;
 
-class KNOTES_EXPORT KNoteConfigDialog
-  : public KCMultiDialog
+class KNOTES_EXPORT KNoteConfigDialog : public KCMultiDialog
 {
   Q_OBJECT
   public:
@@ -81,5 +81,17 @@ private:
     KNotePrintSelectThemeComboBox *mSelectTheme;
 };
 
+class KNoteCollectionConfig : public KCModule
+{
+    Q_OBJECT
+public:
+    KNoteCollectionConfig( const KComponentData &inst, QWidget *parent );
+    /** Reimplemented from KCModule. */
+    virtual void load();
+    virtual void save();
+
+private:
+    KNoteCollectionConfigWidget *mCollectionConfigWidget;
+};
 
 #endif

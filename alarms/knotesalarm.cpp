@@ -32,18 +32,15 @@
 #include "knotesalarm.h"
 #include "knotesglobalconfig.h"
 
-#include "knotes/resource/resourcemanager.h"
-
 #include <kmessagebox.h>
+#include <KDateTime>
 #include <klocale.h>
-#include <kcal/calendarresources.h>
-
 #include <QStringList>
 
 
 
-KNotesAlarm::KNotesAlarm( KNotesResourceManager *manager, QObject *parent)
-    : QObject( parent ), m_manager( manager )
+KNotesAlarm::KNotesAlarm( QObject *parent)
+    : QObject( parent )
 {
     // TODO: fix timezone stuff?
 
@@ -62,6 +59,8 @@ void KNotesAlarm::checkAlarms()
 
     const KDateTime now = KDateTime::currentLocalDateTime();
     KNotesGlobalConfig::self()->setAlarmsLastChecked( now.dateTime() );
+    //Reimplement as agent ?
+#if 0
     QList<KCal::Alarm *> alarms = m_manager->alarms( KDateTime( from, KDateTime::LocalZone ), now );
     if ( alarms.isEmpty() )
         return;
@@ -81,6 +80,7 @@ void KNotesAlarm::checkAlarms()
                                       notes,
                                       i18n( "Alarm" ) );
     }
+#endif
 }
 
 

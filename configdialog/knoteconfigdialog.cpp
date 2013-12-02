@@ -24,6 +24,7 @@
 #include "print/knoteprintselectthemecombobox.h"
 #include "knotedisplayconfigwidget.h"
 #include "knoteeditorconfigwidget.h"
+#include "knotecollectionconfigwidget.h"
 #include "knotesglobalconfig.h"
 #include "notesharedglobalconfig.h"
 #include "noteshared/config/noteactionconfig.h"
@@ -78,8 +79,8 @@ KNoteConfigDialog::KNoteConfigDialog( const QString &title,
     addModule( QLatin1String("knote_config_action") );
     addModule( QLatin1String("knote_config_network") );
     addModule( QLatin1String("knote_config_print") );
+    addModule( QLatin1String("knote_config_collection") );
 
-    KNotesGlobalConfig::self()->setVersion( QLatin1String(KDEPIM_VERSION) );
     connect( this, SIGNAL(okClicked()), SLOT(slotOk()) );
 }
 
@@ -100,6 +101,15 @@ KDE_EXPORT KCModule *create_knote_config_display( QWidget *parent )
 {
     KComponentData instance( "kcmnote_config_display" );
     return new KNoteDisplayConfig( instance, parent );
+}
+}
+
+extern "C"
+{
+KDE_EXPORT KCModule *create_knote_config_collection( QWidget *parent )
+{
+    KComponentData instance( "kcmnote_config_collection" );
+    return new KNoteCollectionConfig( instance, parent );
 }
 }
 
@@ -138,8 +148,6 @@ KDE_EXPORT KCModule *create_knote_config_print( QWidget *parent )
     return new KNotePrintConfig( instance, parent );
 }
 }
-
-
 
 KNoteDisplayConfig::KNoteDisplayConfig( const KComponentData &inst, QWidget *parent )
     :KCModule( inst, parent )
@@ -241,4 +249,26 @@ void KNotePrintConfig::defaults()
     mSelectTheme->setCurrentIndex(0);
     Q_EMIT changed(true);
 }
+
+KNoteCollectionConfig::KNoteCollectionConfig(const KComponentData &inst, QWidget *parent )
+    : KCModule( inst, parent )
+{
+    QHBoxLayout *lay = new QHBoxLayout;
+    mCollectionConfigWidget = new KNoteCollectionConfigWidget;
+    lay->addWidget(mCollectionConfigWidget);
+    setLayout(lay);
+    load();
+    //FIXME emit changed(true);
+}
+
+void KNoteCollectionConfig::save()
+{
+    mCollectionConfigWidget->updateCollectionsRecursive(QModelIndex());
+}
+
+void KNoteCollectionConfig::load()
+{
+    //Nothing
+}
+
 

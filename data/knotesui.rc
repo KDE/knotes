@@ -1,6 +1,6 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="402">
+<kpartgui name="KNotes" version="403">
 
 <Menu name="note_context" noMerge="1">
     <Action name="set_alarm"/>
@@ -14,6 +14,8 @@
     <Action name="save_note"/>
     <Separator/>
     <Action name="configure_note"/>
+    <Separator/>
+    <Action name="debug_nepomuk"/>
     <Separator/>
     <Action name="new_note"/>
     <Action name="rename_note"/>

@@ -18,6 +18,8 @@
 
 #include "knoteeditorconfigwidget.h"
 
+#include "noteshared/attributes/notedisplayattribute.h"
+
 #include <KIntNumInput>
 #include <KLocale>
 #include <KFontRequester>
@@ -76,4 +78,28 @@ KNoteEditorConfigWidget::KNoteEditorConfigWidget( bool defaults, QWidget *parent
 KNoteEditorConfigWidget::~KNoteEditorConfigWidget()
 {
 
+}
+
+void KNoteEditorConfigWidget::load(NoteShared::NoteDisplayAttribute *attr)
+{
+    if (attr) {
+        kcfg_TabSize->setValue(attr->tabSize());
+        kcfg_AutoIndent->setChecked(attr->autoIndent());
+        //FIXME richtext
+        //kcfg_RichText->setChecked(attr->);
+        kcfg_Font->setFont(attr->font());
+        kcfg_TitleFont->setFont(attr->titleFont());
+    }
+}
+
+void KNoteEditorConfigWidget::save(NoteShared::NoteDisplayAttribute *attr)
+{
+    if (attr) {
+        attr->setTabSize(kcfg_TabSize->value());
+        attr->setAutoIndent(kcfg_AutoIndent->isChecked());
+        //FIXME richtext
+        //kcfg_RichText->setChecked(attr->);
+        attr->setFont(kcfg_Font->font());
+        attr->setTitleFont(kcfg_TitleFont->font());
+    }
 }

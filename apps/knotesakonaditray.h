@@ -15,14 +15,22 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef KNOTEUTILS_H
-#define KNOTEUTILS_H
-#include "knotes_export.h"
+#ifndef KNOTESAKONADITRAY_H
+#define KNOTESAKONADITRAY_H
 
-
-namespace KNoteUtils
+#include <KStatusNotifierItem>
+#include <KIcon>
+class KNotesAkonadiTray : public KStatusNotifierItem
 {
-KNOTES_EXPORT void migrateToAkonadi();
-}
+    Q_OBJECT
+public:
+    explicit KNotesAkonadiTray(QWidget *parent=0);
+    ~KNotesAkonadiTray();
 
-#endif // KNOTEUTILS_H
+    void updateNumberOfNotes(int number);
+
+private:
+    KIcon mIcon;
+};
+
+#endif // KNOTESAKONADITRAY_H

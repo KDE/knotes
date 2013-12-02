@@ -19,7 +19,7 @@
 *******************************************************************/
 
 #include "application.h"
-#include "knotesapp.h"
+#include "apps/knotesapp.h"
 #include <kcmdlineargs.h>
 #include <kontactinterface/pimuniqueapplication.h>
 

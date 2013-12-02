@@ -1,0 +1,8 @@
+[Global]
+IconName=knotes
+Comment=notes
+
+[Event/receivednote]
+Name=Received note
+Action=Popup
+

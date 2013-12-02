@@ -15,34 +15,33 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef KNOTEDISPLAYCONFIGWIDGET_H
-#define KNOTEDISPLAYCONFIGWIDGET_H
+#ifndef KNOTESNEPOMUKDEBUGDIALOG_H
+#define KNOTESNEPOMUKDEBUGDIALOG_H
 
-#include <QWidget>
-class KColorButton;
-class QCheckBox;
-class KIntNumInput;
-namespace NoteShared {
-class NoteDisplayAttribute;
+#include <KDialog>
+namespace PimCommon {
+class AkonadiResultListView;
+class PlainTextEditorWidget;
 }
-class KNoteDisplayConfigWidget : public QWidget
+class KJob;
+class QModelIndex;
+class KNotesNepomukDebugDialog : public KDialog
 {
     Q_OBJECT
 public:
-    explicit KNoteDisplayConfigWidget(bool defaults , QWidget *parent = 0);
-    ~KNoteDisplayConfigWidget();
+    explicit KNotesNepomukDebugDialog(const QStringList &listUid, QWidget *parent=0);
+    ~KNotesNepomukDebugDialog();
 
-    void load(NoteShared::NoteDisplayAttribute *attr);
-    void save(NoteShared::NoteDisplayAttribute *attr);
+private slots:
+    void slotSearchInfoWithNepomuk();
+    void slotItemFetched(KJob *job);
+    void slotShowItem(const QModelIndex &index);
 
 private:
-    KColorButton *kcfg_FgColor;
-    KColorButton *kcfg_BgColor;
-    QCheckBox *kcfg_ShowInTaskbar;
-    QCheckBox *kcfg_RememberDesktop;
-    KIntNumInput *kcfg_Width;
-    KIntNumInput *kcfg_Height;
+    void readConfig();
+    void writeConfig();
+    PimCommon::AkonadiResultListView *mListView;
+    PimCommon::PlainTextEditorWidget *mResult;
 };
 
-
-#endif // KNOTEDISPLAYCONFIGWIDGET_H
+#endif // KNOTESNEPOMUKDEBUGDIALOG_H

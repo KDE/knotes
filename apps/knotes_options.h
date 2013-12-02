@@ -15,14 +15,21 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef KNOTEUTILS_H
-#define KNOTEUTILS_H
-#include "knotes_export.h"
+#ifndef KNOTES_OPTIONS_H
+#define KNOTES_OPTIONS_H
 
+#include <KLocale>
+#include <KCmdLineOptions>
 
-namespace KNoteUtils
+static KCmdLineOptions knotesOptions()
 {
-KNOTES_EXPORT void migrateToAkonadi();
+    KCmdLineOptions options;
+
+    options.add( "skip-note",
+                 ki18n( "Suppress creation of a new note "
+                        "on a non-unique instance." ) );
+
+    return options;
 }
 
-#endif // KNOTEUTILS_H
+#endif // KNOTES_OPTIONS_H
