@@ -67,7 +67,7 @@ kde4_add_app_icon(knotes_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-apps-knotes
 
 kde4_add_executable(knotes ${knotes_SRCS})
 
-target_link_libraries(knotes knotes2private pimcommon kdepim ${KDE4_KIO_LIBS}
+target_link_libraries(knotes knotesprivate pimcommon kdepim ${KDE4_KIO_LIBS}
                              ${KDE4_KCMUTILS_LIBS} ${X11_X11_LIB} ${KDEPIMLIBS_KONTACTINTERFACE_LIBS} ${KDE4_KPRINTUTILS_LIBS} ${KDE4_KDNSSD_LIBS} noteshared
   ${KDEPIMLIBS_AKONADI_LIBS}
   ${KDEPIMLIBS_KMIME_LIBS}
