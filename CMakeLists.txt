@@ -57,7 +57,6 @@ set(knotes_SRCS
                 notes/knotedisplaysettings.cpp
                 dialog/selectednotefolderdialog.cpp
                 dialog/knoteselectednotesdialog.cpp
-                debug/knotesnepomukdebugdialog.cpp
 )
 
 

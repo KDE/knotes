@@ -21,7 +21,6 @@
 #include "configdialog/knoteconfigdialog.h"
 
 #include "dialog/knoteselectednotesdialog.h"
-#include "debug/knotesnepomukdebugdialog.h"
 #include "utils/knoteutils.h"
 
 #include "noteshared/akonadi/notesakonaditreemodel.h"
@@ -34,6 +33,8 @@
 
 #include "apps/knotesakonaditray.h"
 #include "dialog/selectednotefolderdialog.h"
+
+#include "pimcommon/nepomukdebug/nepomukdebugdialog.h"
 
 #include "notesharedglobalconfig.h"
 #include "notes/knote.h"
@@ -669,7 +670,7 @@ void KNotesApp::slotDebugNepomukSelectedNotes()
     QPointer<KNoteSelectedNotesDialog> dlg = new KNoteSelectedNotesDialog(this);
     dlg->setNotes(mNotes);
     if (dlg->exec()) {
-        QPointer<KNotesNepomukDebugDialog> nepomukDebug = new KNotesNepomukDebugDialog(dlg->selectedNotes(), this);
+        QPointer<PimCommon::NepomukDebugDialog> nepomukDebug = new PimCommon::NepomukDebugDialog(dlg->selectedNotes(), this);
         nepomukDebug->exec();
         delete nepomukDebug;
     }
