@@ -92,6 +92,7 @@ install(FILES
 	data/knote_config_network.desktop
         data/knote_config_print.desktop
         data/knote_config_collection.desktop
+        data/knote_config_misc.desktop
 	DESTINATION ${SERVICES_INSTALL_DIR})
 
 ########### install files ###############

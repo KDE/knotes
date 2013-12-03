@@ -80,7 +80,7 @@ KNoteConfigDialog::KNoteConfigDialog( const QString &title,
     addModule( QLatin1String("knote_config_network") );
     addModule( QLatin1String("knote_config_print") );
     addModule( QLatin1String("knote_config_collection") );
-
+    addModule( QLatin1String("knote_config_misc") );
     connect( this, SIGNAL(okClicked()), SLOT(slotOk()) );
 }
 
@@ -149,6 +149,16 @@ KDE_EXPORT KCModule *create_knote_config_print( QWidget *parent )
 }
 }
 
+extern "C"
+{
+KDE_EXPORT KCModule *create_knote_config_misc( QWidget *parent )
+{
+    KComponentData instance( "kcmnote_config_misc" );
+    return new KNoteMiscConfig( instance, parent );
+}
+}
+
+
 KNoteDisplayConfig::KNoteDisplayConfig( const KComponentData &inst, QWidget *parent )
     :KCModule( inst, parent )
 {
@@ -190,6 +200,27 @@ void KNoteEditorConfig::load()
 {
     KCModule::load();
 }
+
+
+KNoteMiscConfig::KNoteMiscConfig(const KComponentData &inst, QWidget *parent )
+    : KCModule(inst, parent)
+{
+    QVBoxLayout *lay = new QVBoxLayout( this );
+    QCheckBox *kcfg_SystemTrayShowNotes = new QCheckBox(i18n("Show number of notes in tray icon"));
+    kcfg_SystemTrayShowNotes->setObjectName( QLatin1String("kcfg_SystemTrayShowNotes") );
+    lay->addWidget( kcfg_SystemTrayShowNotes );
+}
+
+void KNoteMiscConfig::load()
+{
+    KCModule::load();
+}
+
+void KNoteMiscConfig::save()
+{
+    KCModule::save();
+}
+
 
 KNotePrintConfig::KNotePrintConfig(const KComponentData &inst, QWidget *parent )
     :KCModule( inst, parent )

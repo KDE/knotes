@@ -63,6 +63,16 @@ public:
     virtual void save();
 };
 
+class KNoteMiscConfig : public KCModule
+{
+    Q_OBJECT
+public:
+    KNoteMiscConfig( const KComponentData &inst, QWidget *parent );
+    /** Reimplemented from KCModule. */
+    virtual void load();
+    virtual void save();
+};
+
 class KNotePrintConfig : public KCModule
 {
     Q_OBJECT
