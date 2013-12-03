@@ -205,11 +205,17 @@ void KNoteEditorConfig::load()
 KNoteMiscConfig::KNoteMiscConfig(const KComponentData &inst, QWidget *parent )
     : KCModule(inst, parent)
 {
-    QVBoxLayout *lay = new QVBoxLayout( this );
+    QWidget *w = new QWidget(this);
+
+    QVBoxLayout *lay = new QVBoxLayout;
+    w->setLayout(lay);
+
     QCheckBox *kcfg_SystemTrayShowNotes = new QCheckBox(i18n("Show number of notes in tray icon"), this);
+
     kcfg_SystemTrayShowNotes->setObjectName( QLatin1String("kcfg_SystemTrayShowNotes") );
     lay->addWidget( kcfg_SystemTrayShowNotes );
     lay->addStretch();
+    addConfig( KNotesGlobalConfig::self(), w );
 }
 
 void KNoteMiscConfig::load()
