@@ -80,25 +80,23 @@ KNoteEditorConfigWidget::~KNoteEditorConfigWidget()
 
 }
 
-void KNoteEditorConfigWidget::load(NoteShared::NoteDisplayAttribute *attr)
+void KNoteEditorConfigWidget::load(NoteShared::NoteDisplayAttribute *attr, bool isRichText)
 {
     if (attr) {
         kcfg_TabSize->setValue(attr->tabSize());
         kcfg_AutoIndent->setChecked(attr->autoIndent());
-        //FIXME richtext
-        //kcfg_RichText->setChecked(attr->);
+        kcfg_RichText->setChecked(isRichText);
         kcfg_Font->setFont(attr->font());
         kcfg_TitleFont->setFont(attr->titleFont());
     }
 }
 
-void KNoteEditorConfigWidget::save(NoteShared::NoteDisplayAttribute *attr)
+void KNoteEditorConfigWidget::save(NoteShared::NoteDisplayAttribute *attr, bool &isRichText)
 {
     if (attr) {
         attr->setTabSize(kcfg_TabSize->value());
         attr->setAutoIndent(kcfg_AutoIndent->isChecked());
-        //FIXME richtext
-        //kcfg_RichText->setChecked(attr->);
+        isRichText = kcfg_RichText->isChecked();
         attr->setFont(kcfg_Font->font());
         attr->setTitleFont(kcfg_TitleFont->font());
     }

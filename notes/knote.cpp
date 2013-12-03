@@ -411,16 +411,34 @@ void KNote::slotSetAlarm()
     delete dlg;
 }
 
+void KNote::saveNoteContent()
+{
+    KMime::Message::Ptr message = mItem.payload<KMime::Message::Ptr>();
+    const QByteArray encoding( "utf-8" );
+    message->subject( true )->fromUnicodeString( name(), encoding );
+    message->contentType( true )->setMimeType( m_editor->acceptRichText() ? "text/html" : "text/plain" );
+    message->contentType()->setCharset(encoding);
+    message->contentTransferEncoding(true)->setEncoding(KMime::Headers::CEquPr);
+    message->date( true )->setDateTime( KDateTime::currentLocalDateTime() );
+    message->mainBodyPart()->fromUnicodeString( text().isEmpty() ? QString::fromLatin1( " " ) : text());
+
+    message->assemble();
+
+    mItem.setPayload( message );
+}
+
 void KNote::slotPreferences()
 {
     // create a new preferences dialog...
     QPointer<KNoteSimpleConfigDialog> dialog = new KNoteSimpleConfigDialog( name(), this );
-    dialog->load(mItem);
+    dialog->load(mItem, m_editor->acceptRichText());
     connect( this, SIGNAL(sigNameChanged(QString)), dialog,
              SLOT(slotUpdateCaption(QString)) );
     if (dialog->exec() ) {
-        dialog->save(mItem);
-        //Verify it.
+        bool isRichText;
+        dialog->save(mItem, isRichText);
+        m_editor->setAcceptRichText(isRichText);
+        saveNoteContent();
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
         connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
     }
@@ -531,7 +549,6 @@ void KNote::slotPopupActionToDesktop( int id )
 void KNote::slotApplyConfig()
 {
     m_label->setFont( mDisplayAttribute->titleFont() );
-    //FIXME m_editor->setRichText( m_config->richText() );
     m_editor->setTextFont( mDisplayAttribute->font() );
     m_editor->setTabStop( mDisplayAttribute->tabSize() );
     m_editor->setAutoIndentMode( mDisplayAttribute->autoIndent() );

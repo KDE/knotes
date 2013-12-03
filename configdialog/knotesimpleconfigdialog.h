@@ -31,8 +31,8 @@ public:
     explicit KNoteSimpleConfigDialog( const QString &title, QWidget *parent=0 );
     ~KNoteSimpleConfigDialog();
 
-    void load(Akonadi::Item &item);
-    void save(Akonadi::Item &item);
+    void load(Akonadi::Item &item, bool isRichText);
+    void save(Akonadi::Item &item, bool &isRichText);
 
 public Q_SLOTS:
     void slotUpdateCaption(const QString & name);

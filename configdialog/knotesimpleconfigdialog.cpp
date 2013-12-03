@@ -63,23 +63,22 @@ KNoteSimpleConfigDialog::~KNoteSimpleConfigDialog()
     writeConfig();
 }
 
-void KNoteSimpleConfigDialog::load(Akonadi::Item &item)
+void KNoteSimpleConfigDialog::load(Akonadi::Item &item, bool isRichText)
 {
     NoteShared::NoteDisplayAttribute *attr = item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
-    mEditorConfigWidget->load(attr);
+    mEditorConfigWidget->load(attr, isRichText);
     mDisplayConfigWidget->load(attr);
 }
-
 
 void KNoteSimpleConfigDialog::slotUpdateCaption(const QString & name)
 {
     setCaption( name );
 }
 
-void KNoteSimpleConfigDialog::save(Akonadi::Item &item)
+void KNoteSimpleConfigDialog::save(Akonadi::Item &item, bool &isRichText)
 {
     NoteShared::NoteDisplayAttribute *attr =  item.attribute<NoteShared::NoteDisplayAttribute>( Akonadi::Entity::AddIfMissing );
-    mEditorConfigWidget->save(attr);
+    mEditorConfigWidget->save(attr, isRichText);
     mDisplayConfigWidget->save(attr);
 }
 

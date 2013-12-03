@@ -138,6 +138,7 @@ private:
     void setDisplayDefaultValue();
 
 private:
+    void saveNoteContent();
     Akonadi::Item mItem;
     QLayout       *m_noteLayout;
     QLabel        *m_label;

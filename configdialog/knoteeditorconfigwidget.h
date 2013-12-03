@@ -34,8 +34,8 @@ public:
     explicit KNoteEditorConfigWidget(bool defaults , QWidget *parent = 0);
     ~KNoteEditorConfigWidget();
 
-    void load(NoteShared::NoteDisplayAttribute *attr);
-    void save(NoteShared::NoteDisplayAttribute *attr);
+    void load(NoteShared::NoteDisplayAttribute *attr, bool isRichText);
+    void save(NoteShared::NoteDisplayAttribute *attr, bool &isRichText);
 
 private:
     KIntNumInput *kcfg_TabSize;
