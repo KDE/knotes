@@ -45,7 +45,7 @@ void KNoteUtils::migrateToAkonadi()
         if ( enabled && currentVersion < targetVersion ) {
             const int choice = KMessageBox::questionYesNoCancel( 0, i18n(
                                                                      "<b>Thanks for using KNotes!</b>"
-                                                                     "<p>KNotes uses a new storage technology that requires migration of your current KMail data and configuration.</p>\n"
+                                                                     "<p>KNotes uses a new storage technology that requires migration of your current KNotes data and configuration.</p>\n"
                                                                      "<p>The conversion process can take a lot of time (depending on the amount of email you have) and it <em>must not be interrupted</em>.</p>\n"
                                                                      "<p>You can:</p><ul>"
                                                                      "<li>Migrate now (be prepared to wait)</li>"
@@ -86,7 +86,7 @@ void KNoteUtils::migrateToAkonadi()
                 kError() << "stdout: " << proc.readAllStandardOutput();
                 kError() << "stderr: " << proc.readAllStandardError();
 
-                KMessageBox::error( 0, i18n("Migration to KNotes failed. In case you want to try again, run 'kmail-migrator --interactive' manually."),
+                KMessageBox::error( 0, i18n("Migration to KNotes failed. In case you want to try again, run 'knotes-migrator --interactive' manually."),
                                     i18n( "Migration Failed" ) );
                 return;
             }
