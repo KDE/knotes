@@ -1,8 +1,23 @@
 [Global]
 IconName=knotes
 Comment=notes
+Comment[cs]=poznámky
+Comment[de]=Notizen
+Comment[nl]=notities
+Comment[pt]=notas
+Comment[pt_BR]=notas
+Comment[sv]=anteckningar
+Comment[uk]=нотатки
+Comment[x-test]=xxnotesxx
 
 [Event/receivednote]
 Name=Received note
+Name[de]=Erhaltene Notiz
+Name[nl]=Ontvangen notitie
+Name[pt]=Nota recebida
+Name[pt_BR]=Nota recebida
+Name[sv]=Mottagen anteckning
+Name[uk]=Отримано нотатку
+Name[x-test]=xxReceived notexx
 Action=Popup
 
