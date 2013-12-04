@@ -19,8 +19,9 @@
 #define SELECTEDNOTEFOLDERDIALOG_H
 
 #include <Akonadi/CollectionDialog>
+#include "knotes_export.h"
 
-class SelectedNotefolderDialog : public Akonadi::CollectionDialog
+class KNOTES_EXPORT SelectedNotefolderDialog : public Akonadi::CollectionDialog
 {
     Q_OBJECT
 public:

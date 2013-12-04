@@ -81,7 +81,6 @@ signals:
     void sigNameChanged(const QString &);
     void sigColorChanged();
     void sigKillNote( Akonadi::Item::Id );
-    void sigFindFinished();
 
 protected:
     virtual void contextMenuEvent( QContextMenuEvent * );
