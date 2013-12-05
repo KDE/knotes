@@ -46,19 +46,15 @@
 #include <kapplication.h>
 #include <kcombobox.h>
 #include <kfiledialog.h>
-#include <kfind.h>
 #include <kglobalsettings.h>
 #include <kicon.h>
 #include <kiconeffect.h>
 #include <kiconloader.h>
 #include <kinputdialog.h>
-#include <kio/netaccess.h>
 #include <klocale.h>
 #include <kmenu.h>
 #include <kmessagebox.h>
-#include <kprocess.h>
 #include <kselectaction.h>
-#include <ksocketfactory.h>
 #include <kstandardaction.h>
 #include <kstandarddirs.h>
 #include <ktoggleaction.h>
@@ -76,7 +72,6 @@
 #include <QFile>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QObject>
 #include <QPixmap>
 #include <QSize>
 #include <QSizeGrip>
