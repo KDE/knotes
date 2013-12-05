@@ -18,11 +18,12 @@
 #ifndef KNOTEUTILS_H
 #define KNOTEUTILS_H
 #include "knotes_export.h"
-
+#include <Akonadi/Item>
 
 namespace KNoteUtils
 {
 KNOTES_EXPORT void migrateToAkonadi();
+KNOTES_EXPORT void setDefaultValue(Akonadi::Item &item);
 }
 
 #endif // KNOTEUTILS_H

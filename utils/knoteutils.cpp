@@ -16,6 +16,8 @@
 */
 
 #include "knoteutils.h"
+#include "noteshared/attributes/notedisplayattribute.h"
+#include "knotesglobalconfig.h"
 
 #include <KStandardDirs>
 #include <KMessageBox>
@@ -25,6 +27,25 @@
 #include <KConfigGroup>
 
 #include <QFileInfo>
+
+void KNoteUtils::setDefaultValue(Akonadi::Item &item)
+{
+    NoteShared::NoteDisplayAttribute *attribute =  item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
+    attribute->setBackgroundColor(KNotesGlobalConfig::self()->bgColor());
+    attribute->setForegroundColor(KNotesGlobalConfig::self()->fgColor());
+    attribute->setSize(QSize(KNotesGlobalConfig::self()->width(), KNotesGlobalConfig::self()->height()));
+    attribute->setRememberDesktop(KNotesGlobalConfig::self()->rememberDesktop());
+    attribute->setTabSize(KNotesGlobalConfig::self()->tabSize());
+    attribute->setFont(KNotesGlobalConfig::self()->font());
+    attribute->setTitleFont(KNotesGlobalConfig::self()->titleFont());
+    attribute->setDesktop(KNotesGlobalConfig::self()->desktop());
+    attribute->setIsHidden(KNotesGlobalConfig::self()->hideNote());
+    attribute->setPosition(KNotesGlobalConfig::self()->position());
+    attribute->setShowInTaskbar(KNotesGlobalConfig::self()->showInTaskbar());
+    attribute->setKeepAbove(KNotesGlobalConfig::self()->keepAbove());
+    attribute->setKeepBelow(KNotesGlobalConfig::self()->keepBelow());
+    attribute->setAutoIndent(KNotesGlobalConfig::self()->autoIndent());
+}
 
 void KNoteUtils::migrateToAkonadi()
 {
