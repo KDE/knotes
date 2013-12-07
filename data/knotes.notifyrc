@@ -3,6 +3,7 @@ IconName=knotes
 Comment=notes
 Comment[cs]=poznámky
 Comment[de]=Notizen
+Comment[ia]=notas
 Comment[nl]=notities
 Comment[pt]=notas
 Comment[pt_BR]=notas
@@ -13,6 +14,7 @@ Comment[x-test]=xxnotesxx
 [Event/receivednote]
 Name=Received note
 Name[de]=Erhaltene Notiz
+Name[ia]=Nota recipite
 Name[nl]=Ontvangen notitie
 Name[pt]=Nota recebida
 Name[pt_BR]=Nota recebida
