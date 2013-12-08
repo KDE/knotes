@@ -22,7 +22,6 @@
 #include <Akonadi/Item>
 class KNotesAkonadiTray;
 namespace Akonadi {
-class Collection;
 }
 namespace NoteShared {
 class NotesChangeRecorder;
