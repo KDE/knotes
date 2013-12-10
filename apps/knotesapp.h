@@ -38,7 +38,6 @@ class KNotesAkonadiTray;
 class KMenu;
 class KNote;
 class KAction;
-class KNotesAlarm;
 class KXMLGUIBuilder;
 class KXMLGUIFactory;
 namespace NoteShared {
@@ -115,7 +114,6 @@ private:
     QHash<Akonadi::Item::Id, KNote*> mNotes;
     NoteShared::NotesChangeRecorder *mNoteRecorder;
     NoteShared::NotesAkonadiTreeModel *mNoteTreeModel;
-    KNotesAlarm            *m_alarm;
     KAction *mFindAction;
 };
 

@@ -39,7 +39,6 @@
 #include "notesharedglobalconfig.h"
 #include "notes/knote.h"
 #include "knotesadaptor.h"
-#include "alarms/knotesalarm.h"
 #include "knotesapp.h"
 #include "print/knoteprinter.h"
 #include "print/knoteprintobject.h"
@@ -99,8 +98,7 @@ static bool qActionLessThan( const QAction *a1, const QAction *a2 )
 KNotesApp::KNotesApp()
     : QWidget(),
       m_listener( 0 ),
-      m_publisher( 0 ),
-      m_alarm( 0 )
+      m_publisher( 0 )
 {
     Akonadi::Control::widgetNeedsAkonadi(this);
 
@@ -186,7 +184,6 @@ KNotesApp::KNotesApp()
     m_noteGUI.setContent( doc );
     // set up the alarm reminder - do it after loading the notes because this
     // is used as a check if updateNoteActions has to be called for a new note
-    m_alarm = new KNotesAlarm( this );
     updateNetworkListener();
 
     Akonadi::Session *session = new Akonadi::Session( "KNotes Session", this );
