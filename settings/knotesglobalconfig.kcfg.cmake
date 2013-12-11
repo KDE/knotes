@@ -29,14 +29,6 @@
      </entry>
   </group>
 
-  <group name="Alarms">
-    <entry name="CheckInterval" type="UInt">
-      <default>60</default>
-    </entry>
-
-    <entry name="AlarmsLastChecked" type="DateTime"/>
-  </group>
-
   <group name="Display">
     <entry name="BgColor" type="Color" key="bgcolor">
       <default code="true">Qt::yellow</default>
