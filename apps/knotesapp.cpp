@@ -61,7 +61,6 @@
 #include <Akonadi/Session>
 #include <KMime/KMimeMessage>
 #include <KActionCollection>
-#include <KProcess>
 
 #include <KMessageBox>
 #include <kaction.h>
@@ -84,8 +83,8 @@
 
 #include <QPixmap>
 #include <QClipboard>
-#include <QTcpServer>
 #include <QDBusConnection>
+#include <QTcpServer>
 
 #include <dnssd/publicservice.h>
 

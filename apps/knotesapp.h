@@ -23,7 +23,6 @@
 
 #include <QDomDocument>
 #include <QList>
-#include <QMap>
 #include <QString>
 #include <QWidget>
 

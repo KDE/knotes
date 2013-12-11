@@ -22,8 +22,6 @@
 #include <KConfigGroup>
 
 #include <QListWidget>
-#include <QHBoxLayout>
-#include <QLabel>
 
 KNoteSelectedNotesDialog::KNoteSelectedNotesDialog(QWidget *parent)
     : KDialog(parent)

@@ -23,7 +23,6 @@
 #include <KConfig>
 
 #include <QDirIterator>
-#include <QDebug>
 
 KNotePrintSelectThemeComboBox::KNotePrintSelectThemeComboBox(QWidget *parent)
     : QComboBox(parent)

@@ -17,13 +17,11 @@
 
 #include "knoteprintobject.h"
 
-#include <QTextDocument>
 
 #include <KMime/KMimeMessage>
 
 #include <KLocale>
 #include <KGlobal>
-#include <KDateTime>
 
 KNotePrintObject::KNotePrintObject(const Akonadi::Item &item, QObject *parent)
     : QObject(parent),

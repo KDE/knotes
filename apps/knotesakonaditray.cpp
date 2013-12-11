@@ -26,7 +26,6 @@
 
 #include <QPainter>
 #include <QWidget>
-#include <QDebug>
 
 KNotesAkonadiTray::KNotesAkonadiTray(QWidget *parent)
     : KStatusNotifierItem(parent)

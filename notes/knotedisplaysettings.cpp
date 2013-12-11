@@ -20,8 +20,6 @@
 #include "noteshared/attributes/notedisplayattribute.h"
 #include "knotesglobalconfig.h"
 
-#include <KGlobalSettings>
-#include <QDebug>
 
 KNoteDisplaySettings::KNoteDisplaySettings(NoteShared::NoteDisplayAttribute *attr)
     : mDisplayAttribute(attr)

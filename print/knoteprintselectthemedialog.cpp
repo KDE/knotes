@@ -19,7 +19,6 @@
 #include "knoteprintselectthemecombobox.h"
 
 #include <KLocale>
-#include <KGlobal>
 
 #include <QHBoxLayout>
 #include <QLabel>

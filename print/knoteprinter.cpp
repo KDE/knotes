@@ -20,10 +20,9 @@
 
 #include <QPainter>
 #include <QTextDocument>
-#include <QTextDocumentFragment>
-#include <QAbstractTextDocumentLayout>
 #include <QPrinter>
 #include <QPrintDialog>
+#include <QAbstractTextDocumentLayout>
 
 #include <kdeprintdialog.h>
 #include <KMessageBox>

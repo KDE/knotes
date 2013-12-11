@@ -80,6 +80,7 @@
 #include <QDesktopWidget>
 #include <QPointer>
 #include <QFocusEvent>
+#include <QTcpServer>
 
 #ifdef Q_WS_X11
 #include <fixx11h.h>

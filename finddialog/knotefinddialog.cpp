@@ -18,7 +18,6 @@
 #include "knotefinddialog.h"
 
 #include <KLocale>
-#include <QHBoxLayout>
 
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     : KDialog(parent)

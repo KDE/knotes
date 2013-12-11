@@ -32,10 +32,10 @@
 #include <Akonadi/Session>
 #include <KMime/KMimeMessage>
 
-#include <QTextEdit>
-#include <QLineEdit>
 #include <QDebug>
 #include <QHash>
+#include <QTextEdit>
+#include <QLineEdit>
 
 KNotesAkonadiApp::KNotesAkonadiApp(QWidget *parent)
     : QWidget(parent)
