@@ -28,7 +28,6 @@ set(libknotesprivate_lib_SRCS
     print/knoteprintobject.cpp
     utils/knoteutils.cpp
     finddialog/knotefinddialog.cpp
-    dialog/selectednotefolderdialog.cpp
 )
 
 configure_file(settings/knotesglobalconfig.kcfg.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg )

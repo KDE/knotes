@@ -78,7 +78,6 @@ private:
 private Q_SLOTS:
     void slotPreferences();
     void slotConfigUpdated();
-    void slotNoteCreationFinished(KJob*);
     void slotNoteDeleteFinished(KJob*);
     void slotRowInserted(const QModelIndex &, int, int end);
     void slotItemRemoved(const Akonadi::Item &item);
