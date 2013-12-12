@@ -43,7 +43,6 @@
 #include "print/knoteprinter.h"
 #include "print/knoteprintobject.h"
 #include "knotesglobalconfig.h"
-#include "noteshared/network/notesnetworkreceiver.h"
 #include "dialog/knoteskeydialog.h"
 #include "print/knoteprintselectednotesdialog.h"
 #include "finddialog/knotefinddialog.h"
@@ -96,7 +95,6 @@ static bool qActionLessThan( const QAction *a1, const QAction *a2 )
 
 KNotesApp::KNotesApp()
     : QWidget(),
-      m_listener( 0 ),
       m_publisher( 0 )
 {
     Akonadi::Control::widgetNeedsAkonadi(this);
@@ -212,8 +210,6 @@ KNotesApp::~KNotesApp()
     delete mTray;
     qDeleteAll(mNotes);
     mNotes.clear();
-    delete m_listener;
-    m_listener=0;
     delete m_publisher;
     m_publisher=0;
 }
@@ -408,33 +404,13 @@ void KNotesApp::newNoteFromClipboard( const QString &name )
     newNote( name, text );
 }
 
-
-void KNotesApp::slotAcceptConnection()
-{
-    // Accept the connection and make KNotesNetworkReceiver do the job
-    QTcpSocket *s = m_listener->nextPendingConnection();
-
-    if ( s ) {
-        NoteShared::NotesNetworkReceiver *recv = new NoteShared::NotesNetworkReceiver( s );
-        connect( recv,
-                 SIGNAL(noteReceived(QString,QString)),
-                 SLOT(newNote(QString,QString)) );
-    }
-}
-
 void KNotesApp::updateNetworkListener()
 {
-    delete m_listener;
-    m_listener=0;
     delete m_publisher;
     m_publisher=0;
 
     if ( NoteShared::NoteSharedGlobalConfig::receiveNotes() ) {
         // create the socket and start listening for connections
-        m_listener=KSocketFactory::listen( QLatin1String("knotes") , QHostAddress::Any,
-                                           NoteShared::NoteSharedGlobalConfig::port() );
-        connect( m_listener, SIGNAL(newConnection()),
-                 SLOT(slotAcceptConnection()) );
         m_publisher=new DNSSD::PublicService(NoteShared::NoteSharedGlobalConfig::senderID(), QLatin1String("_knotes._tcp"), NoteShared::NoteSharedGlobalConfig::port());
         m_publisher->publishAsync();
     }

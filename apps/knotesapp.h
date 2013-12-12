@@ -32,7 +32,6 @@
 
 #include <Akonadi/Item>
 
-class QTcpServer;
 class KNotesAkonadiTray;
 class KMenu;
 class KNote;
@@ -79,7 +78,6 @@ private:
 private Q_SLOTS:
     void slotPreferences();
     void slotConfigUpdated();
-    void slotAcceptConnection();
     void slotNoteCreationFinished(KJob*);
     void slotNoteDeleteFinished(KJob*);
     void slotRowInserted(const QModelIndex &, int, int end);
@@ -108,7 +106,6 @@ private:
     KMenu           *m_noteMenu;
     KMenu           *m_contextMenu;
     QList<QAction *>       m_noteActions;
-    QTcpServer             *m_listener;
     DNSSD::PublicService   *m_publisher;
     QHash<Akonadi::Item::Id, KNote*> mNotes;
     NoteShared::NotesChangeRecorder *mNoteRecorder;
