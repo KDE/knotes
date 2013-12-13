@@ -43,13 +43,17 @@ public:
 
     void updateCollectionsRecursive(const QModelIndex &parent);
 
+Q_SIGNALS:
+    void emitChanged(bool);
+
 private Q_SLOTS:
     void slotSelectAllCollections();
     void slotUnselectAllCollections();
     void slotCollectionsInserted(const QModelIndex &parent, int start, int end);
     void slotModifyJobDone(KJob* job);
     void slotUpdateCollectionStatus();
-    void slotSetCollectionFilter(const QString&);
+    void slotSetCollectionFilter(const QString&);    
+    void slotDataChanged();
 
 private:
     void updateStatus(const QModelIndex &parent);

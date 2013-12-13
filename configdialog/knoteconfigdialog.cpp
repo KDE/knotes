@@ -292,9 +292,9 @@ KNoteCollectionConfig::KNoteCollectionConfig(const KComponentData &inst, QWidget
     QHBoxLayout *lay = new QHBoxLayout;
     mCollectionConfigWidget = new KNoteCollectionConfigWidget;
     lay->addWidget(mCollectionConfigWidget);
+    connect(mCollectionConfigWidget, SIGNAL(emitChanged(bool)), this, SLOT(changed()));
     setLayout(lay);
     load();
-    //FIXME emit changed(true);
 }
 
 void KNoteCollectionConfig::save()

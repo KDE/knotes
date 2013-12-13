@@ -75,7 +75,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     connect(mModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
             this, SLOT(slotCollectionsInserted(QModelIndex,int,int)));
 
-
+    connect(mCheckProxy, SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(slotDataChanged()));
     mCollectionFilter = new KRecursiveFilterProxyModel(this);
     mCollectionFilter->setSourceModel(mCheckProxy);
     mCollectionFilter->setDynamicSortFilter(true);
@@ -117,6 +117,11 @@ KNoteCollectionConfigWidget::~KNoteCollectionConfigWidget()
 
 }
 
+void KNoteCollectionConfigWidget::slotDataChanged()
+{
+    Q_EMIT emitChanged(true);
+}
+
 void KNoteCollectionConfigWidget::slotSetCollectionFilter(const QString &filter)
 {
     mCollectionFilter->setFilterWildcard(filter);
@@ -132,11 +137,13 @@ void KNoteCollectionConfigWidget::slotUpdateCollectionStatus()
 void KNoteCollectionConfigWidget::slotSelectAllCollections()
 {
     forceStatus(QModelIndex(), true);
+    Q_EMIT emitChanged(true);
 }
 
 void KNoteCollectionConfigWidget::slotUnselectAllCollections()
 {
     forceStatus(QModelIndex(), false);
+    Q_EMIT emitChanged(true);
 }
 
 void KNoteCollectionConfigWidget::updateStatus(const QModelIndex &parent)
