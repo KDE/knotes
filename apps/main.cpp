@@ -101,7 +101,7 @@ void remove_sm_from_client_leader()
 
 void knotesAuthors(  KAboutData &aboutData )
 {
-    aboutData.addCredit( ki18n( "Laurent Montel" ),
+    aboutData.addAuthor( ki18n( "Laurent Montel" ),
                          ki18n( "Maintainer" ),
                          "montel@kde.org" );
     aboutData.addAuthor( ki18n( "Guillermo Antonio Amaral Bastidas" ),
