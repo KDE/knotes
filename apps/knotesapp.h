@@ -95,7 +95,7 @@ private Q_SLOTS:
     void slotOpenFindDialog();
 
 private:
-    void saveNotes();
+    void saveNotes(bool force = false);
     void updateNetworkListener();
     void updateSystray();
     KXMLGUIFactory  *m_guiFactory;

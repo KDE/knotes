@@ -184,10 +184,11 @@ void KNote::slotKill( bool force )
 
 // -------------------- public member functions -------------------- //
 
-void KNote::saveNote()
+void KNote::saveNote(bool force)
 {
-    if (!m_editor->document()->isModified())
+    if (!force && !m_editor->document()->isModified())
         return;
+    qDebug()<<" saveNote "<<force;
     NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>( Akonadi::Entity::AddIfMissing );
     attribute->setPosition(pos());
     attribute->setSize(QSize(width(), height()));

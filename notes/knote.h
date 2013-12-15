@@ -53,7 +53,7 @@ public:
     ~KNote();
 
     void setChangeItem(const Akonadi::Item &item, const QSet<QByteArray> &set = QSet<QByteArray>());
-    void saveNote();
+    void saveNote(bool force = false);
 
     QString name() const;
     QString text() const;
