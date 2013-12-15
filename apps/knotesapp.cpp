@@ -424,7 +424,6 @@ void KNotesApp::updateNoteActions()
         actionCollection()->action( QLatin1String("hide_all_notes") )->setEnabled( false );
         actionCollection()->action( QLatin1String("show_all_notes") )->setEnabled( false );
         actionCollection()->action( QLatin1String("print_selected_notes") )->setEnabled( false );
-        //m_findAction->setEnabled( false );
         KAction *action = new KAction( i18n( "No Notes" ), this );
         m_noteActions.append( action );
     } else {
@@ -432,7 +431,6 @@ void KNotesApp::updateNoteActions()
         actionCollection()->action( QLatin1String("hide_all_notes") )->setEnabled( true );
         actionCollection()->action( QLatin1String("show_all_notes") )->setEnabled( true );
         actionCollection()->action( QLatin1String("print_selected_notes") )->setEnabled( true );
-        //m_findAction->setEnabled( true );
     }
     plugActionList( QLatin1String("notes"), m_noteActions );
 }
