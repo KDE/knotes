@@ -32,7 +32,7 @@
 #include "knotealarmdialog.h"
 
 #include <KDateComboBox>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KTimeComboBox>
 #include <KVBox>
 

@@ -20,7 +20,7 @@
 
 #include "noteshared/attributes/notedisplayattribute.h"
 
-#include <KLocale>
+#include <KLocalizedString>
 #include <KColorButton>
 #include <KIntNumInput>
 #include <KDialog>

@@ -21,7 +21,7 @@
 #include "noteshared/attributes/notedisplayattribute.h"
 
 #include <KIntNumInput>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KFontRequester>
 #include <KDialog>
 

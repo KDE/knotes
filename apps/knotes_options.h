@@ -18,7 +18,7 @@
 #ifndef KNOTES_OPTIONS_H
 #define KNOTES_OPTIONS_H
 
-#include <KLocale>
+#include <KLocalizedString>
 #include <KCmdLineOptions>
 
 static KCmdLineOptions knotesOptions()

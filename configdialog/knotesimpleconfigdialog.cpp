@@ -22,7 +22,7 @@
 
 #include "noteshared/attributes/notedisplayattribute.h"
 
-#include <KLocale>
+#include <KLocalizedString>
 #include <KWindowSystem>
 
 #include <QTabWidget>

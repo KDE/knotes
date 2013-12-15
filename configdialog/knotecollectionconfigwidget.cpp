@@ -33,7 +33,7 @@
 
 #include <KCheckableProxyModel>
 
-#include <KLocale>
+#include <KLocalizedString>
 #include <KPushButton>
 #include <KLineEdit>
 #include <KDebug>

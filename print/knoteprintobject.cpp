@@ -21,6 +21,7 @@
 #include <KMime/KMimeMessage>
 
 #include <KLocale>
+#include <KLocalizedString>
 #include <KGlobal>
 
 KNotePrintObject::KNotePrintObject(const Akonadi::Item &item, QObject *parent)

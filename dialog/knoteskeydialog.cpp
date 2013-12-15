@@ -19,7 +19,8 @@
 
 #include <KShortcutsEditor>
 #include <KDialog>
-#include <KLocale>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 KNotesKeyDialog::KNotesKeyDialog( KActionCollection *globals, QWidget *parent )
     : KDialog( parent )

@@ -18,7 +18,7 @@
 #include "knoteselectednotesdialog.h"
 #include "notes/knote.h"
 
-#include <KLocale>
+#include <KLocalizedString>
 #include <KConfigGroup>
 
 #include <QListWidget>

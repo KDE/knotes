@@ -17,7 +17,7 @@
 
 #include "knotefinddialog.h"
 
-#include <KLocale>
+#include <KLocalizedString>
 
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     : KDialog(parent)

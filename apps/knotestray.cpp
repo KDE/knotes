@@ -19,7 +19,7 @@
 
 #include <KIconLoader>
 #include <KGlobalSettings>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KColorScheme>
 
 #include <QPainter>
