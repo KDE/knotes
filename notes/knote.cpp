@@ -356,13 +356,10 @@ void KNote::slotClose()
 #endif
 
     m_editor->clearFocus();
-    //if( !mBlockWriteConfigDuringCommitData ) {
-        attribute->setIsHidden(true);
-        attribute->setPosition(pos());
-        Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
-        connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
-    //}
-    // just hide the note so it's still available from the dock window
+    attribute->setIsHidden(true);
+    attribute->setPosition(pos());
+    Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+    connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
     hide();
 }
 
@@ -1169,9 +1166,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             if ( fe->reason() != Qt::PopupFocusReason &&
                  fe->reason() != Qt::MouseFocusReason ) {
                 updateFocus();
-                if ( isModified() ) {
-                    saveNote();
-                }
+                saveNote();
             }
         } else if ( ev->type() == QEvent::FocusIn ) {
             updateFocus();
