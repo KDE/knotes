@@ -200,19 +200,7 @@ void KNote::saveNote(bool force)
         attribute->setDesktop( wm_client.desktop() );
     }
 #endif
-    KMime::Message::Ptr message = mItem.payload<KMime::Message::Ptr>();
-    const QByteArray encoding( "utf-8" );
-    message->subject( true )->fromUnicodeString( name(), encoding );
-    message->contentType( true )->setMimeType( m_editor->acceptRichText() ? "text/html" : "text/plain" );
-    message->contentType()->setCharset(encoding);
-    message->contentTransferEncoding(true)->setEncoding(KMime::Headers::CEquPr);
-    message->date( true )->setDateTime( KDateTime::currentLocalDateTime() );
-    message->mainBodyPart()->fromUnicodeString( text().isEmpty() ? QString::fromLatin1( " " ) : text());
-
-    message->assemble();
-
-    mItem.setPayload( message );
-
+    saveNoteContent();
     Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
     connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
 }
@@ -354,7 +342,7 @@ void KNote::slotClose()
         attribute->setDesktop(wm_client.desktop());
     }
 #endif
-
+    saveNoteContent();
     m_editor->clearFocus();
     attribute->setIsHidden(true);
     attribute->setPosition(pos());
@@ -384,6 +372,7 @@ void KNote::slotSetAlarm()
         }
         if (needToModify) {
             //Verify it!
+            saveNoteContent();
             Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
             connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
         }
@@ -392,7 +381,7 @@ void KNote::slotSetAlarm()
 }
 
 void KNote::saveNoteContent()
-{
+{    
     KMime::Message::Ptr message = mItem.payload<KMime::Message::Ptr>();
     const QByteArray encoding( "utf-8" );
     message->subject( true )->fromUnicodeString( name(), encoding );
@@ -580,6 +569,7 @@ void KNote::slotUpdateKeepAboveBelow()
         KWindowSystem::clearState( winId(), NET::KeepAbove );
         KWindowSystem::clearState( winId(), NET::KeepBelow );
     }
+    saveNoteContent();
     Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
     connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
 }
@@ -1057,7 +1047,11 @@ void KNote::showEvent( QShowEvent * )
         slotUpdateShowInTaskbar();
         toDesktop( mDisplayAttribute->desktop() );
         move( mDisplayAttribute->position() );
-        //FIXME !!!!!!!!!! m_config->setHideNote( false );
+        NoteShared::NoteDisplayAttribute *attr =  mItem.attribute<NoteShared::NoteDisplayAttribute>( Akonadi::Entity::AddIfMissing );
+        saveNoteContent();
+        attr->setIsHidden(false);
+        Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+        connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
     }
 }
 
@@ -1096,6 +1090,7 @@ void KNote::dropEvent( QDropEvent *e )
 
         //Verify it!
         NoteShared::NoteDisplayAttribute *attr =  mItem.attribute<NoteShared::NoteDisplayAttribute>( Akonadi::Entity::AddIfMissing );
+        saveNoteContent();
         attr->setForegroundColor(bg);
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
         connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
