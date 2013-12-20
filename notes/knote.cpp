@@ -157,10 +157,6 @@ void KNote::setChangeItem(const Akonadi::Item &item, const QSet<QByteArray> &set
         qDebug()<<" ATR:NoteDisplayAttribute";
         slotApplyConfig();
     }
-    if (set.contains("ATR:NoteAlarmAttribute")) {
-        //TODO
-    }
-
     //TODO update display/content etc.
     updateLabelAlignment();
 }
