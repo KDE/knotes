@@ -20,7 +20,7 @@
 
 #include "knote.h"
 #include "noteshared/noteutils.h"
-#include "alarms/knotealarmdialog.h"
+#include "alarms/notealarmdialog.h"
 #include "configdialog/knotesimpleconfigdialog.h"
 #include "print/knoteprintselectthemedialog.h"
 #include "knotes/notes/knotebutton.h"
@@ -349,7 +349,7 @@ void KNote::slotClose()
 
 void KNote::slotSetAlarm()
 {
-    QPointer<KNoteAlarmDialog> dlg = new KNoteAlarmDialog( name(), this );
+    QPointer<NoteShared::NoteAlarmDialog> dlg = new NoteShared::NoteAlarmDialog( name(), this );
     if (mItem.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
         dlg->setAlarm(mItem.attribute<NoteShared::NoteAlarmAttribute>()->dateTime());
     }
