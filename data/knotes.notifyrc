@@ -19,6 +19,7 @@ Comment[sr@latin]=Beleške
 Comment[sv]=anteckningar
 Comment[uk]=нотатки
 Comment[x-test]=xxnotesxx
+Comment[zh_TW]=便條
 
 [Event/receivednote]
 Name=Received note
@@ -39,5 +40,6 @@ Name[sr@latin]=Primljena beleška
 Name[sv]=Mottagen anteckning
 Name[uk]=Отримано нотатку
 Name[x-test]=xxReceived notexx
+Name[zh_TW]=接收到便條
 Action=Popup
 
