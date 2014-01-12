@@ -828,9 +828,6 @@ void KNote::prepare()
     if ( desk.intersects( QRect( position, mDisplayAttribute->size() ) ) ) {
         move( position );           // do before calling show() to avoid flicker
     }
-    if ( mItem.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
-        //TODO add alarm attribute
-    }
     if (mDisplayAttribute->isHidden())
         hide();
     else
