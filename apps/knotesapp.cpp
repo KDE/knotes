@@ -400,10 +400,6 @@ void KNotesApp::updateNoteActions()
     while (i.hasNext()) {
         i.next();
         KNote *note = i.value();
-        // what does this actually mean? ~gamaral
-#ifdef __GNUC__
-#warning utf8: use QString
-#endif
         KAction *action = new KAction( note->name().replace( QLatin1String("&"), QLatin1String("&&") ), this );
         action->setObjectName(QString::number(note->noteId()));
         connect( action, SIGNAL(triggered(bool)), SLOT(slotShowNote()) );

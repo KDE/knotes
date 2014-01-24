@@ -24,6 +24,8 @@ KNoteFindDialog::KNoteFindDialog(QWidget *parent)
 {
     setCaption(i18n("Search Notes"));
     setButtons(Close);
+    //TODO need baloo.
+    //Don't implement nepomuk search it will remove for 4.13.
 }
 
 KNoteFindDialog::~KNoteFindDialog()
