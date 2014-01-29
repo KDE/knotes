@@ -590,3 +590,5 @@ void KNotesApp::slotOpenFindDialog()
     dlg->exec();
     delete dlg;
 }
+
+#include "moc_knotesapp.cpp"

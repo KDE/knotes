@@ -139,3 +139,5 @@ void KNotesAkonadiApp::slotRowInserted(const QModelIndex &parent, int start, int
         }
     }
 }
+
+#include "moc_knotesakonadiapp.cpp"

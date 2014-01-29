@@ -101,3 +101,5 @@ void KNoteEditorConfigWidget::save(NoteShared::NoteDisplayAttribute *attr, bool 
         attr->setTitleFont(kcfg_TitleFont->font());
     }
 }
+
+#include "moc_knoteeditorconfigwidget.cpp"

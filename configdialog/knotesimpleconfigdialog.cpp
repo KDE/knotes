@@ -97,3 +97,5 @@ void KNoteSimpleConfigDialog::writeConfig()
     group.writeEntry( "Size", size() );
     group.sync();
 }
+
+#include "moc_knotesimpleconfigdialog.cpp"

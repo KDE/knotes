@@ -32,3 +32,5 @@ KNoteFindDialog::~KNoteFindDialog()
 {
 
 }
+
+#include "moc_knotefinddialog.cpp"

@@ -89,3 +89,5 @@ void KNotesAkonadiTray::updateNumberOfNotes(int number)
     }
 }
 
+
+#include "moc_knotesakonaditray.cpp"

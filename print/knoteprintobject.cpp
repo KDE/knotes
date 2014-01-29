@@ -56,3 +56,5 @@ QString KNotePrintObject::currentDateTime() const
     const QDateTime now = QDateTime::currentDateTime();
     return KGlobal::locale()->formatDateTime( now );
 }
+
+#include "moc_knoteprintobject.cpp"

@@ -1179,3 +1179,5 @@ void KNote::slotDebugNepomuk()
         delete dlg;
     }
 }
+
+#include "moc_knote.cpp"
