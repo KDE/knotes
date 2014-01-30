@@ -92,5 +92,3 @@ QString KNotePrintSelectThemeComboBox::selectedTheme() const
 }
 
 
-
-#include "moc_knoteprintselectthemecombobox.cpp"

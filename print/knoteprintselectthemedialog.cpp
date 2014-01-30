@@ -52,5 +52,3 @@ QString KNotePrintSelectThemeDialog::selectedTheme() const
     return mThemes->selectedTheme();
 }
 
-
-#include "moc_knoteprintselectthemedialog.cpp"

@@ -142,5 +142,3 @@ void KNoteDisplayConfigWidget::save(NoteShared::NoteDisplayAttribute *attr)
         }
     }
 }
-
-#include "moc_knotedisplayconfigwidget.cpp"

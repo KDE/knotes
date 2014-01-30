@@ -90,5 +90,3 @@ void KNoteSelectedNotesDialog::writeConfig()
     grp.writeEntry( "Size", size() );
     grp.sync();
 }
-
-#include "moc_knoteselectednotesdialog.cpp"

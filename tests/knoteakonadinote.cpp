@@ -42,5 +42,3 @@ KNoteAkonadiNote::~KNoteAkonadiNote()
 
 }
 
-
-#include "moc_knoteakonadinote.cpp"

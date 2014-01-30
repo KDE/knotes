@@ -308,5 +308,3 @@ void KNoteCollectionConfig::load()
 }
 
 
-
-#include "moc_knoteconfigdialog.cpp"

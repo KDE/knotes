@@ -621,5 +621,3 @@ void KNoteEdit::slotInsertDate()
 }
 
 
-
-#include "moc_knoteedit.cpp"
