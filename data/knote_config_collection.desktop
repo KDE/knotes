@@ -13,6 +13,7 @@ X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
 Name=Collection
+Name[bs]=Kolekcija
 Name[cs]=Sbírka
 Name[de]=Sammlung
 Name[es]=Colección
@@ -35,6 +36,7 @@ Name[uk]=Збірка
 Name[x-test]=xxCollectionxx
 Name[zh_TW]=收藏
 Comment=Setup collections for notes
+Comment[bs]=Postavna kolekcija za bilješke
 Comment[cs]=Nastavení sbírek pro poznámky
 Comment[de]=Sammlungen für Notizen einrichten
 Comment[es]=Configurar colecciones para notas

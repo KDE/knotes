@@ -1,6 +1,7 @@
 [Global]
 IconName=knotes
 Comment=notes
+Comment[bs]=bilješke
 Comment[cs]=poznámky
 Comment[de]=Notizen
 Comment[es]=notas
@@ -23,6 +24,7 @@ Comment[zh_TW]=便條
 
 [Event/receivednote]
 Name=Received note
+Name[bs]=Primljena bilješka
 Name[de]=Erhaltene Notiz
 Name[es]=Nota recibida
 Name[fi]=Muistiinpano vastaanotettu
