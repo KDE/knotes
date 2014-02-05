@@ -49,6 +49,11 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     connect(mSearchLineEdit, SIGNAL(textChanged(QString)), this, SLOT(slotTextChanged(QString)));
     vbox->addWidget(mSearchLineEdit);
 
+    //Result
+    mNoteList = new QListWidget;
+    vbox->addWidget(mNoteList);
+
+
     mSearchButton = new QPushButton(i18n("Search..."));
     connect(mSearchButton, SIGNAL(clicked(bool)), this, SLOT(slotSearchNote()));
     vbox->addWidget(mSearchButton);
@@ -63,6 +68,9 @@ KNoteFindWidget::~KNoteFindWidget()
 
 void KNoteFindWidget::slotSearchNote()
 {
+    const QString searchStr = mSearchLineEdit->text().trimmed();
+    if (searchStr.isEmpty())
+        return;
     //TODO
 }
 

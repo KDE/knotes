@@ -22,6 +22,7 @@
 #include "knotes_export.h"
 class QPushButton;
 class KLineEdit;
+class QListWidget;
 class KNoteFindWidget : public QWidget
 {
     Q_OBJECT
@@ -35,6 +36,7 @@ private Q_SLOTS:
 private:
     KLineEdit *mSearchLineEdit;
     QPushButton *mSearchButton;
+    QListWidget *mNoteList;
 };
 
 class KNOTES_EXPORT KNoteFindDialog : public KDialog
