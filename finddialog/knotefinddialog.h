@@ -21,6 +21,21 @@
 #include <KDialog>
 #include "knotes_export.h"
 class QPushButton;
+class KLineEdit;
+class KNoteFindWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit KNoteFindWidget(QWidget *parent=0);
+    ~KNoteFindWidget();
+
+private Q_SLOTS:
+    void slotTextChanged(const QString &);
+    void slotSearchNote();
+private:
+    KLineEdit *mSearchLineEdit;
+    QPushButton *mSearchButton;
+};
 
 class KNOTES_EXPORT KNoteFindDialog : public KDialog
 {
@@ -30,8 +45,7 @@ public:
     ~KNoteFindDialog();
 
 private:
-    QPushButton *mSearchNote;
-
+    KNoteFindWidget *mNoteFindWidget;
 };
 
 #endif // KNOTEFINDDIALOG_H

@@ -18,17 +18,55 @@
 #include "knotefinddialog.h"
 
 #include <KLocalizedString>
+#include <KLineEdit>
+
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QPushButton>
 
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     : KDialog(parent)
 {
     setCaption(i18n("Search Notes"));
     setButtons(Close);
-    //TODO need baloo.
-    //Don't implement nepomuk search it will remove for 4.13.
+    mNoteFindWidget = new KNoteFindWidget;
+    setMainWidget(mNoteFindWidget);
 }
 
 KNoteFindDialog::~KNoteFindDialog()
 {
 
+}
+
+
+KNoteFindWidget::KNoteFindWidget(QWidget *parent)
+    : QWidget(parent)
+{
+    QVBoxLayout *vbox = new QVBoxLayout;
+    QLabel *lab = new QLabel(i18n("Search notes:"));
+    vbox->addWidget(lab);
+    mSearchLineEdit = new KLineEdit;
+    connect(mSearchLineEdit, SIGNAL(textChanged(QString)), this, SLOT(slotTextChanged(QString)));
+    vbox->addWidget(mSearchLineEdit);
+
+    mSearchButton = new QPushButton(i18n("Search..."));
+    connect(mSearchButton, SIGNAL(clicked(bool)), this, SLOT(slotSearchNote()));
+    vbox->addWidget(mSearchButton);
+    mSearchButton->setEnabled(false);
+    setLayout(vbox);
+}
+
+KNoteFindWidget::~KNoteFindWidget()
+{
+
+}
+
+void KNoteFindWidget::slotSearchNote()
+{
+    //TODO
+}
+
+void KNoteFindWidget::slotTextChanged(const QString &text)
+{
+    mSearchButton->setEnabled(!text.isEmpty());
 }
