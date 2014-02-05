@@ -35,8 +35,6 @@
 #include "apps/knotesakonaditray.h"
 #include "dialog/selectednotefolderdialog.h"
 
-#include "pimcommon/nepomukdebug/nepomukdebugdialog.h"
-
 #include "notesharedglobalconfig.h"
 #include "notes/knote.h"
 #include "knotesadaptor.h"
@@ -139,11 +137,6 @@ KNotesApp::KNotesApp()
     actionCollection()->addAction( QLatin1String("print_selected_notes"), action );
     connect( action, SIGNAL(triggered()), SLOT(slotPrintSelectedNotes()) );
 
-#if !defined(NDEBUG)
-    action = new KAction(i18n("Debug nepomuk..."),this);
-    actionCollection()->addAction( QLatin1String("debug_nepomuk"), action );
-    connect( action, SIGNAL(triggered()), SLOT(slotDebugNepomukSelectedNotes()) );
-#endif
     mFindAction = KStandardAction::find( this, SLOT(slotOpenFindDialog()), actionCollection());
 
 
@@ -570,18 +563,6 @@ bool KNotesApp::commitData( QSessionManager & )
 {
     saveNotes();
     return true;
-}
-
-void KNotesApp::slotDebugNepomukSelectedNotes()
-{
-    QPointer<KNoteSelectedNotesDialog> dlg = new KNoteSelectedNotesDialog(this);
-    dlg->setNotes(mNotes);
-    if (dlg->exec()) {
-        QPointer<PimCommon::NepomukDebugDialog> nepomukDebug = new PimCommon::NepomukDebugDialog(dlg->selectedNotes(), this);
-        nepomukDebug->exec();
-        delete nepomukDebug;
-    }
-    delete dlg;
 }
 
 void KNotesApp::slotOpenFindDialog()

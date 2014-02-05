@@ -91,7 +91,6 @@ private Q_SLOTS:
     void slotShowNote();
     void slotWalkThroughNotes();
     void slotNoteKilled( Akonadi::Item::Id );
-    void slotDebugNepomukSelectedNotes();    
     void slotOpenFindDialog();
 
 private:

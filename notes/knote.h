@@ -117,7 +117,6 @@ private slots:
 
     void slotRequestNewNote();
     void slotNoteSaved(KJob *job);
-    void slotDebugNepomuk();
 
 private:
     QString createConfig();
