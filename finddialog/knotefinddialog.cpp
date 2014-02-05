@@ -23,6 +23,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QListWidget>
 
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     : KDialog(parent)
