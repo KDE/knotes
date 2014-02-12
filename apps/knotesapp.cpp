@@ -157,7 +157,7 @@ KNotesApp::KNotesApp()
     m_guiFactory = new KXMLGUIFactory( m_guiBuilder, this );
     m_guiFactory->addClient( this );
 
-    m_contextMenu = static_cast<KMenu *>( m_guiFactory->container(
+    KMenu *contextMenu = static_cast<KMenu *>( m_guiFactory->container(
                                               QLatin1String("knotes_context"),
                                               this ) );
     m_noteMenu = static_cast<KMenu *>( m_guiFactory->container(
@@ -184,7 +184,7 @@ KNotesApp::KNotesApp()
     connect( mTray, SIGNAL(activateRequested(bool,QPoint)), this, SLOT(slotActivateRequested(bool,QPoint)) );
     connect( mTray, SIGNAL(secondaryActivateRequested(QPoint)), this, SLOT(slotSecondaryActivateRequested(QPoint)) );
 
-    mTray->setContextMenu( m_contextMenu );
+    mTray->setContextMenu( contextMenu );
     mNoteTreeModel = new NoteShared::NotesAkonadiTreeModel(mNoteRecorder->changeRecorder(), this);
 
     connect( mNoteTreeModel, SIGNAL(rowsInserted(QModelIndex,int,int)),

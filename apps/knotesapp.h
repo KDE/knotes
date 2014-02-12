@@ -102,7 +102,6 @@ private:
     QDomDocument    m_noteGUI;
     KNotesAkonadiTray *mTray;
     KMenu           *m_noteMenu;
-    KMenu           *m_contextMenu;
     QList<QAction *>       m_noteActions;
     DNSSD::PublicService   *m_publisher;
     QHash<Akonadi::Item::Id, KNote*> mNotes;
