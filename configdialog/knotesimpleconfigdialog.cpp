@@ -48,10 +48,10 @@ KNoteSimpleConfigDialog::KNoteSimpleConfigDialog( const QString &title,
     showButtonSeparator( true );
     mTabWidget = new QTabWidget;
 
-    mEditorConfigWidget = new KNoteEditorConfigWidget(false, this);
+    mEditorConfigWidget = new KNoteEditorConfigWidget(true, this);
     mTabWidget->addTab(mEditorConfigWidget, i18n( "Editor Settings" ));
 
-    mDisplayConfigWidget = new KNoteDisplayConfigWidget(false, this);
+    mDisplayConfigWidget = new KNoteDisplayConfigWidget(true, this);
     mTabWidget->addTab(mDisplayConfigWidget, i18n( "Display Settings" ));
 
     setMainWidget(mTabWidget);
