@@ -195,7 +195,8 @@ void KNote::saveNote(bool force)
         attribute->setDesktop( wm_client.desktop() );
     }
 #endif
-    saveNoteContent();
+    if (m_editor->document()->isModified())
+        saveNoteContent();
     Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
     connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
 }
@@ -1147,7 +1148,7 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             if ( fe->reason() != Qt::PopupFocusReason &&
                  fe->reason() != Qt::MouseFocusReason ) {
                 updateFocus();
-                saveNote();
+                saveNote(true);
             }
         } else if ( ev->type() == QEvent::FocusIn ) {
             updateFocus();
