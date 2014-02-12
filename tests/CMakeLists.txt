@@ -1,27 +1,23 @@
+add_subdirectory(apps)
 
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}") 
+set( EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR} )
+
 include_directories(
-  ${CMAKE_SOURCE_DIR}/pimcommon
-  ${CMAKE_SOURCE_DIR}/noteshared
-  ${CMAKE_BINARY_DIR}/noteshared
 )
+include ( ${CMAKE_SOURCE_DIR}/cmake/modules/kde4_handle_crypto_rpath_for_executable.cmake )
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
 
-set(knotes_akonadi_SRCS main.cpp 
-                        knotesakonaditray.cpp 
-                        knotesakonadiapp.cpp 
-                        knoteakonadinote.cpp
-)
-kde4_add_executable(knotes_akonadi_test TEST ${knotes_akonadi_SRCS})
-target_link_libraries(knotes_akonadi_test
-  ${QT_QTTEST_LIBRARY}
-  ${QT_QTCORE_LIBRARY}
-  ${QT_QTGUI_LIBRARY}
-  ${KDE4_KDECORE_LIBS}
-  ${KDE4_KDEUI_LIBS}
-  ${KDEPIMLIBS_AKONADI_LIBS}
-  ${KDEPIMLIBS_KMIME_LIBS}
-  akonadi_next
-  noteshared
-)
+# convenience macro to add qtest unit tests
+macro(add_knotes_unittest _source)
+  set(_test ${_source} )
+  get_filename_component(_name ${_source} NAME_WE)
+  kde4_add_unit_test(${_name} TESTNAME knotes-${_name} ${_test} )
+  target_link_libraries( ${_name}
+    ${QT_QTTEST_LIBRARY}
+    ${QT_QTCORE_LIBRARY}
+    ${KDE4_KIO_LIBS}
+  )
+endmacro ()
 
+add_knotes_unittest( notetest.cpp )
