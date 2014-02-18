@@ -16,6 +16,7 @@ include_directories(
 
 set(libknotesprivate_lib_SRCS
     knoteedit.cpp
+    notes/knotedisplaysettings.cpp
     configdialog/knotesimpleconfigdialog.cpp
     configdialog/knoteconfigdialog.cpp
     configdialog/knotedisplayconfigwidget.cpp
@@ -52,7 +53,6 @@ set(knotes_SRCS
                 notes/knotebutton.cpp 
                 print/knoteprintselectednotesdialog.cpp
                 notes/knote.cpp
-                notes/knotedisplaysettings.cpp
                 dialog/knoteselectednotesdialog.cpp
 )
 

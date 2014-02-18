@@ -22,11 +22,12 @@
 #include <QFont>
 #include <QPoint>
 
+#include "knotes_export.h"
 namespace NoteShared {
 class NoteDisplayAttribute;
 }
 
-class KNoteDisplaySettings
+class KNOTES_EXPORT KNoteDisplaySettings
 {
 public:
     KNoteDisplaySettings(NoteShared::NoteDisplayAttribute *attr=0);
