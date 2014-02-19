@@ -15,8 +15,6 @@
     <Separator/>
     <Action name="configure_note"/>
     <Separator/>
-    <Action name="debug_nepomuk"/>
-    <Separator/>
     <Action name="new_note"/>
     <Action name="rename_note"/>
     <Separator/>
