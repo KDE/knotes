@@ -107,7 +107,6 @@ private:
     QHash<Akonadi::Item::Id, KNote*> mNotes;
     NoteShared::NotesChangeRecorder *mNoteRecorder;
     NoteShared::NotesAkonadiTreeModel *mNoteTreeModel;
-    KAction *mFindAction;
 };
 
 #endif

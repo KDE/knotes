@@ -16,6 +16,8 @@
 */
 
 #include "knotefinddialog.h"
+#include "baloo/pim/notequery.h"
+#include <baloo/pim/resultiterator.h>
 
 #include <KLocalizedString>
 #include <KLineEdit>
@@ -32,11 +34,28 @@ KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     setButtons(Close);
     mNoteFindWidget = new KNoteFindWidget;
     setMainWidget(mNoteFindWidget);
+    readConfig();
 }
 
 KNoteFindDialog::~KNoteFindDialog()
 {
+    writeConfig();
+}
 
+void KNoteFindDialog::writeConfig()
+{
+    KConfigGroup grp( KGlobal::config(), "KNoteFindDialog" );
+    grp.writeEntry( "Size", size() );
+    grp.sync();
+}
+
+void KNoteFindDialog::readConfig()
+{
+    KConfigGroup grp( KGlobal::config(), "KNoteFindDialog" );
+    const QSize size = grp.readEntry( "Size", QSize(600, 300) );
+    if ( size.isValid() ) {
+        resize( size );
+    }
 }
 
 
@@ -44,21 +63,27 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     : QWidget(parent)
 {
     QVBoxLayout *vbox = new QVBoxLayout;
+    QHBoxLayout *hbox = new QHBoxLayout;
+    vbox->addLayout(hbox);
     QLabel *lab = new QLabel(i18n("Search notes:"));
-    vbox->addWidget(lab);
+    hbox->addWidget(lab);
     mSearchLineEdit = new KLineEdit;
+    mSearchLineEdit->setTrapReturnKey(true);
+    mSearchLineEdit->setClearButtonShown(true);
+    connect(mSearchLineEdit, SIGNAL(returnPressed()), this, SLOT(slotSearchNote()));
     connect(mSearchLineEdit, SIGNAL(textChanged(QString)), this, SLOT(slotTextChanged(QString)));
-    vbox->addWidget(mSearchLineEdit);
+    hbox->addWidget(mSearchLineEdit);
+
+    mSearchButton = new QPushButton(i18n("Search..."));
+    connect(mSearchButton, SIGNAL(clicked(bool)), this, SLOT(slotSearchNote()));
+    hbox->addWidget(mSearchButton);
+    mSearchButton->setEnabled(false);
 
     //Result
     mNoteList = new QListWidget;
     vbox->addWidget(mNoteList);
 
 
-    mSearchButton = new QPushButton(i18n("Search..."));
-    connect(mSearchButton, SIGNAL(clicked(bool)), this, SLOT(slotSearchNote()));
-    vbox->addWidget(mSearchButton);
-    mSearchButton->setEnabled(false);
     setLayout(vbox);
 }
 
@@ -72,7 +97,17 @@ void KNoteFindWidget::slotSearchNote()
     const QString searchStr = mSearchLineEdit->text().trimmed();
     if (searchStr.isEmpty())
         return;
-    //TODO
+    Baloo::PIM::NoteQuery query;
+    query.matchNote(searchStr);
+    query.matchTitle(searchStr);
+
+    Baloo::PIM::ResultIterator it = query.exec();
+
+    QSet<qint64> ids;
+    while (it.next())
+        ids << it.id();
+
+    qDebug()<<" QSet<qint64> mMatchingItemIds;"<<ids.count();
 }
 
 void KNoteFindWidget::slotTextChanged(const QString &text)

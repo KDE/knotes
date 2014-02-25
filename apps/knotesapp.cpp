@@ -137,7 +137,7 @@ KNotesApp::KNotesApp()
     actionCollection()->addAction( QLatin1String("print_selected_notes"), action );
     connect( action, SIGNAL(triggered()), SLOT(slotPrintSelectedNotes()) );
 
-    mFindAction = KStandardAction::find( this, SLOT(slotOpenFindDialog()), actionCollection());
+    KStandardAction::find( this, SLOT(slotOpenFindDialog()), actionCollection());
 
 
 

@@ -47,6 +47,8 @@ public:
     ~KNoteFindDialog();
 
 private:
+    void writeConfig();
+    void readConfig();
     KNoteFindWidget *mNoteFindWidget;
 };
 
