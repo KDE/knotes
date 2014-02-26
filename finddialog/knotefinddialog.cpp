@@ -34,7 +34,9 @@ KNoteFindDialog::KNoteFindDialog(QWidget *parent)
 {
     setCaption(i18n("Search Notes"));
     setButtons(Close);
+    setAttribute(Qt::WA_DeleteOnClose);
     mNoteFindWidget = new KNoteFindWidget;
+    connect(mNoteFindWidget, SIGNAL(noteSelected(Akonadi::Item::Id)), SIGNAL(noteSelected(Akonadi::Item::Id)));
     setMainWidget(mNoteFindWidget);
     readConfig();
 }
@@ -42,6 +44,11 @@ KNoteFindDialog::KNoteFindDialog(QWidget *parent)
 KNoteFindDialog::~KNoteFindDialog()
 {
     writeConfig();
+}
+
+void KNoteFindDialog::setExistingNotes(const QHash<Akonadi::Entity::Id, Akonadi::Item> &notes)
+{
+    mNoteFindWidget->setExistingNotes(notes);
 }
 
 void KNoteFindDialog::writeConfig()
@@ -95,9 +102,14 @@ KNoteFindWidget::~KNoteFindWidget()
 
 }
 
-void KNoteFindWidget::slotItemDoubleClicked(QListWidgetItem*)
+void KNoteFindWidget::setExistingNotes(const QHash<Akonadi::Entity::Id, Akonadi::Item> &notes)
 {
-    //TODO
+    mNotes = notes;
+}
+
+void KNoteFindWidget::slotItemDoubleClicked(QListWidgetItem *item)
+{
+    Q_EMIT noteSelected(mNoteList->itemId(item));
 }
 
 void KNoteFindWidget::slotSearchNote()
@@ -111,11 +123,13 @@ void KNoteFindWidget::slotSearchNote()
 
     Baloo::PIM::ResultIterator it = query.exec();
 
-    QSet<qint64> ids;
-    while (it.next())
-        ids << it.id();
-
-    qDebug()<<" QSet<qint64> mMatchingItemIds;"<<ids.count();
+    Akonadi::Item::List lst;
+    while (it.next()) {
+        if (mNotes.contains(it.id())) {
+            lst << mNotes.value(it.id());
+        }
+    }
+    mNoteList->setNotes(lst);
 }
 
 void KNoteFindWidget::slotTextChanged(const QString &text)

@@ -19,6 +19,7 @@
 #define KNOTEFINDDIALOG_H
 
 #include <KDialog>
+#include <Akonadi/Item>
 #include "knotes_export.h"
 class QPushButton;
 class KLineEdit;
@@ -34,12 +35,18 @@ public:
     explicit KNoteFindWidget(QWidget *parent=0);
     ~KNoteFindWidget();
 
+    void setExistingNotes(const QHash<Akonadi::Entity::Id, Akonadi::Item> &notes);
+
+Q_SIGNALS:
+    void noteSelected(Akonadi::Item::Id);
+
 private Q_SLOTS:
     void slotTextChanged(const QString &);
     void slotSearchNote();
     void slotItemDoubleClicked(QListWidgetItem *);
 
 private:
+    QHash<Akonadi::Item::Id , Akonadi::Item> mNotes;
     KLineEdit *mSearchLineEdit;
     QPushButton *mSearchButton;
     NoteShared::NoteListWidget *mNoteList;
@@ -51,6 +58,10 @@ class KNOTES_EXPORT KNoteFindDialog : public KDialog
 public:
     explicit KNoteFindDialog(QWidget *parent=0);
     ~KNoteFindDialog();
+    void setExistingNotes(const QHash<Akonadi::Item::Id , Akonadi::Item> & notes);
+
+Q_SIGNALS:
+    void noteSelected(Akonadi::Item::Id);
 
 private:
     void writeConfig();

@@ -23,7 +23,6 @@
 
 #include <QDomDocument>
 #include <QList>
-#include <QString>
 #include <QWidget>
 
 #include <kapplication.h>
@@ -31,7 +30,9 @@
 #include <kxmlguiclient.h>
 
 #include <Akonadi/Item>
+#include <QPointer>
 
+class KNoteFindDialog;
 class KNotesAkonadiTray;
 class KMenu;
 class KNote;
@@ -93,6 +94,7 @@ private Q_SLOTS:
     void slotNoteKilled( Akonadi::Item::Id );
     void slotOpenFindDialog();
 
+    void slotSelectNote(Akonadi::Item::Id);
 private:
     void saveNotes(bool force = false);
     void updateNetworkListener();
@@ -107,6 +109,7 @@ private:
     QHash<Akonadi::Item::Id, KNote*> mNotes;
     NoteShared::NotesChangeRecorder *mNoteRecorder;
     NoteShared::NotesAkonadiTreeModel *mNoteTreeModel;
+    QPointer<KNoteFindDialog> mFindDialog;
 };
 
 #endif
