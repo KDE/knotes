@@ -24,6 +24,9 @@ class QPushButton;
 class KLineEdit;
 class QListWidgetItem;
 class QListWidget;
+namespace NoteShared {
+class NoteListWidget;
+}
 class KNoteFindWidget : public QWidget
 {
     Q_OBJECT
@@ -39,7 +42,7 @@ private Q_SLOTS:
 private:
     KLineEdit *mSearchLineEdit;
     QPushButton *mSearchButton;
-    QListWidget *mNoteList;
+    NoteShared::NoteListWidget *mNoteList;
 };
 
 class KNOTES_EXPORT KNoteFindDialog : public KDialog

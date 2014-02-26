@@ -16,6 +16,8 @@
 */
 
 #include "knotefinddialog.h"
+#include "noteshared/widget/notelistwidget.h"
+
 #include "baloo/pim/notequery.h"
 #include <baloo/pim/resultiterator.h>
 
@@ -80,7 +82,7 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     mSearchButton->setEnabled(false);
 
     //Result
-    mNoteList = new QListWidget;
+    mNoteList = new NoteShared::NoteListWidget;
     connect(mNoteList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(slotItemDoubleClicked(QListWidgetItem*)));
     vbox->addWidget(mNoteList);
     mSearchLineEdit->setFocus();
