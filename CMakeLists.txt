@@ -10,6 +10,7 @@ include_directories(
   ${Grantlee_INCLUDE_DIRS}
   ${CMAKE_SOURCE_DIR}/noteshared
   ${CMAKE_BINARY_DIR}/noteshared
+  ${BALOO_INCLUDE_DIR}
 )
 
 ########### next target ###############
