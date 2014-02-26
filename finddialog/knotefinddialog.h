@@ -22,6 +22,7 @@
 #include "knotes_export.h"
 class QPushButton;
 class KLineEdit;
+class QListWidgetItem;
 class QListWidget;
 class KNoteFindWidget : public QWidget
 {
@@ -33,6 +34,8 @@ public:
 private Q_SLOTS:
     void slotTextChanged(const QString &);
     void slotSearchNote();
+    void slotItemDoubleClicked(QListWidgetItem *);
+
 private:
     KLineEdit *mSearchLineEdit;
     QPushButton *mSearchButton;

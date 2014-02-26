@@ -81,8 +81,9 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
 
     //Result
     mNoteList = new QListWidget;
+    connect(mNoteList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(slotItemDoubleClicked(QListWidgetItem*)));
     vbox->addWidget(mNoteList);
-
+    mSearchLineEdit->setFocus();
 
     setLayout(vbox);
 }
@@ -90,6 +91,11 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
 KNoteFindWidget::~KNoteFindWidget()
 {
 
+}
+
+void KNoteFindWidget::slotItemDoubleClicked(QListWidgetItem*)
+{
+    //TODO
 }
 
 void KNoteFindWidget::slotSearchNote()
