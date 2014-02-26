@@ -101,7 +101,7 @@ void KNoteFindWidget::slotItemDoubleClicked(QListWidgetItem*)
 void KNoteFindWidget::slotSearchNote()
 {
     const QString searchStr = mSearchLineEdit->text().trimmed();
-    if (searchStr.isEmpty())
+    if (searchStr.trimmed().isEmpty())
         return;
     Baloo::PIM::NoteQuery query;
     query.matchNote(searchStr);
@@ -118,5 +118,5 @@ void KNoteFindWidget::slotSearchNote()
 
 void KNoteFindWidget::slotTextChanged(const QString &text)
 {
-    mSearchButton->setEnabled(!text.isEmpty());
+    mSearchButton->setEnabled(!text.trimmed().isEmpty());
 }
