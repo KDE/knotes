@@ -137,7 +137,9 @@ KNotesApp::KNotesApp()
     actionCollection()->addAction( QLatin1String("print_selected_notes"), action );
     connect( action, SIGNAL(triggered()), SLOT(slotPrintSelectedNotes()) );
 
-    KStandardAction::find( this, SLOT(slotOpenFindDialog()), actionCollection());
+    KAction *act = KStandardAction::find( this, SLOT(slotOpenFindDialog()), actionCollection());
+    //REmove shortcut here.
+    act->setShortcut(0);
 
 
 
