@@ -1080,12 +1080,10 @@ void KNote::dropEvent( QDropEvent *e )
     const QMimeData *md = e->mimeData();
     if ( md->hasColor() ) {
         const QColor bg =  qvariant_cast<QColor>( md->colorData() );
-        setColor( palette().color( foregroundRole() ), bg );
 
-        //Verify it!
         NoteShared::NoteDisplayAttribute *attr =  mItem.attribute<NoteShared::NoteDisplayAttribute>( Akonadi::Entity::AddIfMissing );
         saveNoteContent();
-        attr->setForegroundColor(bg);
+        attr->setBackgroundColor(bg);
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
         connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
     }
