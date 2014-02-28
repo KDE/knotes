@@ -484,7 +484,8 @@ void KNote::slotSaveAs()
         return;
     }
 
-    QString fileName = dlg->selectedFile();
+    const QString fileName = dlg->selectedFile();
+    const bool htmlFormatAndSaveAsHtml = (convert && !convert->isChecked());
     delete dlg;
     if ( fileName.isEmpty() ) {
         return;
@@ -502,7 +503,7 @@ void KNote::slotSaveAs()
 
     if ( file.open( QIODevice::WriteOnly ) ) {
         QTextStream stream( &file );
-        if ( convert && !convert->isChecked() ) {
+        if ( htmlFormatAndSaveAsHtml ) {
             stream << m_editor->toHtml();
         } else {
             stream << m_editor->toPlainText();
