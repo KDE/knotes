@@ -504,7 +504,9 @@ void KNote::slotSaveAs()
     if ( file.open( QIODevice::WriteOnly ) ) {
         QTextStream stream( &file );
         if ( htmlFormatAndSaveAsHtml ) {
-            stream << m_editor->toHtml();
+            QString htmlStr = m_editor->toHtml();
+            htmlStr.replace(QLatin1String("meta name=\"qrichtext\" content=\"1\""), QLatin1String("meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\""));
+            stream <<  htmlStr;
         } else {
             stream << m_editor->toPlainText();
         }
