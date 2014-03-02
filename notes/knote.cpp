@@ -396,6 +396,9 @@ void KNote::slotPreferences()
 {
     // create a new preferences dialog...
     QPointer<KNoteSimpleConfigDialog> dialog = new KNoteSimpleConfigDialog( name(), this );
+    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>( Akonadi::Entity::AddIfMissing );
+    attribute->setSize(QSize(width(), height()));
+
     dialog->load(mItem, m_editor->acceptRichText());
     connect( this, SIGNAL(sigNameChanged(QString)), dialog,
              SLOT(slotUpdateCaption(QString)) );
