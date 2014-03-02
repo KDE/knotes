@@ -563,7 +563,7 @@ void KNotesApp::slotQuit()
 
 bool KNotesApp::commitData( QSessionManager & )
 {
-    saveNotes();
+    saveNotes(true, true);
     return true;
 }
 
