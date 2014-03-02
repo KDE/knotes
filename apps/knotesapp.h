@@ -96,7 +96,7 @@ private Q_SLOTS:
 
     void slotSelectNote(Akonadi::Item::Id);
 private:
-    void saveNotes(bool force = false);
+    void saveNotes(bool force = false, bool sync = false);
     void updateNetworkListener();
     void updateSystray();
     KXMLGUIFactory  *m_guiFactory;

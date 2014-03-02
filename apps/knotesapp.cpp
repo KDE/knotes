@@ -545,19 +545,19 @@ void KNotesApp::slotPrintSelectedNotes()
     delete dlg;
 }
 
-void KNotesApp::saveNotes(bool force)
+void KNotesApp::saveNotes(bool force, bool sync)
 {
     KNotesGlobalConfig::self()->writeConfig();
     QHashIterator<Akonadi::Item::Id, KNote*> i(mNotes);
     while (i.hasNext()) {
         i.next();
-        i.value()->saveNote(force);
+        i.value()->saveNote(force, sync);
     }
 }
 
 void KNotesApp::slotQuit()
 {
-    saveNotes(true);
+    saveNotes(true, true);
     kapp->quit();
 }
 
