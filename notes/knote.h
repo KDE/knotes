@@ -66,7 +66,6 @@ public:
 
     bool isModified() const;
     bool isDesktopAssigned() const;
-    void commitData();
 
     void toDesktop( int desktop );
 
@@ -156,7 +155,6 @@ private:
     KToggleAction *m_keepBelow;
 
     KSharedConfig::Ptr m_kwinConf;
-    bool mBlockWriteConfigDuringCommitData;
 
     KNoteDisplaySettings *mDisplayAttribute;
 };
