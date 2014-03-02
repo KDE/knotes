@@ -178,7 +178,7 @@ void KNote::slotKill( bool force )
 
 // -------------------- public member functions -------------------- //
 
-void KNote::saveNote(bool force)
+void KNote::saveNote(bool force, bool sync)
 {
     if (!force && !m_editor->document()->isModified())
         return;
@@ -197,7 +197,11 @@ void KNote::saveNote(bool force)
     if (m_editor->document()->isModified())
         saveNoteContent();
     Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
-    connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+    if (sync) {
+        job->exec();
+    } else {
+        connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+    }
 }
 
 void KNote::slotNoteSaved(KJob *job)
