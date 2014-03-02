@@ -96,7 +96,6 @@ KNote::KNote(const QDomDocument& buildDoc, const Akonadi::Item &item, QWidget *p
       m_tool( 0 ),
       m_editor( 0 ),
       m_kwinConf( KSharedConfig::openConfig( QLatin1String("kwinrc") ) ),
-      mBlockWriteConfigDuringCommitData( false ),
       mDisplayAttribute(new KNoteDisplaySettings)
 {
     if ( mItem.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
@@ -328,12 +327,6 @@ void KNote::slotUpdateReadOnly()
     updateFocus();
 }
 
-
-void KNote::commitData()
-{
-    mBlockWriteConfigDuringCommitData = true;
-}
-
 void KNote::slotClose()
 {
     NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
@@ -532,6 +525,7 @@ void KNote::slotApplyConfig()
 
     updateLayout();
     slotUpdateShowInTaskbar();
+    resize(mDisplayAttribute->size());
 }
 
 
