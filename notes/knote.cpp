@@ -525,6 +525,7 @@ void KNote::slotApplyConfig()
 
     updateLayout();
     slotUpdateShowInTaskbar();
+    resize(mDisplayAttribute->size());
 }
 
 

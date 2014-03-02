@@ -120,10 +120,10 @@ void KNoteDisplayConfigWidget::load(NoteShared::NoteDisplayAttribute *attr)
             kcfg_RememberDesktop->setChecked(attr->rememberDesktop());
         }
         if (kcfg_Height) {
-            kcfg_Height->setValue(kcfg_RememberDesktop->size().height());
+            kcfg_Height->setValue(attr->size().height());
         }
         if (kcfg_Width) {
-            kcfg_Width->setValue(kcfg_RememberDesktop->size().width());
+            kcfg_Width->setValue(attr->size().width());
         }
     }
 }
