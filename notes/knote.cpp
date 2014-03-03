@@ -183,25 +183,42 @@ void KNote::saveNote(bool force, bool sync)
 {
     if (!force && !m_editor->document()->isModified())
         return;
-    qDebug()<<" saveNote "<<force;
+    bool needToSave = false;
     NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>( Akonadi::Entity::AddIfMissing );
-    attribute->setPosition(pos());
-    attribute->setSize(QSize(width(), height()));
+    const QPoint notePosition = pos();
+    if (attribute->position() != notePosition) {
+        needToSave = true;
+        attribute->setPosition(notePosition);
+    }
+    const QSize currentSize(QSize(width(), height()));
+    if (attribute->size() != currentSize) {
+        needToSave = true;
+        attribute->setSize(currentSize);
+    }
 #ifdef Q_WS_X11
     NETWinInfo wm_client( QX11Info::display(), winId(),
                           QX11Info::appRootWindow(), NET::WMDesktop );
     if ( ( wm_client.desktop() == NETWinInfo::OnAllDesktops ) ||
          ( wm_client.desktop() > 0 ) ) {
-        attribute->setDesktop( wm_client.desktop() );
+        const int desktopNumber = wm_client.desktop();
+        if (attribute->desktop() != desktopNumber) {
+            needToSave = true;
+            attribute->setDesktop( desktopNumber );
+        }
     }
 #endif
-    if (m_editor->document()->isModified())
+    if (m_editor->document()->isModified()) {
+        needToSave = true;
         saveNoteContent();
-    Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
-    if (sync) {
-        job->exec();
-    } else {
-        connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+    }
+    if (needToSave) {
+        qDebug()<<" saveNote "<<force;
+        Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+        if (sync) {
+            job->exec();
+        } else {
+            connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+        }
     }
 }
 
