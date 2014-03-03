@@ -313,7 +313,6 @@ void KNote::slotUpdateReadOnly()
             mItem.attribute<NoteShared::NoteLockAttribute>( Akonadi::Entity::AddIfMissing );
         }
     }
-    //Verify it!
     if (!mBlockSave) {
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
         connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
@@ -558,8 +557,7 @@ void KNote::slotApplyConfig()
 
 void KNote::slotKeepAbove()
 {
-    if ( m_keepBelow->isChecked() )
-    {
+    if ( m_keepBelow->isChecked() ) {
         m_keepBelow->setChecked( false );
     }
     slotUpdateKeepAboveBelow();
@@ -567,8 +565,7 @@ void KNote::slotKeepAbove()
 
 void KNote::slotKeepBelow()
 {
-    if ( m_keepAbove->isChecked() )
-    {
+    if ( m_keepAbove->isChecked() ) {
         m_keepAbove->setChecked( false );
     }
     slotUpdateKeepAboveBelow();
@@ -1012,8 +1009,7 @@ void KNote::updateLabelAlignment()
 {
     // if the name is too long to fit, left-align it, otherwise center it (#59028)
     const QString labelText = m_label->text();
-    if ( m_label->fontMetrics().boundingRect( labelText ).width() >
-         m_label->width() ) {
+    if ( m_label->fontMetrics().boundingRect( labelText ).width() > m_label->width() ) {
         m_label->setAlignment( Qt::AlignLeft );
     } else {
         m_label->setAlignment( Qt::AlignHCenter );
