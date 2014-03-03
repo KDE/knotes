@@ -157,6 +157,7 @@ private:
     KSharedConfig::Ptr m_kwinConf;
 
     KNoteDisplaySettings *mDisplayAttribute;
+    bool mBlockSave;
 };
 
 #endif
