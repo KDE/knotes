@@ -107,7 +107,7 @@ private slots:
     void slotPopupActionToDesktop( int id );
 
     void slotApplyConfig();
-    void slotUpdateKeepAboveBelow();
+    void slotUpdateKeepAboveBelow(bool save = true);
     void slotUpdateShowInTaskbar();
     void slotUpdateDesktopActions();
 
