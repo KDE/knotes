@@ -475,6 +475,7 @@ void KNotesApp::slotPreferences()
 void KNotesApp::slotConfigUpdated()
 {
     updateNetworkListener();
+    KNoteUtils::updateConfiguration();
     //Force update if we disable or enable show number in systray
     mTray->updateNumberOfNotes(mNotes.count());
 }

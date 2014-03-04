@@ -86,6 +86,7 @@
 #include <QX11Info>
 #endif
 
+//#define DEBUG_SAVE_NOTE 1
 
 KNote::KNote(const QDomDocument& buildDoc, const Akonadi::Item &item, QWidget *parent )
     : QFrame( parent, Qt::FramelessWindowHint ),
@@ -129,6 +130,9 @@ void KNote::setDisplayDefaultValue()
 {
     KNoteUtils::setDefaultValue(mItem);
     Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+#ifdef DEBUG_SAVE_NOTE
+    qDebug()<<"setDisplayDefaultValue slotNoteSaved(KJob*)";
+#endif
     connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
 }
 
@@ -217,6 +221,9 @@ void KNote::saveNote(bool force, bool sync)
         if (sync) {
             job->exec();
         } else {
+#ifdef DEBUG_SAVE_NOTE
+            qDebug()<<"save Note slotClose() slotNoteSaved(KJob*)";
+#endif
             connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
         }
     }
@@ -315,6 +322,9 @@ void KNote::slotUpdateReadOnly()
     }
     if (!mBlockSave) {
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+#ifdef DEBUG_SAVE_NOTE
+        qDebug()<<" void KNote::slotUpdateReadOnly() slotNoteSaved(KJob*)";
+#endif
         connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
     }
 
@@ -366,6 +376,9 @@ void KNote::slotClose()
     attribute->setIsHidden(true);
     attribute->setPosition(pos());
     Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+#ifdef DEBUG_SAVE_NOTE
+    qDebug()<<"slotClose() slotNoteSaved(KJob*)";
+#endif
     connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
     hide();
 }
@@ -393,6 +406,9 @@ void KNote::slotSetAlarm()
             //Verify it!
             saveNoteContent();
             Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+#ifdef DEBUG_SAVE_NOTE
+            qDebug()<<"setAlarm() slotNoteSaved(KJob*)";
+#endif
             connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
         }
     }
@@ -431,6 +447,9 @@ void KNote::slotPreferences()
         m_editor->setAcceptRichText(isRichText);
         saveNoteContent();
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+#ifdef DEBUG_SAVE_NOTE
+        qDebug()<<"slotPreference slotNoteSaved(KJob*)";
+#endif
         connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
     }
     delete dialog;
@@ -571,7 +590,7 @@ void KNote::slotKeepBelow()
     slotUpdateKeepAboveBelow();
 }
 
-void KNote::slotUpdateKeepAboveBelow()
+void KNote::slotUpdateKeepAboveBelow(bool save)
 {
 #ifdef Q_WS_X11
     unsigned long state = KWindowInfo( KWindowSystem::windowInfo( winId(), NET::WMState ) ).state();
@@ -593,9 +612,12 @@ void KNote::slotUpdateKeepAboveBelow()
         KWindowSystem::clearState( winId(), NET::KeepAbove );
         KWindowSystem::clearState( winId(), NET::KeepBelow );
     }
-    if (!mBlockSave) {
+    if (!mBlockSave && save) {
         saveNoteContent();
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+#ifdef DEBUG_SAVE_NOTE
+        qDebug()<<"slotUpdateKeepAboveBelow slotNoteSaved(KJob*)";
+#endif
         connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
     }
 }
@@ -1061,7 +1083,7 @@ void KNote::showEvent( QShowEvent * )
 {
     if ( mDisplayAttribute->isHidden() ) {
         // KWin does not preserve these properties for hidden windows
-        slotUpdateKeepAboveBelow();
+        slotUpdateKeepAboveBelow(false);
         slotUpdateShowInTaskbar();
         toDesktop( mDisplayAttribute->desktop() );
         move( mDisplayAttribute->position() );
@@ -1070,6 +1092,9 @@ void KNote::showEvent( QShowEvent * )
         attr->setIsHidden(false);
         if (!mBlockSave) {
             Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+#ifdef DEBUG_SAVE_NOTE
+            qDebug()<<"showEvent slotNoteSaved(KJob*)";
+#endif
             connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
         }
     }
@@ -1111,6 +1136,9 @@ void KNote::dropEvent( QDropEvent *e )
         saveNoteContent();
         attr->setBackgroundColor(bg);
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
+#ifdef DEBUG_SAVE_NOTE
+        qDebug()<<"dropEvent slotNoteSaved(KJob*)";
+#endif
         connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
     }
 }

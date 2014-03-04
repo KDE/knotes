@@ -25,8 +25,16 @@
 #include <KProcess>
 #include <KDebug>
 #include <KConfigGroup>
-
+#include <QDBusInterface>
 #include <QFileInfo>
+
+void KNoteUtils::updateConfiguration()
+{
+    QDBusInterface interface( QLatin1String("org.freedesktop.Akonadi.Agent.akonadi_notes_agent"), QLatin1String("/NotesAgent") );
+    if (interface.isValid()) {
+        interface.call(QLatin1String("configurationChanged"));
+    }
+}
 
 void KNoteUtils::setDefaultValue(Akonadi::Item &item)
 {
