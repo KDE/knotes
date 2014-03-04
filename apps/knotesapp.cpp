@@ -395,7 +395,17 @@ void KNotesApp::updateNoteActions()
     while (i.hasNext()) {
         i.next();
         KNote *note = i.value();
-        KAction *action = new KAction( note->name().replace( QLatin1String("&"), QLatin1String("&&") ), this );
+        QString replaceText;
+        QString realName = note->name();
+        if ( realName.count() > 50 ) {
+            replaceText = realName.left(50) + QLatin1String("...");
+        } else {
+            replaceText = realName;
+        }
+
+
+        KAction *action = new KAction( replaceText.replace( QLatin1String("&"), QLatin1String("&&") ), this );
+        action->setToolTip(realName);
         action->setObjectName(QString::number(note->noteId()));
         connect( action, SIGNAL(triggered(bool)), SLOT(slotShowNote()) );
         KIconEffect effect;
