@@ -125,8 +125,9 @@ void KNoteFindWidget::slotSearchNote()
 
     Akonadi::Item::List lst;
     while (it.next()) {
-        if (mNotes.contains(it.id())) {
-            lst << mNotes.value(it.id());
+        const Akonadi::Item::Id id = it.id();
+        if (mNotes.contains(id)) {
+            lst << mNotes.value(id);
         }
     }
     mNoteList->setNotes(lst);
