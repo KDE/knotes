@@ -795,8 +795,6 @@ void KNote::createNoteHeader()
     m_label->setAutoFillBackground( true );
     m_label->installEventFilter( this );  // receive events ( for dragging &
     // action menu )
-    //FIXME setName( m_journal->summary() );      // don't worry, no signals are
-    // connected at this stage yet
     m_button = new KNoteButton( QLatin1String("knotes_close"), this );
     headerLayout->addWidget( m_button );
 
