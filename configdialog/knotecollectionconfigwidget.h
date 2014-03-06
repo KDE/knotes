@@ -29,6 +29,7 @@ class KRecursiveFilterProxyModel;
 namespace Akonadi {
 class EntityTreeModel;
 class ChangeRecorder;
+class CollectionRequester;
 }
 class QTreeView;
 class KCheckableProxyModel;
@@ -43,6 +44,7 @@ public:
 
     void updateCollectionsRecursive(const QModelIndex &parent);
 
+    void save();
 Q_SIGNALS:
     void emitChanged(bool);
 
@@ -64,6 +66,7 @@ private:
     Akonadi::ChangeRecorder *mChangeRecorder;
     KCheckableProxyModel *mCheckProxy;
     KRecursiveFilterProxyModel *mCollectionFilter;
+    Akonadi::CollectionRequester *mDefaultSaveFolder;
     bool mCanUpdateStatus;
 };
 

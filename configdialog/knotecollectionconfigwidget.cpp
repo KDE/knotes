@@ -20,12 +20,13 @@
 #include "knotecollectionconfigwidget.h"
 #include "noteshared/attributes/showfoldernotesattribute.h"
 #include "akonadi_next/note.h"
-
+#include "notesharedglobalconfig.h"
 
 #include <Akonadi/CollectionModifyJob>
 #include <Akonadi/CollectionFilterProxyModel>
 #include <KRecursiveFilterProxyModel>
 
+#include <Akonadi/CollectionRequester>
 #include <Akonadi/ChangeRecorder>
 #include <Akonadi/EntityTreeModel>
 #include <Akonadi/Collection>
@@ -108,6 +109,13 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     connect(button, SIGNAL(clicked(bool)), this, SLOT(slotUnselectAllCollections()));
     hbox->addWidget(button);
     hbox->addStretch(1);
+
+    vbox->addWidget(new QLabel(i18nc( "@info", "Select the folder where the note will be saved:" )));
+    mDefaultSaveFolder = new Akonadi::CollectionRequester(Akonadi::Collection(NoteShared::NoteSharedGlobalConfig::self()->defaultFolder()));
+    mDefaultSaveFolder->setMimeTypeFilter(QStringList() << Akonotes::Note::mimeType());
+
+    vbox->addWidget(mDefaultSaveFolder);
+
     setLayout(vbox);
     QTimer::singleShot(1000, this, SLOT(slotUpdateCollectionStatus()));
 }
@@ -179,6 +187,16 @@ void KNoteCollectionConfigWidget::forceStatus(const QModelIndex &parent, bool st
 void KNoteCollectionConfigWidget::slotCollectionsInserted(const QModelIndex &, int, int)
 {
     mFolderView->expandAll();
+}
+
+void KNoteCollectionConfigWidget::save()
+{
+    updateCollectionsRecursive(QModelIndex());
+    Akonadi::Collection col = mDefaultSaveFolder->collection();
+    if (col.isValid()) {
+        NoteShared::NoteSharedGlobalConfig::self()->setDefaultFolder(col.id());
+        NoteShared::NoteSharedGlobalConfig::self()->writeConfig();
+    }
 }
 
 void KNoteCollectionConfigWidget::updateCollectionsRecursive(const QModelIndex &parent)
