@@ -299,7 +299,7 @@ KNoteCollectionConfig::KNoteCollectionConfig(const KComponentData &inst, QWidget
 
 void KNoteCollectionConfig::save()
 {
-    mCollectionConfigWidget->updateCollectionsRecursive(QModelIndex());
+    mCollectionConfigWidget->save();
 }
 
 void KNoteCollectionConfig::load()
