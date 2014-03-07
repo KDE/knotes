@@ -176,6 +176,10 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
     actions->addAction( QLatin1String("change_to_uppercase"), action );
     connect( action, SIGNAL(triggered(bool)), this, SLOT(slotUpperCase()) );
 
+    action = new KAction( i18n("Sentence case"), this );
+    actions->addAction( QLatin1String("change_to_sentencecase"), action );
+    connect( action, SIGNAL(triggered(bool)), this, SLOT(slotSentenceCase()) );
+
     action = new KAction( i18n("Lowercase"), this );
     actions->addAction( QLatin1String("change_to_lowercase"), action );
     connect( action, SIGNAL(triggered(bool)), this, SLOT(slotLowerCase()) );
@@ -202,6 +206,12 @@ void KNoteEdit::setNote( KNote *_note )
     m_note = _note;
 }
 
+void KNoteEdit::slotSentenceCase()
+{
+    QTextCursor cursor = textCursor();
+    PimCommon::EditorUtil::sentenceCase(cursor);
+}
+
 void KNoteEdit::slotUpperCase()
 {
     QTextCursor cursor = textCursor();
@@ -223,7 +233,9 @@ void KNoteEdit::mousePopupMenuImplementation(const QPoint& pos)
             if (cursor.hasSelection()) {
                 popup->addSeparator();
                 QMenu *changeCaseMenu = new QMenu(i18n("Change case..."), popup);
-                QAction * act = m_actions->action(QLatin1String("change_to_lowercase"));
+                QAction * act = m_actions->action(QLatin1String("change_to_sentencecase"));
+                changeCaseMenu->addAction(act);
+                act = m_actions->action(QLatin1String("change_to_lowercase"));
                 changeCaseMenu->addAction(act);
                 act = m_actions->action(QLatin1String("change_to_uppercase"));
                 changeCaseMenu->addAction(act);

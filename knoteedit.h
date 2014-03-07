@@ -90,6 +90,7 @@ private slots:
     void slotCursorPositionChanged();
     void slotUpperCase();
     void slotLowerCase();
+    void slotSentenceCase();
 
 private:
     void autoIndent();
