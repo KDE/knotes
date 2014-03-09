@@ -30,6 +30,7 @@ Comment[zh_TW]=便條
 [Event/receivednote]
 Name=Received note
 Name[bs]=Primljena bilješka
+Name[ca]=S'ha rebut una nota
 Name[de]=Erhaltene Notiz
 Name[es]=Nota recibida
 Name[fi]=Muistiinpano vastaanotettu
