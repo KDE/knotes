@@ -29,8 +29,12 @@ public:
 
     void updateNumberOfNotes(int number);
 
+private slots:
+    void slotGeneralPaletteChanged();
+
 private:
     KIcon mIcon;
+    QColor mTextColor;
 };
 
 #endif // KNOTESAKONADITRAY_H
