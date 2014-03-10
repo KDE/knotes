@@ -194,6 +194,7 @@ KNotesApp::KNotesApp()
 
     connect( mNoteRecorder->changeRecorder(), SIGNAL(itemChanged(Akonadi::Item,QSet<QByteArray>)), SLOT(slotItemChanged(Akonadi::Item,QSet<QByteArray>)));
     connect( mNoteRecorder->changeRecorder(), SIGNAL(itemRemoved(Akonadi::Item)), SLOT(slotItemRemoved(Akonadi::Item)) );
+    connect( mNoteRecorder->changeRecorder(), SIGNAL(collectionChanged(Akonadi::Collection,QSet<QByteArray>)), SLOT(slotCollectionChanged(Akonadi::Collection,QSet<QByteArray>)) );
     updateNoteActions();
 }
 
@@ -488,6 +489,25 @@ void KNotesApp::slotConfigUpdated()
     KNoteUtils::updateConfiguration();
     //Force update if we disable or enable show number in systray
     mTray->updateNumberOfNotes(mNotes.count());
+}
+
+void KNotesApp::slotCollectionChanged(const Akonadi::Collection &col, const QSet<QByteArray> &set)
+{
+    if (set.contains("showfoldernotesattribute")) {
+        //qDebug()<<" collection Changed "<<set<<" col "<<col;
+        if (col.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
+            qDebug()<<" add note show note attribute";
+        } else {
+            QHashIterator<Akonadi::Item::Id, KNote*> i(mNotes);
+            while (i.hasNext()) {
+                i.next();
+                Akonadi::Item item = i.value()->item();
+                if (item.parentCollection() == col) {
+                    slotItemRemoved(item);
+                }
+            }
+        }
+    }
 }
 
 void KNotesApp::slotConfigureAccels()
