@@ -95,6 +95,8 @@ private Q_SLOTS:
     void slotOpenFindDialog();
 
     void slotSelectNote(Akonadi::Item::Id);
+    void slotCollectionChanged(const Akonadi::Collection &, const QSet<QByteArray> &);
+
 private:
     void saveNotes(bool force = false, bool sync = false);
     void updateNetworkListener();

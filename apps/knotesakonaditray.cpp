@@ -38,10 +38,17 @@ KNotesAkonadiTray::KNotesAkonadiTray(QWidget *parent)
     mIcon = KIcon( QLatin1String("knotes") );
     //Initialize
     updateNumberOfNotes(0);
+    connect( KGlobalSettings::self(), SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotGeneralPaletteChanged()));
 }
 
 KNotesAkonadiTray::~KNotesAkonadiTray()
 {
+}
+
+void KNotesAkonadiTray::slotGeneralPaletteChanged()
+{
+    const KColorScheme scheme( QPalette::Active, KColorScheme::View );
+    mTextColor = scheme.foreground( KColorScheme::LinkText ).color();
 }
 
 void KNotesAkonadiTray::updateNumberOfNotes(int number)
@@ -69,10 +76,12 @@ void KNotesAkonadiTray::updateNumberOfNotes(int number)
 
         QPainter p( &overlayPixmap );
         p.setFont( countFont );
-        KColorScheme scheme( QPalette::Active, KColorScheme::View );
+        if (!mTextColor.isValid()) {
+            slotGeneralPaletteChanged();
+        }
 
         p.setBrush( Qt::NoBrush );
-        p.setPen( scheme.foreground( KColorScheme::LinkText ).color() );
+        p.setPen(mTextColor);
         p.setOpacity( 1.0 );
         p.drawText( overlayPixmap.rect(),Qt::AlignCenter, countString );
         p.end();
