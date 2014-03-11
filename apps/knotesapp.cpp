@@ -31,6 +31,9 @@
 #include "noteshared/attributes/showfoldernotesattribute.h"
 #include "noteshared/resources/localresourcecreator.h"
 #include "noteshared/job/createnewnotejob.h"
+#include "noteshared/attributes/notealarmattribute.h"
+#include "noteshared/attributes/notedisplayattribute.h"
+#include "noteshared/attributes/notelockattribute.h"
 
 #include "apps/knotesakonaditray.h"
 #include "dialog/selectednotefolderdialog.h"
@@ -51,6 +54,8 @@
 #include <Akonadi/ItemCreateJob>
 #include <Akonadi/ItemDeleteJob>
 #include <Akonadi/EntityDisplayAttribute>
+#include <Akonadi/ItemFetchJob>
+#include <Akonadi/ItemFetchScope>
 
 #include <akonadi/control.h>
 #include <Akonadi/ChangeRecorder>
@@ -240,24 +245,29 @@ void KNotesApp::slotRowInserted(const QModelIndex &parent, int start, int end)
                     mNoteTreeModel->data( child, Akonadi::EntityTreeModel::ItemRole ).value<Akonadi::Item>();
             Akonadi::Collection parentCollection = mNoteTreeModel->data( child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
             if (parentCollection.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
-                if ( !item.hasPayload<KMime::Message::Ptr>() )
-                    continue;
-                KNote *note = new KNote(m_noteGUI,item, 0);
-                mNotes.insert(item.id(), note);
-                connect( note, SIGNAL(sigShowNextNote()),
-                         SLOT(slotWalkThroughNotes()) ) ;
-                connect( note, SIGNAL(sigRequestNewNote()),
-                         SLOT(newNote()) );
-                connect( note, SIGNAL(sigNameChanged(QString)),
-                         SLOT(updateNoteActions()) );
-                connect( note, SIGNAL(sigColorChanged()),
-                         SLOT(updateNoteActions()) );
-                connect( note, SIGNAL(sigKillNote(Akonadi::Item::Id)),
-                         SLOT(slotNoteKilled(Akonadi::Item::Id)) );
-                updateNoteActions();
-                updateSystray();
+                createNote(item);
             }
         }
+    }
+}
+
+void KNotesApp::createNote(const Akonadi::Item &item)
+{
+    if ( item.hasPayload<KMime::Message::Ptr>() ) {
+        KNote *note = new KNote(m_noteGUI,item, 0);
+        mNotes.insert(item.id(), note);
+        connect( note, SIGNAL(sigShowNextNote()),
+                 SLOT(slotWalkThroughNotes()) ) ;
+        connect( note, SIGNAL(sigRequestNewNote()),
+                 SLOT(newNote()) );
+        connect( note, SIGNAL(sigNameChanged(QString)),
+                 SLOT(updateNoteActions()) );
+        connect( note, SIGNAL(sigColorChanged()),
+                 SLOT(updateNoteActions()) );
+        connect( note, SIGNAL(sigKillNote(Akonadi::Item::Id)),
+                 SLOT(slotNoteKilled(Akonadi::Item::Id)) );
+        updateNoteActions();
+        updateSystray();
     }
 }
 
@@ -496,7 +506,7 @@ void KNotesApp::slotCollectionChanged(const Akonadi::Collection &col, const QSet
     if (set.contains("showfoldernotesattribute")) {
         //qDebug()<<" collection Changed "<<set<<" col "<<col;
         if (col.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
-            qDebug()<<" add note show note attribute";
+            fetchNotesFromCollection(col);
         } else {
             QHashIterator<Akonadi::Item::Id, KNote*> i(mNotes);
             while (i.hasNext()) {
@@ -618,4 +628,30 @@ void KNotesApp::slotOpenFindDialog()
     }
     mFindDialog->setExistingNotes(lst);
     mFindDialog->show();
+}
+
+void KNotesApp::fetchNotesFromCollection(const Akonadi::Collection &col)
+{
+    Akonadi::ItemFetchJob *job = new Akonadi::ItemFetchJob( col );
+    job->fetchScope().fetchFullPayload(true);
+    job->fetchScope().fetchAttribute<NoteShared::NoteLockAttribute>();
+    job->fetchScope().fetchAttribute<NoteShared::NoteDisplayAttribute>();
+    job->fetchScope().fetchAttribute<NoteShared::NoteAlarmAttribute>();
+    job->fetchScope().setAncestorRetrieval(Akonadi::ItemFetchScope::Parent);
+    connect( job, SIGNAL( result( KJob* ) ), SLOT( slotItemFetchFinished(KJob*)) );
+}
+
+void KNotesApp::slotItemFetchFinished(KJob *job)
+{
+    if ( job->error() ) {
+        qDebug() << "Error occurred during item fetch:"<<job->errorString();
+        return;
+    }
+
+    Akonadi::ItemFetchJob *fetchJob = qobject_cast<Akonadi::ItemFetchJob*>( job );
+
+    const Akonadi::Item::List items = fetchJob->items();
+    foreach ( const Akonadi::Item &item, items ) {
+        createNote(item);
+    }
 }

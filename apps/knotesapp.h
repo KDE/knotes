@@ -96,11 +96,14 @@ private Q_SLOTS:
 
     void slotSelectNote(Akonadi::Item::Id);
     void slotCollectionChanged(const Akonadi::Collection &, const QSet<QByteArray> &);
+    void slotItemFetchFinished(KJob *job);
 
 private:
     void saveNotes(bool force = false, bool sync = false);
     void updateNetworkListener();
     void updateSystray();
+    void createNote(const Akonadi::Item &item);
+    void fetchNotesFromCollection(const Akonadi::Collection &col);
     KXMLGUIFactory  *m_guiFactory;
     KXMLGUIBuilder  *m_guiBuilder;
     QDomDocument    m_noteGUI;
