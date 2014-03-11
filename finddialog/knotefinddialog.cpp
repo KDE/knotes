@@ -23,10 +23,10 @@
 
 #include <KLocalizedString>
 #include <KLineEdit>
+#include <KPushButton>
 
 #include <QVBoxLayout>
 #include <QLabel>
-#include <QPushButton>
 #include <QListWidget>
 
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
@@ -83,7 +83,7 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     connect(mSearchLineEdit, SIGNAL(textChanged(QString)), this, SLOT(slotTextChanged(QString)));
     hbox->addWidget(mSearchLineEdit);
 
-    mSearchButton = new QPushButton(i18n("Search..."));
+    mSearchButton = new KPushButton(KIcon(QLatin1String("edit-find")), i18n("Search..."));
     connect(mSearchButton, SIGNAL(clicked(bool)), this, SLOT(slotSearchNote()));
     hbox->addWidget(mSearchButton);
     mSearchButton->setEnabled(false);
@@ -92,6 +92,10 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     mNoteList = new NoteShared::NoteListWidget;
     connect(mNoteList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(slotItemDoubleClicked(QListWidgetItem*)));
     vbox->addWidget(mNoteList);
+
+    mResultSearch = new QLabel;
+    vbox->addWidget(mResultSearch);
+
     mSearchLineEdit->setFocus();
 
     setLayout(vbox);
@@ -131,6 +135,11 @@ void KNoteFindWidget::slotSearchNote()
         }
     }
     mNoteList->setNotes(lst);
+    if (lst.isEmpty()) {
+        mResultSearch->setText(i18n("No Result found."));
+    } else {
+        mResultSearch->clear();
+    }
 }
 
 void KNoteFindWidget::slotTextChanged(const QString &text)
