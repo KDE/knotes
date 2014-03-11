@@ -238,6 +238,7 @@ void KNotesApp::slotItemChanged(const Akonadi::Item &item, const QSet<QByteArray
 
 void KNotesApp::slotRowInserted(const QModelIndex &parent, int start, int end)
 {
+    bool needUpdate = false;
     for ( int i = start; i <= end; ++i) {
         if ( mNoteTreeModel->hasIndex( i, 0, parent ) ) {
             const QModelIndex child = mNoteTreeModel->index( i, 0, parent );
@@ -246,8 +247,13 @@ void KNotesApp::slotRowInserted(const QModelIndex &parent, int start, int end)
             Akonadi::Collection parentCollection = mNoteTreeModel->data( child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
             if (parentCollection.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
                 createNote(item);
+                needUpdate = true;
             }
         }
+    }
+    if (needUpdate) {
+        updateNoteActions();
+        updateSystray();
     }
 }
 
@@ -266,8 +272,6 @@ void KNotesApp::createNote(const Akonadi::Item &item)
                  SLOT(updateNoteActions()) );
         connect( note, SIGNAL(sigKillNote(Akonadi::Item::Id)),
                  SLOT(slotNoteKilled(Akonadi::Item::Id)) );
-        updateNoteActions();
-        updateSystray();
     }
 }
 
@@ -653,5 +657,9 @@ void KNotesApp::slotItemFetchFinished(KJob *job)
     const Akonadi::Item::List items = fetchJob->items();
     foreach ( const Akonadi::Item &item, items ) {
         createNote(item);
+    }
+    if (!items.isEmpty()) {
+        updateNoteActions();
+        updateSystray();
     }
 }
