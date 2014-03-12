@@ -352,14 +352,14 @@ void KNoteEdit::slotTextColor()
     if (!acceptRichText())
         return;
 
-    //if ( m_note )
-    //    m_note->blockEmitDataChanged( true );
+    if ( m_note )
+        m_note->setBlockSave( true );
     QColor c = textColor();
     if ( KColorDialog::getColor( c, this ) ) {
         setTextColor( c );
     }
-    //if ( m_note )
-    //    m_note->blockEmitDataChanged( false );
+    if ( m_note )
+        m_note->setBlockSave( false );
 }
 
 void KNoteEdit::slotTextBackgroundColor()
@@ -367,14 +367,14 @@ void KNoteEdit::slotTextBackgroundColor()
     if (!acceptRichText())
         return;
 
-    //if ( m_note )
-    //    m_note->blockEmitDataChanged( true );
+    if ( m_note )
+        m_note->setBlockSave( true );
     QColor c = textBackgroundColor();
     if ( KColorDialog::getColor( c, this ) ) {
         setTextBackgroundColor( c );
     }
-    //if ( m_note )
-    //    m_note->blockEmitDataChanged( false );
+    if ( m_note )
+        m_note->setBlockSave( false );
 }
 
 void KNoteEdit::textAlignLeft()

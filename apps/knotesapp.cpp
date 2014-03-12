@@ -440,13 +440,16 @@ void KNotesApp::updateNoteActions()
         actionCollection()->action( QLatin1String("hide_all_notes") )->setEnabled( false );
         actionCollection()->action( QLatin1String("show_all_notes") )->setEnabled( false );
         actionCollection()->action( QLatin1String("print_selected_notes") )->setEnabled( false );
+        actionCollection()->action( QLatin1String("edit_find") )->setEnabled( false );
         KAction *action = new KAction( i18n( "No Notes" ), this );
+        action->setEnabled(false);
         m_noteActions.append( action );
     } else {
         qSort( m_noteActions.begin(), m_noteActions.end(), qActionLessThan );
         actionCollection()->action( QLatin1String("hide_all_notes") )->setEnabled( true );
         actionCollection()->action( QLatin1String("show_all_notes") )->setEnabled( true );
         actionCollection()->action( QLatin1String("print_selected_notes") )->setEnabled( true );
+        actionCollection()->action( QLatin1String("edit_find") )->setEnabled( true );
     }
     plugActionList( QLatin1String("notes"), m_noteActions );
 }
