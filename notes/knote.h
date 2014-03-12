@@ -20,7 +20,6 @@
 
 #ifndef KNOTE_H
 #define KNOTE_H
-
 #include <QDomDocument>
 #include <QEvent>
 #include <QFrame>
@@ -29,6 +28,7 @@
 #include <kxmlguiclient.h>
 #include <KSharedConfig>
 #include <Akonadi/Item>
+#include "knoteinterface.h"
 
 class KNoteDisplaySettings;
 
@@ -45,7 +45,7 @@ class KToolBar;
 class KJob;
 
 
-class KNote : public QFrame, virtual public KXMLGUIClient
+class KNote : public QFrame, virtual public KXMLGUIClient, public KNoteInterface
 {
     Q_OBJECT
 public:
@@ -157,7 +157,6 @@ private:
     KSharedConfig::Ptr m_kwinConf;
 
     KNoteDisplaySettings *mDisplayAttribute;
-    bool mBlockSave;
 };
 
 #endif

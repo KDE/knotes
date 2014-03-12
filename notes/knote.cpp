@@ -97,8 +97,7 @@ KNote::KNote(const QDomDocument& buildDoc, const Akonadi::Item &item, QWidget *p
       m_tool( 0 ),
       m_editor( 0 ),
       m_kwinConf( KSharedConfig::openConfig( QLatin1String("kwinrc") ) ),
-      mDisplayAttribute(new KNoteDisplaySettings),
-      mBlockSave(false)
+      mDisplayAttribute(new KNoteDisplaySettings)
 {
     if ( mItem.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
         mDisplayAttribute->setDisplayAttribute(mItem.attribute<NoteShared::NoteDisplayAttribute>());

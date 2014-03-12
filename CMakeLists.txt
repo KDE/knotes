@@ -28,6 +28,7 @@ set(libknotesprivate_lib_SRCS
     print/knoteprinter.cpp
     print/knoteprintobject.cpp
     utils/knoteutils.cpp
+    notes/knoteinterface.cpp
     finddialog/knotefinddialog.cpp
 )
 
