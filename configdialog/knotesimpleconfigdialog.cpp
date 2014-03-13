@@ -65,7 +65,7 @@ KNoteSimpleConfigDialog::~KNoteSimpleConfigDialog()
 
 void KNoteSimpleConfigDialog::load(Akonadi::Item &item, bool isRichText)
 {
-    NoteShared::NoteDisplayAttribute *attr = item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attr = item.attribute<NoteShared::NoteDisplayAttribute>();
     mEditorConfigWidget->load(attr, isRichText);
     mDisplayConfigWidget->load(attr);
 }
