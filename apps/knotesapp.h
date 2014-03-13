@@ -36,7 +36,6 @@ class KNoteFindDialog;
 class KNotesAkonadiTray;
 class KMenu;
 class KNote;
-class KAction;
 class KXMLGUIBuilder;
 class KXMLGUIFactory;
 namespace NoteShared {

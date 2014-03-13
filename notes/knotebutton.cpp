@@ -112,7 +112,7 @@ void KNoteButton::paintEvent( QPaintEvent * )
             state = QIcon::On;
         }
 
-        QPixmap pix = icon().pixmap( style()->pixelMetric(
+        const QPixmap pix = icon().pixmap( style()->pixelMetric(
                                          QStyle::PM_SmallIconSize ), mode, state );
 
         int dx = ( width() - pix.width() ) / 2;
