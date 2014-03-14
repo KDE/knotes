@@ -229,6 +229,7 @@ KNoteMiscConfig::KNoteMiscConfig(const KComponentData &inst, QWidget *parent )
     addConfig( KNotesGlobalConfig::self(), w );
     lay->addStretch();
     load();
+    connect(mDefaultTitle, SIGNAL(textChanged(QString)), SLOT(changed()));
 }
 
 void KNoteMiscConfig::load()
@@ -251,7 +252,8 @@ void KNoteMiscConfig::slotHelpLinkClicked(const QString &)
                   "<p>You can customize title note. "
                   "You can use:</p>"
                   "<ul>"
-                  "<li>%d current date</li>"
+                  "<li>%d current date (short format)</li>"
+                  "<li>%l current date (long format)</li>"
                   "<li>%t current time</li>"
                   "</ul>"
                   "</qt>" );
