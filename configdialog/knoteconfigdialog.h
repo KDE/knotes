@@ -27,6 +27,7 @@
 #include "knotes_export.h"
 class KNotePrintSelectThemeComboBox;
 class KNoteCollectionConfigWidget;
+class KLineEdit;
 
 class KNOTES_EXPORT KNoteConfigDialog : public KCMultiDialog
 {
@@ -71,6 +72,10 @@ public:
     /** Reimplemented from KCModule. */
     virtual void load();
     virtual void save();
+private slots:
+    void slotHelpLinkClicked(const QString &);
+private:
+    KLineEdit *mDefaultTitle;
 };
 
 class KNotePrintConfig : public KCModule

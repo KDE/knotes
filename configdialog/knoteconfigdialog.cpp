@@ -29,6 +29,7 @@
 #include "notesharedglobalconfig.h"
 #include "noteshared/config/noteactionconfig.h"
 #include "noteshared/config/notenetworkconfig.h"
+#include "notesharedglobalconfig.h"
 
 #include "kdepim-version.h"
 
@@ -212,18 +213,50 @@ KNoteMiscConfig::KNoteMiscConfig(const KComponentData &inst, QWidget *parent )
 
     kcfg_SystemTrayShowNotes->setObjectName( QLatin1String("kcfg_SystemTrayShowNotes") );
     lay->addWidget( kcfg_SystemTrayShowNotes );
-    lay->addStretch();
+
+    QHBoxLayout *hbox = new QHBoxLayout;
+    lay->addLayout(hbox);
+    QLabel *label_DefaultTitle = new QLabel( i18n( "Default Title:" ), this );
+    hbox->addWidget( label_DefaultTitle );
+
+    mDefaultTitle = new KLineEdit( this );
+    label_DefaultTitle->setBuddy( mDefaultTitle );
+    hbox->addWidget( mDefaultTitle );
+
+    QLabel *howItWorks = new QLabel(i18n( "<a href=\"whatsthis\">How does this work?</a>" ));
+    connect( howItWorks, SIGNAL(linkActivated(QString)),SLOT(slotHelpLinkClicked(QString)) );
+    lay->addWidget( howItWorks );
     addConfig( KNotesGlobalConfig::self(), w );
+    lay->addStretch();
+    load();
 }
 
 void KNoteMiscConfig::load()
 {
     KCModule::load();
+    mDefaultTitle->setText(NoteShared::NoteSharedGlobalConfig::self()->defaultTitle());
 }
 
 void KNoteMiscConfig::save()
 {
     KCModule::save();
+    NoteShared::NoteSharedGlobalConfig::self()->setDefaultTitle(mDefaultTitle->text());
+    NoteShared::NoteSharedGlobalConfig::self()->writeConfig();
+}
+
+void KNoteMiscConfig::slotHelpLinkClicked(const QString &)
+{
+    const QString help =
+            i18n( "<qt>"
+                  "<p>You can customize title note. "
+                  "You can use:</p>"
+                  "<ul>"
+                  "<li>%d current date</li>"
+                  "<li>%t current time</li>"
+                  "</ul>"
+                  "</qt>" );
+
+    QWhatsThis::showText( QCursor::pos(), help );
 }
 
 

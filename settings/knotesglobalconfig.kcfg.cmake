@@ -17,6 +17,7 @@
     </entry>
   </group>
 
+
   <group name="Printing">
      <entry name="Theme" type="String">
         <default>${DATA_INSTALL_DIR}/knotes/print/themes/default/</default>
