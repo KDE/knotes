@@ -52,6 +52,7 @@ public:
     void setTabStop( int tabs );
     void setAutoIndentMode( bool newmode );
 
+    void setColor(const QColor &fg, const QColor &bg);
 public slots:
     void setRichText( bool );
 
