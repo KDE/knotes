@@ -645,7 +645,7 @@ void KNotesApp::fetchNotesFromCollection(const Akonadi::Collection &col)
     job->fetchScope().fetchAttribute<NoteShared::NoteDisplayAttribute>();
     job->fetchScope().fetchAttribute<NoteShared::NoteAlarmAttribute>();
     job->fetchScope().setAncestorRetrieval(Akonadi::ItemFetchScope::Parent);
-    connect( job, SIGNAL( result( KJob* ) ), SLOT( slotItemFetchFinished(KJob*)) );
+    connect( job, SIGNAL(result(KJob*)), SLOT(slotItemFetchFinished(KJob*)) );
 }
 
 void KNotesApp::slotItemFetchFinished(KJob *job)
