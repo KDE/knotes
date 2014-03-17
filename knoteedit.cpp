@@ -202,6 +202,43 @@ KNoteEdit::~KNoteEdit()
 {
 }
 
+void KNoteEdit::setColor(const QColor &fg, const QColor &bg)
+{
+    QPalette p = palette();
+
+    // better: from light(150) to light(100) to light(75)
+    // QLinearGradient g( width()/2, 0, width()/2, height() );
+    // g.setColorAt( 0, bg );
+    // g.setColorAt( 1, bg.dark(150) );
+
+    p.setColor( QPalette::Window,     bg );
+    // p.setBrush( QPalette::Window,     g );
+    p.setColor( QPalette::Base,       bg );
+    // p.setBrush( QPalette::Base,       g );
+
+    p.setColor( QPalette::WindowText, fg );
+    p.setColor( QPalette::Text,       fg );
+
+    p.setColor( QPalette::Button,     bg.dark( 116 ) );
+    p.setColor( QPalette::ButtonText, fg );
+
+    //p.setColor( QPalette::Highlight,  bg );
+    //p.setColor( QPalette::HighlightedText, fg );
+
+    // order: Light, Midlight, Button, Mid, Dark, Shadow
+
+    // the shadow
+    p.setColor( QPalette::Light, bg.light( 180 ) );
+    p.setColor( QPalette::Midlight, bg.light( 150 ) );
+    p.setColor( QPalette::Mid, bg.light( 150 ) );
+    p.setColor( QPalette::Dark, bg.dark( 108 ) );
+    p.setColor( QPalette::Shadow, bg.dark( 116 ) );
+
+    setPalette( p );
+
+    setTextColor( fg );
+}
+
 void KNoteEdit::setNote( KNote *_note )
 {
     m_note = _note;
