@@ -22,6 +22,7 @@
 #include "notes/knote.h"
 #include "noteshared/editor/noteeditorutils.h"
 #include "pimcommon/util/editorutil.h"
+#include "knotesglobalconfig.h"
 
 #include <kaction.h>
 #include <kactioncollection.h>
@@ -343,8 +344,8 @@ void KNoteEdit::slotTextColor()
     if ( m_note )
         m_note->setBlockSave( true );
     QColor c = textColor();
-    if ( KColorDialog::getColor( c, this ) ) {
-        setTextColor( c );
+    if ( KColorDialog::getColor( c, KNotesGlobalConfig::self()->fgColor(), this ) ) {
+        setTextColor( c.isValid() ? c : KNotesGlobalConfig::self()->fgColor());
     }
     if ( m_note )
         m_note->setBlockSave( false );
@@ -358,8 +359,8 @@ void KNoteEdit::slotTextBackgroundColor()
     if ( m_note )
         m_note->setBlockSave( true );
     QColor c = textBackgroundColor();
-    if ( KColorDialog::getColor( c, this ) ) {
-        setTextBackgroundColor( c );
+    if ( KColorDialog::getColor( c, KNotesGlobalConfig::self()->bgColor(), this ) ) {
+        setTextBackgroundColor( c.isValid() ? c : KNotesGlobalConfig::self()->bgColor() );
     }
     if ( m_note )
         m_note->setBlockSave( false );
