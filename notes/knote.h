@@ -119,7 +119,7 @@ private slots:
 
 private:
     QString createConfig();
-    void buildGui(const QString &configFile);
+    void buildGui();
     void createActions();
     void createNoteEditor(const QString &configFile);
     void createNoteFooter();

@@ -115,8 +115,7 @@ KNote::KNote(const QDomDocument& buildDoc, const Akonadi::Item &item, QWidget *p
     m_noteLayout->setMargin( 0 );
     createActions();
 
-    QString configFile;
-    buildGui(configFile);
+    buildGui();
     prepare();
 }
 
@@ -662,10 +661,10 @@ void KNote::slotUpdateDesktopActions()
 
 // -------------------- private methods -------------------- //
 
-void KNote::buildGui(const QString &configFile)
+void KNote::buildGui()
 {
     createNoteHeader();
-    createNoteEditor(configFile);
+    createNoteEditor(QString());
 
     KXMLGUIBuilder builder( this );
     KXMLGUIFactory factory( &builder, this );
