@@ -245,6 +245,14 @@ void KNoteMiscConfig::save()
     NoteShared::NoteSharedGlobalConfig::self()->writeConfig();
 }
 
+void KNoteMiscConfig::defaults()
+{
+    KCModule::defaults();
+    const bool bUseDefaults = NoteShared::NoteSharedGlobalConfig::self()->useDefaults( true );
+    mDefaultTitle->setText(NoteShared::NoteSharedGlobalConfig::self()->defaultTitle());
+    NoteShared::NoteSharedGlobalConfig::self()->useDefaults( bUseDefaults );
+}
+
 void KNoteMiscConfig::slotHelpLinkClicked(const QString &)
 {
     const QString help =

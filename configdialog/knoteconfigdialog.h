@@ -72,6 +72,7 @@ public:
     /** Reimplemented from KCModule. */
     virtual void load();
     virtual void save();
+    virtual void defaults();
 private slots:
     void slotHelpLinkClicked(const QString &);
 private:
