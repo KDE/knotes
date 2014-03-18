@@ -965,6 +965,7 @@ void KNote::toDesktop( int desktop )
 
 void KNote::setColor( const QColor &fg, const QColor &bg )
 {
+    m_editor->setColor(fg,bg);
     QPalette p = palette();
 
     // better: from light(150) to light(100) to light(75)

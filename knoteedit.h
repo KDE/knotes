@@ -98,6 +98,8 @@ private:
     void enableRichTextActions(bool enabled);
 
 private:
+    QColor mDefaultBackgroundColor;
+    QColor mDefaultForegroundColor;
 
     KToggleAction *m_textBold;
     KToggleAction *m_textItalic;
