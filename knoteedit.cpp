@@ -204,6 +204,9 @@ KNoteEdit::~KNoteEdit()
 
 void KNoteEdit::setColor(const QColor &fg, const QColor &bg)
 {
+    mDefaultBackgroundColor = bg;
+    mDefaultForegroundColor = fg;
+
     QPalette p = palette();
 
     // better: from light(150) to light(100) to light(75)
@@ -393,8 +396,8 @@ void KNoteEdit::slotTextColor()
     if ( m_note )
         m_note->setBlockSave( true );
     QColor c = textColor();
-    if ( KColorDialog::getColor( c, KNotesGlobalConfig::self()->fgColor(), this ) ) {
-        setTextColor( c.isValid() ? c : KNotesGlobalConfig::self()->fgColor());
+    if ( KColorDialog::getColor( c, mDefaultForegroundColor, this ) ) {
+        setTextColor( c.isValid() ? c : mDefaultForegroundColor);
     }
     if ( m_note )
         m_note->setBlockSave( false );
@@ -408,8 +411,8 @@ void KNoteEdit::slotTextBackgroundColor()
     if ( m_note )
         m_note->setBlockSave( true );
     QColor c = textBackgroundColor();
-    if ( KColorDialog::getColor( c, KNotesGlobalConfig::self()->bgColor(), this ) ) {
-        setTextBackgroundColor( c.isValid() ? c : KNotesGlobalConfig::self()->bgColor() );
+    if ( KColorDialog::getColor( c, mDefaultBackgroundColor, this ) ) {
+        setTextBackgroundColor( c.isValid() ? c : mDefaultBackgroundColor );
     }
     if ( m_note )
         m_note->setBlockSave( false );
