@@ -91,8 +91,8 @@ private slots:
     void slotCursorPositionChanged();
     void slotUpperCase();
     void slotLowerCase();
-    void slotSentenceCase();
-
+    void slotSentenceCase();    
+    void slotInsertCheckMark();
 private:
     void autoIndent();
 

@@ -189,6 +189,10 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
     actions->addAction( QLatin1String("insert_date"), action );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotInsertDate()) );
 
+    action = new KAction( KIcon( QLatin1String("checkmark") ), i18n( "Insert Checkmark" ), this );
+    actions->addAction( QLatin1String("insert_checkmark"), action );
+    connect( action, SIGNAL(triggered(bool)), SLOT(slotInsertCheckMark()) );
+
     // QTextEdit connections
     connect( this, SIGNAL(currentCharFormatChanged(QTextCharFormat)),
              SLOT(slotCurrentCharFormatChanged(QTextCharFormat)) );
@@ -283,7 +287,10 @@ void KNoteEdit::mousePopupMenuImplementation(const QPoint& pos)
                 popup->addMenu(changeCaseMenu);
             }
             popup->addSeparator();
-            QAction * act = m_actions->action(QLatin1String("insert_date"));
+            QAction *act = m_actions->action(QLatin1String("insert_date"));
+            popup->addAction(act);
+            popup->addSeparator();
+            act = m_actions->action(QLatin1String("insert_checkmark"));
             popup->addAction(act);
         }
         aboutToShowContextMenu(popup);
@@ -673,4 +680,8 @@ void KNoteEdit::slotInsertDate()
     NoteShared::NoteEditorUtils::insertDate(this);
 }
 
-
+void KNoteEdit::slotInsertCheckMark()
+{
+    QTextCursor cursor = textCursor();
+    NoteShared::NoteEditorUtils::addCheckmark(cursor);
+}
