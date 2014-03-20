@@ -8,6 +8,7 @@ KNotes printing theme support:
 - allow to inform that we have an alarm: use "hasAlarm" keyword
 - show alarm info: use "alarm" keyword
 - allow to inform that note is locked: use "isLock" keyword
+- note backgroundcolor name : use "backgroundColorName" keyword
 
 4.14:
 -----

@@ -18,6 +18,7 @@
 #include "knoteprintobject.h"
 #include "noteshared/attributes/notealarmattribute.h"
 #include "noteshared/attributes/notelockattribute.h"
+#include "noteshared/attributes/notedisplayattribute.h"
 
 
 #include <KMime/KMimeMessage>
@@ -76,4 +77,12 @@ QString KNotePrintObject::alarm() const
 bool KNotePrintObject::isLock() const
 {
     return mItem.hasAttribute<NoteShared::NoteLockAttribute>();
+}
+
+QString KNotePrintObject::backgroundColorName() const
+{
+    if (mItem.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
+        return mItem.attribute<NoteShared::NoteDisplayAttribute>()->backgroundColor().name();
+    }
+    return QString();
 }
