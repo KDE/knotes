@@ -33,6 +33,7 @@ class KNOTES_EXPORT KNotePrintObject : public QObject
     Q_PROPERTY(bool hasAlarm READ hasAlarm)
     Q_PROPERTY(QString alarm READ alarm)
     Q_PROPERTY(bool isLock READ isLock)
+    Q_PROPERTY(QString backgroundColorName READ backgroundColorName)
 public:
     explicit KNotePrintObject(const Akonadi::Item &item, QObject *parent=0);
     ~KNotePrintObject();
@@ -43,6 +44,7 @@ public:
     bool hasAlarm() const;
     QString alarm() const;
     bool isLock() const;
+    QString backgroundColorName() const;
 private:
     Akonadi::Item mItem;
 };
