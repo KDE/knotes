@@ -138,6 +138,7 @@ void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString
         Grantlee::Context c;
         c.insert(QLatin1String("notes"), notes);
         c.insert(QLatin1String("alarm_i18n"), i18n("Alarm:"));
+        c.insert(QLatin1String("note_is_locked_i18n"), i18n("Note is locked"));
 
         const QString htmlText = mSelfcontainedTemplate->render(&c);
         const QString dialogCaption = i18np( "Print Note", "Print %1 notes",
