@@ -32,6 +32,7 @@ class KNOTES_EXPORT KNotePrintObject : public QObject
     Q_PROPERTY(QString currentDateTime READ currentDateTime)
     Q_PROPERTY(bool hasAlarm READ hasAlarm)
     Q_PROPERTY(QString alarm READ alarm)
+    Q_PROPERTY(bool isLock READ isLock)
 public:
     explicit KNotePrintObject(const Akonadi::Item &item, QObject *parent=0);
     ~KNotePrintObject();
@@ -41,6 +42,7 @@ public:
     QString currentDateTime() const;
     bool hasAlarm() const;
     QString alarm() const;
+    bool isLock() const;
 private:
     Akonadi::Item mItem;
 };

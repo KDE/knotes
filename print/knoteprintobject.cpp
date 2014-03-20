@@ -17,6 +17,7 @@
 
 #include "knoteprintobject.h"
 #include "noteshared/attributes/notealarmattribute.h"
+#include "noteshared/attributes/notelockattribute.h"
 
 
 #include <KMime/KMimeMessage>
@@ -70,4 +71,9 @@ QString KNotePrintObject::alarm() const
         return KGlobal::locale()->formatDateTime(attr->dateTime());
     }
     return QString();
+}
+
+bool KNotePrintObject::isLock() const
+{
+    return mItem.hasAttribute<NoteShared::NoteLockAttribute>();
 }
