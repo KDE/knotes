@@ -37,7 +37,8 @@ public:
     QString description() const;
     QString name() const;
     QString currentDateTime() const;
-
+    bool hasAlarm() const;
+    QString alarm() const;
 private:
     Akonadi::Item mItem;
 };

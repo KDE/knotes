@@ -16,6 +16,7 @@
 */
 
 #include "knoteprintobject.h"
+#include "noteshared/attributes/notealarmattribute.h"
 
 
 #include <KMime/KMimeMessage>
@@ -55,4 +56,18 @@ QString KNotePrintObject::currentDateTime() const
 {
     const QDateTime now = QDateTime::currentDateTime();
     return KGlobal::locale()->formatDateTime( now );
+}
+
+bool KNotePrintObject::hasAlarm() const
+{
+    return mItem.hasAttribute<NoteShared::NoteAlarmAttribute>();
+}
+
+QString KNotePrintObject::alarm() const
+{
+    NoteShared::NoteAlarmAttribute *attr = mItem.attribute<NoteShared::NoteAlarmAttribute>();
+    if (attr) {
+        return KGlobal::locale()->formatDateTime(attr->dateTime());
+    }
+    return QString();
 }
