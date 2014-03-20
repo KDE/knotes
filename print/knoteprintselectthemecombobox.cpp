@@ -50,8 +50,6 @@ void KNotePrintSelectThemeComboBox::loadThemes()
         }
     }
 
-    int index = 0;
-    int themeIndex = 0;
     Q_FOREACH (const QString &directory, themesDirectories) {
         QDirIterator dirIt( directory, QStringList(), QDir::AllDirs | QDir::NoDotAndDotDot );
         QStringList alreadyLoadedThemeName;
@@ -75,15 +73,13 @@ void KNotePrintSelectThemeComboBox::loadThemes()
             const QString printThemePath(dirIt.filePath() + QDir::separator());
             if (!printThemePath.isEmpty()) {
                 alreadyLoadedThemeName << name;
-                if (defaultTheme == printThemePath) {
-                    themeIndex = index;
-                }
                 addItem(name, printThemePath);
-                ++index;
             }
         }
     }
-    setCurrentIndex(themeIndex);
+    model()->sort(0);
+    const int index = findData(defaultTheme);
+    setCurrentIndex(index == -1 ? 0 : index);
 }
 
 QString KNotePrintSelectThemeComboBox::selectedTheme() const
