@@ -1,0 +1,19 @@
+<html>
+
+{% if notes %}
+{% for note in notes %}
+<table bgcolor="{{ note.backgroundColorName }}">
+<tr><td><h2>{{ note.name }}</h2><td></tr>
+<tr></tr>
+<tr><td>{{ note.description|safe }}</td></tr>
+<tr></tr>
+{% if note.hasAlarm %}
+<tr>{{ alarm_i18n }} {{ note.alarm }}</tr>
+{% endif %}
+<tr></tr>
+</table>
+{% endfor %}
+{% endif %}
+
+</html>
+
