@@ -137,6 +137,7 @@ void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString
             notes << QVariant::fromValue(static_cast<QObject*>(n));
         Grantlee::Context c;
         c.insert(QLatin1String("notes"), notes);
+        c.insert(QLatin1String("alarm_i18n"), i18n("Alarm:"));
 
         const QString htmlText = mSelfcontainedTemplate->render(&c);
         const QString dialogCaption = i18np( "Print Note", "Print %1 notes",

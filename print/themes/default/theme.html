@@ -6,6 +6,9 @@
 <br>
 <p>{{ note.description|safe }}</p>
 <br>
+{% if note.hasAlarm %}
+<p>{{ alarm_i18n }} {{ note.alarm }}</p>
+{% endif %}
 <br>
 {% endfor %}
 {% endif %}
