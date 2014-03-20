@@ -1,0 +1,11 @@
+4.13:
+-----
+
+KNotes printing theme support: 
+- note name : use "name"
+- note description: use "description" keyword
+- current date time: use "currentDateTime" keyword
+- allow to inform that we have an alarm: use "hasAlarm" keyword
+- show alarm info: use "alarm" keyword
+- allow to inform that note is locked: use "isLock" keyword
+
