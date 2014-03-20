@@ -9,3 +9,9 @@ KNotes printing theme support:
 - show alarm info: use "alarm" keyword
 - allow to inform that note is locked: use "isLock" keyword
 
+4.14:
+-----
+New i18n that we can use in theme:
+- alarm_i18n => translate "Alarm:"
+- note_is_locked_i18n => translate "Note is locked"
+
