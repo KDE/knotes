@@ -90,6 +90,7 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
 
     //Result
     mNoteList = new NoteShared::NoteListWidget;
+    mNoteList->setSelectionMode(QAbstractItemView::SingleSelection);
     connect(mNoteList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(slotItemDoubleClicked(QListWidgetItem*)));
     vbox->addWidget(mNoteList);
 
