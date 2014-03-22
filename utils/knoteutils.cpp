@@ -119,6 +119,8 @@ void KNoteUtils::migrateToAkonadi()
                                     i18n( "Migration Failed" ) );
                 return;
             }
+            migrationCfg.writeEntry( "Version", targetVersion );
+            migrationCfg.sync();
         }
     } else {
         if (migrationCfg.hasKey("Enabled") && (migrationCfg.readEntry("Enabled", false) == false)) {
