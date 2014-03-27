@@ -15,18 +15,26 @@ include_directories(
 
 ########### next target ###############
 
-set(libknotesprivate_lib_SRCS
-    knoteedit.cpp
-    notes/knotedisplaysettings.cpp
+set(libknotesprivate_config_lib_SRCS
     configdialog/knotesimpleconfigdialog.cpp
     configdialog/knoteconfigdialog.cpp
     configdialog/knotedisplayconfigwidget.cpp
     configdialog/knoteeditorconfigwidget.cpp
     configdialog/knotecollectionconfigwidget.cpp
+)
+
+set(libknotesprivate_print_lib_SRCS
     print/knoteprintselectthemedialog.cpp
     print/knoteprintselectthemecombobox.cpp
     print/knoteprinter.cpp
     print/knoteprintobject.cpp
+)
+
+set(libknotesprivate_lib_SRCS
+    ${libknotesprivate_config_lib_SRCS}
+    ${libknotesprivate_print_lib_SRCS}
+    knoteedit.cpp
+    notes/knotedisplaysettings.cpp
     utils/knoteutils.cpp
     notes/knoteinterface.cpp
     finddialog/knotefinddialog.cpp
@@ -50,7 +58,10 @@ install(TARGETS knotesprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_S
 
 
 set(knotes_SRCS 
-                apps/main.cpp apps/application.cpp apps/knotesapp.cpp apps/knotesakonaditray.cpp
+                apps/main.cpp 
+                apps/application.cpp 
+                apps/knotesapp.cpp 
+                apps/knotesakonaditray.cpp
                 dialog/knoteskeydialog.cpp 
                 notes/knotebutton.cpp 
                 print/knoteprintselectednotesdialog.cpp
