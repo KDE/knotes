@@ -12,7 +12,7 @@ X-KDE-ParentComponents=knotes,kontact_knotesplugin
 X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=200
 
-Name=Collection
+Name=Collections
 Name[bs]=Kolekcija
 Name[ca]=Col·lecció
 Name[ca@valencia]=Col·lecció
