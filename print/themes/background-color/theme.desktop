@@ -1,3 +1,15 @@
 [Desktop Entry]
 Name=Note with background color
+Name[de]=Notiz mit Hintergrundfarbe
+Name[pt]=Nota com cor de fundo
+Name[sk]=Poznámka s farbou pozadia
+Name[sv]=Anteckning med bakgrundsfärg
+Name[uk]=Нотатка з кольоровим тлом
+Name[x-test]=xxNote with background colorxx
 Description=Theme which use note background color
+Description[de]=Design mit Hintergrundfarbe für die Notizen
+Description[pt]=Tema que usa uma cor de fundo nas notas
+Description[sk]=Téma, ktorá používa farbu pozadia poznámky
+Description[sv]=Tema som använder anteckningens bakgrundsfärg
+Description[uk]=Тема, у якій використовується кольорове тло нотатки
+Description[x-test]=xxTheme which use note background colorxx
