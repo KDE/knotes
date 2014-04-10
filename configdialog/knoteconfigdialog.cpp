@@ -282,7 +282,7 @@ void KNotePrintConfig::load()
 
 void KNotePrintConfig::defaults()
 {
-    mSelectTheme->setCurrentIndex(0);
+    mSelectTheme->selectDefaultTheme();
     Q_EMIT changed(true);
 }
 

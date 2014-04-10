@@ -87,4 +87,12 @@ QString KNotePrintSelectThemeComboBox::selectedTheme() const
     return itemData(currentIndex()).toString();
 }
 
+void KNotePrintSelectThemeComboBox::selectDefaultTheme()
+{
+    const bool bUseDefaults = KNotesGlobalConfig::self()->useDefaults( true );
+    const QString defaultTheme = KNotesGlobalConfig::self()->theme();
+    const int index = findData(defaultTheme);
+    setCurrentIndex(index == -1 ? 0 : index);
+    KNotesGlobalConfig::self()->useDefaults( bUseDefaults );
+}
 
