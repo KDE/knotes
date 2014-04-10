@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Note with background color
 Name[ca]=Nota amb un color de fons
+Name[ca@valencia]=Nota amb un color de fons
 Name[de]=Notiz mit Hintergrundfarbe
 Name[es]=Nota con color de fondo
 Name[fi]=Taustavärillinen muistiinpano
@@ -21,6 +22,7 @@ Name[uk]=Нотатка з кольоровим тлом
 Name[x-test]=xxNote with background colorxx
 Description=Theme which use note background color
 Description[ca]=Tema que usa una nota amb un color de fons
+Description[ca@valencia]=Tema que usa una nota amb un color de fons
 Description[de]=Design mit Hintergrundfarbe für die Notizen
 Description[es]=Tema que usa color de fondo de nota
 Description[fi]=Teema, jossa muistiinpanoilla on taustaväri
