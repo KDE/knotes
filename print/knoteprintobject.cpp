@@ -69,7 +69,7 @@ QString KNotePrintObject::alarm() const
 {
     NoteShared::NoteAlarmAttribute *attr = mItem.attribute<NoteShared::NoteAlarmAttribute>();
     if (attr) {
-        return KGlobal::locale()->formatDateTime(attr->dateTime());
+        return KGlobal::locale()->formatDateTime(attr->dateTime(),KLocale::LongDate);
     }
     return QString();
 }

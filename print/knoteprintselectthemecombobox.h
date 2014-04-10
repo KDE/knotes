@@ -31,6 +31,7 @@ public:
     QString selectedTheme() const;
 
     void loadThemes();
+    void selectDefaultTheme();
 };
 
 #endif // KNOTEPRINTSELECTTHEMECOMBOBOX_H
