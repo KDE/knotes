@@ -145,7 +145,8 @@ void KNote::setChangeItem(const Akonadi::Item &item, const QSet<QByteArray> &set
     }
     if (set.contains("PLD:RFC822")) {
         KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
-        setName(noteMessage->subject(false)->asUnicodeString());
+        const KMime::Headers::Subject * const subject = noteMessage ? noteMessage->subject(false) : 0;
+        setName(subject ? subject->asUnicodeString() : QString());
         if ( noteMessage->contentType()->isHTMLText() ) {
             m_editor->setAcceptRichText(true);
             m_editor->setHtml(noteMessage->mainBodyPart()->decodedText());
@@ -855,7 +856,10 @@ void KNote::prepare()
 {
     mBlockSave = true;
     KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
-    setName(noteMessage->subject(false)->asUnicodeString());
+    const KMime::Headers::Subject * const subject = noteMessage ? noteMessage->subject(false) : 0;
+    if (subject) {
+        setName(subject->asUnicodeString());
+    }
     if ( noteMessage->contentType()->isHTMLText() ) {
         m_editor->setAcceptRichText(true);
         m_editor->setHtml(noteMessage->mainBodyPart()->decodedText());
