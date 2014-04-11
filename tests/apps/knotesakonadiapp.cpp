@@ -79,7 +79,8 @@ void KNotesAkonadiApp::slotItemChanged(const Akonadi::Item &item, const QSet<QBy
         }
         if (set.contains("PLD:RFC822")) {
             KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
-            note->title()->setText(noteMessage->subject(false)->asUnicodeString());
+            const KMime::Headers::Subject * const subject = noteMessage ? noteMessage->subject(false) : 0;
+            note->title()->setText(subject ? subject->asUnicodeString() : QString());
             if ( noteMessage->contentType()->isHTMLText() ) {
                 note->editor()->setAcceptRichText(true);
                 note->editor()->setHtml(noteMessage->mainBodyPart()->decodedText());
@@ -109,7 +110,8 @@ void KNotesAkonadiApp::slotRowInserted(const QModelIndex &parent, int start, int
                 continue;
             KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
             KNoteAkonadiNote *note = new KNoteAkonadiNote(0);
-            note->title()->setText(noteMessage->subject(false)->asUnicodeString());
+            const KMime::Headers::Subject * const subject = noteMessage ? noteMessage->subject(false) : 0;
+            note->title()->setText(subject ? subject->asUnicodeString() : QString());
             if ( noteMessage->contentType()->isHTMLText() ) {
                 note->editor()->setAcceptRichText(true);
                 note->editor()->setHtml(noteMessage->mainBodyPart()->decodedText());
