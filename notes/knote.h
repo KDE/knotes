@@ -118,7 +118,6 @@ private slots:
     void slotNoteSaved(KJob *job);
 
 private:
-    QString createConfig();
     void buildGui();
     void createActions();
     void createNoteEditor(const QString &configFile);
