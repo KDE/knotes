@@ -54,10 +54,10 @@
 #include <AkonadiCore/ItemCreateJob>
 #include <AkonadiCore/ItemDeleteJob>
 #include <AkonadiCore/EntityDisplayAttribute>
-#include <Akonadi/ItemFetchJob>
+#include <AkonadiCore/ItemFetchJob>
 #include <AkonadiCore/ItemFetchScope>
 
-#include <akonadi/control.h>
+#include <AkonadiCore/control.h>
 #include <AkonadiCore/ChangeRecorder>
 #include <AkonadiCore/Collection>
 #include <AkonadiCore/EntityTreeModel>

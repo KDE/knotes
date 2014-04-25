@@ -25,7 +25,7 @@
 #include "noteshared/attributes/notedisplayattribute.h"
 #include "noteshared/attributes/notealarmattribute.h"
 
-#include <akonadi/control.h>
+#include <AkonadiCore/control.h>
 #include <AkonadiCore/ChangeRecorder>
 #include <AkonadiCore/Collection>
 #include <AkonadiCore/EntityTreeModel>

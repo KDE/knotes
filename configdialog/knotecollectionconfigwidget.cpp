@@ -22,7 +22,7 @@
 #include "akonadi_next/note.h"
 #include "notesharedglobalconfig.h"
 
-#include <Akonadi/CollectionModifyJob>
+#include <AkonadiCore/CollectionModifyJob>
 #include <AkonadiCore/CollectionFilterProxyModel>
 #include <KRecursiveFilterProxyModel>
 
