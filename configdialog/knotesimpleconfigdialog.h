@@ -19,7 +19,7 @@
 #ifndef KNoteSimpleConfigDialog_H
 #define KNoteSimpleConfigDialog_H
 #include "knotes_export.h"
-#include <Akonadi/Item>
+#include <AkonadiCore/Item>
 #include <KDialog>
 class QTabWidget;
 class KNoteEditorConfigWidget;

@@ -51,17 +51,17 @@
 
 #include <KMime/KMimeMessage>
 #include "akonadi_next/note.h"
-#include <Akonadi/ItemCreateJob>
-#include <Akonadi/ItemDeleteJob>
-#include <Akonadi/EntityDisplayAttribute>
+#include <AkonadiCore/ItemCreateJob>
+#include <AkonadiCore/ItemDeleteJob>
+#include <AkonadiCore/EntityDisplayAttribute>
 #include <Akonadi/ItemFetchJob>
-#include <Akonadi/ItemFetchScope>
+#include <AkonadiCore/ItemFetchScope>
 
 #include <akonadi/control.h>
-#include <Akonadi/ChangeRecorder>
-#include <Akonadi/Collection>
-#include <Akonadi/EntityTreeModel>
-#include <Akonadi/Session>
+#include <AkonadiCore/ChangeRecorder>
+#include <AkonadiCore/Collection>
+#include <AkonadiCore/EntityTreeModel>
+#include <AkonadiCore/Session>
 #include <KMime/KMimeMessage>
 #include <KActionCollection>
 

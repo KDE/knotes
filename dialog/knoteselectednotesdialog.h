@@ -19,7 +19,7 @@
 #define KNOTESELECTEDNOTESDIALOG_H
 
 #include <KDialog>
-#include <Akonadi/Item>
+#include <AkonadiCore/Item>
 class QListWidget;
 class KNote;
 class KNoteSelectedNotesDialog : public KDialog

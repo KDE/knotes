@@ -29,7 +29,7 @@
 #include <ksessionmanager.h>
 #include <kxmlguiclient.h>
 
-#include <Akonadi/Item>
+#include <AkonadiCore/Item>
 #include <QPointer>
 
 class KNoteFindDialog;

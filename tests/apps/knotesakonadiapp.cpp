@@ -26,10 +26,10 @@
 #include "noteshared/attributes/notealarmattribute.h"
 
 #include <akonadi/control.h>
-#include <Akonadi/ChangeRecorder>
-#include <Akonadi/Collection>
-#include <Akonadi/EntityTreeModel>
-#include <Akonadi/Session>
+#include <AkonadiCore/ChangeRecorder>
+#include <AkonadiCore/Collection>
+#include <AkonadiCore/EntityTreeModel>
+#include <AkonadiCore/Session>
 #include <KMime/KMimeMessage>
 
 #include <QDebug>

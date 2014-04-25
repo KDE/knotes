@@ -16,7 +16,7 @@
 */
 
 #include "knotesakonaditray.h"
-#include <Akonadi/ChangeRecorder>
+#include <AkonadiCore/ChangeRecorder>
 
 #include <KIconLoader>
 #include <KGlobalSettings>

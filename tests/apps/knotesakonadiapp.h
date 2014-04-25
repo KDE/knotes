@@ -19,7 +19,7 @@
 #define KNOTESAKONADIAPP_H
 
 #include <QWidget>
-#include <Akonadi/Item>
+#include <AkonadiCore/Item>
 class KNotesAkonadiTray;
 namespace Akonadi {
 }

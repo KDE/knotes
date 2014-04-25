@@ -22,7 +22,7 @@
 #include <qmetatype.h>
 #include "knotes_export.h"
 
-#include <Akonadi/Item>
+#include <AkonadiCore/Item>
 
 class KNOTES_EXPORT KNotePrintObject : public QObject
 {

@@ -18,7 +18,7 @@
 #ifndef KNOTEUTILS_H
 #define KNOTEUTILS_H
 #include "knotes_export.h"
-#include <Akonadi/Item>
+#include <AkonadiCore/Item>
 
 namespace KNoteUtils
 {

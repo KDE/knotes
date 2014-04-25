@@ -27,7 +27,7 @@
 #include <kconfig.h>
 #include <kxmlguiclient.h>
 #include <KSharedConfig>
-#include <Akonadi/Item>
+#include <AkonadiCore/Item>
 #include "knoteinterface.h"
 
 class KNoteDisplaySettings;

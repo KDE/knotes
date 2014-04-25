@@ -19,7 +19,7 @@
 #define KNOTEPRINTSELECTEDNOTESDIALOG_H
 
 #include <KDialog>
-#include <Akonadi/Item>
+#include <AkonadiCore/Item>
 class QListWidget;
 class KNote;
 class KNotePrintObject;

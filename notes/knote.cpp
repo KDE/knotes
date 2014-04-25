@@ -64,7 +64,7 @@
 #include <netwm.h>
 #include <KPrintPreview>
 
-#include <Akonadi/ItemModifyJob>
+#include <AkonadiCore/ItemModifyJob>
 
 #include <QBoxLayout>
 #include <QCheckBox>

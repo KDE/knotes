@@ -23,13 +23,13 @@
 #include "notesharedglobalconfig.h"
 
 #include <Akonadi/CollectionModifyJob>
-#include <Akonadi/CollectionFilterProxyModel>
+#include <AkonadiCore/CollectionFilterProxyModel>
 #include <KRecursiveFilterProxyModel>
 
-#include <Akonadi/CollectionRequester>
-#include <Akonadi/ChangeRecorder>
-#include <Akonadi/EntityTreeModel>
-#include <Akonadi/Collection>
+#include <AkonadiWidgets/CollectionRequester>
+#include <AkonadiCore/ChangeRecorder>
+#include <AkonadiCore/EntityTreeModel>
+#include <AkonadiCore/Collection>
 #include <KMime/Message>
 
 #include <KCheckableProxyModel>

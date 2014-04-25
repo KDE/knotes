@@ -21,7 +21,7 @@
 #define KNOTECOLLECTIONCONFIGWIDGET_H
 
 #include <QWidget>
-#include <Akonadi/Collection>
+#include <AkonadiCore/Collection>
 #include <QModelIndex>
 
 class QItemSelectionModel;

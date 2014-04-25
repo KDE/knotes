@@ -19,7 +19,7 @@
 #define KNOTEFINDDIALOG_H
 
 #include <KDialog>
-#include <Akonadi/Item>
+#include <AkonadiCore/Item>
 #include "knotes_export.h"
 class KPushButton;
 class KLineEdit;
