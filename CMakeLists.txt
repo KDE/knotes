@@ -51,7 +51,7 @@ add_library(knotesprivate ${LIBRARY_TYPE} ${libknotesprivate_lib_SRCS} ${libknot
 target_link_libraries(knotesprivate kdepim KF5::KIOCore pimcommon ${KDE4_KPRINTUTILS_LIBS} KF5::KCMUtils ${Grantlee_CORE_LIBRARIES} ${KDE4_KDNSSD_LIBS} KF5::NewStuff noteshared akonadi_next Baloo)
 
 set_target_properties(knotesprivate
-  PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION}
+  PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
 )
 
 install(TARGETS knotesprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
