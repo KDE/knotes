@@ -67,7 +67,7 @@
 
 #include <KMessageBox>
 #include <kaction.h>
-#include <kdebug.h>
+#include <qdebug.h>
 #include <khelpmenu.h>
 #include <kicon.h>
 #include <kiconeffect.h>
@@ -572,7 +572,7 @@ void KNotesApp::slotNoteKilled( Akonadi::Item::Id id)
 void KNotesApp::slotNoteDeleteFinished(KJob* job)
 {
     if (job->error()) {
-        kWarning() << job->errorString();
+        qWarning() << job->errorString();
         return;
     }
 }

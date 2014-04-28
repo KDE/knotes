@@ -27,7 +27,7 @@
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <kcolordialog.h>
-#include <kdebug.h>
+#include <qdebug.h>
 #include <kfontaction.h>
 #include <kfontsizeaction.h>
 #include <kicon.h>

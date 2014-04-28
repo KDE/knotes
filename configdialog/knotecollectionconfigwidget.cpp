@@ -37,7 +37,7 @@
 #include <KLocalizedString>
 #include <KPushButton>
 #include <KLineEdit>
-#include <KDebug>
+#include <QDebug>
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -233,11 +233,11 @@ void KNoteCollectionConfigWidget::slotModifyJobDone(KJob* job)
     Akonadi::CollectionModifyJob *modifyJob = qobject_cast<Akonadi::CollectionModifyJob*>(job);
     if (modifyJob && job->error()) {
         if (job->property("AttributeAdded").toBool()) {
-            kWarning() << "Failed to append NewMailNotifierAttribute to collection"
+            qWarning() << "Failed to append NewMailNotifierAttribute to collection"
                        << modifyJob->collection().id() << ":"
                        << job->errorString();
         } else {
-            kWarning() << "Failed to remove NewMailNotifierAttribute from collection"
+            qWarning() << "Failed to remove NewMailNotifierAttribute from collection"
                        << modifyJob->collection().id() << ":"
                        << job->errorString();
         }
