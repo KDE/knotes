@@ -79,7 +79,7 @@ add_executable(knotes ${knotes_SRCS})
 target_link_libraries(knotes knotesprivate pimcommon kdepim KF5::KIOCore
                              KF5::KCMUtils ${X11_X11_LIB} KF5::KontactInterface ${KDE4_KPRINTUTILS_LIBS} ${KDE4_KDNSSD_LIBS} noteshared
   KF5::AkonadiCore
-  KF5::KMime
+  KF5::Mime
   akonadi_next)
 install(TARGETS knotes  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
