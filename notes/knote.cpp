@@ -216,7 +216,9 @@ void KNote::saveNote(bool force, bool sync)
         saveNoteContent();
     }
     if (needToSave) {
-        qDebug()<<" saveNote "<<force;
+#ifdef DEBUG_SAVE_NOTE
+        qDebug()<<"save Note slotClose() slotNoteSaved(KJob*) : sync"<<sync;
+#endif
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
         if (sync) {
             job->exec();
@@ -927,17 +929,18 @@ void KNote::prepare()
     // HACK: update the icon color - again after showing the note, to make kicker
     // aware of the new colors
     KIconEffect effect;
-    QPixmap icon = effect.apply( qApp->windowIcon().pixmap(
+    const QColor col = mDisplayAttribute->backgroundColor();
+    const QPixmap icon = effect.apply( qApp->windowIcon().pixmap(
                                      IconSize( KIconLoader::Desktop ),
                                      IconSize( KIconLoader::Desktop ) ),
                                  KIconEffect::Colorize,
-                                 1, mDisplayAttribute->backgroundColor(), false );
-    QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap(
+                                 1, col, false );
+#ifdef Q_WS_X11
+    const QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap(
                                          IconSize( KIconLoader::Small ),
                                          IconSize( KIconLoader::Small ) ),
                                      KIconEffect::Colorize,
-                                     1, mDisplayAttribute->backgroundColor(), false );
-#ifdef Q_WS_X11
+                                     1, col, false );
     KWindowSystem::setIcons( winId(), icon, miniIcon );
 #endif
 
