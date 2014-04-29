@@ -70,7 +70,7 @@ void KNoteUtils::migrateToAkonadi()
     if ( needMigration ) {
         const bool enabled = migrationCfg.readEntry( "Enabled", true );
         const int currentVersion = migrationCfg.readEntry( "Version", 0 );
-        const int targetVersion = migrationCfg.readEntry( "TargetVersion", 1 );
+        const int targetVersion = migrationCfg.readEntry( "TargetVersion", 2 );
         if ( enabled && currentVersion < targetVersion ) {
             const int choice = KMessageBox::questionYesNoCancel( 0, i18n(
                                                                      "<b>Thanks for using KNotes!</b>"
