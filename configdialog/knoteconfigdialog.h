@@ -25,6 +25,8 @@
 #include <kcmodule.h>
 #include <kcmultidialog.h>
 #include "knotes_export.h"
+#include <KComponentData>
+
 class KNotePrintSelectThemeComboBox;
 class KNoteCollectionConfigWidget;
 class KLineEdit;

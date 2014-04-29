@@ -24,6 +24,8 @@
 #include <KLocalizedString>
 #include <KLineEdit>
 #include <KPushButton>
+#include <KGlobal>
+#include <KIcon>
 
 #include <QVBoxLayout>
 #include <QLabel>

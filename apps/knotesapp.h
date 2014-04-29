@@ -43,7 +43,7 @@ class NotesChangeRecorder;
 class NotesAkonadiTreeModel;
 }
 
-namespace DNSSD {
+namespace KDNSSD {
 class PublicService;
 }
 class KJob;
@@ -109,7 +109,7 @@ private:
     KNotesAkonadiTray *mTray;
     KMenu           *m_noteMenu;
     QList<QAction *>       m_noteActions;
-    DNSSD::PublicService   *m_publisher;
+    KDNSSD::PublicService   *m_publisher;
     QHash<Akonadi::Item::Id, KNote*> mNotes;
     NoteShared::NotesChangeRecorder *mNoteRecorder;
     NoteShared::NotesAkonadiTreeModel *mNoteTreeModel;

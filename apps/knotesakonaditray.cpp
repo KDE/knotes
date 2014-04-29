@@ -28,14 +28,14 @@
 #include <QWidget>
 
 KNotesAkonadiTray::KNotesAkonadiTray(QWidget *parent)
-    : KStatusNotifierItem(parent)
+    : KStatusNotifierItem(parent),
+      mIcon( QLatin1String("knotes") )
 {
     setToolTipTitle( i18n( "KNotes: Sticky notes for KDE" ) );
     setToolTipIconByName( QLatin1String("knotes") );
     setStatus( KStatusNotifierItem::Active );
     setCategory( KStatusNotifierItem::ApplicationStatus );
     setStandardActionsEnabled(false);
-    mIcon = KIcon( QLatin1String("knotes") );
     //Initialize
     updateNumberOfNotes(0);
     connect( KGlobalSettings::self(), SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotGeneralPaletteChanged()));

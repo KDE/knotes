@@ -48,7 +48,7 @@ kconfig_add_kcfg_files(libknotesprivate_kcfg_lib_SRCS ${libknotesprivate_kcfg_li
 
 add_library(knotesprivate ${LIBRARY_TYPE} ${libknotesprivate_lib_SRCS} ${libknotesprivate_kcfg_lib_SRCS} )
 
-target_link_libraries(knotesprivate kdepim KF5::KIOCore pimcommon ${KDE4_KPRINTUTILS_LIBS} KF5::KCMUtils ${Grantlee_CORE_LIBRARIES} ${KDE4_KDNSSD_LIBS} KF5::NewStuff noteshared akonadi_next Baloo)
+target_link_libraries(knotesprivate kdepim KF5::KIOCore pimcommon KF5::KCMUtils Grantlee::Templates KF5::NewStuff noteshared akonadi_next baloopim)
 
 set_target_properties(knotesprivate
   PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
@@ -77,7 +77,7 @@ kde4_add_app_icon(knotes_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-apps-knotes
 add_executable(knotes ${knotes_SRCS})
 
 target_link_libraries(knotes knotesprivate pimcommon kdepim KF5::KIOCore
-                             KF5::KCMUtils ${X11_X11_LIB} KF5::KontactInterface ${KDE4_KPRINTUTILS_LIBS} ${KDE4_KDNSSD_LIBS} noteshared
+                             KF5::KCMUtils KF5::KontactInterface noteshared
   KF5::AkonadiCore
   KF5::Mime
   akonadi_next)

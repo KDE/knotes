@@ -80,6 +80,7 @@
 #include <QPointer>
 #include <QFocusEvent>
 #include <QTcpServer>
+#include <QMimeData>
 
 #ifdef Q_WS_X11
 #include <fixx11h.h>
@@ -108,7 +109,7 @@ KNote::KNote(const QDomDocument& buildDoc, const Akonadi::Item &item, QWidget *p
     setAcceptDrops( true );
     setAttribute( Qt::WA_DeleteOnClose );
     setDOMDocument( buildDoc );
-    setXMLFile( componentData().componentName() + QLatin1String("ui.rc"), false, false );
+    //QT5 setXMLFile( componentData().componentName() + QLatin1String("ui.rc"), false, false );
 
     // create the main layout
     m_noteLayout = new QVBoxLayout( this );
@@ -515,7 +516,7 @@ void KNote::slotSaveAs()
     KUrl url;
     QPointer<KFileDialog> dlg = new KFileDialog( url, QString(), this, convert );
     dlg->setOperationMode( KFileDialog::Saving );
-    dlg->setCaption( i18n( "Save As" ) );
+    //QT5 dlg->setCaption( i18n( "Save As" ) );
     if( !dlg->exec() ) {
         delete dlg;
         return;
@@ -600,11 +601,11 @@ void KNote::slotUpdateKeepAboveBelow(bool save)
     if ( m_keepAbove->isChecked() ) {
         attribute->setKeepAbove(true);
         attribute->setKeepBelow(false);
-        KWindowSystem::setState( winId(), state | NET::KeepAbove );
+        //QT5 KWindowSystem::setState( winId(), state | NET::KeepAbove );
     } else if ( m_keepBelow->isChecked() ) {
         attribute->setKeepAbove(false);
         attribute->setKeepBelow(true);
-        KWindowSystem::setState( winId(), state | NET::KeepBelow );
+        //QT5 KWindowSystem::setState( winId(), state | NET::KeepBelow );
     } else {
         attribute->setKeepAbove(false);
         attribute->setKeepBelow(false);

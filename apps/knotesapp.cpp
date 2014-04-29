@@ -81,8 +81,10 @@
 #include <kwindowsystem.h>
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
-
+#include <KDebug>
 #include <kiconloader.h>
+#include <KShortcut>
+#include <KGlobal>
 
 #include <QPixmap>
 #include <QClipboard>
@@ -142,15 +144,15 @@ KNotesApp::KNotesApp()
     actionCollection()->addAction( QLatin1String("print_selected_notes"), action );
     connect( action, SIGNAL(triggered()), SLOT(slotPrintSelectedNotes()) );
 
-    KAction *act = KStandardAction::find( this, SLOT(slotOpenFindDialog()), actionCollection());
+    QAction *act = KStandardAction::find( this, SLOT(slotOpenFindDialog()), actionCollection());
     //REmove shortcut here.
     act->setShortcut(0);
 
 
-
+#if 0 //QT5
     new KHelpMenu( this, KGlobal::mainComponent().aboutData(), false,
                    actionCollection() );
-
+#endif
     KStandardAction::preferences( this, SLOT(slotPreferences()),
                                   actionCollection() );
     KStandardAction::keyBindings( this, SLOT(slotConfigureAccels()),
@@ -158,7 +160,7 @@ KNotesApp::KNotesApp()
     //FIXME: no shortcut removing!?
     KStandardAction::quit( this, SLOT(slotQuit()),
                            actionCollection() )->setShortcut( 0 );
-    setXMLFile( componentData().componentName() + QLatin1String("appui.rc") );
+    //QT5 setXMLFile( componentData().componentName() + QLatin1String("appui.rc") );
 
     m_guiBuilder = new KXMLGUIBuilder( this );
     m_guiFactory = new KXMLGUIFactory( m_guiBuilder, this );
@@ -171,11 +173,11 @@ KNotesApp::KNotesApp()
                                            QLatin1String("notes_menu"), this ) );
 
     // get the most recent XML UI file
-    QString xmlFileName = componentData().componentName() + QLatin1String("ui.rc");
-    QString filter = componentData().componentName() + QLatin1Char('/') + xmlFileName;
-    const QStringList fileList =
-            componentData().dirs()->findAllResources( "data", filter ) +
-            componentData().dirs()->findAllResources( "data", xmlFileName );
+    QString xmlFileName;//QT5 = componentData().componentName() + QLatin1String("ui.rc");
+    QString filter;//QT5 = componentData().componentName() + QLatin1Char('/') + xmlFileName;
+    const QStringList fileList;//QT5 =
+            //QT5 componentData().dirs()->findAllResources( "data", filter ) +
+            //QT5 componentData().dirs()->findAllResources( "data", xmlFileName );
 
     QString doc;
     KXMLGUIClient::findMostRecentXMLFile( fileList, doc );
@@ -362,7 +364,7 @@ void KNotesApp::updateNetworkListener()
 
     if ( NoteShared::NoteSharedGlobalConfig::receiveNotes() ) {
         // create the socket and start listening for connections
-        m_publisher=new DNSSD::PublicService(NoteShared::NoteSharedGlobalConfig::senderID(), QLatin1String("_knotes._tcp"), NoteShared::NoteSharedGlobalConfig::port());
+        m_publisher=new KDNSSD::PublicService(NoteShared::NoteSharedGlobalConfig::senderID(), QLatin1String("_knotes._tcp"), NoteShared::NoteSharedGlobalConfig::port());
         m_publisher->publishAsync();
     }
 }
@@ -538,13 +540,13 @@ void KNotesApp::slotConfigureAccels()
     }
     if (keys->exec()) {
         keys->save();
-
+#if 0 //QT5
         // update GUI doc for new notes
         m_noteGUI.setContent(
                     KXMLGUIFactory::readConfigFile( componentData().componentName() + QLatin1String("ui.rc"),
                                                     componentData() )
                     );
-
+#endif
 
         if ( actionCollection ) {
             QHashIterator<Akonadi::Item::Id, KNote*> i(mNotes);

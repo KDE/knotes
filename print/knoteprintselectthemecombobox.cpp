@@ -21,7 +21,7 @@
 #include <KStandardDirs>
 #include <KConfigGroup>
 #include <KConfig>
-
+#include <KGlobal>
 #include <QDirIterator>
 
 KNotePrintSelectThemeComboBox::KNotePrintSelectThemeComboBox(QWidget *parent)

@@ -19,13 +19,15 @@
 *******************************************************************/
 
 #include "kdepim-version.h"
+#include <KGlobal>
 #include "knotes_options.h"
 #include "apps/application.h"
 #include <KUniqueApplication>
 #include <kcmdlineargs.h>
-#include <kaboutdata.h>
+#include <k4aboutdata.h>
 #include <klocale.h>
 #include <kxerrorhandler.h>
+#include <KGlobal>
 
 #ifdef Q_WS_X11
 #include <X11/Xlib.h>
@@ -35,16 +37,16 @@
 
 void remove_sm_from_client_leader();
 KCmdLineOptions knotesOptions();
-void knotesAuthors(  KAboutData &aboutData );
+void knotesAuthors(  K4AboutData &aboutData );
 
 int main( int argc, char *argv[] )
 {
-    KAboutData aboutData( "knotes",
+    K4AboutData aboutData( "knotes",
                           0,
                           ki18n( "KNotes" ),
                           KDEPIM_VERSION,
                           ki18n( "KDE Notes" ),
-                          KAboutData::License_GPL,
+                          K4AboutData::License_GPL,
                           ki18n( "Copyright © 1997–2014 KNotes authors" ) );
 
     knotesAuthors( aboutData );
@@ -99,7 +101,7 @@ void remove_sm_from_client_leader()
 #endif
 }
 
-void knotesAuthors(  KAboutData &aboutData )
+void knotesAuthors(  K4AboutData &aboutData )
 {
     aboutData.addAuthor( ki18n( "Laurent Montel" ),
                          ki18n( "Maintainer" ),

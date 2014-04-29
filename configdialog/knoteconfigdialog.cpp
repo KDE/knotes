@@ -44,6 +44,7 @@
 #include <kwindowsystem.h>
 #include <KIcon>
 #include <KNS3/DownloadDialog>
+#include <KDialog>
 
 #include <QCheckBox>
 #include <QGridLayout>
@@ -58,10 +59,10 @@ KNoteConfigDialog::KNoteConfigDialog( const QString &title,
     : KCMultiDialog( parent )
 {
     setFaceType( KPageDialog::List );
-    setButtons( Default | Ok | Cancel );
-    setDefaultButton( Ok );
+    //QT5 setButtons( Default | Ok | Cancel );
+    //QT5 setDefaultButton( Ok );
 
-    setCaption( title );
+    //QT5 setCaption( title );
 #ifdef Q_WS_X11
     KWindowSystem::setIcons( winId(),
                              qApp->windowIcon().pixmap(
@@ -71,7 +72,7 @@ KNoteConfigDialog::KNoteConfigDialog( const QString &title,
                                  IconSize( KIconLoader::Small ),
                                  IconSize( KIconLoader::Small ) ) );
 #endif
-    showButtonSeparator( true );
+    //QT5 showButtonSeparator( true );
 
     addModule( QLatin1String("knote_config_display") );
     addModule( QLatin1String("knote_config_editor") );
@@ -159,7 +160,7 @@ KDE_EXPORT KCModule *create_knote_config_misc( QWidget *parent )
 
 
 KNoteDisplayConfig::KNoteDisplayConfig( const KComponentData &inst, QWidget *parent )
-    :KCModule( inst, parent )
+    :KCModule( /*inst,*/ parent )
 {
     QVBoxLayout *lay = new QVBoxLayout( this );
     QWidget * w =  new KNoteDisplayConfigWidget( true );
@@ -180,7 +181,7 @@ void KNoteDisplayConfig::save()
 }
 
 KNoteEditorConfig::KNoteEditorConfig( const KComponentData &inst, QWidget *parent )
-    :KCModule( inst, parent )
+    :KCModule( /*inst,*/ parent )
 {
     QVBoxLayout *lay = new QVBoxLayout( this );
     QWidget * w =  new KNoteEditorConfigWidget( true );
@@ -202,7 +203,7 @@ void KNoteEditorConfig::load()
 
 
 KNoteMiscConfig::KNoteMiscConfig(const KComponentData &inst, QWidget *parent )
-    : KCModule(inst, parent)
+    : KCModule(/*inst,*/ parent)
 {
     QWidget *w = new QWidget(this);
 
@@ -271,7 +272,7 @@ void KNoteMiscConfig::slotHelpLinkClicked(const QString &)
 
 
 KNotePrintConfig::KNotePrintConfig(const KComponentData &inst, QWidget *parent )
-    :KCModule( inst, parent )
+    :KCModule( /*inst,*/ parent )
 {
     QVBoxLayout *lay = new QVBoxLayout( this );
     QWidget * w =  new QWidget( this );
@@ -330,7 +331,7 @@ void KNotePrintConfig::defaults()
 }
 
 KNoteCollectionConfig::KNoteCollectionConfig(const KComponentData &inst, QWidget *parent )
-    : KCModule( inst, parent )
+    : KCModule( /*inst,*/ parent )
 {
     QHBoxLayout *lay = new QHBoxLayout;
     mCollectionConfigWidget = new KNoteCollectionConfigWidget;
