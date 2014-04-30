@@ -322,6 +322,7 @@ void KNote::slotUpdateReadOnly()
         }
     }
     if (!mBlockSave) {
+        updateAllAttributes();
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
         qDebug()<<" void KNote::slotUpdateReadOnly() slotNoteSaved(KJob*)";
@@ -361,7 +362,7 @@ void KNote::slotUpdateReadOnly()
     updateFocus();
 }
 
-void KNote::slotClose()
+void KNote::updateAllAttributes()
 {
     NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
 #ifdef Q_WS_X11
@@ -373,9 +374,18 @@ void KNote::slotClose()
     }
 #endif
     saveNoteContent();
-    m_editor->clearFocus();
     attribute->setIsHidden(true);
     attribute->setPosition(pos());
+    const QSize currentSize(QSize(width(), height()));
+    if (attribute->size() != currentSize) {
+        attribute->setSize(currentSize);
+    }
+}
+
+void KNote::slotClose()
+{
+    updateAllAttributes();
+    m_editor->clearFocus();
     Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
     qDebug()<<"slotClose() slotNoteSaved(KJob*)";
