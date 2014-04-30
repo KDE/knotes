@@ -518,7 +518,7 @@ void KNote::slotSaveAs()
     KUrl url;
     QPointer<KFileDialog> dlg = new KFileDialog( url, QString(), this, convert );
     dlg->setOperationMode( KFileDialog::Saving );
-    //QT5 dlg->setCaption( i18n( "Save As" ) );
+    dlg->setWindowTitle( i18n( "Save As" ) );
     if( !dlg->exec() ) {
         delete dlg;
         return;

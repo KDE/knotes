@@ -62,7 +62,7 @@ KNoteConfigDialog::KNoteConfigDialog( const QString &title,
     //QT5 setButtons( Default | Ok | Cancel );
     //QT5 setDefaultButton( Ok );
 
-    //QT5 setCaption( title );
+    setWindowTitle( title );
 #ifdef Q_WS_X11
     KWindowSystem::setIcons( winId(),
                              qApp->windowIcon().pixmap(
