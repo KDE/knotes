@@ -30,6 +30,7 @@ namespace Akonadi {
 class EntityTreeModel;
 class ChangeRecorder;
 class CollectionRequester;
+class EntityTreeView;
 }
 class QTreeView;
 class KCheckableProxyModel;
@@ -62,7 +63,7 @@ private Q_SLOTS:
 private:
     void updateStatus(const QModelIndex &parent);
     void forceStatus(const QModelIndex &parent, bool status);
-    QTreeView *mFolderView;
+    Akonadi::EntityTreeView *mFolderView;
     QItemSelectionModel *mSelectionModel;
     Akonadi::EntityTreeModel *mModel;
     Akonadi::ChangeRecorder *mChangeRecorder;

@@ -25,11 +25,15 @@
 #include <Akonadi/CollectionModifyJob>
 #include <Akonadi/CollectionFilterProxyModel>
 #include <KRecursiveFilterProxyModel>
+#include <KInputDialog>
 
+#include <Akonadi/EntityTreeView>
 #include <Akonadi/CollectionRequester>
 #include <Akonadi/ChangeRecorder>
 #include <Akonadi/EntityTreeModel>
 #include <Akonadi/Collection>
+#include <Akonadi/EntityDisplayAttribute>
+#include <Akonadi/CollectionModifyJob>
 #include <KMime/Message>
 
 #include <KCheckableProxyModel>
@@ -91,13 +95,14 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
 
     vbox->addWidget(searchLine);
 
-    mFolderView = new QTreeView;
+    mFolderView = new Akonadi::EntityTreeView(this);
+    mFolderView->setDragEnabled(false);
     mFolderView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     mFolderView->setAlternatingRowColors(true);
     vbox->addWidget(mFolderView);
-    connect(mFolderView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), SLOT(slotUpdateButtons()));
 
     mFolderView->setModel( mCollectionFilter );
+    connect(mFolderView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), SLOT(slotUpdateButtons()));
 
     QHBoxLayout *hbox = new QHBoxLayout;
     vbox->addLayout(hbox);
@@ -139,7 +144,36 @@ void KNoteCollectionConfigWidget::slotUpdateButtons()
 
 void KNoteCollectionConfigWidget::slotRenameCollection()
 {
-    //TODO
+    const QModelIndexList rows = mFolderView->selectionModel()->selectedRows();
+
+    if ( rows.size() != 1 )
+      return;
+
+    QModelIndex idx = rows.at( 0 );
+
+    QString title = idx.data().toString();
+
+    Akonadi::Collection col = idx.data( Akonadi::EntityTreeModel::CollectionRole ).value<Akonadi::Collection>();
+    Q_ASSERT( col.isValid() );
+    if (!col.isValid())
+      return;
+
+    bool ok;
+    const QString name = KInputDialog::getText( i18n( "Rename Notes" ),
+        i18n( "Name:" ), title, &ok, this );
+
+    qDebug()<<" edit "<<ok;
+    if ( ok ) {
+        if ( col.hasAttribute<Akonadi::EntityDisplayAttribute>() &&
+             !col.attribute<Akonadi::EntityDisplayAttribute>()->displayName().isEmpty() ) {
+            col.attribute<Akonadi::EntityDisplayAttribute>()->setDisplayName( name );
+        } else if ( !name.isEmpty() ) {
+            col.setName( name );
+        }
+
+        Akonadi::CollectionModifyJob *job = new Akonadi::CollectionModifyJob(col, this);
+        job->start();
+    }
 }
 
 void KNoteCollectionConfigWidget::slotDataChanged()
