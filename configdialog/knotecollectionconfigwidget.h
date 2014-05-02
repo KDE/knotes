@@ -60,6 +60,7 @@ private Q_SLOTS:
     void slotDataChanged();
     void slotRenameCollection();
     void slotUpdateButtons();
+    void slotCollectionModifyFinished(KJob *);
 private:
     void updateStatus(const QModelIndex &parent);
     void forceStatus(const QModelIndex &parent, bool status);

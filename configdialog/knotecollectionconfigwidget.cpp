@@ -172,7 +172,15 @@ void KNoteCollectionConfigWidget::slotRenameCollection()
         }
 
         Akonadi::CollectionModifyJob *job = new Akonadi::CollectionModifyJob(col, this);
+        connect( job, SIGNAL(result(KJob*)), SLOT(slotCollectionModifyFinished(KJob*)) );
         job->start();
+    }
+}
+
+void KNoteCollectionConfigWidget::slotCollectionModifyFinished(KJob *job)
+{
+    if (job->error()) {
+        kWarning() << job->errorString();
     }
 }
 
