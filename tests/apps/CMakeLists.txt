@@ -1,5 +1,5 @@
 
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}") 
+kde_enable_exceptions() 
 include_directories(
   ${CMAKE_SOURCE_DIR}/pimcommon
   ${CMAKE_SOURCE_DIR}/noteshared
@@ -12,15 +12,11 @@ set(knotes_akonadi_SRCS main.cpp
                         knotesakonadiapp.cpp 
                         knoteakonadinote.cpp
 )
-kde4_add_executable(knotes_akonadi_test TEST ${knotes_akonadi_SRCS})
+add_executable(knotes_akonadi_test ${knotes_akonadi_SRCS})
 target_link_libraries(knotes_akonadi_test
   ${QT_QTTEST_LIBRARY}
-  ${QT_QTCORE_LIBRARY}
-  ${QT_QTGUI_LIBRARY}
-  ${KDE4_KDECORE_LIBS}
-  ${KDE4_KDEUI_LIBS}
-  ${KDEPIMLIBS_AKONADI_LIBS}
-  ${KDEPIMLIBS_KMIME_LIBS}
+  KF5::AkonadiCore
+  KF5::Mime
   akonadi_next
   noteshared
 )
