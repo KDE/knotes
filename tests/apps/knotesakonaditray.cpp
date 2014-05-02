@@ -28,14 +28,14 @@
 #include <QDebug>
 
 KNotesAkonadiTray::KNotesAkonadiTray(Akonadi::ChangeRecorder *recorder, QWidget *parent)
-    : KStatusNotifierItem(parent)
+    : KStatusNotifierItem(parent),
+      mIcon(QLatin1String("knotes"))
 {
     setToolTipTitle( i18n( "KNotes: Sticky notes for KDE" ) );
     setToolTipIconByName( QLatin1String("knotes") );
     setStatus( KStatusNotifierItem::Active );
     setCategory( KStatusNotifierItem::ApplicationStatus );
     setStandardActionsEnabled(false);
-    mIcon = KIcon( QLatin1String("knotes") );
     //TODO remove it
 #if 0
     connect( kmkernel->folderCollectionMonitor(), SIGNAL(collectionStatisticsChanged(Akonadi::Collection::Id,Akonadi::CollectionStatistics)),

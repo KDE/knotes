@@ -18,7 +18,7 @@
 #include <kuniqueapplication.h>
 #include <kstartupinfo.h>
 #include <kcmdlineargs.h>
-#include <kaboutdata.h>
+#include <K4AboutData>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -36,11 +36,11 @@ public:
 
 int main( int argc, char *argv[] )
 {
-    KAboutData aboutData( "knotestray", 0,
+    K4AboutData aboutData( "knotestray", 0,
                           ki18n( "knotestray" ),
                           "0.1",
                           ki18n( "test apps for knotes akonadi" ),
-                          KAboutData::License_GPL,
+                          K4AboutData::License_GPL,
                           ki18n( "(c) 2013 Laurent Montel <montel@kde.org>" ),
                           KLocalizedString() );
     aboutData.addAuthor( ki18n( "Laurent Montel" ), ki18n( "Maintainer and Author" ),
