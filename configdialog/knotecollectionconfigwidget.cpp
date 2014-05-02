@@ -42,6 +42,7 @@
 #include <KPushButton>
 #include <KLineEdit>
 #include <KDebug>
+#include <KMessageBox>
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -61,6 +62,8 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     // Create a new change recorder.
     mChangeRecorder = new Akonadi::ChangeRecorder( this );
     mChangeRecorder->setMimeTypeMonitored( Akonotes::Note::mimeType() );
+    mChangeRecorder->fetchCollection( true );
+    mChangeRecorder->setAllMonitored( true );
 
     mModel = new Akonadi::EntityTreeModel( mChangeRecorder, this );
     // Set the model to show only collections, not items.
@@ -162,7 +165,6 @@ void KNoteCollectionConfigWidget::slotRenameCollection()
     const QString name = KInputDialog::getText( i18n( "Rename Notes" ),
         i18n( "Name:" ), title, &ok, this );
 
-    qDebug()<<" edit "<<ok;
     if ( ok ) {
         if ( col.hasAttribute<Akonadi::EntityDisplayAttribute>() &&
              !col.attribute<Akonadi::EntityDisplayAttribute>()->displayName().isEmpty() ) {
@@ -181,6 +183,7 @@ void KNoteCollectionConfigWidget::slotCollectionModifyFinished(KJob *job)
 {
     if (job->error()) {
         kWarning() << job->errorString();
+        KMessageBox::error(this, i18n("An error was occured during renamed: %1", job->errorString()), i18n("Rename note"));
     }
 }
 
