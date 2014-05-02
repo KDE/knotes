@@ -23,9 +23,9 @@
 
 #include <KLocalizedString>
 #include <KLineEdit>
-#include <KPushButton>
+#include <QPushButton>
 #include <KGlobal>
-#include <KIcon>
+#include <QIcon>
 
 #include <QVBoxLayout>
 #include <QLabel>
@@ -85,7 +85,7 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     connect(mSearchLineEdit, SIGNAL(textChanged(QString)), this, SLOT(slotTextChanged(QString)));
     hbox->addWidget(mSearchLineEdit);
 
-    mSearchButton = new KPushButton(KIcon(QLatin1String("edit-find")), i18n("Search..."));
+    mSearchButton = new QPushButton(QIcon::fromTheme(QLatin1String("edit-find")), i18n("Search..."));
     connect(mSearchButton, SIGNAL(clicked(bool)), this, SLOT(slotSearchNote()));
     hbox->addWidget(mSearchButton);
     mSearchButton->setEnabled(false);

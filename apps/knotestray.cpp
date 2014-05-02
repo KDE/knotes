@@ -33,7 +33,7 @@ KNotesTray::KNotesTray(QWidget *parent)
     setStatus( KStatusNotifierItem::Active );
     setCategory( KStatusNotifierItem::ApplicationStatus );
     setStandardActionsEnabled(false);
-    mIcon = KIcon( QLatin1String("knotes") );
+    mIcon = QIcon::fromTheme( QLatin1String("knotes") );
 }
 
 KNotesTray::~KNotesTray()

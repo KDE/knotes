@@ -23,7 +23,7 @@
 #include <KLocalizedString>
 #include <KConfigGroup>
 #include <KGlobal>
-#include <KIcon>
+#include <QIcon>
 
 #include <QListWidget>
 #include <QHBoxLayout>
@@ -52,9 +52,9 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     mTheme->loadThemes();
     lay->addWidget(mTheme);
 
-    setButtonIcon(User1, KIcon(QLatin1String("document-print-preview")));
+    setButtonIcon(User1, QIcon::fromTheme(QLatin1String("document-print-preview")));
     setButtonText(User1, i18n("Preview"));
-    setButtonIcon(Ok, KIcon(QLatin1String("document-print")));
+    setButtonIcon(Ok, QIcon::fromTheme(QLatin1String("document-print")));
     setButtonText(Ok, i18n("Print"));
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotPreview()));
     connect(mListNotes, SIGNAL(itemSelectionChanged()), this, SLOT(slotSelectionChanged()));

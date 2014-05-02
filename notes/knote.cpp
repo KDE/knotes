@@ -51,7 +51,7 @@
 #include <kiconloader.h>
 #include <kinputdialog.h>
 #include <klocale.h>
-#include <kmenu.h>
+#include <QMenu>
 #include <kmessagebox.h>
 #include <kselectaction.h>
 #include <kstandardaction.h>
@@ -655,7 +655,7 @@ void KNote::slotUpdateDesktopActions()
     NETWinInfo wm_client( QX11Info::display(), winId(),
                           QX11Info::appRootWindow(), NET::WMDesktop );
 
-    KAction *act = m_toDesktop->addAction(i18n( "&All Desktops" ));
+    QAction *act = m_toDesktop->addAction(i18n( "&All Desktops" ));
     if (wm_client.desktop() == NETWinInfo::OnAllDesktops) {
         act->setChecked(true);
     }
@@ -664,7 +664,7 @@ void KNote::slotUpdateDesktopActions()
     m_toDesktop->addAction(separator);
     const int count = wm_root.numberOfDesktops();
     for ( int n = 1; n <= count; ++n ) {
-        KAction *desktopAct = m_toDesktop->addAction(QString::fromLatin1( "&%1 %2" ).arg( n ).arg(QString::fromUtf8( wm_root.desktopName( n ) ) ));
+        QAction *desktopAct = m_toDesktop->addAction(QString::fromLatin1( "&%1 %2" ).arg( n ).arg(QString::fromUtf8( wm_root.desktopName( n ) ) ));
         if (wm_client.desktop() == n) {
             desktopAct->setChecked(true);
         }
@@ -684,7 +684,7 @@ void KNote::buildGui()
     KXMLGUIFactory factory( &builder, this );
     factory.addClient( this );
 
-    m_menu = dynamic_cast<KMenu*>( factory.container( QLatin1String("note_context"), this ) );
+    m_menu = dynamic_cast<QMenu*>( factory.container( QLatin1String("note_context"), this ) );
     m_tool = dynamic_cast<KToolBar*>( factory.container( QLatin1String("note_tool"), this ) );
 
     createNoteFooter();
@@ -694,46 +694,46 @@ void KNote::createActions()
 {
     // create the menu items for the note - not the editor...
     // rename, mail, print, save as, insert date, alarm, close, delete, new note
-    KAction *action;
+    QAction *action;
 
-    action  = new KAction( KIcon( QLatin1String("document-new") ), i18n( "New" ),  this );
+    action  = new QAction( QIcon::fromTheme( QLatin1String("document-new") ), i18n( "New" ),  this );
     actionCollection()->addAction( QLatin1String("new_note"), action );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotRequestNewNote()) );
 
-    action  = new KAction( KIcon( QLatin1String("edit-rename") ), i18n( "Rename..." ), this );
+    action  = new QAction( QIcon::fromTheme( QLatin1String("edit-rename") ), i18n( "Rename..." ), this );
     actionCollection()->addAction( QLatin1String("rename_note"), action );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotRename()) );
 
-    m_readOnly  = new KToggleAction( KIcon( QLatin1String("object-locked") ),
+    m_readOnly  = new KToggleAction( QIcon::fromTheme( QLatin1String("object-locked") ),
                                      i18n( "Lock" ), this );
     actionCollection()->addAction( QLatin1String("lock_note"), m_readOnly );
     connect( m_readOnly, SIGNAL(triggered(bool)),
              SLOT(slotUpdateReadOnly()) );
     m_readOnly->setCheckedState( KGuiItem( i18n( "Unlock" ), QLatin1String("object-unlocked") ) );
 
-    action  = new KAction( KIcon( QLatin1String("window-close") ), i18n( "Hide" ), this );
+    action  = new QAction( QIcon::fromTheme( QLatin1String("window-close") ), i18n( "Hide" ), this );
     actionCollection()->addAction( QLatin1String("hide_note"), action );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotClose()) );
     action->setShortcut( QKeySequence( Qt::Key_Escape ) );
 
-    action  = new KAction( KIcon( QLatin1String("edit-delete") ), i18n( "Delete" ), this );
+    action  = new QAction( QIcon::fromTheme( QLatin1String("edit-delete") ), i18n( "Delete" ), this );
     actionCollection()->addAction( QLatin1String("delete_note"), action );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotKill()),Qt::QueuedConnection );
 
-    action  = new KAction( KIcon( QLatin1String("knotes_alarm") ), i18n( "Set Alarm..." ),
+    action  = new QAction( QIcon::fromTheme( QLatin1String("knotes_alarm") ), i18n( "Set Alarm..." ),
                            this );
     actionCollection()->addAction( QLatin1String("set_alarm"), action );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotSetAlarm()) );
 
-    action  = new KAction( KIcon( QLatin1String("network-wired") ), i18n( "Send..." ), this );
+    action  = new QAction( QIcon::fromTheme( QLatin1String("network-wired") ), i18n( "Send..." ), this );
     actionCollection()->addAction( QLatin1String("send_note"), action );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotSend()) );
 
-    action  = new KAction( KIcon( QLatin1String("mail-send") ), i18n( "Mail..." ), this );
+    action  = new QAction( QIcon::fromTheme( QLatin1String("mail-send") ), i18n( "Mail..." ), this );
     actionCollection()->addAction( QLatin1String("mail_note"), action );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotMail()) );
 
-    action  = new KAction( KIcon( QLatin1String("document-save-as") ), i18n( "Save As..." ),
+    action  = new QAction( QIcon::fromTheme( QLatin1String("document-save-as") ), i18n( "Save As..." ),
                            this );
     actionCollection()->addAction( QLatin1String("save_note"), action );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotSaveAs()) );
@@ -744,18 +744,18 @@ void KNote::createActions()
         actionCollection()->addAction( KStandardAction::PrintPreview,  QLatin1String("print_preview_note"), this,
                                        SLOT(slotPrintPreview()) );
     }
-    action  = new KAction( KIcon( QLatin1String("configure") ), i18n( "Preferences..." ), this );
+    action  = new QAction( QIcon::fromTheme( QLatin1String("configure") ), i18n( "Preferences..." ), this );
     actionCollection()->addAction( QLatin1String("configure_note"), action );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotPreferences()) );
 
 
-    m_keepAbove  = new KToggleAction( KIcon( QLatin1String("go-up") ),
+    m_keepAbove  = new KToggleAction( QIcon::fromTheme( QLatin1String("go-up") ),
                                       i18n( "Keep Above Others" ), this );
     actionCollection()->addAction( QLatin1String("keep_above"), m_keepAbove );
     connect( m_keepAbove, SIGNAL(triggered(bool)),
              SLOT(slotKeepAbove()) );
 
-    m_keepBelow  = new KToggleAction( KIcon( QLatin1String("go-down") ),
+    m_keepBelow  = new KToggleAction( QIcon::fromTheme( QLatin1String("go-down") ),
                                       i18n( "Keep Below Others" ), this );
     actionCollection()->addAction( QLatin1String("keep_below"), m_keepBelow );
     connect( m_keepBelow, SIGNAL(triggered(bool)),
@@ -772,7 +772,7 @@ void KNote::createActions()
     slotUpdateDesktopActions();
 #endif
     // invisible action to walk through the notes to make this configurable
-    action  = new KAction( i18n( "Walk Through Notes" ), this );
+    action  = new QAction( i18n( "Walk Through Notes" ), this );
     actionCollection()->addAction( QLatin1String("walk_notes"), action );
     connect( action, SIGNAL(triggered(bool)), SIGNAL(sigShowNextNote()) );
     action->setShortcut( QKeySequence( Qt::SHIFT + Qt::Key_Backtab ) );

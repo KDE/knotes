@@ -35,7 +35,7 @@ class EntityTreeView;
 class QTreeView;
 class KCheckableProxyModel;
 class KJob;
-class KPushButton;
+class QPushButton;
 
 class KNoteCollectionConfigWidget : public QWidget
 {
@@ -71,7 +71,7 @@ private:
     KCheckableProxyModel *mCheckProxy;
     KRecursiveFilterProxyModel *mCollectionFilter;
     Akonadi::CollectionRequester *mDefaultSaveFolder;
-    KPushButton *mRenameCollection;
+    QPushButton *mRenameCollection;
     bool mCanUpdateStatus;
 };
 

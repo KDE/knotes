@@ -40,7 +40,7 @@
 #include <KCheckableProxyModel>
 
 #include <KLocalizedString>
-#include <KPushButton>
+#include <QPushButton>
 #include <KLineEdit>
 #include <QDebug>
 #include <KMessageBox>
@@ -111,16 +111,16 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     QHBoxLayout *hbox = new QHBoxLayout;
     vbox->addLayout(hbox);
 
-    KPushButton *button = new KPushButton(i18n("&Select All"), this);
+    QPushButton *button = new QPushButton(i18n("&Select All"), this);
     connect(button, SIGNAL(clicked(bool)), this, SLOT(slotSelectAllCollections()));
     hbox->addWidget(button);
 
-    button = new KPushButton(i18n("&Unselect All"), this);
+    button = new QPushButton(i18n("&Unselect All"), this);
     connect(button, SIGNAL(clicked(bool)), this, SLOT(slotUnselectAllCollections()));
     hbox->addWidget(button);
     hbox->addStretch(1);
 
-    mRenameCollection = new KPushButton(i18n("Rename notes..."), this);
+    mRenameCollection = new QPushButton(i18n("Rename notes..."), this);
     connect(mRenameCollection, SIGNAL(clicked(bool)), this, SLOT(slotRenameCollection()));
     hbox->addWidget(mRenameCollection);
 

@@ -32,7 +32,7 @@
 #include <kfontsizeaction.h>
 #include <kicon.h>
 #include <klocale.h>
-#include <kmenu.h>
+#include <QMenu>
 #include <kstandardaction.h>
 #include <ktoggleaction.h>
 #include <kurl.h>
@@ -60,19 +60,19 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
     }
 
     // create the actions modifying the text format
-    m_textBold  = new KToggleAction( KIcon( QLatin1String("format-text-bold") ), i18n( "Bold" ),
+    m_textBold  = new KToggleAction( QIcon::fromTheme( QLatin1String("format-text-bold") ), i18n( "Bold" ),
                                      this );
     actions->addAction( QLatin1String("format_bold"), m_textBold );
     m_textBold->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_B ) );
-    m_textItalic  = new KToggleAction( KIcon( QLatin1String("format-text-italic") ),
+    m_textItalic  = new KToggleAction( QIcon::fromTheme( QLatin1String("format-text-italic") ),
                                        i18n( "Italic" ), this );
     actions->addAction( QLatin1String("format_italic"), m_textItalic );
     m_textItalic->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_I ) );
-    m_textUnderline  = new KToggleAction( KIcon( QLatin1String("format-text-underline") ),
+    m_textUnderline  = new KToggleAction( QIcon::fromTheme( QLatin1String("format-text-underline") ),
                                           i18n( "Underline" ), this );
     actions->addAction( QLatin1String("format_underline"), m_textUnderline );
     m_textUnderline->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_U ) );
-    m_textStrikeOut  = new KToggleAction( KIcon( QLatin1String("format-text-strikethrough") ),
+    m_textStrikeOut  = new KToggleAction( QIcon::fromTheme( QLatin1String("format-text-strikethrough") ),
                                           i18n( "Strike Out" ), this );
     actions->addAction( QLatin1String("format_strikeout"), m_textStrikeOut );
     m_textStrikeOut->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_S ) );
@@ -85,26 +85,26 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
     connect( m_textStrikeOut, SIGNAL(toggled(bool)),
              SLOT(textStrikeOut(bool)) );
 
-    m_textAlignLeft = new KToggleAction( KIcon( QLatin1String("format-justify-left") ),
+    m_textAlignLeft = new KToggleAction( QIcon::fromTheme( QLatin1String("format-justify-left") ),
                                          i18n( "Align Left" ), this );
     actions->addAction( QLatin1String("format_alignleft"), m_textAlignLeft );
     connect( m_textAlignLeft, SIGNAL(triggered(bool)),
              SLOT(textAlignLeft()) );
     m_textAlignLeft->setShortcut( QKeySequence( Qt::ALT + Qt::Key_L ) );
     m_textAlignLeft->setChecked( true ); // just a dummy, will be updated later
-    m_textAlignCenter  = new KToggleAction( KIcon( QLatin1String("format-justify-center") ),
+    m_textAlignCenter  = new KToggleAction( QIcon::fromTheme( QLatin1String("format-justify-center") ),
                                             i18n( "Align Center" ), this );
     actions->addAction( QLatin1String("format_aligncenter"), m_textAlignCenter );
     connect( m_textAlignCenter, SIGNAL(triggered(bool)),
              SLOT(textAlignCenter()) );
     m_textAlignCenter->setShortcut( QKeySequence( Qt::ALT + Qt::Key_C ) );
-    m_textAlignRight = new KToggleAction( KIcon( QLatin1String("format-justify-right") ),
+    m_textAlignRight = new KToggleAction( QIcon::fromTheme( QLatin1String("format-justify-right") ),
                                           i18n( "Align Right" ), this );
     actions->addAction( QLatin1String("format_alignright"), m_textAlignRight );
     connect( m_textAlignRight, SIGNAL(triggered(bool)),
              SLOT(textAlignRight()) );
     m_textAlignRight->setShortcut( QKeySequence( Qt::ALT + Qt::Key_R ) );
-    m_textAlignBlock = new KToggleAction( KIcon( QLatin1String("format-justify-fill") ),
+    m_textAlignBlock = new KToggleAction( QIcon::fromTheme( QLatin1String("format-justify-fill") ),
                                           i18n( "Align Block" ), this );
     actions->addAction( QLatin1String("format_alignblock"), m_textAlignBlock );
     connect( m_textAlignBlock, SIGNAL(triggered(bool)),
@@ -117,22 +117,22 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
     group->addAction( m_textAlignRight );
     group->addAction( m_textAlignBlock );
 
-    m_textList  = new KToggleAction( KIcon( QLatin1String("format-list-ordered") ), i18n( "List" ), this );
+    m_textList  = new KToggleAction( QIcon::fromTheme( QLatin1String("format-list-ordered") ), i18n( "List" ), this );
     actions->addAction( QLatin1String("format_list"), m_textList );
     connect( m_textList, SIGNAL(triggered(bool)), SLOT(textList()) );
 
-    m_textSuper  = new KToggleAction( KIcon( QLatin1String("format-text-superscript") ),
+    m_textSuper  = new KToggleAction( QIcon::fromTheme( QLatin1String("format-text-superscript") ),
                                       i18n( "Superscript" ), this );
     actions->addAction( QLatin1String("format_super"), m_textSuper );
     connect( m_textSuper, SIGNAL(triggered(bool)),
              SLOT(textSuperScript()) );
-    m_textSub  = new KToggleAction( KIcon( QLatin1String("format-text-subscript") ), i18n( "Subscript" ),
+    m_textSub  = new KToggleAction( QIcon::fromTheme( QLatin1String("format-text-subscript") ), i18n( "Subscript" ),
                                     this );
     actions->addAction( QLatin1String("format_sub"), m_textSub );
     connect( m_textSub, SIGNAL(triggered(bool)), SLOT(textSubScript()) );
 
 
-    m_textIncreaseIndent = new KAction( KIcon( QLatin1String("format-indent-more") ),
+    m_textIncreaseIndent = new QAction( QIcon::fromTheme( QLatin1String("format-indent-more") ),
                                         i18n( "Increase Indent" ), this );
     actions->addAction( QLatin1String("format_increaseindent"), m_textIncreaseIndent );
     m_textIncreaseIndent->setShortcut( QKeySequence( Qt::CTRL + Qt::ALT +
@@ -140,7 +140,7 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
     connect( m_textIncreaseIndent, SIGNAL(triggered(bool)),
              SLOT(textIncreaseIndent()) );
 
-    m_textDecreaseIndent = new KAction(  KIcon( QLatin1String("format-indent-less") ),
+    m_textDecreaseIndent = new QAction(  QIcon::fromTheme( QLatin1String("format-indent-less") ),
                                          i18n( "Decrease Indent" ), this );
     actions->addAction( QLatin1String("format_decreaseindent"), m_textDecreaseIndent );
     m_textDecreaseIndent->setShortcut( QKeySequence( Qt::CTRL + Qt::ALT +
@@ -154,12 +154,12 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
 
     QPixmap pix( ICON_SIZE, ICON_SIZE );
     pix.fill( Qt::black ); // just a dummy, gets updated before widget is shown
-    m_textColor  = new KAction( i18n( "Text Color..." ), this );
+    m_textColor  = new QAction( i18n( "Text Color..." ), this );
     actions->addAction( QLatin1String("format_color"), m_textColor );
     m_textColor->setIcon( pix );
     connect( m_textColor, SIGNAL(triggered(bool)), SLOT(slotTextColor()) );
 
-    KAction *act = new KAction(KIcon( QLatin1String("format-fill-color") ), i18n( "Text Background Color..." ), this );
+    QAction *act = new QAction(QIcon::fromTheme( QLatin1String("format-fill-color") ), i18n( "Text Background Color..." ), this );
     actions->addAction( QLatin1String("text_background_color"), act );
     connect( act, SIGNAL(triggered(bool)), SLOT(slotTextBackgroundColor()) );
 
@@ -173,23 +173,23 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
     connect( m_textSize, SIGNAL(fontSizeChanged(int)),
              this, SLOT(setTextFontSize(int)) );
 
-    KAction *action = new KAction( i18n("Uppercase"), this );
+    QAction *action = new QAction( i18n("Uppercase"), this );
     actions->addAction( QLatin1String("change_to_uppercase"), action );
     connect( action, SIGNAL(triggered(bool)), this, SLOT(slotUpperCase()) );
 
-    action = new KAction( i18n("Sentence case"), this );
+    action = new QAction( i18n("Sentence case"), this );
     actions->addAction( QLatin1String("change_to_sentencecase"), action );
     connect( action, SIGNAL(triggered(bool)), this, SLOT(slotSentenceCase()) );
 
-    action = new KAction( i18n("Lowercase"), this );
+    action = new QAction( i18n("Lowercase"), this );
     actions->addAction( QLatin1String("change_to_lowercase"), action );
     connect( action, SIGNAL(triggered(bool)), this, SLOT(slotLowerCase()) );
 
-    action  = new KAction( KIcon( QLatin1String("knotes_date") ), i18n( "Insert Date" ), this );
+    action  = new QAction( QIcon::fromTheme( QLatin1String("knotes_date") ), i18n( "Insert Date" ), this );
     actions->addAction( QLatin1String("insert_date"), action );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotInsertDate()) );
 
-    action = new KAction( KIcon( QLatin1String("checkmark") ), i18n( "Insert Checkmark" ), this );
+    action = new QAction( QIcon::fromTheme( QLatin1String("checkmark") ), i18n( "Insert Checkmark" ), this );
     actions->addAction( QLatin1String("insert_checkmark"), action );
     connect( action, SIGNAL(triggered(bool)), SLOT(slotInsertCheckMark()) );
 

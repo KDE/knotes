@@ -42,7 +42,7 @@
 #include <klocale.h>
 #include <knuminput.h>
 #include <kwindowsystem.h>
-#include <KIcon>
+#include <QIcon>
 #include <KNS3/DownloadDialog>
 #include <KDialog>
 
@@ -290,7 +290,7 @@ KNotePrintConfig::KNotePrintConfig(const KComponentData &inst, QWidget *parent )
     layout->addWidget( mSelectTheme, 0, 1 );
 
     QToolButton *getNewTheme = new QToolButton;
-    getNewTheme->setIcon(KIcon(QLatin1String("get-hot-new-stuff")));
+    getNewTheme->setIcon(QIcon::fromTheme(QLatin1String("get-hot-new-stuff")));
     getNewTheme->setToolTip(i18n("Download new printing themes"));
     connect(getNewTheme, SIGNAL(clicked()), SLOT(slotDownloadNewThemes()));
     layout->addWidget( getNewTheme, 0, 2 );

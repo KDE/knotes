@@ -36,7 +36,7 @@ class QLabel;
 class QLayout;
 class QSizeGrip;
 
-class KMenu;
+class QMenu;
 class KNoteButton;
 class KNoteEdit;
 class KSelectAction;
@@ -144,7 +144,7 @@ private:
     KToolBar      *m_tool;
     KNoteEdit     *m_editor;
 
-    KMenu         *m_menu;
+    QMenu         *m_menu;
 
     KToggleAction *m_readOnly;
 

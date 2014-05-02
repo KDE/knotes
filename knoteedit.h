@@ -29,7 +29,7 @@
 
 class QFont;
 
-class KAction;
+class QAction;
 class KActionCollection;
 class KFontAction;
 class KFontSizeAction;
@@ -116,10 +116,10 @@ private:
     KToggleAction *m_textSuper;
     KToggleAction *m_textSub;
 
-    KAction       *m_textIncreaseIndent;
-    KAction       *m_textDecreaseIndent;
+    QAction *m_textIncreaseIndent;
+    QAction *m_textDecreaseIndent;
 
-    KAction         *m_textColor;
+    QAction *m_textColor;
     KFontAction     *m_textFont;
     KFontSizeAction *m_textSize;
     KNote           *m_note;

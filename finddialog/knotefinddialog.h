@@ -21,7 +21,7 @@
 #include <KDialog>
 #include <AkonadiCore/Item>
 #include "knotes_export.h"
-class KPushButton;
+class QPushButton;
 class KLineEdit;
 class QListWidgetItem;
 class QListWidget;
@@ -50,7 +50,7 @@ private:
     QHash<Akonadi::Item::Id , Akonadi::Item> mNotes;
     QLabel *mResultSearch;
     KLineEdit *mSearchLineEdit;
-    KPushButton *mSearchButton;
+    QPushButton *mSearchButton;
     NoteShared::NoteListWidget *mNoteList;
 };
 

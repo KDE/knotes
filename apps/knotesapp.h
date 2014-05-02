@@ -34,7 +34,7 @@
 
 class KNoteFindDialog;
 class KNotesAkonadiTray;
-class KMenu;
+class QMenu;
 class KNote;
 class KXMLGUIBuilder;
 class KXMLGUIFactory;
@@ -107,7 +107,7 @@ private:
     KXMLGUIBuilder  *m_guiBuilder;
     QDomDocument    m_noteGUI;
     KNotesAkonadiTray *mTray;
-    KMenu           *m_noteMenu;
+    QMenu           *m_noteMenu;
     QList<QAction *>       m_noteActions;
     KDNSSD::PublicService   *m_publisher;
     QHash<Akonadi::Item::Id, KNote*> mNotes;

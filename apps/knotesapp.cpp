@@ -72,7 +72,7 @@
 #include <kicon.h>
 #include <kiconeffect.h>
 #include <klocale.h>
-#include <kmenu.h>
+#include <QMenu>
 #include <kshortcutsdialog.h>
 #include <ksocketfactory.h>
 #include <kstandardaction.h>
@@ -116,30 +116,30 @@ KNotesApp::KNotesApp()
     QDBusConnection::sessionBus().registerObject( QLatin1String("/KNotes") , this );
     kapp->setQuitOnLastWindowClosed( false );
     // create the GUI...
-    KAction *action  = new KAction( KIcon( QLatin1String("document-new") ),
+    QAction *action  = new QAction( QIcon::fromTheme( QLatin1String("document-new") ),
                                     i18n( "New Note" ), this );
     actionCollection()->addAction( QLatin1String("new_note"), action );
-    action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_N ));
+    //QT5 action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_N ));
     connect( action, SIGNAL(triggered()), SLOT(newNote()) );
 
-    action  = new KAction( KIcon( QLatin1String("edit-paste") ),
+    action  = new QAction( QIcon::fromTheme( QLatin1String("edit-paste") ),
                            i18n( "New Note From Clipboard" ), this );
     actionCollection()->addAction( QLatin1String("new_note_clipboard"), action );
-    action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_C ));
+    //QT5 action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_C ));
     connect( action, SIGNAL(triggered()), SLOT(newNoteFromClipboard()) );
 
-    action  = new KAction( KIcon(QLatin1String( "knotes") ), i18n( "Show All Notes" ), this );
+    action  = new QAction( QIcon::fromTheme(QLatin1String( "knotes") ), i18n( "Show All Notes" ), this );
     actionCollection()->addAction( QLatin1String("show_all_notes"), action );
-    action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_S ));
+    //QT5 action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_S ));
     connect( action, SIGNAL(triggered()), SLOT(showAllNotes()) );
 
-    action  = new KAction( KIcon( QLatin1String("window-close") ),
+    action  = new QAction( QIcon::fromTheme( QLatin1String("window-close") ),
                            i18n( "Hide All Notes" ), this );
     actionCollection()->addAction( QLatin1String("hide_all_notes"), action );
-    action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_H ));
+    //QT5 action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_H ));
     connect( action, SIGNAL(triggered()), SLOT(hideAllNotes()) );
 
-    action = new KAction( KIcon( QLatin1String("document-print") ),
+    action = new QAction( QIcon::fromTheme( QLatin1String("document-print") ),
                           i18nc( "@action:inmenu", "Print Selected Notes..." ), this );
     actionCollection()->addAction( QLatin1String("print_selected_notes"), action );
     connect( action, SIGNAL(triggered()), SLOT(slotPrintSelectedNotes()) );
@@ -166,10 +166,10 @@ KNotesApp::KNotesApp()
     m_guiFactory = new KXMLGUIFactory( m_guiBuilder, this );
     m_guiFactory->addClient( this );
 
-    KMenu *contextMenu = static_cast<KMenu *>( m_guiFactory->container(
+    QMenu *contextMenu = static_cast<QMenu *>( m_guiFactory->container(
                                               QLatin1String("knotes_context"),
                                               this ) );
-    m_noteMenu = static_cast<KMenu *>( m_guiFactory->container(
+    m_noteMenu = static_cast<QMenu *>( m_guiFactory->container(
                                            QLatin1String("notes_menu"), this ) );
 
     // get the most recent XML UI file
@@ -421,7 +421,7 @@ void KNotesApp::updateNoteActions()
         }
 
 
-        KAction *action = new KAction( replaceText.replace( QLatin1String("&"), QLatin1String("&&") ), this );
+        QAction *action = new QAction( replaceText.replace( QLatin1String("&"), QLatin1String("&&") ), this );
         action->setToolTip(realName);
         action->setObjectName(QString::number(note->noteId()));
         connect( action, SIGNAL(triggered(bool)), SLOT(slotShowNote()) );
@@ -443,7 +443,7 @@ void KNotesApp::updateNoteActions()
         actionCollection()->action( QLatin1String("show_all_notes") )->setEnabled( false );
         actionCollection()->action( QLatin1String("print_selected_notes") )->setEnabled( false );
         actionCollection()->action( QLatin1String("edit_find") )->setEnabled( false );
-        KAction *action = new KAction( i18n( "No Notes" ), this );
+        QAction *action = new QAction( i18n( "No Notes" ), this );
         action->setEnabled(false);
         m_noteActions.append( action );
     } else {
