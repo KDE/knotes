@@ -34,6 +34,7 @@ class CollectionRequester;
 class QTreeView;
 class KCheckableProxyModel;
 class KJob;
+class KPushButton;
 
 class KNoteCollectionConfigWidget : public QWidget
 {
@@ -56,7 +57,8 @@ private Q_SLOTS:
     void slotUpdateCollectionStatus();
     void slotSetCollectionFilter(const QString&);    
     void slotDataChanged();
-
+    void slotRenameCollection();
+    void slotUpdateButtons();
 private:
     void updateStatus(const QModelIndex &parent);
     void forceStatus(const QModelIndex &parent, bool status);
@@ -67,6 +69,7 @@ private:
     KCheckableProxyModel *mCheckProxy;
     KRecursiveFilterProxyModel *mCollectionFilter;
     Akonadi::CollectionRequester *mDefaultSaveFolder;
+    KPushButton *mRenameCollection;
     bool mCanUpdateStatus;
 };
 

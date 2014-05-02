@@ -1,4 +1,4 @@
-/*
+﻿/*
     Copyright (c) 2013 Laurent Montel <montel@kde.org>
 
     This library is free software; you can redistribute it and/or modify it
@@ -95,6 +95,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     mFolderView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     mFolderView->setAlternatingRowColors(true);
     vbox->addWidget(mFolderView);
+    connect(mFolderView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), SLOT(slotUpdateButtons()));
 
     mFolderView->setModel( mCollectionFilter );
 
@@ -110,6 +111,11 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     hbox->addWidget(button);
     hbox->addStretch(1);
 
+    mRenameCollection = new KPushButton(i18n("Rename notes..."), this);
+    connect(mRenameCollection, SIGNAL(clicked(bool)), this, SLOT(slotRenameCollection()));
+    hbox->addWidget(mRenameCollection);
+
+
     vbox->addWidget(new QLabel(i18nc( "@info", "Select the folder where the note will be saved:" )));
     mDefaultSaveFolder = new Akonadi::CollectionRequester(Akonadi::Collection(NoteShared::NoteSharedGlobalConfig::self()->defaultFolder()));
     mDefaultSaveFolder->setMimeTypeFilter(QStringList() << Akonotes::Note::mimeType());
@@ -118,11 +124,22 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
 
     setLayout(vbox);
     QTimer::singleShot(1000, this, SLOT(slotUpdateCollectionStatus()));
+    slotUpdateButtons();
 }
 
 KNoteCollectionConfigWidget::~KNoteCollectionConfigWidget()
 {
 
+}
+
+void KNoteCollectionConfigWidget::slotUpdateButtons()
+{
+    mRenameCollection->setEnabled(mFolderView->selectionModel()->hasSelection());
+}
+
+void KNoteCollectionConfigWidget::slotRenameCollection()
+{
+    //TODO
 }
 
 void KNoteCollectionConfigWidget::slotDataChanged()
