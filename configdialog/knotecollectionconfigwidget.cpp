@@ -1,4 +1,4 @@
-/*
+﻿/*
     Copyright (c) 2013 Laurent Montel <montel@kde.org>
 
     This library is free software; you can redistribute it and/or modify it
@@ -25,11 +25,16 @@
 #include <AkonadiCore/CollectionModifyJob>
 #include <AkonadiCore/CollectionFilterProxyModel>
 #include <KRecursiveFilterProxyModel>
+#include <KInputDialog>
 
 #include <AkonadiWidgets/CollectionRequester>
 #include <AkonadiCore/ChangeRecorder>
 #include <AkonadiCore/EntityTreeModel>
 #include <AkonadiCore/Collection>
+#include <AkonadiWidgets/EntityTreeView>
+#include <AkonadiCore/EntityDisplayAttribute>
+#include <AkonadiCore/CollectionModifyJob>
+
 #include <KMime/Message>
 
 #include <KCheckableProxyModel>
@@ -38,6 +43,7 @@
 #include <KPushButton>
 #include <KLineEdit>
 #include <QDebug>
+#include <KMessageBox>
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -57,6 +63,8 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     // Create a new change recorder.
     mChangeRecorder = new Akonadi::ChangeRecorder( this );
     mChangeRecorder->setMimeTypeMonitored( Akonotes::Note::mimeType() );
+    mChangeRecorder->fetchCollection( true );
+    mChangeRecorder->setAllMonitored( true );
 
     mModel = new Akonadi::EntityTreeModel( mChangeRecorder, this );
     // Set the model to show only collections, not items.
@@ -91,12 +99,14 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
 
     vbox->addWidget(searchLine);
 
-    mFolderView = new QTreeView;
+    mFolderView = new Akonadi::EntityTreeView(this);
+    mFolderView->setDragEnabled(false);
     mFolderView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     mFolderView->setAlternatingRowColors(true);
     vbox->addWidget(mFolderView);
 
     mFolderView->setModel( mCollectionFilter );
+    connect(mFolderView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), SLOT(slotUpdateButtons()));
 
     QHBoxLayout *hbox = new QHBoxLayout;
     vbox->addLayout(hbox);
@@ -110,6 +120,11 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     hbox->addWidget(button);
     hbox->addStretch(1);
 
+    mRenameCollection = new KPushButton(i18n("Rename notes..."), this);
+    connect(mRenameCollection, SIGNAL(clicked(bool)), this, SLOT(slotRenameCollection()));
+    hbox->addWidget(mRenameCollection);
+
+
     vbox->addWidget(new QLabel(i18nc( "@info", "Select the folder where the note will be saved:" )));
     mDefaultSaveFolder = new Akonadi::CollectionRequester(Akonadi::Collection(NoteShared::NoteSharedGlobalConfig::self()->defaultFolder()));
     mDefaultSaveFolder->setMimeTypeFilter(QStringList() << Akonotes::Note::mimeType());
@@ -118,11 +133,58 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
 
     setLayout(vbox);
     QTimer::singleShot(1000, this, SLOT(slotUpdateCollectionStatus()));
+    slotUpdateButtons();
 }
 
 KNoteCollectionConfigWidget::~KNoteCollectionConfigWidget()
 {
 
+}
+
+void KNoteCollectionConfigWidget::slotUpdateButtons()
+{
+    mRenameCollection->setEnabled(mFolderView->selectionModel()->hasSelection());
+}
+
+void KNoteCollectionConfigWidget::slotRenameCollection()
+{
+    const QModelIndexList rows = mFolderView->selectionModel()->selectedRows();
+
+    if ( rows.size() != 1 )
+      return;
+
+    QModelIndex idx = rows.at( 0 );
+
+    QString title = idx.data().toString();
+
+    Akonadi::Collection col = idx.data( Akonadi::EntityTreeModel::CollectionRole ).value<Akonadi::Collection>();
+    Q_ASSERT( col.isValid() );
+    if (!col.isValid())
+      return;
+
+    bool ok;
+    const QString name = KInputDialog::getText( i18n( "Rename Notes" ),
+        i18n( "Name:" ), title, &ok, this );
+
+    if ( ok ) {
+        if ( col.hasAttribute<Akonadi::EntityDisplayAttribute>() &&
+             !col.attribute<Akonadi::EntityDisplayAttribute>()->displayName().isEmpty() ) {
+            col.attribute<Akonadi::EntityDisplayAttribute>()->setDisplayName( name );
+        } else if ( !name.isEmpty() ) {
+            col.setName( name );
+        }
+
+        Akonadi::CollectionModifyJob *job = new Akonadi::CollectionModifyJob(col, this);
+        connect( job, SIGNAL(result(KJob*)), SLOT(slotCollectionModifyFinished(KJob*)) );
+        job->start();
+    }
+}
+
+void KNoteCollectionConfigWidget::slotCollectionModifyFinished(KJob *job)
+{
+    if (job->error()) {
+        KMessageBox::error(this, i18n("An error was occured during renamed: %1", job->errorString()), i18n("Rename note"));
+    }
 }
 
 void KNoteCollectionConfigWidget::slotDataChanged()
