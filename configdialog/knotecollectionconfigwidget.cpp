@@ -182,7 +182,7 @@ void KNoteCollectionConfigWidget::slotRenameCollection()
 void KNoteCollectionConfigWidget::slotCollectionModifyFinished(KJob *job)
 {
     if (job->error()) {
-        KMessageBox::error(this, i18n("An error was occured during renamed: %1", job->errorString()), i18n("Rename note"));
+        KMessageBox::error(this, i18n("An error was occurred during renaming: %1", job->errorString()), i18n("Rename note"));
     }
 }
 
