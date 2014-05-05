@@ -21,7 +21,7 @@
 #include "application.h"
 #include "apps/knotesapp.h"
 #include <kcmdlineargs.h>
-#include <KontactInterface/pimuniqueapplication.h>
+#include <KontactInterface/kontactinterface/pimuniqueapplication.h>
 
 
 Application::Application()
