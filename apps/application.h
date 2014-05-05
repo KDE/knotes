@@ -21,7 +21,7 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <KontactInterface/pimuniqueapplication.h>
+#include <kontactinterface/pimuniqueapplication.h>
 class KCmdLineArgs;
 class KNotesApp;
 
