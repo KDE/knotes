@@ -18,6 +18,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
+#include <QDebug>
 #include "kdepim-version.h"
 #include <KGlobal>
 #include "knotes_options.h"
@@ -59,6 +60,10 @@ int main( int argc, char *argv[] )
 
     KUniqueApplication::addCmdLineOptions();
 
+    if ( !Application::start() ) {
+        qDebug()<<" knotes already started";
+        return 0;
+    }
 
     // Create Application
 
