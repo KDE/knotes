@@ -597,7 +597,7 @@ void KNotesApp::slotPrintSelectedNotes()
 
 void KNotesApp::saveNotes(bool force, bool sync)
 {
-    KNotesGlobalConfig::self()->writeConfig();
+    KNotesGlobalConfig::self()->save();
     QHashIterator<Akonadi::Item::Id, KNote*> i(mNotes);
     while (i.hasNext()) {
         i.next();

@@ -59,8 +59,8 @@ KNoteConfigDialog::KNoteConfigDialog( const QString &title,
     : KCMultiDialog( parent )
 {
     setFaceType( KPageDialog::List );
-    //QT5 setButtons( Default | Ok | Cancel );
-    //QT5 setDefaultButton( Ok );
+    setStandardButtons( QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::RestoreDefaults);
+    button( QDialogButtonBox::Ok )->setDefault(true);
 
     setWindowTitle( title );
 #ifdef Q_WS_X11
@@ -81,7 +81,7 @@ KNoteConfigDialog::KNoteConfigDialog( const QString &title,
     addModule( QLatin1String("knote_config_print") );
     addModule( QLatin1String("knote_config_collection") );
     addModule( QLatin1String("knote_config_misc") );
-    connect( this, SIGNAL(okClicked()), SLOT(slotOk()) );
+    connect( button(QDialogButtonBox::Ok), SIGNAL(clicked()), SLOT(slotOk()) );
 }
 
 KNoteConfigDialog::~KNoteConfigDialog()
@@ -89,8 +89,8 @@ KNoteConfigDialog::~KNoteConfigDialog()
 }
 
 void KNoteConfigDialog::slotOk() {
-    KNotesGlobalConfig::self()->writeConfig();
-    NoteShared::NoteSharedGlobalConfig::self()->writeConfig();
+    KNotesGlobalConfig::self()->save();
+    NoteShared::NoteSharedGlobalConfig::self()->save();
     emit configWrote();
 }
 
@@ -243,7 +243,7 @@ void KNoteMiscConfig::save()
 {
     KCModule::save();
     NoteShared::NoteSharedGlobalConfig::self()->setDefaultTitle(mDefaultTitle->text());
-    NoteShared::NoteSharedGlobalConfig::self()->writeConfig();
+    NoteShared::NoteSharedGlobalConfig::self()->save();
 }
 
 void KNoteMiscConfig::defaults()
