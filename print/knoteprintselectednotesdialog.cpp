@@ -28,6 +28,7 @@
 #include <QListWidget>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <KSharedConfig>
 
 KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     : KDialog(parent),
@@ -114,7 +115,7 @@ bool KNotePrintSelectedNotesDialog::preview() const
 
 void KNotePrintSelectedNotesDialog::readConfig()
 {
-    KConfigGroup grp( KGlobal::config(), "KNotePrintSelectedNotesDialog" );
+    KConfigGroup grp( KSharedConfig::openConfig(), "KNotePrintSelectedNotesDialog" );
     const QSize size = grp.readEntry( "Size", QSize(300, 200) );
     if ( size.isValid() ) {
         resize( size );
@@ -123,7 +124,7 @@ void KNotePrintSelectedNotesDialog::readConfig()
 
 void KNotePrintSelectedNotesDialog::writeConfig()
 {
-    KConfigGroup grp( KGlobal::config(), "KNotePrintSelectedNotesDialog" );
+    KConfigGroup grp( KSharedConfig::openConfig(), "KNotePrintSelectedNotesDialog" );
     grp.writeEntry( "Size", size() );
     grp.sync();
 }

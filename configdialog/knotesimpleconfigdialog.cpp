@@ -28,6 +28,7 @@
 
 #include <QTabWidget>
 #include <QApplication>
+#include <KSharedConfig>
 
 KNoteSimpleConfigDialog::KNoteSimpleConfigDialog( const QString &title,
                                                   QWidget *parent )
@@ -85,7 +86,7 @@ void KNoteSimpleConfigDialog::save(Akonadi::Item &item, bool &isRichText)
 
 void KNoteSimpleConfigDialog::readConfig()
 {
-    KConfigGroup group( KGlobal::config(), "KNoteSimpleConfigDialog" );
+    KConfigGroup group( KSharedConfig::openConfig(), "KNoteSimpleConfigDialog" );
     const QSize size = group.readEntry( "Size", QSize(600, 400) );
     if ( size.isValid() ) {
         resize( size );
@@ -94,7 +95,7 @@ void KNoteSimpleConfigDialog::readConfig()
 
 void KNoteSimpleConfigDialog::writeConfig()
 {
-    KConfigGroup group( KGlobal::config(), "KNoteSimpleConfigDialog" );
+    KConfigGroup group( KSharedConfig::openConfig(), "KNoteSimpleConfigDialog" );
     group.writeEntry( "Size", size() );
     group.sync();
 }

@@ -30,6 +30,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QListWidget>
+#include <KSharedConfig>
 
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     : KDialog(parent)
@@ -55,14 +56,14 @@ void KNoteFindDialog::setExistingNotes(const QHash<Akonadi::Entity::Id, Akonadi:
 
 void KNoteFindDialog::writeConfig()
 {
-    KConfigGroup grp( KGlobal::config(), "KNoteFindDialog" );
+    KConfigGroup grp( KSharedConfig::openConfig(), "KNoteFindDialog" );
     grp.writeEntry( "Size", size() );
     grp.sync();
 }
 
 void KNoteFindDialog::readConfig()
 {
-    KConfigGroup grp( KGlobal::config(), "KNoteFindDialog" );
+    KConfigGroup grp( KSharedConfig::openConfig(), "KNoteFindDialog" );
     const QSize size = grp.readEntry( "Size", QSize(600, 300) );
     if ( size.isValid() ) {
         resize( size );

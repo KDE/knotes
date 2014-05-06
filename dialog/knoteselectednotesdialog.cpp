@@ -23,6 +23,7 @@
 #include <KGlobal>
 
 #include <QListWidget>
+#include <KSharedConfig>
 
 KNoteSelectedNotesDialog::KNoteSelectedNotesDialog(QWidget *parent)
     : KDialog(parent)
@@ -78,7 +79,7 @@ QStringList KNoteSelectedNotesDialog::selectedNotes() const
 
 void KNoteSelectedNotesDialog::readConfig()
 {
-    KConfigGroup grp( KGlobal::config(), "KNoteSelectedNotesDialog" );
+    KConfigGroup grp( KSharedConfig::openConfig(), "KNoteSelectedNotesDialog" );
     const QSize size = grp.readEntry( "Size", QSize(300, 200) );
     if ( size.isValid() ) {
         resize( size );
@@ -87,7 +88,7 @@ void KNoteSelectedNotesDialog::readConfig()
 
 void KNoteSelectedNotesDialog::writeConfig()
 {
-    KConfigGroup grp( KGlobal::config(), "KNoteSelectedNotesDialog" );
+    KConfigGroup grp( KSharedConfig::openConfig(), "KNoteSelectedNotesDialog" );
     grp.writeEntry( "Size", size() );
     grp.sync();
 }
