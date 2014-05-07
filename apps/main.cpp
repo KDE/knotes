@@ -68,7 +68,6 @@ int main( int argc, char *argv[] )
     // Create Application
 
     Application app;
-    KGlobal::locale()->insertCatalog(QLatin1String("libkdepim"));
 
     remove_sm_from_client_leader();
 
