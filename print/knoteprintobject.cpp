@@ -58,7 +58,7 @@ QString KNotePrintObject::name() const
 QString KNotePrintObject::currentDateTime() const
 {
     const QDateTime now = QDateTime::currentDateTime();
-    return KGlobal::locale()->formatDateTime( now );
+    return KLocale::global()->formatDateTime( now );
 }
 
 bool KNotePrintObject::hasAlarm() const
@@ -70,7 +70,7 @@ QString KNotePrintObject::alarm() const
 {
     NoteShared::NoteAlarmAttribute *attr = mItem.attribute<NoteShared::NoteAlarmAttribute>();
     if (attr) {
-        return KGlobal::locale()->formatDateTime(attr->dateTime(),KLocale::LongDate);
+        return KLocale::global()->formatDateTime(attr->dateTime(),KLocale::LongDate);
     }
     return QString();
 }
