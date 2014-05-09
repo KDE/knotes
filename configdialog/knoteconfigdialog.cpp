@@ -72,8 +72,6 @@ KNoteConfigDialog::KNoteConfigDialog( const QString &title,
                                  IconSize( KIconLoader::Small ),
                                  IconSize( KIconLoader::Small ) ) );
 #endif
-    //QT5 showButtonSeparator( true );
-
     addModule( QLatin1String("knote_config_display") );
     addModule( QLatin1String("knote_config_editor") );
     addModule( QLatin1String("knote_config_action") );
