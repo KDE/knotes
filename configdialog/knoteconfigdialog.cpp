@@ -218,7 +218,7 @@ KNoteMiscConfig::KNoteMiscConfig(const KComponentData &inst, QWidget *parent )
     QLabel *label_DefaultTitle = new QLabel( i18n( "Default Title:" ), this );
     hbox->addWidget( label_DefaultTitle );
 
-    mDefaultTitle = new KLineEdit( this );
+    mDefaultTitle = new QLineEdit( this );
     label_DefaultTitle->setBuddy( mDefaultTitle );
     hbox->addWidget( mDefaultTitle );
 

@@ -22,7 +22,7 @@
 #include <AkonadiCore/Item>
 #include "knotes_export.h"
 class QPushButton;
-class KLineEdit;
+class QLineEdit;
 class QListWidgetItem;
 class QListWidget;
 class QLabel;
@@ -49,7 +49,7 @@ private Q_SLOTS:
 private:
     QHash<Akonadi::Item::Id , Akonadi::Item> mNotes;
     QLabel *mResultSearch;
-    KLineEdit *mSearchLineEdit;
+    QLineEdit *mSearchLineEdit;
     QPushButton *mSearchButton;
     NoteShared::NoteListWidget *mNoteList;
 };

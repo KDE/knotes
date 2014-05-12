@@ -22,7 +22,7 @@
 #include <baloo/pim/resultiterator.h>
 
 #include <KLocalizedString>
-#include <KLineEdit>
+#include <QLineEdit>
 #include <QPushButton>
 #include <KGlobal>
 #include <QIcon>
@@ -79,9 +79,9 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     vbox->addLayout(hbox);
     QLabel *lab = new QLabel(i18n("Search notes:"));
     hbox->addWidget(lab);
-    mSearchLineEdit = new KLineEdit;
-    mSearchLineEdit->setTrapReturnKey(true);
-    mSearchLineEdit->setClearButtonShown(true);
+    mSearchLineEdit = new QLineEdit;
+    //QT5 mSearchLineEdit->setTrapReturnKey(true);
+    mSearchLineEdit->setClearButtonEnabled(true);
     connect(mSearchLineEdit, SIGNAL(returnPressed()), this, SLOT(slotSearchNote()));
     connect(mSearchLineEdit, SIGNAL(textChanged(QString)), this, SLOT(slotTextChanged(QString)));
     hbox->addWidget(mSearchLineEdit);

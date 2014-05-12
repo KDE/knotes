@@ -29,7 +29,7 @@
 
 class KNotePrintSelectThemeComboBox;
 class KNoteCollectionConfigWidget;
-class KLineEdit;
+class QLineEdit;
 
 class KNOTES_EXPORT KNoteConfigDialog : public KCMultiDialog
 {
@@ -78,7 +78,7 @@ public:
 private slots:
     void slotHelpLinkClicked(const QString &);
 private:
-    KLineEdit *mDefaultTitle;
+    QLineEdit *mDefaultTitle;
 };
 
 class KNotePrintConfig : public KCModule

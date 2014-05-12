@@ -41,7 +41,7 @@
 
 #include <KLocalizedString>
 #include <QPushButton>
-#include <KLineEdit>
+#include <QLineEdit>
 #include <QDebug>
 #include <KMessageBox>
 
@@ -91,9 +91,9 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     mCollectionFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
 
 
-    KLineEdit *searchLine = new KLineEdit(this);
+    QLineEdit *searchLine = new QLineEdit(this);
     searchLine->setPlaceholderText(i18n("Search..."));
-    searchLine->setClearButtonShown(true);
+    searchLine->setClearButtonEnabled(true);
     connect(searchLine, SIGNAL(textChanged(QString)),
             this, SLOT(slotSetCollectionFilter(QString)));
 
