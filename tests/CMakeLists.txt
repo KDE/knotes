@@ -6,7 +6,7 @@ include_directories(
 )
 include ( ${CMAKE_SOURCE_DIR}/cmake/modules/kde4_handle_crypto_rpath_for_executable.cmake )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
+kde_enable_exceptions()
 
 # convenience macro to add qtest unit tests
 macro(add_knotes_unittest _source)
@@ -14,9 +14,8 @@ macro(add_knotes_unittest _source)
   get_filename_component(_name ${_source} NAME_WE)
   kde4_add_unit_test(${_name} TESTNAME knotes-${_name} ${_test} )
   target_link_libraries( ${_name}
-    ${QT_QTTEST_LIBRARY}
-    ${QT_QTCORE_LIBRARY}
-    ${KDE4_KIO_LIBS}
+    Qt5::Test
+    KF5::KIOCore
   )
 endmacro ()
 

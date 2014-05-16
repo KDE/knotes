@@ -14,7 +14,7 @@ set(knotes_akonadi_SRCS main.cpp
 )
 add_executable(knotes_akonadi_test ${knotes_akonadi_SRCS})
 target_link_libraries(knotes_akonadi_test
-  ${QT_QTTEST_LIBRARY}
+  Qt5::Test
   KF5::AkonadiCore
   KF5::Mime
   akonadi_next
