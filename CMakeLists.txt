@@ -1,6 +1,6 @@
 project(knotes)
 add_subdirectory( icons ) 
-add_subdirectory( tests )
+#add_subdirectory( tests )
 add_definitions( -DQT_NO_CAST_FROM_ASCII )
 add_definitions( -DQT_NO_CAST_TO_ASCII )
 kde_enable_exceptions()
