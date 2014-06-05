@@ -81,7 +81,6 @@
 #include <kwindowsystem.h>
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
-#include <KDebug>
 #include <kiconloader.h>
 #include <KShortcut>
 #include <KGlobal>
@@ -298,7 +297,7 @@ void KNotesApp::showNote(const Akonadi::Entity::Id &id ) const
         KNote *note = mNotes.value(id);
         showNote( note );
     } else {
-        kWarning( 5500 ) << "hideNote: no note with id:" << id;
+        qWarning() << "hideNote: no note with id:" << id;
     }
 }
 
@@ -324,7 +323,7 @@ void KNotesApp::hideNote( const Akonadi::Item::Id &id ) const
         KNote *note = mNotes.value(id);
         note->hide();
     } else {
-        kWarning( 5500 ) << "hideNote: no note with id:" << id;
+        qWarning() << "hideNote: no note with id:" << id;
     }
 }
 
@@ -390,7 +389,7 @@ void KNotesApp::setName( const Akonadi::Item::Id &id, const QString &newName )
     if (mNotes.contains(id)) {
         mNotes.value(id)->setName(newName);
     } else {
-        kWarning( 5500 ) << "setName: no note with id:" << id;
+        qWarning() << "setName: no note with id:" << id;
     }
 }
 
@@ -399,7 +398,7 @@ void KNotesApp::setText( const Akonadi::Item::Id &id, const QString &newText )
     if (mNotes.contains(id)) {
         mNotes.value(id)->setText( newText );
     } else {
-        kWarning( 5500 ) << "setText: no note with id:" << id;
+        qWarning() << "setText: no note with id:" << id;
     }
 }
 
