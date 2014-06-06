@@ -63,6 +63,7 @@ set(knotes_SRCS
                 apps/knotesapp.cpp 
                 apps/knotesakonaditray.cpp
                 dialog/knoteskeydialog.cpp 
+                dialog/knotedeleteselectednotesdialog.cpp
                 notes/knotebutton.cpp 
                 print/knoteprintselectednotesdialog.cpp
                 notes/knote.cpp
