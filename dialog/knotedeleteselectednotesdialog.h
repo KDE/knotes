@@ -20,7 +20,7 @@
 #define KNOTEDELETESELECTEDNOTESDIALOG_H
 
 #include <KDialog>
-#include <Akonadi/Item>
+#include <AkonadiCore/Item>
 namespace NoteShared {
 class NoteListWidget;
 }
