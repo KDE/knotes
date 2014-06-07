@@ -95,7 +95,8 @@ private Q_SLOTS:
 
     void slotSelectNote(Akonadi::Item::Id);
     void slotCollectionChanged(const Akonadi::Collection &, const QSet<QByteArray> &);
-    void slotItemFetchFinished(KJob *job);
+    void slotItemFetchFinished(KJob *job);    
+    void slotDeleteSelectedNotes();
 
 private:
     void saveNotes(bool force = false, bool sync = false);

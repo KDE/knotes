@@ -46,6 +46,7 @@
 #include "print/knoteprintobject.h"
 #include "knotesglobalconfig.h"
 #include "dialog/knoteskeydialog.h"
+#include "dialog/knotedeleteselectednotesdialog.h"
 #include "print/knoteprintselectednotesdialog.h"
 #include "finddialog/knotefinddialog.h"
 
@@ -144,6 +145,11 @@ KNotesApp::KNotesApp()
     connect( action, SIGNAL(triggered()), SLOT(slotPrintSelectedNotes()) );
 
     QAction *act = KStandardAction::find( this, SLOT(slotOpenFindDialog()), actionCollection());
+    action = new KAction( KIcon( QLatin1String("edit-delete") ),
+                          i18nc( "@action:inmenu", "Delete Selected Notes..." ), this );
+    actionCollection()->addAction( QLatin1String("delete_selected_notes"), action );
+    connect( action, SIGNAL(triggered()), SLOT(slotDeleteSelectedNotes()) );
+
     //REmove shortcut here.
     act->setShortcut(0);
 
@@ -215,6 +221,29 @@ KNotesApp::~KNotesApp()
     mNotes.clear();
     delete m_publisher;
     m_publisher=0;
+}
+
+void KNotesApp::slotDeleteSelectedNotes()
+{
+    QPointer<KNoteDeleteSelectedNotesDialog> dlg = new KNoteDeleteSelectedNotesDialog(this);
+    Akonadi::Item::List lst;
+    QHashIterator<Akonadi::Item::Id, KNote*> i(mNotes);
+    while (i.hasNext()) {
+        i.next();
+        Akonadi::Item item = i.value()->item();
+        if (!item.hasAttribute<NoteShared::NoteLockAttribute>()) {
+            lst.append(item);
+        }
+    }
+    dlg->setNotes(lst);
+    if (dlg->exec()) {
+        Akonadi::Item::List lst = dlg->selectedNotes();
+        if (!lst.isEmpty()) {
+            Akonadi::ItemDeleteJob *deleteJob = new Akonadi::ItemDeleteJob(lst, this);
+            connect( deleteJob, SIGNAL(result(KJob*)), SLOT(slotNoteDeleteFinished(KJob*)) );
+        }
+    }
+    delete dlg;
 }
 
 void KNotesApp::slotItemRemoved(const Akonadi::Item &item)
