@@ -19,7 +19,7 @@
 #define KNOTESAKONADITRAY_H
 
 #include <KStatusNotifierItem>
-#include <KIcon>
+#include <QIcon>
 class KNotesAkonadiTray : public KStatusNotifierItem
 {
     Q_OBJECT
@@ -33,7 +33,7 @@ private slots:
     void slotGeneralPaletteChanged();
 
 private:
-    KIcon mIcon;
+    QIcon mIcon;
     QColor mTextColor;
 };
 
