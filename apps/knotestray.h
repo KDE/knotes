@@ -30,7 +30,7 @@ public:
     void updateNumberOfNotes(int value);
 
 private:
-    KIcon mIcon;
+    QIcon mIcon;
 };
 
 #endif // KNOTESTRAY_H
