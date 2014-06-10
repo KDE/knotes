@@ -402,6 +402,9 @@ void KNotesApp::newNoteFromTextFile()
         QFile f(filename);
         if (f.open(QIODevice::ReadOnly|QIODevice::Text)) {
             text = QString::fromUtf8(f.readAll());
+        } else {
+            KMessageBox::error(this, i18n("Error during open text file: %1", f.errorString()), i18n("Open Text File"));
+            return;
         }
         newNote( filename, text);
     }
