@@ -98,6 +98,7 @@ private Q_SLOTS:
     void slotItemFetchFinished(KJob *job);    
     void slotDeleteSelectedNotes();
 
+    void newNoteFromTextFile();
 private:
     void saveNotes(bool force = false, bool sync = false);
     void updateNetworkListener();

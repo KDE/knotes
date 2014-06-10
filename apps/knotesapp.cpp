@@ -82,6 +82,8 @@
 #include <kwindowsystem.h>
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
+#include <KFileDialog>
+
 #include <kiconloader.h>
 #include <KShortcut>
 #include <KGlobal>
@@ -127,6 +129,12 @@ KNotesApp::KNotesApp()
     actionCollection()->addAction( QLatin1String("new_note_clipboard"), action );
     //QT5 action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_C ));
     connect( action, SIGNAL(triggered()), SLOT(newNoteFromClipboard()) );
+
+    action  = new QAction( KIcon( QLatin1String("document-open") ),
+                           i18n( "New Note From Text File..." ), this );
+    actionCollection()->addAction( QLatin1String("new_note_from_text_file"), action );
+    connect( action, SIGNAL(triggered()), SLOT(newNoteFromTextFile()) );
+
 
     action  = new QAction( QIcon::fromTheme(QLatin1String( "knotes") ), i18n( "Show All Notes" ), this );
     actionCollection()->addAction( QLatin1String("show_all_notes"), action );
@@ -383,6 +391,22 @@ void KNotesApp::newNoteFromClipboard( const QString &name )
 {
     const QString &text = KApplication::clipboard()->text();
     newNote( name, text );
+}
+
+void KNotesApp::newNoteFromTextFile()
+{
+    QString text;
+    const QString filename = KFileDialog::getOpenFileName( KUrl(),
+                                     QLatin1String("*.txt"),
+                                     this,
+                                     i18n("Select Text File") );
+    if (!filename.isEmpty()) {
+        QFile f(filename);
+        if (f.open(QIODevice::ReadOnly|QIODevice::Text)) {
+            text = QString::fromUtf8(f.readAll());
+        }
+        newNote( filename, text);
+    }
 }
 
 void KNotesApp::updateNetworkListener()
