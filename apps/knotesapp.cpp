@@ -82,6 +82,7 @@
 #include <kwindowsystem.h>
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
+#include <KFileDialog>
 
 #include <kiconloader.h>
 
@@ -392,7 +393,18 @@ void KNotesApp::newNoteFromClipboard( const QString &name )
 
 void KNotesApp::newNoteFromTextFile()
 {
-    //TODO
+    QString text;
+    const QString filename = KFileDialog::getOpenFileName( KUrl(),
+                                     QLatin1String("*.txt"),
+                                     this,
+                                     i18n("Select Text File") );
+    if (!filename.isEmpty()) {
+        QFile f(filename);
+        if (f.open(QIODevice::ReadOnly|QIODevice::Text)) {
+            text = QString::fromUtf8(f.readAll());
+        }
+        newNote( filename, text);
+    }
 }
 
 void KNotesApp::updateNetworkListener()
