@@ -127,6 +127,12 @@ KNotesApp::KNotesApp()
     action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_C ));
     connect( action, SIGNAL(triggered()), SLOT(newNoteFromClipboard()) );
 
+    action  = new KAction( KIcon( QLatin1String("document-open") ),
+                           i18n( "New Note From Text File..." ), this );
+    actionCollection()->addAction( QLatin1String("new_note_from_text_file"), action );
+    connect( action, SIGNAL(triggered()), SLOT(newNoteFromTextFile()) );
+
+
     action  = new KAction( KIcon(QLatin1String( "knotes") ), i18n( "Show All Notes" ), this );
     actionCollection()->addAction( QLatin1String("show_all_notes"), action );
     action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_S ));
@@ -382,6 +388,11 @@ void KNotesApp::newNoteFromClipboard( const QString &name )
 {
     const QString &text = KApplication::clipboard()->text();
     newNote( name, text );
+}
+
+void KNotesApp::newNoteFromTextFile()
+{
+    //TODO
 }
 
 void KNotesApp::updateNetworkListener()
