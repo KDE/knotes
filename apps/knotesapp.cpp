@@ -70,7 +70,6 @@
 #include <kaction.h>
 #include <qdebug.h>
 #include <khelpmenu.h>
-#include <kicon.h>
 #include <kiconeffect.h>
 #include <klocale.h>
 #include <QMenu>
@@ -130,7 +129,7 @@ KNotesApp::KNotesApp()
     //QT5 action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_C ));
     connect( action, SIGNAL(triggered()), SLOT(newNoteFromClipboard()) );
 
-    action  = new QAction( KIcon( QLatin1String("document-open") ),
+    action  = new QAction( QIcon::fromTheme( QLatin1String("document-open") ),
                            i18n( "New Note From Text File..." ), this );
     actionCollection()->addAction( QLatin1String("new_note_from_text_file"), action );
     connect( action, SIGNAL(triggered()), SLOT(newNoteFromTextFile()) );
@@ -153,7 +152,7 @@ KNotesApp::KNotesApp()
     connect( action, SIGNAL(triggered()), SLOT(slotPrintSelectedNotes()) );
 
     QAction *act = KStandardAction::find( this, SLOT(slotOpenFindDialog()), actionCollection());
-    action = new KAction( QIcon::fromTheme( QLatin1String("edit-delete") ),
+    action = new QAction( QIcon::fromTheme( QLatin1String("edit-delete") ),
                           i18nc( "@action:inmenu", "Delete Selected Notes..." ), this );
     actionCollection()->addAction( QLatin1String("delete_selected_notes"), action );
     connect( action, SIGNAL(triggered()), SLOT(slotDeleteSelectedNotes()) );

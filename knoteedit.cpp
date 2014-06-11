@@ -30,7 +30,6 @@
 #include <qdebug.h>
 #include <kfontaction.h>
 #include <kfontsizeaction.h>
-#include <kicon.h>
 #include <klocale.h>
 #include <QMenu>
 #include <kstandardaction.h>
