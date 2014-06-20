@@ -407,7 +407,7 @@ void KNotesApp::newNoteFromTextFile()
             KMessageBox::error(this, i18n("Error during open text file: %1", f.errorString()), i18n("Open Text File"));
             return;
         }
-        newNote( filename, text);
+        newNote( i18n("Note from file '%1'",filename), text);
     }
 }
 
