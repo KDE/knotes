@@ -26,6 +26,7 @@
 
 #include <QPainter>
 #include <QWidget>
+#include <QFontDatabase>
 
 KNotesAkonadiTray::KNotesAkonadiTray(QWidget *parent)
     : KStatusNotifierItem(parent),
@@ -57,7 +58,7 @@ void KNotesAkonadiTray::updateNumberOfNotes(int number)
         const int overlaySize = KIconLoader::SizeSmallMedium;
 
         const QString countString = QString::number( number );
-        QFont countFont = KGlobalSettings::generalFont();
+        QFont countFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
         countFont.setBold(true);
 
         // decrease the size of the font for the number of unread messages if the
