@@ -19,7 +19,6 @@
 #define KNOTESAKONADITRAY_H
 
 #include <KStatusNotifierItem>
-#include <QIcon>
 namespace Akonadi {
 class ChangeRecorder;
 }

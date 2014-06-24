@@ -76,11 +76,10 @@
 #include <QSizeGrip>
 #include <QTextStream>
 #include <QVBoxLayout>
-#include <QDesktopWidget>
 #include <QPointer>
 #include <QFocusEvent>
-#include <QTcpServer>
 #include <QMimeData>
+#include <QDesktopWidget>
 
 #ifdef Q_WS_X11
 #include <fixx11h.h>

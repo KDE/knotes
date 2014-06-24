@@ -34,8 +34,6 @@
 
 #include <QDebug>
 #include <QHash>
-#include <QTextEdit>
-#include <QLineEdit>
 
 KNotesAkonadiApp::KNotesAkonadiApp(QWidget *parent)
     : QWidget(parent)

@@ -21,7 +21,6 @@
 #include "knotes_export.h"
 #include <AkonadiCore/Item>
 #include <KDialog>
-#include <KComponentData>
 class QTabWidget;
 class KNoteEditorConfigWidget;
 class KNoteDisplayConfigWidget;

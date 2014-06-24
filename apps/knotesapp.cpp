@@ -90,7 +90,6 @@
 #include <QPixmap>
 #include <QClipboard>
 #include <QDBusConnection>
-#include <QTcpServer>
 
 #include <dnssd/publicservice.h>
 

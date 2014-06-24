@@ -24,7 +24,6 @@
 
 #include <KLocalizedString>
 #include <KWindowSystem>
-#include <KGlobal>
 
 #include <QTabWidget>
 #include <QApplication>

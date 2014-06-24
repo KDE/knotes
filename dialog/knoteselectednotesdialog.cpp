@@ -20,7 +20,6 @@
 
 #include <KLocalizedString>
 #include <KConfigGroup>
-#include <KGlobal>
 
 #include <QListWidget>
 #include <KSharedConfig>

@@ -20,7 +20,6 @@
 
 #include <KLocalizedString>
 #include <KSharedConfig>
-#include <KGlobal>
 
 KNoteDeleteSelectedNotesDialog::KNoteDeleteSelectedNotesDialog(QWidget *parent)
     : KDialog(parent)

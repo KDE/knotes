@@ -47,7 +47,6 @@
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QTreeView>
 #include <QLabel>
 #include <QTimer>
 

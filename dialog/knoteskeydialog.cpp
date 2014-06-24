@@ -21,7 +21,6 @@
 #include <KDialog>
 #include <KLocalizedString>
 #include <KSharedConfig>
-#include <KGlobal>
 
 KNotesKeyDialog::KNotesKeyDialog( KActionCollection *globals, QWidget *parent )
     : KDialog( parent )

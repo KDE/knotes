@@ -22,7 +22,6 @@
 
 #include <KLocalizedString>
 #include <KConfigGroup>
-#include <KGlobal>
 #include <QIcon>
 
 #include <QListWidget>
