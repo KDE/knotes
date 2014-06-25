@@ -25,7 +25,7 @@
 #include <AkonadiCore/CollectionModifyJob>
 #include <AkonadiCore/CollectionFilterProxyModel>
 #include <KRecursiveFilterProxyModel>
-#include <KInputDialog>
+#include <QInputDialog>
 
 #include <AkonadiWidgets/CollectionRequester>
 #include <AkonadiCore/ChangeRecorder>
@@ -162,8 +162,8 @@ void KNoteCollectionConfigWidget::slotRenameCollection()
       return;
 
     bool ok;
-    const QString name = KInputDialog::getText( i18n( "Rename Notes" ),
-        i18n( "Name:" ), title, &ok, this );
+    const QString name = QInputDialog::getText( this, i18n( "Rename Notes" ),
+        i18n( "Name:" ), QLineEdit::Normal, title, &ok );
 
     if ( ok ) {
         if ( col.hasAttribute<Akonadi::EntityDisplayAttribute>() &&
