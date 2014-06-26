@@ -1,5 +1,5 @@
 
-kde_enable_exceptions() 
+ 
 include_directories(
   ${CMAKE_SOURCE_DIR}/pimcommon
   ${CMAKE_SOURCE_DIR}/noteshared

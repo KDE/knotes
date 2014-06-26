@@ -6,7 +6,7 @@ include_directories(
 )
 include ( ${CMAKE_SOURCE_DIR}/cmake/modules/kde4_handle_crypto_rpath_for_executable.cmake )
 
-kde_enable_exceptions()
+
 
 # convenience macro to add qtest unit tests
 macro(add_knotes_unittest _source)
