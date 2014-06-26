@@ -46,7 +46,6 @@
 #include <kcombobox.h>
 #include <kfiledialog.h>
 #include <kglobalsettings.h>
-#include <kicon.h>
 #include <kiconeffect.h>
 #include <kiconloader.h>
 #include <qinputdialog.h>
