@@ -26,7 +26,6 @@
 #include <QWidget>
 
 #include <kapplication.h>
-#include <ksessionmanager.h>
 #include <kxmlguiclient.h>
 
 #include <AkonadiCore/Item>
@@ -49,14 +48,12 @@ class PublicService;
 class KJob;
 class QModelIndex;
 class KNotesApp
-        : public QWidget, public KSessionManager, virtual public KXMLGUIClient
+        : public QWidget, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:
     KNotesApp();
     ~KNotesApp();
-
-    bool commitData( QSessionManager & );
 
 public slots:
     void newNote( const QString &name = QString(),
@@ -76,6 +73,7 @@ private:
 
 
 private Q_SLOTS:
+    void slotCommitData( QSessionManager & );
     void slotPreferences();
     void slotConfigUpdated();
     void slotNoteDeleteFinished(KJob*);

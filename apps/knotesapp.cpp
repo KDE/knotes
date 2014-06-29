@@ -213,6 +213,7 @@ KNotesApp::KNotesApp()
     connect( mNoteRecorder->changeRecorder(), SIGNAL(itemChanged(Akonadi::Item,QSet<QByteArray>)), SLOT(slotItemChanged(Akonadi::Item,QSet<QByteArray>)));
     connect( mNoteRecorder->changeRecorder(), SIGNAL(itemRemoved(Akonadi::Item)), SLOT(slotItemRemoved(Akonadi::Item)) );
     connect( mNoteRecorder->changeRecorder(), SIGNAL(collectionChanged(Akonadi::Collection,QSet<QByteArray>)), SLOT(slotCollectionChanged(Akonadi::Collection,QSet<QByteArray>)) );
+    connect( qApp, SIGNAL(commitDataRequest(QSessionManager&)), this, SLOT(slotCommitData(QSessionManager&)), Qt::DirectConnection);
     updateNoteActions();
 }
 
@@ -664,10 +665,9 @@ void KNotesApp::slotQuit()
     kapp->quit();
 }
 
-bool KNotesApp::commitData( QSessionManager & )
+void KNotesApp::slotCommitData( QSessionManager & )
 {
     saveNotes(true, true);
-    return true;
 }
 
 void KNotesApp::slotSelectNote(Akonadi::Item::Id id)
