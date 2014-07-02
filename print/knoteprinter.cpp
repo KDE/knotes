@@ -23,6 +23,7 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QAbstractTextDocumentLayout>
+#include <QPointer>
 
 #include <kdeprintdialog.h>
 #include <KMessageBox>
@@ -73,9 +74,10 @@ void KNotePrinter::doPrint( const QString &htmlText,
 {
     QPrinter printer( QPrinter::HighResolution );
     //printer.setFullPage( true );  //disabled, causes asymmetric margins
-    QPrintDialog printDialog(/*KdePrint::createPrintDialog*/(&printer));
-    printDialog.setWindowTitle( dialogCaption );
-    if ( !printDialog.exec() ) {
+    QPointer<QPrintDialog> printDialog = KdePrint::createPrintDialog(&printer);
+    printDialog->setWindowTitle(dialogCaption);
+    if ( !printDialog->exec() || !printDialog ) {
+         delete printDialog;
         return;
     }
     print(printer, htmlText);
