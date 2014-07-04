@@ -81,7 +81,11 @@ target_link_libraries(knotes knotesprivate pimcommon kdepim KF5::KIOCore
                              KF5::KCMUtils KF5::KontactInterface noteshared
   KF5::AkonadiCore
   KF5::Mime
-  akonadi_next)
+  akonadi_next
+  )
+if (Qt5X11Extras_FOUND)
+  target_link_libraries(knotes Qt5::X11Extras ${X11_LIBRARIES})
+endif()
 install(TARGETS knotes  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 

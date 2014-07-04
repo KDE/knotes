@@ -16,7 +16,7 @@
 */
 
 #include "knotedisplayconfigwidget.h"
-
+#include "config-kdepim.h"
 
 #include "noteshared/attributes/notedisplayattribute.h"
 
@@ -64,7 +64,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults, QWidget *pare
     kcfg_ShowInTaskbar =
             new QCheckBox( i18n( "&Show note in taskbar" ), this );
     kcfg_ShowInTaskbar->setObjectName( QLatin1String("kcfg_ShowInTaskbar") );
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
     kcfg_RememberDesktop =
             new QCheckBox( i18n( "&Remember desktop" ), this );
     kcfg_RememberDesktop->setObjectName( QLatin1String("kcfg_RememberDesktop") );
@@ -93,12 +93,12 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults, QWidget *pare
         layout->addWidget( kcfg_Height, 3, 1 );
 
         layout->addWidget( kcfg_ShowInTaskbar, 4, 0 );
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
         layout->addWidget( kcfg_RememberDesktop, 5, 0 );
 #endif
     } else {
         layout->addWidget( kcfg_ShowInTaskbar, 2, 0 );
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
         layout->addWidget( kcfg_RememberDesktop, 3, 0 );
 #endif
     }

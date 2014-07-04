@@ -18,6 +18,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
+#include "config-kdepim.h"
 #include <QDebug>
 #include "kdepim-version.h"
 #include <KGlobal>
@@ -30,10 +31,10 @@
 #include <kxerrorhandler.h>
 #include <KGlobal>
 
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
-#include <QX11Info>
+#include <qx11info_x11.h>
 #endif
 
 void remove_sm_from_client_leader();
@@ -76,7 +77,7 @@ int main( int argc, char *argv[] )
 
 void remove_sm_from_client_leader()
 {
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
     Atom type;
     int format, status;
     unsigned long nitems = 0;

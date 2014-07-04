@@ -15,6 +15,7 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#include "config-kdepim.h"
 #include "knotesimpleconfigdialog.h"
 #include "knoteconfigdialog.h"
 #include "knotedisplayconfigwidget.h"
@@ -24,6 +25,7 @@
 
 #include <KLocalizedString>
 #include <KWindowSystem>
+#include <KIconLoader>
 
 #include <QTabWidget>
 #include <QApplication>
@@ -37,7 +39,7 @@ KNoteSimpleConfigDialog::KNoteSimpleConfigDialog( const QString &title,
     setDefaultButton( Ok );
 
     setCaption( title );
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
     KWindowSystem::setIcons( winId(),
                              qApp->windowIcon().pixmap(
                                  IconSize( KIconLoader::Desktop ),

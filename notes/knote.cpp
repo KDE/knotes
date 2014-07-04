@@ -17,7 +17,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
-
+#include "config-kdepim.h"
 #include "knote.h"
 #include "noteshared/noteutils.h"
 #include "alarms/notealarmdialog.h"
@@ -80,7 +80,7 @@
 #include <QMimeData>
 #include <QDesktopWidget>
 
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
 #include <fixx11h.h>
 #include <QX11Info>
 #endif
@@ -197,7 +197,8 @@ void KNote::saveNote(bool force, bool sync)
         needToSave = true;
         attribute->setSize(currentSize);
     }
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
+#if 0 //QT5
     NETWinInfo wm_client( QX11Info::display(), winId(),
                           QX11Info::appRootWindow(), NET::WMDesktop );
     if ( ( wm_client.desktop() == NETWinInfo::OnAllDesktops ) ||
@@ -208,6 +209,7 @@ void KNote::saveNote(bool force, bool sync)
             attribute->setDesktop( desktopNumber );
         }
     }
+#endif
 #endif
     if (m_editor->document()->isModified()) {
         needToSave = true;
@@ -262,11 +264,13 @@ void KNote::setName( const QString& name )
     if ( m_editor ) {    // not called from CTOR?
         saveNote();
     }
-#ifdef Q_WS_X11
+#if 0 //QT5
+#if KDEPIM_HAVE_X11
     // set the window's name for the taskbar entry to be more helpful (#58338)
     NETWinInfo note_win( QX11Info::display(), winId(), QX11Info::appRootWindow(),
                          NET::WMDesktop );
     note_win.setName( name.toUtf8() );
+#endif
 #endif
 
     emit sigNameChanged(name);
@@ -354,7 +358,7 @@ void KNote::slotUpdateReadOnly()
     m_keepAbove->setEnabled( !readOnly);
     m_keepBelow->setEnabled( !readOnly);
 
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
     m_toDesktop->setEnabled( !readOnly);
 #endif
 
@@ -364,13 +368,15 @@ void KNote::slotUpdateReadOnly()
 void KNote::updateAllAttributes()
 {
     NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
-#ifdef Q_WS_X11
+#if 0 //QT5
+#if KDEPIM_HAVE_X11
     NETWinInfo wm_client( QX11Info::display(), winId(),
                           QX11Info::appRootWindow(), NET::WMDesktop );
     if ( ( wm_client.desktop() == NETWinInfo::OnAllDesktops ) ||
          ( wm_client.desktop() > 0 ) ) {
         attribute->setDesktop(wm_client.desktop());
     }
+#endif
 #endif
     saveNoteContent();
     attribute->setIsHidden(true);
@@ -602,16 +608,16 @@ void KNote::slotKeepBelow()
 
 void KNote::slotUpdateKeepAboveBelow(bool save)
 {
-#ifdef Q_WS_X11
-    unsigned long state = KWindowInfo( KWindowSystem::windowInfo( winId(), NET::WMState ) ).state();
+#if KDEPIM_HAVE_X11
+    NET::States state = KWindowInfo( KWindowSystem::windowInfo( winId(), NET::WMState ) ).state();
 #else
-    unsigned long state = 0; // neutral state, TODO
+    NET::States state = 0; // neutral state, TODO
 #endif
     NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
     if ( m_keepAbove->isChecked() ) {
         attribute->setKeepAbove(true);
         attribute->setKeepBelow(false);
-        //QT5 KWindowSystem::setState( winId(), state | NET::KeepAbove );
+        KWindowSystem::setState( winId(), state | NET::KeepAbove );
     } else if ( m_keepBelow->isChecked() ) {
         attribute->setKeepAbove(false);
         attribute->setKeepBelow(true);
@@ -634,7 +640,8 @@ void KNote::slotUpdateKeepAboveBelow(bool save)
 
 void KNote::slotUpdateShowInTaskbar()
 {
-#ifdef Q_WS_X11
+#if 0 //QT5
+#if KDEPIM_HAVE_X11
     if ( !mDisplayAttribute->showInTaskbar() ) {
         KWindowSystem::setState( winId(), KWindowSystem::windowInfo( winId(),
                                                                      NET::WMState ).state() | NET::SkipTaskbar );
@@ -642,11 +649,13 @@ void KNote::slotUpdateShowInTaskbar()
         KWindowSystem::clearState( winId(), NET::SkipTaskbar );
     }
 #endif
+#endif
 }
 
 void KNote::slotUpdateDesktopActions()
 {
-#ifdef Q_WS_X11
+#if 0 //QT5
+#if KDEPIM_HAVE_X11
     m_toDesktop->clear();
     NETRootInfo wm_root( QX11Info::display(), NET::NumberOfDesktops |
                          NET::DesktopNames );
@@ -667,6 +676,7 @@ void KNote::slotUpdateDesktopActions()
             desktopAct->setChecked(true);
         }
     }
+#endif
 #endif
 }
 
@@ -759,7 +769,7 @@ void KNote::createActions()
     connect( m_keepBelow, SIGNAL(triggered(bool)),
              SLOT(slotKeepBelow()) );
 
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
     m_toDesktop  = new KSelectAction( i18n( "To Desktop" ), this );
     actionCollection()->addAction( QLatin1String("to_desktop"), m_toDesktop );
     connect( m_toDesktop, SIGNAL(triggered(int)),
@@ -904,7 +914,7 @@ void KNote::prepare()
     // in KConfig XT since only _changes_ will be stored in the config file
     int desktop = mDisplayAttribute->desktop();
 
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
     if ( ( desktop < 0 && desktop != NETWinInfo::OnAllDesktops ) ||
          !mDisplayAttribute->rememberDesktop() )
         desktop = KWindowSystem::currentDesktop();
@@ -917,7 +927,7 @@ void KNote::prepare()
         show();
 
         // because KWin forgets about that for hidden windows
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
         if ( desktop == NETWinInfo::OnAllDesktops ) {
             toDesktop( desktop );
         }
@@ -943,7 +953,7 @@ void KNote::prepare()
                                      IconSize( KIconLoader::Desktop ) ),
                                  KIconEffect::Colorize,
                                  1, col, false );
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
     const QPixmap miniIcon = effect.apply( qApp->windowIcon().pixmap(
                                          IconSize( KIconLoader::Small ),
                                          IconSize( KIconLoader::Small ) ),
@@ -970,7 +980,7 @@ void KNote::toDesktop( int desktop )
         return;
     }
 
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
     if ( desktop == NETWinInfo::OnAllDesktops ) {
         KWindowSystem::setOnAllDesktops( winId(), true );
     } else {
@@ -1032,7 +1042,7 @@ void KNote::setColor( const QColor &fg, const QColor &bg )
                                          IconSize( KIconLoader::Small ),
                                          IconSize( KIconLoader::Small ) ),
                                      KIconEffect::Colorize, 1, bg, false );
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
     KWindowSystem::setIcons( winId(), icon, miniIcon );
 #endif
     // update the color of the title
@@ -1190,7 +1200,8 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
 
         if ( ev->type() == QEvent::MouseButtonPress &&
              ( e->button() == Qt::LeftButton || e->button() == Qt::MidButton ) ) {
-#ifdef Q_WS_X11
+#if 0 //QT5
+#if KDEPIM_HAVE_X11
             e->button() == Qt::LeftButton ? KWindowSystem::raiseWindow( winId() )
                                           : KWindowSystem::lowerWindow( winId() );
 
@@ -1199,14 +1210,17 @@ bool KNote::eventFilter( QObject *o, QEvent *ev )
             wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(),
                                        NET::Move );
 #endif
+#endif
             return true;
         }
 
         if ( ev->type() == QEvent::MouseButtonRelease ) {
-#ifdef Q_WS_X11
+#if 0 //QT5
+#if KDEPIM_HAVE_X11
             NETRootInfo wm_root( QX11Info::display(), NET::WMMoveResize );
             wm_root.moveResizeRequest( winId(), e->globalX(), e->globalY(),
                                        NET::MoveResizeCancel );
+#endif
 #endif
             return false;
         }

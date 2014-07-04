@@ -18,7 +18,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-
+#include "config-kdepim.h"
 #include "knoteconfigdialog.h"
 #include "notes/knote.h"
 #include "print/knoteprintselectthemecombobox.h"
@@ -63,7 +63,7 @@ KNoteConfigDialog::KNoteConfigDialog( const QString &title,
     button( QDialogButtonBox::Ok )->setDefault(true);
 
     setWindowTitle( title );
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
     KWindowSystem::setIcons( winId(),
                              qApp->windowIcon().pixmap(
                                  IconSize( KIconLoader::Desktop ),

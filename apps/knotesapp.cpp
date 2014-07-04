@@ -18,6 +18,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
+#include "config-kdepim.h"
 #include "configdialog/knoteconfigdialog.h"
 
 #include "dialog/knoteselectednotesdialog.h"
@@ -340,7 +341,7 @@ void KNotesApp::showNote(const Akonadi::Entity::Id &id ) const
 void KNotesApp::showNote( KNote *note ) const
 {
     note->show();
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
     if ( !note->isDesktopAssigned() ) {
         note->toDesktop( KWindowSystem::currentDesktop() );
     } else {

@@ -20,6 +20,7 @@
 
 #ifndef KNOTE_H
 #define KNOTE_H
+#include "config-kdepim.h"
 #include <QDomDocument>
 #include <QEvent>
 #include <QFrame>
@@ -148,7 +149,7 @@ private:
 
     KToggleAction *m_readOnly;
 
-#ifdef Q_WS_X11
+#if KDEPIM_HAVE_X11
     KSelectAction   *m_toDesktop;
 #endif
     KToggleAction *m_keepAbove;
