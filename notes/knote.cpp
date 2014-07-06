@@ -54,7 +54,7 @@
 #include <kmessagebox.h>
 #include <kselectaction.h>
 #include <kstandardaction.h>
-#include <kstandarddirs.h>
+
 #include <ktoggleaction.h>
 #include <ktoolbar.h>
 #include <kwindowsystem.h>

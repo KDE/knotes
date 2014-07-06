@@ -27,6 +27,7 @@
 #include <KConfigGroup>
 #include <QDBusInterface>
 #include <QFileInfo>
+#include <QStandardPaths>
 
 void KNoteUtils::updateConfiguration()
 {
@@ -59,7 +60,7 @@ void KNoteUtils::migrateToAkonadi()
 {
     bool needMigration = true;
 
-    const QFileInfo oldDataDirFileInfo( KStandardDirs::locateLocal( "data", QLatin1String("knotes") ) );
+    const QFileInfo oldDataDirFileInfo( QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/knotes") ) ;
     if ( !oldDataDirFileInfo.exists() || !oldDataDirFileInfo.isDir() ) {
         // neither config or data, the migrator cannot do anything useful anyways
         needMigration = false;
