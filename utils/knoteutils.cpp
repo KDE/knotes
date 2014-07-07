@@ -99,7 +99,7 @@ void KNoteUtils::migrateToAkonadi()
             qDebug() << "Performing Akonadi migration. Good luck!";
             KProcess proc;
             QStringList args = QStringList() << QLatin1String("--interactive-on-change");
-            const QString path = KStandardDirs::findExe( QLatin1String("knotes-migrator" ) );
+            const QString path = QStandardPaths::findExecutable( QLatin1String("knotes-migrator" ) );
             proc.setProgram( path, args );
             proc.start();
             bool result = proc.waitForStarted();
