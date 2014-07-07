@@ -21,7 +21,7 @@
 #include "config-kdepim.h"
 #include <QDebug>
 #include "kdepim-version.h"
-#include <KGlobal>
+
 #include "knotes_options.h"
 #include "apps/application.h"
 #include <KUniqueApplication>
@@ -29,7 +29,7 @@
 #include <k4aboutdata.h>
 #include <klocale.h>
 #include <kxerrorhandler.h>
-#include <KGlobal>
+
 
 #if KDEPIM_HAVE_X11
 #include <X11/Xlib.h>
