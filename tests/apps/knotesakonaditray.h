@@ -19,6 +19,7 @@
 #define KNOTESAKONADITRAY_H
 
 #include <KStatusNotifierItem>
+#include <QIcon>
 namespace Akonadi {
 class ChangeRecorder;
 }
@@ -35,7 +36,7 @@ private Q_SLOTS:
     void slotUpdateSystemTray();
 
 private:
-    KIcon mIcon;
+    QIcon mIcon;
 };
 
 #endif // KNOTESAKONADITRAY_H

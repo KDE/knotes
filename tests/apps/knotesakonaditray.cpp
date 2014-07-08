@@ -30,7 +30,7 @@
 
 KNotesAkonadiTray::KNotesAkonadiTray(Akonadi::ChangeRecorder *recorder, QWidget *parent)
     : KStatusNotifierItem(parent),
-      mIcon(QLatin1String("knotes"))
+      mIcon(QIcon::fromTheme(QLatin1String("knotes")))
 {
     setToolTipTitle( i18n( "KNotes: Sticky notes for KDE" ) );
     setToolTipIconByName( QLatin1String("knotes") );

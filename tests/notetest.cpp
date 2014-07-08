@@ -16,11 +16,11 @@
 */
 
 #include "notetest.h"
-#include <qtest_kde.h>
+#include <qtest.h>
 
 
 NoteTest::NoteTest()
 {
 }
 
-QTEST_KDEMAIN( NoteTest, GUI )
+QTEST_MAIN( NoteTest )
