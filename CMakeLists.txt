@@ -81,6 +81,7 @@ target_link_libraries(knotes knotesprivate pimcommon kdepim KF5::KIOCore
                              KF5::KCMUtils KF5::KontactInterface noteshared
   KF5::AkonadiCore
   KF5::Mime
+  KF5::GlobalAccel
   akonadi_next
   )
 if (Qt5X11Extras_FOUND)

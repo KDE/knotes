@@ -87,6 +87,7 @@
 #include <kiconloader.h>
 #include <KShortcut>
 #include <KGlobal>
+#include <KGlobalAccel>
 
 #include <QPixmap>
 #include <QClipboard>
@@ -120,13 +121,13 @@ KNotesApp::KNotesApp()
     QAction *action  = new QAction( QIcon::fromTheme( QLatin1String("document-new") ),
                                     i18n( "New Note" ), this );
     actionCollection()->addAction( QLatin1String("new_note"), action );
-    //QT5 action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_N ));
+    KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_N ));
     connect( action, SIGNAL(triggered()), SLOT(newNote()) );
 
     action  = new QAction( QIcon::fromTheme( QLatin1String("edit-paste") ),
                            i18n( "New Note From Clipboard" ), this );
     actionCollection()->addAction( QLatin1String("new_note_clipboard"), action );
-    //QT5 action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_C ));
+    KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_C ));
     connect( action, SIGNAL(triggered()), SLOT(newNoteFromClipboard()) );
 
     action  = new QAction( QIcon::fromTheme( QLatin1String("document-open") ),
@@ -137,13 +138,13 @@ KNotesApp::KNotesApp()
 
     action  = new QAction( QIcon::fromTheme(QLatin1String( "knotes") ), i18n( "Show All Notes" ), this );
     actionCollection()->addAction( QLatin1String("show_all_notes"), action );
-    //QT5 action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_S ));
+    KGlobalAccel::setGlobalShortcut(action, QKeySequence( Qt::ALT + Qt::SHIFT + Qt::Key_S ));
     connect( action, SIGNAL(triggered()), SLOT(showAllNotes()) );
 
     action  = new QAction( QIcon::fromTheme( QLatin1String("window-close") ),
                            i18n( "Hide All Notes" ), this );
     actionCollection()->addAction( QLatin1String("hide_all_notes"), action );
-    //QT5 action->setGlobalShortcut( KShortcut( Qt::ALT + Qt::SHIFT + Qt::Key_H ));
+    KGlobalAccel::setGlobalShortcut(action, QKeySequence( Qt::ALT + Qt::SHIFT + Qt::Key_H ));
     connect( action, SIGNAL(triggered()), SLOT(hideAllNotes()) );
 
     action = new QAction( QIcon::fromTheme( QLatin1String("document-print") ),
