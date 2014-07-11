@@ -439,7 +439,7 @@ void KNote::saveNoteContent()
     message->contentType( true )->setMimeType( m_editor->acceptRichText() ? "text/html" : "text/plain" );
     message->contentType()->setCharset(encoding);
     message->contentTransferEncoding(true)->setEncoding(KMime::Headers::CEquPr);
-    message->date( true )->setDateTime( KDateTime::currentLocalDateTime() );
+    message->date( true )->setDateTime( QDateTime::currentDateTime() );
     message->mainBodyPart()->fromUnicodeString( text().isEmpty() ? QString::fromLatin1( " " ) : text());
 
     message->assemble();
