@@ -85,7 +85,6 @@
 #include <KFileDialog>
 
 #include <kiconloader.h>
-#include <KShortcut>
 #include <KGlobal>
 #include <KGlobalAccel>
 
