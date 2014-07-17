@@ -144,16 +144,7 @@ void KNote::setChangeItem(const Akonadi::Item &item, const QSet<QByteArray> &set
         m_editor->setReadOnly(item.hasAttribute<NoteShared::NoteLockAttribute>());
     }
     if (set.contains("PLD:RFC822")) {
-        KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
-        const KMime::Headers::Subject * const subject = noteMessage ? noteMessage->subject(false) : 0;
-        setName(subject ? subject->asUnicodeString() : QString());
-        if ( noteMessage->contentType()->isHTMLText() ) {
-            m_editor->setAcceptRichText(true);
-            m_editor->setHtml(noteMessage->mainBodyPart()->decodedText());
-        } else {
-            m_editor->setAcceptRichText(false);
-            m_editor->setPlainText(noteMessage->mainBodyPart()->decodedText());
-        }
+        loadNoteContent(item);
     }
     if (set.contains("ATR:NoteDisplayAttribute")) {
         qDebug()<<" ATR:NoteDisplayAttribute";
@@ -436,6 +427,9 @@ void KNote::saveNoteContent()
     message->contentTransferEncoding(true)->setEncoding(KMime::Headers::CEquPr);
     message->date( true )->setDateTime( KDateTime::currentLocalDateTime() );
     message->mainBodyPart()->fromUnicodeString( text().isEmpty() ? QString::fromLatin1( " " ) : text());
+
+    KMime::Headers::Generic *header = new KMime::Headers::Generic( "X-Cursor-Position", message.get(), QString::number( m_editor->textCursor().position() ), "utf-8" );
+    message->setHeader( header );
 
     message->assemble();
 
@@ -864,14 +858,11 @@ void KNote::createNoteFooter()
     }
 }
 
-void KNote::prepare()
+void KNote::loadNoteContent(const Akonadi::Item &item)
 {
-    mBlockSave = true;
-    KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
+    KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
     const KMime::Headers::Subject * const subject = noteMessage ? noteMessage->subject(false) : 0;
-    if (subject) {
-        setName(subject->asUnicodeString());
-    }
+    setName(subject ? subject->asUnicodeString() : QString());
     if ( noteMessage->contentType()->isHTMLText() ) {
         m_editor->setAcceptRichText(true);
         m_editor->setHtml(noteMessage->mainBodyPart()->decodedText());
@@ -879,6 +870,27 @@ void KNote::prepare()
         m_editor->setAcceptRichText(false);
         m_editor->setPlainText(noteMessage->mainBodyPart()->decodedText());
     }
+    if ( noteMessage->headerByType( "X-Cursor-Position" ) ) {
+        setCursorPositionFromStart( noteMessage->headerByType( "X-Cursor-Position" )->asUnicodeString().toInt() );
+    }
+}
+
+void KNote::setCursorPositionFromStart( unsigned int pos )
+{
+    if ( pos > 0 ) {
+        QTextCursor cursor = m_editor->textCursor();
+        //Fix html pos cursor
+        cursor.setPosition( qMin( pos,(unsigned int)cursor.document()->characterCount ()-1) );
+        m_editor->setTextCursor( cursor );
+        m_editor->ensureCursorVisible();
+    }
+}
+
+
+void KNote::prepare()
+{
+    mBlockSave = true;
+    loadNoteContent(mItem);
 
     resize(mDisplayAttribute->size());
     const QPoint& position = mDisplayAttribute->position();
