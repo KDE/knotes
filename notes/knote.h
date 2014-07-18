@@ -137,7 +137,6 @@ private:
     void loadNoteContent(const Akonadi::Item &item);
     void updateAllAttributes();
     void saveNoteContent();
-    void setCursorPositionFromStart(unsigned int pos);
     Akonadi::Item mItem;
     QLayout       *m_noteLayout;
     QLabel        *m_label;

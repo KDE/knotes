@@ -685,3 +685,19 @@ void KNoteEdit::slotInsertCheckMark()
     QTextCursor cursor = textCursor();
     NoteShared::NoteEditorUtils::addCheckmark(cursor);
 }
+
+void KNoteEdit::setCursorPositionFromStart( int pos )
+{
+    if ( pos > 0 ) {
+        QTextCursor cursor = textCursor();
+        //Fix html pos cursor
+        cursor.setPosition( qMin( pos, cursor.document()->characterCount ()-1) );
+        setTextCursor( cursor );
+        ensureCursorVisible();
+    }
+}
+
+int KNoteEdit::cursorPositionFromStart() const
+{
+    return textCursor().position();
+}

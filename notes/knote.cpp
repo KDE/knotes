@@ -428,7 +428,7 @@ void KNote::saveNoteContent()
     message->date( true )->setDateTime( KDateTime::currentLocalDateTime() );
     message->mainBodyPart()->fromUnicodeString( text().isEmpty() ? QString::fromLatin1( " " ) : text());
 
-    KMime::Headers::Generic *header = new KMime::Headers::Generic( "X-Cursor-Position", message.get(), QString::number( m_editor->textCursor().position() ), "utf-8" );
+    KMime::Headers::Generic *header = new KMime::Headers::Generic( "X-Cursor-Position", message.get(), QString::number( m_editor->cursorPositionFromStart() ), "utf-8" );
     message->setHeader( header );
 
     message->assemble();
@@ -871,21 +871,9 @@ void KNote::loadNoteContent(const Akonadi::Item &item)
         m_editor->setPlainText(noteMessage->mainBodyPart()->decodedText());
     }
     if ( noteMessage->headerByType( "X-Cursor-Position" ) ) {
-        setCursorPositionFromStart( noteMessage->headerByType( "X-Cursor-Position" )->asUnicodeString().toInt() );
+        m_editor->setCursorPositionFromStart( noteMessage->headerByType( "X-Cursor-Position" )->asUnicodeString().toInt() );
     }
 }
-
-void KNote::setCursorPositionFromStart( unsigned int pos )
-{
-    if ( pos > 0 ) {
-        QTextCursor cursor = m_editor->textCursor();
-        //Fix html pos cursor
-        cursor.setPosition( qMin( pos,(unsigned int)cursor.document()->characterCount ()-1) );
-        m_editor->setTextCursor( cursor );
-        m_editor->ensureCursorVisible();
-    }
-}
-
 
 void KNote::prepare()
 {
