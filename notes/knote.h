@@ -135,6 +135,7 @@ private:
     void setDisplayDefaultValue();
 
 private:
+    void loadNoteContent(const Akonadi::Item &item);
     void updateAllAttributes();
     void saveNoteContent();
     Akonadi::Item mItem;

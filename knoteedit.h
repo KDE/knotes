@@ -53,6 +53,9 @@ public:
     void setAutoIndentMode( bool newmode );
 
     void setColor(const QColor &fg, const QColor &bg);
+    void setCursorPositionFromStart(int pos);
+    int cursorPositionFromStart() const;
+
 public slots:
     void setRichText( bool );
 
