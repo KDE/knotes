@@ -30,16 +30,23 @@
 #include <QLabel>
 #include <QListWidget>
 #include <KSharedConfig>
+#include <QDialogButtonBox>
+#include <KConfigGroup>
 
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
-    : KDialog(parent)
+    : QDialog(parent)
 {
-    setCaption(i18n("Search Notes"));
-    setButtons(Close);
+    setWindowTitle(i18n("Search Notes"));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
     setAttribute(Qt::WA_DeleteOnClose);
     mNoteFindWidget = new KNoteFindWidget;
     connect(mNoteFindWidget, SIGNAL(noteSelected(Akonadi::Item::Id)), SIGNAL(noteSelected(Akonadi::Item::Id)));
-    setMainWidget(mNoteFindWidget);
+    mainLayout->addWidget(mNoteFindWidget);
+    mainLayout->addWidget(buttonBox);
     readConfig();
 }
 

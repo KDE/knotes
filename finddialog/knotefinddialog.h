@@ -18,7 +18,7 @@
 #ifndef KNOTEFINDDIALOG_H
 #define KNOTEFINDDIALOG_H
 
-#include <KDialog>
+#include <QDialog>
 #include <AkonadiCore/Item>
 #include "knotes_export.h"
 class QPushButton;
@@ -54,7 +54,7 @@ private:
     NoteShared::NoteListWidget *mNoteList;
 };
 
-class KNOTES_EXPORT KNoteFindDialog : public KDialog
+class KNOTES_EXPORT KNoteFindDialog : public QDialog
 {
     Q_OBJECT
 public:
