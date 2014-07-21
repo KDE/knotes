@@ -26,7 +26,7 @@
 
 #include <kaction.h>
 #include <kactioncollection.h>
-#include <kcolordialog.h>
+#include <QColorDialog>
 #include <qdebug.h>
 #include <kfontaction.h>
 #include <kfontsizeaction.h>
@@ -402,7 +402,8 @@ void KNoteEdit::slotTextColor()
     if ( m_note )
         m_note->setBlockSave( true );
     QColor c = textColor();
-    if ( KColorDialog::getColor( c, mDefaultForegroundColor, this ) ) {
+    c = QColorDialog::getColor(mDefaultForegroundColor, this ) ;
+    if ( c.isValid() ) {
         setTextColor( c.isValid() ? c : mDefaultForegroundColor);
     }
     if ( m_note )
@@ -417,7 +418,8 @@ void KNoteEdit::slotTextBackgroundColor()
     if ( m_note )
         m_note->setBlockSave( true );
     QColor c = textBackgroundColor();
-    if ( KColorDialog::getColor( c, mDefaultBackgroundColor, this ) ) {
+    c = QColorDialog::getColor(mDefaultBackgroundColor, this ) ;
+    if ( c.isValid() ) {
         setTextBackgroundColor( c.isValid() ? c : mDefaultBackgroundColor );
     }
     if ( m_note )
