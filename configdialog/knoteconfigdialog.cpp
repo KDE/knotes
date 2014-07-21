@@ -33,6 +33,7 @@
 
 #include "kdepim-version.h"
 
+
 #include <kapplication.h>
 #include <kcolorbutton.h>
 #include <kconfig.h>
@@ -95,7 +96,7 @@ void KNoteConfigDialog::slotOk() {
 
 extern "C"
 {
-KDE_EXPORT KCModule *create_knote_config_display( QWidget *parent )
+Q_DECL_EXPORT KCModule *create_knote_config_display( QWidget *parent )
 {
     KComponentData instance( "kcmnote_config_display" );
     return new KNoteDisplayConfig( instance, parent );
@@ -104,7 +105,7 @@ KDE_EXPORT KCModule *create_knote_config_display( QWidget *parent )
 
 extern "C"
 {
-KDE_EXPORT KCModule *create_knote_config_collection( QWidget *parent )
+Q_DECL_EXPORT KCModule *create_knote_config_collection( QWidget *parent )
 {
     KComponentData instance( "kcmnote_config_collection" );
     return new KNoteCollectionConfig( instance, parent );
@@ -113,7 +114,7 @@ KDE_EXPORT KCModule *create_knote_config_collection( QWidget *parent )
 
 extern "C"
 {
-KDE_EXPORT KCModule *create_knote_config_editor( QWidget *parent )
+Q_DECL_EXPORT KCModule *create_knote_config_editor( QWidget *parent )
 {
     KComponentData instance( "kcmnote_config_editor" );
     return new KNoteEditorConfig( instance, parent );
@@ -122,7 +123,7 @@ KDE_EXPORT KCModule *create_knote_config_editor( QWidget *parent )
 
 extern "C"
 {
-KDE_EXPORT KCModule *create_knote_config_action( QWidget *parent )
+Q_DECL_EXPORT KCModule *create_knote_config_action( QWidget *parent )
 {
     KComponentData instance( "kcmnote_config_action" );
     return new NoteShared::NoteActionConfig( instance, parent );
@@ -131,7 +132,7 @@ KDE_EXPORT KCModule *create_knote_config_action( QWidget *parent )
 
 extern "C"
 {
-KDE_EXPORT KCModule *create_knote_config_network( QWidget *parent )
+Q_DECL_EXPORT KCModule *create_knote_config_network( QWidget *parent )
 {
     KComponentData instance( "kcmnote_config_network" );
     return new NoteShared::NoteNetworkConfig( instance, parent );
@@ -140,7 +141,7 @@ KDE_EXPORT KCModule *create_knote_config_network( QWidget *parent )
 
 extern "C"
 {
-KDE_EXPORT KCModule *create_knote_config_print( QWidget *parent )
+Q_DECL_EXPORT KCModule *create_knote_config_print( QWidget *parent )
 {
     KComponentData instance( "kcmnote_config_print" );
     return new KNotePrintConfig( instance, parent );
@@ -149,7 +150,7 @@ KDE_EXPORT KCModule *create_knote_config_print( QWidget *parent )
 
 extern "C"
 {
-KDE_EXPORT KCModule *create_knote_config_misc( QWidget *parent )
+Q_DECL_EXPORT KCModule *create_knote_config_misc( QWidget *parent )
 {
     KComponentData instance( "kcmnote_config_misc" );
     return new KNoteMiscConfig( instance, parent );
