@@ -162,7 +162,7 @@ KNotesApp::KNotesApp()
 
 
 #if 0 //QT5
-    new KHelpMenu( this, KGlobal::mainComponent().aboutData(), false,
+    new KHelpMenu( this, KComponentData::mainComponent().aboutData(), false,
                    actionCollection() );
 #endif
     KStandardAction::preferences( this, SLOT(slotPreferences()),
