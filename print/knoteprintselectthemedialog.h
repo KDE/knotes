@@ -19,11 +19,11 @@
 #ifndef KNOTEPRINTSELECTTHEMEDIALOG_H
 #define KNOTEPRINTSELECTTHEMEDIALOG_H
 
-#include <KDialog>
+#include <QDialog>
 #include "knotes_export.h"
 
 class KNotePrintSelectThemeComboBox;
-class KNOTES_EXPORT KNotePrintSelectThemeDialog : public KDialog
+class KNOTES_EXPORT KNotePrintSelectThemeDialog : public QDialog
 {
     Q_OBJECT
 public:

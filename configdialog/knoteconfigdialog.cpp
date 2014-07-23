@@ -45,7 +45,7 @@
 #include <kwindowsystem.h>
 #include <QIcon>
 #include <KNS3/DownloadDialog>
-#include <KDialog>
+#include <QDialog>
 
 #include <QCheckBox>
 #include <QGridLayout>
@@ -98,8 +98,7 @@ extern "C"
 {
 Q_DECL_EXPORT KCModule *create_knote_config_display( QWidget *parent )
 {
-    KComponentData instance( "kcmnote_config_display" );
-    return new KNoteDisplayConfig( instance, parent );
+    return new KNoteDisplayConfig( parent );
 }
 }
 
@@ -107,8 +106,7 @@ extern "C"
 {
 Q_DECL_EXPORT KCModule *create_knote_config_collection( QWidget *parent )
 {
-    KComponentData instance( "kcmnote_config_collection" );
-    return new KNoteCollectionConfig( instance, parent );
+    return new KNoteCollectionConfig( parent );
 }
 }
 
@@ -116,8 +114,7 @@ extern "C"
 {
 Q_DECL_EXPORT KCModule *create_knote_config_editor( QWidget *parent )
 {
-    KComponentData instance( "kcmnote_config_editor" );
-    return new KNoteEditorConfig( instance, parent );
+    return new KNoteEditorConfig( parent );
 }
 }
 
@@ -125,8 +122,7 @@ extern "C"
 {
 Q_DECL_EXPORT KCModule *create_knote_config_action( QWidget *parent )
 {
-    KComponentData instance( "kcmnote_config_action" );
-    return new NoteShared::NoteActionConfig( instance, parent );
+    return new NoteShared::NoteActionConfig( parent );
 }
 }
 
@@ -134,8 +130,7 @@ extern "C"
 {
 Q_DECL_EXPORT KCModule *create_knote_config_network( QWidget *parent )
 {
-    KComponentData instance( "kcmnote_config_network" );
-    return new NoteShared::NoteNetworkConfig( instance, parent );
+    return new NoteShared::NoteNetworkConfig( parent );
 }
 }
 
@@ -143,8 +138,7 @@ extern "C"
 {
 Q_DECL_EXPORT KCModule *create_knote_config_print( QWidget *parent )
 {
-    KComponentData instance( "kcmnote_config_print" );
-    return new KNotePrintConfig( instance, parent );
+    return new KNotePrintConfig( parent );
 }
 }
 
@@ -152,14 +146,13 @@ extern "C"
 {
 Q_DECL_EXPORT KCModule *create_knote_config_misc( QWidget *parent )
 {
-    KComponentData instance( "kcmnote_config_misc" );
-    return new KNoteMiscConfig( instance, parent );
+    return new KNoteMiscConfig( parent );
 }
 }
 
 
-KNoteDisplayConfig::KNoteDisplayConfig( const KComponentData &inst, QWidget *parent )
-    :KCModule( /*inst,*/ parent )
+KNoteDisplayConfig::KNoteDisplayConfig( QWidget *parent )
+    :KCModule( parent )
 {
     QVBoxLayout *lay = new QVBoxLayout( this );
     QWidget * w =  new KNoteDisplayConfigWidget( true );
@@ -179,8 +172,8 @@ void KNoteDisplayConfig::save()
     KCModule::save();
 }
 
-KNoteEditorConfig::KNoteEditorConfig( const KComponentData &inst, QWidget *parent )
-    :KCModule( /*inst,*/ parent )
+KNoteEditorConfig::KNoteEditorConfig( QWidget *parent )
+    :KCModule( parent )
 {
     QVBoxLayout *lay = new QVBoxLayout( this );
     QWidget * w =  new KNoteEditorConfigWidget( true );
@@ -201,8 +194,8 @@ void KNoteEditorConfig::load()
 }
 
 
-KNoteMiscConfig::KNoteMiscConfig(const KComponentData &inst, QWidget *parent )
-    : KCModule(/*inst,*/ parent)
+KNoteMiscConfig::KNoteMiscConfig(QWidget *parent )
+    : KCModule(parent)
 {
     QWidget *w = new QWidget(this);
 
@@ -270,14 +263,14 @@ void KNoteMiscConfig::slotHelpLinkClicked(const QString &)
 }
 
 
-KNotePrintConfig::KNotePrintConfig(const KComponentData &inst, QWidget *parent )
-    :KCModule( /*inst,*/ parent )
+KNotePrintConfig::KNotePrintConfig(QWidget *parent )
+    :KCModule( parent )
 {
     QVBoxLayout *lay = new QVBoxLayout( this );
     QWidget * w =  new QWidget( this );
     lay->addWidget( w );
     QGridLayout *layout = new QGridLayout( w );
-    layout->setSpacing( KDialog::spacingHint() );
+//TODO PORT QT5     layout->setSpacing( QDialog::spacingHint() );
     layout->setMargin( 0 );
 
     QLabel *label_PrintAction = new QLabel( i18n( "Theme:" ), this );
@@ -329,8 +322,8 @@ void KNotePrintConfig::defaults()
     Q_EMIT changed(true);
 }
 
-KNoteCollectionConfig::KNoteCollectionConfig(const KComponentData &inst, QWidget *parent )
-    : KCModule( /*inst,*/ parent )
+KNoteCollectionConfig::KNoteCollectionConfig(QWidget *parent )
+    : KCModule( parent )
 {
     QHBoxLayout *lay = new QHBoxLayout;
     mCollectionConfigWidget = new KNoteCollectionConfigWidget;

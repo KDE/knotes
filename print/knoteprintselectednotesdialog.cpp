@@ -28,13 +28,27 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <KSharedConfig>
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
-    : KDialog(parent),
+    : QDialog(parent),
       mPreview(false)
 {
-    setCaption( i18n( "Select notes" ) );
-    setButtons( User1 | Ok | Cancel );
+    setWindowTitle( i18n( "Select notes" ) );
+    mButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QWidget *mainWidget = new QWidget(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+    mainLayout->addWidget(mainWidget);
+    QPushButton *okButton = mButtonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    mUser1Button = new QPushButton;
+    mButtonBox->addButton(mUser1Button, QDialogButtonBox::ActionRole);
+    connect(mButtonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(mButtonBox, SIGNAL(rejected()), this, SLOT(reject()));
     QWidget *w = new QWidget;
     QVBoxLayout *vbox = new QVBoxLayout;
     w->setLayout(vbox);
@@ -52,13 +66,14 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     mTheme->loadThemes();
     lay->addWidget(mTheme);
 
-    setButtonIcon(User1, QIcon::fromTheme(QLatin1String("document-print-preview")));
-    setButtonText(User1, i18n("Preview"));
-    setButtonIcon(Ok, QIcon::fromTheme(QLatin1String("document-print")));
-    setButtonText(Ok, i18n("Print"));
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotPreview()));
+    mUser1Button->setIcon(QIcon::fromTheme(QLatin1String("document-print-preview")));
+    mUser1Button->setText(i18n("Preview"));
+    okButton->setIcon(QIcon::fromTheme(QLatin1String("document-print")));
+    okButton->setText(i18n("Print"));
+    connect(mUser1Button, SIGNAL(clicked()), this, SLOT(slotPreview()));
     connect(mListNotes, SIGNAL(itemSelectionChanged()), this, SLOT(slotSelectionChanged()));
-    setMainWidget(w);
+    mainLayout->addWidget(w);
+    mainLayout->addWidget(mButtonBox);
     readConfig();
     slotSelectionChanged();
 }
@@ -71,8 +86,8 @@ KNotePrintSelectedNotesDialog::~KNotePrintSelectedNotesDialog()
 void KNotePrintSelectedNotesDialog::slotSelectionChanged()
 {
     const bool hasSelection = (mListNotes->selectedItems().count() > 0);
-    enableButton(User1, hasSelection);
-    enableButtonOk(hasSelection);
+    mUser1Button->setEnabled(hasSelection);
+    mButtonBox->button(QDialogButtonBox::Ok)->setEnabled(hasSelection);
 }
 
 void KNotePrintSelectedNotesDialog::setNotes(const QHash<Akonadi::Item::Id, KNote*> &notes)

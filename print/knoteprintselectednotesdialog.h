@@ -18,13 +18,15 @@
 #ifndef KNOTEPRINTSELECTEDNOTESDIALOG_H
 #define KNOTEPRINTSELECTEDNOTESDIALOG_H
 
-#include <KDialog>
+#include <QDialog>
 #include <AkonadiCore/Item>
 class QListWidget;
 class KNote;
 class KNotePrintObject;
 class KNotePrintSelectThemeComboBox;
-class KNotePrintSelectedNotesDialog : public KDialog
+class QDialogButtonBox;
+class QPushButton;
+class KNotePrintSelectedNotesDialog : public QDialog
 {
     Q_OBJECT
 public:
@@ -52,6 +54,8 @@ private:
     QListWidget *mListNotes;
     QHash<Akonadi::Item::Id, KNote*> mNotes;
     KNotePrintSelectThemeComboBox *mTheme;
+    QDialogButtonBox *mButtonBox;
+    QPushButton *mUser1Button;
     bool mPreview;
 };
 

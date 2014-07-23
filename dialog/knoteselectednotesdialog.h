@@ -18,11 +18,12 @@
 #ifndef KNOTESELECTEDNOTESDIALOG_H
 #define KNOTESELECTEDNOTESDIALOG_H
 
-#include <KDialog>
+#include <QDialog>
 #include <AkonadiCore/Item>
 class QListWidget;
 class KNote;
-class KNoteSelectedNotesDialog : public KDialog
+class QPushButton;
+class KNoteSelectedNotesDialog : public QDialog
 {
     Q_OBJECT
 public:
@@ -45,6 +46,7 @@ private:
     void readConfig();
     QListWidget *mListNotes;
     QHash<Akonadi::Item::Id, KNote*> mNotes;
+    QPushButton *mOkButton;
 };
 
 #endif // KNOTESELECTEDNOTESDIALOG_H

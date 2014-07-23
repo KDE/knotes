@@ -19,13 +19,13 @@
 #ifndef KNOTEDELETESELECTEDNOTESDIALOG_H
 #define KNOTEDELETESELECTEDNOTESDIALOG_H
 
-#include <KDialog>
+#include <QDialog>
 #include <AkonadiCore/Item>
 namespace NoteShared {
 class NoteListWidget;
 }
 
-class KNoteDeleteSelectedNotesDialog : public KDialog
+class KNoteDeleteSelectedNotesDialog : public QDialog
 {
     Q_OBJECT
 public:
