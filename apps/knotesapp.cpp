@@ -396,7 +396,7 @@ void KNotesApp::newNoteFromClipboard( const QString &name )
 void KNotesApp::newNoteFromTextFile()
 {
     QString text;
-    const QString filename = KFileDialog::getOpenFileName( KUrl(),
+    const QString filename = KFileDialog::getOpenFileName( QUrl(),
                                      QLatin1String("*.txt"),
                                      this,
                                      i18n("Select Text File") );
