@@ -21,7 +21,7 @@
 #include <QWidget>
 class KColorButton;
 class QCheckBox;
-class KIntNumInput;
+class QSpinBox;
 namespace NoteShared {
 class NoteDisplayAttribute;
 }
@@ -40,8 +40,8 @@ private:
     KColorButton *kcfg_BgColor;
     QCheckBox *kcfg_ShowInTaskbar;
     QCheckBox *kcfg_RememberDesktop;
-    KIntNumInput *kcfg_Width;
-    KIntNumInput *kcfg_Height;
+    QSpinBox *kcfg_Width;
+    QSpinBox *kcfg_Height;
 };
 
 

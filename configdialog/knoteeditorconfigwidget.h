@@ -20,7 +20,7 @@
 #define KNOTEEDITORCONFIGWIDGET_H
 
 #include <QWidget>
-class KIntNumInput;
+class QSpinBox;
 class QCheckBox;
 class KFontRequester;
 namespace NoteShared {
@@ -38,7 +38,7 @@ public:
     void save(NoteShared::NoteDisplayAttribute *attr, bool &isRichText);
 
 private:
-    KIntNumInput *kcfg_TabSize;
+    QSpinBox *kcfg_TabSize;
     QCheckBox *kcfg_AutoIndent;
     QCheckBox *kcfg_RichText;
     KFontRequester *kcfg_Font;

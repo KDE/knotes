@@ -20,7 +20,7 @@
 
 #include "noteshared/attributes/notedisplayattribute.h"
 
-#include <KIntNumInput>
+#include <QSpinBox>
 #include <KLocalizedString>
 #include <KFontRequester>
 #include <KDialog>
@@ -39,10 +39,9 @@ KNoteEditorConfigWidget::KNoteEditorConfigWidget( bool defaults, QWidget *parent
     QLabel *label_TabSize = new QLabel( i18n( "&Tab size:" ), this );
     layout->addWidget( label_TabSize, 0, 0, 1, 2 );
 
-    kcfg_TabSize = new KIntNumInput( this );
+    kcfg_TabSize = new QSpinBox( this );
     kcfg_TabSize->setObjectName( QLatin1String("kcfg_TabSize") );
     kcfg_TabSize->setRange( 1, 40 );
-    kcfg_TabSize->setSliderEnabled( false );
     label_TabSize->setBuddy( kcfg_TabSize );
     layout->addWidget( kcfg_TabSize, 0, 2 );
 
