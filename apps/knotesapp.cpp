@@ -172,7 +172,7 @@ KNotesApp::KNotesApp()
     //FIXME: no shortcut removing!?
     KStandardAction::quit( this, SLOT(slotQuit()),
                            actionCollection() )->setShortcut( 0 );
-    //QT5 setXMLFile( componentData().componentName() + QLatin1String("appui.rc") );
+    setXMLFile( QLatin1String("knotesappui.rc") );
 
     m_guiBuilder = new KXMLGUIBuilder( this );
     m_guiFactory = new KXMLGUIFactory( m_guiBuilder, this );
@@ -185,12 +185,12 @@ KNotesApp::KNotesApp()
                                            QLatin1String("notes_menu"), this ) );
 
     // get the most recent XML UI file
-    QString xmlFileName;//QT5 = componentData().componentName() + QLatin1String("ui.rc");
-    QString filter;//QT5 = componentData().componentName() + QLatin1Char('/') + xmlFileName;
-    const QStringList fileList;//QT5 =
+    QString xmlFileName(QLatin1String("knotesui.rc"));//QT5 = componentData().componentName() + QLatin1String("ui.rc");
+    QString filter(QLatin1String("kxmlgui5/knotes/") + xmlFileName);//QT5 = componentData().componentName() + QLatin1Char('/') + xmlFileName;
+    const QStringList fileList = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, filter) + QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, xmlFileName);//QT5 =
             //QT5 componentData().dirs()->findAllResources( "data", filter ) +
             //QT5 componentData().dirs()->findAllResources( "data", xmlFileName );
-
+qDebug()<<" fileList :"<<fileList<<" filter :"<<filter;
     QString doc;
     KXMLGUIClient::findMostRecentXMLFile( fileList, doc );
     m_noteGUI.setContent( doc );
