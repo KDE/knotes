@@ -3,8 +3,7 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
-  <include>kglobalsettings.h</include>
-
+  <include>QFontDatabase</include>
   <group name="General">
     <entry name="AutoCreateResourceOnStart" type="Bool">
       <default>true</default>
@@ -48,11 +47,11 @@
 
   <group name="Editor">
     <entry name="Font" type="Font" key="font">
-      <default code="true">KGlobalSettings::generalFont()</default>
+      <default code="true">QFontDatabase::systemFont(QFontDatabase::GeneralFont)</default>
     </entry>
 
     <entry name="TitleFont" type="Font" key="titlefont">
-      <default code="true">KGlobalSettings::windowTitleFont()</default>
+      <default code="true">QFontDatabase::systemFont(QFontDatabase::TitleFont)</default>
     </entry>
 
     <entry name="AutoIndent" type="Bool" key="autoindent">

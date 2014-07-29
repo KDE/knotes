@@ -34,7 +34,6 @@
 #include <QMenu>
 #include <kstandardaction.h>
 #include <ktoggleaction.h>
-#include <kurl.h>
 
 #include <QFont>
 #include <QPixmap>

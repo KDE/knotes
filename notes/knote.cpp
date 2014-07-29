@@ -523,7 +523,7 @@ void KNote::slotSaveAs()
         convert = new QCheckBox( 0 );
         convert->setText( i18n( "Save note as plain text" ) );
     }
-    KUrl url;
+    QUrl url;
     QPointer<KFileDialog> dlg = new KFileDialog( url, QString(), this, convert );
     dlg->setOperationMode( KFileDialog::Saving );
     dlg->setWindowTitle( i18n( "Save As" ) );
