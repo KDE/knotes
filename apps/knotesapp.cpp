@@ -389,7 +389,7 @@ void KNotesApp::showAllNotes() const
 
 void KNotesApp::newNoteFromClipboard( const QString &name )
 {
-    const QString &text = KApplication::clipboard()->text();
+    const QString &text = QApplication::clipboard()->text();
     newNote( name, text );
 }
 
