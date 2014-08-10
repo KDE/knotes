@@ -40,8 +40,8 @@ KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &KNoteFindDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteFindDialog::reject);
     setAttribute(Qt::WA_DeleteOnClose);
     mNoteFindWidget = new KNoteFindWidget;
     connect(mNoteFindWidget, SIGNAL(noteSelected(Akonadi::Item::Id)), SIGNAL(noteSelected(Akonadi::Item::Id)));
@@ -88,19 +88,19 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     mSearchLineEdit = new QLineEdit;
     //QT5 mSearchLineEdit->setTrapReturnKey(true);
     mSearchLineEdit->setClearButtonEnabled(true);
-    connect(mSearchLineEdit, SIGNAL(returnPressed()), this, SLOT(slotSearchNote()));
-    connect(mSearchLineEdit, SIGNAL(textChanged(QString)), this, SLOT(slotTextChanged(QString)));
+    connect(mSearchLineEdit, &QLineEdit::returnPressed, this, &KNoteFindWidget::slotSearchNote);
+    connect(mSearchLineEdit, &QLineEdit::textChanged, this, &KNoteFindWidget::slotTextChanged);
     hbox->addWidget(mSearchLineEdit);
 
     mSearchButton = new QPushButton(QIcon::fromTheme(QLatin1String("edit-find")), i18n("Search..."));
-    connect(mSearchButton, SIGNAL(clicked(bool)), this, SLOT(slotSearchNote()));
+    connect(mSearchButton, &QPushButton::clicked, this, &KNoteFindWidget::slotSearchNote);
     hbox->addWidget(mSearchButton);
     mSearchButton->setEnabled(false);
 
     //Result
     mNoteList = new NoteShared::NoteListWidget;
     mNoteList->setSelectionMode(QAbstractItemView::SingleSelection);
-    connect(mNoteList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(slotItemDoubleClicked(QListWidgetItem*)));
+    connect(mNoteList, &NoteShared::NoteListWidget::itemDoubleClicked, this, &KNoteFindWidget::slotItemDoubleClicked);
     vbox->addWidget(mNoteList);
 
     mResultSearch = new QLabel;
