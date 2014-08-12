@@ -113,6 +113,7 @@ install(FILES
 ########### install files ###############
 
 install( PROGRAMS data/knotes.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
+install( FILES data/knotes.appdata.xml DESTINATION ${CMAKE_INSTALL_METAINFODIR})
 install( FILES ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
 install( FILES data/knotesappui.rc data/knotesui.rc  DESTINATION ${KXMLGUI_INSTALL_DIR}/knotes)
 install( FILES apps/org.kde.KNotes.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR}) 

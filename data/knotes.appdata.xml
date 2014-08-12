@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<component type="desktop">
+  <id>knotes.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <name>KNotes</name>
+  <description>
+    <p>
+      KNotes is a program that lets you write the computer equivalent of sticky notes.
+      The notes are saved automatically when you exit the program, and they display when you open the program.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>Write notes in your choice of font and background color</li>
+      <li>Use drag and drop to email your notes</li>
+      <li>Can be dragged into Calendar to book a time-slot</li>
+      <li>Notes can be printed</li>
+    </ul>
+  </description>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=knotes</url>
+  <url type="help">http://docs.kde.org/stable/en/kdepim/knotes/index.html</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>http://kde.org/images/screenshots/knotes.png</image>
+    </screenshot>
+  </screenshots>
+  <project_group>KDE</project_group>
+  <provides>
+    <binary>knotes</binary>
+  </provides>
+</component>
