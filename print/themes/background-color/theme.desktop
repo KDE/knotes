@@ -2,6 +2,7 @@
 Name=Note with background color
 Name[ca]=Nota amb un color de fons
 Name[ca@valencia]=Nota amb un color de fons
+Name[da]=Note med baggrundsfarve
 Name[de]=Notiz mit Hintergrundfarbe
 Name[en_GB]=Note with background colour
 Name[es]=Nota con color de fondo
@@ -29,6 +30,7 @@ Name[zh_TW]=有背景顏色的便條
 Description=Theme which use note background color
 Description[ca]=Tema que usa una nota amb un color de fons
 Description[ca@valencia]=Tema que usa una nota amb un color de fons
+Description[da]=Tema som bruger note-baggrundsfarven
 Description[de]=Design mit Hintergrundfarbe für die Notizen
 Description[en_GB]=Theme which use note background colour
 Description[es]=Tema que usa color de fondo de nota
