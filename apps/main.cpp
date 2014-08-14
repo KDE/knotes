@@ -27,7 +27,7 @@
 #include <KUniqueApplication>
 #include <kcmdlineargs.h>
 #include <k4aboutdata.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <kxerrorhandler.h>
 
 

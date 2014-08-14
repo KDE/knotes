@@ -40,7 +40,6 @@
 
 #include <KMime/KMimeMessage>
 
-#include <kaction.h>
 #include <kactioncollection.h>
 #include <kapplication.h>
 #include <kcombobox.h>

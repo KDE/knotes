@@ -28,7 +28,7 @@
 #include <kdeprintdialog.h>
 #include <KMessageBox>
 
-#include <klocale.h>
+#include <KLocalizedString>
 #include <qdebug.h>
 #include <KPrintPreview>
 

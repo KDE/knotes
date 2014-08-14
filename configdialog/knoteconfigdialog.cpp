@@ -40,8 +40,7 @@
 #include <kfontrequester.h>
 #include <kiconloader.h>
 #include <klineedit.h>
-#include <klocale.h>
-#include <knuminput.h>
+#include <KLocalizedString>
 #include <kwindowsystem.h>
 #include <QIcon>
 #include <KNS3/DownloadDialog>

@@ -30,7 +30,7 @@
 #include <qdebug.h>
 #include <kfontaction.h>
 #include <kfontsizeaction.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <QMenu>
 #include <kstandardaction.h>
 #include <ktoggleaction.h>
@@ -173,15 +173,15 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
 
     QAction *action = new QAction( i18n("Uppercase"), this );
     actions->addAction( QLatin1String("change_to_uppercase"), action );
-    connect( action, SIGNAL(triggered(bool)), this, SLOT(slotUpperCase()) );
+    connect(action, &QAction::triggered, this, &KNoteEdit::slotUpperCase);
 
     action = new QAction( i18n("Sentence case"), this );
     actions->addAction( QLatin1String("change_to_sentencecase"), action );
-    connect( action, SIGNAL(triggered(bool)), this, SLOT(slotSentenceCase()) );
+    connect(action, &QAction::triggered, this, &KNoteEdit::slotSentenceCase);
 
     action = new QAction( i18n("Lowercase"), this );
     actions->addAction( QLatin1String("change_to_lowercase"), action );
-    connect( action, SIGNAL(triggered(bool)), this, SLOT(slotLowerCase()) );
+    connect(action, &QAction::triggered, this, &KNoteEdit::slotLowerCase);
 
     action  = new QAction( QIcon::fromTheme( QLatin1String("knotes_date") ), i18n( "Insert Date" ), this );
     actions->addAction( QLatin1String("insert_date"), action );

@@ -68,11 +68,10 @@
 #include <KActionCollection>
 
 #include <KMessageBox>
-#include <kaction.h>
 #include <qdebug.h>
 #include <khelpmenu.h>
 #include <kiconeffect.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <QMenu>
 #include <kshortcutsdialog.h>
 #include <ksocketfactory.h>
