@@ -48,7 +48,7 @@
 #include <kiconeffect.h>
 #include <kiconloader.h>
 #include <qinputdialog.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <QMenu>
 #include <kmessagebox.h>
 #include <kselectaction.h>
