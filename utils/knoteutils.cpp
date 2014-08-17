@@ -19,7 +19,6 @@
 #include "noteshared/attributes/notedisplayattribute.h"
 #include "knotesglobalconfig.h"
 
-#include <KStandardDirs>
 #include <KMessageBox>
 #include <KLocalizedString>
 #include <KProcess>
