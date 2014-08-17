@@ -18,7 +18,6 @@
 #include "knotestray.h"
 
 #include <KIconLoader>
-#include <KGlobalSettings>
 #include <KLocalizedString>
 #include <KColorScheme>
 

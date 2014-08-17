@@ -18,19 +18,32 @@
 #include "knoteskeydialog.h"
 
 #include <KShortcutsEditor>
-#include <KDialog>
+#include <QDialog>
 #include <KLocalizedString>
 #include <KSharedConfig>
+#include <KConfigGroup>
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 KNotesKeyDialog::KNotesKeyDialog( KActionCollection *globals, QWidget *parent )
-    : KDialog( parent )
+    : QDialog( parent )
 {
-    setCaption( i18n( "Configure Shortcuts" ) );
-    setButtons( Default | Ok | Cancel );
+    setWindowTitle( i18n( "Configure Shortcuts" ) );
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel|QDialogButtonBox::RestoreDefaults);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    mainLayout->addWidget(buttonBox);
 
     m_keyChooser = new KShortcutsEditor( globals, this );
-    setMainWidget( m_keyChooser );
-    connect( this, SIGNAL(defaultClicked()),
+    mainLayout->addWidget(m_keyChooser);
+    mainLayout->addWidget(buttonBox);
+    connect(buttonBox->button(QDialogButtonBox::RestoreDefaults), SIGNAL(clicked()),
              m_keyChooser, SLOT(allDefault()) );
     readConfig();
 }

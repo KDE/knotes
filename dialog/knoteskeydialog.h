@@ -18,10 +18,11 @@
 #ifndef KNOTESKEYDIALOG_H
 #define KNOTESKEYDIALOG_H
 
-#include <KDialog>
+#include <QDialog>
+#include <KConfigGroup>
 class KActionCollection;
 class KShortcutsEditor;
-class KNotesKeyDialog : public KDialog
+class KNotesKeyDialog : public QDialog
 {
 public:
     explicit KNotesKeyDialog( KActionCollection *globals, QWidget *parent );
