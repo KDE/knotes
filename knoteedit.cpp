@@ -24,7 +24,8 @@
 #include "pimcommon/util/editorutil.h"
 #include "knotesglobalconfig.h"
 
-#include <kaction.h>
+#include <QAction>
+
 #include <kactioncollection.h>
 #include <QColorDialog>
 #include <qdebug.h>

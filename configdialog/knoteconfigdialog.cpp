@@ -34,7 +34,7 @@
 #include "kdepim-version.h"
 
 
-#include <kapplication.h>
+#include <qapplication.h>
 #include <kcolorbutton.h>
 #include <kconfig.h>
 #include <kfontrequester.h>
