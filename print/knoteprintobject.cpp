@@ -24,6 +24,7 @@
 #include <KMime/KMimeMessage>
 
 #include <KLocale>
+#include <QLocale>
 
 KNotePrintObject::KNotePrintObject(const Akonadi::Item &item, QObject *parent)
     : QObject(parent),
@@ -56,7 +57,7 @@ QString KNotePrintObject::name() const
 QString KNotePrintObject::currentDateTime() const
 {
     const QDateTime now = QDateTime::currentDateTime();
-    return KLocale::global()->formatDateTime( now );
+    return QLocale().toString(( now ), QLocale::ShortFormat);
 }
 
 bool KNotePrintObject::hasAlarm() const
@@ -68,7 +69,7 @@ QString KNotePrintObject::alarm() const
 {
     NoteShared::NoteAlarmAttribute *attr = mItem.attribute<NoteShared::NoteAlarmAttribute>();
     if (attr) {
-        return KLocale::global()->formatDateTime(attr->dateTime(),KLocale::LongDate);
+        return QLocale().toString(attr->dateTime().dateTime(),QLocale::LongFormat);
     }
     return QString();
 }
