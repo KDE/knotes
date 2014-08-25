@@ -19,7 +19,6 @@
 #define KNOTESKEYDIALOG_H
 
 #include <QDialog>
-#include <KConfigGroup>
 class KActionCollection;
 class KShortcutsEditor;
 class KNotesKeyDialog : public QDialog

@@ -23,7 +23,6 @@
 
 #include <KMime/KMimeMessage>
 
-#include <KLocale>
 #include <QLocale>
 
 KNotePrintObject::KNotePrintObject(const Akonadi::Item &item, QObject *parent)
