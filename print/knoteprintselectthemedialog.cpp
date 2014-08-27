@@ -40,8 +40,8 @@ KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     QPushButton *user1Button = new QPushButton;
     buttonBox->addButton(user1Button, QDialogButtonBox::ActionRole);
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &KNotePrintSelectThemeDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &KNotePrintSelectThemeDialog::reject);
 
     QWidget *w = new QWidget;
     QHBoxLayout *lay = new QHBoxLayout;

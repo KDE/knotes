@@ -47,8 +47,8 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     mUser1Button = new QPushButton;
     mButtonBox->addButton(mUser1Button, QDialogButtonBox::ActionRole);
-    connect(mButtonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(mButtonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(mButtonBox, &QDialogButtonBox::accepted, this, &KNotePrintSelectedNotesDialog::accept);
+    connect(mButtonBox, &QDialogButtonBox::rejected, this, &KNotePrintSelectedNotesDialog::reject);
     QWidget *w = new QWidget;
     QVBoxLayout *vbox = new QVBoxLayout;
     w->setLayout(vbox);
@@ -70,8 +70,8 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     mUser1Button->setText(i18n("Preview"));
     okButton->setIcon(QIcon::fromTheme(QLatin1String("document-print")));
     okButton->setText(i18n("Print"));
-    connect(mUser1Button, SIGNAL(clicked()), this, SLOT(slotPreview()));
-    connect(mListNotes, SIGNAL(itemSelectionChanged()), this, SLOT(slotSelectionChanged()));
+    connect(mUser1Button, &QPushButton::clicked, this, &KNotePrintSelectedNotesDialog::slotPreview);
+    connect(mListNotes, &QListWidget::itemSelectionChanged, this, &KNotePrintSelectedNotesDialog::slotSelectionChanged);
     mainLayout->addWidget(w);
     mainLayout->addWidget(mButtonBox);
     readConfig();
