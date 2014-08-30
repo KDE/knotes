@@ -39,7 +39,7 @@ KNotesAkonadiTray::KNotesAkonadiTray(QWidget *parent)
     setStandardActionsEnabled(false);
     //Initialize
     updateNumberOfNotes(0);
-    connect( KGlobalSettings::self(), SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotGeneralPaletteChanged()));
+    connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayPaletteChanged, this, &KNotesAkonadiTray::slotGeneralPaletteChanged);
 }
 
 KNotesAkonadiTray::~KNotesAkonadiTray()

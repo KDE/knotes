@@ -39,14 +39,14 @@ KNoteSelectedNotesDialog::KNoteSelectedNotesDialog(QWidget *parent)
     mOkButton = buttonBox->button(QDialogButtonBox::Ok);
     mOkButton->setDefault(true);
     mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &KNoteSelectedNotesDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteSelectedNotesDialog::reject);
 
     mListNotes = new QListWidget;
     mListNotes->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
 
-    connect(mListNotes, SIGNAL(itemSelectionChanged()), this, SLOT(slotSelectionChanged()));
+    connect(mListNotes, &QListWidget::itemSelectionChanged, this, &KNoteSelectedNotesDialog::slotSelectionChanged);
     mainLayout->addWidget(mListNotes);
     mainLayout->addWidget(buttonBox);
 
