@@ -90,7 +90,6 @@ KNoteConfigDialog::~KNoteConfigDialog()
 void KNoteConfigDialog::slotOk() {
     KNotesGlobalConfig::self()->writeConfig();
     NoteShared::NoteSharedGlobalConfig::self()->writeConfig();
-    emit configWrote();
 }
 
 
