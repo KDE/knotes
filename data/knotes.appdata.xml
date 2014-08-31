@@ -7,6 +7,7 @@
   <name xml:lang="ca">KNotes</name>
   <name xml:lang="cs">KNotes</name>
   <name xml:lang="en-GB">KNotes</name>
+  <name xml:lang="ko">KNotes</name>
   <name xml:lang="nds">KNotes</name>
   <name xml:lang="nl">KNotes</name>
   <name xml:lang="pl">KNotes</name>
@@ -25,6 +26,7 @@
     </p>
     <p xml:lang="ca">El KNotes és un programa que permet escriure l'equivalent informàtic a les notes adhesives. Les notes es desen automàticament en sortir del programa, i es mostren en obrir el programa.</p>
     <p xml:lang="en-GB">KNotes is a program that lets you write the computer equivalent of sticky notes. The notes are saved automatically when you exit the program, and they display when you open the program.</p>
+    <p xml:lang="ko">KNotes는 메모를 남길 수 있는 프로그램입니다. 프로그램을 종료할 때 메모를 자동으로 저장하고, 다음 실행 때 보여 줍니다.</p>
     <p xml:lang="nds">Mit KNotes kannst Du so wat as Anback-Notizen för den Reekner maken. De Notizen warrt bi't Utmaken vun't Programm automaatsch sekert un wedder wiest, wenn Du dat Programm wedder opröppst.</p>
     <p xml:lang="nl">Knotes is de digitale variant van de gele zelfklevende notitieblaadjes. De notities worden bij het afsluiten automatisch bewaard en worden weer getoond wanneer het programma gestart wordt.</p>
     <p xml:lang="pl">KNotes jest programem, który umożliwia tworzenie w komputerze tzw. żółtych karteczek. Takie karteczki są samoczynnie zapisywane przy wyjściu z programu i pokazywane przy otwieraniu programu.</p>
@@ -39,6 +41,7 @@
     <p xml:lang="ca">Característiques:</p>
     <p xml:lang="cs">Vlastnosti:</p>
     <p xml:lang="en-GB">Features:</p>
+    <p xml:lang="ko">기능:</p>
     <p xml:lang="nds">Markmalen:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
     <p xml:lang="pl">Możliwości:</p>
@@ -54,6 +57,7 @@
       <li>Write notes in your choice of font and background color</li>
       <li xml:lang="ca">Escriu les notes amb el tipus de lletra i el color de fons de la vostra elecció</li>
       <li xml:lang="en-GB">Write notes in your choice of font and background colour</li>
+      <li xml:lang="ko">사용자 정의 글꼴 및 배경색 지원</li>
       <li xml:lang="nds">De Notizen mit Dien Schriftoort un Achtergrundklöör schrieven</li>
       <li xml:lang="nl">Schrijf notities met uw keuze voor lettertype en achtergrondkleur</li>
       <li xml:lang="pl">Pisanie notatek według własnego wyboru czcionki i koloru</li>
@@ -67,6 +71,7 @@
       <li>Use drag and drop to email your notes</li>
       <li xml:lang="ca">Usa arrossega i deixa per enviar les vostres notes</li>
       <li xml:lang="en-GB">Use drag and drop to email your notes</li>
+      <li xml:lang="ko">드래그 앤 드롭으로 바로 이메일 보내기</li>
       <li xml:lang="nds">Notizen över Trecken un Afleggen mit Nettpost loosstüern</li>
       <li xml:lang="nl">Slepen en neerzetten gebruiken om uw notities te e-mailen</li>
       <li xml:lang="pl">Używanie przeciągania i upuszczania do wysyłania pocztą swoich notatek</li>
@@ -80,6 +85,7 @@
       <li>Can be dragged into Calendar to book a time-slot</li>
       <li xml:lang="ca">Es poden arrossegar al calendari per a reservar un horari</li>
       <li xml:lang="en-GB">Can be dragged into Calendar to book a time-slot</li>
+      <li xml:lang="ko">달력에 드래그 앤 드롭으로 일정 추가</li>
       <li xml:lang="nds">Laat sik na den Kalenner trecken, wat en Stoot Tiet reserveren deit</li>
       <li xml:lang="nl">Kan versleept worden in Agenda om een time-slot te boeken</li>
       <li xml:lang="pl">Możliwość przeciągnięcia na kalendarz celem zaplanowania przedziału czasowego</li>
@@ -93,6 +99,7 @@
       <li>Notes can be printed</li>
       <li xml:lang="ca">Les notes es poden imprimir</li>
       <li xml:lang="en-GB">Notes can be printed</li>
+      <li xml:lang="ko">인쇄 기능</li>
       <li xml:lang="nds">Notizen laat sik drucken</li>
       <li xml:lang="nl">Notities kunnen worden afgedrukt</li>
       <li xml:lang="pl">Możliwość drukowania notatek</li>
