@@ -40,8 +40,6 @@ class KNOTES_EXPORT KNoteConfigDialog : public KCMultiDialog
 
 public slots:
     void slotOk();
-signals:
-    void configWrote();
 };
 
 

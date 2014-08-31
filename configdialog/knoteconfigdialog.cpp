@@ -29,7 +29,9 @@
 #include "notesharedglobalconfig.h"
 #include "noteshared/config/noteactionconfig.h"
 #include "noteshared/config/notenetworkconfig.h"
+#include "noteshared/settings/globalsettings.h"
 #include "notesharedglobalconfig.h"
+#include "settings/globalsettings.h"
 
 #include "kdepim-version.h"
 
@@ -87,9 +89,8 @@ KNoteConfigDialog::~KNoteConfigDialog()
 }
 
 void KNoteConfigDialog::slotOk() {
-    KNotesGlobalConfig::self()->save();
-    NoteShared::NoteSharedGlobalConfig::self()->save();
-    emit configWrote();
+    GlobalSettings::self()->requestSync();
+    NoteShared::GlobalSettings::self()->requestSync();
 }
 
 
@@ -234,7 +235,7 @@ void KNoteMiscConfig::save()
 {
     KCModule::save();
     NoteShared::NoteSharedGlobalConfig::self()->setDefaultTitle(mDefaultTitle->text());
-    NoteShared::NoteSharedGlobalConfig::self()->save();
+    NoteShared::GlobalSettings::self()->requestSync();
 }
 
 void KNoteMiscConfig::defaults()

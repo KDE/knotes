@@ -12,7 +12,7 @@
 
   <group name="Misc">
     <entry name="SystemTrayShowNotes" type="Bool">
-      <default>true</default>
+      <default>false</default>
     </entry>
   </group>
 
