@@ -81,7 +81,7 @@ KNoteConfigDialog::KNoteConfigDialog( const QString &title,
     addModule( QLatin1String("knote_config_print") );
     addModule( QLatin1String("knote_config_collection") );
     addModule( QLatin1String("knote_config_misc") );
-    connect( button(QDialogButtonBox::Ok), SIGNAL(clicked()), SLOT(slotOk()) );
+    connect(button(QDialogButtonBox::Ok), &QPushButton::clicked, this, &KNoteConfigDialog::slotOk);
 }
 
 KNoteConfigDialog::~KNoteConfigDialog()
@@ -217,7 +217,7 @@ KNoteMiscConfig::KNoteMiscConfig(QWidget *parent )
     hbox->addWidget( mDefaultTitle );
 
     QLabel *howItWorks = new QLabel(i18n( "<a href=\"whatsthis\">How does this work?</a>" ));
-    connect( howItWorks, SIGNAL(linkActivated(QString)),SLOT(slotHelpLinkClicked(QString)) );
+    connect(howItWorks, &QLabel::linkActivated, this, &KNoteMiscConfig::slotHelpLinkClicked);
     lay->addWidget( howItWorks );
     addConfig( KNotesGlobalConfig::self(), w );
     lay->addStretch();
@@ -284,7 +284,7 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent )
     QToolButton *getNewTheme = new QToolButton;
     getNewTheme->setIcon(QIcon::fromTheme(QLatin1String("get-hot-new-stuff")));
     getNewTheme->setToolTip(i18n("Download new printing themes"));
-    connect(getNewTheme, SIGNAL(clicked()), SLOT(slotDownloadNewThemes()));
+    connect(getNewTheme, &QToolButton::clicked, this, &KNotePrintConfig::slotDownloadNewThemes);
     layout->addWidget( getNewTheme, 0, 2 );
     lay->addStretch();
     load();

@@ -76,7 +76,7 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
     actions->addAction( QLatin1String("format_strikeout"), m_textStrikeOut );
     m_textStrikeOut->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_S ) );
 
-    connect( m_textBold, SIGNAL(toggled(bool)), SLOT(textBold(bool)) );
+    connect(m_textBold, &KToggleAction::toggled, this, &KNoteEdit::textBold);
     connect( m_textItalic, SIGNAL(toggled(bool)),
              SLOT(setFontItalic(bool)) );
     connect( m_textUnderline, SIGNAL(toggled(bool)),
@@ -118,7 +118,7 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
 
     m_textList  = new KToggleAction( QIcon::fromTheme( QLatin1String("format-list-ordered") ), i18n( "List" ), this );
     actions->addAction( QLatin1String("format_list"), m_textList );
-    connect( m_textList, SIGNAL(triggered(bool)), SLOT(textList()) );
+    connect(m_textList, &KToggleAction::triggered, this, &KNoteEdit::textList);
 
     m_textSuper  = new KToggleAction( QIcon::fromTheme( QLatin1String("format-text-superscript") ),
                                       i18n( "Superscript" ), this );
@@ -128,7 +128,7 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
     m_textSub  = new KToggleAction( QIcon::fromTheme( QLatin1String("format-text-subscript") ), i18n( "Subscript" ),
                                     this );
     actions->addAction( QLatin1String("format_sub"), m_textSub );
-    connect( m_textSub, SIGNAL(triggered(bool)), SLOT(textSubScript()) );
+    connect(m_textSub, &KToggleAction::triggered, this, &KNoteEdit::textSubScript);
 
 
     m_textIncreaseIndent = new QAction( QIcon::fromTheme( QLatin1String("format-indent-more") ),
@@ -156,11 +156,11 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
     m_textColor  = new QAction( i18n( "Text Color..." ), this );
     actions->addAction( QLatin1String("format_color"), m_textColor );
     m_textColor->setIcon( pix );
-    connect( m_textColor, SIGNAL(triggered(bool)), SLOT(slotTextColor()) );
+    connect(m_textColor, &QAction::triggered, this, &KNoteEdit::slotTextColor);
 
     QAction *act = new QAction(QIcon::fromTheme( QLatin1String("format-fill-color") ), i18n( "Text Background Color..." ), this );
     actions->addAction( QLatin1String("text_background_color"), act );
-    connect( act, SIGNAL(triggered(bool)), SLOT(slotTextBackgroundColor()) );
+    connect(act, &QAction::triggered, this, &KNoteEdit::slotTextBackgroundColor);
 
     m_textFont  = new KFontAction( i18n( "Text Font" ), this );
     actions->addAction( QLatin1String("format_font"), m_textFont );
@@ -186,11 +186,11 @@ KNoteEdit::KNoteEdit( const QString &configFile, KActionCollection *actions, QWi
 
     action  = new QAction( QIcon::fromTheme( QLatin1String("knotes_date") ), i18n( "Insert Date" ), this );
     actions->addAction( QLatin1String("insert_date"), action );
-    connect( action, SIGNAL(triggered(bool)), SLOT(slotInsertDate()) );
+    connect(action, &QAction::triggered, this, &KNoteEdit::slotInsertDate);
 
     action = new QAction( QIcon::fromTheme( QLatin1String("checkmark") ), i18n( "Insert Checkmark" ), this );
     actions->addAction( QLatin1String("insert_checkmark"), action );
-    connect( action, SIGNAL(triggered(bool)), SLOT(slotInsertCheckMark()) );
+    connect(action, &QAction::triggered, this, &KNoteEdit::slotInsertCheckMark);
 
     // QTextEdit connections
     connect( this, SIGNAL(currentCharFormatChanged(QTextCharFormat)),

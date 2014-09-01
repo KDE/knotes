@@ -128,7 +128,7 @@ void KNote::setDisplayDefaultValue()
 #ifdef DEBUG_SAVE_NOTE
     qDebug()<<"setDisplayDefaultValue slotNoteSaved(KJob*)";
 #endif
-    connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+    connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
 }
 
 void KNote::setChangeItem(const Akonadi::Item &item, const QSet<QByteArray> &set)
@@ -215,7 +215,7 @@ void KNote::saveNote(bool force, bool sync)
 #ifdef DEBUG_SAVE_NOTE
             qDebug()<<"save Note slotClose() slotNoteSaved(KJob*)";
 #endif
-            connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+            connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
         }
     }
 }
@@ -319,7 +319,7 @@ void KNote::slotUpdateReadOnly()
 #ifdef DEBUG_SAVE_NOTE
         qDebug()<<" void KNote::slotUpdateReadOnly() slotNoteSaved(KJob*)";
 #endif
-        connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+        connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
     }
 
 
@@ -384,7 +384,7 @@ void KNote::slotClose()
 #ifdef DEBUG_SAVE_NOTE
     qDebug()<<"slotClose() slotNoteSaved(KJob*)";
 #endif
-    connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+    connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
     hide();
 }
 
@@ -414,7 +414,7 @@ void KNote::slotSetAlarm()
 #ifdef DEBUG_SAVE_NOTE
             qDebug()<<"setAlarm() slotNoteSaved(KJob*)";
 #endif
-            connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+            connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
         }
     }
     delete dlg;
@@ -458,7 +458,7 @@ void KNote::slotPreferences()
 #ifdef DEBUG_SAVE_NOTE
         qDebug()<<"slotPreference slotNoteSaved(KJob*)";
 #endif
-        connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+        connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
     }
     delete dialog;
 }
@@ -626,7 +626,7 @@ void KNote::slotUpdateKeepAboveBelow(bool save)
 #ifdef DEBUG_SAVE_NOTE
         qDebug()<<"slotUpdateKeepAboveBelow slotNoteSaved(KJob*)";
 #endif
-        connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+        connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
     }
 }
 
@@ -698,11 +698,11 @@ void KNote::createActions()
 
     action  = new QAction( QIcon::fromTheme( QLatin1String("document-new") ), i18n( "New" ),  this );
     actionCollection()->addAction( QLatin1String("new_note"), action );
-    connect( action, SIGNAL(triggered(bool)), SLOT(slotRequestNewNote()) );
+    connect(action, &QAction::triggered, this, &KNote::slotRequestNewNote);
 
     action  = new QAction( QIcon::fromTheme( QLatin1String("edit-rename") ), i18n( "Rename..." ), this );
     actionCollection()->addAction( QLatin1String("rename_note"), action );
-    connect( action, SIGNAL(triggered(bool)), SLOT(slotRename()) );
+    connect(action, &QAction::triggered, this, &KNote::slotRename);
 
     m_readOnly  = new KToggleAction( QIcon::fromTheme( QLatin1String("object-locked") ),
                                      i18n( "Lock" ), this );
@@ -713,30 +713,30 @@ void KNote::createActions()
 
     action  = new QAction( QIcon::fromTheme( QLatin1String("window-close") ), i18n( "Hide" ), this );
     actionCollection()->addAction( QLatin1String("hide_note"), action );
-    connect( action, SIGNAL(triggered(bool)), SLOT(slotClose()) );
+    connect(action, &QAction::triggered, this, &KNote::slotClose);
     action->setShortcut( QKeySequence( Qt::Key_Escape ) );
 
     action  = new QAction( QIcon::fromTheme( QLatin1String("edit-delete") ), i18n( "Delete" ), this );
     actionCollection()->addAction( QLatin1String("delete_note"), action );
-    connect( action, SIGNAL(triggered(bool)), SLOT(slotKill()),Qt::QueuedConnection );
+    connect(action, &QAction::triggered, this, &KNote::slotKill);
 
     action  = new QAction( QIcon::fromTheme( QLatin1String("knotes_alarm") ), i18n( "Set Alarm..." ),
                            this );
     actionCollection()->addAction( QLatin1String("set_alarm"), action );
-    connect( action, SIGNAL(triggered(bool)), SLOT(slotSetAlarm()) );
+    connect(action, &QAction::triggered, this, &KNote::slotSetAlarm);
 
     action  = new QAction( QIcon::fromTheme( QLatin1String("network-wired") ), i18n( "Send..." ), this );
     actionCollection()->addAction( QLatin1String("send_note"), action );
-    connect( action, SIGNAL(triggered(bool)), SLOT(slotSend()) );
+    connect(action, &QAction::triggered, this, &KNote::slotSend);
 
     action  = new QAction( QIcon::fromTheme( QLatin1String("mail-send") ), i18n( "Mail..." ), this );
     actionCollection()->addAction( QLatin1String("mail_note"), action );
-    connect( action, SIGNAL(triggered(bool)), SLOT(slotMail()) );
+    connect(action, &QAction::triggered, this, &KNote::slotMail);
 
     action  = new QAction( QIcon::fromTheme( QLatin1String("document-save-as") ), i18n( "Save As..." ),
                            this );
     actionCollection()->addAction( QLatin1String("save_note"), action );
-    connect( action, SIGNAL(triggered(bool)), SLOT(slotSaveAs()) );
+    connect(action, &QAction::triggered, this, &KNote::slotSaveAs);
     actionCollection()->addAction( KStandardAction::Print,  QLatin1String("print_note"), this,
                                    SLOT(slotPrint()) );
 
@@ -746,7 +746,7 @@ void KNote::createActions()
     }
     action  = new QAction( QIcon::fromTheme( QLatin1String("configure") ), i18n( "Preferences..." ), this );
     actionCollection()->addAction( QLatin1String("configure_note"), action );
-    connect( action, SIGNAL(triggered(bool)), SLOT(slotPreferences()) );
+    connect(action, &QAction::triggered, this, &KNote::slotPreferences);
 
 
     m_keepAbove  = new KToggleAction( QIcon::fromTheme( QLatin1String("go-up") ),
@@ -810,7 +810,7 @@ void KNote::createNoteHeader()
     m_button = new KNoteButton( QLatin1String("knotes_close"), this );
     headerLayout->addWidget( m_button );
 
-    connect( m_button, SIGNAL(clicked()), this, SLOT(slotClose()) );
+    connect(m_button, &KNoteButton::clicked, this, &KNote::slotClose);
 
     m_noteLayout->addItem( headerLayout );
 }
@@ -1116,7 +1116,7 @@ void KNote::showEvent( QShowEvent * )
 #ifdef DEBUG_SAVE_NOTE
             qDebug()<<"showEvent slotNoteSaved(KJob*)";
 #endif
-            connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+            connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
         }
     }
 }
@@ -1160,7 +1160,7 @@ void KNote::dropEvent( QDropEvent *e )
 #ifdef DEBUG_SAVE_NOTE
         qDebug()<<"dropEvent slotNoteSaved(KJob*)";
 #endif
-        connect( job, SIGNAL(result(KJob*)), SLOT(slotNoteSaved(KJob*)) );
+        connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
     }
 }
 
