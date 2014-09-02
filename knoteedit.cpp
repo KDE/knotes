@@ -76,37 +76,30 @@ KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWid
     m_textStrikeOut->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
 
     connect(m_textBold, &KToggleAction::toggled, this, &KNoteEdit::textBold);
-    connect(m_textItalic, SIGNAL(toggled(bool)),
-            SLOT(setFontItalic(bool)));
-    connect(m_textUnderline, SIGNAL(toggled(bool)),
-            SLOT(setFontUnderline(bool)));
-    connect(m_textStrikeOut, SIGNAL(toggled(bool)),
-            SLOT(textStrikeOut(bool)));
+    connect(m_textItalic, &KToggleAction::toggled, this, &KNoteEdit::setFontItalic);
+    connect(m_textUnderline, &KToggleAction::toggled, this, &KNoteEdit::setFontUnderline);
+    connect(m_textStrikeOut, &KToggleAction::toggled, this, &KNoteEdit::textStrikeOut);
 
     m_textAlignLeft = new KToggleAction(QIcon::fromTheme(QLatin1String("format-justify-left")),
                                         i18n("Align Left"), this);
     actions->addAction(QLatin1String("format_alignleft"), m_textAlignLeft);
-    connect(m_textAlignLeft, SIGNAL(triggered(bool)),
-            SLOT(textAlignLeft()));
+    connect(m_textAlignLeft, &KToggleAction::triggered, this, &KNoteEdit::textAlignLeft);
     m_textAlignLeft->setShortcut(QKeySequence(Qt::ALT + Qt::Key_L));
     m_textAlignLeft->setChecked(true);   // just a dummy, will be updated later
     m_textAlignCenter  = new KToggleAction(QIcon::fromTheme(QLatin1String("format-justify-center")),
                                            i18n("Align Center"), this);
     actions->addAction(QLatin1String("format_aligncenter"), m_textAlignCenter);
-    connect(m_textAlignCenter, SIGNAL(triggered(bool)),
-            SLOT(textAlignCenter()));
+    connect(m_textAlignCenter, &KToggleAction::triggered, this, &KNoteEdit::textAlignCenter);
     m_textAlignCenter->setShortcut(QKeySequence(Qt::ALT + Qt::Key_C));
     m_textAlignRight = new KToggleAction(QIcon::fromTheme(QLatin1String("format-justify-right")),
                                          i18n("Align Right"), this);
     actions->addAction(QLatin1String("format_alignright"), m_textAlignRight);
-    connect(m_textAlignRight, SIGNAL(triggered(bool)),
-            SLOT(textAlignRight()));
+    connect(m_textAlignRight, &KToggleAction::triggered, this, &KNoteEdit::textAlignRight);
     m_textAlignRight->setShortcut(QKeySequence(Qt::ALT + Qt::Key_R));
     m_textAlignBlock = new KToggleAction(QIcon::fromTheme(QLatin1String("format-justify-fill")),
                                          i18n("Align Block"), this);
     actions->addAction(QLatin1String("format_alignblock"), m_textAlignBlock);
-    connect(m_textAlignBlock, SIGNAL(triggered(bool)),
-            SLOT(textAlignBlock()));
+    connect(m_textAlignBlock, &KToggleAction::triggered, this, &KNoteEdit::textAlignBlock);
     m_textAlignBlock->setShortcut(QKeySequence(Qt::ALT + Qt::Key_B));
 
     QActionGroup *group = new QActionGroup(this);
@@ -122,8 +115,7 @@ KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWid
     m_textSuper  = new KToggleAction(QIcon::fromTheme(QLatin1String("format-text-superscript")),
                                      i18n("Superscript"), this);
     actions->addAction(QLatin1String("format_super"), m_textSuper);
-    connect(m_textSuper, SIGNAL(triggered(bool)),
-            SLOT(textSuperScript()));
+    connect(m_textSuper, &KToggleAction::triggered, this, &KNoteEdit::textSuperScript);
     m_textSub  = new KToggleAction(QIcon::fromTheme(QLatin1String("format-text-subscript")), i18n("Subscript"),
                                    this);
     actions->addAction(QLatin1String("format_sub"), m_textSub);
@@ -134,16 +126,14 @@ KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWid
     actions->addAction(QLatin1String("format_increaseindent"), m_textIncreaseIndent);
     m_textIncreaseIndent->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT +
                                       Qt::Key_I));
-    connect(m_textIncreaseIndent, SIGNAL(triggered(bool)),
-            SLOT(textIncreaseIndent()));
+    connect(m_textIncreaseIndent, &QAction::triggered, this, &KNoteEdit::textIncreaseIndent);
 
     m_textDecreaseIndent = new QAction(QIcon::fromTheme(QLatin1String("format-indent-less")),
                                        i18n("Decrease Indent"), this);
     actions->addAction(QLatin1String("format_decreaseindent"), m_textDecreaseIndent);
     m_textDecreaseIndent->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT +
                                       Qt::Key_D));
-    connect(m_textDecreaseIndent, SIGNAL(triggered(bool)), SLOT(
-                textDecreaseIndent()));
+    connect(m_textDecreaseIndent, &QAction::triggered, this, &KNoteEdit::textDecreaseIndent);
 
     group = new QActionGroup(this);
     group->addAction(m_textIncreaseIndent);
@@ -162,13 +152,12 @@ KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWid
 
     m_textFont  = new KFontAction(i18n("Text Font"), this);
     actions->addAction(QLatin1String("format_font"), m_textFont);
-    connect(m_textFont, SIGNAL(triggered(QString)),
-            this, SLOT(setFontFamily(QString)));
+    connect(m_textFont, static_cast<void (KFontAction::*)(const QString &)>(&KFontAction::triggered), this, &KNoteEdit::setFontFamily);
+
 
     m_textSize  = new KFontSizeAction(i18n("Text Size"), this);
     actions->addAction(QLatin1String("format_size"), m_textSize);
-    connect(m_textSize, SIGNAL(fontSizeChanged(int)),
-            this, SLOT(setTextFontSize(int)));
+    connect(m_textSize, &KFontSizeAction::fontSizeChanged, this, &KNoteEdit::setTextFontSize);
 
     QAction *action = new QAction(i18n("Uppercase"), this);
     actions->addAction(QLatin1String("change_to_uppercase"), action);

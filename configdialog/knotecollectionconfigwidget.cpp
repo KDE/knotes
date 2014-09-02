@@ -84,7 +84,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     connect(mModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
             this, SLOT(slotCollectionsInserted(QModelIndex,int,int)));
 
-    connect(mCheckProxy, SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(slotDataChanged()));
+    connect(mCheckProxy, &KCheckableProxyModel::dataChanged, this, &KNoteCollectionConfigWidget::slotDataChanged);
     mCollectionFilter = new KRecursiveFilterProxyModel(this);
     mCollectionFilter->setSourceModel(mCheckProxy);
     mCollectionFilter->setDynamicSortFilter(true);
@@ -111,16 +111,16 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     vbox->addLayout(hbox);
 
     QPushButton *button = new QPushButton(i18n("&Select All"), this);
-    connect(button, SIGNAL(clicked(bool)), this, SLOT(slotSelectAllCollections()));
+    connect(button, &QPushButton::clicked, this, &KNoteCollectionConfigWidget::slotSelectAllCollections);
     hbox->addWidget(button);
 
     button = new QPushButton(i18n("&Unselect All"), this);
-    connect(button, SIGNAL(clicked(bool)), this, SLOT(slotUnselectAllCollections()));
+    connect(button, &QPushButton::clicked, this, &KNoteCollectionConfigWidget::slotUnselectAllCollections);
     hbox->addWidget(button);
     hbox->addStretch(1);
 
     mRenameCollection = new QPushButton(i18n("Rename notes..."), this);
-    connect(mRenameCollection, SIGNAL(clicked(bool)), this, SLOT(slotRenameCollection()));
+    connect(mRenameCollection, &QPushButton::clicked, this, &KNoteCollectionConfigWidget::slotRenameCollection);
     hbox->addWidget(mRenameCollection);
 
     vbox->addWidget(new QLabel(i18nc("@info", "Select the folder where the note will be saved:")));
@@ -175,7 +175,7 @@ void KNoteCollectionConfigWidget::slotRenameCollection()
         }
 
         Akonadi::CollectionModifyJob *job = new Akonadi::CollectionModifyJob(col, this);
-        connect(job, SIGNAL(result(KJob*)), SLOT(slotCollectionModifyFinished(KJob*)));
+        connect(job, &Akonadi::CollectionModifyJob::result, this, &KNoteCollectionConfigWidget::slotCollectionModifyFinished);
         job->start();
     }
 }
@@ -285,7 +285,7 @@ void KNoteCollectionConfigWidget::updateCollectionsRecursive(const QModelIndex &
         }
 
         if (modifyJob) {
-            connect(modifyJob, SIGNAL(finished(KJob*)), SLOT(slotModifyJobDone(KJob*)));
+            connect(modifyJob, &Akonadi::CollectionModifyJob::finished, this, &KNoteCollectionConfigWidget::slotModifyJobDone);
         }
         updateCollectionsRecursive(child);
     }

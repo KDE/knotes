@@ -445,8 +445,7 @@ void KNote::slotPreferences()
     attribute->setSize(QSize(width(), height()));
 
     dialog->load(mItem, m_editor->acceptRichText());
-    connect(this, SIGNAL(sigNameChanged(QString)), dialog,
-            SLOT(slotUpdateCaption(QString)));
+    connect(this, &KNote::sigNameChanged, dialog.data(), &KNoteSimpleConfigDialog::slotUpdateCaption);
     if (dialog->exec()) {
         bool isRichText;
         dialog->save(mItem, isRichText);
@@ -702,8 +701,7 @@ void KNote::createActions()
     m_readOnly  = new KToggleAction(QIcon::fromTheme(QLatin1String("object-locked")),
                                     i18n("Lock"), this);
     actionCollection()->addAction(QLatin1String("lock_note"), m_readOnly);
-    connect(m_readOnly, SIGNAL(triggered(bool)),
-            SLOT(slotUpdateReadOnly()));
+    connect(m_readOnly, &KToggleAction::triggered, this, &KNote::slotUpdateReadOnly);
     m_readOnly->setCheckedState(KGuiItem(i18n("Unlock"), QLatin1String("object-unlocked")));
 
     action  = new QAction(QIcon::fromTheme(QLatin1String("window-close")), i18n("Hide"), this);
@@ -732,12 +730,10 @@ void KNote::createActions()
                           this);
     actionCollection()->addAction(QLatin1String("save_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotSaveAs);
-    actionCollection()->addAction(KStandardAction::Print,  QLatin1String("print_note"), this,
-                                  SLOT(slotPrint()));
+    actionCollection()->addAction(KStandardAction::Print,  QLatin1String("print_note"), this, SLOT(slotPrint()));
 
     if (KPrintPreview::isAvailable()) {
-        actionCollection()->addAction(KStandardAction::PrintPreview,  QLatin1String("print_preview_note"), this,
-                                      SLOT(slotPrintPreview()));
+        actionCollection()->addAction(KStandardAction::PrintPreview,  QLatin1String("print_preview_note"), this,  SLOT(slotPrintPreview()));
     }
     action  = new QAction(QIcon::fromTheme(QLatin1String("configure")), i18n("Preferences..."), this);
     actionCollection()->addAction(QLatin1String("configure_note"), action);
@@ -746,29 +742,25 @@ void KNote::createActions()
     m_keepAbove  = new KToggleAction(QIcon::fromTheme(QLatin1String("go-up")),
                                      i18n("Keep Above Others"), this);
     actionCollection()->addAction(QLatin1String("keep_above"), m_keepAbove);
-    connect(m_keepAbove, SIGNAL(triggered(bool)),
-            SLOT(slotKeepAbove()));
+    connect(m_keepAbove, &KToggleAction::triggered, this, &KNote::slotKeepAbove);
 
     m_keepBelow  = new KToggleAction(QIcon::fromTheme(QLatin1String("go-down")),
                                      i18n("Keep Below Others"), this);
     actionCollection()->addAction(QLatin1String("keep_below"), m_keepBelow);
-    connect(m_keepBelow, SIGNAL(triggered(bool)),
-            SLOT(slotKeepBelow()));
+    connect(m_keepBelow, &KToggleAction::triggered, this, &KNote::slotKeepBelow);
 
 #if KDEPIM_HAVE_X11
     m_toDesktop  = new KSelectAction(i18n("To Desktop"), this);
     actionCollection()->addAction(QLatin1String("to_desktop"), m_toDesktop);
-    connect(m_toDesktop, SIGNAL(triggered(int)),
-            SLOT(slotPopupActionToDesktop(int)));
-    connect(m_toDesktop->menu(), SIGNAL(aboutToShow()),
-            SLOT(slotUpdateDesktopActions()));
+    connect(m_toDesktop, static_cast<void (KSelectAction::*)(int)>(&KSelectAction::triggered), this, &KNote::slotPopupActionToDesktop);
+    connect(m_toDesktop->menu(), SIGNAL(aboutToShow()), SLOT(slotUpdateDesktopActions()));
     // initially populate it, otherwise stays disabled
     slotUpdateDesktopActions();
 #endif
     // invisible action to walk through the notes to make this configurable
     action  = new QAction(i18n("Walk Through Notes"), this);
     actionCollection()->addAction(QLatin1String("walk_notes"), action);
-    connect(action, SIGNAL(triggered(bool)), SIGNAL(sigShowNextNote()));
+    connect(action, &QAction::triggered, this, &KNote::sigShowNextNote);
     action->setShortcut(QKeySequence(Qt::SHIFT + Qt::Key_Backtab));
 
     actionCollection()->addAssociatedWidget(this);
