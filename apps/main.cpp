@@ -29,6 +29,7 @@
 #include <k4aboutdata.h>
 #include <KLocalizedString>
 #include <kxerrorhandler.h>
+#include <kdelibs4configmigrator.h>
 
 #if KDEPIM_HAVE_X11
 #include <X11/Xlib.h>
@@ -42,6 +43,10 @@ void knotesAuthors(K4AboutData &aboutData);
 
 int main(int argc, char *argv[])
 {
+    Kdelibs4ConfigMigrator migrate(QLatin1String("knotes"));
+    migrate.setConfigFiles(QStringList() << QLatin1String("knotesrc"));
+    migrate.migrate();
+
     K4AboutData aboutData("knotes",
                           0,
                           ki18n("KNotes"),
