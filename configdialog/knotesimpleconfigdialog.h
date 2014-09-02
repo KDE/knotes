@@ -19,11 +19,11 @@
 #define KNoteSimpleConfigDialog_H
 #include "knotes_export.h"
 #include <AkonadiCore/Item>
-#include <KDialog>
+#include <QDialog>
 class QTabWidget;
 class KNoteEditorConfigWidget;
 class KNoteDisplayConfigWidget;
-class KNOTES_EXPORT KNoteSimpleConfigDialog : public KDialog
+class KNOTES_EXPORT KNoteSimpleConfigDialog : public QDialog
 {
     Q_OBJECT
 public:

@@ -30,15 +30,28 @@
 #include <QTabWidget>
 #include <QApplication>
 #include <KSharedConfig>
+#include <KConfigGroup>
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title,
         QWidget *parent)
-    : KDialog(parent)
+    : QDialog(parent)
 {
-    setButtons(/*Default |*/ Ok | Cancel);
-    setDefaultButton(Ok);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QWidget *mainWidget = new QWidget(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+    mainLayout->addWidget(mainWidget);
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    okButton->setDefault(true);
 
-    setCaption(title);
+    setWindowTitle(title);
 #if KDEPIM_HAVE_X11
     KWindowSystem::setIcons(winId(),
                             qApp->windowIcon().pixmap(
@@ -48,7 +61,6 @@ KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title,
                                 IconSize(KIconLoader::Small),
                                 IconSize(KIconLoader::Small)));
 #endif
-    showButtonSeparator(true);
     mTabWidget = new QTabWidget;
 
     mEditorConfigWidget = new KNoteEditorConfigWidget(true, this);
@@ -57,7 +69,9 @@ KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title,
     mDisplayConfigWidget = new KNoteDisplayConfigWidget(true, this);
     mTabWidget->addTab(mDisplayConfigWidget, i18n("Display Settings"));
 
-    setMainWidget(mTabWidget);
+    mainLayout->addWidget(mTabWidget);
+    mainLayout->addWidget(buttonBox);
+
     readConfig();
 }
 
@@ -75,7 +89,7 @@ void KNoteSimpleConfigDialog::load(Akonadi::Item &item, bool isRichText)
 
 void KNoteSimpleConfigDialog::slotUpdateCaption(const QString &name)
 {
-    setCaption(name);
+    setWindowTitle(name);
 }
 
 void KNoteSimpleConfigDialog::save(Akonadi::Item &item, bool &isRichText)
