@@ -30,8 +30,8 @@
 KNoteSelectedNotesDialog::KNoteSelectedNotesDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle( i18n( "Select notes" ) );
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    setWindowTitle(i18n("Select notes"));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     QWidget *mainWidget = new QWidget(this);
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
@@ -44,7 +44,6 @@ KNoteSelectedNotesDialog::KNoteSelectedNotesDialog(QWidget *parent)
 
     mListNotes = new QListWidget;
     mListNotes->setSelectionMode(QAbstractItemView::ExtendedSelection);
-
 
     connect(mListNotes, &QListWidget::itemSelectionChanged, this, &KNoteSelectedNotesDialog::slotSelectionChanged);
     mainLayout->addWidget(mListNotes);
@@ -65,13 +64,13 @@ void KNoteSelectedNotesDialog::slotSelectionChanged()
     mOkButton->setEnabled(hasSelection);
 }
 
-void KNoteSelectedNotesDialog::setNotes(const QHash<Akonadi::Item::Id, KNote*> &notes)
+void KNoteSelectedNotesDialog::setNotes(const QHash<Akonadi::Item::Id, KNote *> &notes)
 {
     mNotes = notes;
     QHashIterator<Akonadi::Item::Id, KNote *> i(notes);
     while (i.hasNext()) {
         i.next();
-        QListWidgetItem *item =new QListWidgetItem(mListNotes);
+        QListWidgetItem *item = new QListWidgetItem(mListNotes);
         item->setText(i.value()->name());
         item->setToolTip(i.value()->text());
         item->setData(AkonadiId, i.key());
@@ -81,7 +80,7 @@ void KNoteSelectedNotesDialog::setNotes(const QHash<Akonadi::Item::Id, KNote*> &
 QStringList KNoteSelectedNotesDialog::selectedNotes() const
 {
     QStringList lst;
-    Q_FOREACH(QListWidgetItem *item, mListNotes->selectedItems()) {
+    Q_FOREACH (QListWidgetItem *item, mListNotes->selectedItems()) {
         Akonadi::Item::Id akonadiId = item->data(AkonadiId).toLongLong();
         if (akonadiId != -1) {
             lst.append(QString::number(akonadiId));
@@ -92,16 +91,16 @@ QStringList KNoteSelectedNotesDialog::selectedNotes() const
 
 void KNoteSelectedNotesDialog::readConfig()
 {
-    KConfigGroup grp( KSharedConfig::openConfig(), "KNoteSelectedNotesDialog" );
-    const QSize size = grp.readEntry( "Size", QSize(300, 200) );
-    if ( size.isValid() ) {
-        resize( size );
+    KConfigGroup grp(KSharedConfig::openConfig(), "KNoteSelectedNotesDialog");
+    const QSize size = grp.readEntry("Size", QSize(300, 200));
+    if (size.isValid()) {
+        resize(size);
     }
 }
 
 void KNoteSelectedNotesDialog::writeConfig()
 {
-    KConfigGroup grp( KSharedConfig::openConfig(), "KNoteSelectedNotesDialog" );
-    grp.writeEntry( "Size", size() );
+    KConfigGroup grp(KSharedConfig::openConfig(), "KNoteSelectedNotesDialog");
+    grp.writeEntry("Size", size());
     grp.sync();
 }

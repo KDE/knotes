@@ -35,7 +35,7 @@ class KNOTES_EXPORT KNotePrintObject : public QObject
     Q_PROPERTY(bool isLock READ isLock)
     Q_PROPERTY(QString backgroundColorName READ backgroundColorName)
 public:
-    explicit KNotePrintObject(const Akonadi::Item &item, QObject *parent=0);
+    explicit KNotePrintObject(const Akonadi::Item &item, QObject *parent = 0);
     ~KNotePrintObject();
 
     QString description() const;
@@ -49,5 +49,5 @@ private:
     Akonadi::Item mItem;
 };
 
-Q_DECLARE_METATYPE(QList<KNotePrintObject*>)
+Q_DECLARE_METATYPE(QList<KNotePrintObject *>)
 #endif // KNOTEPRINTOBJECT_H

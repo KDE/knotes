@@ -30,10 +30,10 @@ class KNotePrintSelectedNotesDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KNotePrintSelectedNotesDialog(QWidget *parent=0);
+    explicit KNotePrintSelectedNotesDialog(QWidget *parent = 0);
     ~KNotePrintSelectedNotesDialog();
 
-    void setNotes(const QHash<Akonadi::Item::Id, KNote*> &notes);
+    void setNotes(const QHash<Akonadi::Item::Id, KNote *> &notes);
 
     QList<KNotePrintObject *> selectedNotes() const;
     QString selectedTheme() const;
@@ -52,7 +52,7 @@ private:
     void writeConfig();
     void readConfig();
     QListWidget *mListNotes;
-    QHash<Akonadi::Item::Id, KNote*> mNotes;
+    QHash<Akonadi::Item::Id, KNote *> mNotes;
     KNotePrintSelectThemeComboBox *mTheme;
     QDialogButtonBox *mButtonBox;
     QPushButton *mUser1Button;

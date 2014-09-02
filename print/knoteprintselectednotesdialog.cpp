@@ -36,8 +36,8 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     : QDialog(parent),
       mPreview(false)
 {
-    setWindowTitle( i18n( "Select notes" ) );
-    mButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    setWindowTitle(i18n("Select notes"));
+    mButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     QWidget *mainWidget = new QWidget(this);
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
@@ -90,13 +90,13 @@ void KNotePrintSelectedNotesDialog::slotSelectionChanged()
     mButtonBox->button(QDialogButtonBox::Ok)->setEnabled(hasSelection);
 }
 
-void KNotePrintSelectedNotesDialog::setNotes(const QHash<Akonadi::Item::Id, KNote*> &notes)
+void KNotePrintSelectedNotesDialog::setNotes(const QHash<Akonadi::Item::Id, KNote *> &notes)
 {
     mNotes = notes;
     QHashIterator<Akonadi::Item::Id, KNote *> i(notes);
     while (i.hasNext()) {
         i.next();
-        QListWidgetItem *item =new QListWidgetItem(mListNotes);
+        QListWidgetItem *item = new QListWidgetItem(mListNotes);
         item->setText(i.value()->name());
         item->setToolTip(i.value()->text());
         item->setData(AkonadiId, i.key());
@@ -106,8 +106,8 @@ void KNotePrintSelectedNotesDialog::setNotes(const QHash<Akonadi::Item::Id, KNot
 QList<KNotePrintObject *> KNotePrintSelectedNotesDialog::selectedNotes() const
 {
     QList<KNotePrintObject *> lstPrintObj;
-    QList<QListWidgetItem *> lst = mListNotes->selectedItems ();
-    Q_FOREACH(QListWidgetItem *item, lst) {
+    QList<QListWidgetItem *> lst = mListNotes->selectedItems();
+    Q_FOREACH (QListWidgetItem *item, lst) {
         Akonadi::Item::Id akonadiId = item->data(AkonadiId).toLongLong();
         if (akonadiId != -1) {
             KNotePrintObject *obj = new KNotePrintObject(mNotes.value(akonadiId)->item());
@@ -129,17 +129,17 @@ bool KNotePrintSelectedNotesDialog::preview() const
 
 void KNotePrintSelectedNotesDialog::readConfig()
 {
-    KConfigGroup grp( KSharedConfig::openConfig(), "KNotePrintSelectedNotesDialog" );
-    const QSize size = grp.readEntry( "Size", QSize(300, 200) );
-    if ( size.isValid() ) {
-        resize( size );
+    KConfigGroup grp(KSharedConfig::openConfig(), "KNotePrintSelectedNotesDialog");
+    const QSize size = grp.readEntry("Size", QSize(300, 200));
+    if (size.isValid()) {
+        resize(size);
     }
 }
 
 void KNotePrintSelectedNotesDialog::writeConfig()
 {
-    KConfigGroup grp( KSharedConfig::openConfig(), "KNotePrintSelectedNotesDialog" );
-    grp.writeEntry( "Size", size() );
+    KConfigGroup grp(KSharedConfig::openConfig(), "KNotePrintSelectedNotesDialog");
+    grp.writeEntry("Size", size());
     grp.sync();
 }
 

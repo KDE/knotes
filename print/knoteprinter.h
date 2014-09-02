@@ -24,7 +24,8 @@
 
 #include <QFont>
 
-namespace Grantlee {
+namespace Grantlee
+{
 class Engine;
 }
 
@@ -36,15 +37,15 @@ public:
     KNotePrinter();
     ~KNotePrinter();
 
-    void setDefaultFont( const QFont &font );
+    void setDefaultFont(const QFont &font);
     QFont defaultFont() const;
     void printNotes(const QList<KNotePrintObject *> lst, const QString &themePath, bool preview);
 
 private:
     void print(QPrinter &printer, const QString &htmlText);
-    void doPrint( const QString &content, const QString &dialogCaption );
+    void doPrint(const QString &content, const QString &dialogCaption);
     void doPrintPreview(const QString &htmlText);
-    
+
     QFont m_defaultFont;
     Grantlee::Engine *mEngine;
     Grantlee::FileSystemTemplateLoader::Ptr mTemplateLoader;

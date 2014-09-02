@@ -61,25 +61,25 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     vbox->addWidget(label);
 
     // Create a new change recorder.
-    mChangeRecorder = new Akonadi::ChangeRecorder( this );
-    mChangeRecorder->setMimeTypeMonitored( Akonotes::Note::mimeType() );
-    mChangeRecorder->fetchCollection( true );
-    mChangeRecorder->setAllMonitored( true );
+    mChangeRecorder = new Akonadi::ChangeRecorder(this);
+    mChangeRecorder->setMimeTypeMonitored(Akonotes::Note::mimeType());
+    mChangeRecorder->fetchCollection(true);
+    mChangeRecorder->setAllMonitored(true);
 
-    mModel = new Akonadi::EntityTreeModel( mChangeRecorder, this );
+    mModel = new Akonadi::EntityTreeModel(mChangeRecorder, this);
     // Set the model to show only collections, not items.
-    mModel->setItemPopulationStrategy( Akonadi::EntityTreeModel::NoItemPopulation );
+    mModel->setItemPopulationStrategy(Akonadi::EntityTreeModel::NoItemPopulation);
 
-    Akonadi::CollectionFilterProxyModel *mimeTypeProxy = new Akonadi::CollectionFilterProxyModel( this );
-    mimeTypeProxy->setExcludeVirtualCollections( true );
-    mimeTypeProxy->addMimeTypeFilters( QStringList() << Akonotes::Note::mimeType() );
-    mimeTypeProxy->setSourceModel( mModel );
+    Akonadi::CollectionFilterProxyModel *mimeTypeProxy = new Akonadi::CollectionFilterProxyModel(this);
+    mimeTypeProxy->setExcludeVirtualCollections(true);
+    mimeTypeProxy->addMimeTypeFilters(QStringList() << Akonotes::Note::mimeType());
+    mimeTypeProxy->setSourceModel(mModel);
 
     // Create the Check proxy model.
-    mSelectionModel = new QItemSelectionModel( mimeTypeProxy );
-    mCheckProxy = new KCheckableProxyModel( this );
-    mCheckProxy->setSelectionModel( mSelectionModel );
-    mCheckProxy->setSourceModel( mimeTypeProxy );
+    mSelectionModel = new QItemSelectionModel(mimeTypeProxy);
+    mCheckProxy = new KCheckableProxyModel(this);
+    mCheckProxy->setSelectionModel(mSelectionModel);
+    mCheckProxy->setSourceModel(mimeTypeProxy);
 
     connect(mModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
             this, SLOT(slotCollectionsInserted(QModelIndex,int,int)));
@@ -89,7 +89,6 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     mCollectionFilter->setSourceModel(mCheckProxy);
     mCollectionFilter->setDynamicSortFilter(true);
     mCollectionFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
-
 
     QLineEdit *searchLine = new QLineEdit(this);
     searchLine->setPlaceholderText(i18n("Search..."));
@@ -105,7 +104,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     mFolderView->setAlternatingRowColors(true);
     vbox->addWidget(mFolderView);
 
-    mFolderView->setModel( mCollectionFilter );
+    mFolderView->setModel(mCollectionFilter);
     connect(mFolderView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), SLOT(slotUpdateButtons()));
 
     QHBoxLayout *hbox = new QHBoxLayout;
@@ -124,8 +123,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     connect(mRenameCollection, SIGNAL(clicked(bool)), this, SLOT(slotRenameCollection()));
     hbox->addWidget(mRenameCollection);
 
-
-    vbox->addWidget(new QLabel(i18nc( "@info", "Select the folder where the note will be saved:" )));
+    vbox->addWidget(new QLabel(i18nc("@info", "Select the folder where the note will be saved:")));
     mDefaultSaveFolder = new Akonadi::CollectionRequester(Akonadi::Collection(NoteShared::NoteSharedGlobalConfig::self()->defaultFolder()));
     mDefaultSaveFolder->setMimeTypeFilter(QStringList() << Akonotes::Note::mimeType());
 
@@ -150,32 +148,34 @@ void KNoteCollectionConfigWidget::slotRenameCollection()
 {
     const QModelIndexList rows = mFolderView->selectionModel()->selectedRows();
 
-    if ( rows.size() != 1 )
-      return;
+    if (rows.size() != 1) {
+        return;
+    }
 
-    QModelIndex idx = rows.at( 0 );
+    QModelIndex idx = rows.at(0);
 
     QString title = idx.data().toString();
 
-    Akonadi::Collection col = idx.data( Akonadi::EntityTreeModel::CollectionRole ).value<Akonadi::Collection>();
-    Q_ASSERT( col.isValid() );
-    if (!col.isValid())
-      return;
+    Akonadi::Collection col = idx.data(Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
+    Q_ASSERT(col.isValid());
+    if (!col.isValid()) {
+        return;
+    }
 
     bool ok;
-    const QString name = QInputDialog::getText( this, i18n( "Rename Notes" ),
-        i18n( "Name:" ), QLineEdit::Normal, title, &ok );
+    const QString name = QInputDialog::getText(this, i18n("Rename Notes"),
+                         i18n("Name:"), QLineEdit::Normal, title, &ok);
 
-    if ( ok ) {
-        if ( col.hasAttribute<Akonadi::EntityDisplayAttribute>() &&
-             !col.attribute<Akonadi::EntityDisplayAttribute>()->displayName().isEmpty() ) {
-            col.attribute<Akonadi::EntityDisplayAttribute>()->setDisplayName( name );
-        } else if ( !name.isEmpty() ) {
-            col.setName( name );
+    if (ok) {
+        if (col.hasAttribute<Akonadi::EntityDisplayAttribute>() &&
+                !col.attribute<Akonadi::EntityDisplayAttribute>()->displayName().isEmpty()) {
+            col.attribute<Akonadi::EntityDisplayAttribute>()->setDisplayName(name);
+        } else if (!name.isEmpty()) {
+            col.setName(name);
         }
 
         Akonadi::CollectionModifyJob *job = new Akonadi::CollectionModifyJob(col, this);
-        connect( job, SIGNAL(result(KJob*)), SLOT(slotCollectionModifyFinished(KJob*)) );
+        connect(job, SIGNAL(result(KJob*)), SLOT(slotCollectionModifyFinished(KJob*)));
         job->start();
     }
 }
@@ -218,31 +218,32 @@ void KNoteCollectionConfigWidget::slotUnselectAllCollections()
 
 void KNoteCollectionConfigWidget::updateStatus(const QModelIndex &parent)
 {
-    if (!mCanUpdateStatus)
+    if (!mCanUpdateStatus) {
         return;
+    }
 
-    const int nbCol = mCheckProxy->rowCount( parent );
-    for ( int i = 0; i < nbCol; ++i ) {
-        const QModelIndex child = mCheckProxy->index( i, 0, parent );
+    const int nbCol = mCheckProxy->rowCount(parent);
+    for (int i = 0; i < nbCol; ++i) {
+        const QModelIndex child = mCheckProxy->index(i, 0, parent);
 
         const Akonadi::Collection collection =
-                mCheckProxy->data( child, Akonadi::EntityTreeModel::CollectionRole ).value<Akonadi::Collection>();
+            mCheckProxy->data(child, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
 
         NoteShared::ShowFolderNotesAttribute *attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>();
         if (attr) {
-            mCheckProxy->setData( child, Qt::Checked, Qt::CheckStateRole );
+            mCheckProxy->setData(child, Qt::Checked, Qt::CheckStateRole);
         }
-        updateStatus( child );
+        updateStatus(child);
     }
 }
 
 void KNoteCollectionConfigWidget::forceStatus(const QModelIndex &parent, bool status)
 {
-    const int nbCol = mCheckProxy->rowCount( parent );
-    for ( int i = 0; i < nbCol; ++i ) {
-        const QModelIndex child = mCheckProxy->index( i, 0, parent );
-        mCheckProxy->setData( child, status ? Qt::Checked : Qt::Unchecked, Qt::CheckStateRole );
-        forceStatus( child, status );
+    const int nbCol = mCheckProxy->rowCount(parent);
+    for (int i = 0; i < nbCol; ++i) {
+        const QModelIndex child = mCheckProxy->index(i, 0, parent);
+        mCheckProxy->setData(child, status ? Qt::Checked : Qt::Unchecked, Qt::CheckStateRole);
+        forceStatus(child, status);
     }
 }
 
@@ -263,16 +264,16 @@ void KNoteCollectionConfigWidget::save()
 
 void KNoteCollectionConfigWidget::updateCollectionsRecursive(const QModelIndex &parent)
 {
-    const int nbCol = mCheckProxy->rowCount( parent );
-    for ( int i = 0; i < nbCol; ++i ) {
-        const QModelIndex child = mCheckProxy->index( i, 0, parent );
+    const int nbCol = mCheckProxy->rowCount(parent);
+    for (int i = 0; i < nbCol; ++i) {
+        const QModelIndex child = mCheckProxy->index(i, 0, parent);
 
         Akonadi::Collection collection =
-                mCheckProxy->data( child, Akonadi::EntityTreeModel::CollectionRole ).value<Akonadi::Collection>();
+            mCheckProxy->data(child, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
 
         NoteShared::ShowFolderNotesAttribute *attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>();
         Akonadi::CollectionModifyJob *modifyJob = 0;
-        const bool selected = (mCheckProxy->data( child, Qt::CheckStateRole ).value<int>() != 0);
+        const bool selected = (mCheckProxy->data(child, Qt::CheckStateRole).value<int>() != 0);
         if (selected && !attr) {
             attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>(Akonadi::Entity::AddIfMissing);
             modifyJob = new Akonadi::CollectionModifyJob(collection);
@@ -290,9 +291,9 @@ void KNoteCollectionConfigWidget::updateCollectionsRecursive(const QModelIndex &
     }
 }
 
-void KNoteCollectionConfigWidget::slotModifyJobDone(KJob* job)
+void KNoteCollectionConfigWidget::slotModifyJobDone(KJob *job)
 {
-    Akonadi::CollectionModifyJob *modifyJob = qobject_cast<Akonadi::CollectionModifyJob*>(job);
+    Akonadi::CollectionModifyJob *modifyJob = qobject_cast<Akonadi::CollectionModifyJob *>(job);
     if (modifyJob && job->error()) {
         if (job->property("AttributeAdded").toBool()) {
             qWarning() << "Failed to append NewMailNotifierAttribute to collection"
@@ -305,5 +306,4 @@ void KNoteCollectionConfigWidget::slotModifyJobDone(KJob* job)
         }
     }
 }
-
 

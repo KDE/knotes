@@ -22,7 +22,8 @@
 class KColorButton;
 class QCheckBox;
 class QSpinBox;
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteDisplayAttribute;
 }
 class KNoteDisplayConfigWidget : public QWidget
@@ -43,6 +44,5 @@ private:
     QSpinBox *kcfg_Width;
     QSpinBox *kcfg_Height;
 };
-
 
 #endif // KNOTEDISPLAYCONFIGWIDGET_H

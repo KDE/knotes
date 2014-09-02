@@ -26,14 +26,15 @@ class QLineEdit;
 class QListWidgetItem;
 class QListWidget;
 class QLabel;
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteListWidget;
 }
 class KNoteFindWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KNoteFindWidget(QWidget *parent=0);
+    explicit KNoteFindWidget(QWidget *parent = 0);
     ~KNoteFindWidget();
 
     void setExistingNotes(const QHash<Akonadi::Entity::Id, Akonadi::Item> &notes);
@@ -58,9 +59,9 @@ class KNOTES_EXPORT KNoteFindDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KNoteFindDialog(QWidget *parent=0);
+    explicit KNoteFindDialog(QWidget *parent = 0);
     ~KNoteFindDialog();
-    void setExistingNotes(const QHash<Akonadi::Item::Id , Akonadi::Item> & notes);
+    void setExistingNotes(const QHash<Akonadi::Item::Id , Akonadi::Item> &notes);
 
 Q_SIGNALS:
     void noteSelected(Akonadi::Item::Id);

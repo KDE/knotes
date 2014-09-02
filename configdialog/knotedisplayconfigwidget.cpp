@@ -29,8 +29,8 @@
 #include <QLabel>
 #include <QCheckBox>
 
-KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults, QWidget *parent )
-    : QWidget( parent ),
+KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *parent)
+    : QWidget(parent),
       kcfg_FgColor(0),
       kcfg_BgColor(0),
       kcfg_ShowInTaskbar(0),
@@ -38,71 +38,71 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget( bool defaults, QWidget *pare
       kcfg_Width(0),
       kcfg_Height(0)
 {
-    QGridLayout *layout = new QGridLayout( this );
-    layout->setSpacing( KDialog::spacingHint() );
-    layout->setMargin( defaults ? KDialog::marginHint() : 0 );
+    QGridLayout *layout = new QGridLayout(this);
+    layout->setSpacing(KDialog::spacingHint());
+    layout->setMargin(defaults ? KDialog::marginHint() : 0);
 
-    QLabel *label_FgColor = new QLabel( i18n( "&Text color:" ),this );
-    label_FgColor->setObjectName( QLatin1String("label_FgColor") );
-    layout->addWidget( label_FgColor, 0, 0 );
+    QLabel *label_FgColor = new QLabel(i18n("&Text color:"), this);
+    label_FgColor->setObjectName(QLatin1String("label_FgColor"));
+    layout->addWidget(label_FgColor, 0, 0);
 
-    kcfg_FgColor = new KColorButton( this );
-    kcfg_FgColor->setObjectName( QLatin1String("kcfg_FgColor") );
-    label_FgColor->setBuddy( kcfg_FgColor );
-    layout->addWidget( kcfg_FgColor, 0, 1 );
+    kcfg_FgColor = new KColorButton(this);
+    kcfg_FgColor->setObjectName(QLatin1String("kcfg_FgColor"));
+    label_FgColor->setBuddy(kcfg_FgColor);
+    layout->addWidget(kcfg_FgColor, 0, 1);
 
-    QLabel *label_BgColor = new QLabel( i18n( "&Background color:" ),
-                                        this );
-    label_BgColor->setObjectName( QLatin1String("label_BgColor") );
-    layout->addWidget( label_BgColor, 1, 0 );
+    QLabel *label_BgColor = new QLabel(i18n("&Background color:"),
+                                       this);
+    label_BgColor->setObjectName(QLatin1String("label_BgColor"));
+    layout->addWidget(label_BgColor, 1, 0);
 
-    kcfg_BgColor = new KColorButton( this );
-    kcfg_BgColor->setObjectName( QLatin1String("kcfg_BgColor") );
-    label_BgColor->setBuddy( kcfg_BgColor );
-    layout->addWidget( kcfg_BgColor, 1, 1 );
+    kcfg_BgColor = new KColorButton(this);
+    kcfg_BgColor->setObjectName(QLatin1String("kcfg_BgColor"));
+    label_BgColor->setBuddy(kcfg_BgColor);
+    layout->addWidget(kcfg_BgColor, 1, 1);
 
     kcfg_ShowInTaskbar =
-            new QCheckBox( i18n( "&Show note in taskbar" ), this );
-    kcfg_ShowInTaskbar->setObjectName( QLatin1String("kcfg_ShowInTaskbar") );
+        new QCheckBox(i18n("&Show note in taskbar"), this);
+    kcfg_ShowInTaskbar->setObjectName(QLatin1String("kcfg_ShowInTaskbar"));
 #if KDEPIM_HAVE_X11
     kcfg_RememberDesktop =
-            new QCheckBox( i18n( "&Remember desktop" ), this );
-    kcfg_RememberDesktop->setObjectName( QLatin1String("kcfg_RememberDesktop") );
+        new QCheckBox(i18n("&Remember desktop"), this);
+    kcfg_RememberDesktop->setObjectName(QLatin1String("kcfg_RememberDesktop"));
 #endif
-    if ( defaults ) {
-        QLabel *label_Width = new QLabel( i18n( "Default &width:" ), this );
+    if (defaults) {
+        QLabel *label_Width = new QLabel(i18n("Default &width:"), this);
 
-        layout->addWidget( label_Width, 2, 0 );
+        layout->addWidget(label_Width, 2, 0);
 
-        kcfg_Width = new QSpinBox( this );
-        kcfg_Width->setObjectName( QLatin1String("kcfg_Width") );
-        label_Width->setBuddy( kcfg_Width );
-        kcfg_Width->setRange( 50, 2000);
-        kcfg_Width->setSingleStep(10 );
-        layout->addWidget( kcfg_Width, 2, 1 );
+        kcfg_Width = new QSpinBox(this);
+        kcfg_Width->setObjectName(QLatin1String("kcfg_Width"));
+        label_Width->setBuddy(kcfg_Width);
+        kcfg_Width->setRange(50, 2000);
+        kcfg_Width->setSingleStep(10);
+        layout->addWidget(kcfg_Width, 2, 1);
 
-        QLabel *label_Height = new QLabel( i18n( "Default &height:" ),
-                                           this );
-        layout->addWidget( label_Height, 3, 0 );
+        QLabel *label_Height = new QLabel(i18n("Default &height:"),
+                                          this);
+        layout->addWidget(label_Height, 3, 0);
 
-        kcfg_Height = new QSpinBox( this );
-        kcfg_Height->setObjectName( QLatin1String("kcfg_Height") );
-        kcfg_Height->setRange( 50, 2000);
-        kcfg_Height->setSingleStep(10 );
-        label_Height->setBuddy( kcfg_Height );
-        layout->addWidget( kcfg_Height, 3, 1 );
+        kcfg_Height = new QSpinBox(this);
+        kcfg_Height->setObjectName(QLatin1String("kcfg_Height"));
+        kcfg_Height->setRange(50, 2000);
+        kcfg_Height->setSingleStep(10);
+        label_Height->setBuddy(kcfg_Height);
+        layout->addWidget(kcfg_Height, 3, 1);
 
-        layout->addWidget( kcfg_ShowInTaskbar, 4, 0 );
+        layout->addWidget(kcfg_ShowInTaskbar, 4, 0);
 #if KDEPIM_HAVE_X11
-        layout->addWidget( kcfg_RememberDesktop, 5, 0 );
+        layout->addWidget(kcfg_RememberDesktop, 5, 0);
 #endif
     } else {
-        layout->addWidget( kcfg_ShowInTaskbar, 2, 0 );
+        layout->addWidget(kcfg_ShowInTaskbar, 2, 0);
 #if KDEPIM_HAVE_X11
-        layout->addWidget( kcfg_RememberDesktop, 3, 0 );
+        layout->addWidget(kcfg_RememberDesktop, 3, 0);
 #endif
     }
-    layout->setRowStretch(4,1);
+    layout->setRowStretch(4, 1);
 }
 
 KNoteDisplayConfigWidget::~KNoteDisplayConfigWidget()

@@ -40,27 +40,27 @@ class KNOTES_EXPORT KNoteEdit : public PimCommon::CustomTextEdit
 {
     Q_OBJECT
 public:
-    explicit KNoteEdit(const QString &configFile, KActionCollection *actions, QWidget *parent = 0 );
+    explicit KNoteEdit(const QString &configFile, KActionCollection *actions, QWidget *parent = 0);
     ~KNoteEdit();
 
-    void setNote( KNote *_note );
+    void setNote(KNote *_note);
 
-    void setText( const QString &text );
+    void setText(const QString &text);
     QString text() const;
 
-    void setTextFont( const QFont &font );
-    void setTabStop( int tabs );
-    void setAutoIndentMode( bool newmode );
+    void setTextFont(const QFont &font);
+    void setTabStop(int tabs);
+    void setAutoIndentMode(bool newmode);
 
     void setColor(const QColor &fg, const QColor &bg);
     void setCursorPositionFromStart(int pos);
     int cursorPositionFromStart() const;
 
 public slots:
-    void setRichText( bool );
+    void setRichText(bool);
 
-    void textBold( bool );
-    void textStrikeOut( bool );
+    void textBold(bool);
+    void textStrikeOut(bool);
 
     void slotTextColor();
 
@@ -76,25 +76,25 @@ public slots:
 
     void textIncreaseIndent();
     void textDecreaseIndent();
-    void setTextFontSize( int );
+    void setTextFontSize(int);
 
     void slotTextBackgroundColor();
     void slotInsertDate();
 
 protected:
-    void keyPressEvent( QKeyEvent * );
-    void focusInEvent( QFocusEvent * );
-    void focusOutEvent( QFocusEvent * );
+    void keyPressEvent(QKeyEvent *);
+    void focusInEvent(QFocusEvent *);
+    void focusOutEvent(QFocusEvent *);
 
 protected slots:
-    void mousePopupMenuImplementation(const QPoint& pos);
+    void mousePopupMenuImplementation(const QPoint &pos);
 
 private slots:
-    void slotCurrentCharFormatChanged( const QTextCharFormat & );
+    void slotCurrentCharFormatChanged(const QTextCharFormat &);
     void slotCursorPositionChanged();
     void slotUpperCase();
     void slotLowerCase();
-    void slotSentenceCase();    
+    void slotSentenceCase();
     void slotInsertCheckMark();
 private:
     void autoIndent();

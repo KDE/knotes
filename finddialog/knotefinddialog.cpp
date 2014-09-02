@@ -62,20 +62,19 @@ void KNoteFindDialog::setExistingNotes(const QHash<Akonadi::Entity::Id, Akonadi:
 
 void KNoteFindDialog::writeConfig()
 {
-    KConfigGroup grp( KSharedConfig::openConfig(), "KNoteFindDialog" );
-    grp.writeEntry( "Size", size() );
+    KConfigGroup grp(KSharedConfig::openConfig(), "KNoteFindDialog");
+    grp.writeEntry("Size", size());
     grp.sync();
 }
 
 void KNoteFindDialog::readConfig()
 {
-    KConfigGroup grp( KSharedConfig::openConfig(), "KNoteFindDialog" );
-    const QSize size = grp.readEntry( "Size", QSize(600, 300) );
-    if ( size.isValid() ) {
-        resize( size );
+    KConfigGroup grp(KSharedConfig::openConfig(), "KNoteFindDialog");
+    const QSize size = grp.readEntry("Size", QSize(600, 300));
+    if (size.isValid()) {
+        resize(size);
     }
 }
-
 
 KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     : QWidget(parent)
@@ -129,8 +128,9 @@ void KNoteFindWidget::slotItemDoubleClicked(QListWidgetItem *item)
 void KNoteFindWidget::slotSearchNote()
 {
     const QString searchStr = mSearchLineEdit->text().trimmed();
-    if (searchStr.trimmed().isEmpty())
+    if (searchStr.trimmed().isEmpty()) {
         return;
+    }
     Baloo::PIM::NoteQuery query;
     query.matchNote(searchStr);
     query.matchTitle(searchStr);

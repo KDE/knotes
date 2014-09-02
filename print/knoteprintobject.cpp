@@ -20,7 +20,6 @@
 #include "noteshared/attributes/notelockattribute.h"
 #include "noteshared/attributes/notedisplayattribute.h"
 
-
 #include <KMime/KMimeMessage>
 
 #include <QLocale>
@@ -39,7 +38,7 @@ KNotePrintObject::~KNotePrintObject()
 QString KNotePrintObject::description() const
 {
     KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
-    if ( noteMessage->contentType()->isHTMLText() ) {
+    if (noteMessage->contentType()->isHTMLText()) {
         return noteMessage->mainBodyPart()->decodedText();
     } else {
         return noteMessage->mainBodyPart()->decodedText().replace(QLatin1Char('\n'), QLatin1String("<br>"));
@@ -49,14 +48,14 @@ QString KNotePrintObject::description() const
 QString KNotePrintObject::name() const
 {
     KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
-    const KMime::Headers::Subject * const subject = noteMessage ? noteMessage->subject(false) : 0;
+    const KMime::Headers::Subject *const subject = noteMessage ? noteMessage->subject(false) : 0;
     return subject ? subject->asUnicodeString() : QString();
 }
 
 QString KNotePrintObject::currentDateTime() const
 {
     const QDateTime now = QDateTime::currentDateTime();
-    return QLocale().toString(( now ), QLocale::ShortFormat);
+    return QLocale().toString((now), QLocale::ShortFormat);
 }
 
 bool KNotePrintObject::hasAlarm() const
@@ -68,7 +67,7 @@ QString KNotePrintObject::alarm() const
 {
     NoteShared::NoteAlarmAttribute *attr = mItem.attribute<NoteShared::NoteAlarmAttribute>();
     if (attr) {
-        return QLocale().toString(attr->dateTime().dateTime(),QLocale::LongFormat);
+        return QLocale().toString(attr->dateTime().dateTime(), QLocale::LongFormat);
     }
     return QString();
 }

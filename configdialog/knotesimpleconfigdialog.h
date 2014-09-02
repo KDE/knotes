@@ -15,7 +15,6 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #ifndef KNoteSimpleConfigDialog_H
 #define KNoteSimpleConfigDialog_H
 #include "knotes_export.h"
@@ -28,14 +27,14 @@ class KNOTES_EXPORT KNoteSimpleConfigDialog : public KDialog
 {
     Q_OBJECT
 public:
-    explicit KNoteSimpleConfigDialog( const QString &title, QWidget *parent=0 );
+    explicit KNoteSimpleConfigDialog(const QString &title, QWidget *parent = 0);
     ~KNoteSimpleConfigDialog();
 
     void load(Akonadi::Item &item, bool isRichText);
     void save(Akonadi::Item &item, bool &isRichText);
 
 public Q_SLOTS:
-    void slotUpdateCaption(const QString & name);
+    void slotUpdateCaption(const QString &name);
 
 private:
     void readConfig();

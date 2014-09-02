@@ -26,7 +26,8 @@
 
 class QItemSelectionModel;
 class KRecursiveFilterProxyModel;
-namespace Akonadi {
+namespace Akonadi
+{
 class EntityTreeModel;
 class ChangeRecorder;
 class CollectionRequester;
@@ -41,7 +42,7 @@ class KNoteCollectionConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KNoteCollectionConfigWidget(QWidget *parent=0);
+    explicit KNoteCollectionConfigWidget(QWidget *parent = 0);
     ~KNoteCollectionConfigWidget();
 
     void updateCollectionsRecursive(const QModelIndex &parent);
@@ -54,9 +55,9 @@ private Q_SLOTS:
     void slotSelectAllCollections();
     void slotUnselectAllCollections();
     void slotCollectionsInserted(const QModelIndex &parent, int start, int end);
-    void slotModifyJobDone(KJob* job);
+    void slotModifyJobDone(KJob *job);
     void slotUpdateCollectionStatus();
-    void slotSetCollectionFilter(const QString&);    
+    void slotSetCollectionFilter(const QString &);
     void slotDataChanged();
     void slotRenameCollection();
     void slotUpdateButtons();

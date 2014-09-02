@@ -23,22 +23,21 @@
 
 #include <QPushButton>
 
-
 class KNoteButton : public QPushButton
 {
     Q_OBJECT
 public:
-    explicit KNoteButton( const QString &icon, QWidget *parent = 0 );
+    explicit KNoteButton(const QString &icon, QWidget *parent = 0);
     ~KNoteButton();
-    
-    virtual int heightForWidth( int w ) const;
+
+    virtual int heightForWidth(int w) const;
     virtual QSize sizeHint() const;
-    
+
 protected:
-    void enterEvent( QEvent * );
-    void leaveEvent( QEvent * );
-    
-    void paintEvent ( QPaintEvent *e );
+    void enterEvent(QEvent *);
+    void leaveEvent(QEvent *);
+
+    void paintEvent(QPaintEvent *e);
 };
 
 #endif

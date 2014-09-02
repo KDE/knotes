@@ -40,7 +40,7 @@ void KNotePrintSelectThemeComboBox::loadThemes()
     const QString defaultTheme = KNotesGlobalConfig::self()->theme();
 
     const QString relativePath = QLatin1String("knotes/print/themes/");
-    QStringList themesDirectories = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, relativePath,QStandardPaths::LocateDirectory);
+    QStringList themesDirectories = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, relativePath, QStandardPaths::LocateDirectory);
     if (themesDirectories.count() < 2) {
         //Make sure to add local directory
         const QString localDirectory = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + relativePath;
@@ -50,14 +50,14 @@ void KNotePrintSelectThemeComboBox::loadThemes()
     }
 
     Q_FOREACH (const QString &directory, themesDirectories) {
-        QDirIterator dirIt( directory, QStringList(), QDir::AllDirs | QDir::NoDotAndDotDot );
+        QDirIterator dirIt(directory, QStringList(), QDir::AllDirs | QDir::NoDotAndDotDot);
         QStringList alreadyLoadedThemeName;
-        while ( dirIt.hasNext() ) {
+        while (dirIt.hasNext()) {
             dirIt.next();
             const QString themeInfoFile = dirIt.filePath() + QDir::separator() + QLatin1String("theme.desktop");
-            KConfig config( themeInfoFile );
-            KConfigGroup group( &config, QLatin1String( "Desktop Entry" ) );
-            QString name = group.readEntry( "Name", QString() );
+            KConfig config(themeInfoFile);
+            KConfigGroup group(&config, QLatin1String("Desktop Entry"));
+            QString name = group.readEntry("Name", QString());
             if (name.isEmpty()) {
                 continue;
             }
@@ -88,10 +88,10 @@ QString KNotePrintSelectThemeComboBox::selectedTheme() const
 
 void KNotePrintSelectThemeComboBox::selectDefaultTheme()
 {
-    const bool bUseDefaults = KNotesGlobalConfig::self()->useDefaults( true );
+    const bool bUseDefaults = KNotesGlobalConfig::self()->useDefaults(true);
     const QString defaultTheme = KNotesGlobalConfig::self()->theme();
     const int index = findData(defaultTheme);
     setCurrentIndex(index == -1 ? 0 : index);
-    KNotesGlobalConfig::self()->useDefaults( bUseDefaults );
+    KNotesGlobalConfig::self()->useDefaults(bUseDefaults);
 }
 

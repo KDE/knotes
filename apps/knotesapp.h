@@ -37,18 +37,20 @@ class QMenu;
 class KNote;
 class KXMLGUIBuilder;
 class KXMLGUIFactory;
-namespace NoteShared {
+namespace NoteShared
+{
 class NotesChangeRecorder;
 class NotesAkonadiTreeModel;
 }
 
-namespace KDNSSD {
+namespace KDNSSD
+{
 class PublicService;
 }
 class KJob;
 class QModelIndex;
 class KNotesApp
-        : public QWidget, virtual public KXMLGUIClient
+    : public QWidget, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:
@@ -56,44 +58,43 @@ public:
     ~KNotesApp();
 
 public slots:
-    void newNote( const QString &name = QString(),
-                     const QString &text = QString() );
-    void newNoteFromClipboard( const QString &name = QString() );
+    void newNote(const QString &name = QString(),
+                 const QString &text = QString());
+    void newNoteFromClipboard(const QString &name = QString());
     void hideAllNotes() const;
     void showAllNotes() const;
-    void showNote( const Akonadi::Item::Id &id ) const;
-    void hideNote(const Akonadi::Item::Id &id ) const;
-    QString name( const Akonadi::Item::Id &id ) const;
-    QString text( const Akonadi::Item::Id &id ) const;
-    void setName(const Akonadi::Item::Id &id, const QString &newName );
-    void setText( const Akonadi::Item::Id &id, const QString &newText );
+    void showNote(const Akonadi::Item::Id &id) const;
+    void hideNote(const Akonadi::Item::Id &id) const;
+    QString name(const Akonadi::Item::Id &id) const;
+    QString text(const Akonadi::Item::Id &id) const;
+    void setName(const Akonadi::Item::Id &id, const QString &newName);
+    void setText(const Akonadi::Item::Id &id, const QString &newText);
 
 private:
-    void showNote( KNote *note ) const;
-
+    void showNote(KNote *note) const;
 
 private Q_SLOTS:
-    void slotCommitData( QSessionManager & );
+    void slotCommitData(QSessionManager &);
     void slotPreferences();
     void slotConfigUpdated();
-    void slotNoteDeleteFinished(KJob*);
+    void slotNoteDeleteFinished(KJob *);
     void slotRowInserted(const QModelIndex &, int, int end);
     void slotItemRemoved(const Akonadi::Item &item);
     void slotItemChanged(const Akonadi::Item &item, const QSet<QByteArray> &);
     void updateNoteActions();
-    void slotActivateRequested( bool, const QPoint& pos);
-    void slotSecondaryActivateRequested( const QPoint& );
+    void slotActivateRequested(bool, const QPoint &pos);
+    void slotSecondaryActivateRequested(const QPoint &);
     void slotPrintSelectedNotes();
     void slotQuit();
     void slotConfigureAccels();
     void slotShowNote();
     void slotWalkThroughNotes();
-    void slotNoteKilled( Akonadi::Item::Id );
+    void slotNoteKilled(Akonadi::Item::Id);
     void slotOpenFindDialog();
 
     void slotSelectNote(Akonadi::Item::Id);
     void slotCollectionChanged(const Akonadi::Collection &, const QSet<QByteArray> &);
-    void slotItemFetchFinished(KJob *job);    
+    void slotItemFetchFinished(KJob *job);
     void slotDeleteSelectedNotes();
 
     void newNoteFromTextFile();
@@ -110,7 +111,7 @@ private:
     QMenu           *m_noteMenu;
     QList<QAction *>       m_noteActions;
     KDNSSD::PublicService   *m_publisher;
-    QHash<Akonadi::Item::Id, KNote*> mNotes;
+    QHash<Akonadi::Item::Id, KNote *> mNotes;
     NoteShared::NotesChangeRecorder *mNoteRecorder;
     NoteShared::NotesAkonadiTreeModel *mNoteTreeModel;
     QPointer<KNoteFindDialog> mFindDialog;

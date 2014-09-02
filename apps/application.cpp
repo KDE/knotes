@@ -23,10 +23,9 @@
 #include <kcmdlineargs.h>
 #include <kontactinterface/pimuniqueapplication.h>
 
-
 Application::Application()
     : KontactInterface::PimUniqueApplication(),
-      mMainWindow( 0 )
+      mMainWindow(0)
 {
     mCmdLineArguments = KCmdLineArgs::parsedArgs();
 }
@@ -38,10 +37,10 @@ Application::~Application()
 
 int Application::newInstance()
 {
-    if ( !mMainWindow ) {
+    if (!mMainWindow) {
         mMainWindow = new KNotesApp();
     } else {
-        if ( !args()->isSet( "skip-note" ) ) {
+        if (!args()->isSet("skip-note")) {
             mMainWindow->newNote();
         }
     }

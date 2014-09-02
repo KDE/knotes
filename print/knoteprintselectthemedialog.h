@@ -15,7 +15,6 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #ifndef KNOTEPRINTSELECTTHEMEDIALOG_H
 #define KNOTEPRINTSELECTTHEMEDIALOG_H
 
@@ -27,7 +26,7 @@ class KNOTES_EXPORT KNotePrintSelectThemeDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KNotePrintSelectThemeDialog(QWidget *parent=0);
+    explicit KNotePrintSelectThemeDialog(QWidget *parent = 0);
     ~KNotePrintSelectThemeDialog();
 
     QString selectedTheme() const;

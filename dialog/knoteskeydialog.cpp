@@ -26,11 +26,11 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-KNotesKeyDialog::KNotesKeyDialog( KActionCollection *globals, QWidget *parent )
-    : QDialog( parent )
+KNotesKeyDialog::KNotesKeyDialog(KActionCollection *globals, QWidget *parent)
+    : QDialog(parent)
 {
-    setWindowTitle( i18n( "Configure Shortcuts" ) );
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel|QDialogButtonBox::RestoreDefaults);
+    setWindowTitle(i18n("Configure Shortcuts"));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::RestoreDefaults);
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
@@ -40,11 +40,11 @@ KNotesKeyDialog::KNotesKeyDialog( KActionCollection *globals, QWidget *parent )
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNotesKeyDialog::reject);
     mainLayout->addWidget(buttonBox);
 
-    m_keyChooser = new KShortcutsEditor( globals, this );
+    m_keyChooser = new KShortcutsEditor(globals, this);
     mainLayout->addWidget(m_keyChooser);
     mainLayout->addWidget(buttonBox);
     connect(buttonBox->button(QDialogButtonBox::RestoreDefaults), SIGNAL(clicked()),
-             m_keyChooser, SLOT(allDefault()) );
+            m_keyChooser, SLOT(allDefault()));
     readConfig();
 }
 
@@ -55,23 +55,23 @@ KNotesKeyDialog::~KNotesKeyDialog()
 
 void KNotesKeyDialog::readConfig()
 {
-    KConfigGroup grp( KSharedConfig::openConfig(), "KNotesKeyDialog" );
-    const QSize size = grp.readEntry( "Size", QSize(300, 200) );
-    if ( size.isValid() ) {
-        resize( size );
+    KConfigGroup grp(KSharedConfig::openConfig(), "KNotesKeyDialog");
+    const QSize size = grp.readEntry("Size", QSize(300, 200));
+    if (size.isValid()) {
+        resize(size);
     }
 }
 
 void KNotesKeyDialog::writeConfig()
 {
-    KConfigGroup grp( KSharedConfig::openConfig(), "KNotesKeyDialog" );
-    grp.writeEntry( "Size", size() );
+    KConfigGroup grp(KSharedConfig::openConfig(), "KNotesKeyDialog");
+    grp.writeEntry("Size", size());
     grp.sync();
 }
 
-void KNotesKeyDialog::insert( KActionCollection *actions )
+void KNotesKeyDialog::insert(KActionCollection *actions)
 {
-    m_keyChooser->addCollection( actions, i18n( "Note Actions" ) );
+    m_keyChooser->addCollection(actions, i18n("Note Actions"));
 }
 
 void KNotesKeyDialog::save()

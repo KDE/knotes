@@ -30,12 +30,12 @@
 
 KNotesAkonadiTray::KNotesAkonadiTray(QWidget *parent)
     : KStatusNotifierItem(parent),
-      mIcon( QLatin1String("knotes") )
+      mIcon(QLatin1String("knotes"))
 {
-    setToolTipTitle( i18n( "KNotes: Sticky notes for KDE" ) );
-    setToolTipIconByName( QLatin1String("knotes") );
-    setStatus( KStatusNotifierItem::Active );
-    setCategory( KStatusNotifierItem::ApplicationStatus );
+    setToolTipTitle(i18n("KNotes: Sticky notes for KDE"));
+    setToolTipIconByName(QLatin1String("knotes"));
+    setStatus(KStatusNotifierItem::Active);
+    setCategory(KStatusNotifierItem::ApplicationStatus);
     setStandardActionsEnabled(false);
     //Initialize
     updateNumberOfNotes(0);
@@ -48,8 +48,8 @@ KNotesAkonadiTray::~KNotesAkonadiTray()
 
 void KNotesAkonadiTray::slotGeneralPaletteChanged()
 {
-    const KColorScheme scheme( QPalette::Active, KColorScheme::View );
-    mTextColor = scheme.foreground( KColorScheme::LinkText ).color();
+    const KColorScheme scheme(QPalette::Active, KColorScheme::View);
+    mTextColor = scheme.foreground(KColorScheme::LinkText).color();
 }
 
 void KNotesAkonadiTray::updateNumberOfNotes(int number)
@@ -57,34 +57,34 @@ void KNotesAkonadiTray::updateNumberOfNotes(int number)
     if (KNotesGlobalConfig::self()->systemTrayShowNotes() && number != 0) {
         const int overlaySize = KIconLoader::SizeSmallMedium;
 
-        const QString countString = QString::number( number );
+        const QString countString = QString::number(number);
         QFont countFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
         countFont.setBold(true);
 
         // decrease the size of the font for the number of unread messages if the
         // number doesn't fit into the available space
         float countFontSize = countFont.pointSizeF();
-        QFontMetrics qfm( countFont );
-        const int width = qfm.width( countString );
-        if ( width > (overlaySize - 2) ) {
-            countFontSize *= float( overlaySize - 2 ) / float( width );
-            countFont.setPointSizeF( countFontSize );
+        QFontMetrics qfm(countFont);
+        const int width = qfm.width(countString);
+        if (width > (overlaySize - 2)) {
+            countFontSize *= float(overlaySize - 2) / float(width);
+            countFont.setPointSizeF(countFontSize);
         }
 
         // Paint the number in a pixmap
-        QPixmap overlayPixmap( overlaySize, overlaySize );
-        overlayPixmap.fill( Qt::transparent );
+        QPixmap overlayPixmap(overlaySize, overlaySize);
+        overlayPixmap.fill(Qt::transparent);
 
-        QPainter p( &overlayPixmap );
-        p.setFont( countFont );
+        QPainter p(&overlayPixmap);
+        p.setFont(countFont);
         if (!mTextColor.isValid()) {
             slotGeneralPaletteChanged();
         }
 
-        p.setBrush( Qt::NoBrush );
+        p.setBrush(Qt::NoBrush);
         p.setPen(mTextColor);
-        p.setOpacity( 1.0 );
-        p.drawText( overlayPixmap.rect(),Qt::AlignCenter, countString );
+        p.setOpacity(1.0);
+        p.drawText(overlayPixmap.rect(), Qt::AlignCenter, countString);
         p.end();
 
         QPixmap iconPixmap = mIcon.pixmap(overlaySize, overlaySize);
@@ -93,7 +93,7 @@ void KNotesAkonadiTray::updateNumberOfNotes(int number)
         pp.drawPixmap(0, 0, overlayPixmap);
         pp.end();
 
-        setIconByPixmap( iconPixmap );
+        setIconByPixmap(iconPixmap);
     } else {
         setIconByPixmap(mIcon);
     }

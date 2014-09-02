@@ -26,7 +26,7 @@ class KCmdLineArgs;
 class KNotesApp;
 
 class Application
-        : public KontactInterface::PimUniqueApplication
+    : public KontactInterface::PimUniqueApplication
 {
 public:
     Application();

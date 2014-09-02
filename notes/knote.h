@@ -45,12 +45,11 @@ class KToggleAction;
 class KToolBar;
 class KJob;
 
-
 class KNote : public QFrame, virtual public KXMLGUIClient, public KNoteInterface
 {
     Q_OBJECT
 public:
-    explicit KNote( const QDomDocument& buildDoc, const Akonadi::Item &item, QWidget *parent = 0 );
+    explicit KNote(const QDomDocument &buildDoc, const Akonadi::Item &item, QWidget *parent = 0);
     ~KNote();
 
     void setChangeItem(const Akonadi::Item &item, const QSet<QByteArray> &set = QSet<QByteArray>());
@@ -62,17 +61,17 @@ public:
 
     Akonadi::Item item() const;
 
-    void setName( const QString &name );
-    void setText( const QString &text );
+    void setName(const QString &name);
+    void setText(const QString &text);
 
     bool isModified() const;
     bool isDesktopAssigned() const;
 
-    void toDesktop( int desktop );
+    void toDesktop(int desktop);
 
 public slots:
     void slotRename();
-    void slotKill( bool force = false );
+    void slotKill(bool force = false);
     void slotClose();
 
 signals:
@@ -80,18 +79,18 @@ signals:
     void sigShowNextNote();
     void sigNameChanged(const QString &);
     void sigColorChanged();
-    void sigKillNote( Akonadi::Item::Id );
+    void sigKillNote(Akonadi::Item::Id);
 
 protected:
-    virtual void contextMenuEvent( QContextMenuEvent * );
-    virtual void showEvent( QShowEvent * );
-    virtual void resizeEvent( QResizeEvent * );
-    virtual void closeEvent( QCloseEvent * );
-    virtual void dropEvent( QDropEvent * );
-    virtual void dragEnterEvent( QDragEnterEvent * );
+    virtual void contextMenuEvent(QContextMenuEvent *);
+    virtual void showEvent(QShowEvent *);
+    virtual void resizeEvent(QResizeEvent *);
+    virtual void closeEvent(QCloseEvent *);
+    virtual void dropEvent(QDropEvent *);
+    virtual void dragEnterEvent(QDragEnterEvent *);
 
-    virtual bool event( QEvent * );
-    virtual bool eventFilter( QObject *, QEvent * );
+    virtual bool event(QEvent *);
+    virtual bool eventFilter(QObject *, QEvent *);
 
 private slots:
     void slotUpdateReadOnly();
@@ -105,7 +104,7 @@ private slots:
     void slotSetAlarm();
 
     void slotPreferences();
-    void slotPopupActionToDesktop( int id );
+    void slotPopupActionToDesktop(int id);
 
     void slotApplyConfig();
     void slotUpdateKeepAboveBelow(bool save = true);
@@ -130,7 +129,7 @@ private:
     void updateLayout();
     void updateLabelAlignment();
 
-    void setColor( const QColor &, const QColor & );
+    void setColor(const QColor &, const QColor &);
     void print(bool preview);
     void setDisplayDefaultValue();
 

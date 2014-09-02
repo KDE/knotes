@@ -27,10 +27,10 @@ class KNoteSelectedNotesDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KNoteSelectedNotesDialog(QWidget *parent=0);
+    explicit KNoteSelectedNotesDialog(QWidget *parent = 0);
     ~KNoteSelectedNotesDialog();
 
-    void setNotes(const QHash<Akonadi::Item::Id, KNote*> &notes);
+    void setNotes(const QHash<Akonadi::Item::Id, KNote *> &notes);
 
     QStringList selectedNotes() const;
 
@@ -45,7 +45,7 @@ private:
     void writeConfig();
     void readConfig();
     QListWidget *mListNotes;
-    QHash<Akonadi::Item::Id, KNote*> mNotes;
+    QHash<Akonadi::Item::Id, KNote *> mNotes;
     QPushButton *mOkButton;
 };
 

@@ -25,9 +25,9 @@ static KCmdLineOptions knotesOptions()
 {
     KCmdLineOptions options;
 
-    options.add( "skip-note",
-                 ki18n( "Suppress creation of a new note "
-                        "on a non-unique instance." ) );
+    options.add("skip-note",
+                ki18n("Suppress creation of a new note "
+                      "on a non-unique instance."));
 
     return options;
 }

@@ -32,22 +32,21 @@ class QLineEdit;
 
 class KNOTES_EXPORT KNoteConfigDialog : public KCMultiDialog
 {
-  Q_OBJECT
-  public:
-    explicit KNoteConfigDialog( const QString &title,
-                    QWidget *parent );
+    Q_OBJECT
+public:
+    explicit KNoteConfigDialog(const QString &title,
+                               QWidget *parent);
     ~KNoteConfigDialog();
 
 public slots:
     void slotOk();
 };
 
-
 class KNoteDisplayConfig : public KCModule
 {
     Q_OBJECT
 public:
-    KNoteDisplayConfig( QWidget *parent );
+    KNoteDisplayConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
     virtual void load();
     virtual void save();
@@ -57,7 +56,7 @@ class KNoteEditorConfig : public KCModule
 {
     Q_OBJECT
 public:
-    KNoteEditorConfig( QWidget *parent );
+    KNoteEditorConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
     virtual void load();
     virtual void save();
@@ -67,7 +66,7 @@ class KNoteMiscConfig : public KCModule
 {
     Q_OBJECT
 public:
-    KNoteMiscConfig( QWidget *parent );
+    KNoteMiscConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
     virtual void load();
     virtual void save();
@@ -82,7 +81,7 @@ class KNotePrintConfig : public KCModule
 {
     Q_OBJECT
 public:
-    KNotePrintConfig( QWidget *parent );
+    KNotePrintConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
     virtual void load();
     virtual void save();
@@ -100,7 +99,7 @@ class KNoteCollectionConfig : public KCModule
 {
     Q_OBJECT
 public:
-    KNoteCollectionConfig( QWidget *parent );
+    KNoteCollectionConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
     virtual void load();
     virtual void save();

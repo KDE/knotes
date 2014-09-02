@@ -31,31 +31,31 @@
 #include <QApplication>
 #include <KSharedConfig>
 
-KNoteSimpleConfigDialog::KNoteSimpleConfigDialog( const QString &title,
-                                                  QWidget *parent )
-    : KDialog( parent )
+KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title,
+        QWidget *parent)
+    : KDialog(parent)
 {
-    setButtons( /*Default |*/ Ok | Cancel  );
-    setDefaultButton( Ok );
+    setButtons(/*Default |*/ Ok | Cancel);
+    setDefaultButton(Ok);
 
-    setCaption( title );
+    setCaption(title);
 #if KDEPIM_HAVE_X11
-    KWindowSystem::setIcons( winId(),
-                             qApp->windowIcon().pixmap(
-                                 IconSize( KIconLoader::Desktop ),
-                                 IconSize( KIconLoader::Desktop ) ),
-                             qApp->windowIcon().pixmap(
-                                 IconSize( KIconLoader::Small ),
-                                 IconSize( KIconLoader::Small ) ) );
+    KWindowSystem::setIcons(winId(),
+                            qApp->windowIcon().pixmap(
+                                IconSize(KIconLoader::Desktop),
+                                IconSize(KIconLoader::Desktop)),
+                            qApp->windowIcon().pixmap(
+                                IconSize(KIconLoader::Small),
+                                IconSize(KIconLoader::Small)));
 #endif
-    showButtonSeparator( true );
+    showButtonSeparator(true);
     mTabWidget = new QTabWidget;
 
     mEditorConfigWidget = new KNoteEditorConfigWidget(true, this);
-    mTabWidget->addTab(mEditorConfigWidget, i18n( "Editor Settings" ));
+    mTabWidget->addTab(mEditorConfigWidget, i18n("Editor Settings"));
 
     mDisplayConfigWidget = new KNoteDisplayConfigWidget(true, this);
-    mTabWidget->addTab(mDisplayConfigWidget, i18n( "Display Settings" ));
+    mTabWidget->addTab(mDisplayConfigWidget, i18n("Display Settings"));
 
     setMainWidget(mTabWidget);
     readConfig();
@@ -73,30 +73,30 @@ void KNoteSimpleConfigDialog::load(Akonadi::Item &item, bool isRichText)
     mDisplayConfigWidget->load(attr);
 }
 
-void KNoteSimpleConfigDialog::slotUpdateCaption(const QString & name)
+void KNoteSimpleConfigDialog::slotUpdateCaption(const QString &name)
 {
-    setCaption( name );
+    setCaption(name);
 }
 
 void KNoteSimpleConfigDialog::save(Akonadi::Item &item, bool &isRichText)
 {
-    NoteShared::NoteDisplayAttribute *attr =  item.attribute<NoteShared::NoteDisplayAttribute>( Akonadi::Entity::AddIfMissing );
+    NoteShared::NoteDisplayAttribute *attr =  item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
     mEditorConfigWidget->save(attr, isRichText);
     mDisplayConfigWidget->save(attr);
 }
 
 void KNoteSimpleConfigDialog::readConfig()
 {
-    KConfigGroup group( KSharedConfig::openConfig(), "KNoteSimpleConfigDialog" );
-    const QSize size = group.readEntry( "Size", QSize(600, 400) );
-    if ( size.isValid() ) {
-        resize( size );
+    KConfigGroup group(KSharedConfig::openConfig(), "KNoteSimpleConfigDialog");
+    const QSize size = group.readEntry("Size", QSize(600, 400));
+    if (size.isValid()) {
+        resize(size);
     }
 }
 
 void KNoteSimpleConfigDialog::writeConfig()
 {
-    KConfigGroup group( KSharedConfig::openConfig(), "KNoteSimpleConfigDialog" );
-    group.writeEntry( "Size", size() );
+    KConfigGroup group(KSharedConfig::openConfig(), "KNoteSimpleConfigDialog");
+    group.writeEntry("Size", size());
     group.sync();
 }

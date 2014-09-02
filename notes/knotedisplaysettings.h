@@ -23,17 +23,18 @@
 #include <QPoint>
 
 #include "knotes_export.h"
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteDisplayAttribute;
 }
 
 class KNOTES_EXPORT KNoteDisplaySettings
 {
 public:
-    KNoteDisplaySettings(NoteShared::NoteDisplayAttribute *attr=0);
+    KNoteDisplaySettings(NoteShared::NoteDisplayAttribute *attr = 0);
     ~KNoteDisplaySettings();
 
-    void setDisplayAttribute(NoteShared::NoteDisplayAttribute* attr);
+    void setDisplayAttribute(NoteShared::NoteDisplayAttribute *attr);
     NoteShared::NoteDisplayAttribute *displayAttribute() const;
     QColor backgroundColor() const;
 

@@ -15,13 +15,13 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #ifndef KNOTEDELETESELECTEDNOTESDIALOG_H
 #define KNOTEDELETESELECTEDNOTESDIALOG_H
 
 #include <QDialog>
 #include <AkonadiCore/Item>
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteListWidget;
 }
 
@@ -29,7 +29,7 @@ class KNoteDeleteSelectedNotesDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KNoteDeleteSelectedNotesDialog(QWidget *parent=0);
+    explicit KNoteDeleteSelectedNotesDialog(QWidget *parent = 0);
     ~KNoteDeleteSelectedNotesDialog();
 
     void setNotes(const Akonadi::Item::List &notes);

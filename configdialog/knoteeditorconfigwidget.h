@@ -15,7 +15,6 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #ifndef KNOTEEDITORCONFIGWIDGET_H
 #define KNOTEEDITORCONFIGWIDGET_H
 
@@ -23,7 +22,8 @@
 class QSpinBox;
 class QCheckBox;
 class KFontRequester;
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteDisplayAttribute;
 }
 

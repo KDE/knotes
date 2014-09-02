@@ -15,11 +15,9 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #include "knotedisplaysettings.h"
 #include "noteshared/attributes/notedisplayattribute.h"
 #include "knotesglobalconfig.h"
-
 
 KNoteDisplaySettings::KNoteDisplaySettings(NoteShared::NoteDisplayAttribute *attr)
     : mDisplayAttribute(attr)
@@ -43,113 +41,126 @@ NoteShared::NoteDisplayAttribute *KNoteDisplaySettings::displayAttribute() const
 
 QColor KNoteDisplaySettings::backgroundColor() const
 {
-    if (mDisplayAttribute)
+    if (mDisplayAttribute) {
         return mDisplayAttribute->backgroundColor();
-    else
+    } else {
         return KNotesGlobalConfig::self()->bgColor();
+    }
 }
 
 QColor KNoteDisplaySettings::foregroundColor() const
 {
-    if (mDisplayAttribute)
+    if (mDisplayAttribute) {
         return mDisplayAttribute->foregroundColor();
-    else
+    } else {
         return KNotesGlobalConfig::self()->fgColor();
+    }
 }
 
 QSize KNoteDisplaySettings::size() const
 {
-    if (mDisplayAttribute)
+    if (mDisplayAttribute) {
         return mDisplayAttribute->size();
-    else
+    } else {
         return QSize(KNotesGlobalConfig::self()->width(), KNotesGlobalConfig::self()->height());
+    }
 }
 
 bool KNoteDisplaySettings::rememberDesktop() const
 {
-    if (mDisplayAttribute)
+    if (mDisplayAttribute) {
         return mDisplayAttribute->rememberDesktop();
-    else
+    } else {
         return KNotesGlobalConfig::self()->rememberDesktop();
+    }
 }
 
 int KNoteDisplaySettings::tabSize() const
 {
-    if (mDisplayAttribute)
+    if (mDisplayAttribute) {
         return mDisplayAttribute->tabSize();
-    else
+    } else {
         return KNotesGlobalConfig::self()->tabSize();
+    }
 }
 
 QFont KNoteDisplaySettings::font() const
 {
-    if (mDisplayAttribute)
+    if (mDisplayAttribute) {
         return mDisplayAttribute->font();
-    else
+    } else {
         return KNotesGlobalConfig::self()->font();
+    }
 }
 
 QFont KNoteDisplaySettings::titleFont() const
 {
-    if (mDisplayAttribute)
+    if (mDisplayAttribute) {
         return mDisplayAttribute->titleFont();
-    else
+    } else {
         return KNotesGlobalConfig::self()->titleFont();
+    }
 }
 
 int KNoteDisplaySettings::desktop() const
 {
-    if (mDisplayAttribute)
+    if (mDisplayAttribute) {
         return mDisplayAttribute->desktop();
-    else
+    } else {
         return KNotesGlobalConfig::self()->desktop();
+    }
 }
 
 bool KNoteDisplaySettings::isHidden() const
 {
-    if (mDisplayAttribute)
+    if (mDisplayAttribute) {
         return mDisplayAttribute->isHidden();
-    else
+    } else {
         return KNotesGlobalConfig::self()->hideNote();
+    }
 }
 
 QPoint KNoteDisplaySettings::position() const
 {
     if (mDisplayAttribute) {
         return mDisplayAttribute->position();
-    }
-    else
+    } else {
         return KNotesGlobalConfig::self()->position();
+    }
 }
 
 bool KNoteDisplaySettings::showInTaskbar() const
 {
-    if (mDisplayAttribute)
+    if (mDisplayAttribute) {
         return mDisplayAttribute->showInTaskbar();
-    else
+    } else {
         return KNotesGlobalConfig::self()->showInTaskbar();
+    }
 }
 
 bool KNoteDisplaySettings::keepAbove() const
 {
-    if (mDisplayAttribute)
+    if (mDisplayAttribute) {
         return mDisplayAttribute->keepAbove();
-    else
+    } else {
         return KNotesGlobalConfig::self()->keepAbove();
+    }
 }
 
 bool KNoteDisplaySettings::keepBelow() const
 {
-    if (mDisplayAttribute)
+    if (mDisplayAttribute) {
         return mDisplayAttribute->keepBelow();
-    else
+    } else {
         return KNotesGlobalConfig::self()->keepBelow();
+    }
 }
 
 bool KNoteDisplaySettings::autoIndent() const
 {
-    if (mDisplayAttribute)
+    if (mDisplayAttribute) {
         return mDisplayAttribute->autoIndent();
-    else
+    } else {
         return KNotesGlobalConfig::self()->autoIndent();
+    }
 }

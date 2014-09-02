@@ -28,8 +28,8 @@
 KNoteDeleteSelectedNotesDialog::KNoteDeleteSelectedNotesDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle( i18n( "Select notes to delete" ) );
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    setWindowTitle(i18n("Select notes to delete"));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     QWidget *mainWidget = new QWidget(this);
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
@@ -63,16 +63,16 @@ Akonadi::Item::List KNoteDeleteSelectedNotesDialog::selectedNotes() const
 
 void KNoteDeleteSelectedNotesDialog::readConfig()
 {
-    KConfigGroup grp( KSharedConfig::openConfig(), "KNoteDeleteSelectedNotesDialog" );
-    const QSize size = grp.readEntry( "Size", QSize(300, 200) );
-    if ( size.isValid() ) {
-        resize( size );
+    KConfigGroup grp(KSharedConfig::openConfig(), "KNoteDeleteSelectedNotesDialog");
+    const QSize size = grp.readEntry("Size", QSize(300, 200));
+    if (size.isValid()) {
+        resize(size);
     }
 }
 
 void KNoteDeleteSelectedNotesDialog::writeConfig()
 {
-    KConfigGroup grp( KSharedConfig::openConfig(), "KNoteDeleteSelectedNotesDialog" );
-    grp.writeEntry( "Size", size() );
+    KConfigGroup grp(KSharedConfig::openConfig(), "KNoteDeleteSelectedNotesDialog");
+    grp.writeEntry("Size", size());
     grp.sync();
 }

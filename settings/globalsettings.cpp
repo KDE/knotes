@@ -21,7 +21,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-
 #include "settings/globalsettings.h"
 #include <QTimer>
 
@@ -29,7 +28,7 @@ GlobalSettings *GlobalSettings::mSelf = 0;
 
 GlobalSettings *GlobalSettings::self()
 {
-    if ( !mSelf ) {
+    if (!mSelf) {
         mSelf = new GlobalSettings();
         mSelf->readConfig();
     }
@@ -39,15 +38,16 @@ GlobalSettings *GlobalSettings::self()
 
 GlobalSettings::GlobalSettings()
 {
-    mConfigSyncTimer = new QTimer( this );
-    mConfigSyncTimer->setSingleShot( true );
-    connect( mConfigSyncTimer, SIGNAL(timeout()), this, SLOT(slotSyncNow()) );
+    mConfigSyncTimer = new QTimer(this);
+    mConfigSyncTimer->setSingleShot(true);
+    connect(mConfigSyncTimer, SIGNAL(timeout()), this, SLOT(slotSyncNow()));
 }
 
 void GlobalSettings::requestSync()
 {
-    if ( !mConfigSyncTimer->isActive() )
-        mConfigSyncTimer->start( 0 );
+    if (!mConfigSyncTimer->isActive()) {
+        mConfigSyncTimer->start(0);
+    }
 }
 
 void GlobalSettings::slotSyncNow()

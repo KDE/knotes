@@ -24,7 +24,7 @@ class KNotesAkonadiTray : public KStatusNotifierItem
 {
     Q_OBJECT
 public:
-    explicit KNotesAkonadiTray(QWidget *parent=0);
+    explicit KNotesAkonadiTray(QWidget *parent = 0);
     ~KNotesAkonadiTray();
 
     void updateNumberOfNotes(int number);

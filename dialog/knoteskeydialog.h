@@ -24,10 +24,10 @@ class KShortcutsEditor;
 class KNotesKeyDialog : public QDialog
 {
 public:
-    explicit KNotesKeyDialog( KActionCollection *globals, QWidget *parent );
+    explicit KNotesKeyDialog(KActionCollection *globals, QWidget *parent);
     ~KNotesKeyDialog();
 
-    void insert( KActionCollection *actions );
+    void insert(KActionCollection *actions);
 
     void save();
 
