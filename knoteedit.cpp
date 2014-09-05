@@ -179,10 +179,8 @@ KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWid
     connect(action, &QAction::triggered, this, &KNoteEdit::slotInsertCheckMark);
 
     // QTextEdit connections
-    connect(this, SIGNAL(currentCharFormatChanged(QTextCharFormat)),
-            SLOT(slotCurrentCharFormatChanged(QTextCharFormat)));
-    connect(this, SIGNAL(cursorPositionChanged()),
-            SLOT(slotCursorPositionChanged()));
+    connect(this, &KNoteEdit::currentCharFormatChanged, this, &KNoteEdit::slotCurrentCharFormatChanged);
+    connect(this, &KNoteEdit::cursorPositionChanged, this, &KNoteEdit::slotCursorPositionChanged);
     slotCurrentCharFormatChanged(currentCharFormat());
     slotCursorPositionChanged();
 }
