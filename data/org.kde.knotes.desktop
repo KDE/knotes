@@ -147,4 +147,5 @@ Name[zh_TW]=KNotes 便利貼
 
 X-KDE-StartupNotify=true
 X-DBUS-StartupType=Unique
+X-DBUS-ServiceName=org.kde.knotes
 Categories=Qt;KDE;Utility;TextTools;X-KDE-Utilities-Desktop;
