@@ -6,6 +6,7 @@
   <name>KNotes</name>
   <name xml:lang="ca">KNotes</name>
   <name xml:lang="cs">KNotes</name>
+  <name xml:lang="de">KNotes</name>
   <name xml:lang="en-GB">KNotes</name>
   <name xml:lang="es">KNotes</name>
   <name xml:lang="hu">KNotes</name>
@@ -27,6 +28,7 @@
       The notes are saved automatically when you exit the program, and they display when you open the program.
     </p>
     <p xml:lang="ca">El KNotes és un programa que permet escriure l'equivalent informàtic a les notes adhesives. Les notes es desen automàticament en sortir del programa, i es mostren en obrir el programa.</p>
+    <p xml:lang="de">KNotes erlaubt das Anbringen virtueller Haftnotizen ("Post-it") auf dem Bildschirm. Die Notizen werden beim Beenden des Programms automatisch gespeichert und beim Neustart wieder geladen und angezeigt.</p>
     <p xml:lang="en-GB">KNotes is a program that lets you write the computer equivalent of sticky notes. The notes are saved automatically when you exit the program, and they display when you open the program.</p>
     <p xml:lang="es">KNotes es un programa que le permite escribir en el equipo el equivalente de notas pegajosas. Las notas se guardan automáticamente cuando usted sale del programa y se muestran cuando lo abre.</p>
     <p xml:lang="hu">A KNotes program használatával kisebb jegyzeteket lehet készíteni. A jegyzetek a programból való kilépéskor automatikusan mentésre kerülnek, a program indulásakor pedig ismét megjelennek.</p>
@@ -110,6 +112,7 @@
       <li xml:lang="x-test">xxCan be dragged into Calendar to book a time-slotxx</li>
       <li>Notes can be printed</li>
       <li xml:lang="ca">Les notes es poden imprimir</li>
+      <li xml:lang="de">Notizen können gedruckt werden</li>
       <li xml:lang="en-GB">Notes can be printed</li>
       <li xml:lang="es">Las notas pueden imprimirse</li>
       <li xml:lang="hu">A jegyzetek nyomtathatók</li>
