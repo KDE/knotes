@@ -44,7 +44,7 @@ KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteFindDialog::reject);
     setAttribute(Qt::WA_DeleteOnClose);
     mNoteFindWidget = new KNoteFindWidget;
-    connect(mNoteFindWidget, SIGNAL(noteSelected(Akonadi::Item::Id)), SIGNAL(noteSelected(Akonadi::Item::Id)));
+    connect(mNoteFindWidget, &KNoteFindWidget::noteSelected, this, &KNoteFindDialog::noteSelected);
     mainLayout->addWidget(mNoteFindWidget);
     mainLayout->addWidget(buttonBox);
     readConfig();

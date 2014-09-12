@@ -30,7 +30,7 @@ GlobalSettings *GlobalSettings::self()
 {
     if (!mSelf) {
         mSelf = new GlobalSettings();
-        mSelf->readConfig();
+        mSelf->load();
     }
 
     return mSelf;
@@ -40,7 +40,7 @@ GlobalSettings::GlobalSettings()
 {
     mConfigSyncTimer = new QTimer(this);
     mConfigSyncTimer->setSingleShot(true);
-    connect(mConfigSyncTimer, SIGNAL(timeout()), this, SLOT(slotSyncNow()));
+    connect(mConfigSyncTimer, &QTimer::timeout, this, &GlobalSettings::slotSyncNow);
 }
 
 void GlobalSettings::requestSync()
