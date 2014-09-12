@@ -74,9 +74,7 @@
 #include <KLocalizedString>
 #include <QMenu>
 #include <kshortcutsdialog.h>
-#include <ksocketfactory.h>
 #include <kstandardaction.h>
-#include <kstandarddirs.h>
 #include <ksystemtrayicon.h>
 #include <kwindowsystem.h>
 #include <kxmlguibuilder.h>
@@ -84,7 +82,6 @@
 #include <KFileDialog>
 
 #include <kiconloader.h>
-#include <KGlobal>
 #include <KGlobalAccel>
 
 #include <QPixmap>
