@@ -81,8 +81,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     mCheckProxy->setSelectionModel(mSelectionModel);
     mCheckProxy->setSourceModel(mimeTypeProxy);
 
-    connect(mModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
-            this, SLOT(slotCollectionsInserted(QModelIndex,int,int)));
+    connect(mModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(slotCollectionsInserted(QModelIndex,int,int)));
 
     connect(mCheckProxy, &KCheckableProxyModel::dataChanged, this, &KNoteCollectionConfigWidget::slotDataChanged);
     mCollectionFilter = new KRecursiveFilterProxyModel(this);
@@ -93,8 +92,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     QLineEdit *searchLine = new QLineEdit(this);
     searchLine->setPlaceholderText(i18n("Search..."));
     searchLine->setClearButtonEnabled(true);
-    connect(searchLine, SIGNAL(textChanged(QString)),
-            this, SLOT(slotSetCollectionFilter(QString)));
+    connect(searchLine, SIGNAL(textChanged(QString)), this, SLOT(slotSetCollectionFilter(QString)));
 
     vbox->addWidget(searchLine);
 
