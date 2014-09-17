@@ -33,7 +33,6 @@ class ChangeRecorder;
 class CollectionRequester;
 class EntityTreeView;
 }
-class QTreeView;
 class KCheckableProxyModel;
 class KJob;
 class QPushButton;
