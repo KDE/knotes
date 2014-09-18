@@ -92,6 +92,8 @@ KNoteConfigDialog::~KNoteConfigDialog()
 void KNoteConfigDialog::slotOk() {
     GlobalSettings::self()->requestSync();
     NoteShared::GlobalSettings::self()->requestSync();
+    NoteShared::GlobalSettings::self()->writeConfig();
+    GlobalSettings::self()->writeConfig();
 }
 
 
