@@ -91,8 +91,8 @@ void KNoteConfigDialog::slotOk()
 {
     GlobalSettings::self()->requestSync();
     NoteShared::GlobalSettings::self()->requestSync();
-    NoteShared::GlobalSettings::self()->writeConfig();
-    GlobalSettings::self()->writeConfig();
+    NoteShared::GlobalSettings::self()->save();
+    GlobalSettings::self()->save();
 }
 
 extern "C"
