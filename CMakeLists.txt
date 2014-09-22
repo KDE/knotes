@@ -49,7 +49,7 @@ kconfig_add_kcfg_files(libknotesprivate_kcfg_lib_SRCS ${libknotesprivate_kcfg_li
 add_library(knotesprivate ${LIBRARY_TYPE} ${libknotesprivate_lib_SRCS} ${libknotesprivate_kcfg_lib_SRCS} )
 generate_export_header(knotesprivate BASE_NAME knotes)
 
-target_link_libraries(knotesprivate kdepim KF5::KIOCore pimcommon KF5::KCMUtils Grantlee::Templates KF5::NewStuff noteshared akonadi_next KF5::BalooPim)
+target_link_libraries(knotesprivate kdepim KF5::KIOCore pimcommon KF5::KCMUtils Grantlee5::Templates KF5::NewStuff noteshared akonadi_next KF5::BalooPim)
 
 set_target_properties(knotesprivate
   PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}

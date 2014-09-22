@@ -48,7 +48,7 @@ private:
 
     QFont m_defaultFont;
     Grantlee::Engine *mEngine;
-    Grantlee::FileSystemTemplateLoader::Ptr mTemplateLoader;
+    QSharedPointer<Grantlee::FileSystemTemplateLoader> mTemplateLoader;
     Grantlee::Template mSelfcontainedTemplate;
 };
 

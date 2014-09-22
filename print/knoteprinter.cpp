@@ -39,7 +39,7 @@
 KNotePrinter::KNotePrinter()
     : mEngine(new Grantlee::Engine)
 {
-    mTemplateLoader = Grantlee::FileSystemTemplateLoader::Ptr(new Grantlee::FileSystemTemplateLoader);
+    mTemplateLoader =  QSharedPointer<Grantlee::FileSystemTemplateLoader>(new Grantlee::FileSystemTemplateLoader);
 }
 
 KNotePrinter::~KNotePrinter()
