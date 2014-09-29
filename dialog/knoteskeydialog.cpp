@@ -43,8 +43,7 @@ KNotesKeyDialog::KNotesKeyDialog(KActionCollection *globals, QWidget *parent)
     m_keyChooser = new KShortcutsEditor(globals, this);
     mainLayout->addWidget(m_keyChooser);
     mainLayout->addWidget(buttonBox);
-    connect(buttonBox->button(QDialogButtonBox::RestoreDefaults), SIGNAL(clicked()),
-            m_keyChooser, SLOT(allDefault()));
+    connect(buttonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, m_keyChooser, &KShortcutsEditor::allDefault);
     readConfig();
 }
 
