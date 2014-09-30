@@ -81,7 +81,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     mCheckProxy->setSelectionModel(mSelectionModel);
     mCheckProxy->setSourceModel(mimeTypeProxy);
 
-    connect(mModel, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(slotCollectionsInserted(QModelIndex,int,int)));
+    connect(mModel, &Akonadi::EntityTreeModel::rowsInserted, this, &KNoteCollectionConfigWidget::slotCollectionsInserted);
 
     connect(mCheckProxy, &KCheckableProxyModel::dataChanged, this, &KNoteCollectionConfigWidget::slotDataChanged);
     mCollectionFilter = new KRecursiveFilterProxyModel(this);
@@ -92,7 +92,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     QLineEdit *searchLine = new QLineEdit(this);
     searchLine->setPlaceholderText(i18n("Search..."));
     searchLine->setClearButtonEnabled(true);
-    connect(searchLine, SIGNAL(textChanged(QString)), this, SLOT(slotSetCollectionFilter(QString)));
+    connect(searchLine, &QLineEdit::textChanged, this, &KNoteCollectionConfigWidget::slotSetCollectionFilter);
 
     vbox->addWidget(searchLine);
 
@@ -124,7 +124,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     vbox->addWidget(new QLabel(i18nc("@info", "Select the folder where the note will be saved:")));
     mDefaultSaveFolder = new Akonadi::CollectionRequester(Akonadi::Collection(NoteShared::NoteSharedGlobalConfig::self()->defaultFolder()));
     mDefaultSaveFolder->setMimeTypeFilter(QStringList() << Akonotes::Note::mimeType());
-    connect(mDefaultSaveFolder, SIGNAL(collectionChanged(Akonadi::Collection)), this, SLOT(slotDataChanged()));
+    connect(mDefaultSaveFolder, &Akonadi::CollectionRequester::collectionChanged, this, &KNoteCollectionConfigWidget::slotDataChanged);
 
     vbox->addWidget(mDefaultSaveFolder);
 
