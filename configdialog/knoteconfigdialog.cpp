@@ -227,6 +227,7 @@ KNoteMiscConfig::KNoteMiscConfig(const KComponentData &inst, QWidget *parent )
     hbox->addWidget( mDefaultTitle );
 
     QLabel *howItWorks = new QLabel(i18n( "<a href=\"whatsthis\">How does this work?</a>" ));
+    howItWorks->setContextMenuPolicy(Qt::NoContextMenu);
     connect( howItWorks, SIGNAL(linkActivated(QString)),SLOT(slotHelpLinkClicked(QString)) );
     lay->addWidget( howItWorks );
     addConfig( KNotesGlobalConfig::self(), w );
