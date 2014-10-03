@@ -219,6 +219,7 @@ KNoteMiscConfig::KNoteMiscConfig(QWidget *parent)
     connect(howItWorks, &QLabel::linkActivated, this, &KNoteMiscConfig::slotHelpLinkClicked);
     lay->addWidget(howItWorks);
     addConfig(KNotesGlobalConfig::self(), w);
+    howItWorks->setContextMenuPolicy(Qt::NoContextMenu);
     lay->addStretch();
     load();
     connect(mDefaultTitle, SIGNAL(textChanged(QString)), SLOT(changed()));
