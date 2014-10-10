@@ -48,6 +48,7 @@
     <p>Features:</p>
     <p xml:lang="ca">Característiques:</p>
     <p xml:lang="cs">Vlastnosti:</p>
+    <p xml:lang="de">Funktionen:</p>
     <p xml:lang="en-GB">Features:</p>
     <p xml:lang="es">Características:</p>
     <p xml:lang="hu">Szolgáltatások:</p>
@@ -67,6 +68,7 @@
     <ul>
       <li>Write notes in your choice of font and background color</li>
       <li xml:lang="ca">Escriu les notes amb el tipus de lletra i el color de fons de la vostra elecció</li>
+      <li xml:lang="de">Notizen können in ausgewählter Farbe für Schrift und Hintergrund erstellt werden</li>
       <li xml:lang="en-GB">Write notes in your choice of font and background colour</li>
       <li xml:lang="es">Escriba notas en el tipo de letra y color de fondo de su elección</li>
       <li xml:lang="hu">Jegyzetek írása tetszőleges betűtípussal és háttérszínnel</li>
@@ -84,6 +86,7 @@
       <li xml:lang="x-test">xxWrite notes in your choice of font and background colorxx</li>
       <li>Use drag and drop to email your notes</li>
       <li xml:lang="ca">Usa arrossega i deixa per enviar les vostres notes</li>
+      <li xml:lang="de">Ziehen und Ablegen (Drag and Drop), um Ihre Notizen als E-Mail zu versenden</li>
       <li xml:lang="en-GB">Use drag and drop to email your notes</li>
       <li xml:lang="es">Use arrastrar y soltar para enviar sus notas por correo</li>
       <li xml:lang="hu">Jegyzetek elküldése e-mailben a fogd-és-vidd módszerrel</li>
