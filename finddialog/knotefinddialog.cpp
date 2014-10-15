@@ -85,7 +85,6 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     QLabel *lab = new QLabel(i18n("Search notes:"));
     hbox->addWidget(lab);
     mSearchLineEdit = new QLineEdit;
-    //QT5 mSearchLineEdit->setTrapReturnKey(true);
     mSearchLineEdit->setClearButtonEnabled(true);
     connect(mSearchLineEdit, &QLineEdit::returnPressed, this, &KNoteFindWidget::slotSearchNote);
     connect(mSearchLineEdit, &QLineEdit::textChanged, this, &KNoteFindWidget::slotTextChanged);
