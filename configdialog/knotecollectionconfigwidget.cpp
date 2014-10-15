@@ -22,6 +22,7 @@
 #include "noteshared/settings/globalsettings.h"
 #include "akonadi_next/note.h"
 #include "notesharedglobalconfig.h"
+#include "pimcommon/widgets/manageaccountwidget.h"
 
 #include <AkonadiCore/CollectionModifyJob>
 #include <AkonadiCore/CollectionFilterProxyModel>
@@ -55,7 +56,16 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     : QWidget(parent),
       mCanUpdateStatus(false)
 {
+    QHBoxLayout *mainLayout = new QHBoxLayout;
+    setLayout(mainLayout);
+
+    QTabWidget *tabWidget = new QTabWidget;
+    mainLayout->addWidget(tabWidget);
+
+    QWidget *collectionWidget = new QWidget;
     QVBoxLayout *vbox = new QVBoxLayout;
+    collectionWidget->setLayout(vbox);
+    tabWidget->addTab(collectionWidget, i18n("Folders"));
 
     QLabel *label = new QLabel(i18n("Select which KNotes folders to show:"));
     vbox->addWidget(label);
@@ -128,7 +138,18 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
 
     vbox->addWidget(mDefaultSaveFolder);
 
-    setLayout(vbox);
+
+    QWidget *accountWidget = new QWidget;
+    QVBoxLayout *vboxAccountWidget = new QVBoxLayout;
+    accountWidget->setLayout(vboxAccountWidget);
+
+    PimCommon::ManageAccountWidget *manageAccountWidget = new PimCommon::ManageAccountWidget(this);
+    vboxAccountWidget->addWidget(manageAccountWidget);
+
+    manageAccountWidget->setMimeTypeFilter(QStringList() << Akonotes::Note::mimeType());
+    manageAccountWidget->setCapabilityFilter(QStringList() << QLatin1String("Resource") ); // show only resources, no agents
+    tabWidget->addTab(accountWidget, i18n("Accounts"));
+
     QTimer::singleShot(1000, this, SLOT(slotUpdateCollectionStatus()));
     slotUpdateButtons();
 }
