@@ -91,7 +91,7 @@ set(kcm_knotes_PART_SRCS configdialog/knoteconfigdialog.cpp configdialog/knotedi
 
 kde4_add_plugin(kcm_knote ${kcm_knotes_PART_SRCS} )
 
-target_link_libraries(kcm_knote knotesprivate ${KDEPIMLIBS_AKONADI_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KCMUTILS_LIBS} ${KDE4_KNEWSTUFF3_LIBS} noteshared akonadi_next)
+target_link_libraries(kcm_knote knotesprivate ${KDEPIMLIBS_AKONADI_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KCMUTILS_LIBS} ${KDE4_KNEWSTUFF3_LIBS} noteshared akonadi_next pimcommon)
 
 install(TARGETS kcm_knote DESTINATION ${PLUGIN_INSTALL_DIR})
 
