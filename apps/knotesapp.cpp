@@ -101,11 +101,16 @@ static bool qActionLessThan( const QAction *a1, const QAction *a2 )
 
 KNotesApp::KNotesApp()
     : QWidget(),
-      m_publisher( 0 )
+      m_publisher( 0 ),
+      mDebugBaloo(false)
 {
     Akonadi::Control::widgetNeedsAkonadi(this);
 
     KNoteUtils::migrateToAkonadi();
+
+    if (!qgetenv("KDEPIM_BALOO_DEBUG").isEmpty()) {
+        mDebugBaloo = true;
+    }
 
     if (KNotesGlobalConfig::self()->autoCreateResourceOnStart()) {
         NoteShared::LocalResourceCreator *creator = new NoteShared::LocalResourceCreator( this );
@@ -296,7 +301,8 @@ void KNotesApp::slotRowInserted(const QModelIndex &parent, int start, int end)
 void KNotesApp::createNote(const Akonadi::Item &item)
 {
     if ( item.hasPayload<KMime::Message::Ptr>() ) {
-        KNote *note = new KNote(m_noteGUI,item, 0);
+        //TODO add AllowDebugBaloo
+        KNote *note = new KNote(m_noteGUI,item, mDebugBaloo);
         mNotes.insert(item.id(), note);
         connect( note, SIGNAL(sigShowNextNote()),
                  SLOT(slotWalkThroughNotes()) ) ;
