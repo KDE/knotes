@@ -37,6 +37,8 @@
 #include "noteshared/attributes/notedisplayattribute.h"
 #include "noteshared/attributes/notealarmattribute.h"
 
+#include "pimcommon/baloodebug/baloodebugdialog.h"
+
 #include <KMime/KMimeMessage>
 
 #include <kactioncollection.h>
@@ -84,16 +86,17 @@
 
 //#define DEBUG_SAVE_NOTE 1
 
-KNote::KNote(const QDomDocument &buildDoc, const Akonadi::Item &item, QWidget *parent)
-    : QFrame(parent, Qt::FramelessWindowHint),
+KNote::KNote(const QDomDocument& buildDoc, const Akonadi::Item &item, bool allowDebugBaloo, QWidget *parent )
+    : QFrame( parent, Qt::FramelessWindowHint ),
       mItem(item),
-      m_label(0),
-      m_grip(0),
-      m_button(0),
-      m_tool(0),
-      m_editor(0),
-      m_kwinConf(KSharedConfig::openConfig(QLatin1String("kwinrc"))),
-      mDisplayAttribute(new KNoteDisplaySettings)
+      m_label( 0 ),
+      m_grip( 0 ),
+      m_button( 0 ),
+      m_tool( 0 ),
+      m_editor( 0 ),
+      m_kwinConf( KSharedConfig::openConfig( QLatin1String("kwinrc") ) ),
+      mDisplayAttribute(new KNoteDisplaySettings),
+      mAllowDebugBaloo(allowDebugBaloo)
 {
     if (mItem.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
         mDisplayAttribute->setDisplayAttribute(mItem.attribute<NoteShared::NoteDisplayAttribute>());
@@ -767,6 +770,12 @@ void KNote::createActions()
     foreach (QAction *action, actionCollection()->actions()) {
         action->setShortcutContext(Qt::WidgetWithChildrenShortcut);
     }
+    if (mAllowDebugBaloo) {
+        //Don't translate it it's just for debugging
+        action  = new QAction( QLatin1String("Debug Baloo..."), this );
+        actionCollection()->addAction( QLatin1String("debug_baloo"), action );
+        connect( action, SIGNAL(triggered(bool)), SLOT(slotDebugBaloo()) );
+    }
 }
 
 void KNote::createNoteHeader()
@@ -1238,4 +1247,13 @@ bool KNote::eventFilter(QObject *o, QEvent *ev)
 Akonadi::Item KNote::item() const
 {
     return mItem;
+}
+
+void KNote::slotDebugBaloo()
+{
+    QPointer<PimCommon::BalooDebugDialog> dlg = new PimCommon::BalooDebugDialog;
+    dlg->setAkonadiId(mItem.id());
+    dlg->setAttribute( Qt::WA_DeleteOnClose );
+    dlg->setSearchType(PimCommon::BalooDebugSearchPathComboBox::Notes);
+    dlg->show();
 }

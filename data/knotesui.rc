@@ -1,6 +1,6 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="403">
+<kpartgui name="KNotes" version="404">
 
 <Menu name="note_context" noMerge="1">
     <Action name="set_alarm"/>
@@ -25,6 +25,8 @@
     <Action name="to_desktop"/>
     <Action name="keep_above"/>
     <Action name="keep_below"/>
+    <Separator/>
+    <Action name="debug_baloo"/>
 </Menu>
 
 <ToolBar name="note_tool">
