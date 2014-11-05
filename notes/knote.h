@@ -49,7 +49,7 @@ class KNote : public QFrame, virtual public KXMLGUIClient, public KNoteInterface
 {
     Q_OBJECT
 public:
-    explicit KNote( const QDomDocument& buildDoc, const Akonadi::Item &item, bool allowDebugBaloo = false, QWidget *parent = 0 );
+    explicit KNote(const QDomDocument &buildDoc, const Akonadi::Item &item, bool allowDebugBaloo = false, QWidget *parent = 0);
     ~KNote();
 
     void setChangeItem(const Akonadi::Item &item, const QSet<QByteArray> &set = QSet<QByteArray>());

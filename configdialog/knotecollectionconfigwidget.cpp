@@ -138,7 +138,6 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
 
     vbox->addWidget(mDefaultSaveFolder);
 
-
     QWidget *accountWidget = new QWidget;
     QVBoxLayout *vboxAccountWidget = new QVBoxLayout;
     accountWidget->setLayout(vboxAccountWidget);
@@ -147,7 +146,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     vboxAccountWidget->addWidget(manageAccountWidget);
 
     manageAccountWidget->setMimeTypeFilter(QStringList() << Akonotes::Note::mimeType());
-    manageAccountWidget->setCapabilityFilter(QStringList() << QLatin1String("Resource") ); // show only resources, no agents
+    manageAccountWidget->setCapabilityFilter(QStringList() << QLatin1String("Resource"));  // show only resources, no agents
     tabWidget->addTab(accountWidget, i18n("Accounts"));
 
     QTimer::singleShot(1000, this, SLOT(slotUpdateCollectionStatus()));

@@ -97,7 +97,7 @@ static bool qActionLessThan(const QAction *a1, const QAction *a2)
 
 KNotesApp::KNotesApp()
     : QWidget(),
-      m_publisher( 0 ),
+      m_publisher(0),
       mDebugBaloo(false)
 {
     Akonadi::Control::widgetNeedsAkonadi(this);
@@ -295,9 +295,9 @@ void KNotesApp::slotRowInserted(const QModelIndex &parent, int start, int end)
 
 void KNotesApp::createNote(const Akonadi::Item &item)
 {
-    if ( item.hasPayload<KMime::Message::Ptr>() ) {
+    if (item.hasPayload<KMime::Message::Ptr>()) {
         //TODO add AllowDebugBaloo
-        KNote *note = new KNote(m_noteGUI,item, mDebugBaloo);
+        KNote *note = new KNote(m_noteGUI, item, mDebugBaloo);
         mNotes.insert(item.id(), note);
         connect(note, SIGNAL(sigShowNextNote()),
                 SLOT(slotWalkThroughNotes())) ;
