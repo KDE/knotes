@@ -1255,5 +1255,6 @@ void KNote::slotDebugBaloo()
     dlg->setAkonadiId(mItem.id());
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     dlg->setSearchType(PimCommon::BalooDebugSearchPathComboBox::Notes);
+    dlg->doSearch();
     dlg->show();
 }
