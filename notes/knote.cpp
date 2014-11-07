@@ -774,7 +774,7 @@ void KNote::createActions()
         //Don't translate it it's just for debugging
         action  = new QAction(QLatin1String("Debug Baloo..."), this);
         actionCollection()->addAction(QLatin1String("debug_baloo"), action);
-        connect(action, SIGNAL(triggered(bool)), SLOT(slotDebugBaloo()));
+        connect(action, &QAction::triggered, this, &KNote::slotDebugBaloo);
     }
 }
 
