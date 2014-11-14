@@ -43,8 +43,8 @@ void knotesAuthors(K4AboutData &aboutData);
 
 int main(int argc, char *argv[])
 {
-    Kdelibs4ConfigMigrator migrate(QLatin1String("knotes"));
-    migrate.setConfigFiles(QStringList() << QLatin1String("knotesrc"));
+    Kdelibs4ConfigMigrator migrate(QStringLiteral("knotes"));
+    migrate.setConfigFiles(QStringList() << QStringLiteral("knotesrc"));
     migrate.migrate();
 
     K4AboutData aboutData("knotes",
