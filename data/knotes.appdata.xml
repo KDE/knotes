@@ -10,6 +10,7 @@
   <name xml:lang="en-GB">KNotes</name>
   <name xml:lang="es">KNotes</name>
   <name xml:lang="fi">KNotes</name>
+  <name xml:lang="fr">KNotes</name>
   <name xml:lang="hu">KNotes</name>
   <name xml:lang="ko">KNotes</name>
   <name xml:lang="nb">KNotes</name>
@@ -34,6 +35,7 @@
     <p xml:lang="en-GB">KNotes is a program that lets you write the computer equivalent of sticky notes. The notes are saved automatically when you exit the program, and they display when you open the program.</p>
     <p xml:lang="es">KNotes es un programa que le permite escribir en el equipo el equivalente de notas pegajosas. Las notas se guardan automáticamente cuando usted sale del programa y se muestran cuando lo abre.</p>
     <p xml:lang="fi">KNotes on ohjelma, jolla voit kirjoittaa tarralappujen tietokonevastineita. Laput tallennetaan automaattisesti ohjelmasta poistuessasi ja näytetään avatessasi ohjelman.</p>
+    <p xml:lang="fr">KNotes est un programme qui vous permet d'avoir l'équivalent électronique des papillons autocollants (Post-it®). Les notes sont enregistrées automatiquement lorsque vous quittez le programme, et elles s'affichent lorsque vous l'ouvrez.</p>
     <p xml:lang="hu">A KNotes program használatával kisebb jegyzeteket lehet készíteni. A jegyzetek a programból való kilépéskor automatikusan mentésre kerülnek, a program indulásakor pedig ismét megjelennek.</p>
     <p xml:lang="ko">KNotes는 메모를 남길 수 있는 프로그램입니다. 프로그램을 종료할 때 메모를 자동으로 저장하고, 다음 실행 때 보여 줍니다.</p>
     <p xml:lang="nb">KNotes er et program du kan bruke til å skrive «gule lapper» på datamaskinen.  Lappene lagres automatisk når du går ut av programmet, og vises igjen når du starter programmet.</p>
@@ -54,6 +56,7 @@
     <p xml:lang="en-GB">Features:</p>
     <p xml:lang="es">Características:</p>
     <p xml:lang="fi">Ominaisuudet:</p>
+    <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="ko">기능:</p>
     <p xml:lang="nb">Egenskaper:</p>
@@ -75,6 +78,7 @@
       <li xml:lang="en-GB">Write notes in your choice of font and background colour</li>
       <li xml:lang="es">Escriba notas en el tipo de letra y color de fondo de su elección</li>
       <li xml:lang="fi">Voit valita muistilappujen fontin ja taustavärin</li>
+      <li xml:lang="fr">Écrivez des notes avec la police de caractère et la couleur de fond de votre choix</li>
       <li xml:lang="hu">Jegyzetek írása tetszőleges betűtípussal és háttérszínnel</li>
       <li xml:lang="ko">사용자 정의 글꼴 및 배경색 지원</li>
       <li xml:lang="nb">Skriv notater med den fargen du velger på skrift og bakgrunn</li>
@@ -94,6 +98,7 @@
       <li xml:lang="en-GB">Use drag and drop to email your notes</li>
       <li xml:lang="es">Use arrastrar y soltar para enviar sus notas por correo</li>
       <li xml:lang="fi">Voit lähettää muistilappusi sähköpostitse vetämällä ja pudottamalla</li>
+      <li xml:lang="fr">Utilisez le glisser-déposer pour envoyer vos notes par courriel</li>
       <li xml:lang="hu">Jegyzetek elküldése e-mailben a fogd-és-vidd módszerrel</li>
       <li xml:lang="ko">드래그 앤 드롭으로 바로 이메일 보내기</li>
       <li xml:lang="nb">Bruk dra og slipp til å sende notatene på e-øpost</li>
@@ -112,6 +117,7 @@
       <li xml:lang="en-GB">Can be dragged into Calendar to book a time-slot</li>
       <li xml:lang="es">Puede soltarse en el calendario para reservar una ranura de tiempo</li>
       <li xml:lang="fi">Voit vetää muistilaput kalenteriin varataksesi tapahtumalle ajan</li>
+      <li xml:lang="fr">Glissez les notes dans le calendrier pour réserver des créneaux horaires</li>
       <li xml:lang="hu">Naptárba húzható egy időablak lefoglalásához</li>
       <li xml:lang="ko">달력에 드래그 앤 드롭으로 일정 추가</li>
       <li xml:lang="nb">Kan dras inn i Kalendar for å holde av en tid</li>
@@ -131,6 +137,7 @@
       <li xml:lang="en-GB">Notes can be printed</li>
       <li xml:lang="es">Las notas pueden imprimirse</li>
       <li xml:lang="fi">Muistilaput voi tulostaa</li>
+      <li xml:lang="fr">Imprimez les notes</li>
       <li xml:lang="hu">A jegyzetek nyomtathatók</li>
       <li xml:lang="ko">인쇄 기능</li>
       <li xml:lang="nb">Notater kan skrives ut</li>
