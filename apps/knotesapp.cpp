@@ -183,7 +183,7 @@ KNotesApp::KNotesApp()
                                           QLatin1String("notes_menu"), this));
 
     // get the most recent XML UI file
-    QString xmlFileName(QLatin1String("knotesui.rc"));//QT5 = componentData().componentName() + QLatin1String("ui.rc");
+    QString xmlFileName(componentName() + QLatin1String("ui.rc"));
     QString filter(QLatin1String("kxmlgui5/knotes/") + xmlFileName);//QT5 = componentData().componentName() + QLatin1Char('/') + xmlFileName;
     const QStringList fileList = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, filter) + QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, xmlFileName);//QT5 =
     //QT5 componentData().dirs()->findAllResources( "data", filter ) +
@@ -587,13 +587,11 @@ void KNotesApp::slotConfigureAccels()
     }
     if (keys->exec()) {
         keys->save();
-#if 0 //QT5
         // update GUI doc for new notes
         m_noteGUI.setContent(
-            KXMLGUIFactory::readConfigFile(componentData().componentName() + QLatin1String("ui.rc"),
-                                           componentData())
+            KXMLGUIFactory::readConfigFile(componentName() + QLatin1String("ui.rc"),
+                                           componentName())
         );
-#endif
 
         if (actionCollection) {
             QHashIterator<Akonadi::Item::Id, KNote *> i(mNotes);
