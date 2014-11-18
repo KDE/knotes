@@ -79,7 +79,7 @@
 #include <kwindowsystem.h>
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
-#include <KFileDialog>
+#include <QFileDialog>
 
 #include <kiconloader.h>
 #include <KGlobalAccel>
@@ -392,10 +392,8 @@ void KNotesApp::newNoteFromClipboard(const QString &name)
 void KNotesApp::newNoteFromTextFile()
 {
     QString text;
-    const QString filename = KFileDialog::getOpenFileName(QUrl(),
-                             QLatin1String("*.txt"),
-                             this,
-                             i18n("Select Text File"));
+    const QString filename = QFileDialog::getOpenFileName(this, i18n("Select Text File"), QString(),
+                             QLatin1String("*.txt"));
     if (!filename.isEmpty()) {
         QFile f(filename);
         if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {

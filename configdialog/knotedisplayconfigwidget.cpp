@@ -23,7 +23,6 @@
 #include <KLocalizedString>
 #include <KColorButton>
 #include <QSpinBox>
-#include <KDialog>
 
 #include <QGridLayout>
 #include <QLabel>
@@ -39,8 +38,8 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
       kcfg_Height(0)
 {
     QGridLayout *layout = new QGridLayout(this);
-    layout->setSpacing(KDialog::spacingHint());
-    layout->setMargin(defaults ? KDialog::marginHint() : 0);
+    //QT5 layout->setSpacing(KDialog::spacingHint());
+    //QT5 layout->setMargin(defaults ? KDialog::marginHint() : 0);
 
     QLabel *label_FgColor = new QLabel(i18n("&Text color:"), this);
     label_FgColor->setObjectName(QLatin1String("label_FgColor"));

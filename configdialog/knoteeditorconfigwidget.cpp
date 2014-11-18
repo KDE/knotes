@@ -22,7 +22,6 @@
 #include <QSpinBox>
 #include <KLocalizedString>
 #include <KFontRequester>
-#include <KDialog>
 
 #include <QGridLayout>
 #include <QLabel>
@@ -32,8 +31,8 @@ KNoteEditorConfigWidget::KNoteEditorConfigWidget(bool defaults, QWidget *parent)
     : QWidget(parent)
 {
     QGridLayout *layout = new QGridLayout(this);
-    layout->setSpacing(KDialog::spacingHint());
-    layout->setMargin(defaults ? KDialog::marginHint() : 0);
+    //QT5 layout->setSpacing(KDialog::spacingHint());
+    //QT5 layout->setMargin(defaults ? KDialog::marginHint() : 0);
 
     QLabel *label_TabSize = new QLabel(i18n("&Tab size:"), this);
     layout->addWidget(label_TabSize, 0, 0, 1, 2);
