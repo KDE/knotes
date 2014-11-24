@@ -269,7 +269,6 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent)
     QWidget *w =  new QWidget(this);
     lay->addWidget(w);
     QGridLayout *layout = new QGridLayout(w);
-//TODO PORT QT5     layout->setSpacing( QDialog::spacingHint() );
     layout->setMargin(0);
 
     QLabel *label_PrintAction = new QLabel(i18n("Theme:"), this);
