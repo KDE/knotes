@@ -37,7 +37,7 @@ protected:
     void enterEvent(QEvent *);
     void leaveEvent(QEvent *);
 
-    void paintEvent(QPaintEvent *e);
+    void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE;
 };
 
 #endif
