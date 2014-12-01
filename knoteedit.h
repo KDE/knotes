@@ -82,9 +82,9 @@ public slots:
     void slotInsertDate();
 
 protected:
-    void keyPressEvent(QKeyEvent *);
-    void focusInEvent(QFocusEvent *);
-    void focusOutEvent(QFocusEvent *);
+    void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
+    void focusInEvent(QFocusEvent *) Q_DECL_OVERRIDE;
+    void focusOutEvent(QFocusEvent *) Q_DECL_OVERRIDE;
 
 protected slots:
     void mousePopupMenuImplementation(const QPoint &pos);
