@@ -27,7 +27,7 @@ class KNoteSelectedNotesDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KNoteSelectedNotesDialog(QWidget *parent = 0);
+    explicit KNoteSelectedNotesDialog(QWidget *parent = Q_NULLPTR);
     ~KNoteSelectedNotesDialog();
 
     void setNotes(const QHash<Akonadi::Item::Id, KNote *> &notes);

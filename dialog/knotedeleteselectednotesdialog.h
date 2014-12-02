@@ -29,7 +29,7 @@ class KNoteDeleteSelectedNotesDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KNoteDeleteSelectedNotesDialog(QWidget *parent = 0);
+    explicit KNoteDeleteSelectedNotesDialog(QWidget *parent = Q_NULLPTR);
     ~KNoteDeleteSelectedNotesDialog();
 
     void setNotes(const Akonadi::Item::List &notes);

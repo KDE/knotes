@@ -25,7 +25,7 @@ class KNOTES_EXPORT KNotePrintSelectThemeComboBox : public QComboBox
 {
     Q_OBJECT
 public:
-    explicit KNotePrintSelectThemeComboBox(QWidget *parent = 0);
+    explicit KNotePrintSelectThemeComboBox(QWidget *parent = Q_NULLPTR);
     ~KNotePrintSelectThemeComboBox();
 
     QString selectedTheme() const;

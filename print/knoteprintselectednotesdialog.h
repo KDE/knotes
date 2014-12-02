@@ -30,7 +30,7 @@ class KNotePrintSelectedNotesDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KNotePrintSelectedNotesDialog(QWidget *parent = 0);
+    explicit KNotePrintSelectedNotesDialog(QWidget *parent = Q_NULLPTR);
     ~KNotePrintSelectedNotesDialog();
 
     void setNotes(const QHash<Akonadi::Item::Id, KNote *> &notes);

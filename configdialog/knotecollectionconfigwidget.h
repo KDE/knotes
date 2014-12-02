@@ -41,7 +41,7 @@ class KNoteCollectionConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KNoteCollectionConfigWidget(QWidget *parent = 0);
+    explicit KNoteCollectionConfigWidget(QWidget *parent = Q_NULLPTR);
     ~KNoteCollectionConfigWidget();
 
     void updateCollectionsRecursive(const QModelIndex &parent);

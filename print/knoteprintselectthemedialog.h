@@ -26,7 +26,7 @@ class KNOTES_EXPORT KNotePrintSelectThemeDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KNotePrintSelectThemeDialog(QWidget *parent = 0);
+    explicit KNotePrintSelectThemeDialog(QWidget *parent = Q_NULLPTR);
     ~KNotePrintSelectThemeDialog();
 
     QString selectedTheme() const;

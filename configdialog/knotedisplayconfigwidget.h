@@ -30,7 +30,7 @@ class KNoteDisplayConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KNoteDisplayConfigWidget(bool defaults , QWidget *parent = 0);
+    explicit KNoteDisplayConfigWidget(bool defaults , QWidget *parent = Q_NULLPTR);
     ~KNoteDisplayConfigWidget();
 
     void load(NoteShared::NoteDisplayAttribute *attr);

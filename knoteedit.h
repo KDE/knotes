@@ -40,7 +40,7 @@ class KNOTES_EXPORT KNoteEdit : public PimCommon::CustomTextEdit
 {
     Q_OBJECT
 public:
-    explicit KNoteEdit(const QString &configFile, KActionCollection *actions, QWidget *parent = 0);
+    explicit KNoteEdit(const QString &configFile, KActionCollection *actions, QWidget *parent = Q_NULLPTR);
     ~KNoteEdit();
 
     void setNote(KNote *_note);
