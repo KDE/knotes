@@ -97,7 +97,7 @@ static bool qActionLessThan(const QAction *a1, const QAction *a2)
 
 KNotesApp::KNotesApp()
     : QWidget(),
-      m_publisher(0),
+      m_publisher(Q_NULLPTR),
       mDebugBaloo(false)
 {
     Akonadi::Control::widgetNeedsAkonadi(this);

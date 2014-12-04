@@ -89,11 +89,11 @@
 KNote::KNote(const QDomDocument &buildDoc, const Akonadi::Item &item, bool allowDebugBaloo, QWidget *parent)
     : QFrame(parent, Qt::FramelessWindowHint),
       mItem(item),
-      m_label(0),
-      m_grip(0),
-      m_button(0),
-      m_tool(0),
-      m_editor(0),
+      m_label(Q_NULLPTR),
+      m_grip(Q_NULLPTR),
+      m_button(Q_NULLPTR),
+      m_tool(Q_NULLPTR),
+      m_editor(Q_NULLPTR),
       m_kwinConf(KSharedConfig::openConfig(QLatin1String("kwinrc"))),
       mDisplayAttribute(new KNoteDisplaySettings),
       mAllowDebugBaloo(allowDebugBaloo)
