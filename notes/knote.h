@@ -69,12 +69,12 @@ public:
 
     void toDesktop(int desktop);
 
-public slots:
+public Q_SLOTS:
     void slotRename();
     void slotKill(bool force = false);
     void slotClose();
 
-signals:
+Q_SIGNALS:
     void sigRequestNewNote();
     void sigShowNextNote();
     void sigNameChanged(const QString &);
@@ -92,7 +92,7 @@ protected:
     bool event(QEvent *) Q_DECL_OVERRIDE;
     bool eventFilter(QObject *, QEvent *) Q_DECL_OVERRIDE;
 
-private slots:
+private Q_SLOTS:
     void slotUpdateReadOnly();
 
     void slotSend();

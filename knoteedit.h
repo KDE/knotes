@@ -56,7 +56,7 @@ public:
     void setCursorPositionFromStart(int pos);
     int cursorPositionFromStart() const;
 
-public slots:
+public Q_SLOTS:
     void setRichText(bool);
 
     void textBold(bool);
@@ -86,10 +86,10 @@ protected:
     void focusInEvent(QFocusEvent *) Q_DECL_OVERRIDE;
     void focusOutEvent(QFocusEvent *) Q_DECL_OVERRIDE;
 
-protected slots:
+protected Q_SLOTS:
     void mousePopupMenuImplementation(const QPoint &pos);
 
-private slots:
+private Q_SLOTS:
     void slotCurrentCharFormatChanged(const QTextCharFormat &);
     void slotCursorPositionChanged();
     void slotUpperCase();

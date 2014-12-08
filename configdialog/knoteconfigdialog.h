@@ -38,7 +38,7 @@ public:
                                QWidget *parent);
     ~KNoteConfigDialog();
 
-public slots:
+public Q_SLOTS:
     void slotOk();
 };
 
@@ -71,7 +71,7 @@ public:
     virtual void load();
     virtual void save();
     virtual void defaults();
-private slots:
+private Q_SLOTS:
     void slotHelpLinkClicked(const QString &);
 private:
     QLineEdit *mDefaultTitle;

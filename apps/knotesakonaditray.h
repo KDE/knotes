@@ -29,7 +29,7 @@ public:
 
     void updateNumberOfNotes(int number);
 
-private slots:
+private Q_SLOTS:
     void slotGeneralPaletteChanged();
 
 private:

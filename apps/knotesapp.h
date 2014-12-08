@@ -57,7 +57,7 @@ public:
     KNotesApp();
     ~KNotesApp();
 
-public slots:
+public Q_SLOTS:
     void newNote(const QString &name = QString(),
                  const QString &text = QString());
     void newNoteFromClipboard(const QString &name = QString());
