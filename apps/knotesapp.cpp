@@ -132,29 +132,29 @@ KNotesApp::KNotesApp()
     action  = new QAction(QIcon::fromTheme(QLatin1String("document-open")),
                           i18n("New Note From Text File..."), this);
     actionCollection()->addAction(QLatin1String("new_note_from_text_file"), action);
-    connect(action, SIGNAL(triggered()), SLOT(newNoteFromTextFile()));
+    connect(action, &QAction::triggered, this, &KNotesApp::newNoteFromTextFile);
 
     action  = new QAction(QIcon::fromTheme(QLatin1String("knotes")), i18n("Show All Notes"), this);
     actionCollection()->addAction(QLatin1String("show_all_notes"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_S));
-    connect(action, SIGNAL(triggered()), SLOT(showAllNotes()));
+    connect(action, &QAction::triggered, this, &KNotesApp::showAllNotes);
 
     action  = new QAction(QIcon::fromTheme(QLatin1String("window-close")),
                           i18n("Hide All Notes"), this);
     actionCollection()->addAction(QLatin1String("hide_all_notes"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_H));
-    connect(action, SIGNAL(triggered()), SLOT(hideAllNotes()));
+    connect(action, &QAction::triggered, this, &KNotesApp::hideAllNotes);
 
     action = new QAction(QIcon::fromTheme(QLatin1String("document-print")),
                          i18nc("@action:inmenu", "Print Selected Notes..."), this);
     actionCollection()->addAction(QLatin1String("print_selected_notes"), action);
-    connect(action, SIGNAL(triggered()), SLOT(slotPrintSelectedNotes()));
+    connect(action, &QAction::triggered, this, &KNotesApp::slotPrintSelectedNotes);
 
     QAction *act = KStandardAction::find(this, SLOT(slotOpenFindDialog()), actionCollection());
     action = new QAction(QIcon::fromTheme(QLatin1String("edit-delete")),
                          i18nc("@action:inmenu", "Delete Selected Notes..."), this);
     actionCollection()->addAction(QLatin1String("delete_selected_notes"), action);
-    connect(action, SIGNAL(triggered()), SLOT(slotDeleteSelectedNotes()));
+    connect(action, &QAction::triggered, this, &KNotesApp::slotDeleteSelectedNotes);
 
     //REmove shortcut here.
     act->setShortcut(0);
@@ -206,8 +206,8 @@ KNotesApp::KNotesApp()
     mTray->setContextMenu(contextMenu);
     mNoteTreeModel = new NoteShared::NotesAkonadiTreeModel(mNoteRecorder->changeRecorder(), this);
 
-    connect(mNoteTreeModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
-            SLOT(slotRowInserted(QModelIndex,int,int)));
+    connect(mNoteTreeModel, &QAbstractItemModel::rowsInserted,
+            this, &KNotesApp::slotRowInserted);
 
     connect(mNoteRecorder->changeRecorder(), SIGNAL(itemChanged(Akonadi::Item,QSet<QByteArray>)), SLOT(slotItemChanged(Akonadi::Item,QSet<QByteArray>)));
     connect(mNoteRecorder->changeRecorder(), SIGNAL(itemRemoved(Akonadi::Item)), SLOT(slotItemRemoved(Akonadi::Item)));
