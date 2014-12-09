@@ -66,9 +66,9 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     mTheme->loadThemes();
     lay->addWidget(mTheme);
 
-    mUser1Button->setIcon(QIcon::fromTheme(QLatin1String("document-print-preview")));
+    mUser1Button->setIcon(QIcon::fromTheme(QStringLiteral("document-print-preview")));
     mUser1Button->setText(i18n("Preview"));
-    okButton->setIcon(QIcon::fromTheme(QLatin1String("document-print")));
+    okButton->setIcon(QIcon::fromTheme(QStringLiteral("document-print")));
     okButton->setText(i18n("Print"));
     connect(mUser1Button, &QPushButton::clicked, this, &KNotePrintSelectedNotesDialog::slotPreview);
     connect(mListNotes, &QListWidget::itemSelectionChanged, this, &KNotePrintSelectedNotesDialog::slotSelectionChanged);
