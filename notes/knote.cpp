@@ -291,7 +291,7 @@ void KNote::slotRename()
     // pop up dialog to get the new name
     bool ok;
     const QString oldName = m_label->text();
-    const QString newName = QInputDialog::getText(this, QString::null,  //krazy:exclude=nullstrassign for old broken gcc
+    const QString newName = QInputDialog::getText(this, QString(),
                             i18n("Please enter the new name:"), QLineEdit::Normal, m_label->text(), &ok);
     if (!ok || (oldName == newName)) {   // handle cancel
         return;
