@@ -33,6 +33,8 @@ void KNoteUtils::updateConfiguration()
     QDBusInterface interface(QLatin1String("org.freedesktop.Akonadi.Agent.akonadi_notes_agent"), QLatin1String("/NotesAgent"));
     if (interface.isValid()) {
         interface.call(QLatin1String("configurationChanged"));
+    } else {
+        qDebug()<<" Agent not launched";
     }
 }
 
