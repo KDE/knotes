@@ -22,7 +22,7 @@
 #include <KMessageBox>
 #include <KLocalizedString>
 #include <KProcess>
-#include <QDebug>
+#include "knotes_debug.h"
 #include <KConfigGroup>
 #include <QDBusInterface>
 #include <QFileInfo>
@@ -34,7 +34,7 @@ void KNoteUtils::updateConfiguration()
     if (interface.isValid()) {
         interface.call(QLatin1String("configurationChanged"));
     } else {
-        qDebug()<<" Agent not launched";
+        qCDebug(KNOTES_LOG)<<" Agent not launched";
     }
 }
 
@@ -98,7 +98,7 @@ void KNoteUtils::migrateToAkonadi()
                 return;
             }
 
-            qDebug() << "Performing Akonadi migration. Good luck!";
+            qCDebug(KNOTES_LOG) << "Performing Akonadi migration. Good luck!";
             KProcess proc;
             QStringList args = QStringList() << QLatin1String("--interactive-on-change");
             const QString path = QStandardPaths::findExecutable(QLatin1String("knotes-migrator"));
@@ -109,7 +109,7 @@ void KNoteUtils::migrateToAkonadi()
                 result = proc.waitForFinished(-1);
             }
             if (result && proc.exitCode() == 0) {
-                qDebug() << "Akonadi migration has been successful";
+                qCDebug(KNOTES_LOG) << "Akonadi migration has been successful";
             } else {
                 // exit code 1 means it is already running, so we are probably called by a migrator instance
                 qCritical() << "Akonadi migration failed!";

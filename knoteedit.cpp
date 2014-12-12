@@ -28,7 +28,7 @@
 
 #include <kactioncollection.h>
 #include <QColorDialog>
-#include <qdebug.h>
+#include "knotes_debug.h"
 #include <kfontaction.h>
 #include <kfontsizeaction.h>
 #include <KLocalizedString>

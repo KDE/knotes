@@ -19,7 +19,7 @@
 *******************************************************************/
 
 #include "config-kdepim.h"
-#include <QDebug>
+#include "knotes_debug.h"
 #include "kdepim-version.h"
 
 #include "knotes_options.h"
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     KUniqueApplication::addCmdLineOptions();
 
     if (!Application::start()) {
-        qDebug() << " knotes already started";
+        qCDebug(KNOTES_LOG) << " knotes already started";
         return 0;
     }
 

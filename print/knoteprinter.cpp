@@ -29,7 +29,7 @@
 #include <KMessageBox>
 
 #include <KLocalizedString>
-#include <qdebug.h>
+#include "knotes_debug.h"
 #include <KPrintPreview>
 
 #include <grantlee/context.h>

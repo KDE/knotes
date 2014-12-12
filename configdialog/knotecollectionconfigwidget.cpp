@@ -44,7 +44,7 @@
 #include <KLocalizedString>
 #include <QPushButton>
 #include <QLineEdit>
-#include <QDebug>
+#include "knotes_debug.h"
 #include <KMessageBox>
 
 #include <QVBoxLayout>
@@ -315,11 +315,11 @@ void KNoteCollectionConfigWidget::slotModifyJobDone(KJob *job)
     Akonadi::CollectionModifyJob *modifyJob = qobject_cast<Akonadi::CollectionModifyJob *>(job);
     if (modifyJob && job->error()) {
         if (job->property("AttributeAdded").toBool()) {
-            qWarning() << "Failed to append NewMailNotifierAttribute to collection"
+            qCWarning(KNOTES_LOG) << "Failed to append NewMailNotifierAttribute to collection"
                        << modifyJob->collection().id() << ":"
                        << job->errorString();
         } else {
-            qWarning() << "Failed to remove NewMailNotifierAttribute from collection"
+            qCWarning(KNOTES_LOG) << "Failed to remove NewMailNotifierAttribute from collection"
                        << modifyJob->collection().id() << ":"
                        << job->errorString();
         }

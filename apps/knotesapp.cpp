@@ -68,7 +68,7 @@
 #include <KActionCollection>
 
 #include <KMessageBox>
-#include <qdebug.h>
+#include "knotes_debug.h"
 #include <khelpmenu.h>
 #include <kiconeffect.h>
 #include <KLocalizedString>
@@ -188,7 +188,7 @@ KNotesApp::KNotesApp()
     const QStringList fileList = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, filter) + QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, xmlFileName);//QT5 =
     //QT5 componentData().dirs()->findAllResources( "data", filter ) +
     //QT5 componentData().dirs()->findAllResources( "data", xmlFileName );
-    qDebug() << " fileList :" << fileList << " filter :" << filter;
+    qCDebug(KNOTES_LOG) << " fileList :" << fileList << " filter :" << filter;
     QString doc;
     KXMLGUIClient::findMostRecentXMLFile(fileList, doc);
     m_noteGUI.setContent(doc);
@@ -254,7 +254,7 @@ void KNotesApp::slotDeleteSelectedNotes()
 
 void KNotesApp::slotItemRemoved(const Akonadi::Item &item)
 {
-    qDebug() << " note removed" << item.id();
+    qCDebug(KNOTES_LOG) << " note removed" << item.id();
     if (mNotes.contains(item.id())) {
         delete mNotes.find(item.id()).value();
         mNotes.remove(item.id());
@@ -266,7 +266,7 @@ void KNotesApp::slotItemRemoved(const Akonadi::Item &item)
 void KNotesApp::slotItemChanged(const Akonadi::Item &item, const QSet<QByteArray> &set)
 {
     if (mNotes.contains(item.id())) {
-        qDebug() << " item changed " << item.id() << " info " << set.toList();
+        qCDebug(KNOTES_LOG) << " item changed " << item.id() << " info " << set.toList();
         KNote *note = mNotes.value(item.id());
         note->setChangeItem(item, set);
     }
@@ -333,7 +333,7 @@ void KNotesApp::showNote(const Akonadi::Entity::Id &id) const
         KNote *note = mNotes.value(id);
         showNote(note);
     } else {
-        qWarning() << "hideNote: no note with id:" << id;
+        qCWarning(KNOTES_LOG) << "hideNote: no note with id:" << id;
     }
 }
 
@@ -358,7 +358,7 @@ void KNotesApp::hideNote(const Akonadi::Item::Id &id) const
         KNote *note = mNotes.value(id);
         note->hide();
     } else {
-        qWarning() << "hideNote: no note with id:" << id;
+        qCWarning(KNOTES_LOG) << "hideNote: no note with id:" << id;
     }
 }
 
@@ -439,7 +439,7 @@ void KNotesApp::setName(const Akonadi::Item::Id &id, const QString &newName)
     if (mNotes.contains(id)) {
         mNotes.value(id)->setName(newName);
     } else {
-        qWarning() << "setName: no note with id:" << id;
+        qCWarning(KNOTES_LOG) << "setName: no note with id:" << id;
     }
 }
 
@@ -448,7 +448,7 @@ void KNotesApp::setText(const Akonadi::Item::Id &id, const QString &newText)
     if (mNotes.contains(id)) {
         mNotes.value(id)->setText(newText);
     } else {
-        qWarning() << "setText: no note with id:" << id;
+        qCWarning(KNOTES_LOG) << "setText: no note with id:" << id;
     }
 }
 
@@ -560,7 +560,7 @@ void KNotesApp::slotConfigUpdated()
 void KNotesApp::slotCollectionChanged(const Akonadi::Collection &col, const QSet<QByteArray> &set)
 {
     if (set.contains("showfoldernotesattribute")) {
-        //qDebug()<<" collection Changed "<<set<<" col "<<col;
+        //qCDebug(KNOTES_LOG)<<" collection Changed "<<set<<" col "<<col;
         if (col.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
             fetchNotesFromCollection(col);
         } else {
@@ -619,7 +619,7 @@ void KNotesApp::slotNoteKilled(Akonadi::Item::Id id)
 void KNotesApp::slotNoteDeleteFinished(KJob *job)
 {
     if (job->error()) {
-        qWarning() << job->errorString();
+        qCWarning(KNOTES_LOG) << job->errorString();
         return;
     }
 }
@@ -697,7 +697,7 @@ void KNotesApp::fetchNotesFromCollection(const Akonadi::Collection &col)
 void KNotesApp::slotItemFetchFinished(KJob *job)
 {
     if (job->error()) {
-        qDebug() << "Error occurred during item fetch:" << job->errorString();
+        qCDebug(KNOTES_LOG) << "Error occurred during item fetch:" << job->errorString();
         return;
     }
 

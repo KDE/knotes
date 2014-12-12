@@ -33,6 +33,7 @@ set(libknotesprivate_lib_SRCS
     ${libknotesprivate_config_lib_SRCS}
     ${libknotesprivate_print_lib_SRCS}
     knoteedit.cpp
+    knotes_debug.cpp
     notes/knotedisplaysettings.cpp
     utils/knoteutils.cpp
     notes/knoteinterface.cpp
@@ -58,7 +59,7 @@ set_target_properties(knotesprivate
 install(TARGETS knotesprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
 
-set(knotes_SRCS 
+set(knotes_SRCS knotes_debug.cpp 
                 apps/main.cpp 
                 apps/application.cpp 
                 apps/knotesapp.cpp 
@@ -92,7 +93,7 @@ install(TARGETS knotes  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
 ########### next target ###############
-set(kcm_knotes_PART_SRCS configdialog/knoteconfigdialog.cpp configdialog/knotedisplayconfigwidget.cpp configdialog/knoteeditorconfigwidget.cpp configdialog/knotecollectionconfigwidget.cpp)
+set(kcm_knotes_PART_SRCS configdialog/knoteconfigdialog.cpp configdialog/knotedisplayconfigwidget.cpp configdialog/knoteeditorconfigwidget.cpp configdialog/knotecollectionconfigwidget.cpp knotes_debug.cpp)
 
 add_library(kcm_knote MODULE ${kcm_knotes_PART_SRCS} )
 

@@ -18,6 +18,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 #include "config-kdepim.h"
+#include "knotes_debug.h"
 #include "knote.h"
 #include "noteshared/noteutils.h"
 #include "alarms/notealarmdialog.h"
@@ -128,7 +129,7 @@ void KNote::setDisplayDefaultValue()
     KNoteUtils::setDefaultValue(mItem);
     Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
-    qDebug() << "setDisplayDefaultValue slotNoteSaved(KJob*)";
+    qCDebug(KNOTES_LOG) << "setDisplayDefaultValue slotNoteSaved(KJob*)";
 #endif
     connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
 }
@@ -146,7 +147,7 @@ void KNote::setChangeItem(const Akonadi::Item &item, const QSet<QByteArray> &set
         loadNoteContent(item);
     }
     if (set.contains("ATR:NoteDisplayAttribute")) {
-        qDebug() << " ATR:NoteDisplayAttribute";
+        qCDebug(KNOTES_LOG) << " ATR:NoteDisplayAttribute";
         slotApplyConfig();
     }
     //TODO update display/content etc.
@@ -208,14 +209,14 @@ void KNote::saveNote(bool force, bool sync)
     }
     if (needToSave) {
 #ifdef DEBUG_SAVE_NOTE
-        qDebug() << "save Note slotClose() slotNoteSaved(KJob*) : sync" << sync;
+        qCDebug(KNOTES_LOG) << "save Note slotClose() slotNoteSaved(KJob*) : sync" << sync;
 #endif
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
         if (sync) {
             job->exec();
         } else {
 #ifdef DEBUG_SAVE_NOTE
-            qDebug() << "save Note slotClose() slotNoteSaved(KJob*)";
+            qCDebug(KNOTES_LOG) << "save Note slotClose() slotNoteSaved(KJob*)";
 #endif
             connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
         }
@@ -224,9 +225,9 @@ void KNote::saveNote(bool force, bool sync)
 
 void KNote::slotNoteSaved(KJob *job)
 {
-    qDebug() << " void KNote::slotNoteSaved(KJob *job)";
+    qCDebug(KNOTES_LOG) << " void KNote::slotNoteSaved(KJob *job)";
     if (job->error()) {
-        qDebug() << " problem during save note:" << job->errorString();
+        qCDebug(KNOTES_LOG) << " problem during save note:" << job->errorString();
     } else {
         m_editor->document()->setModified(false);
     }
@@ -319,7 +320,7 @@ void KNote::slotUpdateReadOnly()
         updateAllAttributes();
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
-        qDebug() << " void KNote::slotUpdateReadOnly() slotNoteSaved(KJob*)";
+        qCDebug(KNOTES_LOG) << " void KNote::slotUpdateReadOnly() slotNoteSaved(KJob*)";
 #endif
         connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
     }
@@ -383,7 +384,7 @@ void KNote::slotClose()
     m_editor->clearFocus();
     Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
-    qDebug() << "slotClose() slotNoteSaved(KJob*)";
+    qCDebug(KNOTES_LOG) << "slotClose() slotNoteSaved(KJob*)";
 #endif
     connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
     hide();
@@ -413,7 +414,7 @@ void KNote::slotSetAlarm()
             saveNoteContent();
             Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
-            qDebug() << "setAlarm() slotNoteSaved(KJob*)";
+            qCDebug(KNOTES_LOG) << "setAlarm() slotNoteSaved(KJob*)";
 #endif
             connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
         }
@@ -456,7 +457,7 @@ void KNote::slotPreferences()
         saveNoteContent();
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
-        qDebug() << "slotPreference slotNoteSaved(KJob*)";
+        qCDebug(KNOTES_LOG) << "slotPreference slotNoteSaved(KJob*)";
 #endif
         connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
     }
@@ -622,7 +623,7 @@ void KNote::slotUpdateKeepAboveBelow(bool save)
         saveNoteContent();
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
-        qDebug() << "slotUpdateKeepAboveBelow slotNoteSaved(KJob*)";
+        qCDebug(KNOTES_LOG) << "slotUpdateKeepAboveBelow slotNoteSaved(KJob*)";
 #endif
         connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
     }
@@ -1111,7 +1112,7 @@ void KNote::showEvent(QShowEvent *)
         if (!mBlockSave) {
             Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
-            qDebug() << "showEvent slotNoteSaved(KJob*)";
+            qCDebug(KNOTES_LOG) << "showEvent slotNoteSaved(KJob*)";
 #endif
             connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
         }
@@ -1155,7 +1156,7 @@ void KNote::dropEvent(QDropEvent *e)
         attr->setBackgroundColor(bg);
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
-        qDebug() << "dropEvent slotNoteSaved(KJob*)";
+        qCDebug(KNOTES_LOG) << "dropEvent slotNoteSaved(KJob*)";
 #endif
         connect(job, &Akonadi::ItemModifyJob::result, this, &KNote::slotNoteSaved);
     }
