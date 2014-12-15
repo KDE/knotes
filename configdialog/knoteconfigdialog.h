@@ -48,8 +48,8 @@ class KNoteDisplayConfig : public KCModule
 public:
     KNoteDisplayConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
-    virtual void load() Q_DECL_OVERRIDE;
-    virtual void save() Q_DECL_OVERRIDE;
+    void load() Q_DECL_OVERRIDE;
+    void save() Q_DECL_OVERRIDE;
 };
 
 class KNoteEditorConfig : public KCModule
@@ -58,8 +58,8 @@ class KNoteEditorConfig : public KCModule
 public:
     KNoteEditorConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
-    virtual void load() Q_DECL_OVERRIDE;
-    virtual void save() Q_DECL_OVERRIDE;
+    void load() Q_DECL_OVERRIDE;
+    void save() Q_DECL_OVERRIDE;
 };
 
 class KNoteMiscConfig : public KCModule
@@ -68,9 +68,9 @@ class KNoteMiscConfig : public KCModule
 public:
     KNoteMiscConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
-    virtual void load() Q_DECL_OVERRIDE;
-    virtual void save() Q_DECL_OVERRIDE;
-    virtual void defaults() Q_DECL_OVERRIDE;
+    void load() Q_DECL_OVERRIDE;
+    void save() Q_DECL_OVERRIDE;
+    void defaults() Q_DECL_OVERRIDE;
 private Q_SLOTS:
     void slotHelpLinkClicked(const QString &);
 private:
@@ -83,9 +83,9 @@ class KNotePrintConfig : public KCModule
 public:
     KNotePrintConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
-    virtual void load() Q_DECL_OVERRIDE;
-    virtual void save() Q_DECL_OVERRIDE;
-    virtual void defaults() Q_DECL_OVERRIDE;
+    void load() Q_DECL_OVERRIDE;
+    void save() Q_DECL_OVERRIDE;
+    void defaults() Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void slotThemeChanged();
@@ -101,8 +101,8 @@ class KNoteCollectionConfig : public KCModule
 public:
     KNoteCollectionConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
-    virtual void load() Q_DECL_OVERRIDE;
-    virtual void save() Q_DECL_OVERRIDE;
+    void load() Q_DECL_OVERRIDE;
+    void save() Q_DECL_OVERRIDE;
 
 private:
     KNoteCollectionConfigWidget *mCollectionConfigWidget;
