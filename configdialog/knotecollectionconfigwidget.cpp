@@ -316,12 +316,12 @@ void KNoteCollectionConfigWidget::slotModifyJobDone(KJob *job)
     if (modifyJob && job->error()) {
         if (job->property("AttributeAdded").toBool()) {
             qCWarning(KNOTES_LOG) << "Failed to append NewMailNotifierAttribute to collection"
-                       << modifyJob->collection().id() << ":"
-                       << job->errorString();
+                                  << modifyJob->collection().id() << ":"
+                                  << job->errorString();
         } else {
             qCWarning(KNOTES_LOG) << "Failed to remove NewMailNotifierAttribute from collection"
-                       << modifyJob->collection().id() << ":"
-                       << job->errorString();
+                                  << modifyJob->collection().id() << ":"
+                                  << job->errorString();
         }
     }
 }

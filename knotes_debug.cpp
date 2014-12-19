@@ -20,4 +20,3 @@
 #include "knotes_debug.h"
 Q_LOGGING_CATEGORY(KNOTES_LOG, "log_knotes")
 
-

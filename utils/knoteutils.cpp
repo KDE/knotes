@@ -34,7 +34,7 @@ void KNoteUtils::updateConfiguration()
     if (interface.isValid()) {
         interface.call(QLatin1String("configurationChanged"));
     } else {
-        qCDebug(KNOTES_LOG)<<" Agent not launched";
+        qCDebug(KNOTES_LOG) << " Agent not launched";
     }
 }
 
