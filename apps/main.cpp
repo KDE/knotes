@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
                           KDEPIM_VERSION,
                           ki18n("KDE Notes"),
                           K4AboutData::License_GPL,
-                          ki18n("Copyright © 1997–2014 KNotes authors"));
+                          ki18n("Copyright © 1997–2015 KNotes authors"));
 
     knotesAuthors(aboutData);
 
