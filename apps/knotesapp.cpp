@@ -184,13 +184,13 @@ KNotesApp::KNotesApp()
 
     // get the most recent XML UI file
     QString xmlFileName(componentName() + QLatin1String("ui.rc"));
-#pragma "port QT5"
+#pragma message("port QT5")
 
     QString filter(QLatin1String("kxmlgui5/knotes/") + xmlFileName);//QT5 = componentData().componentName() + QLatin1Char('/') + xmlFileName;
     const QStringList fileList = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, filter) + QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, xmlFileName);//QT5 =
-#pragma "port QT5"
+#pragma message("port QT5")
     //QT5 componentData().dirs()->findAllResources( "data", filter ) +
-#pragma "port QT5"
+#pragma message("port QT5")
     //QT5 componentData().dirs()->findAllResources( "data", xmlFileName );
     qCDebug(KNOTES_LOG) << " fileList :" << fileList << " filter :" << filter;
     QString doc;

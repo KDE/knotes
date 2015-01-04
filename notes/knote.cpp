@@ -612,7 +612,7 @@ void KNote::slotUpdateKeepAboveBelow(bool save)
     } else if (m_keepBelow->isChecked()) {
         attribute->setKeepAbove(false);
         attribute->setKeepBelow(true);
-#pragma "port QT5"
+#pragma message("port QT5")
         //QT5 KWindowSystem::setState( winId(), state | NET::KeepBelow );
     } else {
         attribute->setKeepAbove(false);
