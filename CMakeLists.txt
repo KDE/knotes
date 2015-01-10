@@ -6,10 +6,8 @@ add_definitions( -DQT_NO_CAST_TO_ASCII )
 
 include_directories(
   ${CMAKE_SOURCE_DIR}/pimcommon
-  ${Grantlee_INCLUDE_DIRS}
   ${CMAKE_SOURCE_DIR}/noteshared
   ${CMAKE_BINARY_DIR}/noteshared
-  ${BALOO_INCLUDE_DIR}
 )
 
 ########### next target ###############
