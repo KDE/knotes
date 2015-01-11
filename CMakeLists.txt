@@ -54,7 +54,7 @@ set_target_properties(knotesprivate
   PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
 )
 
-install(TARGETS knotesprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
+install(TARGETS knotesprivate ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
 
 set(knotes_SRCS knotes_debug.cpp 
@@ -87,7 +87,7 @@ target_link_libraries(knotes knotesprivate pimcommon kdepim KF5::KIOCore
 if (Qt5X11Extras_FOUND)
   target_link_libraries(knotes Qt5::X11Extras ${X11_LIBRARIES})
 endif()
-install(TARGETS knotes  ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install(TARGETS knotes  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
 ########### next target ###############
@@ -97,7 +97,7 @@ add_library(kcm_knote MODULE ${kcm_knotes_PART_SRCS} )
 
 target_link_libraries(kcm_knote knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff noteshared akonadi_next pimcommon)
 
-install(TARGETS kcm_knote DESTINATION ${PLUGIN_INSTALL_DIR})
+install(TARGETS kcm_knote DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 
 install(FILES 
@@ -108,17 +108,17 @@ install(FILES
         data/knote_config_print.desktop
         data/knote_config_collection.desktop
         data/knote_config_misc.desktop
-	DESTINATION ${SERVICES_INSTALL_DIR})
+	DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 
 ########### install files ###############
 
-install( PROGRAMS data/org.kde.knotes.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
-install( FILES data/knotes.appdata.xml DESTINATION ${CMAKE_INSTALL_METAINFODIR})
-install( FILES ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
-install( FILES data/knotesappui.rc data/knotesui.rc  DESTINATION ${KXMLGUI_INSTALL_DIR}/knotes)
-install( FILES apps/org.kde.KNotes.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR}) 
-install( FILES data/knotes_printing_theme.knsrc DESTINATION ${CONFIG_INSTALL_DIR} )
+install( PROGRAMS data/org.kde.knotes.desktop  DESTINATION ${KDE_INSTALL_APPDIR})
+install( FILES data/knotes.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+install( FILES ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg  DESTINATION ${KDE_INSTALL_KCFGDIR})
+install( FILES data/knotesappui.rc data/knotesui.rc  DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/knotes)
+install( FILES apps/org.kde.KNotes.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR}) 
+install( FILES data/knotes_printing_theme.knsrc DESTINATION ${KDE_INSTALL_CONFDIR} )
 
-install(DIRECTORY print/themes/ DESTINATION ${DATA_INSTALL_DIR}/knotes/print/themes )
+install(DIRECTORY print/themes/ DESTINATION ${KDE_INSTALL_DATADIR}/knotes/print/themes )
 
 
