@@ -25,6 +25,7 @@ set(libknotesprivate_print_lib_SRCS
     print/knoteprintselectthemecombobox.cpp
     print/knoteprinter.cpp
     print/knoteprintobject.cpp
+    print/knotegrantleeprint.cpp
 )
 
 set(libknotesprivate_lib_SRCS
@@ -121,4 +122,6 @@ install( FILES data/knotes_printing_theme.knsrc DESTINATION ${KDE_INSTALL_CONFDI
 
 install(DIRECTORY print/themes/ DESTINATION ${KDE_INSTALL_DATADIR}/knotes/print/themes )
 
-
+if (BUILD_TESTING)
+   add_subdirectory(print/autotests)
+endif()

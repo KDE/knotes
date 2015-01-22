@@ -20,21 +20,16 @@
 
 #include "knotes_export.h"
 
-#include <grantlee/templateloader.h>
-
 #include <QFont>
-
-namespace Grantlee
-{
-class Engine;
-}
 
 class QPrinter;
 class KNotePrintObject;
-class KNOTES_EXPORT KNotePrinter
+class KNoteGrantleePrint;
+class KNOTES_EXPORT KNotePrinter : public QObject
 {
+    Q_OBJECT
 public:
-    KNotePrinter();
+    explicit KNotePrinter(QObject *parent=0);
     ~KNotePrinter();
 
     void setDefaultFont(const QFont &font);
@@ -47,9 +42,7 @@ private:
     void doPrintPreview(const QString &htmlText);
 
     QFont m_defaultFont;
-    Grantlee::Engine *mEngine;
-    QSharedPointer<Grantlee::FileSystemTemplateLoader> mTemplateLoader;
-    Grantlee::Template mSelfcontainedTemplate;
+    KNoteGrantleePrint *mGrantleePrint;
 };
 
 #endif // KNOTEPRINTER
