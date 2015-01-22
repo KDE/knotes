@@ -118,3 +118,4 @@ install( FILES data/knotes_printing_theme.knsrc DESTINATION ${CONFIG_INSTALL_DIR
 install(DIRECTORY print/themes/ DESTINATION ${DATA_INSTALL_DIR}/knotes/print/themes )
 
 
+add_subdirectory(print/autotests)

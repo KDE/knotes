@@ -53,7 +53,6 @@ QString KNoteGrantleePrint::errorMessage() const
     return mErrorMessage;
 }
 
-
 void KNoteGrantleePrint::setContent(const QString &content)
 {
     mSelfcontainedTemplate = mEngine->newTemplate(content, QLatin1String("content"));
