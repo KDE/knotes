@@ -18,6 +18,7 @@
 
 #include "knotesgrantleeprinttest.h"
 #include <qtest.h>
+#include "../knotegrantleeprint.h"
 
 KNotesGrantleePrintTest::KNotesGrantleePrintTest(QObject *parent)
     : QObject(parent)
@@ -28,6 +29,14 @@ KNotesGrantleePrintTest::KNotesGrantleePrintTest(QObject *parent)
 KNotesGrantleePrintTest::~KNotesGrantleePrintTest()
 {
 
+}
+
+void KNotesGrantleePrintTest::shouldDefaultValue()
+{
+    KNoteGrantleePrint *grantleePrint = new KNoteGrantleePrint;
+    QVERIFY(grantleePrint);
+    grantleePrint->deleteLater();
+    grantleePrint = 0;
 }
 
 QTEST_MAIN(KNotesGrantleePrintTest)
