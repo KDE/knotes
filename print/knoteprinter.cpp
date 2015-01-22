@@ -17,6 +17,7 @@
 
 #include "knoteprinter.h"
 #include "print/knoteprintobject.h"
+#include "knotegrantleeprint.h"
 
 #include <QPainter>
 #include <QTextDocument>
@@ -37,16 +38,14 @@
 #include <grantlee/templateloader.h>
 
 
-KNotePrinter::KNotePrinter()
-    : mEngine(new Grantlee::Engine)
+KNotePrinter::KNotePrinter(QObject *parent)
+    : QObject(parent),
+      mGrantleePrint(0)
 {
-    mTemplateLoader = Grantlee::FileSystemTemplateLoader::Ptr( new Grantlee::FileSystemTemplateLoader );
 }
 
 KNotePrinter::~KNotePrinter()
 {
-    mEngine->deleteLater();
-    mEngine = 0;
 }
 
 void KNotePrinter::setDefaultFont( const QFont &font )
@@ -125,25 +124,9 @@ void KNotePrinter::print(QPrinter &printer, const QString &htmlText)
 
 void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString &themePath, bool preview)
 {
-    mTemplateLoader->setTemplateDirs( QStringList() << themePath );
-    mEngine->addTemplateLoader( mTemplateLoader );
-
-    mSelfcontainedTemplate = mEngine->loadByName( QLatin1String("theme.html") );
-    QString mErrorMessage;
-    if ( mSelfcontainedTemplate->error() ) {
-         mErrorMessage += mSelfcontainedTemplate->errorString() + QLatin1String("<br>");
-    }
-
-    if (mErrorMessage.isEmpty()) {
-        QVariantList notes;
-        Q_FOREACH(KNotePrintObject *n, lst)
-            notes << QVariant::fromValue(static_cast<QObject*>(n));
-        Grantlee::Context c;
-        c.insert(QLatin1String("notes"), notes);
-        c.insert(QLatin1String("alarm_i18n"), i18n("Alarm:"));
-        c.insert(QLatin1String("note_is_locked_i18n"), i18n("Note is locked"));
-
-        const QString htmlText = mSelfcontainedTemplate->render(&c);
+    mGrantleePrint = new KNoteGrantleePrint(themePath, this);
+    if (mGrantleePrint->errorMessage().isEmpty()) {
+        const QString htmlText = mGrantleePrint->notesToHtml(lst);
         const QString dialogCaption = i18np( "Print Note", "Print %1 notes",
                                              lst.count() );
         if (preview)

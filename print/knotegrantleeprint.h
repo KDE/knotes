@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2013-2015 Montel Laurent <montel@kde.org>
+  Copyright (c) 2015 Montel Laurent <montel@kde.org>
 
   This program is free software; you can redistribute it and/or modify it
   under the terms of the GNU General Public License, version 2, as
@@ -15,40 +15,35 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef KNOTEPRINTER_H
-#define KNOTEPRINTER_H
+#ifndef KNOTEGRANTLEEPRINT_H
+#define KNOTEGRANTLEEPRINT_H
 
-#include "knotes_export.h"
-
+#include <QObject>
 #include <grantlee/templateloader.h>
-
-#include <QFont>
 
 namespace Grantlee {
 class Engine;
 }
-
-class QPrinter;
 class KNotePrintObject;
-class KNoteGrantleePrint;
-class KNOTES_EXPORT KNotePrinter : public QObject
+class KNoteGrantleePrint : public QObject
 {
     Q_OBJECT
 public:
-    explicit KNotePrinter(QObject *parent=0);
-    ~KNotePrinter();
+    explicit KNoteGrantleePrint(QObject *parent=0);
+    KNoteGrantleePrint(const QString &themePath, QObject *parent=0);
+    ~KNoteGrantleePrint();
 
-    void setDefaultFont( const QFont &font );
-    QFont defaultFont() const;
-    void printNotes(const QList<KNotePrintObject *> lst, const QString &themePath, bool preview);
+    QString errorMessage() const;
+
+    QString notesToHtml(const QList<KNotePrintObject *> lst);
+
+    void setContent(const QString &content);
 
 private:
-    void print(QPrinter &printer, const QString &htmlText);
-    void doPrint( const QString &content, const QString &dialogCaption );
-    void doPrintPreview(const QString &htmlText);
-    
-    QFont m_defaultFont;
-    KNoteGrantleePrint *mGrantleePrint;
+    Grantlee::Template mSelfcontainedTemplate;
+    QString mErrorMessage;
+    Grantlee::Engine *mEngine;
+    Grantlee::FileSystemTemplateLoader::Ptr mTemplateLoader;
 };
 
-#endif // KNOTEPRINTER
+#endif // KNOTEGRANTLEEPRINT_H

@@ -28,6 +28,7 @@ set(libknotesprivate_print_lib_SRCS
     print/knoteprintselectthemecombobox.cpp
     print/knoteprinter.cpp
     print/knoteprintobject.cpp
+    print/knotegrantleeprint.cpp
 )
 
 set(libknotesprivate_lib_SRCS

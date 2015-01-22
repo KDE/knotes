@@ -504,7 +504,7 @@ void KNote::print(bool preview)
         delete dlg;
     }
     if (!printingTheme.isEmpty()) {
-        KNotePrinter printer;
+        KNotePrinter printer(this);
         QList<KNotePrintObject*> lst;
         lst.append(new KNotePrintObject(mItem));
         printer.setDefaultFont( mDisplayAttribute->font() );
