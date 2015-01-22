@@ -20,12 +20,12 @@
 
 #include <QObject>
 #include <grantlee/templateloader.h>
-
+#include "knotes_export.h"
 namespace Grantlee {
 class Engine;
 }
 class KNotePrintObject;
-class KNoteGrantleePrint : public QObject
+class KNOTES_EXPORT KNoteGrantleePrint : public QObject
 {
     Q_OBJECT
 public:
