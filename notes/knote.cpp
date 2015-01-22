@@ -493,10 +493,6 @@ void KNote::print(bool preview)
     if ( isModified() ) {
         saveNote();
     }
-    KNotePrinter printer;
-    QList<KNotePrintObject*> lst;
-    lst.append(new KNotePrintObject(mItem));
-    printer.setDefaultFont( mDisplayAttribute->font() );
 
     KNotesGlobalConfig *globalConfig = KNotesGlobalConfig::self();
     QString printingTheme = globalConfig->theme();
@@ -508,6 +504,10 @@ void KNote::print(bool preview)
         delete dlg;
     }
     if (!printingTheme.isEmpty()) {
+        KNotePrinter printer;
+        QList<KNotePrintObject*> lst;
+        lst.append(new KNotePrintObject(mItem));
+        printer.setDefaultFont( mDisplayAttribute->font() );
         printer.printNotes( lst, printingTheme, preview );
     }
 }
