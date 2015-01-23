@@ -29,6 +29,11 @@ public:
 
 private Q_SLOTS:
     void shouldDefaultValue();
+    void shouldReturnEmptyStringWhenNotContentAndNoNotes();
+    void shouldReturnEmptyStringWhenAddContentWithoutNotes();
+
+    void shouldDisplayNoteInfo_data();
+    void shouldDisplayNoteInfo();
 };
 
 #endif // KNOTESGRANTLEEPRINTTEST_H
