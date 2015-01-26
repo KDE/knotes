@@ -27,6 +27,7 @@
   <name xml:lang="sv">Knotes</name>
   <name xml:lang="uk">KNotes</name>
   <name xml:lang="x-test">xxKNotesxx</name>
+  <name xml:lang="zh-CN">KNotes</name>
   <description>
     <p>
       KNotes is a program that lets you write the computer equivalent of sticky notes.
@@ -75,6 +76,7 @@
     <p xml:lang="sv">Funktioner:</p>
     <p xml:lang="uk">Можливості:</p>
     <p xml:lang="x-test">xxFeatures:xx</p>
+    <p xml:lang="zh-CN">功能：</p>
     <ul>
       <li>Write notes in your choice of font and background color</li>
       <li xml:lang="ca">Escriu les notes amb el tipus de lletra i el color de fons de la vostra elecció</li>
