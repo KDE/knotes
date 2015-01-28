@@ -15,6 +15,7 @@
   <name xml:lang="hu">KNotes</name>
   <name xml:lang="it">KNotes</name>
   <name xml:lang="ko">KNotes</name>
+  <name xml:lang="lt">KNotes</name>
   <name xml:lang="nb">KNotes</name>
   <name xml:lang="nds">KNotes</name>
   <name xml:lang="nl">KNotes</name>
@@ -64,6 +65,7 @@
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="it">Caratteristiche:</p>
     <p xml:lang="ko">기능:</p>
+    <p xml:lang="lt">Ypatybės:</p>
     <p xml:lang="nb">Egenskaper:</p>
     <p xml:lang="nds">Markmalen:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
