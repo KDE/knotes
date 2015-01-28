@@ -29,8 +29,8 @@ class KNOTES_EXPORT KNoteGrantleePrint : public QObject
 {
     Q_OBJECT
 public:
-    explicit KNoteGrantleePrint(QObject *parent=0);
-    KNoteGrantleePrint(const QString &themePath, QObject *parent=0);
+    explicit KNoteGrantleePrint(QObject *parent=Q_NULLPTR);
+    KNoteGrantleePrint(const QString &themePath, QObject *parent=Q_NULLPTR);
     ~KNoteGrantleePrint();
 
     QString errorMessage() const;
