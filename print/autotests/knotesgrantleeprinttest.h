@@ -24,7 +24,7 @@ class KNotesGrantleePrintTest : public QObject
 {
     Q_OBJECT
 public:
-    explicit KNotesGrantleePrintTest(QObject *parent = 0);
+    explicit KNotesGrantleePrintTest(QObject *parent = Q_NULLPTR);
     ~KNotesGrantleePrintTest();
 
 private Q_SLOTS:
