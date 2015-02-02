@@ -254,19 +254,22 @@ void KNoteEdit::setNote( KNote *_note )
 void KNoteEdit::slotSentenceCase()
 {
     QTextCursor cursor = textCursor();
-    PimCommon::EditorUtil::sentenceCase(cursor);
+    PimCommon::EditorUtil editorUtil;
+    editorUtil.sentenceCase(cursor);
 }
 
 void KNoteEdit::slotUpperCase()
 {
     QTextCursor cursor = textCursor();
-    PimCommon::EditorUtil::upperCase(cursor);
+    PimCommon::EditorUtil editorUtil;
+    editorUtil.upperCase(cursor);
 }
 
 void KNoteEdit::slotLowerCase()
 {
     QTextCursor cursor = textCursor();
-    PimCommon::EditorUtil::lowerCase(cursor);
+    PimCommon::EditorUtil editorUtil;
+    editorUtil.lowerCase(cursor);
 }
 
 void KNoteEdit::mousePopupMenuImplementation(const QPoint& pos)
