@@ -466,12 +466,14 @@ void KNote::slotPreferences()
 
 void KNote::slotSend()
 {
-    NoteShared::NoteUtils::sendToNetwork(this, name(), text());
+    NoteShared::NoteUtils noteUtils;
+    noteUtils.sendToNetwork(this, name(), text());
 }
 
 void KNote::slotMail()
 {
-    NoteShared::NoteUtils::sendToMail(this, m_label->text(), m_editor->toPlainText());
+    NoteShared::NoteUtils noteUtils;
+    noteUtils.sendToMail(this, m_label->text(), m_editor->toPlainText());
 }
 
 void KNote::slotPrint()
