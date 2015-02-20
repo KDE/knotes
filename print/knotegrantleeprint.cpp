@@ -63,11 +63,13 @@ void KNoteGrantleePrint::setContent(const QString &content)
 
 QString KNoteGrantleePrint::notesToHtml(const QList<KNotePrintObject *> lst)
 {
-    if (lst.isEmpty())
+    if (lst.isEmpty()) {
         return QString();
+    }
     QVariantList notes;
-    Q_FOREACH(KNotePrintObject *n, lst)
-        notes << QVariant::fromValue(static_cast<QObject*>(n));
+    Q_FOREACH (KNotePrintObject *n, lst) {
+        notes << QVariant::fromValue(static_cast<QObject *>(n));
+    }
     Grantlee::Context c;
     c.insert(QLatin1String("notes"), notes);
     c.insert(QLatin1String("alarm_i18n"), i18n("Alarm:"));

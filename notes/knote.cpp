@@ -509,10 +509,10 @@ void KNote::print(bool preview)
     }
     if (!printingTheme.isEmpty()) {
         KNotePrinter printer(this);
-        QList<KNotePrintObject*> lst;
+        QList<KNotePrintObject *> lst;
         lst.append(new KNotePrintObject(mItem));
-        printer.setDefaultFont( mDisplayAttribute->font() );
-        printer.printNotes( lst, printingTheme, preview );
+        printer.setDefaultFont(mDisplayAttribute->font());
+        printer.printNotes(lst, printingTheme, preview);
     }
 }
 

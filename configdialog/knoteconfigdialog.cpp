@@ -196,10 +196,9 @@ void KNoteEditorConfig::load()
 KNoteMiscConfig::KNoteMiscConfig(QWidget *parent)
     : KCModule(parent)
 {
-    QVBoxLayout *topLayout = new QVBoxLayout( this );
-    QWidget * w =  new QWidget( this );
-    topLayout->addWidget( w );
-
+    QVBoxLayout *topLayout = new QVBoxLayout(this);
+    QWidget *w =  new QWidget(this);
+    topLayout->addWidget(w);
 
     QVBoxLayout *lay = new QVBoxLayout;
     w->setLayout(lay);

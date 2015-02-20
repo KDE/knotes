@@ -126,8 +126,8 @@ void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString
     mGrantleePrint = new KNoteGrantleePrint(themePath, this);
     if (mGrantleePrint->errorMessage().isEmpty()) {
         const QString htmlText = mGrantleePrint->notesToHtml(lst);
-        const QString dialogCaption = i18np( "Print Note", "Print %1 notes",
-                                             lst.count() );
+        const QString dialogCaption = i18np("Print Note", "Print %1 notes",
+                                            lst.count());
         if (preview) {
             doPrintPreview(htmlText);
         } else {

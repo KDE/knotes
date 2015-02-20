@@ -29,7 +29,7 @@ class KNOTES_EXPORT KNotePrinter : public QObject
 {
     Q_OBJECT
 public:
-    explicit KNotePrinter(QObject *parent=Q_NULLPTR);
+    explicit KNotePrinter(QObject *parent = Q_NULLPTR);
     ~KNotePrinter();
 
     void setDefaultFont(const QFont &font);

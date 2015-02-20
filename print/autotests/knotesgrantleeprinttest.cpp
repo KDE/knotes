@@ -15,7 +15,6 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #include "knotesgrantleeprinttest.h"
 #include <qtest.h>
 #include "../knotegrantleeprint.h"
@@ -74,23 +73,23 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo_data()
 
 void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
 {
-    QFETCH( QString, variable );
-    QFETCH( QString, result );
+    QFETCH(QString, variable);
+    QFETCH(QString, result);
     Akonadi::Item note(42);
 
     KNoteGrantleePrint *grantleePrint = new KNoteGrantleePrint;
     grantleePrint->setContent(QString::fromLatin1("{% if notes %}{% for note in notes %}{{ note.%1 }}{% endfor %}{% endif %}").arg(variable));
 
     KMime::Message::Ptr msg(new KMime::Message);
-    note.setMimeType( Akonotes::Note::mimeType() );
+    note.setMimeType(Akonotes::Note::mimeType());
     QString subject = QLatin1String("Test Note");
     msg->subject(true)->fromUnicodeString(subject, "us-ascii");
-    msg->contentType( true )->setMimeType( "text/plain" );
+    msg->contentType(true)->setMimeType("text/plain");
     msg->contentType()->setCharset("utf-8");
     msg->contentTransferEncoding(true)->setEncoding(KMime::Headers::CEquPr);
-    msg->date( true )->setDateTime( QDateTime::currentDateTime() );
-    msg->mainBodyPart()->fromUnicodeString( QLatin1String("notes test") );
-    note.setPayload( msg );
+    msg->date(true)->setDateTime(QDateTime::currentDateTime());
+    msg->mainBodyPart()->fromUnicodeString(QLatin1String("notes test"));
+    note.setPayload(msg);
     msg->assemble();
 
     QList<KNotePrintObject *> lst;
@@ -101,6 +100,5 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
     grantleePrint->deleteLater();
     grantleePrint = 0;
 }
-
 
 QTEST_MAIN(KNotesGrantleePrintTest)
