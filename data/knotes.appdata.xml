@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>KNotes</name>
+  <name xml:lang="bs">KNotes</name>
   <name xml:lang="ca">KNotes</name>
   <name xml:lang="cs">KNotes</name>
   <name xml:lang="da">KNotes</name>
@@ -59,6 +60,7 @@
     <p xml:lang="x-test">xxKNotes is a program that lets you write the computer equivalent of sticky notes. The notes are saved automatically when you exit the program, and they display when you open the program.xx</p>
     <p xml:lang="zh-TW">KNotes 讓您可以在螢幕上貼便利貼。便條會在離開時自動儲存，開啟程式時再顯示。</p>
     <p>Features:</p>
+    <p xml:lang="bs">Svojstva:</p>
     <p xml:lang="ca">Característiques:</p>
     <p xml:lang="cs">Vlastnosti:</p>
     <p xml:lang="de">Funktionen:</p>
