@@ -19,7 +19,6 @@
 
 #include "knotecollectionconfigwidget.h"
 #include "noteshared/attributes/showfoldernotesattribute.h"
-#include "noteshared/settings/globalsettings.h"
 #include "akonadi_next/note.h"
 #include "notesharedglobalconfig.h"
 #include "pimcommon/widgets/manageaccountwidget.h"
@@ -277,7 +276,7 @@ void KNoteCollectionConfigWidget::save()
     Akonadi::Collection col = mDefaultSaveFolder->collection();
     if (col.isValid()) {
         NoteShared::NoteSharedGlobalConfig::self()->setDefaultFolder(col.id());
-        NoteShared::GlobalSettings::self()->requestSync();
+        NoteShared::NoteSharedGlobalConfig::self()->writeConfig();
     }
 }
 

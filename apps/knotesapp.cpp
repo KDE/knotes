@@ -101,7 +101,6 @@ KNotesApp::KNotesApp()
       mDebugBaloo(false)
 {
     Akonadi::Control::widgetNeedsAkonadi(this);
-
     KNoteUtils::migrateToAkonadi();
 
     if (!qgetenv("KDEPIM_BALOO_DEBUG").isEmpty()) {
