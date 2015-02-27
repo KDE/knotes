@@ -73,7 +73,8 @@ set(knotes_SRCS knotes_debug.cpp
 
 qt5_add_dbus_adaptor(knotes_SRCS  apps/org.kde.KNotes.xml apps/knotesapp.h KNotesApp )
 
-kde4_add_app_icon(knotes_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-apps-knotes.png")
+file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-apps-knotes.png")
+ecm_add_app_icon(knotes_SRCS ICONS ${ICONS_SRCS})
 
 add_executable(knotes ${knotes_SRCS})
 
