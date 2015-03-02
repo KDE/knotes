@@ -32,13 +32,12 @@
 #include "notesharedglobalconfig.h"
 
 #include "kdepim-version.h"
-
+#include <QLineEdit>
 #include <qapplication.h>
 #include <kcolorbutton.h>
 #include <kconfig.h>
 #include <kfontrequester.h>
 #include <kiconloader.h>
-#include <klineedit.h>
 #include <KLocalizedString>
 #include <kwindowsystem.h>
 #include <QIcon>
