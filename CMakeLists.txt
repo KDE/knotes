@@ -3,13 +3,6 @@ add_subdirectory( icons )
 add_definitions( -DQT_NO_CAST_FROM_ASCII )
 add_definitions( -DQT_NO_CAST_TO_ASCII )
 
-
-include_directories(
-  ${CMAKE_SOURCE_DIR}/pimcommon
-  ${CMAKE_SOURCE_DIR}/noteshared
-  ${CMAKE_BINARY_DIR}/noteshared
-)
-
 ########### next target ###############
 
 set(libknotesprivate_config_lib_SRCS
