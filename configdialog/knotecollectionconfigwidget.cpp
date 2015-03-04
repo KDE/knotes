@@ -19,7 +19,7 @@
 
 #include "knotecollectionconfigwidget.h"
 #include "noteshared/attributes/showfoldernotesattribute.h"
-#include "akonadi_next/note.h"
+#include <Akonadi/Notes/NoteUtils>
 #include "notesharedglobalconfig.h"
 #include "pimcommon/widgets/manageaccountwidget.h"
 
@@ -71,7 +71,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
 
     // Create a new change recorder.
     mChangeRecorder = new Akonadi::ChangeRecorder( this );
-    mChangeRecorder->setMimeTypeMonitored( Akonotes::Note::mimeType() );
+    mChangeRecorder->setMimeTypeMonitored( Akonadi::NoteUtils::noteMimeType() );
     mChangeRecorder->fetchCollection( true );
     mChangeRecorder->setAllMonitored( true );
 
@@ -81,7 +81,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
 
     Akonadi::CollectionFilterProxyModel *mimeTypeProxy = new Akonadi::CollectionFilterProxyModel( this );
     mimeTypeProxy->setExcludeVirtualCollections( true );
-    mimeTypeProxy->addMimeTypeFilters( QStringList() << Akonotes::Note::mimeType() );
+    mimeTypeProxy->addMimeTypeFilters( QStringList() << Akonadi::NoteUtils::noteMimeType() );
     mimeTypeProxy->setSourceModel( mModel );
 
     // Create the Check proxy model.
@@ -136,7 +136,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
 
     vbox->addWidget(new QLabel(i18nc( "@info", "Select the folder where the note will be saved:" )));
     mDefaultSaveFolder = new Akonadi::CollectionRequester(Akonadi::Collection(NoteShared::NoteSharedGlobalConfig::self()->defaultFolder()));
-    mDefaultSaveFolder->setMimeTypeFilter(QStringList() << Akonotes::Note::mimeType());
+    mDefaultSaveFolder->setMimeTypeFilter(QStringList() << Akonadi::NoteUtils::noteMimeType());
     mDefaultSaveFolder->setContentMimeTypes(QStringList() << QLatin1String("application/x-vnd.akonadi.note")
                                             << QLatin1String("text/x-vnd.akonadi.note")
                                             << QLatin1String("inode/directory"));
@@ -156,7 +156,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     PimCommon::ManageAccountWidget *manageAccountWidget = new PimCommon::ManageAccountWidget(this);
     vboxAccountWidget->addWidget(manageAccountWidget);
 
-    manageAccountWidget->setMimeTypeFilter(QStringList() << Akonotes::Note::mimeType());
+    manageAccountWidget->setMimeTypeFilter(QStringList() << Akonadi::NoteUtils::noteMimeType());
     manageAccountWidget->setCapabilityFilter(QStringList() << QLatin1String("Resource") ); // show only resources, no agents
     tabWidget->addTab(accountWidget, i18n("Accounts"));
 

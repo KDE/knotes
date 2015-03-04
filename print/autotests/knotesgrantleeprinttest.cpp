@@ -22,7 +22,7 @@
 #include <KMime/Message>
 #include <Akonadi/Item>
 #include <knotes/print/knoteprintobject.h>
-#include "akonadi_next/note.h"
+#include <Akonadi/Notes/NoteUtils>
 
 KNotesGrantleePrintTest::KNotesGrantleePrintTest(QObject *parent)
     : QObject(parent)
@@ -82,7 +82,7 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
     grantleePrint->setContent(QString::fromLatin1("{% if notes %}{% for note in notes %}{{ note.%1 }}{% endfor %}{% endif %}").arg(variable));
 
     KMime::Message::Ptr msg(new KMime::Message);
-    note.setMimeType( Akonotes::Note::mimeType() );
+    note.setMimeType( Akonadi::NoteUtils::noteMimeType() );
     QString subject = QLatin1String("Test Note");
     msg->subject(true)->fromUnicodeString(subject, "us-ascii");
     msg->contentType( true )->setMimeType( "text/plain" );

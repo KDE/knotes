@@ -51,7 +51,7 @@
 #include "finddialog/knotefinddialog.h"
 
 #include <KMime/KMimeMessage>
-#include "akonadi_next/note.h"
+#include <Akonadi/Notes/NoteUtils>
 #include <Akonadi/ItemCreateJob>
 #include <Akonadi/ItemDeleteJob>
 #include <Akonadi/EntityDisplayAttribute>
