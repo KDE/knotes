@@ -85,8 +85,8 @@ KNoteConfigDialog::~KNoteConfigDialog()
 }
 
 void KNoteConfigDialog::slotOk() {
-    NoteShared::NoteSharedGlobalConfig::self()->writeConfig();
-    KNotesGlobalConfig::self()->writeConfig();
+    NoteShared::NoteSharedGlobalConfig::self()->save();
+    KNotesGlobalConfig::self()->save();
 }
 
 extern "C"
@@ -231,7 +231,7 @@ void KNoteMiscConfig::save()
 {
     KCModule::save();
     NoteShared::NoteSharedGlobalConfig::self()->setDefaultTitle(mDefaultTitle->text());
-    NoteShared::NoteSharedGlobalConfig::self()->writeConfig();
+    NoteShared::NoteSharedGlobalConfig::self()->save();
 }
 
 void KNoteMiscConfig::defaults()

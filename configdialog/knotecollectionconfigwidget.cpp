@@ -283,7 +283,7 @@ void KNoteCollectionConfigWidget::save()
     Akonadi::Collection col = mDefaultSaveFolder->collection();
     if (col.isValid()) {
         NoteShared::NoteSharedGlobalConfig::self()->setDefaultFolder(col.id());
-        NoteShared::NoteSharedGlobalConfig::self()->writeConfig();
+        NoteShared::NoteSharedGlobalConfig::self()->save();
     }
 }
 
