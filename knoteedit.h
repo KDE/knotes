@@ -55,7 +55,7 @@ public:
     void setColor(const QColor &fg, const QColor &bg);
     void setCursorPositionFromStart(int pos);
     int cursorPositionFromStart() const;
-
+    QMenu *mousePopupMenu() Q_DECL_OVERRIDE;
 public Q_SLOTS:
     void setRichText(bool);
 
@@ -85,9 +85,6 @@ protected:
     void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
     void focusInEvent(QFocusEvent *) Q_DECL_OVERRIDE;
     void focusOutEvent(QFocusEvent *) Q_DECL_OVERRIDE;
-
-protected Q_SLOTS:
-    void mousePopupMenuImplementation(const QPoint &pos);
 
 private Q_SLOTS:
     void slotCurrentCharFormatChanged(const QTextCharFormat &);

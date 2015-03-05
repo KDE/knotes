@@ -255,9 +255,9 @@ void KNoteEdit::slotLowerCase()
     editorUtil.lowerCase(cursor);
 }
 
-void KNoteEdit::mousePopupMenuImplementation(const QPoint &pos)
+QMenu *KNoteEdit::mousePopupMenu()
 {
-    QMenu *popup = mousePopupMenu();
+    QMenu *popup = PimCommon::CustomTextEdit::mousePopupMenu();
     if (popup) {
         QTextCursor cursor = textCursor();
         if (!isReadOnly()) {
@@ -279,10 +279,8 @@ void KNoteEdit::mousePopupMenuImplementation(const QPoint &pos)
             act = m_actions->action(QStringLiteral("insert_checkmark"));
             popup->addAction(act);
         }
-        aboutToShowContextMenu(popup);
-        popup->exec(pos);
-        delete popup;
     }
+    return popup;
 }
 
 void KNoteEdit::setText(const QString &text)
