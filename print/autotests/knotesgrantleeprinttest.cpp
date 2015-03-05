@@ -81,7 +81,7 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
     grantleePrint->setContent(QString::fromLatin1("{% if notes %}{% for note in notes %}{{ note.%1 }}{% endfor %}{% endif %}").arg(variable));
 
     KMime::Message::Ptr msg(new KMime::Message);
-    note.setMimeType( Akonadi::NoteUtils::noteMimeType() );
+    note.setMimeType(Akonadi::NoteUtils::noteMimeType());
     QString subject = QLatin1String("Test Note");
     msg->subject(true)->fromUnicodeString(subject, "us-ascii");
     msg->contentType(true)->setMimeType("text/plain");

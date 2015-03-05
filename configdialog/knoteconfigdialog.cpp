@@ -84,7 +84,8 @@ KNoteConfigDialog::~KNoteConfigDialog()
 {
 }
 
-void KNoteConfigDialog::slotOk() {
+void KNoteConfigDialog::slotOk()
+{
     NoteShared::NoteSharedGlobalConfig::self()->save();
     KNotesGlobalConfig::self()->save();
 }
