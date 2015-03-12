@@ -41,7 +41,6 @@
 #include <QPixmap>
 #include <QKeyEvent>
 
-static const short SEP = 5;
 static const short ICON_SIZE = 10;
 
 
