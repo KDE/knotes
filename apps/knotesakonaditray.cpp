@@ -20,7 +20,6 @@
 #include "knotesglobalconfig.h"
 
 #include <KIconLoader>
-#include <KGlobalSettings>
 #include <KLocalizedString>
 #include <KColorScheme>
 
@@ -39,7 +38,6 @@ KNotesAkonadiTray::KNotesAkonadiTray(QWidget *parent)
     setStandardActionsEnabled(false);
     //Initialize
     updateNumberOfNotes(0);
-    connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayPaletteChanged, this, &KNotesAkonadiTray::slotGeneralPaletteChanged);
 }
 
 KNotesAkonadiTray::~KNotesAkonadiTray()
