@@ -40,7 +40,6 @@
 #include <QPixmap>
 #include <QKeyEvent>
 
-static const short SEP = 5;
 static const short ICON_SIZE = 10;
 
 KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWidget *parent)
