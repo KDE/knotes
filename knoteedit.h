@@ -35,7 +35,9 @@ class KFontAction;
 class KFontSizeAction;
 class KToggleAction;
 class KNote;
-
+namespace PimCommon {
+class KActionMenuChangeCase;
+}
 class KNOTES_EXPORT KNoteEdit : public PimCommon::CustomTextEdit
 {
     Q_OBJECT
@@ -93,6 +95,7 @@ private Q_SLOTS:
     void slotLowerCase();
     void slotSentenceCase();
     void slotInsertCheckMark();
+    void slotReverseCase();
 private:
     void autoIndent();
 
@@ -124,6 +127,7 @@ private:
     KFontSizeAction *m_textSize;
     KNote           *m_note;
     KActionCollection *m_actions;
+    PimCommon::KActionMenuChangeCase *mChangeCaseActionMenu;
     bool m_autoIndentMode;
 };
 

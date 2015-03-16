@@ -22,6 +22,7 @@
 #include "notes/knote.h"
 #include "noteshared/editor/noteeditorutils.h"
 #include "pimcommon/util/editorutil.h"
+#include "pimcommon/widgets/kactionmenuchangecase.h"
 #include "knotesglobalconfig.h"
 
 #include <QAction>
@@ -157,19 +158,15 @@ KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWid
     actions->addAction(QStringLiteral("format_size"), m_textSize);
     connect(m_textSize, &KFontSizeAction::fontSizeChanged, this, &KNoteEdit::setTextFontSize);
 
-    QAction *action = new QAction(i18n("Uppercase"), this);
-    actions->addAction(QStringLiteral("change_to_uppercase"), action);
-    connect(action, &QAction::triggered, this, &KNoteEdit::slotUpperCase);
 
-    action = new QAction(i18n("Sentence case"), this);
-    actions->addAction(QStringLiteral("change_to_sentencecase"), action);
-    connect(action, &QAction::triggered, this, &KNoteEdit::slotSentenceCase);
+    PimCommon::KActionMenuChangeCase *mChangeCaseActionMenu = new PimCommon::KActionMenuChangeCase(this);
+    mChangeCaseActionMenu->appendInActionCollection(actions);
+    connect(mChangeCaseActionMenu, &PimCommon::KActionMenuChangeCase::upperCase, this, &KNoteEdit::slotUpperCase);
+    connect(mChangeCaseActionMenu, &PimCommon::KActionMenuChangeCase::lowerCase, this, &KNoteEdit::slotLowerCase);
+    connect(mChangeCaseActionMenu, &PimCommon::KActionMenuChangeCase::sentenceCase, this, &KNoteEdit::slotSentenceCase);
+    connect(mChangeCaseActionMenu, &PimCommon::KActionMenuChangeCase::reverseCase, this, &KNoteEdit::slotReverseCase);
 
-    action = new QAction(i18n("Lowercase"), this);
-    actions->addAction(QStringLiteral("change_to_lowercase"), action);
-    connect(action, &QAction::triggered, this, &KNoteEdit::slotLowerCase);
-
-    action  = new QAction(QIcon::fromTheme(QStringLiteral("knotes_date")), i18n("Insert Date"), this);
+    QAction *action  = new QAction(QIcon::fromTheme(QStringLiteral("knotes_date")), i18n("Insert Date"), this);
     actions->addAction(QStringLiteral("insert_date"), action);
     connect(action, &QAction::triggered, this, &KNoteEdit::slotInsertDate);
 
@@ -233,6 +230,13 @@ void KNoteEdit::setNote(KNote *_note)
     m_note = _note;
 }
 
+void KNoteEdit::slotReverseCase()
+{
+    QTextCursor cursor = textCursor();
+    PimCommon::EditorUtil editorUtil;
+    editorUtil.reverseCase(cursor);
+}
+
 void KNoteEdit::slotSentenceCase()
 {
     QTextCursor cursor = textCursor();
@@ -262,14 +266,7 @@ QMenu *KNoteEdit::mousePopupMenu()
         if (!isReadOnly()) {
             if (cursor.hasSelection()) {
                 popup->addSeparator();
-                QMenu *changeCaseMenu = new QMenu(i18n("Change case..."), popup);
-                QAction *act = m_actions->action(QStringLiteral("change_to_sentencecase"));
-                changeCaseMenu->addAction(act);
-                act = m_actions->action(QStringLiteral("change_to_lowercase"));
-                changeCaseMenu->addAction(act);
-                act = m_actions->action(QStringLiteral("change_to_uppercase"));
-                changeCaseMenu->addAction(act);
-                popup->addMenu(changeCaseMenu);
+                popup->addAction(mChangeCaseActionMenu);
             }
             popup->addSeparator();
             QAction *act = m_actions->action(QStringLiteral("insert_date"));
