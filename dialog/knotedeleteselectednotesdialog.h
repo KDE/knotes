@@ -20,6 +20,7 @@
 
 #include <QDialog>
 #include <AkonadiCore/Item>
+class QPushButton;
 namespace NoteShared
 {
 class NoteListWidget;
@@ -36,10 +37,13 @@ public:
 
     Akonadi::Item::List selectedNotes() const;
 
+private slots:
+    void slotDeleteNoteSelectionChanged();
 private:
     void readConfig();
     void writeConfig();
     NoteShared::NoteListWidget *mNoteList;
+    QPushButton *mOkButton;
 };
 
 #endif // KNOTEDELETESELECTEDNOTESDIALOG_H

@@ -32,21 +32,29 @@ KNoteDeleteSelectedNotesDialog::KNoteDeleteSelectedNotesDialog(QWidget *parent)
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
-    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
-    okButton->setDefault(true);
-    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    mOkButton = buttonBox->button(QDialogButtonBox::Ok);
+    mOkButton->setDefault(true);
+    mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &KNoteDeleteSelectedNotesDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteDeleteSelectedNotesDialog::reject);
+    connect(mNoteList, SIGNAL(itemSelectionChanged()), this, SLOT(slotDeleteNoteSelectionChanged()));
+
     mNoteList = new NoteShared::NoteListWidget;
     mainLayout->addWidget(mNoteList);
     mainLayout->addWidget(buttonBox);
 
     readConfig();
+    mOkButton->setEnabled(false);
 }
 
 KNoteDeleteSelectedNotesDialog::~KNoteDeleteSelectedNotesDialog()
 {
     writeConfig();
+}
+
+void KNoteDeleteSelectedNotesDialog::slotDeleteNoteSelectionChanged()
+{
+    mOkButton->setEnabled(!mNoteList->selectedItems().isEmpty());
 }
 
 void KNoteDeleteSelectedNotesDialog::setNotes(const Akonadi::Item::List &notes)
