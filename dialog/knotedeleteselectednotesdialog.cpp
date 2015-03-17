@@ -28,13 +28,20 @@ KNoteDeleteSelectedNotesDialog::KNoteDeleteSelectedNotesDialog(QWidget *parent)
     setCaption( i18n( "Select notes to delete" ) );
     setButtons( Ok | Cancel );
     mNoteList = new NoteShared::NoteListWidget;
+    connect(mNoteList, SIGNAL(itemSelectionChanged()), this, SLOT(slotDeleteNoteSelectionChanged()));
     setMainWidget(mNoteList);
     readConfig();
+    enableButtonOk(false);
 }
 
 KNoteDeleteSelectedNotesDialog::~KNoteDeleteSelectedNotesDialog()
 {
     writeConfig();
+}
+
+void KNoteDeleteSelectedNotesDialog::slotDeleteNoteSelectionChanged()
+{
+    enableButtonOk(!mNoteList->selectedItems().isEmpty());
 }
 
 void KNoteDeleteSelectedNotesDialog::setNotes(const Akonadi::Item::List &notes)
