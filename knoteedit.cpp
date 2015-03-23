@@ -158,7 +158,6 @@ KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWid
     actions->addAction(QStringLiteral("format_size"), m_textSize);
     connect(m_textSize, &KFontSizeAction::fontSizeChanged, this, &KNoteEdit::setTextFontSize);
 
-
     PimCommon::KActionMenuChangeCase *mChangeCaseActionMenu = new PimCommon::KActionMenuChangeCase(this);
     mChangeCaseActionMenu->appendInActionCollection(actions);
     connect(mChangeCaseActionMenu, &PimCommon::KActionMenuChangeCase::upperCase, this, &KNoteEdit::slotUpperCase);

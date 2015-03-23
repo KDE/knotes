@@ -35,7 +35,8 @@ class KFontAction;
 class KFontSizeAction;
 class KToggleAction;
 class KNote;
-namespace PimCommon {
+namespace PimCommon
+{
 class KActionMenuChangeCase;
 }
 class KNOTES_EXPORT KNoteEdit : public PimCommon::CustomTextEdit
