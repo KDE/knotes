@@ -55,7 +55,7 @@ void KNotesGrantleePrintTest::shouldReturnEmptyStringWhenNotContentAndNoNotes()
 void KNotesGrantleePrintTest::shouldReturnEmptyStringWhenAddContentWithoutNotes()
 {
     KNoteGrantleePrint *grantleePrint = new KNoteGrantleePrint;
-    grantleePrint->setContent(QLatin1String("foo"));
+    grantleePrint->setContent(QStringLiteral("foo"));
     QList<KNotePrintObject *> lst;
     const QString result = grantleePrint->notesToHtml(lst);
     QVERIFY(result.isEmpty());
@@ -67,8 +67,8 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo_data()
 {
     QTest::addColumn<QString>("variable");
     QTest::addColumn<QString>("result");
-    QTest::newRow("name") << QString(QLatin1String("name")) << QString(QLatin1String("Test Note"));
-    QTest::newRow("description") << QString(QLatin1String("description")) << QString(QLatin1String("notes test"));
+    QTest::newRow("name") << QString(QStringLiteral("name")) << QString(QStringLiteral("Test Note"));
+    QTest::newRow("description") << QString(QStringLiteral("description")) << QString(QStringLiteral("notes test"));
 }
 
 void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
@@ -82,13 +82,13 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
 
     KMime::Message::Ptr msg(new KMime::Message);
     note.setMimeType(Akonadi::NoteUtils::noteMimeType());
-    QString subject = QLatin1String("Test Note");
+    QString subject = QStringLiteral("Test Note");
     msg->subject(true)->fromUnicodeString(subject, "us-ascii");
     msg->contentType(true)->setMimeType("text/plain");
     msg->contentType()->setCharset("utf-8");
     msg->contentTransferEncoding(true)->setEncoding(KMime::Headers::CEquPr);
     msg->date(true)->setDateTime(QDateTime::currentDateTime());
-    msg->mainBodyPart()->fromUnicodeString(QLatin1String("notes test"));
+    msg->mainBodyPart()->fromUnicodeString(QStringLiteral("notes test"));
     note.setPayload(msg);
     msg->assemble();
 

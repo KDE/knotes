@@ -70,13 +70,13 @@ KNoteConfigDialog::KNoteConfigDialog(const QString &title,
                                 IconSize(KIconLoader::Small),
                                 IconSize(KIconLoader::Small)));
 #endif
-    addModule(QLatin1String("knote_config_display"));
-    addModule(QLatin1String("knote_config_editor"));
-    addModule(QLatin1String("knote_config_action"));
-    addModule(QLatin1String("knote_config_network"));
-    addModule(QLatin1String("knote_config_print"));
-    addModule(QLatin1String("knote_config_collection"));
-    addModule(QLatin1String("knote_config_misc"));
+    addModule(QStringLiteral("knote_config_display"));
+    addModule(QStringLiteral("knote_config_editor"));
+    addModule(QStringLiteral("knote_config_action"));
+    addModule(QStringLiteral("knote_config_network"));
+    addModule(QStringLiteral("knote_config_print"));
+    addModule(QStringLiteral("knote_config_collection"));
+    addModule(QStringLiteral("knote_config_misc"));
     connect(button(QDialogButtonBox::Ok), &QPushButton::clicked, this, &KNoteConfigDialog::slotOk);
 }
 
@@ -200,7 +200,7 @@ KNoteMiscConfig::KNoteMiscConfig(QWidget *parent)
 
     QCheckBox *kcfg_SystemTrayShowNotes = new QCheckBox(i18n("Show number of notes in tray icon"), this);
 
-    kcfg_SystemTrayShowNotes->setObjectName(QLatin1String("kcfg_SystemTrayShowNotes"));
+    kcfg_SystemTrayShowNotes->setObjectName(QStringLiteral("kcfg_SystemTrayShowNotes"));
     lay->addWidget(kcfg_SystemTrayShowNotes);
 
     QHBoxLayout *hbox = new QHBoxLayout;
@@ -277,7 +277,7 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent)
     layout->addWidget(mSelectTheme, 0, 1);
 
     QToolButton *getNewTheme = new QToolButton;
-    getNewTheme->setIcon(QIcon::fromTheme(QLatin1String("get-hot-new-stuff")));
+    getNewTheme->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
     getNewTheme->setToolTip(i18n("Download new printing themes"));
     connect(getNewTheme, &QToolButton::clicked, this, &KNotePrintConfig::slotDownloadNewThemes);
     layout->addWidget(getNewTheme, 0, 2);
@@ -287,7 +287,7 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent)
 
 void KNotePrintConfig::slotDownloadNewThemes()
 {
-    QPointer<KNS3::DownloadDialog> downloadThemesDialog = new KNS3::DownloadDialog(QLatin1String("knotes_printing_theme.knsrc"));
+    QPointer<KNS3::DownloadDialog> downloadThemesDialog = new KNS3::DownloadDialog(QStringLiteral("knotes_printing_theme.knsrc"));
     if (downloadThemesDialog->exec()) {
         if (!downloadThemesDialog->changedEntries().isEmpty()) {
             mSelectTheme->loadThemes();
