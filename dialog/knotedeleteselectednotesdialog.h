@@ -37,7 +37,7 @@ public:
 
     Akonadi::Item::List selectedNotes() const;
 
-private slots:
+private Q_SLOTS:
     void slotDeleteNoteSelectionChanged();
 private:
     void readConfig();
