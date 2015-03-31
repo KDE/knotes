@@ -679,13 +679,15 @@ void KNoteEdit::enableRichTextActions(bool enabled)
 
 void KNoteEdit::slotInsertDate()
 {
-    NoteShared::NoteEditorUtils::insertDate(this);
+    NoteShared::NoteEditorUtils noteEditorUtils;
+    noteEditorUtils.insertDate(this);
 }
 
 void KNoteEdit::slotInsertCheckMark()
 {
     QTextCursor cursor = textCursor();
-    NoteShared::NoteEditorUtils::addCheckmark(cursor);
+    NoteShared::NoteEditorUtils noteEditorUtils;
+    noteEditorUtils.addCheckmark(cursor);
 }
 
 void KNoteEdit::setCursorPositionFromStart( int pos )
