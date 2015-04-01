@@ -133,9 +133,9 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     vbox->addWidget(new QLabel(i18nc("@info", "Select the folder where the note will be saved:")));
     mDefaultSaveFolder = new Akonadi::CollectionRequester(Akonadi::Collection(NoteShared::NoteSharedGlobalConfig::self()->defaultFolder()));
     mDefaultSaveFolder->setMimeTypeFilter(QStringList() << Akonadi::NoteUtils::noteMimeType());
-    mDefaultSaveFolder->setContentMimeTypes(QStringList() << QLatin1String("application/x-vnd.akonadi.note")
-                                            << QLatin1String("text/x-vnd.akonadi.note")
-                                            << QLatin1String("inode/directory"));
+    mDefaultSaveFolder->setContentMimeTypes(QStringList() << QStringLiteral("application/x-vnd.akonadi.note")
+                                            << QStringLiteral("text/x-vnd.akonadi.note")
+                                            << QStringLiteral("inode/directory"));
     Akonadi::CollectionDialog::CollectionDialogOptions options;
     options |= Akonadi::CollectionDialog::AllowToCreateNewChildCollection;
     options |= Akonadi::CollectionDialog::KeepTreeExpanded;

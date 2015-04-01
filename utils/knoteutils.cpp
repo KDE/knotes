@@ -30,9 +30,9 @@
 
 void KNoteUtils::updateConfiguration()
 {
-    QDBusInterface interface(QLatin1String("org.freedesktop.Akonadi.Agent.akonadi_notes_agent"), QLatin1String("/NotesAgent"));
+    QDBusInterface interface(QStringLiteral("org.freedesktop.Akonadi.Agent.akonadi_notes_agent"), QStringLiteral("/NotesAgent"));
     if (interface.isValid()) {
-        interface.call(QLatin1String("configurationChanged"));
+        interface.call(QStringLiteral("configurationChanged"));
     } else {
         qCDebug(KNOTES_LOG) << " Agent not launched";
     }
@@ -61,13 +61,13 @@ void KNoteUtils::migrateToAkonadi()
 {
     bool needMigration = true;
 
-    const QFileInfo oldDataDirFileInfo(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/knotes")) ;
+    const QFileInfo oldDataDirFileInfo(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/knotes")) ;
     if (!oldDataDirFileInfo.exists() || !oldDataDirFileInfo.isDir()) {
         // neither config or data, the migrator cannot do anything useful anyways
         needMigration = false;
     }
 
-    KConfig config(QLatin1String("knotes-migratorrc"));
+    KConfig config(QStringLiteral("knotes-migratorrc"));
     KConfigGroup migrationCfg(&config, "Migration");
     if (needMigration) {
         const bool enabled = migrationCfg.readEntry("Enabled", true);
@@ -100,8 +100,8 @@ void KNoteUtils::migrateToAkonadi()
 
             qCDebug(KNOTES_LOG) << "Performing Akonadi migration. Good luck!";
             KProcess proc;
-            QStringList args = QStringList() << QLatin1String("--interactive-on-change");
-            const QString path = QStandardPaths::findExecutable(QLatin1String("knotes-migrator"));
+            QStringList args = QStringList() << QStringLiteral("--interactive-on-change");
+            const QString path = QStandardPaths::findExecutable(QStringLiteral("knotes-migrator"));
             proc.setProgram(path, args);
             proc.start();
             bool result = proc.waitForStarted();
