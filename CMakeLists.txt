@@ -117,3 +117,5 @@ install(DIRECTORY print/themes/ DESTINATION ${KDE_INSTALL_DATADIR}/knotes/print/
 if (BUILD_TESTING)
    add_subdirectory(print/autotests)
 endif()
+
+add_subdirectory(kontactplugin)
