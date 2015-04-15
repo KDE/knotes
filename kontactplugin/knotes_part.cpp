@@ -118,7 +118,7 @@ KNotesPart::KNotesPart(QObject *parent)
                            i18nc("@action:inmenu create new popup note", "&New"), this);
     actionCollection()->addAction(QLatin1String("file_new"), mNewNote);
     connect(mNewNote, SIGNAL(triggered(bool)), SLOT(newNote()));
-    mNewNote->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_N));
+    actionCollection()->setDefaultShortcut(mNewNote, QKeySequence(Qt::CTRL + Qt::Key_N));
     //mNewNote->setHelpText(
     //            i18nc( "@info:status", "Create a new popup note" ) );
     mNewNote->setWhatsThis(
@@ -137,7 +137,7 @@ KNotesPart::KNotesPart(QObject *parent)
 
     mNoteRename = new QAction(QIcon::fromTheme(QLatin1String("edit-rename")),
                               i18nc("@action:inmenu", "Rename..."), this);
-    mNoteRename->setShortcut(QKeySequence(Qt::Key_F2));
+    actionCollection()->setDefaultShortcut(mNoteRename, QKeySequence(Qt::Key_F2));
     actionCollection()->addAction(QLatin1String("edit_rename"), mNoteRename);
     connect(mNoteRename, &QAction::triggered, this, &KNotesPart::renameNote);
     //mNoteRename->setHelpText(
@@ -150,7 +150,7 @@ KNotesPart::KNotesPart(QObject *parent)
                               i18nc("@action:inmenu", "Delete"), this);
     actionCollection()->addAction(QLatin1String("edit_delete"), mNoteDelete);
     connect(mNoteDelete, &QAction::triggered, this, &KNotesPart::killSelectedNotes);
-    mNoteDelete->setShortcut(QKeySequence(Qt::Key_Delete));
+    actionCollection()->setDefaultShortcut(mNoteDelete, QKeySequence(Qt::Key_Delete));
     //mNoteDelete->setHelpText(
     //            i18nc( "@info:status", "Delete popup note" ) );
     mNoteDelete->setWhatsThis(
@@ -242,7 +242,7 @@ KNotesPart::KNotesPart(QObject *parent)
 
     mQuickSearchAction = new QAction(i18n("Set Focus to Quick Search"), this);
     //If change shortcut change in quicksearchwidget->lineedit->setPlaceholderText
-    mQuickSearchAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Q));
+    actionCollection()->setDefaultShortcut(mQuickSearchAction, QKeySequence(Qt::ALT + Qt::Key_Q));
     actionCollection()->addAction(QLatin1String("focus_to_quickseach"), mQuickSearchAction);
     connect(mQuickSearchAction, &QAction::triggered, mNotesWidget, &KNotesWidget::slotFocusQuickSearch);
 
