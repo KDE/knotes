@@ -246,7 +246,7 @@ KNotesPart::KNotesPart(QObject *parent)
     actionCollection()->addAction(QLatin1String("focus_to_quickseach"), mQuickSearchAction);
     connect(mQuickSearchAction, &QAction::triggered, mNotesWidget, &KNotesWidget::slotFocusQuickSearch);
 
-    connect(mNotesWidget->notesView(), SIGNAL(executed(QListWidgetItem*)),
+    connect(mNotesWidget->notesView(), SIGNAL(itemDoubleClicked(QListWidgetItem*)),
             this, SLOT(editNote(QListWidgetItem*)));
 
     connect(mNotesWidget->notesView(), SIGNAL(itemSelectionChanged()),
