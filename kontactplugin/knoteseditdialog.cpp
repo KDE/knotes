@@ -64,8 +64,7 @@ void KNoteEditDialog::init(bool readOnly)
     setModal(true);
     // this dialog is modal to prevent one from editing the same note twice
     // in two different windows
-#pragma message("port QT5")
-    //QT5 setComponentData( KComponentData( "knotes" ) ); // TODO: memleak
+    setComponentName(QLatin1String("knotes"), QLatin1String("knotes"));
     setXMLFile(QStringLiteral("knotesui.rc"));
 
     QWidget *page = new QWidget(this);
