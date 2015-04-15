@@ -61,19 +61,19 @@ KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWid
     m_textBold  = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-bold")), i18n("Bold"),
                                     this);
     actions->addAction(QStringLiteral("format_bold"), m_textBold);
-    m_textBold->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_B));
+    actions->setDefaultShortcut(m_textBold, QKeySequence(Qt::CTRL + Qt::Key_B));
     m_textItalic  = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-italic")),
                                       i18n("Italic"), this);
     actions->addAction(QStringLiteral("format_italic"), m_textItalic);
-    m_textItalic->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_I));
+    actions->setDefaultShortcut(m_textItalic, QKeySequence(Qt::CTRL + Qt::Key_I));
     m_textUnderline  = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-underline")),
                                          i18n("Underline"), this);
     actions->addAction(QStringLiteral("format_underline"), m_textUnderline);
-    m_textUnderline->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_U));
+    actions->setDefaultShortcut(m_textUnderline, QKeySequence(Qt::CTRL + Qt::Key_U));
     m_textStrikeOut  = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-strikethrough")),
                                          i18n("Strike Out"), this);
     actions->addAction(QStringLiteral("format_strikeout"), m_textStrikeOut);
-    m_textStrikeOut->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
+    actions->setDefaultShortcut(m_textStrikeOut, QKeySequence(Qt::CTRL + Qt::Key_S));
 
     connect(m_textBold, &KToggleAction::toggled, this, &KNoteEdit::textBold);
     connect(m_textItalic, &KToggleAction::toggled, this, &KNoteEdit::setFontItalic);
@@ -84,7 +84,7 @@ KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWid
                                         i18n("Align Left"), this);
     actions->addAction(QStringLiteral("format_alignleft"), m_textAlignLeft);
     connect(m_textAlignLeft, &KToggleAction::triggered, this, &KNoteEdit::textAlignLeft);
-    m_textAlignLeft->setShortcut(QKeySequence(Qt::ALT + Qt::Key_L));
+    actions->setDefaultShortcut(m_textAlignLeft, QKeySequence(Qt::ALT + Qt::Key_L));
     m_textAlignLeft->setChecked(true);   // just a dummy, will be updated later
     m_textAlignCenter  = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-center")),
                                            i18n("Align Center"), this);
@@ -95,12 +95,12 @@ KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWid
                                          i18n("Align Right"), this);
     actions->addAction(QStringLiteral("format_alignright"), m_textAlignRight);
     connect(m_textAlignRight, &KToggleAction::triggered, this, &KNoteEdit::textAlignRight);
-    m_textAlignRight->setShortcut(QKeySequence(Qt::ALT + Qt::Key_R));
+    actions->setDefaultShortcut(m_textAlignRight, QKeySequence(Qt::ALT + Qt::Key_R));
     m_textAlignBlock = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-fill")),
                                          i18n("Align Block"), this);
     actions->addAction(QStringLiteral("format_alignblock"), m_textAlignBlock);
     connect(m_textAlignBlock, &KToggleAction::triggered, this, &KNoteEdit::textAlignBlock);
-    m_textAlignBlock->setShortcut(QKeySequence(Qt::ALT + Qt::Key_B));
+    actions->setDefaultShortcut(m_textAlignBlock, QKeySequence(Qt::ALT + Qt::Key_B));
 
     QActionGroup *group = new QActionGroup(this);
     group->addAction(m_textAlignLeft);
@@ -124,14 +124,14 @@ KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWid
     m_textIncreaseIndent = new QAction(QIcon::fromTheme(QStringLiteral("format-indent-more")),
                                        i18n("Increase Indent"), this);
     actions->addAction(QStringLiteral("format_increaseindent"), m_textIncreaseIndent);
-    m_textIncreaseIndent->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT +
+    actions->setDefaultShortcut(m_textIncreaseIndent, QKeySequence(Qt::CTRL + Qt::ALT +
                                       Qt::Key_I));
     connect(m_textIncreaseIndent, &QAction::triggered, this, &KNoteEdit::textIncreaseIndent);
 
     m_textDecreaseIndent = new QAction(QIcon::fromTheme(QStringLiteral("format-indent-less")),
                                        i18n("Decrease Indent"), this);
     actions->addAction(QStringLiteral("format_decreaseindent"), m_textDecreaseIndent);
-    m_textDecreaseIndent->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT +
+    actions->setDefaultShortcut(m_textDecreaseIndent, QKeySequence(Qt::CTRL + Qt::ALT +
                                       Qt::Key_D));
     connect(m_textDecreaseIndent, &QAction::triggered, this, &KNoteEdit::textDecreaseIndent);
 

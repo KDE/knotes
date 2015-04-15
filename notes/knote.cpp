@@ -768,7 +768,7 @@ void KNote::createActions()
     action  = new QAction(i18n("Walk Through Notes"), this);
     actionCollection()->addAction(QLatin1String("walk_notes"), action);
     connect(action, &QAction::triggered, this, &KNote::sigShowNextNote);
-    action->setShortcut(QKeySequence(Qt::SHIFT + Qt::Key_Backtab));
+    actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::Key_Backtab));
 
     actionCollection()->addAssociatedWidget(this);
     foreach (QAction *action, actionCollection()->actions()) {
