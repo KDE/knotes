@@ -39,7 +39,7 @@
 #include <QPushButton>
 
 KNoteEditDialog::KNoteEditDialog(bool readOnly, QWidget *parent)
-    : QDialog(parent)
+    : QDialog(parent), mOkButton(0)
 {
     init(readOnly);
 }
