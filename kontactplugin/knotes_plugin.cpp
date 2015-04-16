@@ -60,8 +60,7 @@ KNotesPlugin::KNotesPlugin(KontactInterface::Core *core, const QVariantList &)
     : KontactInterface::Plugin(core, core, "knotes")
 {
     KNoteUtils::migrateToAkonadi();
-#pragma message("port QT5")
-    //QT5 setComponentData( KontactPluginFactory::componentData() );
+    setComponentName(QLatin1String("knotes"), QLatin1String("knotes"));
 
     QAction *action =
         new QAction(QIcon::fromTheme(QLatin1String("knotes")),
