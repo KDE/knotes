@@ -18,8 +18,8 @@
 #include "knotefinddialog.h"
 #include "noteshared/widget/notelistwidget.h"
 
-#include <Akonadi/Search/NoteQuery>
-#include <Akonadi/Search/ResultIterator>
+#include <AkonadiSearch/PIM/notequery.h>
+#include <AkonadiSearch/PIM/resultiterator.h>
 
 #include <KLocalizedString>
 #include <QLineEdit>
@@ -130,11 +130,11 @@ void KNoteFindWidget::slotSearchNote()
     if (searchStr.trimmed().isEmpty()) {
         return;
     }
-    Akonadi::Search::NoteQuery query;
+    Akonadi::Search::PIM::NoteQuery query;
     query.matchNote(searchStr);
     query.matchTitle(searchStr);
 
-    Akonadi::Search::ResultIterator it = query.exec();
+    Akonadi::Search::PIM::ResultIterator it = query.exec();
 
     Akonadi::Item::List lst;
     while (it.next()) {
