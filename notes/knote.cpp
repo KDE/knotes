@@ -431,7 +431,7 @@ void KNote::saveNoteContent()
     message->contentType()->setCharset(encoding);
     message->contentTransferEncoding(true)->setEncoding(KMime::Headers::CEquPr);
     message->date(true)->setDateTime(QDateTime::currentDateTime());
-    message->mainBodyPart()->fromUnicodeString(text().isEmpty() ? QString::fromLatin1(" ") : text());
+    message->mainBodyPart()->fromUnicodeString(text().isEmpty() ? QStringLiteral(" ") : text());
 
     KMime::Headers::Generic *header = new KMime::Headers::Generic("X-Cursor-Position", message.get(), QString::number(m_editor->cursorPositionFromStart()), "utf-8");
     message->setHeader(header);
@@ -665,7 +665,7 @@ void KNote::slotUpdateDesktopActions()
     m_toDesktop->addAction(separator);
     const int count = wm_root.numberOfDesktops();
     for (int n = 1; n <= count; ++n) {
-        QAction *desktopAct = m_toDesktop->addAction(QString::fromLatin1("&%1 %2").arg(n).arg(QString::fromUtf8(wm_root.desktopName(n))));
+        QAction *desktopAct = m_toDesktop->addAction(QStringLiteral("&%1 %2").arg(n).arg(QString::fromUtf8(wm_root.desktopName(n))));
         if (wm_client.desktop() == n) {
             desktopAct->setChecked(true);
         }
