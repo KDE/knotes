@@ -125,14 +125,14 @@ KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWid
                                        i18n("Increase Indent"), this);
     actions->addAction(QStringLiteral("format_increaseindent"), m_textIncreaseIndent);
     actions->setDefaultShortcut(m_textIncreaseIndent, QKeySequence(Qt::CTRL + Qt::ALT +
-                                      Qt::Key_I));
+                                Qt::Key_I));
     connect(m_textIncreaseIndent, &QAction::triggered, this, &KNoteEdit::textIncreaseIndent);
 
     m_textDecreaseIndent = new QAction(QIcon::fromTheme(QStringLiteral("format-indent-less")),
                                        i18n("Decrease Indent"), this);
     actions->addAction(QStringLiteral("format_decreaseindent"), m_textDecreaseIndent);
     actions->setDefaultShortcut(m_textDecreaseIndent, QKeySequence(Qt::CTRL + Qt::ALT +
-                                      Qt::Key_D));
+                                Qt::Key_D));
     connect(m_textDecreaseIndent, &QAction::triggered, this, &KNoteEdit::textDecreaseIndent);
 
     group = new QActionGroup(this);
