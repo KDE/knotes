@@ -34,7 +34,6 @@
 #include <AkonadiCore/Collection>
 #include <AkonadiWidgets/EntityTreeView>
 #include <AkonadiCore/EntityDisplayAttribute>
-#include <AkonadiCore/CollectionModifyJob>
 
 #include <KMime/Message>
 

@@ -32,9 +32,6 @@
 #include "noteshared/attributes/showfoldernotesattribute.h"
 #include "noteshared/resources/localresourcecreator.h"
 #include "noteshared/job/createnewnotejob.h"
-#include "noteshared/attributes/notealarmattribute.h"
-#include "noteshared/attributes/notedisplayattribute.h"
-#include "noteshared/attributes/notelockattribute.h"
 
 #include "apps/knotesakonaditray.h"
 #include "dialog/selectednotefolderdialog.h"
@@ -64,7 +61,6 @@
 #include <AkonadiCore/EntityTreeModel>
 #include <AkonadiCore/Session>
 #include <Akonadi/Notes/NoteUtils>
-#include <KMime/KMimeMessage>
 #include <KActionCollection>
 
 #include <KMessageBox>
