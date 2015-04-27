@@ -40,7 +40,6 @@ KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
-    connect(buttonBox, &QDialogButtonBox::accepted, this, &KNoteFindDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteFindDialog::reject);
     setAttribute(Qt::WA_DeleteOnClose);
     mNoteFindWidget = new KNoteFindWidget;
