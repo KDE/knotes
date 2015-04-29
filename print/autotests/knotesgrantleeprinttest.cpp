@@ -67,8 +67,8 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo_data()
 {
     QTest::addColumn<QString>("variable");
     QTest::addColumn<QString>("result");
-    QTest::newRow("name") << QString(QStringLiteral("name")) << QString(QStringLiteral("Test Note"));
-    QTest::newRow("description") << QString(QStringLiteral("description")) << QString(QStringLiteral("notes test"));
+    QTest::newRow("name") << QStringLiteral("name") << QStringLiteral("Test Note");
+    QTest::newRow("description") << QStringLiteral("description") << QStringLiteral("notes test");
 }
 
 void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
@@ -78,7 +78,7 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
     Akonadi::Item note(42);
 
     KNoteGrantleePrint *grantleePrint = new KNoteGrantleePrint;
-    grantleePrint->setContent(QString::fromLatin1("{% if notes %}{% for note in notes %}{{ note.%1 }}{% endfor %}{% endif %}").arg(variable));
+    grantleePrint->setContent(QStringLiteral("{% if notes %}{% for note in notes %}{{ note.%1 }}{% endfor %}{% endif %}").arg(variable));
 
     KMime::Message::Ptr msg(new KMime::Message);
     note.setMimeType(Akonadi::NoteUtils::noteMimeType());
