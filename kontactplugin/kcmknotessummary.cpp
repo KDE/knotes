@@ -69,7 +69,7 @@ KCMKNotesSummary::KCMKNotesSummary(QWidget *parent)
 
 void KCMKNotesSummary::modified()
 {
-    emit changed(true);
+    Q_EMIT changed(true);
 }
 
 void KCMKNotesSummary::initGUI()
@@ -107,17 +107,17 @@ void KCMKNotesSummary::load()
     initFolders();
     loadFolders();
 
-    emit changed(false);
+    Q_EMIT changed(false);
 }
 
 void KCMKNotesSummary::save()
 {
     storeFolders();
 
-    emit changed(false);
+    Q_EMIT changed(false);
 }
 
 void KCMKNotesSummary::defaults()
 {
-    emit changed(true);
+    Q_EMIT changed(true);
 }

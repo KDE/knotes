@@ -265,7 +265,7 @@ void KNote::setName(const QString &name)
 #endif
 #endif
 
-    emit sigNameChanged(name);
+    Q_EMIT sigNameChanged(name);
 }
 
 void KNote::setText(const QString &text)
@@ -827,7 +827,7 @@ void KNote::slotRequestNewNote()
 {
     //Be sure to save before to request a new note
     saveNote();
-    emit sigRequestNewNote();
+    Q_EMIT sigRequestNewNote();
 }
 
 void KNote::createNoteFooter()
@@ -1046,7 +1046,7 @@ void KNote::setColor(const QColor &fg, const QColor &bg)
 #endif
     // update the color of the title
     updateFocus();
-    emit sigColorChanged();
+    Q_EMIT sigColorChanged();
 }
 
 void KNote::updateLabelAlignment()

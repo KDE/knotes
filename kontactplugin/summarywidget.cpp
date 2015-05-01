@@ -234,9 +234,9 @@ bool KNotesSummaryWidget::eventFilter(QObject *obj, QEvent *e)
     if (obj->inherits("KUrlLabel")) {
         KUrlLabel *label = static_cast<KUrlLabel *>(obj);
         if (e->type() == QEvent::Enter) {
-            emit message(i18n("Read Popup Note: \"%1\"", label->text()));
+            Q_EMIT message(i18n("Read Popup Note: \"%1\"", label->text()));
         } else if (e->type() == QEvent::Leave) {
-            emit message(QString());
+            Q_EMIT message(QString());
         }
     }
 
