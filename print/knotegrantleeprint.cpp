@@ -71,9 +71,9 @@ QString KNoteGrantleePrint::notesToHtml(const QList<KNotePrintObject *> lst)
         notes << QVariant::fromValue(static_cast<QObject *>(n));
     }
     Grantlee::Context c;
-    c.insert(QLatin1String("notes"), notes);
-    c.insert(QLatin1String("alarm_i18n"), i18n("Alarm:"));
-    c.insert(QLatin1String("note_is_locked_i18n"), i18n("Note is locked"));
+    c.insert(QStringLiteral("notes"), notes);
+    c.insert(QStringLiteral("alarm_i18n"), i18n("Alarm:"));
+    c.insert(QStringLiteral("note_is_locked_i18n"), i18n("Note is locked"));
 
     const QString htmlText = mSelfcontainedTemplate->render(&c);
     return htmlText;

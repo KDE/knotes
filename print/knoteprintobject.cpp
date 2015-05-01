@@ -41,7 +41,7 @@ QString KNotePrintObject::description() const
     if (noteMessage->contentType()->isHTMLText()) {
         return noteMessage->mainBodyPart()->decodedText();
     } else {
-        return noteMessage->mainBodyPart()->decodedText().replace(QLatin1Char('\n'), QLatin1String("<br>"));
+        return noteMessage->mainBodyPart()->decodedText().replace(QLatin1Char('\n'), QStringLiteral("<br>"));
     }
 }
 

@@ -64,7 +64,7 @@ void KNoteEditDialog::init(bool readOnly)
     setModal(true);
     // this dialog is modal to prevent one from editing the same note twice
     // in two different windows
-    setComponentName(QLatin1String("knotes"), QLatin1String("knotes"));
+    setComponentName(QStringLiteral("knotes"), QStringLiteral("knotes"));
     setXMLFile(QStringLiteral("knotesui.rc"));
 
     QWidget *page = new QWidget(this);

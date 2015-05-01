@@ -95,7 +95,7 @@ KNote::KNote(const QDomDocument &buildDoc, const Akonadi::Item &item, bool allow
       m_button(Q_NULLPTR),
       m_tool(Q_NULLPTR),
       m_editor(Q_NULLPTR),
-      m_kwinConf(KSharedConfig::openConfig(QLatin1String("kwinrc"))),
+      m_kwinConf(KSharedConfig::openConfig(QStringLiteral("kwinrc"))),
       mDisplayAttribute(new KNoteDisplaySettings),
       mAllowDebugBaloo(allowDebugBaloo)
 {
@@ -326,26 +326,26 @@ void KNote::slotUpdateReadOnly()
     }
 
     // enable/disable actions accordingly
-    actionCollection()->action(QLatin1String("configure_note"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("delete_note"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_bold"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_italic"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_underline"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_strikeout"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_alignleft"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_aligncenter"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_alignright"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_alignblock"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_list"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_super"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_sub"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_increaseindent"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_decreaseindent"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("text_background_color"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_size"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("format_color"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("rename_note"))->setEnabled(!readOnly);
-    actionCollection()->action(QLatin1String("set_alarm"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("configure_note"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("delete_note"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_bold"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_italic"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_underline"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_strikeout"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_alignleft"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_aligncenter"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_alignright"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_alignblock"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_list"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_super"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_sub"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_increaseindent"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_decreaseindent"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("text_background_color"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_size"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("format_color"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("rename_note"))->setEnabled(!readOnly);
+    actionCollection()->action(QStringLiteral("set_alarm"))->setEnabled(!readOnly);
     m_keepAbove->setEnabled(!readOnly);
     m_keepBelow->setEnabled(!readOnly);
 
@@ -685,8 +685,8 @@ void KNote::buildGui()
     KXMLGUIFactory factory(&builder, this);
     factory.addClient(this);
 
-    m_menu = dynamic_cast<QMenu *>(factory.container(QLatin1String("note_context"), this));
-    m_tool = dynamic_cast<KToolBar *>(factory.container(QLatin1String("note_tool"), this));
+    m_menu = dynamic_cast<QMenu *>(factory.container(QStringLiteral("note_context"), this));
+    m_tool = dynamic_cast<KToolBar *>(factory.container(QStringLiteral("note_tool"), this));
 
     createNoteFooter();
 }
@@ -697,68 +697,68 @@ void KNote::createActions()
     // rename, mail, print, save as, insert date, alarm, close, delete, new note
     QAction *action;
 
-    action  = new QAction(QIcon::fromTheme(QLatin1String("document-new")), i18n("New"),  this);
-    actionCollection()->addAction(QLatin1String("new_note"), action);
+    action  = new QAction(QIcon::fromTheme(QStringLiteral("document-new")), i18n("New"),  this);
+    actionCollection()->addAction(QStringLiteral("new_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotRequestNewNote);
 
-    action  = new QAction(QIcon::fromTheme(QLatin1String("edit-rename")), i18n("Rename..."), this);
-    actionCollection()->addAction(QLatin1String("rename_note"), action);
+    action  = new QAction(QIcon::fromTheme(QStringLiteral("edit-rename")), i18n("Rename..."), this);
+    actionCollection()->addAction(QStringLiteral("rename_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotRename);
 
-    m_readOnly  = new KToggleAction(QIcon::fromTheme(QLatin1String("object-locked")),
+    m_readOnly  = new KToggleAction(QIcon::fromTheme(QStringLiteral("object-locked")),
                                     i18n("Lock"), this);
-    actionCollection()->addAction(QLatin1String("lock_note"), m_readOnly);
+    actionCollection()->addAction(QStringLiteral("lock_note"), m_readOnly);
     connect(m_readOnly, &KToggleAction::triggered, this, &KNote::slotUpdateReadOnly);
-    m_readOnly->setCheckedState(KGuiItem(i18n("Unlock"), QLatin1String("object-unlocked")));
+    m_readOnly->setCheckedState(KGuiItem(i18n("Unlock"), QStringLiteral("object-unlocked")));
 
-    action  = new QAction(QIcon::fromTheme(QLatin1String("window-close")), i18n("Hide"), this);
-    actionCollection()->addAction(QLatin1String("hide_note"), action);
+    action  = new QAction(QIcon::fromTheme(QStringLiteral("window-close")), i18n("Hide"), this);
+    actionCollection()->addAction(QStringLiteral("hide_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotClose);
     action->setShortcut(QKeySequence(Qt::Key_Escape));
 
-    action  = new QAction(QIcon::fromTheme(QLatin1String("edit-delete")), i18n("Delete"), this);
-    actionCollection()->addAction(QLatin1String("delete_note"), action);
+    action  = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")), i18n("Delete"), this);
+    actionCollection()->addAction(QStringLiteral("delete_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotKill);
 
-    action  = new QAction(QIcon::fromTheme(QLatin1String("knotes_alarm")), i18n("Set Alarm..."),
+    action  = new QAction(QIcon::fromTheme(QStringLiteral("knotes_alarm")), i18n("Set Alarm..."),
                           this);
-    actionCollection()->addAction(QLatin1String("set_alarm"), action);
+    actionCollection()->addAction(QStringLiteral("set_alarm"), action);
     connect(action, &QAction::triggered, this, &KNote::slotSetAlarm);
 
-    action  = new QAction(QIcon::fromTheme(QLatin1String("network-wired")), i18n("Send..."), this);
-    actionCollection()->addAction(QLatin1String("send_note"), action);
+    action  = new QAction(QIcon::fromTheme(QStringLiteral("network-wired")), i18n("Send..."), this);
+    actionCollection()->addAction(QStringLiteral("send_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotSend);
 
-    action  = new QAction(QIcon::fromTheme(QLatin1String("mail-send")), i18n("Mail..."), this);
-    actionCollection()->addAction(QLatin1String("mail_note"), action);
+    action  = new QAction(QIcon::fromTheme(QStringLiteral("mail-send")), i18n("Mail..."), this);
+    actionCollection()->addAction(QStringLiteral("mail_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotMail);
 
-    action  = new QAction(QIcon::fromTheme(QLatin1String("document-save-as")), i18n("Save As..."),
+    action  = new QAction(QIcon::fromTheme(QStringLiteral("document-save-as")), i18n("Save As..."),
                           this);
-    actionCollection()->addAction(QLatin1String("save_note"), action);
+    actionCollection()->addAction(QStringLiteral("save_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotSaveAs);
-    actionCollection()->addAction(KStandardAction::Print,  QLatin1String("print_note"), this, SLOT(slotPrint()));
+    actionCollection()->addAction(KStandardAction::Print,  QStringLiteral("print_note"), this, SLOT(slotPrint()));
 
     if (KPrintPreview::isAvailable()) {
-        actionCollection()->addAction(KStandardAction::PrintPreview,  QLatin1String("print_preview_note"), this,  SLOT(slotPrintPreview()));
+        actionCollection()->addAction(KStandardAction::PrintPreview,  QStringLiteral("print_preview_note"), this,  SLOT(slotPrintPreview()));
     }
-    action  = new QAction(QIcon::fromTheme(QLatin1String("configure")), i18n("Preferences..."), this);
-    actionCollection()->addAction(QLatin1String("configure_note"), action);
+    action  = new QAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Preferences..."), this);
+    actionCollection()->addAction(QStringLiteral("configure_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotPreferences);
 
-    m_keepAbove  = new KToggleAction(QIcon::fromTheme(QLatin1String("go-up")),
+    m_keepAbove  = new KToggleAction(QIcon::fromTheme(QStringLiteral("go-up")),
                                      i18n("Keep Above Others"), this);
-    actionCollection()->addAction(QLatin1String("keep_above"), m_keepAbove);
+    actionCollection()->addAction(QStringLiteral("keep_above"), m_keepAbove);
     connect(m_keepAbove, &KToggleAction::triggered, this, &KNote::slotKeepAbove);
 
-    m_keepBelow  = new KToggleAction(QIcon::fromTheme(QLatin1String("go-down")),
+    m_keepBelow  = new KToggleAction(QIcon::fromTheme(QStringLiteral("go-down")),
                                      i18n("Keep Below Others"), this);
-    actionCollection()->addAction(QLatin1String("keep_below"), m_keepBelow);
+    actionCollection()->addAction(QStringLiteral("keep_below"), m_keepBelow);
     connect(m_keepBelow, &KToggleAction::triggered, this, &KNote::slotKeepBelow);
 
 #if KDEPIM_HAVE_X11
     m_toDesktop  = new KSelectAction(i18n("To Desktop"), this);
-    actionCollection()->addAction(QLatin1String("to_desktop"), m_toDesktop);
+    actionCollection()->addAction(QStringLiteral("to_desktop"), m_toDesktop);
     connect(m_toDesktop, static_cast<void (KSelectAction::*)(int)>(&KSelectAction::triggered), this, &KNote::slotPopupActionToDesktop);
     connect(m_toDesktop->menu(), SIGNAL(aboutToShow()), SLOT(slotUpdateDesktopActions()));
     // initially populate it, otherwise stays disabled
@@ -766,7 +766,7 @@ void KNote::createActions()
 #endif
     // invisible action to walk through the notes to make this configurable
     action  = new QAction(i18n("Walk Through Notes"), this);
-    actionCollection()->addAction(QLatin1String("walk_notes"), action);
+    actionCollection()->addAction(QStringLiteral("walk_notes"), action);
     connect(action, &QAction::triggered, this, &KNote::sigShowNextNote);
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::Key_Backtab));
 
@@ -776,8 +776,8 @@ void KNote::createActions()
     }
     if (mAllowDebugBaloo) {
         //Don't translate it it's just for debugging
-        action  = new QAction(QLatin1String("Debug Baloo..."), this);
-        actionCollection()->addAction(QLatin1String("debug_baloo"), action);
+        action  = new QAction(QStringLiteral("Debug Baloo..."), this);
+        actionCollection()->addAction(QStringLiteral("debug_baloo"), action);
         connect(action, &QAction::triggered, this, &KNote::slotDebugBaloo);
     }
 }

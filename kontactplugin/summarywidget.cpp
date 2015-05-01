@@ -67,7 +67,7 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
     mainLayout->setSpacing(3);
     mainLayout->setMargin(3);
 
-    QWidget *header = createHeader(this, QLatin1String("view-pim-notes"), i18n("Popup Notes"));
+    QWidget *header = createHeader(this, QStringLiteral("view-pim-notes"), i18n("Popup Notes"));
     mainLayout->addWidget(header);
 
     mLayout = new QGridLayout();
@@ -75,9 +75,9 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
     mLayout->setSpacing(3);
     mLayout->setRowStretch(6, 1);
 
-    KIconLoader loader(QLatin1String("knotes"));
+    KIconLoader loader(QStringLiteral("knotes"));
 
-    mPixmap = loader.loadIcon(QLatin1String("knotes"), KIconLoader::Small);
+    mPixmap = loader.loadIcon(QStringLiteral("knotes"), KIconLoader::Small);
 
     Akonadi::Session *session = new Akonadi::Session("KNotes Session", this);
     mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
@@ -169,7 +169,7 @@ void KNotesSummaryWidget::slotPopupMenu(const QString &note)
 
 void KNotesSummaryWidget::deleteNote(const QString &note)
 {
-    org::kde::kontact::KNotes knotes(QLatin1String("org.kde.kontact"), QLatin1String("/KNotes"), QDBusConnection::sessionBus());
+    org::kde::kontact::KNotes knotes(QStringLiteral("org.kde.kontact"), QStringLiteral("/KNotes"), QDBusConnection::sessionBus());
     knotes.killNote(note.toLongLong());
 }
 
@@ -225,7 +225,7 @@ void KNotesSummaryWidget::slotSelectNote(const QString &note)
     } else {
         mPlugin->bringToForeground();
     }
-    org::kde::kontact::KNotes knotes(QLatin1String("org.kde.kontact"), QLatin1String("/KNotes"), QDBusConnection::sessionBus());
+    org::kde::kontact::KNotes knotes(QStringLiteral("org.kde.kontact"), QStringLiteral("/KNotes"), QDBusConnection::sessionBus());
     knotes.editNote(note.toLongLong());
 }
 
@@ -245,5 +245,5 @@ bool KNotesSummaryWidget::eventFilter(QObject *obj, QEvent *e)
 
 QStringList KNotesSummaryWidget::configModules() const
 {
-    return QStringList() << QLatin1String("kcmknotessummary.desktop");
+    return QStringList() << QStringLiteral("kcmknotessummary.desktop");
 }
