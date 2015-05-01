@@ -19,7 +19,6 @@
 #include "knotes/knoteedit.h"
 
 #include <KActionCollection>
-#include <KComponentData>
 #include <QDialog>
 #include <KLocalizedString>
 #include <KToolBar>

@@ -102,7 +102,7 @@ KNotesPart::KNotesPart(QObject *parent)
     (void) new KNotesAdaptor(this);
     QDBusConnection::sessionBus().registerObject(QLatin1String("/KNotes"), this);
 
-    setComponentData(KComponentData("knotes"));
+    setComponentName(QStringLiteral("knotes"), QStringLiteral("knotes"));
 
     Akonadi::Control::widgetNeedsAkonadi(widget());
 
