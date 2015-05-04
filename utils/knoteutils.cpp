@@ -112,11 +112,11 @@ void KNoteUtils::migrateToAkonadi()
                 qCDebug(KNOTES_LOG) << "Akonadi migration has been successful";
             } else {
                 // exit code 1 means it is already running, so we are probably called by a migrator instance
-                qCritical() << "Akonadi migration failed!";
-                qCritical() << "command was: " << proc.program();
-                qCritical() << "exit code: " << proc.exitCode();
-                qCritical() << "stdout: " << proc.readAllStandardOutput();
-                qCritical() << "stderr: " << proc.readAllStandardError();
+                qCCritical(KNOTES_LOG) << "Akonadi migration failed!";
+                qCCritical(KNOTES_LOG) << "command was: " << proc.program();
+                qCCritical(KNOTES_LOG) << "exit code: " << proc.exitCode();
+                qCCritical(KNOTES_LOG) << "stdout: " << proc.readAllStandardOutput();
+                qCCritical(KNOTES_LOG) << "stderr: " << proc.readAllStandardError();
 
                 KMessageBox::error(0, i18n("Migration to KNotes failed. In case you want to try again, run 'knotes-migrator --interactive' manually."),
                                    i18n("Migration Failed"));
