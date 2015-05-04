@@ -38,7 +38,6 @@ KNotesKeyDialog::KNotesKeyDialog(KActionCollection *globals, QWidget *parent)
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &KNotesKeyDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNotesKeyDialog::reject);
-    mainLayout->addWidget(buttonBox);
 
     m_keyChooser = new KShortcutsEditor(globals, this);
     mainLayout->addWidget(m_keyChooser);
