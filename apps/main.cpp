@@ -24,22 +24,23 @@
 
 #include "knotes_options.h"
 #include "apps/application.h"
-#include <KUniqueApplication>
 #include <kcmdlineargs.h>
-#include <k4aboutdata.h>
 #include <KLocalizedString>
 #include <kxerrorhandler.h>
 #include <kdelibs4configmigrator.h>
+
+#include <KAboutData>
 
 #if KDEPIM_HAVE_X11
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <qx11info_x11.h>
+#include <QCommandLineParser>
 #endif
 
 void remove_sm_from_client_leader();
-KCmdLineOptions knotesOptions();
-void knotesAuthors(K4AboutData &aboutData);
+void knotesOptions(QCommandLineParser *parser);
+void knotesAuthors(KAboutData &aboutData);
 
 int main(int argc, char *argv[])
 {
@@ -47,32 +48,26 @@ int main(int argc, char *argv[])
     migrate.setConfigFiles(QStringList() << QStringLiteral("knotesrc"));
     migrate.migrate();
 
-    K4AboutData aboutData("knotes",
-                          0,
-                          ki18n("KNotes"),
-                          KDEPIM_VERSION,
-                          ki18n("KDE Notes"),
-                          K4AboutData::License_GPL,
-                          ki18n("Copyright © 1997–2015 KNotes authors"));
-
+    KAboutData aboutData(QLatin1String("knotes"),
+                         i18n("KNotes"),
+                         QLatin1String(KDEPIM_VERSION),
+                         i18n("KDE Notes"),
+                         KAboutLicense::GPL,
+                         i18n("Copyright © 1997–2015 KNotes authors"));
     knotesAuthors(aboutData);
 
-    KCmdLineArgs::init(argc, argv, &aboutData);
+    Application app(argc, &argv, aboutData);
+    QCommandLineParser *cmdArgs = app.cmdArgs();
+    knotesOptions(cmdArgs);
 
-    // Command line options
+    const QStringList args = QApplication::arguments();
+    cmdArgs->process(args);
+    aboutData.processCommandLine(cmdArgs);
 
-    KCmdLineArgs::addCmdLineOptions(knotesOptions());
-
-    KUniqueApplication::addCmdLineOptions();
-
-    if (!Application::start()) {
+    if (!Application::start(args)) {
         qCDebug(KNOTES_LOG) << " knotes already started";
         return 0;
     }
-
-    // Create Application
-
-    Application app;
 
     remove_sm_from_client_leader();
 
@@ -111,54 +106,53 @@ void remove_sm_from_client_leader()
 #endif
 }
 
-void knotesAuthors(K4AboutData &aboutData)
+void knotesAuthors(KAboutData &aboutData)
 {
-    aboutData.addAuthor(ki18n("Laurent Montel"),
-                        ki18n("Maintainer"),
-                        "montel@kde.org");
-    aboutData.addAuthor(ki18n("Guillermo Antonio Amaral Bastidas"),
-                        ki18n("Previous Maintainer"),
-                        "me@guillermoamaral.com");
-    aboutData.addAuthor(ki18n("Michael Brade"),
-                        ki18n("Previous Maintainer"),
-                        "brade@kde.org");
-    aboutData.addAuthor(ki18n("Bernd Johannes Wuebben"),
-                        ki18n("Original KNotes Author"),
-                        "wuebben@kde.org");
-    aboutData.addAuthor(ki18n("Wynn Wilkes"),
-                        ki18n("Ported KNotes to KDE 2"),
-                        "wynnw@calderasystems.com");
-    aboutData.addAuthor(ki18n("Daniel Martin"),
-                        ki18n("Network Interface"),
-                        "daniel.martin@pirack.com");
-    aboutData.addAuthor(ki18n("Bo Thorsen"),
-                        ki18n("Started KDE Resource Framework Integration"),
-                        "bo@sonofthor.dk");
-    aboutData.addCredit(ki18n("Bera Debajyoti"),
-                        ki18n("Idea and initial code for the new look & feel"),
-                        "debajyotibera@gmail.com");
-    aboutData.addCredit(ki18n("Matthias Ettrich"),
-                        KLocalizedString(),
-                        "ettrich@kde.org");
-    aboutData.addCredit(ki18n("David Faure"),
-                        KLocalizedString(),
-                        "faure@kde.org");
-    aboutData.addCredit(ki18n("Matthias Kiefer"),
-                        KLocalizedString(),
-                        "kiefer@kde.org");
-    aboutData.addCredit(ki18n("Luboš Luňák"),
-                        KLocalizedString(),
-                        "l.lunak@kde.org");
-    aboutData.addCredit(ki18n("Dirk A. Mueller"),
-                        KLocalizedString(),
-                        "dmuell@gmx.net");
-    aboutData.addCredit(ki18n("Carsten Pfeiffer"),
-                        KLocalizedString(),
-                        "pfeiffer@kde.org");
-    aboutData.addCredit(ki18n("Harri Porten"),
-                        KLocalizedString(),
-                        "porten@kde.org");
-    aboutData.addCredit(ki18n("Espen Sand"),
-                        KLocalizedString(),
-                        "espen@kde.org");
+    aboutData.addAuthor(i18n("Laurent Montel"),
+                        i18n("Maintainer"),
+                        QLatin1String("montel@kde.org"));
+    aboutData.addAuthor(i18n("Guillermo Antonio Amaral Bastidas"),
+                        i18n("Previous Maintainer"),
+                        QLatin1String("me@guillermoamaral.com"));
+    aboutData.addAuthor(i18n("Michael Brade"),
+                        i18n("Previous Maintainer"),
+                        QLatin1String("brade@kde.org"));
+    aboutData.addAuthor(i18n("Bernd Johannes Wuebben"),
+                        i18n("Original KNotes Author"),
+                        QLatin1String("wuebben@kde.org"));
+    aboutData.addAuthor(i18n("Wynn Wilkes"),
+                        i18n("Ported KNotes to KDE 2"),
+                        QLatin1String("wynnw@calderasystems.com"));
+    aboutData.addAuthor(i18n("Daniel Martin"),
+                        i18n("Network Interface"),
+                        QLatin1String("daniel.martin@pirack.com"));
+    aboutData.addAuthor(i18n("Bo Thorsen"),
+                        i18n("Started KDE Resource Framework Integration"),
+                        QLatin1String("bo@sonofthor.dk"));
+    aboutData.addCredit(i18n("Bera Debajyoti"),
+                        i18n("Idea and initial code for the new look & feel"),
+                        QLatin1String("debajyotibera@gmail.com"));
+    aboutData.addCredit(i18n("Matthias Ettrich"),
+                        QString(),
+                        QLatin1String("ettrich@kde.org"));
+    aboutData.addCredit(i18n("David Faure"),
+                        QString(),
+                        QLatin1String("faure@kde.org"));
+    aboutData.addCredit(i18n("Matthias Kiefer"),
+                        QString(),
+                        QLatin1String("kiefer@kde.org"));
+    aboutData.addCredit(i18n("Luboš Luňák"),
+                        QLatin1String("l.lunak@kde.org"));
+    aboutData.addCredit(i18n("Dirk A. Mueller"),
+                        QString(),
+                        QLatin1String("dmuell@gmx.net"));
+    aboutData.addCredit(i18n("Carsten Pfeiffer"),
+                        QString(),
+                        QLatin1String("pfeiffer@kde.org"));
+    aboutData.addCredit(i18n("Harri Porten"),
+                        QString(),
+                        QLatin1String("porten@kde.org"));
+    aboutData.addCredit(i18n("Espen Sand"),
+                        QString(),
+                        QLatin1String("espen@kde.org"));
 }

@@ -43,7 +43,6 @@
 #include <KMime/KMimeMessage>
 
 #include <kactioncollection.h>
-#include <kapplication.h>
 #include <kcombobox.h>
 #include <kfiledialog.h>
 #include <kiconeffect.h>
@@ -79,6 +78,7 @@
 #include <QFocusEvent>
 #include <QMimeData>
 #include <QDesktopWidget>
+#include <QApplication>
 
 #if KDEPIM_HAVE_X11
 #include <fixx11h.h>
@@ -888,7 +888,7 @@ void KNote::prepare()
 
     resize(mDisplayAttribute->size());
     const QPoint &position = mDisplayAttribute->position();
-    QRect desk = kapp->desktop()->rect();
+    QRect desk = qApp->desktop()->rect();
     desk.adjust(10, 10, -10, -10);
     if (desk.intersects(QRect(position, mDisplayAttribute->size()))) {
         move(position);             // do before calling show() to avoid flicker
@@ -1130,7 +1130,7 @@ void KNote::resizeEvent(QResizeEvent *qre)
 
 void KNote::closeEvent(QCloseEvent *event)
 {
-    if (kapp->sessionSaving()) {
+    if (qApp->isSavingSession()) {
         return;
     }
     event->ignore(); //We don't want to close (and delete the widget). Just hide it

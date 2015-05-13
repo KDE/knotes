@@ -6,6 +6,7 @@ X-KDE-ServiceTypes=Kontact/Plugin,KPluginInfo
 X-KDE-Library=kontact_knotesplugin
 X-KDE-KontactPluginVersion=10
 X-KDE-KontactPluginHasSummary=true
+X-KDE-KontactPartExecutableName=knotes
 
 X-KDE-PluginInfo-Website=http://pim.kde.org/components/knotes.php
 X-KDE-PluginInfo-Name=kontact_knotesplugin

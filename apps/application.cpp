@@ -22,12 +22,12 @@
 #include "apps/knotesapp.h"
 #include <kcmdlineargs.h>
 #include <kontactinterface/pimuniqueapplication.h>
+#include <QCommandLineParser>
 
-Application::Application()
-    : KontactInterface::PimUniqueApplication(),
+Application::Application(int &argc, char **argv[], KAboutData &about)
+    : KontactInterface::PimUniqueApplication(argc, argv, about),
       mMainWindow(0)
 {
-    mCmdLineArguments = KCmdLineArgs::parsedArgs();
 }
 
 Application::~Application()
@@ -35,20 +35,19 @@ Application::~Application()
     delete mMainWindow;
 }
 
-int Application::newInstance()
+int Application::activate(const QStringList &args)
 {
+    QCommandLineParser *parser = cmdArgs();
+    parser->process(args);
+
     if (!mMainWindow) {
         mMainWindow = new KNotesApp();
+        mMainWindow->show();
     } else {
-        if (!args()->isSet("skip-note")) {
+        if (!parser->isSet(QLatin1String("skip-note"))) {
             mMainWindow->newNote();
         }
     }
 
-    return KUniqueApplication::newInstance();
-}
-
-KCmdLineArgs *Application::args() const
-{
-    return mCmdLineArguments;
+    return 0;
 }

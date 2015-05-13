@@ -29,11 +29,10 @@ class Application
     : public KontactInterface::PimUniqueApplication
 {
 public:
-    Application();
+    Application(int &argc, char **argv[], KAboutData &about);
     ~Application();
 
-    virtual int newInstance();
-    KCmdLineArgs *args() const;
+    int activate(const QStringList &args) Q_DECL_OVERRIDE;
 
 private:
     KNotesApp *mMainWindow;
