@@ -48,9 +48,9 @@ int main(int argc, char *argv[])
     migrate.setConfigFiles(QStringList() << QStringLiteral("knotesrc"));
     migrate.migrate();
 
-    KAboutData aboutData(QLatin1String("knotes"),
+    KAboutData aboutData(QStringLiteral("knotes"),
                          i18n("KNotes"),
-                         QLatin1String(KDEPIM_VERSION),
+                         QStringLiteral(KDEPIM_VERSION),
                          i18n("KDE Notes"),
                          KAboutLicense::GPL,
                          i18n("Copyright © 1997–2015 KNotes authors"));
@@ -110,49 +110,49 @@ void knotesAuthors(KAboutData &aboutData)
 {
     aboutData.addAuthor(i18n("Laurent Montel"),
                         i18n("Maintainer"),
-                        QLatin1String("montel@kde.org"));
+                        QStringLiteral("montel@kde.org"));
     aboutData.addAuthor(i18n("Guillermo Antonio Amaral Bastidas"),
                         i18n("Previous Maintainer"),
-                        QLatin1String("me@guillermoamaral.com"));
+                        QStringLiteral("me@guillermoamaral.com"));
     aboutData.addAuthor(i18n("Michael Brade"),
                         i18n("Previous Maintainer"),
-                        QLatin1String("brade@kde.org"));
+                        QStringLiteral("brade@kde.org"));
     aboutData.addAuthor(i18n("Bernd Johannes Wuebben"),
                         i18n("Original KNotes Author"),
-                        QLatin1String("wuebben@kde.org"));
+                        QStringLiteral("wuebben@kde.org"));
     aboutData.addAuthor(i18n("Wynn Wilkes"),
                         i18n("Ported KNotes to KDE 2"),
-                        QLatin1String("wynnw@calderasystems.com"));
+                        QStringLiteral("wynnw@calderasystems.com"));
     aboutData.addAuthor(i18n("Daniel Martin"),
                         i18n("Network Interface"),
-                        QLatin1String("daniel.martin@pirack.com"));
+                        QStringLiteral("daniel.martin@pirack.com"));
     aboutData.addAuthor(i18n("Bo Thorsen"),
                         i18n("Started KDE Resource Framework Integration"),
-                        QLatin1String("bo@sonofthor.dk"));
+                        QStringLiteral("bo@sonofthor.dk"));
     aboutData.addCredit(i18n("Bera Debajyoti"),
                         i18n("Idea and initial code for the new look & feel"),
-                        QLatin1String("debajyotibera@gmail.com"));
+                        QStringLiteral("debajyotibera@gmail.com"));
     aboutData.addCredit(i18n("Matthias Ettrich"),
                         QString(),
-                        QLatin1String("ettrich@kde.org"));
+                        QStringLiteral("ettrich@kde.org"));
     aboutData.addCredit(i18n("David Faure"),
                         QString(),
-                        QLatin1String("faure@kde.org"));
+                        QStringLiteral("faure@kde.org"));
     aboutData.addCredit(i18n("Matthias Kiefer"),
                         QString(),
-                        QLatin1String("kiefer@kde.org"));
+                        QStringLiteral("kiefer@kde.org"));
     aboutData.addCredit(i18n("Luboš Luňák"),
-                        QLatin1String("l.lunak@kde.org"));
+                        QStringLiteral("l.lunak@kde.org"));
     aboutData.addCredit(i18n("Dirk A. Mueller"),
                         QString(),
-                        QLatin1String("dmuell@gmx.net"));
+                        QStringLiteral("dmuell@gmx.net"));
     aboutData.addCredit(i18n("Carsten Pfeiffer"),
                         QString(),
-                        QLatin1String("pfeiffer@kde.org"));
+                        QStringLiteral("pfeiffer@kde.org"));
     aboutData.addCredit(i18n("Harri Porten"),
                         QString(),
-                        QLatin1String("porten@kde.org"));
+                        QStringLiteral("porten@kde.org"));
     aboutData.addCredit(i18n("Espen Sand"),
                         QString(),
-                        QLatin1String("espen@kde.org"));
+                        QStringLiteral("espen@kde.org"));
 }

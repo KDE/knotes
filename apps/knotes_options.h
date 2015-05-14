@@ -24,7 +24,7 @@
 static void knotesOptions(QCommandLineParser *parser)
 {
     parser->addOption(QCommandLineOption(
-          QLatin1String("skip-note"),
+          QStringLiteral("skip-note"),
           i18n("Suppress creation of a new note on a non-unique instance.")));
 }
 
