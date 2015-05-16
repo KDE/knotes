@@ -33,6 +33,7 @@ target_link_libraries(kontact_knotesplugin
                       kdepim 
                       pimcommon 
                       noteshared 
+                      KF5::DNSSD
                       
 )
 
