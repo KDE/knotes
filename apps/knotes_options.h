@@ -19,17 +19,13 @@
 #define KNOTES_OPTIONS_H
 
 #include <KLocalizedString>
-#include <KCmdLineOptions>
+#include <QCommandLineParser>
 
-static KCmdLineOptions knotesOptions()
+static void knotesOptions(QCommandLineParser *parser)
 {
-    KCmdLineOptions options;
-
-    options.add("skip-note",
-                ki18n("Suppress creation of a new note "
-                      "on a non-unique instance."));
-
-    return options;
+    parser->addOption(QCommandLineOption(
+          QStringLiteral("skip-note"),
+          i18n("Suppress creation of a new note on a non-unique instance.")));
 }
 
 #endif // KNOTES_OPTIONS_H

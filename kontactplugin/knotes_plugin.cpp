@@ -229,17 +229,18 @@ void KNotesPlugin::slotNewNote()
     }
 }
 
-void KNotesUniqueAppHandler::loadCommandLineOptions()
+void KNotesUniqueAppHandler::loadCommandLineOptions(QCommandLineParser *parser)
 {
-    KCmdLineArgs::addCmdLineOptions(knotesOptions());
+    knotesOptions(parser);
 }
 
-int KNotesUniqueAppHandler::newInstance()
+int KNotesUniqueAppHandler::activate(const QStringList &args)
 {
     qCDebug(KNOTES_KONTACT_PLUGIN_LOG) ;
     // Ensure part is loaded
     (void)plugin()->part();
-    return KontactInterface::UniqueAppHandler::newInstance();
+
+    return KontactInterface::UniqueAppHandler::activate(args);
 }
 
 #include "knotes_plugin.moc"

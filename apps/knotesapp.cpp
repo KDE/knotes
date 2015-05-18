@@ -76,6 +76,7 @@
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
 #include <QFileDialog>
+#include <QApplication>
 
 #include <kiconloader.h>
 #include <KGlobalAccel>
@@ -110,7 +111,7 @@ KNotesApp::KNotesApp()
 
     new KNotesAdaptor(this);
     QDBusConnection::sessionBus().registerObject(QLatin1String("/KNotes") , this);
-    kapp->setQuitOnLastWindowClosed(false);
+    qApp->setQuitOnLastWindowClosed(false);
     // create the GUI...
     QAction *action  = new QAction(QIcon::fromTheme(QLatin1String("document-new")),
                                    i18n("New Note"), this);
@@ -652,7 +653,7 @@ void KNotesApp::saveNotes(bool force, bool sync)
 void KNotesApp::slotQuit()
 {
     saveNotes(true, true);
-    kapp->quit();
+    qApp->quit();
 }
 
 void KNotesApp::slotCommitData(QSessionManager &)
