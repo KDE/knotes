@@ -714,7 +714,7 @@ void KNote::createActions()
     action  = new QAction(QIcon::fromTheme(QStringLiteral("window-close")), i18n("Hide"), this);
     actionCollection()->addAction(QStringLiteral("hide_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotClose);
-    action->setShortcut(QKeySequence(Qt::Key_Escape));
+    actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::Key_Escape));
 
     action  = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")), i18n("Delete"), this);
     actionCollection()->addAction(QStringLiteral("delete_note"), action);
