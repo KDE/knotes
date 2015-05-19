@@ -24,7 +24,6 @@
 
 #include "knotes_options.h"
 #include "apps/application.h"
-#include <kcmdlineargs.h>
 #include <KLocalizedString>
 #include <kxerrorhandler.h>
 #include <kdelibs4configmigrator.h>

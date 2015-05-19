@@ -24,8 +24,7 @@
 #include <QDomDocument>
 #include <QList>
 #include <QWidget>
-
-#include <kapplication.h>
+#include <QSessionManager>
 #include <kxmlguiclient.h>
 
 #include <AkonadiCore/Item>
