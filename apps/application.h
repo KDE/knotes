@@ -22,7 +22,6 @@
 #define APPLICATION_H
 
 #include <kontactinterface/pimuniqueapplication.h>
-class KCmdLineArgs;
 class KNotesApp;
 
 class Application
@@ -36,7 +35,6 @@ public:
 
 private:
     KNotesApp *mMainWindow;
-    KCmdLineArgs *mCmdLineArguments;
 };
 
 #endif

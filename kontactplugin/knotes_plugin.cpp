@@ -39,7 +39,6 @@ using namespace KCalCore;
 
 #include <KontactInterface/Core>
 
-#include <KCmdLineArgs>
 #include <QAction>
 #include <KActionCollection>
 #include "knotes_kontact_plugin_debug.h"
