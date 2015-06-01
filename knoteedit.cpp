@@ -90,7 +90,7 @@ KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWid
                                            i18n("Align Center"), this);
     actions->addAction(QStringLiteral("format_aligncenter"), m_textAlignCenter);
     connect(m_textAlignCenter, &KToggleAction::triggered, this, &KNoteEdit::textAlignCenter);
-    m_textAlignCenter->setShortcut(QKeySequence(Qt::ALT + Qt::Key_C));
+    actions->setDefaultShortcut(m_textAlignCenter, QKeySequence(Qt::ALT + Qt::Key_C));
     m_textAlignRight = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-right")),
                                          i18n("Align Right"), this);
     actions->addAction(QStringLiteral("format_alignright"), m_textAlignRight);

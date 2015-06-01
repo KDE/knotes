@@ -29,6 +29,7 @@ set(libknotesprivate_lib_SRCS
     notes/knotedisplaysettings.cpp
     utils/knoteutils.cpp
     notes/knoteinterface.cpp
+    notes/knotesmigrateapplication.cpp
     finddialog/knotefinddialog.cpp
 )
 

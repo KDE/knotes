@@ -1,7 +1,7 @@
 /*******************************************************************
  KNotes -- Notes for the KDE project
 
- Copyright (c) 1997-2014, The KNotes Developers
+ Copyright (c) 1997-2015, The KNotes Developers
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -27,6 +27,7 @@
 #include <KLocalizedString>
 #include <kxerrorhandler.h>
 #include <kdelibs4configmigrator.h>
+#include "notes/knotesmigrateapplication.h"
 
 #include <KAboutData>
 
@@ -34,8 +35,8 @@
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <qx11info_x11.h>
-#include <QCommandLineParser>
 #endif
+#include <QCommandLineParser>
 
 void remove_sm_from_client_leader();
 void knotesOptions(QCommandLineParser *parser);
@@ -43,8 +44,7 @@ void knotesAuthors(KAboutData &aboutData);
 
 int main(int argc, char *argv[])
 {
-    Kdelibs4ConfigMigrator migrate(QStringLiteral("knotes"));
-    migrate.setConfigFiles(QStringList() << QStringLiteral("knotesrc"));
+    KNotesMigrateApplication migrate;
     migrate.migrate();
 
     KAboutData aboutData(QStringLiteral("knotes"),

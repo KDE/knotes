@@ -41,7 +41,7 @@ int Application::activate(const QStringList &args)
 
     if (!mMainWindow) {
         mMainWindow = new KNotesApp();
-        mMainWindow->show();
+        //mMainWindow->show();
     } else {
         if (!parser->isSet(QStringLiteral("skip-note"))) {
             mMainWindow->newNote();
