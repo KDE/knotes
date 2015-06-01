@@ -55,7 +55,7 @@
 #include <AkonadiCore/ItemFetchJob>
 #include <AkonadiCore/ItemFetchScope>
 
-#include <AkonadiCore/control.h>
+#include <AkonadiWidgets/controlgui.h>
 #include <AkonadiCore/ChangeRecorder>
 #include <AkonadiCore/Collection>
 #include <AkonadiCore/EntityTreeModel>
@@ -97,7 +97,7 @@ KNotesApp::KNotesApp()
       m_publisher(Q_NULLPTR),
       mDebugBaloo(false)
 {
-    Akonadi::Control::widgetNeedsAkonadi(this);
+    Akonadi::ControlGui::widgetNeedsAkonadi(this);
     KNoteUtils::migrateToAkonadi();
 
     if (!qgetenv("KDEPIM_BALOO_DEBUG").isEmpty()) {

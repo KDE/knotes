@@ -69,7 +69,7 @@
 #include <KMime/KMimeMessage>
 
 #include <AkonadiCore/ItemModifyJob>
-#include <AkonadiCore/Control>
+#include <AkonadiWidgets/ControlGui>
 
 #include <KActionCollection>
 #include <QAction>
@@ -104,7 +104,7 @@ KNotesPart::KNotesPart(QObject *parent)
 
     setComponentName(QStringLiteral("knotes"), QStringLiteral("knotes"));
 
-    Akonadi::Control::widgetNeedsAkonadi(widget());
+    Akonadi::ControlGui::widgetNeedsAkonadi(widget());
 
     KNoteUtils::migrateToAkonadi();
 
