@@ -393,7 +393,7 @@ void KNotesApp::newNoteFromTextFile()
 {
     QString text;
     const QString filename = QFileDialog::getOpenFileName(this, i18n("Select Text File"), QString(),
-                             QLatin1String("*.txt"));
+                             i18n("Text File (*.txt)"));
     if (!filename.isEmpty()) {
         QFile f(filename);
         if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
