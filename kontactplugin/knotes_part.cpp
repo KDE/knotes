@@ -76,7 +76,6 @@
 #include <QInputDialog>
 #include <KMessageBox>
 #include <KXMLGUIFactory>
-#include <KPrintPreview>
 #include <ksocketfactory.h>
 #include <KApplication>
 #include <KFileDialog>
@@ -168,12 +167,10 @@ KNotesPart::KNotesPart(QObject *parent)
         i18nc("@info:whatsthis",
               "You will be prompted to print the selected popup note."));
 
-    if (KPrintPreview::isAvailable()) {
-        mNotePrintPreview = new QAction(QIcon::fromTheme(QLatin1String("document-print-preview")), i18nc("@action:inmenu", "Print Preview Selected Notes..."), this);
-        actionCollection()->addAction(QLatin1String("print_preview_note"), mNotePrintPreview);
+    mNotePrintPreview = new QAction(QIcon::fromTheme(QLatin1String("document-print-preview")), i18nc("@action:inmenu", "Print Preview Selected Notes..."), this);
+    actionCollection()->addAction(QLatin1String("print_preview_note"), mNotePrintPreview);
 
-        connect(mNotePrintPreview, &QAction::triggered, this, &KNotesPart::slotPrintPreviewSelectedNotes);
-    }
+    connect(mNotePrintPreview, &QAction::triggered, this, &KNotesPart::slotPrintPreviewSelectedNotes);
 
     mNoteConfigure  = new QAction(QIcon::fromTheme(QLatin1String("configure")), i18n("Note settings..."), this);
     actionCollection()->addAction(QLatin1String("configure_note"), mNoteConfigure);
@@ -520,9 +517,7 @@ void KNotesPart::popupRMB(QListWidgetItem *item, const QPoint &pos, const QPoint
         }
         contextMenu->addSeparator();
         contextMenu->addAction(mNotePrint);
-        if (KPrintPreview::isAvailable()) {
-            contextMenu->addAction(mNotePrintPreview);
-        }
+        contextMenu->addAction(mNotePrintPreview);
 
         if (!readOnly) {
             contextMenu->addSeparator();

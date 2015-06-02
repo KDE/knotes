@@ -36,13 +36,17 @@ public:
     QFont defaultFont() const;
     void printNotes(const QList<KNotePrintObject *> lst, const QString &themePath, bool preview);
 
+private Q_SLOTS:
+    void slotPrinterPage(QPrinter *printer);
 private:
     void print(QPrinter &printer, const QString &htmlText);
     void doPrint(const QString &content, const QString &dialogCaption);
     void doPrintPreview(const QString &htmlText);
 
     QFont m_defaultFont;
+    QString mHtmlPreviewText;
     KNoteGrantleePrint *mGrantleePrint;
+
 };
 
 #endif // KNOTEPRINTER

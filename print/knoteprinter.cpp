@@ -25,6 +25,7 @@
 #include <QPrintDialog>
 #include <QAbstractTextDocumentLayout>
 #include <QPointer>
+#include <QPrintPreviewDialog>
 
 #include <kdeprintdialog.h>
 #include <KMessageBox>
@@ -59,13 +60,19 @@ QFont KNotePrinter::defaultFont() const
 
 void KNotePrinter::doPrintPreview(const QString &htmlText)
 {
+    mHtmlPreviewText = htmlText;
     QPrinter printer(QPrinter::HighResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setCollateCopies(true);
+    QPrintPreviewDialog previewdlg(&printer, 0);
 
-    KPrintPreview previewdlg(&printer, 0);
-    print(printer, htmlText);
-    previewdlg.exec();
+    connect(&previewdlg, SIGNAL(paintRequested(QPrinter*)), this, SLOT(slotPrinterPage(QPrinter*))) ;
+    previewdlg.exec() ;
+}
+
+void KNotePrinter::slotPrinterPage(QPrinter *printer)
+{
+    print(*(printer), mHtmlPreviewText);
 }
 
 void KNotePrinter::doPrint(const QString &htmlText,
