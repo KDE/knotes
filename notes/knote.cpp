@@ -60,7 +60,6 @@
 #include <kxmlguibuilder.h>
 #include <kxmlguifactory.h>
 #include <netwm.h>
-#include <KPrintPreview>
 
 #include <AkonadiCore/ItemModifyJob>
 
@@ -739,9 +738,7 @@ void KNote::createActions()
     connect(action, &QAction::triggered, this, &KNote::slotSaveAs);
     actionCollection()->addAction(KStandardAction::Print,  QStringLiteral("print_note"), this, SLOT(slotPrint()));
 
-    if (KPrintPreview::isAvailable()) {
-        actionCollection()->addAction(KStandardAction::PrintPreview,  QStringLiteral("print_preview_note"), this,  SLOT(slotPrintPreview()));
-    }
+    actionCollection()->addAction(KStandardAction::PrintPreview,  QStringLiteral("print_preview_note"), this,  SLOT(slotPrintPreview()));
     action  = new QAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Preferences..."), this);
     actionCollection()->addAction(QStringLiteral("configure_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotPreferences);

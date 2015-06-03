@@ -32,7 +32,6 @@
 
 #include <KLocalizedString>
 #include "knotes_debug.h"
-#include <KPrintPreview>
 
 #include <grantlee/context.h>
 #include <grantlee/engine.h>
