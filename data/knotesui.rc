@@ -1,6 +1,6 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="404">
+<kpartgui name="KNotes" version="405" translationDomain="knotes">
 
 <Menu name="note_context" noMerge="1">
     <Action name="set_alarm"/>
