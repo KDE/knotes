@@ -72,8 +72,8 @@ ecm_add_app_icon(knotes_SRCS ICONS ${ICONS_SRCS})
 
 add_executable(knotes ${knotes_SRCS})
 
-target_link_libraries(knotes knotesprivate pimcommon kdepim KF5::KIOCore KF5::DNSSD
-                             KF5::KCMUtils KF5::KontactInterface noteshared
+target_link_libraries(knotes knotesprivate pimcommon KF5::DNSSD
+                             KF5::KontactInterface noteshared
   KF5::AkonadiCore
   KF5::Mime
   KF5::GlobalAccel
