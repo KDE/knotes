@@ -34,8 +34,8 @@ public:
     QSize sizeHint() const Q_DECL_OVERRIDE;
 
 protected:
-    void enterEvent(QEvent *);
-    void leaveEvent(QEvent *);
+    void enterEvent(QEvent *) Q_DECL_OVERRIDE;
+    void leaveEvent(QEvent *) Q_DECL_OVERRIDE;
 
     void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE;
 };

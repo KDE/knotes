@@ -22,7 +22,6 @@
 
 namespace KNoteUtils
 {
-KNOTES_EXPORT void migrateToAkonadi();
 KNOTES_EXPORT void setDefaultValue(Akonadi::Item &item);
 KNOTES_EXPORT void updateConfiguration();
 }

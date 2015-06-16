@@ -58,7 +58,6 @@ EXPORT_KONTACT_PLUGIN(KNotesPlugin, knotes)
 KNotesPlugin::KNotesPlugin(KontactInterface::Core *core, const QVariantList &)
     : KontactInterface::Plugin(core, core, "knotes")
 {
-    KNoteUtils::migrateToAkonadi();
     setComponentName(QStringLiteral("knotes"), QStringLiteral("knotes"));
 
     QAction *action =
