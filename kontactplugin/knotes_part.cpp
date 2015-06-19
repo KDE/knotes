@@ -66,6 +66,7 @@
 #include <AkonadiCore/ItemFetchScope>
 
 #include <QUrl>
+#include <QFileDialog>
 #include <KMime/KMimeMessage>
 
 #include <AkonadiCore/ItemModifyJob>
@@ -872,10 +873,8 @@ void KNotesPart::slotItemFetchFinished(KJob *job)
 void KNotesPart::slotNewNoteFromTextFile()
 {
     QString text;
-    const QString filename = KFileDialog::getOpenFileName(QUrl(),
-                             QLatin1String("*.txt"),
-                             widget(),
-                             i18n("Select Text File"));
+    const QString filename = QFileDialog::getOpenFileName(widget(), i18n("Select Text File"), QString(),
+                             i18n("Text File (*.txt)"));
     if (!filename.isEmpty()) {
         QFile f(filename);
         if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
