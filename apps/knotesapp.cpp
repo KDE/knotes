@@ -112,41 +112,41 @@ KNotesApp::KNotesApp()
     QDBusConnection::sessionBus().registerObject(QLatin1String("/KNotes") , this);
     qApp->setQuitOnLastWindowClosed(false);
     // create the GUI...
-    QAction *action  = new QAction(QIcon::fromTheme(QLatin1String("document-new")),
+    QAction *action  = new QAction(QIcon::fromTheme(QStringLiteral("document-new")),
                                    i18n("New Note"), this);
     actionCollection()->addAction(QLatin1String("new_note"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_N));
     connect(action, SIGNAL(triggered()), SLOT(newNote()));
 
-    action  = new QAction(QIcon::fromTheme(QLatin1String("edit-paste")),
+    action  = new QAction(QIcon::fromTheme(QStringLiteral("edit-paste")),
                           i18n("New Note From Clipboard"), this);
     actionCollection()->addAction(QLatin1String("new_note_clipboard"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_C));
     connect(action, SIGNAL(triggered()), SLOT(newNoteFromClipboard()));
 
-    action  = new QAction(QIcon::fromTheme(QLatin1String("document-open")),
+    action  = new QAction(QIcon::fromTheme(QStringLiteral("document-open")),
                           i18n("New Note From Text File..."), this);
     actionCollection()->addAction(QLatin1String("new_note_from_text_file"), action);
     connect(action, &QAction::triggered, this, &KNotesApp::newNoteFromTextFile);
 
-    action  = new QAction(QIcon::fromTheme(QLatin1String("knotes")), i18n("Show All Notes"), this);
+    action  = new QAction(QIcon::fromTheme(QStringLiteral("knotes")), i18n("Show All Notes"), this);
     actionCollection()->addAction(QLatin1String("show_all_notes"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_S));
     connect(action, &QAction::triggered, this, &KNotesApp::showAllNotes);
 
-    action  = new QAction(QIcon::fromTheme(QLatin1String("window-close")),
+    action  = new QAction(QIcon::fromTheme(QStringLiteral("window-close")),
                           i18n("Hide All Notes"), this);
     actionCollection()->addAction(QLatin1String("hide_all_notes"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_H));
     connect(action, &QAction::triggered, this, &KNotesApp::hideAllNotes);
 
-    action = new QAction(QIcon::fromTheme(QLatin1String("document-print")),
+    action = new QAction(QIcon::fromTheme(QStringLiteral("document-print")),
                          i18nc("@action:inmenu", "Print Selected Notes..."), this);
     actionCollection()->addAction(QLatin1String("print_selected_notes"), action);
     connect(action, &QAction::triggered, this, &KNotesApp::slotPrintSelectedNotes);
 
     QAction *act = KStandardAction::find(this, SLOT(slotOpenFindDialog()), actionCollection());
-    action = new QAction(QIcon::fromTheme(QLatin1String("edit-delete")),
+    action = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")),
                          i18nc("@action:inmenu", "Delete Selected Notes..."), this);
     actionCollection()->addAction(QLatin1String("delete_selected_notes"), action);
     connect(action, &QAction::triggered, this, &KNotesApp::slotDeleteSelectedNotes);
