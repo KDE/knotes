@@ -209,7 +209,7 @@ KNotesPart::KNotesPart(QObject *parent)
     mReadOnly  = new KToggleAction(QIcon::fromTheme(QStringLiteral("object-locked")), i18n("Lock"), this);
     actionCollection()->addAction(QStringLiteral("lock_note"), mReadOnly);
     connect(mReadOnly, &KToggleAction::triggered, this, &KNotesPart::slotUpdateReadOnly);
-    mReadOnly->setCheckedState(KGuiItem(i18n("Unlock"), QLatin1String("object-unlocked")));
+    mReadOnly->setCheckedState(KGuiItem(i18n("Unlock"), QStringLiteral("object-unlocked")));
 
     KStandardAction::find(this, SLOT(slotOpenFindDialog()), actionCollection());
 
@@ -675,7 +675,7 @@ void KNotesPart::updateNetworkListener()
 
     if (NoteShared::NoteSharedGlobalConfig::receiveNotes()) {
         // create the socket and start listening for connections
-        mPublisher = new KDNSSD::PublicService(NoteShared::NoteSharedGlobalConfig::senderID(), QLatin1String("_knotes._tcp"), NoteShared::NoteSharedGlobalConfig::port());
+        mPublisher = new KDNSSD::PublicService(NoteShared::NoteSharedGlobalConfig::senderID(), QStringLiteral("_knotes._tcp"), NoteShared::NoteSharedGlobalConfig::port());
         mPublisher->publishAsync();
     }
 }
@@ -770,7 +770,7 @@ void KNotesPart::slotSaveAs()
         doc.setHtml(knoteItem->description());
         if (htmlFormatAndSaveAsHtml) {
             QString htmlStr = doc.toHtml();
-            htmlStr.replace(QLatin1String("meta name=\"qrichtext\" content=\"1\""), QLatin1String("meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\""));
+            htmlStr.replace(QLatin1String("meta name=\"qrichtext\" content=\"1\""), QStringLiteral("meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\""));
             stream <<  htmlStr;
         } else {
             stream << knoteItem->realName() + QLatin1Char('\n');

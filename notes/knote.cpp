@@ -160,7 +160,7 @@ void KNote::slotKill(bool force)
                     i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>",
                          m_label->text()),
                     i18n("Confirm Delete"),
-                    KGuiItem(i18n("&Delete"), QLatin1String("edit-delete")),
+                    KGuiItem(i18n("&Delete"), QStringLiteral("edit-delete")),
                     KStandardGuiItem::cancel(),
                     QLatin1String("ConfirmDeleteNote")) != KMessageBox::Continue)) {
         return;
@@ -553,7 +553,7 @@ void KNote::slotSaveAs()
         QTextStream stream(&file);
         if (htmlFormatAndSaveAsHtml) {
             QString htmlStr = m_editor->toHtml();
-            htmlStr.replace(QLatin1String("meta name=\"qrichtext\" content=\"1\""), QLatin1String("meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\""));
+            htmlStr.replace(QLatin1String("meta name=\"qrichtext\" content=\"1\""), QStringLiteral("meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\""));
             stream <<  htmlStr;
         } else {
             stream << m_editor->toPlainText();

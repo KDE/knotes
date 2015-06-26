@@ -412,7 +412,7 @@ void KNotesApp::updateNetworkListener()
 
     if (NoteShared::NoteSharedGlobalConfig::receiveNotes()) {
         // create the socket and start listening for connections
-        m_publisher = new KDNSSD::PublicService(NoteShared::NoteSharedGlobalConfig::senderID(), QLatin1String("_knotes._tcp"), NoteShared::NoteSharedGlobalConfig::port());
+        m_publisher = new KDNSSD::PublicService(NoteShared::NoteSharedGlobalConfig::senderID(), QStringLiteral("_knotes._tcp"), NoteShared::NoteSharedGlobalConfig::port());
         m_publisher->publishAsync();
     }
 }
@@ -468,7 +468,7 @@ void KNotesApp::updateNoteActions()
             replaceText = realName;
         }
 
-        QAction *action = new QAction(replaceText.replace(QLatin1String("&"), QLatin1String("&&")), this);
+        QAction *action = new QAction(replaceText.replace(QLatin1String("&"), QStringLiteral("&&")), this);
         action->setToolTip(realName);
         action->setObjectName(QString::number(note->noteId()));
         connect(action, SIGNAL(triggered(bool)), SLOT(slotShowNote()));

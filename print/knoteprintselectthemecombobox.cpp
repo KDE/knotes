@@ -56,7 +56,7 @@ void KNotePrintSelectThemeComboBox::loadThemes()
             dirIt.next();
             const QString themeInfoFile = dirIt.filePath() + QDir::separator() + QLatin1String("theme.desktop");
             KConfig config(themeInfoFile);
-            KConfigGroup group(&config, QLatin1String("Desktop Entry"));
+            KConfigGroup group(&config, QStringLiteral("Desktop Entry"));
             QString name = group.readEntry("Name", QString());
             if (name.isEmpty()) {
                 continue;
