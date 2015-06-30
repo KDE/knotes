@@ -100,7 +100,7 @@ KNotesPart::KNotesPart(QObject *parent)
       mNoteTreeModel(Q_NULLPTR)
 {
     (void) new KNotesAdaptor(this);
-    QDBusConnection::sessionBus().registerObject(QLatin1String("/KNotes"), this);
+    QDBusConnection::sessionBus().registerObject(QStringLiteral("/KNotes"), this);
 
     setComponentName(QStringLiteral("knotes"), QStringLiteral("knotes"));
 
@@ -229,7 +229,7 @@ KNotesPart::KNotesPart(QObject *parent)
     mModelProxy->setSelectionModel(mSelectionModel);
     mModelProxy->setSourceModel(mNoteTreeModel);
 
-    KSharedConfigPtr _config = KSharedConfig::openConfig(QLatin1String("kcmknotessummaryrc"));
+    KSharedConfigPtr _config = KSharedConfig::openConfig(QStringLiteral("kcmknotessummaryrc"));
 
     mModelState =
         new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), this);
@@ -251,7 +251,7 @@ KNotesPart::KNotesPart(QObject *parent)
     slotOnCurrentChanged();
 
     setWidget(mNotesWidget);
-    setXMLFile(QLatin1String("knotes_part.rc"));
+    setXMLFile(QStringLiteral("knotes_part.rc"));
     updateNetworkListener();
     updateClickMessage();
 }
@@ -770,7 +770,7 @@ void KNotesPart::slotSaveAs()
         doc.setHtml(knoteItem->description());
         if (htmlFormatAndSaveAsHtml) {
             QString htmlStr = doc.toHtml();
-            htmlStr.replace(QLatin1String("meta name=\"qrichtext\" content=\"1\""), QStringLiteral("meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\""));
+            htmlStr.replace(QStringLiteral("meta name=\"qrichtext\" content=\"1\""), QStringLiteral("meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\""));
             stream <<  htmlStr;
         } else {
             stream << knoteItem->realName() + QLatin1Char('\n');

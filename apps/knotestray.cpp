@@ -29,11 +29,11 @@ KNotesTray::KNotesTray(QWidget *parent)
     : KStatusNotifierItem(parent)
 {
     setToolTipTitle(i18n("KNotes: Sticky notes for KDE"));
-    setToolTipIconByName(QLatin1String("knotes"));
+    setToolTipIconByName(QStringLiteral("knotes"));
     setStatus(KStatusNotifierItem::Active);
     setCategory(KStatusNotifierItem::ApplicationStatus);
     setStandardActionsEnabled(false);
-    mIcon = QIcon::fromTheme(QLatin1String("knotes"));
+    mIcon = QIcon::fromTheme(QStringLiteral("knotes"));
 }
 
 KNotesTray::~KNotesTray()

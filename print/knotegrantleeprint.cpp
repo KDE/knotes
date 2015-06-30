@@ -36,7 +36,7 @@ KNoteGrantleePrint::KNoteGrantleePrint(const QString &themePath, QObject *parent
     mTemplateLoader->setTemplateDirs(QStringList() << themePath);
     mEngine->addTemplateLoader(mTemplateLoader);
 
-    mSelfcontainedTemplate = mEngine->loadByName(QLatin1String("theme.html"));
+    mSelfcontainedTemplate = mEngine->loadByName(QStringLiteral("theme.html"));
     if (mSelfcontainedTemplate->error()) {
         mErrorMessage = mSelfcontainedTemplate->errorString() + QLatin1String("<br>");
     }

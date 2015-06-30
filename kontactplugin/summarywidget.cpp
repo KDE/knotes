@@ -62,7 +62,7 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
       mPlugin(plugin),
       mInProgress(false)
 {
-    mDefaultPixmap = KIconLoader::global()->loadIcon(QLatin1String("knotes"), KIconLoader::Desktop);
+    mDefaultPixmap = KIconLoader::global()->loadIcon(QStringLiteral("knotes"), KIconLoader::Desktop);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setSpacing(3);
     mainLayout->setMargin(3);
@@ -94,7 +94,7 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
     mModelProxy->setSelectionModel(mSelectionModel);
     mModelProxy->setSourceModel(mNoteTreeModel);
 
-    KSharedConfigPtr _config = KSharedConfig::openConfig(QLatin1String("kcmknotessummaryrc"));
+    KSharedConfigPtr _config = KSharedConfig::openConfig(QStringLiteral("kcmknotessummaryrc"));
 
     mModelState =
         new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), this);
@@ -152,11 +152,11 @@ void KNotesSummaryWidget::slotPopupMenu(const QString &note)
 {
     QMenu popup(this);
     const QAction *modifyNoteAction = popup.addAction(
-                                          KIconLoader::global()->loadIcon(QLatin1String("document-edit"), KIconLoader::Small),
+                                          KIconLoader::global()->loadIcon(QStringLiteral("document-edit"), KIconLoader::Small),
                                           i18n("Modify Note..."));
     popup.addSeparator();
     const QAction *deleteNoteAction = popup.addAction(
-                                          KIconLoader::global()->loadIcon(QLatin1String("edit-delete"), KIconLoader::Small),
+                                          KIconLoader::global()->loadIcon(QStringLiteral("edit-delete"), KIconLoader::Small),
                                           i18n("Delete Note..."));
 
     const QAction *ret = popup.exec(QCursor::pos());

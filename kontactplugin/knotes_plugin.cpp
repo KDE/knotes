@@ -107,7 +107,7 @@ KontactInterface::Summary *KNotesPlugin::createSummaryWidget(QWidget *parentWidg
 
 const KAboutData KNotesPlugin::aboutData()
 {
-    KAboutData aboutData = KAboutData(QLatin1String("knotes"),
+    KAboutData aboutData = KAboutData(QStringLiteral("knotes"),
                                       xi18nc("@title", "KNotes"),
                                       QLatin1String(KDEPIM_VERSION),
                                       xi18nc("@title", "Popup Notes"),

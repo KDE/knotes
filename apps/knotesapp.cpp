@@ -109,7 +109,7 @@ KNotesApp::KNotesApp()
     }
 
     new KNotesAdaptor(this);
-    QDBusConnection::sessionBus().registerObject(QLatin1String("/KNotes") , this);
+    QDBusConnection::sessionBus().registerObject(QStringLiteral("/KNotes") , this);
     qApp->setQuitOnLastWindowClosed(false);
     // create the GUI...
     QAction *action  = new QAction(QIcon::fromTheme(QStringLiteral("document-new")),
@@ -165,17 +165,17 @@ KNotesApp::KNotesApp()
     //FIXME: no shortcut removing!?
     KStandardAction::quit(this, SLOT(slotQuit()),
                           actionCollection())->setShortcut(0);
-    setXMLFile(QLatin1String("knotesappui.rc"));
+    setXMLFile(QStringLiteral("knotesappui.rc"));
 
     m_guiBuilder = new KXMLGUIBuilder(this);
     m_guiFactory = new KXMLGUIFactory(m_guiBuilder, this);
     m_guiFactory->addClient(this);
 
     QMenu *contextMenu = static_cast<QMenu *>(m_guiFactory->container(
-                             QLatin1String("knotes_context"),
+                             QStringLiteral("knotes_context"),
                              this));
     m_noteMenu = static_cast<QMenu *>(m_guiFactory->container(
-                                          QLatin1String("notes_menu"), this));
+                                          QStringLiteral("notes_menu"), this));
 
     // get the most recent XML UI file
     QString xmlFileName(componentName() + QLatin1String("ui.rc"));
@@ -486,21 +486,21 @@ void KNotesApp::updateNoteActions()
     }
 
     if (m_noteActions.isEmpty()) {
-        actionCollection()->action(QLatin1String("hide_all_notes"))->setEnabled(false);
-        actionCollection()->action(QLatin1String("show_all_notes"))->setEnabled(false);
-        actionCollection()->action(QLatin1String("print_selected_notes"))->setEnabled(false);
-        actionCollection()->action(QLatin1String("edit_find"))->setEnabled(false);
+        actionCollection()->action(QStringLiteral("hide_all_notes"))->setEnabled(false);
+        actionCollection()->action(QStringLiteral("show_all_notes"))->setEnabled(false);
+        actionCollection()->action(QStringLiteral("print_selected_notes"))->setEnabled(false);
+        actionCollection()->action(QStringLiteral("edit_find"))->setEnabled(false);
         QAction *action = new QAction(i18n("No Notes"), this);
         action->setEnabled(false);
         m_noteActions.append(action);
     } else {
         qSort(m_noteActions.begin(), m_noteActions.end(), qActionLessThan);
-        actionCollection()->action(QLatin1String("hide_all_notes"))->setEnabled(true);
-        actionCollection()->action(QLatin1String("show_all_notes"))->setEnabled(true);
-        actionCollection()->action(QLatin1String("print_selected_notes"))->setEnabled(true);
-        actionCollection()->action(QLatin1String("edit_find"))->setEnabled(true);
+        actionCollection()->action(QStringLiteral("hide_all_notes"))->setEnabled(true);
+        actionCollection()->action(QStringLiteral("show_all_notes"))->setEnabled(true);
+        actionCollection()->action(QStringLiteral("print_selected_notes"))->setEnabled(true);
+        actionCollection()->action(QStringLiteral("edit_find"))->setEnabled(true);
     }
-    plugActionList(QLatin1String("notes"), m_noteActions);
+    plugActionList(QStringLiteral("notes"), m_noteActions);
 }
 
 void KNotesApp::slotActivateRequested(bool, const QPoint &)

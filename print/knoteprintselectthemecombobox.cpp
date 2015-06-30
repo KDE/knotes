@@ -39,7 +39,7 @@ void KNotePrintSelectThemeComboBox::loadThemes()
     clear();
     const QString defaultTheme = KNotesGlobalConfig::self()->theme();
 
-    const QString relativePath = QLatin1String("knotes/print/themes/");
+    const QString relativePath = QStringLiteral("knotes/print/themes/");
     QStringList themesDirectories = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, relativePath, QStandardPaths::LocateDirectory);
     if (themesDirectories.count() < 2) {
         //Make sure to add local directory

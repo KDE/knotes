@@ -162,7 +162,7 @@ void KNote::slotKill(bool force)
                     i18n("Confirm Delete"),
                     KGuiItem(i18n("&Delete"), QStringLiteral("edit-delete")),
                     KStandardGuiItem::cancel(),
-                    QLatin1String("ConfirmDeleteNote")) != KMessageBox::Continue)) {
+                    QStringLiteral("ConfirmDeleteNote")) != KMessageBox::Continue)) {
         return;
     }
 
@@ -553,7 +553,7 @@ void KNote::slotSaveAs()
         QTextStream stream(&file);
         if (htmlFormatAndSaveAsHtml) {
             QString htmlStr = m_editor->toHtml();
-            htmlStr.replace(QLatin1String("meta name=\"qrichtext\" content=\"1\""), QStringLiteral("meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\""));
+            htmlStr.replace(QStringLiteral("meta name=\"qrichtext\" content=\"1\""), QStringLiteral("meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\""));
             stream <<  htmlStr;
         } else {
             stream << m_editor->toPlainText();
@@ -803,7 +803,7 @@ void KNote::createNoteHeader()
     m_label->setAutoFillBackground(true);
     m_label->installEventFilter(this);    // receive events ( for dragging &
     // action menu )
-    m_button = new KNoteButton(QLatin1String("knotes_close"), this);
+    m_button = new KNoteButton(QStringLiteral("knotes_close"), this);
     headerLayout->addWidget(m_button);
 
     connect(m_button, &KNoteButton::clicked, this, &KNote::slotClose);
