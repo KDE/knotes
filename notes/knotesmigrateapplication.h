@@ -23,7 +23,6 @@
 #include <migration/migrateapplicationfiles.h>
 #include "knotes_export.h"
 
-
 class KNOTES_EXPORT KNotesMigrateApplication
 {
 public:

@@ -106,7 +106,6 @@ KNotesPart::KNotesPart(QObject *parent)
 
     Akonadi::ControlGui::widgetNeedsAkonadi(widget());
 
-
     if (KNotesGlobalConfig::self()->autoCreateResourceOnStart()) {
         NoteShared::LocalResourceCreator *creator = new NoteShared::LocalResourceCreator(this);
         creator->createIfMissing();
