@@ -613,8 +613,7 @@ void KNote::slotUpdateKeepAboveBelow(bool save)
     } else if (m_keepBelow->isChecked()) {
         attribute->setKeepAbove(false);
         attribute->setKeepBelow(true);
-#pragma message("port QT5")
-        //QT5 KWindowSystem::setState( winId(), state | NET::KeepBelow );
+        KWindowSystem::setState( winId(), state | NET::KeepBelow );
     } else {
         attribute->setKeepAbove(false);
         attribute->setKeepBelow(false);
@@ -633,7 +632,6 @@ void KNote::slotUpdateKeepAboveBelow(bool save)
 
 void KNote::slotUpdateShowInTaskbar()
 {
-#if 0 //QT5
 #if KDEPIM_HAVE_X11
     if (!mDisplayAttribute->showInTaskbar()) {
         KWindowSystem::setState(winId(), KWindowSystem::windowInfo(winId(),
@@ -641,7 +639,6 @@ void KNote::slotUpdateShowInTaskbar()
     } else {
         KWindowSystem::clearState(winId(), NET::SkipTaskbar);
     }
-#endif
 #endif
 }
 
