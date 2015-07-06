@@ -255,14 +255,7 @@ void KNote::setName(const QString &name)
     if (m_editor) {      // not called from CTOR?
         saveNote();
     }
-#if 0 //QT5
-#if KDEPIM_HAVE_X11
-    // set the window's name for the taskbar entry to be more helpful (#58338)
-    NETWinInfo note_win(QX11Info::display(), winId(), QX11Info::appRootWindow(),
-                        NET::WMDesktop);
-    note_win.setName(name.toUtf8());
-#endif
-#endif
+    setWindowTitle(name);
 
     Q_EMIT sigNameChanged(name);
 }
