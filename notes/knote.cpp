@@ -939,14 +939,12 @@ void KNote::prepare()
                                           IconSize(KIconLoader::Desktop)),
                                       KIconEffect::Colorize,
                                       1, col, false);
-#if KDEPIM_HAVE_X11
     const QPixmap miniIcon = effect.apply(qApp->windowIcon().pixmap(
             IconSize(KIconLoader::Small),
             IconSize(KIconLoader::Small)),
                                           KIconEffect::Colorize,
                                           1, col, false);
     KWindowSystem::setIcons(winId(), icon, miniIcon);
-#endif
 
     // set up the look&feel of the note
     setFrameStyle(Panel | Raised);
@@ -1028,9 +1026,7 @@ void KNote::setColor(const QColor &fg, const QColor &bg)
                                         IconSize(KIconLoader::Small),
                                         IconSize(KIconLoader::Small)),
                                     KIconEffect::Colorize, 1, bg, false);
-#if KDEPIM_HAVE_X11
     KWindowSystem::setIcons(winId(), icon, miniIcon);
-#endif
     // update the color of the title
     updateFocus();
     Q_EMIT sigColorChanged();

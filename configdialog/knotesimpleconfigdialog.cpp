@@ -50,7 +50,6 @@ KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title,
     okButton->setDefault(true);
 
     setWindowTitle(title);
-#if KDEPIM_HAVE_X11
     KWindowSystem::setIcons(winId(),
                             qApp->windowIcon().pixmap(
                                 IconSize(KIconLoader::Desktop),
@@ -58,7 +57,6 @@ KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title,
                             qApp->windowIcon().pixmap(
                                 IconSize(KIconLoader::Small),
                                 IconSize(KIconLoader::Small)));
-#endif
     mTabWidget = new QTabWidget;
 
     mEditorConfigWidget = new KNoteEditorConfigWidget(true, this);
