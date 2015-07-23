@@ -28,7 +28,7 @@ class Application
     : public KontactInterface::PimUniqueApplication
 {
 public:
-    Application(int &argc, char **argv[], KAboutData &about);
+    Application(int &argc, char **argv[]);
     ~Application();
 
     int activate(const QStringList &args) Q_DECL_OVERRIDE;

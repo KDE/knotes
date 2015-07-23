@@ -44,6 +44,7 @@ void knotesAuthors(KAboutData &aboutData);
 
 int main(int argc, char *argv[])
 {
+    Application app(argc, &argv);
     KNotesMigrateApplication migrate;
     migrate.migrate();
 
@@ -54,8 +55,7 @@ int main(int argc, char *argv[])
                          KAboutLicense::GPL,
                          i18n("Copyright © 1997–2015 KNotes authors"));
     knotesAuthors(aboutData);
-
-    Application app(argc, &argv, aboutData);
+    app.setAboutData(aboutData);
     QCommandLineParser *cmdArgs = app.cmdArgs();
     knotesOptions(cmdArgs);
 

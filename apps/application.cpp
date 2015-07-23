@@ -23,8 +23,8 @@
 #include <kontactinterface/pimuniqueapplication.h>
 #include <QCommandLineParser>
 
-Application::Application(int &argc, char **argv[], KAboutData &about)
-    : KontactInterface::PimUniqueApplication(argc, argv, about),
+Application::Application(int &argc, char **argv[])
+    : KontactInterface::PimUniqueApplication(argc, argv),
       mMainWindow(0)
 {
 }
