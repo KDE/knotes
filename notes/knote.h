@@ -104,7 +104,7 @@ private Q_SLOTS:
     void slotSetAlarm();
 
     void slotPreferences();
-    void slotPopupActionToDesktop(int id);
+    void slotPopupActionToDesktop(QAction *act);
 
     void slotApplyConfig();
     void slotUpdateKeepAboveBelow(bool save = true);

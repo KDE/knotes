@@ -552,9 +552,10 @@ void KNote::slotSaveAs()
     }
 }
 
-void KNote::slotPopupActionToDesktop(int id)
+void KNote::slotPopupActionToDesktop(QAction *act)
 {
-    toDesktop(id - 1);   // compensate for the menu separator, -1 == all desktops
+    const int id = act->data().toInt();
+    toDesktop(id);   // compensate for the menu separator, -1 == all desktops
 }
 
 // ------------------ private slots (configuration) ------------------ //
@@ -643,13 +644,15 @@ void KNote::slotUpdateDesktopActions()
 
     if (info.onAllDesktops()) {
         act->setChecked(true);
+        act->setData(NETWinInfo::OnAllDesktops);
     }
     QAction *separator = new QAction(m_toDesktop);
     separator->setSeparator(true);
     m_toDesktop->addAction(separator);
     const int count = KWindowSystem::numberOfDesktops();
     for (int n = 1; n <= count; ++n) {
-        QAction *desktopAct = m_toDesktop->addAction(QStringLiteral("&%1").arg(n));
+        QAction *desktopAct = m_toDesktop->addAction(QStringLiteral("&%1 %2").arg(n).arg(KWindowSystem::desktopName(n)));
+        desktopAct->setData(n);
         if (info.isOnDesktop(n)) {
             desktopAct->setChecked(true);
         }
@@ -739,7 +742,7 @@ void KNote::createActions()
 #if KDEPIM_HAVE_X11
     m_toDesktop  = new KSelectAction(i18n("To Desktop"), this);
     actionCollection()->addAction(QStringLiteral("to_desktop"), m_toDesktop);
-    connect(m_toDesktop, static_cast<void (KSelectAction::*)(int)>(&KSelectAction::triggered), this, &KNote::slotPopupActionToDesktop);
+    connect(m_toDesktop, static_cast<void (KSelectAction::*)(QAction *)>(&KSelectAction::triggered), this, &KNote::slotPopupActionToDesktop);
     connect(m_toDesktop->menu(), SIGNAL(aboutToShow()), SLOT(slotUpdateDesktopActions()));
     // initially populate it, otherwise stays disabled
     slotUpdateDesktopActions();
