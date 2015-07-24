@@ -189,18 +189,17 @@ void KNote::saveNote(bool force, bool sync)
         attribute->setSize(currentSize);
     }
 #if KDEPIM_HAVE_X11
-#if 0 //QT5
-    NETWinInfo wm_client(QX11Info::display(), winId(),
-                         QX11Info::appRootWindow(), NET::WMDesktop);
-    if ((wm_client.desktop() == NETWinInfo::OnAllDesktops) ||
-            (wm_client.desktop() > 0)) {
-        const int desktopNumber = wm_client.desktop();
-        if (attribute->desktop() != desktopNumber) {
-            needToSave = true;
-            attribute->setDesktop(desktopNumber);
+    KWindowInfo info(winId(), NET::WMDesktop);
+    const int count = KWindowSystem::numberOfDesktops();
+    for (int n = 1; n <= count; ++n) {
+        if (info.isOnDesktop(n)) {
+            if (attribute->desktop() != n) {
+                needToSave = true;
+                attribute->setDesktop(n);
+                break;
+            }
         }
     }
-#endif
 #endif
     if (m_editor->document()->isModified()) {
         needToSave = true;
@@ -350,16 +349,15 @@ void KNote::slotUpdateReadOnly()
 
 void KNote::updateAllAttributes()
 {
-    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
-#if 0 //QT5
 #if KDEPIM_HAVE_X11
-    NETWinInfo wm_client(QX11Info::display(), winId(),
-                         QX11Info::appRootWindow(), NET::WMDesktop);
-    if ((wm_client.desktop() == NETWinInfo::OnAllDesktops) ||
-            (wm_client.desktop() > 0)) {
-        attribute->setDesktop(wm_client.desktop());
+    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
+    KWindowInfo info(winId(), NET::WMDesktop);
+    const int count = KWindowSystem::numberOfDesktops();
+    for (int n = 1; n <= count; ++n) {
+        if (info.isOnDesktop(n)) {
+            attribute->setDesktop(n);
+        }
     }
-#endif
 #endif
     saveNoteContent();
     attribute->setIsHidden(true);
@@ -637,30 +635,25 @@ void KNote::slotUpdateShowInTaskbar()
 
 void KNote::slotUpdateDesktopActions()
 {
-#if 0 //QT5
-#if KDEPIM_HAVE_X11
     m_toDesktop->clear();
-    NETRootInfo wm_root(QX11Info::display(), NET::NumberOfDesktops |
-                        NET::DesktopNames);
-    NETWinInfo wm_client(QX11Info::display(), winId(),
-                         QX11Info::appRootWindow(), NET::WMDesktop);
 
     QAction *act = m_toDesktop->addAction(i18n("&All Desktops"));
-    if (wm_client.desktop() == NETWinInfo::OnAllDesktops) {
+    KWindowInfo info(winId(), NET::WMDesktop);
+
+
+    if (info.onAllDesktops()) {
         act->setChecked(true);
     }
     QAction *separator = new QAction(m_toDesktop);
     separator->setSeparator(true);
     m_toDesktop->addAction(separator);
-    const int count = wm_root.numberOfDesktops();
+    const int count = KWindowSystem::numberOfDesktops();
     for (int n = 1; n <= count; ++n) {
-        QAction *desktopAct = m_toDesktop->addAction(QStringLiteral("&%1 %2").arg(n).arg(QString::fromUtf8(wm_root.desktopName(n))));
-        if (wm_client.desktop() == n) {
+        QAction *desktopAct = m_toDesktop->addAction(QStringLiteral("&%1").arg(n));
+        if (info.isOnDesktop(n)) {
             desktopAct->setChecked(true);
         }
     }
-#endif
-#endif
 }
 
 // -------------------- private methods -------------------- //
