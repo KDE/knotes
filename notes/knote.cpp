@@ -1176,9 +1176,9 @@ bool KNote::eventFilter(QObject *o, QEvent *ev)
                 slotRename();
             }
         }
-
         if (ev->type() == QEvent::MouseButtonPress &&
                 (e->button() == Qt::LeftButton || e->button() == Qt::MidButton)) {
+            //move(e->globalPos());
 #if 0 //QT5
 #if KDEPIM_HAVE_X11
             e->button() == Qt::LeftButton ? KWindowSystem::raiseWindow(winId())
@@ -1194,6 +1194,7 @@ bool KNote::eventFilter(QObject *o, QEvent *ev)
         }
 
         if (ev->type() == QEvent::MouseButtonRelease) {
+            move(e->globalPos());
 #if 0 //QT5
 #if KDEPIM_HAVE_X11
             NETRootInfo wm_root(QX11Info::display(), NET::WMMoveResize);
@@ -1203,7 +1204,6 @@ bool KNote::eventFilter(QObject *o, QEvent *ev)
 #endif
             return false;
         }
-
         return false;
     }
 
