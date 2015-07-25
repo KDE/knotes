@@ -528,7 +528,7 @@ void KNotesPart::popupRMB(QListWidgetItem *item, const QPoint &pos, const QPoint
         contextMenu->addAction(mNewNote);
     }
 
-    contextMenu->exec(mNotesWidget->notesView()->mapFromParent(globalPos));
+    contextMenu->exec(globalPos);
     delete contextMenu;
 }
 
