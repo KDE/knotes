@@ -641,7 +641,6 @@ void KNote::slotUpdateDesktopActions()
     QAction *act = m_toDesktop->addAction(i18n("&All Desktops"));
     KWindowInfo info(winId(), NET::WMDesktop);
 
-
     if (info.onAllDesktops()) {
         act->setChecked(true);
         act->setData(NETWinInfo::OnAllDesktops);
