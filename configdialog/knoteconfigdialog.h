@@ -46,7 +46,7 @@ class KNoteDisplayConfig : public KCModule
 {
     Q_OBJECT
 public:
-    KNoteDisplayConfig(QWidget *parent);
+    explicit KNoteDisplayConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
     void load() Q_DECL_OVERRIDE;
     void save() Q_DECL_OVERRIDE;
@@ -56,7 +56,7 @@ class KNoteEditorConfig : public KCModule
 {
     Q_OBJECT
 public:
-    KNoteEditorConfig(QWidget *parent);
+    explicit KNoteEditorConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
     void load() Q_DECL_OVERRIDE;
     void save() Q_DECL_OVERRIDE;
@@ -66,7 +66,7 @@ class KNoteMiscConfig : public KCModule
 {
     Q_OBJECT
 public:
-    KNoteMiscConfig(QWidget *parent);
+    explicit KNoteMiscConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
     void load() Q_DECL_OVERRIDE;
     void save() Q_DECL_OVERRIDE;
@@ -81,7 +81,7 @@ class KNotePrintConfig : public KCModule
 {
     Q_OBJECT
 public:
-    KNotePrintConfig(QWidget *parent);
+    explicit KNotePrintConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
     void load() Q_DECL_OVERRIDE;
     void save() Q_DECL_OVERRIDE;
@@ -99,7 +99,7 @@ class KNoteCollectionConfig : public KCModule
 {
     Q_OBJECT
 public:
-    KNoteCollectionConfig(QWidget *parent);
+    explicit KNoteCollectionConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
     void load() Q_DECL_OVERRIDE;
     void save() Q_DECL_OVERRIDE;
