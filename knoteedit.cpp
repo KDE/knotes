@@ -384,10 +384,9 @@ void KNoteEdit::slotTextColor()
     if (m_note) {
         m_note->setBlockSave(true);
     }
-    QColor c = textColor();
-    c = QColorDialog::getColor(mDefaultForegroundColor, this) ;
+    QColor c = QColorDialog::getColor(textColor(), this) ;
     if (c.isValid()) {
-        setTextColor(c.isValid() ? c : mDefaultForegroundColor);
+        setTextColor(c);
     }
     if (m_note) {
         m_note->setBlockSave(false);
@@ -403,10 +402,9 @@ void KNoteEdit::slotTextBackgroundColor()
     if (m_note) {
         m_note->setBlockSave(true);
     }
-    QColor c = textBackgroundColor();
-    c = QColorDialog::getColor(mDefaultBackgroundColor, this) ;
+    QColor c = QColorDialog::getColor(textBackgroundColor(), this);
     if (c.isValid()) {
-        setTextBackgroundColor(c.isValid() ? c : mDefaultBackgroundColor);
+        setTextBackgroundColor(c);
     }
     if (m_note) {
         m_note->setBlockSave(false);
