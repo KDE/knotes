@@ -1175,32 +1175,14 @@ bool KNote::eventFilter(QObject *o, QEvent *ev)
                 slotRename();
             }
         }
-        if (ev->type() == QEvent::MouseButtonPress &&
+        if (ev->type() == QEvent::MouseMove &&
                 (e->button() == Qt::LeftButton || e->button() == Qt::MidButton)) {
-            //move(e->globalPos());
-#if 0 //QT5
-#if KDEPIM_HAVE_X11
-            e->button() == Qt::LeftButton ? KWindowSystem::raiseWindow(winId())
-            : KWindowSystem::lowerWindow(winId());
-
-            XUngrabPointer(QX11Info::display(), QX11Info::appTime());
-            NETRootInfo wm_root(QX11Info::display(), NET::WMMoveResize);
-            wm_root.moveResizeRequest(winId(), e->globalX(), e->globalY(),
-                                      NET::Move);
-#endif
-#endif
+            move(e->globalPos());
             return true;
         }
 
         if (ev->type() == QEvent::MouseButtonRelease) {
             move(e->globalPos());
-#if 0 //QT5
-#if KDEPIM_HAVE_X11
-            NETRootInfo wm_root(QX11Info::display(), NET::WMMoveResize);
-            wm_root.moveResizeRequest(winId(), e->globalX(), e->globalY(),
-                                      NET::MoveResizeCancel);
-#endif
-#endif
             return false;
         }
         return false;
