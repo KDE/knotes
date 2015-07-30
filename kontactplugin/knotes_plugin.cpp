@@ -87,14 +87,6 @@ bool KNotesPlugin::isRunningStandalone() const
     return mUniqueAppWatcher->isRunningStandalone();
 }
 
-QString KNotesPlugin::tipFile() const
-{
-    // TODO: tips file
-    //QString file = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "knotes/tips");
-    QString file;
-    return file;
-}
-
 KParts::ReadOnlyPart *KNotesPlugin::createPart()
 {
     return new KNotesPart(this);

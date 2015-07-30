@@ -47,7 +47,6 @@ public:
 
     bool isRunningStandalone() const Q_DECL_OVERRIDE;
 
-    QString tipFile() const Q_DECL_OVERRIDE;
     int weight() const Q_DECL_OVERRIDE
     {
         return 600;
