@@ -742,7 +742,7 @@ void KNote::createActions()
     m_toDesktop  = new KSelectAction(i18n("To Desktop"), this);
     actionCollection()->addAction(QStringLiteral("to_desktop"), m_toDesktop);
     connect(m_toDesktop, static_cast<void (KSelectAction::*)(QAction *)>(&KSelectAction::triggered), this, &KNote::slotPopupActionToDesktop);
-    connect(m_toDesktop->menu(), SIGNAL(aboutToShow()), SLOT(slotUpdateDesktopActions()));
+    connect(m_toDesktop->menu(), &QMenu::aboutToShow, this, &KNote::slotUpdateDesktopActions);
     // initially populate it, otherwise stays disabled
     slotUpdateDesktopActions();
 #endif

@@ -65,7 +65,7 @@ void KNotePrinter::doPrintPreview(const QString &htmlText)
     printer.setCollateCopies(true);
     QPrintPreviewDialog previewdlg(&printer, 0);
 
-    connect(&previewdlg, SIGNAL(paintRequested(QPrinter*)), this, SLOT(slotPrinterPage(QPrinter*))) ;
+    connect(&previewdlg, &QPrintPreviewDialog::paintRequested, this, &KNotePrinter::slotPrinterPage) ;
     previewdlg.exec() ;
 }
 

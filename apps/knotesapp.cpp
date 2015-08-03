@@ -199,8 +199,8 @@ KNotesApp::KNotesApp()
     mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
     mNoteRecorder->changeRecorder()->setSession(session);
     mTray = new KNotesAkonadiTray(0);
-    connect(mTray, SIGNAL(activateRequested(bool,QPoint)), this, SLOT(slotActivateRequested(bool,QPoint)));
-    connect(mTray, SIGNAL(secondaryActivateRequested(QPoint)), this, SLOT(slotSecondaryActivateRequested(QPoint)));
+    connect(mTray, &KStatusNotifierItem::activateRequested, this, &KNotesApp::slotActivateRequested);
+    connect(mTray, &KStatusNotifierItem::secondaryActivateRequested, this, &KNotesApp::slotSecondaryActivateRequested);
 
     mTray->setContextMenu(contextMenu);
     mNoteTreeModel = new NoteShared::NotesAkonadiTreeModel(mNoteRecorder->changeRecorder(), this);
@@ -612,7 +612,7 @@ void KNotesApp::slotConfigureAccels()
 void KNotesApp::slotNoteKilled(Akonadi::Item::Id id)
 {
     Akonadi::ItemDeleteJob *deleteJob = new Akonadi::ItemDeleteJob(Akonadi::Item(id), this);
-    connect(deleteJob, SIGNAL(result(KJob*)), SLOT(slotNoteDeleteFinished(KJob*)));
+    connect(deleteJob, &KJob::result, this, &KNotesApp::slotNoteDeleteFinished);
 }
 
 void KNotesApp::slotNoteDeleteFinished(KJob *job)
