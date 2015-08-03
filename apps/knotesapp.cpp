@@ -298,16 +298,16 @@ void KNotesApp::createNote(const Akonadi::Item &item)
         //TODO add AllowDebugBaloo
         KNote *note = new KNote(m_noteGUI, item, mDebugBaloo);
         mNotes.insert(item.id(), note);
-        connect(note, SIGNAL(sigShowNextNote()),
-                SLOT(slotWalkThroughNotes())) ;
+        connect(note, &KNote::sigShowNextNote,
+                this, &KNotesApp::slotWalkThroughNotes) ;
         connect(note, SIGNAL(sigRequestNewNote()),
                 SLOT(newNote()));
-        connect(note, SIGNAL(sigNameChanged(QString)),
-                SLOT(updateNoteActions()));
-        connect(note, SIGNAL(sigColorChanged()),
-                SLOT(updateNoteActions()));
-        connect(note, SIGNAL(sigKillNote(Akonadi::Item::Id)),
-                SLOT(slotNoteKilled(Akonadi::Item::Id)));
+        connect(note, &KNote::sigNameChanged,
+                this, &KNotesApp::updateNoteActions);
+        connect(note, &KNote::sigColorChanged,
+                this, &KNotesApp::updateNoteActions);
+        connect(note, &KNote::sigKillNote,
+                this, &KNotesApp::slotNoteKilled);
     }
 }
 
