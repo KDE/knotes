@@ -423,7 +423,8 @@ void KNote::saveNoteContent()
     message->date(true)->setDateTime(QDateTime::currentDateTime());
     message->mainBodyPart()->fromUnicodeString(text().isEmpty() ? QStringLiteral(" ") : text());
 
-    KMime::Headers::Generic *header = new KMime::Headers::Generic("X-Cursor-Position", message.data(), QString::number(m_editor->cursorPositionFromStart()), "utf-8");
+    KMime::Headers::Generic *header = new KMime::Headers::Generic("X-Cursor-Position", message.data());
+    header->fromUnicodeString(QString::number(m_editor->cursorPositionFromStart()), "utf-8");
     message->setHeader(header);
 
     message->assemble();

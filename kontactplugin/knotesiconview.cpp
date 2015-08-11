@@ -294,7 +294,8 @@ void KNotesIconViewItem::saveNoteContent(const QString &subject, const QString &
     }
 
     if (position >= 0) {
-        KMime::Headers::Generic *header = new KMime::Headers::Generic("X-Cursor-Position", message.data(), QString::number(position), "utf-8");
+        KMime::Headers::Generic *header = new KMime::Headers::Generic("X-Cursor-Position", message.data());
+        header->fromUnicodeString(QString::number(position), "utf-8");
         message->setHeader(header);
     }
 
