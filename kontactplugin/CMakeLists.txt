@@ -2,10 +2,6 @@
 
 
 ########### next target ###############
-include_directories(
-    ${Grantlee_INCLUDE_DIRS}
-)
-
 set(kontact_knotesplugin_PART_SRCS
   knotes_kontact_plugin_debug.cpp 
   knotes_plugin.cpp
@@ -14,7 +10,7 @@ set(kontact_knotesplugin_PART_SRCS
   knotesiconview.cpp
   knoteslistwidgetsearchline.cpp
   knoteswidget.cpp
-  knoteseditdialog.cpp  
+  knoteseditdialog.cpp
   knotesselectdeletenotesdialog.cpp
 )
 
@@ -25,15 +21,14 @@ qt5_add_dbus_interfaces(kontact_knotesplugin_interface_SRCS org.kde.kontact.KNot
 
 add_library(kontact_knotesplugin MODULE ${kontact_knotesplugin_PART_SRCS} ${kontact_knotesplugin_interface_SRCS} )
 
-target_link_libraries(kontact_knotesplugin 
-                      knotesprivate 
-                      KF5::CalendarCore 
-                      KF5::CalendarUtils 
-                      KF5::KontactInterface 
+target_link_libraries(kontact_knotesplugin
+                      knotesprivate
+                      KF5::CalendarCore
+                      KF5::CalendarUtils
+                      KF5::KontactInterface
                       kdepim 
-                      noteshared 
+                      noteshared
                       KF5::DNSSD
-                      
 )
 
 ########### install files ###############
