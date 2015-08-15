@@ -101,7 +101,7 @@ const KAboutData KNotesPlugin::aboutData()
 {
     KAboutData aboutData = KAboutData(QStringLiteral("knotes"),
                                       xi18nc("@title", "KNotes"),
-                                      QLatin1String(KDEPIM_VERSION),
+                                      QStringLiteral(KDEPIM_VERSION),
                                       xi18nc("@title", "Popup Notes"),
                                       KAboutLicense::GPL_V2,
                                       xi18nc("@info:credit", "Copyright © 2003–2014 Kontact authors"));

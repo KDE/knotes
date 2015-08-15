@@ -453,7 +453,7 @@ void KNotesApp::setText(const Akonadi::Item::Id &id, const QString &newText)
 
 void KNotesApp::updateNoteActions()
 {
-    unplugActionList(QLatin1String("notes"));
+    unplugActionList(QStringLiteral("notes"));
     m_noteActions.clear();
 
     QHashIterator<Akonadi::Item::Id, KNote *> i(mNotes);
