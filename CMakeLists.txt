@@ -43,7 +43,7 @@ kconfig_add_kcfg_files(libknotesprivate_kcfg_lib_SRCS ${libknotesprivate_kcfg_li
 add_library(knotesprivate ${libknotesprivate_lib_SRCS} ${libknotesprivate_kcfg_lib_SRCS} )
 generate_export_header(knotesprivate BASE_NAME knotes)
 
-target_link_libraries(knotesprivate pimcommon KF5::KCMUtils Grantlee5::Templates KF5::NewStuff noteshared KF5::AkonadiSearchPIM KF5::AkonadiNotes)
+target_link_libraries(knotesprivate pimcommon KF5::KCMUtils Grantlee5::Templates KF5::NewStuff KF5::WindowSystem KF5::IconThemes Qt5::PrintSupport KF5::KDELibs4Support noteshared KF5::AkonadiSearchPIM KF5::AkonadiNotes)
 set_target_properties(knotesprivate
   PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
 )
@@ -90,7 +90,7 @@ set(kcm_knotes_PART_SRCS configdialog/knoteconfigdialog.cpp configdialog/knotedi
 
 add_library(kcm_knote MODULE ${kcm_knotes_PART_SRCS} )
 
-target_link_libraries(kcm_knote knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff noteshared KF5::AkonadiNotes pimcommon)
+target_link_libraries(kcm_knote knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff KF5::WindowSystem noteshared KF5::AkonadiNotes pimcommon)
 
 install(TARGETS kcm_knote DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
