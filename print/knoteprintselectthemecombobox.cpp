@@ -65,7 +65,7 @@ void KNotePrintSelectThemeComboBox::loadThemes()
                 int i = 2;
                 const QString originalName(name);
                 while (alreadyLoadedThemeName.contains(name)) {
-                    name = originalName + QString::fromLatin1(" (%1)").arg(i);
+                    name = originalName + QStringLiteral(" (%1)").arg(i);
                     ++i;
                 }
             }
