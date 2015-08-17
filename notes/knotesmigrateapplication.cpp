@@ -52,7 +52,7 @@ void KNotesMigrateApplication::initializeMigrator()
     // Templates
     PimCommon::MigrateFileInfo migrateInfoThemePrint;
     migrateInfoThemePrint.setFolder(true);
-    migrateInfoThemePrint.setType(QStringLiteral("apps"));
+    migrateInfoThemePrint.setType(QStringLiteral("data"));
     migrateInfoThemePrint.setPath(QStringLiteral("knotes/print/"));
     migrateInfoThemePrint.setVersion(initialVersion);
     mMigrator.insertMigrateInfo(migrateInfoThemePrint);
