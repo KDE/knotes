@@ -224,13 +224,13 @@ void KNotesUniqueAppHandler::loadCommandLineOptions(QCommandLineParser *parser)
     knotesOptions(parser);
 }
 
-int KNotesUniqueAppHandler::activate(const QStringList &args)
+int KNotesUniqueAppHandler::activate(const QStringList &args, const QString &workingDir)
 {
     qCDebug(KNOTES_KONTACT_PLUGIN_LOG) ;
     // Ensure part is loaded
     (void)plugin()->part();
 
-    return KontactInterface::UniqueAppHandler::activate(args);
+    return KontactInterface::UniqueAppHandler::activate(args, workingDir);
 }
 
 #include "knotes_plugin.moc"

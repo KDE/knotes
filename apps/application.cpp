@@ -34,8 +34,10 @@ Application::~Application()
     delete mMainWindow;
 }
 
-int Application::activate(const QStringList &args)
+int Application::activate(const QStringList &args, const QString &workingDir)
 {
+    Q_UNUSED(workingDir);
+
     QCommandLineParser *parser = cmdArgs();
     parser->process(args);
 

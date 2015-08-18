@@ -31,7 +31,7 @@ public:
     Application(int &argc, char **argv[]);
     ~Application();
 
-    int activate(const QStringList &args) Q_DECL_OVERRIDE;
+    int activate(const QStringList &args, const QString &workingDir) Q_DECL_OVERRIDE;
 
 private:
     KNotesApp *mMainWindow;

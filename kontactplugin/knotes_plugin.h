@@ -33,7 +33,7 @@ public:
     explicit KNotesUniqueAppHandler(KontactInterface::Plugin *plugin)
         : KontactInterface::UniqueAppHandler(plugin) {}
     void loadCommandLineOptions(QCommandLineParser *parser) Q_DECL_OVERRIDE;
-    int activate(const QStringList &args) Q_DECL_OVERRIDE;
+    int activate(const QStringList &args, const QString &workingDir) Q_DECL_OVERRIDE;
 };
 
 class KNotesPlugin : public KontactInterface::Plugin
