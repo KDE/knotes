@@ -1,8 +1,18 @@
 project(knotes)
-add_subdirectory( icons ) 
+
 add_definitions( -DQT_NO_CAST_FROM_ASCII )
 add_definitions( -DQT_NO_CAST_TO_ASCII )
 add_definitions(-DTRANSLATION_DOMAIN=\"knotes\")
+
+add_subdirectory(icons)
+
+if (BUILD_TESTING)
+   add_subdirectory(print/autotests)
+endif()
+
+add_subdirectory(kontactplugin)
+add_subdirectory(kconf_update)
+
 
 ########### next target ###############
 
@@ -115,9 +125,3 @@ install( FILES apps/org.kde.KNotes.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDI
 install( FILES data/knotes_printing_theme.knsrc DESTINATION ${KDE_INSTALL_CONFDIR} )
 
 install(DIRECTORY print/themes/ DESTINATION ${KDE_INSTALL_DATADIR}/knotes/print/themes )
-
-if (BUILD_TESTING)
-   add_subdirectory(print/autotests)
-endif()
-
-add_subdirectory(kontactplugin)
