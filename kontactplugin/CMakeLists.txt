@@ -29,6 +29,7 @@ target_link_libraries(kontact_knotesplugin
                       kdepim 
                       noteshared
                       KF5::DNSSD
+                      KF5::Mime
 )
 
 ########### install files ###############
