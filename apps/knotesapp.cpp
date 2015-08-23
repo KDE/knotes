@@ -328,8 +328,8 @@ void KNotesApp::newNote(const QString &name, const QString &text)
 
 void KNotesApp::showNote(const Akonadi::Entity::Id &id) const
 {
-    if (mNotes.contains(id)) {
-        KNote *note = mNotes.value(id);
+    KNote *note = mNotes.value(id);
+    if (note) {
         showNote(note);
     } else {
         qCWarning(KNOTES_LOG) << "hideNote: no note with id:" << id;
@@ -353,8 +353,8 @@ void KNotesApp::showNote(KNote *note) const
 
 void KNotesApp::hideNote(const Akonadi::Item::Id &id) const
 {
-    if (mNotes.contains(id)) {
-        KNote *note = mNotes.value(id);
+    KNote *note = mNotes.value(id);
+    if (note) {
         note->hide();
     } else {
         qCWarning(KNOTES_LOG) << "hideNote: no note with id:" << id;
@@ -419,24 +419,27 @@ void KNotesApp::updateNetworkListener()
 
 QString KNotesApp::name(const Akonadi::Item::Id &id) const
 {
-    if (mNotes.contains(id)) {
-        return mNotes.value(id)->name();
+    KNote *note = mNotes.value(id);
+    if (note) {
+        return note->name();
     }
     return QString();
 }
 
 QString KNotesApp::text(const Akonadi::Item::Id &id) const
 {
-    if (mNotes.contains(id)) {
-        return mNotes.value(id)->text();
+    KNote *note = mNotes.value(id);
+    if (note) {
+        return note->text();
     }
     return QString();
 }
 
 void KNotesApp::setName(const Akonadi::Item::Id &id, const QString &newName)
 {
-    if (mNotes.contains(id)) {
-        mNotes.value(id)->setName(newName);
+    KNote *note = mNotes.value(id);
+    if (note) {
+        note->setName(newName);
     } else {
         qCWarning(KNOTES_LOG) << "setName: no note with id:" << id;
     }
@@ -444,8 +447,9 @@ void KNotesApp::setName(const Akonadi::Item::Id &id, const QString &newName)
 
 void KNotesApp::setText(const Akonadi::Item::Id &id, const QString &newText)
 {
-    if (mNotes.contains(id)) {
-        mNotes.value(id)->setText(newText);
+    KNote *note = mNotes.value(id);
+    if (note) {
+        note->setText(newText);
     } else {
         qCWarning(KNOTES_LOG) << "setText: no note with id:" << id;
     }
