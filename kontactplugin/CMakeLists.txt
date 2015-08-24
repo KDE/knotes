@@ -30,6 +30,7 @@ target_link_libraries(kontact_knotesplugin
                       noteshared
                       KF5::DNSSD
                       KF5::Mime
+                      KF5::KCMUtils
 )
 
 ########### install files ###############
