@@ -3,7 +3,6 @@
 
 ########### next target ###############
 set(kontact_knotesplugin_PART_SRCS
-  knotes_kontact_plugin_debug.cpp 
   knotes_plugin.cpp
   knotes_part.cpp
   summarywidget.cpp
@@ -17,6 +16,7 @@ set(kontact_knotesplugin_PART_SRCS
 qt5_add_dbus_adaptor(kontact_knotesplugin_PART_SRCS org.kde.kontact.KNotes.xml knotes_part.h KNotesPart)
 qt5_add_dbus_interfaces(kontact_knotesplugin_interface_SRCS org.kde.kontact.KNotes.xml)
 
+ecm_qt_declare_logging_category(kontact_knotesplugin_PART_SRCS HEADER knotes_kontact_plugin_debug.h IDENTIFIER KNOTES_KONTACT_PLUGIN_LOG CATEGORY_NAME log_knoteskontactplugin)
 
 
 add_library(kontact_knotesplugin MODULE ${kontact_knotesplugin_PART_SRCS} ${kontact_knotesplugin_interface_SRCS} )
