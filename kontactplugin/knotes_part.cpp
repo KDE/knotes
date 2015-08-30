@@ -77,7 +77,6 @@
 #include <QInputDialog>
 #include <KMessageBox>
 #include <KXMLGUIFactory>
-#include <ksocketfactory.h>
 #include <KApplication>
 #include <KFileDialog>
 #include <KToggleAction>
