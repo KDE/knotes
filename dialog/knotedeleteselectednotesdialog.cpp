@@ -16,7 +16,7 @@
 */
 
 #include "knotedeleteselectednotesdialog.h"
-#include "noteshared/widget/notelistwidget.h"
+#include "widget/notelistwidget.h"
 
 #include <KLocalizedString>
 #include <KSharedConfig>

@@ -17,7 +17,7 @@
 
 #include "knoteeditorconfigwidget.h"
 
-#include "noteshared/attributes/notedisplayattribute.h"
+#include "attributes/notedisplayattribute.h"
 
 #include <QSpinBox>
 #include <KLocalizedString>

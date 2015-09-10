@@ -16,7 +16,7 @@
 */
 
 #include "knotefinddialog.h"
-#include "noteshared/widget/notelistwidget.h"
+#include "widget/notelistwidget.h"
 
 #include <AkonadiSearch/PIM/notequery.h>
 #include <AkonadiSearch/PIM/resultiterator.h>

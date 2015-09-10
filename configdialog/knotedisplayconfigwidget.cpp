@@ -18,7 +18,7 @@
 #include "knotedisplayconfigwidget.h"
 #include "config-kdepim.h"
 
-#include "noteshared/attributes/notedisplayattribute.h"
+#include "attributes/notedisplayattribute.h"
 
 #include <KLocalizedString>
 #include <KColorButton>

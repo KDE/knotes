@@ -16,10 +16,10 @@
 */
 
 #include "knotesiconview.h"
-#include "noteshared/akonadi/notesakonaditreemodel.h"
-#include "noteshared/attributes/notedisplayattribute.h"
-#include "noteshared/attributes/notelockattribute.h"
-#include "noteshared/noteutils.h"
+#include "akonadi/notesakonaditreemodel.h"
+#include "attributes/notedisplayattribute.h"
+#include "attributes/notelockattribute.h"
+#include "noteutils.h"
 #include "knotes/notes/knotedisplaysettings.h"
 #include "utils/knoteutils.h"
 

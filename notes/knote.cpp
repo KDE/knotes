@@ -20,7 +20,7 @@
 #include "config-kdepim.h"
 #include "knotes_debug.h"
 #include "knote.h"
-#include "noteshared/noteutils.h"
+#include "noteutils.h"
 #include "alarms/notealarmdialog.h"
 #include "configdialog/knotesimpleconfigdialog.h"
 #include "print/knoteprintselectthemedialog.h"
@@ -34,9 +34,9 @@
 
 #include "knotedisplaysettings.h"
 
-#include "noteshared/attributes/notelockattribute.h"
-#include "noteshared/attributes/notedisplayattribute.h"
-#include "noteshared/attributes/notealarmattribute.h"
+#include "attributes/notelockattribute.h"
+#include "attributes/notedisplayattribute.h"
+#include "attributes/notealarmattribute.h"
 
 #include "pimcommon/baloodebug/baloodebugdialog.h"
 

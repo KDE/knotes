@@ -18,7 +18,7 @@
 */
 
 #include "knotecollectionconfigwidget.h"
-#include "noteshared/attributes/showfoldernotesattribute.h"
+#include "attributes/showfoldernotesattribute.h"
 #include <Akonadi/Notes/NoteUtils>
 #include "notesharedglobalconfig.h"
 #include "pimcommon/widgets/manageaccountwidget.h"
