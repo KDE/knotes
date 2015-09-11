@@ -34,9 +34,9 @@
 
 #include "knotedisplaysettings.h"
 
-#include "attributes/notelockattribute.h"
-#include "attributes/notedisplayattribute.h"
-#include "attributes/notealarmattribute.h"
+#include "NoteShared/NoteLockAttribute"
+#include "NoteShared/NoteDisplayAttribute"
+#include "NoteShared/NoteAlarmAttribute"
 
 #include "pimcommon/baloodebug/baloodebugdialog.h"
 

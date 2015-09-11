@@ -26,10 +26,10 @@
 
 #include "akonadi/notesakonaditreemodel.h"
 #include "akonadi/noteschangerecorder.h"
-#include "attributes/notelockattribute.h"
-#include "attributes/notedisplayattribute.h"
-#include "attributes/notealarmattribute.h"
-#include "attributes/showfoldernotesattribute.h"
+#include "NoteShared/NoteLockAttribute"
+#include "NoteShared/NoteDisplayAttribute"
+#include "NoteShared/NoteAlarmAttribute"
+#include "NoteShared/ShowFolderNotesAttribute"
 #include "resources/localresourcecreator.h"
 #include "job/createnewnotejob.h"
 

@@ -46,11 +46,11 @@
 
 #include "akonadi/notesakonaditreemodel.h"
 #include "akonadi/noteschangerecorder.h"
-#include "attributes/notealarmattribute.h"
-#include "attributes/showfoldernotesattribute.h"
-#include "attributes/notealarmattribute.h"
-#include "attributes/notedisplayattribute.h"
-#include "attributes/notelockattribute.h"
+#include "NoteShared/NoteAlarmAttribute"
+#include "NoteShared/ShowFolderNotesAttribute"
+#include "NoteShared/NoteAlarmAttribute"
+#include "NoteShared/NoteDisplayAttribute"
+#include "NoteShared/NoteLockAttribute"
 
 #include <Akonadi/Notes/NoteUtils>
 

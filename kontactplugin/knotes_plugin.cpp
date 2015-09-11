@@ -30,7 +30,7 @@
 
 #include "kdepim-version.h"
 
-#include <libkdepim/misc/maillistdrag.h>
+#include <Libkdepim/MaillistDrag>
 using namespace KPIM;
 using namespace KCalUtils;
 using namespace KCalCore;
