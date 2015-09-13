@@ -16,7 +16,7 @@
 */
 
 #include "knotesiconview.h"
-#include "akonadi/notesakonaditreemodel.h"
+#include "NoteShared/NotesAkonadiTreeModel"
 #include "NoteShared/NoteDisplayAttribute"
 #include "NoteShared/NoteLockAttribute"
 #include "noteutils.h"

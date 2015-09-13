@@ -27,8 +27,8 @@
 #include "knotes_plugin.h"
 #include "knotesinterface.h"
 
-#include "akonadi/notesakonaditreemodel.h"
-#include "akonadi/noteschangerecorder.h"
+#include "NoteShared/NotesAkonadiTreeModel"
+#include "NoteShared/NotesChangeRecorder"
 #include "NoteShared/ShowFolderNotesAttribute"
 #include "NoteShared/NoteDisplayAttribute"
 

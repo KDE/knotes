@@ -43,8 +43,8 @@
 #include "resources/localresourcecreator.h"
 #include "NoteShared/CreateNewNoteJob"
 
-#include "akonadi/notesakonaditreemodel.h"
-#include "akonadi/noteschangerecorder.h"
+#include "NoteShared/NotesAkonadiTreeModel"
+#include "NoteShared/NotesChangeRecorder"
 #include "NoteShared/NoteAlarmAttribute"
 #include "NoteShared/ShowFolderNotesAttribute"
 #include "NoteShared/NoteAlarmAttribute"

@@ -24,8 +24,8 @@
 #include "dialog/knoteselectednotesdialog.h"
 #include "utils/knoteutils.h"
 
-#include "akonadi/notesakonaditreemodel.h"
-#include "akonadi/noteschangerecorder.h"
+#include "NoteShared/NotesAkonadiTreeModel"
+#include "NoteShared/NotesChangeRecorder"
 #include "NoteShared/NoteLockAttribute"
 #include "NoteShared/NoteDisplayAttribute"
 #include "NoteShared/NoteAlarmAttribute"
