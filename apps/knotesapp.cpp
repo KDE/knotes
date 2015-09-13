@@ -31,7 +31,7 @@
 #include "NoteShared/NoteAlarmAttribute"
 #include "NoteShared/ShowFolderNotesAttribute"
 #include "resources/localresourcecreator.h"
-#include "job/createnewnotejob.h"
+#include "NoteShared/CreateNewNoteJob"
 
 #include "apps/knotesakonaditray.h"
 #include "dialog/selectednotefolderdialog.h"

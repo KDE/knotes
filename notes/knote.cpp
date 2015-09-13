@@ -21,7 +21,7 @@
 #include "knotes_debug.h"
 #include "knote.h"
 #include "noteutils.h"
-#include "alarms/notealarmdialog.h"
+#include "NoteShared/NoteAlarmDialog"
 #include "configdialog/knotesimpleconfigdialog.h"
 #include "print/knoteprintselectthemedialog.h"
 #include "knotes/notes/knotebutton.h"

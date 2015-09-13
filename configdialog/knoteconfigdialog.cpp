@@ -27,7 +27,7 @@
 #include "knotecollectionconfigwidget.h"
 #include "knotesglobalconfig.h"
 #include "notesharedglobalconfig.h"
-#include "config/noteactionconfig.h"
+#include "NoteShared/NoteActionConfig"
 #include "config/notenetworkconfig.h"
 
 #include "kdepim-version.h"
