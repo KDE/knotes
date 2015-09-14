@@ -21,7 +21,7 @@
 #include "NoteShared/ShowFolderNotesAttribute"
 #include <Akonadi/Notes/NoteUtils>
 #include "notesharedglobalconfig.h"
-#include "pimcommon/widgets/manageaccountwidget.h"
+#include "PimCommon/ManageAccountWidget"
 
 #include <AkonadiCore/CollectionModifyJob>
 #include <AkonadiCore/CollectionFilterProxyModel>

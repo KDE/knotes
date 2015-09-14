@@ -19,7 +19,7 @@
 
 #include <Akonadi/Notes/NoteUtils>
 
-#include "pimcommon/folderdialog/checkedcollectionwidget.h"
+#include "PimCommon/CheckedCollectionWidget"
 
 #include <AkonadiWidgets/ETMViewStateSaver>
 

@@ -25,7 +25,7 @@
 #include <QTextCharFormat>
 #include <QWidget>
 
-#include "pimcommon/widgets/customtextedit.h"
+#include "PimCommon/CustomTextEdit"
 
 class QFont;
 

@@ -56,7 +56,7 @@ generate_export_header(knotesprivate BASE_NAME knotes)
 
 target_link_libraries(knotesprivate
 PUBLIC
-  pimcommon
+  KF5::PimCommon
   KF5::IconThemes
 PRIVATE
   KF5::KCMUtils Grantlee5::Templates KF5::NewStuff KF5::WindowSystem Qt5::PrintSupport KF5::KDELibs4Support KF5::NoteShared KF5::AkonadiSearchPIM KF5::AkonadiNotes
@@ -92,7 +92,7 @@ add_executable(knotes ${knotes_SRCS})
 
 target_link_libraries(knotes 
    knotesprivate KF5::KCMUtils 
-   pimcommon KF5::DNSSD
+   KF5::PimCommon KF5::DNSSD
                              KF5::KontactInterface KF5::NoteShared
   KF5::AkonadiCore
   KF5::Mime
@@ -111,7 +111,7 @@ set(kcm_knotes_PART_SRCS configdialog/knoteconfigdialog.cpp configdialog/knotedi
 
 add_library(kcm_knote MODULE ${kcm_knotes_PART_SRCS} )
 
-target_link_libraries(kcm_knote knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff KF5::WindowSystem KF5::NoteShared KF5::AkonadiNotes pimcommon)
+target_link_libraries(kcm_knote knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff KF5::WindowSystem KF5::NoteShared KF5::AkonadiNotes KF5::PimCommon)
 
 install(TARGETS kcm_knote DESTINATION ${KDE_INSTALL_PLUGINDIR})
 

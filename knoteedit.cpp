@@ -21,8 +21,8 @@
 #include "knoteedit.h"
 #include "notes/knote.h"
 #include "NoteShared/NoteEditorUtils"
-#include "pimcommon/util/editorutil.h"
-#include "pimcommon/widgets/kactionmenuchangecase.h"
+#include "PimCommon/EditorUtil"
+#include "PimCommon/KActionMenuChangeCase"
 #include "knotesglobalconfig.h"
 
 #include <QAction>

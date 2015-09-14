@@ -38,7 +38,7 @@
 #include "NoteShared/NoteDisplayAttribute"
 #include "NoteShared/NoteAlarmAttribute"
 
-#include "pimcommon/baloodebug/baloodebugdialog.h"
+#include "PimCommon/BalooDebugDialog"
 
 #include <KMime/KMimeMessage>
 
