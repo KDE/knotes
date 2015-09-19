@@ -111,7 +111,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     vbox->addWidget(mFolderView);
 
     mFolderView->setModel(mCollectionFilter);
-    connect(mFolderView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), SLOT(slotUpdateButtons()));
+    connect(mFolderView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &KNoteCollectionConfigWidget::slotUpdateButtons);
 
     QHBoxLayout *hbox = new QHBoxLayout;
     vbox->addLayout(hbox);
@@ -154,7 +154,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     manageAccountWidget->setCapabilityFilter(QStringList() << QStringLiteral("Resource"));  // show only resources, no agents
     tabWidget->addTab(accountWidget, i18n("Accounts"));
 
-    QTimer::singleShot(1000, this, SLOT(slotUpdateCollectionStatus()));
+    QTimer::singleShot(1000, this, &KNoteCollectionConfigWidget::slotUpdateCollectionStatus);
     slotUpdateButtons();
 }
 

@@ -50,8 +50,8 @@ KCMKNotesSummary::KCMKNotesSummary(QWidget *parent)
 {
     initGUI();
 
-    connect(mCheckedCollectionWidget->folderTreeView(), SIGNAL(clicked(QModelIndex)),
-            SLOT(modified()));
+    connect(mCheckedCollectionWidget->folderTreeView(), &QAbstractItemView::clicked,
+            this, &KCMKNotesSummary::modified);
 
     KAcceleratorManager::manage(this);
 

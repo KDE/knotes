@@ -208,10 +208,10 @@ KNotesApp::KNotesApp()
     connect(mNoteTreeModel, &QAbstractItemModel::rowsInserted,
             this, &KNotesApp::slotRowInserted);
 
-    connect(mNoteRecorder->changeRecorder(), SIGNAL(itemChanged(Akonadi::Item,QSet<QByteArray>)), SLOT(slotItemChanged(Akonadi::Item,QSet<QByteArray>)));
-    connect(mNoteRecorder->changeRecorder(), SIGNAL(itemRemoved(Akonadi::Item)), SLOT(slotItemRemoved(Akonadi::Item)));
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged, this, &KNotesApp::slotItemChanged);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved, this, &KNotesApp::slotItemRemoved);
     connect(mNoteRecorder->changeRecorder(), SIGNAL(collectionChanged(Akonadi::Collection,QSet<QByteArray>)), SLOT(slotCollectionChanged(Akonadi::Collection,QSet<QByteArray>)));
-    connect(qApp, SIGNAL(commitDataRequest(QSessionManager&)), this, SLOT(slotCommitData(QSessionManager&)), Qt::DirectConnection);
+    connect(qApp, &QGuiApplication::commitDataRequest, this, &KNotesApp::slotCommitData, Qt::DirectConnection);
     updateNoteActions();
 }
 
@@ -245,7 +245,7 @@ void KNotesApp::slotDeleteSelectedNotes()
         Akonadi::Item::List lst = dlg->selectedNotes();
         if (!lst.isEmpty()) {
             Akonadi::ItemDeleteJob *deleteJob = new Akonadi::ItemDeleteJob(lst, this);
-            connect(deleteJob, SIGNAL(result(KJob*)), SLOT(slotNoteDeleteFinished(KJob*)));
+            connect(deleteJob, &KJob::result, this, &KNotesApp::slotNoteDeleteFinished);
         }
     }
     delete dlg;
@@ -475,7 +475,7 @@ void KNotesApp::updateNoteActions()
         QAction *action = new QAction(replaceText.replace(QLatin1String("&"), QStringLiteral("&&")), this);
         action->setToolTip(realName);
         action->setObjectName(QString::number(note->noteId()));
-        connect(action, SIGNAL(triggered(bool)), SLOT(slotShowNote()));
+        connect(action, &QAction::triggered, this, &KNotesApp::slotShowNote);
         KIconEffect effect;
         QPixmap icon =
             effect.apply(qApp->windowIcon().pixmap(IconSize(KIconLoader::Small),
@@ -673,7 +673,7 @@ void KNotesApp::slotOpenFindDialog()
 {
     if (!mFindDialog) {
         mFindDialog = new KNoteFindDialog(this);
-        connect(mFindDialog, SIGNAL(noteSelected(Akonadi::Item::Id)), this, SLOT(slotSelectNote(Akonadi::Item::Id)));
+        connect(mFindDialog, &KNoteFindDialog::noteSelected, this, &KNotesApp::slotSelectNote);
     }
     QHash<Akonadi::Item::Id , Akonadi::Item> lst;
 
@@ -694,7 +694,7 @@ void KNotesApp::fetchNotesFromCollection(const Akonadi::Collection &col)
     job->fetchScope().fetchAttribute<NoteShared::NoteDisplayAttribute>();
     job->fetchScope().fetchAttribute<NoteShared::NoteAlarmAttribute>();
     job->fetchScope().setAncestorRetrieval(Akonadi::ItemFetchScope::Parent);
-    connect(job, SIGNAL(result(KJob*)), SLOT(slotItemFetchFinished(KJob*)));
+    connect(job, &KJob::result, this, &KNotesApp::slotItemFetchFinished);
 }
 
 void KNotesApp::slotItemFetchFinished(KJob *job)

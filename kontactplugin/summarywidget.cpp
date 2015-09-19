@@ -86,8 +86,8 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
 
     connect(mNoteTreeModel, &NoteShared::NotesAkonadiTreeModel::rowsInserted, this, &KNotesSummaryWidget::updateFolderList);
 
-    connect(mNoteRecorder->changeRecorder(), SIGNAL(itemChanged(Akonadi::Item,QSet<QByteArray>)), SLOT(updateFolderList()));
-    connect(mNoteRecorder->changeRecorder(), SIGNAL(itemRemoved(Akonadi::Item)), SLOT(updateFolderList()));
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged, this, &KNotesSummaryWidget::updateFolderList);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved, this, &KNotesSummaryWidget::updateFolderList);
 
     mSelectionModel = new QItemSelectionModel(mNoteTreeModel);
     mModelProxy = new KCheckableProxyModel(this);

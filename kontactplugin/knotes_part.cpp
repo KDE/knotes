@@ -217,8 +217,8 @@ KNotesPart::KNotesPart(QObject *parent)
 
     connect(mNoteTreeModel, &NoteShared::NotesAkonadiTreeModel::rowsInserted, this, &KNotesPart::slotRowInserted);
 
-    connect(mNoteRecorder->changeRecorder(), SIGNAL(itemChanged(Akonadi::Item,QSet<QByteArray>)), SLOT(slotItemChanged(Akonadi::Item,QSet<QByteArray>)));
-    connect(mNoteRecorder->changeRecorder(), SIGNAL(itemRemoved(Akonadi::Item)), SLOT(slotItemRemoved(Akonadi::Item)));
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged, this, &KNotesPart::slotItemChanged);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved, this, &KNotesPart::slotItemRemoved);
     connect(mNoteRecorder->changeRecorder(), SIGNAL(collectionChanged(Akonadi::Collection,QSet<QByteArray>)), SLOT(slotCollectionChanged(Akonadi::Collection,QSet<QByteArray>)));
 
     mSelectionModel = new QItemSelectionModel(mNoteTreeModel);
@@ -243,8 +243,8 @@ KNotesPart::KNotesPart(QObject *parent)
     connect(mNotesWidget->notesView(), SIGNAL(itemDoubleClicked(QListWidgetItem*)),
             this, SLOT(editNote(QListWidgetItem*)));
 
-    connect(mNotesWidget->notesView(), SIGNAL(itemSelectionChanged()),
-            this, SLOT(slotOnCurrentChanged()));
+    connect(mNotesWidget->notesView(), &QListWidget::itemSelectionChanged,
+            this, &KNotesPart::slotOnCurrentChanged);
     slotOnCurrentChanged();
 
     setWidget(mNotesWidget);
