@@ -673,7 +673,7 @@ void KNotesApp::slotOpenFindDialog()
 {
     if (!mFindDialog) {
         mFindDialog = new KNoteFindDialog(this);
-        connect(mFindDialog, &KNoteFindDialog::noteSelected, this, &KNotesApp::slotSelectNote);
+        connect(mFindDialog.data(), &KNoteFindDialog::noteSelected, this, &KNotesApp::slotSelectNote);
     }
     QHash<Akonadi::Item::Id , Akonadi::Item> lst;
 
