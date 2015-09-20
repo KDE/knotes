@@ -20,7 +20,7 @@
 #ifndef KNOTESMIGRATEAPPLICATION_H
 #define KNOTESMIGRATEAPPLICATION_H
 
-#include <migration/migrateapplicationfiles.h>
+#include <pimcommon/migrateapplicationfiles.h>
 #include "knotes_export.h"
 
 class KNOTES_EXPORT KNotesMigrateApplication
