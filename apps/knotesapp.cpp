@@ -30,11 +30,11 @@
 #include "NoteShared/NoteDisplayAttribute"
 #include "NoteShared/NoteAlarmAttribute"
 #include "NoteShared/ShowFolderNotesAttribute"
-#include "resources/localresourcecreator.h"
+#include "noteshared/localresourcecreator.h"
 #include "NoteShared/CreateNewNoteJob"
 
 #include "apps/knotesakonaditray.h"
-#include "dialog/selectednotefolderdialog.h"
+#include "noteshared/selectednotefolderdialog.h"
 
 #include "notesharedglobalconfig.h"
 #include "notes/knote.h"

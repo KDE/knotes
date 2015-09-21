@@ -28,7 +28,7 @@
 #include "knotesglobalconfig.h"
 #include "notesharedglobalconfig.h"
 #include "NoteShared/NoteActionConfig"
-#include "config/notenetworkconfig.h"
+#include "noteshared/notenetworkconfig.h"
 
 #include "kdepim-version.h"
 #include <QLineEdit>

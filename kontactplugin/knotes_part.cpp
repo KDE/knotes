@@ -40,7 +40,7 @@
 #include "knotes/finddialog/knotefinddialog.h"
 #include "utils/knoteutils.h"
 #include "NoteShared/NoteAlarmDialog"
-#include "resources/localresourcecreator.h"
+#include "noteshared/localresourcecreator.h"
 #include "NoteShared/CreateNewNoteJob"
 
 #include "NoteShared/NotesAkonadiTreeModel"
