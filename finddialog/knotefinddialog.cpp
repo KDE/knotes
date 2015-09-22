@@ -54,7 +54,7 @@ KNoteFindDialog::~KNoteFindDialog()
     writeConfig();
 }
 
-void KNoteFindDialog::setExistingNotes(const QHash<Akonadi::Entity::Id, Akonadi::Item> &notes)
+void KNoteFindDialog::setExistingNotes(const QHash<Akonadi::Item::Id, Akonadi::Item> &notes)
 {
     mNoteFindWidget->setExistingNotes(notes);
 }
@@ -113,7 +113,7 @@ KNoteFindWidget::~KNoteFindWidget()
 
 }
 
-void KNoteFindWidget::setExistingNotes(const QHash<Akonadi::Entity::Id, Akonadi::Item> &notes)
+void KNoteFindWidget::setExistingNotes(const QHash<Akonadi::Item::Id, Akonadi::Item> &notes)
 {
     mNotes = notes;
 }

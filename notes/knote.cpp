@@ -177,7 +177,7 @@ void KNote::saveNote(bool force, bool sync)
         return;
     }
     bool needToSave = false;
-    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     const QPoint notePosition = pos();
     if (attribute->position() != notePosition) {
         needToSave = true;
@@ -304,7 +304,7 @@ void KNote::slotUpdateReadOnly()
         }
     } else {
         if (readOnly) {
-            mItem.attribute<NoteShared::NoteLockAttribute>(Akonadi::Entity::AddIfMissing);
+            mItem.attribute<NoteShared::NoteLockAttribute>(Akonadi::Item::AddIfMissing);
         }
     }
     if (!mBlockSave) {
@@ -350,7 +350,7 @@ void KNote::slotUpdateReadOnly()
 void KNote::updateAllAttributes()
 {
 #if KDEPIM_HAVE_X11
-    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     KWindowInfo info(winId(), NET::WMDesktop);
     const int count = KWindowSystem::numberOfDesktops();
     for (int n = 1; n <= count; ++n) {
@@ -390,7 +390,7 @@ void KNote::slotSetAlarm()
         bool needToModify = true;
         QDateTime dateTime = dlg->alarm();
         if (dateTime.isValid()) {
-            NoteShared::NoteAlarmAttribute *attribute =  mItem.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Entity::AddIfMissing);
+            NoteShared::NoteAlarmAttribute *attribute =  mItem.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
             attribute->setDateTime(dateTime);
         } else {
             if (mItem.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
@@ -436,7 +436,7 @@ void KNote::slotPreferences()
 {
     // create a new preferences dialog...
     QPointer<KNoteSimpleConfigDialog> dialog = new KNoteSimpleConfigDialog(name(), this);
-    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     attribute->setSize(QSize(width(), height()));
 
     dialog->load(mItem, m_editor->acceptRichText());
@@ -598,7 +598,7 @@ void KNote::slotUpdateKeepAboveBelow(bool save)
 #else
     NET::States state = 0; // neutral state, TODO
 #endif
-    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attribute =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     if (m_keepAbove->isChecked()) {
         attribute->setKeepAbove(true);
         attribute->setKeepBelow(false);
@@ -1088,7 +1088,7 @@ void KNote::showEvent(QShowEvent *)
         slotUpdateShowInTaskbar();
         toDesktop(mDisplayAttribute->desktop());
         move(mDisplayAttribute->position());
-        NoteShared::NoteDisplayAttribute *attr =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
+        NoteShared::NoteDisplayAttribute *attr =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
         saveNoteContent();
         attr->setIsHidden(false);
         if (!mBlockSave) {
@@ -1133,7 +1133,7 @@ void KNote::dropEvent(QDropEvent *e)
     if (md->hasColor()) {
         const QColor bg =  qvariant_cast<QColor>(md->colorData());
 
-        NoteShared::NoteDisplayAttribute *attr =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
+        NoteShared::NoteDisplayAttribute *attr =  mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
         saveNoteContent();
         attr->setBackgroundColor(bg);
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);

@@ -37,7 +37,7 @@ public:
     explicit KNoteFindWidget(QWidget *parent = Q_NULLPTR);
     ~KNoteFindWidget();
 
-    void setExistingNotes(const QHash<Akonadi::Entity::Id, Akonadi::Item> &notes);
+    void setExistingNotes(const QHash<Akonadi::Item::Id, Akonadi::Item> &notes);
 
 Q_SIGNALS:
     void noteSelected(Akonadi::Item::Id);

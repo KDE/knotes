@@ -40,7 +40,7 @@ void KNoteUtils::updateConfiguration()
 
 void KNoteUtils::setDefaultValue(Akonadi::Item &item)
 {
-    NoteShared::NoteDisplayAttribute *attribute =  item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Entity::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attribute =  item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     attribute->setBackgroundColor(KNotesGlobalConfig::self()->bgColor());
     attribute->setForegroundColor(KNotesGlobalConfig::self()->fgColor());
     attribute->setSize(QSize(KNotesGlobalConfig::self()->width(), KNotesGlobalConfig::self()->height()));

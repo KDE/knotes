@@ -106,7 +106,7 @@ KNotesIconViewItem *KNotesIconView::iconView(Akonadi::Item::Id id) const
     return Q_NULLPTR;
 }
 
-QHash<Akonadi::Entity::Id, KNotesIconViewItem *> KNotesIconView::noteList() const
+QHash<Akonadi::Item::Id, KNotesIconViewItem *> KNotesIconView::noteList() const
 {
     return mNoteList;
 }
@@ -159,7 +159,7 @@ void KNotesIconViewItem::setReadOnly(bool b, bool save)
         }
     } else {
         if (mReadOnly) {
-            mItem.attribute<NoteShared::NoteLockAttribute>(Akonadi::Entity::AddIfMissing);
+            mItem.attribute<NoteShared::NoteLockAttribute>(Akonadi::Item::AddIfMissing);
         }
     }
     if (save) {

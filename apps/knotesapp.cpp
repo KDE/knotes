@@ -326,7 +326,7 @@ void KNotesApp::newNote(const QString &name, const QString &text)
     job->start();
 }
 
-void KNotesApp::showNote(const Akonadi::Entity::Id &id) const
+void KNotesApp::showNote(const Akonadi::Item::Id &id) const
 {
     KNote *note = mNotes.value(id);
     if (note) {

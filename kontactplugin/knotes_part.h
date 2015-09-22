@@ -75,14 +75,14 @@ public:
     void killNote(Akonadi::Item::Id id, bool force);
 
     QString name(Akonadi::Item::Id id) const;
-    QString text(Akonadi::Entity::Id id) const;
+    QString text(Akonadi::Item::Id id) const;
 
     void setName(Akonadi::Item::Id id, const QString &newName);
     void setText(Akonadi::Item::Id id, const QString &newText);
 
     QMap<QString, QString> notes() const;
     void popupRMB(QListWidgetItem *item, const QPoint &pos, const QPoint &globalPos);
-    void editNote(Akonadi::Entity::Id id);
+    void editNote(Akonadi::Item::Id id);
 
     void updateClickMessage();
 private Q_SLOTS:

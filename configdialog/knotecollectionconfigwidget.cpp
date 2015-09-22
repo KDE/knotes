@@ -299,7 +299,7 @@ void KNoteCollectionConfigWidget::updateCollectionsRecursive(const QModelIndex &
         Akonadi::CollectionModifyJob *modifyJob = 0;
         const bool selected = (mCheckProxy->data(child, Qt::CheckStateRole).toInt() != 0);
         if (selected && !attr) {
-            attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>(Akonadi::Entity::AddIfMissing);
+            attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>(Akonadi::Collection::AddIfMissing);
             modifyJob = new Akonadi::CollectionModifyJob(collection);
             modifyJob->setProperty("AttributeAdded", true);
         } else if (!selected && attr) {

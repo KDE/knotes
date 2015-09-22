@@ -415,7 +415,7 @@ QString KNotesPart::text(Akonadi::Item::Id id) const
     }
 }
 
-void KNotesPart::setName(Akonadi::Entity::Id id, const QString &newName)
+void KNotesPart::setName(Akonadi::Item::Id id, const QString &newName)
 {
     KNotesIconViewItem *note = mNotesWidget->notesView()->iconView(id);
     if (note) {
@@ -530,7 +530,7 @@ void KNotesPart::popupRMB(QListWidgetItem *item, const QPoint &pos, const QPoint
     delete contextMenu;
 }
 
-void KNotesPart::editNote(Akonadi::Entity::Id id)
+void KNotesPart::editNote(Akonadi::Item::Id id)
 {
     KNotesIconViewItem *knoteItem = mNotesWidget->notesView()->iconView(id);
     if (knoteItem) {
@@ -692,7 +692,7 @@ void KNotesPart::slotSetAlarm()
         bool needToModify = true;
         QDateTime dateTime = dlg->alarm();
         if (dateTime.isValid()) {
-            NoteShared::NoteAlarmAttribute *attribute =  item.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Entity::AddIfMissing);
+            NoteShared::NoteAlarmAttribute *attribute =  item.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
             attribute->setDateTime(dateTime);
         } else {
             if (item.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
