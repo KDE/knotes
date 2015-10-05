@@ -21,7 +21,7 @@
 #include "NoteShared/ShowFolderNotesAttribute"
 #include <Akonadi/Notes/NoteUtils>
 #include "notesharedglobalconfig.h"
-#include "PimCommon/ManageAccountWidget"
+#include "AkonadiWidgets/ManageAccountWidget"
 
 #include <AkonadiCore/CollectionModifyJob>
 #include <AkonadiCore/CollectionFilterProxyModel>
@@ -147,7 +147,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     QVBoxLayout *vboxAccountWidget = new QVBoxLayout;
     accountWidget->setLayout(vboxAccountWidget);
 
-    PimCommon::ManageAccountWidget *manageAccountWidget = new PimCommon::ManageAccountWidget(this);
+    Akonadi::ManageAccountWidget *manageAccountWidget = new Akonadi::ManageAccountWidget(this);
     vboxAccountWidget->addWidget(manageAccountWidget);
 
     manageAccountWidget->setMimeTypeFilter(QStringList() << Akonadi::NoteUtils::noteMimeType());
