@@ -107,7 +107,7 @@ private Q_SLOTS:
     void slotPopupActionToDesktop(QAction *act);
 
     void slotApplyConfig();
-    void slotUpdateKeepAboveBelow(bool save = true);
+
     void slotUpdateShowInTaskbar();
     void slotUpdateDesktopActions();
 
@@ -119,6 +119,7 @@ private Q_SLOTS:
     void slotDebugBaloo();
 
 private:
+    void updateKeepAboveBelow(bool save = true);
     void buildGui();
     void createActions();
     void createNoteEditor(const QString &configFile);

@@ -580,7 +580,7 @@ void KNote::slotKeepAbove()
     if (m_keepBelow->isChecked()) {
         m_keepBelow->setChecked(false);
     }
-    slotUpdateKeepAboveBelow();
+    updateKeepAboveBelow();
 }
 
 void KNote::slotKeepBelow()
@@ -588,10 +588,10 @@ void KNote::slotKeepBelow()
     if (m_keepAbove->isChecked()) {
         m_keepAbove->setChecked(false);
     }
-    slotUpdateKeepAboveBelow();
+    updateKeepAboveBelow();
 }
 
-void KNote::slotUpdateKeepAboveBelow(bool save)
+void KNote::updateKeepAboveBelow(bool save)
 {
 #if KDEPIM_HAVE_X11
     NET::States state = KWindowInfo(KWindowSystem::windowInfo(winId(), NET::WMState)).state();
@@ -925,7 +925,7 @@ void KNote::prepare()
         m_keepBelow->setChecked(false);
     }
 
-    slotUpdateKeepAboveBelow();
+    updateKeepAboveBelow();
     // HACK: update the icon color - again after showing the note, to make kicker
     // aware of the new colors
     KIconEffect effect;
@@ -1084,7 +1084,7 @@ void KNote::showEvent(QShowEvent *)
 {
     if (mDisplayAttribute->isHidden()) {
         // KWin does not preserve these properties for hidden windows
-        slotUpdateKeepAboveBelow(false);
+        updateKeepAboveBelow(false);
         slotUpdateShowInTaskbar();
         toDesktop(mDisplayAttribute->desktop());
         move(mDisplayAttribute->position());
