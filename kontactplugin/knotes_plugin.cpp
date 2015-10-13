@@ -226,7 +226,7 @@ void KNotesUniqueAppHandler::loadCommandLineOptions(QCommandLineParser *parser)
 
 int KNotesUniqueAppHandler::activate(const QStringList &args, const QString &workingDir)
 {
-    qCDebug(KNOTES_KONTACT_PLUGIN_LOG) ;
+    qCDebug(KNOTES_KONTACT_PLUGIN_LOG);
     // Ensure part is loaded
     (void)plugin()->part();
 

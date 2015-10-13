@@ -384,7 +384,7 @@ void KNoteEdit::slotTextColor()
     if (m_note) {
         m_note->setBlockSave(true);
     }
-    QColor c = QColorDialog::getColor(textColor(), this) ;
+    QColor c = QColorDialog::getColor(textColor(), this);
     if (c.isValid()) {
         setTextColor(c);
     }

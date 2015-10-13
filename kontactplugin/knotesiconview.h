@@ -55,7 +55,7 @@ public:
     bool readOnly() const;
     void setReadOnly(bool b, bool save = true);
 
-    void setIconText(const QString &text , bool save = true);
+    void setIconText(const QString &text, bool save = true);
     QString realName() const;
 
     int tabSize() const;

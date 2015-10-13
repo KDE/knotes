@@ -92,7 +92,7 @@
 
 KNotesPart::KNotesPart(QObject *parent)
     : KParts::ReadOnlyPart(parent),
-      mNotesWidget(Q_NULLPTR) ,
+      mNotesWidget(Q_NULLPTR),
       mPublisher(Q_NULLPTR),
       mNotePrintPreview(Q_NULLPTR),
       mNoteTreeModel(Q_NULLPTR)
@@ -804,7 +804,7 @@ void KNotesPart::slotOpenFindDialog()
         mNoteFindDialog = new KNoteFindDialog(widget());
         connect(mNoteFindDialog.data(), &KNoteFindDialog::noteSelected, this, &KNotesPart::slotSelectNote);
     }
-    QHash<Akonadi::Item::Id , Akonadi::Item> lst;
+    QHash<Akonadi::Item::Id, Akonadi::Item> lst;
     QHashIterator<Akonadi::Item::Id, KNotesIconViewItem *> i(mNotesWidget->notesView()->noteList());
     while (i.hasNext()) {
         i.next();

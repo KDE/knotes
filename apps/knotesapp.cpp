@@ -109,7 +109,7 @@ KNotesApp::KNotesApp()
     }
 
     new KNotesAdaptor(this);
-    QDBusConnection::sessionBus().registerObject(QStringLiteral("/KNotes") , this);
+    QDBusConnection::sessionBus().registerObject(QStringLiteral("/KNotes"), this);
     qApp->setQuitOnLastWindowClosed(false);
     // create the GUI...
     QAction *action  = new QAction(QIcon::fromTheme(QStringLiteral("document-new")),
@@ -299,7 +299,7 @@ void KNotesApp::createNote(const Akonadi::Item &item)
         KNote *note = new KNote(m_noteGUI, item, mDebugBaloo);
         mNotes.insert(item.id(), note);
         connect(note, &KNote::sigShowNextNote,
-                this, &KNotesApp::slotWalkThroughNotes) ;
+                this, &KNotesApp::slotWalkThroughNotes);
         connect(note, SIGNAL(sigRequestNewNote()),
                 SLOT(newNote()));
         connect(note, &KNote::sigNameChanged,
@@ -675,7 +675,7 @@ void KNotesApp::slotOpenFindDialog()
         mFindDialog = new KNoteFindDialog(this);
         connect(mFindDialog.data(), &KNoteFindDialog::noteSelected, this, &KNotesApp::slotSelectNote);
     }
-    QHash<Akonadi::Item::Id , Akonadi::Item> lst;
+    QHash<Akonadi::Item::Id, Akonadi::Item> lst;
 
     QHashIterator<Akonadi::Item::Id, KNote *> i(mNotes);
     while (i.hasNext()) {

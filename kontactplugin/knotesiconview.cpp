@@ -194,11 +194,11 @@ void KNotesIconViewItem::setChangeIconTextAndDescription(const QString &iconText
 
 void KNotesIconViewItem::setIconText(const QString &text, bool save)
 {
-    QString replaceText ;
+    QString replaceText;
     if (text.count() > 50) {
         replaceText = text.left(50) + QLatin1String("...");
     } else {
-        replaceText = text ;
+        replaceText = text;
     }
 
     setText(replaceText);

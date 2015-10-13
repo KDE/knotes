@@ -48,7 +48,7 @@ private Q_SLOTS:
     void slotItemDoubleClicked(QListWidgetItem *);
 
 private:
-    QHash<Akonadi::Item::Id , Akonadi::Item> mNotes;
+    QHash<Akonadi::Item::Id, Akonadi::Item> mNotes;
     QLabel *mResultSearch;
     QLineEdit *mSearchLineEdit;
     QPushButton *mSearchButton;
@@ -61,7 +61,7 @@ class KNOTES_EXPORT KNoteFindDialog : public QDialog
 public:
     explicit KNoteFindDialog(QWidget *parent = Q_NULLPTR);
     ~KNoteFindDialog();
-    void setExistingNotes(const QHash<Akonadi::Item::Id , Akonadi::Item> &notes);
+    void setExistingNotes(const QHash<Akonadi::Item::Id, Akonadi::Item> &notes);
 
 Q_SIGNALS:
     void noteSelected(Akonadi::Item::Id);

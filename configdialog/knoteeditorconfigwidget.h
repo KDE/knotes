@@ -31,7 +31,7 @@ class KNoteEditorConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KNoteEditorConfigWidget(bool defaults , QWidget *parent = Q_NULLPTR);
+    explicit KNoteEditorConfigWidget(bool defaults, QWidget *parent = Q_NULLPTR);
     ~KNoteEditorConfigWidget();
 
     void load(NoteShared::NoteDisplayAttribute *attr, bool isRichText);
