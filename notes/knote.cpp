@@ -38,7 +38,7 @@
 #include "NoteShared/NoteDisplayAttribute"
 #include "NoteShared/NoteAlarmAttribute"
 
-#include "PimCommon/AkonadiSearchDebugDialog"
+#include <AkonadiSearch/Debug/akonadisearchdebugdialog.h>
 
 #include <KMime/KMimeMessage>
 
@@ -1216,10 +1216,10 @@ Akonadi::Item KNote::item() const
 
 void KNote::slotDebugBaloo()
 {
-    QPointer<PimCommon::AkonadiSearchDebugDialog> dlg = new PimCommon::AkonadiSearchDebugDialog;
+    QPointer<Akonadi::Search::AkonadiSearchDebugDialog> dlg = new Akonadi::Search::AkonadiSearchDebugDialog;
     dlg->setAkonadiId(mItem.id());
     dlg->setAttribute(Qt::WA_DeleteOnClose);
-    dlg->setSearchType(PimCommon::AkonadiSearchDebugSearchPathComboBox::Notes);
+    dlg->setSearchType(Akonadi::Search::AkonadiSearchDebugSearchPathComboBox::Notes);
     dlg->doSearch();
     dlg->show();
 }

@@ -91,14 +91,18 @@ ecm_add_app_icon(knotes_SRCS ICONS ${ICONS_SRCS})
 add_executable(knotes ${knotes_SRCS})
 
 target_link_libraries(knotes 
-   knotesprivate KF5::KCMUtils 
-   KF5::PimCommon KF5::DNSSD
-                             KF5::KontactInterface KF5::NoteShared
+   knotesprivate
+   KF5::KCMUtils
+   KF5::PimCommon
+   KF5::DNSSD
+   KF5::KontactInterface
+   KF5::NoteShared
   KF5::AkonadiCore
   KF5::Mime
   KF5::GlobalAccel
   KF5::AkonadiNotes
-  KF5::KDELibs4Support 
+  KF5::KDELibs4Support
+  KF5::AkonadiSearchDebug
 )
 if (Qt5X11Extras_FOUND)
   target_link_libraries(knotes Qt5::X11Extras ${X11_LIBRARIES})
