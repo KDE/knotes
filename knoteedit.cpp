@@ -21,7 +21,7 @@
 #include "knoteedit.h"
 #include "notes/knote.h"
 #include "NoteShared/NoteEditorUtils"
-#include "PimCommon/EditorUtil"
+#include "KPIMTextEdit/EditorUtil"
 #include "PimCommon/KActionMenuChangeCase"
 #include "knotesglobalconfig.h"
 
@@ -232,28 +232,28 @@ void KNoteEdit::setNote(KNote *_note)
 void KNoteEdit::slotReverseCase()
 {
     QTextCursor cursor = textCursor();
-    PimCommon::EditorUtil editorUtil;
+    KPIMTextEdit::EditorUtil editorUtil;
     editorUtil.reverseCase(cursor);
 }
 
 void KNoteEdit::slotSentenceCase()
 {
     QTextCursor cursor = textCursor();
-    PimCommon::EditorUtil editorUtil;
+    KPIMTextEdit::EditorUtil editorUtil;
     editorUtil.sentenceCase(cursor);
 }
 
 void KNoteEdit::slotUpperCase()
 {
     QTextCursor cursor = textCursor();
-    PimCommon::EditorUtil editorUtil;
+    KPIMTextEdit::EditorUtil editorUtil;
     editorUtil.upperCase(cursor);
 }
 
 void KNoteEdit::slotLowerCase()
 {
     QTextCursor cursor = textCursor();
-    PimCommon::EditorUtil editorUtil;
+    KPIMTextEdit::EditorUtil editorUtil;
     editorUtil.lowerCase(cursor);
 }
 

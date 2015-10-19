@@ -59,7 +59,7 @@ PUBLIC
   KF5::PimCommon
   KF5::IconThemes
 PRIVATE
-  KF5::KCMUtils Grantlee5::Templates KF5::NewStuff KF5::WindowSystem Qt5::PrintSupport KF5::KDELibs4Support KF5::NoteShared KF5::AkonadiSearchPIM KF5::AkonadiNotes
+  KF5::KCMUtils Grantlee5::Templates KF5::NewStuff KF5::WindowSystem Qt5::PrintSupport KF5::KDELibs4Support KF5::NoteShared KF5::AkonadiSearchPIM KF5::AkonadiNotes KF5::PimTextEdit
 )
 
 set_target_properties(knotesprivate
