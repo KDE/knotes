@@ -99,9 +99,7 @@ KNotesApp::KNotesApp()
 {
     Akonadi::ControlGui::widgetNeedsAkonadi(this);
 
-    if (!qgetenv("KDEPIM_BALOO_DEBUG").isEmpty()) {
-        mDebugBaloo = true;
-    }
+    mDebugBaloo = !qEnvironmentVariableIsEmpty("KDEPIM_BALOO_DEBUG");
 
     if (KNotesGlobalConfig::self()->autoCreateResourceOnStart()) {
         NoteShared::LocalResourceCreator *creator = new NoteShared::LocalResourceCreator(this);
