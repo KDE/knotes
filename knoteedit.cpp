@@ -43,8 +43,8 @@
 
 static const short ICON_SIZE = 10;
 
-KNoteEdit::KNoteEdit(const QString &configFile, KActionCollection *actions, QWidget *parent)
-    : PimCommon::CustomTextEdit(configFile, parent),
+KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
+    : KTextEdit(parent),
       m_note(0),
       m_actions(actions)
 {
@@ -259,7 +259,7 @@ void KNoteEdit::slotLowerCase()
 
 QMenu *KNoteEdit::mousePopupMenu()
 {
-    QMenu *popup = PimCommon::CustomTextEdit::mousePopupMenu();
+    QMenu *popup = KTextEdit::mousePopupMenu();
     if (popup) {
         QTextCursor cursor = textCursor();
         if (!isReadOnly()) {

@@ -86,7 +86,7 @@ void KNoteEditDialog::init(bool readOnly)
     hbl->addWidget(mTitleEdit, 1, Qt::AlignVCenter);
 
     //TODO customize it
-    mNoteEdit = new KNoteEdit(QStringLiteral("knotesrc"), actionCollection(), page);
+    mNoteEdit = new KNoteEdit(actionCollection(), page);
     mNoteEdit->setFocus();
 
     KXMLGUIBuilder builder(page);

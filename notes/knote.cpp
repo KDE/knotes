@@ -799,7 +799,7 @@ void KNote::createNoteHeader()
 
 void KNote::createNoteEditor(const QString &configFile)
 {
-    m_editor = new KNoteEdit(configFile, actionCollection(), this);
+    m_editor = new KNoteEdit(actionCollection(), this);
     m_noteLayout->addWidget(m_editor);
     m_editor->setNote(this);
     m_editor->installEventFilter(this);   // receive focus events for modified
