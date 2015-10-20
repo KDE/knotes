@@ -100,7 +100,6 @@ target_link_libraries(knotes
   KF5::AkonadiCore
   KF5::Mime
   KF5::GlobalAccel
-  KF5::AkonadiNotes
   KF5::KDELibs4Support
   KF5::AkonadiSearchDebug
 )
