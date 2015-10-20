@@ -56,9 +56,9 @@ generate_export_header(knotesprivate BASE_NAME knotes)
 
 target_link_libraries(knotesprivate
 PUBLIC
-  KF5::PimCommon
   KF5::IconThemes
 PRIVATE
+  KF5::PimCommon
   KF5::KCMUtils Grantlee5::Templates KF5::NewStuff KF5::WindowSystem Qt5::PrintSupport KF5::KDELibs4Support KF5::NoteShared KF5::AkonadiSearchPIM KF5::AkonadiNotes KF5::PimTextEdit
 )
 
