@@ -342,7 +342,7 @@ void KNotesApp::showNote(KNote *note) const
         note->toDesktop(KWindowSystem::currentDesktop());
     } else {
         KWindowSystem::setCurrentDesktop(
-            KWindowSystem::windowInfo(note->winId(), NET::WMDesktop).desktop());
+            KWindowInfo(note->winId(), NET::WMDesktop).desktop());
     }
     KWindowSystem::forceActiveWindow(note->winId());
 #endif

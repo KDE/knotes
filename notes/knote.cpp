@@ -594,7 +594,7 @@ void KNote::slotKeepBelow()
 void KNote::updateKeepAboveBelow(bool save)
 {
 #if KDEPIM_HAVE_X11
-    NET::States state = KWindowInfo(KWindowSystem::windowInfo(winId(), NET::WMState)).state();
+    NET::States state = KWindowInfo(winId(), NET::WMState).state();
 #else
     NET::States state = 0; // neutral state, TODO
 #endif
@@ -627,7 +627,7 @@ void KNote::slotUpdateShowInTaskbar()
 {
 #if KDEPIM_HAVE_X11
     if (!mDisplayAttribute->showInTaskbar()) {
-        KWindowSystem::setState(winId(), KWindowSystem::windowInfo(winId(),
+        KWindowSystem::setState(winId(), KWindowInfo(winId(),
                                 NET::WMState).state() | NET::SkipTaskbar);
     } else {
         KWindowSystem::clearState(winId(), NET::SkipTaskbar);
