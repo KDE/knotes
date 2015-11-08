@@ -76,7 +76,6 @@
 #include <QInputDialog>
 #include <KMessageBox>
 #include <KXMLGUIFactory>
-#include <KApplication>
 #include <KFileDialog>
 #include <KToggleAction>
 #include <KLocalizedString>
