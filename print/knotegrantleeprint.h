@@ -36,7 +36,7 @@ public:
 
     QString errorMessage() const;
 
-    QString notesToHtml(const QList<KNotePrintObject *> lst);
+    QString notesToHtml(const QList<KNotePrintObject *> &lst);
 
     void setContent(const QString &content);
 

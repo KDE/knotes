@@ -61,7 +61,7 @@ void KNoteGrantleePrint::setContent(const QString &content)
     }
 }
 
-QString KNoteGrantleePrint::notesToHtml(const QList<KNotePrintObject *> lst)
+QString KNoteGrantleePrint::notesToHtml(const QList<KNotePrintObject *> &lst)
 {
     if (lst.isEmpty()) {
         return QString();

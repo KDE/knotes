@@ -34,7 +34,7 @@ public:
 
     void setDefaultFont(const QFont &font);
     QFont defaultFont() const;
-    void printNotes(const QList<KNotePrintObject *> lst, const QString &themePath, bool preview);
+    void printNotes(const QList<KNotePrintObject *> &lst, const QString &themePath, bool preview);
 
 private Q_SLOTS:
     void slotPrinterPage(QPrinter *printer);
