@@ -126,7 +126,7 @@ void KNotePrinter::print(QPrinter &printer, const QString &htmlText)
     }
 }
 
-void KNotePrinter::printNotes(const QList<KNotePrintObject *> lst, const QString &themePath, bool preview)
+void KNotePrinter::printNotes(const QList<KNotePrintObject *> &lst, const QString &themePath, bool preview)
 {
     mGrantleePrint = new KNoteGrantleePrint(themePath, this);
     if (mGrantleePrint->errorMessage().isEmpty()) {
