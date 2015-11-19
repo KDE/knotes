@@ -324,7 +324,7 @@ void KNotesApp::newNote(const QString &name, const QString &text)
     job->start();
 }
 
-void KNotesApp::showNote(const Akonadi::Item::Id &id) const
+void KNotesApp::showNote(Akonadi::Item::Id id) const
 {
     KNote *note = mNotes.value(id);
     if (note) {
@@ -349,7 +349,7 @@ void KNotesApp::showNote(KNote *note) const
     note->setFocus();
 }
 
-void KNotesApp::hideNote(const Akonadi::Item::Id &id) const
+void KNotesApp::hideNote(Akonadi::Item::Id id) const
 {
     KNote *note = mNotes.value(id);
     if (note) {
@@ -415,7 +415,7 @@ void KNotesApp::updateNetworkListener()
     }
 }
 
-QString KNotesApp::name(const Akonadi::Item::Id &id) const
+QString KNotesApp::name(Akonadi::Item::Id id) const
 {
     KNote *note = mNotes.value(id);
     if (note) {
@@ -424,7 +424,7 @@ QString KNotesApp::name(const Akonadi::Item::Id &id) const
     return QString();
 }
 
-QString KNotesApp::text(const Akonadi::Item::Id &id) const
+QString KNotesApp::text(Akonadi::Item::Id id) const
 {
     KNote *note = mNotes.value(id);
     if (note) {
@@ -433,7 +433,7 @@ QString KNotesApp::text(const Akonadi::Item::Id &id) const
     return QString();
 }
 
-void KNotesApp::setName(const Akonadi::Item::Id &id, const QString &newName)
+void KNotesApp::setName(Akonadi::Item::Id id, const QString &newName)
 {
     KNote *note = mNotes.value(id);
     if (note) {
@@ -443,7 +443,7 @@ void KNotesApp::setName(const Akonadi::Item::Id &id, const QString &newName)
     }
 }
 
-void KNotesApp::setText(const Akonadi::Item::Id &id, const QString &newText)
+void KNotesApp::setText(Akonadi::Item::Id id, const QString &newText)
 {
     KNote *note = mNotes.value(id);
     if (note) {
