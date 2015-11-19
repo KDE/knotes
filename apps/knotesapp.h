@@ -62,12 +62,12 @@ public Q_SLOTS:
     void newNoteFromClipboard(const QString &name = QString());
     void hideAllNotes() const;
     void showAllNotes() const;
-    void showNote(const Akonadi::Item::Id &id) const;
-    void hideNote(const Akonadi::Item::Id &id) const;
-    QString name(const Akonadi::Item::Id &id) const;
-    QString text(const Akonadi::Item::Id &id) const;
-    void setName(const Akonadi::Item::Id &id, const QString &newName);
-    void setText(const Akonadi::Item::Id &id, const QString &newText);
+    void showNote(Akonadi::Item::Id id) const;
+    void hideNote(Akonadi::Item::Id id) const;
+    QString name(Akonadi::Item::Id id) const;
+    QString text(Akonadi::Item::Id id) const;
+    void setName(Akonadi::Item::Id id, const QString &newName);
+    void setText(Akonadi::Item::Id id, const QString &newText);
 
 private:
     void showNote(KNote *note) const;
