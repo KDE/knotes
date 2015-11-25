@@ -1,0 +1,33 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <interface name="org.freedesktop.Akonadi.NotesAgent">
+    <method name="showConfigureDialog" >
+      <arg direction="in" type="x" name="windowId" />
+    </method>
+    <method name="setEnableAgent" >
+      <arg direction="in" type="b" name="enabled" />
+    </method>
+    <method name="enabledAgent" >
+      <arg direction="out" type="b" />
+    </method>
+    <method name="setReceiveNotes" >
+      <arg direction="in" type="b" name="enabled" />
+    </method>
+    <method name="receiveNotes" >
+      <arg direction="out" type="b" />
+    </method>
+    <method name="setPort" >
+      <arg direction="in" type="i" name="value" />
+    </method>
+    <method name="port" >
+      <arg direction="out" type="i" />
+    </method>
+    <method name="setAlarmCheckInterval" >
+      <arg direction="in" type="i" name="value" />
+    </method>
+    <method name="alarmCheckInterval" >
+      <arg direction="out" type="i" />
+    </method>
+    <method name="configurationChanged"/>
+  </interface>
+</node>
