@@ -29,11 +29,11 @@
 #include "attributes/notelockattribute.h"
 #include "knotes/noteshared/src/attributes/notealarmattribute.h"
 #include "attributes/showfoldernotesattribute.h"
-#include "noteshared/localresourcecreator.h"
+
 #include "job/createnewnotejob.h"
 
 #include "apps/knotesakonaditray.h"
-#include "noteshared/selectednotefolderdialog.h"
+
 
 #include "notesharedglobalconfig.h"
 #include "notes/knote.h"
@@ -61,6 +61,8 @@
 #include <AkonadiCore/Session>
 #include <Akonadi/Notes/NoteUtils>
 #include <KActionCollection>
+#include <resources/localresourcecreator.h>
+#include <attributes/notedisplayattribute.h>
 
 #include <KMessageBox>
 #include "knotes_debug.h"

@@ -40,7 +40,6 @@
 #include "finddialog/knotefinddialog.h"
 #include "utils/knoteutils.h"
 #include "knotes/noteshared/src/alarms/notealarmdialog.h"
-#include "noteshared/localresourcecreator.h"
 #include "job/createnewnotejob.h"
 
 #include "akonadi/notesakonaditreemodel.h"
@@ -70,6 +69,9 @@
 
 #include <AkonadiCore/ItemModifyJob>
 #include <AkonadiWidgets/ControlGui>
+#include <akonadi/noteschangerecorder.h>
+#include <attributes/notedisplayattribute.h>
+#include <resources/localresourcecreator.h>
 
 #include <KActionCollection>
 #include <QAction>

@@ -27,6 +27,8 @@
 #include <QLabel>
 #include <QCheckBox>
 
+#include <attributes/notedisplayattribute.h>
+
 KNoteEditorConfigWidget::KNoteEditorConfigWidget(bool defaults, QWidget *parent)
     : QWidget(parent)
 {

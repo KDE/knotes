@@ -38,6 +38,8 @@
 #include <AkonadiWidgets/ETMViewStateSaver>
 #include <AkonadiCore/collectionstatistics.h>
 #include <KCheckableProxyModel>
+#include <attributes/notedisplayattribute.h>
+#include <akonadi/noteschangerecorder.h>
 
 #include <KMime/KMimeMessage>
 

@@ -41,6 +41,8 @@
 #include <QPixmap>
 #include <QKeyEvent>
 
+#include <editor/noteeditorutils.h>
+
 static const short ICON_SIZE = 10;
 
 KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)

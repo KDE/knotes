@@ -341,3 +341,5 @@ void KNotesIconViewItem::updateSettings()
 }
 
 #include "moc_knotesiconview.cpp"
+
+#include <attributes/notedisplayattribute.h>

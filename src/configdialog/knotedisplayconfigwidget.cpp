@@ -28,6 +28,8 @@
 #include <QLabel>
 #include <QCheckBox>
 
+#include <attributes/notedisplayattribute.h>
+
 KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *parent)
     : QWidget(parent),
       kcfg_FgColor(0),

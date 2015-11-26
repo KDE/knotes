@@ -82,6 +82,8 @@
 #if KDEPIM_HAVE_X11
 #include <fixx11h.h>
 #include <QX11Info>
+
+#include <attributes/notedisplayattribute.h>
 #endif
 
 //#define DEBUG_SAVE_NOTE 1

@@ -27,6 +27,7 @@
 #include <QDBusInterface>
 #include <QFileInfo>
 #include <QStandardPaths>
+#include <attributes/notedisplayattribute.h>
 
 void KNoteUtils::updateConfiguration()
 {

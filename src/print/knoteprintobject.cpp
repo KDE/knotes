@@ -24,6 +24,8 @@
 
 #include <QLocale>
 
+#include <attributes/notedisplayattribute.h>
+
 KNotePrintObject::KNotePrintObject(const Akonadi::Item &item, QObject *parent)
     : QObject(parent),
       mItem(item)

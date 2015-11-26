@@ -35,6 +35,8 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
+#include <attributes/notedisplayattribute.h>
+
 KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title,
         QWidget *parent)
     : QDialog(parent)
