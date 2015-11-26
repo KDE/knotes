@@ -23,15 +23,14 @@
 
 #include "dialog/knoteselectednotesdialog.h"
 #include "utils/knoteutils.h"
-
-#include "NoteShared/NotesAkonadiTreeModel"
-#include "NoteShared/NotesChangeRecorder"
-#include "NoteShared/NoteLockAttribute"
-#include "NoteShared/NoteDisplayAttribute"
+#include "akonadi/notesakonaditreemodel.h"
+#include "akonadi/noteschangerecorder.h"
+#include "attributes/notelockattribute.h"
+#include "attributes/notelockattribute.h"
 #include "knotes/noteshared/src/attributes/notealarmattribute.h"
-#include "NoteShared/ShowFolderNotesAttribute"
+#include "attributes/showfoldernotesattribute.h"
 #include "noteshared/localresourcecreator.h"
-#include "NoteShared/CreateNewNoteJob"
+#include "job/createnewnotejob.h"
 
 #include "apps/knotesakonaditray.h"
 #include "noteshared/selectednotefolderdialog.h"

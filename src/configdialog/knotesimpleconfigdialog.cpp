@@ -21,7 +21,7 @@
 #include "knotedisplayconfigwidget.h"
 #include "knoteeditorconfigwidget.h"
 
-#include "NoteShared/NoteDisplayAttribute"
+#include "attributes/notelockattribute.h"
 
 #include <KLocalizedString>
 #include <KWindowSystem>

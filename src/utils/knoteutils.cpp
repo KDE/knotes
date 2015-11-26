@@ -16,7 +16,7 @@
 */
 
 #include "knoteutils.h"
-#include "NoteShared/NoteDisplayAttribute"
+#include "attributes/notelockattribute.h"
 #include "knotesglobalconfig.h"
 
 #include <KMessageBox>

@@ -27,10 +27,10 @@
 #include "knotes_plugin.h"
 #include "knotesinterface.h"
 
-#include "NoteShared/NotesAkonadiTreeModel"
-#include "NoteShared/NotesChangeRecorder"
-#include "NoteShared/ShowFolderNotesAttribute"
-#include "NoteShared/NoteDisplayAttribute"
+#include "akonadi/notesakonaditreemodel.h"
+#include "job/createnewnotejob.h"
+#include "attributes/showfoldernotesattribute.h"
+#include "attributes/notelockattribute.h"
 
 #include <AkonadiCore/Item>
 #include <AkonadiCore/Session>

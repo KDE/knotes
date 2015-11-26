@@ -27,8 +27,7 @@
 #include "knotecollectionconfigwidget.h"
 #include "knotesglobalconfig.h"
 #include "notesharedglobalconfig.h"
-#include "NoteShared/NoteActionConfig"
-#include "knotes/noteshared/src/noteshared/notenetworkconfig.h"
+#include "config/noteactionconfig.h"
 
 #include "kdepim-version.h"
 #include <QLineEdit>
@@ -50,6 +49,8 @@
 #include <QVBoxLayout>
 #include <QWhatsThis>
 #include <QToolButton>
+
+#include <config/notenetworkconfig.h>
 
 KNoteConfigDialog::KNoteConfigDialog(const QString &title,
                                      QWidget *parent)

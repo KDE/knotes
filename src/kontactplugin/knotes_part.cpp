@@ -41,15 +41,15 @@
 #include "utils/knoteutils.h"
 #include "knotes/noteshared/src/alarms/notealarmdialog.h"
 #include "noteshared/localresourcecreator.h"
-#include "NoteShared/CreateNewNoteJob"
+#include "job/createnewnotejob.h"
 
-#include "NoteShared/NotesAkonadiTreeModel"
-#include "NoteShared/NotesChangeRecorder"
+#include "akonadi/notesakonaditreemodel.h"
+#include "job/createnewnotejob.h"
 #include "knotes/noteshared/src/attributes/notealarmattribute.h"
-#include "NoteShared/ShowFolderNotesAttribute"
+#include "attributes/showfoldernotesattribute.h"
 #include "knotes/noteshared/src/attributes/notealarmattribute.h"
-#include "NoteShared/NoteDisplayAttribute"
-#include "NoteShared/NoteLockAttribute"
+#include "attributes/notelockattribute.h"
+#include "attributes/notelockattribute.h"
 
 #include <Akonadi/Notes/NoteUtils>
 

@@ -16,10 +16,11 @@
 */
 
 #include "noteeditorutilstest.h"
-#include "NoteShared/NoteEditorUtils"
 #include <QTextCursor>
 #include <QTextDocument>
 #include <qtest.h>
+
+#include <editor/noteeditorutils.h>
 
 NoteEditorUtilsTest::NoteEditorUtilsTest(QObject *parent)
     : QObject(parent)

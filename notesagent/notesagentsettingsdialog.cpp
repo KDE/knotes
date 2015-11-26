@@ -17,8 +17,6 @@
 
 #include "notesagentsettingsdialog.h"
 
-#include "knotes/noteshared/src/noteshared/notenetworkconfig.h"
-
 #include "kdepim-version.h"
 #include <QMenu>
 #include <KHelpMenu>
@@ -35,6 +33,8 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QApplication>
+
+#include <config/notenetworkconfig.h>
 
 NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
     : QDialog(parent)

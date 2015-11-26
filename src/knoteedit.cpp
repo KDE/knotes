@@ -20,7 +20,7 @@
 
 #include "knoteedit.h"
 #include "notes/knote.h"
-#include "NoteShared/NoteEditorUtils"
+#include "config/noteactionconfig.h"
 #include "KPIMTextEdit/EditorUtil"
 #include "PimCommon/KActionMenuChangeCase"
 #include "knotesglobalconfig.h"
