@@ -75,6 +75,7 @@ KNoteConfigDialog::KNoteConfigDialog(const QString &title,
     addModule(QStringLiteral("knote_config_collection"));
     addModule(QStringLiteral("knote_config_misc"));
     connect(button(QDialogButtonBox::Ok), &QPushButton::clicked, this, &KNoteConfigDialog::slotOk);
+    connect(button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &KNoteConfigDialog::slotDefaultClicked);
 }
 
 KNoteConfigDialog::~KNoteConfigDialog()
