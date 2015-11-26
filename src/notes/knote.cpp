@@ -21,7 +21,7 @@
 #include "knotes_debug.h"
 #include "knote.h"
 #include "noteutils.h"
-#include "knotes/noteshared/src/alarms/notealarmdialog.h"
+#include "alarms/notealarmdialog.h"
 #include "configdialog/knotesimpleconfigdialog.h"
 #include "print/knoteprintselectthemedialog.h"
 #include "notes/knotebutton.h"
@@ -36,7 +36,7 @@
 
 #include "attributes/notelockattribute.h"
 #include "attributes/notelockattribute.h"
-#include "knotes/noteshared/src/attributes/notealarmattribute.h"
+#include "attributes/notealarmattribute.h"
 
 #include <AkonadiSearch/Debug/akonadisearchdebugdialog.h>
 

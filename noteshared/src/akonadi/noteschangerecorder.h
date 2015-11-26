@@ -19,7 +19,7 @@
 #define NOTESCHANGERECORDER_H
 
 #include <QObject>
-#include "knotes/noteshared/src/noteshared_export.h"
+#include "noteshared_export.h"
 namespace Akonadi
 {
 class ChangeRecorder;

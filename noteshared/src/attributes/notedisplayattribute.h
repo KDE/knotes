@@ -18,7 +18,7 @@
 #ifndef NOTE_DISPLAY_ATTRIBUTE_H
 #define NOTE_DISPLAY_ATTRIBUTE_H
 
-#include "knotes/noteshared/src/noteshared_export.h"
+#include "noteshared_export.h"
 #include <AkonadiCore/Attribute>
 
 #include <QColor>

@@ -17,9 +17,9 @@
 
 #include "notesagentalarmdialog.h"
 #include "notesagentnotedialog.h"
-#include "knotes/noteshared/src/widget/notelistwidget.h"
-#include "knotes/noteshared/src/attributes/notealarmattribute.h"
-#include "knotes/noteshared/src/alarms/notealarmdialog.h"
+#include "widget/notelistwidget.h"
+#include "attributes/notealarmattribute.h"
+#include "alarms/notealarmdialog.h"
 #include "notesagent_debug.h"
 #include <KMime/KMimeMessage>
 

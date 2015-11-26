@@ -39,14 +39,14 @@
 #include "configdialog/knotesimpleconfigdialog.h"
 #include "finddialog/knotefinddialog.h"
 #include "utils/knoteutils.h"
-#include "knotes/noteshared/src/alarms/notealarmdialog.h"
+#include "alarms/notealarmdialog.h"
 #include "job/createnewnotejob.h"
 
 #include "akonadi/notesakonaditreemodel.h"
 #include "job/createnewnotejob.h"
-#include "knotes/noteshared/src/attributes/notealarmattribute.h"
+#include "attributes/notealarmattribute.h"
 #include "attributes/showfoldernotesattribute.h"
-#include "knotes/noteshared/src/attributes/notealarmattribute.h"
+#include "attributes/notealarmattribute.h"
 #include "attributes/notelockattribute.h"
 #include "attributes/notelockattribute.h"
 

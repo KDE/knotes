@@ -16,7 +16,7 @@
 */
 
 #include "knoteprintobject.h"
-#include "knotes/noteshared/src/attributes/notealarmattribute.h"
+#include "attributes/notealarmattribute.h"
 #include "attributes/notelockattribute.h"
 #include "attributes/notelockattribute.h"
 

@@ -19,7 +19,7 @@
 #include "notesagent_debug.h"
 #include <ItemFetchJob>
 #include <ItemFetchScope>
-#include "knotes/noteshared/src/attributes/notedisplayattribute.h"
+#include "attributes/notedisplayattribute.h"
 #include "kpimtextedit/richtexteditorwidget.h"
 #include "kpimtextedit/richtexteditor.h"
 

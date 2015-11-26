@@ -17,7 +17,7 @@
 
 #ifndef NOTENETWORKCONFIG_H
 #define NOTENETWORKCONFIG_H
-#include "knotes/noteshared/src/noteshared_export.h"
+#include "noteshared_export.h"
 #include <KCModule>
 class QLineEdit;
 class QCheckBox;

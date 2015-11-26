@@ -18,7 +18,7 @@
 #ifndef NOTELISTWIDGET_H
 #define NOTELISTWIDGET_H
 
-#include "knotes/noteshared/src/noteshared_export.h"
+#include "noteshared_export.h"
 #include <QListWidget>
 #include <AkonadiCore/Item>
 

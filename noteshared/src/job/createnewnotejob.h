@@ -20,7 +20,7 @@
 
 #include <QWidget>
 
-#include "knotes/noteshared/src/noteshared_export.h"
+#include "noteshared_export.h"
 class KJob;
 
 namespace NoteShared

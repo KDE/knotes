@@ -18,7 +18,7 @@
 #include "notelistwidget.h"
 #include "attributes/notedisplayattribute.h"
 #include <KMime/KMimeMessage>
-#include "knotes/noteshared/src/noteutils.h"
+#include "noteutils.h"
 
 using namespace NoteShared;
 class NoteShared::NoteListWidgetPrivate

@@ -33,7 +33,7 @@
 #ifndef NOTESNETWORKRECEIVER_H
 #define NOTESNETWORKRECEIVER_H
 
-#include "knotes/noteshared/src/noteshared_export.h"
+#include "noteshared_export.h"
 #include <QObject>
 #include <QAbstractSocket>
 

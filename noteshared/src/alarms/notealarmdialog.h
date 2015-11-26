@@ -33,7 +33,7 @@
 #define NOTEALARMDIALOG_H
 
 #include <QDialog>
-#include "knotes/noteshared/src/noteshared_export.h"
+#include "noteshared_export.h"
 class QDateTime;
 namespace NoteShared
 {

@@ -27,7 +27,7 @@
 #include "akonadi/noteschangerecorder.h"
 #include "attributes/notelockattribute.h"
 #include "attributes/notelockattribute.h"
-#include "knotes/noteshared/src/attributes/notealarmattribute.h"
+#include "attributes/notealarmattribute.h"
 #include "attributes/showfoldernotesattribute.h"
 
 #include "job/createnewnotejob.h"

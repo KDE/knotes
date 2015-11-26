@@ -18,7 +18,7 @@
 #include "notesagent.h"
 #include "notesmanager.h"
 #include "notesagentadaptor.h"
-#include "knotes/noteshared/src/notesharedglobalconfig.h"
+#include "notesharedglobalconfig.h"
 #include "notesagentsettings.h"
 #include "notesagentsettingsdialog.h"
 
