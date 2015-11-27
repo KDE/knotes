@@ -34,7 +34,6 @@
 
 #include "apps/knotesakonaditray.h"
 
-
 #include "notesharedglobalconfig.h"
 #include "notes/knote.h"
 #include "knotesadaptor.h"
