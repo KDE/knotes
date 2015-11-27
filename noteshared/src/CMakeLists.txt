@@ -1,7 +1,4 @@
 
-add_definitions( -DQT_NO_CAST_FROM_ASCII )
-add_definitions( -DQT_NO_CAST_TO_ASCII )
-
 add_definitions(-DTRANSLATION_DOMAIN=\"libnoteshared\")
 
 set(libnoteshared_akonadi_SRCS
