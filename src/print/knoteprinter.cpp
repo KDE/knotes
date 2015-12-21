@@ -25,7 +25,7 @@
 #include <QPrintDialog>
 #include <QAbstractTextDocumentLayout>
 #include <QPointer>
-#include <QPrintPreviewDialog>
+#include <PimCommon/KPimPrintPreviewDialog>
 
 #include <KMessageBox>
 
@@ -62,7 +62,7 @@ void KNotePrinter::doPrintPreview(const QString &htmlText)
     QPrinter printer(QPrinter::HighResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setCollateCopies(true);
-    QPrintPreviewDialog previewdlg(&printer, 0);
+    PimCommon::KPimPrintPreviewDialog previewdlg(&printer, 0);
 
     connect(&previewdlg, &QPrintPreviewDialog::paintRequested, this, &KNotePrinter::slotPrinterPage);
     previewdlg.exec();
