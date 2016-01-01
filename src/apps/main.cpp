@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
                          QStringLiteral(KDEPIM_VERSION),
                          i18n("KDE Notes"),
                          KAboutLicense::GPL,
-                         i18n("Copyright © 1997–2015 KNotes authors"));
+                         i18n("Copyright © 1997–2016 KNotes authors"));
     knotesAuthors(aboutData);
     app.setAboutData(aboutData);
     QCommandLineParser *cmdArgs = app.cmdArgs();

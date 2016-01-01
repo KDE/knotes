@@ -104,7 +104,7 @@ const KAboutData KNotesPlugin::aboutData()
                                       QStringLiteral(KDEPIM_VERSION),
                                       xi18nc("@title", "Popup Notes"),
                                       KAboutLicense::GPL_V2,
-                                      xi18nc("@info:credit", "Copyright © 2003–2014 Kontact authors"));
+                                      xi18nc("@info:credit", "Copyright © 2003–2016 Kontact authors"));
 
     aboutData.addAuthor(xi18nc("@info:credit", "Laurent Montel"),
                         xi18nc("@info:credit", "Current Maintainer"),
