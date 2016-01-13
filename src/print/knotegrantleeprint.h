@@ -19,14 +19,14 @@
 #define KNOTEGRANTLEEPRINT_H
 
 #include <QObject>
-#include <grantlee/templateloader.h>
+#include <genericgrantleeformatter.h>
 #include "knotes_export.h"
 namespace Grantlee
 {
 class Engine;
 }
 class KNotePrintObject;
-class KNOTES_EXPORT KNoteGrantleePrint : public QObject
+class KNOTES_EXPORT KNoteGrantleePrint : public PimCommon::GenericGrantleeFormatter
 {
     Q_OBJECT
 public:
@@ -34,17 +34,7 @@ public:
     KNoteGrantleePrint(const QString &themePath, QObject *parent = Q_NULLPTR);
     ~KNoteGrantleePrint();
 
-    QString errorMessage() const;
-
     QString notesToHtml(const QList<KNotePrintObject *> &lst);
-
-    void setContent(const QString &content);
-
-private:
-    Grantlee::Template mSelfcontainedTemplate;
-    QString mErrorMessage;
-    Grantlee::Engine *mEngine;
-    QSharedPointer<Grantlee::FileSystemTemplateLoader> mTemplateLoader;
 };
 
 #endif // KNOTEGRANTLEEPRINT_H

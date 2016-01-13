@@ -17,6 +17,7 @@
 
 #include "knotesgrantleeprinttest.h"
 #include <qtest.h>
+#include <PimCommon/GenericGrantleeFormatter>
 #include "../knotegrantleeprint.h"
 #include <KMime/Message>
 #include <AkonadiCore/Item>

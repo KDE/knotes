@@ -18,47 +18,19 @@
 #include "knotegrantleeprint.h"
 #include "knoteprintobject.h"
 #include <KLocalizedString>
-#include <grantlee/context.h>
-#include <grantlee/engine.h>
 
 KNoteGrantleePrint::KNoteGrantleePrint(QObject *parent)
-    : QObject(parent)
+    : PimCommon::GenericGrantleeFormatter(parent)
 {
-    mEngine = new Grantlee::Engine;
 }
 
 KNoteGrantleePrint::KNoteGrantleePrint(const QString &themePath, QObject *parent)
-    : QObject(parent)
+    : PimCommon::GenericGrantleeFormatter(QStringLiteral("theme.html"), themePath, parent)
 {
-    mEngine = new Grantlee::Engine;
-    mTemplateLoader =  QSharedPointer<Grantlee::FileSystemTemplateLoader>(new Grantlee::FileSystemTemplateLoader);
-
-    mTemplateLoader->setTemplateDirs(QStringList() << themePath);
-    mEngine->addTemplateLoader(mTemplateLoader);
-
-    mSelfcontainedTemplate = mEngine->loadByName(QStringLiteral("theme.html"));
-    if (mSelfcontainedTemplate->error()) {
-        mErrorMessage = mSelfcontainedTemplate->errorString() + QLatin1String("<br>");
-    }
 }
 
 KNoteGrantleePrint::~KNoteGrantleePrint()
 {
-    mEngine->deleteLater();
-    mEngine = 0;
-}
-
-QString KNoteGrantleePrint::errorMessage() const
-{
-    return mErrorMessage;
-}
-
-void KNoteGrantleePrint::setContent(const QString &content)
-{
-    mSelfcontainedTemplate = mEngine->newTemplate(content, QStringLiteral("content"));
-    if (mSelfcontainedTemplate->error()) {
-        mErrorMessage = mSelfcontainedTemplate->errorString() + QLatin1String("<br>");
-    }
 }
 
 QString KNoteGrantleePrint::notesToHtml(const QList<KNotePrintObject *> &lst)
@@ -71,11 +43,11 @@ QString KNoteGrantleePrint::notesToHtml(const QList<KNotePrintObject *> &lst)
     Q_FOREACH (KNotePrintObject *n, lst) {
         notes << QVariant::fromValue(static_cast<QObject *>(n));
     }
-    Grantlee::Context c;
-    c.insert(QStringLiteral("notes"), notes);
-    c.insert(QStringLiteral("alarm_i18n"), i18n("Alarm:"));
-    c.insert(QStringLiteral("note_is_locked_i18n"), i18n("Note is locked"));
+    QVariantHash variantList;
+    variantList.insert(QStringLiteral("notes"), notes);
+    variantList.insert(QStringLiteral("alarm_i18n"), i18n("Alarm:"));
+    variantList.insert(QStringLiteral("note_is_locked_i18n"), i18n("Note is locked"));
 
-    const QString htmlText = mSelfcontainedTemplate->render(&c);
+    const QString htmlText = render(variantList);
     return htmlText;
 }
