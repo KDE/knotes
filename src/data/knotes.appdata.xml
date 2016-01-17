@@ -13,7 +13,6 @@
   <name xml:lang="de">KNotes</name>
   <name xml:lang="en-GB">KNotes</name>
   <name xml:lang="es">KNotes</name>
-  <name xml:lang="et">KNotes</name>
   <name xml:lang="fi">KNotes</name>
   <name xml:lang="fr">KNotes</name>
   <name xml:lang="gl">KNotes</name>
@@ -48,7 +47,6 @@
     <p xml:lang="de">KNotes erlaubt das Anbringen virtueller Haftnotizen ("Post-it") auf dem Bildschirm. Die Notizen werden beim Beenden des Programms automatisch gespeichert und beim Neustart wieder geladen und angezeigt.</p>
     <p xml:lang="en-GB">KNotes is a program that lets you write the computer equivalent of sticky notes. The notes are saved automatically when you exit the program, and they display when you open the program.</p>
     <p xml:lang="es">KNotes es un programa que le permite escribir en el equipo el equivalente de notas pegajosas. Las notas se guardan automáticamente cuando usted sale del programa y se muestran cuando lo abre.</p>
-    <p xml:lang="et">KNotes on rakendus, mille abil saab arvutil kirjutada samasuguseid märkmeid, mida muidu kirjutatakse kleepuvate märkmepaberite peale. Sedelid salvestatakse automaatselt rakendusest väljudes ning seda taasavades näidatakse neid uuesti.</p>
     <p xml:lang="fi">KNotes on ohjelma, jolla voit kirjoittaa tarralappujen tietokonevastineita. Laput tallennetaan automaattisesti ohjelmasta poistuessasi ja näytetään avatessasi ohjelman.</p>
     <p xml:lang="fr">KNotes est un programme qui vous permet d'avoir l'équivalent électronique des papillons autocollants (Post-it®). Les notes sont enregistrées automatiquement lorsque vous quittez le programme, et elles s'affichent lorsque vous l'ouvrez.</p>
     <p xml:lang="gl">KNotes é un programa que permite escribir o que sería un equivalente informático das notas pegañentas. As notas grávanse automaticamente cando se sae do programa e móstranse cando se abre o programa.</p>
@@ -79,7 +77,6 @@
     <p xml:lang="de">Funktionen:</p>
     <p xml:lang="en-GB">Features:</p>
     <p xml:lang="es">Características:</p>
-    <p xml:lang="et">Omadused:</p>
     <p xml:lang="fi">Ominaisuudet:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="gl">Funcionalidades:</p>
@@ -111,7 +108,6 @@
       <li xml:lang="de">Notizen können in ausgewählter Farbe für Schrift und Hintergrund erstellt werden</li>
       <li xml:lang="en-GB">Write notes in your choice of font and background colour</li>
       <li xml:lang="es">Escriba notas en el tipo de letra y color de fondo de su elección</li>
-      <li xml:lang="et">Märkuste kirjutamine enda valitud kirja ja taustavärviga</li>
       <li xml:lang="fi">Voit valita muistilappujen fontin ja taustavärin</li>
       <li xml:lang="fr">Écrivez des notes avec la police de caractère et la couleur de fond de votre choix</li>
       <li xml:lang="gl">Escriba notas usando o tipo e letra e cor de fondo que prefira.</li>
@@ -139,7 +135,6 @@
       <li xml:lang="de">Ziehen und Ablegen (Drag and Drop), um Ihre Notizen als E-Mail zu versenden</li>
       <li xml:lang="en-GB">Use drag and drop to email your notes</li>
       <li xml:lang="es">Use arrastrar y soltar para enviar sus notas por correo</li>
-      <li xml:lang="et">Märkuste lohistamise teel e-postiga saatmine</li>
       <li xml:lang="fi">Voit lähettää muistilappusi sähköpostitse vetämällä ja pudottamalla</li>
       <li xml:lang="fr">Utilisez le glisser-déposer pour envoyer vos notes par courriel</li>
       <li xml:lang="gl">Use arrastrar e soltar para enviar as súas notas por correo electrónico.</li>
@@ -167,7 +162,6 @@
       <li xml:lang="de">Kann in einen Kalender gezogen werden, um einen Zeitraum zu belegen.</li>
       <li xml:lang="en-GB">Can be dragged into Calendar to book a time-slot</li>
       <li xml:lang="es">Puede soltarse en el calendario para reservar una ranura de tiempo</li>
-      <li xml:lang="et">Lohistamise võimalus kalendrisse mõne aja broneerimiseks</li>
       <li xml:lang="fi">Voit vetää muistilaput kalenteriin varataksesi tapahtumalle ajan</li>
       <li xml:lang="fr">Glissez les notes dans le calendrier pour réserver des créneaux horaires</li>
       <li xml:lang="gl">Pode arrastras as notas a un calendario para asocialas a un espazo de tempo.</li>
@@ -195,7 +189,6 @@
       <li xml:lang="de">Notizen können gedruckt werden</li>
       <li xml:lang="en-GB">Notes can be printed</li>
       <li xml:lang="es">Las notas pueden imprimirse</li>
-      <li xml:lang="et">Trükkimise võimalus</li>
       <li xml:lang="fi">Muistilaput voi tulostaa</li>
       <li xml:lang="fr">Imprimez les notes</li>
       <li xml:lang="gl">Pode imprimir as notas.</li>
