@@ -211,7 +211,7 @@ KNotesApp::KNotesApp()
     connect(mNoteRecorder->changeRecorder(), SIGNAL(collectionChanged(Akonadi::Collection,QSet<QByteArray>)), SLOT(slotCollectionChanged(Akonadi::Collection,QSet<QByteArray>)));
     connect(qApp, &QGuiApplication::commitDataRequest, this, &KNotesApp::slotCommitData, Qt::DirectConnection);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
-    QGuiApplication::setFallbackSessionManagementEnabled(false);
+    //QGuiApplication::setFallbackSessionManagementEnabled(false);
 #endif
     updateNoteActions();
 }
