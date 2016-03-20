@@ -19,7 +19,7 @@
 
   <group name="Printing">
      <entry name="Theme" type="String">
-        <default>${DATA_INSTALL_DIR}/knotes/print/themes/default/</default>
+        <default>${CMAKE_INSTALL_PREFIX}/${KDE_INSTALL_DATADIR}/knotes/print/themes/default/</default>
      </entry>
   </group>
 
