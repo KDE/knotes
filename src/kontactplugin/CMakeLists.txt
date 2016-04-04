@@ -40,7 +40,7 @@ set(kcm_knotessummary_PART_SRCS kcmknotessummary.cpp )
 
 add_library(kcm_knotessummary MODULE ${kcm_knotessummary_PART_SRCS})
 
-target_link_libraries(kcm_knotessummary  KF5::PimCommon KF5::AkonadiNotes KF5::ConfigWidgets)
+target_link_libraries(kcm_knotessummary  KF5::PimCommon KF5::AkonadiNotes KF5::ConfigWidgets KF5::I18n)
 
 
 install(TARGETS kcm_knotessummary DESTINATION ${KDE_INSTALL_PLUGINDIR})

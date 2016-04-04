@@ -111,7 +111,7 @@ set(kcm_knotes_PART_SRCS configdialog/knoteconfigdialog.cpp configdialog/knotedi
 
 add_library(kcm_knote MODULE ${kcm_knotes_PART_SRCS} )
 
-target_link_libraries(kcm_knote knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff KF5::WindowSystem notesharedprivate KF5::AkonadiNotes KF5::PimCommon)
+target_link_libraries(kcm_knote knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff KF5::WindowSystem notesharedprivate KF5::AkonadiNotes KF5::PimCommon KF5::I18n)
 
 install(TARGETS kcm_knote DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
