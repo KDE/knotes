@@ -76,7 +76,7 @@ NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
                                QStringLiteral(KDEPIM_VERSION),
                                i18n("Notes Agent."),
                                KAboutLicense::GPL_V2,
-                               i18n("Copyright (C) 2013-2015 Laurent Montel"));
+                               i18n("Copyright (C) 2013-2016 Laurent Montel"));
 
     aboutData.addAuthor(i18n("Laurent Montel"),
                         i18n("Maintainer"), QStringLiteral("montel@kde.org"));
