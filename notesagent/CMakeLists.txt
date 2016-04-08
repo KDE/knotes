@@ -8,11 +8,11 @@ set(notesagent_SRCS
     notesagentsettingsdialog.cpp
     notesagentalarmdialog.cpp
     notesagentnotedialog.cpp
-)
+    )
 
 kconfig_add_kcfg_files(notesagent_SRCS
     settings/notesagentsettings.kcfgc
-)
+    )
 
 
 qt5_add_dbus_adaptor(notesagent_SRCS org.freedesktop.Akonadi.NotesAgent.xml notesagent.h NotesAgent)
@@ -21,25 +21,25 @@ ecm_qt_declare_logging_category(notesagent_SRCS HEADER notesagent_debug.h IDENTI
 add_executable(akonadi_notes_agent ${notesagent_SRCS})
 
 target_link_libraries(akonadi_notes_agent
-  KF5::AkonadiCore
-  KF5::Mime
-  KF5::AkonadiAgentBase
-  KF5::NotifyConfig
-  KF5::DBusAddons
-  notesharedprivate
-  KF5::PimCommon
-  KF5::PimTextEdit
-  KF5::XmlGui
-  KF5::WindowSystem
-  KF5::Notifications
-  KF5::IconThemes
-  KF5::I18n
-)
+    KF5::AkonadiCore
+    KF5::Mime
+    KF5::AkonadiAgentBase
+    KF5::NotifyConfig
+    KF5::DBusAddons
+    notesharedprivate
+    KF5::PimCommon
+    KF5::PimTextEdit
+    KF5::XmlGui
+    KF5::WindowSystem
+    KF5::Notifications
+    KF5::IconThemes
+    KF5::I18n
+    )
 
 if( APPLE )
-  set_target_properties(akonadi_notes_agent PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/Info.plist.template)
-  set_target_properties(akonadi_notes_agent PROPERTIES MACOSX_BUNDLE_GUI_IDENTIFIER "org.kde.Akonadi.archivemail")
-  set_target_properties(akonadi_notes_agent PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME "KDE Akonadi Notes")
+    set_target_properties(akonadi_notes_agent PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/Info.plist.template)
+    set_target_properties(akonadi_notes_agent PROPERTIES MACOSX_BUNDLE_GUI_IDENTIFIER "org.kde.Akonadi.archivemail")
+    set_target_properties(akonadi_notes_agent PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME "KDE Akonadi Notes")
 endif ()
 
 install(TARGETS akonadi_notes_agent ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
