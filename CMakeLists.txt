@@ -77,16 +77,24 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     find_package(Xsltproc)
     set_package_properties(Xsltproc PROPERTIES DESCRIPTION "XSLT processor from libxslt" TYPE REQUIRED PURPOSE "Required to generate D-Bus interfaces for all Akonadi resources.")
 
-    include_directories(${knotes_SOURCE_DIR} ${knotes_BINARY_DIR})
+    if (NOT APPLE)
+        find_package(X11)
+    endif()
+
+    set(KDEPIM_HAVE_X11 ${X11_FOUND})
+
 endif()
 
+include_directories(${knotes_SOURCE_DIR} ${knotes_BINARY_DIR})
 add_definitions( -DQT_NO_CAST_FROM_ASCII )
 add_definitions( -DQT_NO_CAST_TO_ASCII )
+
+configure_file(knotes-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotes-version.h @ONLY)
 
 add_subdirectory(noteshared)
 add_subdirectory(src)
 add_subdirectory(notesagent)
 
 if ("${CMAKE_BINARY_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}")
-  feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
+    feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 endif()

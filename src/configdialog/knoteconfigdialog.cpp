@@ -18,7 +18,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include "config-kdepim.h"
+#include "config-knotes.h"
 #include "knoteconfigdialog.h"
 #include "notes/knote.h"
 #include "print/knoteprintselectthemecombobox.h"
@@ -29,7 +29,7 @@
 #include "notesharedglobalconfig.h"
 #include "config/noteactionconfig.h"
 
-#include "kdepim-version.h"
+#include "knotes-version.h"
 #include <QLineEdit>
 #include <qapplication.h>
 #include <kcolorbutton.h>

@@ -16,7 +16,7 @@
 */
 
 #include "knotedisplayconfigwidget.h"
-#include "config-kdepim.h"
+#include "config-knotes.h"
 
 #include "attributes/notelockattribute.h"
 

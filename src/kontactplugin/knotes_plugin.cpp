@@ -28,7 +28,7 @@
 #include <KCalUtils/VCalDrag>
 #include <KCalCore/FileStorage>
 
-#include "kdepim-version.h"
+#include "knotes-version.h"
 
 #include <Libkdepim/MaillistDrag>
 using namespace KPIM;

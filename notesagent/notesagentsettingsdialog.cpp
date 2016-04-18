@@ -17,7 +17,7 @@
 
 #include "notesagentsettingsdialog.h"
 
-#include "kdepim-version.h"
+#include "knotes-version.h"
 #include <QMenu>
 #include <KHelpMenu>
 #include <KLocalizedString>

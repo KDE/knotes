@@ -21,7 +21,7 @@
 #include "../knotegrantleeprint.h"
 #include <KMime/Message>
 #include <AkonadiCore/Item>
-#include <knotes/src/print/knoteprintobject.h>
+#include "../print/knoteprintobject.h"
 #include <Akonadi/Notes/NoteUtils>
 
 KNotesGrantleePrintTest::KNotesGrantleePrintTest(QObject *parent)

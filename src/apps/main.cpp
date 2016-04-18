@@ -18,9 +18,9 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include "config-kdepim.h"
+#include "config-knotes.h"
 #include "knotes_debug.h"
-#include "kdepim-version.h"
+#include "knotes-version.h"
 
 #include "knotes_options.h"
 #include "apps/application.h"

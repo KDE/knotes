@@ -2,6 +2,8 @@ project(knotes)
 
 add_definitions(-DTRANSLATION_DOMAIN=\"knotes\")
 
+configure_file(config-knotes.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-knotes.h )
+
 add_subdirectory(icons)
 
 if (BUILD_TESTING)

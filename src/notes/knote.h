@@ -20,7 +20,7 @@
 
 #ifndef KNOTE_H
 #define KNOTE_H
-#include "config-kdepim.h"
+#include "config-knotes.h"
 #include <QDomDocument>
 #include <QEvent>
 #include <QFrame>
