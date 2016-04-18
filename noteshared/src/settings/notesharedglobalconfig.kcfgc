@@ -3,5 +3,5 @@ ClassName=NoteSharedGlobalConfig
 Visibility=NOTESHARED_EXPORT
 Mutators=true
 Singleton=true
-IncludeFiles=knotes/noteshared/src/noteshared_export.h
+IncludeFiles=noteshared_export.h
 NameSpace=NoteShared

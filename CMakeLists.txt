@@ -37,6 +37,8 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     set(KPIMTEXTEDIT_LIB_VERSION "5.2.40")
     set(AKONADI_VERSION "5.2.40")
     set(KONTACTINTERFACE_LIB_VERSION "5.2.40")
+    set(AKONADINOTES_LIB_VERSION "5.2.40")
+    set(CALENDARUTILS_LIB_VERSION "5.2.40")
 
     set(KDEPIM_LIB_VERSION "${KDEPIM_VERSION_NUMBER}")
     set(KDEPIM_LIB_SOVERSION "5")
@@ -48,10 +50,15 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     set(MAILCOMMON_LIB_VERSION_LIB "5.2.40")
     set(PIMCOMMON_LIB_VERSION_LIB "5.2.40")
     set(LIBKDEPIM_LIB_VERSION_LIB "5.2.40")
+    find_package(Grantlee5 "5.0" CONFIG REQUIRED)
     # Find KF5 package
     find_package(KF5DBusAddons ${KF5_VERSION} CONFIG REQUIRED)
     find_package(KF5DocTools REQUIRED)
     find_package(KF5KCMUtils ${KF5_VERSION} CONFIG REQUIRED)
+    find_package(KF5DNSSD ${KF5_VERSION} CONFIG REQUIRED)
+    find_package(KF5NewStuff ${KF5_VERSION} CONFIG REQUIRED)
+    find_package(KF5NotifyConfig ${KF5_VERSION} CONFIG REQUIRED)
+    find_package(KF5GlobalAccel ${KF5_VERSION} CONFIG REQUIRED)
 
 
     # Find KdepimLibs Package
@@ -61,6 +68,11 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     find_package(KF5MailCommon ${MAILCOMMON_LIB_VERSION_LIB} CONFIG REQUIRED)
     find_package(KF5Libkdepim ${LIBKDEPIM_LIB_VERSION_LIB} CONFIG REQUIRED)
     find_package(KF5KdepimDBusInterfaces ${KDEPIM_LIB_INSTALLED_VERSION} CONFIG REQUIRED)
+    find_package(KF5AkonadiNotes ${AKONADINOTES_LIB_VERSION} CONFIG REQUIRED)
+    find_package(KF5CalendarUtils ${CALENDARUTILS_LIB_VERSION} CONFIG REQUIRED)
+
+    find_package(KF5AkonadiSearch "5.2.40" CONFIG REQUIRED)
+    set_package_properties(KF5AkonadiSearch PROPERTIES DESCRIPTION "The Akonadi Search libraries" URL "http://www.kde.org" TYPE REQUIRED PURPOSE "Provides search capabilities in KMail and Akonadi")
 
     find_package(Xsltproc)
     set_package_properties(Xsltproc PROPERTIES DESCRIPTION "XSLT processor from libxslt" TYPE REQUIRED PURPOSE "Required to generate D-Bus interfaces for all Akonadi resources.")
