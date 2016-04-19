@@ -76,6 +76,8 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
 
     find_package(Xsltproc)
     set_package_properties(Xsltproc PROPERTIES DESCRIPTION "XSLT processor from libxslt" TYPE REQUIRED PURPOSE "Required to generate D-Bus interfaces for all Akonadi resources.")
+    find_package(Boost 1.34.0)
+    set_package_properties(Boost PROPERTIES DESCRIPTION "Boost C++ Libraries" URL "http://www.boost.org" TYPE REQUIRED PURPOSE "Boost is required for building most KDEPIM applications")
 
     if (NOT APPLE)
         find_package(X11)
