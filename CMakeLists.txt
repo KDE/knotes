@@ -1,9 +1,9 @@
 project(knotes)
 
+
 if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     cmake_minimum_required(VERSION 2.8.12)
     find_package(ECM 5.20.0 REQUIRED NO_MODULE)
-    set(CMAKE_MODULE_PATH ${knotes_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH})
     include(ECMInstallIcons)
 
     include(ECMOptionalAddSubdirectory)
@@ -74,8 +74,6 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     find_package(KF5AkonadiSearch "5.2.40" CONFIG REQUIRED)
     set_package_properties(KF5AkonadiSearch PROPERTIES DESCRIPTION "The Akonadi Search libraries" URL "http://www.kde.org" TYPE REQUIRED PURPOSE "Provides search capabilities in KMail and Akonadi")
 
-    find_package(Xsltproc)
-    set_package_properties(Xsltproc PROPERTIES DESCRIPTION "XSLT processor from libxslt" TYPE REQUIRED PURPOSE "Required to generate D-Bus interfaces for all Akonadi resources.")
     find_package(Boost 1.34.0)
     set_package_properties(Boost PROPERTIES DESCRIPTION "Boost C++ Libraries" URL "http://www.boost.org" TYPE REQUIRED PURPOSE "Boost is required for building most KDEPIM applications")
 
@@ -86,6 +84,9 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     set(KDEPIM_HAVE_X11 ${X11_FOUND})
 
 endif()
+set(CMAKE_MODULE_PATH ${knotes_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH})
+find_package(Xsltproc)
+set_package_properties(Xsltproc PROPERTIES DESCRIPTION "XSLT processor from libxslt" TYPE REQUIRED PURPOSE "Required to generate D-Bus interfaces for all Akonadi resources.")
 
 include_directories(${knotes_SOURCE_DIR} ${knotes_BINARY_DIR})
 add_definitions( -DQT_NO_CAST_FROM_ASCII )
