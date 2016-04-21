@@ -1,5 +1,3 @@
-project(noteshared)
-
 add_subdirectory(src)
 if (BUILD_TESTING)
    add_subdirectory(autotests)
