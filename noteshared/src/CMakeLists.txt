@@ -58,9 +58,6 @@ kconfig_add_kcfg_files(libnoteshared_kcfg_lib_SRCS ${libnoteshared_kcfg_lib_SRCS
 add_library(notesharedprivate ${libnoteshared_SRCS} ${libnoteshared_kcfg_lib_SRCS} )
 generate_export_header(notesharedprivate BASE_NAME noteshared)
 
-target_include_directories(notesharedprivate PUBLIC "$<BUILD_INTERFACE:${noteshared_SOURCE_DIR}/src;${noteshared_BINARY_DIR}/src;>")
-
-
 target_link_libraries(notesharedprivate
     PUBLIC
     KF5::AkonadiCore
