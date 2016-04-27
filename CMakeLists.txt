@@ -49,7 +49,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     find_package(Grantlee5 "5.0" CONFIG REQUIRED)
     # Find KF5 package
     find_package(KF5DBusAddons ${KF5_VERSION} CONFIG REQUIRED)
-    find_package(KF5DocTools REQUIRED)
+    find_package(KF5DocTools ${KF5_VERSION} REQUIRED)
     find_package(KF5KCMUtils ${KF5_VERSION} CONFIG REQUIRED)
     find_package(KF5DNSSD ${KF5_VERSION} CONFIG REQUIRED)
     find_package(KF5NewStuff ${KF5_VERSION} CONFIG REQUIRED)
