@@ -506,6 +506,7 @@ void KNote::print(bool preview)
         lst.append(new KNotePrintObject(mItem));
         printer.setDefaultFont(mDisplayAttribute->font());
         printer.printNotes(lst, printingTheme, preview);
+        qDeleteAll(lst);
     }
 }
 
