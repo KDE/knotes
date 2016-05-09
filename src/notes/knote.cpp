@@ -853,7 +853,7 @@ void KNote::createNoteFooter()
 void KNote::loadNoteContent(const Akonadi::Item &item)
 {
     KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
-    const KMime::Headers::Subject *const subject = noteMessage ? noteMessage->subject(false) : 0;
+    const KMime::Headers::Subject *const subject = noteMessage ? noteMessage->subject(false) : Q_NULLPTR;
     setName(subject ? subject->asUnicodeString() : QString());
     if (noteMessage->contentType()->isHTMLText()) {
         m_editor->setAcceptRichText(true);
