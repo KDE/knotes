@@ -78,9 +78,9 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     endif()
 
     set(KDEPIM_HAVE_X11 ${X11_FOUND})
-    add_definitions(-DQT_USE_QSTRINGBUILDER)
 
 endif()
+add_definitions(-DQT_USE_QSTRINGBUILDER)
 set(CMAKE_MODULE_PATH ${knotes_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH})
 find_package(Xsltproc)
 set_package_properties(Xsltproc PROPERTIES DESCRIPTION "XSLT processor from libxslt" TYPE REQUIRED PURPOSE "Required to generate D-Bus interfaces for all Akonadi resources.")
