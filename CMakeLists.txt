@@ -3,7 +3,7 @@ project(knotes)
 
 if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     cmake_minimum_required(VERSION 2.8.12)
-    find_package(ECM 5.20.0 REQUIRED NO_MODULE)
+    find_package(ECM 5.22.0 REQUIRED NO_MODULE)
     set(CMAKE_MODULE_PATH ${knotes_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH})
     include(ECMInstallIcons)
 
@@ -25,7 +25,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     include(ECMQtDeclareLoggingCategory)
 
 
-    set(KF5_VERSION "5.20.0")
+    set(KF5_VERSION "5.22.0")
 
     set(KDEPIM_VERSION_NUMBER "5.2.47")
     set(KDEPIM_VERSION "${KDEPIM_VERSION_NUMBER}${KDEPIM_DEV_VERSION}")
