@@ -44,7 +44,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     set(QT_REQUIRED_VERSION "5.6.0")
     find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test)
     find_package(Qt5X11Extras NO_MODULE)
-    set(MAILCOMMON_LIB_VERSION_LIB "5.2.40")
+    set(MAILCOMMON_LIB_VERSION_LIB "5.2.55")
     set(LIBKDEPIM_LIB_VERSION_LIB "5.2.40")
     find_package(Grantlee5 "5.0" CONFIG REQUIRED)
     # Find KF5 package
