@@ -497,7 +497,7 @@ void KNotesApp::updateNoteActions()
         action->setEnabled(false);
         m_noteActions.append(action);
     } else {
-        qSort(m_noteActions.begin(), m_noteActions.end(), qActionLessThan);
+        std::sort(m_noteActions.begin(), m_noteActions.end(), qActionLessThan);
         actionCollection()->action(QStringLiteral("hide_all_notes"))->setEnabled(true);
         actionCollection()->action(QStringLiteral("show_all_notes"))->setEnabled(true);
         actionCollection()->action(QStringLiteral("print_selected_notes"))->setEnabled(true);
