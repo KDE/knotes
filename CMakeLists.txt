@@ -46,7 +46,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     find_package(Qt5X11Extras NO_MODULE)
     set(MAILCOMMON_LIB_VERSION_LIB "5.2.56")
     set(LIBKDEPIM_LIB_VERSION_LIB "5.2.40")
-    find_package(Grantlee5 "5.0" CONFIG REQUIRED)
+    find_package(Grantlee5 "5.1" CONFIG REQUIRED)
     # Find KF5 package
     find_package(KF5DBusAddons ${KF5_VERSION} CONFIG REQUIRED)
     find_package(KF5DocTools ${KF5_VERSION} REQUIRED)
