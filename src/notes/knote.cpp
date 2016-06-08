@@ -673,8 +673,8 @@ void KNote::buildGui()
     KXMLGUIFactory factory(&builder, this);
     factory.addClient(this);
 
-    m_menu = dynamic_cast<QMenu *>(factory.container(QStringLiteral("note_context"), this));
-    m_tool = dynamic_cast<KToolBar *>(factory.container(QStringLiteral("note_tool"), this));
+    m_menu = qobject_cast<QMenu *>(factory.container(QStringLiteral("note_context"), this));
+    m_tool = qobject_cast<KToolBar *>(factory.container(QStringLiteral("note_tool"), this));
 
     createNoteFooter();
 }
