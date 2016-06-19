@@ -21,9 +21,9 @@
 
 #include <QWidget>
 #include <AkonadiCore/Collection>
+#include <QIdentityProxyModel>
 #include <QModelIndex>
 
-class QItemSelectionModel;
 class KRecursiveFilterProxyModel;
 namespace Akonadi
 {
@@ -32,9 +32,25 @@ class ChangeRecorder;
 class CollectionRequester;
 class EntityTreeView;
 }
-class KCheckableProxyModel;
 class KJob;
 class QPushButton;
+
+class KNoteCollectionDisplayProxyModel : public QIdentityProxyModel
+{
+public:
+    explicit KNoteCollectionDisplayProxyModel(QObject *parent = Q_NULLPTR);
+
+    QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
+
+    bool setData(const QModelIndex &index, const QVariant &_data, int role) Q_DECL_OVERRIDE;
+    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
+
+    QHash<Akonadi::Collection, bool> displayCollection() const;
+
+private:
+    QHash<Akonadi::Collection, bool> mDisplayCollection;
+};
+
 
 class KNoteCollectionConfigWidget : public QWidget
 {
@@ -43,7 +59,7 @@ public:
     explicit KNoteCollectionConfigWidget(QWidget *parent = Q_NULLPTR);
     ~KNoteCollectionConfigWidget();
 
-    void updateCollectionsRecursive(const QModelIndex &parent);
+    void updateCollectionsRecursive();
 
     void save();
 Q_SIGNALS:
@@ -54,24 +70,20 @@ private Q_SLOTS:
     void slotUnselectAllCollections();
     void slotCollectionsInserted();
     void slotModifyJobDone(KJob *job);
-    void slotUpdateCollectionStatus();
     void slotSetCollectionFilter(const QString &);
     void slotDataChanged();
     void slotRenameCollection();
     void slotUpdateButtons();
     void slotCollectionModifyFinished(KJob *);
 private:
-    void updateStatus(const QModelIndex &parent);
     void forceStatus(const QModelIndex &parent, bool status);
     Akonadi::EntityTreeView *mFolderView;
-    QItemSelectionModel *mSelectionModel;
     Akonadi::EntityTreeModel *mModel;
     Akonadi::ChangeRecorder *mChangeRecorder;
-    KCheckableProxyModel *mCheckProxy;
     KRecursiveFilterProxyModel *mCollectionFilter;
     Akonadi::CollectionRequester *mDefaultSaveFolder;
     QPushButton *mRenameCollection;
-    bool mCanUpdateStatus;
+    KNoteCollectionDisplayProxyModel *mDisplayNotifierProxyModel;
 };
 
 #endif // KNOTECOLLECTIONCONFIGWIDGET_H

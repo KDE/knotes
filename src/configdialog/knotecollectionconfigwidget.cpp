@@ -49,9 +49,66 @@
 #include <QLabel>
 #include <QTimer>
 
+KNoteCollectionDisplayProxyModel::KNoteCollectionDisplayProxyModel(QObject *parent)
+    : QIdentityProxyModel(parent)
+{
+}
+
+QVariant KNoteCollectionDisplayProxyModel::data(const QModelIndex &index, int role) const
+{
+    if (role == Qt::CheckStateRole)
+    {
+        if (index.isValid()) {
+
+            const Akonadi::Collection collection =
+                    data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
+            if (mDisplayCollection.contains(collection)) {
+                return mDisplayCollection.value(collection) ? Qt::Checked : Qt::Unchecked;
+            } else {
+                NoteShared::ShowFolderNotesAttribute *attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>();
+                if (attr) {
+                    return Qt::Checked;
+                }
+                return Qt::Unchecked;
+            }
+        }
+    }
+    return QIdentityProxyModel::data(index, role);
+}
+
+bool KNoteCollectionDisplayProxyModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if (role == Qt::CheckStateRole)
+    {
+        if (index.isValid()) {
+            const Akonadi::Collection collection =
+                data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
+            mDisplayCollection[collection] = (value == Qt::Checked);
+            emit dataChanged(index, index);
+            return true;
+        }
+    }
+
+    return QIdentityProxyModel::setData(index, value, role);
+}
+
+Qt::ItemFlags KNoteCollectionDisplayProxyModel::flags(const QModelIndex &index) const
+{
+    if (index.isValid()) {
+        return QIdentityProxyModel::flags(index) | Qt::ItemIsUserCheckable;
+    } else {
+        return QIdentityProxyModel::flags(index);
+    }
+}
+
+QHash<Akonadi::Collection, bool> KNoteCollectionDisplayProxyModel::displayCollection() const
+{
+    return mDisplayCollection;
+}
+
+
 KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
-    : QWidget(parent),
-      mCanUpdateStatus(false)
+    : QWidget(parent)
 {
     QHBoxLayout *mainLayout = new QHBoxLayout;
     setLayout(mainLayout);
@@ -82,17 +139,15 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     mimeTypeProxy->addMimeTypeFilters(QStringList() << Akonadi::NoteUtils::noteMimeType());
     mimeTypeProxy->setSourceModel(mModel);
 
-    // Create the Check proxy model.
-    mSelectionModel = new QItemSelectionModel(mimeTypeProxy);
-    mCheckProxy = new KCheckableProxyModel(this);
-    mCheckProxy->setSelectionModel(mSelectionModel);
-    mCheckProxy->setSourceModel(mimeTypeProxy);
+
+    mDisplayNotifierProxyModel = new KNoteCollectionDisplayProxyModel(this);
+    mDisplayNotifierProxyModel->setSourceModel(mimeTypeProxy);
+    connect(mDisplayNotifierProxyModel, &KNoteCollectionDisplayProxyModel::dataChanged, this, &KNoteCollectionConfigWidget::slotDataChanged);
 
     connect(mModel, &Akonadi::EntityTreeModel::collectionTreeFetched, this, &KNoteCollectionConfigWidget::slotCollectionsInserted);
 
-    connect(mCheckProxy, &KCheckableProxyModel::dataChanged, this, &KNoteCollectionConfigWidget::slotDataChanged);
     mCollectionFilter = new KRecursiveFilterProxyModel(this);
-    mCollectionFilter->setSourceModel(mCheckProxy);
+    mCollectionFilter->setSourceModel(mDisplayNotifierProxyModel);
     mCollectionFilter->setDynamicSortFilter(true);
     mCollectionFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
 
@@ -152,8 +207,6 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     manageAccountWidget->setMimeTypeFilter(QStringList() << Akonadi::NoteUtils::noteMimeType());
     manageAccountWidget->setCapabilityFilter(QStringList() << QStringLiteral("Resource"));  // show only resources, no agents
     tabWidget->addTab(accountWidget, i18n("Accounts"));
-
-    QTimer::singleShot(1000, this, &KNoteCollectionConfigWidget::slotUpdateCollectionStatus);
     slotUpdateButtons();
 }
 
@@ -221,12 +274,6 @@ void KNoteCollectionConfigWidget::slotSetCollectionFilter(const QString &filter)
     mFolderView->expandAll();
 }
 
-void KNoteCollectionConfigWidget::slotUpdateCollectionStatus()
-{
-    mCanUpdateStatus = true;
-    updateStatus(QModelIndex());
-}
-
 void KNoteCollectionConfigWidget::slotSelectAllCollections()
 {
     forceStatus(QModelIndex(), true);
@@ -239,33 +286,12 @@ void KNoteCollectionConfigWidget::slotUnselectAllCollections()
     Q_EMIT emitChanged(true);
 }
 
-void KNoteCollectionConfigWidget::updateStatus(const QModelIndex &parent)
-{
-    if (!mCanUpdateStatus) {
-        return;
-    }
-
-    const int nbCol = mCheckProxy->rowCount(parent);
-    for (int i = 0; i < nbCol; ++i) {
-        const QModelIndex child = mCheckProxy->index(i, 0, parent);
-
-        const Akonadi::Collection collection =
-            mCheckProxy->data(child, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
-
-        NoteShared::ShowFolderNotesAttribute *attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>();
-        if (attr) {
-            mCheckProxy->setData(child, Qt::Checked, Qt::CheckStateRole);
-        }
-        updateStatus(child);
-    }
-}
-
 void KNoteCollectionConfigWidget::forceStatus(const QModelIndex &parent, bool status)
 {
-    const int nbCol = mCheckProxy->rowCount(parent);
+    const int nbCol = mDisplayNotifierProxyModel->rowCount(parent);
     for (int i = 0; i < nbCol; ++i) {
-        const QModelIndex child = mCheckProxy->index(i, 0, parent);
-        mCheckProxy->setData(child, status ? Qt::Checked : Qt::Unchecked, Qt::CheckStateRole);
+        const QModelIndex child = mDisplayNotifierProxyModel->index(i, 0, parent);
+        mDisplayNotifierProxyModel->setData(child, status ? Qt::Checked : Qt::Unchecked, Qt::CheckStateRole);
         forceStatus(child, status);
     }
 }
@@ -277,7 +303,7 @@ void KNoteCollectionConfigWidget::slotCollectionsInserted()
 
 void KNoteCollectionConfigWidget::save()
 {
-    updateCollectionsRecursive(QModelIndex());
+    updateCollectionsRecursive();
     Akonadi::Collection col = mDefaultSaveFolder->collection();
     if (col.isValid()) {
         NoteShared::NoteSharedGlobalConfig::self()->setDefaultFolder(col.id());
@@ -285,18 +311,15 @@ void KNoteCollectionConfigWidget::save()
     }
 }
 
-void KNoteCollectionConfigWidget::updateCollectionsRecursive(const QModelIndex &parent)
+void KNoteCollectionConfigWidget::updateCollectionsRecursive()
 {
-    const int nbCol = mCheckProxy->rowCount(parent);
-    for (int i = 0; i < nbCol; ++i) {
-        const QModelIndex child = mCheckProxy->index(i, 0, parent);
-
-        Akonadi::Collection collection =
-            mCheckProxy->data(child, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
-
+    QHashIterator<Akonadi::Collection, bool> i(mDisplayNotifierProxyModel->displayCollection());
+    while (i.hasNext()) {
+        i.next();
+        Akonadi::Collection collection = i.key();
+        Akonadi::CollectionModifyJob *modifyJob = Q_NULLPTR;
         NoteShared::ShowFolderNotesAttribute *attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>();
-        Akonadi::CollectionModifyJob *modifyJob = 0;
-        const bool selected = (mCheckProxy->data(child, Qt::CheckStateRole).toInt() != 0);
+        const bool selected = i.value();
         if (selected && !attr) {
             attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>(Akonadi::Collection::AddIfMissing);
             modifyJob = new Akonadi::CollectionModifyJob(collection);
@@ -310,7 +333,6 @@ void KNoteCollectionConfigWidget::updateCollectionsRecursive(const QModelIndex &
         if (modifyJob) {
             connect(modifyJob, &Akonadi::CollectionModifyJob::finished, this, &KNoteCollectionConfigWidget::slotModifyJobDone);
         }
-        updateCollectionsRecursive(child);
     }
 }
 
