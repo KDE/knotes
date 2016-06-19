@@ -88,7 +88,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     mCheckProxy->setSelectionModel(mSelectionModel);
     mCheckProxy->setSourceModel(mimeTypeProxy);
 
-    connect(mModel, &Akonadi::EntityTreeModel::rowsInserted, this, &KNoteCollectionConfigWidget::slotCollectionsInserted);
+    connect(mModel, &Akonadi::EntityTreeModel::collectionTreeFetched, this, &KNoteCollectionConfigWidget::slotCollectionsInserted);
 
     connect(mCheckProxy, &KCheckableProxyModel::dataChanged, this, &KNoteCollectionConfigWidget::slotDataChanged);
     mCollectionFilter = new KRecursiveFilterProxyModel(this);
@@ -270,7 +270,7 @@ void KNoteCollectionConfigWidget::forceStatus(const QModelIndex &parent, bool st
     }
 }
 
-void KNoteCollectionConfigWidget::slotCollectionsInserted(const QModelIndex &, int, int)
+void KNoteCollectionConfigWidget::slotCollectionsInserted()
 {
     mFolderView->expandAll();
 }

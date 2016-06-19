@@ -52,7 +52,7 @@ Q_SIGNALS:
 private Q_SLOTS:
     void slotSelectAllCollections();
     void slotUnselectAllCollections();
-    void slotCollectionsInserted(const QModelIndex &parent, int start, int end);
+    void slotCollectionsInserted();
     void slotModifyJobDone(KJob *job);
     void slotUpdateCollectionStatus();
     void slotSetCollectionFilter(const QString &);
