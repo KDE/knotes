@@ -78,6 +78,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     endif()
 
     set(KDEPIM_HAVE_X11 ${X11_FOUND})
+    add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 
 endif()
 add_definitions(-DQT_USE_QSTRINGBUILDER)
