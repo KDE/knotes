@@ -32,6 +32,7 @@ target_link_libraries(kontact_knotesplugin
                       KF5::Mime
                       KF5::KCMUtils
                       KF5::AkonadiWidgets
+                      KF5::AkonadiNotes
 )
 
 ########### install files ###############
