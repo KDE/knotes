@@ -99,6 +99,7 @@ target_link_libraries(knotes
     KF5::GlobalAccel
     KF5::KDELibs4Support
     KF5::AkonadiSearchDebug
+    KF5::AkonadiNotes
     )
 if (Qt5X11Extras_FOUND)
     target_link_libraries(knotes Qt5::X11Extras ${X11_LIBRARIES})
