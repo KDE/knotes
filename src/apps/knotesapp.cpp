@@ -158,7 +158,7 @@ KNotesApp::KNotesApp()
 #endif
     KStandardAction::preferences(this, SLOT(slotPreferences()),
                                  actionCollection());
-    KStandardAction::keyBindings(this, SLOT(slotConfigureAccels()),
+    KStandardAction::keyBindings(this, &KNotesApp::slotConfigureAccels,
                                  actionCollection());
     //FIXME: no shortcut removing!?
     KStandardAction::quit(this, SLOT(slotQuit()),

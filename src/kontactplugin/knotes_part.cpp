@@ -209,7 +209,7 @@ KNotesPart::KNotesPart(QObject *parent)
     connect(mReadOnly, &KToggleAction::triggered, this, &KNotesPart::slotUpdateReadOnly);
     mReadOnly->setCheckedState(KGuiItem(i18n("Unlock"), QStringLiteral("object-unlocked")));
 
-    KStandardAction::find(this, SLOT(slotOpenFindDialog()), actionCollection());
+    KStandardAction::find(this, &KNotesPart::slotOpenFindDialog, actionCollection());
 
     Akonadi::Session *session = new Akonadi::Session("KNotes Session", this);
     mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
