@@ -156,12 +156,12 @@ KNotesApp::KNotesApp()
     new KHelpMenu(this, KComponentData::mainComponent().aboutData(), false,
                   actionCollection());
 #endif
-    KStandardAction::preferences(this, SLOT(slotPreferences()),
+    KStandardAction::preferences(this, &KNotesApp::slotPreferences,
                                  actionCollection());
     KStandardAction::keyBindings(this, &KNotesApp::slotConfigureAccels,
                                  actionCollection());
     //FIXME: no shortcut removing!?
-    KStandardAction::quit(this, SLOT(slotQuit()),
+    KStandardAction::quit(this, &KNotesApp::slotQuit,
                           actionCollection())->setShortcut(0);
     setXMLFile(QStringLiteral("knotesappui.rc"));
 
