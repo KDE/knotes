@@ -143,7 +143,7 @@ KNotesApp::KNotesApp()
     actionCollection()->addAction(QStringLiteral("print_selected_notes"), action);
     connect(action, &QAction::triggered, this, &KNotesApp::slotPrintSelectedNotes);
 
-    QAction *act = KStandardAction::find(this, SLOT(slotOpenFindDialog()), actionCollection());
+    QAction *act = KStandardAction::find(this, &KNotesApp::slotOpenFindDialog, actionCollection());
     action = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")),
                          i18nc("@action:inmenu", "Delete Selected Notes..."), this);
     actionCollection()->addAction(QStringLiteral("delete_selected_notes"), action);
