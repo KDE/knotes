@@ -37,6 +37,7 @@
 #include <qx11info_x11.h>
 #endif
 #include <QCommandLineParser>
+#include <KCrash>
 
 void remove_sm_from_client_leader();
 void knotesOptions(QCommandLineParser *parser);
@@ -47,8 +48,10 @@ int main(int argc, char *argv[])
     Application app(argc, &argv);
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     app.setAttribute(Qt::AA_EnableHighDpiScaling);
+    KCrash::initialize();
     KNotesMigrateApplication migrate;
     migrate.migrate();
+
 
     KAboutData aboutData(QStringLiteral("knotes"),
                          i18n("KNotes"),

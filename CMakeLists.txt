@@ -63,6 +63,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     find_package(KF5NewStuff ${KF5_VERSION} CONFIG REQUIRED)
     find_package(KF5NotifyConfig ${KF5_VERSION} CONFIG REQUIRED)
     find_package(KF5GlobalAccel ${KF5_VERSION} CONFIG REQUIRED)
+    find_package(KF5Crash ${KF5_VERSION} REQUIRED)
 
 
     # Find KdepimLibs Package
