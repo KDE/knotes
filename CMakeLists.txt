@@ -26,7 +26,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     include(ECMQtDeclareLoggingCategory)
 
     # Do NOT add quote
-    set(KDEPIM_DEV_VERSION beta1)
+    set(KDEPIM_DEV_VERSION pre)
 
     # add an extra space
     if(DEFINED KDEPIM_DEV_VERSION)
@@ -35,7 +35,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
 
 
 
-    set(KDEPIM_VERSION_NUMBER "5.2.80")
+    set(KDEPIM_VERSION_NUMBER "5.3.40")
     set(KDEPIM_VERSION "${KDEPIM_VERSION_NUMBER}${KDEPIM_DEV_VERSION}")
     set(KDEPIM_LIB_VERSION "${KDEPIM_VERSION_NUMBER}")
     set(KDEPIM_LIB_SOVERSION "5")
