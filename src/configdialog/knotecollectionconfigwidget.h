@@ -51,7 +51,6 @@ private:
     QHash<Akonadi::Collection, bool> mDisplayCollection;
 };
 
-
 class KNoteCollectionConfigWidget : public QWidget
 {
     Q_OBJECT
