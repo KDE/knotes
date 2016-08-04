@@ -79,7 +79,8 @@ void KNoteFindDialog::readConfig()
 KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     : QWidget(parent)
 {
-    QVBoxLayout *vbox = new QVBoxLayout;
+    QVBoxLayout *vbox = new QVBoxLayout(this);
+    vbox->setMargin(0);
     QHBoxLayout *hbox = new QHBoxLayout;
     vbox->addLayout(hbox);
     QLabel *lab = new QLabel(i18n("Search notes:"));
@@ -105,8 +106,6 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     vbox->addWidget(mResultSearch);
 
     mSearchLineEdit->setFocus();
-
-    setLayout(vbox);
 }
 
 KNoteFindWidget::~KNoteFindWidget()
