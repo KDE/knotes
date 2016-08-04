@@ -202,6 +202,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     accountWidget->setLayout(vboxAccountWidget);
 
     Akonadi::ManageAccountWidget *manageAccountWidget = new Akonadi::ManageAccountWidget(this);
+    manageAccountWidget->setDescriptionLabelText(i18n("Notes accounts"));
     vboxAccountWidget->addWidget(manageAccountWidget);
 
     manageAccountWidget->setMimeTypeFilter(QStringList() << Akonadi::NoteUtils::noteMimeType());
