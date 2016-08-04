@@ -53,10 +53,7 @@ NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)
     : QWidget(parent),
       d(new NoteShared::NoteNetworkConfigWidgetPrivate)
 {
-    QVBoxLayout *lay = new QVBoxLayout(this);
-    QWidget *w =  new QWidget(this);
-    lay->addWidget(w);
-    QVBoxLayout *layout = new QVBoxLayout(w);
+    QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
 
     QGroupBox *incoming = new QGroupBox(i18n("Incoming Notes"));
@@ -93,7 +90,7 @@ NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)
     label_Port->setBuddy(d->kcfg_Port);
     tmpLayout->addWidget(d->kcfg_Port);
     layout->addLayout(tmpLayout);
-    lay->addStretch();
+    layout->addStretch();
 }
 
 NoteNetworkConfigWidget::~NoteNetworkConfigWidget()

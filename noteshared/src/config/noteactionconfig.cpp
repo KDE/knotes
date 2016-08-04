@@ -31,10 +31,7 @@ using namespace NoteShared;
 NoteActionConfig::NoteActionConfig(QWidget *parent)
     : KCModule(parent)
 {
-    QVBoxLayout *lay = new QVBoxLayout(this);
-    QWidget *w =  new QWidget(this);
-    lay->addWidget(w);
-    QGridLayout *layout = new QGridLayout(w);
+    QGridLayout *layout = new QGridLayout(this);
     layout->setMargin(0);
 
     QLabel *label_MailAction = new QLabel(i18n("&Mail action:"), this);
@@ -50,8 +47,8 @@ NoteActionConfig::NoteActionConfig(QWidget *parent)
     layout->addWidget(howItWorks, 1, 0);
     howItWorks->setContextMenuPolicy(Qt::NoContextMenu);
 
-    addConfig(NoteShared::NoteSharedGlobalConfig::self(), w);
-    lay->addStretch();
+    addConfig(NoteShared::NoteSharedGlobalConfig::self(), this);
+    layout->setRowStretch(2, 1);
     load();
 }
 

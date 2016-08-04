@@ -41,9 +41,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
       kcfg_Height(0)
 {
     QGridLayout *layout = new QGridLayout(this);
-    if (!defaults) {
-        layout->setMargin(0);
-    }
+    layout->setMargin(0);
 
     QLabel *label_FgColor = new QLabel(i18n("&Text color:"), this);
     label_FgColor->setObjectName(QStringLiteral("label_FgColor"));

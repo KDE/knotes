@@ -170,7 +170,7 @@ KNoteEditorConfig::KNoteEditorConfig(QWidget *parent)
     : KCModule(parent)
 {
     QVBoxLayout *lay = new QVBoxLayout(this);
-    QWidget *w =  new KNoteEditorConfigWidget(true);
+    QWidget *w =  new KNoteEditorConfigWidget(this);
     lay->addWidget(w);
     lay->addStretch();
     addConfig(KNotesGlobalConfig::self(), w);
@@ -190,12 +190,8 @@ void KNoteEditorConfig::load()
 KNoteMiscConfig::KNoteMiscConfig(QWidget *parent)
     : KCModule(parent)
 {
-    QVBoxLayout *topLayout = new QVBoxLayout(this);
-    QWidget *w =  new QWidget(this);
-    topLayout->addWidget(w);
-
-    QVBoxLayout *lay = new QVBoxLayout;
-    w->setLayout(lay);
+    QVBoxLayout *lay = new QVBoxLayout(this);
+    lay->setMargin(0);
 
     QCheckBox *kcfg_SystemTrayShowNotes = new QCheckBox(i18n("Show number of notes in tray icon"), this);
 
@@ -214,7 +210,7 @@ KNoteMiscConfig::KNoteMiscConfig(QWidget *parent)
     QLabel *howItWorks = new QLabel(i18n("<a href=\"whatsthis\">How does this work?</a>"));
     connect(howItWorks, &QLabel::linkActivated, this, &KNoteMiscConfig::slotHelpLinkClicked);
     lay->addWidget(howItWorks);
-    addConfig(KNotesGlobalConfig::self(), w);
+    addConfig(KNotesGlobalConfig::self(), this);
     howItWorks->setContextMenuPolicy(Qt::NoContextMenu);
     lay->addStretch();
     load();

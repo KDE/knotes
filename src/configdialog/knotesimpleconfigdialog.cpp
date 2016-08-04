@@ -62,7 +62,7 @@ KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title,
                                 IconSize(KIconLoader::Small)));
     mTabWidget = new QTabWidget;
 
-    mEditorConfigWidget = new KNoteEditorConfigWidget(true, this);
+    mEditorConfigWidget = new KNoteEditorConfigWidget(this);
     mTabWidget->addTab(mEditorConfigWidget, i18n("Editor Settings"));
 
     mDisplayConfigWidget = new KNoteDisplayConfigWidget(true, this);
