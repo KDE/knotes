@@ -110,8 +110,8 @@ QHash<Akonadi::Collection, bool> KNoteCollectionDisplayProxyModel::displayCollec
 KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     : QWidget(parent)
 {
-    QHBoxLayout *mainLayout = new QHBoxLayout;
-    setLayout(mainLayout);
+    QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    mainLayout->setMargin(0);
 
     QTabWidget *tabWidget = new QTabWidget;
     mainLayout->addWidget(tabWidget);
