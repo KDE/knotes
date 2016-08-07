@@ -41,15 +41,15 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     set(KDEPIM_LIB_SOVERSION "5")
 
 
-    set(AKONADINOTES_LIB_VERSION "5.2.90")
-    set(AKONADI_VERSION "5.2.90")
-    set(CALENDARUTILS_LIB_VERSION "5.2.90")
-    set(KDEPIM_APPS_LIB_VERSION_LIB "5.2.90")
-    set(KONTACTINTERFACE_LIB_VERSION "5.2.90")
-    set(KPIMTEXTEDIT_LIB_VERSION "5.2.90")
-    set(LIBKDEPIM_LIB_VERSION_LIB "5.2.90")
-    set(KMIME_LIB_VERSION "5.2.90")
-    set(PIMCOMMON_LIB_VERSION_LIB "5.2.90")
+    set(AKONADINOTES_LIB_VERSION "5.3.0")
+    set(AKONADI_VERSION "5.3.0")
+    set(CALENDARUTILS_LIB_VERSION "5.3.0")
+    set(KDEPIM_APPS_LIB_VERSION_LIB "5.3.0")
+    set(KONTACTINTERFACE_LIB_VERSION "5.3.0")
+    set(KPIMTEXTEDIT_LIB_VERSION "5.3.0")
+    set(LIBKDEPIM_LIB_VERSION_LIB "5.3.0")
+    set(KMIME_LIB_VERSION "5.3.0")
+    set(PIMCOMMON_LIB_VERSION_LIB "5.3.0")
 
 
     set(QT_REQUIRED_VERSION "5.6.0")
@@ -91,7 +91,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${knotes_SOURCE_DIR})
     find_package(KF5PimTextEdit ${KPIMTEXTEDIT_LIB_VERSION} CONFIG REQUIRED)
 
 
-    find_package(KF5AkonadiSearch "5.2.90" CONFIG REQUIRED)
+    find_package(KF5AkonadiSearch "5.3.0" CONFIG REQUIRED)
     set_package_properties(KF5AkonadiSearch PROPERTIES DESCRIPTION "The Akonadi Search libraries" URL "http://www.kde.org" TYPE REQUIRED PURPOSE "Provides search capabilities in KMail and Akonadi")
 
     find_package(Boost 1.34.0)
