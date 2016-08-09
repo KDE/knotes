@@ -54,24 +54,22 @@ NoteHostDialog::NoteHostDialog(const QString &caption, QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(caption);
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     mOkButton = buttonBox->button(QDialogButtonBox::Ok);
     mOkButton->setDefault(true);
     mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &NoteHostDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &NoteHostDialog::reject);
-    QWidget *page = new QWidget(this);
-    QVBoxLayout *pageVBoxLayout = new QVBoxLayout(page);
-    pageVBoxLayout->setMargin(0);
-    mainLayout->addWidget(page);
-    mainLayout->addWidget(buttonBox);
 
-    (void) new QLabel(i18n("Select recipient:"), page);
 
-    m_servicesView = new QTreeView(page);
-    pageVBoxLayout->addWidget(m_servicesView);
+
+    QLabel *label = new QLabel(i18n("Select recipient:"), this);
+    mainLayout->addWidget(label);
+
+    m_servicesView = new QTreeView(this);
     m_servicesView->setRootIsDecorated(false);
     KDNSSD::ServiceModel *mdl = new KDNSSD::ServiceModel(new KDNSSD::ServiceBrowser(QStringLiteral("_knotes._tcp"), true), this);
     m_servicesView->setModel(mdl);
@@ -83,16 +81,23 @@ NoteHostDialog::NoteHostDialog(const QString &caption, QWidget *parent)
     connect(m_servicesView, &QTreeView::clicked, this, &NoteHostDialog::serviceSelected);
     connect(m_servicesView, &QTreeView::doubleClicked, this, &NoteHostDialog::slotServiceDoubleClicked);
 
-    (void) new QLabel(i18n("Hostname or IP address:"), page);
+    mainLayout->addWidget(m_servicesView);
 
-    m_hostCombo = new KHistoryComboBox(true, page);
-    pageVBoxLayout->addWidget(m_hostCombo);
+    label = new QLabel(i18n("Hostname or IP address:"), this);
+    mainLayout->addWidget(label);
+
+    m_hostCombo = new KHistoryComboBox(true, this);
+    mainLayout->addWidget(m_hostCombo);
     m_hostCombo->setMinimumWidth(fontMetrics().maxWidth() * 15);
     m_hostCombo->setDuplicatesEnabled(false);
 
     // Read known hosts from configfile
     m_hostCombo->setHistoryItems(NoteShared::NoteSharedGlobalConfig::knownHosts(), true);
     m_hostCombo->setFocus();
+
+    mainLayout->addWidget(buttonBox);
+
+
     connect(m_hostCombo->lineEdit(), &QLineEdit::textChanged, this, &NoteHostDialog::slotTextChanged);
     slotTextChanged(m_hostCombo->lineEdit()->text());
     readConfig();
