@@ -56,12 +56,11 @@ KNoteCollectionDisplayProxyModel::KNoteCollectionDisplayProxyModel(QObject *pare
 
 QVariant KNoteCollectionDisplayProxyModel::data(const QModelIndex &index, int role) const
 {
-    if (role == Qt::CheckStateRole)
-    {
+    if (role == Qt::CheckStateRole) {
         if (index.isValid()) {
 
             const Akonadi::Collection collection =
-                    data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
+                data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
             if (mDisplayCollection.contains(collection)) {
                 return mDisplayCollection.value(collection) ? Qt::Checked : Qt::Unchecked;
             } else {
@@ -78,8 +77,7 @@ QVariant KNoteCollectionDisplayProxyModel::data(const QModelIndex &index, int ro
 
 bool KNoteCollectionDisplayProxyModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    if (role == Qt::CheckStateRole)
-    {
+    if (role == Qt::CheckStateRole) {
         if (index.isValid()) {
             const Akonadi::Collection collection =
                 data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
@@ -105,7 +103,6 @@ QHash<Akonadi::Collection, bool> KNoteCollectionDisplayProxyModel::displayCollec
 {
     return mDisplayCollection;
 }
-
 
 KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     : QWidget(parent)
@@ -138,7 +135,6 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     mimeTypeProxy->setExcludeVirtualCollections(true);
     mimeTypeProxy->addMimeTypeFilters(QStringList() << Akonadi::NoteUtils::noteMimeType());
     mimeTypeProxy->setSourceModel(mModel);
-
 
     mDisplayNotifierProxyModel = new KNoteCollectionDisplayProxyModel(this);
     mDisplayNotifierProxyModel->setSourceModel(mimeTypeProxy);

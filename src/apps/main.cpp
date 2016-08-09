@@ -52,7 +52,6 @@ int main(int argc, char *argv[])
     KNotesMigrateApplication migrate;
     migrate.migrate();
 
-
     KAboutData aboutData(QStringLiteral("knotes"),
                          i18n("KNotes"),
                          QStringLiteral(KDEPIM_VERSION),
