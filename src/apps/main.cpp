@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 
     KAboutData aboutData(QStringLiteral("knotes"),
                          i18n("KNotes"),
-                         QStringLiteral(KDEPIM_VERSION),
+                         QStringLiteral(KNOTES_VERSION),
                          i18n("KDE Notes"),
                          KAboutLicense::GPL,
                          i18n("Copyright © 1997–2016 KNotes authors"));
