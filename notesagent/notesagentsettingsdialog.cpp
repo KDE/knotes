@@ -74,7 +74,7 @@ NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
     KAboutData aboutData = KAboutData(
                                QStringLiteral("notesagent"),
                                i18n("Notes Agent"),
-                               QStringLiteral(KDEPIM_VERSION),
+                               QStringLiteral(KNOTES_VERSION),
                                i18n("Notes Agent."),
                                KAboutLicense::GPL_V2,
                                i18n("Copyright (C) 2013-2016 Laurent Montel"));
