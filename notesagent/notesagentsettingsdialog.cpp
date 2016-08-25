@@ -42,14 +42,13 @@ NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
 {
     setWindowTitle(i18n("Configure Notes Agent"));
     setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Help);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Help, this);
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &NotesAgentSettingsDialog::reject);
-    okButton->setDefault(true);
     connect(okButton, &QPushButton::clicked, this, &NotesAgentSettingsDialog::slotOkClicked);
 
     setModal(true);
