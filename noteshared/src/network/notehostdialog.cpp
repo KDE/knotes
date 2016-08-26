@@ -64,8 +64,6 @@ NoteHostDialog::NoteHostDialog(const QString &caption, QWidget *parent)
     connect(buttonBox, &QDialogButtonBox::accepted, this, &NoteHostDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &NoteHostDialog::reject);
 
-
-
     QLabel *label = new QLabel(i18n("Select recipient:"), this);
     mainLayout->addWidget(label);
 
@@ -96,7 +94,6 @@ NoteHostDialog::NoteHostDialog(const QString &caption, QWidget *parent)
     m_hostCombo->setFocus();
 
     mainLayout->addWidget(buttonBox);
-
 
     connect(m_hostCombo->lineEdit(), &QLineEdit::textChanged, this, &NoteHostDialog::slotTextChanged);
     slotTextChanged(m_hostCombo->lineEdit()->text());
