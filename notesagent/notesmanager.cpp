@@ -21,14 +21,20 @@
 #include "network/notesnetworkreceiver.h"
 #include "job/createnewnotejob.h"
 #include "akonadi/noteschangerecorder.h"
-#include "akonadi/notesakonaditreemodel.h"
 #include "attributes/notealarmattribute.h"
+#include "attributes/notedisplayattribute.h"
+#include "attributes/notelockattribute.h"
 #include "notesagentalarmdialog.h"
 
 #include <AkonadiCore/Session>
 #include <AkonadiCore/Collection>
 #include <AkonadiCore/Item>
 #include <AkonadiCore/ChangeRecorder>
+#include <AkonadiCore/ItemFetchJob>
+#include <AkonadiCore/ItemFetchScope>
+#include <AkonadiCore/CollectionFetchJob>
+#include <AkonadiCore/CollectionFetchScope>
+#include <Akonadi/Notes/NoteUtils>
 
 #include <KMime/KMimeMessage>
 
@@ -46,15 +52,23 @@ NotesManager::NotesManager(QObject *parent)
       mListener(Q_NULLPTR),
       mCheckAlarm(Q_NULLPTR)
 {
-    Akonadi::Session *session = new Akonadi::Session("KNotes Session", this);
+    mSession = new Akonadi::Session("KNotes Session", this);
     mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
-    mNoteRecorder->changeRecorder()->setSession(session);
-    mNoteTreeModel = new NoteShared::NotesAkonadiTreeModel(mNoteRecorder->changeRecorder(), this);
+    mNoteRecorder->changeRecorder()->setSession(mSession);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemAdded,
+            this, &NotesManager::slotItemAdded);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged,
+            this, &NotesManager::slotItemChanged);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved,
+            this, &NotesManager::slotItemRemoved);
 
-    connect(mNoteTreeModel, &NoteShared::NotesAkonadiTreeModel::rowsInserted, this, &NotesManager::slotRowInserted);
-
-    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged, this, &NotesManager::slotItemChanged);
-    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved, this, &NotesManager::slotItemRemoved);
+    auto job = new Akonadi::CollectionFetchJob(Akonadi::Collection::root(),
+                                               Akonadi::CollectionFetchJob::Recursive,
+                                               mSession);
+    job->fetchScope().setContentMimeTypes({ Akonadi::NoteUtils::noteMimeType() });
+    job->fetchScope().setFetchIdOnly(true);
+    connect(job, &Akonadi::CollectionFetchJob::collectionsReceived,
+            this, &NotesManager::slotCollectionsReceived);
 }
 
 NotesManager::~NotesManager()
@@ -68,6 +82,35 @@ void NotesManager::clear()
     mListener = Q_NULLPTR;
     if (mCheckAlarm && mCheckAlarm->isActive()) {
         mCheckAlarm->stop();
+    }
+}
+
+void NotesManager::slotCollectionsReceived(const Akonadi::Collection::List &collections)
+{
+    Q_FOREACH (const Akonadi::Collection &col, collections) {
+        if (!col.contentMimeTypes().contains(Akonadi::NoteUtils::noteMimeType())) {
+            continue;
+        }
+        auto job = new Akonadi::ItemFetchJob(col, mSession);
+        job->setDeliveryOption(Akonadi::ItemFetchJob::EmitItemsInBatches);
+        job->fetchScope().fetchAttribute<NoteShared::NoteAlarmAttribute>();
+        job->fetchScope().fetchAttribute<NoteShared::NoteLockAttribute>();
+        job->fetchScope().fetchAttribute<NoteShared::NoteDisplayAttribute>();
+        job->fetchScope().fetchAttribute<NoteShared::NoteAlarmAttribute>();
+        job->fetchScope().fetchFullPayload(true);
+        connect(job, &Akonadi::ItemFetchJob::itemsReceived,
+                this, [this](const Akonadi::Item::List &items) {
+                    Q_FOREACH (const Akonadi::Item &item, items) {
+                        slotItemAdded(item);
+                    }
+                });
+    }
+}
+
+void NotesManager::slotItemAdded(const Akonadi::Item &item)
+{
+    if (item.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
+        mListItem.append(item);
     }
 }
 
@@ -87,23 +130,6 @@ void NotesManager::slotItemChanged(const Akonadi::Item &item, const QSet<QByteAr
         } else {
             if (mAlarmDialog) {
                 mAlarmDialog->removeAlarm(item);
-            }
-        }
-    }
-}
-
-void NotesManager::slotRowInserted(const QModelIndex &parent, int start, int end)
-{
-    for (int i = start; i <= end; ++i) {
-        if (mNoteTreeModel->hasIndex(i, 0, parent)) {
-            const QModelIndex child = mNoteTreeModel->index(i, 0, parent);
-            Akonadi::Item item =
-                mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
-            if (!item.hasPayload<KMime::Message::Ptr>()) {
-                continue;
-            }
-            if (item.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
-                mListItem.append(item);
             }
         }
     }

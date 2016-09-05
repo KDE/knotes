@@ -32,6 +32,12 @@ namespace NoteShared
 class NotesChangeRecorder;
 class NotesAkonadiTreeModel;
 }
+
+namespace Akonadi
+{
+class Session;
+}
+
 class QModelIndex;
 class NotesManager : public QObject
 {
@@ -51,16 +57,18 @@ private Q_SLOTS:
     void slotNewNote(const QString &name, const QString &text);
     void slotCheckAlarm();
 
+    void slotItemAdded(const Akonadi::Item &item);
     void slotItemRemoved(const Akonadi::Item &item);
     void slotItemChanged(const Akonadi::Item &item, const QSet<QByteArray> &set);
-    void slotRowInserted(const QModelIndex &parent, int start, int end);
+
+    void slotCollectionsReceived(const Akonadi::Collection::List &collections);
 private:
     void clear();
     Akonadi::Item::List mListItem;
     QTcpServer *mListener;
     QTimer *mCheckAlarm;
     NoteShared::NotesChangeRecorder *mNoteRecorder;
-    NoteShared::NotesAkonadiTreeModel *mNoteTreeModel;
+    Akonadi::Session *mSession; 
     QPointer<NotesAgentAlarmDialog> mAlarmDialog;
 };
 

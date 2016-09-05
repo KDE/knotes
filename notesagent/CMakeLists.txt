@@ -34,6 +34,7 @@ target_link_libraries(akonadi_notes_agent
     KF5::Notifications
     KF5::IconThemes
     KF5::I18n
+    KF5::AkonadiNotes
     )
 
 if( APPLE )
