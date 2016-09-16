@@ -45,9 +45,9 @@ void knotesAuthors(KAboutData &aboutData);
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     Application app(argc, &argv);
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-    app.setAttribute(Qt::AA_EnableHighDpiScaling);
     KCrash::initialize();
     KNotesMigrateApplication migrate;
     migrate.migrate();
