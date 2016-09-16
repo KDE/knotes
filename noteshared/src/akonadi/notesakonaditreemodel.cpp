@@ -17,6 +17,9 @@
    Boston, MA 02110-1301, USA.
 */
 #include "notesakonaditreemodel.h"
+
+#include <AkonadiCore/ChangeRecorder>
+
 using namespace NoteShared;
 
 NotesAkonadiTreeModel::NotesAkonadiTreeModel(Akonadi::ChangeRecorder *changeRecorder, QObject *parent)
