@@ -29,7 +29,7 @@ set(libnoteshared_SRCS
     ${libnoteshared_akonadi_SRCS}
     )
 
-ecm_qt_declare_logging_category(libnoteshared_SRCS HEADER noteshared_debug.h IDENTIFIER NOTESHARED_LOG CATEGORY_NAME log_noteshared)
+ecm_qt_declare_logging_category(libnoteshared_SRCS HEADER noteshared_debug.h IDENTIFIER NOTESHARED_LOG CATEGORY_NAME org.kde.pim.noteshared)
 
 macro(add_resource_iface _kcfgFile _ifaceName _className)
     kcfg_generate_dbus_interface(${_kcfgFile} ${_ifaceName})

@@ -1,0 +1,4 @@
+log_knotes org.kde.pim.knotes
+log_noteshared org.kde.pim.noteshared
+log_knoteskontactplugin org.kde.pim.knoteskontactplugin
+log_notesagentagent org.kde.pim.notesagentagent

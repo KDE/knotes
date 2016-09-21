@@ -120,7 +120,7 @@ add_subdirectory(noteshared)
 add_subdirectory(src)
 add_subdirectory(notesagent)
 
-install( FILES knotes.categories DESTINATION ${KDE_INSTALL_CONFDIR} )
+install( FILES knotes.categories knotes.renamecategories DESTINATION ${KDE_INSTALL_CONFDIR} )
 
 if ("${CMAKE_BINARY_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}")
     add_subdirectory(doc)
