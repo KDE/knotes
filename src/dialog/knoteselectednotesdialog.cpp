@@ -32,19 +32,19 @@ KNoteSelectedNotesDialog::KNoteSelectedNotesDialog(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(i18n("Select notes"));
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    mListNotes = new QListWidget(this);
+    mListNotes->setSelectionMode(QAbstractItemView::ExtendedSelection);
+
+    connect(mListNotes, &QListWidget::itemSelectionChanged, this, &KNoteSelectedNotesDialog::slotSelectionChanged);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     mOkButton = buttonBox->button(QDialogButtonBox::Ok);
     mOkButton->setDefault(true);
     mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &KNoteSelectedNotesDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteSelectedNotesDialog::reject);
 
-    mListNotes = new QListWidget;
-    mListNotes->setSelectionMode(QAbstractItemView::ExtendedSelection);
-
-    connect(mListNotes, &QListWidget::itemSelectionChanged, this, &KNoteSelectedNotesDialog::slotSelectionChanged);
     mainLayout->addWidget(mListNotes);
     mainLayout->addWidget(buttonBox);
 

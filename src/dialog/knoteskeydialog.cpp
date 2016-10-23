@@ -31,19 +31,20 @@ KNotesKeyDialog::KNotesKeyDialog(KActionCollection *globals, QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(i18n("Configure Shortcuts"));
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::RestoreDefaults);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    m_keyChooser = new KShortcutsEditor(globals, this);
+
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::RestoreDefaults, this);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &KNotesKeyDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNotesKeyDialog::reject);
+    connect(buttonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, m_keyChooser, &KShortcutsEditor::allDefault);
 
-    m_keyChooser = new KShortcutsEditor(globals, this);
     mainLayout->addWidget(m_keyChooser);
     mainLayout->addWidget(buttonBox);
-    connect(buttonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, m_keyChooser, &KShortcutsEditor::allDefault);
     readConfig();
 }
 

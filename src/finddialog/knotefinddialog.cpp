@@ -38,12 +38,11 @@ KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(i18n("Search Notes"));
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, this);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteFindDialog::reject);
     setAttribute(Qt::WA_DeleteOnClose);
-    mNoteFindWidget = new KNoteFindWidget;
+    mNoteFindWidget = new KNoteFindWidget(this);
     connect(mNoteFindWidget, &KNoteFindWidget::noteSelected, this, &KNoteFindDialog::noteSelected);
     mainLayout->addWidget(mNoteFindWidget);
     mainLayout->addWidget(buttonBox);
@@ -83,26 +82,26 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     vbox->setMargin(0);
     QHBoxLayout *hbox = new QHBoxLayout;
     vbox->addLayout(hbox);
-    QLabel *lab = new QLabel(i18n("Search notes:"));
+    QLabel *lab = new QLabel(i18n("Search notes:"), this);
     hbox->addWidget(lab);
-    mSearchLineEdit = new QLineEdit;
+    mSearchLineEdit = new QLineEdit(this);
     mSearchLineEdit->setClearButtonEnabled(true);
     connect(mSearchLineEdit, &QLineEdit::returnPressed, this, &KNoteFindWidget::slotSearchNote);
     connect(mSearchLineEdit, &QLineEdit::textChanged, this, &KNoteFindWidget::slotTextChanged);
     hbox->addWidget(mSearchLineEdit);
 
-    mSearchButton = new QPushButton(QIcon::fromTheme(QStringLiteral("edit-find")), i18n("Search..."));
+    mSearchButton = new QPushButton(QIcon::fromTheme(QStringLiteral("edit-find")), i18n("Search..."), this);
     connect(mSearchButton, &QPushButton::clicked, this, &KNoteFindWidget::slotSearchNote);
     hbox->addWidget(mSearchButton);
     mSearchButton->setEnabled(false);
 
     //Result
-    mNoteList = new NoteShared::NoteListWidget;
+    mNoteList = new NoteShared::NoteListWidget(this);
     mNoteList->setSelectionMode(QAbstractItemView::SingleSelection);
     connect(mNoteList, &NoteShared::NoteListWidget::itemDoubleClicked, this, &KNoteFindWidget::slotItemDoubleClicked);
     vbox->addWidget(mNoteList);
 
-    mResultSearch = new QLabel;
+    mResultSearch = new QLabel(this);
     vbox->addWidget(mResultSearch);
 
     mSearchLineEdit->setFocus();

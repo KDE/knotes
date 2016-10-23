@@ -30,16 +30,17 @@ KNoteDeleteSelectedNotesDialog::KNoteDeleteSelectedNotesDialog(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(i18n("Select notes to delete"));
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+
+    mNoteList = new NoteShared::NoteListWidget(this);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     mOkButton = buttonBox->button(QDialogButtonBox::Ok);
     mOkButton->setDefault(true);
     mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &KNoteDeleteSelectedNotesDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteDeleteSelectedNotesDialog::reject);
 
-    mNoteList = new NoteShared::NoteListWidget;
     mainLayout->addWidget(mNoteList);
     mainLayout->addWidget(buttonBox);
 
