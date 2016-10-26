@@ -862,8 +862,8 @@ void KNote::loadNoteContent(const Akonadi::Item &item)
         m_editor->setAcceptRichText(false);
         m_editor->setPlainText(noteMessage->mainBodyPart()->decodedText());
     }
-    if (noteMessage->headerByType("X-Cursor-Position")) {
-        m_editor->setCursorPositionFromStart(noteMessage->headerByType("X-Cursor-Position")->asUnicodeString().toInt());
+    if (auto hrd = noteMessage->headerByType("X-Cursor-Position")) {
+        m_editor->setCursorPositionFromStart(hrd->asUnicodeString().toInt());
     }
 }
 

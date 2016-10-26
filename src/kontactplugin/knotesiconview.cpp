@@ -256,8 +256,8 @@ int KNotesIconViewItem::cursorPositionFromStart() const
 {
     int pos = 0;
     const KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
-    if (noteMessage->headerByType("X-Cursor-Position")) {
-        pos = noteMessage->headerByType("X-Cursor-Position")->asUnicodeString().toInt();
+    if (auto hrd = noteMessage->headerByType("X-Cursor-Position")) {
+        pos = hrd->asUnicodeString().toInt();
     }
     return pos;
 }
