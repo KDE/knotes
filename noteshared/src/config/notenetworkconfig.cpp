@@ -71,7 +71,7 @@ NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)
     QLabel *label_SenderID = new QLabel(i18n("&Sender ID:"));
     d->kcfg_SenderID = new QLineEdit;
     d->kcfg_SenderID->setClearButtonEnabled(true);
-    d->kcfg_SenderID->setObjectName(QStringLiteral("d->kcfg_SenderID"));
+    d->kcfg_SenderID->setObjectName(QStringLiteral("kcfg_SenderID"));
     label_SenderID->setBuddy(d->kcfg_SenderID);
     tmpLayout->addWidget(label_SenderID);
     tmpLayout->addWidget(d->kcfg_SenderID);
@@ -85,12 +85,13 @@ NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)
     tmpLayout->addWidget(label_Port);
 
     d->kcfg_Port = new QSpinBox;
-    d->kcfg_Port->setObjectName(QStringLiteral("d->kcfg_Port"));
+    d->kcfg_Port->setObjectName(QStringLiteral("kcfg_Port"));
     d->kcfg_Port->setRange(0, 65535);
     label_Port->setBuddy(d->kcfg_Port);
     tmpLayout->addWidget(d->kcfg_Port);
     layout->addLayout(tmpLayout);
     layout->addStretch();
+    load();
 }
 
 NoteNetworkConfigWidget::~NoteNetworkConfigWidget()
@@ -118,9 +119,9 @@ NoteNetworkConfig::NoteNetworkConfig(QWidget *parent)
 {
     QVBoxLayout *lay = new QVBoxLayout(this);
     lay->setMargin(0);
-    NoteNetworkConfigWidget *widget = new NoteNetworkConfigWidget(this);
-    lay->addWidget(widget);
-    addConfig(NoteShared::NoteSharedGlobalConfig::self(), widget);
+    NoteNetworkConfigWidget *noteNetworkConfigWidget = new NoteNetworkConfigWidget(this);
+    lay->addWidget(noteNetworkConfigWidget);
+    addConfig(NoteShared::NoteSharedGlobalConfig::self(), noteNetworkConfigWidget);
     load();
 }
 
