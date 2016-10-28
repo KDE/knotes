@@ -120,7 +120,7 @@ KNotesApp::KNotesApp()
                           i18n("New Note From Clipboard"), this);
     actionCollection()->addAction(QStringLiteral("new_note_clipboard"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_C));
-    connect(action, SIGNAL(triggered()), SLOT(newNoteFromClipboard()));
+    connect(action, &QAction::triggered, this, &KNotesApp::newNoteFromClipboard);
 
     action  = new QAction(QIcon::fromTheme(QStringLiteral("document-open")),
                           i18n("New Note From Text File..."), this);
@@ -381,10 +381,10 @@ void KNotesApp::showAllNotes() const
     }
 }
 
-void KNotesApp::newNoteFromClipboard(const QString &name)
+void KNotesApp::newNoteFromClipboard()
 {
     const QString &text = QApplication::clipboard()->text();
-    newNote(name, text);
+    newNote(QString(), text);
 }
 
 void KNotesApp::newNoteFromTextFile()

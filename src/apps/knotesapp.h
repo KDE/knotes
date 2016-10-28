@@ -59,7 +59,7 @@ public:
 public Q_SLOTS:
     void newNote(const QString &name = QString(),
                  const QString &text = QString());
-    void newNoteFromClipboard(const QString &name = QString());
+    void newNoteFromClipboard();
     void hideAllNotes() const;
     void showAllNotes() const;
     void showNote(Akonadi::Item::Id id) const;
