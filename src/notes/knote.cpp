@@ -141,13 +141,13 @@ void KNote::setChangeItem(const Akonadi::Item &item, const QSet<QByteArray> &set
     if (item.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
         mDisplayAttribute->setDisplayAttribute(item.attribute<NoteShared::NoteDisplayAttribute>());
     }
-    if (set.contains("ATR:KJotsLockAttribute")) {
+    if (set.contains("KJotsLockAttribute")) {
         m_editor->setReadOnly(item.hasAttribute<NoteShared::NoteLockAttribute>());
     }
     if (set.contains("PLD:RFC822")) {
         loadNoteContent(item);
     }
-    if (set.contains("ATR:NoteDisplayAttribute")) {
+    if (set.contains("NoteDisplayAttribute")) {
         qCDebug(KNOTES_LOG) << " ATR:NoteDisplayAttribute";
         slotApplyConfig();
     }

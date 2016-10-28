@@ -19,7 +19,7 @@
 #include "knotesiconview.h"
 #include "akonadi/notesakonaditreemodel.h"
 #include "attributes/notelockattribute.h"
-#include "attributes/notelockattribute.h"
+#include <attributes/notedisplayattribute.h>
 #include "noteutils.h"
 #include "notes/knotedisplaysettings.h"
 #include "utils/knoteutils.h"
@@ -316,7 +316,7 @@ void KNotesIconViewItem::setChangeItem(const Akonadi::Item &item, const QSet<QBy
     if (item.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
         mDisplayAttribute->setDisplayAttribute(item.attribute<NoteShared::NoteDisplayAttribute>());
     }
-    if (set.contains("ATR:KJotsLockAttribute")) {
+    if (set.contains("KJotsLockAttribute")) {
         setReadOnly(item.hasAttribute<NoteShared::NoteLockAttribute>(), false);
     }
     if (set.contains("PLD:RFC822")) {
@@ -324,7 +324,7 @@ void KNotesIconViewItem::setChangeItem(const Akonadi::Item &item, const QSet<QBy
         const KMime::Headers::Subject *const subject = noteMessage ? noteMessage->subject(false) : Q_NULLPTR;
         setIconText(subject ? subject->asUnicodeString() : QString(), false);
     }
-    if (set.contains("ATR:NoteDisplayAttribute")) {
+    if (set.contains("NoteDisplayAttribute")) {
         updateSettings();
     }
 
@@ -343,4 +343,3 @@ void KNotesIconViewItem::updateSettings()
 
 #include "moc_knotesiconview.cpp"
 
-#include <attributes/notedisplayattribute.h>

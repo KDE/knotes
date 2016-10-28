@@ -28,6 +28,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QCheckBox>
+#include <QDebug>
 
 #include <attributes/notedisplayattribute.h>
 
