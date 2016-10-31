@@ -39,24 +39,22 @@
 NotesAgentNoteDialog::NotesAgentNoteDialog(QWidget *parent)
     : QDialog(parent)
 {
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
-    connect(buttonBox, &QDialogButtonBox::rejected, this, &NotesAgentNoteDialog::reject);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
-    QWidget *w = new QWidget;
-    QVBoxLayout *vbox = new QVBoxLayout;
-    w->setLayout(vbox);
 
-    mSubject = new QLineEdit;
+
+    mSubject = new QLineEdit(this);
     mSubject->setReadOnly(true);
-    vbox->addWidget(mSubject);
+    mainLayout->addWidget(mSubject);
 
-    mNote = new KPIMTextEdit::RichTextEditorWidget;
+    mNote = new KPIMTextEdit::RichTextEditorWidget(this);
     mNote->setReadOnly(true);
-    vbox->addWidget(mNote);
-    mainLayout->addWidget(w);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, this);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &NotesAgentNoteDialog::reject);
+
+    mainLayout->addWidget(mNote);
     mainLayout->addWidget(buttonBox);
     readConfig();
 }
