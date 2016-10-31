@@ -50,30 +50,31 @@ NotesAgentAlarmDialog::NotesAgentAlarmDialog(QWidget *parent)
 {
     setWindowTitle(i18n("Alarm"));
     setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
-    connect(buttonBox, &QDialogButtonBox::rejected, this, &NotesAgentAlarmDialog::reject);
     setAttribute(Qt::WA_DeleteOnClose);
-    buttonBox->button(QDialogButtonBox::Close)->setDefault(true);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
-    QWidget *w = new QWidget;
+
     QVBoxLayout *vbox = new QVBoxLayout;
-    w->setLayout(vbox);
+    mainLayout->addLayout(vbox);
 
-    mCurrentDateTime = new QLabel;
+    mCurrentDateTime = new QLabel(this);
     mCurrentDateTime->setText(QLocale().toString((QDateTime::currentDateTime()), QLocale::ShortFormat));
     vbox->addWidget(mCurrentDateTime);
 
-    QLabel *lab = new QLabel(i18n("The following notes triggered alarms:"));
+    QLabel *lab = new QLabel(i18n("The following notes triggered alarms:"), this);
     vbox->addWidget(lab);
-    mListWidget = new NoteShared::NoteListWidget;
+
+    mListWidget = new NoteShared::NoteListWidget(this);
     mListWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(mListWidget, &NoteShared::NoteListWidget::itemDoubleClicked, this, &NotesAgentAlarmDialog::slotItemDoubleClicked);
     connect(mListWidget, &NoteShared::NoteListWidget::customContextMenuRequested, this, &NotesAgentAlarmDialog::slotCustomContextMenuRequested);
 
-    vbox->addWidget(mListWidget);
-    mainLayout->addWidget(w);
+    mainLayout->addWidget(mListWidget);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, this);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &NotesAgentAlarmDialog::reject);
+    buttonBox->button(QDialogButtonBox::Close)->setDefault(true);
+
     mainLayout->addWidget(buttonBox);
     readConfig();
 }
