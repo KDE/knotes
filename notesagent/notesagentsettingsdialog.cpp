@@ -42,21 +42,17 @@ NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
 {
     setWindowTitle(i18n("Configure Notes Agent"));
     setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    setModal(true);
+
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Help, this);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &NotesAgentSettingsDialog::reject);
     connect(okButton, &QPushButton::clicked, this, &NotesAgentSettingsDialog::slotOkClicked);
 
-    setModal(true);
-    QWidget *mainWidget = new QWidget(this);
-    QHBoxLayout *lay = new QHBoxLayout(mainWidget);
-
-    QTabWidget *tab = new QTabWidget;
-    lay->addWidget(tab);
+    QTabWidget *tab = new QTabWidget(this);
 
     mNotify = new KNotifyConfigWidget(this);
     mNotify->setApplication(QStringLiteral("akonadi_notes_agent"));
@@ -66,7 +62,7 @@ NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
     tab->addTab(mNetworkConfig, i18n("Network"));
     mNetworkConfig->load();
 
-    mainLayout->addWidget(mainWidget);
+    mainLayout->addWidget(tab);
     mainLayout->addWidget(buttonBox);
     readConfig();
 
