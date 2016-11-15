@@ -23,6 +23,7 @@
 
 class KNotesListWidgetSearchLine : public KListWidgetSearchLine
 {
+    Q_OBJECT
 public:
     explicit KNotesListWidgetSearchLine(QWidget *parent = Q_NULLPTR);
     ~KNotesListWidgetSearchLine();

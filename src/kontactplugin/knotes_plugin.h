@@ -29,6 +29,7 @@
 
 class KNotesUniqueAppHandler : public KontactInterface::UniqueAppHandler
 {
+    Q_OBJECT
 public:
     explicit KNotesUniqueAppHandler(KontactInterface::Plugin *plugin)
         : KontactInterface::UniqueAppHandler(plugin) {}

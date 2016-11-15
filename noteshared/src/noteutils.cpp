@@ -124,7 +124,7 @@ QString NoteUtils::createToolTip(const Akonadi::Item &item)
                        "</div>" \
                        "</td>" \
                        "</tr>"
-                   ).arg(bckColorName).arg(txtColorName).arg(realName.toHtmlEscaped()).arg(textDirection);
+                   ).arg(bckColorName, txtColorName ,realName.toHtmlEscaped() ,textDirection);
             const QString htmlCodeForStandardRow = QStringLiteral(
                     "<tr>" \
                     "<td bgcolor=\"%1\" align=\"left\" valign=\"top\">" \
@@ -136,7 +136,7 @@ QString NoteUtils::createToolTip(const Akonadi::Item &item)
 
             QString content = description;
             if (!content.trimmed().isEmpty()) {
-                tip += htmlCodeForStandardRow.arg(bckColorName).arg(txtColorName).arg(isRichText ? content : content.replace(QLatin1Char('\n'), QStringLiteral("<br>")));
+                tip += htmlCodeForStandardRow.arg(bckColorName, txtColorName, isRichText ? content : content.replace(QLatin1Char('\n'), QStringLiteral("<br>")));
             }
             tip += QLatin1String(
                        "</table" \

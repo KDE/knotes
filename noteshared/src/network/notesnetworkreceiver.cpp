@@ -88,8 +88,7 @@ NotesNetworkReceiver::NotesNetworkReceiver(QTcpSocket *s)
     // Add the remote IP or hostname and the date to the title, to help the
     // user guess who wrote it.
     d->m_titleAddon = QStringLiteral(" [%1, %2]")
-                      .arg(d->m_sock->peerAddress().toString())
-                      .arg(date);
+                      .arg(d->m_sock->peerAddress().toString(), date);
 
     // Setup the communications
     connect(d->m_sock, &QTcpSocket::readyRead, this, &NotesNetworkReceiver::slotDataAvailable);

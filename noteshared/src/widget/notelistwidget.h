@@ -28,6 +28,7 @@ namespace NoteShared
 class NoteListWidgetPrivate;
 class NOTESHARED_EXPORT NoteListWidget : public QListWidget
 {
+    Q_OBJECT
 public:
     explicit NoteListWidget(QWidget *parent = Q_NULLPTR);
     ~NoteListWidget();

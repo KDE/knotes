@@ -37,6 +37,7 @@ class QPushButton;
 
 class KNoteCollectionDisplayProxyModel : public QIdentityProxyModel
 {
+    Q_OBJECT
 public:
     explicit KNoteCollectionDisplayProxyModel(QObject *parent = Q_NULLPTR);
 
