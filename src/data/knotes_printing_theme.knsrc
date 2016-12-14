@@ -1,5 +1,5 @@
 [KNewStuff3]
-ProvidersUrl=http://download.kde.org/ocs/providers.xml
-Categories=KNotes Printing Themes
+ProvidersUrl=https://autoconfig.kde.org/ocs/providers.xml
+Categories=KNotes Printing Theme
 TargetDir=knotes/print/themes/
 Uncompress=always
