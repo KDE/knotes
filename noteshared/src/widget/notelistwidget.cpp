@@ -47,7 +47,7 @@ NoteListWidget::~NoteListWidget()
 
 void NoteListWidget::addNotes(const Akonadi::Item::List &notes)
 {
-    Q_FOREACH (const Akonadi::Item &note, notes) {
+    for (const Akonadi::Item &note : notes) {
         if (d->mNotes.contains(note)) {
             continue;
         }

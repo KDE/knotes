@@ -45,9 +45,9 @@ QString LocalResourceCreator::akonadiNotesInstanceName()
 
 void LocalResourceCreator::createIfMissing()
 {
-    Akonadi::AgentInstance::List instances = Akonadi::AgentManager::self()->instances();
+    const Akonadi::AgentInstance::List instances = Akonadi::AgentManager::self()->instances();
     bool found = false;
-    foreach (const Akonadi::AgentInstance &instance, instances) {
+    for (const Akonadi::AgentInstance &instance : instances) {
         if (instance.type().identifier() == akonadiNotesInstanceName()) {
             found = true;
             break;

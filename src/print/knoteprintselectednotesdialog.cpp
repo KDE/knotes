@@ -106,8 +106,8 @@ void KNotePrintSelectedNotesDialog::setNotes(const QHash<Akonadi::Item::Id, KNot
 QList<KNotePrintObject *> KNotePrintSelectedNotesDialog::selectedNotes() const
 {
     QList<KNotePrintObject *> lstPrintObj;
-    QList<QListWidgetItem *> lst = mListNotes->selectedItems();
-    Q_FOREACH (QListWidgetItem *item, lst) {
+    const QList<QListWidgetItem *> lst = mListNotes->selectedItems();
+    for (QListWidgetItem *item : lst) {
         Akonadi::Item::Id akonadiId = item->data(AkonadiId).toLongLong();
         if (akonadiId != -1) {
             KNotePrintObject *obj = new KNotePrintObject(mNotes.value(akonadiId)->item());

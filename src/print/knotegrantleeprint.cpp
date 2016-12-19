@@ -42,7 +42,7 @@ QString KNoteGrantleePrint::notesToHtml(const QList<KNotePrintObject *> &lst)
     }
     QVariantList notes;
     notes.reserve(lst.count());
-    Q_FOREACH (KNotePrintObject *n, lst) {
+    for (KNotePrintObject *n : lst) {
         notes << QVariant::fromValue(static_cast<QObject *>(n));
     }
     QVariantHash variantList;

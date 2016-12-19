@@ -43,7 +43,7 @@ KNotesSelectDeleteNotesListWidget::~KNotesSelectDeleteNotesListWidget()
 
 void KNotesSelectDeleteNotesListWidget::setItems(const QList<KNotesIconViewItem *> &items)
 {
-    Q_FOREACH (KNotesIconViewItem *item, items) {
+    for (KNotesIconViewItem *item : items) {
         QListWidgetItem *i = new QListWidgetItem(this);
         if (item->readOnly()) {
             i->setText(item->realName() + QLatin1Char(' ') + i18n("(note locked, it will not removed)"));

@@ -47,7 +47,7 @@ bool NoteUtils::sendToMail(QWidget *parent, const QString &title, const QString 
         return false;
     }
     KProcess mail;
-    Q_FOREACH (const QString &cmd, cmd_list) {
+    for (const QString &cmd : cmd_list) {
         if (cmd == QLatin1String("%f")) {
             mail << message;
         } else if (cmd == QLatin1String("%t")) {

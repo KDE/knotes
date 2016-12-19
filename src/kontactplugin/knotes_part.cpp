@@ -447,13 +447,13 @@ QMap<QString, QString> KNotesPart::notes() const
 
 void KNotesPart::killSelectedNotes()
 {
-    QList<QListWidgetItem *> lst = mNotesWidget->notesView()->selectedItems();
+    const QList<QListWidgetItem *> lst = mNotesWidget->notesView()->selectedItems();
     if (lst.isEmpty()) {
         return;
     }
     QList<KNotesIconViewItem *> items;
 
-    foreach (QListWidgetItem *item, lst) {
+    for (QListWidgetItem *item : lst) {
         KNotesIconViewItem *knivi = static_cast<KNotesIconViewItem *>(item);
         items.append(knivi);
     }

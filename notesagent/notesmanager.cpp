@@ -87,7 +87,7 @@ void NotesManager::clear()
 
 void NotesManager::slotCollectionsReceived(const Akonadi::Collection::List &collections)
 {
-    Q_FOREACH (const Akonadi::Collection &col, collections) {
+    for (const Akonadi::Collection &col : collections) {
         if (!col.contentMimeTypes().contains(Akonadi::NoteUtils::noteMimeType())) {
             continue;
         }
@@ -100,7 +100,7 @@ void NotesManager::slotCollectionsReceived(const Akonadi::Collection::List &coll
         job->fetchScope().fetchFullPayload(true);
         connect(job, &Akonadi::ItemFetchJob::itemsReceived,
                 this, [this](const Akonadi::Item::List &items) {
-                    Q_FOREACH (const Akonadi::Item &item, items) {
+                    for (const Akonadi::Item &item : items) {
                         slotItemAdded(item);
                     }
                 });
