@@ -45,7 +45,6 @@
       The notes are saved automatically when you exit the program, and they display when you open the program.
     </p>
     <p xml:lang="ar">«ملاحظاتك» هو برنامج يسمح لك بكتابة المقابل البرمجيّ للملاحظات اللاصقة. تُحفظ الملاحظات آليًّا عند خروجك من البرنامج وتُعرض عندما تفتحه.</p>
-    <p xml:lang="ast">KNotes ye un programa que te permite escribir al ordenador l'equivalente a notes pegañoses. Les notes guárdense automáticamente al colar del programa y amuésense al abrilu.</p>
     <p xml:lang="ca">El KNotes és un programa que permet escriure l'equivalent informàtic a les notes adhesives. Les notes es desen automàticament en sortir del programa, i es mostren en obrir el programa.</p>
     <p xml:lang="ca-valencia">El KNotes és un programa que permet escriure l'equivalent informàtic a les notes adhesives. Les notes es guarden automàticament en eixir del programa, i es mostren en obrir el programa.</p>
     <p xml:lang="de">KNotes erlaubt das Anbringen virtueller Haftnotizen ("Post-it") auf dem Bildschirm. Die Notizen werden beim Beenden des Programms automatisch gespeichert und beim Neustart wieder geladen und angezeigt.</p>
@@ -74,7 +73,6 @@
     <p xml:lang="zh-TW">KNotes 讓您可以在螢幕上貼便利貼。便條會在離開時自動儲存，開啟程式時再顯示。</p>
     <p>Features:</p>
     <p xml:lang="ar">الميزات:</p>
-    <p xml:lang="ast">Carauterístiques:</p>
     <p xml:lang="bs">Svojstva:</p>
     <p xml:lang="ca">Característiques:</p>
     <p xml:lang="ca-valencia">Característiques:</p>
@@ -111,7 +109,6 @@
     <ul>
       <li>Write notes in your choice of font and background color</li>
       <li xml:lang="ar">إمكانيّة كتابة الملاحظات بما تختار من خطّ ولون خلفيّة</li>
-      <li xml:lang="ast">Escribi notes na fonte y color de fondu qu'escueyas</li>
       <li xml:lang="ca">Escriu les notes amb el tipus de lletra i el color de fons de la vostra elecció</li>
       <li xml:lang="ca-valencia">Escriu les notes amb el tipus de lletra i el color de fons de la vostra elecció</li>
       <li xml:lang="de">Notizen können in ausgewählter Farbe für Schrift und Hintergrund erstellt werden</li>
@@ -140,7 +137,6 @@
       <li xml:lang="zh-TW">可以選擇便條的字型與背景顏色</li>
       <li>Use drag and drop to email your notes</li>
       <li xml:lang="ar">إمكانيّة استخدام السّحب والإفلات لإرسال ملاحظاتك عبر البريد</li>
-      <li xml:lang="ast">Arrastra y suelta les tos notes pa unviales per corréu</li>
       <li xml:lang="ca">Usa arrossega i deixa per enviar les vostres notes</li>
       <li xml:lang="ca-valencia">Usa arrossega i deixa per enviar les vostres notes</li>
       <li xml:lang="de">Ziehen und Ablegen (Drag and Drop), um Ihre Notizen als E-Mail zu versenden</li>
@@ -168,7 +164,6 @@
       <li xml:lang="x-test">xxUse drag and drop to email your notesxx</li>
       <li xml:lang="zh-TW">可以用拖放的方式透過電子郵件傳送您的便條</li>
       <li>Can be dragged into Calendar to book a time-slot</li>
-      <li xml:lang="ast">Puen arrastrase fasta'l Calendariu p'anotar una ranula de tiempu</li>
       <li xml:lang="ca">Es poden arrossegar al calendari per a reservar un horari</li>
       <li xml:lang="ca-valencia">Es poden arrossegar al calendari per a reservar un horari</li>
       <li xml:lang="de">Kann in einen Kalender gezogen werden, um einen Zeitraum zu belegen.</li>
@@ -197,7 +192,6 @@
       <li xml:lang="zh-TW">可以拖到行事曆中來預約時間</li>
       <li>Notes can be printed</li>
       <li xml:lang="ar">إمكانيّة طباعة الملاحظات</li>
-      <li xml:lang="ast">Les notes puen imprentase</li>
       <li xml:lang="ca">Les notes es poden imprimir</li>
       <li xml:lang="ca-valencia">Les notes es poden imprimir</li>
       <li xml:lang="de">Notizen können ausgedruckt werden</li>
