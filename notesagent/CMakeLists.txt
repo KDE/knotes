@@ -1,5 +1,3 @@
-project(notesagent)
-
 add_definitions(-DTRANSLATION_DOMAIN=\"akonadi_notes_agent\")
 
 set(notesagent_SRCS
