@@ -37,9 +37,9 @@ class NoteShared::NoteNetworkConfigWidgetPrivate
 {
 public:
     NoteNetworkConfigWidgetPrivate()
-        : mTmpChkB(Q_NULLPTR),
-          kcfg_SenderID(Q_NULLPTR),
-          kcfg_Port(Q_NULLPTR)
+        : mTmpChkB(nullptr),
+          kcfg_SenderID(nullptr),
+          kcfg_Port(nullptr)
     {
 
     }

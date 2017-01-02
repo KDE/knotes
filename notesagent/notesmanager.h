@@ -43,7 +43,7 @@ class NotesManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit NotesManager(QObject *parent = Q_NULLPTR);
+    explicit NotesManager(QObject *parent = nullptr);
     ~NotesManager();
 
     void stopAll();

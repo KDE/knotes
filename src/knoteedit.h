@@ -42,7 +42,7 @@ class KNOTES_EXPORT KNoteEdit : public KTextEdit
 {
     Q_OBJECT
 public:
-    explicit KNoteEdit(KActionCollection *actions, QWidget *parent = Q_NULLPTR);
+    explicit KNoteEdit(KActionCollection *actions, QWidget *parent = nullptr);
     ~KNoteEdit();
 
     void setNote(KNote *_note);

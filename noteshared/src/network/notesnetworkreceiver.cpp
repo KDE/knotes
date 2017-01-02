@@ -59,7 +59,7 @@ class NoteShared::NotesNetworkReceiverPrivate
 {
 public:
     NotesNetworkReceiverPrivate(QTcpSocket *s)
-        : m_timer(Q_NULLPTR),
+        : m_timer(nullptr),
           m_buffer(new QByteArray()),
           m_sock(s)
     {

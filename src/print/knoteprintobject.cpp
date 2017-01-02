@@ -52,7 +52,7 @@ QString KNotePrintObject::description() const
 QString KNotePrintObject::name() const
 {
     KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
-    const KMime::Headers::Subject *const subject = noteMessage ? noteMessage->subject(false) : Q_NULLPTR;
+    const KMime::Headers::Subject *const subject = noteMessage ? noteMessage->subject(false) : nullptr;
     return subject ? subject->asUnicodeString() : QString();
 }
 

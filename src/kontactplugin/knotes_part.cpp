@@ -93,10 +93,10 @@
 
 KNotesPart::KNotesPart(QObject *parent)
     : KParts::ReadOnlyPart(parent),
-      mNotesWidget(Q_NULLPTR),
-      mPublisher(Q_NULLPTR),
-      mNotePrintPreview(Q_NULLPTR),
-      mNoteTreeModel(Q_NULLPTR)
+      mNotesWidget(nullptr),
+      mPublisher(nullptr),
+      mNotePrintPreview(nullptr),
+      mNoteTreeModel(nullptr)
 {
     (void) new KNotesAdaptor(this);
     QDBusConnection::sessionBus().registerObject(QStringLiteral("/KNotes"), this);
@@ -257,7 +257,7 @@ KNotesPart::KNotesPart(QObject *parent)
 KNotesPart::~KNotesPart()
 {
     delete mPublisher;
-    mPublisher = Q_NULLPTR;
+    mPublisher = nullptr;
 }
 
 void KNotesPart::updateClickMessage()
@@ -669,7 +669,7 @@ void KNotesPart::slotSendToNetwork()
 void KNotesPart::updateNetworkListener()
 {
     delete mPublisher;
-    mPublisher = Q_NULLPTR;
+    mPublisher = nullptr;
 
     if (NoteShared::NoteSharedGlobalConfig::receiveNotes()) {
         // create the socket and start listening for connections
@@ -732,10 +732,10 @@ void KNotesPart::slotSaveAs()
     KNotesIconViewItem *knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
 
     QUrl url;
-    QCheckBox *convert = Q_NULLPTR;
+    QCheckBox *convert = nullptr;
 
     if (knoteItem->isRichText()) {
-        convert = new QCheckBox(Q_NULLPTR);
+        convert = new QCheckBox(nullptr);
         convert->setText(i18n("Save note as plain text"));
     }
     QPointer<KFileDialog> dlg = new KFileDialog(url, QString(), widget(), convert);

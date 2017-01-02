@@ -50,9 +50,9 @@ class NoteShared::NoteAlarmDialogPrivate
 {
 public:
     NoteAlarmDialogPrivate()
-        : m_atDate(Q_NULLPTR),
-          m_atTime(Q_NULLPTR),
-          m_buttons(Q_NULLPTR)
+        : m_atDate(nullptr),
+          m_atTime(nullptr),
+          m_buttons(nullptr)
     {
 
     }

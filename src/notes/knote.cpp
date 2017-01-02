@@ -91,11 +91,11 @@
 KNote::KNote(const QDomDocument &buildDoc, const Akonadi::Item &item, bool allowDebugBaloo, QWidget *parent)
     : QFrame(parent, Qt::FramelessWindowHint),
       mItem(item),
-      m_label(Q_NULLPTR),
-      m_grip(Q_NULLPTR),
-      m_button(Q_NULLPTR),
-      m_tool(Q_NULLPTR),
-      m_editor(Q_NULLPTR),
+      m_label(nullptr),
+      m_grip(nullptr),
+      m_button(nullptr),
+      m_tool(nullptr),
+      m_editor(nullptr),
       m_kwinConf(KSharedConfig::openConfig(QStringLiteral("kwinrc"))),
       mDisplayAttribute(new KNoteDisplaySettings),
       mAllowDebugBaloo(allowDebugBaloo)
@@ -853,7 +853,7 @@ void KNote::createNoteFooter()
 void KNote::loadNoteContent(const Akonadi::Item &item)
 {
     KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
-    const KMime::Headers::Subject *const subject = noteMessage ? noteMessage->subject(false) : Q_NULLPTR;
+    const KMime::Headers::Subject *const subject = noteMessage ? noteMessage->subject(false) : nullptr;
     setName(subject ? subject->asUnicodeString() : QString());
     if (noteMessage->contentType()->isHTMLText()) {
         m_editor->setAcceptRichText(true);

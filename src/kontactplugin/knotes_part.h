@@ -58,7 +58,7 @@ class KNotesPart : public KParts::ReadOnlyPart
     Q_OBJECT
 
 public:
-    explicit KNotesPart(QObject *parent = Q_NULLPTR);
+    explicit KNotesPart(QObject *parent = nullptr);
     ~KNotesPart();
 
     bool openFile() Q_DECL_OVERRIDE;

@@ -33,7 +33,7 @@ class NoteShared::NotesChangeRecorderPrivate
 {
 public:
     NotesChangeRecorderPrivate()
-        : mChangeRecorder(Q_NULLPTR)
+        : mChangeRecorder(nullptr)
     {
 
     }

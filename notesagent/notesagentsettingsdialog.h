@@ -30,7 +30,7 @@ class NotesAgentSettingsDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit NotesAgentSettingsDialog(QWidget *parent = Q_NULLPTR);
+    explicit NotesAgentSettingsDialog(QWidget *parent = nullptr);
     ~NotesAgentSettingsDialog();
 
 private Q_SLOTS:

@@ -314,7 +314,7 @@ void KNoteCollectionConfigWidget::updateCollectionsRecursive()
     while (i.hasNext()) {
         i.next();
         Akonadi::Collection collection = i.key();
-        Akonadi::CollectionModifyJob *modifyJob = Q_NULLPTR;
+        Akonadi::CollectionModifyJob *modifyJob = nullptr;
         NoteShared::ShowFolderNotesAttribute *attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>();
         const bool selected = i.value();
         if (selected && !attr) {
