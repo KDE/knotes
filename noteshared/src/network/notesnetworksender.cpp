@@ -92,7 +92,7 @@ void NotesNetworkSender::slotWritten(qint64)
 
 void NotesNetworkSender::slotError()
 {
-    KMessageBox::sorry(0, i18n("Communication error: %1",
+    KMessageBox::sorry(nullptr, i18n("Communication error: %1",
                                m_socket->errorString()));
     slotClosed();
 }

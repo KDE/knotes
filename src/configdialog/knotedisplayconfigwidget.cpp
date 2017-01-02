@@ -34,12 +34,12 @@
 
 KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *parent)
     : QWidget(parent),
-      kcfg_FgColor(0),
-      kcfg_BgColor(0),
-      kcfg_ShowInTaskbar(0),
-      kcfg_RememberDesktop(0),
-      kcfg_Width(0),
-      kcfg_Height(0)
+      kcfg_FgColor(nullptr),
+      kcfg_BgColor(nullptr),
+      kcfg_ShowInTaskbar(nullptr),
+      kcfg_RememberDesktop(nullptr),
+      kcfg_Width(nullptr),
+      kcfg_Height(nullptr)
 {
     QGridLayout *layout = new QGridLayout(this);
     layout->setMargin(0);

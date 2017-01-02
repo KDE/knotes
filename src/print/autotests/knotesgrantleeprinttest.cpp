@@ -41,7 +41,7 @@ void KNotesGrantleePrintTest::shouldDefaultValue()
     KNoteGrantleePrint *grantleePrint = new KNoteGrantleePrint;
     QVERIFY(grantleePrint);
     grantleePrint->deleteLater();
-    grantleePrint = 0;
+    grantleePrint = nullptr;
 }
 
 void KNotesGrantleePrintTest::shouldReturnEmptyStringWhenNotContentAndNoNotes()
@@ -51,7 +51,7 @@ void KNotesGrantleePrintTest::shouldReturnEmptyStringWhenNotContentAndNoNotes()
     const QString result = grantleePrint->notesToHtml(lst);
     QVERIFY(result.isEmpty());
     grantleePrint->deleteLater();
-    grantleePrint = 0;
+    grantleePrint = nullptr;
 }
 
 void KNotesGrantleePrintTest::shouldReturnEmptyStringWhenAddContentWithoutNotes()
@@ -62,7 +62,7 @@ void KNotesGrantleePrintTest::shouldReturnEmptyStringWhenAddContentWithoutNotes(
     const QString result = grantleePrint->notesToHtml(lst);
     QVERIFY(result.isEmpty());
     grantleePrint->deleteLater();
-    grantleePrint = 0;
+    grantleePrint = nullptr;
 }
 
 void KNotesGrantleePrintTest::shouldDisplayNoteInfo_data()
@@ -100,7 +100,7 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
     const QString html = grantleePrint->notesToHtml(lst);
     QCOMPARE(html, result);
     grantleePrint->deleteLater();
-    grantleePrint = 0;
+    grantleePrint = nullptr;
 }
 
 QTEST_MAIN(KNotesGrantleePrintTest)

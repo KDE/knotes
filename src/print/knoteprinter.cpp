@@ -40,7 +40,7 @@
 
 KNotePrinter::KNotePrinter(QObject *parent)
     : QObject(parent),
-      mGrantleePrint(0)
+      mGrantleePrint(nullptr)
 {
 }
 
@@ -64,7 +64,7 @@ void KNotePrinter::doPrintPreview(const QString &htmlText)
     QPrinter printer(QPrinter::HighResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setCollateCopies(true);
-    PimCommon::KPimPrintPreviewDialog previewdlg(&printer, 0);
+    PimCommon::KPimPrintPreviewDialog previewdlg(&printer, nullptr);
 
     connect(&previewdlg, &QPrintPreviewDialog::paintRequested, this, &KNotePrinter::slotPrinterPage);
     previewdlg.exec();
@@ -141,7 +141,7 @@ void KNotePrinter::printNotes(const QList<KNotePrintObject *> &lst, const QStrin
             doPrint(htmlText, dialogCaption);
         }
     } else {
-        KMessageBox::error(0, i18n("Printing theme was not found."), i18n("Printing error"));
+        KMessageBox::error(nullptr, i18n("Printing theme was not found."), i18n("Printing error"));
     }
 }
 

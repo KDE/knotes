@@ -196,7 +196,7 @@ KNotesApp::KNotesApp()
     Akonadi::Session *session = new Akonadi::Session("KNotes Session", this);
     mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
     mNoteRecorder->changeRecorder()->setSession(session);
-    mTray = new KNotesAkonadiTray(0);
+    mTray = new KNotesAkonadiTray(nullptr);
     connect(mTray, &KStatusNotifierItem::activateRequested, this, &KNotesApp::slotActivateRequested);
     connect(mTray, &KStatusNotifierItem::secondaryActivateRequested, this, &KNotesApp::slotSecondaryActivateRequested);
 
@@ -224,7 +224,7 @@ KNotesApp::~KNotesApp()
     qDeleteAll(mNotes);
     mNotes.clear();
     delete m_publisher;
-    m_publisher = 0;
+    m_publisher = nullptr;
 }
 
 void KNotesApp::slotDeleteSelectedNotes()
@@ -407,7 +407,7 @@ void KNotesApp::newNoteFromTextFile()
 void KNotesApp::updateNetworkListener()
 {
     delete m_publisher;
-    m_publisher = 0;
+    m_publisher = nullptr;
 
     if (NoteShared::NoteSharedGlobalConfig::receiveNotes()) {
         // create the socket and start listening for connections
@@ -582,7 +582,7 @@ void KNotesApp::slotConfigureAccels()
 {
     QPointer<KNotesKeyDialog> keys = new KNotesKeyDialog(actionCollection(), this);
 
-    KActionCollection *actionCollection = 0;
+    KActionCollection *actionCollection = nullptr;
     if (!mNotes.isEmpty()) {
         actionCollection = mNotes.begin().value()->actionCollection();
         keys->insert(actionCollection);

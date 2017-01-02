@@ -84,7 +84,7 @@ void remove_sm_from_client_leader()
     int format, status;
     unsigned long nitems = 0;
     unsigned long extra = 0;
-    unsigned char *data = 0;
+    unsigned char *data = nullptr;
 
     Atom atoms[ 2 ];
     char *atom_names[ 2 ] = { (char *) "WM_CLIENT_LEADER",

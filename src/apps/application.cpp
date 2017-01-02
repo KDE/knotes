@@ -25,7 +25,7 @@
 
 Application::Application(int &argc, char **argv[])
     : KontactInterface::PimUniqueApplication(argc, argv),
-      mMainWindow(0)
+      mMainWindow(nullptr)
 {
 }
 

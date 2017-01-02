@@ -47,7 +47,7 @@ static const short ICON_SIZE = 10;
 
 KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
     : KTextEdit(parent),
-      m_note(0),
+      m_note(nullptr),
       m_actions(actions)
 {
     setAcceptDrops(true);
