@@ -101,10 +101,7 @@ void KNotesIconView::addNote(const Akonadi::Item &item)
 
 KNotesIconViewItem *KNotesIconView::iconView(Akonadi::Item::Id id) const
 {
-    if (mNoteList.contains(id)) {
-        return mNoteList.value(id);
-    }
-    return nullptr;
+    return mNoteList.value(id);
 }
 
 QHash<Akonadi::Item::Id, KNotesIconViewItem *> KNotesIconView::noteList() const
