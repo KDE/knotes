@@ -27,7 +27,7 @@ class KNoteButton : public QPushButton
 {
     Q_OBJECT
 public:
-    explicit KNoteButton(const QString &icon, QWidget *parent = Q_NULLPTR);
+    explicit KNoteButton(const QString &icon, QWidget *parent = nullptr);
     ~KNoteButton();
 
     int heightForWidth(int w) const Q_DECL_OVERRIDE;

@@ -30,7 +30,7 @@ class NOTESHARED_EXPORT NoteListWidget : public QListWidget
 {
     Q_OBJECT
 public:
-    explicit NoteListWidget(QWidget *parent = Q_NULLPTR);
+    explicit NoteListWidget(QWidget *parent = nullptr);
     ~NoteListWidget();
 
     void setNotes(const Akonadi::Item::List &notes);

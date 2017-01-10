@@ -32,7 +32,7 @@ class NoteDisplayAttribute;
 class KNOTES_EXPORT KNoteDisplaySettings
 {
 public:
-    explicit KNoteDisplaySettings(NoteShared::NoteDisplayAttribute *attr = Q_NULLPTR);
+    explicit KNoteDisplaySettings(NoteShared::NoteDisplayAttribute *attr = nullptr);
     ~KNoteDisplaySettings();
 
     void setDisplayAttribute(NoteShared::NoteDisplayAttribute *attr);

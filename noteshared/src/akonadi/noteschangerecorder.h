@@ -32,7 +32,7 @@ class NOTESHARED_EXPORT NotesChangeRecorder : public QObject
 {
     Q_OBJECT
 public:
-    explicit NotesChangeRecorder(QObject *parent = Q_NULLPTR);
+    explicit NotesChangeRecorder(QObject *parent = nullptr);
     ~NotesChangeRecorder();
 
     Akonadi::ChangeRecorder *changeRecorder() const;

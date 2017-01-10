@@ -28,7 +28,7 @@ class KNOTES_EXPORT KNoteSimpleConfigDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KNoteSimpleConfigDialog(const QString &title, QWidget *parent = Q_NULLPTR);
+    explicit KNoteSimpleConfigDialog(const QString &title, QWidget *parent = nullptr);
     ~KNoteSimpleConfigDialog();
 
     void load(Akonadi::Item &item, bool isRichText);

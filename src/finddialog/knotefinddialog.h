@@ -35,7 +35,7 @@ class KNoteFindWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KNoteFindWidget(QWidget *parent = Q_NULLPTR);
+    explicit KNoteFindWidget(QWidget *parent = nullptr);
     ~KNoteFindWidget();
 
     void setExistingNotes(const QHash<Akonadi::Item::Id, Akonadi::Item> &notes);
@@ -60,7 +60,7 @@ class KNOTES_EXPORT KNoteFindDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KNoteFindDialog(QWidget *parent = Q_NULLPTR);
+    explicit KNoteFindDialog(QWidget *parent = nullptr);
     ~KNoteFindDialog();
     void setExistingNotes(const QHash<Akonadi::Item::Id, Akonadi::Item> &notes);
 

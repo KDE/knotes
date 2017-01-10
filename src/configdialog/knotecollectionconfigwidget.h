@@ -39,7 +39,7 @@ class KNoteCollectionDisplayProxyModel : public QIdentityProxyModel
 {
     Q_OBJECT
 public:
-    explicit KNoteCollectionDisplayProxyModel(QObject *parent = Q_NULLPTR);
+    explicit KNoteCollectionDisplayProxyModel(QObject *parent = nullptr);
 
     QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
 
@@ -56,7 +56,7 @@ class KNoteCollectionConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KNoteCollectionConfigWidget(QWidget *parent = Q_NULLPTR);
+    explicit KNoteCollectionConfigWidget(QWidget *parent = nullptr);
     ~KNoteCollectionConfigWidget();
 
     void updateCollectionsRecursive();

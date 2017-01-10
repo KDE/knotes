@@ -30,7 +30,7 @@ class NOTESHARED_EXPORT NoteNetworkConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit NoteNetworkConfigWidget(QWidget *parent = Q_NULLPTR);
+    explicit NoteNetworkConfigWidget(QWidget *parent = nullptr);
     ~NoteNetworkConfigWidget();
 
     void save();

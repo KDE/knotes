@@ -48,7 +48,7 @@ class NoteHostDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit NoteHostDialog(const QString &caption, QWidget *parent = Q_NULLPTR);
+    explicit NoteHostDialog(const QString &caption, QWidget *parent = nullptr);
     ~NoteHostDialog();
 
     QString host() const;
