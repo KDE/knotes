@@ -116,9 +116,7 @@ void NotesManager::slotItemAdded(const Akonadi::Item &item)
 
 void NotesManager::slotItemRemoved(const Akonadi::Item &item)
 {
-    if (mListItem.contains(item)) {
-        mListItem.removeAll(item);
-    }
+    mListItem.removeAll(item);
 }
 
 void NotesManager::slotItemChanged(const Akonadi::Item &item, const QSet<QByteArray> &set)
