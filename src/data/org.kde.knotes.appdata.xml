@@ -39,6 +39,7 @@
   <name xml:lang="x-test">xxKNotesxx</name>
   <name xml:lang="zh-CN">KNotes</name>
   <name xml:lang="zh-TW">螢幕便利貼_KNotes</name>
+  <summary>Sticky notes application</summary>
   <description>
     <p>
       KNotes is a program that lets you write the computer equivalent of sticky notes.
