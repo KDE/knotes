@@ -41,7 +41,10 @@
   <name xml:lang="zh-TW">螢幕便利貼_KNotes</name>
   <summary>Sticky notes application</summary>
   <summary xml:lang="ca">Aplicació per a notes adhesives</summary>
+  <summary xml:lang="ca-valencia">Aplicació per a notes adhesives</summary>
+  <summary xml:lang="en-GB">Sticky notes application</summary>
   <summary xml:lang="es">Aplicación de notas adhesivas</summary>
+  <summary xml:lang="it">Applicazione per le note adesive</summary>
   <summary xml:lang="nl">Toepassing voor plaknotities</summary>
   <summary xml:lang="pt">Aplicação de notas autocolantes</summary>
   <summary xml:lang="sv">Program för uppklistrade anteckningar</summary>
