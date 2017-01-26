@@ -121,7 +121,7 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
 {
     if (job->error()) {
         qCDebug(NOTESHARED_LOG) << " Error during fetch: " << job->errorString();
-        if (KMessageBox::Yes == KMessageBox::warningYesNo(nullptr, i18n("An error occurred during fetching. Do you want select a new default collection?"))) {
+        if (KMessageBox::Yes == KMessageBox::warningYesNo(nullptr, i18n("An error occurred during fetching. Do you want to select a new default collection?"))) {
             Q_EMIT selectNewCollection();
         } else {
             deleteLater();
@@ -131,7 +131,7 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
     Akonadi::CollectionFetchJob *fetchCollection = qobject_cast<Akonadi::CollectionFetchJob *>(job);
     if (fetchCollection->collections().isEmpty()) {
         qCDebug(NOTESHARED_LOG) << "No collection fetched";
-        if (KMessageBox::Yes == KMessageBox::warningYesNo(nullptr, i18n("An error occurred during fetching. Do you want select a new default collection?"))) {
+        if (KMessageBox::Yes == KMessageBox::warningYesNo(nullptr, i18n("An error occurred during fetching. Do you want to select a new default collection?"))) {
             Q_EMIT selectNewCollection();
         } else {
             deleteLater();
