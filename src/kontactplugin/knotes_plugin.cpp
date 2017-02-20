@@ -190,7 +190,7 @@ void KNotesPlugin::processDropEvent(QDropEvent *event)
                 core(),
                 i18nc("@info", "Dropping multiple mails is not supported."));
         } else {
-            MailSummary mail = mails.first();
+            MailSummary mail = mails.constFirst();
             const QString txt = i18nc("@item", "From: %1\nTo: %2\nSubject: %3",
                                       mail.from(), mail.to(), mail.subject());
             static_cast<KNotesPart *>(part())->newNote(
