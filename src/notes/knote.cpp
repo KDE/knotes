@@ -35,7 +35,6 @@
 #include "knotedisplaysettings.h"
 
 #include "attributes/notelockattribute.h"
-#include "attributes/notelockattribute.h"
 #include "attributes/notealarmattribute.h"
 
 #include <AkonadiSearch/Debug/akonadisearchdebugdialog.h>
@@ -802,6 +801,7 @@ void KNote::createNoteHeader()
 
 void KNote::createNoteEditor(const QString &configFile)
 {
+    Q_UNUSED(configFile);
     m_editor = new KNoteEdit(actionCollection(), this);
     m_noteLayout->addWidget(m_editor);
     m_editor->setNote(this);
