@@ -56,7 +56,7 @@ target_link_libraries(knotesprivate
     KF5::IconThemes
     PRIVATE
     KF5::PimCommon
-    KF5::KCMUtils Grantlee5::Templates KF5::NewStuff KF5::WindowSystem Qt5::PrintSupport KF5::TextWidgets KF5::I18n notesharedprivate KF5::AkonadiSearchPIM KF5::AkonadiNotes KF5::PimTextEdit
+    KF5::KCMUtils Grantlee5::Templates KF5::NewStuff KF5::WindowSystem Qt5::PrintSupport KF5::TextWidgets KF5::I18n notesharedprivate KF5::AkonadiSearchPIM KF5::AkonadiNotes KF5::PimTextEdit KF5::AkonadiWidgets
     )
 
 set_target_properties(knotesprivate
@@ -101,6 +101,7 @@ target_link_libraries(knotes
     KF5::AkonadiSearchDebug
     KF5::AkonadiNotes
     KF5::Crash
+    KF5::AkonadiWidgets
     )
 if (Qt5X11Extras_FOUND)
     target_link_libraries(knotes Qt5::X11Extras ${X11_LIBRARIES})
@@ -113,7 +114,7 @@ set(kcm_knotes_PART_SRCS configdialog/knoteconfigdialog.cpp configdialog/knotedi
 
 add_library(kcm_knote MODULE ${kcm_knotes_PART_SRCS} )
 
-target_link_libraries(kcm_knote knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff KF5::WindowSystem notesharedprivate KF5::AkonadiNotes KF5::PimCommon KF5::I18n)
+target_link_libraries(kcm_knote knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff KF5::WindowSystem notesharedprivate KF5::AkonadiNotes KF5::PimCommon KF5::I18n KF5::AkonadiWidgets)
 
 install(TARGETS kcm_knote DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
