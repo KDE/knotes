@@ -32,7 +32,7 @@ KNotesAkonadiTray::KNotesAkonadiTray(QWidget *parent)
     : KStatusNotifierItem(parent),
       mIcon(QIcon::fromTheme(QStringLiteral("knotes")))
 {
-    setToolTipTitle(i18n("KNotes: Sticky notes for KDE"));
+    setToolTipTitle(i18n("KNotes: Sticky notes by KDE"));
     setToolTipIconByName(QStringLiteral("knotes"));
     setStatus(KStatusNotifierItem::Active);
     setCategory(KStatusNotifierItem::ApplicationStatus);
