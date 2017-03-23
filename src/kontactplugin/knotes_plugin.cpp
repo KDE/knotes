@@ -58,7 +58,7 @@ EXPORT_KONTACT_PLUGIN(KNotesPlugin, knotes)
 KNotesPlugin::KNotesPlugin(KontactInterface::Core *core, const QVariantList &)
     : KontactInterface::Plugin(core, core, "knotes")
 {
-    setComponentName(QStringLiteral("knotes"), QStringLiteral("knotes"));
+    setComponentName(QStringLiteral("knotes"), i18n("KNotes"));
 
     QAction *action =
         new QAction(QIcon::fromTheme(QStringLiteral("knotes")),
