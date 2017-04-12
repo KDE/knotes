@@ -1,6 +1,6 @@
-<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<!DOCTYPE gui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="405" translationDomain="knotes">
+<gui name="KNotes" version="405" translationDomain="knotes">
 
 <Menu name="note_context" noMerge="1">
     <Action name="set_alarm"/>
@@ -54,4 +54,4 @@
     <Action name="format_size"/>
 </ToolBar>
 
-</kpartgui>
+</gui>

@@ -1,5 +1,5 @@
-<!DOCTYPE kpartgui>
-<kpartgui name="knotes" version="410" translationDomain="kontact">
+<!DOCTYPE gui>
+<gui name="knotes" version="410" translationDomain="kontact">
   <MenuBar>
     <Menu name="file"><text>&amp;File</text>
       <Merge/>
@@ -22,4 +22,4 @@
      <Action name="knotes_configure" group="settings_configure"/>
     </Menu>
   </MenuBar>
-</kpartgui>
+</gui>

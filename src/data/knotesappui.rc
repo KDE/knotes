@@ -1,6 +1,6 @@
-<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<!DOCTYPE gui SYSTEM "kpartgui.dtd">
 
-<kpartgui name="KNotes" version="405" translationDomain="knotes">
+<gui name="KNotes" version="405" translationDomain="knotes">
 
 <Menu name="knotes_context" noMerge="1"><text>KNotes</text>
     <title icon="knotes">KNotes</title>
@@ -37,4 +37,4 @@
     <ActionList name="notes"/>
 </Menu>
 
-</kpartgui>
+</gui>
