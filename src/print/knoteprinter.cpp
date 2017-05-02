@@ -39,8 +39,8 @@
 #include <grantlee/templateloader.h>
 
 KNotePrinter::KNotePrinter(QObject *parent)
-    : QObject(parent),
-      mGrantleePrint(nullptr)
+    : QObject(parent)
+    , mGrantleePrint(nullptr)
 {
 }
 
@@ -75,8 +75,7 @@ void KNotePrinter::slotPrinterPage(QPrinter *printer)
     print(*(printer), mHtmlPreviewText);
 }
 
-void KNotePrinter::doPrint(const QString &htmlText,
-                           const QString &dialogCaption)
+void KNotePrinter::doPrint(const QString &htmlText, const QString &dialogCaption)
 {
     QPrinter printer(QPrinter::HighResolution);
     //printer.setFullPage( true );  //disabled, causes asymmetric margins
@@ -144,4 +143,3 @@ void KNotePrinter::printNotes(const QList<KNotePrintObject *> &lst, const QStrin
         KMessageBox::error(nullptr, i18n("Printing theme was not found."), i18n("Printing error"));
     }
 }
-

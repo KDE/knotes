@@ -33,13 +33,13 @@
 #include <attributes/notedisplayattribute.h>
 
 KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *parent)
-    : QWidget(parent),
-      kcfg_FgColor(nullptr),
-      kcfg_BgColor(nullptr),
-      kcfg_ShowInTaskbar(nullptr),
-      kcfg_RememberDesktop(nullptr),
-      kcfg_Width(nullptr),
-      kcfg_Height(nullptr)
+    : QWidget(parent)
+    , kcfg_FgColor(nullptr)
+    , kcfg_BgColor(nullptr)
+    , kcfg_ShowInTaskbar(nullptr)
+    , kcfg_RememberDesktop(nullptr)
+    , kcfg_Width(nullptr)
+    , kcfg_Height(nullptr)
 {
     QGridLayout *layout = new QGridLayout(this);
     layout->setMargin(0);
@@ -63,12 +63,12 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
     label_BgColor->setBuddy(kcfg_BgColor);
     layout->addWidget(kcfg_BgColor, 1, 1);
 
-    kcfg_ShowInTaskbar =
-        new QCheckBox(i18n("&Show note in taskbar"), this);
+    kcfg_ShowInTaskbar
+        = new QCheckBox(i18n("&Show note in taskbar"), this);
     kcfg_ShowInTaskbar->setObjectName(QStringLiteral("kcfg_ShowInTaskbar"));
 #if KDEPIM_HAVE_X11
-    kcfg_RememberDesktop =
-        new QCheckBox(i18n("&Remember desktop"), this);
+    kcfg_RememberDesktop
+        = new QCheckBox(i18n("&Remember desktop"), this);
     kcfg_RememberDesktop->setObjectName(QStringLiteral("kcfg_RememberDesktop"));
 #endif
     if (defaults) {
@@ -109,7 +109,6 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
 
 KNoteDisplayConfigWidget::~KNoteDisplayConfigWidget()
 {
-
 }
 
 void KNoteDisplayConfigWidget::load(NoteShared::NoteDisplayAttribute *attr)

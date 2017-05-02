@@ -24,8 +24,7 @@
 
 #include "noteshared_export.h"
 #include <AkonadiCore/Attribute>
-namespace NoteShared
-{
+namespace NoteShared {
 class NOTESHARED_EXPORT NoteLockAttribute : public Akonadi::Attribute
 {
 public:

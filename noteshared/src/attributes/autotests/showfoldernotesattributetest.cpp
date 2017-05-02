@@ -24,12 +24,10 @@
 ShowFolderNotesAttributeTest::ShowFolderNotesAttributeTest(QObject *parent)
     : QObject(parent)
 {
-
 }
 
 ShowFolderNotesAttributeTest::~ShowFolderNotesAttributeTest()
 {
-
 }
 
 void ShowFolderNotesAttributeTest::shouldHaveType()

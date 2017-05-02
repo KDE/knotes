@@ -25,8 +25,7 @@
 #include <QModelIndex>
 
 class KRecursiveFilterProxyModel;
-namespace Akonadi
-{
+namespace Akonadi {
 class EntityTreeModel;
 class ChangeRecorder;
 class CollectionRequester;

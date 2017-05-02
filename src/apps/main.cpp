@@ -87,9 +87,10 @@ void remove_sm_from_client_leader()
     unsigned char *data = nullptr;
 
     Atom atoms[ 2 ];
-    char *atom_names[ 2 ] = { (char *) "WM_CLIENT_LEADER",
-                              (char *) "SM_CLIENT_ID"
-                            };
+    char *atom_names[ 2 ] = {
+        (char *)"WM_CLIENT_LEADER",
+        (char *)"SM_CLIENT_ID"
+    };
 
     XInternAtoms(QX11Info::display(), atom_names, 2, False, atoms);
 
@@ -101,7 +102,7 @@ void remove_sm_from_client_leader()
 
     if ((status == Success) && !handler.error(false)) {
         if (data && (nitems > 0)) {
-            Window leader = * ((Window *) data);
+            Window leader = *((Window *)data);
             XDeleteProperty(QX11Info::display(), leader, atoms[ 1 ]);
         }
         XFree(data);

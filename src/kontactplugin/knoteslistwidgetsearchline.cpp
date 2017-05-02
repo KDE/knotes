@@ -30,7 +30,6 @@ KNotesListWidgetSearchLine::KNotesListWidgetSearchLine(QWidget *parent)
 
 KNotesListWidgetSearchLine::~KNotesListWidgetSearchLine()
 {
-
 }
 
 void KNotesListWidgetSearchLine::updateClickMessage(const QString &shortcutStr)

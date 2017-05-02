@@ -33,7 +33,6 @@ KNotePrintSelectThemeComboBox::KNotePrintSelectThemeComboBox(QWidget *parent)
 
 KNotePrintSelectThemeComboBox::~KNotePrintSelectThemeComboBox()
 {
-
 }
 
 void KNotePrintSelectThemeComboBox::loadThemes()
@@ -96,4 +95,3 @@ void KNotePrintSelectThemeComboBox::selectDefaultTheme()
     setCurrentIndex(index == -1 ? 0 : index);
     KNotesGlobalConfig::self()->useDefaults(bUseDefaults);
 }
-

@@ -27,8 +27,7 @@
 #include <QFont>
 #include <QPoint>
 
-namespace NoteShared
-{
+namespace NoteShared {
 class NOTESHARED_EXPORT NoteDisplayAttribute : public Akonadi::Attribute
 {
 public:

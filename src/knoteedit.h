@@ -34,8 +34,7 @@ class KFontAction;
 class KFontSizeAction;
 class KToggleAction;
 class KNote;
-namespace PimCommon
-{
+namespace PimCommon {
 class KActionMenuChangeCase;
 }
 class KNOTES_EXPORT KNoteEdit : public KTextEdit
@@ -123,9 +122,9 @@ private:
     QAction *m_textDecreaseIndent;
 
     QAction *m_textColor;
-    KFontAction     *m_textFont;
+    KFontAction *m_textFont;
     KFontSizeAction *m_textSize;
-    KNote           *m_note;
+    KNote *m_note;
     KActionCollection *m_actions;
     PimCommon::KActionMenuChangeCase *mChangeCaseActionMenu;
     bool m_autoIndentMode;

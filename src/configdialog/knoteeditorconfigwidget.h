@@ -23,8 +23,7 @@
 class QSpinBox;
 class QCheckBox;
 class KFontRequester;
-namespace NoteShared
-{
+namespace NoteShared {
 class NoteDisplayAttribute;
 }
 

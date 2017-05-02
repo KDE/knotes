@@ -36,7 +36,6 @@ KNotesWidget::KNotesWidget(KNotesPart *part, QWidget *parent)
 
 KNotesWidget::~KNotesWidget()
 {
-
 }
 
 void KNotesWidget::slotFocusQuickSearch()
@@ -53,4 +52,3 @@ KNotesIconView *KNotesWidget::notesView() const
 {
     return mIconView;
 }
-

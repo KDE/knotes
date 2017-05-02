@@ -109,7 +109,6 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
 
 KNoteFindWidget::~KNoteFindWidget()
 {
-
 }
 
 void KNoteFindWidget::setExistingNotes(const QHash<Akonadi::Item::Id, Akonadi::Item> &notes)

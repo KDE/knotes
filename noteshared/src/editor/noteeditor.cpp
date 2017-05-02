@@ -28,5 +28,4 @@ NoteEditor::NoteEditor(QWidget *parent)
 
 NoteEditor::~NoteEditor()
 {
-
 }

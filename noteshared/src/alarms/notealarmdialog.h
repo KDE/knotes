@@ -35,8 +35,7 @@
 #include <QDialog>
 #include "noteshared_export.h"
 class QDateTime;
-namespace NoteShared
-{
+namespace NoteShared {
 class NoteAlarmDialogPrivate;
 class NOTESHARED_EXPORT NoteAlarmDialog : public QDialog
 {

@@ -26,12 +26,10 @@ using namespace NoteShared;
 NoteLockAttribute::NoteLockAttribute()
     : Akonadi::Attribute()
 {
-
 }
 
 NoteLockAttribute::~NoteLockAttribute()
 {
-
 }
 
 NoteLockAttribute *NoteLockAttribute::clone() const
@@ -55,4 +53,3 @@ QByteArray NoteLockAttribute::type() const
     static const QByteArray sType("KJotsLockAttribute");
     return sType;
 }
-

@@ -32,19 +32,16 @@
 class QGridLayout;
 class QItemSelectionModel;
 class QLabel;
-namespace KontactInterface
-{
+namespace KontactInterface {
 class Plugin;
 }
 
-namespace Akonadi
-{
+namespace Akonadi {
 class ChangeRecorder;
 class ETMViewStateSaver;
 class Item;
 }
-namespace NoteShared
-{
+namespace NoteShared {
 class NotesChangeRecorder;
 class NotesAkonadiTreeModel;
 }

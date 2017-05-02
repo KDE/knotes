@@ -23,8 +23,7 @@
 class QListWidget;
 class QLabel;
 class QListWidgetItem;
-namespace NoteShared
-{
+namespace NoteShared {
 class NoteListWidget;
 }
 class KJob;

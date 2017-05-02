@@ -28,7 +28,6 @@
 using namespace NoteShared;
 NoteEditorUtils::NoteEditorUtils()
 {
-
 }
 
 void NoteEditorUtils::addCheckmark(QTextCursor &cursor)

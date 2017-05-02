@@ -38,8 +38,7 @@
 #include <QAbstractSocket>
 
 class QTcpSocket;
-namespace NoteShared
-{
+namespace NoteShared {
 class NotesNetworkReceiverPrivate;
 class NOTESHARED_EXPORT NotesNetworkReceiver : public QObject
 {

@@ -30,5 +30,4 @@ NotesAkonadiTreeModel::NotesAkonadiTreeModel(Akonadi::ChangeRecorder *changeReco
 
 NotesAkonadiTreeModel::~NotesAkonadiTreeModel()
 {
-
 }

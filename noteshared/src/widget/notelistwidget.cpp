@@ -27,15 +27,14 @@ class NoteShared::NoteListWidgetPrivate
 public:
     NoteListWidgetPrivate()
     {
-
     }
 
     Akonadi::Item::List mNotes;
 };
 
 NoteListWidget::NoteListWidget(QWidget *parent)
-    : QListWidget(parent),
-      d(new NoteShared::NoteListWidgetPrivate)
+    : QListWidget(parent)
+    , d(new NoteShared::NoteListWidgetPrivate)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 }

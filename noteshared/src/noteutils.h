@@ -23,8 +23,7 @@
 #include <AkonadiCore/Item>
 #include <QString>
 class QWidget;
-namespace NoteShared
-{
+namespace NoteShared {
 class NOTESHARED_EXPORT NoteUtils
 {
 public:

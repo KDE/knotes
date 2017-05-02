@@ -23,8 +23,7 @@
 class KColorButton;
 class QCheckBox;
 class QSpinBox;
-namespace NoteShared
-{
+namespace NoteShared {
 class NoteDisplayAttribute;
 }
 class KNoteDisplayConfigWidget : public QWidget

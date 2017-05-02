@@ -29,8 +29,8 @@
 #include <QFontDatabase>
 
 KNotesAkonadiTray::KNotesAkonadiTray(QWidget *parent)
-    : KStatusNotifierItem(parent),
-      mIcon(QIcon::fromTheme(QStringLiteral("knotes")))
+    : KStatusNotifierItem(parent)
+    , mIcon(QIcon::fromTheme(QStringLiteral("knotes")))
 {
     setToolTipTitle(i18n("KNotes: Sticky notes by KDE"));
     setToolTipIconByName(QStringLiteral("knotes"));
@@ -97,4 +97,3 @@ void KNotesAkonadiTray::updateNumberOfNotes(int number)
         setIconByPixmap(mIcon);
     }
 }
-

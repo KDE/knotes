@@ -29,14 +29,13 @@
 #include <attributes/notedisplayattribute.h>
 
 KNotePrintObject::KNotePrintObject(const Akonadi::Item &item, QObject *parent)
-    : QObject(parent),
-      mItem(item)
+    : QObject(parent)
+    , mItem(item)
 {
 }
 
 KNotePrintObject::~KNotePrintObject()
 {
-
 }
 
 QString KNotePrintObject::description() const

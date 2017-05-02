@@ -23,8 +23,7 @@
 #include <AkonadiCore/Attribute>
 
 #include <QDateTime>
-namespace NoteShared
-{
+namespace NoteShared {
 class NOTESHARED_EXPORT NoteAlarmAttribute : public Akonadi::Attribute
 {
 public:

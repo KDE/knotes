@@ -36,20 +36,17 @@ class QMenu;
 class KNote;
 class KXMLGUIBuilder;
 class KXMLGUIFactory;
-namespace NoteShared
-{
+namespace NoteShared {
 class NotesChangeRecorder;
 class NotesAkonadiTreeModel;
 }
 
-namespace KDNSSD
-{
+namespace KDNSSD {
 class PublicService;
 }
 class KJob;
 class QModelIndex;
-class KNotesApp
-    : public QWidget, virtual public KXMLGUIClient
+class KNotesApp : public QWidget, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:
@@ -57,8 +54,7 @@ public:
     ~KNotesApp();
 
 public Q_SLOTS:
-    void newNote(const QString &name = QString(),
-                 const QString &text = QString());
+    void newNote(const QString &name = QString(), const QString &text = QString());
     void newNoteFromClipboard();
     void hideAllNotes() const;
     void showAllNotes() const;
@@ -103,13 +99,13 @@ private:
     void updateSystray();
     void createNote(const Akonadi::Item &item);
     void fetchNotesFromCollection(const Akonadi::Collection &col);
-    KXMLGUIFactory  *m_guiFactory;
-    KXMLGUIBuilder  *m_guiBuilder;
-    QDomDocument    m_noteGUI;
+    KXMLGUIFactory *m_guiFactory;
+    KXMLGUIBuilder *m_guiBuilder;
+    QDomDocument m_noteGUI;
     KNotesAkonadiTray *mTray;
-    QMenu           *m_noteMenu;
-    QList<QAction *>       m_noteActions;
-    KDNSSD::PublicService   *m_publisher;
+    QMenu *m_noteMenu;
+    QList<QAction *> m_noteActions;
+    KDNSSD::PublicService *m_publisher;
     QHash<Akonadi::Item::Id, KNote *> mNotes;
     NoteShared::NotesChangeRecorder *mNoteRecorder;
     NoteShared::NotesAkonadiTreeModel *mNoteTreeModel;

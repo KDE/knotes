@@ -43,7 +43,7 @@ void KNoteUtils::updateConfiguration()
 
 void KNoteUtils::setDefaultValue(Akonadi::Item &item)
 {
-    NoteShared::NoteDisplayAttribute *attribute =  item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attribute = item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     attribute->setBackgroundColor(KNotesGlobalConfig::self()->bgColor());
     attribute->setForegroundColor(KNotesGlobalConfig::self()->fgColor());
     attribute->setSize(QSize(KNotesGlobalConfig::self()->width(), KNotesGlobalConfig::self()->height()));
@@ -59,4 +59,3 @@ void KNoteUtils::setDefaultValue(Akonadi::Item &item)
     attribute->setKeepBelow(KNotesGlobalConfig::self()->keepBelow());
     attribute->setAutoIndent(KNotesGlobalConfig::self()->autoIndent());
 }
-

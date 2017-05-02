@@ -43,7 +43,6 @@ NotesAgentNoteDialog::NotesAgentNoteDialog(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
 
-
     mSubject = new QLineEdit(this);
     mSubject->setReadOnly(true);
     mainLayout->addWidget(mSubject);

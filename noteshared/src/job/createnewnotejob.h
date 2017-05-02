@@ -24,8 +24,7 @@
 #include "noteshared_export.h"
 class KJob;
 
-namespace NoteShared
-{
+namespace NoteShared {
 class CreateNewNoteJobPrivate;
 class NOTESHARED_EXPORT CreateNewNoteJob : public QObject
 {

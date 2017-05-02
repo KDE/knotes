@@ -40,10 +40,10 @@
 
 extern "C"
 {
-    Q_DECL_EXPORT KCModule *create_knotessummary(QWidget *parent, const char *)
-    {
-        return new KCMKNotesSummary(parent);
-    }
+Q_DECL_EXPORT KCModule *create_knotessummary(QWidget *parent, const char *)
+{
+    return new KCMKNotesSummary(parent);
+}
 }
 
 KCMKNotesSummary::KCMKNotesSummary(QWidget *parent)
@@ -86,8 +86,8 @@ void KCMKNotesSummary::initFolders()
 {
     KSharedConfigPtr _config = KSharedConfig::openConfig(QStringLiteral("kcmknotessummaryrc"));
 
-    mModelState =
-        new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), this);
+    mModelState
+        = new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), this);
     mModelState->setSelectionModel(mCheckedCollectionWidget->selectionModel());
 }
 

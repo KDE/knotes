@@ -140,19 +140,19 @@ private:
     void updateAllAttributes();
     void saveNoteContent();
     Akonadi::Item mItem;
-    QLayout       *m_noteLayout;
-    QLabel        *m_label;
-    QSizeGrip     *m_grip;
-    KNoteButton   *m_button;
-    KToolBar      *m_tool;
-    KNoteEdit     *m_editor;
+    QLayout *m_noteLayout;
+    QLabel *m_label;
+    QSizeGrip *m_grip;
+    KNoteButton *m_button;
+    KToolBar *m_tool;
+    KNoteEdit *m_editor;
 
-    QMenu         *m_menu;
+    QMenu *m_menu;
 
     KToggleAction *m_readOnly;
 
 #if KDEPIM_HAVE_X11
-    KSelectAction   *m_toDesktop;
+    KSelectAction *m_toDesktop;
 #endif
     KToggleAction *m_keepAbove;
     KToggleAction *m_keepBelow;

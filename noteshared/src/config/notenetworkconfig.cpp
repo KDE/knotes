@@ -37,11 +37,10 @@ class NoteShared::NoteNetworkConfigWidgetPrivate
 {
 public:
     NoteNetworkConfigWidgetPrivate()
-        : mTmpChkB(nullptr),
-          kcfg_SenderID(nullptr),
-          kcfg_Port(nullptr)
+        : mTmpChkB(nullptr)
+        , kcfg_SenderID(nullptr)
+        , kcfg_Port(nullptr)
     {
-
     }
 
     QCheckBox *mTmpChkB;
@@ -50,8 +49,8 @@ public:
 };
 
 NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)
-    : QWidget(parent),
-      d(new NoteShared::NoteNetworkConfigWidgetPrivate)
+    : QWidget(parent)
+    , d(new NoteShared::NoteNetworkConfigWidgetPrivate)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
@@ -134,4 +133,3 @@ void NoteNetworkConfig::load()
 {
     KCModule::load();
 }
-

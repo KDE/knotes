@@ -23,8 +23,7 @@
 #include <Item>
 class QLineEdit;
 class KJob;
-namespace KPIMTextEdit
-{
+namespace KPIMTextEdit {
 class RichTextEditorWidget;
 }
 class NotesAgentNoteDialog : public QDialog

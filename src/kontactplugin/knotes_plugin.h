@@ -32,7 +32,10 @@ class KNotesUniqueAppHandler : public KontactInterface::UniqueAppHandler
     Q_OBJECT
 public:
     explicit KNotesUniqueAppHandler(KontactInterface::Plugin *plugin)
-        : KontactInterface::UniqueAppHandler(plugin) {}
+        : KontactInterface::UniqueAppHandler(plugin)
+    {
+    }
+
     void loadCommandLineOptions(QCommandLineParser *parser) Q_DECL_OVERRIDE;
     int activate(const QStringList &args, const QString &workingDir) Q_DECL_OVERRIDE;
 };
@@ -67,7 +70,6 @@ private Q_SLOTS:
 
 private:
     KontactInterface::UniqueAppWatcher *mUniqueAppWatcher;
-
 };
 
 #endif

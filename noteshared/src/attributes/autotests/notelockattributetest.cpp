@@ -24,12 +24,10 @@
 NoteLockAttributeTest::NoteLockAttributeTest(QObject *parent)
     : QObject(parent)
 {
-
 }
 
 NoteLockAttributeTest::~NoteLockAttributeTest()
 {
-
 }
 
 void NoteLockAttributeTest::shouldHaveType()

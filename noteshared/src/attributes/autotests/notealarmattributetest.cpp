@@ -23,12 +23,10 @@
 NoteAlarmAttributeTest::NoteAlarmAttributeTest(QObject *parent)
     : QObject(parent)
 {
-
 }
 
 NoteAlarmAttributeTest::~NoteAlarmAttributeTest()
 {
-
 }
 
 void NoteAlarmAttributeTest::shouldHaveDefaultValue()

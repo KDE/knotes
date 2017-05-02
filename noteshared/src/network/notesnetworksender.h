@@ -35,8 +35,7 @@
 #define NOTENETWORKSENDER_H
 
 #include <QTcpSocket>
-namespace NoteShared
-{
+namespace NoteShared {
 class NotesNetworkSender : public QObject
 {
     Q_OBJECT

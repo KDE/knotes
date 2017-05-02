@@ -54,15 +54,15 @@ NoteActionConfig::NoteActionConfig(QWidget *parent)
 
 void NoteActionConfig::slotHelpLinkClicked(const QString &)
 {
-    const QString help =
-        i18n("<qt>"
-             "<p>You can customize command line. "
-             "You can use:</p>"
-             "<ul>"
-             "<li>%t returns current note title</li>"
-             "<li>%f returns current note text</li>"
-             "</ul>"
-             "</qt>");
+    const QString help
+        = i18n("<qt>"
+               "<p>You can customize command line. "
+               "You can use:</p>"
+               "<ul>"
+               "<li>%t returns current note title</li>"
+               "<li>%f returns current note text</li>"
+               "</ul>"
+               "</qt>");
 
     QWhatsThis::showText(QCursor::pos(), help);
 }

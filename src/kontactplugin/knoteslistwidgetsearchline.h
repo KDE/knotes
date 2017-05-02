@@ -32,7 +32,6 @@ public:
 
 protected:
     bool itemMatches(const QListWidgetItem *item, const QString &s) const Q_DECL_OVERRIDE;
-
 };
 
 #endif // KNOTESLISTWIDGETSEARCHLINE_H

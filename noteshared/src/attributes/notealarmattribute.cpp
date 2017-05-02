@@ -25,12 +25,10 @@ using namespace NoteShared;
 NoteAlarmAttribute::NoteAlarmAttribute()
     : Akonadi::Attribute()
 {
-
 }
 
 NoteAlarmAttribute::~NoteAlarmAttribute()
 {
-
 }
 
 NoteAlarmAttribute *NoteAlarmAttribute::clone() const
@@ -74,4 +72,3 @@ bool NoteAlarmAttribute::operator ==(const NoteAlarmAttribute &other) const
 {
     return mDateTime == other.dateTime();
 }
-

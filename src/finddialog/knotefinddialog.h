@@ -27,8 +27,7 @@ class QLineEdit;
 class QListWidgetItem;
 class QListWidget;
 class QLabel;
-namespace NoteShared
-{
+namespace NoteShared {
 class NoteListWidget;
 }
 class KNoteFindWidget : public QWidget

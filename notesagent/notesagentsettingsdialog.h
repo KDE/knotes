@@ -22,8 +22,7 @@
 #include <QDialog>
 
 class KNotifyConfigWidget;
-namespace NoteShared
-{
+namespace NoteShared {
 class NoteNetworkConfigWidget;
 }
 class NotesAgentSettingsDialog : public QDialog

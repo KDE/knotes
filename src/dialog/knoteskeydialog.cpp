@@ -34,7 +34,6 @@ KNotesKeyDialog::KNotesKeyDialog(KActionCollection *globals, QWidget *parent)
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     m_keyChooser = new KShortcutsEditor(globals, this);
 
-
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::RestoreDefaults, this);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);

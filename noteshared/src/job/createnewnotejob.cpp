@@ -46,8 +46,8 @@ public:
     CreateNewNoteJobPrivate(QWidget *widget)
         : mWidget(widget)
     {
-
     }
+
     QString mTitle;
     QString mText;
     bool mRichText;
@@ -55,8 +55,8 @@ public:
 };
 
 CreateNewNoteJob::CreateNewNoteJob(QObject *parent, QWidget *widget)
-    : QObject(parent),
-      d(new NoteShared::CreateNewNoteJobPrivate(widget))
+    : QObject(parent)
+    , d(new NoteShared::CreateNewNoteJobPrivate(widget))
 {
     connect(this, &CreateNewNoteJob::selectNewCollection, this, &CreateNewNoteJob::slotSelectNewCollection);
 }

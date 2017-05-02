@@ -48,9 +48,9 @@
 #include <QTimer>
 
 NotesManager::NotesManager(QObject *parent)
-    : QObject(parent),
-      mListener(nullptr),
-      mCheckAlarm(nullptr)
+    : QObject(parent)
+    , mListener(nullptr)
+    , mCheckAlarm(nullptr)
 {
     mSession = new Akonadi::Session("KNotes Session", this);
     mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
@@ -100,10 +100,10 @@ void NotesManager::slotCollectionsReceived(const Akonadi::Collection::List &coll
         job->fetchScope().fetchFullPayload(true);
         connect(job, &Akonadi::ItemFetchJob::itemsReceived,
                 this, [this](const Akonadi::Item::List &items) {
-                    for (const Akonadi::Item &item : items) {
-                        slotItemAdded(item);
-                    }
-                });
+            for (const Akonadi::Item &item : items) {
+                slotItemAdded(item);
+            }
+        });
     }
 }
 

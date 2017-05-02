@@ -28,12 +28,10 @@
 KNotesGrantleePrintTest::KNotesGrantleePrintTest(QObject *parent)
     : QObject(parent)
 {
-
 }
 
 KNotesGrantleePrintTest::~KNotesGrantleePrintTest()
 {
-
 }
 
 void KNotesGrantleePrintTest::shouldDefaultValue()

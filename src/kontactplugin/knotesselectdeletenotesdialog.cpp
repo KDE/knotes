@@ -33,12 +33,10 @@
 KNotesSelectDeleteNotesListWidget::KNotesSelectDeleteNotesListWidget(QWidget *parent)
     : QListWidget(parent)
 {
-
 }
 
 KNotesSelectDeleteNotesListWidget::~KNotesSelectDeleteNotesListWidget()
 {
-
 }
 
 void KNotesSelectDeleteNotesListWidget::setItems(const QList<KNotesIconViewItem *> &items)
@@ -103,4 +101,3 @@ void KNotesSelectDeleteNotesDialog::writeConfig()
     grp.writeEntry("Size", size());
     grp.sync();
 }
-

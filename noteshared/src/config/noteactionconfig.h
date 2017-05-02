@@ -20,8 +20,7 @@
 #define NOTEACTIONCONFIG_H
 #include "noteshared_export.h"
 #include <KCModule>
-namespace NoteShared
-{
+namespace NoteShared {
 class NOTESHARED_EXPORT NoteActionConfig : public KCModule
 {
     Q_OBJECT

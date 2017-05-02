@@ -21,13 +21,11 @@
 
 #include <KCModule>
 #include <KViewStateMaintainer>
-namespace Akonadi
-{
+namespace Akonadi {
 class ETMViewStateSaver;
 }
 
-namespace PimCommon
-{
+namespace PimCommon {
 class CheckedCollectionWidget;
 }
 

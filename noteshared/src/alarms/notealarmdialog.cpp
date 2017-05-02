@@ -50,21 +50,20 @@ class NoteShared::NoteAlarmDialogPrivate
 {
 public:
     NoteAlarmDialogPrivate()
-        : m_atDate(nullptr),
-          m_atTime(nullptr),
-          m_buttons(nullptr)
+        : m_atDate(nullptr)
+        , m_atTime(nullptr)
+        , m_buttons(nullptr)
     {
-
     }
+
     KDateComboBox *m_atDate;
     KTimeComboBox *m_atTime;
     QButtonGroup *m_buttons;
-
 };
 
 NoteAlarmDialog::NoteAlarmDialog(const QString &caption, QWidget *parent)
-    : QDialog(parent),
-      d(new NoteShared::NoteAlarmDialogPrivate)
+    : QDialog(parent)
+    , d(new NoteShared::NoteAlarmDialogPrivate)
 {
     setWindowTitle(caption);
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);

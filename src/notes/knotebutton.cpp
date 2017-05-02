@@ -101,7 +101,7 @@ void KNoteButton::paintEvent(QPaintEvent *)
 
     // the button label
     if (!icon().isNull()) {
-        QIcon::Mode  mode  = QIcon::Disabled;
+        QIcon::Mode mode = QIcon::Disabled;
         QIcon::State state = QIcon::Off;
 
         if (opt.state & QStyle::State_Enabled) {
@@ -126,4 +126,3 @@ void KNoteButton::paintEvent(QPaintEvent *)
         p.drawPixmap(dx, dy, pix);
     }
 }
-

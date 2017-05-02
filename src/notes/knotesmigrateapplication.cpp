@@ -36,7 +36,6 @@ void KNotesMigrateApplication::migrate()
     if (mMigrator.checkIfNecessary()) {
         mMigrator.start();
     }
-
 }
 
 void KNotesMigrateApplication::initializeMigrator()
@@ -55,6 +54,4 @@ void KNotesMigrateApplication::initializeMigrator()
     migrateInfoThemePrint.setPath(QStringLiteral("knotes/print/"));
     migrateInfoThemePrint.setVersion(initialVersion);
     mMigrator.insertMigrateInfo(migrateInfoThemePrint);
-
 }
-

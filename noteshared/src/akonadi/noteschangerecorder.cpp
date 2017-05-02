@@ -35,15 +35,14 @@ public:
     NotesChangeRecorderPrivate()
         : mChangeRecorder(nullptr)
     {
-
     }
 
     Akonadi::ChangeRecorder *mChangeRecorder;
 };
 
 NotesChangeRecorder::NotesChangeRecorder(QObject *parent)
-    : QObject(parent),
-      d(new NoteShared::NotesChangeRecorderPrivate)
+    : QObject(parent)
+    , d(new NoteShared::NotesChangeRecorderPrivate)
 {
     Akonadi::ItemFetchScope scope;
     scope.fetchFullPayload(true);   // Need to have full item when adding it to the internal data structure

@@ -24,8 +24,7 @@
 #include <kontactinterface/pimuniqueapplication.h>
 class KNotesApp;
 
-class Application
-    : public KontactInterface::PimUniqueApplication
+class Application : public KontactInterface::PimUniqueApplication
 {
 public:
     Application(int &argc, char **argv[]);

@@ -24,8 +24,7 @@
 #include <QPoint>
 
 #include "knotes_export.h"
-namespace NoteShared
-{
+namespace NoteShared {
 class NoteDisplayAttribute;
 }
 

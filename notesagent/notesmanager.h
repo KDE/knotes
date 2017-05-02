@@ -27,14 +27,12 @@
 #include <QPointer>
 class QTcpServer;
 class QTimer;
-namespace NoteShared
-{
+namespace NoteShared {
 class NotesChangeRecorder;
 class NotesAkonadiTreeModel;
 }
 
-namespace Akonadi
-{
+namespace Akonadi {
 class Session;
 }
 
@@ -68,7 +66,7 @@ private:
     QTcpServer *mListener;
     QTimer *mCheckAlarm;
     NoteShared::NotesChangeRecorder *mNoteRecorder;
-    Akonadi::Session *mSession; 
+    Akonadi::Session *mSession;
     QPointer<NotesAgentAlarmDialog> mAlarmDialog;
 };
 

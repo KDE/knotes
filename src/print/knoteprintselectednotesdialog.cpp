@@ -35,8 +35,8 @@
 #include <QVBoxLayout>
 
 KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
-    : QDialog(parent),
-      mPreview(false)
+    : QDialog(parent)
+    , mPreview(false)
 {
     setWindowTitle(i18n("Select notes"));
     mButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
@@ -148,4 +148,3 @@ void KNotePrintSelectedNotesDialog::slotPreview()
     mPreview = true;
     accept();
 }
-

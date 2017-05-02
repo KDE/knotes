@@ -22,8 +22,7 @@
 #include <QDialog>
 #include <AkonadiCore/Item>
 class QPushButton;
-namespace NoteShared
-{
+namespace NoteShared {
 class NoteListWidget;
 }
 

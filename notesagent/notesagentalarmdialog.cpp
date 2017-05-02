@@ -53,7 +53,6 @@ NotesAgentAlarmDialog::NotesAgentAlarmDialog(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
-
     QVBoxLayout *vbox = new QVBoxLayout;
     mainLayout->addLayout(vbox);
 

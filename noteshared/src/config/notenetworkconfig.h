@@ -23,8 +23,7 @@
 class QLineEdit;
 class QCheckBox;
 class QSpinBox;
-namespace NoteShared
-{
+namespace NoteShared {
 class NoteNetworkConfigWidgetPrivate;
 class NOTESHARED_EXPORT NoteNetworkConfigWidget : public QWidget
 {

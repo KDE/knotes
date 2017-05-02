@@ -60,9 +60,9 @@
 #include <QItemSelectionModel>
 
 KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidget *parent)
-    : KontactInterface::Summary(parent),
-      mPlugin(plugin),
-      mInProgress(false)
+    : KontactInterface::Summary(parent)
+    , mPlugin(plugin)
+    , mInProgress(false)
 {
     mDefaultPixmap = KIconLoader::global()->loadIcon(QStringLiteral("knotes"), KIconLoader::Desktop);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
@@ -98,8 +98,8 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
 
     KSharedConfigPtr _config = KSharedConfig::openConfig(QStringLiteral("kcmknotessummaryrc"));
 
-    mModelState =
-        new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), this);
+    mModelState
+        = new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), this);
     mModelState->setSelectionModel(mSelectionModel);
 }
 
@@ -139,9 +139,9 @@ void KNotesSummaryWidget::displayNotes(const QModelIndex &parent, int &counter)
     const int nbCol = mModelProxy->rowCount(parent);
     for (int i = 0; i < nbCol; ++i) {
         const QModelIndex child = mModelProxy->index(i, 0, parent);
-        const Akonadi::Item item =
-            mModelProxy->data(child,
-                              Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
+        const Akonadi::Item item
+            = mModelProxy->data(child,
+                                Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
         if (item.isValid()) {
             createNote(item, counter);
             ++counter;
@@ -154,12 +154,12 @@ void KNotesSummaryWidget::slotPopupMenu(const QString &note)
 {
     QMenu popup(this);
     const QAction *modifyNoteAction = popup.addAction(
-                                          KIconLoader::global()->loadIcon(QStringLiteral("document-edit"), KIconLoader::Small),
-                                          i18n("Modify Note..."));
+        KIconLoader::global()->loadIcon(QStringLiteral("document-edit"), KIconLoader::Small),
+        i18n("Modify Note..."));
     popup.addSeparator();
     const QAction *deleteNoteAction = popup.addAction(
-                                          KIconLoader::global()->loadIcon(QStringLiteral("edit-delete"), KIconLoader::Small),
-                                          i18n("Delete Note..."));
+        KIconLoader::global()->loadIcon(QStringLiteral("edit-delete"), KIconLoader::Small),
+        i18n("Delete Note..."));
 
     const QAction *ret = popup.exec(QCursor::pos());
     if (ret == deleteNoteAction) {

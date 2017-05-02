@@ -22,13 +22,11 @@
 #include <AkonadiCore/EntityTreeModel>
 #include "noteshared_export.h"
 
-namespace Akonadi
-{
+namespace Akonadi {
 class ChangeRecorder;
 }
 
-namespace NoteShared
-{
+namespace NoteShared {
 class NOTESHARED_EXPORT NotesAkonadiTreeModel : public Akonadi::EntityTreeModel
 {
     Q_OBJECT

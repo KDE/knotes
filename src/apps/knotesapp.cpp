@@ -89,13 +89,13 @@
 
 static bool qActionLessThan(const QAction *a1, const QAction *a2)
 {
-    return (a1->text() < a2->text());
+    return a1->text() < a2->text();
 }
 
 KNotesApp::KNotesApp()
-    : QWidget(),
-      m_publisher(nullptr),
-      mDebugBaloo(false)
+    : QWidget()
+    , m_publisher(nullptr)
+    , mDebugBaloo(false)
 {
     Akonadi::ControlGui::widgetNeedsAkonadi(this);
 
@@ -110,30 +110,30 @@ KNotesApp::KNotesApp()
     QDBusConnection::sessionBus().registerObject(QStringLiteral("/KNotes"), this);
     qApp->setQuitOnLastWindowClosed(false);
     // create the GUI...
-    QAction *action  = new QAction(QIcon::fromTheme(QStringLiteral("document-new")),
-                                   i18n("New Note"), this);
+    QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("document-new")),
+                                  i18n("New Note"), this);
     actionCollection()->addAction(QStringLiteral("new_note"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_N));
     connect(action, SIGNAL(triggered()), SLOT(newNote()));
 
-    action  = new QAction(QIcon::fromTheme(QStringLiteral("edit-paste")),
-                          i18n("New Note From Clipboard"), this);
+    action = new QAction(QIcon::fromTheme(QStringLiteral("edit-paste")),
+                         i18n("New Note From Clipboard"), this);
     actionCollection()->addAction(QStringLiteral("new_note_clipboard"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_C));
     connect(action, &QAction::triggered, this, &KNotesApp::newNoteFromClipboard);
 
-    action  = new QAction(QIcon::fromTheme(QStringLiteral("document-open")),
-                          i18n("New Note From Text File..."), this);
+    action = new QAction(QIcon::fromTheme(QStringLiteral("document-open")),
+                         i18n("New Note From Text File..."), this);
     actionCollection()->addAction(QStringLiteral("new_note_from_text_file"), action);
     connect(action, &QAction::triggered, this, &KNotesApp::newNoteFromTextFile);
 
-    action  = new QAction(QIcon::fromTheme(QStringLiteral("knotes")), i18n("Show All Notes"), this);
+    action = new QAction(QIcon::fromTheme(QStringLiteral("knotes")), i18n("Show All Notes"), this);
     actionCollection()->addAction(QStringLiteral("show_all_notes"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_S));
     connect(action, &QAction::triggered, this, &KNotesApp::showAllNotes);
 
-    action  = new QAction(QIcon::fromTheme(QStringLiteral("window-close")),
-                          i18n("Hide All Notes"), this);
+    action = new QAction(QIcon::fromTheme(QStringLiteral("window-close")),
+                         i18n("Hide All Notes"), this);
     actionCollection()->addAction(QStringLiteral("hide_all_notes"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_H));
     connect(action, &QAction::triggered, this, &KNotesApp::hideAllNotes);
@@ -170,8 +170,8 @@ KNotesApp::KNotesApp()
     m_guiFactory->addClient(this);
 
     QMenu *contextMenu = static_cast<QMenu *>(m_guiFactory->container(
-                             QStringLiteral("knotes_context"),
-                             this));
+                                                  QStringLiteral("knotes_context"),
+                                                  this));
     m_noteMenu = static_cast<QMenu *>(m_guiFactory->container(
                                           QStringLiteral("notes_menu"), this));
 
@@ -276,8 +276,8 @@ void KNotesApp::slotRowInserted(const QModelIndex &parent, int start, int end)
     for (int i = start; i <= end; ++i) {
         if (mNoteTreeModel->hasIndex(i, 0, parent)) {
             const QModelIndex child = mNoteTreeModel->index(i, 0, parent);
-            Akonadi::Item item =
-                mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
+            Akonadi::Item item
+                = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
             Akonadi::Collection parentCollection = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
             if (parentCollection.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
                 createNote(item);
@@ -391,7 +391,7 @@ void KNotesApp::newNoteFromTextFile()
 {
     QString text;
     const QString filename = QFileDialog::getOpenFileName(this, i18n("Select Text File"), QString(),
-                             i18n("Text File (*.txt)"));
+                                                          i18n("Text File (*.txt)"));
     if (!filename.isEmpty()) {
         QFile f(filename);
         if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -476,13 +476,13 @@ void KNotesApp::updateNoteActions()
         action->setObjectName(QString::number(note->noteId()));
         connect(action, &QAction::triggered, this, &KNotesApp::slotShowNote);
         KIconEffect effect;
-        QPixmap icon =
-            effect.apply(qApp->windowIcon().pixmap(IconSize(KIconLoader::Small),
-                         IconSize(KIconLoader::Small)),
-                         KIconEffect::Colorize,
-                         1,
-                         note->palette().color(note->backgroundRole()),
-                         false);
+        QPixmap icon
+            = effect.apply(qApp->windowIcon().pixmap(IconSize(KIconLoader::Small),
+                                                     IconSize(KIconLoader::Small)),
+                           KIconEffect::Colorize,
+                           1,
+                           note->palette().color(note->backgroundRole()),
+                           false);
 
         action->setIcon(icon);
         m_noteActions.append(action);
@@ -593,7 +593,7 @@ void KNotesApp::slotConfigureAccels()
         m_noteGUI.setContent(
             KXMLGUIFactory::readConfigFile(componentName() + QLatin1String("ui.rc"),
                                            componentName())
-        );
+            );
 
         if (actionCollection) {
             QHashIterator<Akonadi::Item::Id, KNote *> i(mNotes);
@@ -605,7 +605,6 @@ void KNotesApp::slotConfigureAccels()
                         toChange->setShortcuts(action->shortcuts());
                     }
                 }
-
             }
         }
     }

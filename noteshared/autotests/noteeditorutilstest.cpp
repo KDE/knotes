@@ -26,12 +26,10 @@
 NoteEditorUtilsTest::NoteEditorUtilsTest(QObject *parent)
     : QObject(parent)
 {
-
 }
 
 NoteEditorUtilsTest::~NoteEditorUtilsTest()
 {
-
 }
 
 void NoteEditorUtilsTest::testAddCheckmark_data()

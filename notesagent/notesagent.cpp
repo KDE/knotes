@@ -38,8 +38,8 @@
 #include <QPointer>
 
 NotesAgent::NotesAgent(const QString &id)
-    : Akonadi::AgentBase(id),
-      mAgentInitialized(false)
+    : Akonadi::AgentBase(id)
+    , mAgentInitialized(false)
 {
     Kdelibs4ConfigMigrator migrate(QStringLiteral("notesagent"));
     migrate.setConfigFiles(QStringList() << QStringLiteral("akonadi_notes_agentrc") << QStringLiteral("akonadi_notes_agent.notifyrc"));
@@ -187,4 +187,3 @@ int NotesAgent::alarmCheckInterval() const
 }
 
 AKONADI_AGENT_MAIN(NotesAgent)
-

@@ -25,12 +25,10 @@
 NoteDisplayAttributeTest::NoteDisplayAttributeTest(QObject *parent)
     : QObject(parent)
 {
-
 }
 
 NoteDisplayAttributeTest::~NoteDisplayAttributeTest()
 {
-
 }
 
 void NoteDisplayAttributeTest::shouldHaveDefaultValue()

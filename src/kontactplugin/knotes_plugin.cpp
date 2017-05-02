@@ -60,9 +60,9 @@ KNotesPlugin::KNotesPlugin(KontactInterface::Core *core, const QVariantList &)
 {
     setComponentName(QStringLiteral("knotes"), i18n("KNotes"));
 
-    QAction *action =
-        new QAction(QIcon::fromTheme(QStringLiteral("knotes")),
-                    i18nc("@action:inmenu", "New Popup Note..."), this);
+    QAction *action
+        = new QAction(QIcon::fromTheme(QStringLiteral("knotes")),
+                      i18nc("@action:inmenu", "New Popup Note..."), this);
     actionCollection()->addAction(QStringLiteral("new_note"), action);
     connect(action, &QAction::triggered, this, &KNotesPlugin::slotNewNote);
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_N));
@@ -75,7 +75,6 @@ KNotesPlugin::KNotesPlugin(KontactInterface::Core *core, const QVariantList &)
 
     mUniqueAppWatcher = new KontactInterface::UniqueAppWatcher(
         new KontactInterface::UniqueAppHandlerFactory<KNotesUniqueAppHandler>(), this);
-
 }
 
 KNotesPlugin::~KNotesPlugin()
@@ -123,10 +122,10 @@ const KAboutData KNotesPlugin::aboutData()
 bool KNotesPlugin::canDecodeMimeData(const QMimeData *mimeData) const
 {
     return
-        mimeData->hasText() ||
-        MailList::canDecode(mimeData) ||
-        KContacts::VCardDrag::canDecode(mimeData) ||
-        ICalDrag::canDecode(mimeData);
+        mimeData->hasText()
+        || MailList::canDecode(mimeData)
+        || KContacts::VCardDrag::canDecode(mimeData)
+        || ICalDrag::canDecode(mimeData);
 }
 
 void KNotesPlugin::processDropEvent(QDropEvent *event)
@@ -234,4 +233,3 @@ int KNotesUniqueAppHandler::activate(const QStringList &args, const QString &wor
 }
 
 #include "knotes_plugin.moc"
-

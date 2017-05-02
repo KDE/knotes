@@ -39,7 +39,8 @@
 #include <QPushButton>
 
 KNoteEditDialog::KNoteEditDialog(bool readOnly, QWidget *parent)
-    : QDialog(parent), mOkButton(nullptr)
+    : QDialog(parent)
+    , mOkButton(nullptr)
 {
     init(readOnly);
 }
@@ -204,4 +205,3 @@ int KNoteEditDialog::cursorPositionFromStart() const
 {
     return mNoteEdit->cursorPositionFromStart();
 }
-

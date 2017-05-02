@@ -43,8 +43,8 @@
 //#define DEBUG_SAVE_NOTE 1
 
 KNotesIconView::KNotesIconView(KNotesPart *part, QWidget *parent)
-    : QListWidget(parent),
-      m_part(part)
+    : QListWidget(parent)
+    , m_part(part)
 {
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
@@ -57,7 +57,6 @@ KNotesIconView::KNotesIconView(KNotesPart *part, QWidget *parent)
 
 KNotesIconView::~KNotesIconView()
 {
-
 }
 
 bool KNotesIconView::event(QEvent *e)
@@ -110,10 +109,10 @@ QHash<Akonadi::Item::Id, KNotesIconViewItem *> KNotesIconView::noteList() const
 }
 
 KNotesIconViewItem::KNotesIconViewItem(const Akonadi::Item &item, QListWidget *parent)
-    : QListWidgetItem(parent),
-      mItem(item),
-      mDisplayAttribute(new KNoteDisplaySettings),
-      mReadOnly(false)
+    : QListWidgetItem(parent)
+    , mItem(item)
+    , mDisplayAttribute(new KNoteDisplaySettings)
+    , mReadOnly(false)
 {
     if (mItem.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
         mDisplayAttribute->setDisplayAttribute(mItem.attribute<NoteShared::NoteDisplayAttribute>());
@@ -324,8 +323,8 @@ void KNotesIconViewItem::setChangeItem(const Akonadi::Item &item, const QSet<QBy
     if (set.contains("NoteDisplayAttribute")) {
         updateSettings();
     }
-
 }
+
 void KNotesIconViewItem::updateSettings()
 {
     KIconEffect effect;
@@ -339,4 +338,3 @@ void KNotesIconViewItem::updateSettings()
 }
 
 #include "moc_knotesiconview.cpp"
-

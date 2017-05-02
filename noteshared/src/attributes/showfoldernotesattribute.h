@@ -22,8 +22,7 @@
 #include <AkonadiCore/attribute.h>
 #include "noteshared_export.h"
 
-namespace NoteShared
-{
+namespace NoteShared {
 class NOTESHARED_EXPORT ShowFolderNotesAttribute : public Akonadi::Attribute
 {
 public:

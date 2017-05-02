@@ -21,8 +21,7 @@
 
 #include <kpimtextedit/richtexteditorwidget.h>
 
-namespace NoteShared
-{
+namespace NoteShared {
 class NoteEditor : public KPIMTextEdit::RichTextEditorWidget
 {
 public:

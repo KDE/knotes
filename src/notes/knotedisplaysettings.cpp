@@ -29,7 +29,6 @@ KNoteDisplaySettings::KNoteDisplaySettings(NoteShared::NoteDisplayAttribute *att
 
 KNoteDisplaySettings::~KNoteDisplaySettings()
 {
-
 }
 
 void KNoteDisplaySettings::setDisplayAttribute(NoteShared::NoteDisplayAttribute *attr)

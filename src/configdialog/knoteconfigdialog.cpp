@@ -52,8 +52,7 @@
 
 #include <config/notenetworkconfig.h>
 
-KNoteConfigDialog::KNoteConfigDialog(const QString &title,
-                                     QWidget *parent)
+KNoteConfigDialog::KNoteConfigDialog(const QString &title, QWidget *parent)
     : KCMultiDialog(parent)
 {
     setFaceType(KPageDialog::List);
@@ -91,65 +90,65 @@ void KNoteConfigDialog::slotOk()
 
 extern "C"
 {
-    Q_DECL_EXPORT KCModule *create_knote_config_display(QWidget *parent)
-    {
-        return new KNoteDisplayConfig(parent);
-    }
+Q_DECL_EXPORT KCModule *create_knote_config_display(QWidget *parent)
+{
+    return new KNoteDisplayConfig(parent);
+}
 }
 
 extern "C"
 {
-    Q_DECL_EXPORT KCModule *create_knote_config_collection(QWidget *parent)
-    {
-        return new KNoteCollectionConfig(parent);
-    }
+Q_DECL_EXPORT KCModule *create_knote_config_collection(QWidget *parent)
+{
+    return new KNoteCollectionConfig(parent);
+}
 }
 
 extern "C"
 {
-    Q_DECL_EXPORT KCModule *create_knote_config_editor(QWidget *parent)
-    {
-        return new KNoteEditorConfig(parent);
-    }
+Q_DECL_EXPORT KCModule *create_knote_config_editor(QWidget *parent)
+{
+    return new KNoteEditorConfig(parent);
+}
 }
 
 extern "C"
 {
-    Q_DECL_EXPORT KCModule *create_knote_config_action(QWidget *parent)
-    {
-        return new NoteShared::NoteActionConfig(parent);
-    }
+Q_DECL_EXPORT KCModule *create_knote_config_action(QWidget *parent)
+{
+    return new NoteShared::NoteActionConfig(parent);
+}
 }
 
 extern "C"
 {
-    Q_DECL_EXPORT KCModule *create_knote_config_network(QWidget *parent)
-    {
-        return new NoteShared::NoteNetworkConfig(parent);
-    }
+Q_DECL_EXPORT KCModule *create_knote_config_network(QWidget *parent)
+{
+    return new NoteShared::NoteNetworkConfig(parent);
+}
 }
 
 extern "C"
 {
-    Q_DECL_EXPORT KCModule *create_knote_config_print(QWidget *parent)
-    {
-        return new KNotePrintConfig(parent);
-    }
+Q_DECL_EXPORT KCModule *create_knote_config_print(QWidget *parent)
+{
+    return new KNotePrintConfig(parent);
+}
 }
 
 extern "C"
 {
-    Q_DECL_EXPORT KCModule *create_knote_config_misc(QWidget *parent)
-    {
-        return new KNoteMiscConfig(parent);
-    }
+Q_DECL_EXPORT KCModule *create_knote_config_misc(QWidget *parent)
+{
+    return new KNoteMiscConfig(parent);
+}
 }
 
 KNoteDisplayConfig::KNoteDisplayConfig(QWidget *parent)
     : KCModule(parent)
 {
     QVBoxLayout *lay = new QVBoxLayout(this);
-    QWidget *w =  new KNoteDisplayConfigWidget(true);
+    QWidget *w = new KNoteDisplayConfigWidget(true);
     lay->addWidget(w);
     lay->addStretch();
     addConfig(KNotesGlobalConfig::self(), w);
@@ -170,7 +169,7 @@ KNoteEditorConfig::KNoteEditorConfig(QWidget *parent)
     : KCModule(parent)
 {
     QVBoxLayout *lay = new QVBoxLayout(this);
-    QWidget *w =  new KNoteEditorConfigWidget(this);
+    QWidget *w = new KNoteEditorConfigWidget(this);
     lay->addWidget(w);
     lay->addStretch();
     addConfig(KNotesGlobalConfig::self(), w);
@@ -240,16 +239,16 @@ void KNoteMiscConfig::defaults()
 
 void KNoteMiscConfig::slotHelpLinkClicked(const QString &)
 {
-    const QString help =
-        i18n("<qt>"
-             "<p>You can customize title note. "
-             "You can use:</p>"
-             "<ul>"
-             "<li>%d current date (short format)</li>"
-             "<li>%l current date (long format)</li>"
-             "<li>%t current time</li>"
-             "</ul>"
-             "</qt>");
+    const QString help
+        = i18n("<qt>"
+               "<p>You can customize title note. "
+               "You can use:</p>"
+               "<ul>"
+               "<li>%d current date (short format)</li>"
+               "<li>%l current date (long format)</li>"
+               "<li>%t current time</li>"
+               "</ul>"
+               "</qt>");
 
     QWhatsThis::showText(QCursor::pos(), help);
 }
@@ -258,7 +257,7 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent)
     : KCModule(parent)
 {
     QVBoxLayout *lay = new QVBoxLayout(this);
-    QWidget *w =  new QWidget(this);
+    QWidget *w = new QWidget(this);
     lay->addWidget(w);
     QGridLayout *layout = new QGridLayout(w);
     layout->setMargin(0);
@@ -332,4 +331,3 @@ void KNoteCollectionConfig::load()
 {
     //Nothing
 }
-

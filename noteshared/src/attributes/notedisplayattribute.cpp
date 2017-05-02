@@ -26,29 +26,27 @@
 using namespace NoteShared;
 
 NoteDisplayAttribute::NoteDisplayAttribute()
-    : Akonadi::Attribute(),
-      mFont(QFontDatabase::systemFont(QFontDatabase::GeneralFont)),
-      mTitleFont(QFontDatabase::systemFont(QFontDatabase::TitleFont)),
-      mBackgroundColor(Qt::yellow),
-      mForegroundgroundColor(Qt::black),
-      mSize(300, 300),
-      mPosition(QPoint(-10000, -10000)),
-      mTabSize(4),
-      mDesktop(-10),
-      mRememberDesktop(true),
-      mAutoIndent(true),
-      mHide(false),
-      mShowInTaskbar(false),
-      mKeepAbove(false),
-      mKeepBelove(false),
-      mKeepBelow(false)
+    : Akonadi::Attribute()
+    , mFont(QFontDatabase::systemFont(QFontDatabase::GeneralFont))
+    , mTitleFont(QFontDatabase::systemFont(QFontDatabase::TitleFont))
+    , mBackgroundColor(Qt::yellow)
+    , mForegroundgroundColor(Qt::black)
+    , mSize(300, 300)
+    , mPosition(QPoint(-10000, -10000))
+    , mTabSize(4)
+    , mDesktop(-10)
+    , mRememberDesktop(true)
+    , mAutoIndent(true)
+    , mHide(false)
+    , mShowInTaskbar(false)
+    , mKeepAbove(false)
+    , mKeepBelove(false)
+    , mKeepBelow(false)
 {
-
 }
 
 NoteDisplayAttribute::~NoteDisplayAttribute()
 {
-
 }
 
 NoteDisplayAttribute *NoteDisplayAttribute::clone() const
@@ -261,18 +259,18 @@ bool NoteDisplayAttribute::keepBelow() const
 
 bool NoteDisplayAttribute::operator ==(const NoteDisplayAttribute &other) const
 {
-    return (backgroundColor() == other.backgroundColor()) &&
-           (foregroundColor() == other.foregroundColor()) &&
-           (size() == other.size()) &&
-           (rememberDesktop() == other.rememberDesktop()) &&
-           (tabSize() == other.tabSize()) &&
-           (font() == other.font()) &&
-           (titleFont() == other.titleFont()) &&
-           (desktop() == other.desktop()) &&
-           (isHidden() == other.isHidden()) &&
-           (position() == other.position()) &&
-           (showInTaskbar() == other.showInTaskbar()) &&
-           (keepAbove() == other.keepAbove()) &&
-           (keepBelow() == other.keepBelow()) &&
-           (autoIndent() == other.autoIndent());
+    return (backgroundColor() == other.backgroundColor())
+           && (foregroundColor() == other.foregroundColor())
+           && (size() == other.size())
+           && (rememberDesktop() == other.rememberDesktop())
+           && (tabSize() == other.tabSize())
+           && (font() == other.font())
+           && (titleFont() == other.titleFont())
+           && (desktop() == other.desktop())
+           && (isHidden() == other.isHidden())
+           && (position() == other.position())
+           && (showInTaskbar() == other.showInTaskbar())
+           && (keepAbove() == other.keepAbove())
+           && (keepBelow() == other.keepBelow())
+           && (autoIndent() == other.autoIndent());
 }

@@ -39,11 +39,11 @@
 #include <QTextCodec>
 using namespace NoteShared;
 NotesNetworkSender::NotesNetworkSender(QTcpSocket *socket)
-    : QObject(),
-      m_socket(socket),
-      m_note(),
-      m_title(),
-      m_sender()
+    : QObject()
+    , m_socket(socket)
+    , m_note()
+    , m_title()
+    , m_sender()
 {
     // QObject:: prefix needed, otherwise the KStreamSocket::connect()
     // method is called!!!
@@ -93,7 +93,7 @@ void NotesNetworkSender::slotWritten(qint64)
 void NotesNetworkSender::slotError()
 {
     KMessageBox::sorry(nullptr, i18n("Communication error: %1",
-                               m_socket->errorString()));
+                                     m_socket->errorString()));
     slotClosed();
 }
 
@@ -101,4 +101,3 @@ void NotesNetworkSender::slotClosed()
 {
     deleteLater();
 }
-

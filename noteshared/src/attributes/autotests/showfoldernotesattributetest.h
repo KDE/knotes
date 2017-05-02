@@ -30,7 +30,6 @@ public:
     ~ShowFolderNotesAttributeTest();
 private Q_SLOTS:
     void shouldHaveType();
-
 };
 
 #endif // SHOWFOLDERNOTESATTRIBUTETEST_H

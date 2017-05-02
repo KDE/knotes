@@ -92,13 +92,13 @@
 #include <dnssd/publicservice.h>
 
 KNotesPart::KNotesPart(QObject *parent)
-    : KParts::ReadOnlyPart(parent),
-      mNotesWidget(nullptr),
-      mPublisher(nullptr),
-      mNotePrintPreview(nullptr),
-      mNoteTreeModel(nullptr)
+    : KParts::ReadOnlyPart(parent)
+    , mNotesWidget(nullptr)
+    , mPublisher(nullptr)
+    , mNotePrintPreview(nullptr)
+    , mNoteTreeModel(nullptr)
 {
-    (void) new KNotesAdaptor(this);
+    (void)new KNotesAdaptor(this);
     QDBusConnection::sessionBus().registerObject(QStringLiteral("/KNotes"), this);
 
     setComponentName(QStringLiteral("knotes"), i18n("KNotes"));
@@ -170,11 +170,11 @@ KNotesPart::KNotesPart(QObject *parent)
 
     connect(mNotePrintPreview, &QAction::triggered, this, &KNotesPart::slotPrintPreviewSelectedNotes);
 
-    mNoteConfigure  = new QAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Note settings..."), this);
+    mNoteConfigure = new QAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Note settings..."), this);
     actionCollection()->addAction(QStringLiteral("configure_note"), mNoteConfigure);
     connect(mNoteConfigure, &QAction::triggered, this, &KNotesPart::slotNotePreferences);
 
-    QAction *act  = new QAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Preferences KNotes..."), this);
+    QAction *act = new QAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Preferences KNotes..."), this);
     actionCollection()->addAction(QStringLiteral("knotes_configure"), act);
     connect(act, &QAction::triggered, this, &KNotesPart::slotPreferences);
 
@@ -182,29 +182,29 @@ KNotesPart::KNotesPart(QObject *parent)
     actionCollection()->addAction(QStringLiteral("mail_note"), mNoteSendMail);
     connect(mNoteSendMail, &QAction::triggered, this, &KNotesPart::slotMail);
 
-    mNoteSendNetwork  = new QAction(QIcon::fromTheme(QStringLiteral("network-wired")), i18n("Send..."), this);
+    mNoteSendNetwork = new QAction(QIcon::fromTheme(QStringLiteral("network-wired")), i18n("Send..."), this);
     actionCollection()->addAction(QStringLiteral("send_note"), mNoteSendNetwork);
     connect(mNoteSendNetwork, &QAction::triggered, this, &KNotesPart::slotSendToNetwork);
 
-    mNoteSetAlarm  = new QAction(QIcon::fromTheme(QStringLiteral("knotes_alarm")), i18n("Set Alarm..."), this);
+    mNoteSetAlarm = new QAction(QIcon::fromTheme(QStringLiteral("knotes_alarm")), i18n("Set Alarm..."), this);
     actionCollection()->addAction(QStringLiteral("set_alarm"), mNoteSetAlarm);
     connect(mNoteSetAlarm, &QAction::triggered, this, &KNotesPart::slotSetAlarm);
 
-    act  = new QAction(QIcon::fromTheme(QStringLiteral("edit-paste")),
-                       i18n("New Note From Clipboard"), this);
+    act = new QAction(QIcon::fromTheme(QStringLiteral("edit-paste")),
+                      i18n("New Note From Clipboard"), this);
     actionCollection()->addAction(QStringLiteral("new_note_clipboard"), act);
     connect(act, &QAction::triggered, this, &KNotesPart::slotNewNoteFromClipboard);
 
-    act  = new QAction(QIcon::fromTheme(QStringLiteral("document-open")),
-                       i18n("New Note From Text File..."), this);
+    act = new QAction(QIcon::fromTheme(QStringLiteral("document-open")),
+                      i18n("New Note From Text File..."), this);
     actionCollection()->addAction(QStringLiteral("new_note_from_text_file"), act);
     connect(act, &QAction::triggered, this, &KNotesPart::slotNewNoteFromTextFile);
 
-    mSaveAs  = new QAction(QIcon::fromTheme(QStringLiteral("document-save-as")), i18n("Save As..."), this);
+    mSaveAs = new QAction(QIcon::fromTheme(QStringLiteral("document-save-as")), i18n("Save As..."), this);
     actionCollection()->addAction(QStringLiteral("save_note"), mSaveAs);
     connect(mSaveAs, &QAction::triggered, this, &KNotesPart::slotSaveAs);
 
-    mReadOnly  = new KToggleAction(QIcon::fromTheme(QStringLiteral("object-locked")), i18n("Lock"), this);
+    mReadOnly = new KToggleAction(QIcon::fromTheme(QStringLiteral("object-locked")), i18n("Lock"), this);
     actionCollection()->addAction(QStringLiteral("lock_note"), mReadOnly);
     connect(mReadOnly, &KToggleAction::triggered, this, &KNotesPart::slotUpdateReadOnly);
     mReadOnly->setCheckedState(KGuiItem(i18n("Unlock"), QStringLiteral("object-unlocked")));
@@ -229,8 +229,8 @@ KNotesPart::KNotesPart(QObject *parent)
 
     KSharedConfigPtr _config = KSharedConfig::openConfig(QStringLiteral("kcmknotessummaryrc"));
 
-    mModelState =
-        new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), this);
+    mModelState
+        = new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), this);
     mModelState->setSelectionModel(mSelectionModel);
 
     mNotesWidget = new KNotesWidget(this, widget());
@@ -241,8 +241,8 @@ KNotesPart::KNotesPart(QObject *parent)
     actionCollection()->addAction(QStringLiteral("focus_to_quickseach"), mQuickSearchAction);
     connect(mQuickSearchAction, &QAction::triggered, mNotesWidget, &KNotesWidget::slotFocusQuickSearch);
 
-    connect(mNotesWidget->notesView(), SIGNAL(itemDoubleClicked(QListWidgetItem*)),
-            this, SLOT(editNote(QListWidgetItem*)));
+    connect(mNotesWidget->notesView(), SIGNAL(itemDoubleClicked(QListWidgetItem *)),
+            this, SLOT(editNote(QListWidgetItem *)));
 
     connect(mNotesWidget->notesView(), &QListWidget::itemSelectionChanged,
             this, &KNotesPart::slotOnCurrentChanged);
@@ -278,8 +278,8 @@ void KNotesPart::slotRowInserted(const QModelIndex &parent, int start, int end)
             const QModelIndex child = mNoteTreeModel->index(i, 0, parent);
             Akonadi::Collection parentCollection = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
             if (parentCollection.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
-                Akonadi::Item item =
-                    mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
+                Akonadi::Item item
+                    = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
                 if (!item.hasPayload<KMime::Message::Ptr>()) {
                     continue;
                 }
@@ -381,15 +381,14 @@ void KNotesPart::killNote(Akonadi::Item::Id id)
 void KNotesPart::killNote(Akonadi::Item::Id id, bool force)
 {
     KNotesIconViewItem *note = mNotesWidget->notesView()->iconView(id);
-    if (note &&
-            ((!force && KMessageBox::warningContinueCancelList(
-                  mNotesWidget,
-                  i18nc("@info", "Do you really want to delete this note?"),
-                  QStringList(note->realName()),
-                  i18nc("@title:window", "Confirm Delete"),
-                  KStandardGuiItem::del()) == KMessageBox::Continue)
-             || force)) {
-
+    if (note
+        && ((!force && KMessageBox::warningContinueCancelList(
+                 mNotesWidget,
+                 i18nc("@info", "Do you really want to delete this note?"),
+                 QStringList(note->realName()),
+                 i18nc("@title:window", "Confirm Delete"),
+                 KStandardGuiItem::del()) == KMessageBox::Continue)
+            || force)) {
         Akonadi::ItemDeleteJob *job = new Akonadi::ItemDeleteJob(note->item());
         connect(job, &Akonadi::ItemDeleteJob::result, this, &KNotesPart::slotDeleteNotesFinished);
     }
@@ -576,10 +575,10 @@ void KNotesPart::renameNote()
 
     const QString oldName = knoteItem->realName();
     bool ok = false;
-    const QString newName =
-        QInputDialog::getText(mNotesWidget, i18nc("@title:window", "Rename Popup Note"),
-                              i18nc("@label:textbox", "New Name:"),
-                              QLineEdit::Normal, oldName, &ok);
+    const QString newName
+        = QInputDialog::getText(mNotesWidget, i18nc("@title:window", "Rename Popup Note"),
+                                i18nc("@label:textbox", "New Name:"),
+                                QLineEdit::Normal, oldName, &ok);
     if (ok && (newName != oldName)) {
         knoteItem->setIconText(newName);
     }
@@ -693,7 +692,7 @@ void KNotesPart::slotSetAlarm()
         bool needToModify = true;
         QDateTime dateTime = dlg->alarm();
         if (dateTime.isValid()) {
-            NoteShared::NoteAlarmAttribute *attribute =  item.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
+            NoteShared::NoteAlarmAttribute *attribute = item.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
             attribute->setDateTime(dateTime);
         } else {
             if (item.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
@@ -754,11 +753,11 @@ void KNotesPart::slotSaveAs()
     }
 
     QFile file(fileName);
-    if (file.exists() &&
-            KMessageBox::warningContinueCancel(widget(),
-                    i18n("<qt>A file named <b>%1</b> already exists.<br />"
-                         "Are you sure you want to overwrite it?</qt>",
-                         QFileInfo(file).fileName())) != KMessageBox::Continue) {
+    if (file.exists()
+        && KMessageBox::warningContinueCancel(widget(),
+                                              i18n("<qt>A file named <b>%1</b> already exists.<br />"
+                                                   "Are you sure you want to overwrite it?</qt>",
+                                                   QFileInfo(file).fileName())) != KMessageBox::Continue) {
         return;
     }
 
@@ -872,7 +871,7 @@ void KNotesPart::slotNewNoteFromTextFile()
 {
     QString text;
     const QString filename = QFileDialog::getOpenFileName(widget(), i18n("Select Text File"), QString(),
-                             i18n("Text File (*.txt)"));
+                                                          i18n("Text File (*.txt)"));
     if (!filename.isEmpty()) {
         QFile f(filename);
         if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {

@@ -58,9 +58,8 @@ QVariant KNoteCollectionDisplayProxyModel::data(const QModelIndex &index, int ro
 {
     if (role == Qt::CheckStateRole) {
         if (index.isValid()) {
-
-            const Akonadi::Collection collection =
-                data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
+            const Akonadi::Collection collection
+                = data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
             if (mDisplayCollection.contains(collection)) {
                 return mDisplayCollection.value(collection) ? Qt::Checked : Qt::Unchecked;
             } else {
@@ -79,8 +78,8 @@ bool KNoteCollectionDisplayProxyModel::setData(const QModelIndex &index, const Q
 {
     if (role == Qt::CheckStateRole) {
         if (index.isValid()) {
-            const Akonadi::Collection collection =
-                data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
+            const Akonadi::Collection collection
+                = data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
             mDisplayCollection[collection] = (value == Qt::Checked);
             emit dataChanged(index, index);
             return true;
@@ -183,8 +182,8 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     mDefaultSaveFolder = new Akonadi::CollectionRequester(Akonadi::Collection(NoteShared::NoteSharedGlobalConfig::self()->defaultFolder()));
     mDefaultSaveFolder->setMimeTypeFilter(QStringList() << Akonadi::NoteUtils::noteMimeType());
     mDefaultSaveFolder->setContentMimeTypes(QStringList() << QStringLiteral("application/x-vnd.akonadi.note")
-                                            << QStringLiteral("text/x-vnd.akonadi.note")
-                                            << QStringLiteral("inode/directory"));
+                                                          << QStringLiteral("text/x-vnd.akonadi.note")
+                                                          << QStringLiteral("inode/directory"));
     Akonadi::CollectionDialog::CollectionDialogOptions options;
     options |= Akonadi::CollectionDialog::AllowToCreateNewChildCollection;
     options |= Akonadi::CollectionDialog::KeepTreeExpanded;
@@ -209,7 +208,6 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
 
 KNoteCollectionConfigWidget::~KNoteCollectionConfigWidget()
 {
-
 }
 
 void KNoteCollectionConfigWidget::slotUpdateButtons()
@@ -237,11 +235,11 @@ void KNoteCollectionConfigWidget::slotRenameCollection()
 
     bool ok;
     const QString name = QInputDialog::getText(this, i18n("Rename Notes"),
-                         i18n("Name:"), QLineEdit::Normal, title, &ok);
+                                               i18n("Name:"), QLineEdit::Normal, title, &ok);
 
     if (ok) {
-        if (col.hasAttribute<Akonadi::EntityDisplayAttribute>() &&
-                !col.attribute<Akonadi::EntityDisplayAttribute>()->displayName().isEmpty()) {
+        if (col.hasAttribute<Akonadi::EntityDisplayAttribute>()
+            && !col.attribute<Akonadi::EntityDisplayAttribute>()->displayName().isEmpty()) {
             col.attribute<Akonadi::EntityDisplayAttribute>()->setDisplayName(name);
         } else if (!name.isEmpty()) {
             col.setName(name);
@@ -348,4 +346,3 @@ void KNoteCollectionConfigWidget::slotModifyJobDone(KJob *job)
         }
     }
 }
-

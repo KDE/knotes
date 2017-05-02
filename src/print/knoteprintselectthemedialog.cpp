@@ -60,11 +60,9 @@ KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
 
 KNotePrintSelectThemeDialog::~KNotePrintSelectThemeDialog()
 {
-
 }
 
 QString KNotePrintSelectThemeDialog::selectedTheme() const
 {
     return mThemes->selectedTheme();
 }
-

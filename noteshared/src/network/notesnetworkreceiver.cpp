@@ -59,12 +59,12 @@ class NoteShared::NotesNetworkReceiverPrivate
 {
 public:
     NotesNetworkReceiverPrivate(QTcpSocket *s)
-        : m_timer(nullptr),
-          m_buffer(new QByteArray()),
-          m_sock(s)
+        : m_timer(nullptr)
+        , m_buffer(new QByteArray())
+        , m_sock(s)
     {
-
     }
+
     ~NotesNetworkReceiverPrivate()
     {
         delete m_buffer;
@@ -80,8 +80,8 @@ public:
 };
 
 NotesNetworkReceiver::NotesNetworkReceiver(QTcpSocket *s)
-    : QObject(),
-      d(new NoteShared::NotesNetworkReceiverPrivate(s))
+    : QObject()
+    , d(new NoteShared::NotesNetworkReceiverPrivate(s))
 {
     const QString date = QLocale().toString(QDateTime::currentDateTime(), QLocale::ShortFormat);
 
@@ -163,6 +163,5 @@ void NotesNetworkReceiver::slotConnectionClosed()
 
 void NotesNetworkReceiver::slotError(QAbstractSocket::SocketError error)
 {
-    qCWarning(NOTESHARED_LOG) << "error type :" << (int) error << " error string : " << d->m_sock->errorString();
+    qCWarning(NOTESHARED_LOG) << "error type :" << (int)error << " error string : " << d->m_sock->errorString();
 }
-

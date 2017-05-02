@@ -36,18 +36,15 @@ class KNotesWidget;
 class QAction;
 class KToggleAction;
 
-namespace KDNSSD
-{
+namespace KDNSSD {
 class PublicService;
 }
-namespace Akonadi
-{
+namespace Akonadi {
 class ChangeRecorder;
 class Collection;
 class ETMViewStateSaver;
 }
-namespace NoteShared
-{
+namespace NoteShared {
 class NotesChangeRecorder;
 class NotesAkonadiTreeModel;
 }
@@ -64,8 +61,7 @@ public:
     bool openFile() Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
-    void newNote(const QString &name = QString(),
-                 const QString &text = QString());
+    void newNote(const QString &name = QString(), const QString &text = QString());
     void newNoteFromClipboard(const QString &name = QString());
     QStringList notesList() const;
 

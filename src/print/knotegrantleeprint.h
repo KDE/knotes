@@ -23,8 +23,7 @@
 #include <QObject>
 #include <genericgrantleeformatter.h>
 #include "knotes_export.h"
-namespace Grantlee
-{
+namespace Grantlee {
 class Engine;
 }
 class KNotePrintObject;

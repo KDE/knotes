@@ -38,8 +38,7 @@
 
 #include <attributes/notedisplayattribute.h>
 
-KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title,
-        QWidget *parent)
+KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title, QWidget *parent)
     : QDialog(parent)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
@@ -92,7 +91,7 @@ void KNoteSimpleConfigDialog::slotUpdateCaption(const QString &name)
 
 void KNoteSimpleConfigDialog::save(Akonadi::Item &item, bool &isRichText)
 {
-    NoteShared::NoteDisplayAttribute *attr =  item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attr = item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     mEditorConfigWidget->save(attr, isRichText);
     mDisplayConfigWidget->save(attr);
 }

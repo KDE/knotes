@@ -21,12 +21,10 @@
 
 #include <QObject>
 #include "noteshared_export.h"
-namespace Akonadi
-{
+namespace Akonadi {
 class ChangeRecorder;
 }
-namespace NoteShared
-{
+namespace NoteShared {
 class NotesChangeRecorderPrivate;
 class NOTESHARED_EXPORT NotesChangeRecorder : public QObject
 {

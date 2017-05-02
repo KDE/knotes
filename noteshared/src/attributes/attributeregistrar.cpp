@@ -23,9 +23,7 @@
 
 #include <AkonadiCore/attributefactory.h>
 
-namespace
-{
-
+namespace {
 // Anonymous namespace; function is invisible outside this file.
 bool dummy()
 {
@@ -38,5 +36,4 @@ bool dummy()
 
 // Called when this library is loaded.
 const bool registered = dummy();
-
 } // namespace

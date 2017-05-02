@@ -69,14 +69,13 @@ KNoteEditorConfigWidget::KNoteEditorConfigWidget(QWidget *parent)
     kcfg_TitleFont = new KFontRequester(this);
     kcfg_TitleFont->setObjectName(QStringLiteral("kcfg_TitleFont"));
     kcfg_TitleFont->setSizePolicy(QSizePolicy(QSizePolicy::Minimum,
-                                  QSizePolicy::Fixed));
+                                              QSizePolicy::Fixed));
     layout->addWidget(kcfg_TitleFont, 2, 1, 1, 2);
     layout->setRowStretch(4, 1);
 }
 
 KNoteEditorConfigWidget::~KNoteEditorConfigWidget()
 {
-
 }
 
 void KNoteEditorConfigWidget::load(NoteShared::NoteDisplayAttribute *attr, bool isRichText)
