@@ -31,13 +31,13 @@ public:
     NoteLockAttribute();
     ~NoteLockAttribute();
 
-    QByteArray type() const Q_DECL_OVERRIDE;
+    QByteArray type() const override;
 
-    NoteLockAttribute *clone() const Q_DECL_OVERRIDE;
+    NoteLockAttribute *clone() const override;
 
-    QByteArray serialized() const Q_DECL_OVERRIDE;
+    QByteArray serialized() const override;
 
-    void deserialize(const QByteArray &data) Q_DECL_OVERRIDE;
+    void deserialize(const QByteArray &data) override;
 };
 }
 

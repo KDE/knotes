@@ -82,15 +82,15 @@ Q_SIGNALS:
     void sigKillNote(Akonadi::Item::Id);
 
 protected:
-    void contextMenuEvent(QContextMenuEvent *) Q_DECL_OVERRIDE;
-    void showEvent(QShowEvent *) Q_DECL_OVERRIDE;
-    void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE;
-    void closeEvent(QCloseEvent *) Q_DECL_OVERRIDE;
-    void dropEvent(QDropEvent *) Q_DECL_OVERRIDE;
-    void dragEnterEvent(QDragEnterEvent *) Q_DECL_OVERRIDE;
+    void contextMenuEvent(QContextMenuEvent *) override;
+    void showEvent(QShowEvent *) override;
+    void resizeEvent(QResizeEvent *) override;
+    void closeEvent(QCloseEvent *) override;
+    void dropEvent(QDropEvent *) override;
+    void dragEnterEvent(QDragEnterEvent *) override;
 
-    bool event(QEvent *) Q_DECL_OVERRIDE;
-    bool eventFilter(QObject *, QEvent *) Q_DECL_OVERRIDE;
+    bool event(QEvent *) override;
+    bool eventFilter(QObject *, QEvent *) override;
 
 private Q_SLOTS:
     void slotUpdateReadOnly();

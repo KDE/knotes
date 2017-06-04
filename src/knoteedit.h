@@ -56,7 +56,7 @@ public:
     void setColor(const QColor &fg, const QColor &bg);
     void setCursorPositionFromStart(int pos);
     int cursorPositionFromStart() const;
-    QMenu *mousePopupMenu() Q_DECL_OVERRIDE;
+    QMenu *mousePopupMenu() override;
 public Q_SLOTS:
     void setRichText(bool);
 
@@ -83,9 +83,9 @@ public Q_SLOTS:
     void slotInsertDate();
 
 protected:
-    void keyPressEvent(QKeyEvent *) Q_DECL_OVERRIDE;
-    void focusInEvent(QFocusEvent *) Q_DECL_OVERRIDE;
-    void focusOutEvent(QFocusEvent *) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *) override;
+    void focusInEvent(QFocusEvent *) override;
+    void focusOutEvent(QFocusEvent *) override;
 
 private Q_SLOTS:
     void slotCurrentCharFormatChanged(const QTextCharFormat &);

@@ -54,11 +54,11 @@ public:
     KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidget *parent);
     ~KNotesSummaryWidget();
 
-    void updateSummary(bool force = false) Q_DECL_OVERRIDE;
-    QStringList configModules() const Q_DECL_OVERRIDE;
+    void updateSummary(bool force = false) override;
+    QStringList configModules() const override;
 
 protected:
-    bool eventFilter(QObject *obj, QEvent *e) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject *obj, QEvent *e) override;
 
 private Q_SLOTS:
     void updateFolderList();

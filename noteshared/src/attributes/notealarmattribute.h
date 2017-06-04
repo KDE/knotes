@@ -30,13 +30,13 @@ public:
     NoteAlarmAttribute();
     ~NoteAlarmAttribute();
 
-    QByteArray type() const Q_DECL_OVERRIDE;
+    QByteArray type() const override;
 
-    NoteAlarmAttribute *clone() const Q_DECL_OVERRIDE;
+    NoteAlarmAttribute *clone() const override;
 
-    QByteArray serialized() const Q_DECL_OVERRIDE;
+    QByteArray serialized() const override;
 
-    void deserialize(const QByteArray &data) Q_DECL_OVERRIDE;
+    void deserialize(const QByteArray &data) override;
 
     void setDateTime(const QDateTime &dateTime);
     QDateTime dateTime() const;

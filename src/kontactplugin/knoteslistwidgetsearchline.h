@@ -31,7 +31,7 @@ public:
     void updateClickMessage(const QString &shortcutStr);
 
 protected:
-    bool itemMatches(const QListWidgetItem *item, const QString &s) const Q_DECL_OVERRIDE;
+    bool itemMatches(const QListWidgetItem *item, const QString &s) const override;
 };
 
 #endif // KNOTESLISTWIDGETSEARCHLINE_H

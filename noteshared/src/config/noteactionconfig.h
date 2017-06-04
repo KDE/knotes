@@ -27,8 +27,8 @@ class NOTESHARED_EXPORT NoteActionConfig : public KCModule
 public:
     NoteActionConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
-    void load() Q_DECL_OVERRIDE;
-    void save() Q_DECL_OVERRIDE;
+    void load() override;
+    void save() override;
 
 private Q_SLOTS:
     void slotHelpLinkClicked(const QString &);

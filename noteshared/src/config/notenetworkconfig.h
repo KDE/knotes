@@ -44,8 +44,8 @@ class NOTESHARED_EXPORT NoteNetworkConfig : public KCModule
 public:
     NoteNetworkConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
-    void load() Q_DECL_OVERRIDE;
-    void save() Q_DECL_OVERRIDE;
+    void load() override;
+    void save() override;
 };
 }
 
