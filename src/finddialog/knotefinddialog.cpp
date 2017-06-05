@@ -102,6 +102,7 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     vbox->addWidget(mNoteList);
 
     mResultSearch = new QLabel(this);
+    mResultSearch->setTextFormat(Qt::PlainText);
     vbox->addWidget(mResultSearch);
 
     mSearchLineEdit->setFocus();
