@@ -19,10 +19,10 @@
 #ifndef POP3_METATYPE_H
 #define POP3_METATYPE_H
 
-#include <QtCore/QObject>
-#include <QtCore/QList>
+#include <QObject>
+#include <QList>
 
-#include <QtCore/QMetaType>
+#include <QMetaType>
 
 Q_DECLARE_METATYPE(QList<int>)
 
