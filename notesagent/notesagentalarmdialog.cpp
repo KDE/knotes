@@ -97,7 +97,7 @@ void NotesAgentAlarmDialog::slotCustomContextMenuRequested(const QPoint &pos)
         return;
     }
     Q_UNUSED(pos);
-    QMenu *entriesContextMenu = new QMenu;
+    QMenu *entriesContextMenu = new QMenu(this);
     QAction *removeAlarm = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")), i18n("Remove Alarm"), entriesContextMenu);
     connect(removeAlarm, &QAction::triggered, this, &NotesAgentAlarmDialog::slotRemoveAlarm);
     QAction *showNote = new QAction(i18n("Show Note..."), entriesContextMenu);
