@@ -18,6 +18,7 @@
 */
 
 #include "knoteutils.h"
+#include <AkonadiCore/ServerManager>
 #include "attributes/notelockattribute.h"
 #include "knotesglobalconfig.h"
 
@@ -33,7 +34,11 @@
 
 void KNoteUtils::updateConfiguration()
 {
-    QDBusInterface interface(QStringLiteral("org.freedesktop.Akonadi.Agent.akonadi_notes_agent"), QStringLiteral("/NotesAgent"));
+    QString service = QStringLiteral("org.freedesktop.Akonadi.Agent.akonadi_notes_agent");
+    if (Akonadi::ServerManager::hasInstanceIdentifier()) {
+        service += QLatin1Char('.') + Akonadi::ServerManager::instanceIdentifier();
+    }
+    QDBusInterface interface(service, QStringLiteral("/NotesAgent"));
     if (interface.isValid()) {
         interface.call(QStringLiteral("configurationChanged"));
     } else {

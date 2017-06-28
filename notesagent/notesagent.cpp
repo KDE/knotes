@@ -25,6 +25,7 @@
 
 #include <AgentInstance>
 #include <AgentManager>
+#include <AkonadiCore/ServerManager>
 #include <kdbusconnectionpool.h>
 #include <AkonadiCore/changerecorder.h>
 #include <AkonadiCore/itemfetchscope.h>
@@ -48,7 +49,12 @@ NotesAgent::NotesAgent(const QString &id)
     mNotesManager = new NotesManager(this);
     new NotesAgentAdaptor(this);
     KDBusConnectionPool::threadConnection().registerObject(QStringLiteral("/NotesAgent"), this, QDBusConnection::ExportAdaptors);
-    KDBusConnectionPool::threadConnection().registerService(QStringLiteral("org.freedesktop.Akonadi.NotesAgent"));
+    QString service = QStringLiteral("org.freedesktop.Akonadi.NotesAgent");
+    if (Akonadi::ServerManager::hasInstanceIdentifier()) {
+        service += QLatin1Char('.') + Akonadi::ServerManager::instanceIdentifier();
+    }
+
+    KDBusConnectionPool::threadConnection().registerService(service);
 
     setNeedsNetwork(true);
 
