@@ -40,6 +40,7 @@
 #include <kwindowsystem.h>
 #include <QIcon>
 #include <KNS3/DownloadDialog>
+#include <KAuthorized>
 #include <QDialog>
 
 #include <QCheckBox>
@@ -269,12 +270,13 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent)
     connect(mSelectTheme, SIGNAL(activated(int)), SLOT(slotThemeChanged()));
     label_PrintAction->setBuddy(mSelectTheme);
     layout->addWidget(mSelectTheme, 0, 1);
-
-    QToolButton *getNewTheme = new QToolButton;
-    getNewTheme->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
-    getNewTheme->setToolTip(i18n("Download new printing themes"));
-    connect(getNewTheme, &QToolButton::clicked, this, &KNotePrintConfig::slotDownloadNewThemes);
-    layout->addWidget(getNewTheme, 0, 2);
+    if (KAuthorized::authorize(QStringLiteral("ghns"))) {
+        QToolButton *getNewTheme = new QToolButton;
+        getNewTheme->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
+        getNewTheme->setToolTip(i18n("Download new printing themes"));
+        connect(getNewTheme, &QToolButton::clicked, this, &KNotePrintConfig::slotDownloadNewThemes);
+        layout->addWidget(getNewTheme, 0, 2);
+    }
     lay->addStretch();
     load();
 }
