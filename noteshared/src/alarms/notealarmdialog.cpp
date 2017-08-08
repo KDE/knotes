@@ -103,7 +103,7 @@ NoteAlarmDialog::NoteAlarmDialog(const QString &caption, QWidget *parent)
     layout->addWidget(at);
     d->m_buttons->addButton(label_at, 1);
 
-    connect(d->m_buttons, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &NoteAlarmDialog::slotButtonChanged);
+    connect(d->m_buttons, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &NoteAlarmDialog::slotButtonChanged);
     connect(okButton, &QPushButton::clicked, this, &NoteAlarmDialog::accept);
     d->m_buttons->button(0)->setChecked(true);
     slotButtonChanged(d->m_buttons->checkedId());

@@ -93,7 +93,7 @@ NotesNetworkReceiver::NotesNetworkReceiver(QTcpSocket *s)
     // Setup the communications
     connect(d->m_sock, &QTcpSocket::readyRead, this, &NotesNetworkReceiver::slotDataAvailable);
     connect(d->m_sock, &QTcpSocket::disconnected, this, &NotesNetworkReceiver::slotConnectionClosed);
-    connect(d->m_sock, static_cast<void (QTcpSocket::*)(QAbstractSocket::SocketError)>(&QTcpSocket::error), this, &NotesNetworkReceiver::slotError);
+    connect(d->m_sock, QOverload<QAbstractSocket::SocketError>::of(&QTcpSocket::error), this, &NotesNetworkReceiver::slotError);
 
     // Setup the timer
     d->m_timer = new QTimer(this);
