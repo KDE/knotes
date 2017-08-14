@@ -51,7 +51,7 @@ set(KMIME_LIB_VERSION "5.6.40")
 set(PIMCOMMON_LIB_VERSION_LIB "5.6.40")
 
 
-set(QT_REQUIRED_VERSION "5.7.0")
+set(QT_REQUIRED_VERSION "5.8.0")
 find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED DBus Network PrintSupport Test Widgets Xml)
 find_package(Qt5X11Extras NO_MODULE)
 find_package(Grantlee5 "5.1" CONFIG REQUIRED)
