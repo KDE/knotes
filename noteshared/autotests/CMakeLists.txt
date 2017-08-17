@@ -1,4 +1,4 @@
 add_executable(noteeditorutilstest noteeditorutilstest.cpp )
-add_test(noteeditorutilstest noteeditorutilstest)
+add_test(NAME noteeditorutilstest COMMAND noteeditorutilstest)
 ecm_mark_as_test(noteeditorutilstest)
 target_link_libraries(noteeditorutilstest  Qt5::Test notesharedprivate)
