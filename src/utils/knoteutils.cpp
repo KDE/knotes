@@ -34,10 +34,9 @@
 
 void KNoteUtils::updateConfiguration()
 {
-    QString service = QStringLiteral("org.freedesktop.Akonadi.Agent.akonadi_notes_agent");
-    if (Akonadi::ServerManager::hasInstanceIdentifier()) {
-        service += QLatin1Char('.') + Akonadi::ServerManager::instanceIdentifier();
-    }
+    QString service = Akonadi::ServerManager::agentServiceName(Akonadi::ServerManager::Agent,
+                                                        QStringLiteral("akonadi_notes_agent"));
+
     QDBusInterface interface(service, QStringLiteral("/NotesAgent"));
     if (interface.isValid()) {
         interface.call(QStringLiteral("configurationChanged"));
