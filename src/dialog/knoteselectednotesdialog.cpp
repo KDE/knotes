@@ -59,7 +59,7 @@ KNoteSelectedNotesDialog::~KNoteSelectedNotesDialog()
 
 void KNoteSelectedNotesDialog::slotSelectionChanged()
 {
-    const bool hasSelection = (mListNotes->selectedItems().count() > 0);
+    const bool hasSelection = (!mListNotes->selectedItems().isEmpty());
     mOkButton->setEnabled(hasSelection);
 }
 

@@ -85,7 +85,7 @@ KNotePrintSelectedNotesDialog::~KNotePrintSelectedNotesDialog()
 
 void KNotePrintSelectedNotesDialog::slotSelectionChanged()
 {
-    const bool hasSelection = (mListNotes->selectedItems().count() > 0);
+    const bool hasSelection = (!mListNotes->selectedItems().isEmpty());
     mUser1Button->setEnabled(hasSelection);
     mButtonBox->button(QDialogButtonBox::Ok)->setEnabled(hasSelection);
 }
