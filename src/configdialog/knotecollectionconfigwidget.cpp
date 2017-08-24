@@ -147,15 +147,13 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
 
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     mCollectionFilter = new KRecursiveFilterProxyModel(this);
-    mCollectionFilter->setSourceModel(mDisplayNotifierProxyModel);
-    mCollectionFilter->setDynamicSortFilter(true);
-    mCollectionFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
 #else
     mCollectionFilter = new QSortFilterProxyModel(this);
+    mCollectionFilter->setRecursiveFiltering(true);
+#endif
     mCollectionFilter->setSourceModel(mDisplayNotifierProxyModel);
     mCollectionFilter->setDynamicSortFilter(true);
     mCollectionFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
-#endif
 
     QLineEdit *searchLine = new QLineEdit(this);
     searchLine->setPlaceholderText(i18n("Search..."));
