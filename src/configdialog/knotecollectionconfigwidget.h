@@ -23,8 +23,9 @@
 #include <AkonadiCore/Collection>
 #include <QIdentityProxyModel>
 #include <QModelIndex>
-
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
 class KRecursiveFilterProxyModel;
+#endif
 namespace Akonadi {
 class EntityTreeModel;
 class ChangeRecorder;
@@ -79,7 +80,11 @@ private:
     Akonadi::EntityTreeView *mFolderView = nullptr;
     Akonadi::EntityTreeModel *mModel = nullptr;
     Akonadi::ChangeRecorder *mChangeRecorder = nullptr;
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     KRecursiveFilterProxyModel *mCollectionFilter = nullptr;
+#else
+    QSortFilterProxyModel *mCollectionFilter = nullptr;
+#endif
     Akonadi::CollectionRequester *mDefaultSaveFolder = nullptr;
     QPushButton *mRenameCollection = nullptr;
     KNoteCollectionDisplayProxyModel *mDisplayNotifierProxyModel = nullptr;
