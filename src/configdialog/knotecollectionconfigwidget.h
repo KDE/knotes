@@ -76,13 +76,13 @@ private Q_SLOTS:
     void slotCollectionModifyFinished(KJob *);
 private:
     void forceStatus(const QModelIndex &parent, bool status);
-    Akonadi::EntityTreeView *mFolderView;
-    Akonadi::EntityTreeModel *mModel;
-    Akonadi::ChangeRecorder *mChangeRecorder;
-    KRecursiveFilterProxyModel *mCollectionFilter;
-    Akonadi::CollectionRequester *mDefaultSaveFolder;
-    QPushButton *mRenameCollection;
-    KNoteCollectionDisplayProxyModel *mDisplayNotifierProxyModel;
+    Akonadi::EntityTreeView *mFolderView = nullptr;
+    Akonadi::EntityTreeModel *mModel = nullptr;
+    Akonadi::ChangeRecorder *mChangeRecorder = nullptr;
+    KRecursiveFilterProxyModel *mCollectionFilter = nullptr;
+    Akonadi::CollectionRequester *mDefaultSaveFolder = nullptr;
+    QPushButton *mRenameCollection = nullptr;
+    KNoteCollectionDisplayProxyModel *mDisplayNotifierProxyModel = nullptr;
 };
 
 #endif // KNOTECOLLECTIONCONFIGWIDGET_H
