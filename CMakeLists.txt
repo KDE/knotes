@@ -1,7 +1,8 @@
-project(knotes)
-
-
+set(KDEPIM_VERSION_NUMBER "5.6.40")
 cmake_minimum_required(VERSION 3.1)
+project(knotes VERSION ${KDEPIM_VERSION_NUMBER})
+
+
 set(KF5_VERSION "5.37.0")
 option(RUN_UNINSTALL "test run uninstalled apps (experimental)" FALSE)
 
@@ -42,7 +43,6 @@ endif()
 
 
 
-set(KDEPIM_VERSION_NUMBER "5.6.40")
 set(KDEPIM_VERSION "${KDEPIM_VERSION_NUMBER}${KDEPIM_DEV_VERSION}")
 set(KDEPIM_LIB_VERSION "${KDEPIM_VERSION_NUMBER}")
 set(KDEPIM_LIB_SOVERSION "5")
