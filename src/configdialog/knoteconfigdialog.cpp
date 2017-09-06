@@ -316,11 +316,10 @@ void KNotePrintConfig::defaults()
 KNoteCollectionConfig::KNoteCollectionConfig(QWidget *parent)
     : KCModule(parent)
 {
-    QHBoxLayout *lay = new QHBoxLayout;
+    QHBoxLayout *lay = new QHBoxLayout(this);
     mCollectionConfigWidget = new KNoteCollectionConfigWidget;
     lay->addWidget(mCollectionConfigWidget);
     connect(mCollectionConfigWidget, SIGNAL(emitChanged(bool)), this, SLOT(changed()));
-    setLayout(lay);
     load();
 }
 
