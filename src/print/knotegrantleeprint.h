@@ -31,7 +31,7 @@ class KNOTES_EXPORT KNoteGrantleePrint : public PimCommon::GenericGrantleeFormat
     Q_OBJECT
 public:
     explicit KNoteGrantleePrint(QObject *parent = nullptr);
-    KNoteGrantleePrint(const QString &themePath, QObject *parent = nullptr);
+    explicit KNoteGrantleePrint(const QString &themePath, QObject *parent = nullptr);
     ~KNoteGrantleePrint();
 
     QString notesToHtml(const QList<KNotePrintObject *> &lst);

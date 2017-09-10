@@ -42,7 +42,7 @@ class NOTESHARED_EXPORT NoteNetworkConfig : public KCModule
 {
     Q_OBJECT
 public:
-    NoteNetworkConfig(QWidget *parent);
+    explicit NoteNetworkConfig(QWidget *parent);
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;
