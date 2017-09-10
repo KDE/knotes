@@ -37,7 +37,7 @@
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle(i18n("Search Notes"));
+    setWindowTitle(i18nc("@title:window", "Search Notes"));
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, this);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteFindDialog::reject);
@@ -82,7 +82,7 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     vbox->setMargin(0);
     QHBoxLayout *hbox = new QHBoxLayout;
     vbox->addLayout(hbox);
-    QLabel *lab = new QLabel(i18n("Search notes:"), this);
+    QLabel *lab = new QLabel(i18nc("@label:textbox", "Search notes:"), this);
     hbox->addWidget(lab);
     mSearchLineEdit = new QLineEdit(this);
     mSearchLineEdit->setClearButtonEnabled(true);
@@ -90,7 +90,9 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     connect(mSearchLineEdit, &QLineEdit::textChanged, this, &KNoteFindWidget::slotTextChanged);
     hbox->addWidget(mSearchLineEdit);
 
-    mSearchButton = new QPushButton(QIcon::fromTheme(QStringLiteral("edit-find")), i18n("Search..."), this);
+    mSearchButton = new QPushButton(QIcon::fromTheme(QStringLiteral("edit-find")),
+                                    i18nc("@action:button Search notes", "Search..."),
+                                    this);
     connect(mSearchButton, &QPushButton::clicked, this, &KNoteFindWidget::slotSearchNote);
     hbox->addWidget(mSearchButton);
     mSearchButton->setEnabled(false);
@@ -98,7 +100,8 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     //Result
     mNoteList = new NoteShared::NoteListWidget(this);
     mNoteList->setSelectionMode(QAbstractItemView::SingleSelection);
-    connect(mNoteList, &NoteShared::NoteListWidget::itemDoubleClicked, this, &KNoteFindWidget::slotItemDoubleClicked);
+    connect(mNoteList, &NoteShared::NoteListWidget::itemDoubleClicked,
+            this, &KNoteFindWidget::slotItemDoubleClicked);
     vbox->addWidget(mNoteList);
 
     mResultSearch = new QLabel(this);
@@ -143,7 +146,7 @@ void KNoteFindWidget::slotSearchNote()
     }
     mNoteList->setNotes(lst);
     if (lst.isEmpty()) {
-        mResultSearch->setText(i18n("No Result found."));
+        mResultSearch->setText(i18nc("@label", "No Results found in search."));
     } else {
         mResultSearch->clear();
     }

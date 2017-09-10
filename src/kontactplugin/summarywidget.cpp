@@ -86,10 +86,14 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
     mNoteRecorder->changeRecorder()->setSession(session);
     mNoteTreeModel = new NoteShared::NotesAkonadiTreeModel(mNoteRecorder->changeRecorder(), this);
 
-    connect(mNoteTreeModel, &NoteShared::NotesAkonadiTreeModel::rowsInserted, this, &KNotesSummaryWidget::updateFolderList);
+    connect(mNoteTreeModel, &NoteShared::NotesAkonadiTreeModel::rowsInserted,
+            this, &KNotesSummaryWidget::updateFolderList);
 
-    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged, this, &KNotesSummaryWidget::updateFolderList);
-    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved, this, &KNotesSummaryWidget::updateFolderList);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged,
+            this, &KNotesSummaryWidget::updateFolderList);
+
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved,
+            this, &KNotesSummaryWidget::updateFolderList);
 
     mSelectionModel = new QItemSelectionModel(mNoteTreeModel);
     mModelProxy = new KCheckableProxyModel(this);
@@ -122,7 +126,7 @@ void KNotesSummaryWidget::updateFolderList()
     mInProgress = false;
 
     if (counter == 0) {
-        QLabel *label = new QLabel(i18n("No note found"), this);
+        QLabel *label = new QLabel(i18n("No notes found"), this);
         label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         mLayout->addWidget(label, 0, 0);
         mLabels.append(label);
@@ -171,7 +175,9 @@ void KNotesSummaryWidget::slotPopupMenu(const QString &note)
 
 void KNotesSummaryWidget::deleteNote(const QString &note)
 {
-    org::kde::kontact::KNotes knotes(QStringLiteral("org.kde.kontact"), QStringLiteral("/KNotes"), QDBusConnection::sessionBus());
+    org::kde::kontact::KNotes knotes(QStringLiteral("org.kde.kontact"),
+                                     QStringLiteral("/KNotes"),
+                                     QDBusConnection::sessionBus());
     knotes.killNote(note.toLongLong());
 }
 
@@ -186,13 +192,17 @@ void KNotesSummaryWidget::createNote(const Akonadi::Item &item, int counter)
         return;
     }
     const KMime::Headers::Subject *const subject = noteMessage->subject(false);
-    KUrlLabel *urlLabel = new KUrlLabel(QString::number(item.id()), subject ? subject->asUnicodeString() : QString(), this);
+    const QString subStr = subject ? subject->asUnicodeString() : QString();
+    KUrlLabel *urlLabel = new KUrlLabel(QString::number(item.id()), subStr, this);
 
     urlLabel->installEventFilter(this);
     urlLabel->setAlignment(Qt::AlignLeft);
     urlLabel->setWordWrap(true);
-    connect(urlLabel, QOverload<const QString &>::of(&KUrlLabel::leftClickedUrl), this, &KNotesSummaryWidget::slotSelectNote);
-    connect(urlLabel, QOverload<const QString &>::of(&KUrlLabel::rightClickedUrl), this, &KNotesSummaryWidget::slotPopupMenu);
+    connect(urlLabel, QOverload<const QString &>::of(&KUrlLabel::leftClickedUrl),
+            this, &KNotesSummaryWidget::slotSelectNote);
+
+    connect(urlLabel, QOverload<const QString &>::of(&KUrlLabel::rightClickedUrl),
+            this, &KNotesSummaryWidget::slotPopupMenu);
 
     mLayout->addWidget(urlLabel, counter, 1);
 
@@ -227,7 +237,10 @@ void KNotesSummaryWidget::slotSelectNote(const QString &note)
     } else {
         mPlugin->bringToForeground();
     }
-    org::kde::kontact::KNotes knotes(QStringLiteral("org.kde.kontact"), QStringLiteral("/KNotes"), QDBusConnection::sessionBus());
+
+    org::kde::kontact::KNotes knotes(QStringLiteral("org.kde.kontact"),
+                                     QStringLiteral("/KNotes"),
+                                     QDBusConnection::sessionBus());
     knotes.editNote(note.toLongLong());
 }
 
