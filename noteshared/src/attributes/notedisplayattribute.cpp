@@ -29,8 +29,10 @@ NoteDisplayAttribute::NoteDisplayAttribute()
     : Akonadi::Attribute()
     , mFont(QFontDatabase::systemFont(QFontDatabase::GeneralFont))
     , mTitleFont(QFontDatabase::systemFont(QFontDatabase::TitleFont))
+    //@krazy:cond=qenums because everyone expects yellow postit notes
     , mBackgroundColor(Qt::yellow)
     , mForegroundgroundColor(Qt::black)
+    //@krazy:endcond=qenums
     , mSize(300, 300)
     , mPosition(QPoint(-10000, -10000))
     , mTabSize(4)

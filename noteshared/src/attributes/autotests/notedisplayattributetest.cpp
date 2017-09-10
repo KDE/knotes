@@ -41,8 +41,10 @@ void NoteDisplayAttributeTest::shouldHaveDefaultValue()
     QVERIFY(!attribute.keepAbove());
     QVERIFY(!attribute.showInTaskbar());
     QVERIFY(!attribute.isHidden());
+    //@krazy:cond=qenums because everyone expects yellow postit notes
     QCOMPARE(attribute.backgroundColor(), QColor(Qt::yellow));
     QCOMPARE(attribute.foregroundColor(), QColor(Qt::black));
+    //@krazy:endcond=qenums
     QVERIFY(attribute.rememberDesktop());
     QCOMPARE(attribute.tabSize(), 4);
     QCOMPARE(attribute.font(), QFontDatabase::systemFont(QFontDatabase::GeneralFont));
