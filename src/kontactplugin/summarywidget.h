@@ -26,26 +26,30 @@
 #ifndef SUMMARYWIDGET_H
 #define SUMMARYWIDGET_H
 
-#include <KontactInterface/Summary>
-#include <KViewStateMaintainer>
 #include <AkonadiCore/Item>
-class QGridLayout;
-class QItemSelectionModel;
-class QLabel;
-namespace KontactInterface {
-class Plugin;
+
+#include <KontactInterface/Summary>
+
+#include <KViewStateMaintainer>
+
+namespace NoteShared {
+  class NotesChangeRecorder;
+  class NotesAkonadiTreeModel;
 }
 
 namespace Akonadi {
-class ChangeRecorder;
-class ETMViewStateSaver;
-class Item;
+  class ETMViewStateSaver;
 }
-namespace NoteShared {
-class NotesChangeRecorder;
-class NotesAkonadiTreeModel;
+
+namespace KontactInterface {
+  class Plugin;
 }
+
 class KCheckableProxyModel;
+
+class QGridLayout;
+class QItemSelectionModel;
+class QLabel;
 
 class KNotesSummaryWidget : public KontactInterface::Summary
 {

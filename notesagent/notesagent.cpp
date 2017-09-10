@@ -16,39 +16,36 @@
    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
    Boston, MA 02110-1301, USA.
 */
+
 #include "notesagent.h"
-#include "notesmanager.h"
 #include "notesagentadaptor.h"
-#include "notesharedglobalconfig.h"
 #include "notesagentsettings.h"
 #include "notesagentsettingsdialog.h"
+#include "notesharedglobalconfig.h"
+#include "notesmanager.h"
 
-#include <AgentInstance>
-#include <AgentManager>
 #include <AkonadiCore/ServerManager>
-#include <kdbusconnectionpool.h>
-#include <AkonadiCore/changerecorder.h>
-#include <AkonadiCore/itemfetchscope.h>
-#include <AkonadiCore/session.h>
-#include <AttributeFactory>
-#include <CollectionFetchScope>
 
-#include <KWindowSystem>
 #include <Kdelibs4ConfigMigrator>
 
-#include <QPointer>
+#include <KDBusConnectionPool>
+#include <KWindowSystem>
 
 NotesAgent::NotesAgent(const QString &id)
     : Akonadi::AgentBase(id)
     , mAgentInitialized(false)
 {
     Kdelibs4ConfigMigrator migrate(QStringLiteral("notesagent"));
-    migrate.setConfigFiles(QStringList() << QStringLiteral("akonadi_notes_agentrc") << QStringLiteral("akonadi_notes_agent.notifyrc"));
+    migrate.setConfigFiles(QStringList()
+                           << QStringLiteral("akonadi_notes_agentrc")
+                           << QStringLiteral("akonadi_notes_agent.notifyrc"));
     migrate.migrate();
 
     mNotesManager = new NotesManager(this);
     new NotesAgentAdaptor(this);
-    KDBusConnectionPool::threadConnection().registerObject(QStringLiteral("/NotesAgent"), this, QDBusConnection::ExportAdaptors);
+    KDBusConnectionPool::threadConnection().registerObject(QStringLiteral("/NotesAgent"),
+                                                           this, QDBusConnection::ExportAdaptors);
+
     QString service = QStringLiteral("org.freedesktop.Akonadi.NotesAgent");
     if (Akonadi::ServerManager::hasInstanceIdentifier()) {
         service += QLatin1Char('.') + Akonadi::ServerManager::instanceIdentifier();

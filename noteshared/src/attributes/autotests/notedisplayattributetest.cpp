@@ -18,9 +18,11 @@
 */
 
 #include "notedisplayattributetest.h"
-#include <qtest.h>
+#include "notedisplayattribute.h"
+
 #include <QFontDatabase>
-#include "../notedisplayattribute.h"
+
+#include <QTest>
 
 NoteDisplayAttributeTest::NoteDisplayAttributeTest(QObject *parent)
     : QObject(parent)

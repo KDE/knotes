@@ -20,24 +20,24 @@
 
 #include <config-knotes.h>
 #include "knotes_debug.h"
-#include "knotes-version.h"
-
 #include "knotes_options.h"
+#include "knotes-version.h"
 #include "apps/application.h"
-#include <KLocalizedString>
-#include <kxerrorhandler.h>
-#include <kdelibs4configmigrator.h>
 #include "notes/knotesmigrateapplication.h"
 
 #include <KAboutData>
+#include <KCrash>
+#include <KLocalizedString>
+#include <KXErrorHandler>
+
+#include <QApplication>
+#include <QCommandLineParser>
 
 #if KDEPIM_HAVE_X11
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <qx11info_x11.h>
 #endif
-#include <QCommandLineParser>
-#include <KCrash>
 
 void remove_sm_from_client_leader();
 void knotesOptions(QCommandLineParser *parser);

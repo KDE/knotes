@@ -21,7 +21,8 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <kontactinterface/pimuniqueapplication.h>
+#include <KontactInterface/PimUniqueApplication>
+
 class KNotesApp;
 
 class Application : public KontactInterface::PimUniqueApplication

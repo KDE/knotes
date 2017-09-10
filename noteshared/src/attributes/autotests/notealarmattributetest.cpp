@@ -18,8 +18,10 @@
 */
 
 #include "notealarmattributetest.h"
-#include "../notealarmattribute.h"
-#include <qtest.h>
+#include "notealarmattribute.h"
+
+#include <QTest>
+
 NoteAlarmAttributeTest::NoteAlarmAttributeTest(QObject *parent)
     : QObject(parent)
 {

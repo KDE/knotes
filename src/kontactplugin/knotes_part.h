@@ -23,32 +23,30 @@
 #ifndef KNOTES_PART_H
 #define KNOTES_PART_H
 
-#include <KParts/ReadOnlyPart>
-#include <QListWidgetItem>
-#include <KViewStateMaintainer>
 #include <AkonadiCore/Item>
+
+#include <KViewStateMaintainer>
+#include <KParts/ReadOnlyPart>
+
+#include <QListWidgetItem>
 #include <QPointer>
-#include <kparts/readonlypart.h>
 
 class KNoteFindDialog;
-class KNotesIconView;
 class KNotesWidget;
-class QAction;
-class KToggleAction;
-
-namespace KDNSSD {
-class PublicService;
-}
-namespace Akonadi {
-class ChangeRecorder;
-class Collection;
-class ETMViewStateSaver;
-}
 namespace NoteShared {
-class NotesChangeRecorder;
-class NotesAkonadiTreeModel;
+  class NotesAkonadiTreeModel;
+  class NotesChangeRecorder;
 }
+
+namespace Akonadi {
+  class ETMViewStateSaver;
+}
+
 class KCheckableProxyModel;
+class KToggleAction;
+namespace KDNSSD {
+  class PublicService;
+}
 
 class KNotesPart : public KParts::ReadOnlyPart
 {

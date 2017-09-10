@@ -22,16 +22,15 @@
 
 #include "knote.h"
 #include "knotes_debug.h"
-#include "noteutils.h"
-
-#include "alarms/notealarmdialog.h"
-#include "attributes/notealarmattribute.h"
-#include "attributes/notelockattribute.h"
-#include "configdialog/knoteconfigdialog.h"
-#include "configdialog/knotesimpleconfigdialog.h"
 #include "knotedisplaysettings.h"
 #include "knoteedit.h"
 #include "knotesglobalconfig.h"
+#include "noteutils.h"
+#include "alarms/notealarmdialog.h"
+#include "attributes/notealarmattribute.h"
+#include "attributes/notedisplayattribute.h"
+#include "attributes/notelockattribute.h"
+#include "configdialog/knotesimpleconfigdialog.h"
 #include "notes/knotebutton.h"
 #include "print/knoteprinter.h"
 #include "print/knoteprintobject.h"
@@ -39,49 +38,39 @@
 #include "utils/knoteutils.h"
 
 #include <AkonadiCore/ItemModifyJob>
+
 #include <AkonadiSearch/Debug/akonadisearchdebugdialog.h>
 
 #include <KMime/KMimeMessage>
 
+#include <KActionCollection>
+#include <KComboBox>
+#include <KFileDialog>
+#include <KIconEffect>
+#include <KIconLoader>
 #include <KLocalizedString>
-#include <kactioncollection.h>
-#include <kcombobox.h>
-#include <kfiledialog.h>
-#include <kiconeffect.h>
-#include <kiconloader.h>
-#include <kmessagebox.h>
-#include <kselectaction.h>
-#include <kstandardaction.h>
-#include <ktoggleaction.h>
-#include <ktoolbar.h>
-#include <kwindowsystem.h>
-#include <kxmlguibuilder.h>
-#include <kxmlguifactory.h>
-#include <netwm.h>
+#include <KMessageBox>
+#include <KToggleAction>
+#include <KToolBar>
+#include <KWindowSystem>
+#include <KWindowSystem/NETWM>
+#include <KXMLGUIBuilder>
+#include <KXMLGUIFactory>
 
 #include <QApplication>
-#include <QBoxLayout>
 #include <QCheckBox>
 #include <QDesktopWidget>
-#include <QFile>
-#include <QFocusEvent>
-#include <QHBoxLayout>
 #include <QInputDialog>
 #include <QLabel>
 #include <QMenu>
 #include <QMimeData>
-#include <QPixmap>
 #include <QPointer>
-#include <QSize>
 #include <QSizeGrip>
-#include <QTextStream>
 #include <QVBoxLayout>
 
 #if KDEPIM_HAVE_X11
 #include <fixx11h.h>
 #include <QX11Info>
-
-#include <attributes/notedisplayattribute.h>
 #endif
 
 //#define DEBUG_SAVE_NOTE 1

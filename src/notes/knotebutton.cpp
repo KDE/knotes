@@ -20,14 +20,9 @@
 
 #include "knotebutton.h"
 
-#include <kiconloader.h>
-#include <kicontheme.h>
+#include <KIconLoader>
 
-#include <QIcon>
 #include <QPainter>
-#include <QPixmap>
-#include <QSizePolicy>
-#include <QStyle>
 #include <QStyleOption>
 
 KNoteButton::KNoteButton(const QString &icon, QWidget *parent)

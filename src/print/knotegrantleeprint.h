@@ -20,13 +20,12 @@
 #ifndef KNOTEGRANTLEEPRINT_H
 #define KNOTEGRANTLEEPRINT_H
 
-#include <QObject>
-#include <genericgrantleeformatter.h>
 #include "knotes_export.h"
-namespace Grantlee {
-class Engine;
-}
+
+#include <PimCommon/GenericGrantleeFormatter>
+
 class KNotePrintObject;
+
 class KNOTES_EXPORT KNoteGrantleePrint : public PimCommon::GenericGrantleeFormatter
 {
     Q_OBJECT

@@ -20,7 +20,7 @@
 
 #include "application.h"
 #include "apps/knotesapp.h"
-#include <kontactinterface/pimuniqueapplication.h>
+
 #include <QCommandLineParser>
 
 Application::Application(int &argc, char **argv[])

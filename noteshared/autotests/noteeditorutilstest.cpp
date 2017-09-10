@@ -16,12 +16,14 @@
    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
    Boston, MA 02110-1301, USA.
 */
+
 #include "noteeditorutilstest.h"
+#include "editor/noteeditorutils.h"
+
 #include <QTextCursor>
 #include <QTextDocument>
-#include <qtest.h>
 
-#include <editor/noteeditorutils.h>
+#include <QTest>
 
 NoteEditorUtilsTest::NoteEditorUtilsTest(QObject *parent)
     : QObject(parent)

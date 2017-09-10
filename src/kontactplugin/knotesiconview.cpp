@@ -16,28 +16,22 @@
    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
    Boston, MA 02110-1301, USA.
 */
+
 #include "knotesiconview.h"
-#include "akonadi/notesakonaditreemodel.h"
-#include "attributes/notelockattribute.h"
-#include <attributes/notedisplayattribute.h>
+#include "knotes_kontact_plugin_debug.h"
 #include "noteutils.h"
+#include "attributes/notedisplayattribute.h"
+#include "attributes/notelockattribute.h"
 #include "notes/knotedisplaysettings.h"
 #include "utils/knoteutils.h"
 
-#include <KLocalizedString>
-
 #include <AkonadiCore/ItemModifyJob>
 
-#include <KMime/KMimeMessage>
+#include <KMime/Message>
 
 #include <KIconEffect>
 #include <KIconLoader>
 
-#include <QColor>
-#include <QPixmap>
-#include <QMouseEvent>
-#include <QListWidgetItem>
-#include "knotes_kontact_plugin_debug.h"
 #include <QToolTip>
 
 //#define DEBUG_SAVE_NOTE 1
@@ -183,7 +177,9 @@ void KNotesIconViewItem::slotNoteSaved(KJob *job)
     }
 }
 
-void KNotesIconViewItem::setChangeIconTextAndDescription(const QString &iconText, const QString &description, int position)
+void KNotesIconViewItem::setChangeIconTextAndDescription(const QString &iconText,
+                                                         const QString &description,
+                                                         int position)
 {
     setIconText(iconText, false);
     saveNoteContent(iconText, description, position);

@@ -16,19 +16,17 @@
    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
    Boston, MA 02110-1301, USA.
 */
+
 #include "knoteeditorconfigwidget.h"
+#include "attributes/notedisplayattribute.h"
 
-#include "attributes/notelockattribute.h"
-
-#include <QSpinBox>
 #include <KLocalizedString>
-#include <KFontRequester>
 
+#include <QCheckBox>
+#include <KFontRequester>
 #include <QGridLayout>
 #include <QLabel>
-#include <QCheckBox>
-
-#include <attributes/notedisplayattribute.h>
+#include <QSpinBox>
 
 KNoteEditorConfigWidget::KNoteEditorConfigWidget(QWidget *parent)
     : QWidget(parent)

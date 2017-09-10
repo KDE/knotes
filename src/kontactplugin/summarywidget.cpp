@@ -24,40 +24,31 @@
 */
 
 #include "summarywidget.h"
-#include "knotes_plugin.h"
 #include "knotesinterface.h"
-
+#include "akonadi/noteschangerecorder.h"
 #include "akonadi/notesakonaditreemodel.h"
-#include "job/createnewnotejob.h"
-#include "attributes/showfoldernotesattribute.h"
-#include "attributes/notelockattribute.h"
+#include "attributes/notedisplayattribute.h"
 
-#include <AkonadiCore/Item>
-#include <AkonadiCore/Session>
 #include <AkonadiCore/ChangeRecorder>
+#include <AkonadiCore/Session>
 #include <AkonadiWidgets/ETMViewStateSaver>
-#include <AkonadiCore/collectionstatistics.h>
-#include <KCheckableProxyModel>
-#include <attributes/notedisplayattribute.h>
-#include <akonadi/noteschangerecorder.h>
-
-#include <KMime/KMimeMessage>
 
 #include <KontactInterface/Core>
 #include <KontactInterface/Plugin>
 
+#include <KMime/Message>
+
+#include <KCheckableProxyModel>
+#include <KIconEffect>
 #include <KIconLoader>
 #include <KLocalizedString>
-#include <KUrlLabel>
-#include <QMenu>
-#include <KIconEffect>
 #include <KSharedConfig>
+#include <KUrlLabel>
 
-#include <QEvent>
-#include <QGridLayout>
-#include <QLabel>
-#include <QVBoxLayout>
 #include <QItemSelectionModel>
+#include <QLabel>
+#include <QMenu>
+#include <QVBoxLayout>
 
 KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidget *parent)
     : KontactInterface::Summary(parent)

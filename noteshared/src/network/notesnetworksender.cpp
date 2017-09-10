@@ -34,10 +34,12 @@
 #include "notesnetworksender.h"
 
 #include <KLocalizedString>
-#include <kmessagebox.h>
+#include <KMessageBox>
 
 #include <QTextCodec>
+
 using namespace NoteShared;
+
 NotesNetworkSender::NotesNetworkSender(QTcpSocket *socket)
     : QObject()
     , m_socket(socket)

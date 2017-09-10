@@ -20,28 +20,21 @@
 
 #include "knoteedit.h"
 #include "notes/knote.h"
-#include "config/noteactionconfig.h"
-#include "KPIMTextEdit/EditorUtil"
-#include "PimCommon/KActionMenuChangeCase"
-#include "knotesglobalconfig.h"
+#include "editor/noteeditorutils.h"
 
-#include <QAction>
+#include <KPIMTextEdit/EditorUtil>
 
-#include <kactioncollection.h>
-#include <QColorDialog>
-#include "knotes_debug.h"
-#include <kfontaction.h>
-#include <kfontsizeaction.h>
+#include <PimCommon/KActionMenuChangeCase>
+
+#include <KActionCollection>
+#include <KFontAction>
+#include <KFontSizeAction>
 #include <KLocalizedString>
+#include <KToggleAction>
+
+#include <QColorDialog>
+#include <QIcon>
 #include <QMenu>
-#include <kstandardaction.h>
-#include <ktoggleaction.h>
-
-#include <QFont>
-#include <QPixmap>
-#include <QKeyEvent>
-
-#include <editor/noteeditorutils.h>
 
 static const short ICON_SIZE = 10;
 
@@ -126,15 +119,13 @@ KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
     m_textIncreaseIndent = new QAction(QIcon::fromTheme(QStringLiteral("format-indent-more")),
                                        i18n("Increase Indent"), this);
     actions->addAction(QStringLiteral("format_increaseindent"), m_textIncreaseIndent);
-    actions->setDefaultShortcut(m_textIncreaseIndent, QKeySequence(Qt::CTRL + Qt::ALT
-                                                                   +Qt::Key_I));
+    actions->setDefaultShortcut(m_textIncreaseIndent, QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_I));
     connect(m_textIncreaseIndent, &QAction::triggered, this, &KNoteEdit::textIncreaseIndent);
 
     m_textDecreaseIndent = new QAction(QIcon::fromTheme(QStringLiteral("format-indent-less")),
                                        i18n("Decrease Indent"), this);
     actions->addAction(QStringLiteral("format_decreaseindent"), m_textDecreaseIndent);
-    actions->setDefaultShortcut(m_textDecreaseIndent, QKeySequence(Qt::CTRL + Qt::ALT
-                                                                   +Qt::Key_D));
+    actions->setDefaultShortcut(m_textDecreaseIndent, QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_D));
     connect(m_textDecreaseIndent, &QAction::triggered, this, &KNoteEdit::textDecreaseIndent);
 
     group = new QActionGroup(this);
@@ -148,7 +139,8 @@ KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
     m_textColor->setIcon(pix);
     connect(m_textColor, &QAction::triggered, this, &KNoteEdit::slotTextColor);
 
-    QAction *act = new QAction(QIcon::fromTheme(QStringLiteral("format-fill-color")), i18n("Text Background Color..."), this);
+    QAction *act = new QAction(QIcon::fromTheme(QStringLiteral("format-fill-color")),
+                               i18n("Text Background Color..."), this);
     actions->addAction(QStringLiteral("text_background_color"), act);
     connect(act, &QAction::triggered, this, &KNoteEdit::slotTextBackgroundColor);
 
@@ -541,8 +533,7 @@ void KNoteEdit::keyPressEvent(QKeyEvent *e)
 {
     KTextEdit::keyPressEvent(e);
 
-    if (m_autoIndentMode
-        && ((e->key() == Qt::Key_Return) || (e->key() == Qt::Key_Enter))) {
+    if (m_autoIndentMode && ((e->key() == Qt::Key_Return) || (e->key() == Qt::Key_Enter))) {
         autoIndent();
     }
 }

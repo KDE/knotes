@@ -17,13 +17,15 @@
    Boston, MA 02110-1301, USA.
 */
 #include "knotesgrantleeprinttest.h"
-#include <qtest.h>
-#include <PimCommon/GenericGrantleeFormatter>
-#include "../knotegrantleeprint.h"
-#include <KMime/Message>
+#include "knotegrantleeprint.h"
+#include "print/knoteprintobject.h"
+
 #include <AkonadiCore/Item>
-#include "../print/knoteprintobject.h"
 #include <Akonadi/Notes/NoteUtils>
+
+#include <KMime/Message>
+
+#include <QTest>
 
 KNotesGrantleePrintTest::KNotesGrantleePrintTest(QObject *parent)
     : QObject(parent)

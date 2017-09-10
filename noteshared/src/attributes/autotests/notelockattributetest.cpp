@@ -18,8 +18,9 @@
 */
 
 #include "notelockattributetest.h"
-#include "../notelockattribute.h"
-#include <qtest.h>
+#include "notelockattribute.h"
+
+#include <QTest>
 
 NoteLockAttributeTest::NoteLockAttributeTest(QObject *parent)
     : QObject(parent)

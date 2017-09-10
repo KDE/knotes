@@ -23,12 +23,12 @@
 
 #include "knotes_export.h"
 
-#include <kconfigdialog.h>
-#include <kcmodule.h>
-#include <kcmultidialog.h>
+#include <KCModule>
+#include <KCMultiDialog>
 
-class KNotePrintSelectThemeComboBox;
 class KNoteCollectionConfigWidget;
+class KNotePrintSelectThemeComboBox;
+
 class QLineEdit;
 
 class KNOTES_EXPORT KNoteConfigDialog : public KCMultiDialog

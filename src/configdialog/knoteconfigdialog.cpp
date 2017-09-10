@@ -21,34 +21,26 @@
 #include <config-knotes.h>
 
 #include "knoteconfigdialog.h"
+#include "notesharedglobalconfig.h"
 #include "knotecollectionconfigwidget.h"
 #include "knotedisplayconfigwidget.h"
 #include "knoteeditorconfigwidget.h"
 #include "knotesglobalconfig.h"
-#include "knotes-version.h"
-#include "notesharedglobalconfig.h"
 #include "config/noteactionconfig.h"
 #include "config/notenetworkconfig.h"
-#include "notes/knote.h"
 #include "print/knoteprintselectthemecombobox.h"
 
-#include <kcolorbutton.h>
-#include <kconfig.h>
-#include <kfontrequester.h>
-#include <kiconloader.h>
-#include <KLocalizedString>
-#include <kwindowsystem.h>
-#include <KNS3/DownloadDialog>
 #include <KAuthorized>
+#include <KIconLoader>
+#include <KLocalizedString>
+#include <KNS3/DownloadDialog>
+#include <KWindowSystem>
 
-#include <QApplication>
 #include <QCheckBox>
-#include <QDialog>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QIcon>
+#include <QApplication>
 #include <QLabel>
 #include <QLineEdit>
+#include <QPushButton>
 #include <QToolButton>
 #include <QVBoxLayout>
 #include <QWhatsThis>

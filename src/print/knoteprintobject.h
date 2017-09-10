@@ -20,11 +20,11 @@
 #ifndef KNOTEPRINTOBJECT_H
 #define KNOTEPRINTOBJECT_H
 
-#include <QObject>
-#include <qmetatype.h>
 #include "knotes_export.h"
 
 #include <AkonadiCore/Item>
+
+#include <QObject>
 
 class KNOTES_EXPORT KNotePrintObject : public QObject
 {

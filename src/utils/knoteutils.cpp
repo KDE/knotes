@@ -18,24 +18,18 @@
 */
 
 #include "knoteutils.h"
-#include <AkonadiCore/ServerManager>
-#include "attributes/notelockattribute.h"
-#include "knotesglobalconfig.h"
-
-#include <KMessageBox>
-#include <KLocalizedString>
-#include <KProcess>
 #include "knotes_debug.h"
-#include <KConfigGroup>
+#include "knotesglobalconfig.h"
+#include "attributes/notedisplayattribute.h"
+
+#include <AkonadiCore/ServerManager>
+
 #include <QDBusInterface>
-#include <QFileInfo>
-#include <QStandardPaths>
-#include <attributes/notedisplayattribute.h>
 
 void KNoteUtils::updateConfiguration()
 {
     QString service = Akonadi::ServerManager::agentServiceName(Akonadi::ServerManager::Agent,
-                                                        QStringLiteral("akonadi_notes_agent"));
+                                                               QStringLiteral("akonadi_notes_agent"));
 
     QDBusInterface interface(service, QStringLiteral("/NotesAgent"));
     if (interface.isValid()) {
@@ -47,7 +41,9 @@ void KNoteUtils::updateConfiguration()
 
 void KNoteUtils::setDefaultValue(Akonadi::Item &item)
 {
-    NoteShared::NoteDisplayAttribute *attribute = item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attribute =
+        item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+
     attribute->setBackgroundColor(KNotesGlobalConfig::self()->bgColor());
     attribute->setForegroundColor(KNotesGlobalConfig::self()->fgColor());
     attribute->setSize(QSize(KNotesGlobalConfig::self()->width(), KNotesGlobalConfig::self()->height()));

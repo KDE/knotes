@@ -26,27 +26,24 @@
 
 #include <AkonadiCore/Item>
 
-#include <kconfig.h>
-#include <kxmlguiclient.h>
 #include <KSharedConfig>
+#include <KXMLGUIClient>
 
 #include <QDomDocument>
 #include <QEvent>
 #include <QFrame>
 
-class KNoteDisplaySettings;
-
-class QLabel;
-class QLayout;
-class QSizeGrip;
-
-class QMenu;
 class KNoteButton;
+class KNoteDisplaySettings;
 class KNoteEdit;
+
 class KSelectAction;
 class KToggleAction;
 class KToolBar;
-class KJob;
+
+class QLabel;
+class QMenu;
+class QSizeGrip;
 
 class KNote : public QFrame, virtual public KXMLGUIClient, public KNoteInterface
 {

@@ -18,8 +18,9 @@
 */
 
 #include "showfoldernotesattributetest.h"
-#include "../showfoldernotesattribute.h"
-#include <qtest.h>
+#include "showfoldernotesattribute.h"
+
+#include <QTest>
 
 ShowFolderNotesAttributeTest::ShowFolderNotesAttributeTest(QObject *parent)
     : QObject(parent)

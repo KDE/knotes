@@ -19,72 +19,57 @@
 *******************************************************************/
 
 #include <config-knotes.h>
+
 #include "knotesapp.h"
-#include "configdialog/knoteconfigdialog.h"
-
-#include "dialog/knoteselectednotesdialog.h"
-#include "utils/knoteutils.h"
-#include "akonadi/notesakonaditreemodel.h"
-#include "akonadi/noteschangerecorder.h"
-#include "attributes/notelockattribute.h"
-#include "attributes/notealarmattribute.h"
-#include "attributes/showfoldernotesattribute.h"
-
-#include "job/createnewnotejob.h"
-
-#include "apps/knotesakonaditray.h"
-
-#include "notesharedglobalconfig.h"
-#include "notes/knote.h"
+#include "knotes_debug.h"
 #include "knotesadaptor.h"
-#include "print/knoteprinter.h"
-#include "print/knoteprintobject.h"
 #include "knotesglobalconfig.h"
-#include "dialog/knoteskeydialog.h"
+#include "notesharedglobalconfig.h"
+#include "akonadi/noteschangerecorder.h"
+#include "akonadi/notesakonaditreemodel.h"
+#include "apps/knotesakonaditray.h"
+#include "attributes/notealarmattribute.h"
+#include "attributes/notedisplayattribute.h"
+#include "attributes/notelockattribute.h"
+#include "attributes/showfoldernotesattribute.h"
+#include "configdialog/knoteconfigdialog.h"
 #include "dialog/knotedeleteselectednotesdialog.h"
-#include "print/knoteprintselectednotesdialog.h"
+#include "dialog/knoteskeydialog.h"
 #include "finddialog/knotefinddialog.h"
+#include "job/createnewnotejob.h"
+#include "notes/knote.h"
+#include "print/knoteprinter.h"
+#include "print/knoteprintselectednotesdialog.h"
+#include "resources/localresourcecreator.h"
+#include "utils/knoteutils.h"
 
-#include <KMime/KMimeMessage>
-#include <AkonadiCore/ItemCreateJob>
+#include <AkonadiCore/ChangeRecorder>
 #include <AkonadiCore/ItemDeleteJob>
-#include <AkonadiCore/EntityDisplayAttribute>
 #include <AkonadiCore/ItemFetchJob>
 #include <AkonadiCore/ItemFetchScope>
-
-#include <AkonadiWidgets/controlgui.h>
-#include <AkonadiCore/ChangeRecorder>
-#include <AkonadiCore/Collection>
-#include <AkonadiCore/EntityTreeModel>
 #include <AkonadiCore/Session>
-#include <Akonadi/Notes/NoteUtils>
+
+#include <AkonadiWidgets/ControlGui>
+
+#include <KMime/KMimeMessage>
+
 #include <KActionCollection>
-#include <resources/localresourcecreator.h>
-#include <attributes/notedisplayattribute.h>
-
-#include <KMessageBox>
-#include "knotes_debug.h"
-#include <khelpmenu.h>
-#include <kiconeffect.h>
-#include <KLocalizedString>
-#include <QMenu>
-#include <kshortcutsdialog.h>
-#include <kstandardaction.h>
-#include <ksystemtrayicon.h>
-#include <kwindowsystem.h>
-#include <kxmlguibuilder.h>
-#include <kxmlguifactory.h>
-#include <QFileDialog>
-#include <QApplication>
-
-#include <kiconloader.h>
 #include <KGlobalAccel>
+#include <KIconEffect>
+#include <KIconLoader>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KWindowSystem>
+#include <KXMLGUIBuilder>
+#include <KXMLGUIFactory>
+#include <KDNSSD/DNSSD/PublicService>
 
-#include <QPixmap>
+#include <QAction>
+#include <QApplication>
 #include <QClipboard>
 #include <QDBusConnection>
-
-#include <dnssd/publicservice.h>
+#include <QFileDialog>
+#include <QMenu>
 
 static bool qActionLessThan(const QAction *a1, const QAction *a2)
 {

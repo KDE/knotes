@@ -21,31 +21,29 @@
 #ifndef KNOTESAPP_H
 #define KNOTESAPP_H
 
-#include <QDomDocument>
-#include <QList>
-#include <QWidget>
-#include <QSessionManager>
-#include <kxmlguiclient.h>
-
 #include <AkonadiCore/Item>
-#include <QPointer>
 
+#include <KXMLGUIClient>
+
+#include <QDomDocument>
+#include <QPointer>
+#include <QSessionManager>
+#include <QWidget>
+
+class KNote;
 class KNoteFindDialog;
 class KNotesAkonadiTray;
-class QMenu;
-class KNote;
-class KXMLGUIBuilder;
-class KXMLGUIFactory;
 namespace NoteShared {
-class NotesChangeRecorder;
-class NotesAkonadiTreeModel;
+  class NotesChangeRecorder;
+  class NotesAkonadiTreeModel;
 }
 
 namespace KDNSSD {
-class PublicService;
+  class PublicService;
 }
-class KJob;
-class QModelIndex;
+
+class QMenu;
+
 class KNotesApp : public QWidget, virtual public KXMLGUIClient
 {
     Q_OBJECT

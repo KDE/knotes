@@ -22,8 +22,8 @@
 */
 
 #include "knotes_part.h"
-#include "knoteedit.h"
 #include "knotes_kontact_plugin_debug.h"
+#include "knoteedit.h"
 #include "knotesadaptor.h"
 #include "knoteseditdialog.h"
 #include "knotesglobalconfig.h"
@@ -49,17 +49,12 @@
 #include "resources/localresourcecreator.h"
 #include "utils/knoteutils.h"
 
-#include <Akonadi/Notes/NoteUtils>
-
 #include <AkonadiCore/ChangeRecorder>
-#include <AkonadiCore/EntityDisplayAttribute>
-#include <AkonadiCore/ItemCreateJob>
+#include <AkonadiCore/ItemDeleteJob>
 #include <AkonadiCore/ItemFetchJob>
 #include <AkonadiCore/ItemFetchScope>
 #include <AkonadiCore/ItemModifyJob>
 #include <AkonadiCore/Session>
-#include <AkonadiCore/itemdeletejob.h>
-
 #include <AkonadiWidgets/ControlGui>
 #include <AkonadiWidgets/ETMViewStateSaver>
 
@@ -67,25 +62,18 @@
 
 #include <KActionCollection>
 #include <KCheckableProxyModel>
-#include <KDateTime>
 #include <KFileDialog>
 #include <KLocalizedString>
-#include <KToggleAction>
-#include <KXMLGUIFactory>
-
 #include <KMessageBox>
-#include <QAction>
+#include <KDNSSD/DNSSD/PublicService>
+
 #include <QApplication>
 #include <QCheckBox>
 #include <QClipboard>
 #include <QFileDialog>
-#include <QIcon>
 #include <QInputDialog>
+#include <QItemSelectionModel>
 #include <QMenu>
-#include <QPointer>
-#include <QUrl>
-
-#include <dnssd/publicservice.h>
 
 KNotesPart::KNotesPart(QObject *parent)
     : KParts::ReadOnlyPart(parent)
