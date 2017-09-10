@@ -18,7 +18,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include "config-knotes.h"
+#include <config-knotes.h>
 #include "knotes_debug.h"
 #include "knotes-version.h"
 

@@ -22,72 +22,68 @@
 */
 
 #include "knotes_part.h"
+#include "knoteedit.h"
 #include "knotes_kontact_plugin_debug.h"
+#include "knotesadaptor.h"
+#include "knoteseditdialog.h"
+#include "knotesglobalconfig.h"
+#include "knotesiconview.h"
+#include "knotesselectdeletenotesdialog.h"
+#include "knoteswidget.h"
 #include "notesharedglobalconfig.h"
 #include "noteutils.h"
-#include "knoteseditdialog.h"
-#include "knotesadaptor.h"
-#include "knotesiconview.h"
-#include "knoteswidget.h"
-#include "knotesselectdeletenotesdialog.h"
+#include "alarms/notealarmdialog.h"
+#include "akonadi/notesakonaditreemodel.h"
+#include "akonadi/noteschangerecorder.h"
+#include "attributes/notealarmattribute.h"
+#include "attributes/notedisplayattribute.h"
+#include "attributes/notelockattribute.h"
+#include "attributes/showfoldernotesattribute.h"
 #include "configdialog/knoteconfigdialog.h"
+#include "configdialog/knotesimpleconfigdialog.h"
+#include "finddialog/knotefinddialog.h"
+#include "job/createnewnotejob.h"
 #include "print/knoteprinter.h"
 #include "print/knoteprintobject.h"
 #include "print/knoteprintselectthemedialog.h"
-#include "knoteedit.h"
-#include "knotesglobalconfig.h"
-#include "configdialog/knotesimpleconfigdialog.h"
-#include "finddialog/knotefinddialog.h"
+#include "resources/localresourcecreator.h"
 #include "utils/knoteutils.h"
-#include "alarms/notealarmdialog.h"
-#include "job/createnewnotejob.h"
-
-#include "akonadi/notesakonaditreemodel.h"
-#include "job/createnewnotejob.h"
-#include "attributes/notealarmattribute.h"
-#include "attributes/showfoldernotesattribute.h"
-#include "attributes/notealarmattribute.h"
-#include "attributes/notelockattribute.h"
-#include "attributes/notelockattribute.h"
 
 #include <Akonadi/Notes/NoteUtils>
 
-#include <KDateTime>
-#include <AkonadiCore/Session>
 #include <AkonadiCore/ChangeRecorder>
-#include <AkonadiWidgets/ETMViewStateSaver>
 #include <AkonadiCore/EntityDisplayAttribute>
 #include <AkonadiCore/ItemCreateJob>
 #include <AkonadiCore/ItemFetchJob>
-#include <KCheckableProxyModel>
-#include <AkonadiCore/itemdeletejob.h>
 #include <AkonadiCore/ItemFetchScope>
+#include <AkonadiCore/ItemModifyJob>
+#include <AkonadiCore/Session>
+#include <AkonadiCore/itemdeletejob.h>
 
-#include <QUrl>
-#include <QFileDialog>
+#include <AkonadiWidgets/ControlGui>
+#include <AkonadiWidgets/ETMViewStateSaver>
+
 #include <KMime/KMimeMessage>
 
-#include <AkonadiCore/ItemModifyJob>
-#include <AkonadiWidgets/ControlGui>
-#include <akonadi/noteschangerecorder.h>
-#include <attributes/notedisplayattribute.h>
-#include <resources/localresourcecreator.h>
-
 #include <KActionCollection>
-#include <QAction>
-#include <QInputDialog>
-#include <KMessageBox>
-#include <KXMLGUIFactory>
+#include <KCheckableProxyModel>
+#include <KDateTime>
 #include <KFileDialog>
-#include <KToggleAction>
 #include <KLocalizedString>
-#include <QIcon>
+#include <KToggleAction>
+#include <KXMLGUIFactory>
 
+#include <KMessageBox>
+#include <QAction>
 #include <QApplication>
+#include <QCheckBox>
 #include <QClipboard>
+#include <QFileDialog>
+#include <QIcon>
+#include <QInputDialog>
 #include <QMenu>
 #include <QPointer>
-#include <QCheckBox>
+#include <QUrl>
 
 #include <dnssd/publicservice.h>
 
@@ -289,7 +285,8 @@ void KNotesPart::slotRowInserted(const QModelIndex &parent, int start, int end)
     for (int i = start; i <= end; ++i) {
         if (mNoteTreeModel->hasIndex(i, 0, parent)) {
             const QModelIndex child = mNoteTreeModel->index(i, 0, parent);
-            Akonadi::Collection parentCollection = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
+            Akonadi::Collection parentCollection =
+                mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
             if (parentCollection.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
                 Akonadi::Item item
                     = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
@@ -505,7 +502,10 @@ void KNotesPart::popupRMB(QListWidgetItem *item, const QPoint &pos, const QPoint
     if (mNotesWidget->notesView()->itemAt(pos)) {
         contextMenu->addAction(mNewNote);
         const bool uniqueNoteSelected = (mNotesWidget->notesView()->selectedItems().count() == 1);
-        const bool readOnly = uniqueNoteSelected ? static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->selectedItems().at(0))->readOnly() : false;
+        const bool readOnly = uniqueNoteSelected ?
+            static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->selectedItems().at(0))->readOnly() :
+            false;
+
         if (uniqueNoteSelected) {
             if (!readOnly) {
                 contextMenu->addSeparator();
@@ -609,7 +609,8 @@ void KNotesPart::slotOnCurrentChanged()
     mSaveAs->setEnabled(uniqueNoteSelected);
     mReadOnly->setEnabled(uniqueNoteSelected);
     if (uniqueNoteSelected) {
-        const bool readOnly = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->selectedItems().at(0))->readOnly();
+        const bool readOnly =
+            static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->selectedItems().at(0))->readOnly();
         mReadOnly->setChecked(readOnly);
         mNoteEdit->setText(readOnly ? i18n("Show Note...") : i18nc("@action:inmenu", "Edit..."));
     } else {
@@ -684,7 +685,9 @@ void KNotesPart::updateNetworkListener()
 
     if (NoteShared::NoteSharedGlobalConfig::receiveNotes()) {
         // create the socket and start listening for connections
-        mPublisher = new KDNSSD::PublicService(NoteShared::NoteSharedGlobalConfig::senderID(), QStringLiteral("_knotes._tcp"), NoteShared::NoteSharedGlobalConfig::port());
+        mPublisher = new KDNSSD::PublicService(NoteShared::NoteSharedGlobalConfig::senderID(),
+                                               QStringLiteral("_knotes._tcp"),
+                                               NoteShared::NoteSharedGlobalConfig::port());
         mPublisher->publishAsync();
     }
 }
@@ -704,7 +707,8 @@ void KNotesPart::slotSetAlarm()
         bool needToModify = true;
         QDateTime dateTime = dlg->alarm();
         if (dateTime.isValid()) {
-            NoteShared::NoteAlarmAttribute *attribute = item.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
+            NoteShared::NoteAlarmAttribute *attribute =
+                item.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
             attribute->setDateTime(dateTime);
         } else {
             if (item.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
@@ -780,7 +784,8 @@ void KNotesPart::slotSaveAs()
         doc.setHtml(knoteItem->description());
         if (htmlFormatAndSaveAsHtml) {
             QString htmlStr = doc.toHtml();
-            htmlStr.replace(QStringLiteral("meta name=\"qrichtext\" content=\"1\""), QStringLiteral("meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\""));
+            htmlStr.replace(QStringLiteral("meta name=\"qrichtext\" content=\"1\""),
+                            QStringLiteral("meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\""));
             stream <<  htmlStr;
         } else {
             stream << knoteItem->realName() + QLatin1Char('\n');
@@ -890,7 +895,9 @@ void KNotesPart::slotNewNoteFromTextFile()
         if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
             text = QString::fromUtf8(f.readAll());
         } else {
-            KMessageBox::error(widget(), i18n("Error during open text file: %1", f.errorString()), i18n("Open Text File"));
+            KMessageBox::error(widget(),
+                               i18n("Error during open text file: %1", f.errorString()),
+                               i18n("Open Text File"));
             return;
         }
         newNote(i18n("Note from file '%1'", filename), text);

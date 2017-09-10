@@ -20,16 +20,19 @@
 
 #ifndef KNOTE_H
 #define KNOTE_H
-#include "config-knotes.h"
-#include <QDomDocument>
-#include <QEvent>
-#include <QFrame>
+
+#include <config-knotes.h>
+#include "knoteinterface.h"
+
+#include <AkonadiCore/Item>
 
 #include <kconfig.h>
 #include <kxmlguiclient.h>
 #include <KSharedConfig>
-#include <AkonadiCore/Item>
-#include "knoteinterface.h"
+
+#include <QDomDocument>
+#include <QEvent>
+#include <QFrame>
 
 class KNoteDisplaySettings;
 
@@ -49,7 +52,8 @@ class KNote : public QFrame, virtual public KXMLGUIClient, public KNoteInterface
 {
     Q_OBJECT
 public:
-    explicit KNote(const QDomDocument &buildDoc, const Akonadi::Item &item, bool allowDebugBaloo = false, QWidget *parent = nullptr);
+    explicit KNote(const QDomDocument &buildDoc, const Akonadi::Item &item,
+                   bool allowDebugBaloo = false, QWidget *parent = nullptr);
     ~KNote();
 
     void setChangeItem(const Akonadi::Item &item, const QSet<QByteArray> &set = QSet<QByteArray>());

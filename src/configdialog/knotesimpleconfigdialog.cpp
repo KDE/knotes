@@ -16,27 +16,27 @@
    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
    Boston, MA 02110-1301, USA.
 */
-#include "config-knotes.h"
+
+#include <config-knotes.h>
 #include "knotesimpleconfigdialog.h"
 #include "knoteconfigdialog.h"
 #include "knotedisplayconfigwidget.h"
 #include "knoteeditorconfigwidget.h"
 
+#include "attributes/notedisplayattribute.h"
 #include "attributes/notelockattribute.h"
 
-#include <KLocalizedString>
-#include <KWindowSystem>
-#include <KIconLoader>
-
-#include <QTabWidget>
-#include <QApplication>
-#include <KSharedConfig>
 #include <KConfigGroup>
+#include <KIconLoader>
+#include <KLocalizedString>
+#include <KSharedConfig>
+#include <KWindowSystem>
+
+#include <QApplication>
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QTabWidget>
 #include <QVBoxLayout>
-
-#include <attributes/notedisplayattribute.h>
 
 KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title, QWidget *parent)
     : QDialog(parent)
@@ -91,7 +91,8 @@ void KNoteSimpleConfigDialog::slotUpdateCaption(const QString &name)
 
 void KNoteSimpleConfigDialog::save(Akonadi::Item &item, bool &isRichText)
 {
-    NoteShared::NoteDisplayAttribute *attr = item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attr =
+        item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     mEditorConfigWidget->save(attr, isRichText);
     mDisplayConfigWidget->save(attr);
 }

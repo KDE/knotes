@@ -17,42 +17,41 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
-#include "config-knotes.h"
-#include "knotes_debug.h"
+
+#include <config-knotes.h>
+
 #include "knote.h"
+#include "knotes_debug.h"
 #include "noteutils.h"
+
 #include "alarms/notealarmdialog.h"
-#include "configdialog/knotesimpleconfigdialog.h"
-#include "print/knoteprintselectthemedialog.h"
-#include "notes/knotebutton.h"
-#include "utils/knoteutils.h"
+#include "attributes/notealarmattribute.h"
+#include "attributes/notelockattribute.h"
 #include "configdialog/knoteconfigdialog.h"
+#include "configdialog/knotesimpleconfigdialog.h"
+#include "knotedisplaysettings.h"
 #include "knoteedit.h"
+#include "knotesglobalconfig.h"
+#include "notes/knotebutton.h"
 #include "print/knoteprinter.h"
 #include "print/knoteprintobject.h"
-#include "knotesglobalconfig.h"
+#include "print/knoteprintselectthemedialog.h"
+#include "utils/knoteutils.h"
 
-#include "knotedisplaysettings.h"
-
-#include "attributes/notelockattribute.h"
-#include "attributes/notealarmattribute.h"
-
+#include <AkonadiCore/ItemModifyJob>
 #include <AkonadiSearch/Debug/akonadisearchdebugdialog.h>
 
 #include <KMime/KMimeMessage>
 
+#include <KLocalizedString>
 #include <kactioncollection.h>
 #include <kcombobox.h>
 #include <kfiledialog.h>
 #include <kiconeffect.h>
 #include <kiconloader.h>
-#include <qinputdialog.h>
-#include <KLocalizedString>
-#include <QMenu>
 #include <kmessagebox.h>
 #include <kselectaction.h>
 #include <kstandardaction.h>
-
 #include <ktoggleaction.h>
 #include <ktoolbar.h>
 #include <kwindowsystem.h>
@@ -60,23 +59,23 @@
 #include <kxmlguifactory.h>
 #include <netwm.h>
 
-#include <AkonadiCore/ItemModifyJob>
-
+#include <QApplication>
 #include <QBoxLayout>
 #include <QCheckBox>
+#include <QDesktopWidget>
 #include <QFile>
+#include <QFocusEvent>
 #include <QHBoxLayout>
+#include <QInputDialog>
 #include <QLabel>
+#include <QMenu>
+#include <QMimeData>
 #include <QPixmap>
+#include <QPointer>
 #include <QSize>
 #include <QSizeGrip>
 #include <QTextStream>
 #include <QVBoxLayout>
-#include <QPointer>
-#include <QFocusEvent>
-#include <QMimeData>
-#include <QDesktopWidget>
-#include <QApplication>
 
 #if KDEPIM_HAVE_X11
 #include <fixx11h.h>
@@ -156,14 +155,14 @@ void KNote::setChangeItem(const Akonadi::Item &item, const QSet<QByteArray> &set
 
 void KNote::slotKill(bool force)
 {
-    if (!force
-        && (KMessageBox::warningContinueCancel(this,
-                                               i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>",
-                                                    m_label->text()),
-                                               i18n("Confirm Delete"),
-                                               KGuiItem(i18n("&Delete"), QStringLiteral("edit-delete")),
-                                               KStandardGuiItem::cancel(),
-                                               QStringLiteral("ConfirmDeleteNote")) != KMessageBox::Continue)) {
+    if (!force &&
+        KMessageBox::warningContinueCancel(this,
+            i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>", m_label->text()),
+            i18n("Confirm Delete"),
+            KGuiItem(i18n("&Delete"),
+            QStringLiteral("edit-delete")),
+            KStandardGuiItem::cancel(),
+            QStringLiteral("ConfirmDeleteNote")) != KMessageBox::Continue) {
         return;
     }
 
@@ -178,7 +177,8 @@ void KNote::saveNote(bool force, bool sync)
         return;
     }
     bool needToSave = false;
-    NoteShared::NoteDisplayAttribute *attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attribute =
+        mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     const QPoint notePosition = pos();
     if (attribute->position() != notePosition) {
         needToSave = true;
@@ -285,7 +285,8 @@ void KNote::slotRename()
     bool ok;
     const QString oldName = m_label->text();
     const QString newName = QInputDialog::getText(this, QString(),
-                                                  i18n("Please enter the new name:"), QLineEdit::Normal, m_label->text(), &ok);
+                                                  i18n("Please enter the new name:"),
+                                                  QLineEdit::Normal, m_label->text(), &ok);
     if (!ok || (oldName == newName)) {   // handle cancel
         return;
     }
@@ -351,7 +352,8 @@ void KNote::slotUpdateReadOnly()
 void KNote::updateAllAttributes()
 {
 #if KDEPIM_HAVE_X11
-    NoteShared::NoteDisplayAttribute *attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attribute =
+        mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     KWindowInfo info(winId(), NET::WMDesktop);
     const int count = KWindowSystem::numberOfDesktops();
     for (int n = 1; n <= count; ++n) {
@@ -391,7 +393,8 @@ void KNote::slotSetAlarm()
         bool needToModify = true;
         QDateTime dateTime = dlg->alarm();
         if (dateTime.isValid()) {
-            NoteShared::NoteAlarmAttribute *attribute = mItem.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
+            NoteShared::NoteAlarmAttribute *attribute =
+                mItem.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
             attribute->setDateTime(dateTime);
         } else {
             if (mItem.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
@@ -437,7 +440,8 @@ void KNote::slotPreferences()
 {
     // create a new preferences dialog...
     QPointer<KNoteSimpleConfigDialog> dialog = new KNoteSimpleConfigDialog(name(), this);
-    NoteShared::NoteDisplayAttribute *attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attribute =
+        mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     attribute->setSize(QSize(width(), height()));
 
     dialog->load(mItem, m_editor->acceptRichText());
@@ -535,11 +539,11 @@ void KNote::slotSaveAs()
 
     QFile file(fileName);
 
-    if (file.exists()
-        && KMessageBox::warningContinueCancel(this,
-                                              i18n("<qt>A file named <b>%1</b> already exists.<br />"
-                                                   "Are you sure you want to overwrite it?</qt>",
-                                                   QFileInfo(file).fileName())) != KMessageBox::Continue) {
+    if (file.exists() &&
+        KMessageBox::warningContinueCancel(this,
+            i18n("<qt>A file named <b>%1</b> already exists.<br />"
+                 "Are you sure you want to overwrite it?</qt>",
+                 QFileInfo(file).fileName())) != KMessageBox::Continue) {
         return;
     }
 
@@ -547,7 +551,8 @@ void KNote::slotSaveAs()
         QTextStream stream(&file);
         if (htmlFormatAndSaveAsHtml) {
             QString htmlStr = m_editor->toHtml();
-            htmlStr.replace(QStringLiteral("meta name=\"qrichtext\" content=\"1\""), QStringLiteral("meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\""));
+            htmlStr.replace(QStringLiteral("meta name=\"qrichtext\" content=\"1\""),
+                            QStringLiteral("meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\""));
             stream <<  htmlStr;
         } else {
             stream << m_editor->toPlainText();
@@ -600,7 +605,8 @@ void KNote::updateKeepAboveBelow(bool save)
 #else
     NET::States state = 0; // neutral state, TODO
 #endif
-    NoteShared::NoteDisplayAttribute *attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    NoteShared::NoteDisplayAttribute *attribute =
+        mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     if (m_keepAbove->isChecked()) {
         attribute->setKeepAbove(true);
         attribute->setKeepBelow(false);
@@ -653,7 +659,8 @@ void KNote::slotUpdateDesktopActions()
     m_toDesktop->addAction(separator);
     const int count = KWindowSystem::numberOfDesktops();
     for (int n = 1; n <= count; ++n) {
-        QAction *desktopAct = m_toDesktop->addAction(QStringLiteral("&%1 %2").arg(n).arg(KWindowSystem::desktopName(n)));
+        QAction *desktopAct =
+            m_toDesktop->addAction(QStringLiteral("&%1 %2").arg(n).arg(KWindowSystem::desktopName(n)));
         desktopAct->setData(n);
         if (info.isOnDesktop(n)) {
             desktopAct->setChecked(true);
@@ -722,9 +729,12 @@ void KNote::createActions()
                          this);
     actionCollection()->addAction(QStringLiteral("save_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotSaveAs);
-    actionCollection()->addAction(KStandardAction::Print, QStringLiteral("print_note"), this, SLOT(slotPrint()));
+    actionCollection()->addAction(KStandardAction::Print, QStringLiteral("print_note"),
+                                  this, SLOT(slotPrint()));
 
-    actionCollection()->addAction(KStandardAction::PrintPreview, QStringLiteral("print_preview_note"), this, SLOT(slotPrintPreview()));
+    actionCollection()->addAction(KStandardAction::PrintPreview, QStringLiteral("print_preview_note"),
+                                  this, SLOT(slotPrintPreview()));
+
     action = new QAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Preferences..."), this);
     actionCollection()->addAction(QStringLiteral("configure_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotPreferences);
@@ -742,8 +752,10 @@ void KNote::createActions()
 #if KDEPIM_HAVE_X11
     m_toDesktop = new KSelectAction(i18n("To Desktop"), this);
     actionCollection()->addAction(QStringLiteral("to_desktop"), m_toDesktop);
-    connect(m_toDesktop, QOverload<QAction *>::of(&KSelectAction::triggered), this, &KNote::slotPopupActionToDesktop);
-    connect(m_toDesktop->menu(), &QMenu::aboutToShow, this, &KNote::slotUpdateDesktopActions);
+    connect(m_toDesktop, QOverload<QAction *>::of(&KSelectAction::triggered),
+            this, &KNote::slotPopupActionToDesktop);
+    connect(m_toDesktop->menu(), &QMenu::aboutToShow,
+            this, &KNote::slotUpdateDesktopActions);
     // initially populate it, otherwise stays disabled
     slotUpdateDesktopActions();
 #endif
@@ -897,8 +909,8 @@ void KNote::prepare()
     int desktop = mDisplayAttribute->desktop();
 
 #if KDEPIM_HAVE_X11
-    if ((desktop < 0 && desktop != NETWinInfo::OnAllDesktops)
-        || !mDisplayAttribute->rememberDesktop()) {
+    if ((desktop < 0 && desktop != NETWinInfo::OnAllDesktops) ||
+        !mDisplayAttribute->rememberDesktop()) {
         desktop = KWindowSystem::currentDesktop();
     }
 #endif
@@ -1089,7 +1101,8 @@ void KNote::showEvent(QShowEvent *)
         slotUpdateShowInTaskbar();
         toDesktop(mDisplayAttribute->desktop());
         move(mDisplayAttribute->position());
-        NoteShared::NoteDisplayAttribute *attr = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+        NoteShared::NoteDisplayAttribute *attr =
+            mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
         saveNoteContent();
         attr->setIsHidden(false);
         if (!mBlockSave) {
@@ -1134,7 +1147,8 @@ void KNote::dropEvent(QDropEvent *e)
     if (md->hasColor()) {
         const QColor bg = qvariant_cast<QColor>(md->colorData());
 
-        NoteShared::NoteDisplayAttribute *attr = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+        NoteShared::NoteDisplayAttribute *attr =
+            mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
         saveNoteContent();
         attr->setBackgroundColor(bg);
         Akonadi::ItemModifyJob *job = new Akonadi::ItemModifyJob(mItem);
@@ -1157,14 +1171,14 @@ bool KNote::event(QEvent *ev)
 
 bool KNote::eventFilter(QObject *o, QEvent *ev)
 {
-    if (ev->type() == QEvent::DragEnter
-        && static_cast<QDragEnterEvent *>(ev)->mimeData()->hasColor()) {
+    if (ev->type() == QEvent::DragEnter &&
+        static_cast<QDragEnterEvent *>(ev)->mimeData()->hasColor()) {
         dragEnterEvent(static_cast<QDragEnterEvent *>(ev));
         return true;
     }
 
-    if (ev->type() == QEvent::Drop
-        && static_cast<QDropEvent *>(ev)->mimeData()->hasColor()) {
+    if (ev->type() == QEvent::Drop &&
+        static_cast<QDropEvent *>(ev)->mimeData()->hasColor()) {
         dropEvent(static_cast<QDropEvent *>(ev));
         return true;
     }
@@ -1177,8 +1191,8 @@ bool KNote::eventFilter(QObject *o, QEvent *ev)
                 slotRename();
             }
         }
-        if (ev->type() == QEvent::MouseMove
-            && (e->button() == Qt::LeftButton || e->button() == Qt::MidButton)) {
+        if (ev->type() == QEvent::MouseMove &&
+            (e->button() == Qt::LeftButton || e->button() == Qt::MidButton)) {
             move(e->globalPos());
             return true;
         }
@@ -1193,8 +1207,7 @@ bool KNote::eventFilter(QObject *o, QEvent *ev)
     if (o == m_editor) {
         if (ev->type() == QEvent::FocusOut) {
             QFocusEvent *fe = static_cast<QFocusEvent *>(ev);
-            if (fe->reason() != Qt::PopupFocusReason
-                && fe->reason() != Qt::MouseFocusReason) {
+            if (fe->reason() != Qt::PopupFocusReason && fe->reason() != Qt::MouseFocusReason) {
                 updateFocus();
                 if (!mBlockSave) {
                     saveNote(true);

@@ -18,14 +18,14 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include "config-knotes.h"
+#include <config-knotes.h>
+#include "knotesapp.h"
 #include "configdialog/knoteconfigdialog.h"
 
 #include "dialog/knoteselectednotesdialog.h"
 #include "utils/knoteutils.h"
 #include "akonadi/notesakonaditreemodel.h"
 #include "akonadi/noteschangerecorder.h"
-#include "attributes/notelockattribute.h"
 #include "attributes/notelockattribute.h"
 #include "attributes/notealarmattribute.h"
 #include "attributes/showfoldernotesattribute.h"
@@ -37,7 +37,6 @@
 #include "notesharedglobalconfig.h"
 #include "notes/knote.h"
 #include "knotesadaptor.h"
-#include "knotesapp.h"
 #include "print/knoteprinter.h"
 #include "print/knoteprintobject.h"
 #include "knotesglobalconfig.h"
@@ -197,8 +196,12 @@ KNotesApp::KNotesApp()
     mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
     mNoteRecorder->changeRecorder()->setSession(session);
     mTray = new KNotesAkonadiTray(nullptr);
-    connect(mTray, &KStatusNotifierItem::activateRequested, this, &KNotesApp::slotActivateRequested);
-    connect(mTray, &KStatusNotifierItem::secondaryActivateRequested, this, &KNotesApp::slotSecondaryActivateRequested);
+
+    connect(mTray, &KStatusNotifierItem::activateRequested,
+            this, &KNotesApp::slotActivateRequested);
+
+    connect(mTray, &KStatusNotifierItem::secondaryActivateRequested,
+            this, &KNotesApp::slotSecondaryActivateRequested);
 
     mTray->setContextMenu(contextMenu);
     mNoteTreeModel = new NoteShared::NotesAkonadiTreeModel(mNoteRecorder->changeRecorder(), this);
@@ -206,10 +209,18 @@ KNotesApp::KNotesApp()
     connect(mNoteTreeModel, &QAbstractItemModel::rowsInserted,
             this, &KNotesApp::slotRowInserted);
 
-    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged, this, &KNotesApp::slotItemChanged);
-    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved, this, &KNotesApp::slotItemRemoved);
-    connect(mNoteRecorder->changeRecorder(), SIGNAL(collectionChanged(Akonadi::Collection,QSet<QByteArray>)), SLOT(slotCollectionChanged(Akonadi::Collection,QSet<QByteArray>)));
-    connect(qApp, &QGuiApplication::commitDataRequest, this, &KNotesApp::slotCommitData, Qt::DirectConnection);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged,
+            this, &KNotesApp::slotItemChanged);
+
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved,
+            this, &KNotesApp::slotItemRemoved);
+
+    connect(mNoteRecorder->changeRecorder(), SIGNAL(collectionChanged(Akonadi::Collection,QSet<QByteArray>)),
+            SLOT(slotCollectionChanged(Akonadi::Collection,QSet<QByteArray>)));
+
+    connect(qApp, &QGuiApplication::commitDataRequest,
+            this, &KNotesApp::slotCommitData, Qt::DirectConnection);
+
     QGuiApplication::setFallbackSessionManagementEnabled(false);
     updateNoteActions();
 }
@@ -278,7 +289,8 @@ void KNotesApp::slotRowInserted(const QModelIndex &parent, int start, int end)
             const QModelIndex child = mNoteTreeModel->index(i, 0, parent);
             Akonadi::Item item
                 = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
-            Akonadi::Collection parentCollection = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
+            Akonadi::Collection parentCollection =
+                mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
             if (parentCollection.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
                 createNote(item);
                 needUpdate = true;
@@ -397,7 +409,8 @@ void KNotesApp::newNoteFromTextFile()
         if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
             text = QString::fromUtf8(f.readAll());
         } else {
-            KMessageBox::error(this, i18n("Error during open text file: %1", f.errorString()), i18n("Open Text File"));
+            KMessageBox::error(this, i18n("Error during open text file: %1", f.errorString()),
+                               i18n("Open Text File"));
             return;
         }
         newNote(i18n("Note from file '%1'", filename), text);
@@ -411,7 +424,9 @@ void KNotesApp::updateNetworkListener()
 
     if (NoteShared::NoteSharedGlobalConfig::receiveNotes()) {
         // create the socket and start listening for connections
-        m_publisher = new KDNSSD::PublicService(NoteShared::NoteSharedGlobalConfig::senderID(), QStringLiteral("_knotes._tcp"), NoteShared::NoteSharedGlobalConfig::port());
+        m_publisher = new KDNSSD::PublicService(NoteShared::NoteSharedGlobalConfig::senderID(),
+                                                QStringLiteral("_knotes._tcp"),
+                                                NoteShared::NoteSharedGlobalConfig::port());
         m_publisher->publishAsync();
     }
 }

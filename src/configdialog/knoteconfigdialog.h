@@ -18,13 +18,14 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#ifndef KNOTECONFIGDLG_H
-#define KNOTECONFIGDLG_H
+#ifndef KNOTECONFIGDIALOG_H
+#define KNOTECONFIGDIALOG_H
+
+#include "knotes_export.h"
 
 #include <kconfigdialog.h>
 #include <kcmodule.h>
 #include <kcmultidialog.h>
-#include "knotes_export.h"
 
 class KNotePrintSelectThemeComboBox;
 class KNoteCollectionConfigWidget;

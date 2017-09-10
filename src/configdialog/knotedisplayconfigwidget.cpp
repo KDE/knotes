@@ -16,21 +16,21 @@
    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
    Boston, MA 02110-1301, USA.
 */
-#include "knotedisplayconfigwidget.h"
-#include "config-knotes.h"
 
+#include <config-knotes.h>
+#include "knotedisplayconfigwidget.h"
+
+#include "attributes/notedisplayattribute.h"
 #include "attributes/notelockattribute.h"
 
-#include <KLocalizedString>
 #include <KColorButton>
-#include <QSpinBox>
+#include <KLocalizedString>
 
-#include <QGridLayout>
-#include <QLabel>
 #include <QCheckBox>
 #include <QDebug>
-
-#include <attributes/notedisplayattribute.h>
+#include <QGridLayout>
+#include <QLabel>
+#include <QSpinBox>
 
 KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *parent)
     : QWidget(parent)

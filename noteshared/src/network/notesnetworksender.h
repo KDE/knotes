@@ -31,10 +31,11 @@
  your version.
 *******************************************************************/
 
-#ifndef NOTENETWORKSENDER_H
-#define NOTENETWORKSENDER_H
+#ifndef NOTESNETWORKSENDER_H
+#define NOTESNETWORKSENDER_H
 
 #include <QTcpSocket>
+
 namespace NoteShared {
 class NotesNetworkSender : public QObject
 {

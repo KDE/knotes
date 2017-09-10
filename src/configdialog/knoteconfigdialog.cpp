@@ -18,40 +18,40 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 *******************************************************************/
 
-#include "config-knotes.h"
+#include <config-knotes.h>
+
 #include "knoteconfigdialog.h"
-#include "notes/knote.h"
-#include "print/knoteprintselectthemecombobox.h"
+#include "knotecollectionconfigwidget.h"
 #include "knotedisplayconfigwidget.h"
 #include "knoteeditorconfigwidget.h"
-#include "knotecollectionconfigwidget.h"
 #include "knotesglobalconfig.h"
+#include "knotes-version.h"
 #include "notesharedglobalconfig.h"
 #include "config/noteactionconfig.h"
+#include "config/notenetworkconfig.h"
+#include "notes/knote.h"
+#include "print/knoteprintselectthemecombobox.h"
 
-#include "knotes-version.h"
-#include <QLineEdit>
-#include <qapplication.h>
 #include <kcolorbutton.h>
 #include <kconfig.h>
 #include <kfontrequester.h>
 #include <kiconloader.h>
 #include <KLocalizedString>
 #include <kwindowsystem.h>
-#include <QIcon>
 #include <KNS3/DownloadDialog>
 #include <KAuthorized>
-#include <QDialog>
 
+#include <QApplication>
 #include <QCheckBox>
+#include <QDialog>
 #include <QGridLayout>
 #include <QHBoxLayout>
+#include <QIcon>
 #include <QLabel>
+#include <QLineEdit>
+#include <QToolButton>
 #include <QVBoxLayout>
 #include <QWhatsThis>
-#include <QToolButton>
-
-#include <config/notenetworkconfig.h>
 
 KNoteConfigDialog::KNoteConfigDialog(const QString &title, QWidget *parent)
     : KCMultiDialog(parent)
@@ -75,8 +75,12 @@ KNoteConfigDialog::KNoteConfigDialog(const QString &title, QWidget *parent)
     addModule(QStringLiteral("knote_config_print"));
     addModule(QStringLiteral("knote_config_collection"));
     addModule(QStringLiteral("knote_config_misc"));
-    connect(button(QDialogButtonBox::Ok), &QPushButton::clicked, this, &KNoteConfigDialog::slotOk);
-    connect(button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &KNoteConfigDialog::slotDefaultClicked);
+
+    connect(button(QDialogButtonBox::Ok), &QPushButton::clicked,
+            this, &KNoteConfigDialog::slotOk);
+
+    connect(button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked,
+            this, &KNoteConfigDialog::slotDefaultClicked);
 }
 
 KNoteConfigDialog::~KNoteConfigDialog()
@@ -283,7 +287,9 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent)
 
 void KNotePrintConfig::slotDownloadNewThemes()
 {
-    QPointer<KNS3::DownloadDialog> downloadThemesDialog = new KNS3::DownloadDialog(QStringLiteral("knotes_printing_theme.knsrc"));
+    QPointer<KNS3::DownloadDialog> downloadThemesDialog =
+        new KNS3::DownloadDialog(QStringLiteral("knotes_printing_theme.knsrc"));
+
     if (downloadThemesDialog->exec()) {
         if (!downloadThemesDialog->changedEntries().isEmpty()) {
             mSelectTheme->loadThemes();

@@ -19,11 +19,13 @@
     02110-1301, USA.
 */
 
-#ifndef KJOTS_LOCK_ATTRIBUTE_H
-#define KJOTS_LOCK_ATTRIBUTE_H
+#ifndef NOTELOCKATTRIBUTE_H
+#define NOTELOCKATTRIBUTE_H
 
 #include "noteshared_export.h"
+
 #include <AkonadiCore/Attribute>
+
 namespace NoteShared {
 class NOTESHARED_EXPORT NoteLockAttribute : public Akonadi::Attribute
 {

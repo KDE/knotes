@@ -19,14 +19,12 @@
 
 #include "knoteprintobject.h"
 #include "attributes/notealarmattribute.h"
-#include "attributes/notelockattribute.h"
+#include "attributes/notedisplayattribute.h"
 #include "attributes/notelockattribute.h"
 
 #include <KMime/KMimeMessage>
 
 #include <QLocale>
-
-#include <attributes/notedisplayattribute.h>
 
 KNotePrintObject::KNotePrintObject(const Akonadi::Item &item, QObject *parent)
     : QObject(parent)
