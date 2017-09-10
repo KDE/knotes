@@ -41,8 +41,8 @@ private Q_SLOTS:
 private:
     void readConfig();
     void writeConfig();
-    KPIMTextEdit::RichTextEditorWidget *mNote;
-    QLineEdit *mSubject;
+    KPIMTextEdit::RichTextEditorWidget *mNote = nullptr;
+    QLineEdit *mSubject = nullptr;
 };
 
 #endif // NOTESAGENTNOTEDIALOG_H

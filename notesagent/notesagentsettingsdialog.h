@@ -38,8 +38,8 @@ private Q_SLOTS:
 private:
     void writeConfig();
     void readConfig();
-    KNotifyConfigWidget *mNotify;
-    NoteShared::NoteNetworkConfigWidget *mNetworkConfig;
+    KNotifyConfigWidget *mNotify = nullptr;
+    NoteShared::NoteNetworkConfigWidget *mNetworkConfig = nullptr;
 };
 
 #endif // NOTESAGENTSETTINGSDIALOG_H

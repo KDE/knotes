@@ -99,18 +99,18 @@ private:
     void updateSystray();
     void createNote(const Akonadi::Item &item);
     void fetchNotesFromCollection(const Akonadi::Collection &col);
-    KXMLGUIFactory *m_guiFactory;
-    KXMLGUIBuilder *m_guiBuilder;
+    KXMLGUIFactory *m_guiFactory = nullptr;
+    KXMLGUIBuilder *m_guiBuilder = nullptr;
     QDomDocument m_noteGUI;
-    KNotesAkonadiTray *mTray;
-    QMenu *m_noteMenu;
+    KNotesAkonadiTray *mTray = nullptr;
+    QMenu *m_noteMenu = nullptr;
     QList<QAction *> m_noteActions;
-    KDNSSD::PublicService *m_publisher;
+    KDNSSD::PublicService *m_publisher = nullptr;
     QHash<Akonadi::Item::Id, KNote *> mNotes;
-    NoteShared::NotesChangeRecorder *mNoteRecorder;
-    NoteShared::NotesAkonadiTreeModel *mNoteTreeModel;
+    NoteShared::NotesChangeRecorder *mNoteRecorder = nullptr;
+    NoteShared::NotesAkonadiTreeModel *mNoteTreeModel = nullptr;
     QPointer<KNoteFindDialog> mFindDialog;
-    bool mDebugBaloo;
+    bool mDebugBaloo = false;
 };
 
 #endif

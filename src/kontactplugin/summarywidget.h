@@ -69,16 +69,16 @@ private:
     void displayNotes(const QModelIndex &parent, int &counter);
     void createNote(const Akonadi::Item &item, int counter);
     QPixmap mDefaultPixmap;
-    QGridLayout *mLayout;
-    KontactInterface::Plugin *mPlugin;
+    QGridLayout *mLayout = nullptr;
+    KontactInterface::Plugin *mPlugin = nullptr;
     QList<QLabel *> mLabels;
     QPixmap mPixmap;
-    NoteShared::NotesChangeRecorder *mNoteRecorder;
-    NoteShared::NotesAkonadiTreeModel *mNoteTreeModel;
-    QItemSelectionModel *mSelectionModel;
-    KCheckableProxyModel *mModelProxy;
-    KViewStateMaintainer<Akonadi::ETMViewStateSaver> *mModelState;
-    bool mInProgress;
+    NoteShared::NotesChangeRecorder *mNoteRecorder = nullptr;
+    NoteShared::NotesAkonadiTreeModel *mNoteTreeModel = nullptr;
+    QItemSelectionModel *mSelectionModel = nullptr;
+    KCheckableProxyModel *mModelProxy = nullptr;
+    KViewStateMaintainer<Akonadi::ETMViewStateSaver> *mModelState = nullptr;
+    bool mInProgress = false;
 };
 
 #endif

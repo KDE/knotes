@@ -69,7 +69,7 @@ private Q_SLOTS:
     void slotNewNote();
 
 private:
-    KontactInterface::UniqueAppWatcher *mUniqueAppWatcher;
+    KontactInterface::UniqueAppWatcher *mUniqueAppWatcher = nullptr;
 };
 
 #endif

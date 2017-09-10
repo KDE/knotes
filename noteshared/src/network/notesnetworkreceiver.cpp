@@ -71,10 +71,10 @@ public:
         delete m_sock;
     }
 
-    QTimer *m_timer;       // to avoid memory and connection floods
+    QTimer *m_timer = nullptr;       // to avoid memory and connection floods
 
-    QByteArray *m_buffer;
-    QTcpSocket *m_sock;
+    QByteArray *m_buffer = nullptr;
+    QTcpSocket *m_sock = nullptr;
 
     QString m_titleAddon;
 };

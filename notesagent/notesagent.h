@@ -60,7 +60,7 @@ private Q_SLOTS:
 
 private:
     bool mAgentInitialized;
-    NotesManager *mNotesManager;
+    NotesManager *mNotesManager = nullptr;
 };
 
 #endif // NOTESAGENT_H

@@ -73,7 +73,7 @@ public:
 private Q_SLOTS:
     void slotHelpLinkClicked(const QString &);
 private:
-    QLineEdit *mDefaultTitle;
+    QLineEdit *mDefaultTitle = nullptr;
 };
 
 class KNotePrintConfig : public KCModule
@@ -91,7 +91,7 @@ private Q_SLOTS:
     void slotDownloadNewThemes();
 
 private:
-    KNotePrintSelectThemeComboBox *mSelectTheme;
+    KNotePrintSelectThemeComboBox *mSelectTheme = nullptr;
 };
 
 class KNoteCollectionConfig : public KCModule
@@ -104,7 +104,7 @@ public:
     void save() override;
 
 private:
-    KNoteCollectionConfigWidget *mCollectionConfigWidget;
+    KNoteCollectionConfigWidget *mCollectionConfigWidget = nullptr;
 };
 
 #endif

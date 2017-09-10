@@ -37,8 +37,8 @@ public Q_SLOTS:
     void slotFocusQuickSearch();
 
 private:
-    KNotesIconView *mIconView;
-    KNotesListWidgetSearchLine *mSearchLine;
+    KNotesIconView *mIconView = nullptr;
+    KNotesListWidgetSearchLine *mSearchLine = nullptr;
 };
 
 #endif // KNOTESWIDGET_H

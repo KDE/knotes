@@ -682,9 +682,7 @@ void KNote::createActions()
 {
     // create the menu items for the note - not the editor...
     // rename, mail, print, save as, insert date, alarm, close, delete, new note
-    QAction *action;
-
-    action = new QAction(QIcon::fromTheme(QStringLiteral("document-new")), i18n("New"), this);
+    QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("document-new")), i18n("New"), this);
     actionCollection()->addAction(QStringLiteral("new_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotRequestNewNote);
 

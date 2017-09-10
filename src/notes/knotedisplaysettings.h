@@ -53,7 +53,7 @@ public:
     bool autoIndent() const;
 
 private:
-    NoteShared::NoteDisplayAttribute *mDisplayAttribute;
+    NoteShared::NoteDisplayAttribute *mDisplayAttribute = nullptr;
 };
 
 #endif // KNOTEDISPLAYSETTINGS_H

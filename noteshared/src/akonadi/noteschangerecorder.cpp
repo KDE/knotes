@@ -33,11 +33,10 @@ class NoteShared::NotesChangeRecorderPrivate
 {
 public:
     NotesChangeRecorderPrivate()
-        : mChangeRecorder(nullptr)
     {
     }
 
-    Akonadi::ChangeRecorder *mChangeRecorder;
+    Akonadi::ChangeRecorder *mChangeRecorder = nullptr;
 };
 
 NotesChangeRecorder::NotesChangeRecorder(QObject *parent)

@@ -37,15 +37,12 @@ class NoteShared::NoteNetworkConfigWidgetPrivate
 {
 public:
     NoteNetworkConfigWidgetPrivate()
-        : mTmpChkB(nullptr)
-        , kcfg_SenderID(nullptr)
-        , kcfg_Port(nullptr)
     {
     }
 
-    QCheckBox *mTmpChkB;
-    QLineEdit *kcfg_SenderID;
-    QSpinBox *kcfg_Port;
+    QCheckBox *mTmpChkB = nullptr;
+    QLineEdit *kcfg_SenderID = nullptr;
+    QSpinBox *kcfg_Port = nullptr;
 };
 
 NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)

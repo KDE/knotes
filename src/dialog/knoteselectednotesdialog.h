@@ -45,9 +45,9 @@ private:
 
     void writeConfig();
     void readConfig();
-    QListWidget *mListNotes;
+    QListWidget *mListNotes = nullptr;
     QHash<Akonadi::Item::Id, KNote *> mNotes;
-    QPushButton *mOkButton;
+    QPushButton *mOkButton = nullptr;
 };
 
 #endif // KNOTESELECTEDNOTESDIALOG_H

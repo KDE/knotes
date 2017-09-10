@@ -40,9 +40,9 @@ public Q_SLOTS:
 private:
     void readConfig();
     void writeConfig();
-    QTabWidget *mTabWidget;
-    KNoteEditorConfigWidget *mEditorConfigWidget;
-    KNoteDisplayConfigWidget *mDisplayConfigWidget;
+    QTabWidget *mTabWidget = nullptr;
+    KNoteEditorConfigWidget *mEditorConfigWidget = nullptr;
+    KNoteDisplayConfigWidget *mDisplayConfigWidget = nullptr;
 };
 
 #endif // KNoteSimpleConfigDialog_H

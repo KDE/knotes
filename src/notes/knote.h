@@ -140,26 +140,26 @@ private:
     void updateAllAttributes();
     void saveNoteContent();
     Akonadi::Item mItem;
-    QLayout *m_noteLayout;
-    QLabel *m_label;
-    QSizeGrip *m_grip;
-    KNoteButton *m_button;
-    KToolBar *m_tool;
-    KNoteEdit *m_editor;
+    QLayout *m_noteLayout = nullptr;
+    QLabel *m_label = nullptr;
+    QSizeGrip *m_grip = nullptr;
+    KNoteButton *m_button = nullptr;
+    KToolBar *m_tool = nullptr;
+    KNoteEdit *m_editor = nullptr;
 
-    QMenu *m_menu;
+    QMenu *m_menu = nullptr;
 
-    KToggleAction *m_readOnly;
+    KToggleAction *m_readOnly = nullptr;
 
 #if KDEPIM_HAVE_X11
-    KSelectAction *m_toDesktop;
+    KSelectAction *m_toDesktop = nullptr;
 #endif
-    KToggleAction *m_keepAbove;
-    KToggleAction *m_keepBelow;
+    KToggleAction *m_keepAbove = nullptr;
+    KToggleAction *m_keepBelow = nullptr;
 
     KSharedConfig::Ptr m_kwinConf;
 
-    KNoteDisplaySettings *mDisplayAttribute;
+    KNoteDisplaySettings *mDisplayAttribute = nullptr;
     bool mAllowDebugBaloo;
 };
 

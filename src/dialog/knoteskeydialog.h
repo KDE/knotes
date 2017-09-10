@@ -35,7 +35,7 @@ public:
 private:
     void readConfig();
     void writeConfig();
-    KShortcutsEditor *m_keyChooser;
+    KShortcutsEditor *m_keyChooser = nullptr;
 };
 
 #endif // KNOTESKEYDIALOG_H

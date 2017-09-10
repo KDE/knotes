@@ -42,8 +42,8 @@ private Q_SLOTS:
 private:
     void readConfig();
     void writeConfig();
-    NoteShared::NoteListWidget *mNoteList;
-    QPushButton *mOkButton;
+    NoteShared::NoteListWidget *mNoteList = nullptr;
+    QPushButton *mOkButton = nullptr;
 };
 
 #endif // KNOTEDELETESELECTEDNOTESDIALOG_H

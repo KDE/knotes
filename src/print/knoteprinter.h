@@ -47,7 +47,7 @@ private:
 
     QFont m_defaultFont;
     QString mHtmlPreviewText;
-    KNoteGrantleePrint *mGrantleePrint;
+    KNoteGrantleePrint *mGrantleePrint = nullptr;
 };
 
 #endif // KNOTEPRINTER

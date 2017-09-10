@@ -53,12 +53,12 @@ private:
 
     void writeConfig();
     void readConfig();
-    QListWidget *mListNotes;
+    QListWidget *mListNotes = nullptr;
     QHash<Akonadi::Item::Id, KNote *> mNotes;
-    KNotePrintSelectThemeComboBox *mTheme;
-    QDialogButtonBox *mButtonBox;
-    QPushButton *mUser1Button;
-    bool mPreview;
+    KNotePrintSelectThemeComboBox *mTheme = nullptr;
+    QDialogButtonBox *mButtonBox = nullptr;
+    QPushButton *mUser1Button = nullptr;
+    bool mPreview = false;
 };
 
 #endif // KNOTEPRINTSELECTEDNOTESDIALOG_H

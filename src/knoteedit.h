@@ -104,30 +104,30 @@ private:
     QColor mDefaultBackgroundColor;
     QColor mDefaultForegroundColor;
 
-    KToggleAction *m_textBold;
-    KToggleAction *m_textItalic;
-    KToggleAction *m_textUnderline;
-    KToggleAction *m_textStrikeOut;
+    KToggleAction *m_textBold = nullptr;
+    KToggleAction *m_textItalic = nullptr;
+    KToggleAction *m_textUnderline = nullptr;
+    KToggleAction *m_textStrikeOut = nullptr;
 
-    KToggleAction *m_textAlignLeft;
-    KToggleAction *m_textAlignCenter;
-    KToggleAction *m_textAlignRight;
-    KToggleAction *m_textAlignBlock;
+    KToggleAction *m_textAlignLeft = nullptr;
+    KToggleAction *m_textAlignCenter = nullptr;
+    KToggleAction *m_textAlignRight = nullptr;
+    KToggleAction *m_textAlignBlock = nullptr;
 
-    KToggleAction *m_textList;
-    KToggleAction *m_textSuper;
-    KToggleAction *m_textSub;
+    KToggleAction *m_textList = nullptr;
+    KToggleAction *m_textSuper = nullptr;
+    KToggleAction *m_textSub = nullptr;
 
-    QAction *m_textIncreaseIndent;
-    QAction *m_textDecreaseIndent;
+    QAction *m_textIncreaseIndent = nullptr;
+    QAction *m_textDecreaseIndent = nullptr;
 
-    QAction *m_textColor;
-    KFontAction *m_textFont;
-    KFontSizeAction *m_textSize;
-    KNote *m_note;
-    KActionCollection *m_actions;
-    PimCommon::KActionMenuChangeCase *mChangeCaseActionMenu;
-    bool m_autoIndentMode;
+    QAction *m_textColor = nullptr;
+    KFontAction *m_textFont = nullptr;
+    KFontSizeAction *m_textSize = nullptr;
+    KNote *m_note = nullptr;
+    KActionCollection *m_actions = nullptr;
+    PimCommon::KActionMenuChangeCase *mChangeCaseActionMenu = nullptr;
+    bool m_autoIndentMode = false;
 };
 
 #endif

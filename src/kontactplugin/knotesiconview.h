@@ -42,7 +42,7 @@ protected:
     bool event(QEvent *e) override;
 
 private:
-    KNotesPart *m_part;
+    KNotesPart *m_part = nullptr;
     QHash<Akonadi::Item::Id, KNotesIconViewItem *> mNoteList;
 };
 
@@ -86,7 +86,7 @@ private:
     QPixmap mDefaultPixmap;
 
     Akonadi::Item mItem;
-    KNoteDisplaySettings *mDisplayAttribute;
+    KNoteDisplaySettings *mDisplayAttribute = nullptr;
     bool mReadOnly;
 };
 

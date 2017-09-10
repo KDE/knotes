@@ -50,8 +50,8 @@ private Q_SLOTS:
 private:
     void readConfig();
     void writeConfig();
-    NoteShared::NoteListWidget *mListWidget;
-    QLabel *mCurrentDateTime;
+    NoteShared::NoteListWidget *mListWidget = nullptr;
+    QLabel *mCurrentDateTime = nullptr;
 };
 
 #endif // NOTESAGENTALARMDIALOG_H

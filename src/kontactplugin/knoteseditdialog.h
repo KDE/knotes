@@ -64,10 +64,10 @@ private:
     void init(bool readOnly);
     void readConfig();
     void writeConfig();
-    QLineEdit *mTitleEdit;
-    KNoteEdit *mNoteEdit;
-    KToolBar *mTool;
-    QPushButton *mOkButton;
+    QLineEdit *mTitleEdit = nullptr;
+    KNoteEdit *mNoteEdit = nullptr;
+    KToolBar *mTool = nullptr;
+    QPushButton *mOkButton = nullptr;
 };
 
 #endif // KNOTESEDITDIALOG_H

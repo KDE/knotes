@@ -34,7 +34,7 @@ public:
     QString selectedTheme() const;
 
 private:
-    KNotePrintSelectThemeComboBox *mThemes;
+    KNotePrintSelectThemeComboBox *mThemes = nullptr;
 };
 
 #endif // KNOTEPRINTSELECTTHEMEDIALOG_H

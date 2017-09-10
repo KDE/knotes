@@ -49,10 +49,10 @@ private Q_SLOTS:
 
 private:
     QHash<Akonadi::Item::Id, Akonadi::Item> mNotes;
-    QLabel *mResultSearch;
-    QLineEdit *mSearchLineEdit;
-    QPushButton *mSearchButton;
-    NoteShared::NoteListWidget *mNoteList;
+    QLabel *mResultSearch = nullptr;
+    QLineEdit *mSearchLineEdit = nullptr;
+    QPushButton *mSearchButton = nullptr;
+    NoteShared::NoteListWidget *mNoteList = nullptr;
 };
 
 class KNOTES_EXPORT KNoteFindDialog : public QDialog
@@ -69,7 +69,7 @@ Q_SIGNALS:
 private:
     void writeConfig();
     void readConfig();
-    KNoteFindWidget *mNoteFindWidget;
+    KNoteFindWidget *mNoteFindWidget = nullptr;
 };
 
 #endif // KNOTEFINDDIALOG_H

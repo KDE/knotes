@@ -43,7 +43,7 @@ public:
 private:
     void writeConfig();
     void readConfig();
-    KNotesSelectDeleteNotesListWidget *mSelectedListWidget;
+    KNotesSelectDeleteNotesListWidget *mSelectedListWidget = nullptr;
 };
 
 #endif // KNOTESSELECTDELETENOTESDIALOG_H

@@ -63,9 +63,9 @@ private Q_SLOTS:
     void slotServiceDoubleClicked(const QModelIndex &idx);
 private:
     void readConfig();
-    KHistoryComboBox *m_hostCombo;
-    QTreeView *m_servicesView;
-    QPushButton *mOkButton;
+    KHistoryComboBox *m_hostCombo = nullptr;
+    QTreeView *m_servicesView = nullptr;
+    QPushButton *mOkButton = nullptr;
 };
 }
 

@@ -37,12 +37,12 @@ public:
     void save(NoteShared::NoteDisplayAttribute *attr);
 
 private:
-    KColorButton *kcfg_FgColor;
-    KColorButton *kcfg_BgColor;
-    QCheckBox *kcfg_ShowInTaskbar;
-    QCheckBox *kcfg_RememberDesktop;
-    QSpinBox *kcfg_Width;
-    QSpinBox *kcfg_Height;
+    KColorButton *kcfg_FgColor = nullptr;
+    KColorButton *kcfg_BgColor = nullptr;
+    QCheckBox *kcfg_ShowInTaskbar = nullptr;
+    QCheckBox *kcfg_RememberDesktop = nullptr;
+    QSpinBox *kcfg_Width = nullptr;
+    QSpinBox *kcfg_Height = nullptr;
 };
 
 #endif // KNOTEDISPLAYCONFIGWIDGET_H

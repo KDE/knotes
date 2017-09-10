@@ -38,11 +38,11 @@ public:
     void save(NoteShared::NoteDisplayAttribute *attr, bool &isRichText);
 
 private:
-    QSpinBox *kcfg_TabSize;
-    QCheckBox *kcfg_AutoIndent;
-    QCheckBox *kcfg_RichText;
-    KFontRequester *kcfg_Font;
-    KFontRequester *kcfg_TitleFont;
+    QSpinBox *kcfg_TabSize = nullptr;
+    QCheckBox *kcfg_AutoIndent = nullptr;
+    QCheckBox *kcfg_RichText = nullptr;
+    KFontRequester *kcfg_Font = nullptr;
+    KFontRequester *kcfg_TitleFont = nullptr;
 };
 
 #endif // KNOTEEDITORCONFIGWIDGET_H

@@ -50,8 +50,8 @@ public:
 
     QString mTitle;
     QString mText;
-    bool mRichText;
-    QWidget *mWidget;
+    bool mRichText = false;
+    QWidget *mWidget = nullptr;
 };
 
 CreateNewNoteJob::CreateNewNoteJob(QObject *parent, QWidget *widget)

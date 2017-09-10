@@ -33,7 +33,7 @@ public:
     int activate(const QStringList &args, const QString &workingDir) override;
 
 private:
-    KNotesApp *mMainWindow;
+    KNotesApp *mMainWindow = nullptr;
 };
 
 #endif

@@ -63,10 +63,10 @@ private Q_SLOTS:
 private:
     void clear();
     Akonadi::Item::List mListItem;
-    QTcpServer *mListener;
-    QTimer *mCheckAlarm;
-    NoteShared::NotesChangeRecorder *mNoteRecorder;
-    Akonadi::Session *mSession;
+    QTcpServer *mListener = nullptr;
+    QTimer *mCheckAlarm = nullptr;
+    NoteShared::NotesChangeRecorder *mNoteRecorder = nullptr;
+    Akonadi::Session *mSession = nullptr;
     QPointer<NotesAgentAlarmDialog> mAlarmDialog;
 };
 
