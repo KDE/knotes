@@ -47,10 +47,17 @@ NotesNetworkSender::NotesNetworkSender(QTcpSocket *socket)
 {
     // QObject:: prefix needed, otherwise the KStreamSocket::connect()
     // method is called!!!
-    QObject::connect(m_socket, &QTcpSocket::connected, this, &NotesNetworkSender::slotConnected);
-    QObject::connect(m_socket, QOverload<QAbstractSocket::SocketError>::of(&QTcpSocket::error), this, &NotesNetworkSender::slotError);
-    QObject::connect(m_socket, &QTcpSocket::disconnected, this, &NotesNetworkSender::slotClosed);
-    QObject::connect(m_socket, &QTcpSocket::bytesWritten, this, &NotesNetworkSender::slotWritten);
+    QObject::connect(m_socket, &QTcpSocket::connected,
+                     this, &NotesNetworkSender::slotConnected);
+
+    QObject::connect(m_socket, QOverload<QAbstractSocket::SocketError>::of(&QTcpSocket::error),
+                     this, &NotesNetworkSender::slotError);
+
+    QObject::connect(m_socket, &QTcpSocket::disconnected,
+                     this, &NotesNetworkSender::slotClosed);
+
+    QObject::connect(m_socket, &QTcpSocket::bytesWritten,
+                     this, &NotesNetworkSender::slotWritten);
 }
 
 NotesNetworkSender::~NotesNetworkSender()
@@ -74,7 +81,7 @@ void NotesNetworkSender::setNote(const QString &title, const QString &text)
 void NotesNetworkSender::slotConnected()
 {
     if (m_sender.isEmpty()) {
-        m_note.prepend(m_title + "\n");
+        m_note.prepend(m_title + '\n');
     } else {
         m_note.prepend(m_title + " (" + m_sender + ")\n");
     }
