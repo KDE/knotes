@@ -1,0 +1,7 @@
+EXTRA camelcase,null,qenums
+
+SKIP /theme.desktop
+
+PRIORITY all
+
+STRICT all
