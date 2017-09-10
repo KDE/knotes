@@ -19,7 +19,7 @@
 #ifndef NOTEEDITOR_H
 #define NOTEEDITOR_H
 
-#include <kpimtextedit/richtexteditorwidget.h>
+#include <KPIMTextEdit/RichTextEditorWidget>
 
 namespace NoteShared {
 class NoteEditor : public KPIMTextEdit::RichTextEditorWidget
