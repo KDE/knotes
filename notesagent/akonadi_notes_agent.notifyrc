@@ -71,6 +71,7 @@ Name[sv]=Tog emot en anteckning
 Name[tr]=Bir not alındı
 Name[uk]=Отримано нотатку
 Name[x-test]=xxReceived a notexx
+Name[zh_CN]=收到一则便笺
 Name[zh_TW]=接收到一張便條
 Action=Popup
 
