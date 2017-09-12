@@ -738,8 +738,7 @@ void KNotesPart::slotSaveAs()
     QCheckBox *convert = nullptr;
 
     if (knoteItem->isRichText()) {
-        convert = new QCheckBox(nullptr);
-        convert->setText(i18n("Save note as plain text"));
+        convert = new QCheckBox(i18n("Save note as plain text"), nullptr);
     }
     QPointer<KFileDialog> dlg = new KFileDialog(url, QString(), widget(), convert);
     dlg->setOperationMode(KFileDialog::Saving);
