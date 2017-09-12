@@ -46,6 +46,7 @@ using namespace KCalCore;
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <QTemporaryFile>
+#include <QTimeZone>
 
 #include <QDBusConnection>
 #include <QDBusMessage>
@@ -155,7 +156,7 @@ void KNotesPlugin::processDropEvent(QDropEvent *event)
     }
 
     if (KCalUtils::ICalDrag::canDecode(md)) {
-        KCalCore::MemoryCalendar::Ptr cal(new KCalCore::MemoryCalendar(KDateTime::LocalZone));
+        KCalCore::MemoryCalendar::Ptr cal(new KCalCore::MemoryCalendar(QTimeZone::systemTimeZone()));
         if (KCalUtils::ICalDrag::fromMimeData(md, cal)) {
             KCalCore::Incidence::List incidences = cal->incidences();
             Q_ASSERT(incidences.count());
