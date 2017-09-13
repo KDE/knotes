@@ -62,7 +62,6 @@
 
 #include <KActionCollection>
 #include <KCheckableProxyModel>
-#include <KFileDialog>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KDNSSD/DNSSD/PublicService>
@@ -740,17 +739,17 @@ void KNotesPart::slotSaveAs()
     if (knoteItem->isRichText()) {
         convert = new QCheckBox(i18n("Save note as plain text"), nullptr);
     }
-    QPointer<KFileDialog> dlg = new KFileDialog(url, QString(), widget(), convert);
-    dlg->setOperationMode(KFileDialog::Saving);
-    dlg->setWindowTitle(i18n("Save As"));
-    if (!dlg->exec()) {
-        delete dlg;
-        return;
+    
+    QStringList filters;
+    if (knoteItem->isRichText()) {
+        filters << i18n("Rich text (*.html)");
     }
+    filters << i18n("Plain text (*.txt)");
 
-    const QString fileName = dlg->selectedFile();
-    const bool htmlFormatAndSaveAsHtml = (convert && !convert->isChecked());
-    delete dlg;
+    QString format;
+    const QString fileName = QFileDialog::getSaveFileName(widget(), i18n("Save As"), QString(),
+                                                          filters.join(QStringLiteral(";;")), &format);
+    const bool htmlFormatAndSaveAsHtml = (knoteItem->isRichText() && !format.contains(QStringLiteral("(*.txt)")));
     if (fileName.isEmpty()) {
         return;
     }
