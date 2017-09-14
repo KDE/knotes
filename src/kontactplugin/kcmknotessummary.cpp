@@ -28,15 +28,12 @@
 #include <KAcceleratorManager>
 #include <KCheckableProxyModel>
 #include "knotes_kontact_plugin_debug.h"
-#include <QDialog>
 #include <KLocalizedString>
-#include <QLineEdit>
 #include <KSharedConfig>
 
 #include <QCheckBox>
 #include <QTreeView>
 #include <QVBoxLayout>
-#include <KConfigGroup>
 
 extern "C"
 {

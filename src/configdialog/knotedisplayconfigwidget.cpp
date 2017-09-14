@@ -27,7 +27,6 @@
 #include <KLocalizedString>
 
 #include <QCheckBox>
-#include <QDebug>
 #include <QGridLayout>
 #include <QLabel>
 #include <QSpinBox>

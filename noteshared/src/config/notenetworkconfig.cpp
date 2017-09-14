@@ -23,7 +23,6 @@
 
 #include <QLineEdit>
 #include <KLocalizedString>
-#include <QDialog>
 #include <QSpinBox>
 
 #include <QLabel>

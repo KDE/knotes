@@ -22,7 +22,6 @@
 #include <KLocalizedString>
 #include <KStandardGuiItem>
 
-#include <QHBoxLayout>
 #include <QLabel>
 #include <KSharedConfig>
 #include <QDialogButtonBox>

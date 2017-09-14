@@ -51,7 +51,6 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QTimer>
 
 KNoteCollectionDisplayProxyModel::KNoteCollectionDisplayProxyModel(QObject *parent)
     : QIdentityProxyModel(parent)

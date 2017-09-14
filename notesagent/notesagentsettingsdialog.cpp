@@ -26,7 +26,6 @@
 #include <KAboutData>
 #include <KNotifyConfigWidget>
 
-#include <QHBoxLayout>
 #include <QTabWidget>
 #include <KSharedConfig>
 #include <QDialogButtonBox>

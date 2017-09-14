@@ -45,11 +45,8 @@ using namespace KCalCore;
 #include <QIcon>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <QTemporaryFile>
 #include <QTimeZone>
 
-#include <QDBusConnection>
-#include <QDBusMessage>
 #include <QDropEvent>
 #include <QStandardPaths>
 

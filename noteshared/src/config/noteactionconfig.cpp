@@ -21,10 +21,9 @@
 
 #include <QLineEdit>
 #include <KLocalizedString>
-#include <QDialog>
 
 #include <QLabel>
-#include <QVBoxLayout>
+#include <QGridLayout>
 #include <QWhatsThis>
 using namespace NoteShared;
 

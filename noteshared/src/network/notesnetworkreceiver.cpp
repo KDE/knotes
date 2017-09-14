@@ -40,7 +40,6 @@
 #include <QTimer>
 #include <QTextCodec>
 #include "noteshared_debug.h"
-#include <KLocalizedString>
 #include <QLocale>
 
 // Maximum note size in chars we are going to accept,
