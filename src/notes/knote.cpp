@@ -75,7 +75,7 @@
 
 //#define DEBUG_SAVE_NOTE 1
 
-KNote::KNote(const QDomDocument &buildDoc, const Akonadi::Item &item, bool allowDebugBaloo, QWidget *parent)
+KNote::KNote(const QDomDocument &buildDoc, const Akonadi::Item &item, bool allowAkonadiSearchDebug, QWidget *parent)
     : QFrame(parent, Qt::FramelessWindowHint)
     , mItem(item)
     , m_label(nullptr)
@@ -85,7 +85,7 @@ KNote::KNote(const QDomDocument &buildDoc, const Akonadi::Item &item, bool allow
     , m_editor(nullptr)
     , m_kwinConf(KSharedConfig::openConfig(QStringLiteral("kwinrc")))
     , mDisplayAttribute(new KNoteDisplaySettings)
-    , mAllowDebugAkonadiSearch(allowDebugBaloo)
+    , mAllowDebugAkonadiSearch(allowAkonadiSearchDebug)
 {
     if (mItem.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
         mDisplayAttribute->setDisplayAttribute(mItem.attribute<NoteShared::NoteDisplayAttribute>());
