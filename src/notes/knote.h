@@ -117,7 +117,7 @@ private Q_SLOTS:
 
     void slotRequestNewNote();
     void slotNoteSaved(KJob *job);
-    void slotDebugBaloo();
+    void slotDebugAkonadiSearch();
 
 private:
     void updateKeepAboveBelow(bool save = true);
@@ -161,7 +161,7 @@ private:
     KSharedConfig::Ptr m_kwinConf;
 
     KNoteDisplaySettings *mDisplayAttribute = nullptr;
-    bool mAllowDebugBaloo;
+    bool mAllowDebugAkonadiSearch;
 };
 
 #endif

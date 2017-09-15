@@ -108,7 +108,7 @@ private:
     NoteShared::NotesChangeRecorder *mNoteRecorder = nullptr;
     NoteShared::NotesAkonadiTreeModel *mNoteTreeModel = nullptr;
     QPointer<KNoteFindDialog> mFindDialog;
-    bool mDebugBaloo = false;
+    bool mDebugAkonadiSearch = false;
 };
 
 #endif

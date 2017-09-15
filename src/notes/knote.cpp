@@ -85,7 +85,7 @@ KNote::KNote(const QDomDocument &buildDoc, const Akonadi::Item &item, bool allow
     , m_editor(nullptr)
     , m_kwinConf(KSharedConfig::openConfig(QStringLiteral("kwinrc")))
     , mDisplayAttribute(new KNoteDisplaySettings)
-    , mAllowDebugBaloo(allowDebugBaloo)
+    , mAllowDebugAkonadiSearch(allowDebugBaloo)
 {
     if (mItem.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
         mDisplayAttribute->setDisplayAttribute(mItem.attribute<NoteShared::NoteDisplayAttribute>());
@@ -758,11 +758,11 @@ void KNote::createActions()
     foreach (QAction *action, actionCollection()->actions()) {
         action->setShortcutContext(Qt::WidgetWithChildrenShortcut);
     }
-    if (mAllowDebugBaloo) {
+    if (mAllowDebugAkonadiSearch) {
         //Don't translate it it's just for debugging
-        action = new QAction(QStringLiteral("Debug Baloo..."), this);
-        actionCollection()->addAction(QStringLiteral("debug_baloo"), action);
-        connect(action, &QAction::triggered, this, &KNote::slotDebugBaloo);
+        action = new QAction(QStringLiteral("Debug Akonadi Search..."), this);
+        actionCollection()->addAction(QStringLiteral("debug_akonadi_search"), action);
+        connect(action, &QAction::triggered, this, &KNote::slotDebugAkonadiSearch);
     }
 }
 
@@ -1217,7 +1217,7 @@ Akonadi::Item KNote::item() const
     return mItem;
 }
 
-void KNote::slotDebugBaloo()
+void KNote::slotDebugAkonadiSearch()
 {
     QPointer<Akonadi::Search::AkonadiSearchDebugDialog> dlg = new Akonadi::Search::AkonadiSearchDebugDialog;
     dlg->setAkonadiId(mItem.id());
