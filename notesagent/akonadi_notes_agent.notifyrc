@@ -34,7 +34,6 @@ Comment[sv]=Anteckningsmodul
 Comment[tr]=Not Aracı
 Comment[uk]=Агент нотаток
 Comment[x-test]=xxNotes Agentxx
-Comment[zh_CN]=便笺代理
 Comment[zh_TW]=便條代理程式
 
 [Event/receivednotes]

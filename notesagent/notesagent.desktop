@@ -33,7 +33,6 @@ Name[sv]=Anteckningsmodul
 Name[tr]=Not Aracı
 Name[uk]=Агент нотаток
 Name[x-test]=xxNotes Agentxx
-Name[zh_CN]=便笺代理
 Name[zh_TW]=便條代理程式
 Comment=Adds notes received via network and handles note alarm notifications
 Comment[bs]=Dodaje bilješke primljene preko mreže i rukuje napomenama alarma bilješki
