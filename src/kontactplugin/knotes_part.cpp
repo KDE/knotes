@@ -97,7 +97,7 @@ KNotesPart::KNotesPart(QObject *parent)
     mNewNote = new QAction(QIcon::fromTheme(QStringLiteral("knotes")),
                            i18nc("@action:inmenu create new popup note", "&New"), this);
     actionCollection()->addAction(QStringLiteral("file_new"), mNewNote);
-    connect(mNewNote, SIGNAL(triggered(bool)), SLOT(newNote()));
+    connect(mNewNote, &QAction::triggered, this, [this]() {newNote(); });
     actionCollection()->setDefaultShortcut(mNewNote, QKeySequence(Qt::CTRL + Qt::Key_N));
     //mNewNote->setHelpText(
     //            i18nc( "@info:status", "Create a new popup note" ) );
@@ -108,7 +108,7 @@ KNotesPart::KNotesPart(QObject *parent)
     mNoteEdit = new QAction(QIcon::fromTheme(QStringLiteral("document-edit")),
                             i18nc("@action:inmenu", "Edit..."), this);
     actionCollection()->addAction(QStringLiteral("edit_note"), mNoteEdit);
-    connect(mNoteEdit, SIGNAL(triggered(bool)), SLOT(editNote()));
+    connect(mNoteEdit, &QAction::triggered, this, [this]() { editNote(); });
     //mNoteEdit->setHelpText(
     //            i18nc( "@info:status", "Edit popup note" ) );
     mNoteEdit->setWhatsThis(
@@ -733,13 +733,6 @@ void KNotesPart::slotSaveAs()
     }
     KNotesIconViewItem *knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
 
-    QUrl url;
-    QCheckBox *convert = nullptr;
-
-    if (knoteItem->isRichText()) {
-        convert = new QCheckBox(i18n("Save note as plain text"), nullptr);
-    }
-    
     QStringList filters;
     if (knoteItem->isRichText()) {
         filters << i18n("Rich text (*.html)");
@@ -749,10 +742,10 @@ void KNotesPart::slotSaveAs()
     QString format;
     const QString fileName = QFileDialog::getSaveFileName(widget(), i18n("Save As"), QString(),
                                                           filters.join(QStringLiteral(";;")), &format);
-    const bool htmlFormatAndSaveAsHtml = (knoteItem->isRichText() && !format.contains(QStringLiteral("(*.txt)")));
     if (fileName.isEmpty()) {
         return;
     }
+    const bool htmlFormatAndSaveAsHtml = (knoteItem->isRichText() && !format.contains(QStringLiteral("(*.txt)")));
 
     QFile file(fileName);
     if (file.exists() &&

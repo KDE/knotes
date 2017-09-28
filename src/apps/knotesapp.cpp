@@ -98,7 +98,7 @@ KNotesApp::KNotesApp()
                                   i18n("New Note"), this);
     actionCollection()->addAction(QStringLiteral("new_note"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_N));
-    connect(action, SIGNAL(triggered()), SLOT(newNote()));
+    connect(action, &QAction::triggered, this, [this]() { newNote(); });
 
     action = new QAction(QIcon::fromTheme(QStringLiteral("edit-paste")),
                          i18n("New Note From Clipboard"), this);
