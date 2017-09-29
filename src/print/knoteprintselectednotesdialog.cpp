@@ -39,8 +39,8 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     , mPreview(false)
 {
     setWindowTitle(i18n("Select notes"));
-    mButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    mButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     QPushButton *okButton = mButtonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
