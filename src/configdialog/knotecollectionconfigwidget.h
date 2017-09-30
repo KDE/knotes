@@ -25,6 +25,8 @@
 #include <QModelIndex>
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
 class KRecursiveFilterProxyModel;
+#else
+class QSortFilterProxyModel;
 #endif
 namespace Akonadi {
 class EntityTreeModel;
