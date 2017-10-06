@@ -83,7 +83,7 @@ KNotesApp::KNotesApp()
 {
     Akonadi::ControlGui::widgetNeedsAkonadi(this);
 
-    mDebugAkonadiSearch = !qEnvironmentVariableIsEmpty("AKONADI_SEARCH_DEBUG");
+    mDebugAkonadiSearch = !qEnvironmentVariableIsEmpty("KDEPIM_DEBUGGING");
 
     if (KNotesGlobalConfig::self()->autoCreateResourceOnStart()) {
         NoteShared::LocalResourceCreator *creator = new NoteShared::LocalResourceCreator(this);
