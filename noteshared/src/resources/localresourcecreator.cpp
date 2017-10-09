@@ -109,6 +109,7 @@ void LocalResourceCreator::slotSyncDone(KJob *job)
     }
 
     qCWarning(NOTESHARED_LOG) << "Instance synchronized";
+    deleteLater();
 }
 
 void LocalResourceCreator::finishCreateResource()
