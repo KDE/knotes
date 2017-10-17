@@ -23,28 +23,26 @@
 #include "knotes_options.h"
 #include "knotes-version.h"
 #include "apps/application.h"
+#include <KLocalizedString>
+#include <kdelibs4configmigrator.h>
 #include "notes/knotesmigrateapplication.h"
 
 #include <KAboutData>
 #include <KCrash>
 #include <KLocalizedString>
-#include <KXErrorHandler>
 
 #include <QApplication>
 #include <QCommandLineParser>
+#include <KCrash>
 
-#if KDEPIM_HAVE_X11
-#include <X11/Xlib.h>
-#include <X11/Xatom.h>
-#include <qx11info_x11.h>
-#endif
-
-void remove_sm_from_client_leader();
 void knotesOptions(QCommandLineParser *parser);
 void knotesAuthors(KAboutData &aboutData);
 
 int main(int argc, char *argv[])
 {
+    // Disable session management
+    qunsetenv("SESSION_MANAGER");
+
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     Application app(argc, &argv);
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
@@ -72,42 +70,7 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    remove_sm_from_client_leader();
-
     return app.exec();
-}
-
-void remove_sm_from_client_leader()
-{
-#if KDEPIM_HAVE_X11
-    Atom type;
-    int format, status;
-    unsigned long nitems = 0;
-    unsigned long extra = 0;
-    unsigned char *data = nullptr;
-
-    Atom atoms[ 2 ];
-    char *atom_names[ 2 ] = {
-        (char *)"WM_CLIENT_LEADER",
-        (char *)"SM_CLIENT_ID"
-    };
-
-    XInternAtoms(QX11Info::display(), atom_names, 2, False, atoms);
-
-    QWidget w;
-    KXErrorHandler handler; // ignore X errors
-    status = XGetWindowProperty(QX11Info::display(), w.winId(), atoms[ 0 ], 0,
-                                10000, false, XA_WINDOW, &type, &format, &nitems,
-                                &extra, &data);
-
-    if ((status == Success) && !handler.error(false)) {
-        if (data && (nitems > 0)) {
-            Window leader = *((Window *)data);
-            XDeleteProperty(QX11Info::display(), leader, atoms[ 1 ]);
-        }
-        XFree(data);
-    }
-#endif
 }
 
 void knotesAuthors(KAboutData &aboutData)
