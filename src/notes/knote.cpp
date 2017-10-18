@@ -718,11 +718,11 @@ void KNote::createActions()
                          this);
     actionCollection()->addAction(QStringLiteral("save_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotSaveAs);
-    actionCollection()->addAction(KStandardAction::Print, QStringLiteral("print_note"),
-                                  this, SLOT(slotPrint()));
+    action = actionCollection()->addAction(KStandardAction::Print, QStringLiteral("print_note"));
+    connect(action, &QAction::triggered, this, &KNote::slotPrint);
 
-    actionCollection()->addAction(KStandardAction::PrintPreview, QStringLiteral("print_preview_note"),
-                                  this, SLOT(slotPrintPreview()));
+    action = actionCollection()->addAction(KStandardAction::PrintPreview, QStringLiteral("print_preview_note"));
+    connect(action, &QAction::triggered, this, &KNote::slotPrintPreview);
 
     action = new QAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Preferences..."), this);
     actionCollection()->addAction(QStringLiteral("configure_note"), action);

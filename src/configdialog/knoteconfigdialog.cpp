@@ -210,7 +210,7 @@ KNoteMiscConfig::KNoteMiscConfig(QWidget *parent)
     howItWorks->setContextMenuPolicy(Qt::NoContextMenu);
     lay->addStretch();
     load();
-    connect(mDefaultTitle, SIGNAL(textChanged(QString)), SLOT(changed()));
+    connect(mDefaultTitle, &QLineEdit::textChanged, this, QOverload<>::of(&KCModule::changed));
 }
 
 void KNoteMiscConfig::load()
@@ -317,7 +317,7 @@ KNoteCollectionConfig::KNoteCollectionConfig(QWidget *parent)
     QHBoxLayout *lay = new QHBoxLayout(this);
     mCollectionConfigWidget = new KNoteCollectionConfigWidget;
     lay->addWidget(mCollectionConfigWidget);
-    connect(mCollectionConfigWidget, SIGNAL(emitChanged(bool)), this, SLOT(changed()));
+    connect(mCollectionConfigWidget, &KNoteCollectionConfigWidget::emitChanged, this, QOverload<>::of(&KCModule::changed));
     load();
 }
 
