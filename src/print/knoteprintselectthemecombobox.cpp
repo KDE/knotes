@@ -50,7 +50,7 @@ void KNotePrintSelectThemeComboBox::loadThemes()
         }
     }
 
-    Q_FOREACH (const QString &directory, themesDirectories) {
+    for (const QString &directory : qAsConst(themesDirectories)) {
         QDirIterator dirIt(directory, QStringList(), QDir::AllDirs | QDir::NoDotAndDotDot);
         QStringList alreadyLoadedThemeName;
         while (dirIt.hasNext()) {

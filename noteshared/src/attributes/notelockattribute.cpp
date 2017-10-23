@@ -44,7 +44,7 @@ void NoteLockAttribute::deserialize(const QByteArray &data)
 
 QByteArray NoteLockAttribute::serialized() const
 {
-    return "-";
+    return QByteArrayLiteral("-");
 }
 
 QByteArray NoteLockAttribute::type() const

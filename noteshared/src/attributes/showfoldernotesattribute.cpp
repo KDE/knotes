@@ -41,7 +41,7 @@ QByteArray ShowFolderNotesAttribute::type() const
 
 QByteArray ShowFolderNotesAttribute::serialized() const
 {
-    return "-";
+    return QByteArrayLiteral("-");
 }
 
 void ShowFolderNotesAttribute::deserialize(const QByteArray &data)

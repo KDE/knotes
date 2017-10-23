@@ -396,7 +396,7 @@ void KNoteEdit::slotTextBackgroundColor()
     if (m_note) {
         m_note->setBlockSave(true);
     }
-    QColor c = QColorDialog::getColor(textBackgroundColor(), this);
+    const QColor c = QColorDialog::getColor(textBackgroundColor(), this);
     if (c.isValid()) {
         setTextBackgroundColor(c);
     }

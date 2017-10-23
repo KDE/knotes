@@ -144,6 +144,6 @@ quint16 NoteHostDialog::port() const
 void NoteHostDialog::slotServiceDoubleClicked(const QModelIndex &idx)
 {
     KDNSSD::RemoteService::Ptr srv = idx.data(KDNSSD::ServiceModel::ServicePtrRole).value<KDNSSD::RemoteService::Ptr>();
-    m_hostCombo->lineEdit()->setText(srv->hostName() + QLatin1String(":") + QString::number(srv->port()));
+    m_hostCombo->lineEdit()->setText(srv->hostName() + QLatin1Char(':') + QString::number(srv->port()));
     accept();
 }
