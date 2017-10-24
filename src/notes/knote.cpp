@@ -979,7 +979,7 @@ void KNote::setColor(const QColor &fg, const QColor &bg)
     // better: from light(150) to light(100) to light(75)
     // QLinearGradient g( width()/2, 0, width()/2, height() );
     // g.setColorAt( 0, bg );
-    // g.setColorAt( 1, bg.dark(150) );
+    // g.setColorAt( 1, bg.darker(150) );
 
     p.setColor(QPalette::Window, bg);
     // p.setBrush( QPalette::Window,     g );
@@ -989,7 +989,7 @@ void KNote::setColor(const QColor &fg, const QColor &bg)
     p.setColor(QPalette::WindowText, fg);
     p.setColor(QPalette::Text, fg);
 
-    p.setColor(QPalette::Button, bg.dark(116));
+    p.setColor(QPalette::Button, bg.darker(116));
     p.setColor(QPalette::ButtonText, fg);
 
     //p.setColor( QPalette::Highlight,  bg );
@@ -998,16 +998,16 @@ void KNote::setColor(const QColor &fg, const QColor &bg)
     // order: Light, Midlight, Button, Mid, Dark, Shadow
 
     // the shadow
-    p.setColor(QPalette::Light, bg.light(180));
-    p.setColor(QPalette::Midlight, bg.light(150));
-    p.setColor(QPalette::Mid, bg.light(150));
-    p.setColor(QPalette::Dark, bg.dark(108));
-    p.setColor(QPalette::Shadow, bg.dark(116));
+    p.setColor(QPalette::Light, bg.lighter(180));
+    p.setColor(QPalette::Midlight, bg.lighter(150));
+    p.setColor(QPalette::Mid, bg.lighter(150));
+    p.setColor(QPalette::Dark, bg.darker(108));
+    p.setColor(QPalette::Shadow, bg.darker(116));
 
     setPalette(p);
 
     // darker values for the active label
-    p.setColor(QPalette::Active, QPalette::Base, bg.dark(116));
+    p.setColor(QPalette::Active, QPalette::Base, bg.darker(116));
 
     m_label->setPalette(p);
 
