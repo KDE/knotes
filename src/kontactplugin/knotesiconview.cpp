@@ -177,9 +177,7 @@ void KNotesIconViewItem::slotNoteSaved(KJob *job)
     }
 }
 
-void KNotesIconViewItem::setChangeIconTextAndDescription(const QString &iconText,
-                                                         const QString &description,
-                                                         int position)
+void KNotesIconViewItem::setChangeIconTextAndDescription(const QString &iconText, const QString &description, int position)
 {
     setIconText(iconText, false);
     saveNoteContent(iconText, description, position);

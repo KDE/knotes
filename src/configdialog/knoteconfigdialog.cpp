@@ -279,8 +279,8 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent)
 
 void KNotePrintConfig::slotDownloadNewThemes()
 {
-    QPointer<KNS3::DownloadDialog> downloadThemesDialog =
-        new KNS3::DownloadDialog(QStringLiteral("knotes_printing_theme.knsrc"));
+    QPointer<KNS3::DownloadDialog> downloadThemesDialog
+        = new KNS3::DownloadDialog(QStringLiteral("knotes_printing_theme.knsrc"));
 
     if (downloadThemesDialog->exec()) {
         if (!downloadThemesDialog->changedEntries().isEmpty()) {

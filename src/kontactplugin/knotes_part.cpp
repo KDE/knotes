@@ -97,7 +97,9 @@ KNotesPart::KNotesPart(QObject *parent)
     mNewNote = new QAction(QIcon::fromTheme(QStringLiteral("knotes")),
                            i18nc("@action:inmenu create new popup note", "&New"), this);
     actionCollection()->addAction(QStringLiteral("file_new"), mNewNote);
-    connect(mNewNote, &QAction::triggered, this, [this]() {newNote(); });
+    connect(mNewNote, &QAction::triggered, this, [this]() {
+        newNote();
+    });
     actionCollection()->setDefaultShortcut(mNewNote, QKeySequence(Qt::CTRL + Qt::Key_N));
     //mNewNote->setHelpText(
     //            i18nc( "@info:status", "Create a new popup note" ) );
@@ -108,7 +110,9 @@ KNotesPart::KNotesPart(QObject *parent)
     mNoteEdit = new QAction(QIcon::fromTheme(QStringLiteral("document-edit")),
                             i18nc("@action:inmenu", "Edit..."), this);
     actionCollection()->addAction(QStringLiteral("edit_note"), mNoteEdit);
-    connect(mNoteEdit, &QAction::triggered, this, [this]() { editNote(); });
+    connect(mNoteEdit, &QAction::triggered, this, [this]() {
+        editNote();
+    });
     //mNoteEdit->setHelpText(
     //            i18nc( "@info:status", "Edit popup note" ) );
     mNoteEdit->setWhatsThis(
@@ -272,8 +276,8 @@ void KNotesPart::slotRowInserted(const QModelIndex &parent, int start, int end)
     for (int i = start; i <= end; ++i) {
         if (mNoteTreeModel->hasIndex(i, 0, parent)) {
             const QModelIndex child = mNoteTreeModel->index(i, 0, parent);
-            Akonadi::Collection parentCollection =
-                mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
+            Akonadi::Collection parentCollection
+                = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
             if (parentCollection.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
                 Akonadi::Item item
                     = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
@@ -378,13 +382,13 @@ void KNotesPart::killNote(Akonadi::Item::Id id)
 void KNotesPart::killNote(Akonadi::Item::Id id, bool force)
 {
     KNotesIconViewItem *note = mNotesWidget->notesView()->iconView(id);
-    if (note &&
-        ((!force && KMessageBox::warningContinueCancelList(
-             mNotesWidget,
-             i18nc("@info", "Do you really want to delete this note?"),
-             QStringList(note->realName()),
-             i18nc("@title:window", "Confirm Delete"),
-             KStandardGuiItem::del()) == KMessageBox::Continue) || force)) {
+    if (note
+        && ((!force && KMessageBox::warningContinueCancelList(
+                 mNotesWidget,
+                 i18nc("@info", "Do you really want to delete this note?"),
+                 QStringList(note->realName()),
+                 i18nc("@title:window", "Confirm Delete"),
+                 KStandardGuiItem::del()) == KMessageBox::Continue) || force)) {
         Akonadi::ItemDeleteJob *job = new Akonadi::ItemDeleteJob(note->item());
         connect(job, &Akonadi::ItemDeleteJob::result, this, &KNotesPart::slotDeleteNotesFinished);
     }
@@ -489,9 +493,9 @@ void KNotesPart::popupRMB(QListWidgetItem *item, const QPoint &pos, const QPoint
     if (mNotesWidget->notesView()->itemAt(pos)) {
         contextMenu->addAction(mNewNote);
         const bool uniqueNoteSelected = (mNotesWidget->notesView()->selectedItems().count() == 1);
-        const bool readOnly = uniqueNoteSelected ?
-            static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->selectedItems().at(0))->readOnly() :
-            false;
+        const bool readOnly = uniqueNoteSelected
+                              ? static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->selectedItems().at(0))->readOnly()
+                              : false;
 
         if (uniqueNoteSelected) {
             if (!readOnly) {
@@ -596,8 +600,8 @@ void KNotesPart::slotOnCurrentChanged()
     mSaveAs->setEnabled(uniqueNoteSelected);
     mReadOnly->setEnabled(uniqueNoteSelected);
     if (uniqueNoteSelected) {
-        const bool readOnly =
-            static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->selectedItems().at(0))->readOnly();
+        const bool readOnly
+            = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->selectedItems().at(0))->readOnly();
         mReadOnly->setChecked(readOnly);
         mNoteEdit->setText(readOnly ? i18n("Show Note...") : i18nc("@action:inmenu", "Edit..."));
     } else {
@@ -694,8 +698,8 @@ void KNotesPart::slotSetAlarm()
         bool needToModify = true;
         QDateTime dateTime = dlg->alarm();
         if (dateTime.isValid()) {
-            NoteShared::NoteAlarmAttribute *attribute =
-                item.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
+            NoteShared::NoteAlarmAttribute *attribute
+                = item.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
             attribute->setDateTime(dateTime);
         } else {
             if (item.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
@@ -748,8 +752,8 @@ void KNotesPart::slotSaveAs()
     const bool htmlFormatAndSaveAsHtml = (knoteItem->isRichText() && !format.contains(QStringLiteral("(*.txt)")));
 
     QFile file(fileName);
-    if (file.exists() &&
-        KMessageBox::warningContinueCancel(
+    if (file.exists()
+        && KMessageBox::warningContinueCancel(
             widget(),
             i18n("<qt>A file named <b>%1</b> already exists.<br />"
                  "Are you sure you want to overwrite it?</qt>",

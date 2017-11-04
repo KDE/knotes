@@ -34,12 +34,12 @@ class KNote;
 class KNoteFindDialog;
 class KNotesAkonadiTray;
 namespace NoteShared {
-  class NotesChangeRecorder;
-  class NotesAkonadiTreeModel;
+class NotesChangeRecorder;
+class NotesAkonadiTreeModel;
 }
 
 namespace KDNSSD {
-  class PublicService;
+class PublicService;
 }
 
 class QMenu;

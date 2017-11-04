@@ -33,16 +33,16 @@
 #include <KViewStateMaintainer>
 
 namespace NoteShared {
-  class NotesChangeRecorder;
-  class NotesAkonadiTreeModel;
+class NotesChangeRecorder;
+class NotesAkonadiTreeModel;
 }
 
 namespace Akonadi {
-  class ETMViewStateSaver;
+class ETMViewStateSaver;
 }
 
 namespace KontactInterface {
-  class Plugin;
+class Plugin;
 }
 
 class KCheckableProxyModel;

@@ -34,18 +34,18 @@
 class KNoteFindDialog;
 class KNotesWidget;
 namespace NoteShared {
-  class NotesAkonadiTreeModel;
-  class NotesChangeRecorder;
+class NotesAkonadiTreeModel;
+class NotesChangeRecorder;
 }
 
 namespace Akonadi {
-  class ETMViewStateSaver;
+class ETMViewStateSaver;
 }
 
 class KCheckableProxyModel;
 class KToggleAction;
 namespace KDNSSD {
-  class PublicService;
+class PublicService;
 }
 
 class KNotesPart : public KParts::ReadOnlyPart

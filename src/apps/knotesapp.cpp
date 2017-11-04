@@ -98,7 +98,9 @@ KNotesApp::KNotesApp()
                                   i18n("New Note"), this);
     actionCollection()->addAction(QStringLiteral("new_note"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_N));
-    connect(action, &QAction::triggered, this, [this]() { newNote(); });
+    connect(action, &QAction::triggered, this, [this]() {
+        newNote();
+    });
 
     action = new QAction(QIcon::fromTheme(QStringLiteral("edit-paste")),
                          i18n("New Note From Clipboard"), this);
@@ -274,8 +276,8 @@ void KNotesApp::slotRowInserted(const QModelIndex &parent, int start, int end)
             const QModelIndex child = mNoteTreeModel->index(i, 0, parent);
             Akonadi::Item item
                 = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
-            Akonadi::Collection parentCollection =
-                mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
+            Akonadi::Collection parentCollection
+                = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
             if (parentCollection.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
                 createNote(item);
                 needUpdate = true;
