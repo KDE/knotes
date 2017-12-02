@@ -148,7 +148,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     mCollectionFilter = new KRecursiveFilterProxyModel(this);
 #else
     mCollectionFilter = new QSortFilterProxyModel(this);
-    mCollectionFilter->setRecursiveFiltering(true);
+    mCollectionFilter->setRecursiveFilteringEnabled(true);
 #endif
     mCollectionFilter->setSourceModel(mDisplayNotifierProxyModel);
     mCollectionFilter->setDynamicSortFilter(true);
