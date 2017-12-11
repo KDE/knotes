@@ -548,7 +548,7 @@ void KNotesApp::slotPreferences()
 {
     // create a new preferences dialog...
     KNoteConfigDialog *dialog = new KNoteConfigDialog(i18n("Settings"), this);
-    connect(dialog, SIGNAL(configCommitted()), this, SLOT(slotConfigUpdated()));
+    connect(dialog, QOverload<>::of(&KCMultiDialog::configCommitted), this, &KNotesApp::slotConfigUpdated);
     dialog->show();
 }
 

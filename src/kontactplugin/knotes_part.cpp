@@ -241,8 +241,8 @@ KNotesPart::KNotesPart(QObject *parent)
     actionCollection()->addAction(QStringLiteral("focus_to_quickseach"), mQuickSearchAction);
     connect(mQuickSearchAction, &QAction::triggered, mNotesWidget, &KNotesWidget::slotFocusQuickSearch);
 
-    connect(mNotesWidget->notesView(), SIGNAL(itemDoubleClicked(QListWidgetItem*)),
-            this, SLOT(editNote(QListWidgetItem*)));
+    connect(mNotesWidget->notesView(), &QListWidget::itemDoubleClicked,
+            this, QOverload<QListWidgetItem *>::of(&KNotesPart::editNote));
 
     connect(mNotesWidget->notesView(), &QListWidget::itemSelectionChanged,
             this, &KNotesPart::slotOnCurrentChanged);
@@ -635,7 +635,7 @@ void KNotesPart::slotPreferences()
 {
     // create a new preferences dialog...
     KNoteConfigDialog *dialog = new KNoteConfigDialog(i18n("Settings"), widget());
-    connect(dialog, SIGNAL(configCommitted()), this, SLOT(slotConfigUpdated()));
+    connect(dialog, QOverload<>::of(&KCMultiDialog::configCommitted), this, &KNotesPart::slotConfigUpdated);
     dialog->show();
 }
 
