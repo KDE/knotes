@@ -220,8 +220,8 @@ KNotesPart::KNotesPart(QObject *parent)
     connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved,
             this, &KNotesPart::slotItemRemoved);
 
-    connect(mNoteRecorder->changeRecorder(), SIGNAL(collectionChanged(Akonadi::Collection,QSet<QByteArray>)),
-            SLOT(slotCollectionChanged(Akonadi::Collection,QSet<QByteArray>)));
+    connect(mNoteRecorder->changeRecorder(), QOverload<const Akonadi::Collection &, const QSet<QByteArray> &>::of(&Akonadi::ChangeRecorder::collectionChanged),
+            this, &KNotesPart::slotCollectionChanged);
 
     mSelectionModel = new QItemSelectionModel(mNoteTreeModel);
     mModelProxy = new KCheckableProxyModel(this);

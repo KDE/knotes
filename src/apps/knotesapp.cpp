@@ -202,8 +202,8 @@ KNotesApp::KNotesApp()
     connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved,
             this, &KNotesApp::slotItemRemoved);
 
-    connect(mNoteRecorder->changeRecorder(), SIGNAL(collectionChanged(Akonadi::Collection,QSet<QByteArray>)),
-            SLOT(slotCollectionChanged(Akonadi::Collection,QSet<QByteArray>)));
+    connect(mNoteRecorder->changeRecorder(), QOverload<const Akonadi::Collection &, const QSet<QByteArray> &>::of(&Akonadi::ChangeRecorder::collectionChanged),
+            this, &KNotesApp::slotCollectionChanged);
 
     connect(qApp, &QGuiApplication::commitDataRequest,
             this, &KNotesApp::slotCommitData, Qt::DirectConnection);
@@ -297,8 +297,8 @@ void KNotesApp::createNote(const Akonadi::Item &item)
         mNotes.insert(item.id(), note);
         connect(note, &KNote::sigShowNextNote,
                 this, &KNotesApp::slotWalkThroughNotes);
-        connect(note, SIGNAL(sigRequestNewNote()),
-                SLOT(newNote()));
+        connect(note, &KNote::sigRequestNewNote,
+                this, [this] { newNote(); });
         connect(note, &KNote::sigNameChanged,
                 this, &KNotesApp::updateNoteActions);
         connect(note, &KNote::sigColorChanged,
