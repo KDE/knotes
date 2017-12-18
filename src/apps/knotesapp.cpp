@@ -298,7 +298,9 @@ void KNotesApp::createNote(const Akonadi::Item &item)
         connect(note, &KNote::sigShowNextNote,
                 this, &KNotesApp::slotWalkThroughNotes);
         connect(note, &KNote::sigRequestNewNote,
-                this, [this] { newNote(); });
+                this, [this] {
+            newNote();
+        });
         connect(note, &KNote::sigNameChanged,
                 this, &KNotesApp::updateNoteActions);
         connect(note, &KNote::sigColorChanged,
