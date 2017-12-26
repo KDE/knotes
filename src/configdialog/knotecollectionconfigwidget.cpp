@@ -84,7 +84,7 @@ bool KNoteCollectionDisplayProxyModel::setData(const QModelIndex &index, const Q
             const Akonadi::Collection collection
                 = data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
             mDisplayCollection[collection] = (value == Qt::Checked);
-            emit dataChanged(index, index);
+            Q_EMIT dataChanged(index, index);
             return true;
         }
     }
