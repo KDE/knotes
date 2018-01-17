@@ -149,3 +149,10 @@ StartupNotify=true
 X-DBUS-StartupType=Unique
 X-DBUS-ServiceName=org.kde.knotes
 Categories=Qt;KDE;Utility;TextTools;X-KDE-Utilities-Desktop;
+Actions=NewNote
+
+[Desktop Action NewNote]
+Name=New Note
+Icon=mail-message-new
+Exec=knotes
+
