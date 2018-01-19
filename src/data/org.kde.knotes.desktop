@@ -153,6 +153,13 @@ Actions=NewNote
 
 [Desktop Action NewNote]
 Name=New Note
+Name[ca]=Nota nova
+Name[nl]=Nieuwe notitie
+Name[pt]=Nova Nota
+Name[sl]=Novo sporočilce
+Name[sv]=Ny anteckning
+Name[uk]=Нова нотатка
+Name[x-test]=xxNew Notexx
 Icon=mail-message-new
 Exec=knotes
 
