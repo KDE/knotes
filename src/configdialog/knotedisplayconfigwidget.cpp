@@ -103,7 +103,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
         layout->addWidget(kcfg_RememberDesktop, 3, 0);
 #endif
     }
-    layout->setRowStretch(4, 1);
+    layout->setRowStretch(6, 1);
 }
 
 KNoteDisplayConfigWidget::~KNoteDisplayConfigWidget()
