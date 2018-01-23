@@ -161,6 +161,7 @@ Name[sl]=Novo sporočilce
 Name[sv]=Ny anteckning
 Name[uk]=Нова нотатка
 Name[x-test]=xxNew Notexx
+Name[zh_CN]=新建便笺
 Icon=mail-message-new
 Exec=knotes
 
