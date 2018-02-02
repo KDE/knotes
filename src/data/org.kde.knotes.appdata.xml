@@ -40,6 +40,7 @@
   <name xml:lang="zh-CN">KNotes</name>
   <name xml:lang="zh-TW">螢幕便利貼_KNotes</name>
   <summary>Sticky notes application</summary>
+  <summary xml:lang="ar">تطبيق الملاحظات اللاصقة</summary>
   <summary xml:lang="ca">Aplicació per a notes adhesives</summary>
   <summary xml:lang="ca-valencia">Aplicació per a notes adhesives</summary>
   <summary xml:lang="cs">Aplikace s poznámkami na lepicím štítku</summary>
@@ -65,7 +66,7 @@
       KNotes is a program that lets you write the computer equivalent of sticky notes.
       The notes are saved automatically when you exit the program, and they display when you open the program.
     </p>
-    <p xml:lang="ar">«ملاحظاتك» هو برنامج يسمح لك بكتابة المقابل البرمجيّ للملاحظات اللاصقة. تُحفظ الملاحظات آليًّا عند خروجك من البرنامج وتُعرض عندما تفتحه.</p>
+    <p xml:lang="ar">«ملاحظاتك» هو برنامج يتيح لك كعتابة المقابل البرمجيّ للملاحظات اللاصقة. تُحفظ الملاحظات آليًّا عند خروجك من البرنامج وتُعرض عندما تفتحه.</p>
     <p xml:lang="ca">El KNotes és un programa que permet escriure l'equivalent informàtic a les notes adhesives. Les notes es desen automàticament en sortir del programa, i es mostren en obrir el programa.</p>
     <p xml:lang="ca-valencia">El KNotes és un programa que permet escriure l'equivalent informàtic a les notes adhesives. Les notes es guarden automàticament en eixir del programa, i es mostren en obrir el programa.</p>
     <p xml:lang="de">KNotes erlaubt das Anbringen virtueller Haftnotizen ("Post-it") auf dem Bildschirm. Die Notizen werden beim Beenden des Programms automatisch gespeichert und beim Neustart wieder geladen und angezeigt.</p>
@@ -188,6 +189,7 @@
       <li xml:lang="zh-CN">使用拖放来通过邮件发送便笺</li>
       <li xml:lang="zh-TW">可以用拖放的方式透過電子郵件傳送您的便條</li>
       <li>Can be dragged into Calendar to book a time-slot</li>
+      <li xml:lang="ar">إمكانيّة سحبها إلى تقويم لحجز مكان في الجدول اليوميّ</li>
       <li xml:lang="ca">Es poden arrossegar al calendari per a reservar un horari</li>
       <li xml:lang="ca-valencia">Es poden arrossegar al calendari per a reservar un horari</li>
       <li xml:lang="de">Kann in einen Kalender gezogen werden, um einen Zeitraum zu belegen.</li>
