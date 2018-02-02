@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Big Title
+Name[ar]=عنوان كبير
 Name[bs]=Veliki naslov
 Name[ca]=Títol gran
 Name[ca@valencia]=Títol gran
@@ -38,6 +39,7 @@ Name[x-test]=xxBig Titlexx
 Name[zh_CN]=大标题
 Name[zh_TW]=大標題
 Description=KNote printing theme with big title
+Description[ar]=سمة طباعة «ملاحظاتك» تستخدم عنوانًا كبيرًا
 Description[bs]=KNote tema štampe s velikim naslovom
 Description[ca]=Tema d'impressió de KNotes amb títols grans
 Description[ca@valencia]=Tema d'impressió de KNotes amb títols grans

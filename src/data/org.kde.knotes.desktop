@@ -7,7 +7,7 @@ Type=Application
 
 GenericName=Popup Notes
 GenericName[af]=Opspring Notas
-GenericName[ar]=الملاحظات المنبثقة
+GenericName[ar]=ملاحظات منبثقة
 GenericName[bg]=Лепящи се бележки
 GenericName[bs]=Iskočne napomene
 GenericName[ca]=Notes emergents
@@ -76,7 +76,7 @@ GenericName[zh_TW]=彈出式便條
 
 Name=KNotes
 Name[af]=Knotas
-Name[ar]=ملاحظات KNotes
+Name[ar]=ملاحظاتك
 Name[be]=KNotes
 Name[bg]=KNotes
 Name[br]=KNotes
