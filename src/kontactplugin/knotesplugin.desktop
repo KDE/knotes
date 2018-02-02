@@ -17,7 +17,7 @@ X-KDE-PluginInfo-AllowEmptySettings=true
 
 Comment=Kontact KNotes Plugin
 Comment[af]=Kontact KNotes inprop module
-Comment[ar]=ملحق Kontact KNotes
+Comment[ar]=ملحقة «ملاحظاتك» لِ‍«متراسلك»
 Comment[be]=Утулка Kontact KNotes
 Comment[bg]=Приставка за бележки
 Comment[br]=Lugent Kontact KNotes
@@ -83,7 +83,7 @@ Comment[x-test]=xxKontact KNotes Pluginxx
 Comment[zh_CN]=Kontact KNotes 插件
 Comment[zh_TW]=Kontact KNotes 外掛程式
 Name=Popup Notes
-Name[ar]=الملاحظات المنبثقة
+Name[ar]=ملاحظات منبثقة
 Name[bs]=Iskočne napomene
 Name[ca]=Notes emergents
 Name[ca@valencia]=Notes emergents

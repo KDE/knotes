@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Default
 Name[af]=Standaard
+Name[ar]=المبدئيّة
 Name[be]=Прадвызначаны
 Name[bg]=Стандартен
 Name[br]=Dre ziouer
@@ -70,6 +71,7 @@ Name[x-test]=xxDefaultxx
 Name[zh_CN]=默认
 Name[zh_TW]=預設
 Description=Default knotes printing theme
+Description[ar]=سمة طباعة «ملاحظاتك» المبدئيّة
 Description[bs]=Podrazumijevana knotes  tema štampanja
 Description[ca]=Tema d'impressió per omissió de KNotes
 Description[ca@valencia]=Tema d'impressió per omissió de KNotes

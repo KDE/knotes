@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Note with background color
+Name[ar]=ملاحظة بلون خلفيّة
 Name[ca]=Nota amb un color de fons
 Name[ca@valencia]=Nota amb un color de fons
 Name[da]=Note med baggrundsfarve
@@ -34,6 +35,7 @@ Name[x-test]=xxNote with background colorxx
 Name[zh_CN]=带有背景颜色的便笺
 Name[zh_TW]=有背景顏色的便條
 Description=Theme which use note background color
+Description[ar]=سمة تستخدم لون خلفيّة للملاحظة
 Description[ca]=Tema que usa una nota amb un color de fons
 Description[ca@valencia]=Tema que usa una nota amb un color de fons
 Description[da]=Tema som bruger note-baggrundsfarven
