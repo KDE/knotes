@@ -30,7 +30,7 @@ class KNotesIconView : public QListWidget
     Q_OBJECT
 public:
     explicit KNotesIconView(KNotesPart *part, QWidget *parent);
-    ~KNotesIconView();
+    ~KNotesIconView() override;
 
     void addNote(const Akonadi::Item &item);
 

@@ -26,7 +26,7 @@ class NotesAgent : public Akonadi::AgentBase, public Akonadi::AgentBase::Observe
     Q_OBJECT
 public:
     explicit NotesAgent(const QString &id);
-    ~NotesAgent();
+    ~NotesAgent() override;
 
     void showConfigureDialog(qlonglong windowId = 0);
 

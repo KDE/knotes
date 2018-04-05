@@ -28,7 +28,7 @@ class KNoteButton : public QPushButton
     Q_OBJECT
 public:
     explicit KNoteButton(const QString &icon, QWidget *parent = nullptr);
-    ~KNoteButton();
+    ~KNoteButton() override;
 
     int heightForWidth(int w) const override;
     QSize sizeHint() const override;

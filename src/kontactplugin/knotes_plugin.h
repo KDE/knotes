@@ -45,7 +45,7 @@ class KNotesPlugin : public KontactInterface::Plugin
     Q_OBJECT
 public:
     KNotesPlugin(KontactInterface::Core *core, const QVariantList &);
-    ~KNotesPlugin();
+    ~KNotesPlugin() override;
 
     KontactInterface::Summary *createSummaryWidget(QWidget *parentWidget) override;
 

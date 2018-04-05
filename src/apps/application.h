@@ -29,7 +29,7 @@ class Application : public KontactInterface::PimUniqueApplication
 {
 public:
     Application(int &argc, char **argv[]);
-    ~Application();
+    ~Application() override;
 
     int activate(const QStringList &args, const QString &workingDir) override;
 

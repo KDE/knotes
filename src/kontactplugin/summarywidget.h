@@ -56,7 +56,7 @@ class KNotesSummaryWidget : public KontactInterface::Summary
     Q_OBJECT
 public:
     KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidget *parent);
-    ~KNotesSummaryWidget();
+    ~KNotesSummaryWidget() override;
 
     void updateSummary(bool force = false) override;
     QStringList configModules() const override;

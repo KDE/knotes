@@ -26,7 +26,7 @@ class KNotesListWidgetSearchLine : public KListWidgetSearchLine
     Q_OBJECT
 public:
     explicit KNotesListWidgetSearchLine(QWidget *parent = nullptr);
-    ~KNotesListWidgetSearchLine();
+    ~KNotesListWidgetSearchLine() override;
 
     void updateClickMessage(const QString &shortcutStr);
 
