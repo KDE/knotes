@@ -170,6 +170,7 @@ Name[sv]=Ny anteckning
 Name[uk]=Нова нотатка
 Name[x-test]=xxNew Notexx
 Name[zh_CN]=新建便笺
+Name[zh_TW]=新增便條
 Icon=mail-message-new
 Exec=knotes
 
