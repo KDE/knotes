@@ -1181,7 +1181,8 @@ bool KNote::eventFilter(QObject *o, QEvent *ev)
             }
         }
         if (ev->type() == QEvent::MouseMove
-            && (e->button() == Qt::LeftButton || e->button() == Qt::MidButton)) {
+            && (   (e->buttons() & Qt::LeftButton) == Qt::LeftButton
+                || (e->buttons() & Qt::MidButton)  == Qt::MidButton)) {
             move(e->globalPos());
             return true;
         }
