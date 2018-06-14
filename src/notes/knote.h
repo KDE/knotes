@@ -161,6 +161,7 @@ private:
 
     KNoteDisplaySettings *mDisplayAttribute = nullptr;
     bool mAllowDebugAkonadiSearch;
+    QPoint mOrigPos;
 };
 
 #endif
