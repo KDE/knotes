@@ -1180,15 +1180,27 @@ bool KNote::eventFilter(QObject *o, QEvent *ev)
                 slotRename();
             }
         }
+
+        if (ev->type() == QEvent::MouseButtonPress
+            && (   (e->buttons() & Qt::LeftButton) == Qt::LeftButton
+                || (e->buttons() & Qt::MidButton)  == Qt::MidButton)) {
+            mOrigPos = e->pos();
+            return false;
+        }
+
         if (ev->type() == QEvent::MouseMove
             && (   (e->buttons() & Qt::LeftButton) == Qt::LeftButton
                 || (e->buttons() & Qt::MidButton)  == Qt::MidButton)) {
-            move(e->globalPos());
+            QPoint newPos = e->globalPos() - mOrigPos - QPoint(1, 1);
+            move(newPos);
             return true;
         }
 
-        if (ev->type() == QEvent::MouseButtonRelease) {
-            move(e->globalPos());
+        if (ev->type() == QEvent::MouseButtonRelease
+            && (   (e->buttons() & Qt::LeftButton) == Qt::LeftButton
+                || (e->buttons() & Qt::MidButton)  == Qt::MidButton)) {
+            QPoint newPos = e->globalPos() - mOrigPos - QPoint(1, 1);
+            move(newPos);
             return false;
         }
         return false;
