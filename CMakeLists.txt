@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.1)
 project(knotes VERSION ${KDEPIM_VERSION_NUMBER})
 
 
-set(KF5_VERSION "5.46.0")
+set(KF5_VERSION "5.47.0")
 
 find_package(ECM ${KF5_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${knotes_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH})
