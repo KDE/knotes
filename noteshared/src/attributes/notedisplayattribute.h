@@ -32,7 +32,7 @@ class NOTESHARED_EXPORT NoteDisplayAttribute : public Akonadi::Attribute
 {
 public:
     NoteDisplayAttribute();
-    ~NoteDisplayAttribute();
+    ~NoteDisplayAttribute() override;
 
     QByteArray type() const override;
 

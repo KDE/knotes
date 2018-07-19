@@ -30,10 +30,8 @@ public:
 
     void updateNumberOfNotes(int number);
 
-private Q_SLOTS:
-    void slotGeneralPaletteChanged();
-
 private:
+    void slotGeneralPaletteChanged();
     QIcon mIcon;
     QColor mTextColor;
 };

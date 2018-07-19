@@ -27,7 +27,7 @@ class NOTESHARED_EXPORT ShowFolderNotesAttribute : public Akonadi::Attribute
 {
 public:
     ShowFolderNotesAttribute();
-    ~ShowFolderNotesAttribute();
+    ~ShowFolderNotesAttribute() override;
 
     ShowFolderNotesAttribute *clone() const override;
     QByteArray type() const override;

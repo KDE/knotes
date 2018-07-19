@@ -30,7 +30,7 @@ public:
     void load() override;
     void save() override;
 
-private Q_SLOTS:
+private:
     void slotHelpLinkClicked(const QString &);
 };
 }

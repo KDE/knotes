@@ -56,12 +56,11 @@ public:
      */
     quint16 port() const;
 
-private Q_SLOTS:
+private:
     void slotTextChanged(const QString &);
     void serviceSelected(const QModelIndex &);
 
     void slotServiceDoubleClicked(const QModelIndex &idx);
-private:
     void readConfig();
     KHistoryComboBox *m_hostCombo = nullptr;
     QTreeView *m_servicesView = nullptr;

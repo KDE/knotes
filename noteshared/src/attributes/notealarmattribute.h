@@ -28,7 +28,7 @@ class NOTESHARED_EXPORT NoteAlarmAttribute : public Akonadi::Attribute
 {
 public:
     NoteAlarmAttribute();
-    ~NoteAlarmAttribute();
+    ~NoteAlarmAttribute() override;
 
     QByteArray type() const override;
 

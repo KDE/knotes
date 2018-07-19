@@ -31,7 +31,7 @@ class NOTESHARED_EXPORT NoteLockAttribute : public Akonadi::Attribute
 {
 public:
     NoteLockAttribute();
-    ~NoteLockAttribute();
+    ~NoteLockAttribute() override;
 
     QByteArray type() const override;
 

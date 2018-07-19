@@ -162,5 +162,5 @@ void NotesNetworkReceiver::slotConnectionClosed()
 
 void NotesNetworkReceiver::slotError(QAbstractSocket::SocketError error)
 {
-    qCWarning(NOTESHARED_LOG) << "error type :" << (int)error << " error string : " << d->m_sock->errorString();
+    qCWarning(NOTESHARED_LOG) << "error type :" << static_cast<int>(error) << " error string : " << d->m_sock->errorString();
 }

@@ -46,10 +46,8 @@ public:
     void setAlarm(const QDateTime &dateTime);
     QDateTime alarm() const;
 
-private Q_SLOTS:
-    void slotButtonChanged(int);
-
 private:
+    void slotButtonChanged(int);
     NoteAlarmDialogPrivate *const d;
 };
 }

@@ -293,6 +293,7 @@ void KNotesApp::slotRowInserted(const QModelIndex &parent, int start, int end)
 void KNotesApp::createNote(const Akonadi::Item &item)
 {
     if (item.hasPayload<KMime::Message::Ptr>()) {
+        qDebug() <<" void KNotesApp::createNote(const Akonadi::Item &item)"<<item.id();
         KNote *note = new KNote(m_noteGUI, item, mDebugAkonadiSearch);
         mNotes.insert(item.id(), note);
         connect(note, &KNote::sigShowNextNote,
