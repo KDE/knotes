@@ -19,8 +19,9 @@
 #include "knotefinddialog.h"
 #include "widget/notelistwidget.h"
 
-#include <AkonadiSearch/PIM/notequery.h>
-#include <AkonadiSearch/PIM/resultiterator.h>
+#include <AkonadiSearch/SearchRunner>
+#include <AkonadiSearch/ResultIterator>
+#include <AkonadiCore/SearchQuery>
 
 #include <KLocalizedString>
 #include <QLineEdit>
@@ -131,25 +132,29 @@ void KNoteFindWidget::slotSearchNote()
     if (searchStr.trimmed().isEmpty()) {
         return;
     }
-    Akonadi::Search::PIM::NoteQuery query;
-    query.matchNote(searchStr);
-    query.matchTitle(searchStr);
+    Akonadi::SearchQuery query(Akonadi::SearchTerm::RelOr);
+    query.addTerm(Akonadi::EmailSearchTerm::subjectMatches(searchStr));
+    query.addTerm(Akonadi::EmailSearchTerm::bodyMatches(searchStr));
 
-    Akonadi::Search::PIM::ResultIterator it = query.exec();
+    auto runner = new Akonadi::Search::SearchRunner(query, QStringLiteral("text/x-vnd.akonadi.note"), this);
+    connect(runner, &Akonadi::Search::SearchRunner::finished,
+            this, [this](Akonadi::Search::ResultIterator it) {
+                Akonadi::Item::List lst;
+                while (it.next()) {
+                    const Akonadi::Item::Id id = it.id();
+                    if (mNotes.contains(id)) {
+                        lst << mNotes.value(id);
+                    }
+                }
+                mNoteList->setNotes(lst);
+                if (lst.isEmpty()) {
+                    mResultSearch->setText(i18nc("@label", "No Results found in search."));
+                } else {
+                    mResultSearch->clear();
+                }
+            });
+    runner->start();
 
-    Akonadi::Item::List lst;
-    while (it.next()) {
-        const Akonadi::Item::Id id = it.id();
-        if (mNotes.contains(id)) {
-            lst << mNotes.value(id);
-        }
-    }
-    mNoteList->setNotes(lst);
-    if (lst.isEmpty()) {
-        mResultSearch->setText(i18nc("@label", "No Results found in search."));
-    } else {
-        mResultSearch->clear();
-    }
 }
 
 void KNoteFindWidget::slotTextChanged(const QString &text)

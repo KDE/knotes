@@ -39,7 +39,7 @@
 
 #include <AkonadiCore/ItemModifyJob>
 
-#include <AkonadiSearch/Debug/akonadisearchdebugdialog.h>
+//#include <AkonadiSearch/Debug/akonadisearchdebugdialog.h>
 
 #include <KMime/KMimeMessage>
 
@@ -1232,10 +1232,12 @@ Akonadi::Item KNote::item() const
 
 void KNote::slotDebugAkonadiSearch()
 {
+#ifdef AKONADISEARCH_PORT
     QPointer<Akonadi::Search::AkonadiSearchDebugDialog> dlg = new Akonadi::Search::AkonadiSearchDebugDialog;
     dlg->setAkonadiId(mItem.id());
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     dlg->setSearchType(Akonadi::Search::AkonadiSearchDebugSearchPathComboBox::Notes);
     dlg->doSearch();
     dlg->show();
+#endif
 }

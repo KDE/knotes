@@ -56,7 +56,7 @@ target_link_libraries(knotesprivate
     KF5::IconThemes
     PRIVATE
     KF5::PimCommon
-    KF5::KCMUtils Grantlee5::Templates KF5::NewStuff KF5::WindowSystem Qt5::PrintSupport KF5::TextWidgets KF5::I18n notesharedprivate KF5::AkonadiSearchPIM KF5::AkonadiNotes KF5::PimTextEdit KF5::AkonadiWidgets
+    KF5::KCMUtils Grantlee5::Templates KF5::NewStuff KF5::WindowSystem Qt5::PrintSupport KF5::TextWidgets KF5::I18n notesharedprivate KF5::AkonadiSearch KF5::AkonadiNotes KF5::PimTextEdit KF5::AkonadiWidgets
     )
 
 set_target_properties(knotesprivate
@@ -100,7 +100,6 @@ target_link_libraries(knotes
     KF5::Notifications
     KF5::WindowSystem
     KF5::KDELibs4Support
-    KF5::AkonadiSearchDebug
     KF5::AkonadiNotes
     KF5::Crash
     KF5::AkonadiWidgets
