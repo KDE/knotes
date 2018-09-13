@@ -29,11 +29,9 @@
 
 #include <KAboutData>
 #include <KCrash>
-#include <KLocalizedString>
 
 #include <QApplication>
 #include <QCommandLineParser>
-#include <KCrash>
 
 void knotesOptions(QCommandLineParser *parser);
 void knotesAuthors(KAboutData &aboutData);
