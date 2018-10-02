@@ -3,6 +3,7 @@
   <id>org.kde.knotes.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
+  <developer_name>The KDE Community</developer_name>
   <name>KNotes</name>
   <name xml:lang="ar">ملاحظاتك</name>
   <name xml:lang="ast">KNotes</name>
@@ -254,9 +255,10 @@
   </description>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=knotes</url>
   <url type="help">http://docs.kde.org/stable/en/kdepim/knotes/index.html</url>
+  <url type="homepage">https://kontact.kde.org/components/knotes.html</url>
   <screenshots>
     <screenshot type="default">
-      <image>http://kde.org/images/screenshots/knotes.png</image>
+      <image type="source">https://kde.org/images/screenshots/knotes.png</image>
     </screenshot>
   </screenshots>
   <project_group>KDE</project_group>
