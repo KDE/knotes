@@ -1,1 +1,9 @@
-ecm_install_icons( ICONS 128-apps-knotes.png  16-actions-knotes_alarm.png  16-actions-knotes_close.png  16-actions-knotes_date.png  16-actions-knotes_delete.png  16-apps-knotes.png  22-apps-knotes.png  32-apps-knotes.png  48-apps-knotes.png  64-apps-knotes.png DESTINATION ${KDE_INSTALL_ICONDIR} THEME hicolor)
+ecm_install_icons(ICONS
+    48-apps-knotes.svg
+    16-actions-knotes_alarm.png
+    16-actions-knotes_close.png
+    16-actions-knotes_date.png
+    16-actions-knotes_delete.png
+    DESTINATION ${KDE_INSTALL_ICONDIR}
+    THEME hicolor
+)
