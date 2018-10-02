@@ -1,5 +1,6 @@
+file(GLOB knotes_icons "*-apps-knotes.*")
 ecm_install_icons(ICONS
-    48-apps-knotes.svg
+    ${knotes_icons}
     16-actions-knotes_alarm.png
     16-actions-knotes_close.png
     16-actions-knotes_date.png
