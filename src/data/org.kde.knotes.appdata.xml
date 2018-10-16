@@ -12,6 +12,7 @@
   <developer_name xml:lang="it">La Comunità KDE</developer_name>
   <developer_name xml:lang="nl">De KDE gemeenschap</developer_name>
   <developer_name xml:lang="pt">A Comunidade do KDE</developer_name>
+  <developer_name xml:lang="ru">Сообщество KDE</developer_name>
   <developer_name xml:lang="sv">KDE-gemenskapen</developer_name>
   <developer_name xml:lang="uk">Спільнота KDE</developer_name>
   <developer_name xml:lang="x-test">xxThe KDE Communityxx</developer_name>
@@ -67,6 +68,7 @@
   <summary xml:lang="pl">Aplikacja źółtych karteczek</summary>
   <summary xml:lang="pt">Aplicação de notas autocolantes</summary>
   <summary xml:lang="pt-BR">Aplicativo de notas adesivas</summary>
+  <summary xml:lang="ru">Приложение для работы с заметками</summary>
   <summary xml:lang="sk">Aplikácia nalepovacích poznámok</summary>
   <summary xml:lang="sl">Program za lepljiva sporočilca</summary>
   <summary xml:lang="sv">Program för uppklistrade anteckningar</summary>
