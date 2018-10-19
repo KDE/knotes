@@ -194,10 +194,10 @@ void NotesManager::slotAcceptConnection()
 
 void NotesManager::slotNewNote(const QString &name, const QString &text)
 {
-    const QPixmap pixmap = QIcon::fromTheme(QStringLiteral("knotes")).pixmap(KIconLoader::SizeSmall, KIconLoader::SizeSmall);
     KNotification::event(QStringLiteral("receivednotes"),
+		         QString(),
                          i18n("Note Received"),
-                         pixmap,
+                         QStringLiteral("knotes"),
                          nullptr,
                          KNotification::CloseOnTimeout,
                          QStringLiteral("akonadi_notes_agent"));
