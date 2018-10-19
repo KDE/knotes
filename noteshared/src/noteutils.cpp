@@ -96,7 +96,7 @@ QString NoteUtils::createToolTip(const Akonadi::Item &item)
     if (!noteMessage) {
         return QString();
     }
-    const QString description = QString::fromLatin1(noteMessage->mainBodyPart()->decodedContent());
+    const QString description = QString::fromUtf8(noteMessage->mainBodyPart()->decodedContent());
     const KMime::Headers::Subject *const subject = noteMessage->subject(false);
 
     const QString realName = subject ? subject->asUnicodeString() : QString();
