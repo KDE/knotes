@@ -110,7 +110,7 @@ find_package(Xsltproc)
 set_package_properties(Xsltproc PROPERTIES DESCRIPTION "XSLT processor from libxslt" TYPE REQUIRED PURPOSE "Required to generate D-Bus interfaces for all Akonadi resources.")
 
 include_directories(${knotes_SOURCE_DIR} ${knotes_BINARY_DIR})
-add_definitions(-DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT)
+
 #add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x060000)
 
 
