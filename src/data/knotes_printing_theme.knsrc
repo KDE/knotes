@@ -1,5 +1,11 @@
 [KNewStuff3]
 Name=KNotes Printing Theme
+Name[ca]=Tema d'impressió per al KNotes
+Name[gl]=Tema de impresión de KNotes
+Name[nl]=Afdrukthema van KNotes
+Name[pt]=Tema de Impressão do KNotes
+Name[uk]=Тема для друку даних KNotes
+Name[x-test]=xxKNotes Printing Themexx
 ProvidersUrl=https://autoconfig.kde.org/ocs/providers.xml
 Categories=KNotes Printing Theme
 TargetDir=knotes/print/themes/
