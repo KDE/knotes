@@ -272,7 +272,7 @@
     </ul>
   </description>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=knotes</url>
-  <url type="help">http://docs.kde.org/stable/en/kdepim/knotes/index.html</url>
+  <url type="help">https://docs.kde.org/stable5/en/pim/knotes/index.html</url>
   <url type="homepage">https://kontact.kde.org/components/knotes.html</url>
   <screenshots>
     <screenshot type="default">
