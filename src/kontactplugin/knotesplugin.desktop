@@ -8,7 +8,7 @@ X-KDE-KontactPluginVersion=10
 X-KDE-KontactPluginHasSummary=true
 X-KDE-KontactPartExecutableName=knotes
 
-X-KDE-PluginInfo-Website=http://pim.kde.org/components/knotes.php
+X-KDE-PluginInfo-Website=https://userbase.kde.org/KNotes
 X-KDE-PluginInfo-Name=kontact_knotesplugin
 X-KDE-PluginInfo-Version=0.1
 X-KDE-PluginInfo-License=LGPL
