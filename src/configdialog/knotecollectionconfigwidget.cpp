@@ -24,11 +24,7 @@
 
 #include <AkonadiCore/CollectionModifyJob>
 #include <AkonadiCore/CollectionFilterProxyModel>
-#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
-#include <KRecursiveFilterProxyModel>
-#else
 #include <QSortFilterProxyModel>
-#endif
 #include <QInputDialog>
 
 #include <AkonadiWidgets/CollectionRequester>
@@ -144,12 +140,8 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
 
     connect(mModel, &Akonadi::EntityTreeModel::collectionTreeFetched, this, &KNoteCollectionConfigWidget::slotCollectionsInserted);
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
-    mCollectionFilter = new KRecursiveFilterProxyModel(this);
-#else
     mCollectionFilter = new QSortFilterProxyModel(this);
     mCollectionFilter->setRecursiveFilteringEnabled(true);
-#endif
     mCollectionFilter->setSourceModel(mDisplayNotifierProxyModel);
     mCollectionFilter->setDynamicSortFilter(true);
     mCollectionFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
