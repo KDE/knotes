@@ -64,6 +64,8 @@
 #include <KXMLGUIFactory>
 #include <KDNSSD/DNSSD/PublicService>
 
+#include <KAboutData>
+#include <KHelpMenu>
 #include <QAction>
 #include <QApplication>
 #include <QClipboard>
@@ -138,10 +140,40 @@ KNotesApp::KNotesApp()
     //REmove shortcut here.
     act->setShortcut(0);
 
-#if 0 //QT5
-    new KHelpMenu(this, KComponentData::mainComponent().aboutData(), false,
-                  actionCollection());
-#endif
+    KHelpMenu *menu = new KHelpMenu(this, KAboutData::applicationData(), false);
+
+    KActionCollection *actions = actionCollection();
+    QAction *helpContentsAction = menu->action(KHelpMenu::menuHelpContents);
+    QAction *whatsThisAction = menu->action(KHelpMenu::menuWhatsThis);
+    QAction *reportBugAction = menu->action(KHelpMenu::menuReportBug);
+    QAction *switchLanguageAction = menu->action(KHelpMenu::menuSwitchLanguage);
+    QAction *aboutAppAction = menu->action(KHelpMenu::menuAboutApp);
+    QAction *aboutKdeAction = menu->action(KHelpMenu::menuAboutKDE);
+    QAction *donateAction = menu->action(KHelpMenu::menuDonate);
+
+    if (helpContentsAction) {
+        actions->addAction(helpContentsAction->objectName(), helpContentsAction);
+    }
+    if (whatsThisAction) {
+        actions->addAction(whatsThisAction->objectName(), whatsThisAction);
+    }
+    if (reportBugAction) {
+        actions->addAction(reportBugAction->objectName(), reportBugAction);
+    }
+    if (switchLanguageAction) {
+        actions->addAction(switchLanguageAction->objectName(), switchLanguageAction);
+    }
+    if (aboutAppAction) {
+        actions->addAction(aboutAppAction->objectName(), aboutAppAction);
+    }
+    if (aboutKdeAction) {
+        actions->addAction(aboutKdeAction->objectName(), aboutKdeAction);
+    }
+    if (donateAction) {
+        actions->addAction(donateAction->objectName(), donateAction);
+    }
+
+
     KStandardAction::preferences(this, &KNotesApp::slotPreferences,
                                  actionCollection());
     KStandardAction::keyBindings(this, &KNotesApp::slotConfigureAccels,
