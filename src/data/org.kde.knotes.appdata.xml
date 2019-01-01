@@ -13,6 +13,7 @@
   <developer_name xml:lang="fi">KDE-yhteisö</developer_name>
   <developer_name xml:lang="fr">La communauté KDE</developer_name>
   <developer_name xml:lang="gl">A comunidade de KDE</developer_name>
+  <developer_name xml:lang="id">Komunitas KDE</developer_name>
   <developer_name xml:lang="it">La Comunità KDE</developer_name>
   <developer_name xml:lang="nl">De KDE gemeenschap</developer_name>
   <developer_name xml:lang="pl">Społeczność KDE</developer_name>
@@ -39,6 +40,7 @@
   <name xml:lang="gl">KNotes</name>
   <name xml:lang="hu">KNotes</name>
   <name xml:lang="ia">KNotes</name>
+  <name xml:lang="id">KNotes</name>
   <name xml:lang="it">KNotes</name>
   <name xml:lang="ko">KNotes</name>
   <name xml:lang="lt">KNotes</name>
@@ -69,6 +71,7 @@
   <summary xml:lang="fi">Muistilappusovellus</summary>
   <summary xml:lang="fr">Application de notes autocollantes</summary>
   <summary xml:lang="gl">Aplicativo de notas pegañentas</summary>
+  <summary xml:lang="id">Aplikasi catatan lekat</summary>
   <summary xml:lang="it">Applicazione per le note adesive</summary>
   <summary xml:lang="ko">찍찍이 노트 프로그램</summary>
   <summary xml:lang="nl">Toepassing voor plaknotities</summary>
@@ -100,6 +103,7 @@
     <p xml:lang="fr">KNotes est un programme qui vous permet d'avoir l'équivalent électronique des papillons autocollants (Post-it®). Les notes sont enregistrées automatiquement lorsque vous quittez le programme, et elles s'affichent lorsque vous l'ouvrez.</p>
     <p xml:lang="gl">KNotes é un programa que permite escribir o que sería un equivalente informático das notas pegañentas. As notas gárdanse automaticamente cando se sae do programa e móstranse cando se abre o programa.</p>
     <p xml:lang="hu">A KNotes program használatával kisebb jegyzeteket lehet készíteni. A jegyzetek a programból való kilépéskor automatikusan mentésre kerülnek, a program indulásakor pedig ismét megjelennek.</p>
+    <p xml:lang="id">KNotes adalah program yang memungkinkan kamu menulis komputer yang setara dengan catatan lekat. Catatan disimpan secara otomatis saat kamu keluar dari program, dan catatan itu ditampilkan saat kamu membuka program.</p>
     <p xml:lang="it">KNotes è un programma che ti permette di scrivere nel computer l'equivalente delle note adesive (post-it). Le note vengono salvate automaticamente alla chiusura del programma, e visualizzate quando lo apri.</p>
     <p xml:lang="ko">KNotes는 메모를 남길 수 있는 프로그램입니다. 프로그램을 종료할 때 메모를 자동으로 저장하고, 다음 실행 때 보여 줍니다.</p>
     <p xml:lang="nb">KNotes er et program du kan bruke til å skrive «gule lapper» på datamaskinen.  Lappene lagres automatisk når du går ut av programmet, og vises igjen når du starter programmet.</p>
@@ -133,6 +137,7 @@
     <p xml:lang="gl">Funcionalidades:</p>
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="ia">Characteristicas:</p>
+    <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Caratteristiche:</p>
     <p xml:lang="ko">기능:</p>
     <p xml:lang="lt">Ypatybės:</p>
@@ -165,6 +170,7 @@
       <li xml:lang="fr">Écrivez des notes avec la police de caractère et la couleur de fond de votre choix</li>
       <li xml:lang="gl">Escriba notas usando o tipo de letra e cor de fondo que prefira.</li>
       <li xml:lang="hu">Jegyzetek írása tetszőleges betűtípussal és háttérszínnel</li>
+      <li xml:lang="id">Tulislah catatan dalam warna latarbelakang dan fon pilihanmu</li>
       <li xml:lang="it">Scrivi le note scegliendo il carattere e lo sfondo</li>
       <li xml:lang="ko">사용자 정의 글꼴 및 배경색 지원</li>
       <li xml:lang="nb">Skriv notater med den fargen du velger på skrift og bakgrunn</li>
@@ -194,6 +200,7 @@
       <li xml:lang="fr">Utilisez le glisser-déposer pour envoyer vos notes par courriel</li>
       <li xml:lang="gl">Use arrastrar e soltar para enviar as súas notas por correo electrónico.</li>
       <li xml:lang="hu">Jegyzetek elküldése e-mailben a fogd-és-vidd módszerrel</li>
+      <li xml:lang="id">Gunakanlah seret dan taruh untuk menyuratkan catatanmu</li>
       <li xml:lang="it">Usa la funzione di trascinamento per inviare le note con la posta elettronica</li>
       <li xml:lang="ko">드래그 앤 드롭으로 바로 이메일 보내기</li>
       <li xml:lang="nb">Bruk dra og slipp til å sende notatene på e-øpost</li>
@@ -223,6 +230,7 @@
       <li xml:lang="fr">Glissez les notes dans le calendrier pour réserver des créneaux horaires</li>
       <li xml:lang="gl">Pode arrastras as notas a un calendario para asocialas a un espazo de tempo.</li>
       <li xml:lang="hu">Naptárba húzható egy időablak lefoglalásához</li>
+      <li xml:lang="id">Bisa diseret ke dalam Kalender untuk membukukan slot waktu</li>
       <li xml:lang="it">Possono essere trascinate e incollate nel Calendario per creare degli intervalli</li>
       <li xml:lang="ko">달력에 드래그 앤 드롭으로 일정 추가</li>
       <li xml:lang="nb">Kan dras inn i Kalendar for å holde av en tid</li>
@@ -252,6 +260,7 @@
       <li xml:lang="fr">Imprimez les notes</li>
       <li xml:lang="gl">Pode imprimir as notas.</li>
       <li xml:lang="hu">A jegyzetek nyomtathatók</li>
+      <li xml:lang="id">Catatan bisa dicetak</li>
       <li xml:lang="it">Le note possono essere stampate</li>
       <li xml:lang="ko">인쇄 기능</li>
       <li xml:lang="nb">Notater kan skrives ut</li>
