@@ -78,10 +78,8 @@ static bool qActionLessThan(const QAction *a1, const QAction *a2)
     return a1->text() < a2->text();
 }
 
-KNotesApp::KNotesApp()
-    : QWidget()
-    , m_publisher(nullptr)
-    , mDebugAkonadiSearch(false)
+KNotesApp::KNotesApp(QWidget *parent)
+    : QWidget(parent)
 {
     Akonadi::ControlGui::widgetNeedsAkonadi(this);
 

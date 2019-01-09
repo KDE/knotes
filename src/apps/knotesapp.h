@@ -48,7 +48,7 @@ class KNotesApp : public QWidget, virtual public KXMLGUIClient
 {
     Q_OBJECT
 public:
-    KNotesApp();
+    explicit KNotesApp(QWidget *parent = nullptr);
     ~KNotesApp();
 
 public Q_SLOTS:

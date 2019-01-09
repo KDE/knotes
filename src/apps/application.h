@@ -27,6 +27,7 @@ class KNotesApp;
 
 class Application : public KontactInterface::PimUniqueApplication
 {
+    Q_OBJECT
 public:
     Application(int &argc, char **argv[]);
     ~Application() override;
