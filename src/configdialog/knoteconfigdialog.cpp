@@ -187,7 +187,7 @@ KNoteMiscConfig::KNoteMiscConfig(QWidget *parent)
     : KCModule(parent)
 {
     QVBoxLayout *lay = new QVBoxLayout(this);
-    lay->setMargin(0);
+    lay->setContentsMargins(0, 0, 0, 0);
 
     QCheckBox *kcfg_SystemTrayShowNotes = new QCheckBox(i18n("Show number of notes in tray icon"), this);
 
@@ -257,7 +257,7 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent)
     QWidget *w = new QWidget(this);
     lay->addWidget(w);
     QGridLayout *layout = new QGridLayout(w);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
 
     QLabel *label_PrintAction = new QLabel(i18n("Theme:"), this);
     layout->addWidget(label_PrintAction, 0, 0);

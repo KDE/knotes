@@ -50,7 +50,7 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     connect(mButtonBox, &QDialogButtonBox::rejected, this, &KNotePrintSelectedNotesDialog::reject);
     QWidget *w = new QWidget;
     QVBoxLayout *vbox = new QVBoxLayout;
-    vbox->setMargin(0);
+    vbox->setContentsMargins(0, 0, 0, 0);
     w->setLayout(vbox);
 
     mListNotes = new QListWidget;
@@ -58,7 +58,7 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     vbox->addWidget(mListNotes);
 
     QHBoxLayout *lay = new QHBoxLayout;
-    lay->setMargin(0);
+    lay->setContentsMargins(0, 0, 0, 0);
     vbox->addLayout(lay);
     QLabel *lab = new QLabel(i18n("Printing theme:"));
     lay->addWidget(lab);

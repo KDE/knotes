@@ -31,7 +31,7 @@ NoteActionConfig::NoteActionConfig(QWidget *parent)
     : KCModule(parent)
 {
     QGridLayout *layout = new QGridLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
 
     QLabel *label_MailAction = new QLabel(i18n("&Mail action:"), this);
     layout->addWidget(label_MailAction, 0, 0);

@@ -100,7 +100,7 @@ KNote::KNote(const QDomDocument &buildDoc, const Akonadi::Item &item, bool allow
 
     // create the main layout
     m_noteLayout = new QVBoxLayout(this);
-    m_noteLayout->setMargin(0);
+    m_noteLayout->setContentsMargins(0, 0, 0, 0);
     createActions();
 
     buildGui();

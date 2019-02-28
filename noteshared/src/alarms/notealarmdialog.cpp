@@ -71,7 +71,7 @@ NoteAlarmDialog::NoteAlarmDialog(const QString &caption, QWidget *parent)
     connect(buttonBox, &QDialogButtonBox::rejected, this, &NoteAlarmDialog::reject);
     QWidget *page = new QWidget(this);
     QVBoxLayout *pageVBoxLayout = new QVBoxLayout(page);
-    pageVBoxLayout->setMargin(0);
+    pageVBoxLayout->setContentsMargins(0, 0, 0, 0);
 
     d->m_buttons = new QButtonGroup(this);
     QGroupBox *group = new QGroupBox(i18n("Scheduled Alarm"), page);
@@ -85,7 +85,7 @@ NoteAlarmDialog::NoteAlarmDialog(const QString &caption, QWidget *parent)
 
     QWidget *at = new QWidget;
     QHBoxLayout *atHBoxLayout = new QHBoxLayout(at);
-    atHBoxLayout->setMargin(0);
+    atHBoxLayout->setContentsMargins(0, 0, 0, 0);
     QRadioButton *label_at = new QRadioButton(i18n("Alarm &at:"), at);
     atHBoxLayout->addWidget(label_at);
     d->m_atDate = new KDateComboBox(at);

@@ -49,7 +49,7 @@ NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)
     , d(new NoteShared::NoteNetworkConfigWidgetPrivate)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
 
     QGroupBox *incoming = new QGroupBox(i18n("Incoming Notes"));
     QHBoxLayout *tmpLayout = new QHBoxLayout;
@@ -113,7 +113,7 @@ NoteNetworkConfig::NoteNetworkConfig(QWidget *parent)
     : KCModule(parent)
 {
     QVBoxLayout *lay = new QVBoxLayout(this);
-    lay->setMargin(0);
+    lay->setContentsMargins(0, 0, 0, 0);
     NoteNetworkConfigWidget *noteNetworkConfigWidget = new NoteNetworkConfigWidget(this);
     lay->addWidget(noteNetworkConfigWidget);
     addConfig(NoteShared::NoteSharedGlobalConfig::self(), noteNetworkConfigWidget);

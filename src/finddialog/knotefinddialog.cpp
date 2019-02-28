@@ -79,7 +79,7 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     : QWidget(parent)
 {
     QVBoxLayout *vbox = new QVBoxLayout(this);
-    vbox->setMargin(0);
+    vbox->setContentsMargins(0, 0, 0, 0);
     QHBoxLayout *hbox = new QHBoxLayout;
     vbox->addLayout(hbox);
     QLabel *lab = new QLabel(i18nc("@label:textbox", "Search notes:"), this);
