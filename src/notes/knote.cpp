@@ -67,6 +67,7 @@
 #include <QPointer>
 #include <QSizeGrip>
 #include <QVBoxLayout>
+#include <QTextEdit>
 
 #if KDEPIM_HAVE_X11
 #include <fixx11h.h>
@@ -856,9 +857,11 @@ void KNote::loadNoteContent(const Akonadi::Item &item)
     setName(subject ? subject->asUnicodeString() : QString());
     if (noteMessage->contentType()->isHTMLText()) {
         m_editor->setAcceptRichText(true);
+        m_editor->setAutoFormatting(QTextEdit::AutoAll);
         m_editor->setHtml(noteMessage->mainBodyPart()->decodedText());
     } else {
         m_editor->setAcceptRichText(false);
+        m_editor->setAutoFormatting(QTextEdit::AutoNone);
         m_editor->setPlainText(noteMessage->mainBodyPart()->decodedText());
     }
     if (auto hrd = noteMessage->headerByType("X-Cursor-Position")) {
