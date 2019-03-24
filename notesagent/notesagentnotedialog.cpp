@@ -97,7 +97,7 @@ void NotesAgentNoteDialog::slotFetchItem(KJob *job)
             }
         }
         if (item.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
-            NoteShared::NoteDisplayAttribute *attr = item.attribute<NoteShared::NoteDisplayAttribute>();
+            const NoteShared::NoteDisplayAttribute *attr = item.attribute<NoteShared::NoteDisplayAttribute>();
             if (attr) {
                 mNote->editor()->setTextColor(attr->backgroundColor());
                 //TODO add background color.

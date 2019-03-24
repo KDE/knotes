@@ -104,7 +104,7 @@ QString NoteUtils::createToolTip(const Akonadi::Item &item)
 
     QString tip;
     if (item.hasAttribute<NoteDisplayAttribute>()) {
-        NoteDisplayAttribute *attr = item.attribute<NoteDisplayAttribute>();
+        const NoteDisplayAttribute *attr = item.attribute<NoteDisplayAttribute>();
         if (attr) {
             const QString bckColorName = attr->backgroundColor().name();
             const QString txtColorName = attr->foregroundColor().name();

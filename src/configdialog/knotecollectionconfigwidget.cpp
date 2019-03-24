@@ -62,7 +62,7 @@ QVariant KNoteCollectionDisplayProxyModel::data(const QModelIndex &index, int ro
             if (mDisplayCollection.contains(collection)) {
                 return mDisplayCollection.value(collection) ? Qt::Checked : Qt::Unchecked;
             } else {
-                NoteShared::ShowFolderNotesAttribute *attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>();
+                const NoteShared::ShowFolderNotesAttribute *attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>();
                 if (attr) {
                     return Qt::Checked;
                 }

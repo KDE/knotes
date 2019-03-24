@@ -29,12 +29,12 @@ KNoteDisplaySettings::~KNoteDisplaySettings()
 {
 }
 
-void KNoteDisplaySettings::setDisplayAttribute(NoteShared::NoteDisplayAttribute *attr)
+void KNoteDisplaySettings::setDisplayAttribute(const NoteShared::NoteDisplayAttribute *attr)
 {
     mDisplayAttribute = attr;
 }
 
-NoteShared::NoteDisplayAttribute *KNoteDisplaySettings::displayAttribute() const
+const NoteShared::NoteDisplayAttribute *KNoteDisplaySettings::displayAttribute() const
 {
     return mDisplayAttribute;
 }

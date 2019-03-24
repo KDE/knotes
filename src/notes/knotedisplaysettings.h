@@ -34,8 +34,8 @@ public:
     explicit KNoteDisplaySettings(NoteShared::NoteDisplayAttribute *attr = nullptr);
     ~KNoteDisplaySettings();
 
-    void setDisplayAttribute(NoteShared::NoteDisplayAttribute *attr);
-    NoteShared::NoteDisplayAttribute *displayAttribute() const;
+    void setDisplayAttribute(const NoteShared::NoteDisplayAttribute *attr);
+    const NoteShared::NoteDisplayAttribute *displayAttribute() const;
     QColor backgroundColor() const;
 
     QColor foregroundColor() const;
@@ -53,7 +53,7 @@ public:
     bool autoIndent() const;
 
 private:
-    NoteShared::NoteDisplayAttribute *mDisplayAttribute = nullptr;
+    const NoteShared::NoteDisplayAttribute *mDisplayAttribute = nullptr;
 };
 
 #endif // KNOTEDISPLAYSETTINGS_H
