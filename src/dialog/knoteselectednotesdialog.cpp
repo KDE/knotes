@@ -79,7 +79,7 @@ void KNoteSelectedNotesDialog::setNotes(const QHash<Akonadi::Item::Id, KNote *> 
 QStringList KNoteSelectedNotesDialog::selectedNotes() const
 {
     QStringList lst;
-    Q_FOREACH (QListWidgetItem *item, mListNotes->selectedItems()) {
+    for (QListWidgetItem *item : mListNotes->selectedItems()) {
         Akonadi::Item::Id akonadiId = item->data(AkonadiId).toLongLong();
         if (akonadiId != -1) {
             lst.append(QString::number(akonadiId));

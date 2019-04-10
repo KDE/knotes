@@ -313,7 +313,7 @@ void KNotesPart::slotPrintSelectedNotes()
 
 void KNotesPart::printSelectedNotes(bool preview)
 {
-    QList<QListWidgetItem *> lst = mNotesWidget->notesView()->selectedItems();
+    const QList<QListWidgetItem *> lst = mNotesWidget->notesView()->selectedItems();
     if (lst.isEmpty()) {
         KMessageBox::information(
             mNotesWidget,
@@ -333,7 +333,7 @@ void KNotesPart::printSelectedNotes(bool preview)
     }
     if (!printingTheme.isEmpty()) {
         QList<KNotePrintObject *> listPrintObj;
-        foreach (QListWidgetItem *item, lst) {
+        for (QListWidgetItem *item : lst) {
             listPrintObj.append(new KNotePrintObject(static_cast<KNotesIconViewItem *>(item)->item()));
         }
         KNotePrinter printer;
@@ -860,7 +860,7 @@ void KNotesPart::slotItemFetchFinished(KJob *job)
     Akonadi::ItemFetchJob *fetchJob = qobject_cast<Akonadi::ItemFetchJob *>(job);
 
     const Akonadi::Item::List items = fetchJob->items();
-    foreach (const Akonadi::Item &item, items) {
+    for (const Akonadi::Item &item : items) {
         if (!item.hasPayload<KMime::Message::Ptr>()) {
             continue;
         }

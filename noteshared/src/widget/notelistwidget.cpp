@@ -70,7 +70,7 @@ void NoteListWidget::setNotes(const Akonadi::Item::List &notes)
 {
     clear();
     d->mNotes = notes;
-    Q_FOREACH (const Akonadi::Item &note, d->mNotes) {
+    for (const Akonadi::Item &note : qAsConst(d->mNotes)) {
         createItem(note);
     }
 }
@@ -96,8 +96,9 @@ void NoteListWidget::createItem(const Akonadi::Item &note)
 Akonadi::Item::List NoteListWidget::selectedNotes() const
 {
     Akonadi::Item::List lst;
-    Q_FOREACH (QListWidgetItem *item, selectedItems()) {
-        Akonadi::Item::Id akonadiId = item->data(AkonadiId).toLongLong();
+    const auto lstItems = selectedItems();
+    for (QListWidgetItem *item : lstItems) {
+        const Akonadi::Item::Id akonadiId = item->data(AkonadiId).toLongLong();
         if (akonadiId != -1) {
             lst.append(Akonadi::Item(akonadiId));
         }

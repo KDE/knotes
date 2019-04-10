@@ -632,7 +632,8 @@ void KNotesApp::slotConfigureAccels()
             QHashIterator<Akonadi::Item::Id, KNote *> i(mNotes);
             while (i.hasNext()) {
                 i.next();
-                foreach (QAction *action, actionCollection->actions()) {
+                const auto lst = actionCollection->actions();
+                for (QAction *action : lst) {
                     QAction *toChange = i.value()->actionCollection()->action(action->objectName());
                     if (toChange) {
                         toChange->setShortcuts(action->shortcuts());

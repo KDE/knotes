@@ -756,7 +756,8 @@ void KNote::createActions()
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::Key_Backtab));
 
     actionCollection()->addAssociatedWidget(this);
-    foreach (QAction *action, actionCollection()->actions()) {
+    const auto lst = actionCollection()->actions();
+    for (QAction *action : lst) {
         action->setShortcutContext(Qt::WidgetWithChildrenShortcut);
     }
     if (mAllowDebugAkonadiSearch) {
@@ -841,7 +842,8 @@ void KNote::createNoteFooter()
 
     // if there was just a way of making KComboBox adhere the toolbar height...
     if (m_tool) {
-        foreach (KComboBox *combo, m_tool->findChildren<KComboBox *>()) {
+        const auto comboboxs = m_tool->findChildren<KComboBox *>();
+        for (KComboBox *combo : comboboxs) {
             QFont font = combo->font();
             font.setPointSize(7);
             combo->setFont(font);

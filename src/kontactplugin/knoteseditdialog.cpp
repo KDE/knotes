@@ -99,7 +99,8 @@ void KNoteEditDialog::init(bool readOnly)
     layout->addWidget(mNoteEdit);
 
     actionCollection()->addAssociatedWidget(this);
-    foreach (QAction *action, actionCollection()->actions()) {
+    const auto lst = actionCollection()->actions();
+    for (QAction *action : lst) {
         action->setShortcutContext(Qt::WidgetWithChildrenShortcut);
     }
     readConfig();
