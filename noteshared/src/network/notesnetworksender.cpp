@@ -49,7 +49,7 @@ NotesNetworkSender::NotesNetworkSender(QTcpSocket *socket)
     QObject::connect(m_socket, &QTcpSocket::connected,
                      this, &NotesNetworkSender::slotConnected);
 
-    QObject::connect(m_socket, QOverload<QAbstractSocket::SocketError>::of(&QTcpSocket::error),
+    QObject::connect(m_socket, qOverload<QAbstractSocket::SocketError>(&QTcpSocket::error),
                      this, &NotesNetworkSender::slotError);
 
     QObject::connect(m_socket, &QTcpSocket::disconnected,

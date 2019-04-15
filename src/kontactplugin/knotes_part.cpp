@@ -220,7 +220,7 @@ KNotesPart::KNotesPart(QObject *parent)
     connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved,
             this, &KNotesPart::slotItemRemoved);
 
-    connect(mNoteRecorder->changeRecorder(), QOverload<const Akonadi::Collection &, const QSet<QByteArray> &>::of(&Akonadi::ChangeRecorder::collectionChanged),
+    connect(mNoteRecorder->changeRecorder(), qOverload<const Akonadi::Collection &, const QSet<QByteArray> &>(&Akonadi::ChangeRecorder::collectionChanged),
             this, &KNotesPart::slotCollectionChanged);
 
     mSelectionModel = new QItemSelectionModel(mNoteTreeModel);
@@ -242,7 +242,7 @@ KNotesPart::KNotesPart(QObject *parent)
     connect(mQuickSearchAction, &QAction::triggered, mNotesWidget, &KNotesWidget::slotFocusQuickSearch);
 
     connect(mNotesWidget->notesView(), &QListWidget::itemDoubleClicked,
-            this, QOverload<QListWidgetItem *>::of(&KNotesPart::editNote));
+            this, qOverload<QListWidgetItem *>(&KNotesPart::editNote));
 
     connect(mNotesWidget->notesView(), &QListWidget::itemSelectionChanged,
             this, &KNotesPart::slotOnCurrentChanged);
@@ -635,7 +635,7 @@ void KNotesPart::slotPreferences()
 {
     // create a new preferences dialog...
     KNoteConfigDialog *dialog = new KNoteConfigDialog(i18n("Settings"), widget());
-    connect(dialog, QOverload<>::of(&KCMultiDialog::configCommitted), this, &KNotesPart::slotConfigUpdated);
+    connect(dialog, qOverload<>(&KCMultiDialog::configCommitted), this, &KNotesPart::slotConfigUpdated);
     dialog->show();
 }
 

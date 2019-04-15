@@ -111,7 +111,7 @@ include_directories(${knotes_SOURCE_DIR} ${knotes_BINARY_DIR})
 
 #add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x060000)
 add_definitions(-DQT_NO_FOREACH)
-
+set(CMAKE_CXX_STANDARD 14)
 
 configure_file(knotes-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotes-version.h @ONLY)
 

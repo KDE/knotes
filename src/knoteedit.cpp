@@ -146,7 +146,7 @@ KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
 
     m_textFont = new KFontAction(i18n("Text Font"), this);
     actions->addAction(QStringLiteral("format_font"), m_textFont);
-    connect(m_textFont, QOverload<const QString &>::of(&KFontAction::triggered), this, &KNoteEdit::setFontFamily);
+    connect(m_textFont, qOverload<const QString &>(&KFontAction::triggered), this, &KNoteEdit::setFontFamily);
 
     m_textSize = new KFontSizeAction(i18n("Text Size"), this);
     actions->addAction(QStringLiteral("format_size"), m_textSize);

@@ -210,7 +210,7 @@ KNoteMiscConfig::KNoteMiscConfig(QWidget *parent)
     howItWorks->setContextMenuPolicy(Qt::NoContextMenu);
     lay->addStretch();
     load();
-    connect(mDefaultTitle, &QLineEdit::textChanged, this, QOverload<>::of(&KNoteMiscConfig::changed));
+    connect(mDefaultTitle, &QLineEdit::textChanged, this, qOverload<>(&KNoteMiscConfig::changed));
 }
 
 void KNoteMiscConfig::load()
@@ -263,7 +263,7 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent)
     layout->addWidget(label_PrintAction, 0, 0);
 
     mSelectTheme = new KNotePrintSelectThemeComboBox(this);
-    connect(mSelectTheme, QOverload<int>::of(&QComboBox::activated), this, &KNotePrintConfig::slotThemeChanged);
+    connect(mSelectTheme, qOverload<int>(&QComboBox::activated), this, &KNotePrintConfig::slotThemeChanged);
     label_PrintAction->setBuddy(mSelectTheme);
     layout->addWidget(mSelectTheme, 0, 1);
     if (KAuthorized::authorize(QStringLiteral("ghns"))) {
@@ -317,7 +317,7 @@ KNoteCollectionConfig::KNoteCollectionConfig(QWidget *parent)
     QHBoxLayout *lay = new QHBoxLayout(this);
     mCollectionConfigWidget = new KNoteCollectionConfigWidget;
     lay->addWidget(mCollectionConfigWidget);
-    connect(mCollectionConfigWidget, &KNoteCollectionConfigWidget::emitChanged, this, QOverload<>::of(&KNoteCollectionConfig::changed));
+    connect(mCollectionConfigWidget, &KNoteCollectionConfigWidget::emitChanged, this, qOverload<>(&KNoteCollectionConfig::changed));
     load();
 }
 

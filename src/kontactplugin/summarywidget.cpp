@@ -189,10 +189,10 @@ void KNotesSummaryWidget::createNote(const Akonadi::Item &item, int counter)
     urlLabel->installEventFilter(this);
     urlLabel->setAlignment(Qt::AlignLeft);
     urlLabel->setWordWrap(true);
-    connect(urlLabel, QOverload<const QString &>::of(&KUrlLabel::leftClickedUrl),
+    connect(urlLabel, qOverload<const QString &>(&KUrlLabel::leftClickedUrl),
             this, &KNotesSummaryWidget::slotSelectNote);
 
-    connect(urlLabel, QOverload<const QString &>::of(&KUrlLabel::rightClickedUrl),
+    connect(urlLabel, qOverload<const QString &>(&KUrlLabel::rightClickedUrl),
             this, &KNotesSummaryWidget::slotPopupMenu);
 
     mLayout->addWidget(urlLabel, counter, 1);
