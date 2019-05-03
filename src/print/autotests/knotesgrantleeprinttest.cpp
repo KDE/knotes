@@ -36,33 +36,21 @@ KNotesGrantleePrintTest::~KNotesGrantleePrintTest()
 {
 }
 
-void KNotesGrantleePrintTest::shouldDefaultValue()
-{
-    KNoteGrantleePrint *grantleePrint = new KNoteGrantleePrint;
-    QVERIFY(grantleePrint);
-    grantleePrint->deleteLater();
-    grantleePrint = nullptr;
-}
-
 void KNotesGrantleePrintTest::shouldReturnEmptyStringWhenNotContentAndNoNotes()
 {
-    KNoteGrantleePrint *grantleePrint = new KNoteGrantleePrint;
+    KNoteGrantleePrint grantleePrint;
     QList<KNotePrintObject *> lst;
-    const QString result = grantleePrint->notesToHtml(lst);
+    const QString result = grantleePrint.notesToHtml(lst);
     QVERIFY(result.isEmpty());
-    grantleePrint->deleteLater();
-    grantleePrint = nullptr;
 }
 
 void KNotesGrantleePrintTest::shouldReturnEmptyStringWhenAddContentWithoutNotes()
 {
-    KNoteGrantleePrint *grantleePrint = new KNoteGrantleePrint;
-    grantleePrint->setContent(QStringLiteral("foo"));
+    KNoteGrantleePrint grantleePrint;
+    grantleePrint.setTemplateContent(QStringLiteral("foo"));
     QList<KNotePrintObject *> lst;
-    const QString result = grantleePrint->notesToHtml(lst);
+    const QString result = grantleePrint.notesToHtml(lst);
     QVERIFY(result.isEmpty());
-    grantleePrint->deleteLater();
-    grantleePrint = nullptr;
 }
 
 void KNotesGrantleePrintTest::shouldDisplayNoteInfo_data()
@@ -79,8 +67,8 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
     QFETCH(QString, result);
     Akonadi::Item note(42);
 
-    KNoteGrantleePrint *grantleePrint = new KNoteGrantleePrint;
-    grantleePrint->setContent(QStringLiteral("{% if notes %}{% for note in notes %}{{ note.%1 }}{% endfor %}{% endif %}").arg(variable));
+    KNoteGrantleePrint grantleePrint;
+    grantleePrint.setTemplateContent(QStringLiteral("{% if notes %}{% for note in notes %}{{ note.%1 }}{% endfor %}{% endif %}").arg(variable));
 
     KMime::Message::Ptr msg(new KMime::Message);
     note.setMimeType(Akonadi::NoteUtils::noteMimeType());
@@ -97,10 +85,8 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
     QList<KNotePrintObject *> lst;
     KNotePrintObject *obj = new KNotePrintObject(note);
     lst << obj;
-    const QString html = grantleePrint->notesToHtml(lst);
+    const QString html = grantleePrint.notesToHtml(lst);
     QCOMPARE(html, result);
-    grantleePrint->deleteLater();
-    grantleePrint = nullptr;
 }
 
 QTEST_MAIN(KNotesGrantleePrintTest)

@@ -21,13 +21,10 @@
 #include "knoteprintobject.h"
 #include <KLocalizedString>
 
-KNoteGrantleePrint::KNoteGrantleePrint(QObject *parent)
-    : PimCommon::GenericGrantleeFormatter(parent)
-{
-}
+KNoteGrantleePrint::KNoteGrantleePrint() = default;
 
-KNoteGrantleePrint::KNoteGrantleePrint(const QString &themePath, QObject *parent)
-    : PimCommon::GenericGrantleeFormatter(QStringLiteral("theme.html"), themePath, parent)
+KNoteGrantleePrint::KNoteGrantleePrint(const QString &themePath)
+    : GrantleeTheme::GenericFormatter(QStringLiteral("theme.html"), themePath)
 {
 }
 

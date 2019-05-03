@@ -29,7 +29,6 @@ public:
     ~KNotesGrantleePrintTest();
 
 private Q_SLOTS:
-    void shouldDefaultValue();
     void shouldReturnEmptyStringWhenNotContentAndNoNotes();
     void shouldReturnEmptyStringWhenAddContentWithoutNotes();
 

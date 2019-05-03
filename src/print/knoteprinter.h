@@ -24,6 +24,8 @@
 
 #include <QFont>
 
+#include <memory>
+
 class QPrinter;
 class KNotePrintObject;
 class KNoteGrantleePrint;
@@ -47,7 +49,7 @@ private:
 
     QFont m_defaultFont;
     QString mHtmlPreviewText;
-    KNoteGrantleePrint *mGrantleePrint = nullptr;
+    std::unique_ptr<KNoteGrantleePrint> mGrantleePrint;
 };
 
 #endif // KNOTEPRINTER

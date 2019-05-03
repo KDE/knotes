@@ -22,16 +22,15 @@
 
 #include "knotes_export.h"
 
-#include <PimCommon/GenericGrantleeFormatter>
+#include <GrantleeTheme/GenericFormatter>
 
 class KNotePrintObject;
 
-class KNOTES_EXPORT KNoteGrantleePrint : public PimCommon::GenericGrantleeFormatter
+class KNOTES_EXPORT KNoteGrantleePrint : public GrantleeTheme::GenericFormatter
 {
-    Q_OBJECT
 public:
-    explicit KNoteGrantleePrint(QObject *parent = nullptr);
-    explicit KNoteGrantleePrint(const QString &themePath, QObject *parent = nullptr);
+    KNoteGrantleePrint();
+    explicit KNoteGrantleePrint(const QString &themePath);
     ~KNoteGrantleePrint();
 
     QString notesToHtml(const QList<KNotePrintObject *> &lst);

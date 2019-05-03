@@ -40,7 +40,6 @@
 
 KNotePrinter::KNotePrinter(QObject *parent)
     : QObject(parent)
-    , mGrantleePrint(nullptr)
 {
 }
 
@@ -129,7 +128,7 @@ void KNotePrinter::print(QPrinter &printer, const QString &htmlText)
 
 void KNotePrinter::printNotes(const QList<KNotePrintObject *> &lst, const QString &themePath, bool preview)
 {
-    mGrantleePrint = new KNoteGrantleePrint(themePath, this);
+    mGrantleePrint.reset(new KNoteGrantleePrint(themePath));
     if (mGrantleePrint->errorMessage().isEmpty()) {
         const QString htmlText = mGrantleePrint->notesToHtml(lst);
         const QString dialogCaption = i18np("Print Note", "Print %1 notes",
