@@ -97,7 +97,7 @@ find_package(KF5GrantleeTheme ${GRANTLEETHEME_LIB_VERSION} CONFIG REQUIRED)
 
 
 find_package(KF5AkonadiSearch "5.11.40" CONFIG REQUIRED)
-set_package_properties(KF5AkonadiSearch PROPERTIES DESCRIPTION "The Akonadi Search libraries" URL "http://www.kde.org" TYPE REQUIRED PURPOSE "Provides search capabilities in KMail and Akonadi")
+set_package_properties(KF5AkonadiSearch PROPERTIES DESCRIPTION "The Akonadi Search libraries" URL "https://kde.org/" TYPE REQUIRED PURPOSE "Provides search capabilities in KMail and Akonadi")
 
 if (NOT APPLE)
     find_package(X11)
