@@ -64,7 +64,7 @@ void KNotesAkonadiTray::updateNumberOfNotes(int number)
         // number doesn't fit into the available space
         float countFontSize = countFont.pointSizeF();
         QFontMetrics qfm(countFont);
-        const int width = qfm.width(countString);
+        const int width = qfm.boundingRect(countString).width();
         if (width > (overlaySize - 2)) {
             countFontSize *= float(overlaySize - 2) / float(width);
             countFont.setPointSizeF(countFontSize);

@@ -116,7 +116,7 @@ void KNotePrinter::print(QPrinter &printer, const QString &htmlText)
         painter.setFont(m_defaultFont);
         const QString pageNumber(QString::number(page));
         painter.drawText(
-            clip.right() - painter.fontMetrics().width(pageNumber),
+            clip.right() - painter.fontMetrics().boundingRect(pageNumber).width(),
             clip.bottom() + painter.fontMetrics().ascent() + 5,
             pageNumber);
 

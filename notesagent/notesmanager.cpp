@@ -137,7 +137,7 @@ void NotesManager::slotCheckAlarm()
 {
     QDateTime from = NoteShared::NoteSharedGlobalConfig::self()->alarmsLastChecked().addSecs(1);
     if (!from.isValid()) {
-        from.setTime_t(0);
+        from.setSecsSinceEpoch(0);
     }
 
     const QDateTime now = QDateTime::currentDateTime();

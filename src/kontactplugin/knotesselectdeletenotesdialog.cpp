@@ -44,7 +44,7 @@ void KNotesSelectDeleteNotesListWidget::setItems(const QList<KNotesIconViewItem 
         QListWidgetItem *i = new QListWidgetItem(this);
         if (item->readOnly()) {
             i->setText(item->realName() + QLatin1Char(' ') + i18n("(note locked, it will not removed)"));
-            i->setTextColor(Qt::red);
+            i->setForeground(Qt::red);
         } else {
             i->setText(item->realName());
         }

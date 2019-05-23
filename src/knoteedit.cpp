@@ -307,7 +307,7 @@ void KNoteEdit::setTextFontSize(int size)
 void KNoteEdit::setTabStop(int tabs)
 {
     QFontMetrics fm(font());
-    setTabStopWidth(fm.width(QLatin1Char('x')) * tabs);
+    setTabStopDistance(fm.boundingRect(QLatin1Char('x')).width() * tabs);
 }
 
 void KNoteEdit::setAutoIndentMode(bool newmode)

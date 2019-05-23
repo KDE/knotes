@@ -58,7 +58,7 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
     mDefaultPixmap = KIconLoader::global()->loadIcon(QStringLiteral("knotes"), KIconLoader::Desktop);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setSpacing(3);
-    mainLayout->setMargin(3);
+    mainLayout->setContentsMargins(3, 3, 3, 3);
 
     QWidget *header = createHeader(this, QStringLiteral("view-pim-notes"), i18n("Popup Notes"));
     mainLayout->addWidget(header);
