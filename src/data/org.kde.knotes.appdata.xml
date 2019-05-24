@@ -288,7 +288,7 @@
   <url type="homepage">https://kontact.kde.org/components/knotes.html</url>
   <screenshots>
     <screenshot type="default">
-      <image type="source">https://kde.org/images/screenshots/knotes.png</image>
+      <image type="source">https://cdn.kde.org/screenshots/knotes/knotes.png</image>
     </screenshot>
   </screenshots>
   <project_group>KDE</project_group>
