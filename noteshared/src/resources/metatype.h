@@ -19,7 +19,6 @@
 #ifndef POP3_METATYPE_H
 #define POP3_METATYPE_H
 
-#include <QObject>
 #include <QList>
 
 #include <QMetaType>

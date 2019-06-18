@@ -39,11 +39,9 @@
 #include <KMime/KMimeMessage>
 
 #include <KNotification>
-#include <KIconLoader>
 #include <KLocalizedString>
 
 #include <QDateTime>
-#include <QIcon>
 #include <QTcpServer>
 #include <QTimer>
 

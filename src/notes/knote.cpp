@@ -53,7 +53,6 @@
 #include <KToggleAction>
 #include <KToolBar>
 #include <KWindowSystem>
-#include <KWindowSystem/NETWM>
 #include <KXMLGUIBuilder>
 #include <KXMLGUIFactory>
 
@@ -68,10 +67,10 @@
 #include <QSizeGrip>
 #include <QVBoxLayout>
 #include <QTextEdit>
+#include <KWindowSystem/NETWM>
 
 #if KDEPIM_HAVE_X11
 #include <fixx11h.h>
-#include <QX11Info>
 #endif
 
 //#define DEBUG_SAVE_NOTE 1
