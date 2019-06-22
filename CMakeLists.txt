@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 project(knotes VERSION ${KDEPIM_VERSION_NUMBER})
 
 
-set(KF5_MIN_VERSION "5.58.0")
+set(KF5_MIN_VERSION "5.59.0")
 
 find_package(ECM ${KF5_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${knotes_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH})
@@ -121,11 +121,7 @@ add_subdirectory(noteshared)
 add_subdirectory(src)
 add_subdirectory(notesagent)
 
-if (${ECM_VERSION} STRGREATER "5.58.0")
-    install(FILES knotes.categories knotes.renamecategories  DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
-else()
-    install(FILES knotes.categories knotes.renamecategories  DESTINATION ${KDE_INSTALL_CONFDIR})
-endif()
+install(FILES knotes.categories knotes.renamecategories  DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
 
 add_subdirectory(doc)
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
