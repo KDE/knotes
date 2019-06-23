@@ -45,7 +45,7 @@
 
 #include <KActionCollection>
 #include <KComboBox>
-#include <KFileDialog>
+#include <KFileCustomDialog>
 #include <KIconEffect>
 #include <KIconLoader>
 #include <KLocalizedString>
@@ -511,15 +511,17 @@ void KNote::slotSaveAs()
         convert->setText(i18n("Save note as plain text"));
     }
     QUrl url;
-    QPointer<KFileDialog> dlg = new KFileDialog(url, QString(), this, convert);
-    dlg->setOperationMode(KFileDialog::Saving);
+    QPointer<KFileCustomDialog> dlg = new KFileCustomDialog(this);
+    dlg->setCustomWidget(convert);
+    dlg->setUrl(url);
+    dlg->setOperationMode(KFileWidget::Saving);
     dlg->setWindowTitle(i18n("Save As"));
     if (!dlg->exec()) {
         delete dlg;
         return;
     }
 
-    const QString fileName = dlg->selectedFile();
+    const QString fileName = dlg->fileWidget()->selectedFile();
     const bool htmlFormatAndSaveAsHtml = (convert && !convert->isChecked());
     delete dlg;
     if (fileName.isEmpty()) {

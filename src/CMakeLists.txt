@@ -99,7 +99,7 @@ target_link_libraries(knotes
     KF5::GlobalAccel
     KF5::Notifications
     KF5::WindowSystem
-    KF5::KDELibs4Support
+    KF5::KIOFileWidgets
     KF5::AkonadiSearchDebug
     KF5::AkonadiNotes
     KF5::Crash
