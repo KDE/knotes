@@ -74,9 +74,7 @@ NoteDisplayAttribute *NoteDisplayAttribute::clone() const
 void NoteDisplayAttribute::deserialize(const QByteArray &data)
 {
     QDataStream s(data);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
     s.setVersion(QDataStream::Qt_5_11);
-#endif
     s >> mFont;
     s >> mTitleFont;
     s >> mBackgroundColor;
@@ -98,9 +96,7 @@ QByteArray NoteDisplayAttribute::serialized() const
 {
     QByteArray result;
     QDataStream s(&result, QIODevice::WriteOnly);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
     s.setVersion(QDataStream::Qt_5_11);
-#endif
     s << mFont;
     s << mTitleFont;
     s << mBackgroundColor;
