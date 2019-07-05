@@ -54,7 +54,7 @@ set(PIMCOMMON_LIB_VERSION "5.11.40")
 set(GRANTLEETHEME_LIB_VERSION "5.11.41")
 
 
-set(QT_REQUIRED_VERSION "5.10.0")
+set(QT_REQUIRED_VERSION "5.11.0")
 find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED DBus Network PrintSupport Test Widgets Xml)
 find_package(Qt5X11Extras NO_MODULE)
 find_package(Grantlee5 "5.1" CONFIG REQUIRED)
