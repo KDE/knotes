@@ -745,11 +745,11 @@ void KNotesPart::slotSaveAs()
 
     QString format;
     const QString fileName = QFileDialog::getSaveFileName(widget(), i18n("Save As"), QString(),
-                                                          filters.join(QStringLiteral(";;")), &format);
+                                                          filters.join(QLatin1String(";;")), &format);
     if (fileName.isEmpty()) {
         return;
     }
-    const bool htmlFormatAndSaveAsHtml = (knoteItem->isRichText() && !format.contains(QStringLiteral("(*.txt)")));
+    const bool htmlFormatAndSaveAsHtml = (knoteItem->isRichText() && !format.contains(QLatin1String("(*.txt)")));
 
     QFile file(fileName);
     if (file.exists()

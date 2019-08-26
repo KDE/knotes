@@ -148,7 +148,7 @@ void KNotesPlugin::processDropEvent(QDropEvent *event)
         }
         event->accept();
         static_cast<KNotesPart *>(part())->newNote(
-            i18nc("@item", "Meeting"), attendees.join(QStringLiteral(", ")));
+            i18nc("@item", "Meeting"), attendees.join(QLatin1String(", ")));
         return;
     }
 
