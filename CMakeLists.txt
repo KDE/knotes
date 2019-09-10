@@ -111,7 +111,10 @@ set_package_properties(Xsltproc PROPERTIES DESCRIPTION "XSLT processor from libx
 
 include_directories(${knotes_SOURCE_DIR} ${knotes_BINARY_DIR})
 
-add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x060000)
+if (EXISTS "${CMAKE_SOURCE_DIR}/.git")
+   add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x060000)
+endif()
+
 add_definitions(-DQT_NO_FOREACH)
 set(CMAKE_CXX_STANDARD 14)
 
