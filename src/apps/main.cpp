@@ -42,8 +42,8 @@ int main(int argc, char *argv[])
     qunsetenv("SESSION_MANAGER");
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     Application app(argc, &argv);
-    app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     KCrash::initialize();
     KNotesMigrateApplication migrate;
     migrate.migrate();
