@@ -119,7 +119,7 @@ void NotesAgent::showConfigureDialog(qlonglong windowId)
 {
     QPointer<NotesAgentSettingsDialog> dialog = new NotesAgentSettingsDialog;
     if (windowId) {
-        KWindowSystem::setMainWindow(dialog, windowId);
+        KWindowSystem::setMainWindow(dialog->windowHandle(), windowId);
     }
     if (dialog->exec()) {
         mNotesManager->load();

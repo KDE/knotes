@@ -30,6 +30,7 @@
 #include "config/notenetworkconfig.h"
 #include "print/knoteprintselectthemecombobox.h"
 
+#include <kconfigwidgets_version.h>
 #include <KAuthorized>
 #include <KIconLoader>
 #include <KLocalizedString>
@@ -210,7 +211,11 @@ KNoteMiscConfig::KNoteMiscConfig(QWidget *parent)
     howItWorks->setContextMenuPolicy(Qt::NoContextMenu);
     lay->addStretch();
     load();
+#if KCONFIGWIDGETS_VERSION < QT_VERSION_CHECK(5, 64, 0)
     connect(mDefaultTitle, &QLineEdit::textChanged, this, qOverload<>(&KNoteMiscConfig::changed));
+#else
+    connect(mDefaultTitle, &QLineEdit::textChanged, this, &KNoteMiscConfig::markAsChanged);
+#endif
 }
 
 void KNoteMiscConfig::load()
@@ -317,7 +322,11 @@ KNoteCollectionConfig::KNoteCollectionConfig(QWidget *parent)
     QHBoxLayout *lay = new QHBoxLayout(this);
     mCollectionConfigWidget = new KNoteCollectionConfigWidget;
     lay->addWidget(mCollectionConfigWidget);
+#if KCONFIGWIDGETS_VERSION < QT_VERSION_CHECK(5, 64, 0)
     connect(mCollectionConfigWidget, &KNoteCollectionConfigWidget::emitChanged, this, qOverload<>(&KNoteCollectionConfig::changed));
+#else
+    connect(mCollectionConfigWidget, &KNoteCollectionConfigWidget::emitChanged, this, &KNoteCollectionConfig::markAsChanged);
+#endif
     load();
 }
 
