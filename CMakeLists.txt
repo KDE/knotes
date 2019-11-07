@@ -1,7 +1,7 @@
-set(KDEPIM_VERSION_NUMBER "5.12.40")
+set(KDEPIM_VERSION_NUMBER "5.12.80")
 cmake_minimum_required(VERSION 3.5)
 project(knotes VERSION ${KDEPIM_VERSION_NUMBER})
-set(KDE_APPLICATIONS_VERSION "19.11.70")
+set(KDE_APPLICATIONS_VERSION "19.11.80")
 
 
 set(KF5_MIN_VERSION "5.63.0")
@@ -29,7 +29,7 @@ include(ECMQtDeclareLoggingCategory)
 
 
 # Do NOT add quote
-set(KDEPIM_DEV_VERSION alpha)
+set(KDEPIM_DEV_VERSION beta1)
 
 # add an extra space
 if(DEFINED KDEPIM_DEV_VERSION)
