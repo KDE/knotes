@@ -5,9 +5,9 @@ KNotes -- Notes for the K Desktop Environment
 the KDE project. It tries to be as fast and lightweight as possible
 although including some advanced features.
 
-  KNotes conforms to the KDEPIM coding standards:
+  KNotes conforms to the KDE Frameworks coding standards:
 
-    http://kdepim.kde.org/development/coding.php
+    https://techbase.kde.org/Policies/Frameworks_Coding_Style
 
 Features
 ========

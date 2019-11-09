@@ -1,10 +1,9 @@
 Coding Style
 ============
 
-  KNotes conforms to the KDEPIM Coding Standard:
+  KNotes conforms to the KDE Frameworks coding standards:
 
-    http://kdepim.kde.org/development/coding.php
-
+    https://techbase.kde.org/Policies/Frameworks_Coding_Style
 
 Rules
 =====
