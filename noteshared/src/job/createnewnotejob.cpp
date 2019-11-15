@@ -141,7 +141,7 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
     Akonadi::Collection col = fetchCollection->collections().at(0);
     if (col.isValid()) {
         if (!col.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
-            if (KMessageBox::Yes == KMessageBox::warningYesNo(nullptr, i18n("Collection is hidden. New note will stored but not displaying. Do you want to show collection?"))) {
+            if (KMessageBox::Yes == KMessageBox::warningYesNo(nullptr, i18n("Collection is hidden. New note will be stored but not displayed. Do you want to show collection?"))) {
                 col.addAttribute(new NoteShared::ShowFolderNotesAttribute());
                 Akonadi::CollectionModifyJob *job = new Akonadi::CollectionModifyJob(col);
                 connect(job, &Akonadi::CollectionModifyJob::result, this, &CreateNewNoteJob::slotCollectionModifyFinished);
