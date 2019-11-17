@@ -10,6 +10,7 @@
   <developer_name xml:lang="de">Die KDE-Gemeinschaft</developer_name>
   <developer_name xml:lang="en-GB">The KDE Community</developer_name>
   <developer_name xml:lang="es">La comunidad de KDE</developer_name>
+  <developer_name xml:lang="et">KDE kogukond</developer_name>
   <developer_name xml:lang="fi">KDE-yhteisö</developer_name>
   <developer_name xml:lang="fr">La communauté KDE</developer_name>
   <developer_name xml:lang="gl">A comunidade de KDE</developer_name>
@@ -71,6 +72,7 @@
   <summary xml:lang="de">Haftnotizen</summary>
   <summary xml:lang="en-GB">Sticky notes application</summary>
   <summary xml:lang="es">Aplicación de notas adhesivas</summary>
+  <summary xml:lang="et">Kleepuvate sedelite rakendus</summary>
   <summary xml:lang="fi">Muistilappusovellus</summary>
   <summary xml:lang="fr">Application de notes autocollantes</summary>
   <summary xml:lang="gl">Aplicación de notas pegañentas</summary>
