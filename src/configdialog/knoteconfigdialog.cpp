@@ -317,7 +317,7 @@ KNoteCollectionConfig::KNoteCollectionConfig(QWidget *parent)
     QHBoxLayout *lay = new QHBoxLayout(this);
     mCollectionConfigWidget = new KNoteCollectionConfigWidget;
     lay->addWidget(mCollectionConfigWidget);
-    connect(mCollectionConfigWidget, &KNoteCollectionConfigWidget::emitChanged, this, qOverload<>(&KNoteCollectionConfig::changed));
+    connect(mCollectionConfigWidget, &KNoteCollectionConfigWidget::emitChanged, this, &KNoteCollectionConfig::markAsChanged);
     load();
 }
 
