@@ -31,7 +31,8 @@
 
 #include <KIconEffect>
 #include <KIconLoader>
-
+#include <QEvent>
+#include <QMouseEvent>
 #include <QToolTip>
 
 //#define DEBUG_SAVE_NOTE 1
