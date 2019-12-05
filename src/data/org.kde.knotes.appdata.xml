@@ -296,4 +296,7 @@
   <provides>
     <binary>knotes</binary>
   </provides>
+  <releases>
+    <release version="5.13.0" date="2019-12-12"/>
+  </releases>
 </component>
