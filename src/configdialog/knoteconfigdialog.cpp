@@ -31,10 +31,8 @@
 #include "print/knoteprintselectthemecombobox.h"
 
 #include <KAuthorized>
-#include <KIconLoader>
 #include <KLocalizedString>
 #include <KNS3/DownloadDialog>
-#include <KWindowSystem>
 
 #include <QCheckBox>
 #include <QApplication>
@@ -53,13 +51,6 @@ KNoteConfigDialog::KNoteConfigDialog(const QString &title, QWidget *parent)
     button(QDialogButtonBox::Ok)->setDefault(true);
 
     setWindowTitle(title);
-    KWindowSystem::setIcons(winId(),
-                            qApp->windowIcon().pixmap(
-                                IconSize(KIconLoader::Desktop),
-                                IconSize(KIconLoader::Desktop)),
-                            qApp->windowIcon().pixmap(
-                                IconSize(KIconLoader::Small),
-                                IconSize(KIconLoader::Small)));
     addModule(QStringLiteral("knote_config_display"));
     addModule(QStringLiteral("knote_config_editor"));
     addModule(QStringLiteral("knote_config_action"));

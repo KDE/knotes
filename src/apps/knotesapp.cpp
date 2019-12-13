@@ -56,7 +56,6 @@
 #include <KActionCollection>
 #include <KGlobalAccel>
 #include <KIconEffect>
-#include <KIconLoader>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KWindowSystem>
@@ -72,6 +71,7 @@
 #include <QDBusConnection>
 #include <QFileDialog>
 #include <QMenu>
+#include <QStyle>
 
 static bool qActionLessThan(const QAction *a1, const QAction *a2)
 {
@@ -510,8 +510,7 @@ void KNotesApp::updateNoteActions()
         connect(action, &QAction::triggered, this, &KNotesApp::slotShowNote);
         KIconEffect effect;
         QPixmap icon
-            = effect.apply(qApp->windowIcon().pixmap(IconSize(KIconLoader::Small),
-                                                     IconSize(KIconLoader::Small)),
+            = effect.apply(qApp->windowIcon().pixmap(style()->pixelMetric(QStyle::PM_SmallIconSize)),
                            KIconEffect::Colorize,
                            1,
                            note->palette().color(note->backgroundRole()),

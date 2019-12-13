@@ -27,10 +27,8 @@
 #include "attributes/notelockattribute.h"
 
 #include <KConfigGroup>
-#include <KIconLoader>
 #include <KLocalizedString>
 #include <KSharedConfig>
-#include <KWindowSystem>
 
 #include <QApplication>
 #include <QDialogButtonBox>
@@ -50,14 +48,6 @@ KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title, QWidget *
     connect(buttonBox, &QDialogButtonBox::accepted, this, &KNoteSimpleConfigDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteSimpleConfigDialog::reject);
 
-    setWindowTitle(title);
-    KWindowSystem::setIcons(winId(),
-                            qApp->windowIcon().pixmap(
-                                IconSize(KIconLoader::Desktop),
-                                IconSize(KIconLoader::Desktop)),
-                            qApp->windowIcon().pixmap(
-                                IconSize(KIconLoader::Small),
-                                IconSize(KIconLoader::Small)));
     mTabWidget = new QTabWidget;
 
     mEditorConfigWidget = new KNoteEditorConfigWidget(this);

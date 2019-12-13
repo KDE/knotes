@@ -47,7 +47,6 @@
 #include <KComboBox>
 #include <KFileCustomDialog>
 #include <KIconEffect>
-#include <KIconLoader>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KToggleAction>
@@ -938,14 +937,10 @@ void KNote::prepare()
     // aware of the new colors
     KIconEffect effect;
     const QColor col = mDisplayAttribute->backgroundColor();
-    const QPixmap icon = effect.apply(qApp->windowIcon().pixmap(
-                                          IconSize(KIconLoader::Desktop),
-                                          IconSize(KIconLoader::Desktop)),
+    const QPixmap icon = effect.apply(qApp->windowIcon().pixmap(style()->pixelMetric(QStyle::PM_MessageBoxIconSize)),
                                       KIconEffect::Colorize,
                                       1, col, false);
-    const QPixmap miniIcon = effect.apply(qApp->windowIcon().pixmap(
-                                              IconSize(KIconLoader::Small),
-                                              IconSize(KIconLoader::Small)),
+    const QPixmap miniIcon = effect.apply(qApp->windowIcon().pixmap(style()->pixelMetric(QStyle::PM_SmallIconSize)),
                                           KIconEffect::Colorize,
                                           1, col, false);
     KWindowSystem::setIcons(winId(), icon, miniIcon);
@@ -1022,13 +1017,9 @@ void KNote::setColor(const QColor &fg, const QColor &bg)
 
     // update the icon color
     KIconEffect effect;
-    QPixmap icon = effect.apply(qApp->windowIcon().pixmap(
-                                    IconSize(KIconLoader::Desktop),
-                                    IconSize(KIconLoader::Desktop)),
+    QPixmap icon = effect.apply(qApp->windowIcon().pixmap(style()->pixelMetric(QStyle::PM_MessageBoxIconSize)),
                                 KIconEffect::Colorize, 1, bg, false);
-    QPixmap miniIcon = effect.apply(qApp->windowIcon().pixmap(
-                                        IconSize(KIconLoader::Small),
-                                        IconSize(KIconLoader::Small)),
+    QPixmap miniIcon = effect.apply(qApp->windowIcon().pixmap(style()->pixelMetric(QStyle::PM_SmallIconSize)),
                                     KIconEffect::Colorize, 1, bg, false);
     KWindowSystem::setIcons(winId(), icon, miniIcon);
     // update the color of the title
