@@ -514,7 +514,7 @@ void KNote::slotSaveAs()
     dlg->setCustomWidget(convert);
     dlg->setUrl(url);
     dlg->setOperationMode(KFileWidget::Saving);
-    dlg->setWindowTitle(i18n("Save As"));
+    dlg->setWindowTitle(i18nc("@title:window", "Save As"));
     if (!dlg->exec()) {
         delete dlg;
         return;

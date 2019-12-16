@@ -48,7 +48,7 @@
 NotesAgentAlarmDialog::NotesAgentAlarmDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle(i18n("Alarm"));
+    setWindowTitle(i18nc("@title:window", "Alarm"));
     setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
     setAttribute(Qt::WA_DeleteOnClose);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);

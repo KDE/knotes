@@ -29,7 +29,7 @@
 KNoteDeleteSelectedNotesDialog::KNoteDeleteSelectedNotesDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle(i18n("Select notes to delete"));
+    setWindowTitle(i18nc("@title:window", "Select notes to delete"));
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     mNoteList = new NoteShared::NoteListWidget(this);

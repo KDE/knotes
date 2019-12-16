@@ -31,7 +31,7 @@
 KNoteSelectedNotesDialog::KNoteSelectedNotesDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle(i18n("Select notes"));
+    setWindowTitle(i18nc("@title:window", "Select notes"));
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mListNotes = new QListWidget(this);
     mListNotes->setSelectionMode(QAbstractItemView::ExtendedSelection);

@@ -31,7 +31,7 @@
 KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle(i18n("Select theme"));
+    setWindowTitle(i18nc("@title:window", "Select theme"));
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);

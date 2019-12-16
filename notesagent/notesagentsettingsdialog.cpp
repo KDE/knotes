@@ -39,7 +39,7 @@
 NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle(i18n("Configure Notes Agent"));
+    setWindowTitle(i18nc("@title:window", "Configure Notes Agent"));
     setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     setModal(true);
