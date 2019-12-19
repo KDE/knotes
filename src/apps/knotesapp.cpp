@@ -292,7 +292,7 @@ void KNotesApp::slotItemRemoved(const Akonadi::Item &item)
 void KNotesApp::slotItemChanged(const Akonadi::Item &item, const QSet<QByteArray> &set)
 {
     if (mNotes.contains(item.id())) {
-        qCDebug(KNOTES_LOG) << " item changed " << item.id() << " info " << set.toList();
+        qCDebug(KNOTES_LOG) << " item changed " << item.id() << " info " << set.values();
         KNote *note = mNotes.value(item.id());
         note->setChangeItem(item, set);
     }
