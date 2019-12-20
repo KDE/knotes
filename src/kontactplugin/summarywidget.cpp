@@ -37,7 +37,6 @@
 #include <KontactInterface/Plugin>
 
 #include <KMime/Message>
-#include <kwidgetsaddons_version.h>
 #include <KCheckableProxyModel>
 #include <KIconEffect>
 #include <KIconLoader>
@@ -189,13 +188,6 @@ void KNotesSummaryWidget::createNote(const Akonadi::Item &item, int counter)
     urlLabel->installEventFilter(this);
     urlLabel->setAlignment(Qt::AlignLeft);
     urlLabel->setWordWrap(true);
-#if KWIDGETSADDONS_VERSION < QT_VERSION_CHECK(5, 65, 0)
-    connect(urlLabel, qOverload<const QString &>(&KUrlLabel::leftClickedUrl),
-            this, &KNotesSummaryWidget::slotSelectNote);
-
-    connect(urlLabel, qOverload<const QString &>(&KUrlLabel::rightClickedUrl),
-            this, &KNotesSummaryWidget::slotPopupMenu);
-#else
     connect(urlLabel, &KUrlLabel::leftClickedUrl, this, [this, urlLabel]() {
         slotSelectNote(urlLabel->url()); }
     );
@@ -203,7 +195,6 @@ void KNotesSummaryWidget::createNote(const Akonadi::Item &item, int counter)
     connect(urlLabel, &KUrlLabel::rightClickedUrl, this, [this, urlLabel]() {
         slotPopupMenu(urlLabel->url()); }
     );
-#endif
     mLayout->addWidget(urlLabel, counter, 1);
 
     QColor color;
