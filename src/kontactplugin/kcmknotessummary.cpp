@@ -1,5 +1,5 @@
 /*
-   Copyright (C) 2013-2019 Montel Laurent <montel@kde.org>
+   Copyright (C) 2013-2020 Laurent Montel <montel@kde.org>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -60,7 +60,7 @@ KCMKNotesSummary::KCMKNotesSummary(QWidget *parent)
                                        QString(),
                                        i18n("Notes Summary Configuration Dialog"),
                                        KAboutLicense::GPL,
-                                       i18n("Copyright © 2013-2019 Laurent Montel <montel@kde.org>"));
+                                       i18n("Copyright © 2013-2020 Laurent Montel <montel@kde.org>"));
     about->addAuthor(ki18n("Laurent Montel").toString(), QString(), QStringLiteral("montel@kde.org"));
     setAboutData(about);
 }
