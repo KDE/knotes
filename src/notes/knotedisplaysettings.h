@@ -36,21 +36,21 @@ public:
 
     void setDisplayAttribute(const NoteShared::NoteDisplayAttribute *attr);
     const NoteShared::NoteDisplayAttribute *displayAttribute() const;
-    QColor backgroundColor() const;
+    Q_REQUIRED_RESULT QColor backgroundColor() const;
 
-    QColor foregroundColor() const;
-    QSize size() const;
-    bool rememberDesktop() const;
-    int tabSize() const;
-    QFont font() const;
-    QFont titleFont() const;
-    int desktop() const;
-    bool isHidden() const;
-    QPoint position() const;
-    bool showInTaskbar() const;
-    bool keepAbove() const;
-    bool keepBelow() const;
-    bool autoIndent() const;
+    Q_REQUIRED_RESULT QColor foregroundColor() const;
+    Q_REQUIRED_RESULT QSize size() const;
+    Q_REQUIRED_RESULT bool rememberDesktop() const;
+    Q_REQUIRED_RESULT int tabSize() const;
+    Q_REQUIRED_RESULT QFont font() const;
+    Q_REQUIRED_RESULT QFont titleFont() const;
+    Q_REQUIRED_RESULT int desktop() const;
+    Q_REQUIRED_RESULT bool isHidden() const;
+    Q_REQUIRED_RESULT QPoint position() const;
+    Q_REQUIRED_RESULT bool showInTaskbar() const;
+    Q_REQUIRED_RESULT bool keepAbove() const;
+    Q_REQUIRED_RESULT bool keepBelow() const;
+    Q_REQUIRED_RESULT bool autoIndent() const;
 
 private:
     const NoteShared::NoteDisplayAttribute *mDisplayAttribute = nullptr;

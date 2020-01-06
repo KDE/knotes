@@ -55,17 +55,17 @@ public:
     void setChangeItem(const Akonadi::Item &item, const QSet<QByteArray> &set = QSet<QByteArray>());
     void saveNote(bool force = false, bool sync = false);
 
-    QString name() const;
-    QString text() const;
-    Akonadi::Item::Id noteId() const;
+    Q_REQUIRED_RESULT QString name() const;
+    Q_REQUIRED_RESULT QString text() const;
+    Q_REQUIRED_RESULT Akonadi::Item::Id noteId() const;
 
-    Akonadi::Item item() const;
+    Q_REQUIRED_RESULT Akonadi::Item item() const;
 
     void setName(const QString &name);
     void setText(const QString &text);
 
-    bool isModified() const;
-    bool isDesktopAssigned() const;
+    Q_REQUIRED_RESULT bool isModified() const;
+    Q_REQUIRED_RESULT bool isDesktopAssigned() const;
 
     void toDesktop(int desktop);
 

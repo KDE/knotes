@@ -36,11 +36,11 @@ public:
     void addNotes(const Akonadi::Item::List &notes);
     void removeNote(const Akonadi::Item &note);
 
-    Akonadi::Item::Id itemId(QListWidgetItem *item) const;
+    Q_REQUIRED_RESULT Akonadi::Item::Id itemId(QListWidgetItem *item) const;
 
-    Akonadi::Item::Id currentItemId() const;
+    Q_REQUIRED_RESULT Akonadi::Item::Id currentItemId() const;
 
-    Akonadi::Item::List selectedNotes() const;
+    Q_REQUIRED_RESULT Akonadi::Item::List selectedNotes() const;
 
 private:
     void createItem(const Akonadi::Item &note);

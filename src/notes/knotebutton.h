@@ -30,8 +30,8 @@ public:
     explicit KNoteButton(const QString &icon, QWidget *parent = nullptr);
     ~KNoteButton() override;
 
-    int heightForWidth(int w) const override;
-    QSize sizeHint() const override;
+    Q_REQUIRED_RESULT int heightForWidth(int w) const override;
+    Q_REQUIRED_RESULT QSize sizeHint() const override;
 
 protected:
     void enterEvent(QEvent *) override;

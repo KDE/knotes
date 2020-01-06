@@ -30,7 +30,7 @@ public:
     explicit KNotePrintSelectThemeComboBox(QWidget *parent = nullptr);
     ~KNotePrintSelectThemeComboBox();
 
-    QString selectedTheme() const;
+    Q_REQUIRED_RESULT QString selectedTheme() const;
 
     void loadThemes();
     void selectDefaultTheme();

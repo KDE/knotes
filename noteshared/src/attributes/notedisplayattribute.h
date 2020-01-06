@@ -34,48 +34,48 @@ public:
     NoteDisplayAttribute();
     ~NoteDisplayAttribute() override;
 
-    QByteArray type() const override;
+    Q_REQUIRED_RESULT QByteArray type() const override;
 
     NoteDisplayAttribute *clone() const override;
 
-    QByteArray serialized() const override;
+    Q_REQUIRED_RESULT QByteArray serialized() const override;
 
     void deserialize(const QByteArray &data) override;
 
     void setBackgroundColor(const QColor &color);
-    QColor backgroundColor() const;
-    QColor foregroundColor() const;
+    Q_REQUIRED_RESULT QColor backgroundColor() const;
+    Q_REQUIRED_RESULT QColor foregroundColor() const;
     void setForegroundColor(const QColor &color);
 
-    QSize size() const;
+    Q_REQUIRED_RESULT QSize size() const;
     void setSize(const QSize &size);
 
-    bool rememberDesktop() const;
+    Q_REQUIRED_RESULT bool rememberDesktop() const;
     void setRememberDesktop(bool b);
     void setTabSize(int value);
-    int tabSize() const;
+    Q_REQUIRED_RESULT int tabSize() const;
 
     void setFont(const QFont &f);
-    QFont font() const;
+    Q_REQUIRED_RESULT QFont font() const;
     void setTitleFont(const QFont &f);
-    QFont titleFont() const;
+    Q_REQUIRED_RESULT QFont titleFont() const;
 
     void setDesktop(int v);
-    int desktop() const;
+    Q_REQUIRED_RESULT int desktop() const;
     void setIsHidden(bool b);
-    bool isHidden() const;
+    Q_REQUIRED_RESULT bool isHidden() const;
     void setPosition(const QPoint &pos);
-    QPoint position() const;
+    Q_REQUIRED_RESULT QPoint position() const;
     void setShowInTaskbar(bool b);
-    bool showInTaskbar() const;
+    Q_REQUIRED_RESULT bool showInTaskbar() const;
     void setKeepAbove(bool b);
-    bool keepAbove() const;
+    Q_REQUIRED_RESULT bool keepAbove() const;
     void setKeepBelow(bool b);
-    bool keepBelow() const;
+    Q_REQUIRED_RESULT bool keepBelow() const;
 
-    bool autoIndent() const;
+    Q_REQUIRED_RESULT bool autoIndent() const;
     void setAutoIndent(bool b);
-    bool operator ==(const NoteDisplayAttribute &other) const;
+    Q_REQUIRED_RESULT bool operator ==(const NoteDisplayAttribute &other) const;
 
 private:
     QFont mFont;

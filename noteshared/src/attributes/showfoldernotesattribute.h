@@ -30,8 +30,8 @@ public:
     ~ShowFolderNotesAttribute() override;
 
     ShowFolderNotesAttribute *clone() const override;
-    QByteArray type() const override;
-    QByteArray serialized() const override;
+    Q_REQUIRED_RESULT QByteArray type() const override;
+    Q_REQUIRED_RESULT QByteArray serialized() const override;
     void deserialize(const QByteArray &data) override;
 };
 }

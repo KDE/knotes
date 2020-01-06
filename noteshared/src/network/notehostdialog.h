@@ -50,11 +50,11 @@ public:
     explicit NoteHostDialog(const QString &caption, QWidget *parent = nullptr);
     ~NoteHostDialog();
 
-    QString host() const;
+    Q_REQUIRED_RESULT QString host() const;
     /**
      * Returns 0 if port was not specified
      */
-    quint16 port() const;
+    Q_REQUIRED_RESULT quint16 port() const;
 
 private:
     void slotTextChanged(const QString &);

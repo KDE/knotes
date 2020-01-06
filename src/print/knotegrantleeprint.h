@@ -33,7 +33,7 @@ public:
     explicit KNoteGrantleePrint(const QString &themePath);
     ~KNoteGrantleePrint();
 
-    QString notesToHtml(const QList<KNotePrintObject *> &lst);
+    Q_REQUIRED_RESULT QString notesToHtml(const QList<KNotePrintObject *> &lst);
 };
 
 #endif // KNOTEGRANTLEEPRINT_H

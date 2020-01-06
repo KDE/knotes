@@ -19,13 +19,13 @@
 #ifndef KNOTEINTERFACE_H
 #define KNOTEINTERFACE_H
 #include "knotes_export.h"
-
+#include <QObject>
 class KNOTES_EXPORT KNoteInterface
 {
 public:
     KNoteInterface();
     void setBlockSave(bool b);
-    bool blockSave() const;
+    Q_REQUIRED_RESULT bool blockSave() const;
 
 protected:
     bool mBlockSave;

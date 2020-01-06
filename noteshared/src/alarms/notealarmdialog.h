@@ -44,7 +44,7 @@ public:
     explicit NoteAlarmDialog(const QString &caption, QWidget *parent = nullptr);
     ~NoteAlarmDialog();
     void setAlarm(const QDateTime &dateTime);
-    QDateTime alarm() const;
+    Q_REQUIRED_RESULT QDateTime alarm() const;
 
 private:
     void slotButtonChanged(int);

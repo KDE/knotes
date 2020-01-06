@@ -32,7 +32,7 @@ public:
 
     void createIfMissing();
 
-    static QString akonadiNotesInstanceName();
+    static Q_REQUIRED_RESULT QString akonadiNotesInstanceName();
 
 protected:
     virtual void finishCreateResource();
