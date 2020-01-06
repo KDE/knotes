@@ -58,7 +58,7 @@ set(GRANTLEETHEME_LIB_VERSION "5.13.40")
 set(QT_REQUIRED_VERSION "5.12.0")
 find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED DBus Network PrintSupport Test Widgets Xml)
 find_package(Qt5X11Extras NO_MODULE)
-find_package(Grantlee5 "5.1" CONFIG REQUIRED)
+find_package(Grantlee5 "5.2" CONFIG REQUIRED)
 # Find KF5 package
 find_package(KF5Completion ${KF5_MIN_VERSION} REQUIRED)
 find_package(KF5Config ${KF5_MIN_VERSION} REQUIRED)
