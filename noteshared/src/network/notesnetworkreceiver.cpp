@@ -40,6 +40,7 @@
 #include <QTimer>
 #include <QTextCodec>
 #include "noteshared_debug.h"
+#include "noteutils.h"
 #include <QLocale>
 
 // Maximum note size in chars we are going to accept,
@@ -144,16 +145,11 @@ void NotesNetworkReceiver::slotConnectionClosed()
     QTextCodec *codec = QTextCodec::codecForLocale();
 
     if (d->m_timer->isActive()) {
-        QString noteText = QString(codec->toUnicode(*d->m_buffer)).trimmed();
-
-        // First line is the note title or, in case of ATnotes, the id
-        const int pos = noteText.indexOf(QRegExp(QLatin1String("[\r\n]")));
-        const QString noteTitle = noteText.left(pos).trimmed() + d->m_titleAddon;
-
-        noteText = noteText.mid(pos).trimmed();
-
-        if (!noteText.isEmpty()) {
-            Q_EMIT sigNoteReceived(noteTitle, noteText);
+        const QString noteText = QString(codec->toUnicode(*d->m_buffer)).trimmed();
+        NoteUtils utils;
+        const NoteUtils::NoteText result = utils.extractNoteText(noteText, d->m_titleAddon);
+        if (!result.noteText.isEmpty()) {
+            Q_EMIT sigNoteReceived(result.noteTitle, result.noteText);
         }
     }
 

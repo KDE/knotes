@@ -119,6 +119,9 @@ add_definitions(-DQT_NO_FOREACH)
 set(CMAKE_CXX_STANDARD 14)
 
 configure_file(knotes-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotes-version.h @ONLY)
+if(BUILD_TESTING)
+   add_definitions(-DBUILD_TESTING)
+endif()
 
 add_subdirectory(noteshared)
 add_subdirectory(src)

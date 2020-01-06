@@ -1,5 +1,5 @@
 /*
-   Copyright (C) 2013-2020 Laurent Montel <montel@kde.org>
+   Copyright (C) 2020 Laurent Montel <montel@kde.org>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -16,27 +16,23 @@
    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
    Boston, MA 02110-1301, USA.
 */
-#ifndef NOTEUTILS_H
-#define NOTEUTILS_H
 
-#include "noteshared_export.h"
-#include <AkonadiCore/Item>
-#include <QString>
-class QWidget;
-namespace NoteShared {
-class NOTESHARED_EXPORT NoteUtils
+
+#ifndef NOTEUTILSTEST_H
+#define NOTEUTILSTEST_H
+
+#include <QObject>
+
+class NoteUtilsTest : public QObject
 {
+    Q_OBJECT
 public:
-    struct NoteText {
-        QString noteTitle;
-        QString noteText;
-    };
-    NoteUtils();
-    Q_REQUIRED_RESULT bool sendToMail(QWidget *parent, const QString &title, const QString &message);
-    void sendToNetwork(QWidget *parent, const QString &title, const QString &message);
-    Q_REQUIRED_RESULT QString createToolTip(const Akonadi::Item &item);
-    Q_REQUIRED_RESULT NoteText extractNoteText(QString noteText, const QString &titleAddon);
-};
-}
+    explicit NoteUtilsTest(QObject *parent = nullptr);
+    ~NoteUtilsTest() = default;
 
-#endif // NOTEUTILS_H
+private Q_SLOTS:
+    void testExtractNoteText_data();
+    void testExtractNoteText();
+};
+
+#endif // NOTEUTILSTEST_H

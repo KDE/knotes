@@ -27,6 +27,7 @@
 
 #include <KMime/KMimeMessage>
 
+#include <QRegularExpression>
 #include <QPointer>
 #include <QApplication>
 #include <QSslSocket>
@@ -144,4 +145,16 @@ QString NoteUtils::createToolTip(const Akonadi::Item &item)
         }
     }
     return tip;
+}
+
+NoteUtils::NoteText NoteUtils::extractNoteText(QString noteText, const QString &titleAddon)
+{
+    const int pos = noteText.indexOf(QRegularExpression(QLatin1String("[\r\n]")));
+    const QString noteTitle = noteText.left(pos).trimmed() + titleAddon;
+
+    noteText = noteText.mid(pos).trimmed();
+    NoteUtils::NoteText noteTextResult;
+    noteTextResult.noteText = noteText;
+    noteTextResult.noteTitle = noteTitle;
+    return noteTextResult;
 }
