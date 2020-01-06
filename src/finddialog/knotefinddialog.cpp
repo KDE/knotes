@@ -33,6 +33,7 @@
 #include <KSharedConfig>
 #include <QDialogButtonBox>
 #include <KConfigGroup>
+#include <QMenu>
 
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     : QDialog(parent)
@@ -99,9 +100,11 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
 
     //Result
     mNoteList = new NoteShared::NoteListWidget(this);
+    mNoteList->setContextMenuPolicy(Qt::CustomContextMenu);
     mNoteList->setSelectionMode(QAbstractItemView::SingleSelection);
     connect(mNoteList, &NoteShared::NoteListWidget::itemDoubleClicked,
             this, &KNoteFindWidget::slotItemDoubleClicked);
+    connect(mNoteList, &NoteShared::NoteListWidget::customContextMenuRequested, this, &KNoteFindWidget::customContextMenuRequested);
     vbox->addWidget(mNoteList);
 
     mResultSearch = new QLabel(this);
@@ -155,4 +158,16 @@ void KNoteFindWidget::slotSearchNote()
 void KNoteFindWidget::slotTextChanged(const QString &text)
 {
     mSearchButton->setEnabled(!text.trimmed().isEmpty());
+}
+
+void KNoteFindWidget::customContextMenuRequested(const QPoint &)
+{
+    QListWidgetItem *item = mNoteList->currentItem();
+    QMenu menu(this);
+    if (item) {
+        menu.addAction(i18n("Show Note"), this, [this, item]() {
+            Q_EMIT noteSelected(mNoteList->itemId(item));
+        });
+        menu.exec(QCursor::pos());
+    }
 }

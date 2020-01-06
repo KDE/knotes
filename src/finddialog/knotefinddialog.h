@@ -48,6 +48,7 @@ private Q_SLOTS:
     void slotItemDoubleClicked(QListWidgetItem *);
 
 private:
+    void customContextMenuRequested(const QPoint &);
     QHash<Akonadi::Item::Id, Akonadi::Item> mNotes;
     QLabel *mResultSearch = nullptr;
     QLineEdit *mSearchLineEdit = nullptr;
