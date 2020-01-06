@@ -35,7 +35,6 @@
 
 #include <QDateTime>
 #include <QHostAddress>
-#include <QRegExp>
 #include <QTcpSocket>
 #include <QTimer>
 #include <QTextCodec>
