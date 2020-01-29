@@ -99,10 +99,10 @@ NoteAlarmDialog::NoteAlarmDialog(const QString &caption, QWidget *parent)
     layout->addWidget(at);
     d->m_buttons->addButton(label_at, 1);
 
-    connect(d->m_buttons, qOverload<int>(&QButtonGroup::buttonClicked), this, &NoteAlarmDialog::slotButtonChanged);
+    connect(d->m_buttons, qOverload<QAbstractButton *>(&QButtonGroup::buttonClicked), this, &NoteAlarmDialog::slotButtonChanged);
     connect(okButton, &QPushButton::clicked, this, &NoteAlarmDialog::accept);
     d->m_buttons->button(0)->setChecked(true);
-    slotButtonChanged(d->m_buttons->checkedId());
+    slotButtonChanged(d->m_buttons->checkedButton());
     mainLayout->addWidget(page);
     mainLayout->addWidget(buttonBox);
 }
@@ -121,20 +121,23 @@ void NoteAlarmDialog::setAlarm(const QDateTime &dateTime)
     } else {
         d->m_buttons->button(0)->setChecked(true);
     }
-    slotButtonChanged(d->m_buttons->checkedId());
+    slotButtonChanged(d->m_buttons->checkedButton());
 }
 
-void NoteAlarmDialog::slotButtonChanged(int id)
+void NoteAlarmDialog::slotButtonChanged(QAbstractButton *button)
 {
-    switch (id) {
-    case 0:
-        d->m_atDate->setEnabled(false);
-        d->m_atTime->setEnabled(false);
-        break;
-    case 1:
-        d->m_atDate->setEnabled(true);
-        d->m_atTime->setEnabled(true);
-        break;
+    if (button) {
+        const int id = d->m_buttons->id(button);
+        switch (id) {
+        case 0:
+            d->m_atDate->setEnabled(false);
+            d->m_atTime->setEnabled(false);
+            break;
+        case 1:
+            d->m_atDate->setEnabled(true);
+            d->m_atTime->setEnabled(true);
+            break;
+        }
     }
 }
 

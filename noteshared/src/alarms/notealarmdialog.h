@@ -35,6 +35,7 @@
 #include <QDialog>
 #include "noteshared_export.h"
 class QDateTime;
+class QAbstractButton;
 namespace NoteShared {
 class NoteAlarmDialogPrivate;
 class NOTESHARED_EXPORT NoteAlarmDialog : public QDialog
@@ -47,7 +48,7 @@ public:
     Q_REQUIRED_RESULT QDateTime alarm() const;
 
 private:
-    void slotButtonChanged(int);
+    void slotButtonChanged(QAbstractButton *button);
     NoteAlarmDialogPrivate *const d;
 };
 }
