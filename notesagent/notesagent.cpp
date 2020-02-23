@@ -28,7 +28,7 @@
 
 #include <Kdelibs4ConfigMigrator>
 
-#include <KDBusConnectionPool>
+#include <QDBusConnection>
 #include <KWindowSystem>
 
 NotesAgent::NotesAgent(const QString &id)
@@ -43,7 +43,7 @@ NotesAgent::NotesAgent(const QString &id)
 
     mNotesManager = new NotesManager(this);
     new NotesAgentAdaptor(this);
-    KDBusConnectionPool::threadConnection().registerObject(QStringLiteral("/NotesAgent"),
+    QDBusConnection::sessionBus().registerObject(QStringLiteral("/NotesAgent"),
                                                            this, QDBusConnection::ExportAdaptors);
 
     QString service = QStringLiteral("org.freedesktop.Akonadi.NotesAgent");
@@ -51,7 +51,7 @@ NotesAgent::NotesAgent(const QString &id)
         service += QLatin1Char('.') + Akonadi::ServerManager::instanceIdentifier();
     }
 
-    KDBusConnectionPool::threadConnection().registerService(service);
+    QDBusConnection::sessionBus().registerService(service);
 
     setNeedsNetwork(true);
 
