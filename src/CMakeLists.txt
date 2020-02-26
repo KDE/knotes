@@ -46,7 +46,15 @@ configure_file(settings/knotesglobalconfig.kcfg.cmake ${CMAKE_CURRENT_BINARY_DIR
 set( libknotesprivate_kcfg_lib_SRCS settings/knotesglobalconfig.kcfgc )
 
 kconfig_add_kcfg_files(libknotesprivate_kcfg_lib_SRCS ${libknotesprivate_kcfg_lib_SRCS})
-ecm_qt_declare_logging_category(libknotesprivate_lib_SRCS HEADER knotes_debug.h IDENTIFIER KNOTES_LOG CATEGORY_NAME org.kde.pim.knotes)
+if (ECM_VERSION VERSION_LESS "5.68.0")
+    ecm_qt_declare_logging_category(libknotesprivate_lib_SRCS HEADER knotes_debug.h IDENTIFIER KNOTES_LOG CATEGORY_NAME org.kde.pim.knotes)
+else()
+    ecm_qt_declare_logging_category(libknotesprivate_lib_SRCS HEADER knotes_debug.h IDENTIFIER KNOTES_LOG CATEGORY_NAME org.kde.pim.knotes
+        DESCRIPTION "knotes (knotes)"
+        OLD_CATEGORY_NAMES log_knotes
+        EXPORT KNOTES
+    )
+endif()
 
 add_library(knotesprivate ${libknotesprivate_lib_SRCS} ${libknotesprivate_kcfg_lib_SRCS} )
 generate_export_header(knotesprivate BASE_NAME knotes)

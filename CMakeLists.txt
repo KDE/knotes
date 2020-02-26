@@ -126,7 +126,15 @@ add_subdirectory(noteshared)
 add_subdirectory(src)
 add_subdirectory(notesagent)
 
-install(FILES knotes.categories knotes.renamecategories  DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
+if (ECM_VERSION VERSION_LESS "5.68.0")
+    install(FILES knotes.categories knotes.renamecategories  DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
+else ()
+    ecm_qt_install_logging_categories(
+        EXPORT KNOTES
+        FILE knotes.categories
+        DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
+        )
+endif()
 
 add_subdirectory(doc)
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
