@@ -41,7 +41,11 @@ NoteUtils::NoteUtils()
 bool NoteUtils::sendToMail(QWidget *parent, const QString &title, const QString &message)
 {
     // get the mail action command
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     const QStringList cmd_list = NoteShared::NoteSharedGlobalConfig::mailAction().split(QLatin1Char(' '), QString::SkipEmptyParts);
+#else
+    const QStringList cmd_list = NoteShared::NoteSharedGlobalConfig::mailAction().split(QLatin1Char(' '), Qt::SkipEmptyParts);
+#endif
     if (cmd_list.isEmpty()) {
         KMessageBox::sorry(parent, i18n("Please configure send mail action."));
         return false;
