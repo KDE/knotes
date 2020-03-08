@@ -22,7 +22,6 @@
 #include "knotes_part.h"
 #include <QListWidget>
 #include <QMultiHash>
-class KNoteConfig;
 class KNoteDisplaySettings;
 class KNotesIconViewItem;
 class KNotesIconView : public QListWidget

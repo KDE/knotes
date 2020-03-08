@@ -20,9 +20,6 @@
 #define NOTENETWORKCONFIG_H
 #include "noteshared_export.h"
 #include <KCModule>
-class QLineEdit;
-class QCheckBox;
-class QSpinBox;
 namespace NoteShared {
 class NoteNetworkConfigWidgetPrivate;
 class NOTESHARED_EXPORT NoteNetworkConfigWidget : public QWidget

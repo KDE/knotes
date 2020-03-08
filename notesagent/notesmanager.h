@@ -29,14 +29,12 @@ class QTcpServer;
 class QTimer;
 namespace NoteShared {
 class NotesChangeRecorder;
-class NotesAkonadiTreeModel;
 }
 
 namespace Akonadi {
 class Session;
 }
 
-class QModelIndex;
 class NotesManager : public QObject
 {
     Q_OBJECT
