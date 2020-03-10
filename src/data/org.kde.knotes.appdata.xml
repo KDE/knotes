@@ -14,7 +14,6 @@
   <developer_name xml:lang="fi">KDE-yhteisö</developer_name>
   <developer_name xml:lang="fr">La communauté KDE</developer_name>
   <developer_name xml:lang="gl">A comunidade de KDE</developer_name>
-  <developer_name xml:lang="ia">Le communitate de KDE</developer_name>
   <developer_name xml:lang="id">Komunitas KDE</developer_name>
   <developer_name xml:lang="it">La Comunità KDE</developer_name>
   <developer_name xml:lang="ko">KDE 커뮤니티</developer_name>
@@ -77,7 +76,6 @@
   <summary xml:lang="fi">Muistilappusovellus</summary>
   <summary xml:lang="fr">Application de notes autocollantes</summary>
   <summary xml:lang="gl">Aplicación de notas pegañentas</summary>
-  <summary xml:lang="ia">Application de notas collose</summary>
   <summary xml:lang="id">Aplikasi catatan lekat</summary>
   <summary xml:lang="it">Applicazione per le note adesive</summary>
   <summary xml:lang="ko">찍찍이 노트 프로그램</summary>
@@ -110,7 +108,6 @@
     <p xml:lang="fr">KNotes est un programme qui vous permet d'avoir l'équivalent électronique des papillons autocollants (Post-it®). Les notes sont enregistrées automatiquement lorsque vous quittez le programme, et elles s'affichent lorsque vous l'ouvrez.</p>
     <p xml:lang="gl">KNotes é un programa que permite escribir o que sería un equivalente informático das notas pegañentas. As notas gárdanse automaticamente cando se sae do programa e móstranse cando se abre o programa.</p>
     <p xml:lang="hu">A KNotes program használatával kisebb jegyzeteket lehet készíteni. A jegyzetek a programból való kilépéskor automatikusan mentésre kerülnek, a program indulásakor pedig ismét megjelennek.</p>
-    <p xml:lang="ia">Knotes es le programma que te permitte scriber le equivalente de notas collose sur le computator. Le notas es saklveguardate automaticamente quando tu exi le programma, e es monstrate quando tu aperi le programma.</p>
     <p xml:lang="id">KNotes adalah program yang memungkinkan kamu menulis komputer yang setara dengan catatan lekat. Catatan disimpan secara otomatis saat kamu keluar dari program, dan catatan itu ditampilkan saat kamu membuka program.</p>
     <p xml:lang="it">KNotes è un programma che ti permette di scrivere nel computer l'equivalente delle note adesive (post-it). Le note vengono salvate automaticamente alla chiusura del programma, e visualizzate quando lo apri.</p>
     <p xml:lang="ko">KNotes는 메모를 남길 수 있는 프로그램입니다. 프로그램을 종료할 때 메모를 자동으로 저장하고, 다음 실행 때 보여 줍니다.</p>
@@ -178,7 +175,6 @@
       <li xml:lang="fr">Écrivez des notes avec la police de caractère et la couleur de fond de votre choix</li>
       <li xml:lang="gl">Escriba notas usando a fonte e cor de fondo que prefira</li>
       <li xml:lang="hu">Jegyzetek írása tetszőleges betűtípussal és háttérszínnel</li>
-      <li xml:lang="ia">Tu scribe notas in tu font e color de fundo preferite</li>
       <li xml:lang="id">Tulislah catatan dalam warna latarbelakang dan font pilihanmu</li>
       <li xml:lang="it">Scrivi le note scegliendo il carattere e lo sfondo</li>
       <li xml:lang="ko">사용자 정의 글꼴 및 배경색 지원</li>
@@ -209,7 +205,6 @@
       <li xml:lang="fr">Utilisez le glisser-déposer pour envoyer vos notes par courriel</li>
       <li xml:lang="gl">Use arrastrar e soltar para enviar as súas notas por correo electrónico.</li>
       <li xml:lang="hu">Jegyzetek elküldése e-mailben a fogd-és-vidd módszerrel</li>
-      <li xml:lang="ia">Usa ther e poner per inviar via e-posta tu notas</li>
       <li xml:lang="id">Gunakanlah seret dan taruh untuk menyuratkan catatanmu</li>
       <li xml:lang="it">Usa la funzione di trascinamento per inviare le note con la posta elettronica</li>
       <li xml:lang="ko">드래그 앤 드롭으로 바로 이메일 보내기</li>
@@ -240,7 +235,6 @@
       <li xml:lang="fr">Glissez les notes dans le calendrier pour réserver des créneaux horaires</li>
       <li xml:lang="gl">Pode arrastras as notas a un calendario para asocialas a un espazo de tempo.</li>
       <li xml:lang="hu">Naptárba húzható egy időablak lefoglalásához</li>
-      <li xml:lang="ia">Pote esser trahite in Calendar pro reservar un fissura de tempore</li>
       <li xml:lang="id">Bisa diseret ke dalam Kalender untuk membukukan slot waktu</li>
       <li xml:lang="it">Possono essere trascinate e incollate nel Calendario per creare degli intervalli</li>
       <li xml:lang="ko">달력에 드래그 앤 드롭으로 일정 추가</li>
@@ -271,7 +265,6 @@
       <li xml:lang="fr">Imprimez les notes</li>
       <li xml:lang="gl">Pode imprimir as notas.</li>
       <li xml:lang="hu">A jegyzetek nyomtathatók</li>
-      <li xml:lang="ia">Notas pote esser imprimite</li>
       <li xml:lang="id">Catatan bisa dicetak</li>
       <li xml:lang="it">Le note possono essere stampate</li>
       <li xml:lang="ko">인쇄 기능</li>
