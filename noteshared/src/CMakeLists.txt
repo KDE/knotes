@@ -29,15 +29,11 @@ set(libnoteshared_SRCS
     ${libnoteshared_akonadi_SRCS}
     )
 
-if (ECM_VERSION VERSION_LESS "5.68.0")
-    ecm_qt_declare_logging_category(libnoteshared_SRCS HEADER noteshared_debug.h IDENTIFIER NOTESHARED_LOG CATEGORY_NAME org.kde.pim.noteshared)
-else()
-    ecm_qt_declare_logging_category(libnoteshared_SRCS HEADER noteshared_debug.h IDENTIFIER NOTESHARED_LOG CATEGORY_NAME org.kde.pim.noteshared
+ecm_qt_declare_logging_category(libnoteshared_SRCS HEADER noteshared_debug.h IDENTIFIER NOTESHARED_LOG CATEGORY_NAME org.kde.pim.noteshared
         DESCRIPTION "knotes (noteshared)"
         OLD_CATEGORY_NAMES log_noteshared
         EXPORT KNOTES
     )
-endif()
 
 
 macro(add_resource_iface _kcfgFile _ifaceName _className)

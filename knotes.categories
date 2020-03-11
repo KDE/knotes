@@ -1,4 +1,0 @@
-org.kde.pim.knotes knotes (knotes) IDENTIFIER [KNOTES_LOG]
-org.kde.pim.noteshared knotes (noteshared) IDENTIFIER [NOTESHARED_LOG]
-org.kde.pim.knoteskontactplugin knotes (knotes kontact plugin) IDENTIFIER [KNOTES_KONTACT_PLUGIN_LOG]
-org.kde.pim.notesagentagent knotes (note agent) IDENTIFIER [NOTESAGENT_LOG]

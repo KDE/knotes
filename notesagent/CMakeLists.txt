@@ -14,15 +14,11 @@ kconfig_add_kcfg_files(notesagent_SRCS
 
 
 qt5_add_dbus_adaptor(notesagent_SRCS org.freedesktop.Akonadi.NotesAgent.xml notesagent.h NotesAgent)
-if (ECM_VERSION VERSION_LESS "5.68.0")
-    ecm_qt_declare_logging_category(notesagent_SRCS HEADER notesagent_debug.h IDENTIFIER NOTESAGENT_LOG CATEGORY_NAME org.kde.pim.notesagentagent)
-else()
-    ecm_qt_declare_logging_category(notesagent_SRCS HEADER notesagent_debug.h IDENTIFIER NOTESAGENT_LOG CATEGORY_NAME org.kde.pim.notesagentagent
+ecm_qt_declare_logging_category(notesagent_SRCS HEADER notesagent_debug.h IDENTIFIER NOTESAGENT_LOG CATEGORY_NAME org.kde.pim.notesagentagent
         DESCRIPTION "knotes (note agent)"
         OLD_CATEGORY_NAMES log_notesagentagent
         EXPORT KNOTES
     )
-endif()
 
 add_executable(akonadi_notes_agent ${notesagent_SRCS})
 
