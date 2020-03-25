@@ -472,12 +472,6 @@ void KNote::slotPrintPreview()
 
 void KNote::print(bool preview)
 {
-    QString content;
-    if (!Qt::mightBeRichText(m_editor->text())) {
-        content = Qt::convertFromPlainText(m_editor->text());
-    } else {
-        content = m_editor->text();
-    }
     if (isModified()) {
         saveNote();
     }
