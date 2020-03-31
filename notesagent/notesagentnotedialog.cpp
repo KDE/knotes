@@ -21,8 +21,8 @@
 #include <ItemFetchJob>
 #include <ItemFetchScope>
 #include "attributes/notedisplayattribute.h"
-#include "kpimtextedit/richtexteditorwidget.h"
-#include "kpimtextedit/richtexteditor.h"
+#include <KPIMTextEdit/RichTextEditorWidget>
+#include <KPIMTextEdit/RichTextEditor>
 
 #include <KSharedConfig>
 

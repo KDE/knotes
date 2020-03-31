@@ -20,7 +20,7 @@
 
 #include <Akonadi/Notes/NoteUtils>
 
-#include "PimCommonAkonadi/CheckedCollectionWidget"
+#include <PimCommonAkonadi/CheckedCollectionWidget>
 
 #include <AkonadiWidgets/ETMViewStateSaver>
 

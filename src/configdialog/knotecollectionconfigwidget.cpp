@@ -20,7 +20,7 @@
 #include "attributes/showfoldernotesattribute.h"
 #include <Akonadi/Notes/NoteUtils>
 #include "notesharedglobalconfig.h"
-#include "AkonadiWidgets/ManageAccountWidget"
+#include <AkonadiWidgets/ManageAccountWidget>
 
 #include <AkonadiCore/CollectionModifyJob>
 #include <AkonadiCore/CollectionFilterProxyModel>

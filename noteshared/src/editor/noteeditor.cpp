@@ -17,7 +17,7 @@
    Boston, MA 02110-1301, USA.
 */
 #include "noteeditor.h"
-#include "PimCommon/RichTexteditWithAutoCorrection"
+#include <PimCommon/RichTexteditWithAutoCorrection>
 
 using namespace NoteShared;
 
