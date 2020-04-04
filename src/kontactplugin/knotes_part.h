@@ -26,7 +26,7 @@
 #include <AkonadiCore/Item>
 
 #include <KViewStateMaintainer>
-#include <KParts/ReadOnlyPart>
+#include <KParts/Part>
 
 #include <QListWidgetItem>
 #include <QPointer>
@@ -48,15 +48,13 @@ namespace KDNSSD {
 class PublicService;
 }
 
-class KNotesPart : public KParts::ReadOnlyPart
+class KNotesPart : public KParts::Part
 {
     Q_OBJECT
 
 public:
     explicit KNotesPart(QObject *parent = nullptr);
     ~KNotesPart() override;
-
-    bool openFile() override;
 
 public Q_SLOTS:
     void newNote(const QString &name = QString(), const QString &text = QString());

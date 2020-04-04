@@ -75,7 +75,7 @@
 #include <QMenu>
 
 KNotesPart::KNotesPart(QObject *parent)
-    : KParts::ReadOnlyPart(parent)
+    : KParts::Part(parent)
     , mNotesWidget(nullptr)
     , mPublisher(nullptr)
     , mNotePrintPreview(nullptr)
@@ -340,11 +340,6 @@ void KNotesPart::printSelectedNotes(bool preview)
         printer.printNotes(listPrintObj, printingTheme, preview);
         qDeleteAll(listPrintObj);
     }
-}
-
-bool KNotesPart::openFile()
-{
-    return false;
 }
 
 // public KNotes D-Bus interface implementation
