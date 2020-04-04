@@ -83,7 +83,7 @@ bool KNotesPlugin::isRunningStandalone() const
     return mUniqueAppWatcher->isRunningStandalone();
 }
 
-KParts::ReadOnlyPart *KNotesPlugin::createPart()
+KParts::Part *KNotesPlugin::createPart()
 {
     return new KNotesPart(this);
 }

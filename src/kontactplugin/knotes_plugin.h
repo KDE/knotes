@@ -63,7 +63,7 @@ public:
     void shortcutChanged() override;
 
 protected:
-    KParts::ReadOnlyPart *createPart() override;
+    KParts::Part *createPart() override;
 
 private Q_SLOTS:
     void slotNewNote();
