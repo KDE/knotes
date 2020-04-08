@@ -50,7 +50,7 @@ using namespace KCalendarCore;
 #include <QDropEvent>
 #include <QStandardPaths>
 
-EXPORT_KONTACT_PLUGIN(KNotesPlugin, knotes)
+EXPORT_KONTACT_PLUGIN_WITH_JSON(KNotesPlugin, "knotesplugin.json")
 
 KNotesPlugin::KNotesPlugin(KontactInterface::Core *core, const QVariantList &)
     : KontactInterface::Plugin(core, core, "knotes")
