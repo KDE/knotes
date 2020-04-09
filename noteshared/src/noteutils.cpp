@@ -153,7 +153,7 @@ QString NoteUtils::createToolTip(const Akonadi::Item &item)
 
 NoteUtils::NoteText NoteUtils::extractNoteText(QString noteText, const QString &titleAddon)
 {
-    const int pos = noteText.indexOf(QRegularExpression(QLatin1String("[\r\n]")));
+    const int pos = noteText.indexOf(QRegularExpression(QStringLiteral("[\r\n]")));
     const QString noteTitle = noteText.left(pos).trimmed() + titleAddon;
 
     noteText = noteText.mid(pos).trimmed();

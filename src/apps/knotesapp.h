@@ -51,6 +51,8 @@ public:
     explicit KNotesApp(QWidget *parent = nullptr);
     ~KNotesApp();
 
+    Q_REQUIRED_RESULT QString name(Akonadi::Item::Id id) const;
+    Q_REQUIRED_RESULT QString text(Akonadi::Item::Id id) const;
 public Q_SLOTS:
     void newNote(const QString &name = QString(), const QString &text = QString());
     void newNoteFromClipboard();
@@ -58,8 +60,6 @@ public Q_SLOTS:
     void showAllNotes() const;
     void showNote(Akonadi::Item::Id id) const;
     void hideNote(Akonadi::Item::Id id) const;
-    QString name(Akonadi::Item::Id id) const;
-    QString text(Akonadi::Item::Id id) const;
     void setName(Akonadi::Item::Id id, const QString &newName);
     void setText(Akonadi::Item::Id id, const QString &newText);
 
