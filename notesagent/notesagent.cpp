@@ -46,13 +46,6 @@ NotesAgent::NotesAgent(const QString &id)
     QDBusConnection::sessionBus().registerObject(QStringLiteral("/NotesAgent"),
                                                            this, QDBusConnection::ExportAdaptors);
 
-    QString service = QStringLiteral("org.freedesktop.Akonadi.NotesAgent");
-    if (Akonadi::ServerManager::hasInstanceIdentifier()) {
-        service += QLatin1Char('.') + Akonadi::ServerManager::instanceIdentifier();
-    }
-
-    QDBusConnection::sessionBus().registerService(service);
-
     setNeedsNetwork(true);
 
     if (NotesAgentSettings::enabled()) {

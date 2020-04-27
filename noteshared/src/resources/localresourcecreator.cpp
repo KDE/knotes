@@ -20,6 +20,7 @@
 
 #include <AkonadiCore/agentmanager.h>
 #include <AkonadiCore/agentinstancecreatejob.h>
+#include <AkonadiCore/ServerManager>
 
 #include "maildirsettings.h"
 
@@ -80,18 +81,15 @@ void LocalResourceCreator::slotInstanceCreated(KJob *job)
     Akonadi::AgentInstance instance = createJob->instance();
 
     instance.setName(i18nc("Default name for resource holding notes", "Local Notes"));
-    org::kde::Akonadi::Maildir::Settings *iface = new org::kde::Akonadi::Maildir::Settings(
-        QLatin1String("org.freedesktop.Akonadi.Resource.") + instance.identifier(),
-        QStringLiteral("/Settings"), QDBusConnection::sessionBus(), this);
+    const auto service = Akonadi::ServerManager::agentServiceName(Akonadi::ServerManager::Resource, instance.identifier());
+    org::kde::Akonadi::Maildir::Settings iface(service, QStringLiteral("/Settings"), QDBusConnection::sessionBus(), this);
 
     // TODO: Make errors user-visible.
-    if (!iface->isValid()) {
+    if (!iface.isValid()) {
         qCWarning(NOTESHARED_LOG) << "Failed to obtain D-Bus interface for remote configuration.";
-        delete iface;
         deleteLater();
         return;
     }
-    delete iface;
     instance.reconfigure();
 
     Akonadi::ResourceSynchronizationJob *syncJob = new Akonadi::ResourceSynchronizationJob(instance, this);
