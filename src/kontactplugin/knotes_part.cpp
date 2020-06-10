@@ -333,6 +333,7 @@ void KNotesPart::printSelectedNotes(bool preview)
     }
     if (!printingTheme.isEmpty()) {
         QList<KNotePrintObject *> listPrintObj;
+        listPrintObj.reserve(lst.count());
         for (QListWidgetItem *item : lst) {
             listPrintObj.append(new KNotePrintObject(static_cast<KNotesIconViewItem *>(item)->item()));
         }
@@ -446,7 +447,7 @@ void KNotesPart::killSelectedNotes()
         return;
     }
     QList<KNotesIconViewItem *> items;
-
+    items.reserve(lst.count());
     for (QListWidgetItem *item : lst) {
         KNotesIconViewItem *knivi = static_cast<KNotesIconViewItem *>(item);
         items.append(knivi);
