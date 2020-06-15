@@ -30,8 +30,6 @@
 
 #include "knotes-version.h"
 
-#include <Libkdepim/MaillistDrag>
-using namespace KPIM;
 using namespace KCalUtils;
 using namespace KCalendarCore;
 
@@ -120,7 +118,6 @@ bool KNotesPlugin::canDecodeMimeData(const QMimeData *mimeData) const
 {
     return
         mimeData->hasText()
-        || MailList::canDecode(mimeData)
         || KContacts::VCardDrag::canDecode(mimeData)
         || ICalDrag::canDecode(mimeData);
 }
@@ -175,23 +172,6 @@ void KNotesPlugin::processDropEvent(QDropEvent *event)
     if (md->hasText()) {
         static_cast<KNotesPart *>(part())->newNote(
             i18nc("@item", "New Note"), md->text());
-        return;
-    }
-
-    if (MailList::canDecode(md)) {
-        MailList mails = MailList::fromMimeData(md);
-        event->accept();
-        if (mails.count() != 1) {
-            KMessageBox::sorry(
-                core(),
-                i18nc("@info", "Dropping multiple mails is not supported."));
-        } else {
-            MailSummary mail = mails.constFirst();
-            const QString txt = i18nc("@item", "From: %1\nTo: %2\nSubject: %3",
-                                      mail.from(), mail.to(), mail.subject());
-            static_cast<KNotesPart *>(part())->newNote(
-                i18nc("@item", "Mail: %1", mail.subject()), txt);
-        }
         return;
     }
 
