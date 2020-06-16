@@ -31,7 +31,6 @@ target_link_libraries(kontact_knotesplugin
                       KF5::CalendarCore
                       KF5::CalendarUtils
                       KF5::KontactInterface
-                      KF5::Libkdepim
                       notesharedprivate
                       KF5::DNSSD
                       KF5::Mime
