@@ -35,7 +35,6 @@ Comment[sr@latin]=Agent beležaka
 Comment[sv]=Anteckningsmodul
 Comment[tr]=Not Aracı
 Comment[uk]=Агент нотаток
-Comment[x-test]=xxNotes Agentxx
 Comment[zh_CN]=便笺代理
 Comment[zh_TW]=便條代理程式
 
@@ -75,7 +74,6 @@ Name[sr@latin]=Primljena beleška
 Name[sv]=Tog emot en anteckning
 Name[tr]=Bir not alındı
 Name[uk]=Отримано нотатку
-Name[x-test]=xxReceived a notexx
 Name[zh_CN]=收到一则便笺
 Name[zh_TW]=接收到一張便條
 Action=Popup
