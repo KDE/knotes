@@ -70,6 +70,7 @@ GenericName[uk]=Записник
 GenericName[vi]=Ghi chép Popup
 GenericName[wa]=Aspitantès notes
 GenericName[xh]=Ivelisa iincwadana
+GenericName[x-test]=xxPopup Notesxx
 GenericName[zh_CN]=弹出便笺
 GenericName[zh_TW]=彈出式便條
 
@@ -140,6 +141,7 @@ Name[uk]=KNotes
 Name[vi]=KNotes
 Name[wa]=KNotes
 Name[xh]=KNotes
+Name[x-test]=xxKNotesxx
 Name[zh_CN]=KNotes
 Name[zh_TW]=KNotes 便利貼
 
@@ -174,6 +176,7 @@ Name[sk]=Nová Poznámka
 Name[sl]=Novo sporočilce
 Name[sv]=Ny anteckning
 Name[uk]=Нова нотатка
+Name[x-test]=xxNew Notexx
 Name[zh_CN]=新建便笺
 Name[zh_TW]=新增便條
 Icon=mail-message-new
