@@ -65,11 +65,11 @@ KNotesSelectDeleteNotesDialog::KNotesSelectDeleteNotesDialog(const QList<KNotesI
     buttonBox->button(QDialogButtonBox::Cancel)->setDefault(true);
     setModal(true);
     QWidget *w = new QWidget;
-    QVBoxLayout *lay = new QVBoxLayout;
-    w->setLayout(lay);
-    QLabel *lab = new QLabel(i18ncp("@info", "Do you really want to delete this note?", "Do you really want to delete these %1 notes?", items.count()));
+    QVBoxLayout *lay = new QVBoxLayout(w);
+    lay->setContentsMargins(0, 0, 0, 0);
+    QLabel *lab = new QLabel(i18ncp("@info", "Do you really want to delete this note?", "Do you really want to delete these %1 notes?", items.count()), this);
     lay->addWidget(lab);
-    mSelectedListWidget = new KNotesSelectDeleteNotesListWidget;
+    mSelectedListWidget = new KNotesSelectDeleteNotesListWidget(this);
     lay->addWidget(mSelectedListWidget);
     mainLayout->addWidget(w);
     mSelectedListWidget->setItems(items);
