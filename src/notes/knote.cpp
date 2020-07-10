@@ -791,7 +791,7 @@ void KNote::createNoteHeader()
 
     connect(m_button, &KNoteButton::clicked, this, &KNote::slotClose);
 
-    m_noteLayout->addItem(headerLayout);
+    m_noteLayout->addLayout(headerLayout);
 }
 
 void KNote::createNoteEditor(const QString &configFile)
@@ -832,7 +832,7 @@ void KNote::createNoteFooter()
 
     gripLayout->addWidget(m_grip);
     gripLayout->setAlignment(m_grip, Qt::AlignBottom | Qt::AlignRight);
-    m_noteLayout->addItem(gripLayout);
+    m_noteLayout->addLayout(gripLayout);
 
     // if there was just a way of making KComboBox adhere the toolbar height...
     if (m_tool) {

@@ -72,9 +72,10 @@ void KNoteEditDialog::init(bool readOnly)
     mainLayout->addWidget(buttonBox);
 
     QVBoxLayout *layout = new QVBoxLayout(page);
+    layout->setContentsMargins(0, 0, 0, 0);
 
     QHBoxLayout *hbl = new QHBoxLayout();
-    layout->addItem(hbl);
+    layout->addLayout(hbl);
     QLabel *label = new QLabel(page);
     label->setText(i18nc("@label popup note name", "Name:"));
     hbl->addWidget(label, 0);

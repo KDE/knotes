@@ -44,6 +44,7 @@ class KToolBar;
 class QLabel;
 class QMenu;
 class QSizeGrip;
+class QVBoxLayout;
 
 class KNote : public QFrame, virtual public KXMLGUIClient, public KNoteInterface
 {
@@ -140,7 +141,7 @@ private:
     void updateAllAttributes();
     void saveNoteContent();
     Akonadi::Item mItem;
-    QLayout *m_noteLayout = nullptr;
+    QVBoxLayout *m_noteLayout = nullptr;
     QLabel *m_label = nullptr;
     QSizeGrip *m_grip = nullptr;
     KNoteButton *m_button = nullptr;

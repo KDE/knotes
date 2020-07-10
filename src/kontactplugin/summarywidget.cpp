@@ -63,7 +63,7 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
     mainLayout->addWidget(header);
 
     mLayout = new QGridLayout();
-    mainLayout->addItem(mLayout);
+    mainLayout->addLayout(mLayout);
     mLayout->setSpacing(3);
     mLayout->setRowStretch(6, 1);
 
