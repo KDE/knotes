@@ -19,7 +19,7 @@ public:
 
 private:
     void slotGeneralPaletteChanged();
-    QIcon mIcon;
+    const QIcon mIcon;
     QColor mTextColor;
 };
 

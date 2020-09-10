@@ -31,7 +31,7 @@ protected Q_SLOTS:
     void slotWritten(qint64);
 
 private:
-    QTcpSocket *m_socket = nullptr;
+    QTcpSocket *const m_socket;
     QByteArray m_note;
     QByteArray m_title;
     QByteArray m_sender;

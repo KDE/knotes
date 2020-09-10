@@ -38,7 +38,7 @@ public:
     QString mTitle;
     QString mText;
     bool mRichText = false;
-    QWidget *mWidget = nullptr;
+    QWidget *const mWidget;
 };
 
 CreateNewNoteJob::CreateNewNoteJob(QObject *parent, QWidget *widget)

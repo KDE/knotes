@@ -35,8 +35,7 @@ class NoteShared::NotesNetworkReceiverPrivate
 {
 public:
     NotesNetworkReceiverPrivate(QTcpSocket *s)
-        : m_timer(nullptr)
-        , m_buffer(new QByteArray())
+        : m_buffer(new QByteArray())
         , m_sock(s)
     {
     }
@@ -49,8 +48,8 @@ public:
 
     QTimer *m_timer = nullptr;       // to avoid memory and connection floods
 
-    QByteArray *m_buffer = nullptr;
-    QTcpSocket *m_sock = nullptr;
+    QByteArray *const m_buffer;
+    QTcpSocket *const m_sock;
 
     QString m_titleAddon;
 };

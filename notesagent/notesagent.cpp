@@ -20,7 +20,6 @@
 
 NotesAgent::NotesAgent(const QString &id)
     : Akonadi::AgentBase(id)
-    , mAgentInitialized(false)
 {
     Kdelibs4ConfigMigrator migrate(QStringLiteral("notesagent"));
     migrate.setConfigFiles(QStringList()

@@ -46,7 +46,7 @@ private Q_SLOTS:
     void slotStartAgent();
 
 private:
-    bool mAgentInitialized;
+    bool mAgentInitialized = false;
     NotesManager *mNotesManager = nullptr;
 };
 
