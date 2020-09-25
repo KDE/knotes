@@ -12,7 +12,6 @@ QTEST_MAIN(NoteUtilsTest)
 NoteUtilsTest::NoteUtilsTest(QObject *parent)
     : QObject(parent)
 {
-
 }
 
 void NoteUtilsTest::testExtractNoteText_data()

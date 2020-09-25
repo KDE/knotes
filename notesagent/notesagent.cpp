@@ -30,7 +30,7 @@ NotesAgent::NotesAgent(const QString &id)
     mNotesManager = new NotesManager(this);
     new NotesAgentAdaptor(this);
     QDBusConnection::sessionBus().registerObject(QStringLiteral("/NotesAgent"),
-                                                           this, QDBusConnection::ExportAdaptors);
+                                                 this, QDBusConnection::ExportAdaptors);
 
     setNeedsNetwork(true);
 

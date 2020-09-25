@@ -159,7 +159,6 @@ KNotesApp::KNotesApp(QWidget *parent)
         actions->addAction(donateAction->objectName(), donateAction);
     }
 
-
     KStandardAction::preferences(this, &KNotesApp::slotPreferences,
                                  actionCollection());
     KStandardAction::keyBindings(this, &KNotesApp::slotConfigureAccels,

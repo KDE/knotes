@@ -178,7 +178,7 @@ void NotesManager::slotAcceptConnection()
 void NotesManager::slotNewNote(const QString &name, const QString &text)
 {
     KNotification::event(QStringLiteral("receivednotes"),
-		         QString(),
+                         QString(),
                          i18n("Note Received"),
                          QStringLiteral("knotes"),
                          nullptr,

@@ -173,12 +173,14 @@ void KNotesSummaryWidget::createNote(const Akonadi::Item &item, int counter)
     urlLabel->setAlignment(Qt::AlignLeft);
     urlLabel->setWordWrap(true);
     connect(urlLabel, &KUrlLabel::leftClickedUrl, this, [this, urlLabel]() {
-        slotSelectNote(urlLabel->url()); }
-    );
+        slotSelectNote(urlLabel->url());
+    }
+            );
 
     connect(urlLabel, &KUrlLabel::rightClickedUrl, this, [this, urlLabel]() {
-        slotPopupMenu(urlLabel->url()); }
-    );
+        slotPopupMenu(urlLabel->url());
+    }
+            );
     mLayout->addWidget(urlLabel, counter, 1);
 
     QColor color;

@@ -1156,23 +1156,23 @@ bool KNote::eventFilter(QObject *o, QEvent *ev)
         }
 
         if (ev->type() == QEvent::MouseButtonPress
-            && (   (e->buttons() & Qt::LeftButton) == Qt::LeftButton
-                || (e->buttons() & Qt::MiddleButton)  == Qt::MiddleButton)) {
+            && ((e->buttons() & Qt::LeftButton) == Qt::LeftButton
+                || (e->buttons() & Qt::MiddleButton) == Qt::MiddleButton)) {
             mOrigPos = e->pos();
             return false;
         }
 
         if (ev->type() == QEvent::MouseMove
-            && (   (e->buttons() & Qt::LeftButton) == Qt::LeftButton
-                || (e->buttons() & Qt::MiddleButton)  == Qt::MiddleButton)) {
+            && ((e->buttons() & Qt::LeftButton) == Qt::LeftButton
+                || (e->buttons() & Qt::MiddleButton) == Qt::MiddleButton)) {
             QPoint newPos = e->globalPos() - mOrigPos - QPoint(1, 1);
             move(newPos);
             return true;
         }
 
         if (ev->type() == QEvent::MouseButtonRelease
-            && (   (e->buttons() & Qt::LeftButton) == Qt::LeftButton
-                || (e->buttons() & Qt::MiddleButton)  == Qt::MiddleButton)) {
+            && ((e->buttons() & Qt::LeftButton) == Qt::LeftButton
+                || (e->buttons() & Qt::MiddleButton) == Qt::MiddleButton)) {
             QPoint newPos = e->globalPos() - mOrigPos - QPoint(1, 1);
             move(newPos);
             return false;
