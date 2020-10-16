@@ -61,7 +61,6 @@ public:
     QColor textBackgroundColor() const;
     QColor textForegroundColor() const;
 
-    void setCursorPositionFromStart(int pos);
     int cursorPositionFromStart() const;
 
 private Q_SLOTS:
