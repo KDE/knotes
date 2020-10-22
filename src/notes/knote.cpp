@@ -6,7 +6,6 @@
  SPDX-License-Identifier: GPL-2.0-or-later
 *******************************************************************/
 
-#include <config-knotes.h>
 
 #include "knote.h"
 #include "knotes_debug.h"

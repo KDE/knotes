@@ -6,7 +6,6 @@
 #include "knoteskeydialog.h"
 
 #include <KShortcutsEditor>
-#include <QDialog>
 #include <KLocalizedString>
 #include <KSharedConfig>
 #include <KConfigGroup>

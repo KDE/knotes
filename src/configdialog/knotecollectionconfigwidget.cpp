@@ -17,7 +17,6 @@
 #include <AkonadiWidgets/CollectionRequester>
 #include <AkonadiCore/ChangeRecorder>
 #include <AkonadiCore/EntityTreeModel>
-#include <AkonadiCore/Collection>
 #include <AkonadiWidgets/EntityTreeView>
 #include <AkonadiCore/EntityDisplayAttribute>
 

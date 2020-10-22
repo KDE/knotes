@@ -11,7 +11,6 @@
 #include "attributes/notealarmattribute.h"
 #include "attributes/notedisplayattribute.h"
 #include "attributes/notelockattribute.h"
-#include "notesagentalarmdialog.h"
 
 #include <AkonadiCore/Session>
 #include <AkonadiCore/Collection>

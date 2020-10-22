@@ -7,7 +7,6 @@
 #include "knoteedit.h"
 
 #include <KActionCollection>
-#include <QDialog>
 #include <KLocalizedString>
 #include <KToolBar>
 #include <KLineEdit>
