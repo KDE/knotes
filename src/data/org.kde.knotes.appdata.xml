@@ -15,6 +15,7 @@
   <developer_name xml:lang="fi">KDE-yhteisö</developer_name>
   <developer_name xml:lang="fr">La communauté KDE</developer_name>
   <developer_name xml:lang="gl">A comunidade de KDE</developer_name>
+  <developer_name xml:lang="ia">Le communitate de KDE</developer_name>
   <developer_name xml:lang="id">Komunitas KDE</developer_name>
   <developer_name xml:lang="it">La Comunità KDE</developer_name>
   <developer_name xml:lang="ko">KDE 커뮤니티</developer_name>
@@ -79,6 +80,7 @@
   <summary xml:lang="fi">Muistilappusovellus</summary>
   <summary xml:lang="fr">Application de notes autocollantes</summary>
   <summary xml:lang="gl">Aplicación de notas pegañentas</summary>
+  <summary xml:lang="ia">Application de notas collose</summary>
   <summary xml:lang="id">Aplikasi catatan lekat</summary>
   <summary xml:lang="it">Applicazione per le note adesive</summary>
   <summary xml:lang="ko">찍찍이 노트 프로그램</summary>
@@ -273,6 +275,7 @@
       <li xml:lang="fr">Imprimez les notes</li>
       <li xml:lang="gl">Pode imprimir as notas.</li>
       <li xml:lang="hu">A jegyzetek nyomtathatók</li>
+      <li xml:lang="ia">Notas pote essser imprimite</li>
       <li xml:lang="id">Catatan bisa dicetak</li>
       <li xml:lang="it">Le note possono essere stampate</li>
       <li xml:lang="ko">인쇄 기능</li>
