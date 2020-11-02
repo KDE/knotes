@@ -34,7 +34,7 @@ KNoteEditDialog::KNoteEditDialog(bool readOnly, QWidget *parent)
 void KNoteEditDialog::init(bool readOnly)
 {
     setWindowTitle(readOnly ? i18nc("@title:window", "Show Popup Note") : i18nc("@title:window", "Edit Popup Note"));
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    auto *mainLayout = new QVBoxLayout(this);
     QDialogButtonBox *buttonBox = new QDialogButtonBox(readOnly ? QDialogButtonBox::Close : QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &KNoteEditDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteEditDialog::reject);
@@ -57,10 +57,10 @@ void KNoteEditDialog::init(bool readOnly)
     mainLayout->addWidget(page);
     mainLayout->addWidget(buttonBox);
 
-    QVBoxLayout *layout = new QVBoxLayout(page);
+    auto *layout = new QVBoxLayout(page);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    QHBoxLayout *hbl = new QHBoxLayout();
+    auto *hbl = new QHBoxLayout();
     layout->addLayout(hbl);
     QLabel *label = new QLabel(page);
     label->setText(i18nc("@label popup note name", "Name:"));

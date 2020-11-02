@@ -19,7 +19,7 @@ KNoteSelectedNotesDialog::KNoteSelectedNotesDialog(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(i18nc("@title:window", "Select notes"));
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    auto *mainLayout = new QVBoxLayout(this);
     mListNotes = new QListWidget(this);
     mListNotes->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
@@ -56,7 +56,7 @@ void KNoteSelectedNotesDialog::setNotes(const QHash<Akonadi::Item::Id, KNote *> 
     QHashIterator<Akonadi::Item::Id, KNote *> i(notes);
     while (i.hasNext()) {
         i.next();
-        QListWidgetItem *item = new QListWidgetItem(mListNotes);
+        auto *item = new QListWidgetItem(mListNotes);
         item->setText(i.value()->name());
         item->setToolTip(i.value()->text());
         item->setData(AkonadiId, i.key());

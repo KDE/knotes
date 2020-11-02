@@ -75,7 +75,7 @@ void NoteUtils::sendToNetwork(QWidget *parent, const QString &title, const QStri
         // Send the note
         auto socket = new QSslSocket;
         socket->connectToHost(host, port);
-        NoteShared::NotesNetworkSender *sender = new NoteShared::NotesNetworkSender(socket);
+        auto *sender = new NoteShared::NotesNetworkSender(socket);
         sender->setSenderId(NoteShared::NoteSharedGlobalConfig::senderID());
         sender->setNote(title, message);   // FIXME: plainText ??
     }
@@ -96,7 +96,7 @@ QString NoteUtils::createToolTip(const Akonadi::Item &item)
 
     QString tip;
     if (item.hasAttribute<NoteDisplayAttribute>()) {
-        const NoteDisplayAttribute *attr = item.attribute<NoteDisplayAttribute>();
+        const auto *attr = item.attribute<NoteDisplayAttribute>();
         if (attr) {
             const QString bckColorName = attr->backgroundColor().name();
             const QString txtColorName = attr->foregroundColor().name();

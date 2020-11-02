@@ -26,7 +26,7 @@
 KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title, QWidget *parent)
     : QDialog(parent)
 {
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    auto *mainLayout = new QVBoxLayout(this);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
@@ -56,7 +56,7 @@ KNoteSimpleConfigDialog::~KNoteSimpleConfigDialog()
 
 void KNoteSimpleConfigDialog::load(Akonadi::Item &item, bool isRichText)
 {
-    NoteShared::NoteDisplayAttribute *attr = item.attribute<NoteShared::NoteDisplayAttribute>();
+    auto *attr = item.attribute<NoteShared::NoteDisplayAttribute>();
     mEditorConfigWidget->load(attr, isRichText);
     mDisplayConfigWidget->load(attr);
 }
@@ -68,7 +68,7 @@ void KNoteSimpleConfigDialog::slotUpdateCaption(const QString &name)
 
 void KNoteSimpleConfigDialog::save(Akonadi::Item &item, bool &isRichText)
 {
-    NoteShared::NoteDisplayAttribute *attr
+    auto *attr
         = item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     mEditorConfigWidget->save(attr, isRichText);
     mDisplayConfigWidget->save(attr);

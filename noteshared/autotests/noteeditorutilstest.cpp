@@ -39,7 +39,7 @@ void NoteEditorUtilsTest::testAddCheckmark()
     const QString checkMark = QString::fromRawData(unicode, size);
 
     NoteShared::NoteEditorUtils noteUtils;
-    QTextDocument *document = new QTextDocument(this);
+    auto *document = new QTextDocument(this);
     document->setPlainText(input);
     QTextCursor textCursor(document);
     if (position < 1) {

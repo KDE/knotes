@@ -26,7 +26,7 @@
 NotesAgentNoteDialog::NotesAgentNoteDialog(QWidget *parent)
     : QDialog(parent)
 {
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    auto *mainLayout = new QVBoxLayout(this);
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
 
@@ -53,7 +53,7 @@ NotesAgentNoteDialog::~NotesAgentNoteDialog()
 void NotesAgentNoteDialog::setNoteId(Akonadi::Item::Id id)
 {
     Akonadi::Item item(id);
-    Akonadi::ItemFetchJob *job = new Akonadi::ItemFetchJob(item, this);
+    auto *job = new Akonadi::ItemFetchJob(item, this);
     job->fetchScope().fetchFullPayload(true);
     job->fetchScope().fetchAttribute< NoteShared::NoteDisplayAttribute >();
     connect(job, &Akonadi::ItemFetchJob::result, this, &NotesAgentNoteDialog::slotFetchItem);
@@ -65,7 +65,7 @@ void NotesAgentNoteDialog::slotFetchItem(KJob *job)
         qCDebug(NOTESAGENT_LOG) << "fetch item failed " << job->errorString();
         return;
     }
-    Akonadi::ItemFetchJob *itemFetchJob = static_cast<Akonadi::ItemFetchJob *>(job);
+    auto *itemFetchJob = static_cast<Akonadi::ItemFetchJob *>(job);
     const Akonadi::Item::List lstItem = itemFetchJob->items();
     if (!lstItem.isEmpty()) {
         const Akonadi::Item item = lstItem.first();
@@ -84,7 +84,7 @@ void NotesAgentNoteDialog::slotFetchItem(KJob *job)
             }
         }
         if (item.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
-            const NoteShared::NoteDisplayAttribute *attr = item.attribute<NoteShared::NoteDisplayAttribute>();
+            const auto *attr = item.attribute<NoteShared::NoteDisplayAttribute>();
             if (attr) {
                 mNote->editor()->setTextColor(attr->backgroundColor());
                 //TODO add background color.

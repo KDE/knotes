@@ -28,7 +28,7 @@ KNotesSelectDeleteNotesListWidget::~KNotesSelectDeleteNotesListWidget()
 void KNotesSelectDeleteNotesListWidget::setItems(const QList<KNotesIconViewItem *> &items)
 {
     for (KNotesIconViewItem *item : items) {
-        QListWidgetItem *i = new QListWidgetItem(this);
+        auto *i = new QListWidgetItem(this);
         if (item->readOnly()) {
             i->setText(item->realName() + QLatin1Char(' ') + i18n("(note locked, it will not removed)"));
             i->setForeground(Qt::red);
@@ -42,7 +42,7 @@ KNotesSelectDeleteNotesDialog::KNotesSelectDeleteNotesDialog(const QList<KNotesI
     : QDialog(parent)
 {
     setWindowTitle(i18nc("@title:window", "Confirm Delete"));
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    auto *mainLayout = new QVBoxLayout(this);
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
@@ -52,7 +52,7 @@ KNotesSelectDeleteNotesDialog::KNotesSelectDeleteNotesDialog(const QList<KNotesI
     buttonBox->button(QDialogButtonBox::Cancel)->setDefault(true);
     setModal(true);
     QWidget *w = new QWidget;
-    QVBoxLayout *lay = new QVBoxLayout(w);
+    auto *lay = new QVBoxLayout(w);
     lay->setContentsMargins(0, 0, 0, 0);
     QLabel *lab = new QLabel(i18ncp("@info", "Do you really want to delete this note?", "Do you really want to delete these %1 notes?", items.count()), this);
     lay->addWidget(lab);

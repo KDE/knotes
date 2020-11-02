@@ -29,7 +29,7 @@ bool KNotesListWidgetSearchLine::itemMatches(const QListWidgetItem *item, const 
     if (!item) {
         return false;
     }
-    const KNotesIconViewItem *iconView = dynamic_cast<const KNotesIconViewItem *>(item);
+    const auto *iconView = dynamic_cast<const KNotesIconViewItem *>(item);
     if (!iconView) {
         return false;
     }

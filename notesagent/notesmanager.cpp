@@ -127,7 +127,7 @@ void NotesManager::slotCheckAlarm()
 
     Akonadi::Item::List lst;
     for (const Akonadi::Item &item : qAsConst(mListItem)) {
-        const NoteShared::NoteAlarmAttribute *attrAlarm = item.attribute<NoteShared::NoteAlarmAttribute>();
+        const auto *attrAlarm = item.attribute<NoteShared::NoteAlarmAttribute>();
         if (attrAlarm) {
             if (attrAlarm->dateTime() < QDateTime::currentDateTime()) {
                 lst.append(item);
@@ -169,7 +169,7 @@ void NotesManager::slotAcceptConnection()
     QTcpSocket *s = mListener->nextPendingConnection();
 
     if (s) {
-        NoteShared::NotesNetworkReceiver *recv = new NoteShared::NotesNetworkReceiver(s);
+        auto *recv = new NoteShared::NotesNetworkReceiver(s);
         connect(recv, &NoteShared::NotesNetworkReceiver::sigNoteReceived, this, &NotesManager::slotNewNote);
     }
 }
@@ -183,7 +183,7 @@ void NotesManager::slotNewNote(const QString &name, const QString &text)
                          nullptr,
                          KNotification::CloseOnTimeout,
                          QStringLiteral("akonadi_notes_agent"));
-    NoteShared::CreateNewNoteJob *job = new NoteShared::CreateNewNoteJob(this, nullptr);
+    auto *job = new NoteShared::CreateNewNoteJob(this, nullptr);
     //For the moment it doesn't support richtext.
     job->setRichText(false);
     job->setNote(name, text);

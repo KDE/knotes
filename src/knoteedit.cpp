@@ -85,7 +85,7 @@ KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
     connect(m_textAlignBlock, &KToggleAction::triggered, this, &KNoteEdit::textAlignBlock);
     actions->setDefaultShortcut(m_textAlignBlock, QKeySequence(Qt::ALT + Qt::Key_B));
 
-    QActionGroup *group = new QActionGroup(this);
+    auto *group = new QActionGroup(this);
     group->addAction(m_textAlignLeft);
     group->addAction(m_textAlignCenter);
     group->addAction(m_textAlignRight);

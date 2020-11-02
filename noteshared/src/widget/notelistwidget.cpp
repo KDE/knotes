@@ -68,7 +68,7 @@ void NoteListWidget::createItem(const Akonadi::Item &note)
     if (!noteMessage) {
         return;
     }
-    QListWidgetItem *item = new QListWidgetItem(this);
+    auto *item = new QListWidgetItem(this);
 
     const KMime::Headers::Subject *const subject = noteMessage->subject(false);
     if (subject) {

@@ -39,7 +39,7 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
     , mInProgress(false)
 {
     mDefaultPixmap = KIconLoader::global()->loadIcon(QStringLiteral("knotes"), KIconLoader::Desktop);
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    auto *mainLayout = new QVBoxLayout(this);
     mainLayout->setSpacing(3);
     mainLayout->setContentsMargins(3, 3, 3, 3);
 
@@ -224,7 +224,7 @@ void KNotesSummaryWidget::slotSelectNote(const QString &note)
 bool KNotesSummaryWidget::eventFilter(QObject *obj, QEvent *e)
 {
     if (obj->inherits("KUrlLabel")) {
-        KUrlLabel *label = static_cast<KUrlLabel *>(obj);
+        auto *label = static_cast<KUrlLabel *>(obj);
         if (e->type() == QEvent::Enter) {
             Q_EMIT message(i18n("Read Popup Note: \"%1\"", label->text()));
         } else if (e->type() == QEvent::Leave) {

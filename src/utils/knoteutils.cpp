@@ -28,7 +28,7 @@ void KNoteUtils::updateConfiguration()
 
 void KNoteUtils::setDefaultValue(Akonadi::Item &item)
 {
-    NoteShared::NoteDisplayAttribute *attribute
+    auto *attribute
         = item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
 
     attribute->setBackgroundColor(KNotesGlobalConfig::self()->bgColor());

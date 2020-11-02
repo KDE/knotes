@@ -70,7 +70,7 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
     msg->assemble();
 
     QList<KNotePrintObject *> lst;
-    KNotePrintObject *obj = new KNotePrintObject(note);
+    auto *obj = new KNotePrintObject(note);
     lst << obj;
     const QString html = grantleePrint.notesToHtml(lst);
     QCOMPARE(html, result);

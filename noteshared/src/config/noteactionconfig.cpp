@@ -17,13 +17,13 @@ using namespace NoteShared;
 NoteActionConfig::NoteActionConfig(QWidget *parent)
     : KCModule(parent)
 {
-    QGridLayout *layout = new QGridLayout(this);
+    auto *layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
 
     QLabel *label_MailAction = new QLabel(i18n("&Mail action:"), this);
     layout->addWidget(label_MailAction, 0, 0);
 
-    QLineEdit *kcfg_MailAction = new QLineEdit(this);
+    auto *kcfg_MailAction = new QLineEdit(this);
     kcfg_MailAction->setObjectName(QStringLiteral("kcfg_MailAction"));
     label_MailAction->setBuddy(kcfg_MailAction);
     layout->addWidget(kcfg_MailAction, 0, 1);

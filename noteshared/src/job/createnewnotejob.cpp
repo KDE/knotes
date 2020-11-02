@@ -100,7 +100,7 @@ void CreateNewNoteJob::createFetchCollectionJob(bool useSettings)
         col = Akonadi::Collection(id);
     }
     NoteShared::NoteSharedGlobalConfig::self()->save();
-    Akonadi::CollectionFetchJob *fetchCollection = new Akonadi::CollectionFetchJob(col, Akonadi::CollectionFetchJob::Base);
+    auto *fetchCollection = new Akonadi::CollectionFetchJob(col, Akonadi::CollectionFetchJob::Base);
     connect(fetchCollection, &Akonadi::CollectionFetchJob::result, this, &CreateNewNoteJob::slotFetchCollection);
 }
 
@@ -115,7 +115,7 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
         }
         return;
     }
-    Akonadi::CollectionFetchJob *fetchCollection = qobject_cast<Akonadi::CollectionFetchJob *>(job);
+    auto *fetchCollection = qobject_cast<Akonadi::CollectionFetchJob *>(job);
     if (fetchCollection->collections().isEmpty()) {
         qCDebug(NOTESHARED_LOG) << "No collection fetched";
         if (KMessageBox::Yes == KMessageBox::warningYesNo(nullptr, i18n("An error occurred during fetching. Do you want to select a new default collection?"))) {
@@ -130,7 +130,7 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
         if (!col.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
             if (KMessageBox::Yes == KMessageBox::warningYesNo(nullptr, i18n("Collection is hidden. New note will be stored but not displayed. Do you want to show collection?"))) {
                 col.addAttribute(new NoteShared::ShowFolderNotesAttribute());
-                Akonadi::CollectionModifyJob *job = new Akonadi::CollectionModifyJob(col);
+                auto *job = new Akonadi::CollectionModifyJob(col);
                 connect(job, &Akonadi::CollectionModifyJob::result, this, &CreateNewNoteJob::slotCollectionModifyFinished);
             }
         }
@@ -164,12 +164,12 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
 
         newItem.setPayload(newPage);
 
-        Akonadi::EntityDisplayAttribute *eda = new Akonadi::EntityDisplayAttribute();
+        auto *eda = new Akonadi::EntityDisplayAttribute();
 
         eda->setIconName(QStringLiteral("text-plain"));
         newItem.addAttribute(eda);
 
-        Akonadi::ItemCreateJob *job = new Akonadi::ItemCreateJob(newItem, col, this);
+        auto *job = new Akonadi::ItemCreateJob(newItem, col, this);
         connect(job, &Akonadi::ItemCreateJob::result, this, &CreateNewNoteJob::slotNoteCreationFinished);
     } else {
         deleteLater();
