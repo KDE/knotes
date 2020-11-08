@@ -320,9 +320,9 @@ void KNote::slotUpdateReadOnly()
 
 void KNote::updateAllAttributes()
 {
-#if KDEPIM_HAVE_X11
     auto *attribute
         = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+#if KDEPIM_HAVE_X11
     KWindowInfo info(winId(), NET::WMDesktop);
     const int count = KWindowSystem::numberOfDesktops();
     for (int n = 1; n <= count; ++n) {
@@ -568,7 +568,7 @@ void KNote::updateKeepAboveBelow(bool save)
 #if KDEPIM_HAVE_X11
     NET::States state = KWindowInfo(winId(), NET::WMState).state();
 #else
-    NET::States state = 0; // neutral state, TODO
+    NET::States state = {}; // neutral state, TODO
 #endif
     auto *attribute
         = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
@@ -610,6 +610,7 @@ void KNote::slotUpdateShowInTaskbar()
 
 void KNote::slotUpdateDesktopActions()
 {
+#if KDEPIM_HAVE_X11
     m_toDesktop->clear();
 
     QAction *act = m_toDesktop->addAction(i18n("&All Desktops"));
@@ -631,6 +632,7 @@ void KNote::slotUpdateDesktopActions()
             desktopAct->setChecked(true);
         }
     }
+#endif
 }
 
 // -------------------- private methods -------------------- //
