@@ -52,9 +52,9 @@
 #include <QSizeGrip>
 #include <QVBoxLayout>
 #include <QTextEdit>
-#include <KWindowSystem/NETWM>
 
 #if KDEPIM_HAVE_X11
+#include <KWindowSystem/NETWM>
 #include <fixx11h.h>
 #endif
 
