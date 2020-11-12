@@ -543,7 +543,9 @@ void KNote::slotApplyConfig()
     setColor(mDisplayAttribute->foregroundColor(), mDisplayAttribute->backgroundColor());
 
     updateLayout();
+#if KDEPIM_HAVE_X11
     slotUpdateShowInTaskbar();
+#endif
     resize(mDisplayAttribute->size());
 }
 
@@ -1061,7 +1063,9 @@ void KNote::showEvent(QShowEvent *)
     if (mDisplayAttribute->isHidden()) {
         // KWin does not preserve these properties for hidden windows
         updateKeepAboveBelow(false);
+#if KDEPIM_HAVE_X11
         slotUpdateShowInTaskbar();
+#endif
         toDesktop(mDisplayAttribute->desktop());
         move(mDisplayAttribute->position());
         auto *attr
