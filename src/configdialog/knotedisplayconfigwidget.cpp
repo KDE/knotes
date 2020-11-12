@@ -42,10 +42,10 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
     label_BgColor->setBuddy(kcfg_BgColor);
     layout->addWidget(kcfg_BgColor, 1, 1);
 
+#if KDEPIM_HAVE_X11
     kcfg_ShowInTaskbar
         = new QCheckBox(i18n("&Show note in taskbar"), this);
     kcfg_ShowInTaskbar->setObjectName(QStringLiteral("kcfg_ShowInTaskbar"));
-#if KDEPIM_HAVE_X11
     kcfg_RememberDesktop
         = new QCheckBox(i18n("&Remember desktop"), this);
     kcfg_RememberDesktop->setObjectName(QStringLiteral("kcfg_RememberDesktop"));
@@ -73,13 +73,13 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
         label_Height->setBuddy(kcfg_Height);
         layout->addWidget(kcfg_Height, 3, 1);
 
-        layout->addWidget(kcfg_ShowInTaskbar, 4, 0);
 #if KDEPIM_HAVE_X11
+        layout->addWidget(kcfg_ShowInTaskbar, 4, 0);
         layout->addWidget(kcfg_RememberDesktop, 5, 0);
 #endif
     } else {
-        layout->addWidget(kcfg_ShowInTaskbar, 2, 0);
 #if KDEPIM_HAVE_X11
+        layout->addWidget(kcfg_ShowInTaskbar, 2, 0);
         layout->addWidget(kcfg_RememberDesktop, 3, 0);
 #endif
     }
@@ -95,10 +95,10 @@ void KNoteDisplayConfigWidget::load(NoteShared::NoteDisplayAttribute *attr)
     if (attr) {
         kcfg_FgColor->setColor(attr->foregroundColor());
         kcfg_BgColor->setColor(attr->backgroundColor());
+#if KDEPIM_HAVE_X11
         kcfg_ShowInTaskbar->setChecked(attr->showInTaskbar());
-        if (kcfg_RememberDesktop) {
-            kcfg_RememberDesktop->setChecked(attr->rememberDesktop());
-        }
+        kcfg_RememberDesktop->setChecked(attr->rememberDesktop());
+#endif
         if (kcfg_Height) {
             kcfg_Height->setValue(attr->size().height());
         }
@@ -113,10 +113,10 @@ void KNoteDisplayConfigWidget::save(NoteShared::NoteDisplayAttribute *attr)
     if (attr) {
         attr->setForegroundColor(kcfg_FgColor->color());
         attr->setBackgroundColor(kcfg_BgColor->color());
+#if KDEPIM_HAVE_X11
         attr->setShowInTaskbar(kcfg_ShowInTaskbar->isChecked());
-        if (kcfg_RememberDesktop) {
-            attr->setRememberDesktop(kcfg_RememberDesktop->isChecked());
-        }
+        attr->setRememberDesktop(kcfg_RememberDesktop->isChecked());
+#endif
         if (kcfg_Height && kcfg_Width) {
             attr->setSize(QSize(kcfg_Width->value(), kcfg_Height->value()));
         }
