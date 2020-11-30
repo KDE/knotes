@@ -29,7 +29,6 @@ using namespace KCalendarCore;
 #include "knotes_kontact_plugin_debug.h"
 #include <QIcon>
 #include <KLocalizedString>
-#include <KMessageBox>
 #include <QTimeZone>
 
 #include <QDropEvent>

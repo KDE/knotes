@@ -17,7 +17,6 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
-#include <QApplication>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QTabWidget>

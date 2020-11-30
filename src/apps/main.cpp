@@ -12,7 +12,6 @@
 #include "knotes-version.h"
 #include "apps/application.h"
 #include <KLocalizedString>
-#include <Kdelibs4ConfigMigrator>
 #include "notes/knotesmigrateapplication.h"
 
 #include <KAboutData>

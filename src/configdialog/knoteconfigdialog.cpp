@@ -23,7 +23,6 @@
 #include <KNS3/DownloadDialog>
 
 #include <QCheckBox>
-#include <QApplication>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
