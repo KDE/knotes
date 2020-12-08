@@ -87,7 +87,7 @@ KNotesPart::KNotesPart(QObject *parent)
     connect(mNewNote, &QAction::triggered, this, [this]() {
         newNote();
     });
-    actionCollection()->setDefaultShortcut(mNewNote, QKeySequence(Qt::CTRL + Qt::Key_N));
+    actionCollection()->setDefaultShortcut(mNewNote, QKeySequence(Qt::CTRL | Qt::Key_N));
     //mNewNote->setHelpText(
     //            i18nc( "@info:status", "Create a new popup note" ) );
     mNewNote->setWhatsThis(
@@ -224,7 +224,7 @@ KNotesPart::KNotesPart(QObject *parent)
 
     mQuickSearchAction = new QAction(i18n("Set Focus to Quick Search"), this);
     //If change shortcut change in quicksearchwidget->lineedit->setPlaceholderText
-    actionCollection()->setDefaultShortcut(mQuickSearchAction, QKeySequence(Qt::ALT + Qt::Key_Q));
+    actionCollection()->setDefaultShortcut(mQuickSearchAction, QKeySequence(Qt::ALT | Qt::Key_Q));
     actionCollection()->addAction(QStringLiteral("focus_to_quickseach"), mQuickSearchAction);
     connect(mQuickSearchAction, &QAction::triggered, mNotesWidget, &KNotesWidget::slotFocusQuickSearch);
 

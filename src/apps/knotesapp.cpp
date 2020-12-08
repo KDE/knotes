@@ -85,7 +85,7 @@ KNotesApp::KNotesApp(QWidget *parent)
     QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("document-new")),
                                   i18n("New Note"), this);
     actionCollection()->addAction(QStringLiteral("new_note"), action);
-    KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_N));
+    KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT | Qt::SHIFT | Qt::Key_N));
     connect(action, &QAction::triggered, this, [this]() {
         newNote();
     });
@@ -93,7 +93,7 @@ KNotesApp::KNotesApp(QWidget *parent)
     action = new QAction(QIcon::fromTheme(QStringLiteral("edit-paste")),
                          i18n("New Note From Clipboard"), this);
     actionCollection()->addAction(QStringLiteral("new_note_clipboard"), action);
-    KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_C));
+    KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT | Qt::SHIFT | Qt::Key_C));
     connect(action, &QAction::triggered, this, &KNotesApp::newNoteFromClipboard);
 
     action = new QAction(QIcon::fromTheme(QStringLiteral("document-open")),
@@ -103,13 +103,13 @@ KNotesApp::KNotesApp(QWidget *parent)
 
     action = new QAction(QIcon::fromTheme(QStringLiteral("knotes")), i18n("Show All Notes"), this);
     actionCollection()->addAction(QStringLiteral("show_all_notes"), action);
-    KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_S));
+    KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT | Qt::SHIFT | Qt::Key_S));
     connect(action, &QAction::triggered, this, &KNotesApp::showAllNotes);
 
     action = new QAction(QIcon::fromTheme(QStringLiteral("window-close")),
                          i18n("Hide All Notes"), this);
     actionCollection()->addAction(QStringLiteral("hide_all_notes"), action);
-    KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT + Qt::SHIFT + Qt::Key_H));
+    KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT | Qt::SHIFT | Qt::Key_H));
     connect(action, &QAction::triggered, this, &KNotesApp::hideAllNotes);
 
     action = new QAction(QIcon::fromTheme(QStringLiteral("document-print")),
