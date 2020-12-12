@@ -22,6 +22,7 @@
   <developer_name xml:lang="it">La Comunità KDE</developer_name>
   <developer_name xml:lang="ko">KDE 커뮤니티</developer_name>
   <developer_name xml:lang="nl">De KDE gemeenschap</developer_name>
+  <developer_name xml:lang="nn">KDE-fellesskapet</developer_name>
   <developer_name xml:lang="pl">Społeczność KDE</developer_name>
   <developer_name xml:lang="pt">A Comunidade do KDE</developer_name>
   <developer_name xml:lang="pt-BR">A Comunidade KDE</developer_name>
@@ -58,6 +59,7 @@
   <name xml:lang="nb">KNotes</name>
   <name xml:lang="nds">KNotes</name>
   <name xml:lang="nl">KNotes</name>
+  <name xml:lang="nn">KNotes</name>
   <name xml:lang="pl">KNotatki</name>
   <name xml:lang="pt">KNotes</name>
   <name xml:lang="pt-BR">KNotes</name>
@@ -166,6 +168,7 @@
     <p xml:lang="nb">Egenskaper:</p>
     <p xml:lang="nds">Markmalen:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
+    <p xml:lang="nn">Funksjonar:</p>
     <p xml:lang="pl">Możliwości:</p>
     <p xml:lang="pt">Funcionalidades:</p>
     <p xml:lang="pt-BR">Funcionalidades:</p>
