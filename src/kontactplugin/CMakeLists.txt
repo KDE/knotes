@@ -25,7 +25,7 @@ ecm_qt_declare_logging_category(kontact_knotesplugin_PART_SRCS HEADER knotes_kon
 
 
 add_library(kontact_knotesplugin MODULE ${kontact_knotesplugin_PART_SRCS} ${kontact_knotesplugin_interface_SRCS} )
-if (COMPILE_WITH_CMAKE_SUPPORT)
+if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(kontact_knotesplugin PROPERTIES UNITY_BUILD ON)
 endif()
 target_link_libraries(kontact_knotesplugin

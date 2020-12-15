@@ -53,7 +53,7 @@ ecm_qt_declare_logging_category(libknotesprivate_lib_SRCS HEADER knotes_debug.h 
     )
 
 add_library(knotesprivate ${libknotesprivate_lib_SRCS} ${libknotesprivate_kcfg_lib_SRCS} )
-if (COMPILE_WITH_CMAKE_SUPPORT)
+if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(knotesprivate PROPERTIES UNITY_BUILD ON)
 endif()
 
@@ -94,7 +94,7 @@ file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-knotes.png")
 ecm_add_app_icon(knotes_SRCS ICONS ${ICONS_SRCS})
 
 add_executable(knotes ${knotes_SRCS})
-if (COMPILE_WITH_CMAKE_SUPPORT)
+if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(knotes PROPERTIES UNITY_BUILD ON)
 endif()
 

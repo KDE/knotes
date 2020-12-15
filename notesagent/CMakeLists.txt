@@ -21,7 +21,7 @@ ecm_qt_declare_logging_category(notesagent_SRCS HEADER notesagent_debug.h IDENTI
     )
 
 add_executable(akonadi_notes_agent ${notesagent_SRCS})
-if (COMPILE_WITH_CMAKE_SUPPORT)
+if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akonadi_notes_agent PROPERTIES UNITY_BUILD ON)
 endif()
 target_link_libraries(akonadi_notes_agent
