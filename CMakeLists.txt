@@ -119,7 +119,17 @@ configure_file(knotes-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotes-version
 if(BUILD_TESTING)
    add_definitions(-DBUILD_TESTING)
 endif()
+#Laurent: disable for the moment
+#option(USE_UNIFY_CMAKE_SUPPORT "Use UNIFY cmake support (speedup compile time)" FALSE)
 
+#set(COMPILE_WITH_CMAKE_SUPPORT false)
+#if (USE_UNIFY_CMAKE_SUPPORT)
+#    if(${CMAKE_VERSION} VERSION_LESS "3.16.0")
+#        message(STATUS "CMAKE version is less than 3.16.0 . We can't use cmake unify build support")
+#    else()
+#        set(COMPILE_WITH_CMAKE_SUPPORT true)
+#    endif()
+#endif()
 add_subdirectory(noteshared)
 add_subdirectory(src)
 add_subdirectory(notesagent)
