@@ -126,7 +126,9 @@ install(TARGETS knotes  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 set(kcm_knotes_PART_SRCS configdialog/knotedisplayconfigwidget.cpp configdialog/knoteeditorconfigwidget.cpp configdialog/knotecollectionconfigwidget.cpp knotes_debug.cpp)
 
 add_library(kcm_knote MODULE ${kcm_knotes_PART_SRCS} )
-
+if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+    set_target_properties(kcm_knote PROPERTIES UNITY_BUILD ON)
+endif()
 target_link_libraries(kcm_knote knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff notesharedprivate KF5::AkonadiNotes KF5::PimCommon KF5::I18n KF5::AkonadiWidgets)
 
 install(TARGETS kcm_knote DESTINATION ${KDE_INSTALL_PLUGINDIR})

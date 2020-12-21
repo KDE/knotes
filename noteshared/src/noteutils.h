@@ -3,8 +3,8 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTEUTILS_H
-#define NOTEUTILS_H
+#ifndef NOTESHARED_NOTEUTILS_H
+#define NOTESHARED_NOTEUTILS_H
 
 #include "noteshared_export.h"
 #include <AkonadiCore/Item>
@@ -26,4 +26,4 @@ public:
 };
 }
 
-#endif // NOTEUTILS_H
+#endif // NOTESHARED_NOTEUTILS_H
