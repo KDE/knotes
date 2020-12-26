@@ -19,6 +19,7 @@
 #include <KFontSizeAction>
 #include <KLocalizedString>
 #include <KToggleAction>
+#include <kwidgetsaddons_version.h>
 
 #include <QColorDialog>
 #include <QIcon>
@@ -134,8 +135,11 @@ KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
 
     m_textFont = new KFontAction(i18n("Text Font"), this);
     actions->addAction(QStringLiteral("format_font"), m_textFont);
+#if KWIDGETSADDONS_VERSION < QT_VERSION_CHECK(5, 78, 0)
     connect(m_textFont, qOverload<const QString &>(&KFontAction::triggered), this, &KNoteEdit::setFontFamily);
-
+#else
+    connect(m_textFont, &KFontAction::textTriggered), this, &KNoteEdit::setFontFamily);
+#endif
     m_textSize = new KFontSizeAction(i18n("Text Size"), this);
     actions->addAction(QStringLiteral("format_size"), m_textSize);
     connect(m_textSize, &KFontSizeAction::fontSizeChanged, this, &KNoteEdit::setTextFontSize);
