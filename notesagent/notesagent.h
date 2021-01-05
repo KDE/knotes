@@ -33,9 +33,6 @@ public:
 
     void configurationChanged();
 
-Q_SIGNALS:
-    void needUpdateConfigDialogBox();
-
 public Q_SLOTS:
     void configure(WId windowId) override;
 
