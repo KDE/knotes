@@ -10,8 +10,6 @@
 
 #include "knoteconfigdialog.h"
 #include "notesharedglobalconfig.h"
-#include "knotedisplayconfigwidget.h"
-#include "knoteeditorconfigwidget.h"
 #include "knotesglobalconfig.h"
 #include "config/noteactionconfig.h"
 #include "config/notenetworkconfig.h"

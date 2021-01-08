@@ -27,7 +27,7 @@
 #include <KLocalizedString>
 #include <QPushButton>
 #include <QLineEdit>
-#include "knotes_debug.h"
+#include "knotes_kcm_debug.h"
 #include <KMessageBox>
 
 #include <QVBoxLayout>
@@ -322,11 +322,11 @@ void KNoteCollectionConfigWidget::slotModifyJobDone(KJob *job)
     auto *modifyJob = qobject_cast<Akonadi::CollectionModifyJob *>(job);
     if (modifyJob && job->error()) {
         if (job->property("AttributeAdded").toBool()) {
-            qCWarning(KNOTES_LOG) << "Failed to append ShowFolderNotesAttribute to collection"
+            qCWarning(KNOTES_MODULES_LOG) << "Failed to append ShowFolderNotesAttribute to collection"
                                   << modifyJob->collection().id() << ":"
                                   << job->errorString();
         } else {
-            qCWarning(KNOTES_LOG) << "Failed to remove ShowFolderNotesAttribute from collection"
+            qCWarning(KNOTES_MODULES_LOG) << "Failed to remove ShowFolderNotesAttribute from collection"
                                   << modifyJob->collection().id() << ":"
                                   << job->errorString();
         }
