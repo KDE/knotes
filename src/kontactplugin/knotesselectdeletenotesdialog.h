@@ -15,7 +15,7 @@ class KNotesSelectDeleteNotesListWidget : public QListWidget
     Q_OBJECT
 public:
     explicit KNotesSelectDeleteNotesListWidget(QWidget *parent = nullptr);
-    ~KNotesSelectDeleteNotesListWidget();
+    ~KNotesSelectDeleteNotesListWidget() override;
 
     void setItems(const QList<KNotesIconViewItem *> &items);
 };

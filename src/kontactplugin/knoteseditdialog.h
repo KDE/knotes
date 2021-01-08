@@ -18,7 +18,7 @@ class KNoteEditDialog : public QDialog, virtual public KXMLGUIClient
     Q_OBJECT
 public:
     explicit KNoteEditDialog(bool readOnly, QWidget *parent = nullptr);
-    ~KNoteEditDialog();
+    ~KNoteEditDialog() override;
 
     void setAcceptRichText(bool b);
     QString text() const;

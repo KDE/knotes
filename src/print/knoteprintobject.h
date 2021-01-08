@@ -25,7 +25,7 @@ class KNOTES_EXPORT KNotePrintObject : public QObject
     Q_PROPERTY(QString backgroundColorName READ backgroundColorName)
 public:
     explicit KNotePrintObject(const Akonadi::Item &item, QObject *parent = nullptr);
-    ~KNotePrintObject();
+    ~KNotePrintObject() override;
 
     Q_REQUIRED_RESULT QString description() const;
     Q_REQUIRED_RESULT QString name() const;

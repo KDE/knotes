@@ -22,7 +22,7 @@ class NOTESHARED_EXPORT NotesNetworkReceiver : public QObject
     Q_OBJECT
 public:
     explicit NotesNetworkReceiver(QTcpSocket *);
-    ~NotesNetworkReceiver();
+    ~NotesNetworkReceiver() override;
 
 Q_SIGNALS:
     void sigNoteReceived(const QString &, const QString &);

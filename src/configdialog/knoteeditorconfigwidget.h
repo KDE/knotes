@@ -19,7 +19,7 @@ class KNoteEditorConfigWidget : public QWidget
     Q_OBJECT
 public:
     explicit KNoteEditorConfigWidget(QWidget *parent = nullptr);
-    ~KNoteEditorConfigWidget();
+    ~KNoteEditorConfigWidget() override;
 
     void load(NoteShared::NoteDisplayAttribute *attr, bool isRichText);
     void save(NoteShared::NoteDisplayAttribute *attr, bool &isRichText);

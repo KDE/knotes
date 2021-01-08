@@ -42,7 +42,7 @@ class KNoteCollectionConfigWidget : public QWidget
     Q_OBJECT
 public:
     explicit KNoteCollectionConfigWidget(QWidget *parent = nullptr);
-    ~KNoteCollectionConfigWidget();
+    ~KNoteCollectionConfigWidget() override;
 
     void updateCollectionsRecursive();
 

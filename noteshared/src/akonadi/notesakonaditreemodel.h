@@ -19,7 +19,7 @@ class NOTESHARED_EXPORT NotesAkonadiTreeModel : public Akonadi::EntityTreeModel
     Q_OBJECT
 public:
     explicit NotesAkonadiTreeModel(Akonadi::ChangeRecorder *changeRecorder, QObject *parent = nullptr);
-    ~NotesAkonadiTreeModel();
+    ~NotesAkonadiTreeModel() override;
 };
 }
 

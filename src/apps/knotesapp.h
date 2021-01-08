@@ -37,7 +37,7 @@ class KNotesApp : public QWidget, virtual public KXMLGUIClient
     Q_OBJECT
 public:
     explicit KNotesApp(QWidget *parent = nullptr);
-    ~KNotesApp();
+    ~KNotesApp() override;
 
     Q_REQUIRED_RESULT QString name(Akonadi::Item::Id id) const;
     Q_REQUIRED_RESULT QString text(Akonadi::Item::Id id) const;

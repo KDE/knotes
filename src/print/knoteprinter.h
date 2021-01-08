@@ -21,7 +21,7 @@ class KNOTES_EXPORT KNotePrinter : public QObject
     Q_OBJECT
 public:
     explicit KNotePrinter(QObject *parent = nullptr);
-    ~KNotePrinter();
+    ~KNotePrinter() override;
 
     void setDefaultFont(const QFont &font);
     Q_REQUIRED_RESULT QFont defaultFont() const;

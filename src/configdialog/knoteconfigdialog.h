@@ -24,7 +24,7 @@ class KNOTES_EXPORT KNoteConfigDialog : public KCMultiDialog
     Q_OBJECT
 public:
     explicit KNoteConfigDialog(const QString &title, QWidget *parent);
-    ~KNoteConfigDialog();
+    ~KNoteConfigDialog() override;
 
 public Q_SLOTS:
     void slotOk();

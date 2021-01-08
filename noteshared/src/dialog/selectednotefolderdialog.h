@@ -14,7 +14,7 @@ class SelectedNotefolderDialog : public Akonadi::CollectionDialog
     Q_OBJECT
 public:
     explicit SelectedNotefolderDialog(QWidget *parent = nullptr);
-    ~SelectedNotefolderDialog();
+    ~SelectedNotefolderDialog() override;
 
 private:
     void readConfig();

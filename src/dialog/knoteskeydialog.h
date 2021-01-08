@@ -13,7 +13,7 @@ class KNotesKeyDialog : public QDialog
 {
 public:
     explicit KNotesKeyDialog(KActionCollection *globals, QWidget *parent);
-    ~KNotesKeyDialog();
+    ~KNotesKeyDialog() override;
 
     void insert(KActionCollection *actions);
 

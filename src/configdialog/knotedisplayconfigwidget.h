@@ -18,7 +18,7 @@ class KNoteDisplayConfigWidget : public QWidget
     Q_OBJECT
 public:
     explicit KNoteDisplayConfigWidget(bool defaults, QWidget *parent = nullptr);
-    ~KNoteDisplayConfigWidget();
+    ~KNoteDisplayConfigWidget() override;
 
     void load(NoteShared::NoteDisplayAttribute *attr);
     void save(NoteShared::NoteDisplayAttribute *attr);

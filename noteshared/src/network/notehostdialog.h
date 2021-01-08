@@ -25,7 +25,7 @@ class NoteHostDialog : public QDialog
     Q_OBJECT
 public:
     explicit NoteHostDialog(const QString &caption, QWidget *parent = nullptr);
-    ~NoteHostDialog();
+    ~NoteHostDialog() override;
 
     Q_REQUIRED_RESULT QString host() const;
     /**

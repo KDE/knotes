@@ -20,7 +20,7 @@ class NOTESHARED_EXPORT NoteAlarmDialog : public QDialog
     Q_OBJECT
 public:
     explicit NoteAlarmDialog(const QString &caption, QWidget *parent = nullptr);
-    ~NoteAlarmDialog();
+    ~NoteAlarmDialog() override;
     void setAlarm(const QDateTime &dateTime);
     Q_REQUIRED_RESULT QDateTime alarm() const;
 

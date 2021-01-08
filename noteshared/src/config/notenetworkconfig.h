@@ -14,7 +14,7 @@ class NOTESHARED_EXPORT NoteNetworkConfigWidget : public QWidget
     Q_OBJECT
 public:
     explicit NoteNetworkConfigWidget(QWidget *parent = nullptr);
-    ~NoteNetworkConfigWidget();
+    ~NoteNetworkConfigWidget() override;
 
     void save();
     void load();

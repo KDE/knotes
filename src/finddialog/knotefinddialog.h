@@ -22,7 +22,7 @@ class KNoteFindWidget : public QWidget
     Q_OBJECT
 public:
     explicit KNoteFindWidget(QWidget *parent = nullptr);
-    ~KNoteFindWidget();
+    ~KNoteFindWidget() override;
 
     void setExistingNotes(const QHash<Akonadi::Item::Id, Akonadi::Item> &notes);
 

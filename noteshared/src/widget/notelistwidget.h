@@ -17,7 +17,7 @@ class NOTESHARED_EXPORT NoteListWidget : public QListWidget
     Q_OBJECT
 public:
     explicit NoteListWidget(QWidget *parent = nullptr);
-    ~NoteListWidget();
+    ~NoteListWidget() override;
 
     void setNotes(const Akonadi::Item::List &notes);
     void addNotes(const Akonadi::Item::List &notes);

@@ -18,7 +18,7 @@ class KNoteDeleteSelectedNotesDialog : public QDialog
     Q_OBJECT
 public:
     explicit KNoteDeleteSelectedNotesDialog(QWidget *parent = nullptr);
-    ~KNoteDeleteSelectedNotesDialog();
+    ~KNoteDeleteSelectedNotesDialog() override;
 
     void setNotes(const Akonadi::Item::List &notes);
 

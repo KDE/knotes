@@ -19,7 +19,7 @@ class NotesNetworkSender : public QObject
     Q_OBJECT
 public:
     explicit NotesNetworkSender(QTcpSocket *socket);
-    ~NotesNetworkSender();
+    ~NotesNetworkSender() override;
 
     void setSenderId(const QString &sender);
     void setNote(const QString &title, const QString &text);

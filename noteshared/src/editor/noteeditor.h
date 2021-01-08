@@ -14,7 +14,7 @@ class NoteEditor : public KPIMTextEdit::RichTextEditorWidget
     Q_OBJECT
 public:
     explicit NoteEditor(QWidget *parent);
-    ~NoteEditor();
+    ~NoteEditor() override;
 };
 }
 

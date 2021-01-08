@@ -16,7 +16,7 @@ class KNoteSelectedNotesDialog : public QDialog
     Q_OBJECT
 public:
     explicit KNoteSelectedNotesDialog(QWidget *parent = nullptr);
-    ~KNoteSelectedNotesDialog();
+    ~KNoteSelectedNotesDialog() override;
 
     void setNotes(const QHash<Akonadi::Item::Id, KNote *> &notes);
 

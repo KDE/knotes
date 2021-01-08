@@ -13,7 +13,7 @@ class KNotesAkonadiTray : public KStatusNotifierItem
     Q_OBJECT
 public:
     explicit KNotesAkonadiTray(QWidget *parent = nullptr);
-    ~KNotesAkonadiTray();
+    ~KNotesAkonadiTray() override;
 
     void updateNumberOfNotes(int number);
 
