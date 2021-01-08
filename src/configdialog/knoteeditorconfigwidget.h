@@ -7,6 +7,7 @@
 #define KNOTEEDITORCONFIGWIDGET_H
 
 #include <QWidget>
+#include "knotes_export.h"
 class QSpinBox;
 class QCheckBox;
 class KFontRequester;
@@ -14,7 +15,7 @@ namespace NoteShared {
 class NoteDisplayAttribute;
 }
 
-class KNoteEditorConfigWidget : public QWidget
+class KNOTES_EXPORT KNoteEditorConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
