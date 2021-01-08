@@ -123,7 +123,7 @@ install(TARGETS knotes  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
 ########### next target ###############
-set(kcm_knotes_PART_SRCS configdialog/knotedisplayconfigwidget.cpp configdialog/knoteeditorconfigwidget.cpp configdialog/knotecollectionconfigwidget.cpp knotes_debug.cpp)
+set(kcm_knotes_PART_SRCS knoteconfigmodule.cpp kcm_knotes.cpp configdialog/knotedisplayconfigwidget.cpp configdialog/knoteeditorconfigwidget.cpp configdialog/knotecollectionconfigwidget.cpp knotes_debug.cpp)
 
 add_library(kcm_knote MODULE ${kcm_knotes_PART_SRCS} )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
