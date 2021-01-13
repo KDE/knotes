@@ -93,6 +93,7 @@
   <summary xml:lang="it">Applicazione per le note adesive</summary>
   <summary xml:lang="ko">찍찍이 노트 프로그램</summary>
   <summary xml:lang="nl">Toepassing voor plaknotities</summary>
+  <summary xml:lang="nn">«Gule lappar»-program</summary>
   <summary xml:lang="pl">Aplikacja źółtych karteczek</summary>
   <summary xml:lang="pt">Aplicação de notas autocolantes</summary>
   <summary xml:lang="pt-BR">Aplicativo de notas adesivas</summary>
@@ -131,6 +132,7 @@
     <p xml:lang="nb">KNotes er et program du kan bruke til å skrive «gule lapper» på datamaskinen.  Lappene lagres automatisk når du går ut av programmet, og vises igjen når du starter programmet.</p>
     <p xml:lang="nds">Mit KNotes kannst Du so wat as Anback-Notizen för den Reekner maken. De Notizen warrt bi't Utmaken vun't Programm automaatsch sekert un wedder wiest, wenn Du dat Programm wedder opröppst.</p>
     <p xml:lang="nl">Knotes is de digitale variant van de gele zelfklevende notitieblaadjes. De notities worden bij het afsluiten automatisch bewaard en worden weer getoond wanneer het programma gestart wordt.</p>
+    <p xml:lang="nn">KNotes er eit program lèt deg skriva enkle notat – elektroniske «gule lappar». Notata vert automatisk lagra når du avsluttar programmet og vert viste når du opnar det.</p>
     <p xml:lang="pl">KNotatki jest programem, który umożliwia tworzenie w komputerze tzw. żółtych karteczek. Takie karteczki są samoczynnie zapisywane przy wyjściu z programu i pokazywane przy otwieraniu programu.</p>
     <p xml:lang="pt">O KNotes é um programa que lhe permite escrever o equivalente para computadores das notas autocolantes. As notas são gravadas automaticamente quando sair do programa e as mesmas voltam a aparecer quando o abrir.</p>
     <p xml:lang="pt-BR">KNotes é um programa que lhe permite escrever no computador da mesma forma que usa notas autoadesivas. As notas são gravadas automaticamente quando você sai do programa e depois apresentadas quando você abre o programa.</p>
@@ -205,6 +207,7 @@
       <li xml:lang="nb">Skriv notater med den fargen du velger på skrift og bakgrunn</li>
       <li xml:lang="nds">De Notizen mit Dien Schriftoort un Achtergrundklöör schrieven</li>
       <li xml:lang="nl">Schrijf notities met uw keuze voor lettertype en achtergrondkleur</li>
+      <li xml:lang="nn">Skriv notat med sjølvvald skrift og bakgrunnsfarge</li>
       <li xml:lang="pl">Pisanie notatek według własnego wyboru czcionki i koloru</li>
       <li xml:lang="pt">Escrever notas à sua escolha, com determinados tipos de letra e cores de fundo</li>
       <li xml:lang="pt-BR">Escrever notas com a fonte e cor de fundo de sua escolha</li>
@@ -239,6 +242,7 @@
       <li xml:lang="nb">Bruk dra og slipp til å sende notatene på e-øpost</li>
       <li xml:lang="nds">Notizen över Trecken un Afleggen mit Nettpost loosstüern</li>
       <li xml:lang="nl">Slepen en neerzetten gebruiken om uw notities te e-mailen</li>
+      <li xml:lang="nn">Bruk dra-og-slepp for å senda notat via e-post</li>
       <li xml:lang="pl">Używanie przeciągania i upuszczania do wysyłania pocztą swoich notatek</li>
       <li xml:lang="pt">Arrastar as notas para as enviar por e-mail</li>
       <li xml:lang="pt-BR">Arrastar e soltar as notas para envio por e-mail</li>
@@ -273,6 +277,7 @@
       <li xml:lang="nb">Kan dras inn i Kalendar for å holde av en tid</li>
       <li xml:lang="nds">Laat sik na den Kalenner trecken, wat en Stoot Tiet reserveren deit</li>
       <li xml:lang="nl">Kan versleept worden in Agenda om een time-slot te boeken</li>
+      <li xml:lang="nn">Kan dragast til kalenderen for å reservera tid</li>
       <li xml:lang="pl">Możliwość przeciągnięcia na kalendarz celem zaplanowania przedziału czasowego</li>
       <li xml:lang="pt">Pode ser arrastado para o Calendário para agendar um espaço de tempo</li>
       <li xml:lang="pt-BR">Pode ser arrastado para o calendário para agendar um espaço de tempo</li>
@@ -307,6 +312,7 @@
       <li xml:lang="nb">Notater kan skrives ut</li>
       <li xml:lang="nds">Notizen laat sik drucken</li>
       <li xml:lang="nl">Notities kunnen worden afgedrukt</li>
+      <li xml:lang="nn">Notat kan skrivast ut</li>
       <li xml:lang="pl">Możliwość drukowania notatek</li>
       <li xml:lang="pt">As notas podem ser impressas</li>
       <li xml:lang="pt-BR">As notas podem ser impressas</li>
