@@ -470,7 +470,7 @@ void KNotesPart::slotDeleteNotesFinished(KJob *job)
 
 void KNotesPart::popupRMB(QListWidgetItem *item, const QPoint &pos, const QPoint &globalPos)
 {
-    Q_UNUSED(item);
+    Q_UNUSED(item)
 
     auto *contextMenu = new QMenu(widget());
     if (mNotesWidget->notesView()->itemAt(pos)) {

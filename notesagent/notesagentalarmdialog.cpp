@@ -83,7 +83,7 @@ void NotesAgentAlarmDialog::slotCustomContextMenuRequested(const QPoint &pos)
     if (mListWidget->selectedItems().isEmpty()) {
         return;
     }
-    Q_UNUSED(pos);
+    Q_UNUSED(pos)
     auto *entriesContextMenu = new QMenu(this);
     QAction *removeAlarm = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")), i18n("Remove Alarm"), entriesContextMenu);
     connect(removeAlarm, &QAction::triggered, this, &NotesAgentAlarmDialog::slotRemoveAlarm);

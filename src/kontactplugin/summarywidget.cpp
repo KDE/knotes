@@ -203,7 +203,7 @@ void KNotesSummaryWidget::createNote(const Akonadi::Item &item, int counter)
 
 void KNotesSummaryWidget::updateSummary(bool force)
 {
-    Q_UNUSED(force);
+    Q_UNUSED(force)
     updateFolderList();
 }
 

@@ -33,5 +33,5 @@ QByteArray ShowFolderNotesAttribute::serialized() const
 
 void ShowFolderNotesAttribute::deserialize(const QByteArray &data)
 {
-    Q_UNUSED(data);
+    Q_UNUSED(data)
 }

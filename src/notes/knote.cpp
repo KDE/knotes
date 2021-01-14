@@ -781,7 +781,7 @@ void KNote::createNoteHeader()
 
 void KNote::createNoteEditor(const QString &configFile)
 {
-    Q_UNUSED(configFile);
+    Q_UNUSED(configFile)
     m_editor = new KNoteEdit(actionCollection(), this);
     m_noteLayout->addWidget(m_editor);
     m_editor->setNote(this);

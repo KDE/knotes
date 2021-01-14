@@ -23,7 +23,7 @@ Application::~Application()
 
 int Application::activate(const QStringList &args, const QString &workingDir)
 {
-    Q_UNUSED(workingDir);
+    Q_UNUSED(workingDir)
 
     QCommandLineParser *parser = cmdArgs();
     parser->process(args);
