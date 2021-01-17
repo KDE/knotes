@@ -76,4 +76,4 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
     QCOMPARE(html, result);
 }
 
-QTEST_MAIN(KNotesGrantleePrintTest)
+QTEST_GUILESS_MAIN(KNotesGrantleePrintTest)

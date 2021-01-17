@@ -59,4 +59,4 @@ void NoteAlarmAttributeTest::shouldHaveType()
     QCOMPARE(attr.type(), QByteArray("NoteAlarmAttribute"));
 }
 
-QTEST_MAIN(NoteAlarmAttributeTest)
+QTEST_GUILESS_MAIN(NoteAlarmAttributeTest)

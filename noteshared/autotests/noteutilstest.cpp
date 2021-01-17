@@ -7,7 +7,7 @@
 #include "noteutilstest.h"
 #include "noteutils.h"
 #include <QTest>
-QTEST_MAIN(NoteUtilsTest)
+QTEST_GUILESS_MAIN(NoteUtilsTest)
 
 NoteUtilsTest::NoteUtilsTest(QObject *parent)
     : QObject(parent)

@@ -24,4 +24,4 @@ void NoteLockAttributeTest::shouldHaveType()
     QCOMPARE(attr.type(), QByteArray("KJotsLockAttribute"));
 }
 
-QTEST_MAIN(NoteLockAttributeTest)
+QTEST_GUILESS_MAIN(NoteLockAttributeTest)

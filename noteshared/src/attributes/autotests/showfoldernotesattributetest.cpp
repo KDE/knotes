@@ -24,4 +24,4 @@ void ShowFolderNotesAttributeTest::shouldHaveType()
     QCOMPARE(attr.type(), QByteArray("showfoldernotesattribute"));
 }
 
-QTEST_MAIN(ShowFolderNotesAttributeTest)
+QTEST_GUILESS_MAIN(ShowFolderNotesAttributeTest)
