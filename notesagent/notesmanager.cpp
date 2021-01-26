@@ -4,28 +4,28 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 #include "notesmanager.h"
-#include "notesharedglobalconfig.h"
-#include "network/notesnetworkreceiver.h"
-#include "job/createnewnotejob.h"
 #include "akonadi/noteschangerecorder.h"
 #include "attributes/notealarmattribute.h"
 #include "attributes/notedisplayattribute.h"
 #include "attributes/notelockattribute.h"
+#include "job/createnewnotejob.h"
+#include "network/notesnetworkreceiver.h"
+#include "notesharedglobalconfig.h"
 
-#include <AkonadiCore/Session>
-#include <AkonadiCore/Collection>
-#include <AkonadiCore/Item>
+#include <Akonadi/Notes/NoteUtils>
 #include <AkonadiCore/ChangeRecorder>
-#include <AkonadiCore/ItemFetchJob>
-#include <AkonadiCore/ItemFetchScope>
+#include <AkonadiCore/Collection>
 #include <AkonadiCore/CollectionFetchJob>
 #include <AkonadiCore/CollectionFetchScope>
-#include <Akonadi/Notes/NoteUtils>
+#include <AkonadiCore/Item>
+#include <AkonadiCore/ItemFetchJob>
+#include <AkonadiCore/ItemFetchScope>
+#include <AkonadiCore/Session>
 
 #include <KMime/KMimeMessage>
 
-#include <KNotification>
 #include <KLocalizedString>
+#include <KNotification>
 
 #include <QDateTime>
 #include <QTcpServer>
@@ -37,20 +37,14 @@ NotesManager::NotesManager(QObject *parent)
     mSession = new Akonadi::Session("KNotes Session", this);
     mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
     mNoteRecorder->changeRecorder()->setSession(mSession);
-    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemAdded,
-            this, &NotesManager::slotItemAdded);
-    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged,
-            this, &NotesManager::slotItemChanged);
-    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved,
-            this, &NotesManager::slotItemRemoved);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemAdded, this, &NotesManager::slotItemAdded);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged, this, &NotesManager::slotItemChanged);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved, this, &NotesManager::slotItemRemoved);
 
-    auto job = new Akonadi::CollectionFetchJob(Akonadi::Collection::root(),
-                                               Akonadi::CollectionFetchJob::Recursive,
-                                               mSession);
-    job->fetchScope().setContentMimeTypes({ Akonadi::NoteUtils::noteMimeType() });
+    auto job = new Akonadi::CollectionFetchJob(Akonadi::Collection::root(), Akonadi::CollectionFetchJob::Recursive, mSession);
+    job->fetchScope().setContentMimeTypes({Akonadi::NoteUtils::noteMimeType()});
     job->fetchScope().setFetchIdOnly(true);
-    connect(job, &Akonadi::CollectionFetchJob::collectionsReceived,
-            this, &NotesManager::slotCollectionsReceived);
+    connect(job, &Akonadi::CollectionFetchJob::collectionsReceived, this, &NotesManager::slotCollectionsReceived);
 }
 
 NotesManager::~NotesManager()
@@ -80,8 +74,7 @@ void NotesManager::slotCollectionsReceived(const Akonadi::Collection::List &coll
         job->fetchScope().fetchAttribute<NoteShared::NoteDisplayAttribute>();
         job->fetchScope().fetchAttribute<NoteShared::NoteAlarmAttribute>();
         job->fetchScope().fetchFullPayload(true);
-        connect(job, &Akonadi::ItemFetchJob::itemsReceived,
-                this, [this](const Akonadi::Item::List &items) {
+        connect(job, &Akonadi::ItemFetchJob::itemsReceived, this, [this](const Akonadi::Item::List &items) {
             for (const Akonadi::Item &item : items) {
                 slotItemAdded(item);
             }
@@ -184,7 +177,7 @@ void NotesManager::slotNewNote(const QString &name, const QString &text)
                          KNotification::CloseOnTimeout,
                          QStringLiteral("akonadi_notes_agent"));
     auto *job = new NoteShared::CreateNewNoteJob(this, nullptr);
-    //For the moment it doesn't support richtext.
+    // For the moment it doesn't support richtext.
     job->setRichText(false);
     job->setNote(name, text);
     job->start();

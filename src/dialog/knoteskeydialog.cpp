@@ -5,10 +5,10 @@
 */
 #include "knoteskeydialog.h"
 
-#include <KShortcutsEditor>
+#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
-#include <KConfigGroup>
+#include <KShortcutsEditor>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QVBoxLayout>

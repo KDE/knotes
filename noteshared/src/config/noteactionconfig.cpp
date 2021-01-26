@@ -6,11 +6,11 @@
 #include "noteactionconfig.h"
 #include "notesharedglobalconfig.h"
 
-#include <QLineEdit>
 #include <KLocalizedString>
+#include <QLineEdit>
 
-#include <QLabel>
 #include <QGridLayout>
+#include <QLabel>
 #include <QWhatsThis>
 using namespace NoteShared;
 
@@ -40,15 +40,15 @@ NoteActionConfig::NoteActionConfig(QWidget *parent)
 
 void NoteActionConfig::slotHelpLinkClicked(const QString &)
 {
-    const QString help
-        = i18n("<qt>"
-               "<p>You can customize command line. "
-               "You can use:</p>"
-               "<ul>"
-               "<li>%t returns current note title</li>"
-               "<li>%f returns current note text</li>"
-               "</ul>"
-               "</qt>");
+    const QString help = i18n(
+        "<qt>"
+        "<p>You can customize command line. "
+        "You can use:</p>"
+        "<ul>"
+        "<li>%t returns current note title</li>"
+        "<li>%f returns current note text</li>"
+        "</ul>"
+        "</qt>");
 
     QWhatsThis::showText(QCursor::pos(), help);
 }

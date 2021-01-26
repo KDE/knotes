@@ -43,6 +43,7 @@ public:
     void defaults() override;
 private Q_SLOTS:
     void slotHelpLinkClicked(const QString &);
+
 private:
     QLineEdit *mDefaultTitle = nullptr;
 };

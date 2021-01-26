@@ -5,21 +5,21 @@
 */
 
 #include "knoteprinter.h"
-#include "print/knoteprintobject.h"
 #include "knotegrantleeprint.h"
+#include "print/knoteprintobject.h"
 
-#include <QPainter>
-#include <QTextDocument>
-#include <QPrinter>
-#include <QPrintDialog>
-#include <QAbstractTextDocumentLayout>
-#include <QPointer>
 #include <PimCommon/KPimPrintPreviewDialog>
+#include <QAbstractTextDocumentLayout>
+#include <QPainter>
+#include <QPointer>
+#include <QPrintDialog>
+#include <QPrinter>
+#include <QTextDocument>
 
 #include <KMessageBox>
 
-#include <KLocalizedString>
 #include "knotes_debug.h"
+#include <KLocalizedString>
 
 #include <grantlee/context.h>
 #include <grantlee/engine.h>
@@ -64,7 +64,7 @@ void KNotePrinter::slotPrinterPage(QPrinter *printer)
 void KNotePrinter::doPrint(const QString &htmlText, const QString &dialogCaption)
 {
     QPrinter printer(QPrinter::HighResolution);
-    //printer.setFullPage( true );  //disabled, causes asymmetric margins
+    // printer.setFullPage( true );  //disabled, causes asymmetric margins
     QPointer<QPrintDialog> printDialog = new QPrintDialog(&printer);
     printDialog->setWindowTitle(dialogCaption);
     if (!printDialog->exec() || !printDialog) {
@@ -76,13 +76,11 @@ void KNotePrinter::doPrint(const QString &htmlText, const QString &dialogCaption
 
 void KNotePrinter::print(QPrinter &printer, const QString &htmlText)
 {
-    const int margin = 30; //pt     //set to 40 when setFullPage() works again
+    const int margin = 30; // pt     //set to 40 when setFullPage() works again
     int marginX = margin * printer.logicalDpiX() / 72;
     int marginY = margin * printer.logicalDpiY() / 72;
 
-    QRect typeArea(marginX, marginY,
-                   printer.width() - marginX * 2,
-                   printer.height() - marginY * 2);
+    QRect typeArea(marginX, marginY, printer.width() - marginX * 2, printer.height() - marginY * 2);
 
     QTextDocument textDoc;
     textDoc.setHtml(htmlText);
@@ -102,10 +100,7 @@ void KNotePrinter::print(QPrinter &printer, const QString &htmlText)
 
         painter.setFont(m_defaultFont);
         const QString pageNumber(QString::number(page));
-        painter.drawText(
-            clip.right() - painter.fontMetrics().boundingRect(pageNumber).width(),
-            clip.bottom() + painter.fontMetrics().ascent() + 5,
-            pageNumber);
+        painter.drawText(clip.right() - painter.fontMetrics().boundingRect(pageNumber).width(), clip.bottom() + painter.fontMetrics().ascent() + 5, pageNumber);
 
         if (page < textDoc.pageCount()) {
             printer.newPage();
@@ -118,8 +113,7 @@ void KNotePrinter::printNotes(const QList<KNotePrintObject *> &lst, const QStrin
     mGrantleePrint.reset(new KNoteGrantleePrint(themePath));
     if (mGrantleePrint->errorMessage().isEmpty()) {
         const QString htmlText = mGrantleePrint->notesToHtml(lst);
-        const QString dialogCaption = i18np("Print Note", "Print %1 notes",
-                                            lst.count());
+        const QString dialogCaption = i18np("Print Note", "Print %1 notes", lst.count());
         if (preview) {
             doPrintPreview(htmlText);
         } else {

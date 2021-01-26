@@ -11,15 +11,15 @@
 #include <KDateComboBox>
 #include <KLocalizedString>
 #include <KTimeComboBox>
-#include <QVBoxLayout>
 #include <QDateTime>
+#include <QVBoxLayout>
 
 #include <QButtonGroup>
-#include <QGroupBox>
-#include <QRadioButton>
-#include <QHBoxLayout>
 #include <QDialogButtonBox>
+#include <QGroupBox>
+#include <QHBoxLayout>
 #include <QPushButton>
+#include <QRadioButton>
 
 using namespace NoteShared;
 

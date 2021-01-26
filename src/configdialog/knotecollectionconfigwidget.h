@@ -6,12 +6,13 @@
 #ifndef KNOTECOLLECTIONCONFIGWIDGET_H
 #define KNOTECOLLECTIONCONFIGWIDGET_H
 
-#include <QWidget>
 #include <AkonadiCore/Collection>
 #include <QIdentityProxyModel>
 #include <QModelIndex>
+#include <QWidget>
 class QSortFilterProxyModel;
-namespace Akonadi {
+namespace Akonadi
+{
 class EntityTreeModel;
 class ChangeRecorder;
 class CollectionRequester;
@@ -60,6 +61,7 @@ private Q_SLOTS:
     void slotRenameCollection();
     void slotUpdateButtons();
     void slotCollectionModifyFinished(KJob *);
+
 private:
     void forceStatus(const QModelIndex &parent, bool status);
     Akonadi::EntityTreeView *mFolderView = nullptr;

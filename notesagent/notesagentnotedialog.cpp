@@ -4,12 +4,12 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 #include "notesagentnotedialog.h"
+#include "attributes/notedisplayattribute.h"
 #include "notesagent_debug.h"
 #include <ItemFetchJob>
 #include <ItemFetchScope>
-#include "attributes/notedisplayattribute.h"
-#include <KPIMTextEdit/RichTextEditorWidget>
 #include <KPIMTextEdit/RichTextEditor>
+#include <KPIMTextEdit/RichTextEditorWidget>
 
 #include <KSharedConfig>
 
@@ -17,11 +17,11 @@
 
 #include <QIcon>
 
-#include <QLineEdit>
-#include <QVBoxLayout>
-#include <QDialogButtonBox>
 #include <KConfigGroup>
+#include <QDialogButtonBox>
+#include <QLineEdit>
 #include <QPushButton>
+#include <QVBoxLayout>
 
 NotesAgentNoteDialog::NotesAgentNoteDialog(QWidget *parent)
     : QDialog(parent)
@@ -55,7 +55,7 @@ void NotesAgentNoteDialog::setNoteId(Akonadi::Item::Id id)
     Akonadi::Item item(id);
     auto *job = new Akonadi::ItemFetchJob(item, this);
     job->fetchScope().fetchFullPayload(true);
-    job->fetchScope().fetchAttribute< NoteShared::NoteDisplayAttribute >();
+    job->fetchScope().fetchAttribute<NoteShared::NoteDisplayAttribute>();
     connect(job, &Akonadi::ItemFetchJob::result, this, &NotesAgentNoteDialog::slotFetchItem);
 }
 
@@ -87,7 +87,7 @@ void NotesAgentNoteDialog::slotFetchItem(KJob *job)
             const auto *attr = item.attribute<NoteShared::NoteDisplayAttribute>();
             if (attr) {
                 mNote->editor()->setTextColor(attr->backgroundColor());
-                //TODO add background color.
+                // TODO add background color.
             }
         }
     }

@@ -11,7 +11,8 @@
 #include "noteshared_export.h"
 class KJob;
 
-namespace NoteShared {
+namespace NoteShared
+{
 class CreateNewNoteJobPrivate;
 class NOTESHARED_EXPORT CreateNewNoteJob : public QObject
 {
@@ -35,6 +36,7 @@ private Q_SLOTS:
     void slotFetchCollection(KJob *job);
     void slotCollectionModifyFinished(KJob *job);
     void slotSelectNewCollection();
+
 private:
     void createFetchCollectionJob(bool useSettings);
     CreateNewNoteJobPrivate *const d;

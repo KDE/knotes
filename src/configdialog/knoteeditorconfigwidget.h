@@ -6,12 +6,13 @@
 #ifndef KNOTEEDITORCONFIGWIDGET_H
 #define KNOTEEDITORCONFIGWIDGET_H
 
-#include <QWidget>
 #include "knotes_export.h"
+#include <QWidget>
 class QSpinBox;
 class QCheckBox;
 class KFontRequester;
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteDisplayAttribute;
 }
 

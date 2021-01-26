@@ -21,12 +21,14 @@
 class KNote;
 class KNoteFindDialog;
 class KNotesAkonadiTray;
-namespace NoteShared {
+namespace NoteShared
+{
 class NotesChangeRecorder;
 class NotesAkonadiTreeModel;
 }
 
-namespace KDNSSD {
+namespace KDNSSD
+{
 class PublicService;
 }
 
@@ -79,6 +81,7 @@ private Q_SLOTS:
     void slotDeleteSelectedNotes();
 
     void newNoteFromTextFile();
+
 private:
     void saveNotes(bool force = false, bool sync = false);
     void updateNetworkListener();

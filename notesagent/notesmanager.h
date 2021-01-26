@@ -14,11 +14,13 @@
 #include <QPointer>
 class QTcpServer;
 class QTimer;
-namespace NoteShared {
+namespace NoteShared
+{
 class NotesChangeRecorder;
 }
 
-namespace Akonadi {
+namespace Akonadi
+{
 class Session;
 }
 
@@ -45,6 +47,7 @@ private Q_SLOTS:
     void slotItemChanged(const Akonadi::Item &item, const QSet<QByteArray> &set);
 
     void slotCollectionsReceived(const Akonadi::Collection::List &collections);
+
 private:
     void clear();
     Akonadi::Item::List mListItem;

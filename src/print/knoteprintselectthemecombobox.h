@@ -7,8 +7,8 @@
 #ifndef KNOTEPRINTSELECTTHEMECOMBOBOX_H
 #define KNOTEPRINTSELECTTHEMECOMBOBOX_H
 
-#include <QComboBox>
 #include "knotes_export.h"
+#include <QComboBox>
 
 class KNOTES_EXPORT KNotePrintSelectThemeComboBox : public QComboBox
 {

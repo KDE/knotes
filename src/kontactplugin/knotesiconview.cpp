@@ -5,11 +5,11 @@
 */
 
 #include "knotesiconview.h"
-#include "knotes_kontact_plugin_debug.h"
-#include "noteutils.h"
 #include "attributes/notedisplayattribute.h"
 #include "attributes/notelockattribute.h"
+#include "knotes_kontact_plugin_debug.h"
 #include "notes/knotedisplaysettings.h"
+#include "noteutils.h"
 #include "utils/knoteutils.h"
 
 #include <AkonadiCore/ItemModifyJob>
@@ -46,7 +46,7 @@ bool KNotesIconView::event(QEvent *e)
     if (e->type() != QEvent::ToolTip) {
         return QListWidget::event(e);
     }
-    auto *he = static_cast< QHelpEvent * >(e);
+    auto *he = static_cast<QHelpEvent *>(e);
 
     QPoint pnt = viewport()->mapFromGlobal(mapToGlobal(he->pos()));
 
@@ -100,7 +100,7 @@ KNotesIconViewItem::KNotesIconViewItem(const Akonadi::Item &item, QListWidget *p
         mDisplayAttribute->setDisplayAttribute(mItem.attribute<NoteShared::NoteDisplayAttribute>());
     } else {
         setDisplayDefaultValue();
-        //save default display value
+        // save default display value
     }
     prepare();
 }

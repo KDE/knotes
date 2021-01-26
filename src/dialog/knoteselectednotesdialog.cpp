@@ -6,12 +6,12 @@
 #include "knoteselectednotesdialog.h"
 #include "notes/knote.h"
 
-#include <KLocalizedString>
 #include <KConfigGroup>
+#include <KLocalizedString>
 
-#include <QListWidget>
 #include <KSharedConfig>
 #include <QDialogButtonBox>
+#include <QListWidget>
 #include <QPushButton>
 #include <QVBoxLayout>
 

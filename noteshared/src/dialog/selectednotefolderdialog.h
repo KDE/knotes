@@ -8,7 +8,8 @@
 
 #include <AkonadiWidgets/CollectionDialog>
 
-namespace NoteShared {
+namespace NoteShared
+{
 class SelectedNotefolderDialog : public Akonadi::CollectionDialog
 {
     Q_OBJECT

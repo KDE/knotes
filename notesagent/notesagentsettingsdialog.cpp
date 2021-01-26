@@ -6,20 +6,20 @@
 #include "notesagentsettingsdialog.h"
 
 #include "knotes-version.h"
-#include <QMenu>
+#include <KAboutData>
 #include <KHelpMenu>
 #include <KLocalizedString>
-#include <QIcon>
-#include <KAboutData>
 #include <KNotifyConfigWidget>
+#include <QIcon>
+#include <QMenu>
 
-#include <QTabWidget>
-#include <KSharedConfig>
-#include <QDialogButtonBox>
 #include <KConfigGroup>
-#include <QPushButton>
-#include <QVBoxLayout>
+#include <KSharedConfig>
 #include <QApplication>
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QTabWidget>
+#include <QVBoxLayout>
 
 #include <config/notenetworkconfig.h>
 
@@ -52,23 +52,20 @@ NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
     mainLayout->addWidget(buttonBox);
     readConfig();
 
-    KAboutData aboutData = KAboutData(
-        QStringLiteral("notesagent"),
-        i18n("Notes Agent"),
-        QStringLiteral(KNOTES_VERSION),
-        i18n("Notes Agent."),
-        KAboutLicense::GPL_V2,
-        i18n("Copyright (C) 2013-2020 Laurent Montel"));
+    KAboutData aboutData = KAboutData(QStringLiteral("notesagent"),
+                                      i18n("Notes Agent"),
+                                      QStringLiteral(KNOTES_VERSION),
+                                      i18n("Notes Agent."),
+                                      KAboutLicense::GPL_V2,
+                                      i18n("Copyright (C) 2013-2020 Laurent Montel"));
 
-    aboutData.addAuthor(i18n("Laurent Montel"),
-                        i18n("Maintainer"), QStringLiteral("montel@kde.org"));
+    aboutData.addAuthor(i18n("Laurent Montel"), i18n("Maintainer"), QStringLiteral("montel@kde.org"));
 
     QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
-    aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"),
-                            i18nc("EMAIL OF TRANSLATORS", "Your emails"));
+    aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"), i18nc("EMAIL OF TRANSLATORS", "Your emails"));
 
     auto *helpMenu = new KHelpMenu(this, aboutData, true);
-    //Initialize menu
+    // Initialize menu
     QMenu *menu = helpMenu->menu();
     helpMenu->action(KHelpMenu::menuAboutApp)->setIcon(QIcon::fromTheme(QStringLiteral("knotes")));
     buttonBox->button(QDialogButtonBox::Help)->setMenu(menu);

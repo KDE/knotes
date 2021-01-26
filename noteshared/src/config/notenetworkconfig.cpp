@@ -8,15 +8,15 @@
 
 #include "notesharedglobalconfig.h"
 
-#include <QLineEdit>
 #include <KLocalizedString>
+#include <QLineEdit>
 #include <QSpinBox>
 
-#include <QLabel>
 #include <QCheckBox>
+#include <QGroupBox>
+#include <QLabel>
 #include <QVBoxLayout>
 #include <QWhatsThis>
-#include <QGroupBox>
 
 using namespace NoteShared;
 class NoteShared::NoteNetworkConfigWidgetPrivate

@@ -9,8 +9,8 @@
 #ifndef KNOTE_H
 #define KNOTE_H
 
-#include <config-knotes.h>
 #include "knoteinterface.h"
+#include <config-knotes.h>
 
 #include <AkonadiCore/Item>
 

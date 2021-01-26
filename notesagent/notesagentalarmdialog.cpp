@@ -4,11 +4,11 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 #include "notesagentalarmdialog.h"
+#include "alarms/notealarmdialog.h"
+#include "attributes/notealarmattribute.h"
+#include "notesagent_debug.h"
 #include "notesagentnotedialog.h"
 #include "widget/notelistwidget.h"
-#include "attributes/notealarmattribute.h"
-#include "alarms/notealarmdialog.h"
-#include "notesagent_debug.h"
 #include <KMime/KMimeMessage>
 
 #include <ItemFetchJob>
@@ -16,21 +16,21 @@
 #include <ItemModifyJob>
 
 #include <KLocalizedString>
-#include <QDateTime>
-#include <QMenu>
-#include <QAction>
 #include <KMessageBox>
+#include <QAction>
+#include <QDateTime>
 #include <QIcon>
+#include <QMenu>
 
-#include <QListWidget>
-#include <QLabel>
-#include <QVBoxLayout>
-#include <QPointer>
+#include <KConfigGroup>
 #include <KSharedConfig>
 #include <QDialogButtonBox>
-#include <KConfigGroup>
-#include <QPushButton>
+#include <QLabel>
+#include <QListWidget>
 #include <QLocale>
+#include <QPointer>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 NotesAgentAlarmDialog::NotesAgentAlarmDialog(QWidget *parent)
     : QDialog(parent)
@@ -131,7 +131,7 @@ void NotesAgentAlarmDialog::slotItemDoubleClicked(QListWidgetItem *item)
 
 void NotesAgentAlarmDialog::slotShowNote()
 {
-    //deleted on close
+    // deleted on close
     const Akonadi::Item::Id id = mListWidget->currentItemId();
     if (id != -1) {
         auto *dlg = new NotesAgentNoteDialog;

@@ -4,19 +4,19 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 #include "noteutils.h"
-#include "network/notesnetworksender.h"
-#include "network/notehostdialog.h"
 #include "attributes/notedisplayattribute.h"
+#include "network/notehostdialog.h"
+#include "network/notesnetworksender.h"
 #include "notesharedglobalconfig.h"
-#include <KProcess>
-#include <KMessageBox>
 #include <KLocalizedString>
+#include <KMessageBox>
+#include <KProcess>
 
 #include <KMime/KMimeMessage>
 
-#include <QRegularExpression>
-#include <QPointer>
 #include <QApplication>
+#include <QPointer>
+#include <QRegularExpression>
 #include <QSslSocket>
 
 using namespace NoteShared;
@@ -64,7 +64,7 @@ void NoteUtils::sendToNetwork(QWidget *parent, const QString &title, const QStri
         }
         quint16 port = hostDlg->port();
 
-        if (!port) {   // not specified, use default
+        if (!port) { // not specified, use default
             port = NoteShared::NoteSharedGlobalConfig::port();
         }
 
@@ -73,7 +73,7 @@ void NoteUtils::sendToNetwork(QWidget *parent, const QString &title, const QStri
         socket->connectToHost(host, port);
         auto *sender = new NoteShared::NotesNetworkSender(socket);
         sender->setSenderId(NoteShared::NoteSharedGlobalConfig::senderID());
-        sender->setNote(title, message);   // FIXME: plainText ??
+        sender->setNote(title, message); // FIXME: plainText ??
     }
     delete hostDlg;
 }
@@ -99,36 +99,34 @@ QString NoteUtils::createToolTip(const Akonadi::Item &item)
             const bool textIsLeftToRight = (QApplication::layoutDirection() == Qt::LeftToRight);
             const QString textDirection = textIsLeftToRight ? QStringLiteral("left") : QStringLiteral("right");
 
-            tip = QStringLiteral(
-                "<table width=\"100%\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">"
-                );
+            tip = QStringLiteral("<table width=\"100%\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">");
             tip += QStringLiteral(
-                "<tr>" \
-                "<td bgcolor=\"%1\" align=\"%4\" valign=\"middle\">" \
-                "<div style=\"color: %2; font-weight: bold;\">" \
-                "%3" \
-                "</div>" \
-                "</td>" \
-                "</tr>"
-                ).arg(bckColorName, txtColorName, realName.toHtmlEscaped(), textDirection);
+                       "<tr>"
+                       "<td bgcolor=\"%1\" align=\"%4\" valign=\"middle\">"
+                       "<div style=\"color: %2; font-weight: bold;\">"
+                       "%3"
+                       "</div>"
+                       "</td>"
+                       "</tr>")
+                       .arg(bckColorName, txtColorName, realName.toHtmlEscaped(), textDirection);
             const QString htmlCodeForStandardRow = QStringLiteral(
-                "<tr>" \
-                "<td bgcolor=\"%1\" align=\"left\" valign=\"top\">" \
-                "<div style=\"color: %2;\">" \
-                "%3" \
-                "</div>" \
-                "</td>" \
+                "<tr>"
+                "<td bgcolor=\"%1\" align=\"left\" valign=\"top\">"
+                "<div style=\"color: %2;\">"
+                "%3"
+                "</div>"
+                "</td>"
                 "</tr>");
 
             QString content = description;
             if (!content.trimmed().isEmpty()) {
-                tip += htmlCodeForStandardRow.arg(bckColorName, txtColorName, isRichText ? content : content.replace(QLatin1Char('\n'), QStringLiteral("<br>")));
+                tip +=
+                    htmlCodeForStandardRow.arg(bckColorName, txtColorName, isRichText ? content : content.replace(QLatin1Char('\n'), QStringLiteral("<br>")));
             }
             tip += QLatin1String(
-                "</table" \
-                "</td>" \
-                "</tr>"
-                );
+                "</table"
+                "</td>"
+                "</tr>");
         }
     }
     return tip;

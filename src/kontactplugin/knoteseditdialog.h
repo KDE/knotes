@@ -6,8 +6,8 @@
 #ifndef KNOTESEDITDIALOG_H
 #define KNOTESEDITDIALOG_H
 
-#include <QDialog>
 #include <KXMLGUIClient>
+#include <QDialog>
 
 class KNoteEdit;
 class KToolBar;

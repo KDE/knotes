@@ -5,9 +5,9 @@
 */
 
 #include "knoteutils.h"
+#include "attributes/notedisplayattribute.h"
 #include "knotes_debug.h"
 #include "knotesglobalconfig.h"
-#include "attributes/notedisplayattribute.h"
 
 #include <AkonadiCore/ServerManager>
 
@@ -15,8 +15,7 @@
 
 void KNoteUtils::updateConfiguration()
 {
-    QString service = Akonadi::ServerManager::agentServiceName(Akonadi::ServerManager::Agent,
-                                                               QStringLiteral("akonadi_notes_agent"));
+    QString service = Akonadi::ServerManager::agentServiceName(Akonadi::ServerManager::Agent, QStringLiteral("akonadi_notes_agent"));
 
     QDBusInterface interface(service, QStringLiteral("/NotesAgent"));
     if (interface.isValid()) {
@@ -28,8 +27,7 @@ void KNoteUtils::updateConfiguration()
 
 void KNoteUtils::setDefaultValue(Akonadi::Item &item)
 {
-    auto *attribute
-        = item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    auto *attribute = item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
 
     attribute->setBackgroundColor(KNotesGlobalConfig::self()->bgColor());
     attribute->setForegroundColor(KNotesGlobalConfig::self()->fgColor());

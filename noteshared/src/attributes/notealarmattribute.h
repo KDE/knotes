@@ -10,7 +10,8 @@
 #include <AkonadiCore/Attribute>
 
 #include <QDateTime>
-namespace NoteShared {
+namespace NoteShared
+{
 class NOTESHARED_EXPORT NoteAlarmAttribute : public Akonadi::Attribute
 {
 public:
@@ -28,7 +29,8 @@ public:
     void setDateTime(const QDateTime &dateTime);
     Q_REQUIRED_RESULT QDateTime dateTime() const;
 
-    Q_REQUIRED_RESULT bool operator ==(const NoteAlarmAttribute &other) const;
+    Q_REQUIRED_RESULT bool operator==(const NoteAlarmAttribute &other) const;
+
 private:
     QDateTime mDateTime;
 };

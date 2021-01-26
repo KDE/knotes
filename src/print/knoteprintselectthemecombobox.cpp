@@ -7,8 +7,8 @@
 #include "knoteprintselectthemecombobox.h"
 #include "knotesglobalconfig.h"
 
-#include <KConfigGroup>
 #include <KConfig>
+#include <KConfigGroup>
 #include <QDirIterator>
 #include <QStandardPaths>
 
@@ -30,7 +30,7 @@ void KNotePrintSelectThemeComboBox::loadThemes()
     const QString relativePath = QStringLiteral("knotes/print/themes/");
     QStringList themesDirectories = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, relativePath, QStandardPaths::LocateDirectory);
     if (themesDirectories.count() < 2) {
-        //Make sure to add local directory
+        // Make sure to add local directory
         const QString localDirectory = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + relativePath;
         if (!themesDirectories.contains(localDirectory)) {
             themesDirectories.append(localDirectory);

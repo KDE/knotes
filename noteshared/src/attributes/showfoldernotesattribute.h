@@ -6,10 +6,11 @@
 #ifndef SHOWFOLDERNOTESATTRIBUTE_H
 #define SHOWFOLDERNOTESATTRIBUTE_H
 
-#include <AkonadiCore/attribute.h>
 #include "noteshared_export.h"
+#include <AkonadiCore/attribute.h>
 
-namespace NoteShared {
+namespace NoteShared
+{
 class NOTESHARED_EXPORT ShowFolderNotesAttribute : public Akonadi::Attribute
 {
 public:

@@ -23,22 +23,17 @@ NotesNetworkSender::NotesNetworkSender(QTcpSocket *socket)
 {
     // QObject:: prefix needed, otherwise the KStreamSocket::connect()
     // method is called!!!
-    QObject::connect(m_socket, &QTcpSocket::connected,
-                     this, &NotesNetworkSender::slotConnected);
+    QObject::connect(m_socket, &QTcpSocket::connected, this, &NotesNetworkSender::slotConnected);
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
-    QObject::connect(m_socket, qOverload<QAbstractSocket::SocketError>(&QTcpSocket::error),
-                     this, &NotesNetworkSender::slotError);
+    QObject::connect(m_socket, qOverload<QAbstractSocket::SocketError>(&QTcpSocket::error), this, &NotesNetworkSender::slotError);
 #else
-    QObject::connect(m_socket, qOverload<QAbstractSocket::SocketError>(&QTcpSocket::errorOccurred),
-                     this, &NotesNetworkSender::slotError);
+    QObject::connect(m_socket, qOverload<QAbstractSocket::SocketError>(&QTcpSocket::errorOccurred), this, &NotesNetworkSender::slotError);
 #endif
 
-    QObject::connect(m_socket, &QTcpSocket::disconnected,
-                     this, &NotesNetworkSender::slotClosed);
+    QObject::connect(m_socket, &QTcpSocket::disconnected, this, &NotesNetworkSender::slotClosed);
 
-    QObject::connect(m_socket, &QTcpSocket::bytesWritten,
-                     this, &NotesNetworkSender::slotWritten);
+    QObject::connect(m_socket, &QTcpSocket::bytesWritten, this, &NotesNetworkSender::slotWritten);
 }
 
 NotesNetworkSender::~NotesNetworkSender()
@@ -80,8 +75,7 @@ void NotesNetworkSender::slotWritten(qint64)
 
 void NotesNetworkSender::slotError()
 {
-    KMessageBox::sorry(nullptr, i18n("Communication error: %1",
-                                     m_socket->errorString()));
+    KMessageBox::sorry(nullptr, i18n("Communication error: %1", m_socket->errorString()));
     slotClosed();
 }
 

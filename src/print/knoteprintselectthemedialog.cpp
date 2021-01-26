@@ -9,9 +9,9 @@
 
 #include <KLocalizedString>
 
+#include <QDialogButtonBox>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QDialogButtonBox>
 #include <QPushButton>
 #include <QVBoxLayout>
 

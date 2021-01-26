@@ -5,8 +5,8 @@
 */
 #include "notealarmattribute.h"
 
-#include <QDataStream>
 #include <QByteArray>
+#include <QDataStream>
 
 using namespace NoteShared;
 NoteAlarmAttribute::NoteAlarmAttribute()
@@ -55,7 +55,7 @@ QDateTime NoteAlarmAttribute::dateTime() const
     return mDateTime;
 }
 
-bool NoteAlarmAttribute::operator ==(const NoteAlarmAttribute &other) const
+bool NoteAlarmAttribute::operator==(const NoteAlarmAttribute &other) const
 {
     return mDateTime == other.dateTime();
 }

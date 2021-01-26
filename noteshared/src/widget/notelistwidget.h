@@ -7,10 +7,11 @@
 #define NOTELISTWIDGET_H
 
 #include "noteshared_export.h"
-#include <QListWidget>
 #include <AkonadiCore/Item>
+#include <QListWidget>
 
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteListWidgetPrivate;
 class NOTESHARED_EXPORT NoteListWidget : public QListWidget
 {
@@ -31,9 +32,7 @@ public:
 
 private:
     void createItem(const Akonadi::Item &note);
-    enum listViewData {
-        AkonadiId = Qt::UserRole + 1
-    };
+    enum listViewData { AkonadiId = Qt::UserRole + 1 };
     NoteListWidgetPrivate *const d;
 };
 }

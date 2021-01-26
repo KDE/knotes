@@ -9,7 +9,8 @@
 #include "noteshared_export.h"
 class QTextCursor;
 class QTextEdit;
-namespace NoteShared {
+namespace NoteShared
+{
 class NOTESHARED_EXPORT NoteEditorUtils
 {
 public:

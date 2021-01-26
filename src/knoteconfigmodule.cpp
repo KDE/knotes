@@ -6,19 +6,19 @@
 
 #include "knoteconfigmodule.h"
 
-#include <config-knotes.h>
-#include "knotesglobalconfig.h"
-#include "notesharedglobalconfig.h"
 #include "config/noteactionconfig.h"
 #include "config/notenetworkconfig.h"
+#include "knotesglobalconfig.h"
+#include "notesharedglobalconfig.h"
 #include "print/knoteprintselectthemecombobox.h"
+#include <config-knotes.h>
 
+#include "configdialog/knotecollectionconfigwidget.h"
+#include "configdialog/knotedisplayconfigwidget.h"
+#include "configdialog/knoteeditorconfigwidget.h"
 #include <KAuthorized>
 #include <KLocalizedString>
 #include <KNS3/DownloadDialog>
-#include "configdialog/knotedisplayconfigwidget.h"
-#include "configdialog/knoteeditorconfigwidget.h"
-#include "configdialog/knotecollectionconfigwidget.h"
 
 #include <QCheckBox>
 #include <QLabel>
@@ -124,16 +124,16 @@ void KNoteMiscConfig::defaults()
 
 void KNoteMiscConfig::slotHelpLinkClicked(const QString &)
 {
-    const QString help
-        = i18n("<qt>"
-               "<p>You can customize title note. "
-               "You can use:</p>"
-               "<ul>"
-               "<li>%d current date (short format)</li>"
-               "<li>%l current date (long format)</li>"
-               "<li>%t current time</li>"
-               "</ul>"
-               "</qt>");
+    const QString help = i18n(
+        "<qt>"
+        "<p>You can customize title note. "
+        "You can use:</p>"
+        "<ul>"
+        "<li>%d current date (short format)</li>"
+        "<li>%l current date (long format)</li>"
+        "<li>%t current time</li>"
+        "</ul>"
+        "</qt>");
 
     QWhatsThis::showText(QCursor::pos(), help);
 }
@@ -167,8 +167,7 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent)
 
 void KNotePrintConfig::slotDownloadNewThemes()
 {
-    QPointer<KNS3::DownloadDialog> downloadThemesDialog
-        = new KNS3::DownloadDialog(QStringLiteral("knotes_printing_theme.knsrc"));
+    QPointer<KNS3::DownloadDialog> downloadThemesDialog = new KNS3::DownloadDialog(QStringLiteral("knotes_printing_theme.knsrc"));
 
     if (downloadThemesDialog->exec()) {
         if (!downloadThemesDialog->changedEntries().isEmpty()) {
@@ -216,5 +215,5 @@ void KNoteCollectionConfig::save()
 
 void KNoteCollectionConfig::load()
 {
-    //Nothing
+    // Nothing
 }

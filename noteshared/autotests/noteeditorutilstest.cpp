@@ -25,8 +25,8 @@ void NoteEditorUtilsTest::testAddCheckmark_data()
 {
     QTest::addColumn<QString>("input");
     QTest::addColumn<int>("position");
-    QTest::newRow("standard") <<  QStringLiteral("foo") << 0;
-    QTest::newRow("emptyline") <<  QString() << 0;
+    QTest::newRow("standard") << QStringLiteral("foo") << 0;
+    QTest::newRow("emptyline") << QString() << 0;
 }
 
 void NoteEditorUtilsTest::testAddCheckmark()
@@ -51,7 +51,7 @@ void NoteEditorUtilsTest::testAddCheckmark()
 
     noteUtils.addCheckmark(textCursor);
     QCOMPARE(textCursor.document()->toPlainText(), QString(checkMark + input));
-    //QCOMPARE(textCursor.position(), position + checkMark.size());
+    // QCOMPARE(textCursor.position(), position + checkMark.size());
     delete document;
 }
 

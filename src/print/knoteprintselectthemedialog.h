@@ -7,8 +7,8 @@
 #ifndef KNOTEPRINTSELECTTHEMEDIALOG_H
 #define KNOTEPRINTSELECTTHEMEDIALOG_H
 
-#include <QDialog>
 #include "knotes_export.h"
+#include <QDialog>
 
 class KNotePrintSelectThemeComboBox;
 class KNOTES_EXPORT KNotePrintSelectThemeDialog : public QDialog

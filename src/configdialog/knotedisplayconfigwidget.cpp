@@ -4,8 +4,8 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include <config-knotes.h>
 #include "knotedisplayconfigwidget.h"
+#include <config-knotes.h>
 
 #include "attributes/notedisplayattribute.h"
 #include "attributes/notelockattribute.h"
@@ -32,8 +32,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
     label_FgColor->setBuddy(kcfg_FgColor);
     layout->addWidget(kcfg_FgColor, 0, 1);
 
-    QLabel *label_BgColor = new QLabel(i18n("&Background color:"),
-                                       this);
+    QLabel *label_BgColor = new QLabel(i18n("&Background color:"), this);
     label_BgColor->setObjectName(QStringLiteral("label_BgColor"));
     layout->addWidget(label_BgColor, 1, 0);
 
@@ -43,11 +42,9 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
     layout->addWidget(kcfg_BgColor, 1, 1);
 
 #if KDEPIM_HAVE_X11
-    kcfg_ShowInTaskbar
-        = new QCheckBox(i18n("&Show note in taskbar"), this);
+    kcfg_ShowInTaskbar = new QCheckBox(i18n("&Show note in taskbar"), this);
     kcfg_ShowInTaskbar->setObjectName(QStringLiteral("kcfg_ShowInTaskbar"));
-    kcfg_RememberDesktop
-        = new QCheckBox(i18n("&Remember desktop"), this);
+    kcfg_RememberDesktop = new QCheckBox(i18n("&Remember desktop"), this);
     kcfg_RememberDesktop->setObjectName(QStringLiteral("kcfg_RememberDesktop"));
 #endif
     if (defaults) {
@@ -62,8 +59,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
         kcfg_Width->setSingleStep(10);
         layout->addWidget(kcfg_Width, 2, 1);
 
-        QLabel *label_Height = new QLabel(i18n("Default &height:"),
-                                          this);
+        QLabel *label_Height = new QLabel(i18n("Default &height:"), this);
         layout->addWidget(label_Height, 3, 0);
 
         kcfg_Height = new QSpinBox(this);

@@ -10,9 +10,9 @@
 #ifndef KNOTES_PLUGIN_H
 #define KNOTES_PLUGIN_H
 
+#include <KAboutData>
 #include <KontactInterface/Plugin>
 #include <KontactInterface/UniqueAppHandler>
-#include <KAboutData>
 
 class KNotesUniqueAppHandler : public KontactInterface::UniqueAppHandler
 {

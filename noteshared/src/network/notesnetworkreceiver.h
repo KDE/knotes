@@ -11,11 +11,12 @@
 #define NOTESNETWORKRECEIVER_H
 
 #include "noteshared_export.h"
-#include <QObject>
 #include <QAbstractSocket>
+#include <QObject>
 
 class QTcpSocket;
-namespace NoteShared {
+namespace NoteShared
+{
 class NotesNetworkReceiverPrivate;
 class NOTESHARED_EXPORT NotesNetworkReceiver : public QObject
 {

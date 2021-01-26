@@ -5,34 +5,34 @@
 */
 #include "knotecollectionconfigwidget.h"
 #include "attributes/showfoldernotesattribute.h"
-#include <Akonadi/Notes/NoteUtils>
 #include "notesharedglobalconfig.h"
+#include <Akonadi/Notes/NoteUtils>
 #include <AkonadiWidgets/ManageAccountWidget>
 
-#include <AkonadiCore/CollectionModifyJob>
 #include <AkonadiCore/CollectionFilterProxyModel>
-#include <QSortFilterProxyModel>
+#include <AkonadiCore/CollectionModifyJob>
 #include <QInputDialog>
+#include <QSortFilterProxyModel>
 
-#include <AkonadiWidgets/CollectionRequester>
 #include <AkonadiCore/ChangeRecorder>
-#include <AkonadiCore/EntityTreeModel>
-#include <AkonadiWidgets/EntityTreeView>
 #include <AkonadiCore/EntityDisplayAttribute>
+#include <AkonadiCore/EntityTreeModel>
+#include <AkonadiWidgets/CollectionRequester>
+#include <AkonadiWidgets/EntityTreeView>
 
 #include <KMime/Message>
 
 #include <KCheckableProxyModel>
 
-#include <KLocalizedString>
-#include <QPushButton>
-#include <QLineEdit>
 #include "knotes_kcm_debug.h"
+#include <KLocalizedString>
 #include <KMessageBox>
+#include <QLineEdit>
+#include <QPushButton>
 
-#include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QVBoxLayout>
 
 KNoteCollectionDisplayProxyModel::KNoteCollectionDisplayProxyModel(QObject *parent)
     : QIdentityProxyModel(parent)
@@ -43,8 +43,7 @@ QVariant KNoteCollectionDisplayProxyModel::data(const QModelIndex &index, int ro
 {
     if (role == Qt::CheckStateRole) {
         if (index.isValid()) {
-            const Akonadi::Collection collection
-                = data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
+            const Akonadi::Collection collection = data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
             if (mDisplayCollection.contains(collection)) {
                 return mDisplayCollection.value(collection) ? Qt::Checked : Qt::Unchecked;
             } else {
@@ -63,8 +62,7 @@ bool KNoteCollectionDisplayProxyModel::setData(const QModelIndex &index, const Q
 {
     if (role == Qt::CheckStateRole) {
         if (index.isValid()) {
-            const Akonadi::Collection collection
-                = data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
+            const Akonadi::Collection collection = data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
             mDisplayCollection[collection] = (value == Qt::Checked);
             Q_EMIT dataChanged(index, index);
             return true;
@@ -167,8 +165,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     vbox->addWidget(new QLabel(i18nc("@info", "Select the folder where the note will be saved:")));
     mDefaultSaveFolder = new Akonadi::CollectionRequester(Akonadi::Collection(NoteShared::NoteSharedGlobalConfig::self()->defaultFolder()));
     mDefaultSaveFolder->setMimeTypeFilter(QStringList() << Akonadi::NoteUtils::noteMimeType());
-    mDefaultSaveFolder->setContentMimeTypes(QStringList() << QStringLiteral("application/x-vnd.akonadi.note")
-                                                          << QStringLiteral("text/x-vnd.akonadi.note")
+    mDefaultSaveFolder->setContentMimeTypes(QStringList() << QStringLiteral("application/x-vnd.akonadi.note") << QStringLiteral("text/x-vnd.akonadi.note")
                                                           << QStringLiteral("inode/directory"));
     Akonadi::CollectionDialog::CollectionDialogOptions options;
     options |= Akonadi::CollectionDialog::AllowToCreateNewChildCollection;
@@ -187,7 +184,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     vboxAccountWidget->addWidget(manageAccountWidget);
 
     manageAccountWidget->setMimeTypeFilter(QStringList() << Akonadi::NoteUtils::noteMimeType());
-    manageAccountWidget->setCapabilityFilter(QStringList() << QStringLiteral("Resource"));  // show only resources, no agents
+    manageAccountWidget->setCapabilityFilter(QStringList() << QStringLiteral("Resource")); // show only resources, no agents
     tabWidget->addTab(accountWidget, i18n("Accounts"));
     slotUpdateButtons();
 }
@@ -220,12 +217,10 @@ void KNoteCollectionConfigWidget::slotRenameCollection()
     }
 
     bool ok;
-    const QString name = QInputDialog::getText(this, i18n("Rename Notes"),
-                                               i18n("Name:"), QLineEdit::Normal, title, &ok);
+    const QString name = QInputDialog::getText(this, i18n("Rename Notes"), i18n("Name:"), QLineEdit::Normal, title, &ok);
 
     if (ok) {
-        if (col.hasAttribute<Akonadi::EntityDisplayAttribute>()
-            && !col.attribute<Akonadi::EntityDisplayAttribute>()->displayName().isEmpty()) {
+        if (col.hasAttribute<Akonadi::EntityDisplayAttribute>() && !col.attribute<Akonadi::EntityDisplayAttribute>()->displayName().isEmpty()) {
             col.attribute<Akonadi::EntityDisplayAttribute>()->setDisplayName(name);
         } else if (!name.isEmpty()) {
             col.setName(name);
@@ -322,13 +317,11 @@ void KNoteCollectionConfigWidget::slotModifyJobDone(KJob *job)
     auto *modifyJob = qobject_cast<Akonadi::CollectionModifyJob *>(job);
     if (modifyJob && job->error()) {
         if (job->property("AttributeAdded").toBool()) {
-            qCWarning(KNOTES_MODULES_LOG) << "Failed to append ShowFolderNotesAttribute to collection"
-                                  << modifyJob->collection().id() << ":"
-                                  << job->errorString();
+            qCWarning(KNOTES_MODULES_LOG) << "Failed to append ShowFolderNotesAttribute to collection" << modifyJob->collection().id() << ":"
+                                          << job->errorString();
         } else {
-            qCWarning(KNOTES_MODULES_LOG) << "Failed to remove ShowFolderNotesAttribute from collection"
-                                  << modifyJob->collection().id() << ":"
-                                  << job->errorString();
+            qCWarning(KNOTES_MODULES_LOG) << "Failed to remove ShowFolderNotesAttribute from collection" << modifyJob->collection().id() << ":"
+                                          << job->errorString();
         }
     }
 }

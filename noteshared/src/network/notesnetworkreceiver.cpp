@@ -10,14 +10,14 @@
 
 #include "notesnetworkreceiver.h"
 
-#include <QDateTime>
-#include <QHostAddress>
-#include <QTcpSocket>
-#include <QTimer>
-#include <QTextCodec>
 #include "noteshared_debug.h"
 #include "noteutils.h"
+#include <QDateTime>
+#include <QHostAddress>
 #include <QLocale>
+#include <QTcpSocket>
+#include <QTextCodec>
+#include <QTimer>
 
 // Maximum note size in chars we are going to accept,
 // to prevent "note floods".
@@ -46,7 +46,7 @@ public:
         delete m_sock;
     }
 
-    QTimer *m_timer = nullptr;       // to avoid memory and connection floods
+    QTimer *m_timer = nullptr; // to avoid memory and connection floods
 
     QByteArray *const m_buffer;
     QTcpSocket *const m_sock;
@@ -62,8 +62,7 @@ NotesNetworkReceiver::NotesNetworkReceiver(QTcpSocket *s)
 
     // Add the remote IP or hostname and the date to the title, to help the
     // user guess who wrote it.
-    d->m_titleAddon = QStringLiteral(" [%1, %2]")
-                      .arg(d->m_sock->peerAddress().toString(), date);
+    d->m_titleAddon = QStringLiteral(" [%1, %2]").arg(d->m_sock->peerAddress().toString(), date);
 
     // Setup the communications
     connect(d->m_sock, &QTcpSocket::readyRead, this, &NotesNetworkReceiver::slotDataAvailable);

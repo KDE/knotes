@@ -29,6 +29,7 @@ public:
 
 private Q_SLOTS:
     void slotPrinterPage(QPrinter *printer);
+
 private:
     void print(QPrinter &printer, const QString &htmlText);
     void doPrint(const QString &content, const QString &dialogCaption);

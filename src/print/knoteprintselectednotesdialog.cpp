@@ -5,19 +5,19 @@
 */
 
 #include "knoteprintselectednotesdialog.h"
-#include "print/knoteprintselectthemecombobox.h"
 #include "knoteprintobject.h"
 #include "notes/knote.h"
+#include "print/knoteprintselectthemecombobox.h"
 
-#include <KLocalizedString>
 #include <KConfigGroup>
+#include <KLocalizedString>
 #include <QIcon>
 
-#include <QListWidget>
-#include <QHBoxLayout>
-#include <QLabel>
 #include <KSharedConfig>
 #include <QDialogButtonBox>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QListWidget>
 #include <QPushButton>
 #include <QVBoxLayout>
 

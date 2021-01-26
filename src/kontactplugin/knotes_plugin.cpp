@@ -6,11 +6,11 @@
 */
 
 #include "knotes_plugin.h"
-#include "knotes_part.h"
 #include "apps/knotes_options.h"
-#include "utils/knoteutils.h"
-#include "summarywidget.h"
+#include "knotes_part.h"
 #include "knotesglobalconfig.h"
+#include "summarywidget.h"
+#include "utils/knoteutils.h"
 #include <KCalUtils/ICalDrag>
 #include <KCalUtils/VCalDrag>
 #include <KCalendarCore/FileStorage>
@@ -24,11 +24,11 @@ using namespace KCalendarCore;
 
 #include <KontactInterface/Core>
 
-#include <QAction>
-#include <KActionCollection>
 #include "knotes_kontact_plugin_debug.h"
-#include <QIcon>
+#include <KActionCollection>
 #include <KLocalizedString>
+#include <QAction>
+#include <QIcon>
 #include <QTimeZone>
 
 #include <QDropEvent>
@@ -41,21 +41,16 @@ KNotesPlugin::KNotesPlugin(KontactInterface::Core *core, const QVariantList &)
 {
     setComponentName(QStringLiteral("knotes"), i18n("KNotes"));
 
-    QAction *action
-        = new QAction(QIcon::fromTheme(QStringLiteral("knotes")),
-                      i18nc("@action:inmenu", "New Popup Note..."), this);
+    QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("knotes")), i18nc("@action:inmenu", "New Popup Note..."), this);
     actionCollection()->addAction(QStringLiteral("new_note"), action);
     connect(action, &QAction::triggered, this, &KNotesPlugin::slotNewNote);
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_N));
-    //action->setHelpText(
+    // action->setHelpText(
     //            i18nc( "@info:status", "Create new popup note" ) );
-    action->setWhatsThis(
-        i18nc("@info:whatsthis",
-              "You will be presented with a dialog where you can create a new popup note."));
+    action->setWhatsThis(i18nc("@info:whatsthis", "You will be presented with a dialog where you can create a new popup note."));
     insertNewAction(action);
 
-    mUniqueAppWatcher = new KontactInterface::UniqueAppWatcher(
-        new KontactInterface::UniqueAppHandlerFactory<KNotesUniqueAppHandler>(), this);
+    mUniqueAppWatcher = new KontactInterface::UniqueAppWatcher(new KontactInterface::UniqueAppHandlerFactory<KNotesUniqueAppHandler>(), this);
 }
 
 KNotesPlugin::~KNotesPlugin()
@@ -86,26 +81,17 @@ const KAboutData KNotesPlugin::aboutData()
                                       KAboutLicense::GPL_V2,
                                       xi18nc("@info:credit", "Copyright © 2003–2021 Kontact authors"));
 
-    aboutData.addAuthor(xi18nc("@info:credit", "Laurent Montel"),
-                        xi18nc("@info:credit", "Current Maintainer"),
-                        QStringLiteral("montel@kde.org"));
+    aboutData.addAuthor(xi18nc("@info:credit", "Laurent Montel"), xi18nc("@info:credit", "Current Maintainer"), QStringLiteral("montel@kde.org"));
 
-    aboutData.addAuthor(xi18nc("@info:credit", "Michael Brade"),
-                        xi18nc("@info:credit", "Previous Maintainer"),
-                        QStringLiteral("brade@kde.org"));
-    aboutData.addAuthor(xi18nc("@info:credit", "Tobias Koenig"),
-                        xi18nc("@info:credit", "Developer"),
-                        QStringLiteral("tokoe@kde.org"));
+    aboutData.addAuthor(xi18nc("@info:credit", "Michael Brade"), xi18nc("@info:credit", "Previous Maintainer"), QStringLiteral("brade@kde.org"));
+    aboutData.addAuthor(xi18nc("@info:credit", "Tobias Koenig"), xi18nc("@info:credit", "Developer"), QStringLiteral("tokoe@kde.org"));
 
     return aboutData;
 }
 
 bool KNotesPlugin::canDecodeMimeData(const QMimeData *mimeData) const
 {
-    return
-        mimeData->hasText()
-        || KContacts::VCardDrag::canDecode(mimeData)
-        || ICalDrag::canDecode(mimeData);
+    return mimeData->hasText() || KContacts::VCardDrag::canDecode(mimeData) || ICalDrag::canDecode(mimeData);
 }
 
 void KNotesPlugin::processDropEvent(QDropEvent *event)
@@ -130,8 +116,7 @@ void KNotesPlugin::processDropEvent(QDropEvent *event)
             }
         }
         event->accept();
-        static_cast<KNotesPart *>(part())->newNote(
-            i18nc("@item", "Meeting"), attendees.join(QLatin1String(", ")));
+        static_cast<KNotesPart *>(part())->newNote(i18nc("@item", "Meeting"), attendees.join(QLatin1String(", ")));
         return;
     }
 
@@ -149,15 +134,13 @@ void KNotesPlugin::processDropEvent(QDropEvent *event)
                 } else {
                     summary = i->summary();
                 }
-                static_cast<KNotesPart *>(part())->
-                newNote(i18nc("@item", "Note: %1", summary), i->description());
+                static_cast<KNotesPart *>(part())->newNote(i18nc("@item", "Note: %1", summary), i->description());
                 return;
             }
         }
     }
     if (md->hasText()) {
-        static_cast<KNotesPart *>(part())->newNote(
-            i18nc("@item", "New Note"), md->text());
+        static_cast<KNotesPart *>(part())->newNote(i18nc("@item", "New Note"), md->text());
         return;
     }
 

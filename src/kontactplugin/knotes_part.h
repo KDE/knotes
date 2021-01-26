@@ -12,26 +12,29 @@
 
 #include <AkonadiCore/Item>
 
-#include <KViewStateMaintainer>
 #include <KParts/Part>
+#include <KViewStateMaintainer>
 
 #include <QListWidgetItem>
 #include <QPointer>
 
 class KNoteFindDialog;
 class KNotesWidget;
-namespace NoteShared {
+namespace NoteShared
+{
 class NotesAkonadiTreeModel;
 class NotesChangeRecorder;
 }
 
-namespace Akonadi {
+namespace Akonadi
+{
 class ETMViewStateSaver;
 }
 
 class KCheckableProxyModel;
 class KToggleAction;
-namespace KDNSSD {
+namespace KDNSSD
+{
 class PublicService;
 }
 
@@ -98,6 +101,7 @@ private Q_SLOTS:
     void slotCollectionChanged(const Akonadi::Collection &col, const QSet<QByteArray> &set);
     void slotItemFetchFinished(KJob *job);
     void slotNewNoteFromTextFile();
+
 private:
     void fetchNotesFromCollection(const Akonadi::Collection &col);
     void updateNetworkListener();

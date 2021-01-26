@@ -5,12 +5,13 @@
 */
 #ifndef NOTESAGENTALARMDIALOG_H
 #define NOTESAGENTALARMDIALOG_H
-#include <QDialog>
 #include <Item>
+#include <QDialog>
 class QListWidget;
 class QLabel;
 class QListWidgetItem;
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteListWidget;
 }
 class KJob;

@@ -4,8 +4,8 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 #include "knotedisplaysettings.h"
-#include "knotesglobalconfig.h"
 #include "attributes/notedisplayattribute.h"
+#include "knotesglobalconfig.h"
 
 KNoteDisplaySettings::KNoteDisplaySettings(NoteShared::NoteDisplayAttribute *attr)
     : mDisplayAttribute(attr)

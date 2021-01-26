@@ -7,22 +7,22 @@
 #include "knoteedit.h"
 
 #include <KActionCollection>
+#include <KLineEdit>
 #include <KLocalizedString>
 #include <KToolBar>
-#include <KLineEdit>
 
 #include <KXMLGUIBuilder>
 #include <KXMLGUIFactory>
 
+#include "knotes_kontact_plugin_debug.h"
+#include <KConfigGroup>
+#include <KSharedConfig>
 #include <QAction>
+#include <QDialogButtonBox>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QVBoxLayout>
-#include "knotes_kontact_plugin_debug.h"
-#include <KSharedConfig>
-#include <KConfigGroup>
-#include <QDialogButtonBox>
 #include <QPushButton>
+#include <QVBoxLayout>
 
 KNoteEditDialog::KNoteEditDialog(bool readOnly, QWidget *parent)
     : QDialog(parent)
@@ -73,7 +73,7 @@ void KNoteEditDialog::init(bool readOnly)
     }
     hbl->addWidget(mTitleEdit, 1, Qt::AlignVCenter);
 
-    //TODO customize it
+    // TODO customize it
     mNoteEdit = new KNoteEdit(actionCollection(), page);
     mNoteEdit->setFocus();
 

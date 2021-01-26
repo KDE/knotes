@@ -49,8 +49,7 @@ int KNoteButton::heightForWidth(int w) const
 
 QSize KNoteButton::sizeHint() const
 {
-    return QSize(QPushButton::sizeHint().height(),
-                 QPushButton::sizeHint().height());
+    return QSize(QPushButton::sizeHint().height(), QPushButton::sizeHint().height());
 }
 
 void KNoteButton::paintEvent(QPaintEvent *)
@@ -94,8 +93,7 @@ void KNoteButton::paintEvent(QPaintEvent *)
             state = QIcon::On;
         }
 
-        const QPixmap pix = icon().pixmap(style()->pixelMetric(
-                                              QStyle::PM_SmallIconSize), mode, state);
+        const QPixmap pix = icon().pixmap(style()->pixelMetric(QStyle::PM_SmallIconSize), mode, state);
 
         int dx = (width() - pix.width()) / 2;
         int dy = (height() - pix.height()) / 2;

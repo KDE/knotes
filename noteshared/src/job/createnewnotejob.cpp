@@ -4,24 +4,24 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 #include "createnewnotejob.h"
-#include "notesharedglobalconfig.h"
 #include "attributes/showfoldernotesattribute.h"
 #include "dialog/selectednotefolderdialog.h"
 #include "noteshared_debug.h"
+#include "notesharedglobalconfig.h"
 #include <Akonadi/Notes/NoteUtils>
 
 #include <AkonadiCore/Collection>
-#include <AkonadiCore/ItemCreateJob>
+#include <AkonadiCore/CollectionFetchJob>
+#include <AkonadiCore/CollectionModifyJob>
 #include <AkonadiCore/EntityDisplayAttribute>
 #include <AkonadiCore/Item>
-#include <AkonadiCore/CollectionModifyJob>
-#include <AkonadiCore/CollectionFetchJob>
+#include <AkonadiCore/ItemCreateJob>
 
 #include <KMime/KMimeMessage>
 
+#include <KLocalizedString>
 #include <KMessageBox>
 #include <QLocale>
-#include <KLocalizedString>
 
 #include <QPointer>
 
@@ -108,7 +108,8 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
 {
     if (job->error()) {
         qCDebug(NOTESHARED_LOG) << " Error during fetch: " << job->errorString();
-        if (KMessageBox::Yes == KMessageBox::warningYesNo(nullptr, i18n("An error occurred during fetching. Do you want to select a new default collection?"))) {
+        if (KMessageBox::Yes
+            == KMessageBox::warningYesNo(nullptr, i18n("An error occurred during fetching. Do you want to select a new default collection?"))) {
             Q_EMIT selectNewCollection();
         } else {
             deleteLater();
@@ -118,7 +119,8 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
     auto *fetchCollection = qobject_cast<Akonadi::CollectionFetchJob *>(job);
     if (fetchCollection->collections().isEmpty()) {
         qCDebug(NOTESHARED_LOG) << "No collection fetched";
-        if (KMessageBox::Yes == KMessageBox::warningYesNo(nullptr, i18n("An error occurred during fetching. Do you want to select a new default collection?"))) {
+        if (KMessageBox::Yes
+            == KMessageBox::warningYesNo(nullptr, i18n("An error occurred during fetching. Do you want to select a new default collection?"))) {
             Q_EMIT selectNewCollection();
         } else {
             deleteLater();
@@ -128,7 +130,9 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
     Akonadi::Collection col = fetchCollection->collections().at(0);
     if (col.isValid()) {
         if (!col.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
-            if (KMessageBox::Yes == KMessageBox::warningYesNo(nullptr, i18n("Collection is hidden. New note will be stored but not displayed. Do you want to show collection?"))) {
+            if (KMessageBox::Yes
+                == KMessageBox::warningYesNo(nullptr,
+                                             i18n("Collection is hidden. New note will be stored but not displayed. Do you want to show collection?"))) {
                 col.addAttribute(new NoteShared::ShowFolderNotesAttribute());
                 auto *job = new Akonadi::CollectionModifyJob(col);
                 connect(job, &Akonadi::CollectionModifyJob::result, this, &CreateNewNoteJob::slotCollectionModifyFinished);

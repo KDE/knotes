@@ -4,11 +4,11 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include <config-knotes.h>
 #include "knotesimpleconfigdialog.h"
 #include "knoteconfigdialog.h"
 #include "knotedisplayconfigwidget.h"
 #include "knoteeditorconfigwidget.h"
+#include <config-knotes.h>
 
 #include "attributes/notedisplayattribute.h"
 #include "attributes/notelockattribute.h"
@@ -67,8 +67,7 @@ void KNoteSimpleConfigDialog::slotUpdateCaption(const QString &name)
 
 void KNoteSimpleConfigDialog::save(Akonadi::Item &item, bool &isRichText)
 {
-    auto *attr
-        = item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    auto *attr = item.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     mEditorConfigWidget->save(attr, isRichText);
     mDisplayConfigWidget->save(attr);
 }

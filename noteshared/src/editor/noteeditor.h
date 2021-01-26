@@ -8,7 +8,8 @@
 
 #include <KPIMTextEdit/RichTextEditorWidget>
 
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteEditor : public KPIMTextEdit::RichTextEditorWidget
 {
     Q_OBJECT

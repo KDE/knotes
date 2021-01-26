@@ -15,6 +15,7 @@ class KNOTES_EXPORT KNotesMigrateApplication
 public:
     KNotesMigrateApplication();
     void migrate();
+
 private:
     void initializeMigrator();
     PimCommon::MigrateApplicationFiles mMigrator;

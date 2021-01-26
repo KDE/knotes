@@ -6,15 +6,16 @@
 #ifndef KNOTEFINDDIALOG_H
 #define KNOTEFINDDIALOG_H
 
-#include <QDialog>
-#include <AkonadiCore/Item>
 #include "knotes_export.h"
+#include <AkonadiCore/Item>
+#include <QDialog>
 class QPushButton;
 class QLineEdit;
 class QListWidgetItem;
 class QListWidget;
 class QLabel;
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteListWidget;
 }
 class KNoteFindWidget : public QWidget

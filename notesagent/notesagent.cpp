@@ -15,22 +15,19 @@
 
 #include <Kdelibs4ConfigMigrator>
 
-#include <QDBusConnection>
 #include <KWindowSystem>
+#include <QDBusConnection>
 
 NotesAgent::NotesAgent(const QString &id)
     : Akonadi::AgentBase(id)
 {
     Kdelibs4ConfigMigrator migrate(QStringLiteral("notesagent"));
-    migrate.setConfigFiles(QStringList()
-                           << QStringLiteral("akonadi_notes_agentrc")
-                           << QStringLiteral("akonadi_notes_agent.notifyrc"));
+    migrate.setConfigFiles(QStringList() << QStringLiteral("akonadi_notes_agentrc") << QStringLiteral("akonadi_notes_agent.notifyrc"));
     migrate.migrate();
 
     mNotesManager = new NotesManager(this);
     new NotesAgentAdaptor(this);
-    QDBusConnection::sessionBus().registerObject(QStringLiteral("/NotesAgent"),
-                                                 this, QDBusConnection::ExportAdaptors);
+    QDBusConnection::sessionBus().registerObject(QStringLiteral("/NotesAgent"), this, QDBusConnection::ExportAdaptors);
 
     setNeedsNetwork(true);
 

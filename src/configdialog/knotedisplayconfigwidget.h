@@ -6,12 +6,13 @@
 #ifndef KNOTEDISPLAYCONFIGWIDGET_H
 #define KNOTEDISPLAYCONFIGWIDGET_H
 
-#include <QWidget>
 #include "knotes_export.h"
+#include <QWidget>
 class KColorButton;
 class QCheckBox;
 class QSpinBox;
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteDisplayAttribute;
 }
 class KNOTES_EXPORT KNoteDisplayConfigWidget : public QWidget

@@ -22,6 +22,7 @@ public:
 
     KNotesIconViewItem *iconView(Akonadi::Item::Id id) const;
     QHash<Akonadi::Item::Id, KNotesIconViewItem *> noteList() const;
+
 protected:
     void mousePressEvent(QMouseEvent *) override;
 
@@ -65,6 +66,7 @@ public:
 
 private Q_SLOTS:
     void slotNoteSaved(KJob *job);
+
 private:
     void prepare();
     void setDisplayDefaultValue();

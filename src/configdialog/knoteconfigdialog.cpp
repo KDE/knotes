@@ -8,11 +8,11 @@
 
 #include <config-knotes.h>
 
-#include "knoteconfigdialog.h"
-#include "notesharedglobalconfig.h"
-#include "knotesglobalconfig.h"
 #include "config/noteactionconfig.h"
 #include "config/notenetworkconfig.h"
+#include "knoteconfigdialog.h"
+#include "knotesglobalconfig.h"
+#include "notesharedglobalconfig.h"
 #include "print/knoteprintselectthemecombobox.h"
 
 #include <KAuthorized>
@@ -43,11 +43,9 @@ KNoteConfigDialog::KNoteConfigDialog(const QString &title, QWidget *parent)
     addModule(QStringLiteral("knote_config_collection"));
     addModule(QStringLiteral("knote_config_misc"));
 
-    connect(button(QDialogButtonBox::Ok), &QPushButton::clicked,
-            this, &KNoteConfigDialog::slotOk);
+    connect(button(QDialogButtonBox::Ok), &QPushButton::clicked, this, &KNoteConfigDialog::slotOk);
 
-    connect(button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked,
-            this, &KNoteConfigDialog::slotDefaultClicked);
+    connect(button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &KNoteConfigDialog::slotDefaultClicked);
 }
 
 KNoteConfigDialog::~KNoteConfigDialog()
@@ -59,4 +57,3 @@ void KNoteConfigDialog::slotOk()
     NoteShared::NoteSharedGlobalConfig::self()->save();
     KNotesGlobalConfig::self()->save();
 }
-

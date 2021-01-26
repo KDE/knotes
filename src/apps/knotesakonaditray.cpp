@@ -4,16 +4,16 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 #include "knotesakonaditray.h"
-#include <AkonadiCore/ChangeRecorder>
 #include "knotesglobalconfig.h"
+#include <AkonadiCore/ChangeRecorder>
 
+#include <KColorScheme>
 #include <KIconLoader>
 #include <KLocalizedString>
-#include <KColorScheme>
 
+#include <QFontDatabase>
 #include <QPainter>
 #include <QWidget>
-#include <QFontDatabase>
 
 KNotesAkonadiTray::KNotesAkonadiTray(QWidget *parent)
     : KStatusNotifierItem(parent)
@@ -24,7 +24,7 @@ KNotesAkonadiTray::KNotesAkonadiTray(QWidget *parent)
     setStatus(KStatusNotifierItem::Active);
     setCategory(KStatusNotifierItem::ApplicationStatus);
     setStandardActionsEnabled(false);
-    //Initialize
+    // Initialize
     updateNumberOfNotes(0);
 }
 

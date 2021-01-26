@@ -6,11 +6,12 @@
 #ifndef NOTESAGENTNOTEDIALOG_H
 #define NOTESAGENTNOTEDIALOG_H
 
-#include <QDialog>
 #include <Item>
+#include <QDialog>
 class QLineEdit;
 class KJob;
-namespace KPIMTextEdit {
+namespace KPIMTextEdit
+{
 class RichTextEditorWidget;
 }
 class NotesAgentNoteDialog : public QDialog

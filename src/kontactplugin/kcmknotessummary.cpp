@@ -11,10 +11,10 @@
 
 #include <AkonadiWidgets/ETMViewStateSaver>
 
+#include "knotes_kontact_plugin_debug.h"
 #include <KAboutData>
 #include <KAcceleratorManager>
 #include <KCheckableProxyModel>
-#include "knotes_kontact_plugin_debug.h"
 #include <KLocalizedString>
 #include <KSharedConfig>
 
@@ -22,8 +22,7 @@
 #include <QTreeView>
 #include <QVBoxLayout>
 
-extern "C"
-{
+extern "C" {
 Q_DECL_EXPORT KCModule *create_knotessummary(QWidget *parent, const char *)
 {
     return new KCMKNotesSummary(parent);
@@ -35,8 +34,7 @@ KCMKNotesSummary::KCMKNotesSummary(QWidget *parent)
 {
     initGUI();
 
-    connect(mCheckedCollectionWidget->folderTreeView(), &QAbstractItemView::clicked,
-            this, &KCMKNotesSummary::modified);
+    connect(mCheckedCollectionWidget->folderTreeView(), &QAbstractItemView::clicked, this, &KCMKNotesSummary::modified);
 
     KAcceleratorManager::manage(this);
 
@@ -70,8 +68,7 @@ void KCMKNotesSummary::initFolders()
 {
     KSharedConfigPtr _config = KSharedConfig::openConfig(QStringLiteral("kcmknotessummaryrc"));
 
-    mModelState
-        = new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), this);
+    mModelState = new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), this);
     mModelState->setSelectionModel(mCheckedCollectionWidget->selectionModel());
 }
 

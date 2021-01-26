@@ -8,10 +8,10 @@
 */
 
 #include "summarywidget.h"
-#include "knotesinterface.h"
-#include "akonadi/noteschangerecorder.h"
 #include "akonadi/notesakonaditreemodel.h"
+#include "akonadi/noteschangerecorder.h"
 #include "attributes/notedisplayattribute.h"
+#include "knotesinterface.h"
 
 #include <AkonadiCore/ChangeRecorder>
 #include <AkonadiCore/Session>
@@ -20,11 +20,11 @@
 #include <KontactInterface/Core>
 #include <KontactInterface/Plugin>
 
-#include <KMime/Message>
 #include <KCheckableProxyModel>
 #include <KIconEffect>
 #include <KIconLoader>
 #include <KLocalizedString>
+#include <KMime/Message>
 #include <KSharedConfig>
 #include <KUrlLabel>
 
@@ -60,14 +60,11 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
     mNoteRecorder->changeRecorder()->setSession(session);
     mNoteTreeModel = new NoteShared::NotesAkonadiTreeModel(mNoteRecorder->changeRecorder(), this);
 
-    connect(mNoteTreeModel, &NoteShared::NotesAkonadiTreeModel::rowsInserted,
-            this, &KNotesSummaryWidget::updateFolderList);
+    connect(mNoteTreeModel, &NoteShared::NotesAkonadiTreeModel::rowsInserted, this, &KNotesSummaryWidget::updateFolderList);
 
-    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged,
-            this, &KNotesSummaryWidget::updateFolderList);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged, this, &KNotesSummaryWidget::updateFolderList);
 
-    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved,
-            this, &KNotesSummaryWidget::updateFolderList);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved, this, &KNotesSummaryWidget::updateFolderList);
 
     mSelectionModel = new QItemSelectionModel(mNoteTreeModel);
     mModelProxy = new KCheckableProxyModel(this);
@@ -76,8 +73,7 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
 
     KSharedConfigPtr _config = KSharedConfig::openConfig(QStringLiteral("kcmknotessummaryrc"));
 
-    mModelState
-        = new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), this);
+    mModelState = new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), this);
     mModelState->setSelectionModel(mSelectionModel);
 }
 
@@ -117,9 +113,7 @@ void KNotesSummaryWidget::displayNotes(const QModelIndex &parent, int &counter)
     const int nbCol = mModelProxy->rowCount(parent);
     for (int i = 0; i < nbCol; ++i) {
         const QModelIndex child = mModelProxy->index(i, 0, parent);
-        const Akonadi::Item item
-            = mModelProxy->data(child,
-                                Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
+        const Akonadi::Item item = mModelProxy->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
         if (item.isValid()) {
             createNote(item, counter);
             ++counter;
@@ -131,13 +125,11 @@ void KNotesSummaryWidget::displayNotes(const QModelIndex &parent, int &counter)
 void KNotesSummaryWidget::slotPopupMenu(const QString &note)
 {
     QMenu popup(this);
-    const QAction *modifyNoteAction = popup.addAction(
-        KIconLoader::global()->loadIcon(QStringLiteral("document-edit"), KIconLoader::Small),
-        i18n("Modify Note..."));
+    const QAction *modifyNoteAction =
+        popup.addAction(KIconLoader::global()->loadIcon(QStringLiteral("document-edit"), KIconLoader::Small), i18n("Modify Note..."));
     popup.addSeparator();
-    const QAction *deleteNoteAction = popup.addAction(
-        KIconLoader::global()->loadIcon(QStringLiteral("edit-delete"), KIconLoader::Small),
-        i18n("Delete Note..."));
+    const QAction *deleteNoteAction =
+        popup.addAction(KIconLoader::global()->loadIcon(QStringLiteral("edit-delete"), KIconLoader::Small), i18n("Delete Note..."));
 
     const QAction *ret = popup.exec(QCursor::pos());
     if (ret == deleteNoteAction) {
@@ -149,9 +141,7 @@ void KNotesSummaryWidget::slotPopupMenu(const QString &note)
 
 void KNotesSummaryWidget::deleteNote(const QString &note)
 {
-    org::kde::kontact::KNotes knotes(QStringLiteral("org.kde.kontact"),
-                                     QStringLiteral("/KNotes"),
-                                     QDBusConnection::sessionBus());
+    org::kde::kontact::KNotes knotes(QStringLiteral("org.kde.kontact"), QStringLiteral("/KNotes"), QDBusConnection::sessionBus());
     knotes.killNote(note.toLongLong());
 }
 
@@ -174,13 +164,11 @@ void KNotesSummaryWidget::createNote(const Akonadi::Item &item, int counter)
     urlLabel->setWordWrap(true);
     connect(urlLabel, &KUrlLabel::leftClickedUrl, this, [this, urlLabel]() {
         slotSelectNote(urlLabel->url());
-    }
-            );
+    });
 
     connect(urlLabel, &KUrlLabel::rightClickedUrl, this, [this, urlLabel]() {
         slotPopupMenu(urlLabel->url());
-    }
-            );
+    });
     mLayout->addWidget(urlLabel, counter, 1);
 
     QColor color;
@@ -215,9 +203,7 @@ void KNotesSummaryWidget::slotSelectNote(const QString &note)
         mPlugin->bringToForeground();
     }
 
-    org::kde::kontact::KNotes knotes(QStringLiteral("org.kde.kontact"),
-                                     QStringLiteral("/KNotes"),
-                                     QDBusConnection::sessionBus());
+    org::kde::kontact::KNotes knotes(QStringLiteral("org.kde.kontact"), QStringLiteral("/KNotes"), QDBusConnection::sessionBus());
     knotes.editNote(note.toLongLong());
 }
 

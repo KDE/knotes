@@ -10,10 +10,10 @@
 #include "notehostdialog.h"
 #include "notesharedglobalconfig.h"
 
-#include <KHistoryComboBox>
-#include <KLocalizedString>
 #include <KDNSSD/DNSSD/ServiceBrowser>
 #include <KDNSSD/DNSSD/ServiceModel>
+#include <KHistoryComboBox>
+#include <KLocalizedString>
 
 #include <QDialogButtonBox>
 #include <QLabel>
@@ -43,14 +43,12 @@ NoteHostDialog::NoteHostDialog(const QString &caption, QWidget *parent)
 
     m_servicesView = new QTreeView(this);
     m_servicesView->setRootIsDecorated(false);
-    KDNSSD::ServiceModel *mdl
-        = new KDNSSD::ServiceModel(new KDNSSD::ServiceBrowser(QStringLiteral("_knotes._tcp"), true), this);
+    KDNSSD::ServiceModel *mdl = new KDNSSD::ServiceModel(new KDNSSD::ServiceBrowser(QStringLiteral("_knotes._tcp"), true), this);
     m_servicesView->setModel(mdl);
     m_servicesView->setSelectionBehavior(QAbstractItemView::SelectRows);
     m_servicesView->hideColumn(KDNSSD::ServiceModel::Port);
 
-    connect(m_servicesView->selectionModel(), &QItemSelectionModel::currentRowChanged,
-            this, &NoteHostDialog::serviceSelected);
+    connect(m_servicesView->selectionModel(), &QItemSelectionModel::currentRowChanged, this, &NoteHostDialog::serviceSelected);
     connect(m_servicesView, &QTreeView::activated, this, &NoteHostDialog::serviceSelected);
     connect(m_servicesView, &QTreeView::clicked, this, &NoteHostDialog::serviceSelected);
     connect(m_servicesView, &QTreeView::doubleClicked, this, &NoteHostDialog::slotServiceDoubleClicked);

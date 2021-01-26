@@ -34,6 +34,7 @@ public:
     Q_REQUIRED_RESULT QString alarm() const;
     Q_REQUIRED_RESULT bool isLock() const;
     Q_REQUIRED_RESULT QString backgroundColorName() const;
+
 private:
     Akonadi::Item mItem;
 };

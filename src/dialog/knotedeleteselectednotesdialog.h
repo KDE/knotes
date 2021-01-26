@@ -6,10 +6,11 @@
 #ifndef KNOTEDELETESELECTEDNOTESDIALOG_H
 #define KNOTEDELETESELECTEDNOTESDIALOG_H
 
-#include <QDialog>
 #include <AkonadiCore/Item>
+#include <QDialog>
 class QPushButton;
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteListWidget;
 }
 
@@ -26,6 +27,7 @@ public:
 
 private Q_SLOTS:
     void slotDeleteNoteSelectionChanged();
+
 private:
     void readConfig();
     void writeConfig();

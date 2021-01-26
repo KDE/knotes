@@ -6,10 +6,10 @@
 #include "knotedeleteselectednotesdialog.h"
 #include "widget/notelistwidget.h"
 
+#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
 #include <QDialogButtonBox>
-#include <KConfigGroup>
 #include <QPushButton>
 #include <QVBoxLayout>
 

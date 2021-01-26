@@ -6,12 +6,14 @@
 #ifndef NOTESCHANGERECORDER_H
 #define NOTESCHANGERECORDER_H
 
-#include <QObject>
 #include "noteshared_export.h"
-namespace Akonadi {
+#include <QObject>
+namespace Akonadi
+{
 class ChangeRecorder;
 }
-namespace NoteShared {
+namespace NoteShared
+{
 class NotesChangeRecorderPrivate;
 class NOTESHARED_EXPORT NotesChangeRecorder : public QObject
 {

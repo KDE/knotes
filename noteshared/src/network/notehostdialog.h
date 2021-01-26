@@ -19,7 +19,8 @@ class QPushButton;
 /**
  * A dialog that allows to select network service or request a hostname or IP address.
  */
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteHostDialog : public QDialog
 {
     Q_OBJECT

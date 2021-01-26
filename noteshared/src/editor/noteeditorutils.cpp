@@ -8,9 +8,9 @@
 #include <QLocale>
 
 #include <QChar>
+#include <QDateTime>
 #include <QTextCursor>
 #include <QTextEdit>
-#include <QDateTime>
 
 using namespace NoteShared;
 NoteEditorUtils::NoteEditorUtils()

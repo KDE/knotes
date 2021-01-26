@@ -7,8 +7,8 @@
 *******************************************************************/
 
 #include "knoteedit.h"
-#include "notes/knote.h"
 #include "editor/noteeditorutils.h"
+#include "notes/knote.h"
 
 #include <KPIMTextEdit/EditorUtil>
 
@@ -41,20 +41,16 @@ KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
     }
 
     // create the actions modifying the text format
-    m_textBold = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-bold")), i18n("Bold"),
-                                   this);
+    m_textBold = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-bold")), i18n("Bold"), this);
     actions->addAction(QStringLiteral("format_bold"), m_textBold);
     actions->setDefaultShortcut(m_textBold, QKeySequence(Qt::CTRL | Qt::Key_B));
-    m_textItalic = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-italic")),
-                                     i18n("Italic"), this);
+    m_textItalic = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-italic")), i18n("Italic"), this);
     actions->addAction(QStringLiteral("format_italic"), m_textItalic);
     actions->setDefaultShortcut(m_textItalic, QKeySequence(Qt::CTRL | Qt::Key_I));
-    m_textUnderline = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-underline")),
-                                        i18n("Underline"), this);
+    m_textUnderline = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-underline")), i18n("Underline"), this);
     actions->addAction(QStringLiteral("format_underline"), m_textUnderline);
     actions->setDefaultShortcut(m_textUnderline, QKeySequence(Qt::CTRL | Qt::Key_U));
-    m_textStrikeOut = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-strikethrough")),
-                                        i18n("Strike Out"), this);
+    m_textStrikeOut = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-strikethrough")), i18n("Strike Out"), this);
     actions->addAction(QStringLiteral("format_strikeout"), m_textStrikeOut);
     actions->setDefaultShortcut(m_textStrikeOut, QKeySequence(Qt::CTRL | Qt::Key_S));
 
@@ -63,24 +59,20 @@ KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
     connect(m_textUnderline, &KToggleAction::toggled, this, &KNoteEdit::setFontUnderline);
     connect(m_textStrikeOut, &KToggleAction::toggled, this, &KNoteEdit::textStrikeOut);
 
-    m_textAlignLeft = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-left")),
-                                        i18n("Align Left"), this);
+    m_textAlignLeft = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-left")), i18n("Align Left"), this);
     actions->addAction(QStringLiteral("format_alignleft"), m_textAlignLeft);
     connect(m_textAlignLeft, &KToggleAction::triggered, this, &KNoteEdit::textAlignLeft);
     actions->setDefaultShortcut(m_textAlignLeft, QKeySequence(Qt::ALT | Qt::Key_L));
-    m_textAlignLeft->setChecked(true);   // just a dummy, will be updated later
-    m_textAlignCenter = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-center")),
-                                          i18n("Align Center"), this);
+    m_textAlignLeft->setChecked(true); // just a dummy, will be updated later
+    m_textAlignCenter = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-center")), i18n("Align Center"), this);
     actions->addAction(QStringLiteral("format_aligncenter"), m_textAlignCenter);
     connect(m_textAlignCenter, &KToggleAction::triggered, this, &KNoteEdit::textAlignCenter);
     actions->setDefaultShortcut(m_textAlignCenter, QKeySequence(Qt::ALT | Qt::Key_C));
-    m_textAlignRight = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-right")),
-                                         i18n("Align Right"), this);
+    m_textAlignRight = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-right")), i18n("Align Right"), this);
     actions->addAction(QStringLiteral("format_alignright"), m_textAlignRight);
     connect(m_textAlignRight, &KToggleAction::triggered, this, &KNoteEdit::textAlignRight);
     actions->setDefaultShortcut(m_textAlignRight, QKeySequence(Qt::ALT | Qt::Key_R));
-    m_textAlignBlock = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-fill")),
-                                         i18n("Align Block"), this);
+    m_textAlignBlock = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-fill")), i18n("Align Block"), this);
     actions->addAction(QStringLiteral("format_alignblock"), m_textAlignBlock);
     connect(m_textAlignBlock, &KToggleAction::triggered, this, &KNoteEdit::textAlignBlock);
     actions->setDefaultShortcut(m_textAlignBlock, QKeySequence(Qt::ALT | Qt::Key_B));
@@ -95,23 +87,19 @@ KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
     actions->addAction(QStringLiteral("format_list"), m_textList);
     connect(m_textList, &KToggleAction::triggered, this, &KNoteEdit::textList);
 
-    m_textSuper = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-superscript")),
-                                    i18n("Superscript"), this);
+    m_textSuper = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-superscript")), i18n("Superscript"), this);
     actions->addAction(QStringLiteral("format_super"), m_textSuper);
     connect(m_textSuper, &KToggleAction::triggered, this, &KNoteEdit::textSuperScript);
-    m_textSub = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-subscript")), i18n("Subscript"),
-                                  this);
+    m_textSub = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-subscript")), i18n("Subscript"), this);
     actions->addAction(QStringLiteral("format_sub"), m_textSub);
     connect(m_textSub, &KToggleAction::triggered, this, &KNoteEdit::textSubScript);
 
-    m_textIncreaseIndent = new QAction(QIcon::fromTheme(QStringLiteral("format-indent-more")),
-                                       i18n("Increase Indent"), this);
+    m_textIncreaseIndent = new QAction(QIcon::fromTheme(QStringLiteral("format-indent-more")), i18n("Increase Indent"), this);
     actions->addAction(QStringLiteral("format_increaseindent"), m_textIncreaseIndent);
     actions->setDefaultShortcut(m_textIncreaseIndent, QKeySequence(Qt::CTRL | Qt::ALT | Qt::Key_I));
     connect(m_textIncreaseIndent, &QAction::triggered, this, &KNoteEdit::textIncreaseIndent);
 
-    m_textDecreaseIndent = new QAction(QIcon::fromTheme(QStringLiteral("format-indent-less")),
-                                       i18n("Decrease Indent"), this);
+    m_textDecreaseIndent = new QAction(QIcon::fromTheme(QStringLiteral("format-indent-less")), i18n("Decrease Indent"), this);
     actions->addAction(QStringLiteral("format_decreaseindent"), m_textDecreaseIndent);
     actions->setDefaultShortcut(m_textDecreaseIndent, QKeySequence(Qt::CTRL | Qt::ALT | Qt::Key_D));
     connect(m_textDecreaseIndent, &QAction::triggered, this, &KNoteEdit::textDecreaseIndent);
@@ -121,14 +109,13 @@ KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
     group->addAction(m_textDecreaseIndent);
 
     QPixmap pix(ICON_SIZE, ICON_SIZE);
-    pix.fill(Qt::black);   // just a dummy, gets updated before widget is shown
+    pix.fill(Qt::black); // just a dummy, gets updated before widget is shown
     m_textColor = new QAction(i18n("Text Color..."), this);
     actions->addAction(QStringLiteral("format_color"), m_textColor);
     m_textColor->setIcon(pix);
     connect(m_textColor, &QAction::triggered, this, &KNoteEdit::slotTextColor);
 
-    QAction *act = new QAction(QIcon::fromTheme(QStringLiteral("format-fill-color")),
-                               i18n("Text Background Color..."), this);
+    QAction *act = new QAction(QIcon::fromTheme(QStringLiteral("format-fill-color")), i18n("Text Background Color..."), this);
     actions->addAction(QStringLiteral("text_background_color"), act);
     connect(act, &QAction::triggered, this, &KNoteEdit::slotTextBackgroundColor);
 
@@ -188,8 +175,8 @@ void KNoteEdit::setColor(const QColor &fg, const QColor &bg)
     p.setColor(QPalette::Button, bg.darker(116));
     p.setColor(QPalette::ButtonText, fg);
 
-    //p.setColor( QPalette::Highlight,  bg );
-    //p.setColor( QPalette::HighlightedText, fg );
+    // p.setColor( QPalette::Highlight,  bg );
+    // p.setColor( QPalette::HighlightedText, fg );
 
     // order: Light, Midlight, Button, Mid, Dark, Shadow
 
@@ -668,7 +655,7 @@ void KNoteEdit::setCursorPositionFromStart(int pos)
 {
     if (pos > 0) {
         QTextCursor cursor = textCursor();
-        //Fix html pos cursor
+        // Fix html pos cursor
         cursor.setPosition(qMin(pos, cursor.document()->characterCount() - 1));
         setTextCursor(cursor);
         ensureCursorVisible();

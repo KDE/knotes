@@ -7,8 +7,8 @@
 #ifndef KNOTEPRINTSELECTEDNOTESDIALOG_H
 #define KNOTEPRINTSELECTEDNOTESDIALOG_H
 
-#include <QDialog>
 #include <AkonadiCore/Item>
+#include <QDialog>
 class QListWidget;
 class KNote;
 class KNotePrintObject;
@@ -34,9 +34,7 @@ private Q_SLOTS:
     void slotSelectionChanged();
 
 private:
-    enum listViewData {
-        AkonadiId = Qt::UserRole + 1
-    };
+    enum listViewData { AkonadiId = Qt::UserRole + 1 };
 
     void writeConfig();
     void readConfig();

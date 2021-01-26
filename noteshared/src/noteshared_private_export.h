@@ -11,11 +11,11 @@
 
 /* Classes which are exported only for unit tests */
 #ifdef BUILD_TESTING
-    #ifndef NOTESHARED_TESTS_EXPORT
-        #define NOTESHARED_TESTS_EXPORT NOTESHARED_EXPORT
-    # endif
+#ifndef NOTESHARED_TESTS_EXPORT
+#define NOTESHARED_TESTS_EXPORT NOTESHARED_EXPORT
+#endif
 #else /* not compiling tests */
-    #define NOTESHARED_TESTS_EXPORT
+#define NOTESHARED_TESTS_EXPORT
 #endif
 
 #endif

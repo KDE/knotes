@@ -9,11 +9,12 @@
 #ifndef NOTEALARMDIALOG_H
 #define NOTEALARMDIALOG_H
 
-#include <QDialog>
 #include "noteshared_export.h"
+#include <QDialog>
 class QDateTime;
 class QAbstractButton;
-namespace NoteShared {
+namespace NoteShared
+{
 class NoteAlarmDialogPrivate;
 class NOTESHARED_EXPORT NoteAlarmDialog : public QDialog
 {

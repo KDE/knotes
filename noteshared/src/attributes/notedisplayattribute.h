@@ -10,11 +10,12 @@
 #include <AkonadiCore/Attribute>
 
 #include <QColor>
-#include <QSize>
 #include <QFont>
 #include <QPoint>
+#include <QSize>
 
-namespace NoteShared {
+namespace NoteShared
+{
 class NOTESHARED_EXPORT NoteDisplayAttribute : public Akonadi::Attribute
 {
 public:
@@ -62,7 +63,7 @@ public:
 
     Q_REQUIRED_RESULT bool autoIndent() const;
     void setAutoIndent(bool b);
-    Q_REQUIRED_RESULT bool operator ==(const NoteDisplayAttribute &other) const;
+    Q_REQUIRED_RESULT bool operator==(const NoteDisplayAttribute &other) const;
 
 private:
     QFont mFont;
@@ -78,7 +79,7 @@ private:
     bool mHide;
     bool mShowInTaskbar;
     bool mKeepAbove;
-    //it's an error but we can't remove it!
+    // it's an error but we can't remove it!
     bool mKeepBelove;
     bool mKeepBelow;
 };

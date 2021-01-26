@@ -9,10 +9,10 @@
 #include <KLocalizedString>
 #include <KStandardGuiItem>
 
-#include <QLabel>
+#include <KConfigGroup>
 #include <KSharedConfig>
 #include <QDialogButtonBox>
-#include <KConfigGroup>
+#include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
 

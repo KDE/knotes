@@ -5,13 +5,13 @@
 */
 #include "knotestray.h"
 
+#include <KColorScheme>
 #include <KIconLoader>
 #include <KLocalizedString>
-#include <KColorScheme>
 
+#include <QFontDatabase>
 #include <QPainter>
 #include <QWidget>
-#include <QFontDatabase>
 
 KNotesTray::KNotesTray(QWidget *parent)
     : KStatusNotifierItem(parent)

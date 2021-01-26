@@ -7,8 +7,8 @@
 
 #include <Akonadi/Notes/NoteUtils>
 
-#include <KLocalizedString>
 #include <KConfigGroup>
+#include <KLocalizedString>
 #include <KSharedConfig>
 
 using namespace NoteShared;
@@ -18,10 +18,9 @@ SelectedNotefolderDialog::SelectedNotefolderDialog(QWidget *parent)
 {
     const QStringList mimeTypes(Akonadi::NoteUtils::noteMimeType());
     setMimeTypeFilter(mimeTypes);
-    //setAccessRightsFilter( Akonadi::Collection::CanCreateItem );
+    // setAccessRightsFilter( Akonadi::Collection::CanCreateItem );
     setWindowTitle(i18nc("@title:window", "Select Note Folder"));
-    setDescription(i18nc("@info",
-                         "Select the folder where the note will be saved:"));
+    setDescription(i18nc("@info", "Select the folder where the note will be saved:"));
     changeCollectionDialogOptions(Akonadi::CollectionDialog::KeepTreeExpanded);
     setUseFolderByDefault(false);
     readConfig();

@@ -5,17 +5,17 @@
 */
 #include "localresourcecreator.h"
 
-#include <AkonadiCore/agentmanager.h>
-#include <AkonadiCore/agentinstancecreatejob.h>
 #include <AkonadiCore/ServerManager>
+#include <AkonadiCore/agentinstancecreatejob.h>
+#include <AkonadiCore/agentmanager.h>
 
 #include "maildirsettings.h"
 
 #include <Akonadi/Notes/NoteUtils>
 
 #include "noteshared_debug.h"
-#include <KLocalizedString>
 #include <AkonadiCore/resourcesynchronizationjob.h>
+#include <KLocalizedString>
 
 using namespace NoteShared;
 

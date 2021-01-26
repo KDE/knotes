@@ -9,7 +9,8 @@
 #include "knotes_export.h"
 #include <AkonadiCore/Item>
 
-namespace KNoteUtils {
+namespace KNoteUtils
+{
 KNOTES_EXPORT void setDefaultValue(Akonadi::Item &item);
 KNOTES_EXPORT void updateConfiguration();
 }

@@ -10,17 +10,17 @@
 #include <AkonadiSearch/PIM/resultiterator.h>
 
 #include <KLocalizedString>
+#include <QIcon>
 #include <QLineEdit>
 #include <QPushButton>
-#include <QIcon>
 
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QListWidget>
+#include <KConfigGroup>
 #include <KSharedConfig>
 #include <QDialogButtonBox>
-#include <KConfigGroup>
+#include <QLabel>
+#include <QListWidget>
 #include <QMenu>
+#include <QVBoxLayout>
 
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     : QDialog(parent)
@@ -78,19 +78,16 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     connect(mSearchLineEdit, &QLineEdit::textChanged, this, &KNoteFindWidget::slotTextChanged);
     hbox->addWidget(mSearchLineEdit);
 
-    mSearchButton = new QPushButton(QIcon::fromTheme(QStringLiteral("edit-find")),
-                                    i18nc("@action:button Search notes", "Search..."),
-                                    this);
+    mSearchButton = new QPushButton(QIcon::fromTheme(QStringLiteral("edit-find")), i18nc("@action:button Search notes", "Search..."), this);
     connect(mSearchButton, &QPushButton::clicked, this, &KNoteFindWidget::slotSearchNote);
     hbox->addWidget(mSearchButton);
     mSearchButton->setEnabled(false);
 
-    //Result
+    // Result
     mNoteList = new NoteShared::NoteListWidget(this);
     mNoteList->setContextMenuPolicy(Qt::CustomContextMenu);
     mNoteList->setSelectionMode(QAbstractItemView::SingleSelection);
-    connect(mNoteList, &NoteShared::NoteListWidget::itemDoubleClicked,
-            this, &KNoteFindWidget::slotItemDoubleClicked);
+    connect(mNoteList, &NoteShared::NoteListWidget::itemDoubleClicked, this, &KNoteFindWidget::slotItemDoubleClicked);
     connect(mNoteList, &NoteShared::NoteListWidget::customContextMenuRequested, this, &KNoteFindWidget::customContextMenuRequested);
     vbox->addWidget(mNoteList);
 

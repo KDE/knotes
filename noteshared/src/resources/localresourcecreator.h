@@ -10,7 +10,8 @@
 #include <QObject>
 
 class KJob;
-namespace NoteShared {
+namespace NoteShared
+{
 class NOTESHARED_EXPORT LocalResourceCreator : public QObject
 {
     Q_OBJECT

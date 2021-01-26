@@ -20,10 +20,10 @@ void NoteUtilsTest::testExtractNoteText_data()
     QTest::addColumn<QString>("noteText");
     QTest::addColumn<QString>("resultNoteTitle");
     QTest::addColumn<QString>("resultNoteText");
-    QTest::newRow("empty") <<  QString() << QString() <<  QString() << QString();
-    QTest::newRow("test1") <<  QStringLiteral("foo") << QStringLiteral("bla\r\nfoo") << QStringLiteral("blafoo") <<  QStringLiteral("foo");
-    QTest::newRow("test2") <<  QString() << QStringLiteral("bla\r\nfoo") << QStringLiteral("bla") <<  QStringLiteral("foo");
-    QTest::newRow("test3") <<  QString() << QStringLiteral("blafoo") << QStringLiteral("blafoo") <<  QStringLiteral("blafoo");
+    QTest::newRow("empty") << QString() << QString() << QString() << QString();
+    QTest::newRow("test1") << QStringLiteral("foo") << QStringLiteral("bla\r\nfoo") << QStringLiteral("blafoo") << QStringLiteral("foo");
+    QTest::newRow("test2") << QString() << QStringLiteral("bla\r\nfoo") << QStringLiteral("bla") << QStringLiteral("foo");
+    QTest::newRow("test3") << QString() << QStringLiteral("blafoo") << QStringLiteral("blafoo") << QStringLiteral("blafoo");
 }
 
 void NoteUtilsTest::testExtractNoteText()

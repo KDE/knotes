@@ -5,14 +5,14 @@
 */
 #include "noteschangerecorder.h"
 
+#include <Akonadi/Notes/NoteUtils>
 #include <AkonadiCore/ChangeRecorder>
 #include <AkonadiCore/CollectionFetchScope>
 #include <AkonadiCore/ItemFetchScope>
-#include <Akonadi/Notes/NoteUtils>
 
 #include "attributes/notealarmattribute.h"
-#include "attributes/notelockattribute.h"
 #include "attributes/notedisplayattribute.h"
+#include "attributes/notelockattribute.h"
 
 using namespace NoteShared;
 
@@ -31,10 +31,10 @@ NotesChangeRecorder::NotesChangeRecorder(QObject *parent)
     , d(new NoteShared::NotesChangeRecorderPrivate)
 {
     Akonadi::ItemFetchScope scope;
-    scope.fetchFullPayload(true);   // Need to have full item when adding it to the internal data structure
-    scope.fetchAttribute< NoteShared::NoteLockAttribute >();
-    scope.fetchAttribute< NoteShared::NoteDisplayAttribute >();
-    scope.fetchAttribute< NoteShared::NoteAlarmAttribute >();
+    scope.fetchFullPayload(true); // Need to have full item when adding it to the internal data structure
+    scope.fetchAttribute<NoteShared::NoteLockAttribute>();
+    scope.fetchAttribute<NoteShared::NoteDisplayAttribute>();
+    scope.fetchAttribute<NoteShared::NoteAlarmAttribute>();
 
     d->mChangeRecorder = new Akonadi::ChangeRecorder(this);
     d->mChangeRecorder->setItemFetchScope(scope);

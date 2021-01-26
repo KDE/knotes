@@ -16,16 +16,19 @@
 
 #include <KViewStateMaintainer>
 
-namespace NoteShared {
+namespace NoteShared
+{
 class NotesChangeRecorder;
 class NotesAkonadiTreeModel;
 }
 
-namespace Akonadi {
+namespace Akonadi
+{
 class ETMViewStateSaver;
 }
 
-namespace KontactInterface {
+namespace KontactInterface
+{
 class Plugin;
 }
 
@@ -52,6 +55,7 @@ private Q_SLOTS:
     void updateFolderList();
     void slotSelectNote(const QString &note);
     void slotPopupMenu(const QString &);
+
 private:
     void deleteNote(const QString &note);
     void displayNotes(const QModelIndex &parent, int &counter);

@@ -8,13 +8,8 @@
 
 #include <config-knotes.h>
 
-#include "knotesapp.h"
-#include "knotes_debug.h"
-#include "knotesadaptor.h"
-#include "knotesglobalconfig.h"
-#include "notesharedglobalconfig.h"
-#include "akonadi/noteschangerecorder.h"
 #include "akonadi/notesakonaditreemodel.h"
+#include "akonadi/noteschangerecorder.h"
 #include "apps/knotesakonaditray.h"
 #include "attributes/notealarmattribute.h"
 #include "attributes/notedisplayattribute.h"
@@ -25,7 +20,12 @@
 #include "dialog/knoteskeydialog.h"
 #include "finddialog/knotefinddialog.h"
 #include "job/createnewnotejob.h"
+#include "knotes_debug.h"
+#include "knotesadaptor.h"
+#include "knotesapp.h"
+#include "knotesglobalconfig.h"
 #include "notes/knote.h"
+#include "notesharedglobalconfig.h"
 #include "print/knoteprinter.h"
 #include "print/knoteprintselectednotesdialog.h"
 #include "resources/localresourcecreator.h"
@@ -42,6 +42,7 @@
 #include <KMime/KMimeMessage>
 
 #include <KActionCollection>
+#include <KDNSSD/DNSSD/PublicService>
 #include <KGlobalAccel>
 #include <KIconEffect>
 #include <KLocalizedString>
@@ -49,7 +50,6 @@
 #include <KWindowSystem>
 #include <KXMLGUIBuilder>
 #include <KXMLGUIFactory>
-#include <KDNSSD/DNSSD/PublicService>
 
 #include <KAboutData>
 #include <KHelpMenu>
@@ -82,22 +82,19 @@ KNotesApp::KNotesApp(QWidget *parent)
     QDBusConnection::sessionBus().registerObject(QStringLiteral("/KNotes"), this);
     qApp->setQuitOnLastWindowClosed(false);
     // create the GUI...
-    QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("document-new")),
-                                  i18n("New Note"), this);
+    QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("document-new")), i18n("New Note"), this);
     actionCollection()->addAction(QStringLiteral("new_note"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT | Qt::SHIFT | Qt::Key_N));
     connect(action, &QAction::triggered, this, [this]() {
         newNote();
     });
 
-    action = new QAction(QIcon::fromTheme(QStringLiteral("edit-paste")),
-                         i18n("New Note From Clipboard"), this);
+    action = new QAction(QIcon::fromTheme(QStringLiteral("edit-paste")), i18n("New Note From Clipboard"), this);
     actionCollection()->addAction(QStringLiteral("new_note_clipboard"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT | Qt::SHIFT | Qt::Key_C));
     connect(action, &QAction::triggered, this, &KNotesApp::newNoteFromClipboard);
 
-    action = new QAction(QIcon::fromTheme(QStringLiteral("document-open")),
-                         i18n("New Note From Text File..."), this);
+    action = new QAction(QIcon::fromTheme(QStringLiteral("document-open")), i18n("New Note From Text File..."), this);
     actionCollection()->addAction(QStringLiteral("new_note_from_text_file"), action);
     connect(action, &QAction::triggered, this, &KNotesApp::newNoteFromTextFile);
 
@@ -106,24 +103,21 @@ KNotesApp::KNotesApp(QWidget *parent)
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT | Qt::SHIFT | Qt::Key_S));
     connect(action, &QAction::triggered, this, &KNotesApp::showAllNotes);
 
-    action = new QAction(QIcon::fromTheme(QStringLiteral("window-close")),
-                         i18n("Hide All Notes"), this);
+    action = new QAction(QIcon::fromTheme(QStringLiteral("window-close")), i18n("Hide All Notes"), this);
     actionCollection()->addAction(QStringLiteral("hide_all_notes"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT | Qt::SHIFT | Qt::Key_H));
     connect(action, &QAction::triggered, this, &KNotesApp::hideAllNotes);
 
-    action = new QAction(QIcon::fromTheme(QStringLiteral("document-print")),
-                         i18nc("@action:inmenu", "Print Selected Notes..."), this);
+    action = new QAction(QIcon::fromTheme(QStringLiteral("document-print")), i18nc("@action:inmenu", "Print Selected Notes..."), this);
     actionCollection()->addAction(QStringLiteral("print_selected_notes"), action);
     connect(action, &QAction::triggered, this, &KNotesApp::slotPrintSelectedNotes);
 
     QAction *act = KStandardAction::find(this, &KNotesApp::slotOpenFindDialog, actionCollection());
-    action = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")),
-                         i18nc("@action:inmenu", "Delete Selected Notes..."), this);
+    action = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")), i18nc("@action:inmenu", "Delete Selected Notes..."), this);
     actionCollection()->addAction(QStringLiteral("delete_selected_notes"), action);
     connect(action, &QAction::triggered, this, &KNotesApp::slotDeleteSelectedNotes);
 
-    //REmove shortcut here.
+    // REmove shortcut here.
     act->setShortcut(0);
 
     KHelpMenu *menu = new KHelpMenu(this, KAboutData::applicationData(), false);
@@ -159,35 +153,30 @@ KNotesApp::KNotesApp(QWidget *parent)
         actions->addAction(donateAction->objectName(), donateAction);
     }
 
-    KStandardAction::preferences(this, &KNotesApp::slotPreferences,
-                                 actionCollection());
-    KStandardAction::keyBindings(this, &KNotesApp::slotConfigureAccels,
-                                 actionCollection());
-    //FIXME: no shortcut removing!?
-    KStandardAction::quit(this, &KNotesApp::slotQuit,
-                          actionCollection())->setShortcut(0);
+    KStandardAction::preferences(this, &KNotesApp::slotPreferences, actionCollection());
+    KStandardAction::keyBindings(this, &KNotesApp::slotConfigureAccels, actionCollection());
+    // FIXME: no shortcut removing!?
+    KStandardAction::quit(this, &KNotesApp::slotQuit, actionCollection())->setShortcut(0);
     setXMLFile(QStringLiteral("knotesappui.rc"));
 
     m_guiBuilder = new KXMLGUIBuilder(this);
     m_guiFactory = new KXMLGUIFactory(m_guiBuilder, this);
     m_guiFactory->addClient(this);
 
-    QMenu *contextMenu = static_cast<QMenu *>(m_guiFactory->container(
-                                                  QStringLiteral("knotes_context"),
-                                                  this));
-    m_noteMenu = static_cast<QMenu *>(m_guiFactory->container(
-                                          QStringLiteral("notes_menu"), this));
+    QMenu *contextMenu = static_cast<QMenu *>(m_guiFactory->container(QStringLiteral("knotes_context"), this));
+    m_noteMenu = static_cast<QMenu *>(m_guiFactory->container(QStringLiteral("notes_menu"), this));
 
     // get the most recent XML UI file
     QString xmlFileName(componentName() + QLatin1String("ui.rc"));
 #pragma message("port QT5")
 
-    QString filter(QLatin1String("kxmlgui5/knotes/") + xmlFileName);//QT5 = componentData().componentName() + QLatin1Char('/') + xmlFileName;
-    const QStringList fileList = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, filter) + QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, xmlFileName);//QT5 =
+    QString filter(QLatin1String("kxmlgui5/knotes/") + xmlFileName); // QT5 = componentData().componentName() + QLatin1Char('/') + xmlFileName;
+    const QStringList fileList = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, filter)
+        + QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, xmlFileName); // QT5 =
 #pragma message("port QT5")
-    //QT5 componentData().dirs()->findAllResources( "data", filter ) +
+    // QT5 componentData().dirs()->findAllResources( "data", filter ) +
 #pragma message("port QT5")
-    //QT5 componentData().dirs()->findAllResources( "data", xmlFileName );
+    // QT5 componentData().dirs()->findAllResources( "data", xmlFileName );
     qCDebug(KNOTES_LOG) << " fileList :" << fileList << " filter :" << filter;
     QString doc;
     KXMLGUIClient::findMostRecentXMLFile(fileList, doc);
@@ -201,29 +190,25 @@ KNotesApp::KNotesApp(QWidget *parent)
     mNoteRecorder->changeRecorder()->setSession(session);
     mTray = new KNotesAkonadiTray(nullptr);
 
-    connect(mTray, &KStatusNotifierItem::activateRequested,
-            this, &KNotesApp::slotActivateRequested);
+    connect(mTray, &KStatusNotifierItem::activateRequested, this, &KNotesApp::slotActivateRequested);
 
-    connect(mTray, &KStatusNotifierItem::secondaryActivateRequested,
-            this, &KNotesApp::slotSecondaryActivateRequested);
+    connect(mTray, &KStatusNotifierItem::secondaryActivateRequested, this, &KNotesApp::slotSecondaryActivateRequested);
 
     mTray->setContextMenu(contextMenu);
     mNoteTreeModel = new NoteShared::NotesAkonadiTreeModel(mNoteRecorder->changeRecorder(), this);
 
-    connect(mNoteTreeModel, &QAbstractItemModel::rowsInserted,
-            this, &KNotesApp::slotRowInserted);
+    connect(mNoteTreeModel, &QAbstractItemModel::rowsInserted, this, &KNotesApp::slotRowInserted);
 
-    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged,
-            this, &KNotesApp::slotItemChanged);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemChanged, this, &KNotesApp::slotItemChanged);
 
-    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved,
-            this, &KNotesApp::slotItemRemoved);
+    connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemRemoved, this, &KNotesApp::slotItemRemoved);
 
-    connect(mNoteRecorder->changeRecorder(), qOverload<const Akonadi::Collection &, const QSet<QByteArray> &>(&Akonadi::ChangeRecorder::collectionChanged),
-            this, &KNotesApp::slotCollectionChanged);
+    connect(mNoteRecorder->changeRecorder(),
+            qOverload<const Akonadi::Collection &, const QSet<QByteArray> &>(&Akonadi::ChangeRecorder::collectionChanged),
+            this,
+            &KNotesApp::slotCollectionChanged);
 
-    connect(qApp, &QGuiApplication::commitDataRequest,
-            this, &KNotesApp::slotCommitData, Qt::DirectConnection);
+    connect(qApp, &QGuiApplication::commitDataRequest, this, &KNotesApp::slotCommitData, Qt::DirectConnection);
 
     QGuiApplication::setFallbackSessionManagementEnabled(false);
     updateNoteActions();
@@ -291,10 +276,8 @@ void KNotesApp::slotRowInserted(const QModelIndex &parent, int start, int end)
     for (int i = start; i <= end; ++i) {
         if (mNoteTreeModel->hasIndex(i, 0, parent)) {
             const QModelIndex child = mNoteTreeModel->index(i, 0, parent);
-            Akonadi::Item item
-                = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
-            Akonadi::Collection parentCollection
-                = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
+            Akonadi::Item item = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
+            Akonadi::Collection parentCollection = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
             if (parentCollection.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
                 createNote(item);
                 needUpdate = true;
@@ -312,18 +295,13 @@ void KNotesApp::createNote(const Akonadi::Item &item)
     if (item.hasPayload<KMime::Message::Ptr>() && !mNotes.contains(item.id())) {
         auto *note = new KNote(m_noteGUI, item, mDebugAkonadiSearch);
         mNotes.insert(item.id(), note);
-        connect(note, &KNote::sigShowNextNote,
-                this, &KNotesApp::slotWalkThroughNotes);
-        connect(note, &KNote::sigRequestNewNote,
-                this, [this] {
+        connect(note, &KNote::sigShowNextNote, this, &KNotesApp::slotWalkThroughNotes);
+        connect(note, &KNote::sigRequestNewNote, this, [this] {
             newNote();
         });
-        connect(note, &KNote::sigNameChanged,
-                this, &KNotesApp::updateNoteActions);
-        connect(note, &KNote::sigColorChanged,
-                this, &KNotesApp::updateNoteActions);
-        connect(note, &KNote::sigKillNote,
-                this, &KNotesApp::slotNoteKilled);
+        connect(note, &KNote::sigNameChanged, this, &KNotesApp::updateNoteActions);
+        connect(note, &KNote::sigColorChanged, this, &KNotesApp::updateNoteActions);
+        connect(note, &KNote::sigKillNote, this, &KNotesApp::slotNoteKilled);
     }
 }
 
@@ -359,8 +337,7 @@ void KNotesApp::showNote(KNote *note) const
     if (!note->isDesktopAssigned()) {
         note->toDesktop(KWindowSystem::currentDesktop());
     } else {
-        KWindowSystem::setCurrentDesktop(
-            KWindowInfo(note->winId(), NET::WMDesktop).desktop());
+        KWindowSystem::setCurrentDesktop(KWindowInfo(note->winId(), NET::WMDesktop).desktop());
     }
     KWindowSystem::forceActiveWindow(note->winId());
 #endif
@@ -407,15 +384,13 @@ void KNotesApp::newNoteFromClipboard()
 void KNotesApp::newNoteFromTextFile()
 {
     QString text;
-    const QString filename = QFileDialog::getOpenFileName(this, i18n("Select Text File"), QString(),
-                                                          QStringLiteral("%1 (*.txt)").arg(i18n("Text File")));
+    const QString filename = QFileDialog::getOpenFileName(this, i18n("Select Text File"), QString(), QStringLiteral("%1 (*.txt)").arg(i18n("Text File")));
     if (!filename.isEmpty()) {
         QFile f(filename);
         if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
             text = QString::fromUtf8(f.readAll());
         } else {
-            KMessageBox::error(this, i18n("Error during open text file: %1", f.errorString()),
-                               i18n("Open Text File"));
+            KMessageBox::error(this, i18n("Error during open text file: %1", f.errorString()), i18n("Open Text File"));
             return;
         }
         newNote(i18n("Note from file '%1'", filename), text);
@@ -496,12 +471,11 @@ void KNotesApp::updateNoteActions()
         action->setObjectName(QString::number(note->noteId()));
         connect(action, &QAction::triggered, this, &KNotesApp::slotShowNote);
         KIconEffect effect;
-        QPixmap icon
-            = effect.apply(qApp->windowIcon().pixmap(style()->pixelMetric(QStyle::PM_SmallIconSize)),
-                           KIconEffect::Colorize,
-                           1,
-                           note->palette().color(note->backgroundRole()),
-                           false);
+        QPixmap icon = effect.apply(qApp->windowIcon().pixmap(style()->pixelMetric(QStyle::PM_SmallIconSize)),
+                                    KIconEffect::Colorize,
+                                    1,
+                                    note->palette().color(note->backgroundRole()),
+                                    false);
 
         action->setIcon(icon);
         m_noteActions.append(action);
@@ -574,14 +548,14 @@ void KNotesApp::slotConfigUpdated()
 {
     updateNetworkListener();
     KNoteUtils::updateConfiguration();
-    //Force update if we disable or enable show number in systray
+    // Force update if we disable or enable show number in systray
     mTray->updateNumberOfNotes(mNotes.count());
 }
 
 void KNotesApp::slotCollectionChanged(const Akonadi::Collection &col, const QSet<QByteArray> &set)
 {
     if (set.contains("showfoldernotesattribute")) {
-        //qCDebug(KNOTES_LOG)<<" collection Changed "<<set<<" col "<<col;
+        // qCDebug(KNOTES_LOG)<<" collection Changed "<<set<<" col "<<col;
         if (col.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
             fetchNotesFromCollection(col);
         } else {
@@ -609,10 +583,7 @@ void KNotesApp::slotConfigureAccels()
     if (keys->exec()) {
         keys->save();
         // update GUI doc for new notes
-        m_noteGUI.setContent(
-            KXMLGUIFactory::readConfigFile(componentName() + QLatin1String("ui.rc"),
-                                           componentName())
-            );
+        m_noteGUI.setContent(KXMLGUIFactory::readConfigFile(componentName() + QLatin1String("ui.rc"), componentName()));
 
         if (actionCollection) {
             QHashIterator<Akonadi::Item::Id, KNote *> i(mNotes);
