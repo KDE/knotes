@@ -63,7 +63,7 @@ target_link_libraries(knotesprivate
     KF5::IconThemes
     PRIVATE
     KF5::PimCommon
-    KF5::KCMUtils Grantlee5::Templates KF5::NewStuff KF5::WindowSystem Qt::PrintSupport KF5::TextWidgets KF5::I18n notesharedprivate KF5::AkonadiSearchPIM KF5::AkonadiNotes KF5::PimTextEdit KF5::AkonadiWidgets KF5::GrantleeTheme
+    KF5::KCMUtils Grantlee5::Templates KF5::NewStuff KF5::WindowSystem Qt5::PrintSupport KF5::TextWidgets KF5::I18n notesharedprivate KF5::AkonadiSearchPIM KF5::AkonadiNotes KF5::PimTextEdit KF5::AkonadiWidgets KF5::GrantleeTheme
     )
 
 set_target_properties(knotesprivate
@@ -116,7 +116,7 @@ target_link_libraries(knotes
     KF5::AkonadiWidgets
     )
 if (Qt5X11Extras_FOUND)
-    target_link_libraries(knotes Qt::X11Extras ${X11_LIBRARIES})
+    target_link_libraries(knotes Qt5::X11Extras ${X11_LIBRARIES})
 endif()
 install(TARGETS knotes  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
