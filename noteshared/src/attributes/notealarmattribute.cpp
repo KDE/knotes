@@ -20,7 +20,7 @@ NoteAlarmAttribute::~NoteAlarmAttribute()
 
 NoteAlarmAttribute *NoteAlarmAttribute::clone() const
 {
-    auto *attr = new NoteAlarmAttribute();
+    auto attr = new NoteAlarmAttribute();
     attr->setDateTime(dateTime());
     return attr;
 }

@@ -28,7 +28,7 @@ NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
 {
     setWindowTitle(i18nc("@title:window", "Configure Notes Agent"));
     setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
-    auto *mainLayout = new QVBoxLayout(this);
+    auto mainLayout = new QVBoxLayout(this);
     setModal(true);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Help, this);
@@ -38,7 +38,7 @@ NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
     connect(buttonBox, &QDialogButtonBox::rejected, this, &NotesAgentSettingsDialog::reject);
     connect(okButton, &QPushButton::clicked, this, &NotesAgentSettingsDialog::slotOkClicked);
 
-    auto *tab = new QTabWidget(this);
+    auto tab = new QTabWidget(this);
 
     mNotify = new KNotifyConfigWidget(this);
     mNotify->setApplication(QStringLiteral("akonadi_notes_agent"));
@@ -64,7 +64,7 @@ NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
     QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
     aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"), i18nc("EMAIL OF TRANSLATORS", "Your emails"));
 
-    auto *helpMenu = new KHelpMenu(this, aboutData, true);
+    auto helpMenu = new KHelpMenu(this, aboutData, true);
     // Initialize menu
     QMenu *menu = helpMenu->menu();
     helpMenu->action(KHelpMenu::menuAboutApp)->setIcon(QIcon::fromTheme(QStringLiteral("knotes")));

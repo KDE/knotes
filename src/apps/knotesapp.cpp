@@ -74,7 +74,7 @@ KNotesApp::KNotesApp(QWidget *parent)
     mDebugAkonadiSearch = !qEnvironmentVariableIsEmpty("KDEPIM_DEBUGGING");
 
     if (KNotesGlobalConfig::self()->autoCreateResourceOnStart()) {
-        auto *creator = new NoteShared::LocalResourceCreator(this);
+        auto creator = new NoteShared::LocalResourceCreator(this);
         creator->createIfMissing();
     }
 
@@ -243,7 +243,7 @@ void KNotesApp::slotDeleteSelectedNotes()
     if (dlg->exec()) {
         const Akonadi::Item::List lst = dlg->selectedNotes();
         if (!lst.isEmpty()) {
-            auto *deleteJob = new Akonadi::ItemDeleteJob(lst, this);
+            auto deleteJob = new Akonadi::ItemDeleteJob(lst, this);
             connect(deleteJob, &KJob::result, this, &KNotesApp::slotNoteDeleteFinished);
         }
     }
@@ -293,7 +293,7 @@ void KNotesApp::slotRowInserted(const QModelIndex &parent, int start, int end)
 void KNotesApp::createNote(const Akonadi::Item &item)
 {
     if (item.hasPayload<KMime::Message::Ptr>() && !mNotes.contains(item.id())) {
-        auto *note = new KNote(m_noteGUI, item, mDebugAkonadiSearch);
+        auto note = new KNote(m_noteGUI, item, mDebugAkonadiSearch);
         mNotes.insert(item.id(), note);
         connect(note, &KNote::sigShowNextNote, this, &KNotesApp::slotWalkThroughNotes);
         connect(note, &KNote::sigRequestNewNote, this, [this] {
@@ -314,7 +314,7 @@ void KNotesApp::updateSystray()
 
 void KNotesApp::newNote(const QString &name, const QString &text)
 {
-    auto *job = new NoteShared::CreateNewNoteJob(this, this);
+    auto job = new NoteShared::CreateNewNoteJob(this, this);
     job->setRichText(KNotesGlobalConfig::self()->richText());
     job->setNote(name, text);
     job->start();
@@ -677,7 +677,7 @@ void KNotesApp::slotOpenFindDialog()
 
 void KNotesApp::fetchNotesFromCollection(const Akonadi::Collection &col)
 {
-    auto *job = new Akonadi::ItemFetchJob(col);
+    auto job = new Akonadi::ItemFetchJob(col);
     job->fetchScope().fetchFullPayload(true);
     job->fetchScope().fetchAttribute<NoteShared::NoteLockAttribute>();
     job->fetchScope().fetchAttribute<NoteShared::NoteDisplayAttribute>();
@@ -693,7 +693,7 @@ void KNotesApp::slotItemFetchFinished(KJob *job)
         return;
     }
 
-    auto *fetchJob = qobject_cast<Akonadi::ItemFetchJob *>(job);
+    auto fetchJob = qobject_cast<Akonadi::ItemFetchJob *>(job);
 
     const Akonadi::Item::List items = fetchJob->items();
     for (const Akonadi::Item &item : items) {

@@ -95,7 +95,7 @@ KNote::~KNote()
 void KNote::setDisplayDefaultValue()
 {
     KNoteUtils::setDefaultValue(mItem);
-    auto *job = new Akonadi::ItemModifyJob(mItem);
+    auto job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
     qCDebug(KNOTES_LOG) << "setDisplayDefaultValue slotNoteSaved(KJob*)";
 #endif
@@ -178,7 +178,7 @@ void KNote::saveNote(bool force, bool sync)
 #ifdef DEBUG_SAVE_NOTE
         qCDebug(KNOTES_LOG) << "save Note slotClose() slotNoteSaved(KJob*) : sync" << sync;
 #endif
-        auto *job = new Akonadi::ItemModifyJob(mItem);
+        auto job = new Akonadi::ItemModifyJob(mItem);
         if (sync) {
             job->exec();
         } else {
@@ -277,7 +277,7 @@ void KNote::slotUpdateReadOnly()
     }
     if (!mBlockSave) {
         updateAllAttributes();
-        auto *job = new Akonadi::ItemModifyJob(mItem);
+        auto job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
         qCDebug(KNOTES_LOG) << " void KNote::slotUpdateReadOnly() slotNoteSaved(KJob*)";
 #endif
@@ -340,7 +340,7 @@ void KNote::slotClose()
 {
     updateAllAttributes();
     m_editor->clearFocus();
-    auto *job = new Akonadi::ItemModifyJob(mItem);
+    auto job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
     qCDebug(KNOTES_LOG) << "slotClose() slotNoteSaved(KJob*)";
 #endif
@@ -370,7 +370,7 @@ void KNote::slotSetAlarm()
         if (needToModify) {
             // Verify it!
             saveNoteContent();
-            auto *job = new Akonadi::ItemModifyJob(mItem);
+            auto job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
             qCDebug(KNOTES_LOG) << "setAlarm() slotNoteSaved(KJob*)";
 #endif
@@ -391,7 +391,7 @@ void KNote::saveNoteContent()
     message->date(true)->setDateTime(QDateTime::currentDateTime());
     message->mainBodyPart()->fromUnicodeString(text().isEmpty() ? QStringLiteral(" ") : text());
 
-    auto *header = new KMime::Headers::Generic("X-Cursor-Position");
+    auto header = new KMime::Headers::Generic("X-Cursor-Position");
     header->fromUnicodeString(QString::number(m_editor->cursorPositionFromStart()), "utf-8");
     message->setHeader(header);
 
@@ -414,7 +414,7 @@ void KNote::slotPreferences()
         dialog->save(mItem, isRichText);
         m_editor->setAcceptRichText(isRichText);
         saveNoteContent();
-        auto *job = new Akonadi::ItemModifyJob(mItem);
+        auto job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
         qCDebug(KNOTES_LOG) << "slotPreference slotNoteSaved(KJob*)";
 #endif
@@ -584,7 +584,7 @@ void KNote::updateKeepAboveBelow(bool save)
     }
     if (!mBlockSave && save) {
         saveNoteContent();
-        auto *job = new Akonadi::ItemModifyJob(mItem);
+        auto job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
         qCDebug(KNOTES_LOG) << "slotUpdateKeepAboveBelow slotNoteSaved(KJob*)";
 #endif
@@ -615,7 +615,7 @@ void KNote::slotUpdateDesktopActions()
         act->setChecked(true);
         act->setData(NETWinInfo::OnAllDesktops);
     }
-    auto *separator = new QAction(m_toDesktop);
+    auto separator = new QAction(m_toDesktop);
     separator->setSeparator(true);
     m_toDesktop->addAction(separator);
     const int count = KWindowSystem::numberOfDesktops();
@@ -745,7 +745,7 @@ void KNote::createNoteHeader()
         }
     }
 
-    auto *headerLayout = new QBoxLayout(headerLayoutDirection);
+    auto headerLayout = new QBoxLayout(headerLayoutDirection);
 
     // create header label
     m_label = new QLabel(this);
@@ -790,7 +790,7 @@ void KNote::createNoteFooter()
     }
 
     // create size grip
-    auto *gripLayout = new QHBoxLayout;
+    auto gripLayout = new QHBoxLayout;
     m_grip = new QSizeGrip(this);
     m_grip->setFixedSize(m_grip->sizeHint());
 
@@ -1050,7 +1050,7 @@ void KNote::showEvent(QShowEvent *)
         saveNoteContent();
         attr->setIsHidden(false);
         if (!mBlockSave) {
-            auto *job = new Akonadi::ItemModifyJob(mItem);
+            auto job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
             qCDebug(KNOTES_LOG) << "showEvent slotNoteSaved(KJob*)";
 #endif
@@ -1094,7 +1094,7 @@ void KNote::dropEvent(QDropEvent *e)
         auto *attr = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
         saveNoteContent();
         attr->setBackgroundColor(bg);
-        auto *job = new Akonadi::ItemModifyJob(mItem);
+        auto job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
         qCDebug(KNOTES_LOG) << "dropEvent slotNoteSaved(KJob*)";
 #endif
@@ -1156,7 +1156,7 @@ bool KNote::eventFilter(QObject *o, QEvent *ev)
 
     if (o == m_editor) {
         if (ev->type() == QEvent::FocusOut) {
-            auto *fe = static_cast<QFocusEvent *>(ev);
+            auto fe = static_cast<QFocusEvent *>(ev);
             if (fe->reason() != Qt::PopupFocusReason && fe->reason() != Qt::MouseFocusReason) {
                 updateFocus();
                 if (!mBlockSave) {

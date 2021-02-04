@@ -25,7 +25,7 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(i18nc("@title:window", "Select notes"));
-    auto *mainLayout = new QVBoxLayout(this);
+    auto mainLayout = new QVBoxLayout(this);
     mButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     QPushButton *okButton = mButtonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
@@ -35,7 +35,7 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     connect(mButtonBox, &QDialogButtonBox::accepted, this, &KNotePrintSelectedNotesDialog::accept);
     connect(mButtonBox, &QDialogButtonBox::rejected, this, &KNotePrintSelectedNotesDialog::reject);
     QWidget *w = new QWidget;
-    auto *vbox = new QVBoxLayout;
+    auto vbox = new QVBoxLayout;
     vbox->setContentsMargins(0, 0, 0, 0);
     w->setLayout(vbox);
 
@@ -43,7 +43,7 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     mListNotes->setSelectionMode(QAbstractItemView::ExtendedSelection);
     vbox->addWidget(mListNotes);
 
-    auto *lay = new QHBoxLayout;
+    auto lay = new QHBoxLayout;
     lay->setContentsMargins(0, 0, 0, 0);
     vbox->addLayout(lay);
     QLabel *lab = new QLabel(i18n("Printing theme:"));
@@ -82,7 +82,7 @@ void KNotePrintSelectedNotesDialog::setNotes(const QHash<Akonadi::Item::Id, KNot
     QHashIterator<Akonadi::Item::Id, KNote *> i(notes);
     while (i.hasNext()) {
         i.next();
-        auto *item = new QListWidgetItem(mListNotes);
+        auto item = new QListWidgetItem(mListNotes);
         item->setText(i.value()->name());
         item->setToolTip(i.value()->text());
         item->setData(AkonadiId, i.key());

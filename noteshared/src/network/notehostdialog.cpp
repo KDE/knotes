@@ -29,7 +29,7 @@ NoteHostDialog::NoteHostDialog(const QString &caption, QWidget *parent)
 {
     setWindowTitle(caption);
 
-    auto *mainLayout = new QVBoxLayout(this);
+    auto mainLayout = new QVBoxLayout(this);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     mOkButton = buttonBox->button(QDialogButtonBox::Ok);

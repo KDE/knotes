@@ -32,7 +32,7 @@
 KNoteDisplayConfig::KNoteDisplayConfig(QWidget *parent)
     : KCModule(parent)
 {
-    auto *lay = new QVBoxLayout(this);
+    auto lay = new QVBoxLayout(this);
     QWidget *w = new KNoteDisplayConfigWidget(true);
     lay->addWidget(w);
     lay->addStretch();
@@ -53,7 +53,7 @@ void KNoteDisplayConfig::save()
 KNoteEditorConfig::KNoteEditorConfig(QWidget *parent)
     : KCModule(parent)
 {
-    auto *lay = new QVBoxLayout(this);
+    auto lay = new QVBoxLayout(this);
     QWidget *w = new KNoteEditorConfigWidget(this);
     lay->addWidget(w);
     lay->addStretch();
@@ -74,7 +74,7 @@ void KNoteEditorConfig::load()
 KNoteMiscConfig::KNoteMiscConfig(QWidget *parent)
     : KCModule(parent)
 {
-    auto *lay = new QVBoxLayout(this);
+    auto lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
 
     QCheckBox *kcfg_SystemTrayShowNotes = new QCheckBox(i18n("Show number of notes in tray icon"), this);
@@ -82,7 +82,7 @@ KNoteMiscConfig::KNoteMiscConfig(QWidget *parent)
     kcfg_SystemTrayShowNotes->setObjectName(QStringLiteral("kcfg_SystemTrayShowNotes"));
     lay->addWidget(kcfg_SystemTrayShowNotes);
 
-    auto *hbox = new QHBoxLayout;
+    auto hbox = new QHBoxLayout;
     lay->addLayout(hbox);
     QLabel *label_DefaultTitle = new QLabel(i18n("Default Title:"), this);
     hbox->addWidget(label_DefaultTitle);
@@ -141,10 +141,10 @@ void KNoteMiscConfig::slotHelpLinkClicked(const QString &)
 KNotePrintConfig::KNotePrintConfig(QWidget *parent)
     : KCModule(parent)
 {
-    auto *lay = new QVBoxLayout(this);
+    auto lay = new QVBoxLayout(this);
     QWidget *w = new QWidget(this);
     lay->addWidget(w);
-    auto *layout = new QGridLayout(w);
+    auto layout = new QGridLayout(w);
     layout->setContentsMargins(0, 0, 0, 0);
 
     QLabel *label_PrintAction = new QLabel(i18n("Theme:"), this);
@@ -155,7 +155,7 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent)
     label_PrintAction->setBuddy(mSelectTheme);
     layout->addWidget(mSelectTheme, 0, 1);
     if (KAuthorized::authorize(QStringLiteral("ghns"))) {
-        auto *getNewTheme = new QToolButton;
+        auto getNewTheme = new QToolButton;
         getNewTheme->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
         getNewTheme->setToolTip(i18n("Download new printing themes"));
         connect(getNewTheme, &QToolButton::clicked, this, &KNotePrintConfig::slotDownloadNewThemes);
@@ -201,7 +201,7 @@ void KNotePrintConfig::defaults()
 KNoteCollectionConfig::KNoteCollectionConfig(QWidget *parent)
     : KCModule(parent)
 {
-    auto *lay = new QHBoxLayout(this);
+    auto lay = new QHBoxLayout(this);
     mCollectionConfigWidget = new KNoteCollectionConfigWidget;
     lay->addWidget(mCollectionConfigWidget);
     connect(mCollectionConfigWidget, &KNoteCollectionConfigWidget::emitChanged, this, &KNoteCollectionConfig::markAsChanged);

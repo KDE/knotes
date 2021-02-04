@@ -38,9 +38,9 @@ NotesAgentAlarmDialog::NotesAgentAlarmDialog(QWidget *parent)
     setWindowTitle(i18nc("@title:window", "Alarm"));
     setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
     setAttribute(Qt::WA_DeleteOnClose);
-    auto *mainLayout = new QVBoxLayout(this);
+    auto mainLayout = new QVBoxLayout(this);
 
-    auto *vbox = new QVBoxLayout;
+    auto vbox = new QVBoxLayout;
     mainLayout->addLayout(vbox);
 
     mCurrentDateTime = new QLabel(this);
@@ -84,7 +84,7 @@ void NotesAgentAlarmDialog::slotCustomContextMenuRequested(const QPoint &pos)
         return;
     }
     Q_UNUSED(pos)
-    auto *entriesContextMenu = new QMenu(this);
+    auto entriesContextMenu = new QMenu(this);
     QAction *removeAlarm = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")), i18n("Remove Alarm"), entriesContextMenu);
     connect(removeAlarm, &QAction::triggered, this, &NotesAgentAlarmDialog::slotRemoveAlarm);
     QAction *showNote = new QAction(i18n("Show Note..."), entriesContextMenu);
@@ -134,7 +134,7 @@ void NotesAgentAlarmDialog::slotShowNote()
     // deleted on close
     const Akonadi::Item::Id id = mListWidget->currentItemId();
     if (id != -1) {
-        auto *dlg = new NotesAgentNoteDialog;
+        auto dlg = new NotesAgentNoteDialog;
         dlg->setNoteId(id);
         dlg->show();
     }
@@ -146,7 +146,7 @@ void NotesAgentAlarmDialog::slotRemoveAlarm()
         const Akonadi::Item::Id id = mListWidget->currentItemId();
         if (id != -1) {
             Akonadi::Item item(id);
-            auto *job = new Akonadi::ItemFetchJob(item, this);
+            auto job = new Akonadi::ItemFetchJob(item, this);
             job->fetchScope().fetchAttribute<NoteShared::NoteAlarmAttribute>();
             connect(job, &Akonadi::ItemFetchJob::result, this, &NotesAgentAlarmDialog::slotFetchItem);
         }
@@ -159,12 +159,12 @@ void NotesAgentAlarmDialog::slotFetchItem(KJob *job)
         qCDebug(NOTESAGENT_LOG) << "fetch item failed " << job->errorString();
         return;
     }
-    auto *itemFetchJob = static_cast<Akonadi::ItemFetchJob *>(job);
+    auto itemFetchJob = static_cast<Akonadi::ItemFetchJob *>(job);
     Akonadi::Item::List items = itemFetchJob->items();
     if (!items.isEmpty()) {
         Akonadi::Item item = items.first();
         item.removeAttribute<NoteShared::NoteAlarmAttribute>();
-        auto *modify = new Akonadi::ItemModifyJob(item);
+        auto modify = new Akonadi::ItemModifyJob(item);
         connect(modify, &Akonadi::ItemModifyJob::result, this, &NotesAgentAlarmDialog::slotModifyItem);
     }
 }
@@ -182,7 +182,7 @@ void NotesAgentAlarmDialog::slotModifyAlarm()
     Akonadi::Item::Id id = mListWidget->currentItemId();
     if (id != -1) {
         Akonadi::Item item(id);
-        auto *job = new Akonadi::ItemFetchJob(item, this);
+        auto job = new Akonadi::ItemFetchJob(item, this);
         job->fetchScope().fetchFullPayload(true);
         job->fetchScope().fetchAttribute<NoteShared::NoteAlarmAttribute>();
         connect(job, &Akonadi::ItemFetchJob::result, this, &NotesAgentAlarmDialog::slotFetchAlarmItem);
@@ -195,7 +195,7 @@ void NotesAgentAlarmDialog::slotFetchAlarmItem(KJob *job)
         qCDebug(NOTESAGENT_LOG) << "fetch item failed " << job->errorString();
         return;
     }
-    auto *itemFetchJob = static_cast<Akonadi::ItemFetchJob *>(job);
+    auto itemFetchJob = static_cast<Akonadi::ItemFetchJob *>(job);
     Akonadi::Item::List items = itemFetchJob->items();
     if (!items.isEmpty()) {
         Akonadi::Item item = items.first();
@@ -221,7 +221,7 @@ void NotesAgentAlarmDialog::slotFetchAlarmItem(KJob *job)
                 } else {
                     item.removeAttribute<NoteShared::NoteAlarmAttribute>();
                 }
-                auto *modify = new Akonadi::ItemModifyJob(item);
+                auto modify = new Akonadi::ItemModifyJob(item);
                 connect(modify, &Akonadi::ItemModifyJob::result, this, &NotesAgentAlarmDialog::slotModifyItem);
             }
             delete dlg;

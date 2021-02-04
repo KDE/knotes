@@ -19,20 +19,20 @@ KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(i18nc("@title:window", "Select theme"));
-    auto *mainLayout = new QVBoxLayout(this);
+    auto mainLayout = new QVBoxLayout(this);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
 
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    auto *user1Button = new QPushButton;
+    auto user1Button = new QPushButton;
     buttonBox->addButton(user1Button, QDialogButtonBox::ActionRole);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &KNotePrintSelectThemeDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNotePrintSelectThemeDialog::reject);
 
     QWidget *w = new QWidget;
-    auto *lay = new QHBoxLayout;
+    auto lay = new QHBoxLayout;
     w->setLayout(lay);
 
     QLabel *lab = new QLabel(i18n("Themes:"));

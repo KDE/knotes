@@ -18,7 +18,7 @@
 KNoteEditorConfigWidget::KNoteEditorConfigWidget(QWidget *parent)
     : QWidget(parent)
 {
-    auto *layout = new QGridLayout(this);
+    auto layout = new QGridLayout(this);
 
     QLabel *label_TabSize = new QLabel(i18n("&Tab size:"), this);
     layout->addWidget(label_TabSize, 0, 0, 1, 2);

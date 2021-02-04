@@ -71,7 +71,7 @@ void NoteUtils::sendToNetwork(QWidget *parent, const QString &title, const QStri
         // Send the note
         auto socket = new QSslSocket;
         socket->connectToHost(host, port);
-        auto *sender = new NoteShared::NotesNetworkSender(socket);
+        auto sender = new NoteShared::NotesNetworkSender(socket);
         sender->setSenderId(NoteShared::NoteSharedGlobalConfig::senderID());
         sender->setNote(title, message); // FIXME: plainText ??
     }

@@ -46,7 +46,7 @@ bool KNotesIconView::event(QEvent *e)
     if (e->type() != QEvent::ToolTip) {
         return QListWidget::event(e);
     }
-    auto *he = static_cast<QHelpEvent *>(e);
+    auto he = static_cast<QHelpEvent *>(e);
 
     QPoint pnt = viewport()->mapFromGlobal(mapToGlobal(he->pos()));
 
@@ -56,7 +56,7 @@ bool KNotesIconView::event(QEvent *e)
 
     QListWidgetItem *item = itemAt(pnt);
     if (item) {
-        auto *noteItem = static_cast<KNotesIconViewItem *>(item);
+        auto noteItem = static_cast<KNotesIconViewItem *>(item);
         NoteShared::NoteUtils noteUtils;
         const QString toolTip = noteUtils.createToolTip(noteItem->item());
         QToolTip::showText(he->globalPos(), toolTip, viewport(), visualItemRect(item));
@@ -76,7 +76,7 @@ void KNotesIconView::mousePressEvent(QMouseEvent *e)
 
 void KNotesIconView::addNote(const Akonadi::Item &item)
 {
-    auto *iconView = new KNotesIconViewItem(item, this);
+    auto iconView = new KNotesIconViewItem(item, this);
     mNoteList.insert(item.id(), iconView);
 }
 
@@ -142,7 +142,7 @@ void KNotesIconViewItem::setReadOnly(bool b, bool save)
         }
     }
     if (save) {
-        auto *job = new Akonadi::ItemModifyJob(mItem);
+        auto job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
         qCDebug(KNOTES_KONTACT_PLUGIN_LOG) << " KNotesIconViewItem::setReadOnly savenote";
 #endif
@@ -153,7 +153,7 @@ void KNotesIconViewItem::setReadOnly(bool b, bool save)
 void KNotesIconViewItem::setDisplayDefaultValue()
 {
     KNoteUtils::setDefaultValue(mItem);
-    auto *job = new Akonadi::ItemModifyJob(mItem);
+    auto job = new Akonadi::ItemModifyJob(mItem);
     connect(job, &Akonadi::ItemModifyJob::result, this, &KNotesIconViewItem::slotNoteSaved);
 }
 
@@ -273,7 +273,7 @@ void KNotesIconViewItem::saveNoteContent(const QString &subject, const QString &
     }
 
     if (position >= 0) {
-        auto *header = new KMime::Headers::Generic("X-Cursor-Position");
+        auto header = new KMime::Headers::Generic("X-Cursor-Position");
         header->fromUnicodeString(QString::number(position), "utf-8");
         message->setHeader(header);
     }
@@ -281,7 +281,7 @@ void KNotesIconViewItem::saveNoteContent(const QString &subject, const QString &
     message->assemble();
 
     mItem.setPayload(message);
-    auto *job = new Akonadi::ItemModifyJob(mItem);
+    auto job = new Akonadi::ItemModifyJob(mItem);
 #ifdef DEBUG_SAVE_NOTE
     qCDebug(KNOTES_KONTACT_PLUGIN_LOG) << " KNotesIconViewItem::saveNoteContent savenote";
 #endif

@@ -89,14 +89,14 @@ QHash<Akonadi::Collection, bool> KNoteCollectionDisplayProxyModel::displayCollec
 KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     : QWidget(parent)
 {
-    auto *mainLayout = new QHBoxLayout(this);
+    auto mainLayout = new QHBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
 
-    auto *tabWidget = new QTabWidget;
+    auto tabWidget = new QTabWidget;
     mainLayout->addWidget(tabWidget);
 
     QWidget *collectionWidget = new QWidget;
-    auto *vbox = new QVBoxLayout;
+    auto vbox = new QVBoxLayout;
     collectionWidget->setLayout(vbox);
     tabWidget->addTab(collectionWidget, i18n("Folders"));
 
@@ -113,7 +113,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     // Set the model to show only collections, not items.
     mModel->setItemPopulationStrategy(Akonadi::EntityTreeModel::NoItemPopulation);
 
-    auto *mimeTypeProxy = new Akonadi::CollectionFilterProxyModel(this);
+    auto mimeTypeProxy = new Akonadi::CollectionFilterProxyModel(this);
     mimeTypeProxy->setExcludeVirtualCollections(true);
     mimeTypeProxy->addMimeTypeFilters(QStringList() << Akonadi::NoteUtils::noteMimeType());
     mimeTypeProxy->setSourceModel(mModel);
@@ -130,7 +130,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     mCollectionFilter->setDynamicSortFilter(true);
     mCollectionFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
 
-    auto *searchLine = new QLineEdit(this);
+    auto searchLine = new QLineEdit(this);
     searchLine->setPlaceholderText(i18n("Search..."));
     searchLine->setClearButtonEnabled(true);
     connect(searchLine, &QLineEdit::textChanged, this, &KNoteCollectionConfigWidget::slotSetCollectionFilter);
@@ -146,7 +146,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     mFolderView->setModel(mCollectionFilter);
     connect(mFolderView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &KNoteCollectionConfigWidget::slotUpdateButtons);
 
-    auto *hbox = new QHBoxLayout;
+    auto hbox = new QHBoxLayout;
     vbox->addLayout(hbox);
 
     QPushButton *button = new QPushButton(i18n("&Select All"), this);
@@ -176,10 +176,10 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     vbox->addWidget(mDefaultSaveFolder);
 
     QWidget *accountWidget = new QWidget;
-    auto *vboxAccountWidget = new QVBoxLayout;
+    auto vboxAccountWidget = new QVBoxLayout;
     accountWidget->setLayout(vboxAccountWidget);
 
-    auto *manageAccountWidget = new Akonadi::ManageAccountWidget(this);
+    auto manageAccountWidget = new Akonadi::ManageAccountWidget(this);
     manageAccountWidget->setDescriptionLabelText(i18n("Notes accounts"));
     vboxAccountWidget->addWidget(manageAccountWidget);
 
@@ -226,7 +226,7 @@ void KNoteCollectionConfigWidget::slotRenameCollection()
             col.setName(name);
         }
 
-        auto *job = new Akonadi::CollectionModifyJob(col, this);
+        auto job = new Akonadi::CollectionModifyJob(col, this);
         connect(job, &Akonadi::CollectionModifyJob::result, this, &KNoteCollectionConfigWidget::slotCollectionModifyFinished);
         job->start();
     }
@@ -314,7 +314,7 @@ void KNoteCollectionConfigWidget::updateCollectionsRecursive()
 
 void KNoteCollectionConfigWidget::slotModifyJobDone(KJob *job)
 {
-    auto *modifyJob = qobject_cast<Akonadi::CollectionModifyJob *>(job);
+    auto modifyJob = qobject_cast<Akonadi::CollectionModifyJob *>(job);
     if (modifyJob && job->error()) {
         if (job->property("AttributeAdded").toBool()) {
             qCWarning(KNOTES_MODULES_LOG) << "Failed to append ShowFolderNotesAttribute to collection" << modifyJob->collection().id() << ":"

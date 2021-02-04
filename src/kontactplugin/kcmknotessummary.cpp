@@ -57,7 +57,7 @@ void KCMKNotesSummary::modified()
 
 void KCMKNotesSummary::initGUI()
 {
-    auto *layout = new QVBoxLayout(this);
+    auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
 
     mCheckedCollectionWidget = new PimCommon::CheckedCollectionWidget(Akonadi::NoteUtils::noteMimeType());

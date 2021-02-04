@@ -17,7 +17,7 @@ KNotesKeyDialog::KNotesKeyDialog(KActionCollection *globals, QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(i18nc("@title:window", "Configure Shortcuts"));
-    auto *mainLayout = new QVBoxLayout(this);
+    auto mainLayout = new QVBoxLayout(this);
     m_keyChooser = new KShortcutsEditor(globals, this);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::RestoreDefaults, this);

@@ -35,11 +35,11 @@ NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)
     : QWidget(parent)
     , d(new NoteShared::NoteNetworkConfigWidgetPrivate)
 {
-    auto *layout = new QVBoxLayout(this);
+    auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
 
     QGroupBox *incoming = new QGroupBox(i18n("Incoming Notes"));
-    auto *tmpLayout = new QHBoxLayout;
+    auto tmpLayout = new QHBoxLayout;
 
     d->mTmpChkB = new QCheckBox(i18n("Accept incoming notes"));
     d->mTmpChkB->setObjectName(QStringLiteral("kcfg_ReceiveNotes"));
@@ -99,9 +99,9 @@ void NoteNetworkConfigWidget::load()
 NoteNetworkConfig::NoteNetworkConfig(QWidget *parent)
     : KCModule(parent)
 {
-    auto *lay = new QVBoxLayout(this);
+    auto lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
-    auto *noteNetworkConfigWidget = new NoteNetworkConfigWidget(this);
+    auto noteNetworkConfigWidget = new NoteNetworkConfigWidget(this);
     lay->addWidget(noteNetworkConfigWidget);
     addConfig(NoteShared::NoteSharedGlobalConfig::self(), noteNetworkConfigWidget);
     load();

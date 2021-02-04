@@ -21,7 +21,7 @@
 KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *parent)
     : QWidget(parent)
 {
-    auto *layout = new QGridLayout(this);
+    auto layout = new QGridLayout(this);
 
     QLabel *label_FgColor = new QLabel(i18n("&Text color:"), this);
     label_FgColor->setObjectName(QStringLiteral("label_FgColor"));

@@ -76,7 +76,7 @@ KNotesPart::KNotesPart(QObject *parent)
     Akonadi::ControlGui::widgetNeedsAkonadi(widget());
 
     if (KNotesGlobalConfig::self()->autoCreateResourceOnStart()) {
-        auto *creator = new NoteShared::LocalResourceCreator(this);
+        auto creator = new NoteShared::LocalResourceCreator(this);
         creator->createIfMissing();
     }
 
@@ -304,7 +304,7 @@ void KNotesPart::printSelectedNotes(bool preview)
 
 void KNotesPart::newNote(const QString &name, const QString &text)
 {
-    auto *job = new NoteShared::CreateNewNoteJob(this, widget());
+    auto job = new NoteShared::CreateNewNoteJob(this, widget());
     job->setRichText(KNotesGlobalConfig::self()->richText());
     job->setNote(name, text);
     job->start();
@@ -408,7 +408,7 @@ void KNotesPart::killSelectedNotes()
     QList<KNotesIconViewItem *> items;
     items.reserve(lst.count());
     for (QListWidgetItem *item : lst) {
-        auto *knivi = static_cast<KNotesIconViewItem *>(item);
+        auto knivi = static_cast<KNotesIconViewItem *>(item);
         items.append(knivi);
     }
 
@@ -426,7 +426,7 @@ void KNotesPart::killSelectedNotes()
             }
         }
         if (!lst.isEmpty()) {
-            auto *job = new Akonadi::ItemDeleteJob(lst);
+            auto job = new Akonadi::ItemDeleteJob(lst);
             connect(job, &Akonadi::ItemDeleteJob::result, this, &KNotesPart::slotDeleteNotesFinished);
         }
     }
@@ -444,7 +444,7 @@ void KNotesPart::popupRMB(QListWidgetItem *item, const QPoint &pos, const QPoint
 {
     Q_UNUSED(item)
 
-    auto *contextMenu = new QMenu(widget());
+    auto contextMenu = new QMenu(widget());
     if (mNotesWidget->notesView()->itemAt(pos)) {
         contextMenu->addAction(mNewNote);
         const bool uniqueNoteSelected = (mNotesWidget->notesView()->selectedItems().count() == 1);
@@ -497,7 +497,7 @@ void KNotesPart::editNote(Akonadi::Item::Id id)
 
 void KNotesPart::editNote(QListWidgetItem *item)
 {
-    auto *knotesItem = static_cast<KNotesIconViewItem *>(item);
+    auto knotesItem = static_cast<KNotesIconViewItem *>(item);
     QPointer<KNoteEditDialog> dlg = new KNoteEditDialog(knotesItem->readOnly(), widget());
     dlg->setTitle(knotesItem->realName());
     dlg->setText(knotesItem->description());
@@ -527,7 +527,7 @@ void KNotesPart::editNote()
 
 void KNotesPart::renameNote()
 {
-    auto *knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
+    auto knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
 
     const QString oldName = knoteItem->realName();
     bool ok = false;
@@ -564,7 +564,7 @@ void KNotesPart::slotNotePreferences()
     if (!mNotesWidget->notesView()->currentItem()) {
         return;
     }
-    auto *knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
+    auto knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
     QPointer<KNoteSimpleConfigDialog> dialog = new KNoteSimpleConfigDialog(knoteItem->realName(), widget());
     Akonadi::Item item = knoteItem->item();
     dialog->load(item, knoteItem->isRichText());
@@ -575,7 +575,7 @@ void KNotesPart::slotNotePreferences()
         KMime::Message::Ptr message = item.payload<KMime::Message::Ptr>();
         message->contentType(true)->setMimeType(isRichText ? "text/html" : "text/plain");
         message->assemble();
-        auto *job = new Akonadi::ItemModifyJob(item);
+        auto job = new Akonadi::ItemModifyJob(item);
         connect(job, &Akonadi::ItemModifyJob::result, this, &KNotesPart::slotNoteSaved);
     }
     delete dialog;
@@ -604,7 +604,7 @@ void KNotesPart::slotMail()
     if (!mNotesWidget->notesView()->currentItem()) {
         return;
     }
-    auto *knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
+    auto knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
     NoteShared::NoteUtils noteUtils;
     noteUtils.sendToMail(widget(), knoteItem->realName(), knoteItem->description());
 }
@@ -614,7 +614,7 @@ void KNotesPart::slotSendToNetwork()
     if (!mNotesWidget->notesView()->currentItem()) {
         return;
     }
-    auto *knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
+    auto knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
     NoteShared::NoteUtils noteUtils;
     noteUtils.sendToNetwork(widget(), knoteItem->realName(), knoteItem->description());
 }
@@ -638,7 +638,7 @@ void KNotesPart::slotSetAlarm()
     if (!mNotesWidget->notesView()->currentItem()) {
         return;
     }
-    auto *knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
+    auto knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
     QPointer<NoteShared::NoteAlarmDialog> dlg = new NoteShared::NoteAlarmDialog(knoteItem->realName(), widget());
     Akonadi::Item item = knoteItem->item();
     if (item.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
@@ -658,7 +658,7 @@ void KNotesPart::slotSetAlarm()
             }
         }
         if (needToModify) {
-            auto *job = new Akonadi::ItemModifyJob(item);
+            auto job = new Akonadi::ItemModifyJob(item);
             connect(job, &Akonadi::ItemModifyJob::result, this, &KNotesPart::slotNoteSaved);
         }
     }
@@ -684,7 +684,7 @@ void KNotesPart::slotSaveAs()
     if (!mNotesWidget->notesView()->currentItem()) {
         return;
     }
-    auto *knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
+    auto knoteItem = static_cast<KNotesIconViewItem *>(mNotesWidget->notesView()->currentItem());
 
     QStringList filters;
     if (knoteItem->isRichText()) {
@@ -731,7 +731,7 @@ void KNotesPart::slotUpdateReadOnly()
     if (!item) {
         return;
     }
-    auto *knoteItem = static_cast<KNotesIconViewItem *>(item);
+    auto knoteItem = static_cast<KNotesIconViewItem *>(item);
 
     const bool readOnly = mReadOnly->isChecked();
 
@@ -789,7 +789,7 @@ void KNotesPart::slotCollectionChanged(const Akonadi::Collection &col, const QSe
 
 void KNotesPart::fetchNotesFromCollection(const Akonadi::Collection &col)
 {
-    auto *job = new Akonadi::ItemFetchJob(col);
+    auto job = new Akonadi::ItemFetchJob(col);
     job->fetchScope().fetchFullPayload(true);
     job->fetchScope().fetchAttribute<NoteShared::NoteLockAttribute>();
     job->fetchScope().fetchAttribute<NoteShared::NoteDisplayAttribute>();
@@ -805,7 +805,7 @@ void KNotesPart::slotItemFetchFinished(KJob *job)
         return;
     }
 
-    auto *fetchJob = qobject_cast<Akonadi::ItemFetchJob *>(job);
+    auto fetchJob = qobject_cast<Akonadi::ItemFetchJob *>(job);
 
     const Akonadi::Item::List items = fetchJob->items();
     for (const Akonadi::Item &item : items) {

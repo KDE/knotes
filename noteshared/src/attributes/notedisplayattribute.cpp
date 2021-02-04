@@ -40,7 +40,7 @@ NoteDisplayAttribute::~NoteDisplayAttribute()
 
 NoteDisplayAttribute *NoteDisplayAttribute::clone() const
 {
-    auto *attr = new NoteDisplayAttribute();
+    auto attr = new NoteDisplayAttribute();
     attr->setBackgroundColor(backgroundColor());
     attr->setForegroundColor(foregroundColor());
     attr->setSize(size());
