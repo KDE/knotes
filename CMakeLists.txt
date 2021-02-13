@@ -4,7 +4,7 @@ project(knotes VERSION ${PIM_VERSION})
 set(RELEASE_SERVICE_VERSION "21.03.80")
 
 
-set(KF5_MIN_VERSION "5.78.0")
+set(KF5_MIN_VERSION "5.79.0")
 
 find_package(ECM ${KF5_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${knotes_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH})
@@ -18,9 +18,7 @@ include(GenerateExportHeader)
 include(ECMGenerateHeaders)
 
 include(FeatureSummary)
-if(ECM_VERSION VERSION_GREATER_EQUAL 5.79)
-   include(KDEGitCommitHooks)
-endif()
+include(KDEGitCommitHooks)
 include(CheckFunctionExists)
 include(ECMGeneratePriFile)
 
@@ -143,7 +141,5 @@ ecm_qt_install_logging_categories(
         )
 
 add_subdirectory(doc)
-if(ECM_VERSION VERSION_GREATER_EQUAL 5.79)
-    kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)
-endif()
+kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
