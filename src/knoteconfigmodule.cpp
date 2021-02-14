@@ -18,7 +18,7 @@
 #include "configdialog/knoteeditorconfigwidget.h"
 #include <KAuthorized>
 #include <KLocalizedString>
-#include <KNS3/DownloadDialog>
+#include <KNewStuff3/KNS3/QtQuickDialogWrapper>
 
 #include <QCheckBox>
 #include <QLabel>
@@ -167,14 +167,9 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent)
 
 void KNotePrintConfig::slotDownloadNewThemes()
 {
-    QPointer<KNS3::DownloadDialog> downloadThemesDialog = new KNS3::DownloadDialog(QStringLiteral("knotes_printing_theme.knsrc"));
-
-    if (downloadThemesDialog->exec()) {
-        if (!downloadThemesDialog->changedEntries().isEmpty()) {
-            mSelectTheme->loadThemes();
-        }
+    if (!KNS3::QtQuickDialogWrapper(QStringLiteral("kwinswitcher.knsrc")).exec().isEmpty()) {
+        mSelectTheme->loadThemes();
     }
-    delete downloadThemesDialog;
 }
 
 void KNotePrintConfig::slotThemeChanged()
