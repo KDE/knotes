@@ -74,6 +74,7 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
     lst << obj;
     const QString html = grantleePrint.notesToHtml(lst);
     QCOMPARE(html, result);
+    qDeleteAll(lst);
 }
 
 QTEST_GUILESS_MAIN(KNotesGrantleePrintTest)
