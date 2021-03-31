@@ -6,8 +6,7 @@
  SPDX-License-Identifier: GPL-2.0-or-later
 *******************************************************************/
 
-#ifndef NOTEALARMDIALOG_H
-#define NOTEALARMDIALOG_H
+#pragma once
 
 #include "noteshared_export.h"
 #include <QDialog>
@@ -31,4 +30,3 @@ private:
 };
 }
 
-#endif

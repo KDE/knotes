@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTESAGENT_H
-#define NOTESAGENT_H
+#pragma once
 
 #include <AkonadiAgentBase/agentbase.h>
 class NotesManager;
@@ -47,4 +46,3 @@ private:
     NotesManager *mNotesManager = nullptr;
 };
 
-#endif // NOTESAGENT_H

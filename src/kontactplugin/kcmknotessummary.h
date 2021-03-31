@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KCMKNOTESSUMMARY_H
-#define KCMKNOTESSUMMARY_H
+#pragma once
 
 #include <KCModule>
 #include <KViewStateMaintainer>
@@ -42,4 +41,3 @@ private:
     KViewStateMaintainer<Akonadi::ETMViewStateSaver> *mModelState = nullptr;
 };
 
-#endif

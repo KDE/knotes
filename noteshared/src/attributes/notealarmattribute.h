@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTE_ALARM_ATTRIBUTE_H
-#define NOTE_ALARM_ATTRIBUTE_H
+#pragma once
 
 #include "noteshared_export.h"
 #include <AkonadiCore/Attribute>
@@ -36,4 +35,3 @@ private:
 };
 }
 
-#endif

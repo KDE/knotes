@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTELISTWIDGET_H
-#define NOTELISTWIDGET_H
+#pragma once
 
 #include "noteshared_export.h"
 #include <AkonadiCore/Item>
@@ -37,4 +36,3 @@ private:
 };
 }
 
-#endif // NOTELISTWIDGET_H

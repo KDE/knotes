@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KNOTEPRINTSELECTTHEMECOMBOBOX_H
-#define KNOTEPRINTSELECTTHEMECOMBOBOX_H
+#pragma once
 
 #include "knotes_export.h"
 #include <QComboBox>
@@ -23,4 +22,3 @@ public:
     void selectDefaultTheme();
 };
 
-#endif // KNOTEPRINTSELECTTHEMECOMBOBOX_H

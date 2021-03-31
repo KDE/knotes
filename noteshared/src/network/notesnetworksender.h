@@ -8,8 +8,7 @@
  SPDX-License-Identifier: GPL-2.0-or-later
 *******************************************************************/
 
-#ifndef NOTESNETWORKSENDER_H
-#define NOTESNETWORKSENDER_H
+#pragma once
 
 #include <QTcpSocket>
 
@@ -39,4 +38,3 @@ private:
 };
 }
 
-#endif

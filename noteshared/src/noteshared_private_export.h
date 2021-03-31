@@ -4,8 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef NOTESHAREDPRIVATE_EXPORT_H
-#define NOTESHAREDPRIVATE_EXPORT_H
+#pragma once
 
 #include "noteshared_export.h"
 
@@ -18,4 +17,3 @@
 #define NOTESHARED_TESTS_EXPORT
 #endif
 
-#endif

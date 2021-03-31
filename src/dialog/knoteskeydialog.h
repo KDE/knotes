@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTESKEYDIALOG_H
-#define KNOTESKEYDIALOG_H
+#pragma once
 
 #include <QDialog>
 class KActionCollection;
@@ -25,4 +24,3 @@ private:
     KShortcutsEditor *m_keyChooser = nullptr;
 };
 
-#endif // KNOTESKEYDIALOG_H

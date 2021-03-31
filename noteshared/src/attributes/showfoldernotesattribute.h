@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef SHOWFOLDERNOTESATTRIBUTE_H
-#define SHOWFOLDERNOTESATTRIBUTE_H
+#pragma once
 
 #include "noteshared_export.h"
 #include <AkonadiCore/attribute.h>
@@ -24,4 +23,3 @@ public:
 };
 }
 
-#endif // SHOWFOLDERNOTESATTRIBUTE_H

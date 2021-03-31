@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTESICONVIEW_H
-#define KNOTESICONVIEW_H
+#pragma once
 
 #include "knotes_part.h"
 #include <QListWidget>
@@ -77,4 +76,3 @@ private:
     bool mReadOnly;
 };
 
-#endif // KNOTESICONVIEW_H

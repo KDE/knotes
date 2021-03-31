@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTEACTIONCONFIG_H
-#define NOTEACTIONCONFIG_H
+#pragma once
 #include "noteshared_export.h"
 #include <KCModule>
 namespace NoteShared
@@ -22,4 +21,3 @@ private:
     void slotHelpLinkClicked(const QString &);
 };
 }
-#endif // NOTEACTIONCONFIG_H

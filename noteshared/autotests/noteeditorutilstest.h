@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTEEDITORUTILSTEST_H
-#define NOTEEDITORUTILSTEST_H
+#pragma once
 
 #include <QObject>
 
@@ -20,4 +19,3 @@ private Q_SLOTS:
     void testAddCheckmark_data();
 };
 
-#endif // NOTEEDITORUTILSTEST_H

@@ -6,8 +6,7 @@
  SPDX-License-Identifier: GPL-2.0-or-later
 *******************************************************************/
 
-#ifndef APPLICATION_H
-#define APPLICATION_H
+#pragma once
 
 #include <KontactInterface/PimUniqueApplication>
 
@@ -26,4 +25,3 @@ private:
     KNotesApp *mMainWindow = nullptr;
 };
 
-#endif

@@ -6,8 +6,7 @@
  SPDX-License-Identifier: GPL-2.0-or-later
 *******************************************************************/
 
-#ifndef KNOTECONFIGDIALOG_H
-#define KNOTECONFIGDIALOG_H
+#pragma once
 
 #include "knotes_export.h"
 
@@ -25,4 +24,3 @@ public Q_SLOTS:
     void slotOk();
 };
 
-#endif

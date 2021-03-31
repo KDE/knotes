@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KNOTECONFIGMODULE_H
-#define KNOTECONFIGMODULE_H
+#pragma once
 
 #include <KCModule>
 class QLineEdit;
@@ -79,4 +78,3 @@ private:
     KNoteCollectionConfigWidget *mCollectionConfigWidget = nullptr;
 };
 
-#endif // KNOTECONFIGMODULE_H

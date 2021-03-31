@@ -6,8 +6,7 @@
  SPDX-License-Identifier: GPL-2.0-or-later
 *******************************************************************/
 
-#ifndef KNOTESAPP_H
-#define KNOTESAPP_H
+#pragma once
 
 #include <AkonadiCore/Item>
 
@@ -102,4 +101,3 @@ private:
     bool mDebugAkonadiSearch = false;
 };
 
-#endif

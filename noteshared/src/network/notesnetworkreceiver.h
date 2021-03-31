@@ -7,8 +7,7 @@
  SPDX-License-Identifier: GPL-2.0-or-later
 *******************************************************************/
 
-#ifndef NOTESNETWORKRECEIVER_H
-#define NOTESNETWORKRECEIVER_H
+#pragma once
 
 #include "noteshared_export.h"
 #include <QAbstractSocket>
@@ -38,4 +37,3 @@ private:
     NotesNetworkReceiverPrivate *const d;
 };
 }
-#endif

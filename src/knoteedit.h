@@ -6,8 +6,7 @@
  SPDX-License-Identifier: GPL-2.0-or-later
 *******************************************************************/
 
-#ifndef KNOTEEDIT_H
-#define KNOTEEDIT_H
+#pragma once
 
 #include "knotes_export.h"
 #include <QTextCharFormat>
@@ -120,4 +119,3 @@ private:
     bool m_autoIndentMode = false;
 };
 
-#endif

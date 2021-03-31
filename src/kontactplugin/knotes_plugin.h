@@ -7,8 +7,7 @@
   SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KNOTES_PLUGIN_H
-#define KNOTES_PLUGIN_H
+#pragma once
 
 #include <KAboutData>
 #include <KontactInterface/Plugin>
@@ -59,4 +58,3 @@ private:
     KontactInterface::UniqueAppWatcher *mUniqueAppWatcher = nullptr;
 };
 
-#endif

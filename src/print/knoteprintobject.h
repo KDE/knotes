@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KNOTEPRINTOBJECT_H
-#define KNOTEPRINTOBJECT_H
+#pragma once
 
 #include "knotes_export.h"
 
@@ -40,4 +39,3 @@ private:
 };
 
 Q_DECLARE_METATYPE(QList<KNotePrintObject *>)
-#endif // KNOTEPRINTOBJECT_H

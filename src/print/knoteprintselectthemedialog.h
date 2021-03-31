@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KNOTEPRINTSELECTTHEMEDIALOG_H
-#define KNOTEPRINTSELECTTHEMEDIALOG_H
+#pragma once
 
 #include "knotes_export.h"
 #include <QDialog>
@@ -24,4 +23,3 @@ private:
     KNotePrintSelectThemeComboBox *mThemes = nullptr;
 };
 
-#endif // KNOTEPRINTSELECTTHEMEDIALOG_H

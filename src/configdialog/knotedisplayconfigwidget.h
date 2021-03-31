@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTEDISPLAYCONFIGWIDGET_H
-#define KNOTEDISPLAYCONFIGWIDGET_H
+#pragma once
 
 #include "knotes_export.h"
 #include <QWidget>
@@ -34,4 +33,3 @@ private:
     QSpinBox *kcfg_Height = nullptr;
 };
 
-#endif // KNOTEDISPLAYCONFIGWIDGET_H

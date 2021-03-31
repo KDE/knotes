@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KNOTEGRANTLEEPRINT_H
-#define KNOTEGRANTLEEPRINT_H
+#pragma once
 
 #include "knotes_export.h"
 
@@ -23,4 +22,3 @@ public:
     Q_REQUIRED_RESULT QString notesToHtml(const QList<KNotePrintObject *> &lst);
 };
 
-#endif // KNOTEGRANTLEEPRINT_H

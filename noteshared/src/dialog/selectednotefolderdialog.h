@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef SELECTEDNOTEFOLDERDIALOG_H
-#define SELECTEDNOTEFOLDERDIALOG_H
+#pragma once
 
 #include <AkonadiWidgets/CollectionDialog>
 
@@ -23,4 +22,3 @@ private:
 };
 }
 
-#endif // SELECTEDNOTEFOLDERDIALOG_H

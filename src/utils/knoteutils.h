@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KNOTEUTILS_H
-#define KNOTEUTILS_H
+#pragma once
 #include "knotes_export.h"
 #include <AkonadiCore/Item>
 
@@ -15,4 +14,3 @@ KNOTES_EXPORT void setDefaultValue(Akonadi::Item &item);
 KNOTES_EXPORT void updateConfiguration();
 }
 
-#endif // KNOTEUTILS_H

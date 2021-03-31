@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTEDISPLAYSETTINGS_H
-#define KNOTEDISPLAYSETTINGS_H
+#pragma once
 
 #include <QColor>
 #include <QFont>
@@ -44,4 +43,3 @@ private:
     const NoteShared::NoteDisplayAttribute *mDisplayAttribute = nullptr;
 };
 
-#endif // KNOTEDISPLAYSETTINGS_H

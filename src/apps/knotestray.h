@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTESTRAY_H
-#define KNOTESTRAY_H
+#pragma once
 
 #include <KStatusNotifierItem>
 #include <QIcon>
@@ -21,4 +20,3 @@ private:
     QIcon mIcon;
 };
 
-#endif // KNOTESTRAY_H

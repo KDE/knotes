@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTESEDITDIALOG_H
-#define KNOTESEDITDIALOG_H
+#pragma once
 
 #include <KXMLGUIClient>
 #include <QDialog>
@@ -57,4 +56,3 @@ private:
     QPushButton *mOkButton = nullptr;
 };
 
-#endif // KNOTESEDITDIALOG_H

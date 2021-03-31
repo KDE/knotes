@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTESELECTEDNOTESDIALOG_H
-#define KNOTESELECTEDNOTESDIALOG_H
+#pragma once
 
 #include <AkonadiCore/Item>
 #include <QDialog>
@@ -35,4 +34,3 @@ private:
     QPushButton *mOkButton = nullptr;
 };
 
-#endif // KNOTESELECTEDNOTESDIALOG_H

@@ -6,8 +6,7 @@
  SPDX-License-Identifier: GPL-2.0-or-later
 *******************************************************************/
 
-#ifndef KNOTEBUTTON_H
-#define KNOTEBUTTON_H
+#pragma once
 
 #include <QPushButton>
 
@@ -28,4 +27,3 @@ protected:
     void paintEvent(QPaintEvent *e) override;
 };
 
-#endif

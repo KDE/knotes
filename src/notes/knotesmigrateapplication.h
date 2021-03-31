@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTESMIGRATEAPPLICATION_H
-#define KNOTESMIGRATEAPPLICATION_H
+#pragma once
 
 #include "knotes_export.h"
 
@@ -21,4 +20,3 @@ private:
     PimCommon::MigrateApplicationFiles mMigrator;
 };
 
-#endif // KNOTESMIGRATEAPPLICATION_H

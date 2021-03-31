@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTESAKONADITREEMODEL_H
-#define NOTESAKONADITREEMODEL_H
+#pragma once
 
 #include "noteshared_export.h"
 #include <AkonadiCore/EntityTreeModel>
@@ -25,4 +24,3 @@ public:
 };
 }
 
-#endif // KNOTESAKONADITREEMODEL_H

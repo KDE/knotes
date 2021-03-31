@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTEEDITORUTILS_H
-#define NOTEEDITORUTILS_H
+#pragma once
 
 #include "noteshared_export.h"
 class QTextCursor;
@@ -19,4 +18,3 @@ public:
     void insertDate(QTextEdit *editor);
 };
 }
-#endif // NOTEEDITORUTILS_H

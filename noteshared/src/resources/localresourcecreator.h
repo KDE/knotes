@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTESHAREDLOCALRESOURCECREATOR_H
-#define NOTESHAREDLOCALRESOURCECREATOR_H
+#pragma once
 
 #include "noteshared_export.h"
 #include <QObject>
@@ -34,4 +33,3 @@ private Q_SLOTS:
 };
 }
 
-#endif

@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTESSELECTDELETENOTESDIALOG_H
-#define KNOTESSELECTDELETENOTESDIALOG_H
+#pragma once
 
 #include <QDialog>
 #include <QListWidget>
@@ -33,4 +32,3 @@ private:
     KNotesSelectDeleteNotesListWidget *mSelectedListWidget = nullptr;
 };
 
-#endif // KNOTESSELECTDELETENOTESDIALOG_H

@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTEFINDDIALOG_H
-#define KNOTEFINDDIALOG_H
+#pragma once
 
 #include "knotes_export.h"
 #include <AkonadiCore/Item>
@@ -61,4 +60,3 @@ private:
     KNoteFindWidget *mNoteFindWidget = nullptr;
 };
 
-#endif // KNOTEFINDDIALOG_H

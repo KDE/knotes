@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTEINTERFACE_H
-#define KNOTEINTERFACE_H
+#pragma once
 #include "knotes_export.h"
 #include <QObject>
 class KNOTES_EXPORT KNoteInterface
@@ -18,4 +17,3 @@ protected:
     bool mBlockSave;
 };
 
-#endif // KNOTEINTERFACE_H

@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTESAGENTALARMDIALOG_H
-#define NOTESAGENTALARMDIALOG_H
+#pragma once
 #include <Item>
 #include <QDialog>
 class QListWidget;
@@ -42,4 +41,3 @@ private:
     QLabel *mCurrentDateTime = nullptr;
 };
 
-#endif // NOTESAGENTALARMDIALOG_H

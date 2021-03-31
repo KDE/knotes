@@ -6,8 +6,7 @@
  SPDX-License-Identifier: GPL-2.0-or-later
 *******************************************************************/
 
-#ifndef KNOTE_H
-#define KNOTE_H
+#pragma once
 
 #include "knoteinterface.h"
 #include <config-knotes.h>
@@ -153,4 +152,3 @@ private:
     QPoint mOrigPos;
 };
 
-#endif

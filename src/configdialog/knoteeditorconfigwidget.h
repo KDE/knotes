@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTEEDITORCONFIGWIDGET_H
-#define KNOTEEDITORCONFIGWIDGET_H
+#pragma once
 
 #include "knotes_export.h"
 #include <QWidget>
@@ -34,4 +33,3 @@ private:
     KFontRequester *kcfg_TitleFont = nullptr;
 };
 
-#endif // KNOTEEDITORCONFIGWIDGET_H

@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTESAGENTNOTEDIALOG_H
-#define NOTESAGENTNOTEDIALOG_H
+#pragma once
 
 #include <Item>
 #include <QDialog>
@@ -33,4 +32,3 @@ private:
     QLineEdit *mSubject = nullptr;
 };
 
-#endif // NOTESAGENTNOTEDIALOG_H

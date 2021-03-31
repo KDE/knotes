@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTESAGENTSETTINGSDIALOG_H
-#define NOTESAGENTSETTINGSDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -30,4 +29,3 @@ private:
     NoteShared::NoteNetworkConfigWidget *mNetworkConfig = nullptr;
 };
 
-#endif // NOTESAGENTSETTINGSDIALOG_H

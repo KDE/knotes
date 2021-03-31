@@ -7,8 +7,7 @@
   SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KNOTES_PART_H
-#define KNOTES_PART_H
+#pragma once
 
 #include <AkonadiCore/Item>
 
@@ -129,4 +128,3 @@ private:
     QPointer<KNoteFindDialog> mNoteFindDialog;
 };
 
-#endif

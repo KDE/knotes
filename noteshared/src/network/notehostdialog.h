@@ -7,8 +7,7 @@
  SPDX-License-Identifier: GPL-2.0-or-later
 *******************************************************************/
 
-#ifndef KNOTEHOSTDIALOG_H
-#define KNOTEHOSTDIALOG_H
+#pragma once
 
 #include <QDialog>
 class KHistoryComboBox;
@@ -46,4 +45,3 @@ private:
 };
 }
 
-#endif

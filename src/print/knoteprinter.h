@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KNOTEPRINTER_H
-#define KNOTEPRINTER_H
+#pragma once
 
 #include "knotes_export.h"
 
@@ -40,4 +39,3 @@ private:
     std::unique_ptr<KNoteGrantleePrint> mGrantleePrint;
 };
 
-#endif // KNOTEPRINTER

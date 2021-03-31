@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNoteSimpleConfigDialog_H
-#define KNoteSimpleConfigDialog_H
+#pragma once
 #include "knotes_export.h"
 #include <AkonadiCore/Item>
 #include <QDialog>
@@ -32,4 +31,3 @@ private:
     KNoteDisplayConfigWidget *mDisplayConfigWidget = nullptr;
 };
 
-#endif // KNoteSimpleConfigDialog_H

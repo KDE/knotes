@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTESMANAGER_H
-#define NOTESMANAGER_H
+#pragma once
 
 #include <QObject>
 
@@ -58,4 +57,3 @@ private:
     QPointer<NotesAgentAlarmDialog> mAlarmDialog;
 };
 
-#endif // NOTESMANAGER_H

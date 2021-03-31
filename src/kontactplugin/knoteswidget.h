@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTESWIDGET_H
-#define KNOTESWIDGET_H
+#pragma once
 
 #include <QWidget>
 class KNotesIconView;
@@ -28,4 +27,3 @@ private:
     KNotesListWidgetSearchLine *mSearchLine = nullptr;
 };
 
-#endif // KNOTESWIDGET_H

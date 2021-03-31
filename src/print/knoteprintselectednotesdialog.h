@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KNOTEPRINTSELECTEDNOTESDIALOG_H
-#define KNOTEPRINTSELECTEDNOTESDIALOG_H
+#pragma once
 
 #include <AkonadiCore/Item>
 #include <QDialog>
@@ -46,4 +45,3 @@ private:
     bool mPreview = false;
 };
 
-#endif // KNOTEPRINTSELECTEDNOTESDIALOG_H

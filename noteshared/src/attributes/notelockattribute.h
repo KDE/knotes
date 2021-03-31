@@ -5,8 +5,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef NOTELOCKATTRIBUTE_H
-#define NOTELOCKATTRIBUTE_H
+#pragma once
 
 #include "noteshared_export.h"
 
@@ -30,4 +29,3 @@ public:
 };
 }
 
-#endif

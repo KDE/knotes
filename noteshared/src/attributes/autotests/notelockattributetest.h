@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef NOTELOCKATTRIBUTETEST_H
-#define NOTELOCKATTRIBUTETEST_H
+#pragma once
 
 #include <QObject>
 
@@ -19,4 +18,3 @@ private Q_SLOTS:
     void shouldHaveType();
 };
 
-#endif // NOTELOCKATTRIBUTETEST_H

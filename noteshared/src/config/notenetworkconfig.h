@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTENETWORKCONFIG_H
-#define NOTENETWORKCONFIG_H
+#pragma once
 #include "noteshared_export.h"
 #include <KCModule>
 namespace NoteShared
@@ -35,4 +34,3 @@ public:
 };
 }
 
-#endif // NOTENETWORKCONFIG_H

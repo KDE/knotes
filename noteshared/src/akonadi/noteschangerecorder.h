@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTESCHANGERECORDER_H
-#define NOTESCHANGERECORDER_H
+#pragma once
 
 #include "noteshared_export.h"
 #include <QObject>
@@ -29,4 +28,3 @@ private:
 };
 }
 
-#endif // KNOTESCHANGERECORDER_H

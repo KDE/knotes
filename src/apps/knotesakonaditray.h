@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTESAKONADITRAY_H
-#define KNOTESAKONADITRAY_H
+#pragma once
 
 #include <KStatusNotifierItem>
 #include <QIcon>
@@ -23,4 +22,3 @@ private:
     QColor mTextColor;
 };
 
-#endif // KNOTESAKONADITRAY_H

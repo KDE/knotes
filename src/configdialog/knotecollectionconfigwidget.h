@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTECOLLECTIONCONFIGWIDGET_H
-#define KNOTECOLLECTIONCONFIGWIDGET_H
+#pragma once
 
 #include <AkonadiCore/Collection>
 #include <QIdentityProxyModel>
@@ -73,4 +72,3 @@ private:
     KNoteCollectionDisplayProxyModel *mDisplayNotifierProxyModel = nullptr;
 };
 
-#endif // KNOTECOLLECTIONCONFIGWIDGET_H

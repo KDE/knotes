@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef NOTEEDITOR_H
-#define NOTEEDITOR_H
+#pragma once
 
 #include <KPIMTextEdit/RichTextEditorWidget>
 
@@ -19,4 +18,3 @@ public:
 };
 }
 
-#endif // NOTEEDITOR_H

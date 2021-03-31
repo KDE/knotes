@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef CREATENEWNOTEJOB_H
-#define CREATENEWNOTEJOB_H
+#pragma once
 
 #include <QWidget>
 
@@ -43,4 +42,3 @@ private:
 };
 }
 
-#endif // CREATENEWNOTEJOB_H

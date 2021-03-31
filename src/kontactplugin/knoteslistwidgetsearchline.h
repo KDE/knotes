@@ -3,8 +3,7 @@
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KNOTESLISTWIDGETSEARCHLINE_H
-#define KNOTESLISTWIDGETSEARCHLINE_H
+#pragma once
 
 #include <KListWidgetSearchLine>
 
@@ -21,4 +20,3 @@ protected:
     bool itemMatches(const QListWidgetItem *item, const QString &s) const override;
 };
 
-#endif // KNOTESLISTWIDGETSEARCHLINE_H
