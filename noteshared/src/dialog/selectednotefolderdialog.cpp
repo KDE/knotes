@@ -42,7 +42,7 @@ void SelectedNotefolderDialog::readConfig()
 
 void SelectedNotefolderDialog::writeConfig()
 {
-    KConfigGroup group(KSharedConfig::v(), "SelectedNotefolderDialog");
+    KConfigGroup group(KSharedConfig::openStateConfig(), "SelectedNotefolderDialog");
     group.writeEntry("Size", size());
     group.sync();
 }
