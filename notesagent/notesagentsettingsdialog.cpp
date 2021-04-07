@@ -79,7 +79,7 @@ NotesAgentSettingsDialog::~NotesAgentSettingsDialog()
 static const char myConfigGroupName[] = "NotesAgentSettingsDialog";
 void NotesAgentSettingsDialog::writeConfig()
 {
-    KConfigGroup group(KSharedConfig::openConfig(), myConfigGroupName);
+    KConfigGroup group(KSharedConfig::openStateConfig(), myConfigGroupName);
 
     const QSize size = group.readEntry("Size", QSize(500, 300));
     if (size.isValid()) {
@@ -89,7 +89,7 @@ void NotesAgentSettingsDialog::writeConfig()
 
 void NotesAgentSettingsDialog::readConfig()
 {
-    KConfigGroup group(KSharedConfig::openConfig(), myConfigGroupName);
+    KConfigGroup group(KSharedConfig::openStateConfig(), myConfigGroupName);
     group.writeEntry("Size", size());
     group.sync();
 }

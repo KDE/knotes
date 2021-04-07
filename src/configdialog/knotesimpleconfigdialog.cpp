@@ -74,7 +74,7 @@ void KNoteSimpleConfigDialog::save(Akonadi::Item &item, bool &isRichText)
 
 void KNoteSimpleConfigDialog::readConfig()
 {
-    KConfigGroup group(KSharedConfig::openConfig(), "KNoteSimpleConfigDialog");
+    KConfigGroup group(KSharedConfig::openStateConfig(), "KNoteSimpleConfigDialog");
     const QSize size = group.readEntry("Size", QSize(600, 400));
     if (size.isValid()) {
         resize(size);
@@ -83,7 +83,7 @@ void KNoteSimpleConfigDialog::readConfig()
 
 void KNoteSimpleConfigDialog::writeConfig()
 {
-    KConfigGroup group(KSharedConfig::openConfig(), "KNoteSimpleConfigDialog");
+    KConfigGroup group(KSharedConfig::openStateConfig(), "KNoteSimpleConfigDialog");
     group.writeEntry("Size", size());
     group.sync();
 }

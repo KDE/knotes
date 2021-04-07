@@ -33,7 +33,7 @@ SelectedNotefolderDialog::~SelectedNotefolderDialog()
 
 void SelectedNotefolderDialog::readConfig()
 {
-    KConfigGroup group(KSharedConfig::openConfig(), "SelectedNotefolderDialog");
+    KConfigGroup group(KSharedConfig::openStateConfig(), "SelectedNotefolderDialog");
     const QSize size = group.readEntry("Size", QSize(600, 400));
     if (size.isValid()) {
         resize(size);
@@ -42,7 +42,7 @@ void SelectedNotefolderDialog::readConfig()
 
 void SelectedNotefolderDialog::writeConfig()
 {
-    KConfigGroup group(KSharedConfig::openConfig(), "SelectedNotefolderDialog");
+    KConfigGroup group(KSharedConfig::v(), "SelectedNotefolderDialog");
     group.writeEntry("Size", size());
     group.sync();
 }
