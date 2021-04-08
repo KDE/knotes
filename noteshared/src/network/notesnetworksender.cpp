@@ -25,11 +25,7 @@ NotesNetworkSender::NotesNetworkSender(QTcpSocket *socket)
     // method is called!!!
     QObject::connect(m_socket, &QTcpSocket::connected, this, &NotesNetworkSender::slotConnected);
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
-    QObject::connect(m_socket, qOverload<QAbstractSocket::SocketError>(&QTcpSocket::error), this, &NotesNetworkSender::slotError);
-#else
     QObject::connect(m_socket, qOverload<QAbstractSocket::SocketError>(&QTcpSocket::errorOccurred), this, &NotesNetworkSender::slotError);
-#endif
 
     QObject::connect(m_socket, &QTcpSocket::disconnected, this, &NotesNetworkSender::slotClosed);
 

@@ -67,11 +67,7 @@ NotesNetworkReceiver::NotesNetworkReceiver(QTcpSocket *s)
     // Setup the communications
     connect(d->m_sock, &QTcpSocket::readyRead, this, &NotesNetworkReceiver::slotDataAvailable);
     connect(d->m_sock, &QTcpSocket::disconnected, this, &NotesNetworkReceiver::slotConnectionClosed);
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
-    connect(d->m_sock, qOverload<QAbstractSocket::SocketError>(&QTcpSocket::error), this, &NotesNetworkReceiver::slotError);
-#else
     connect(d->m_sock, qOverload<QAbstractSocket::SocketError>(&QTcpSocket::errorOccurred), this, &NotesNetworkReceiver::slotError);
-#endif
     // Setup the timer
     d->m_timer = new QTimer(this);
     d->m_timer->setSingleShot(true);
