@@ -49,14 +49,14 @@ void KNoteFindDialog::setExistingNotes(const QHash<Akonadi::Item::Id, Akonadi::I
 
 void KNoteFindDialog::writeConfig()
 {
-    KConfigGroup grp(KSharedConfig::openConfig(), "KNoteFindDialog");
+    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNoteFindDialog");
     grp.writeEntry("Size", size());
     grp.sync();
 }
 
 void KNoteFindDialog::readConfig()
 {
-    KConfigGroup grp(KSharedConfig::openConfig(), "KNoteFindDialog");
+    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNoteFindDialog");
     const QSize size = grp.readEntry("Size", QSize(600, 300));
     if (size.isValid()) {
         resize(size);

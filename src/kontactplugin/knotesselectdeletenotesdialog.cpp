@@ -73,7 +73,7 @@ KNotesSelectDeleteNotesDialog::~KNotesSelectDeleteNotesDialog()
 
 void KNotesSelectDeleteNotesDialog::readConfig()
 {
-    KConfigGroup grp(KSharedConfig::openConfig(), "KNotesSelectDeleteNotesDialog");
+    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNotesSelectDeleteNotesDialog");
     const QSize size = grp.readEntry("Size", QSize(300, 200));
     if (size.isValid()) {
         resize(size);
@@ -82,7 +82,7 @@ void KNotesSelectDeleteNotesDialog::readConfig()
 
 void KNotesSelectDeleteNotesDialog::writeConfig()
 {
-    KConfigGroup grp(KSharedConfig::openConfig(), "KNotesSelectDeleteNotesDialog");
+    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNotesSelectDeleteNotesDialog");
     grp.writeEntry("Size", size());
     grp.sync();
 }

@@ -102,7 +102,7 @@ void NotesAgentAlarmDialog::slotCustomContextMenuRequested(const QPoint &pos)
 
 void NotesAgentAlarmDialog::readConfig()
 {
-    KConfigGroup grp(KSharedConfig::openConfig(), "NotesAgentAlarmDialog");
+    KConfigGroup grp(KSharedConfig::openStateConfig(), "NotesAgentAlarmDialog");
     const QSize size = grp.readEntry("Size", QSize(300, 200));
     if (size.isValid()) {
         resize(size);
@@ -111,7 +111,7 @@ void NotesAgentAlarmDialog::readConfig()
 
 void NotesAgentAlarmDialog::writeConfig()
 {
-    KConfigGroup grp(KSharedConfig::openConfig(), "NotesAgentAlarmDialog");
+    KConfigGroup grp(KSharedConfig::openStateConfig(), "NotesAgentAlarmDialog");
     grp.writeEntry("Size", size());
     grp.sync();
 }

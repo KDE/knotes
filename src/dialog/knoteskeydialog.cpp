@@ -40,7 +40,7 @@ KNotesKeyDialog::~KNotesKeyDialog()
 
 void KNotesKeyDialog::readConfig()
 {
-    KConfigGroup grp(KSharedConfig::openConfig(), "KNotesKeyDialog");
+    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNotesKeyDialog");
     const QSize size = grp.readEntry("Size", QSize(300, 200));
     if (size.isValid()) {
         resize(size);
@@ -49,7 +49,7 @@ void KNotesKeyDialog::readConfig()
 
 void KNotesKeyDialog::writeConfig()
 {
-    KConfigGroup grp(KSharedConfig::openConfig(), "KNotesKeyDialog");
+    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNotesKeyDialog");
     grp.writeEntry("Size", size());
     grp.sync();
 }

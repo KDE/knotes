@@ -119,7 +119,7 @@ void KNoteEditDialog::setReadOnly(bool b)
 
 void KNoteEditDialog::readConfig()
 {
-    KConfigGroup grp(KSharedConfig::openConfig(), "KNoteEditDialog");
+    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNoteEditDialog");
     const QSize size = grp.readEntry("Size", QSize(300, 200));
     if (size.isValid()) {
         resize(size);
@@ -128,7 +128,7 @@ void KNoteEditDialog::readConfig()
 
 void KNoteEditDialog::writeConfig()
 {
-    KConfigGroup grp(KSharedConfig::openConfig(), "KNoteEditDialog");
+    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNoteEditDialog");
     grp.writeEntry("Size", size());
     grp.sync();
 }

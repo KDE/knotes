@@ -58,7 +58,7 @@ Akonadi::Item::List KNoteDeleteSelectedNotesDialog::selectedNotes() const
 
 void KNoteDeleteSelectedNotesDialog::readConfig()
 {
-    KConfigGroup grp(KSharedConfig::openConfig(), "KNoteDeleteSelectedNotesDialog");
+    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNoteDeleteSelectedNotesDialog");
     const QSize size = grp.readEntry("Size", QSize(300, 200));
     if (size.isValid()) {
         resize(size);
@@ -67,7 +67,7 @@ void KNoteDeleteSelectedNotesDialog::readConfig()
 
 void KNoteDeleteSelectedNotesDialog::writeConfig()
 {
-    KConfigGroup grp(KSharedConfig::openConfig(), "KNoteDeleteSelectedNotesDialog");
+    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNoteDeleteSelectedNotesDialog");
     grp.writeEntry("Size", size());
     grp.sync();
 }
