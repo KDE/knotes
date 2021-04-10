@@ -1,7 +1,7 @@
-set(PIM_VERSION "5.16.90")
+set(PIM_VERSION "5.17.0")
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 project(knotes VERSION ${PIM_VERSION})
-set(RELEASE_SERVICE_VERSION "21.03.80")
+set(RELEASE_SERVICE_VERSION "21.04.0")
 
 
 set(KF5_MIN_VERSION "5.79.0")
@@ -30,7 +30,7 @@ include(ECMQtDeclareLoggingCategory)
 
 
 # Do NOT add quote
-set(KDEPIM_DEV_VERSION beta)
+set(KDEPIM_DEV_VERSION)
 
 # add an extra space
 if(DEFINED KDEPIM_DEV_VERSION)
