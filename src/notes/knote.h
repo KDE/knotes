@@ -17,7 +17,6 @@
 #include <KXMLGUIClient>
 
 #include <QDomDocument>
-#include <QEvent>
 #include <QFrame>
 
 class KNoteButton;
@@ -32,7 +31,7 @@ class QLabel;
 class QMenu;
 class QSizeGrip;
 class QVBoxLayout;
-
+class QEvent;
 class KNote : public QFrame, virtual public KXMLGUIClient, public KNoteInterface
 {
     Q_OBJECT
