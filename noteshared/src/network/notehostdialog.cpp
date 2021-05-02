@@ -31,19 +31,19 @@ NoteHostDialog::NoteHostDialog(const QString &caption, QWidget *parent)
 
     auto mainLayout = new QVBoxLayout(this);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     mOkButton = buttonBox->button(QDialogButtonBox::Ok);
     mOkButton->setDefault(true);
     mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &NoteHostDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &NoteHostDialog::reject);
 
-    QLabel *label = new QLabel(i18n("Select recipient:"), this);
+    auto label = new QLabel(i18n("Select recipient:"), this);
     mainLayout->addWidget(label);
 
     m_servicesView = new QTreeView(this);
     m_servicesView->setRootIsDecorated(false);
-    KDNSSD::ServiceModel *mdl = new KDNSSD::ServiceModel(new KDNSSD::ServiceBrowser(QStringLiteral("_knotes._tcp"), true), this);
+    auto mdl = new KDNSSD::ServiceModel(new KDNSSD::ServiceBrowser(QStringLiteral("_knotes._tcp"), true), this);
     m_servicesView->setModel(mdl);
     m_servicesView->setSelectionBehavior(QAbstractItemView::SelectRows);
     m_servicesView->hideColumn(KDNSSD::ServiceModel::Port);
@@ -102,7 +102,7 @@ void NoteHostDialog::slotTextChanged(const QString &text)
 
 void NoteHostDialog::serviceSelected(const QModelIndex &idx)
 {
-    KDNSSD::RemoteService::Ptr srv = idx.data(KDNSSD::ServiceModel::ServicePtrRole).value<KDNSSD::RemoteService::Ptr>();
+    auto srv = idx.data(KDNSSD::ServiceModel::ServicePtrRole).value<KDNSSD::RemoteService::Ptr>();
     m_hostCombo->lineEdit()->setText(srv->hostName() + QLatin1String(":") + QString::number(srv->port()));
 }
 
@@ -118,7 +118,7 @@ quint16 NoteHostDialog::port() const
 
 void NoteHostDialog::slotServiceDoubleClicked(const QModelIndex &idx)
 {
-    KDNSSD::RemoteService::Ptr srv = idx.data(KDNSSD::ServiceModel::ServicePtrRole).value<KDNSSD::RemoteService::Ptr>();
+    auto srv = idx.data(KDNSSD::ServiceModel::ServicePtrRole).value<KDNSSD::RemoteService::Ptr>();
     m_hostCombo->lineEdit()->setText(srv->hostName() + QLatin1Char(':') + QString::number(srv->port()));
     accept();
 }

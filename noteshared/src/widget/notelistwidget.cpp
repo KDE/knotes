@@ -64,7 +64,7 @@ void NoteListWidget::setNotes(const Akonadi::Item::List &notes)
 
 void NoteListWidget::createItem(const Akonadi::Item &note)
 {
-    KMime::Message::Ptr noteMessage = note.payload<KMime::Message::Ptr>();
+    auto noteMessage = note.payload<KMime::Message::Ptr>();
     if (!noteMessage) {
         return;
     }

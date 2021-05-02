@@ -47,7 +47,7 @@ NotesAgentAlarmDialog::NotesAgentAlarmDialog(QWidget *parent)
     mCurrentDateTime->setText(QLocale().toString((QDateTime::currentDateTime()), QLocale::ShortFormat));
     vbox->addWidget(mCurrentDateTime);
 
-    QLabel *lab = new QLabel(i18n("The following notes triggered alarms:"), this);
+    auto lab = new QLabel(i18n("The following notes triggered alarms:"), this);
     vbox->addWidget(lab);
 
     mListWidget = new NoteShared::NoteListWidget(this);
@@ -57,7 +57,7 @@ NotesAgentAlarmDialog::NotesAgentAlarmDialog(QWidget *parent)
 
     mainLayout->addWidget(mListWidget);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, this);
+    auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, this);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &NotesAgentAlarmDialog::reject);
     buttonBox->button(QDialogButtonBox::Close)->setDefault(true);
 
@@ -85,11 +85,11 @@ void NotesAgentAlarmDialog::slotCustomContextMenuRequested(const QPoint &pos)
     }
     Q_UNUSED(pos)
     auto entriesContextMenu = new QMenu(this);
-    QAction *removeAlarm = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")), i18n("Remove Alarm"), entriesContextMenu);
+    auto removeAlarm = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")), i18n("Remove Alarm"), entriesContextMenu);
     connect(removeAlarm, &QAction::triggered, this, &NotesAgentAlarmDialog::slotRemoveAlarm);
-    QAction *showNote = new QAction(i18n("Show Note..."), entriesContextMenu);
+    auto showNote = new QAction(i18n("Show Note..."), entriesContextMenu);
     connect(showNote, &QAction::triggered, this, &NotesAgentAlarmDialog::slotShowNote);
-    QAction *modifyAlarm = new QAction(i18n("Modify Alarm..."), entriesContextMenu);
+    auto modifyAlarm = new QAction(i18n("Modify Alarm..."), entriesContextMenu);
     connect(modifyAlarm, &QAction::triggered, this, &NotesAgentAlarmDialog::slotModifyAlarm);
     entriesContextMenu->addAction(showNote);
     entriesContextMenu->addAction(modifyAlarm);
@@ -199,9 +199,9 @@ void NotesAgentAlarmDialog::slotFetchAlarmItem(KJob *job)
     Akonadi::Item::List items = itemFetchJob->items();
     if (!items.isEmpty()) {
         Akonadi::Item item = items.first();
-        auto *attr = item.attribute<NoteShared::NoteAlarmAttribute>();
+        auto attr = item.attribute<NoteShared::NoteAlarmAttribute>();
         if (attr) {
-            KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
+            auto noteMessage = item.payload<KMime::Message::Ptr>();
             if (!noteMessage) {
                 qCDebug(NOTESAGENT_LOG) << "Error this note doesn't have payload ";
                 KMessageBox::error(this, i18n("Error during fetch alarm info."), i18n("Alarm"));

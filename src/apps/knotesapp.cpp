@@ -82,7 +82,7 @@ KNotesApp::KNotesApp(QWidget *parent)
     QDBusConnection::sessionBus().registerObject(QStringLiteral("/KNotes"), this);
     qApp->setQuitOnLastWindowClosed(false);
     // create the GUI...
-    QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("document-new")), i18n("New Note"), this);
+    auto action = new QAction(QIcon::fromTheme(QStringLiteral("document-new")), i18n("New Note"), this);
     actionCollection()->addAction(QStringLiteral("new_note"), action);
     KGlobalAccel::setGlobalShortcut(action, QKeySequence(Qt::ALT | Qt::SHIFT | Qt::Key_N));
     connect(action, &QAction::triggered, this, [this]() {
@@ -120,7 +120,7 @@ KNotesApp::KNotesApp(QWidget *parent)
     // REmove shortcut here.
     act->setShortcut(0);
 
-    KHelpMenu *menu = new KHelpMenu(this, KAboutData::applicationData(), false);
+    auto menu = new KHelpMenu(this, KAboutData::applicationData(), false);
 
     KActionCollection *actions = actionCollection();
     QAction *helpContentsAction = menu->action(KHelpMenu::menuHelpContents);
@@ -185,7 +185,7 @@ KNotesApp::KNotesApp(QWidget *parent)
     // is used as a check if updateNoteActions has to be called for a new note
     updateNetworkListener();
 
-    Akonadi::Session *session = new Akonadi::Session("KNotes Session", this);
+    auto session = new Akonadi::Session("KNotes Session", this);
     mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
     mNoteRecorder->changeRecorder()->setSession(session);
     mTray = new KNotesAkonadiTray(nullptr);
@@ -276,8 +276,8 @@ void KNotesApp::slotRowInserted(const QModelIndex &parent, int start, int end)
     for (int i = start; i <= end; ++i) {
         if (mNoteTreeModel->hasIndex(i, 0, parent)) {
             const QModelIndex child = mNoteTreeModel->index(i, 0, parent);
-            Akonadi::Item item = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
-            Akonadi::Collection parentCollection = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
+            auto item = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
+            auto parentCollection = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
             if (parentCollection.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
                 createNote(item);
                 needUpdate = true;
@@ -466,7 +466,7 @@ void KNotesApp::updateNoteActions()
             replaceText = realName;
         }
 
-        QAction *action = new QAction(replaceText.replace(QLatin1String("&"), QStringLiteral("&&")), this);
+        auto action = new QAction(replaceText.replace(QLatin1String("&"), QStringLiteral("&&")), this);
         action->setToolTip(realName);
         action->setObjectName(QString::number(note->noteId()));
         connect(action, &QAction::triggered, this, &KNotesApp::slotShowNote);
@@ -486,7 +486,7 @@ void KNotesApp::updateNoteActions()
         actionCollection()->action(QStringLiteral("show_all_notes"))->setEnabled(false);
         actionCollection()->action(QStringLiteral("print_selected_notes"))->setEnabled(false);
         actionCollection()->action(QStringLiteral("edit_find"))->setEnabled(false);
-        QAction *action = new QAction(i18n("No Notes"), this);
+        auto action = new QAction(i18n("No Notes"), this);
         action->setEnabled(false);
         m_noteActions.append(action);
     } else {
@@ -539,7 +539,7 @@ void KNotesApp::slotWalkThroughNotes()
 void KNotesApp::slotPreferences()
 {
     // create a new preferences dialog...
-    KNoteConfigDialog *dialog = new KNoteConfigDialog(i18n("Settings"), this);
+    auto dialog = new KNoteConfigDialog(i18n("Settings"), this);
     connect(dialog, qOverload<>(&KCMultiDialog::configCommitted), this, &KNotesApp::slotConfigUpdated);
     dialog->show();
 }
@@ -604,7 +604,7 @@ void KNotesApp::slotConfigureAccels()
 
 void KNotesApp::slotNoteKilled(Akonadi::Item::Id id)
 {
-    Akonadi::ItemDeleteJob *deleteJob = new Akonadi::ItemDeleteJob(Akonadi::Item(id), this);
+    auto deleteJob = new Akonadi::ItemDeleteJob(Akonadi::Item(id), this);
     connect(deleteJob, &KJob::result, this, &KNotesApp::slotNoteDeleteFinished);
 }
 

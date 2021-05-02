@@ -41,7 +41,7 @@ KNotesPlugin::KNotesPlugin(KontactInterface::Core *core, const QVariantList &)
 {
     setComponentName(QStringLiteral("knotes"), i18n("KNotes"));
 
-    QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("knotes")), i18nc("@action:inmenu", "New Popup Note..."), this);
+    auto action = new QAction(QIcon::fromTheme(QStringLiteral("knotes")), i18nc("@action:inmenu", "New Popup Note..."), this);
     actionCollection()->addAction(QStringLiteral("new_note"), action);
     connect(action, &QAction::triggered, this, &KNotesPlugin::slotNewNote);
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_N));

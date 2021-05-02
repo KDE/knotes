@@ -25,7 +25,7 @@ KNotePrintObject::~KNotePrintObject()
 
 QString KNotePrintObject::description() const
 {
-    KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
+    auto noteMessage = mItem.payload<KMime::Message::Ptr>();
     if (noteMessage->contentType()->isHTMLText()) {
         return noteMessage->mainBodyPart()->decodedText();
     } else {
@@ -35,7 +35,7 @@ QString KNotePrintObject::description() const
 
 QString KNotePrintObject::name() const
 {
-    KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
+    auto noteMessage = mItem.payload<KMime::Message::Ptr>();
     const KMime::Headers::Subject *const subject = noteMessage ? noteMessage->subject(false) : nullptr;
     return subject ? subject->asUnicodeString() : QString();
 }
@@ -53,7 +53,7 @@ bool KNotePrintObject::hasAlarm() const
 
 QString KNotePrintObject::alarm() const
 {
-    const auto *attr = mItem.attribute<NoteShared::NoteAlarmAttribute>();
+    const auto attr = mItem.attribute<NoteShared::NoteAlarmAttribute>();
     if (attr) {
         return QLocale().toString(attr->dateTime(), QLocale::LongFormat);
     }

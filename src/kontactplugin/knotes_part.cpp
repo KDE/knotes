@@ -135,7 +135,7 @@ KNotesPart::KNotesPart(QObject *parent)
     actionCollection()->addAction(QStringLiteral("configure_note"), mNoteConfigure);
     connect(mNoteConfigure, &QAction::triggered, this, &KNotesPart::slotNotePreferences);
 
-    QAction *act = new QAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Preferences KNotes..."), this);
+    auto act = new QAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Preferences KNotes..."), this);
     actionCollection()->addAction(QStringLiteral("knotes_configure"), act);
     connect(act, &QAction::triggered, this, &KNotesPart::slotPreferences);
 
@@ -170,7 +170,7 @@ KNotesPart::KNotesPart(QObject *parent)
 
     KStandardAction::find(this, &KNotesPart::slotOpenFindDialog, actionCollection());
 
-    Akonadi::Session *session = new Akonadi::Session("KNotes Session", this);
+    auto session = new Akonadi::Session("KNotes Session", this);
     mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
     mNoteRecorder->changeRecorder()->setSession(session);
     mNoteTreeModel = new NoteShared::NotesAkonadiTreeModel(mNoteRecorder->changeRecorder(), this);
@@ -237,9 +237,9 @@ void KNotesPart::slotRowInserted(const QModelIndex &parent, int start, int end)
     for (int i = start; i <= end; ++i) {
         if (mNoteTreeModel->hasIndex(i, 0, parent)) {
             const QModelIndex child = mNoteTreeModel->index(i, 0, parent);
-            Akonadi::Collection parentCollection = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
+            auto parentCollection = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ParentCollectionRole).value<Akonadi::Collection>();
             if (parentCollection.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
-                Akonadi::Item item = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
+                auto item = mNoteTreeModel->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
                 if (!item.hasPayload<KMime::Message::Ptr>()) {
                     continue;
                 }
@@ -344,7 +344,7 @@ void KNotesPart::killNote(Akonadi::Item::Id id, bool force)
                                                        KStandardGuiItem::del())
                  == KMessageBox::Continue)
             || force)) {
-        Akonadi::ItemDeleteJob *job = new Akonadi::ItemDeleteJob(note->item());
+        auto job = new Akonadi::ItemDeleteJob(note->item());
         connect(job, &Akonadi::ItemDeleteJob::result, this, &KNotesPart::slotDeleteNotesFinished);
     }
 }
@@ -572,7 +572,7 @@ void KNotesPart::slotNotePreferences()
         KNoteUtils::updateConfiguration();
         bool isRichText;
         dialog->save(item, isRichText);
-        KMime::Message::Ptr message = item.payload<KMime::Message::Ptr>();
+        auto message = item.payload<KMime::Message::Ptr>();
         message->contentType(true)->setMimeType(isRichText ? "text/html" : "text/plain");
         message->assemble();
         auto job = new Akonadi::ItemModifyJob(item);
@@ -584,7 +584,7 @@ void KNotesPart::slotNotePreferences()
 void KNotesPart::slotPreferences()
 {
     // create a new preferences dialog...
-    KNoteConfigDialog *dialog = new KNoteConfigDialog(i18n("Settings"), widget());
+    auto dialog = new KNoteConfigDialog(i18n("Settings"), widget());
     connect(dialog, qOverload<>(&KCMultiDialog::configCommitted), this, &KNotesPart::slotConfigUpdated);
     dialog->show();
 }
@@ -648,7 +648,7 @@ void KNotesPart::slotSetAlarm()
         bool needToModify = true;
         QDateTime dateTime = dlg->alarm();
         if (dateTime.isValid()) {
-            auto *attribute = item.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
+            auto attribute = item.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
             attribute->setDateTime(dateTime);
         } else {
             if (item.hasAttribute<NoteShared::NoteAlarmAttribute>()) {

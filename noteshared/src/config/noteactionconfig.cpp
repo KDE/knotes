@@ -20,7 +20,7 @@ NoteActionConfig::NoteActionConfig(QWidget *parent)
     auto layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    QLabel *label_MailAction = new QLabel(i18n("&Mail action:"), this);
+    auto label_MailAction = new QLabel(i18n("&Mail action:"), this);
     layout->addWidget(label_MailAction, 0, 0);
 
     auto kcfg_MailAction = new QLineEdit(this);
@@ -28,7 +28,7 @@ NoteActionConfig::NoteActionConfig(QWidget *parent)
     label_MailAction->setBuddy(kcfg_MailAction);
     layout->addWidget(kcfg_MailAction, 0, 1);
 
-    QLabel *howItWorks = new QLabel(i18n("<a href=\"whatsthis\">How does this work?</a>"));
+    auto howItWorks = new QLabel(i18n("<a href=\"whatsthis\">How does this work?</a>"));
     connect(howItWorks, &QLabel::linkActivated, this, &NoteActionConfig::slotHelpLinkClicked);
     layout->addWidget(howItWorks, 1, 0);
     howItWorks->setContextMenuPolicy(Qt::NoContextMenu);

@@ -43,11 +43,11 @@ QVariant KNoteCollectionDisplayProxyModel::data(const QModelIndex &index, int ro
 {
     if (role == Qt::CheckStateRole) {
         if (index.isValid()) {
-            const Akonadi::Collection collection = data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
+            const auto collection = data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
             if (mDisplayCollection.contains(collection)) {
                 return mDisplayCollection.value(collection) ? Qt::Checked : Qt::Unchecked;
             } else {
-                const auto *attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>();
+                const auto attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>();
                 if (attr) {
                     return Qt::Checked;
                 }
@@ -62,7 +62,7 @@ bool KNoteCollectionDisplayProxyModel::setData(const QModelIndex &index, const Q
 {
     if (role == Qt::CheckStateRole) {
         if (index.isValid()) {
-            const Akonadi::Collection collection = data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
+            const auto collection = data(index, Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
             mDisplayCollection[collection] = (value == Qt::Checked);
             Q_EMIT dataChanged(index, index);
             return true;
@@ -95,12 +95,12 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     auto tabWidget = new QTabWidget;
     mainLayout->addWidget(tabWidget);
 
-    QWidget *collectionWidget = new QWidget;
+    auto collectionWidget = new QWidget;
     auto vbox = new QVBoxLayout;
     collectionWidget->setLayout(vbox);
     tabWidget->addTab(collectionWidget, i18n("Folders"));
 
-    QLabel *label = new QLabel(i18n("Select which KNotes folders to show:"));
+    auto label = new QLabel(i18n("Select which KNotes folders to show:"));
     vbox->addWidget(label);
 
     // Create a new change recorder.
@@ -149,7 +149,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     auto hbox = new QHBoxLayout;
     vbox->addLayout(hbox);
 
-    QPushButton *button = new QPushButton(i18n("&Select All"), this);
+    auto button = new QPushButton(i18n("&Select All"), this);
     connect(button, &QPushButton::clicked, this, &KNoteCollectionConfigWidget::slotSelectAllCollections);
     hbox->addWidget(button);
 
@@ -175,7 +175,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
 
     vbox->addWidget(mDefaultSaveFolder);
 
-    QWidget *accountWidget = new QWidget;
+    auto accountWidget = new QWidget;
     auto vboxAccountWidget = new QVBoxLayout;
     accountWidget->setLayout(vboxAccountWidget);
 
@@ -210,7 +210,7 @@ void KNoteCollectionConfigWidget::slotRenameCollection()
 
     QString title = idx.data().toString();
 
-    Akonadi::Collection col = idx.data(Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
+    auto col = idx.data(Akonadi::EntityTreeModel::CollectionRole).value<Akonadi::Collection>();
     Q_ASSERT(col.isValid());
     if (!col.isValid()) {
         return;
@@ -294,7 +294,7 @@ void KNoteCollectionConfigWidget::updateCollectionsRecursive()
         i.next();
         Akonadi::Collection collection = i.key();
         Akonadi::CollectionModifyJob *modifyJob = nullptr;
-        auto *attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>();
+        auto attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>();
         const bool selected = i.value();
         if (selected && !attr) {
             attr = collection.attribute<NoteShared::ShowFolderNotesAttribute>(Akonadi::Collection::AddIfMissing);

@@ -27,7 +27,7 @@ KNoteFindDialog::KNoteFindDialog(QWidget *parent)
 {
     setWindowTitle(i18nc("@title:window", "Search Notes"));
     auto mainLayout = new QVBoxLayout(this);
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, this);
+    auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, this);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteFindDialog::reject);
     setAttribute(Qt::WA_DeleteOnClose);
     mNoteFindWidget = new KNoteFindWidget(this);
@@ -70,7 +70,7 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     vbox->setContentsMargins(0, 0, 0, 0);
     auto hbox = new QHBoxLayout;
     vbox->addLayout(hbox);
-    QLabel *lab = new QLabel(i18nc("@label:textbox", "Search notes:"), this);
+    auto lab = new QLabel(i18nc("@label:textbox", "Search notes:"), this);
     hbox->addWidget(lab);
     mSearchLineEdit = new QLineEdit(this);
     mSearchLineEdit->setClearButtonEnabled(true);

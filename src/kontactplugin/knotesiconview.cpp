@@ -112,7 +112,7 @@ KNotesIconViewItem::~KNotesIconViewItem()
 
 void KNotesIconViewItem::prepare()
 {
-    const KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
+    const auto noteMessage = mItem.payload<KMime::Message::Ptr>();
     const KMime::Headers::Subject *const subject = noteMessage ? noteMessage->subject(false) : nullptr;
     setText(subject ? subject->asUnicodeString() : QString());
 
@@ -188,7 +188,7 @@ void KNotesIconViewItem::setIconText(const QString &text, bool save)
 
 QString KNotesIconViewItem::realName() const
 {
-    const KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
+    const auto noteMessage = mItem.payload<KMime::Message::Ptr>();
     const KMime::Headers::Subject *const subject = noteMessage ? noteMessage->subject(false) : nullptr;
     return subject ? subject->asUnicodeString() : QString();
 }
@@ -220,20 +220,20 @@ QFont KNotesIconViewItem::textFont() const
 
 bool KNotesIconViewItem::isRichText() const
 {
-    const KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
+    const auto noteMessage = mItem.payload<KMime::Message::Ptr>();
     return noteMessage->contentType()->isHTMLText();
 }
 
 QString KNotesIconViewItem::description() const
 {
-    const KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
+    const auto noteMessage = mItem.payload<KMime::Message::Ptr>();
     return QString::fromUtf8(noteMessage->mainBodyPart()->decodedContent());
 }
 
 int KNotesIconViewItem::cursorPositionFromStart() const
 {
     int pos = 0;
-    const KMime::Message::Ptr noteMessage = mItem.payload<KMime::Message::Ptr>();
+    const auto noteMessage = mItem.payload<KMime::Message::Ptr>();
     if (auto hrd = noteMessage->headerByType("X-Cursor-Position")) {
         pos = hrd->asUnicodeString().toInt();
     }
@@ -257,7 +257,7 @@ Akonadi::Item KNotesIconViewItem::item()
 
 void KNotesIconViewItem::saveNoteContent(const QString &subject, const QString &description, int position)
 {
-    KMime::Message::Ptr message = mItem.payload<KMime::Message::Ptr>();
+    auto message = mItem.payload<KMime::Message::Ptr>();
     const QByteArray encoding("utf-8");
     if (!subject.isEmpty()) {
         message->subject(true)->fromUnicodeString(subject, encoding);
@@ -298,7 +298,7 @@ void KNotesIconViewItem::setChangeItem(const Akonadi::Item &item, const QSet<QBy
         setReadOnly(item.hasAttribute<NoteShared::NoteLockAttribute>(), false);
     }
     if (set.contains("PLD:RFC822")) {
-        const KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
+        const auto noteMessage = item.payload<KMime::Message::Ptr>();
         const KMime::Headers::Subject *const subject = noteMessage ? noteMessage->subject(false) : nullptr;
         setIconText(subject ? subject->asUnicodeString() : QString(), false);
     }

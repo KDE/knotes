@@ -43,7 +43,7 @@ KNotesSelectDeleteNotesDialog::KNotesSelectDeleteNotesDialog(const QList<KNotesI
 {
     setWindowTitle(i18nc("@title:window", "Confirm Delete"));
     auto mainLayout = new QVBoxLayout(this);
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
@@ -51,10 +51,10 @@ KNotesSelectDeleteNotesDialog::KNotesSelectDeleteNotesDialog(const QList<KNotesI
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNotesSelectDeleteNotesDialog::reject);
     buttonBox->button(QDialogButtonBox::Cancel)->setDefault(true);
     setModal(true);
-    QWidget *w = new QWidget;
+    auto w = new QWidget;
     auto lay = new QVBoxLayout(w);
     lay->setContentsMargins(0, 0, 0, 0);
-    QLabel *lab = new QLabel(i18np("Do you really want to delete this note?", "Do you really want to delete these %1 notes?", items.count()), this);
+    auto lab = new QLabel(i18np("Do you really want to delete this note?", "Do you really want to delete these %1 notes?", items.count()), this);
     lay->addWidget(lab);
     mSelectedListWidget = new KNotesSelectDeleteNotesListWidget(this);
     lay->addWidget(mSelectedListWidget);

@@ -55,7 +55,7 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
 
     mPixmap = loader.loadIcon(QStringLiteral("knotes"), KIconLoader::Small);
 
-    Akonadi::Session *session = new Akonadi::Session("KNotes Session", this);
+    auto session = new Akonadi::Session("KNotes Session", this);
     mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
     mNoteRecorder->changeRecorder()->setSession(session);
     mNoteTreeModel = new NoteShared::NotesAkonadiTreeModel(mNoteRecorder->changeRecorder(), this);
@@ -96,7 +96,7 @@ void KNotesSummaryWidget::updateFolderList()
     mInProgress = false;
 
     if (counter == 0) {
-        QLabel *label = new QLabel(i18n("No notes found"), this);
+        auto label = new QLabel(i18n("No notes found"), this);
         label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         mLayout->addWidget(label, 0, 0);
         mLabels.append(label);
@@ -113,7 +113,7 @@ void KNotesSummaryWidget::displayNotes(const QModelIndex &parent, int &counter)
     const int nbCol = mModelProxy->rowCount(parent);
     for (int i = 0; i < nbCol; ++i) {
         const QModelIndex child = mModelProxy->index(i, 0, parent);
-        const Akonadi::Item item = mModelProxy->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
+        const auto item = mModelProxy->data(child, Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
         if (item.isValid()) {
             createNote(item, counter);
             ++counter;
@@ -151,13 +151,13 @@ void KNotesSummaryWidget::createNote(const Akonadi::Item &item, int counter)
         return;
     }
 
-    KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
+    auto noteMessage = item.payload<KMime::Message::Ptr>();
     if (!noteMessage) {
         return;
     }
     const KMime::Headers::Subject *const subject = noteMessage->subject(false);
     const QString subStr = subject ? subject->asUnicodeString() : QString();
-    KUrlLabel *urlLabel = new KUrlLabel(QString::number(item.id()), subStr, this);
+    auto urlLabel = new KUrlLabel(QString::number(item.id()), subStr, this);
 
     urlLabel->installEventFilter(this);
     urlLabel->setAlignment(Qt::AlignLeft);
@@ -179,7 +179,7 @@ void KNotesSummaryWidget::createNote(const Akonadi::Item &item, int counter)
     KIconEffect effect;
     QPixmap pixmap = effect.apply(mDefaultPixmap, KIconEffect::Colorize, 1, color, false);
 
-    QLabel *label = new QLabel(this);
+    auto label = new QLabel(this);
     label->setAlignment(Qt::AlignVCenter);
     QIcon icon(pixmap);
     label->setPixmap(icon.pixmap(label->height() / 1.5));

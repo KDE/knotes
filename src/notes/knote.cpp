@@ -146,7 +146,7 @@ void KNote::saveNote(bool force, bool sync)
         return;
     }
     bool needToSave = false;
-    auto *attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    auto attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     const QPoint notePosition = pos();
     if (attribute->position() != notePosition) {
         needToSave = true;
@@ -317,7 +317,7 @@ void KNote::slotUpdateReadOnly()
 
 void KNote::updateAllAttributes()
 {
-    auto *attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    auto attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
 #if KDEPIM_HAVE_X11
     KWindowInfo info(winId(), NET::WMDesktop);
     const int count = KWindowSystem::numberOfDesktops();
@@ -358,7 +358,7 @@ void KNote::slotSetAlarm()
         bool needToModify = true;
         QDateTime dateTime = dlg->alarm();
         if (dateTime.isValid()) {
-            auto *attribute = mItem.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
+            auto attribute = mItem.attribute<NoteShared::NoteAlarmAttribute>(Akonadi::Item::AddIfMissing);
             attribute->setDateTime(dateTime);
         } else {
             if (mItem.hasAttribute<NoteShared::NoteAlarmAttribute>()) {
@@ -382,7 +382,7 @@ void KNote::slotSetAlarm()
 
 void KNote::saveNoteContent()
 {
-    KMime::Message::Ptr message = mItem.payload<KMime::Message::Ptr>();
+    auto message = mItem.payload<KMime::Message::Ptr>();
     const QByteArray encoding("utf-8");
     message->subject(true)->fromUnicodeString(name(), encoding);
     message->contentType(true)->setMimeType(m_editor->acceptRichText() ? "text/html" : "text/plain");
@@ -404,7 +404,7 @@ void KNote::slotPreferences()
 {
     // create a new preferences dialog...
     QPointer<KNoteSimpleConfigDialog> dialog = new KNoteSimpleConfigDialog(name(), this);
-    auto *attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    auto attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     attribute->setSize(QSize(width(), height()));
 
     dialog->load(mItem, m_editor->acceptRichText());
@@ -567,7 +567,7 @@ void KNote::updateKeepAboveBelow(bool save)
 #else
     NET::States state = {}; // neutral state, TODO
 #endif
-    auto *attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+    auto attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     if (m_keepAbove->isChecked()) {
         attribute->setKeepAbove(true);
         attribute->setKeepBelow(false);
@@ -650,7 +650,7 @@ void KNote::createActions()
 {
     // create the menu items for the note - not the editor...
     // rename, mail, print, save as, insert date, alarm, close, delete, new note
-    QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("document-new")), i18n("New"), this);
+    auto action = new QAction(QIcon::fromTheme(QStringLiteral("document-new")), i18n("New"), this);
     actionCollection()->addAction(QStringLiteral("new_note"), action);
     connect(action, &QAction::triggered, this, &KNote::slotRequestNewNote);
 
@@ -818,7 +818,7 @@ void KNote::createNoteFooter()
 
 void KNote::loadNoteContent(const Akonadi::Item &item)
 {
-    KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
+    auto noteMessage = item.payload<KMime::Message::Ptr>();
     const KMime::Headers::Subject *const subject = noteMessage ? noteMessage->subject(false) : nullptr;
     setName(subject ? subject->asUnicodeString() : QString());
     if (noteMessage->contentType()->isHTMLText()) {
@@ -1046,7 +1046,7 @@ void KNote::showEvent(QShowEvent *)
 #endif
         toDesktop(mDisplayAttribute->desktop());
         move(mDisplayAttribute->position());
-        auto *attr = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+        auto attr = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
         saveNoteContent();
         attr->setIsHidden(false);
         if (!mBlockSave) {
@@ -1089,9 +1089,9 @@ void KNote::dropEvent(QDropEvent *e)
 
     const QMimeData *md = e->mimeData();
     if (md->hasColor()) {
-        const QColor bg = qvariant_cast<QColor>(md->colorData());
+        const auto bg = qvariant_cast<QColor>(md->colorData());
 
-        auto *attr = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
+        auto attr = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
         saveNoteContent();
         attr->setBackgroundColor(bg);
         auto job = new Akonadi::ItemModifyJob(mItem);
@@ -1125,7 +1125,7 @@ bool KNote::eventFilter(QObject *o, QEvent *ev)
     }
 
     if (o == m_label) {
-        auto *e = (QMouseEvent *)ev;
+        auto e = (QMouseEvent *)ev;
 
         if (ev->type() == QEvent::MouseButtonDblClick) {
             if (!m_editor->isReadOnly()) {

@@ -40,12 +40,12 @@ KCMKNotesSummary::KCMKNotesSummary(QWidget *parent)
 
     load();
 
-    KAboutData *about = new KAboutData(QStringLiteral("kcmknotessummary"),
-                                       i18n("kcmknotessummary"),
-                                       QString(),
-                                       i18n("Notes Summary Configuration Dialog"),
-                                       KAboutLicense::GPL,
-                                       i18n("Copyright © 2013-2021 Laurent Montel <montel@kde.org>"));
+    auto about = new KAboutData(QStringLiteral("kcmknotessummary"),
+                                i18n("kcmknotessummary"),
+                                QString(),
+                                i18n("Notes Summary Configuration Dialog"),
+                                KAboutLicense::GPL,
+                                i18n("Copyright © 2013-2021 Laurent Montel <montel@kde.org>"));
     about->addAuthor(ki18n("Laurent Montel").toString(), QString(), QStringLiteral("montel@kde.org"));
     setAboutData(about);
 }

@@ -34,7 +34,7 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     mButtonBox->addButton(mUser1Button, QDialogButtonBox::ActionRole);
     connect(mButtonBox, &QDialogButtonBox::accepted, this, &KNotePrintSelectedNotesDialog::accept);
     connect(mButtonBox, &QDialogButtonBox::rejected, this, &KNotePrintSelectedNotesDialog::reject);
-    QWidget *w = new QWidget;
+    auto w = new QWidget;
     auto vbox = new QVBoxLayout;
     vbox->setContentsMargins(0, 0, 0, 0);
     w->setLayout(vbox);
@@ -46,7 +46,7 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     auto lay = new QHBoxLayout;
     lay->setContentsMargins(0, 0, 0, 0);
     vbox->addLayout(lay);
-    QLabel *lab = new QLabel(i18n("Printing theme:"));
+    auto lab = new QLabel(i18n("Printing theme:"));
     lay->addWidget(lab);
     mTheme = new KNotePrintSelectThemeComboBox;
     mTheme->loadThemes();
@@ -96,7 +96,7 @@ QList<KNotePrintObject *> KNotePrintSelectedNotesDialog::selectedNotes() const
     for (QListWidgetItem *item : lst) {
         Akonadi::Item::Id akonadiId = item->data(AkonadiId).toLongLong();
         if (akonadiId != -1) {
-            KNotePrintObject *obj = new KNotePrintObject(mNotes.value(akonadiId)->item());
+            auto obj = new KNotePrintObject(mNotes.value(akonadiId)->item());
             lstPrintObj.append(obj);
         }
     }

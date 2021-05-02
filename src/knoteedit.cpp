@@ -115,7 +115,7 @@ KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
     m_textColor->setIcon(pix);
     connect(m_textColor, &QAction::triggered, this, &KNoteEdit::slotTextColor);
 
-    QAction *act = new QAction(QIcon::fromTheme(QStringLiteral("format-fill-color")), i18n("Text Background Color..."), this);
+    auto act = new QAction(QIcon::fromTheme(QStringLiteral("format-fill-color")), i18n("Text Background Color..."), this);
     actions->addAction(QStringLiteral("text_background_color"), act);
     connect(act, &QAction::triggered, this, &KNoteEdit::slotTextBackgroundColor);
 
@@ -133,7 +133,7 @@ KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
     connect(mChangeCaseActionMenu, &PimCommon::KActionMenuChangeCase::sentenceCase, this, &KNoteEdit::slotSentenceCase);
     connect(mChangeCaseActionMenu, &PimCommon::KActionMenuChangeCase::reverseCase, this, &KNoteEdit::slotReverseCase);
 
-    QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("knotes_date")), i18n("Insert Date"), this);
+    auto action = new QAction(QIcon::fromTheme(QStringLiteral("knotes_date")), i18n("Insert Date"), this);
     actions->addAction(QStringLiteral("insert_date"), action);
     connect(action, &QAction::triggered, this, &KNoteEdit::slotInsertDate);
 

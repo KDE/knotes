@@ -37,7 +37,7 @@ NotesAgentNoteDialog::NotesAgentNoteDialog(QWidget *parent)
     mNote = new KPIMTextEdit::RichTextEditorWidget(this);
     mNote->setReadOnly(true);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, this);
+    auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, this);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &NotesAgentNoteDialog::reject);
 
     mainLayout->addWidget(mNote);
@@ -69,7 +69,7 @@ void NotesAgentNoteDialog::slotFetchItem(KJob *job)
     const Akonadi::Item::List lstItem = itemFetchJob->items();
     if (!lstItem.isEmpty()) {
         const Akonadi::Item item = lstItem.first();
-        KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
+        auto noteMessage = item.payload<KMime::Message::Ptr>();
         if (noteMessage) {
             const KMime::Headers::Subject *const subject = noteMessage->subject(false);
             if (subject) {
@@ -84,7 +84,7 @@ void NotesAgentNoteDialog::slotFetchItem(KJob *job)
             }
         }
         if (item.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
-            const auto *attr = item.attribute<NoteShared::NoteDisplayAttribute>();
+            const auto attr = item.attribute<NoteShared::NoteDisplayAttribute>();
             if (attr) {
                 mNote->editor()->setTextColor(attr->backgroundColor());
                 // TODO add background color.

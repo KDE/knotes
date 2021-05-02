@@ -120,7 +120,7 @@ void NotesManager::slotCheckAlarm()
 
     Akonadi::Item::List lst;
     for (const Akonadi::Item &item : qAsConst(mListItem)) {
-        const auto *attrAlarm = item.attribute<NoteShared::NoteAlarmAttribute>();
+        const auto attrAlarm = item.attribute<NoteShared::NoteAlarmAttribute>();
         if (attrAlarm) {
             if (attrAlarm->dateTime() < QDateTime::currentDateTime()) {
                 lst.append(item);

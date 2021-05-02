@@ -77,21 +77,21 @@ KNoteMiscConfig::KNoteMiscConfig(QWidget *parent)
     auto lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
 
-    QCheckBox *kcfg_SystemTrayShowNotes = new QCheckBox(i18n("Show number of notes in tray icon"), this);
+    auto kcfg_SystemTrayShowNotes = new QCheckBox(i18n("Show number of notes in tray icon"), this);
 
     kcfg_SystemTrayShowNotes->setObjectName(QStringLiteral("kcfg_SystemTrayShowNotes"));
     lay->addWidget(kcfg_SystemTrayShowNotes);
 
     auto hbox = new QHBoxLayout;
     lay->addLayout(hbox);
-    QLabel *label_DefaultTitle = new QLabel(i18n("Default Title:"), this);
+    auto label_DefaultTitle = new QLabel(i18n("Default Title:"), this);
     hbox->addWidget(label_DefaultTitle);
 
     mDefaultTitle = new QLineEdit(this);
     label_DefaultTitle->setBuddy(mDefaultTitle);
     hbox->addWidget(mDefaultTitle);
 
-    QLabel *howItWorks = new QLabel(i18n("<a href=\"whatsthis\">How does this work?</a>"));
+    auto howItWorks = new QLabel(i18n("<a href=\"whatsthis\">How does this work?</a>"));
     connect(howItWorks, &QLabel::linkActivated, this, &KNoteMiscConfig::slotHelpLinkClicked);
     lay->addWidget(howItWorks);
     addConfig(KNotesGlobalConfig::self(), this);
@@ -142,12 +142,12 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent)
     : KCModule(parent)
 {
     auto lay = new QVBoxLayout(this);
-    QWidget *w = new QWidget(this);
+    auto w = new QWidget(this);
     lay->addWidget(w);
     auto layout = new QGridLayout(w);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    QLabel *label_PrintAction = new QLabel(i18n("Theme:"), this);
+    auto label_PrintAction = new QLabel(i18n("Theme:"), this);
     layout->addWidget(label_PrintAction, 0, 0);
 
     mSelectTheme = new KNotePrintSelectThemeComboBox(this);

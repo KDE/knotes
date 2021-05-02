@@ -80,7 +80,7 @@ void NoteUtils::sendToNetwork(QWidget *parent, const QString &title, const QStri
 
 QString NoteUtils::createToolTip(const Akonadi::Item &item)
 {
-    const KMime::Message::Ptr noteMessage = item.payload<KMime::Message::Ptr>();
+    const auto noteMessage = item.payload<KMime::Message::Ptr>();
     if (!noteMessage) {
         return QString();
     }
@@ -92,7 +92,7 @@ QString NoteUtils::createToolTip(const Akonadi::Item &item)
 
     QString tip;
     if (item.hasAttribute<NoteDisplayAttribute>()) {
-        const auto *attr = item.attribute<NoteDisplayAttribute>();
+        const auto attr = item.attribute<NoteDisplayAttribute>();
         if (attr) {
             const QString bckColorName = attr->backgroundColor().name();
             const QString txtColorName = attr->foregroundColor().name();

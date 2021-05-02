@@ -41,29 +41,29 @@ NoteAlarmDialog::NoteAlarmDialog(const QString &caption, QWidget *parent)
 {
     setWindowTitle(caption);
     auto mainLayout = new QVBoxLayout(this);
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &NoteAlarmDialog::reject);
-    QWidget *page = new QWidget(this);
+    auto page = new QWidget(this);
     auto pageVBoxLayout = new QVBoxLayout(page);
     pageVBoxLayout->setContentsMargins(0, 0, 0, 0);
 
     d->m_buttons = new QButtonGroup(this);
-    QGroupBox *group = new QGroupBox(i18n("Scheduled Alarm"), page);
+    auto group = new QGroupBox(i18n("Scheduled Alarm"), page);
     pageVBoxLayout->addWidget(group);
     auto layout = new QVBoxLayout;
-    QRadioButton *none = new QRadioButton(i18n("&No alarm"));
+    auto none = new QRadioButton(i18n("&No alarm"));
     layout->addWidget(none);
     d->m_buttons->addButton(none, 0);
 
     group->setLayout(layout);
 
-    QWidget *at = new QWidget;
+    auto at = new QWidget;
     auto atHBoxLayout = new QHBoxLayout(at);
     atHBoxLayout->setContentsMargins(0, 0, 0, 0);
-    QRadioButton *label_at = new QRadioButton(i18n("Alarm &at:"), at);
+    auto label_at = new QRadioButton(i18n("Alarm &at:"), at);
     atHBoxLayout->addWidget(label_at);
     d->m_atDate = new KDateComboBox(at);
     atHBoxLayout->addWidget(d->m_atDate);

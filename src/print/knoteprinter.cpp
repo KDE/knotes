@@ -20,6 +20,7 @@
 
 #include "knotes_debug.h"
 #include <KLocalizedString>
+#include <memory>
 
 #include <grantlee/context.h>
 #include <grantlee/engine.h>
@@ -110,7 +111,7 @@ void KNotePrinter::print(QPrinter &printer, const QString &htmlText)
 
 void KNotePrinter::printNotes(const QList<KNotePrintObject *> &lst, const QString &themePath, bool preview)
 {
-    mGrantleePrint.reset(new KNoteGrantleePrint(themePath));
+    mGrantleePrint = std::make_unique<KNoteGrantleePrint>(themePath);
     if (mGrantleePrint->errorMessage().isEmpty()) {
         const QString htmlText = mGrantleePrint->notesToHtml(lst);
         const QString dialogCaption = i18np("Print Note", "Print %1 notes", lst.count());

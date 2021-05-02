@@ -21,7 +21,7 @@ KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
     setWindowTitle(i18nc("@title:window", "Select theme"));
     auto mainLayout = new QVBoxLayout(this);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
 
     okButton->setDefault(true);
@@ -31,11 +31,11 @@ KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
     connect(buttonBox, &QDialogButtonBox::accepted, this, &KNotePrintSelectThemeDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNotePrintSelectThemeDialog::reject);
 
-    QWidget *w = new QWidget;
+    auto w = new QWidget;
     auto lay = new QHBoxLayout;
     w->setLayout(lay);
 
-    QLabel *lab = new QLabel(i18n("Themes:"));
+    auto lab = new QLabel(i18n("Themes:"));
     lay->addWidget(lab);
 
     mThemes = new KNotePrintSelectThemeComboBox;
