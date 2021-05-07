@@ -13,8 +13,8 @@ set(kontact_knotesplugin_PART_SRCS
   knotesselectdeletenotesdialog.cpp
 )
 
-qt5_add_dbus_adaptor(kontact_knotesplugin_PART_SRCS org.kde.kontact.KNotes.xml knotes_part.h KNotesPart)
-qt5_add_dbus_interfaces(kontact_knotesplugin_interface_SRCS org.kde.kontact.KNotes.xml)
+qt_add_dbus_adaptor(kontact_knotesplugin_PART_SRCS org.kde.kontact.KNotes.xml knotes_part.h KNotesPart)
+qt_add_dbus_interfaces(kontact_knotesplugin_interface_SRCS org.kde.kontact.KNotes.xml)
 
 ecm_qt_declare_logging_category(kontact_knotesplugin_PART_SRCS HEADER knotes_kontact_plugin_debug.h IDENTIFIER KNOTES_KONTACT_PLUGIN_LOG CATEGORY_NAME org.kde.pim.knoteskontactplugin
         DESCRIPTION "knotes (knotes kontact plugin)"

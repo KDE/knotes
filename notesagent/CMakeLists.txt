@@ -13,7 +13,7 @@ kconfig_add_kcfg_files(notesagent_SRCS
     )
 
 
-qt5_add_dbus_adaptor(notesagent_SRCS org.freedesktop.Akonadi.NotesAgent.xml notesagent.h NotesAgent)
+qt_add_dbus_adaptor(notesagent_SRCS org.freedesktop.Akonadi.NotesAgent.xml notesagent.h NotesAgent)
 ecm_qt_declare_logging_category(notesagent_SRCS HEADER notesagent_debug.h IDENTIFIER NOTESAGENT_LOG CATEGORY_NAME org.kde.pim.notesagentagent
         DESCRIPTION "knotes (note agent)"
         OLD_CATEGORY_NAMES log_notesagentagent

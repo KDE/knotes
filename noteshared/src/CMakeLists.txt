@@ -40,7 +40,7 @@ macro(add_resource_iface _kcfgFile _ifaceName _className)
     kcfg_generate_dbus_interface(${_kcfgFile} ${_ifaceName})
     string(TOLOWER ${_className} _codeFile)
     set_source_files_properties( ${CMAKE_CURRENT_BINARY_DIR}/${_ifaceName}.xml PROPERTIES INCLUDE "resources/metatype.h")
-    qt5_add_dbus_interface(libnoteshared_SRCS
+    qt_add_dbus_interface(libnoteshared_SRCS
         ${CMAKE_CURRENT_BINARY_DIR}/${_ifaceName}.xml ${_codeFile} ${_className}
         )
 endmacro()
