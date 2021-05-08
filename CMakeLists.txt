@@ -4,7 +4,7 @@ project(knotes VERSION ${PIM_VERSION})
 set(RELEASE_SERVICE_VERSION "21.07.40")
 
 
-set(KF5_MIN_VERSION "5.81.0")
+set(KF5_MIN_VERSION "5.82.0")
 
 find_package(ECM ${KF5_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${knotes_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH})
@@ -114,7 +114,7 @@ set_package_properties(Xsltproc PROPERTIES DESCRIPTION "XSLT processor from libx
 include_directories(${knotes_SOURCE_DIR} ${knotes_BINARY_DIR})
 
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050e00)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055200)
+add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055300)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
