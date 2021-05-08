@@ -50,7 +50,7 @@ kcoreaddons_desktop_to_json(kontact_knotesplugin knotesplugin.desktop)
 set(kcm_knotessummary_PART_SRCS kcmknotessummary.cpp )
 
 add_library(kcm_knotessummary MODULE ${kcm_knotessummary_PART_SRCS})
-
+kcoreaddons_desktop_to_json(kcm_knotessummary "kcmknotessummary.desktop" SERVICE_TYPES kcmodule.desktop)
 target_link_libraries(kcm_knotessummary  KF5::PimCommonAkonadi KF5::AkonadiNotes KF5::ConfigWidgets KF5::I18n)
 
 

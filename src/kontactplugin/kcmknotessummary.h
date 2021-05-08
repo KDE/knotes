@@ -22,7 +22,7 @@ class KCMKNotesSummary : public KCModule
     Q_OBJECT
 
 public:
-    explicit KCMKNotesSummary(QWidget *parent = nullptr);
+    explicit KCMKNotesSummary(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
 
     void load() override;
     void save() override;

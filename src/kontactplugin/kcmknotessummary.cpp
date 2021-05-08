@@ -16,21 +16,17 @@
 #include <KAcceleratorManager>
 #include <KCheckableProxyModel>
 #include <KLocalizedString>
+#include <KPluginFactory>
 #include <KSharedConfig>
 
 #include <QCheckBox>
 #include <QTreeView>
 #include <QVBoxLayout>
 
-extern "C" {
-Q_DECL_EXPORT KCModule *create_knotessummary(QWidget *parent, const char *)
-{
-    return new KCMKNotesSummary(parent);
-}
-}
+K_PLUGIN_FACTORY_WITH_JSON(KCMKNotesSummaryFactory, "kcmknotessummary.json", registerPlugin<KCMKNotesSummary>();)
 
-KCMKNotesSummary::KCMKNotesSummary(QWidget *parent)
-    : KCModule(parent)
+KCMKNotesSummary::KCMKNotesSummary(QWidget *parent, const QVariantList &args)
+    : KCModule(parent, args)
 {
     initGUI();
 
@@ -103,3 +99,5 @@ void KCMKNotesSummary::defaults()
 {
     Q_EMIT changed(true);
 }
+
+#include "kcmknotessummary.moc"
