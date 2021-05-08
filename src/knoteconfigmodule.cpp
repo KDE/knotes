@@ -1,5 +1,6 @@
 /*
    SPDX-FileCopyrightText: 2021 Laurent Montel <montel@kde.org>
+   SPDX-FileCopyrightText: 2021 Alexander Lohnau <alexander.lohnau@gmx.de>
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -29,8 +30,8 @@
 #include <QVBoxLayout>
 #include <QWhatsThis>
 
-KNoteDisplayConfig::KNoteDisplayConfig(QWidget *parent)
-    : KCModule(parent)
+KNoteDisplayConfig::KNoteDisplayConfig(QWidget *parent, const QVariantList &args)
+    : KCModule(parent, args)
 {
     auto lay = new QVBoxLayout(this);
     QWidget *w = new KNoteDisplayConfigWidget(true);
@@ -50,8 +51,8 @@ void KNoteDisplayConfig::save()
     KCModule::save();
 }
 
-KNoteEditorConfig::KNoteEditorConfig(QWidget *parent)
-    : KCModule(parent)
+KNoteEditorConfig::KNoteEditorConfig(QWidget *parent, const QVariantList &args)
+    : KCModule(parent, args)
 {
     auto lay = new QVBoxLayout(this);
     QWidget *w = new KNoteEditorConfigWidget(this);
@@ -71,8 +72,8 @@ void KNoteEditorConfig::load()
     KCModule::load();
 }
 
-KNoteMiscConfig::KNoteMiscConfig(QWidget *parent)
-    : KCModule(parent)
+KNoteMiscConfig::KNoteMiscConfig(QWidget *parent, const QVariantList &args)
+    : KCModule(parent, args)
 {
     auto lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
@@ -138,8 +139,8 @@ void KNoteMiscConfig::slotHelpLinkClicked(const QString &)
     QWhatsThis::showText(QCursor::pos(), help);
 }
 
-KNotePrintConfig::KNotePrintConfig(QWidget *parent)
-    : KCModule(parent)
+KNotePrintConfig::KNotePrintConfig(QWidget *parent, const QVariantList &args)
+    : KCModule(parent, args)
 {
     auto lay = new QVBoxLayout(this);
     auto w = new QWidget(this);
@@ -193,8 +194,8 @@ void KNotePrintConfig::defaults()
     Q_EMIT changed(true);
 }
 
-KNoteCollectionConfig::KNoteCollectionConfig(QWidget *parent)
-    : KCModule(parent)
+KNoteCollectionConfig::KNoteCollectionConfig(QWidget *parent, const QVariantList &args)
+    : KCModule(parent, args)
 {
     auto lay = new QHBoxLayout(this);
     mCollectionConfigWidget = new KNoteCollectionConfigWidget;

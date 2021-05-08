@@ -96,8 +96,8 @@ void NoteNetworkConfigWidget::load()
     d->kcfg_Port->setValue(NoteShared::NoteSharedGlobalConfig::self()->port());
 }
 
-NoteNetworkConfig::NoteNetworkConfig(QWidget *parent)
-    : KCModule(parent)
+NoteNetworkConfig::NoteNetworkConfig(QWidget *parent, const QVariantList &args)
+    : KCModule(parent, args)
 {
     auto lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);

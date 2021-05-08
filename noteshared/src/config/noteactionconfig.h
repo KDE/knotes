@@ -12,7 +12,7 @@ class NOTESHARED_EXPORT NoteActionConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit NoteActionConfig(QWidget *parent);
+    explicit NoteActionConfig(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;

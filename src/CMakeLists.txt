@@ -122,21 +122,18 @@ install(TARGETS knotes  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
 ########### next target ###############
-set(kcm_knotes_PART_SRCS knoteconfigmodule.cpp kcm_knotes.cpp configdialog/knotecollectionconfigwidget.cpp)
+set(kcm_knotes_PART_SRCS knoteconfigmodule.cpp configdialog/knotecollectionconfigwidget.cpp)
 ecm_qt_declare_logging_category(kcm_knotes_PART_SRCS HEADER knotes_kcm_debug.h IDENTIFIER KNOTES_MODULES_LOG CATEGORY_NAME org.kde.pim.knotes.module
         DESCRIPTION "kcm knotes (knotes)"
         OLD_CATEGORY_NAMES log_knotes_modules
         EXPORT KNOTES
     )
 
-add_library(kcm_knote MODULE ${kcm_knotes_PART_SRCS} )
+add_library(kcm_knote_static STATIC ${kcm_knotes_PART_SRCS} )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
-    set_target_properties(kcm_knote PROPERTIES UNITY_BUILD ON)
+    set_target_properties(kcm_knote_static PROPERTIES UNITY_BUILD ON)
 endif()
-target_link_libraries(kcm_knote knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff notesharedprivate KF5::AkonadiNotes KF5::PimCommon KF5::I18n KF5::AkonadiWidgets)
-
-install(TARGETS kcm_knote DESTINATION ${KDE_INSTALL_PLUGINDIR})
-
+target_link_libraries(kcm_knote_static knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff notesharedprivate KF5::AkonadiNotes KF5::PimCommon KF5::I18n KF5::AkonadiWidgets)
 
 install(FILES 
     data/knote_config_action.desktop
@@ -147,6 +144,37 @@ install(FILES
     data/knote_config_collection.desktop
     data/knote_config_misc.desktop
     DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+
+kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_action.desktop" SERVICE_TYPES kcmodule.desktop)
+kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_display.desktop" SERVICE_TYPES kcmodule.desktop)
+kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_editor.desktop" SERVICE_TYPES kcmodule.desktop)
+kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_network.desktop" SERVICE_TYPES kcmodule.desktop)
+kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_print.desktop" SERVICE_TYPES kcmodule.desktop)
+kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_collection.desktop" SERVICE_TYPES kcmodule.desktop)
+kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_misc.desktop" SERVICE_TYPES kcmodule.desktop)
+
+
+# Create the individual KCMs
+kcoreaddons_add_plugin(kcm_knote_action SOURCES kcm_knote_action.cpp INSTALL_NAMESPACE "kcms")
+target_link_libraries(kcm_knote_action kcm_knote_static)
+
+kcoreaddons_add_plugin(kcm_knote_display SOURCES kcm_knote_display.cpp INSTALL_NAMESPACE "kcms")
+target_link_libraries(kcm_knote_display kcm_knote_static)
+
+kcoreaddons_add_plugin(kcm_knote_editor SOURCES kcm_knote_editor.cpp INSTALL_NAMESPACE "kcms")
+target_link_libraries(kcm_knote_editor kcm_knote_static)
+
+kcoreaddons_add_plugin(kcm_knote_network SOURCES kcm_knote_network.cpp INSTALL_NAMESPACE "kcms")
+target_link_libraries(kcm_knote_network kcm_knote_static)
+
+kcoreaddons_add_plugin(kcm_knote_print SOURCES kcm_knote_print.cpp INSTALL_NAMESPACE "kcms")
+target_link_libraries(kcm_knote_print kcm_knote_static)
+
+kcoreaddons_add_plugin(kcm_knote_collection SOURCES kcm_knote_collection.cpp INSTALL_NAMESPACE "kcms")
+target_link_libraries(kcm_knote_collection kcm_knote_static)
+
+kcoreaddons_add_plugin(kcm_knote_misc SOURCES kcm_knote_misc.cpp INSTALL_NAMESPACE "kcms")
+target_link_libraries(kcm_knote_misc kcm_knote_static)
 
 ########### install files ###############
 

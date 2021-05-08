@@ -14,8 +14,8 @@
 #include <QWhatsThis>
 using namespace NoteShared;
 
-NoteActionConfig::NoteActionConfig(QWidget *parent)
-    : KCModule(parent)
+NoteActionConfig::NoteActionConfig(QWidget *parent, const QVariantList &args)
+    : KCModule(parent, args)
 {
     auto layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
