@@ -23,7 +23,7 @@
 #include <QTreeView>
 #include <QVBoxLayout>
 
-K_PLUGIN_FACTORY_WITH_JSON(KCMKNotesSummaryFactory, "kcmknotessummary.json", registerPlugin<KCMKNotesSummary>();)
+K_PLUGIN_CLASS_WITH_JSON(KCMKNotesSummary, "kcmknotessummary.json")
 
 KCMKNotesSummary::KCMKNotesSummary(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
