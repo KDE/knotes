@@ -4,7 +4,7 @@ Type=Service
 X-KDE-ServiceTypes=KCModule
 
 X-KDE-ModuleType=Library
-X-KDE-Library=kcms/kcm_knote_misc
+X-KDE-Library=pim/kcms/knotes/kcm_knote_misc
 X-KDE-HasReadOnlyMode=false
 X-KDE-ParentApp=knotes
 X-KDE-ParentComponents=knotes,kontact_knotesplugin

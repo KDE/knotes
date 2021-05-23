@@ -18,6 +18,8 @@
 #include <KAuthorized>
 #include <KLocalizedString>
 #include <KNS3/DownloadDialog>
+#include <KPluginLoader>
+#include <KPluginMetaData>
 
 #include <QCheckBox>
 #include <QLabel>
@@ -35,16 +37,12 @@ KNoteConfigDialog::KNoteConfigDialog(const QString &title, QWidget *parent)
     button(QDialogButtonBox::Ok)->setDefault(true);
 
     setWindowTitle(title);
-    addModule(QStringLiteral("knote_config_display"));
-    addModule(QStringLiteral("knote_config_editor"));
-    addModule(QStringLiteral("knote_config_action"));
-    addModule(QStringLiteral("knote_config_network"));
-    addModule(QStringLiteral("knote_config_print"));
-    addModule(QStringLiteral("knote_config_collection"));
-    addModule(QStringLiteral("knote_config_misc"));
+    const QVector<KPluginMetaData> availablePlugins = KPluginLoader::findPlugins(QStringLiteral("pim/kcms/knotes"));
+    for (const KPluginMetaData &metaData : availablePlugins) {
+        addModule(metaData);
+    }
 
     connect(button(QDialogButtonBox::Ok), &QPushButton::clicked, this, &KNoteConfigDialog::slotOk);
-
     connect(button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &KNoteConfigDialog::slotDefaultClicked);
 }
 

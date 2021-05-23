@@ -4,12 +4,12 @@ Type=Service
 X-KDE-ServiceTypes=KCModule
 
 X-KDE-ModuleType=Library
-X-KDE-Library=kcms/kcm_knote_network
+X-KDE-Library=pim/kcms/knotes/kcm_knote_network
 X-KDE-HasReadOnlyMode=false
 X-KDE-ParentApp=knotes
 X-KDE-ParentComponents=knotes,kontact_knotesplugin
 X-KDE-CfgDlgHierarchy=KNotes
-X-KDE-Weight=200
+X-KDE-Weight=125
 
 Name=Network
 Name[ar]=الشّبكة
