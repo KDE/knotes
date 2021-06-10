@@ -20,7 +20,6 @@
 
 #include "knotes_debug.h"
 #include <KLocalizedString>
-#include <memory>
 
 #include <grantlee/context.h>
 #include <grantlee/engine.h>
