@@ -7,6 +7,7 @@
 *******************************************************************/
 
 #include <config-knotes.h>
+#include <kcmutils_version.h>
 
 #include "config/noteactionconfig.h"
 #include "config/notenetworkconfig.h"
@@ -39,7 +40,11 @@ KNoteConfigDialog::KNoteConfigDialog(const QString &title, QWidget *parent)
     setWindowTitle(title);
     const QVector<KPluginMetaData> availablePlugins = KPluginLoader::findPlugins(QStringLiteral("pim/kcms/knotes"));
     for (const KPluginMetaData &metaData : availablePlugins) {
+#if KCMUTILS_VERSION >= QT_VERSION_CHECK(5, 84, 0)
         addModule(metaData);
+#else
+        addModule(metaData.pluginId());
+#endif
     }
 
     connect(button(QDialogButtonBox::Ok), &QPushButton::clicked, this, &KNoteConfigDialog::slotOk);
