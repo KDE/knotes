@@ -136,22 +136,22 @@ endif()
 target_link_libraries(kcm_knote_static knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff notesharedprivate KF5::AkonadiNotes KF5::PimCommon KF5::I18n KF5::AkonadiWidgets)
 
 install(FILES 
-    data/knote_config_action.desktop
-    data/knote_config_display.desktop
-    data/knote_config_editor.desktop
-    data/knote_config_network.desktop
-    data/knote_config_print.desktop
-    data/knote_config_collection.desktop
-    data/knote_config_misc.desktop
+    data/kcm_knote_action.desktop
+    data/kcm_knote_display.desktop
+    data/kcm_knote_editor.desktop
+    data/kcm_knote_network.desktop
+    data/kcm_knote_print.desktop
+    data/kcm_knote_collection.desktop
+    data/kcm_knote_misc.desktop
     DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 
-kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_action.desktop" SERVICE_TYPES kcmodule.desktop)
-kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_display.desktop" SERVICE_TYPES kcmodule.desktop)
-kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_editor.desktop" SERVICE_TYPES kcmodule.desktop)
-kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_network.desktop" SERVICE_TYPES kcmodule.desktop)
-kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_print.desktop" SERVICE_TYPES kcmodule.desktop)
-kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_collection.desktop" SERVICE_TYPES kcmodule.desktop)
-kcoreaddons_desktop_to_json(kcm_knote_static "data/knote_config_misc.desktop" SERVICE_TYPES kcmodule.desktop)
+kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_action.desktop" SERVICE_TYPES kcmodule.desktop)
+kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_display.desktop" SERVICE_TYPES kcmodule.desktop)
+kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_editor.desktop" SERVICE_TYPES kcmodule.desktop)
+kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_network.desktop" SERVICE_TYPES kcmodule.desktop)
+kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_print.desktop" SERVICE_TYPES kcmodule.desktop)
+kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_collection.desktop" SERVICE_TYPES kcmodule.desktop)
+kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_misc.desktop" SERVICE_TYPES kcmodule.desktop)
 
 
 # Create the individual KCMs

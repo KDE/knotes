@@ -7,6 +7,6 @@
 #include "knoteconfigmodule.h"
 #include <KPluginFactory>
 
-K_PLUGIN_CLASS_WITH_JSON(KNotePrintConfig, "knote_config_print.json")
+K_PLUGIN_CLASS_WITH_JSON(KNotePrintConfig, "kcm_knote_print.json")
 
 #include "kcm_knote_print.moc"

@@ -6,6 +6,6 @@
 #include "knoteconfigmodule.h"
 #include <KPluginFactory>
 
-K_PLUGIN_CLASS_WITH_JSON(KNoteDisplayConfig, "knote_config_display.json")
+K_PLUGIN_CLASS_WITH_JSON(KNoteDisplayConfig, "kcm_knote_display.json")
 
 #include "kcm_knote_display.moc"

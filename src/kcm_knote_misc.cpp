@@ -6,6 +6,6 @@
 #include "knoteconfigmodule.h"
 #include <KPluginFactory>
 
-K_PLUGIN_CLASS_WITH_JSON(KNoteMiscConfig, "knote_config_misc.json")
+K_PLUGIN_CLASS_WITH_JSON(KNoteMiscConfig, "kcm_knote_misc.json")
 
 #include "kcm_knote_misc.moc"
