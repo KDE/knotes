@@ -47,14 +47,14 @@ kcoreaddons_desktop_to_json(kontact_knotesplugin knotesplugin.desktop)
 
 ########### install files ###############
 
-set(kcm_knotessummary_PART_SRCS kcmknotessummary.cpp )
+set(kcmknotessummary_PART_SRCS kcmknotessummary.cpp )
 
-add_library(kcm_knotessummary MODULE ${kcm_knotessummary_PART_SRCS})
-kcoreaddons_desktop_to_json(kcm_knotessummary "kcmknotessummary.desktop" SERVICE_TYPES kcmodule.desktop)
-target_link_libraries(kcm_knotessummary  KF5::PimCommonAkonadi KF5::AkonadiNotes KF5::ConfigWidgets KF5::I18n)
+add_library(kcmknotessummary MODULE ${kcmknotessummary_PART_SRCS})
+kcoreaddons_desktop_to_json(kcmknotessummary "kcmknotessummary.desktop" SERVICE_TYPES kcmodule.desktop)
+target_link_libraries(kcmknotessummary  KF5::PimCommonAkonadi KF5::AkonadiNotes KF5::ConfigWidgets KF5::I18n)
 
 
-install(TARGETS kcm_knotessummary DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(TARGETS kcmknotessummary DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/summary)
 
 install(FILES kcmknotessummary.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 
