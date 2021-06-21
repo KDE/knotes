@@ -10,8 +10,14 @@
 #include "notehostdialog.h"
 #include "notesharedglobalconfig.h"
 
-#include <KDNSSD/DNSSD/ServiceBrowser>
-#include <KDNSSD/DNSSD/ServiceModel>
+#include <kdnssd_version.h>
+#if KDNSSD_VERSION >= QT_VERSION_CHECK(5, 84, 0)
+#include <KDNSSD/ServiceBrowser>
+#include <KDNSSD/ServiceModel>
+#else
+#include <DNSSD/ServiceBrowser>
+#include <DNSSD/ServiceModel>
+#endif
 #include <KHistoryComboBox>
 #include <KLocalizedString>
 
