@@ -13,24 +13,9 @@ add_subdirectory(kconf_update)
 
 ########### next target ###############
 
-set(libknotesprivate_config_lib_SRCS
-    configdialog/knotesimpleconfigdialog.cpp
-    configdialog/knoteconfigdialog.cpp
-    configdialog/knotedisplayconfigwidget.cpp
-    configdialog/knoteeditorconfigwidget.cpp
-    )
+add_library(knotesprivate)
 
-set(libknotesprivate_print_lib_SRCS
-    print/knoteprintselectthemedialog.cpp
-    print/knoteprintselectthemecombobox.cpp
-    print/knoteprinter.cpp
-    print/knoteprintobject.cpp
-    print/knotegrantleeprint.cpp
-    )
-
-set(libknotesprivate_lib_SRCS
-    ${libknotesprivate_config_lib_SRCS}
-    ${libknotesprivate_print_lib_SRCS}
+target_sources(knotesprivate PRIVATE
     knoteedit.cpp
     knotes_debug.cpp
     notes/knotedisplaysettings.cpp
@@ -38,20 +23,29 @@ set(libknotesprivate_lib_SRCS
     notes/knoteinterface.cpp
     notes/knotesmigrateapplication.cpp
     finddialog/knotefinddialog.cpp
+    configdialog/knotesimpleconfigdialog.cpp
+    configdialog/knoteconfigdialog.cpp
+    configdialog/knotedisplayconfigwidget.cpp
+    configdialog/knoteeditorconfigwidget.cpp
+    print/knoteprintselectthemedialog.cpp
+    print/knoteprintselectthemecombobox.cpp
+    print/knoteprinter.cpp
+    print/knoteprintobject.cpp
+    print/knotegrantleeprint.cpp
     )
-
 configure_file(settings/knotesglobalconfig.kcfg.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg )
 
 set( libknotesprivate_kcfg_lib_SRCS settings/knotesglobalconfig.kcfgc )
 
 kconfig_add_kcfg_files(libknotesprivate_kcfg_lib_SRCS ${libknotesprivate_kcfg_lib_SRCS})
-ecm_qt_declare_logging_category(libknotesprivate_lib_SRCS HEADER knotes_debug.h IDENTIFIER KNOTES_LOG CATEGORY_NAME org.kde.pim.knotes
+ecm_qt_declare_logging_category(knotesprivate HEADER knotes_debug.h IDENTIFIER KNOTES_LOG CATEGORY_NAME org.kde.pim.knotes
         DESCRIPTION "knotes (knotes)"
         OLD_CATEGORY_NAMES log_knotes
         EXPORT KNOTES
     )
 
-add_library(knotesprivate ${libknotesprivate_lib_SRCS} ${libknotesprivate_kcfg_lib_SRCS} )
+target_sources(knotesprivate PRIVATE ${libknotesprivate_kcfg_lib_SRCS})
+
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(knotesprivate PROPERTIES UNITY_BUILD ON)
 endif()
