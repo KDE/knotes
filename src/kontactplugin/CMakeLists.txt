@@ -43,7 +43,7 @@ target_link_libraries(kontact_knotesplugin
                       KF5::Contacts
 )
 
-kcoreaddons_desktop_to_json(kontact_knotesplugin knotesplugin.desktop)
+kcoreaddons_desktop_to_json(kontact_knotesplugin knotesplugin.desktop SERVICE_TYPES kcmodule.desktop)
 
 ########### install files ###############
 

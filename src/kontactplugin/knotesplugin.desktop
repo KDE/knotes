@@ -14,6 +14,8 @@ X-KDE-PluginInfo-Version=0.1
 X-KDE-PluginInfo-License=LGPL
 X-KDE-PluginInfo-EnabledByDefault=true
 X-KDE-PluginInfo-AllowEmptySettings=true
+X-KDE-ConfigModuleNamespace=pim/kcms/knotes/
+X-KDE-Weight=600
 
 Comment=Kontact KNotes Plugin
 Comment[af]=Kontact KNotes inprop module
