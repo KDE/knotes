@@ -119,7 +119,7 @@ void NotesManager::slotCheckAlarm()
     NoteShared::NoteSharedGlobalConfig::self()->setAlarmsLastChecked(now);
 
     Akonadi::Item::List lst;
-    for (const Akonadi::Item &item : qAsConst(mListItem)) {
+    for (const Akonadi::Item &item : std::as_const(mListItem)) {
         const auto attrAlarm = item.attribute<NoteShared::NoteAlarmAttribute>();
         if (attrAlarm) {
             if (attrAlarm->dateTime() < QDateTime::currentDateTime()) {

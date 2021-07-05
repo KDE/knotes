@@ -57,7 +57,7 @@ void NoteListWidget::setNotes(const Akonadi::Item::List &notes)
 {
     clear();
     d->mNotes = notes;
-    for (const Akonadi::Item &note : qAsConst(d->mNotes)) {
+    for (const Akonadi::Item &note : std::as_const(d->mNotes)) {
         createItem(note);
     }
 }
