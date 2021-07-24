@@ -64,4 +64,3 @@ install(FILES knotes_part.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/knotes)
 install(FILES knotesplugin.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR}/kontact)
 install(FILES org.kde.kontact.KNotes.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
 
-install(FILES knotes.setdlg DESTINATION ${KDE_INSTALL_DATADIR}/kontact/ksettingsdialog)
