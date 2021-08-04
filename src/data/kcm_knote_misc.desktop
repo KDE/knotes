@@ -5,7 +5,7 @@ X-KDE-ServiceTypes=KCModule
 
 
 X-KDE-Library=pim/kcms/knotes/kcm_knote_misc
-X-KDE-HasReadOnlyMode=false
+
 X-KDE-ParentApp=knotes
 X-KDE-ParentComponents=knotes,kontact_knotesplugin
 X-KDE-CfgDlgHierarchy=KNotes
