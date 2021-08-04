@@ -3,7 +3,7 @@ Icon=network-wired
 Type=Service
 X-KDE-ServiceTypes=KCModule
 
-X-KDE-ModuleType=Library
+
 X-KDE-Library=pim/kcms/knotes/kcm_knote_network
 X-KDE-HasReadOnlyMode=false
 X-KDE-ParentApp=knotes
