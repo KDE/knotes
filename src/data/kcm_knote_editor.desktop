@@ -8,7 +8,6 @@ X-KDE-Library=pim/kcms/knotes/kcm_knote_editor
 
 
 X-KDE-ParentComponents=knotes,kontact_knotesplugin
-X-KDE-CfgDlgHierarchy=KNotes
 X-KDE-Weight=75
 
 Name=Editor
