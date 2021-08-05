@@ -7,7 +7,7 @@ X-KDE-ServiceTypes=KCModule
 X-KDE-Library=pim/kcms/summary/kcmknotessummary
 X-KDE-FactoryName=knotessummary
 
-X-KDE-ParentComponents=kontact_summaryplugin
+
 X-KDE-Weight=200
 
 Name=New Notes

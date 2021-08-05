@@ -7,7 +7,7 @@ X-KDE-ServiceTypes=KCModule
 X-KDE-Library=pim/kcms/knotes/kcm_knote_collection
 
 
-X-KDE-ParentComponents=knotes,kontact_knotesplugin
+
 X-KDE-Weight=175
 
 Name=Collections
