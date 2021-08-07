@@ -50,11 +50,7 @@
 #include <KActionCollection>
 #include <KCheckableProxyModel>
 #include <kdnssd_version.h>
-#if KDNSSD_VERSION >= QT_VERSION_CHECK(5, 84, 0)
 #include <KDNSSD/PublicService>
-#else
-#include <DNSSD/PublicService>
-#endif
 #include <KLocalizedString>
 #include <KMessageBox>
 
