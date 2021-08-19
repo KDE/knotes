@@ -6,15 +6,15 @@
  SPDX-License-Identifier: GPL-2.0-or-later
 *******************************************************************/
 
-#include <config-knotes.h>
-#include <kcmutils_version.h>
-
+#include "knoteconfigdialog.h"
 #include "config/noteactionconfig.h"
 #include "config/notenetworkconfig.h"
-#include "knoteconfigdialog.h"
+#include "kcoreaddons_version.h"
 #include "knotesglobalconfig.h"
 #include "notesharedglobalconfig.h"
 #include "print/knoteprintselectthemecombobox.h"
+#include <config-knotes.h>
+#include <kcmutils_version.h>
 
 #include <KAuthorized>
 #include <KLocalizedString>
@@ -38,7 +38,11 @@ KNoteConfigDialog::KNoteConfigDialog(const QString &title, QWidget *parent)
     button(QDialogButtonBox::Ok)->setDefault(true);
 
     setWindowTitle(title);
+#if KCOREADDONS_VERSION < QT_VERSION_CHECK(5, 86, 0)
     const QVector<KPluginMetaData> availablePlugins = KPluginLoader::findPlugins(QStringLiteral("pim/kcms/knotes"));
+#else
+    const QVector<KPluginMetaData> availablePlugins = KPluginMetaData::findPlugins(QStringLiteral("pim/kcms/knotes"));
+#endif
     for (const KPluginMetaData &metaData : availablePlugins) {
         addModule(metaData);
     }
