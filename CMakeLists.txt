@@ -107,9 +107,7 @@ endif()
 
 set(KDEPIM_HAVE_X11 ${X11_FOUND})
 
-set(CMAKE_MODULE_PATH ${knotes_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH})
-find_package(Xsltproc)
-set_package_properties(Xsltproc PROPERTIES DESCRIPTION "XSLT processor from libxslt" TYPE REQUIRED PURPOSE "Required to generate D-Bus interfaces for all Akonadi resources.")
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include_directories(${knotes_SOURCE_DIR} ${knotes_BINARY_DIR})
 
