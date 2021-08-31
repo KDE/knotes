@@ -14,6 +14,7 @@
 #include <KCalUtils/ICalDrag>
 #include <KCalUtils/VCalDrag>
 #include <KCalendarCore/FileStorage>
+#include <KCalendarCore/MemoryCalendar>
 
 #include "knotes-version.h"
 
