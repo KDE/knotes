@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: None
+# SPDX-License-Identifier: CC0-1.0
+
+Dependencies:
+- 'on': ['@all']
+  'require':
+    'kde/pim/akonadi' : '@latest'
+    'kde/pim/akonadi-notes' : '@latest'
+    'kde/pim/akonadi-search' : '@latest'
+    'kde/pim/kcalutils' : '@latest'
+    'kde/pim/kmime' : '@latest'
+    'kde/pim/kontactinterface' : '@latest'
+    'kde/pim/kpimtextedit' : '@latest'
+    'kde/pim/libkdepim' : '@latest'
+    'kde/pim/pimcommon' : '@latest'
+    'third-party/grantlee' : '@stable'
+    'kde/pim/grantleetheme' : '@latest'
