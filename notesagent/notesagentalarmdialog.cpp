@@ -11,8 +11,8 @@
 #include "widget/notelistwidget.h"
 #include <KMime/KMimeMessage>
 
-#include <ItemFetchJob>
-#include <ItemFetchScope>
+#include <Akonadi/ItemFetchJob>
+#include <Akonadi/ItemFetchScope>
 #include <ItemModifyJob>
 
 #include <KLocalizedString>

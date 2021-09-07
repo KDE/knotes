@@ -9,7 +9,7 @@
 
 #include <PimCommonAkonadi/CheckedCollectionWidget>
 
-#include <AkonadiWidgets/ETMViewStateSaver>
+#include <Akonadi/ETMViewStateSaver>
 
 #include "knotes_kontact_plugin_debug.h"
 #include <KAboutData>

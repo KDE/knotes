@@ -11,7 +11,7 @@
 #include "knoteinterface.h"
 #include <config-knotes.h>
 
-#include <AkonadiCore/Item>
+#include <Akonadi/Item>
 
 #include <KSharedConfig>
 #include <KXMLGUIClient>

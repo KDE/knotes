@@ -9,7 +9,7 @@
 #include "knotes_debug.h"
 #include "knotesglobalconfig.h"
 
-#include <AkonadiCore/ServerManager>
+#include <Akonadi/ServerManager>
 
 #include <QDBusInterface>
 

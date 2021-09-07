@@ -4,7 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 #pragma once
-#include <Item>
+#include <Akonadi/Item>
 #include <QDialog>
 class QListWidget;
 class QLabel;

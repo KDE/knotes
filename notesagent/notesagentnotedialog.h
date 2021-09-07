@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#include <Item>
+#include <Akonadi/Item>
 #include <QDialog>
 class QLineEdit;
 class KJob;

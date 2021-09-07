@@ -6,19 +6,19 @@
 #include "knotecollectionconfigwidget.h"
 #include "attributes/showfoldernotesattribute.h"
 #include "notesharedglobalconfig.h"
+#include <Akonadi/ManageAccountWidget>
 #include <Akonadi/Notes/NoteUtils>
-#include <AkonadiWidgets/ManageAccountWidget>
 
-#include <AkonadiCore/CollectionFilterProxyModel>
-#include <AkonadiCore/CollectionModifyJob>
+#include <Akonadi/CollectionFilterProxyModel>
+#include <Akonadi/CollectionModifyJob>
 #include <QInputDialog>
 #include <QSortFilterProxyModel>
 
-#include <AkonadiCore/ChangeRecorder>
-#include <AkonadiCore/EntityDisplayAttribute>
-#include <AkonadiCore/EntityTreeModel>
-#include <AkonadiWidgets/CollectionRequester>
-#include <AkonadiWidgets/EntityTreeView>
+#include <Akonadi/ChangeRecorder>
+#include <Akonadi/CollectionRequester>
+#include <Akonadi/EntityDisplayAttribute>
+#include <Akonadi/EntityTreeModel>
+#include <Akonadi/EntityTreeView>
 
 #include <KMime/Message>
 

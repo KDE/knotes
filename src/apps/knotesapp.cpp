@@ -31,13 +31,13 @@
 #include "resources/localresourcecreator.h"
 #include "utils/knoteutils.h"
 
-#include <AkonadiCore/ChangeRecorder>
-#include <AkonadiCore/ItemDeleteJob>
-#include <AkonadiCore/ItemFetchJob>
-#include <AkonadiCore/ItemFetchScope>
-#include <AkonadiCore/Session>
+#include <Akonadi/ChangeRecorder>
+#include <Akonadi/ItemDeleteJob>
+#include <Akonadi/ItemFetchJob>
+#include <Akonadi/ItemFetchScope>
+#include <akonadi/session.h>
 
-#include <AkonadiWidgets/ControlGui>
+#include <Akonadi/ControlGui>
 
 #include <KMime/KMimeMessage>
 

@@ -12,7 +12,7 @@
 #include "noteutils.h"
 #include "utils/knoteutils.h"
 
-#include <AkonadiCore/ItemModifyJob>
+#include <Akonadi/ItemModifyJob>
 
 #include <KMime/Message>
 

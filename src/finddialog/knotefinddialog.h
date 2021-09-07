@@ -6,7 +6,7 @@
 #pragma once
 
 #include "knotes_export.h"
-#include <AkonadiCore/Item>
+#include <Akonadi/Item>
 #include <QDialog>
 class QPushButton;
 class QLineEdit;

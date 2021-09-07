@@ -11,7 +11,7 @@
 #include "notesharedglobalconfig.h"
 #include "notesmanager.h"
 
-#include <AkonadiCore/ServerManager>
+#include <Akonadi/ServerManager>
 
 #include <kcoreaddons_version.h>
 #if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)

@@ -6,7 +6,7 @@
 #pragma once
 
 #include "noteshared_export.h"
-#include <AkonadiCore/Item>
+#include <Akonadi/Item>
 #include <QString>
 class QWidget;
 namespace NoteShared

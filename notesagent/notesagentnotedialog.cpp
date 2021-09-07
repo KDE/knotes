@@ -6,8 +6,8 @@
 #include "notesagentnotedialog.h"
 #include "attributes/notedisplayattribute.h"
 #include "notesagent_debug.h"
-#include <ItemFetchJob>
-#include <ItemFetchScope>
+#include <Akonadi/ItemFetchJob>
+#include <Akonadi/ItemFetchScope>
 #include <KPIMTextEdit/RichTextEditor>
 #include <KPIMTextEdit/RichTextEditorWidget>
 

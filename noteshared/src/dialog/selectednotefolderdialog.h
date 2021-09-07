@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#include <AkonadiWidgets/CollectionDialog>
+#include <Akonadi/CollectionDialog>
 
 namespace NoteShared
 {

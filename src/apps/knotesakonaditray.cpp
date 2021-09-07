@@ -5,7 +5,7 @@
 */
 #include "knotesakonaditray.h"
 #include "knotesglobalconfig.h"
-#include <AkonadiCore/ChangeRecorder>
+#include <Akonadi/ChangeRecorder>
 
 #include <KColorScheme>
 #include <KIconLoader>

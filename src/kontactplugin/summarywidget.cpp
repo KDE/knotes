@@ -13,9 +13,9 @@
 #include "attributes/notedisplayattribute.h"
 #include "knotesinterface.h"
 
-#include <AkonadiCore/ChangeRecorder>
-#include <AkonadiCore/Session>
-#include <AkonadiWidgets/ETMViewStateSaver>
+#include <Akonadi/ChangeRecorder>
+#include <Akonadi/ETMViewStateSaver>
+#include <akonadi/session.h>
 
 #include <KontactInterface/Core>
 #include <KontactInterface/Plugin>

@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#include <AkonadiAgentBase/agentbase.h>
+#include <Akonadi/AgentBase>
 class NotesManager;
 class NotesAgent : public Akonadi::AgentBase, public Akonadi::AgentBase::ObserverV3
 {

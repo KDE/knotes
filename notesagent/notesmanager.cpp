@@ -12,15 +12,15 @@
 #include "network/notesnetworkreceiver.h"
 #include "notesharedglobalconfig.h"
 
+#include <Akonadi/ChangeRecorder>
+#include <Akonadi/CollectionFetchJob>
+#include <Akonadi/CollectionFetchScope>
+#include <Akonadi/Item>
+#include <Akonadi/ItemFetchJob>
+#include <Akonadi/ItemFetchScope>
 #include <Akonadi/Notes/NoteUtils>
-#include <AkonadiCore/ChangeRecorder>
 #include <AkonadiCore/Collection>
-#include <AkonadiCore/CollectionFetchJob>
-#include <AkonadiCore/CollectionFetchScope>
-#include <AkonadiCore/Item>
-#include <AkonadiCore/ItemFetchJob>
-#include <AkonadiCore/ItemFetchScope>
-#include <AkonadiCore/Session>
+#include <akonadi/session.h>
 
 #include <KMime/KMimeMessage>
 

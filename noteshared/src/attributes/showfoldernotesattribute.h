@@ -6,7 +6,7 @@
 #pragma once
 
 #include "noteshared_export.h"
-#include <AkonadiCore/attribute.h>
+#include <akonadi/attribute.h>
 
 namespace NoteShared
 {

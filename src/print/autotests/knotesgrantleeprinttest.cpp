@@ -7,8 +7,8 @@
 #include "knotegrantleeprint.h"
 #include "print/knoteprintobject.h"
 
+#include <Akonadi/Item>
 #include <Akonadi/Notes/NoteUtils>
-#include <AkonadiCore/Item>
 
 #include <KMime/Message>
 

@@ -36,14 +36,14 @@
 #include "resources/localresourcecreator.h"
 #include "utils/knoteutils.h"
 
-#include <AkonadiCore/ChangeRecorder>
-#include <AkonadiCore/ItemDeleteJob>
-#include <AkonadiCore/ItemFetchJob>
-#include <AkonadiCore/ItemFetchScope>
-#include <AkonadiCore/ItemModifyJob>
-#include <AkonadiCore/Session>
-#include <AkonadiWidgets/ControlGui>
-#include <AkonadiWidgets/ETMViewStateSaver>
+#include <Akonadi/ChangeRecorder>
+#include <Akonadi/ControlGui>
+#include <Akonadi/ETMViewStateSaver>
+#include <Akonadi/ItemDeleteJob>
+#include <Akonadi/ItemFetchJob>
+#include <Akonadi/ItemFetchScope>
+#include <Akonadi/ItemModifyJob>
+#include <akonadi/session.h>
 
 #include <KMime/KMimeMessage>
 

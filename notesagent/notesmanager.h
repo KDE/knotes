@@ -9,7 +9,7 @@
 
 #include "notesagentalarmdialog.h"
 
-#include <Item>
+#include <Akonadi/Item>
 #include <QPointer>
 class QTcpServer;
 class QTimer;

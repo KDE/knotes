@@ -8,7 +8,7 @@
 #include "notelockattribute.h"
 #include "showfoldernotesattribute.h"
 
-#include <AkonadiCore/attributefactory.h>
+#include <Akonadi/AttributeFactory>
 
 namespace
 {

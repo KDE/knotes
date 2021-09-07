@@ -6,7 +6,7 @@
 #pragma once
 
 #include "noteshared_export.h"
-#include <AkonadiCore/EntityTreeModel>
+#include <Akonadi/EntityTreeModel>
 
 namespace Akonadi
 {

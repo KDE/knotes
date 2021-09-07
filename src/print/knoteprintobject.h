@@ -8,7 +8,7 @@
 
 #include "knotes_export.h"
 
-#include <AkonadiCore/Item>
+#include <Akonadi/Item>
 
 #include <QObject>
 

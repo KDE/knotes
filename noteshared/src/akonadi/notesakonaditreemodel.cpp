@@ -5,7 +5,7 @@
 */
 #include "notesakonaditreemodel.h"
 
-#include <AkonadiCore/ChangeRecorder>
+#include <Akonadi/ChangeRecorder>
 
 using namespace NoteShared;
 

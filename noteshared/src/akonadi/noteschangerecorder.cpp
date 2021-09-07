@@ -5,10 +5,10 @@
 */
 #include "noteschangerecorder.h"
 
+#include <Akonadi/ChangeRecorder>
+#include <Akonadi/CollectionFetchScope>
+#include <Akonadi/ItemFetchScope>
 #include <Akonadi/Notes/NoteUtils>
-#include <AkonadiCore/ChangeRecorder>
-#include <AkonadiCore/CollectionFetchScope>
-#include <AkonadiCore/ItemFetchScope>
 
 #include "attributes/notealarmattribute.h"
 #include "attributes/notedisplayattribute.h"

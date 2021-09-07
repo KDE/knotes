@@ -23,7 +23,7 @@
 #include "print/knoteprintselectthemedialog.h"
 #include "utils/knoteutils.h"
 
-#include <AkonadiCore/ItemModifyJob>
+#include <Akonadi/ItemModifyJob>
 
 #include <AkonadiSearch/Debug/akonadisearchdebugdialog.h>
 
