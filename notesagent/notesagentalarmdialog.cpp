@@ -13,7 +13,7 @@
 
 #include <Akonadi/ItemFetchJob>
 #include <Akonadi/ItemFetchScope>
-#include <ItemModifyJob>
+#include <Akonadi/ItemModifyJob>
 
 #include <KLocalizedString>
 #include <KMessageBox>
