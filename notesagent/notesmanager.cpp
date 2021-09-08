@@ -13,13 +13,13 @@
 #include "notesharedglobalconfig.h"
 
 #include <Akonadi/ChangeRecorder>
+#include <Akonadi/Collection>
 #include <Akonadi/CollectionFetchJob>
 #include <Akonadi/CollectionFetchScope>
 #include <Akonadi/Item>
 #include <Akonadi/ItemFetchJob>
 #include <Akonadi/ItemFetchScope>
 #include <Akonadi/Notes/NoteUtils>
-#include <AkonadiCore/Collection>
 #include <akonadi/session.h>
 
 #include <KMime/KMimeMessage>

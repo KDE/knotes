@@ -10,12 +10,12 @@
 #include "notesharedglobalconfig.h"
 #include <Akonadi/Notes/NoteUtils>
 
+#include <Akonadi/Collection>
 #include <Akonadi/CollectionFetchJob>
 #include <Akonadi/CollectionModifyJob>
 #include <Akonadi/EntityDisplayAttribute>
 #include <Akonadi/Item>
 #include <Akonadi/ItemCreateJob>
-#include <AkonadiCore/Collection>
 
 #include <KMime/KMimeMessage>
 
