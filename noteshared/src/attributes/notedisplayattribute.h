@@ -6,7 +6,7 @@
 #pragma once
 
 #include "noteshared_export.h"
-#include <akonadi/attribute.h>
+#include <Akonadi/Attribute>
 
 #include <QColor>
 #include <QFont>

@@ -9,7 +9,7 @@
 
 #include "noteshared_export.h"
 
-#include <akonadi/attribute.h>
+#include <Akonadi/Attribute>
 
 namespace NoteShared
 {
