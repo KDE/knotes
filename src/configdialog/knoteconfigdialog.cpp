@@ -19,7 +19,6 @@
 #include <KAuthorized>
 #include <KLocalizedString>
 #include <KNS3/DownloadDialog>
-#include <KPluginLoader>
 #include <KPluginMetaData>
 
 #include <QCheckBox>
@@ -38,11 +37,7 @@ KNoteConfigDialog::KNoteConfigDialog(const QString &title, QWidget *parent)
     button(QDialogButtonBox::Ok)->setDefault(true);
 
     setWindowTitle(title);
-#if KCOREADDONS_VERSION < QT_VERSION_CHECK(5, 86, 0)
-    const QVector<KPluginMetaData> availablePlugins = KPluginLoader::findPlugins(QStringLiteral("pim/kcms/knotes"));
-#else
     const QVector<KPluginMetaData> availablePlugins = KPluginMetaData::findPlugins(QStringLiteral("pim/kcms/knotes"));
-#endif
     for (const KPluginMetaData &metaData : availablePlugins) {
         addModule(metaData);
     }
