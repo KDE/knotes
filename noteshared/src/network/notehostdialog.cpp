@@ -10,7 +10,6 @@
 #include "notehostdialog.h"
 #include "notesharedglobalconfig.h"
 
-#include <kdnssd_version.h>
 #include <KDNSSD/ServiceBrowser>
 #include <KDNSSD/ServiceModel>
 #include <KHistoryComboBox>

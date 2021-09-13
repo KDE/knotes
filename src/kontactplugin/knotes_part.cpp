@@ -49,7 +49,6 @@
 
 #include <KActionCollection>
 #include <KCheckableProxyModel>
-#include <kdnssd_version.h>
 #include <KDNSSD/PublicService>
 #include <KLocalizedString>
 #include <KMessageBox>

@@ -14,7 +14,6 @@
 #include "notesharedglobalconfig.h"
 #include "print/knoteprintselectthemecombobox.h"
 #include <config-knotes.h>
-#include <kcmutils_version.h>
 
 #include <KAuthorized>
 #include <KLocalizedString>

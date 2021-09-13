@@ -42,7 +42,6 @@
 #include <KMime/KMimeMessage>
 
 #include <KActionCollection>
-#include <kdnssd_version.h>
 #include <KDNSSD/PublicService>
 #include <KGlobalAccel>
 #include <KIconEffect>
