@@ -15,10 +15,7 @@
   build against older kdelibs releases.
 */
 
-#ifndef KNOTES_VERSION_H
-#define KNOTES_VERSION_H
-
+#pragma once
 
 #define KNOTES_VERSION "@KDEPIM_VERSION@"
 
-#endif
