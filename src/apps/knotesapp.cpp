@@ -241,9 +241,9 @@ void KNotesApp::slotDeleteSelectedNotes()
     }
     dlg->setNotes(lst);
     if (dlg->exec()) {
-        const Akonadi::Item::List lst = dlg->selectedNotes();
-        if (!lst.isEmpty()) {
-            auto deleteJob = new Akonadi::ItemDeleteJob(lst, this);
+        const Akonadi::Item::List lstItem = dlg->selectedNotes();
+        if (!lstItem.isEmpty()) {
+            auto deleteJob = new Akonadi::ItemDeleteJob(lstItem, this);
             connect(deleteJob, &KJob::result, this, &KNotesApp::slotNoteDeleteFinished);
         }
     }

@@ -134,8 +134,8 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
                 == KMessageBox::warningYesNo(nullptr,
                                              i18n("Collection is hidden. New note will be stored but not displayed. Do you want to show collection?"))) {
                 col.addAttribute(new NoteShared::ShowFolderNotesAttribute());
-                auto job = new Akonadi::CollectionModifyJob(col);
-                connect(job, &Akonadi::CollectionModifyJob::result, this, &CreateNewNoteJob::slotCollectionModifyFinished);
+                auto modifyJob = new Akonadi::CollectionModifyJob(col);
+                connect(modifyJob, &Akonadi::CollectionModifyJob::result, this, &CreateNewNoteJob::slotCollectionModifyFinished);
             }
         }
         Akonadi::Item newItem;
@@ -173,8 +173,8 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
         eda->setIconName(QStringLiteral("text-plain"));
         newItem.addAttribute(eda);
 
-        auto job = new Akonadi::ItemCreateJob(newItem, col, this);
-        connect(job, &Akonadi::ItemCreateJob::result, this, &CreateNewNoteJob::slotNoteCreationFinished);
+        auto createJob = new Akonadi::ItemCreateJob(newItem, col, this);
+        connect(createJob, &Akonadi::ItemCreateJob::result, this, &CreateNewNoteJob::slotNoteCreationFinished);
     } else {
         deleteLater();
     }

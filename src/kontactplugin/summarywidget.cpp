@@ -35,10 +35,9 @@
 
 KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidget *parent)
     : KontactInterface::Summary(parent)
+    , mDefaultPixmap(KIconLoader::global()->loadIcon(QStringLiteral("knotes"), KIconLoader::Desktop))
     , mPlugin(plugin)
-    , mInProgress(false)
 {
-    mDefaultPixmap = KIconLoader::global()->loadIcon(QStringLiteral("knotes"), KIconLoader::Desktop);
     auto mainLayout = new QVBoxLayout(this);
     mainLayout->setSpacing(3);
     mainLayout->setContentsMargins(3, 3, 3, 3);

@@ -721,8 +721,8 @@ void KNote::createActions()
 
     actionCollection()->addAssociatedWidget(this);
     const auto lst = actionCollection()->actions();
-    for (QAction *action : lst) {
-        action->setShortcutContext(Qt::WidgetWithChildrenShortcut);
+    for (QAction *act : lst) {
+        act->setShortcutContext(Qt::WidgetWithChildrenShortcut);
     }
     if (mAllowDebugAkonadiSearch) {
         // Don't translate it it's just for debugging

@@ -417,16 +417,16 @@ void KNotesPart::killSelectedNotes()
     }
     QPointer<KNotesSelectDeleteNotesDialog> dlg = new KNotesSelectDeleteNotesDialog(items, widget());
     if (dlg->exec()) {
-        Akonadi::Item::List lst;
+        Akonadi::Item::List lstItem;
         QListIterator<KNotesIconViewItem *> kniviIt(items);
         while (kniviIt.hasNext()) {
             KNotesIconViewItem *iconViewIcon = kniviIt.next();
             if (!iconViewIcon->readOnly()) {
-                lst.append(iconViewIcon->item());
+                lstItem.append(iconViewIcon->item());
             }
         }
-        if (!lst.isEmpty()) {
-            auto job = new Akonadi::ItemDeleteJob(lst);
+        if (!lstItem.isEmpty()) {
+            auto job = new Akonadi::ItemDeleteJob(lstItem);
             connect(job, &Akonadi::ItemDeleteJob::result, this, &KNotesPart::slotDeleteNotesFinished);
         }
     }
