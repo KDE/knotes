@@ -16,16 +16,11 @@
 #include <config-knotes.h>
 
 #include <KAuthorized>
-#include <KLocalizedString>
 #include <KNS3/DownloadDialog>
 #include <KPluginMetaData>
 
 #include <QCheckBox>
-#include <QLabel>
-#include <QLineEdit>
 #include <QPushButton>
-#include <QToolButton>
-#include <QVBoxLayout>
 #include <QWhatsThis>
 
 KNoteConfigDialog::KNoteConfigDialog(const QString &title, QWidget *parent)

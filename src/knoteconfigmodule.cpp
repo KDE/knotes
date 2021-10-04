@@ -24,7 +24,6 @@
 #include <QCheckBox>
 #include <QLabel>
 #include <QLineEdit>
-#include <QPointer>
 #include <QPushButton>
 #include <QToolButton>
 #include <QVBoxLayout>

@@ -10,7 +10,6 @@
 
 #include "knotes_export.h"
 
-#include <KCModule>
 #include <KCMultiDialog>
 
 class KNOTES_EXPORT KNoteConfigDialog : public KCMultiDialog
