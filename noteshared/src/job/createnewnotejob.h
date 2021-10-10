@@ -8,6 +8,9 @@
 #include <QWidget>
 
 #include "noteshared_export.h"
+
+#include <memory>
+
 class KJob;
 
 namespace NoteShared
@@ -38,7 +41,9 @@ private Q_SLOTS:
 
 private:
     void createFetchCollectionJob(bool useSettings);
-    CreateNewNoteJobPrivate *const d;
+
+private:
+    std::unique_ptr<CreateNewNoteJobPrivate> const d;
 };
 }
 

@@ -7,6 +7,9 @@
 
 #include "noteshared_export.h"
 #include <QObject>
+
+#include <memory>
+
 namespace Akonadi
 {
 class ChangeRecorder;
@@ -24,7 +27,7 @@ public:
     Akonadi::ChangeRecorder *changeRecorder() const;
 
 private:
-    NotesChangeRecorderPrivate *const d;
+    std::unique_ptr<NotesChangeRecorderPrivate> const d;
 };
 }
 

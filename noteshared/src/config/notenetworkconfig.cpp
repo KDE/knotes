@@ -76,10 +76,7 @@ NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)
     load();
 }
 
-NoteNetworkConfigWidget::~NoteNetworkConfigWidget()
-{
-    delete d;
-}
+NoteNetworkConfigWidget::~NoteNetworkConfigWidget() = default;
 
 void NoteNetworkConfigWidget::save()
 {

@@ -26,10 +26,7 @@ NoteListWidget::NoteListWidget(QWidget *parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 }
 
-NoteListWidget::~NoteListWidget()
-{
-    delete d;
-}
+NoteListWidget::~NoteListWidget() = default;
 
 void NoteListWidget::addNotes(const Akonadi::Item::List &notes)
 {

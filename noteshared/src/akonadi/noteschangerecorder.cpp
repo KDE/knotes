@@ -45,10 +45,7 @@ NotesChangeRecorder::NotesChangeRecorder(QObject *parent)
     d->mChangeRecorder->setMimeTypeMonitored(Akonadi::NoteUtils::noteMimeType());
 }
 
-NotesChangeRecorder::~NotesChangeRecorder()
-{
-    delete d;
-}
+NotesChangeRecorder::~NotesChangeRecorder() = default;
 
 Akonadi::ChangeRecorder *NotesChangeRecorder::changeRecorder() const
 {

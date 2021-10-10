@@ -75,10 +75,7 @@ NotesNetworkReceiver::NotesNetworkReceiver(QTcpSocket *s)
     d->m_timer->start(MAXTIME);
 }
 
-NotesNetworkReceiver::~NotesNetworkReceiver()
-{
-    delete d;
-}
+NotesNetworkReceiver::~NotesNetworkReceiver() = default;
 
 void NotesNetworkReceiver::slotDataAvailable()
 {

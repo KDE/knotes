@@ -13,6 +13,8 @@
 #include <QAbstractSocket>
 #include <QObject>
 
+#include <memory>
+
 class QTcpSocket;
 namespace NoteShared
 {
@@ -34,6 +36,6 @@ private Q_SLOTS:
     void slotError(QAbstractSocket::SocketError);
 
 private:
-    NotesNetworkReceiverPrivate *const d;
+    std::unique_ptr<NotesNetworkReceiverPrivate> const d;
 };
 }

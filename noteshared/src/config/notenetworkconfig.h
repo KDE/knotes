@@ -6,6 +6,9 @@
 #pragma once
 #include "noteshared_export.h"
 #include <KCModule>
+
+#include <memory>
+
 namespace NoteShared
 {
 class NoteNetworkConfigWidgetPrivate;
@@ -20,7 +23,7 @@ public:
     void load();
 
 private:
-    NoteNetworkConfigWidgetPrivate *const d;
+    std::unique_ptr<NoteNetworkConfigWidgetPrivate> const d;
 };
 
 class NOTESHARED_EXPORT NoteNetworkConfig : public KCModule

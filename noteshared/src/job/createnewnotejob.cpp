@@ -48,10 +48,7 @@ CreateNewNoteJob::CreateNewNoteJob(QObject *parent, QWidget *widget)
     connect(this, &CreateNewNoteJob::selectNewCollection, this, &CreateNewNoteJob::slotSelectNewCollection);
 }
 
-CreateNewNoteJob::~CreateNewNoteJob()
-{
-    delete d;
-}
+CreateNewNoteJob::~CreateNewNoteJob() = default;
 
 void CreateNewNoteJob::slotSelectNewCollection()
 {

@@ -84,10 +84,7 @@ NoteAlarmDialog::NoteAlarmDialog(const QString &caption, QWidget *parent)
     mainLayout->addWidget(buttonBox);
 }
 
-NoteAlarmDialog::~NoteAlarmDialog()
-{
-    delete d;
-}
+NoteAlarmDialog::~NoteAlarmDialog() = default;
 
 void NoteAlarmDialog::setAlarm(const QDateTime &dateTime)
 {
