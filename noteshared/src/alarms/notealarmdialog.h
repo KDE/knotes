@@ -11,10 +11,11 @@
 #include "noteshared_export.h"
 #include <QDialog>
 
-#include <memory>
-
 class QDateTime;
 class QAbstractButton;
+class KDateComboBox;
+class KTimeComboBox;
+class QButtonGroup;
 namespace NoteShared
 {
 class NoteAlarmDialogPrivate;
@@ -31,7 +32,9 @@ private:
     void slotButtonChanged(QAbstractButton *button);
 
 private:
-    std::unique_ptr<NoteAlarmDialogPrivate> const d;
+    KDateComboBox *m_atDate = nullptr;
+    KTimeComboBox *m_atTime = nullptr;
+    QButtonGroup *m_buttons = nullptr;
 };
 }
 

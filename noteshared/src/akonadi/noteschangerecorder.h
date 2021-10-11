@@ -27,7 +27,7 @@ public:
     Akonadi::ChangeRecorder *changeRecorder() const;
 
 private:
-    std::unique_ptr<NotesChangeRecorderPrivate> const d;
+    Akonadi::ChangeRecorder *const mChangeRecorder;
 };
 }
 

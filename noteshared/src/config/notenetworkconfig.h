@@ -7,8 +7,9 @@
 #include "noteshared_export.h"
 #include <KCModule>
 
-#include <memory>
-
+class QCheckBox;
+class QLineEdit;
+class QSpinBox;
 namespace NoteShared
 {
 class NoteNetworkConfigWidgetPrivate;
@@ -23,7 +24,9 @@ public:
     void load();
 
 private:
-    std::unique_ptr<NoteNetworkConfigWidgetPrivate> const d;
+    QCheckBox *mTmpChkB = nullptr;
+    QLineEdit *m_kcfg_SenderID = nullptr;
+    QSpinBox *kcfg_Port = nullptr;
 };
 
 class NOTESHARED_EXPORT NoteNetworkConfig : public KCModule

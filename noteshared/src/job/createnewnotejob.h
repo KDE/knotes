@@ -9,8 +9,6 @@
 
 #include "noteshared_export.h"
 
-#include <memory>
-
 class KJob;
 
 namespace NoteShared
@@ -43,7 +41,10 @@ private:
     void createFetchCollectionJob(bool useSettings);
 
 private:
-    std::unique_ptr<CreateNewNoteJobPrivate> const d;
+    QString mTitle;
+    QString mText;
+    bool mRichText = false;
+    QWidget *const mWidget;
 };
 }
 

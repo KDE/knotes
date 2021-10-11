@@ -27,23 +27,9 @@
 
 using namespace NoteShared;
 
-class NoteShared::CreateNewNoteJobPrivate
-{
-public:
-    CreateNewNoteJobPrivate(QWidget *widget)
-        : mWidget(widget)
-    {
-    }
-
-    QString mTitle;
-    QString mText;
-    bool mRichText = false;
-    QWidget *const mWidget;
-};
-
 CreateNewNoteJob::CreateNewNoteJob(QObject *parent, QWidget *widget)
     : QObject(parent)
-    , d(new NoteShared::CreateNewNoteJobPrivate(widget))
+    , mWidget(widget)
 {
     connect(this, &CreateNewNoteJob::selectNewCollection, this, &CreateNewNoteJob::slotSelectNewCollection);
 }
@@ -57,13 +43,13 @@ void CreateNewNoteJob::slotSelectNewCollection()
 
 void CreateNewNoteJob::setNote(const QString &name, const QString &text)
 {
-    d->mTitle = name;
-    d->mText = text;
+    mTitle = name;
+    mText = text;
 }
 
 void CreateNewNoteJob::setRichText(bool richText)
 {
-    d->mRichText = richText;
+    mRichText = richText;
 }
 
 void CreateNewNoteJob::start()
@@ -81,7 +67,7 @@ void CreateNewNoteJob::createFetchCollectionJob(bool useSettings)
         NoteShared::NoteSharedGlobalConfig::self()->setDefaultFolder(id);
     }
     if (id == -1) {
-        QPointer<SelectedNotefolderDialog> dlg = new SelectedNotefolderDialog(d->mWidget);
+        QPointer<SelectedNotefolderDialog> dlg = new SelectedNotefolderDialog(mWidget);
         if (dlg->exec()) {
             col = dlg->selectedCollection();
         } else {
@@ -141,25 +127,25 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
         KMime::Message::Ptr newPage = KMime::Message::Ptr(new KMime::Message());
 
         QString title;
-        if (d->mTitle.isEmpty()) {
+        if (mTitle.isEmpty()) {
             const QDateTime currentDateTime = QDateTime::currentDateTime();
             title = NoteShared::NoteSharedGlobalConfig::self()->defaultTitle();
             title.replace(QStringLiteral("%t"), QLocale().toString(currentDateTime.time()));
             title.replace(QStringLiteral("%d"), QLocale().toString(currentDateTime.date(), QLocale::ShortFormat));
             title.replace(QStringLiteral("%l"), QLocale().toString(currentDateTime.date(), QLocale::LongFormat));
         } else {
-            title = d->mTitle;
+            title = mTitle;
         }
         QByteArray encoding("utf-8");
 
         newPage->subject(true)->fromUnicodeString(title, encoding);
-        newPage->contentType(true)->setMimeType(d->mRichText ? "text/html" : "text/plain");
+        newPage->contentType(true)->setMimeType(mRichText ? "text/html" : "text/plain");
         newPage->contentType()->setCharset("utf-8");
         newPage->contentTransferEncoding(true)->setEncoding(KMime::Headers::CEquPr);
         newPage->date(true)->setDateTime(QDateTime::currentDateTime());
         newPage->from(true)->fromUnicodeString(QStringLiteral("knotes@kde4"), encoding);
         // Need a non-empty body part so that the serializer regards this as a valid message.
-        newPage->mainBodyPart()->fromUnicodeString(d->mText.isEmpty() ? QStringLiteral(" ") : d->mText);
+        newPage->mainBodyPart()->fromUnicodeString(mText.isEmpty() ? QStringLiteral(" ") : mText);
 
         newPage->assemble();
 
@@ -183,7 +169,7 @@ void CreateNewNoteJob::slotNoteCreationFinished(KJob *job)
         qCWarning(NOTESHARED_LOG) << job->errorString();
         NoteShared::NoteSharedGlobalConfig::self()->setDefaultFolder(-1);
         NoteShared::NoteSharedGlobalConfig::self()->save();
-        KMessageBox::error(d->mWidget, i18n("Note was not created."), i18n("Create new note"));
+        KMessageBox::error(mWidget, i18n("Note was not created."), i18n("Create new note"));
     }
     deleteLater();
 }

@@ -9,19 +9,9 @@
 #include <KMime/KMimeMessage>
 
 using namespace NoteShared;
-class NoteShared::NoteListWidgetPrivate
-{
-public:
-    NoteListWidgetPrivate()
-    {
-    }
-
-    Akonadi::Item::List mNotes;
-};
 
 NoteListWidget::NoteListWidget(QWidget *parent)
     : QListWidget(parent)
-    , d(new NoteShared::NoteListWidgetPrivate)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 }
@@ -31,11 +21,11 @@ NoteListWidget::~NoteListWidget() = default;
 void NoteListWidget::addNotes(const Akonadi::Item::List &notes)
 {
     for (const Akonadi::Item &note : notes) {
-        if (d->mNotes.contains(note)) {
+        if (mNotes.contains(note)) {
             continue;
         }
         createItem(note);
-        d->mNotes.append(note);
+        mNotes.append(note);
     }
 }
 
@@ -44,7 +34,7 @@ void NoteListWidget::removeNote(const Akonadi::Item &note)
     for (int i = 0; i < count(); ++i) {
         if (item(i)->data(AkonadiId) == note.id()) {
             delete item(i);
-            d->mNotes.removeAll(note);
+            mNotes.removeAll(note);
             break;
         }
     }
@@ -53,8 +43,8 @@ void NoteListWidget::removeNote(const Akonadi::Item &note)
 void NoteListWidget::setNotes(const Akonadi::Item::List &notes)
 {
     clear();
-    d->mNotes = notes;
-    for (const Akonadi::Item &note : std::as_const(d->mNotes)) {
+    mNotes = notes;
+    for (const Akonadi::Item &note : std::as_const(mNotes)) {
         createItem(note);
     }
 }
