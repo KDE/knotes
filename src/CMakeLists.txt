@@ -9,7 +9,6 @@ if (BUILD_TESTING)
 endif()
 
 add_subdirectory(kontactplugin)
-add_subdirectory(kconf_update)
 
 ########### next target ###############
 
