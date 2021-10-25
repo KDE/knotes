@@ -24,7 +24,7 @@ class KNotesSelectDeleteNotesDialog : public QDialog
     Q_OBJECT
 public:
     explicit KNotesSelectDeleteNotesDialog(const QList<KNotesIconViewItem *> &items, QWidget *parent = nullptr);
-    ~KNotesSelectDeleteNotesDialog();
+    ~KNotesSelectDeleteNotesDialog() override;
 
 private:
     void writeConfig();

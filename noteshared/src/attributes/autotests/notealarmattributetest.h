@@ -13,7 +13,7 @@ class NoteAlarmAttributeTest : public QObject
     Q_OBJECT
 public:
     explicit NoteAlarmAttributeTest(QObject *parent = nullptr);
-    ~NoteAlarmAttributeTest();
+    ~NoteAlarmAttributeTest() override;
 private Q_SLOTS:
     void shouldHaveDefaultValue();
     void shouldAssignValue();

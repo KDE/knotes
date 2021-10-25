@@ -37,7 +37,7 @@ class KNotesIconViewItem : public QObject, public QListWidgetItem
     Q_OBJECT
 public:
     KNotesIconViewItem(const Akonadi::Item &item, QListWidget *parent);
-    ~KNotesIconViewItem();
+    ~KNotesIconViewItem() override;
 
     bool readOnly() const;
     void setReadOnly(bool b, bool save = true);

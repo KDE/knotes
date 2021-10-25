@@ -28,7 +28,7 @@ class NotesManager : public QObject
     Q_OBJECT
 public:
     explicit NotesManager(QObject *parent = nullptr);
-    ~NotesManager();
+    ~NotesManager() override;
 
     void stopAll();
     void updateNetworkListener();

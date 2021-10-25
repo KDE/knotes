@@ -13,7 +13,7 @@ class ShowFolderNotesAttributeTest : public QObject
     Q_OBJECT
 public:
     explicit ShowFolderNotesAttributeTest(QObject *parent = nullptr);
-    ~ShowFolderNotesAttributeTest();
+    ~ShowFolderNotesAttributeTest() override;
 private Q_SLOTS:
     void shouldHaveType();
 };

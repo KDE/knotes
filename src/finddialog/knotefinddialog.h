@@ -48,7 +48,7 @@ class KNOTES_EXPORT KNoteFindDialog : public QDialog
     Q_OBJECT
 public:
     explicit KNoteFindDialog(QWidget *parent = nullptr);
-    ~KNoteFindDialog();
+    ~KNoteFindDialog() override;
     void setExistingNotes(const QHash<Akonadi::Item::Id, Akonadi::Item> &notes);
 
 Q_SIGNALS:

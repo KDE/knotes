@@ -17,7 +17,7 @@ class NotesAgentSettingsDialog : public QDialog
     Q_OBJECT
 public:
     explicit NotesAgentSettingsDialog(QWidget *parent = nullptr);
-    ~NotesAgentSettingsDialog();
+    ~NotesAgentSettingsDialog() override;
 
 private Q_SLOTS:
     void slotOkClicked();

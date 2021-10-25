@@ -13,7 +13,7 @@ class NoteDisplayAttributeTest : public QObject
     Q_OBJECT
 public:
     explicit NoteDisplayAttributeTest(QObject *parent = nullptr);
-    ~NoteDisplayAttributeTest();
+    ~NoteDisplayAttributeTest() override;
 private Q_SLOTS:
     void shouldHaveDefaultValue();
     void shouldEqualWhenCloning();

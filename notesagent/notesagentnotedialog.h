@@ -18,7 +18,7 @@ class NotesAgentNoteDialog : public QDialog
     Q_OBJECT
 public:
     explicit NotesAgentNoteDialog(QWidget *parent = nullptr);
-    ~NotesAgentNoteDialog();
+    ~NotesAgentNoteDialog() override;
 
     void setNoteId(Akonadi::Item::Id id);
 

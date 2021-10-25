@@ -12,7 +12,7 @@ class KNotesGrantleePrintTest : public QObject
     Q_OBJECT
 public:
     explicit KNotesGrantleePrintTest(QObject *parent = nullptr);
-    ~KNotesGrantleePrintTest();
+    ~KNotesGrantleePrintTest() override;
 
 private Q_SLOTS:
     void shouldReturnEmptyStringWhenNotContentAndNoNotes();

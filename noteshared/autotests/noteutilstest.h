@@ -13,7 +13,7 @@ class NoteUtilsTest : public QObject
     Q_OBJECT
 public:
     explicit NoteUtilsTest(QObject *parent = nullptr);
-    ~NoteUtilsTest() = default;
+    ~NoteUtilsTest() override = default;
 
 private Q_SLOTS:
     void testExtractNoteText_data();

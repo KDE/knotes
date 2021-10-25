@@ -13,7 +13,7 @@ class NoteLockAttributeTest : public QObject
     Q_OBJECT
 public:
     explicit NoteLockAttributeTest(QObject *parent = nullptr);
-    ~NoteLockAttributeTest();
+    ~NoteLockAttributeTest() override;
 private Q_SLOTS:
     void shouldHaveType();
 };

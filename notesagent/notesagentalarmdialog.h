@@ -19,7 +19,7 @@ class NotesAgentAlarmDialog : public QDialog
     Q_OBJECT
 public:
     explicit NotesAgentAlarmDialog(QWidget *parent = nullptr);
-    ~NotesAgentAlarmDialog();
+    ~NotesAgentAlarmDialog() override;
 
     void addListAlarm(const Akonadi::Item::List &lstAlarm);
     void removeAlarm(const Akonadi::Item &note);

@@ -12,7 +12,7 @@ class NoteEditorUtilsTest : public QObject
     Q_OBJECT
 public:
     explicit NoteEditorUtilsTest(QObject *parent = nullptr);
-    ~NoteEditorUtilsTest();
+    ~NoteEditorUtilsTest() override;
 
 private Q_SLOTS:
     void testAddCheckmark();
