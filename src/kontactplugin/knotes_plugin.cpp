@@ -107,11 +107,10 @@ void KNotesPlugin::processDropEvent(QDropEvent *event)
         KContacts::Addressee::List::ConstIterator it;
 
         QStringList attendees;
-        KContacts::Addressee::List::ConstIterator end(contacts.constEnd());
-        for (it = contacts.constBegin(); it != end; ++it) {
-            const QString email = (*it).fullEmail();
+        for (const auto &contact : std::as_const(contacts)) {
+            const QString email = contact.fullEmail();
             if (email.isEmpty()) {
-                attendees.append((*it).realName() + QLatin1String("<>"));
+                attendees.append(contact.realName() + QLatin1String("<>"));
             } else {
                 attendees.append(email);
             }
