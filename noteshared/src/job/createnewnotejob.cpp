@@ -91,8 +91,12 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
 {
     if (job->error()) {
         qCDebug(NOTESHARED_LOG) << " Error during fetch: " << job->errorString();
-        if (KMessageBox::Yes
-            == KMessageBox::warningYesNo(nullptr, i18n("An error occurred during fetching. Do you want to select a new default collection?"))) {
+        const int answer = KMessageBox::warningYesNo(nullptr,
+                                                     i18n("An error occurred during fetching. Do you want to select a new default collection?"),
+                                                     QString(),
+                                                     KGuiItem(i18nc("@action:button", "Select New Default")),
+                                                     KGuiItem(i18nc("@action:button", "Ignore"), QStringLiteral("dialog-cancel")));
+        if (answer == KMessageBox::Yes) {
             Q_EMIT selectNewCollection();
         } else {
             deleteLater();
@@ -102,8 +106,12 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
     auto fetchCollection = qobject_cast<Akonadi::CollectionFetchJob *>(job);
     if (fetchCollection->collections().isEmpty()) {
         qCDebug(NOTESHARED_LOG) << "No collection fetched";
-        if (KMessageBox::Yes
-            == KMessageBox::warningYesNo(nullptr, i18n("An error occurred during fetching. Do you want to select a new default collection?"))) {
+        const int answer = KMessageBox::warningYesNo(nullptr,
+                                                     i18n("An error occurred during fetching. Do you want to select a new default collection?"),
+                                                     QString(),
+                                                     KGuiItem(i18nc("@action:button", "Select New Default")),
+                                                     KGuiItem(i18nc("@action:button", "Ignore"), QStringLiteral("dialog-cancel")));
+        if (answer == KMessageBox::Yes) {
             Q_EMIT selectNewCollection();
         } else {
             deleteLater();
@@ -113,9 +121,13 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
     Akonadi::Collection col = fetchCollection->collections().at(0);
     if (col.isValid()) {
         if (!col.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
-            if (KMessageBox::Yes
-                == KMessageBox::warningYesNo(nullptr,
-                                             i18n("Collection is hidden. New note will be stored but not displayed. Do you want to show collection?"))) {
+            const int answer =
+                KMessageBox::warningYesNo(nullptr,
+                                          i18n("Collection is hidden. New note will be stored but not displayed. Do you want to show collection?"),
+                                          QString(),
+                                          KGuiItem(i18nc("@action::button", "Show Collection")),
+                                          KGuiItem(i18nc("@action::button", "Do Not Show", QStringLiteral("dialog-cancel"))));
+            if (answer == KMessageBox::Yes) {
                 col.addAttribute(new NoteShared::ShowFolderNotesAttribute());
                 auto modifyJob = new Akonadi::CollectionModifyJob(col);
                 connect(modifyJob, &Akonadi::CollectionModifyJob::result, this, &CreateNewNoteJob::slotCollectionModifyFinished);
