@@ -9,11 +9,11 @@
 #include "knoteconfigdialog.h"
 #include "config/noteactionconfig.h"
 #include "config/notenetworkconfig.h"
-#include "kcoreaddons_version.h"
 #include "knotesglobalconfig.h"
 #include "notesharedglobalconfig.h"
 #include "print/knoteprintselectthemecombobox.h"
 #include <config-knotes.h>
+#include <kcoreaddons_version.h>
 
 #include <KAuthorized>
 #include <KNS3/DownloadDialog>
