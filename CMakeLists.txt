@@ -114,7 +114,7 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 include_directories(${knotes_SOURCE_DIR} ${knotes_BINARY_DIR})
 
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050e00)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055900)
+add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055800)
 
 configure_file(knotes-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotes-version.h @ONLY)
 if(BUILD_TESTING)
