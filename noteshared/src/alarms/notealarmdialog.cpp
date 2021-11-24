@@ -108,6 +108,6 @@ QDateTime NoteAlarmDialog::alarm() const
     if (m_buttons->checkedId() == 1) {
         return QDateTime(m_atDate->date(), m_atTime->time());
     } else {
-        return QDateTime();
+        return {};
     }
 }

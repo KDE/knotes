@@ -21,9 +21,7 @@
 
 using namespace NoteShared;
 
-NoteUtils::NoteUtils()
-{
-}
+NoteUtils::NoteUtils() = default;
 
 bool NoteUtils::sendToMail(QWidget *parent, const QString &title, const QString &message)
 {
@@ -82,7 +80,7 @@ QString NoteUtils::createToolTip(const Akonadi::Item &item)
 {
     const auto noteMessage = item.payload<KMime::Message::Ptr>();
     if (!noteMessage) {
-        return QString();
+        return {};
     }
     const QString description = QString::fromUtf8(noteMessage->mainBodyPart()->decodedContent());
     const KMime::Headers::Subject *const subject = noteMessage->subject(false);

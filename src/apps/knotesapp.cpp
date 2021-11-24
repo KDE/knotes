@@ -417,7 +417,7 @@ QString KNotesApp::name(Akonadi::Item::Id id) const
     if (note) {
         return note->name();
     }
-    return QString();
+    return {};
 }
 
 QString KNotesApp::text(Akonadi::Item::Id id) const
@@ -426,7 +426,7 @@ QString KNotesApp::text(Akonadi::Item::Id id) const
     if (note) {
         return note->text();
     }
-    return QString();
+    return {};
 }
 
 void KNotesApp::setName(Akonadi::Item::Id id, const QString &newName)

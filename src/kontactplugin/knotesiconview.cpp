@@ -37,9 +37,7 @@ KNotesIconView::KNotesIconView(KNotesPart *part, QWidget *parent)
     setMouseTracking(true);
 }
 
-KNotesIconView::~KNotesIconView()
-{
-}
+KNotesIconView::~KNotesIconView() = default;
 
 bool KNotesIconView::event(QEvent *e)
 {

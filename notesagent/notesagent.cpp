@@ -41,9 +41,7 @@ NotesAgent::NotesAgent(const QString &id)
     }
 }
 
-NotesAgent::~NotesAgent()
-{
-}
+NotesAgent::~NotesAgent() = default;
 
 void NotesAgent::doSetOnline(bool online)
 {

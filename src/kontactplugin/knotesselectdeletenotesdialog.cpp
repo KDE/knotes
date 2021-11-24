@@ -21,9 +21,7 @@ KNotesSelectDeleteNotesListWidget::KNotesSelectDeleteNotesListWidget(QWidget *pa
 {
 }
 
-KNotesSelectDeleteNotesListWidget::~KNotesSelectDeleteNotesListWidget()
-{
-}
+KNotesSelectDeleteNotesListWidget::~KNotesSelectDeleteNotesListWidget() = default;
 
 void KNotesSelectDeleteNotesListWidget::setItems(const QList<KNotesIconViewItem *> &items)
 {

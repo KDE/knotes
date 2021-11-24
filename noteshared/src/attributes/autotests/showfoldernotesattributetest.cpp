@@ -14,9 +14,7 @@ ShowFolderNotesAttributeTest::ShowFolderNotesAttributeTest(QObject *parent)
 {
 }
 
-ShowFolderNotesAttributeTest::~ShowFolderNotesAttributeTest()
-{
-}
+ShowFolderNotesAttributeTest::~ShowFolderNotesAttributeTest() = default;
 
 void ShowFolderNotesAttributeTest::shouldHaveType()
 {

@@ -14,9 +14,7 @@ NoteLockAttribute::NoteLockAttribute()
 {
 }
 
-NoteLockAttribute::~NoteLockAttribute()
-{
-}
+NoteLockAttribute::~NoteLockAttribute() = default;
 
 NoteLockAttribute *NoteLockAttribute::clone() const
 {

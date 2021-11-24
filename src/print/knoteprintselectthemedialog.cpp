@@ -45,9 +45,7 @@ KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
     mainLayout->addWidget(buttonBox);
 }
 
-KNotePrintSelectThemeDialog::~KNotePrintSelectThemeDialog()
-{
-}
+KNotePrintSelectThemeDialog::~KNotePrintSelectThemeDialog() = default;
 
 QString KNotePrintSelectThemeDialog::selectedTheme() const
 {

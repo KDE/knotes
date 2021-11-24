@@ -13,6 +13,4 @@ NoteEditor::NoteEditor(QWidget *parent)
 {
 }
 
-NoteEditor::~NoteEditor()
-{
-}
+NoteEditor::~NoteEditor() = default;

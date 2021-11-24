@@ -15,14 +15,12 @@ KNoteGrantleePrint::KNoteGrantleePrint(const QString &themePath)
 {
 }
 
-KNoteGrantleePrint::~KNoteGrantleePrint()
-{
-}
+KNoteGrantleePrint::~KNoteGrantleePrint() = default;
 
 QString KNoteGrantleePrint::notesToHtml(const QList<KNotePrintObject *> &lst)
 {
     if (lst.isEmpty()) {
-        return QString();
+        return {};
     }
     QVariantList notes;
     notes.reserve(lst.count());

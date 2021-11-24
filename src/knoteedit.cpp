@@ -148,9 +148,7 @@ KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
     slotCursorPositionChanged();
 }
 
-KNoteEdit::~KNoteEdit()
-{
-}
+KNoteEdit::~KNoteEdit() = default;
 
 void KNoteEdit::setColor(const QColor &fg, const QColor &bg)
 {

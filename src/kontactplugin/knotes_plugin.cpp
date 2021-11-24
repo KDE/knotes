@@ -54,9 +54,7 @@ KNotesPlugin::KNotesPlugin(KontactInterface::Core *core, const QVariantList &)
     mUniqueAppWatcher = new KontactInterface::UniqueAppWatcher(new KontactInterface::UniqueAppHandlerFactory<KNotesUniqueAppHandler>(), this);
 }
 
-KNotesPlugin::~KNotesPlugin()
-{
-}
+KNotesPlugin::~KNotesPlugin() = default;
 
 bool KNotesPlugin::isRunningStandalone() const
 {

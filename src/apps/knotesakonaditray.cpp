@@ -28,9 +28,7 @@ KNotesAkonadiTray::KNotesAkonadiTray(QWidget *parent)
     updateNumberOfNotes(0);
 }
 
-KNotesAkonadiTray::~KNotesAkonadiTray()
-{
-}
+KNotesAkonadiTray::~KNotesAkonadiTray() = default;
 
 void KNotesAkonadiTray::slotGeneralPaletteChanged()
 {

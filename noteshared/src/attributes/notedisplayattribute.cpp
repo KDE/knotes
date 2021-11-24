@@ -34,9 +34,7 @@ NoteDisplayAttribute::NoteDisplayAttribute()
 {
 }
 
-NoteDisplayAttribute::~NoteDisplayAttribute()
-{
-}
+NoteDisplayAttribute::~NoteDisplayAttribute() = default;
 
 NoteDisplayAttribute *NoteDisplayAttribute::clone() const
 {

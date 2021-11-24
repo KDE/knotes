@@ -30,9 +30,7 @@ KNotePrinter::KNotePrinter(QObject *parent)
 {
 }
 
-KNotePrinter::~KNotePrinter()
-{
-}
+KNotePrinter::~KNotePrinter() = default;
 
 void KNotePrinter::setDefaultFont(const QFont &font)
 {

@@ -40,9 +40,7 @@ KNoteConfigDialog::KNoteConfigDialog(const QString &title, QWidget *parent)
     connect(button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &KNoteConfigDialog::slotDefaultClicked);
 }
 
-KNoteConfigDialog::~KNoteConfigDialog()
-{
-}
+KNoteConfigDialog::~KNoteConfigDialog() = default;
 
 void KNoteConfigDialog::slotOk()
 {

@@ -189,9 +189,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     slotUpdateButtons();
 }
 
-KNoteCollectionConfigWidget::~KNoteCollectionConfigWidget()
-{
-}
+KNoteCollectionConfigWidget::~KNoteCollectionConfigWidget() = default;
 
 void KNoteCollectionConfigWidget::slotUpdateButtons()
 {

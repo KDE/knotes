@@ -55,9 +55,7 @@ KNoteEditorConfigWidget::KNoteEditorConfigWidget(QWidget *parent)
     layout->setRowStretch(4, 1);
 }
 
-KNoteEditorConfigWidget::~KNoteEditorConfigWidget()
-{
-}
+KNoteEditorConfigWidget::~KNoteEditorConfigWidget() = default;
 
 void KNoteEditorConfigWidget::load(NoteShared::NoteDisplayAttribute *attr, bool isRichText)
 {

@@ -76,9 +76,7 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
     mModelState->setSelectionModel(mSelectionModel);
 }
 
-KNotesSummaryWidget::~KNotesSummaryWidget()
-{
-}
+KNotesSummaryWidget::~KNotesSummaryWidget() = default;
 
 void KNotesSummaryWidget::updateFolderList()
 {

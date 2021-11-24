@@ -14,9 +14,7 @@ NoteAlarmAttribute::NoteAlarmAttribute()
 {
 }
 
-NoteAlarmAttribute::~NoteAlarmAttribute()
-{
-}
+NoteAlarmAttribute::~NoteAlarmAttribute() = default;
 
 NoteAlarmAttribute *NoteAlarmAttribute::clone() const
 {

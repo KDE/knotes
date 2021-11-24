@@ -19,9 +19,7 @@ KNotePrintObject::KNotePrintObject(const Akonadi::Item &item, QObject *parent)
 {
 }
 
-KNotePrintObject::~KNotePrintObject()
-{
-}
+KNotePrintObject::~KNotePrintObject() = default;
 
 QString KNotePrintObject::description() const
 {
@@ -57,7 +55,7 @@ QString KNotePrintObject::alarm() const
     if (attr) {
         return QLocale().toString(attr->dateTime(), QLocale::LongFormat);
     }
-    return QString();
+    return {};
 }
 
 bool KNotePrintObject::isLock() const
@@ -70,5 +68,5 @@ QString KNotePrintObject::backgroundColorName() const
     if (mItem.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
         return mItem.attribute<NoteShared::NoteDisplayAttribute>()->backgroundColor().name();
     }
-    return QString();
+    return {};
 }

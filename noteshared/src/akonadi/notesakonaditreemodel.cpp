@@ -15,6 +15,4 @@ NotesAkonadiTreeModel::NotesAkonadiTreeModel(Akonadi::ChangeRecorder *changeReco
     setItemPopulationStrategy(Akonadi::EntityTreeModel::ImmediatePopulation);
 }
 
-NotesAkonadiTreeModel::~NotesAkonadiTreeModel()
-{
-}
+NotesAkonadiTreeModel::~NotesAkonadiTreeModel() = default;

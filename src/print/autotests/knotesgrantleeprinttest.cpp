@@ -19,9 +19,7 @@ KNotesGrantleePrintTest::KNotesGrantleePrintTest(QObject *parent)
 {
 }
 
-KNotesGrantleePrintTest::~KNotesGrantleePrintTest()
-{
-}
+KNotesGrantleePrintTest::~KNotesGrantleePrintTest() = default;
 
 void KNotesGrantleePrintTest::shouldReturnEmptyStringWhenNotContentAndNoNotes()
 {

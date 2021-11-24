@@ -18,9 +18,7 @@ KNotePrintSelectThemeComboBox::KNotePrintSelectThemeComboBox(QWidget *parent)
     loadThemes();
 }
 
-KNotePrintSelectThemeComboBox::~KNotePrintSelectThemeComboBox()
-{
-}
+KNotePrintSelectThemeComboBox::~KNotePrintSelectThemeComboBox() = default;
 
 void KNotePrintSelectThemeComboBox::loadThemes()
 {

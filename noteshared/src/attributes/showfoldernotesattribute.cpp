@@ -7,13 +7,9 @@
 
 #include <QByteArray>
 using namespace NoteShared;
-ShowFolderNotesAttribute::ShowFolderNotesAttribute()
-{
-}
+ShowFolderNotesAttribute::ShowFolderNotesAttribute() = default;
 
-ShowFolderNotesAttribute::~ShowFolderNotesAttribute()
-{
-}
+ShowFolderNotesAttribute::~ShowFolderNotesAttribute() = default;
 
 ShowFolderNotesAttribute *ShowFolderNotesAttribute::clone() const
 {

@@ -20,9 +20,7 @@ KNotesWidget::KNotesWidget(KNotesPart *part, QWidget *parent)
     lay->addWidget(mIconView);
 }
 
-KNotesWidget::~KNotesWidget()
-{
-}
+KNotesWidget::~KNotesWidget() = default;
 
 void KNotesWidget::slotFocusQuickSearch()
 {

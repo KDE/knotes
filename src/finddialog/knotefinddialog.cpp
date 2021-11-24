@@ -98,9 +98,7 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     mSearchLineEdit->setFocus();
 }
 
-KNoteFindWidget::~KNoteFindWidget()
-{
-}
+KNoteFindWidget::~KNoteFindWidget() = default;
 
 void KNoteFindWidget::setExistingNotes(const QHash<Akonadi::Item::Id, Akonadi::Item> &notes)
 {

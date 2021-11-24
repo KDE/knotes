@@ -15,9 +15,7 @@ KNotesListWidgetSearchLine::KNotesListWidgetSearchLine(QWidget *parent)
     setPlaceholderText(i18n("Search notes..."));
 }
 
-KNotesListWidgetSearchLine::~KNotesListWidgetSearchLine()
-{
-}
+KNotesListWidgetSearchLine::~KNotesListWidgetSearchLine() = default;
 
 void KNotesListWidgetSearchLine::updateClickMessage(const QString &shortcutStr)
 {

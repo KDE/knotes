@@ -14,9 +14,7 @@ NoteLockAttributeTest::NoteLockAttributeTest(QObject *parent)
 {
 }
 
-NoteLockAttributeTest::~NoteLockAttributeTest()
-{
-}
+NoteLockAttributeTest::~NoteLockAttributeTest() = default;
 
 void NoteLockAttributeTest::shouldHaveType()
 {

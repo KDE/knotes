@@ -82,9 +82,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
     layout->setRowStretch(6, 1);
 }
 
-KNoteDisplayConfigWidget::~KNoteDisplayConfigWidget()
-{
-}
+KNoteDisplayConfigWidget::~KNoteDisplayConfigWidget() = default;
 
 void KNoteDisplayConfigWidget::load(NoteShared::NoteDisplayAttribute *attr)
 {

@@ -13,9 +13,7 @@
 #include <QTextEdit>
 
 using namespace NoteShared;
-NoteEditorUtils::NoteEditorUtils()
-{
-}
+NoteEditorUtils::NoteEditorUtils() = default;
 
 void NoteEditorUtils::addCheckmark(QTextCursor &cursor)
 {

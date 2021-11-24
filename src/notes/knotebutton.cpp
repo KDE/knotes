@@ -26,9 +26,7 @@ KNoteButton::KNoteButton(const QString &icon, QWidget *parent)
     }
 }
 
-KNoteButton::~KNoteButton()
-{
-}
+KNoteButton::~KNoteButton() = default;
 
 void KNoteButton::enterEvent(QEvent *)
 {
@@ -49,7 +47,7 @@ int KNoteButton::heightForWidth(int w) const
 
 QSize KNoteButton::sizeHint() const
 {
-    return QSize(QPushButton::sizeHint().height(), QPushButton::sizeHint().height());
+    return {QPushButton::sizeHint().height(), QPushButton::sizeHint().height()};
 }
 
 void KNoteButton::paintEvent(QPaintEvent *)

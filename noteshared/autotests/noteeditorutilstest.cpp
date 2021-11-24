@@ -17,9 +17,7 @@ NoteEditorUtilsTest::NoteEditorUtilsTest(QObject *parent)
 {
 }
 
-NoteEditorUtilsTest::~NoteEditorUtilsTest()
-{
-}
+NoteEditorUtilsTest::~NoteEditorUtilsTest() = default;
 
 void NoteEditorUtilsTest::testAddCheckmark_data()
 {

@@ -355,7 +355,7 @@ QString KNotesPart::name(Akonadi::Item::Id id) const
     if (note) {
         return note->text();
     } else {
-        return QString();
+        return {};
     }
 }
 
@@ -366,7 +366,7 @@ QString KNotesPart::text(Akonadi::Item::Id id) const
     if (note) {
         return note->description();
     } else {
-        return QString();
+        return {};
     }
 }
 

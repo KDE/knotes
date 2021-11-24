@@ -16,9 +16,7 @@ NoteDisplayAttributeTest::NoteDisplayAttributeTest(QObject *parent)
 {
 }
 
-NoteDisplayAttributeTest::~NoteDisplayAttributeTest()
-{
-}
+NoteDisplayAttributeTest::~NoteDisplayAttributeTest() = default;
 
 void NoteDisplayAttributeTest::shouldHaveDefaultValue()
 {
