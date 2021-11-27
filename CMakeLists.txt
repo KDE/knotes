@@ -77,7 +77,6 @@ if (QT_MAJOR_VERSION STREQUAL "6")
 endif()
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED DBus Network PrintSupport Test Widgets Xml)
-find_package(Qt${QT_MAJOR_VERSION}X11Extras NO_MODULE)
 # Find KF5 package
 find_package(KF${KF_MAJOR_VERSION}Completion ${KF_MIN_VERSION} REQUIRED)
 find_package(KF${KF_MAJOR_VERSION}Config ${KF_MIN_VERSION} REQUIRED)
@@ -138,10 +137,13 @@ set(KDEPIM_HAVE_TEXT_ADDONS_WIDGETS_SUPPORT ${KF${KF_MAJOR_VERSION}TextAddonsWid
 
 
 if (NOT APPLE)
-    find_package(X11)
+    option(WITHOUT_X11 "Build without X11 integration (skips finding X11)" OFF)
+    if (NOT WITHOUT_X11)
+        find_package(X11)
+        find_package(Qt${QT_MAJOR_VERSION}X11Extras NO_MODULE)
+        set(KDEPIM_HAVE_X11 ${X11_FOUND})
+    endif()
 endif()
-
-set(KDEPIM_HAVE_X11 ${X11_FOUND})
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
