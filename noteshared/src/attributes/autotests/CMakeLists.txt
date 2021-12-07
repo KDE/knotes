@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: none
+# SPDX-License-Identifier: BSD-3-Clause
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/..
   ${knotes_BINARY_DIR}/noteshared/src/

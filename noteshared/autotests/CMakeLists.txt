@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: none
+# SPDX-License-Identifier: BSD-3-Clause
 add_executable(noteeditorutilstest noteeditorutilstest.cpp )
 add_test(NAME noteeditorutilstest COMMAND noteeditorutilstest)
 ecm_mark_as_test(noteeditorutilstest)
