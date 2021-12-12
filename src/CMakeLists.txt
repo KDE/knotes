@@ -140,15 +140,6 @@ install(FILES
     data/kcm_knote_misc.desktop
     DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 
-kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_action.desktop" SERVICE_TYPES kcmodule.desktop)
-kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_display.desktop" SERVICE_TYPES kcmodule.desktop)
-kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_editor.desktop" SERVICE_TYPES kcmodule.desktop)
-kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_network.desktop" SERVICE_TYPES kcmodule.desktop)
-kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_print.desktop" SERVICE_TYPES kcmodule.desktop)
-kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_collection.desktop" SERVICE_TYPES kcmodule.desktop)
-kcoreaddons_desktop_to_json(kcm_knote_static "data/kcm_knote_misc.desktop" SERVICE_TYPES kcmodule.desktop)
-
-
 # Create the individual KCMs
 kcoreaddons_add_plugin(kcm_knote_action SOURCES kcm_knote_action.cpp INSTALL_NAMESPACE "pim/kcms/knotes")
 target_link_libraries(kcm_knote_action kcm_knote_static)

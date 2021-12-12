@@ -45,14 +45,11 @@ target_link_libraries(kontact_knotesplugin
                       KF5::Contacts
 )
 
-kcoreaddons_desktop_to_json(kontact_knotesplugin knotesplugin.desktop SERVICE_TYPES kcmodule.desktop)
-
 ########### install files ###############
 
 set(kcmknotessummary_PART_SRCS kcmknotessummary.cpp )
 
 add_library(kcmknotessummary MODULE ${kcmknotessummary_PART_SRCS})
-kcoreaddons_desktop_to_json(kcmknotessummary "kcmknotessummary.desktop" SERVICE_TYPES kcmodule.desktop)
 target_link_libraries(kcmknotessummary  KF5::PimCommonAkonadi KF5::AkonadiNotes KF5::ConfigWidgets KF5::I18n)
 
 
