@@ -1,0 +1,8 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: knotes
+Upstream-Contact: Montel Laurent <montel@kde.org>
+Source: https://invent.kde.org/pim/knotes
+
+Files: src/print/README.themes AUTHORS HACKING ISSUES MAINTAINERS Mainpage.dox README TODO 
+Copyright: none
+License: CC0-1.0
