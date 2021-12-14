@@ -1,6 +1,11 @@
 {
     "KPlugin": {
         "Description": "Kontact KNotes Plugin",
+        "Description[ca]": "Connector del KNotes del Kontact",
+        "Description[nl]": "Kontact KNotes-plug-in",
+        "Description[sv]": "Kontacts insticksprogram för Knotes",
+        "Description[uk]": "Додаток приміток (KNotes) Kontact",
+        "Description[x-test]": "xxKontact KNotes Pluginxx",
         "EnabledByDefault": true,
         "Icon": "view-pim-notes",
         "Id": "kontact_knotesplugin",

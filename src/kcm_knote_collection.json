@@ -1,6 +1,11 @@
 {
     "KPlugin": {
         "Description": "Setup collections for notes",
+        "Description[ca]": "Configura les col·leccions per a les notes",
+        "Description[nl]": "Verzamelingen instellen voor notities",
+        "Description[sv]": "Ställ in anteckningssamlingar",
+        "Description[uk]": "Налаштовування збірок нотаток",
+        "Description[x-test]": "xxSetup collections for notesxx",
         "Icon": "preferences-other",
         "Name": "Collections",
         "Name[ar]": "التّجميعات",

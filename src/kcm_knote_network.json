@@ -1,6 +1,11 @@
 {
     "KPlugin": {
         "Description": "Network Settings",
+        "Description[ca]": "Configuració de la xarxa",
+        "Description[nl]": "Netwerkinstellingen",
+        "Description[sv]": "Nätverksinställningar",
+        "Description[uk]": "Параметри мережі",
+        "Description[x-test]": "xxNetwork Settingsxx",
         "Icon": "network-wired",
         "Name": "Network",
         "Name[ar]": "الشّبكة",

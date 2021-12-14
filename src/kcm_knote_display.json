@@ -1,6 +1,11 @@
 {
     "KPlugin": {
         "Description": "Setup display for notes",
+        "Description[ca]": "Configura la visualització per a les notes",
+        "Description[nl]": "Stel het tonen van notities in",
+        "Description[sv]": "Ställ in skärm för anteckningslappar",
+        "Description[uk]": "Налаштуйте показ нотаток",
+        "Description[x-test]": "xxSetup display for notesxx",
         "Icon": "knotes",
         "Name": "Display",
         "Name[ar]": "العرض",

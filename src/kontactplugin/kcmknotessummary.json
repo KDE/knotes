@@ -1,6 +1,11 @@
 {
     "KPlugin": {
         "Description": "Notes Summary Setup",
+        "Description[ca]": "Configuració del resum de les notes",
+        "Description[nl]": "Instellingen voor overzicht van notities",
+        "Description[sv]": "Inställning av anteckningsöversikt",
+        "Description[uk]": "Налаштування резюме щодо нотаток",
+        "Description[x-test]": "xxNotes Summary Setupxx",
         "Icon": "knotes",
         "Name": "New Notes",
         "Name[ar]": "ملاحظات جديدة",

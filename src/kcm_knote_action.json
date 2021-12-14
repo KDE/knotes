@@ -1,6 +1,11 @@
 {
     "KPlugin": {
         "Description": "Setup actions for notes",
+        "Description[ca]": "Configura les accions per a les notes",
+        "Description[nl]": "Acties instellen voor notities",
+        "Description[sv]": "Ställ in åtgärder för anteckningslappar",
+        "Description[uk]": "Налаштуйте дії для нотаток",
+        "Description[x-test]": "xxSetup actions for notesxx",
         "Icon": "preferences-other",
         "Name": "Actions",
         "Name[ar]": "الإجراءات",

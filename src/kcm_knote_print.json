@@ -1,6 +1,11 @@
 {
     "KPlugin": {
         "Description": "Setup printing for notes",
+        "Description[ca]": "Configura la impressió per a les notes",
+        "Description[nl]": "Afdrukken instellen voor notities",
+        "Description[sv]": "Ställ in utskrift för anteckningslappar",
+        "Description[uk]": "Налаштування друку нотаток",
+        "Description[x-test]": "xxSetup printing for notesxx",
         "Icon": "preferences-other",
         "Name": "Print",
         "Name[ar]": "الطّباعة",

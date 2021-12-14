@@ -1,6 +1,11 @@
 {
     "KPlugin": {
         "Description": "Setup editor",
+        "Description[ca]": "Configura l'editor",
+        "Description[nl]": "Bewerker instellen",
+        "Description[sv]": "Editorinställning",
+        "Description[uk]": "Налаштуйте редактор",
+        "Description[x-test]": "xxSetup editorxx",
         "Icon": "accessories-text-editor",
         "Name": "Editor",
         "Name[ar]": "المحرّر",
