@@ -1,8 +1,12 @@
 {
     "KPlugin": {
         "Description": "Setup actions for notes",
+        "Description[ca@valencia]": "Configura les accions per a les notes",
         "Description[ca]": "Configura les accions per a les notes",
+        "Description[fr]": "Configuration des actions pour les notes",
+        "Description[it]": "Imposta le azioni per le note",
         "Description[nl]": "Acties instellen voor notities",
+        "Description[sl]": "Nastavi dejanja za sporočilca",
         "Description[sv]": "Ställ in åtgärder för anteckningslappar",
         "Description[uk]": "Налаштуйте дії для нотаток",
         "Description[x-test]": "xxSetup actions for notesxx",

@@ -1,8 +1,12 @@
 {
     "KPlugin": {
         "Description": "Setup collections for notes",
+        "Description[ca@valencia]": "Configura les col·leccions per a les notes",
         "Description[ca]": "Configura les col·leccions per a les notes",
+        "Description[fr]": "Configuration des collections pour les notes",
+        "Description[it]": "Imposta le collezioni per le note",
         "Description[nl]": "Verzamelingen instellen voor notities",
+        "Description[sl]": "Nastavi zbirke za sporočilca",
         "Description[sv]": "Ställ in anteckningssamlingar",
         "Description[uk]": "Налаштовування збірок нотаток",
         "Description[x-test]": "xxSetup collections for notesxx",

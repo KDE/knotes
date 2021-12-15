@@ -1,8 +1,12 @@
 {
     "KPlugin": {
         "Description": "Network Settings",
+        "Description[ca@valencia]": "Configuració de la xarxa",
         "Description[ca]": "Configuració de la xarxa",
+        "Description[fr]": "Configuration du réseau",
+        "Description[it]": "Impostazioni di rete",
         "Description[nl]": "Netwerkinstellingen",
+        "Description[sl]": "Nastavitve omrežja",
         "Description[sv]": "Nätverksinställningar",
         "Description[uk]": "Параметри мережі",
         "Description[x-test]": "xxNetwork Settingsxx",

@@ -1,8 +1,12 @@
 {
     "KPlugin": {
         "Description": "Setup editor",
+        "Description[ca@valencia]": "Configura l'editor",
         "Description[ca]": "Configura l'editor",
+        "Description[fr]": "Éditeur de configuration",
+        "Description[it]": "Imposta l'editor",
         "Description[nl]": "Bewerker instellen",
+        "Description[sl]": "Nastavi urejevalnik",
         "Description[sv]": "Editorinställning",
         "Description[uk]": "Налаштуйте редактор",
         "Description[x-test]": "xxSetup editorxx",

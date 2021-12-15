@@ -1,8 +1,12 @@
 {
     "KPlugin": {
         "Description": "Setup printing for notes",
+        "Description[ca@valencia]": "Configura la impressió per a les notes",
         "Description[ca]": "Configura la impressió per a les notes",
+        "Description[fr]": "Configuration de l'impression pour les notes",
+        "Description[it]": "Imposta la stampa per le note",
         "Description[nl]": "Afdrukken instellen voor notities",
+        "Description[sl]": "Nastavi tiskanje sporočilc",
         "Description[sv]": "Ställ in utskrift för anteckningslappar",
         "Description[uk]": "Налаштування друку нотаток",
         "Description[x-test]": "xxSetup printing for notesxx",
