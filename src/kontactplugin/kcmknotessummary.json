@@ -1,12 +1,14 @@
 {
     "KPlugin": {
         "Description": "Notes Summary Setup",
+        "Description[ar]": "إعداد ملخّص الملاحظات",
         "Description[ca@valencia]": "Configuració del resum de les notes",
         "Description[ca]": "Configuració del resum de les notes",
         "Description[es]": "Configuración del resumen de notas",
         "Description[fr]": "Configuration du résumé des notes",
         "Description[it]": "Impostazioni sommario note",
         "Description[nl]": "Instellingen voor overzicht van notities",
+        "Description[pl]": "Ustawienia podsumowania notatek",
         "Description[sl]": "Nastavi povzetke sporočilc",
         "Description[sv]": "Inställning av anteckningsöversikt",
         "Description[uk]": "Налаштування резюме щодо нотаток",
