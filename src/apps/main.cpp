@@ -31,7 +31,9 @@ int main(int argc, char *argv[])
     // Disable session management
     qunsetenv("SESSION_MANAGER");
 
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
+#endif
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     Application app(argc, &argv);
     KCrash::initialize();
