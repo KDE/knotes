@@ -1,5 +1,5 @@
 /*
-   SPDX-FileCopyrightText: 2013-2021 Laurent Montel <montel@kde.org>
+   SPDX-FileCopyrightText: 2013-2022 Laurent Montel <montel@kde.org>
 
    SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -41,7 +41,7 @@ KCMKNotesSummary::KCMKNotesSummary(QWidget *parent, const QVariantList &args)
                                 QString(),
                                 i18n("Notes Summary Configuration Dialog"),
                                 KAboutLicense::GPL,
-                                i18n("Copyright © 2013-2021 Laurent Montel <montel@kde.org>"));
+                                i18n("Copyright © 2013-%1 Laurent Montel <montel@kde.org>", QStringLiteral("2022")));
     about->addAuthor(ki18n("Laurent Montel").toString(), QString(), QStringLiteral("montel@kde.org"));
     setAboutData(about);
 }
