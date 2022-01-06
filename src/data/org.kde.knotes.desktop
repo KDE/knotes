@@ -150,7 +150,7 @@ X-DBUS-StartupType=Unique
 X-DBUS-ServiceName=org.kde.knotes
 Categories=Qt;KDE;Utility;TextTools;X-KDE-Utilities-Desktop;
 Actions=NewNote
-X-GNOME-SingleWindow=true
+SingleMainWindow=true
 
 [Desktop Action NewNote]
 Name=New Note
