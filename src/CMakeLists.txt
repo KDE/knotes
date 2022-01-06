@@ -18,7 +18,6 @@ add_library(knotesprivate)
 
 target_sources(knotesprivate PRIVATE
     knoteedit.cpp
-    knotes_debug.cpp
     notes/knotedisplaysettings.cpp
     utils/knoteutils.cpp
     notes/knoteinterface.cpp
@@ -33,6 +32,22 @@ target_sources(knotesprivate PRIVATE
     print/knoteprinter.cpp
     print/knoteprintobject.cpp
     print/knotegrantleeprint.cpp
+
+    knoteedit.h
+    notes/knotedisplaysettings.h
+    utils/knoteutils.h
+    notes/knoteinterface.h
+    notes/knotesmigrateapplication.h
+    finddialog/knotefinddialog.h
+    configdialog/knotesimpleconfigdialog.h
+    configdialog/knoteconfigdialog.h
+    configdialog/knotedisplayconfigwidget.h
+    configdialog/knoteeditorconfigwidget.h
+    print/knoteprintselectthemedialog.h
+    print/knoteprintselectthemecombobox.h
+    print/knoteprinter.h
+    print/knoteprintobject.h
+    print/knotegrantleeprint.h
     )
 configure_file(settings/knotesglobalconfig.kcfg.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg )
 
@@ -68,7 +83,8 @@ set_target_properties(knotesprivate
 install(TARGETS knotesprivate ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
 
-set(knotes_SRCS knotes_debug.cpp 
+set(knotes_SRCS
+    knotes_debug.cpp
     apps/main.cpp
     apps/application.cpp
     apps/knotesapp.cpp
@@ -79,7 +95,18 @@ set(knotes_SRCS knotes_debug.cpp
     print/knoteprintselectednotesdialog.cpp
     notes/knote.cpp
     dialog/knoteselectednotesdialog.cpp
-    )
+
+
+    apps/application.h
+    apps/knotesapp.h
+    apps/knotesakonaditray.h
+    dialog/knoteskeydialog.h
+    dialog/knotedeleteselectednotesdialog.h
+    notes/knotebutton.h
+    print/knoteprintselectednotesdialog.h
+    notes/knote.h
+    dialog/knoteselectednotesdialog.h
+)
 
 
 qt_add_dbus_adaptor(knotes_SRCS  apps/org.kde.KNotes.xml apps/knotesapp.h KNotesApp )

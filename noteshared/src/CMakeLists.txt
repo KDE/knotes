@@ -3,13 +3,10 @@
 
 add_definitions(-DTRANSLATION_DOMAIN=\"libnoteshared\")
 
-set(libnoteshared_akonadi_SRCS
-    akonadi/notesakonaditreemodel.cpp
-    akonadi/noteschangerecorder.cpp
-    )
 
 set(libnoteshared_SRCS
-    noteshared_debug.cpp
+    akonadi/notesakonaditreemodel.cpp
+    akonadi/noteschangerecorder.cpp
     attributes/notealarmattribute.cpp
     attributes/notedisplayattribute.cpp
     attributes/notelockattribute.cpp
@@ -28,8 +25,27 @@ set(libnoteshared_SRCS
     dialog/selectednotefolderdialog.cpp
     widget/notelistwidget.cpp
     alarms/notealarmdialog.cpp
-    ${libnoteshared_akonadi_SRCS}
-    )
+
+    akonadi/notesakonaditreemodel.h
+    akonadi/noteschangerecorder.h
+    attributes/notealarmattribute.h
+    attributes/notedisplayattribute.h
+    attributes/notelockattribute.h
+    attributes/showfoldernotesattribute.h
+    noteutils.h
+    network/notesnetworksender.h
+    network/notesnetworkreceiver.h
+    network/notehostdialog.h
+    editor/noteeditorutils.h
+    editor/noteeditor.h
+    config/noteactionconfig.h
+    config/notenetworkconfig.h
+    resources/localresourcecreator.h
+    job/createnewnotejob.h
+    dialog/selectednotefolderdialog.h
+    widget/notelistwidget.h
+    alarms/notealarmdialog.h
+)
 
 ecm_qt_declare_logging_category(libnoteshared_SRCS HEADER noteshared_debug.h IDENTIFIER NOTESHARED_LOG CATEGORY_NAME org.kde.pim.noteshared
         DESCRIPTION "knotes (noteshared)"

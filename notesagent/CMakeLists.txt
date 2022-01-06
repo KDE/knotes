@@ -22,6 +22,11 @@ target_sources(akonadi_notes_agent PRIVATE
     notesagentsettingsdialog.cpp
     notesagentalarmdialog.cpp
     notesagentnotedialog.cpp
+    notesagent.h
+    notesmanager.h
+    notesagentsettingsdialog.h
+    notesagentalarmdialog.h
+    notesagentnotedialog.h
     )
 
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
