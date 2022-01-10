@@ -89,7 +89,7 @@ target_link_libraries(notesharedprivate
     PUBLIC
     KF5::AkonadiCore
     PRIVATE
-    KF5::DNSSD KF5::PimCommon  KF5::Mime KF5::AkonadiNotes KF5::PimTextEdit KF5::Completion Qt::DBus KF5::I18n KF5::AkonadiWidgets
+    KF5::DNSSD KF5::PimCommon  KF5::Mime KF5::AkonadiNotes KF5::PimTextEdit KF5::Completion Qt${QT_MAJOR_VERSION}::DBus KF5::I18n KF5::AkonadiWidgets
     )
 
 
