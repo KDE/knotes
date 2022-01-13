@@ -10,8 +10,7 @@
 #include "knotes-version.h"
 #include "knotes_debug.h"
 #include "knotes_options.h"
-#include <kcoreaddons_version.h>
-#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include "notes/knotesmigrateapplication.h"
 #endif
 #include <KLocalizedString>
@@ -33,11 +32,11 @@ int main(int argc, char *argv[])
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
-#endif
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+#endif
     Application app(argc, &argv);
     KCrash::initialize();
-#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     KNotesMigrateApplication migrate;
     migrate.migrate();
 #endif

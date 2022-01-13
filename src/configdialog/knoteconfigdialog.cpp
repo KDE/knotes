@@ -13,7 +13,6 @@
 #include "notesharedglobalconfig.h"
 #include "print/knoteprintselectthemecombobox.h"
 #include <config-knotes.h>
-#include <kcoreaddons_version.h>
 
 #include <KAuthorized>
 #include <KNS3/DownloadDialog>
