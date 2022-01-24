@@ -23,9 +23,9 @@
 
 using namespace NoteShared;
 
-
 NoteAlarmDialog::NoteAlarmDialog(const QString &caption, QWidget *parent)
     : QDialog(parent)
+    , m_buttons(new QButtonGroup(this))
 {
     setWindowTitle(caption);
     auto mainLayout = new QVBoxLayout(this);
@@ -38,7 +38,6 @@ NoteAlarmDialog::NoteAlarmDialog(const QString &caption, QWidget *parent)
     auto pageVBoxLayout = new QVBoxLayout(page);
     pageVBoxLayout->setContentsMargins(0, 0, 0, 0);
 
-    m_buttons = new QButtonGroup(this);
     auto group = new QGroupBox(i18n("Scheduled Alarm"), page);
     pageVBoxLayout->addWidget(group);
     auto layout = new QVBoxLayout;

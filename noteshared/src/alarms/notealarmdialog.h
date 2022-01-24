@@ -34,7 +34,7 @@ private:
 private:
     KDateComboBox *m_atDate = nullptr;
     KTimeComboBox *m_atTime = nullptr;
-    QButtonGroup *m_buttons = nullptr;
+    QButtonGroup *const m_buttons = nullptr;
 };
 }
 
