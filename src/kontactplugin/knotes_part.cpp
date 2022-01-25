@@ -43,7 +43,7 @@
 #include <Akonadi/ItemFetchJob>
 #include <Akonadi/ItemFetchScope>
 #include <Akonadi/ItemModifyJob>
-#include <akonadi/session.h>
+#include <Akonadi/Session>
 
 #include <KMime/KMimeMessage>
 

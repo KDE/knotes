@@ -35,7 +35,7 @@
 #include <Akonadi/ItemDeleteJob>
 #include <Akonadi/ItemFetchJob>
 #include <Akonadi/ItemFetchScope>
-#include <akonadi/session.h>
+#include <Akonadi/Session>
 
 #include <Akonadi/ControlGui>
 

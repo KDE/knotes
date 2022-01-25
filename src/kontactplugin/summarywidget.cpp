@@ -15,7 +15,7 @@
 
 #include <Akonadi/ChangeRecorder>
 #include <Akonadi/ETMViewStateSaver>
-#include <akonadi/session.h>
+#include <Akonadi/Session>
 
 #include <KontactInterface/Core>
 #include <KontactInterface/Plugin>

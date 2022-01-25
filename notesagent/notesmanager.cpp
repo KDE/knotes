@@ -19,7 +19,7 @@
 #include <Akonadi/ItemFetchJob>
 #include <Akonadi/ItemFetchScope>
 #include <Akonadi/Notes/NoteUtils>
-#include <akonadi/session.h>
+#include <Akonadi/Session>
 
 #include <KMime/KMimeMessage>
 
