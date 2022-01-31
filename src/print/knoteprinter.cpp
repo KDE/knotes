@@ -21,10 +21,6 @@
 #include "knotes_debug.h"
 #include <KLocalizedString>
 
-#include <grantlee/context.h>
-#include <grantlee/engine.h>
-#include <grantlee/templateloader.h>
-
 KNotePrinter::KNotePrinter(QObject *parent)
     : QObject(parent)
 {
