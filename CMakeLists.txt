@@ -115,7 +115,7 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include_directories(${knotes_SOURCE_DIR} ${knotes_BINARY_DIR})
 
-ecm_set_disabled_deprecation_versions(QT 5.15.0
+ecm_set_disabled_deprecation_versions(QT 5.15.2
     KF 5.91.0
     KCOREADDONS 5.88.0 #KPluginFactory::registerPlugin
 )
