@@ -57,6 +57,6 @@ install(TARGETS kcmknotessummary DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/s
 
 
 install(TARGETS kontact_knotesplugin DESTINATION ${KDE_INSTALL_PLUGINDIR}/kontact5)
-install(FILES knotes_part.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/knotes)
+install(FILES knotes_part.rc DESTINATION ${KDE_INSTALL_KXMLGUIDIR}/knotes)
 install(FILES org.kde.kontact.KNotes.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
 
