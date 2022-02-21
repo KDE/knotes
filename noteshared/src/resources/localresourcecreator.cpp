@@ -11,7 +11,7 @@
 
 #include "maildirsettings.h"
 
-#include <Akonadi/Notes/NoteUtils>
+#include <Akonadi/NoteUtils>
 
 #include "noteshared_debug.h"
 #include <Akonadi/ResourceSynchronizationJob>

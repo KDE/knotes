@@ -18,7 +18,7 @@
 #include <Akonadi/CollectionFetchScope>
 #include <Akonadi/ItemFetchJob>
 #include <Akonadi/ItemFetchScope>
-#include <Akonadi/Notes/NoteUtils>
+#include <Akonadi/NoteUtils>
 #include <Akonadi/Session>
 
 #include <KMime/KMimeMessage>

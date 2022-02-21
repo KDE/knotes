@@ -8,7 +8,7 @@
 #include "dialog/selectednotefolderdialog.h"
 #include "noteshared_debug.h"
 #include "notesharedglobalconfig.h"
-#include <Akonadi/Notes/NoteUtils>
+#include <Akonadi/NoteUtils>
 
 #include <Akonadi/Collection>
 #include <Akonadi/CollectionFetchJob>

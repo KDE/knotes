@@ -8,7 +8,7 @@
 #include <Akonadi/ChangeRecorder>
 #include <Akonadi/CollectionFetchScope>
 #include <Akonadi/ItemFetchScope>
-#include <Akonadi/Notes/NoteUtils>
+#include <Akonadi/NoteUtils>
 
 #include "attributes/notealarmattribute.h"
 #include "attributes/notedisplayattribute.h"

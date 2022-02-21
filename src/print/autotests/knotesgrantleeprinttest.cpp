@@ -8,7 +8,7 @@
 #include "print/knoteprintobject.h"
 
 #include <Akonadi/Item>
-#include <Akonadi/Notes/NoteUtils>
+#include <Akonadi/NoteUtils>
 
 #include <KMime/Message>
 

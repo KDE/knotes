@@ -5,7 +5,7 @@
 */
 #include "selectednotefolderdialog.h"
 
-#include <Akonadi/Notes/NoteUtils>
+#include <Akonadi/NoteUtils>
 
 #include <KConfigGroup>
 #include <KLocalizedString>

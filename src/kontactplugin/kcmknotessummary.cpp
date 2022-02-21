@@ -5,7 +5,7 @@
 */
 #include "kcmknotessummary.h"
 
-#include <Akonadi/Notes/NoteUtils>
+#include <Akonadi/NoteUtils>
 
 #include <PimCommonAkonadi/CheckedCollectionWidget>
 
