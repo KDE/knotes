@@ -6,8 +6,8 @@
 #include "knotefinddialog.h"
 #include "widget/notelistwidget.h"
 
-#include <AkonadiSearch/PIM/notequery.h>
-#include <AkonadiSearch/PIM/resultiterator.h>
+#include <PIM/notequery.h>
+#include <PIM/resultiterator.h>
 
 #include <KLocalizedString>
 #include <QIcon>

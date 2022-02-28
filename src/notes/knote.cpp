@@ -25,7 +25,7 @@
 
 #include <Akonadi/ItemModifyJob>
 
-#include <AkonadiSearch/Debug/akonadisearchdebugdialog.h>
+#include <Debug/akonadisearchdebugdialog.h>
 
 #include <KMime/KMimeMessage>
 
