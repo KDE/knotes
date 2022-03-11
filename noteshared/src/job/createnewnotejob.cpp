@@ -126,7 +126,7 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
                                           i18n("Collection is hidden. New note will be stored but not displayed. Do you want to show collection?"),
                                           QString(),
                                           KGuiItem(i18nc("@action::button", "Show Collection")),
-                                          KGuiItem(i18nc("@action::button", "Do Not Show", QStringLiteral("dialog-cancel"))));
+                                          KGuiItem(i18nc("@action::button", "Do Not Show"), QStringLiteral("dialog-cancel")));
             if (answer == KMessageBox::Yes) {
                 col.addAttribute(new NoteShared::ShowFolderNotesAttribute());
                 auto modifyJob = new Akonadi::CollectionModifyJob(col);
