@@ -8,7 +8,6 @@
 #include "knotegrantleeprint.h"
 #include "print/knoteprintobject.h"
 
-#include <PimCommon/KPimPrintPreviewDialog>
 #include <QAbstractTextDocumentLayout>
 #include <QPainter>
 #include <QPointer>
@@ -17,6 +16,8 @@
 #include <QTextDocument>
 
 #include <KMessageBox>
+#include <KWindowStateSaver>
+#include <QPrintPreviewDialog>
 
 #include "knotes_debug.h"
 #include <KLocalizedString>
@@ -44,10 +45,11 @@ void KNotePrinter::doPrintPreview(const QString &htmlText)
     QPrinter printer(QPrinter::HighResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setCollateCopies(true);
-    PimCommon::KPimPrintPreviewDialog previewdlg(&printer, nullptr);
-
-    connect(&previewdlg, &QPrintPreviewDialog::paintRequested, this, &KNotePrinter::slotPrinterPage);
-    previewdlg.exec();
+    QPointer<QPrintPreviewDialog> previewdlg = new QPrintPreviewDialog(&printer);
+    new KWindowStateSaver(previewdlg.data(), "KNotePrintPreviewDialog");
+    connect(previewdlg.data(), &QPrintPreviewDialog::paintRequested, this, &KNotePrinter::slotPrinterPage);
+    previewdlg->exec();
+    delete previewdlg;
 }
 
 void KNotePrinter::slotPrinterPage(QPrinter *printer)
