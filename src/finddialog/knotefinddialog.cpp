@@ -110,15 +110,46 @@ void KNoteFindWidget::slotItemDoubleClicked(QListWidgetItem *item)
     Q_EMIT noteSelected(mNoteList->itemId(item));
 }
 
+// code from kitinerary/src/lib/stringutil.cpp
+static QString normalize(QStringView str)
+{
+    QString out;
+    out.reserve(str.size());
+    for (const auto c : str) {
+        // case folding
+        const auto n = c.toCaseFolded();
+
+        // if the character has a canonical decomposition use that and skip the
+        // combining diacritic markers following it
+        // see https://en.wikipedia.org/wiki/Unicode_equivalence
+        // see https://en.wikipedia.org/wiki/Combining_character
+        if (n.decompositionTag() == QChar::Canonical) {
+            out.push_back(n.decomposition().at(0));
+        }
+        // handle compatibility compositions such as ligatures
+        // see https://en.wikipedia.org/wiki/Unicode_compatibility_characters
+        else if (n.decompositionTag() == QChar::Compat && n.isLetter() && n.script() == QChar::Script_Latin) {
+            out.append(n.decomposition());
+        } else {
+            out.push_back(n);
+        }
+    }
+    return out;
+}
+
 void KNoteFindWidget::slotSearchNote()
 {
     const QString searchStr = mSearchLineEdit->text().trimmed();
     if (searchStr.trimmed().isEmpty()) {
         return;
     }
+    auto config = KConfig(QStringLiteral("akonadi_indexing_agent"));
+    KConfigGroup cfg = config.group("General");
+    const bool respectDiacriticAndAccents = cfg.readEntry("respectDiacriticAndAccents", true);
+    const QString searchString = respectDiacriticAndAccents ? searchStr : normalize(searchStr);
     Akonadi::Search::PIM::NoteQuery query;
-    query.matchNote(searchStr);
-    query.matchTitle(searchStr);
+    query.matchNote(searchString);
+    query.matchTitle(searchString);
 
     Akonadi::Search::PIM::ResultIterator it = query.exec();
 
