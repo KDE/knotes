@@ -71,4 +71,3 @@ private:
     KViewStateMaintainer<Akonadi::ETMViewStateSaver> *mModelState = nullptr;
     bool mInProgress = false;
 };
-

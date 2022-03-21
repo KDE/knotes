@@ -30,4 +30,3 @@ protected:
 
     void paintEvent(QPaintEvent *e) override;
 };
-

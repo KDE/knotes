@@ -75,4 +75,3 @@ private:
     KNoteDisplaySettings *mDisplayAttribute = nullptr;
     bool mReadOnly;
 };
-

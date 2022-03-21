@@ -30,4 +30,3 @@ private:
     KNoteEditorConfigWidget *mEditorConfigWidget = nullptr;
     KNoteDisplayConfigWidget *mDisplayConfigWidget = nullptr;
 };
-

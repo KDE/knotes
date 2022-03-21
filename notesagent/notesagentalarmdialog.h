@@ -40,4 +40,3 @@ private:
     NoteShared::NoteListWidget *mListWidget = nullptr;
     QLabel *mCurrentDateTime = nullptr;
 };
-

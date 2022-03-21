@@ -28,4 +28,3 @@ private:
     KNotifyConfigWidget *mNotify = nullptr;
     NoteShared::NoteNetworkConfigWidget *mNetworkConfig = nullptr;
 };
-

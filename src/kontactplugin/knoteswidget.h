@@ -26,4 +26,3 @@ private:
     KNotesIconView *mIconView = nullptr;
     KNotesListWidgetSearchLine *mSearchLine = nullptr;
 };
-

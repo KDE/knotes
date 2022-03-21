@@ -55,4 +55,3 @@ private:
     KToolBar *mTool = nullptr;
     QPushButton *mOkButton = nullptr;
 };
-

@@ -45,4 +45,3 @@ private:
     bool mAgentInitialized = false;
     NotesManager *mNotesManager = nullptr;
 };
-

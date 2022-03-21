@@ -28,4 +28,3 @@ public:
     void deserialize(const QByteArray &data) override;
 };
 }
-

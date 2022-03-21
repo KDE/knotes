@@ -38,4 +38,3 @@ private:
     QString mHtmlPreviewText;
     std::unique_ptr<KNoteGrantleePrint> mGrantleePrint;
 };
-

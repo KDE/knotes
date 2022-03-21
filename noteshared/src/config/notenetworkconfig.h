@@ -39,4 +39,3 @@ public:
     void save() override;
 };
 }
-

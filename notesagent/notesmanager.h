@@ -56,4 +56,3 @@ private:
     Akonadi::Session *mSession = nullptr;
     QPointer<NotesAgentAlarmDialog> mAlarmDialog;
 };
-

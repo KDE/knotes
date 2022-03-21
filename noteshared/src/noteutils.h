@@ -25,4 +25,3 @@ public:
     Q_REQUIRED_RESULT NoteText extractNoteText(QString noteText, const QString &titleAddon);
 };
 }
-

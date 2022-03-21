@@ -33,4 +33,3 @@ private:
     NoteShared::NoteListWidget *mNoteList = nullptr;
     QPushButton *mOkButton = nullptr;
 };
-

@@ -22,4 +22,3 @@ public:
 public Q_SLOTS:
     void slotOk();
 };
-

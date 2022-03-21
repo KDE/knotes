@@ -33,4 +33,3 @@ private:
     QHash<Akonadi::Item::Id, KNote *> mNotes;
     QPushButton *mOkButton = nullptr;
 };
-

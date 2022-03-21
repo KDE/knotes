@@ -100,4 +100,3 @@ private:
     QPointer<KNoteFindDialog> mFindDialog;
     bool mDebugAkonadiSearch = false;
 };
-

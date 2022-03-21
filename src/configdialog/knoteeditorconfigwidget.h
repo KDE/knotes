@@ -32,4 +32,3 @@ private:
     KFontRequester *kcfg_Font = nullptr;
     KFontRequester *kcfg_TitleFont = nullptr;
 };
-

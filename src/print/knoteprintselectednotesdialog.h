@@ -44,4 +44,3 @@ private:
     QPushButton *mUser1Button = nullptr;
     bool mPreview = false;
 };
-

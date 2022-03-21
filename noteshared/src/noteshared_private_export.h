@@ -16,4 +16,3 @@
 #else /* not compiling tests */
 #define NOTESHARED_TESTS_EXPORT
 #endif
-

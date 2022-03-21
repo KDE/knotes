@@ -42,4 +42,3 @@ public:
 private:
     const NoteShared::NoteDisplayAttribute *mDisplayAttribute = nullptr;
 };
-

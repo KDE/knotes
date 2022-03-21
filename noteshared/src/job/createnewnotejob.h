@@ -47,4 +47,3 @@ private:
     QWidget *const mWidget;
 };
 }
-

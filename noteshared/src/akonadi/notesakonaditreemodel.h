@@ -23,4 +23,3 @@ public:
     ~NotesAkonadiTreeModel() override;
 };
 }
-

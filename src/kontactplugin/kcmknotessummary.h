@@ -40,4 +40,3 @@ private:
     PimCommon::CheckedCollectionWidget *mCheckedCollectionWidget = nullptr;
     KViewStateMaintainer<Akonadi::ETMViewStateSaver> *mModelState = nullptr;
 };
-

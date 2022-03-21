@@ -57,4 +57,3 @@ private Q_SLOTS:
 private:
     KontactInterface::UniqueAppWatcher *mUniqueAppWatcher = nullptr;
 };
-

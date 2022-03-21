@@ -30,4 +30,3 @@ private:
     Akonadi::ChangeRecorder *const mChangeRecorder;
 };
 }
-

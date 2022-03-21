@@ -16,4 +16,3 @@ public:
 protected:
     bool mBlockSave;
 };
-

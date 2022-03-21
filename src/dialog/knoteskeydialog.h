@@ -23,4 +23,3 @@ private:
     void writeConfig();
     KShortcutsEditor *m_keyChooser = nullptr;
 };
-

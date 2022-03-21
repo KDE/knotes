@@ -71,4 +71,3 @@ private:
     QPushButton *mRenameCollection = nullptr;
     KNoteCollectionDisplayProxyModel *mDisplayNotifierProxyModel = nullptr;
 };
-

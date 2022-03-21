@@ -59,4 +59,3 @@ private:
     void readConfig();
     KNoteFindWidget *mNoteFindWidget = nullptr;
 };
-

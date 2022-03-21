@@ -31,4 +31,3 @@ private:
     KPIMTextEdit::RichTextEditorWidget *mNote = nullptr;
     QLineEdit *mSubject = nullptr;
 };
-

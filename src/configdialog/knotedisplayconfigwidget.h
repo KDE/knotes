@@ -32,4 +32,3 @@ private:
     QSpinBox *kcfg_Width = nullptr;
     QSpinBox *kcfg_Height = nullptr;
 };
-

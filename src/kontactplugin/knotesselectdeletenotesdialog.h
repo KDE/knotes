@@ -31,4 +31,3 @@ private:
     void readConfig();
     KNotesSelectDeleteNotesListWidget *mSelectedListWidget = nullptr;
 };
-

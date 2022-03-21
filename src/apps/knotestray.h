@@ -19,4 +19,3 @@ public:
 private:
     QIcon mIcon;
 };
-

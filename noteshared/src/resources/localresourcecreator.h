@@ -32,4 +32,3 @@ private Q_SLOTS:
     void slotSyncDone(KJob *job);
 };
 }
-

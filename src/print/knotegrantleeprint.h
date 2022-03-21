@@ -21,4 +21,3 @@ public:
 
     Q_REQUIRED_RESULT QString notesToHtml(const QList<KNotePrintObject *> &lst);
 };
-

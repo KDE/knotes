@@ -18,4 +18,3 @@ private Q_SLOTS:
     void testAddCheckmark();
     void testAddCheckmark_data();
 };
-

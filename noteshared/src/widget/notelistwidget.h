@@ -9,7 +9,6 @@
 #include <Akonadi/Item>
 #include <QListWidget>
 
-
 namespace NoteShared
 {
 class NOTESHARED_EXPORT NoteListWidget : public QListWidget
@@ -37,4 +36,3 @@ private:
     Akonadi::Item::List mNotes;
 };
 }
-

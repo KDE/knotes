@@ -37,4 +37,3 @@ private:
     QByteArray m_sender;
 };
 }
-

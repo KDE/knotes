@@ -118,4 +118,3 @@ private:
     PimCommon::KActionMenuChangeCase *mChangeCaseActionMenu = nullptr;
     bool m_autoIndentMode = false;
 };
-

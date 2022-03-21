@@ -21,4 +21,3 @@ private Q_SLOTS:
     void shouldDisplayNoteInfo_data();
     void shouldDisplayNoteInfo();
 };
-

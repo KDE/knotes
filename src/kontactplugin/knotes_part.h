@@ -127,4 +127,3 @@ private:
     KViewStateMaintainer<Akonadi::ETMViewStateSaver> *mModelState = nullptr;
     QPointer<KNoteFindDialog> mNoteFindDialog;
 };
-

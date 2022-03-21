@@ -21,4 +21,3 @@ private:
     const QIcon mIcon;
     QColor mTextColor;
 };
-

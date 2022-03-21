@@ -21,4 +21,3 @@ public:
     void loadThemes();
     void selectDefaultTheme();
 };
-

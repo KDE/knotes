@@ -37,4 +37,3 @@ private:
     QButtonGroup *const m_buttons = nullptr;
 };
 }
-

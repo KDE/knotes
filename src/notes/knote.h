@@ -150,4 +150,3 @@ private:
     bool mAllowDebugAkonadiSearch;
     QPoint mOrigPos;
 };
-

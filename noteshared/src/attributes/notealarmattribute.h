@@ -34,4 +34,3 @@ private:
     QDateTime mDateTime;
 };
 }
-
