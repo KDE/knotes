@@ -2,7 +2,7 @@
     "KPlugin": {
         "Description": "Kontact KNotes Plugin",
         "Description[ar]": "ملحقة «ملاحظاتك» لِ‍«متراسلك»",
-        "Description[ca@valencia]": "Connector del KNotes del Kontact",
+        "Description[ca@valencia]": "Connector del KNotes de Kontact",
         "Description[ca]": "Connector del KNotes del Kontact",
         "Description[de]": "KNotes-Modul für Kontact",
         "Description[el]": "Πρόσθετο KNotes του Kontact",
@@ -15,6 +15,7 @@
         "Description[ko]": "Kontact KNotes 플러그인",
         "Description[nl]": "Kontact KNotes-plug-in",
         "Description[pl]": "Wtyczka Kontact do współpracy z KNotatkami",
+        "Description[pt]": "'Plugin' do KNotes para o Kontact",
         "Description[pt_BR]": "Plugin do KNotes para o Kontact",
         "Description[sl]": "Vstavek Kontact za KNotes",
         "Description[sv]": "Kontacts insticksprogram för Knotes",
