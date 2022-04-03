@@ -212,6 +212,9 @@ KNotesApp::KNotesApp(QWidget *parent)
 
     QGuiApplication::setFallbackSessionManagementEnabled(false);
     updateNoteActions();
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    connect(qApp, &QGuiApplication::paletteChanged, this, &KNotesApp::slotGeneralPaletteChanged);
+#endif
 }
 
 KNotesApp::~KNotesApp()
@@ -225,6 +228,22 @@ KNotesApp::~KNotesApp()
     mNotes.clear();
     delete m_publisher;
     m_publisher = nullptr;
+}
+
+void KNotesApp::slotGeneralPaletteChanged()
+{
+    mTray->slotGeneralPaletteChanged();
+    mTray->updateNumberOfNotes(mNotes.count());
+}
+
+bool KNotesApp::event(QEvent *e)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    if (e->type() == QEvent::ApplicationPaletteChange) {
+        slotGeneralPaletteChanged();
+    }
+#endif
+    return QWidget::event(e);
 }
 
 void KNotesApp::slotDeleteSelectedNotes()

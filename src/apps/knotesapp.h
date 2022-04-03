@@ -52,6 +52,9 @@ public Q_SLOTS:
     void setName(Akonadi::Item::Id id, const QString &newName);
     void setText(Akonadi::Item::Id id, const QString &newText);
 
+protected:
+    Q_REQUIRED_RESULT bool event(QEvent *e) override;
+
 private:
     void showNote(KNote *note) const;
 
@@ -82,6 +85,7 @@ private Q_SLOTS:
     void newNoteFromTextFile();
 
 private:
+    void slotGeneralPaletteChanged();
     void saveNotes(bool force = false, bool sync = false);
     void updateNetworkListener();
     void updateSystray();

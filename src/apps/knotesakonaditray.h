@@ -15,9 +15,9 @@ public:
     ~KNotesAkonadiTray() override;
 
     void updateNumberOfNotes(int number);
+    void slotGeneralPaletteChanged();
 
 private:
-    void slotGeneralPaletteChanged();
     const QIcon mIcon;
     QColor mTextColor;
 };
