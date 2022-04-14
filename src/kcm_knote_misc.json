@@ -19,6 +19,7 @@
         "Description[sk]": "Nastavenie, ktoré sa inam nehodí",
         "Description[sl]": "Nastavitve, ki ne spadajo drugam",
         "Description[sv]": "Inställningar som inte passar någon annanstans",
+        "Description[tr]": "Diğer bölümlere uymayan yapılandırma seçenekleri",
         "Description[uk]": "Інші параметри",
         "Description[x-test]": "xxSettings that don't fit elsewherexx",
         "Icon": "preferences-other",
