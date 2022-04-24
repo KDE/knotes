@@ -6,6 +6,6 @@
 #include <KPluginFactory>
 #include <config/noteactionconfig.h>
 
-K_PLUGIN_FACTORY_WITH_JSON(NoteActionConfigFactory, "kcm_knote_action.json", registerPlugin<NoteShared::NoteActionConfig>();)
+K_PLUGIN_CLASS_WITH_JSON(NoteShared::NoteActionConfig, "kcm_knote_action.json")
 
 #include "kcm_knote_action.moc"

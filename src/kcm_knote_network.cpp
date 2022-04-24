@@ -6,6 +6,6 @@
 #include <KPluginFactory>
 #include <config/notenetworkconfig.h>
 
-K_PLUGIN_FACTORY_WITH_JSON(NoteNetworkConfigFactory, "kcm_knote_network.json", registerPlugin<NoteShared::NoteNetworkConfig>();)
+K_PLUGIN_CLASS_WITH_JSON(NoteShared::NoteNetworkConfig, "kcm_knote_network.json")
 
 #include "kcm_knote_network.moc"
