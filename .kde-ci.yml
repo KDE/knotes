@@ -36,3 +36,6 @@ Dependencies:
     'frameworks/kwindowsystem': '@latest'
     'frameworks/kxmlgui': '@latest'
     'frameworks/kdoctools': '@latest'
+
+Options:
+  require-passing-tests-on: [ 'Linux', 'FreeBSD' ]      
