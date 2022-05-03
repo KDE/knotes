@@ -155,7 +155,7 @@ add_library(kcm_knote_static STATIC ${kcm_knotes_PART_SRCS} )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(kcm_knote_static PROPERTIES UNITY_BUILD ON)
 endif()
-target_link_libraries(kcm_knote_static knotesprivate KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff notesharedprivate KF5::AkonadiNotes KF5::PimCommon KF5::I18n KF5::AkonadiWidgets)
+target_link_libraries(kcm_knote_static knotesprivate KF5::NewStuffWidgets KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff notesharedprivate KF5::AkonadiNotes KF5::PimCommon KF5::I18n KF5::AkonadiWidgets)
 
 # Create the individual KCMs
 kcoreaddons_add_plugin(kcm_knote_action SOURCES kcm_knote_action.cpp INSTALL_NAMESPACE "pim/kcms/knotes")
