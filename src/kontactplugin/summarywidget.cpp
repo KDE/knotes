@@ -21,8 +21,6 @@
 #include <KontactInterface/Plugin>
 
 #include <KCheckableProxyModel>
-#include <KIconEffect>
-#include <KIconLoader>
 #include <KLocalizedString>
 #include <KMime/Message>
 #include <KSharedConfig>
@@ -35,7 +33,6 @@
 
 KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidget *parent)
     : KontactInterface::Summary(parent)
-    , mDefaultPixmap(KIconLoader::global()->loadIcon(QStringLiteral("knotes"), KIconLoader::Desktop))
     , mPlugin(plugin)
 {
     auto mainLayout = new QVBoxLayout(this);
@@ -49,10 +46,6 @@ KNotesSummaryWidget::KNotesSummaryWidget(KontactInterface::Plugin *plugin, QWidg
     mainLayout->addLayout(mLayout);
     mLayout->setSpacing(3);
     mLayout->setRowStretch(6, 1);
-
-    KIconLoader loader(QStringLiteral("knotes"));
-
-    mPixmap = loader.loadIcon(QStringLiteral("knotes"), KIconLoader::Small);
 
     auto session = new Akonadi::Session("KNotes Session", this);
     mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
@@ -122,11 +115,9 @@ void KNotesSummaryWidget::displayNotes(const QModelIndex &parent, int &counter)
 void KNotesSummaryWidget::slotPopupMenu(const QString &note)
 {
     QMenu popup(this);
-    const QAction *modifyNoteAction =
-        popup.addAction(KIconLoader::global()->loadIcon(QStringLiteral("document-edit"), KIconLoader::Small), i18n("Modify Note..."));
+    const QAction *modifyNoteAction = popup.addAction(QIcon::fromTheme(QStringLiteral("document-edit")), i18n("Modify Note..."));
     popup.addSeparator();
-    const QAction *deleteNoteAction =
-        popup.addAction(KIconLoader::global()->loadIcon(QStringLiteral("edit-delete"), KIconLoader::Small), i18n("Delete Note..."));
+    const QAction *deleteNoteAction = popup.addAction(QIcon::fromTheme(QStringLiteral("edit-delete")), i18n("Delete Note..."));
 
     const QAction *ret = popup.exec(QCursor::pos());
     if (ret == deleteNoteAction) {
@@ -168,18 +159,10 @@ void KNotesSummaryWidget::createNote(const Akonadi::Item &item, int counter)
     });
     mLayout->addWidget(urlLabel, counter, 1);
 
-    QColor color;
-    if (item.hasAttribute<NoteShared::NoteDisplayAttribute>()) {
-        color = item.attribute<NoteShared::NoteDisplayAttribute>()->backgroundColor();
-    }
-    // Folder icon.
-    KIconEffect effect;
-    QPixmap pixmap = effect.apply(mDefaultPixmap, KIconEffect::Colorize, 1, color, false);
-
     auto label = new QLabel(this);
     label->setAlignment(Qt::AlignVCenter);
-    QIcon icon(pixmap);
-    label->setPixmap(icon.pixmap(label->height() / 1.5));
+    QIcon icon = QIcon::fromTheme(QStringLiteral("note"));
+    label->setPixmap(icon.pixmap(style()->pixelMetric(QStyle::PM_SmallIconSize)));
     label->setMaximumWidth(label->minimumSizeHint().width());
     mLayout->addWidget(label, counter, 0);
     mLabels.append(label);

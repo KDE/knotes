@@ -59,11 +59,9 @@ private:
     void deleteNote(const QString &note);
     void displayNotes(const QModelIndex &parent, int &counter);
     void createNote(const Akonadi::Item &item, int counter);
-    QPixmap mDefaultPixmap;
     QGridLayout *mLayout = nullptr;
     KontactInterface::Plugin *mPlugin = nullptr;
     QList<QLabel *> mLabels;
-    QPixmap mPixmap;
     NoteShared::NotesChangeRecorder *mNoteRecorder = nullptr;
     NoteShared::NotesAkonadiTreeModel *mNoteTreeModel = nullptr;
     QItemSelectionModel *mSelectionModel = nullptr;
