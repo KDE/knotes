@@ -8,7 +8,6 @@
 #include <Akonadi/ChangeRecorder>
 
 #include <KColorScheme>
-#include <KIconLoader>
 #include <KLocalizedString>
 
 #include <QFontDatabase>
@@ -39,7 +38,7 @@ void KNotesAkonadiTray::slotGeneralPaletteChanged()
 void KNotesAkonadiTray::updateNumberOfNotes(int number)
 {
     if (KNotesGlobalConfig::self()->systemTrayShowNotes() && number != 0) {
-        const int overlaySize = KIconLoader::SizeSmallMedium;
+        const int overlaySize = 22;
 
         const QString countString = QString::number(number);
         QFont countFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);

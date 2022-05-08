@@ -17,7 +17,6 @@
 #include <KMime/Message>
 
 #include <KIconEffect>
-#include <KIconLoader>
 #include <QEvent>
 #include <QMouseEvent>
 #include <QToolTip>
@@ -310,7 +309,7 @@ void KNotesIconViewItem::updateSettings()
     KIconEffect effect;
     const QColor color(mDisplayAttribute->backgroundColor());
     if (mDefaultPixmap.isNull()) {
-        mDefaultPixmap = KIconLoader::global()->loadIcon(QStringLiteral("knotes"), KIconLoader::Desktop);
+        mDefaultPixmap = QIcon::fromTheme(QStringLiteral("knotes")).pixmap(48);
     }
     QPixmap icon = effect.apply(mDefaultPixmap, KIconEffect::Colorize, 1, color, false);
     setFont(mDisplayAttribute->titleFont());

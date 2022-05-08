@@ -6,7 +6,6 @@
 #include "knotestray.h"
 
 #include <KColorScheme>
-#include <KIconLoader>
 #include <KLocalizedString>
 
 #include <QFontDatabase>
@@ -30,7 +29,7 @@ KNotesTray::~KNotesTray()
 
 void KNotesTray::updateNumberOfNotes(int value)
 {
-    const int overlaySize = KIconLoader::SizeSmallMedium;
+    const int overlaySize = 22;
 
     const QString countString = QString::number(value);
     QFont countFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);

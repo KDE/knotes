@@ -8,8 +8,6 @@
 
 #include "knotebutton.h"
 
-#include <KIconLoader>
-
 #include <QPainter>
 #include <QStyleOption>
 
@@ -22,7 +20,7 @@ KNoteButton::KNoteButton(const QString &icon, QWidget *parent)
     setFlat(true);
 
     if (!icon.isEmpty()) {
-        setIcon(KIconLoader::global()->loadIcon(icon, KIconLoader::Small, 10));
+        setIcon(QIcon::fromTheme(icon));
     }
 }
 
