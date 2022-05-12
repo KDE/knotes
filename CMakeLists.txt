@@ -1,9 +1,9 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: BSD-3-Clause
-set(PIM_VERSION "5.20.1")
+set(PIM_VERSION "5.20.2")
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 project(knotes VERSION ${PIM_VERSION})
-set(RELEASE_SERVICE_VERSION "22.04.1")
+set(RELEASE_SERVICE_VERSION "22.04.2")
 
 
 set(KF5_MIN_VERSION "5.91.0")
