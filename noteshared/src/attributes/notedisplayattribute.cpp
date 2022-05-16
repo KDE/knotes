@@ -9,6 +9,7 @@
 #include <QByteArray>
 #include <QDataStream>
 #include <QFontDatabase>
+#include <QIODevice>
 
 using namespace NoteShared;
 

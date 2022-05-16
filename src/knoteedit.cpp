@@ -20,6 +20,7 @@
 #include <KLocalizedString>
 #include <KToggleAction>
 
+#include <QActionGroup>
 #include <QColorDialog>
 #include <QIcon>
 #include <QMenu>

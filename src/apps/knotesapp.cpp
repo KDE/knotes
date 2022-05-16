@@ -210,7 +210,9 @@ KNotesApp::KNotesApp(QWidget *parent)
 
     connect(qApp, &QGuiApplication::commitDataRequest, this, &KNotesApp::slotCommitData, Qt::DirectConnection);
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QGuiApplication::setFallbackSessionManagementEnabled(false);
+#endif
     updateNoteActions();
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     connect(qApp, &QGuiApplication::paletteChanged, this, &KNotesApp::slotGeneralPaletteChanged);

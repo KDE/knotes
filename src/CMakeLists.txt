@@ -158,6 +158,7 @@ ecm_qt_declare_logging_category(kcm_knotes_PART_SRCS HEADER knotes_kcm_debug.h I
     )
 
 add_library(kcm_knote_static STATIC ${kcm_knotes_PART_SRCS} )
+set_property(TARGET kcm_knote_static PROPERTY POSITION_INDEPENDENT_CODE ON)
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(kcm_knote_static PROPERTIES UNITY_BUILD ON)
 endif()

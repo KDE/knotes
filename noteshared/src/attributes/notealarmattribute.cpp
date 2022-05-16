@@ -7,6 +7,7 @@
 
 #include <QByteArray>
 #include <QDataStream>
+#include <QIODevice>
 
 using namespace NoteShared;
 NoteAlarmAttribute::NoteAlarmAttribute()

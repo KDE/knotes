@@ -20,7 +20,6 @@
 #include <KAuthorized>
 #include <KLocalizedString>
 #include <KNS3/QtQuickDialogWrapper>
-#include <knewstuffcore_version.h>
 
 #include <QCheckBox>
 #include <QLabel>
