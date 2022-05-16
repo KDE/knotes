@@ -73,8 +73,14 @@ target_link_libraries(knotesprivate
     KF5::IconThemes
     PRIVATE
     KF5::PimCommon
-    KF5::KCMUtils Grantlee5::Templates KF5::NewStuff KF5::WindowSystem Qt${QT_MAJOR_VERSION}::PrintSupport KF5::TextWidgets KF5::I18n notesharedprivate KF5::AkonadiSearchPIM KF5::AkonadiNotes KF5::PimTextEdit KF5::AkonadiWidgets KF5::GrantleeTheme
+    KF5::KCMUtils KF5::NewStuff KF5::WindowSystem Qt${QT_MAJOR_VERSION}::PrintSupport KF5::TextWidgets KF5::I18n notesharedprivate KF5::AkonadiSearchPIM KF5::AkonadiNotes KF5::PimTextEdit KF5::AkonadiWidgets KF5::GrantleeTheme
     )
+
+if (QT_MAJOR_VERSION STREQUAL "5")
+    target_link_libraries(knotesprivate PRIVATE Grantlee5::Templates)
+else()
+    target_link_libraries(knotesprivate PRIVATE KF6TextTemplate::Templates)
+endif()
 
 set_target_properties(knotesprivate
     PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
