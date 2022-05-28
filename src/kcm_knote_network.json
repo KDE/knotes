@@ -2,7 +2,7 @@
     "KPlugin": {
         "Description": "Network Settings",
         "Description[ar]": "إعدادات الشّبكة",
-        "Description[ca@valencia]": "Configuració de la xarxa",
+        "Description[ca@valencia]": "Configuració de la ret",
         "Description[ca]": "Configuració de la xarxa",
         "Description[de]": "Netzwerkeinstellungen",
         "Description[el]": "Ρυθμίσεις δικτύου",
@@ -26,7 +26,7 @@
         "Name": "Network",
         "Name[ar]": "الشّبكة",
         "Name[bs]": "Mreža",
-        "Name[ca@valencia]": "Xarxa",
+        "Name[ca@valencia]": "Ret",
         "Name[ca]": "Xarxa",
         "Name[cs]": "Síť",
         "Name[da]": "Netværk",
