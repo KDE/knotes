@@ -56,7 +56,7 @@ target_link_libraries(kcmknotessummary  KF5::PimCommonAkonadi KF5::AkonadiNotes 
 install(TARGETS kcmknotessummary DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/summary)
 
 
-install(TARGETS kontact_knotesplugin DESTINATION ${KDE_INSTALL_PLUGINDIR}/kontact5)
+install(TARGETS kontact_knotesplugin DESTINATION ${KDE_INSTALL_PLUGINDIR}/kontact${QT_MAJOR_VERSION})
 install(FILES knotes_part.rc DESTINATION ${KDE_INSTALL_KXMLGUIDIR}/knotes)
 install(FILES org.kde.kontact.KNotes.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
 
