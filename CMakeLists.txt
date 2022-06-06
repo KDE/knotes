@@ -52,7 +52,7 @@ set(KDEPIM_LIB_SOVERSION "5")
 set(AKONADINOTES_LIB_VERSION "5.20.40")
 set(AKONADI_VERSION "5.20.40")
 set(CALENDARUTILS_LIB_VERSION "5.20.40")
-set(KONTACTINTERFACE_LIB_VERSION "5.20.40")
+set(KONTACTINTERFACE_LIB_VERSION "5.20.41")
 set(KPIMTEXTEDIT_LIB_VERSION "5.20.40")
 set(LIBKDEPIM_LIB_VERSION "5.20.40")
 set(KMIME_LIB_VERSION "5.20.40")
@@ -117,7 +117,7 @@ include_directories(${knotes_SOURCE_DIR} ${knotes_BINARY_DIR})
 
 ecm_set_disabled_deprecation_versions(QT 5.15.2
     KF 5.95.0
-    KCOREADDONS 5.88.0 #KPluginFactory::registerPlugin
+    KCOREADDONS 5.88.0 #KPluginFactory::registerPlugin (remove it when we depend against kf5.95)
 )
 
 configure_file(knotes-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotes-version.h @ONLY)

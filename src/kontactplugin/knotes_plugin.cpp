@@ -37,8 +37,8 @@ using namespace KCalendarCore;
 
 EXPORT_KONTACT_PLUGIN_WITH_JSON(KNotesPlugin, "knotesplugin.json")
 
-KNotesPlugin::KNotesPlugin(KontactInterface::Core *core, const QVariantList &)
-    : KontactInterface::Plugin(core, core, "knotes")
+KNotesPlugin::KNotesPlugin(KontactInterface::Core *core, const KPluginMetaData &data, const QVariantList &)
+    : KontactInterface::Plugin(core, core, data, "knotes")
 {
     setComponentName(QStringLiteral("knotes"), i18n("KNotes"));
 
