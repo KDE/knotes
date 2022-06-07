@@ -87,7 +87,7 @@
         "Version": "0.1",
         "Website": "https://userbase.kde.org/KNotes"
     },
-    "X-KDE-ConfigModuleNamespace": "pim/kcms/knotes/",
+    "X-KDE-ConfigModuleNamespace": "pim@QT_MAJOR_VERSION@/kcms/knotes/",
     "X-KDE-KontactPartExecutableName": "knotes",
     "X-KDE-KontactPluginHasSummary": true,
     "X-KDE-KontactPluginVersion": 10,

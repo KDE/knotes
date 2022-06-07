@@ -165,25 +165,25 @@ endif()
 target_link_libraries(kcm_knote_static knotesprivate KF5::NewStuffWidgets KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff notesharedprivate KF5::AkonadiNotes KF5::PimCommon KF5::I18n KF5::AkonadiWidgets)
 
 # Create the individual KCMs
-kcoreaddons_add_plugin(kcm_knote_action SOURCES kcm_knote_action.cpp INSTALL_NAMESPACE "pim/kcms/knotes")
+kcoreaddons_add_plugin(kcm_knote_action SOURCES kcm_knote_action.cpp INSTALL_NAMESPACE "pim${QT_MAJOR_VERSION}/kcms/knotes")
 target_link_libraries(kcm_knote_action kcm_knote_static)
 
-kcoreaddons_add_plugin(kcm_knote_display SOURCES kcm_knote_display.cpp INSTALL_NAMESPACE "pim/kcms/knotes")
+kcoreaddons_add_plugin(kcm_knote_display SOURCES kcm_knote_display.cpp INSTALL_NAMESPACE "pim${QT_MAJOR_VERSION}/kcms/knotes")
 target_link_libraries(kcm_knote_display kcm_knote_static)
 
-kcoreaddons_add_plugin(kcm_knote_editor SOURCES kcm_knote_editor.cpp INSTALL_NAMESPACE "pim/kcms/knotes")
+kcoreaddons_add_plugin(kcm_knote_editor SOURCES kcm_knote_editor.cpp INSTALL_NAMESPACE "pim${QT_MAJOR_VERSION}/kcms/knotes")
 target_link_libraries(kcm_knote_editor kcm_knote_static)
 
-kcoreaddons_add_plugin(kcm_knote_network SOURCES kcm_knote_network.cpp INSTALL_NAMESPACE "pim/kcms/knotes")
+kcoreaddons_add_plugin(kcm_knote_network SOURCES kcm_knote_network.cpp INSTALL_NAMESPACE "pim${QT_MAJOR_VERSION}/kcms/knotes")
 target_link_libraries(kcm_knote_network kcm_knote_static)
 
-kcoreaddons_add_plugin(kcm_knote_print SOURCES kcm_knote_print.cpp INSTALL_NAMESPACE "pim/kcms/knotes")
+kcoreaddons_add_plugin(kcm_knote_print SOURCES kcm_knote_print.cpp INSTALL_NAMESPACE "pim${QT_MAJOR_VERSION}/kcms/knotes")
 target_link_libraries(kcm_knote_print kcm_knote_static)
 
-kcoreaddons_add_plugin(kcm_knote_collection SOURCES kcm_knote_collection.cpp INSTALL_NAMESPACE "pim/kcms/knotes")
+kcoreaddons_add_plugin(kcm_knote_collection SOURCES kcm_knote_collection.cpp INSTALL_NAMESPACE "pim${QT_MAJOR_VERSION}/kcms/knotes")
 target_link_libraries(kcm_knote_collection kcm_knote_static)
 
-kcoreaddons_add_plugin(kcm_knote_misc SOURCES kcm_knote_misc.cpp INSTALL_NAMESPACE "pim/kcms/knotes")
+kcoreaddons_add_plugin(kcm_knote_misc SOURCES kcm_knote_misc.cpp INSTALL_NAMESPACE "pim${QT_MAJOR_VERSION}/kcms/knotes")
 target_link_libraries(kcm_knote_misc kcm_knote_static)
 
 ########### install files ###############
