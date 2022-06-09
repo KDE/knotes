@@ -90,6 +90,6 @@
     "X-KDE-ConfigModuleNamespace": "pim@QT_MAJOR_VERSION@/kcms/knotes/",
     "X-KDE-KontactPartExecutableName": "knotes",
     "X-KDE-KontactPluginHasSummary": true,
-    "X-KDE-KontactPluginVersion": 10,
+    "X-KDE-KontactPluginVersion": 11,
     "X-KDE-Weight": 600
 }
