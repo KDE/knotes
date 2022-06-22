@@ -25,16 +25,16 @@
 
 NotesAgentNoteDialog::NotesAgentNoteDialog(QWidget *parent)
     : QDialog(parent)
+    , mSubject(new QLineEdit(this))
+    , mNote(new KPIMTextEdit::RichTextEditorWidget(this))
 {
     auto mainLayout = new QVBoxLayout(this);
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
 
-    mSubject = new QLineEdit(this);
     mSubject->setReadOnly(true);
     mainLayout->addWidget(mSubject);
 
-    mNote = new KPIMTextEdit::RichTextEditorWidget(this);
     mNote->setReadOnly(true);
 
     auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, this);

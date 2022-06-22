@@ -53,6 +53,6 @@ private:
     QTcpServer *mListener = nullptr;
     QTimer *mCheckAlarm = nullptr;
     NoteShared::NotesChangeRecorder *mNoteRecorder = nullptr;
-    Akonadi::Session *mSession = nullptr;
+    Akonadi::Session *const mSession;
     QPointer<NotesAgentAlarmDialog> mAlarmDialog;
 };

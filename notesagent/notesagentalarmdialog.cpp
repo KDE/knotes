@@ -184,7 +184,7 @@ void NotesAgentAlarmDialog::slotModifyItem(KJob *job)
 
 void NotesAgentAlarmDialog::slotModifyAlarm()
 {
-    Akonadi::Item::Id id = mListWidget->currentItemId();
+    const Akonadi::Item::Id id = mListWidget->currentItemId();
     if (id != -1) {
         Akonadi::Item item(id);
         auto job = new Akonadi::ItemFetchJob(item, this);

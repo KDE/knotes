@@ -25,6 +25,8 @@
 
 NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
     : QDialog(parent)
+    , mNotify(new KNotifyConfigWidget(this))
+    , mNetworkConfig(new NoteShared::NoteNetworkConfigWidget(this))
 {
     setWindowTitle(i18nc("@title:window", "Configure Notes Agent"));
     setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
@@ -40,11 +42,9 @@ NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
 
     auto tab = new QTabWidget(this);
 
-    mNotify = new KNotifyConfigWidget(this);
     mNotify->setApplication(QStringLiteral("akonadi_notes_agent"));
     tab->addTab(mNotify, i18n("Notify"));
 
-    mNetworkConfig = new NoteShared::NoteNetworkConfigWidget(this);
     tab->addTab(mNetworkConfig, i18n("Network"));
     mNetworkConfig->load();
 

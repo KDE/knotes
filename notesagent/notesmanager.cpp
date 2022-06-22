@@ -32,8 +32,8 @@
 
 NotesManager::NotesManager(QObject *parent)
     : QObject(parent)
+    , mSession(new Akonadi::Session("KNotes Session", this))
 {
-    mSession = new Akonadi::Session("KNotes Session", this);
     mNoteRecorder = new NoteShared::NotesChangeRecorder(this);
     mNoteRecorder->changeRecorder()->setSession(mSession);
     connect(mNoteRecorder->changeRecorder(), &Akonadi::Monitor::itemAdded, this, &NotesManager::slotItemAdded);

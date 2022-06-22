@@ -26,6 +26,8 @@ using namespace NoteShared;
 
 NoteHostDialog::NoteHostDialog(const QString &caption, QWidget *parent)
     : QDialog(parent)
+    , m_hostCombo(new KHistoryComboBox(true, this))
+    , m_servicesView(new QTreeView(this))
 {
     setWindowTitle(caption);
 
@@ -41,7 +43,6 @@ NoteHostDialog::NoteHostDialog(const QString &caption, QWidget *parent)
     auto label = new QLabel(i18n("Select recipient:"), this);
     mainLayout->addWidget(label);
 
-    m_servicesView = new QTreeView(this);
     m_servicesView->setRootIsDecorated(false);
     auto mdl = new KDNSSD::ServiceModel(new KDNSSD::ServiceBrowser(QStringLiteral("_knotes._tcp"), true), this);
     m_servicesView->setModel(mdl);
@@ -58,7 +59,6 @@ NoteHostDialog::NoteHostDialog(const QString &caption, QWidget *parent)
     label = new QLabel(i18n("Hostname or IP address:"), this);
     mainLayout->addWidget(label);
 
-    m_hostCombo = new KHistoryComboBox(true, this);
     mainLayout->addWidget(m_hostCombo);
     m_hostCombo->setMinimumWidth(fontMetrics().maxWidth() * 15);
     m_hostCombo->setDuplicatesEnabled(false);

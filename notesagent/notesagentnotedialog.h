@@ -28,6 +28,6 @@ private Q_SLOTS:
 private:
     void readConfig();
     void writeConfig();
-    KPIMTextEdit::RichTextEditorWidget *mNote = nullptr;
-    QLineEdit *mSubject = nullptr;
+    KPIMTextEdit::RichTextEditorWidget *const mNote;
+    QLineEdit *const mSubject;
 };

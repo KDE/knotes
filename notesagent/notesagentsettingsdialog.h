@@ -25,6 +25,6 @@ private Q_SLOTS:
 private:
     void writeConfig();
     void readConfig();
-    KNotifyConfigWidget *mNotify = nullptr;
-    NoteShared::NoteNetworkConfigWidget *mNetworkConfig = nullptr;
+    KNotifyConfigWidget *const mNotify;
+    NoteShared::NoteNetworkConfigWidget *const mNetworkConfig;
 };
