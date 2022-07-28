@@ -28,7 +28,7 @@ bool NoteUtils::sendToMail(QWidget *parent, const QString &title, const QString 
     // get the mail action command
     const QStringList cmd_list = NoteShared::NoteSharedGlobalConfig::mailAction().split(QLatin1Char(' '), Qt::SkipEmptyParts);
     if (cmd_list.isEmpty()) {
-        KMessageBox::sorry(parent, i18n("Please configure send mail action."));
+        KMessageBox::error(parent, i18n("Please configure send mail action."));
         return false;
     }
     KProcess mail;
@@ -43,7 +43,7 @@ bool NoteUtils::sendToMail(QWidget *parent, const QString &title, const QString 
     }
 
     if (!mail.startDetached()) {
-        KMessageBox::sorry(parent, i18n("Unable to start the mail process."));
+        KMessageBox::error(parent, i18n("Unable to start the mail process."));
         return false;
     }
     return true;
@@ -56,7 +56,7 @@ void NoteUtils::sendToNetwork(QWidget *parent, const QString &title, const QStri
     if (hostDlg->exec()) {
         const QString host = hostDlg->host();
         if (host.isEmpty()) {
-            KMessageBox::sorry(parent, i18n("The host cannot be empty."));
+            KMessageBox::error(parent, i18n("The host cannot be empty."));
             delete hostDlg;
             return;
         }
