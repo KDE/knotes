@@ -5,6 +5,7 @@
   <project_license>GPL-2.0+</project_license>
   <developer_name>The KDE Community</developer_name>
   <developer_name xml:lang="ar">مجتمع كدي</developer_name>
+  <developer_name xml:lang="bg">Общността на KDE</developer_name>
   <developer_name xml:lang="ca">La comunitat KDE</developer_name>
   <developer_name xml:lang="ca-valencia">La comunitat KDE</developer_name>
   <developer_name xml:lang="cs">Komunita KDE</developer_name>
@@ -38,6 +39,7 @@
   <developer_name xml:lang="zh-TW">KDE 社群</developer_name>
   <name>KNotes</name>
   <name xml:lang="ar">ملاحظاتك</name>
+  <name xml:lang="bg">KNotes</name>
   <name xml:lang="bs">KNotes</name>
   <name xml:lang="ca">KNotes</name>
   <name xml:lang="ca-valencia">KNotes</name>
@@ -77,6 +79,7 @@
   <name xml:lang="zh-TW">螢幕便利貼_KNotes</name>
   <summary>Sticky notes application</summary>
   <summary xml:lang="ar">تطبيق الملاحظات اللاصقة</summary>
+  <summary xml:lang="bg">Приложение за лепящи бележки</summary>
   <summary xml:lang="ca">Aplicació de notes adhesives</summary>
   <summary xml:lang="ca-valencia">Aplicació de notes adhesives</summary>
   <summary xml:lang="cs">Aplikace s poznámkami na lepicím štítku</summary>
@@ -114,6 +117,7 @@
       The notes are saved automatically when you exit the program, and they display when you open the program.
     </p>
     <p xml:lang="ar">«ملاحظاتك» هو برنامج يتيح لك كعتابة المقابل البرمجيّ للملاحظات اللاصقة. تُحفظ الملاحظات آليًّا عند خروجك من البرنامج وتُعرض عندما تفتحه.</p>
+    <p xml:lang="bg">KNotes е програма, която ви позволява да напишете компютърния еквивалент на лепяща бележка. Бележките се записват автоматично, когато излезете от програмата, и се показват, когато отворите програмата.</p>
     <p xml:lang="ca">El KNotes és un programa que permet escriure l'equivalent informàtic a les notes adhesives. Les notes es desen automàticament en sortir del programa, i es mostren en obrir el programa.</p>
     <p xml:lang="ca-valencia">KNotes és un programa que permet escriure l'equivalent informàtic a les notes adhesives. Les notes es guarden automàticament en eixir del programa, i es mostren en obrir el programa.</p>
     <p xml:lang="da">KNotes er et program der lader dig skrive noter på din computer der svarer til post-it-noter. Noterne gemmes automatisk når du afslutter programmet og de vises når du åbner programmet.</p>
@@ -149,6 +153,7 @@
     <p xml:lang="zh-TW">KNotes 讓您可以在螢幕上貼便利貼。便條會在離開時自動儲存，開啟程式時再顯示。</p>
     <p>Features:</p>
     <p xml:lang="ar">الميزات:</p>
+    <p xml:lang="bg">Функции:</p>
     <p xml:lang="bs">Svojstva:</p>
     <p xml:lang="ca">Característiques:</p>
     <p xml:lang="ca-valencia">Característiques:</p>
@@ -189,6 +194,7 @@
     <ul>
       <li>Write notes in your choice of font and background color</li>
       <li xml:lang="ar">إمكانيّة كتابة الملاحظات بما تختار من خطّ ولون خلفيّة</li>
+      <li xml:lang="bg">Писане на бележки с избран от вас шрифт и цвят на фона</li>
       <li xml:lang="ca">Escriu les notes amb el tipus de lletra i el color de fons de la vostra elecció</li>
       <li xml:lang="ca-valencia">Escriu les notes amb el tipus de lletra i el color de fons de la vostra elecció</li>
       <li xml:lang="da">Skriv noter med din foretrukne skrifttype og baggrundsfarve</li>
@@ -224,6 +230,7 @@
       <li xml:lang="zh-TW">可以選擇便條的字型與背景顏色</li>
       <li>Use drag and drop to email your notes</li>
       <li xml:lang="ar">إمكانيّة استخدام السّحب والإفلات لإرسال ملاحظاتك عبر البريد</li>
+      <li xml:lang="bg">Използване на завличане с мишката, за да изпратите бележките си по имейл</li>
       <li xml:lang="ca">Usa arrossegar i deixar anar per a enviar les notes</li>
       <li xml:lang="ca-valencia">Utilitza arrossegar i deixar anar per a enviar les notes</li>
       <li xml:lang="da">Brug træk og slip for at sende dine noter med e-mail</li>
@@ -259,6 +266,7 @@
       <li xml:lang="zh-TW">可以用拖放的方式透過電子郵件傳送您的便條</li>
       <li>Can be dragged into Calendar to book a time-slot</li>
       <li xml:lang="ar">إمكانيّة سحبها إلى تقويم لحجز مكان في الجدول اليوميّ</li>
+      <li xml:lang="bg">Може да се завлича в Календар, за да се резервира период от време</li>
       <li xml:lang="ca">Es poden arrossegar al calendari per a reservar un horari</li>
       <li xml:lang="ca-valencia">Es poden arrossegar al calendari per a reservar un horari</li>
       <li xml:lang="da">Kan trækkes ind i kalenderen for at booke et tidsrum</li>
@@ -294,6 +302,7 @@
       <li xml:lang="zh-TW">可以拖到行事曆中來預約時間</li>
       <li>Notes can be printed</li>
       <li xml:lang="ar">إمكانيّة طباعة الملاحظات</li>
+      <li xml:lang="bg">Бележките могат да се отпечатват</li>
       <li xml:lang="ca">Les notes es poden imprimir</li>
       <li xml:lang="ca-valencia">Les notes es poden imprimir</li>
       <li xml:lang="cs">Poznámky lze vytisknout</li>
