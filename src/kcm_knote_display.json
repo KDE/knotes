@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Setup display for notes",
         "Description[ar]": "اضبط عرض الملاحظات",
+        "Description[bg]": "Настройка на показване на бележки",
         "Description[ca@valencia]": "Configura la visualització per a les notes",
         "Description[ca]": "Configura la visualització per a les notes",
         "Description[de]": "Anzeige von Notizen einrichten",
@@ -26,6 +27,7 @@
         "Icon": "knotes",
         "Name": "Display",
         "Name[ar]": "العرض",
+        "Name[bg]": "Показване",
         "Name[bs]": "Prikaz",
         "Name[ca@valencia]": "Visor",
         "Name[ca]": "Visor",

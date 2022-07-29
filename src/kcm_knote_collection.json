@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Setup collections for notes",
         "Description[ar]": "أعدّ تجميعات الملاحظات",
+        "Description[bg]": "Настройка на колекции за бележки",
         "Description[ca@valencia]": "Configura les col·leccions per a les notes",
         "Description[ca]": "Configura les col·leccions per a les notes",
         "Description[de]": "Sammlungen für Notizen einrichten",
@@ -26,6 +27,7 @@
         "Icon": "preferences-other",
         "Name": "Collections",
         "Name[ar]": "التّجميعات",
+        "Name[bg]": "Колекции",
         "Name[ca@valencia]": "Col·leccions",
         "Name[ca]": "Col·leccions",
         "Name[cs]": "Sbírky",

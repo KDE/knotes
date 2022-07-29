@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Notes Agent
 Name[ar]=وكيل ملاحظات
+Name[bg]=Агент на бележки
 Name[bs]=Agent za bilješke
 Name[ca]=Agent de notes
 Name[ca@valencia]=Agent de notes
@@ -41,6 +42,7 @@ Name[zh_CN]=便笺代理
 Name[zh_TW]=便條代理程式
 Comment=Adds notes received via network and handles note alarm notifications
 Comment[ar]=يضيف الملاحظات المستلمة عبر الشّبكة ويتعامل مع إخطارات منبّهات الملاحظات
+Comment[bg]=Добавя бележки, получени от мрежата и обработва алармени известия на бележки
 Comment[bs]=Dodaje bilješke primljene preko mreže i rukuje napomenama alarma bilješki
 Comment[ca]=Afegeix notes rebudes a través de la xarxa i s'ocupa de les notificacions d'alarma
 Comment[ca@valencia]=Afig notes rebudes a través de la xarxa i s'ocupa de les notificacions d'alarma

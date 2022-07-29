@@ -156,6 +156,7 @@ Version=1.5
 [Desktop Action NewNote]
 Name=New Note
 Name[ar]=ملاحظة جديدة
+Name[bg]=Нова бележка
 Name[ca]=Nota nova
 Name[ca@valencia]=Nota nova
 Name[cs]=Nová poznámka

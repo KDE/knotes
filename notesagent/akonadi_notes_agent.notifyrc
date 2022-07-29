@@ -2,6 +2,7 @@
 IconName=knotes
 Comment=Notes Agent
 Comment[ar]=وكيل ملاحظات
+Comment[bg]=Агент на бележки
 Comment[bs]=Agent za bilješke
 Comment[ca]=Agent de notes
 Comment[ca@valencia]=Agent de notes
@@ -44,6 +45,7 @@ Comment[zh_TW]=便條代理程式
 [Event/receivednotes]
 Name=Received a note
 Name[ar]=استلمت ملاحظة
+Name[bg]=Получена е бележка
 Name[bs]=Primljena bilješka
 Name[ca]=S'ha rebut una nota
 Name[ca@valencia]=S'ha rebut una nota
