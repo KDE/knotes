@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Network Settings",
         "Description[ar]": "إعدادات الشّبكة",
+        "Description[bg]": "Настройки на мрежата",
         "Description[ca@valencia]": "Configuració de la xarxa",
         "Description[ca]": "Configuració de la xarxa",
         "Description[de]": "Netzwerkeinstellungen",
@@ -26,6 +27,7 @@
         "Icon": "network-wired",
         "Name": "Network",
         "Name[ar]": "الشّبكة",
+        "Name[bg]": "Мрежа",
         "Name[bs]": "Mreža",
         "Name[ca@valencia]": "Xarxa",
         "Name[ca]": "Xarxa",

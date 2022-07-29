@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Setup editor",
         "Description[ar]": "إعداد المحرّر",
+        "Description[bg]": "Редактор за настройки",
         "Description[ca@valencia]": "Configura l'editor",
         "Description[ca]": "Configura l'editor",
         "Description[de]": "Editor einrichten",
@@ -26,6 +27,7 @@
         "Icon": "accessories-text-editor",
         "Name": "Editor",
         "Name[ar]": "المحرّر",
+        "Name[bg]": "Редактор",
         "Name[bs]": "Uređivač",
         "Name[ca@valencia]": "Editor",
         "Name[ca]": "Editor",

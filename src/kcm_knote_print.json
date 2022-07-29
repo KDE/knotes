@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Setup printing for notes",
         "Description[ar]": "اضبط طباعة الملاحظات",
+        "Description[bg]": "Настройка на печат за бележки",
         "Description[ca@valencia]": "Configura la impressió per a les notes",
         "Description[ca]": "Configura la impressió per a les notes",
         "Description[de]": "Drucken für Notizen einrichten",
@@ -26,6 +27,7 @@
         "Icon": "preferences-other",
         "Name": "Print",
         "Name[ar]": "الطّباعة",
+        "Name[bg]": "Отпечатване",
         "Name[bs]": "Štampaj",
         "Name[ca@valencia]": "Imprimix",
         "Name[ca]": "Impressió",

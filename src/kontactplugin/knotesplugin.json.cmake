@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Kontact KNotes Plugin",
         "Description[ar]": "ملحقة «ملاحظاتك» لِ‍«متراسلك»",
+        "Description[bg]": "Приставка KNotes за Kontact",
         "Description[ca@valencia]": "Connector de KNotes de Kontact",
         "Description[ca]": "Connector del KNotes del Kontact",
         "Description[de]": "KNotes-Modul für Kontact",
@@ -29,6 +30,7 @@
         "License": "LGPL",
         "Name": "Popup Notes",
         "Name[ar]": "ملاحظات منبثقة",
+        "Name[bg]": "Изскачащи бележки",
         "Name[bs]": "Iskočne napomene",
         "Name[ca@valencia]": "Notes emergents",
         "Name[ca]": "Notes emergents",

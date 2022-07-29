@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Note with background color
 Name[ar]=ملاحظة بلون خلفيّة
+Name[bg]=Бележка с цветен фон
 Name[ca]=Nota amb un color de fons
 Name[ca@valencia]=Nota amb un color de fons
 Name[cs]=Poznámka s barvou pozadí
@@ -40,6 +41,7 @@ Name[zh_CN]=带有背景颜色的便笺
 Name[zh_TW]=有背景顏色的便條
 Description=Theme which use note background color
 Description[ar]=سمة تستخدم لون خلفيّة للملاحظة
+Description[bg]=Тема, използваща цветен фон на бележка
 Description[ca]=Tema que usa una nota amb un color de fons
 Description[ca@valencia]=Tema que utilitza una nota amb un color de fons
 Description[cs]=Motiv používající barvu pozadí
