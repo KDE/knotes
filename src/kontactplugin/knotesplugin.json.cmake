@@ -82,10 +82,6 @@
         "Name[x-test]": "xxPopup Notesxx",
         "Name[zh_CN]": "弹出便笺",
         "Name[zh_TW]": "彈出式便條",
-        "ServiceTypes": [
-            "Kontact/Plugin",
-            "KPluginInfo"
-        ],
         "Version": "0.1",
         "Website": "https://userbase.kde.org/KNotes"
     },
