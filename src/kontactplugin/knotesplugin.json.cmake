@@ -9,6 +9,7 @@
         "Description[el]": "Πρόσθετο KNotes του Kontact",
         "Description[en_GB]": "Kontact KNotes Plugin",
         "Description[es]": "Complemento de KNotes para Kontact",
+        "Description[eu]": "Kontact-en KNotes plugin-a",
         "Description[fi]": "Kontactin KNotes-liitännäinen",
         "Description[fr]": "Module externe « KNotes » pour Kontact",
         "Description[ia]": "Plug-in de Kontact KNotes",
