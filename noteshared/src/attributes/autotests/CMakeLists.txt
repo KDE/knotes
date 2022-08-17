@@ -13,9 +13,9 @@ macro(add_noteshared_unittest _source)
   ecm_mark_as_test(noteshared-${_name})
   target_link_libraries(${_name}
     notesharedprivate
-    Qt${QT_MAJOR_VERSION}::Test
-    Qt${QT_MAJOR_VERSION}::Core
-    Qt${QT_MAJOR_VERSION}::Gui
+    Qt::Test
+    Qt::Core
+    Qt::Gui
     KF5::AkonadiCore
 )
 endmacro()
