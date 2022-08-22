@@ -2,7 +2,6 @@
 X-DocPath=knotes/index.html
 Exec=knotes
 Icon=knotes
-Terminal=false
 Type=Application
 
 GenericName=Popup Notes
