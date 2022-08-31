@@ -22,6 +22,7 @@
   <developer_name xml:lang="ia">Le communitate de KDE</developer_name>
   <developer_name xml:lang="id">Komunitas KDE</developer_name>
   <developer_name xml:lang="it">La Comunità KDE</developer_name>
+  <developer_name xml:lang="ka">KDE-ის საზოგადოება</developer_name>
   <developer_name xml:lang="ko">KDE 커뮤니티</developer_name>
   <developer_name xml:lang="nl">De KDE gemeenschap</developer_name>
   <developer_name xml:lang="nn">KDE-fellesskapet</developer_name>
@@ -58,6 +59,7 @@
   <name xml:lang="ia">KNotes</name>
   <name xml:lang="id">KNotes</name>
   <name xml:lang="it">KNotes</name>
+  <name xml:lang="ka">KNotes</name>
   <name xml:lang="ko">KNotes</name>
   <name xml:lang="lt">KNotes</name>
   <name xml:lang="nb">KNotes</name>
@@ -96,6 +98,7 @@
   <summary xml:lang="ia">Application de notas collose</summary>
   <summary xml:lang="id">Aplikasi catatan lekat</summary>
   <summary xml:lang="it">Applicazione per le note adesive</summary>
+  <summary xml:lang="ka">წებოვანი შენიშვნების პროგრამა</summary>
   <summary xml:lang="ko">찍찍이 노트 프로그램</summary>
   <summary xml:lang="nl">Toepassing voor plaknotities</summary>
   <summary xml:lang="nn">«Gule lappar»-program</summary>
@@ -134,6 +137,7 @@
     <p xml:lang="ia">KNotes es un programma que te permitte criber le equivalente per computator de notas collose. Le notas es salveguardate automaticamente quando tu exi le programma, e illos monstra quando tu aperi le programma.</p>
     <p xml:lang="id">KNotes adalah program yang memungkinkan kamu menulis komputer yang setara dengan catatan lekat. Catatan disimpan secara otomatis saat kamu keluar dari program, dan catatan itu ditampilkan saat kamu membuka program.</p>
     <p xml:lang="it">KNotes è un programma che ti permette di scrivere nel computer l'equivalente delle note adesive (post-it). Le note vengono salvate automaticamente alla chiusura del programma, e visualizzate quando lo apri.</p>
+    <p xml:lang="ka">KNotes არის პროგრამა, რომელიც საშუალებას გაძლევთ დაწეროთ წებოვანი შენიშვნების კომპიუტერის ანალოგი. პროგრამიდან გამოსვლისას შენიშვნები ავტომატურად ინახება.პროგრამის გახსნისას ისინი ისევ გამოჩნდება.</p>
     <p xml:lang="ko">KNotes는 메모를 남길 수 있는 프로그램입니다. 프로그램을 종료할 때 메모를 자동으로 저장하고, 다음 실행 때 보여 줍니다.</p>
     <p xml:lang="nb">KNotes er et program du kan bruke til å skrive «gule lapper» på datamaskinen.  Lappene lagres automatisk når du går ut av programmet, og vises igjen når du starter programmet.</p>
     <p xml:lang="nds">Mit KNotes kannst Du so wat as Anback-Notizen för den Reekner maken. De Notizen warrt bi't Utmaken vun't Programm automaatsch sekert un wedder wiest, wenn Du dat Programm wedder opröppst.</p>
@@ -172,6 +176,7 @@
     <p xml:lang="ia">Characteristicas:</p>
     <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Caratteristiche:</p>
+    <p xml:lang="ka">თვისებები:</p>
     <p xml:lang="ko">기능:</p>
     <p xml:lang="lt">Ypatybės:</p>
     <p xml:lang="nb">Egenskaper:</p>
@@ -211,6 +216,7 @@
       <li xml:lang="ia">Scribe notas in tu selection de font e color de fundo</li>
       <li xml:lang="id">Tulislah catatan dalam warna latarbelakang dan font pilihanmu</li>
       <li xml:lang="it">Scrivi le note scegliendo il carattere e lo sfondo</li>
+      <li xml:lang="ka">დაწერეთ სანიშნები იმ ფონტითა და ფონით, რომლითაც გნებავთ</li>
       <li xml:lang="ko">사용자 정의 글꼴 및 배경색 지원</li>
       <li xml:lang="nb">Skriv notater med den fargen du velger på skrift og bakgrunn</li>
       <li xml:lang="nds">De Notizen mit Dien Schriftoort un Achtergrundklöör schrieven</li>
@@ -247,6 +253,7 @@
       <li xml:lang="ia">Usa traher e poner per inviar via e-posta tu notas</li>
       <li xml:lang="id">Gunakanlah seret dan taruh untuk menyuratkan catatanmu</li>
       <li xml:lang="it">Usa la funzione di trascinamento per inviare le note con la posta elettronica</li>
+      <li xml:lang="ka">თქვენი სანიშნის ელფოსტით გასაგზავნად უბრალოდ გადმოათრიეთ და დააგდეთ ზედ</li>
       <li xml:lang="ko">드래그 앤 드롭으로 바로 이메일 보내기</li>
       <li xml:lang="nb">Bruk dra og slipp til å sende notatene på e-øpost</li>
       <li xml:lang="nds">Notizen över Trecken un Afleggen mit Nettpost loosstüern</li>
@@ -283,6 +290,7 @@
       <li xml:lang="ia">Pote esser trahite in Calendar per reservar un fissura de tempore</li>
       <li xml:lang="id">Bisa diseret ke dalam Kalender untuk membukukan slot waktu</li>
       <li xml:lang="it">Possono essere trascinate e incollate nel Calendario per creare degli intervalli</li>
+      <li xml:lang="ka">დროის დასაჯავშნად შეგიძლიათ კალენდარშიც გადაათრიოთ</li>
       <li xml:lang="ko">달력에 드래그 앤 드롭으로 일정 추가</li>
       <li xml:lang="nb">Kan dras inn i Kalendar for å holde av en tid</li>
       <li xml:lang="nds">Laat sik na den Kalenner trecken, wat en Stoot Tiet reserveren deit</li>
@@ -320,6 +328,7 @@
       <li xml:lang="ia">Notas pote essser imprimite</li>
       <li xml:lang="id">Catatan bisa dicetak</li>
       <li xml:lang="it">Le note possono essere stampate</li>
+      <li xml:lang="ka">სანიშნები შეგიძლიათ დაბეჭდოთ</li>
       <li xml:lang="ko">인쇄 기능</li>
       <li xml:lang="nb">Notater kan skrives ut</li>
       <li xml:lang="nds">Notizen laat sik drucken</li>
