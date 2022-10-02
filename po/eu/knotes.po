@@ -1,0 +1,1164 @@
+# Translation for knotes.po to Euskara/Basque (eu).
+# Copyright (C) 2003, 2005 Free Software Foundation, Inc.
+# Copyright (C) 2006-2022, This file is copyright:
+# This file is distributed under the same license as the knotes package.
+# KDE euskaratzeko proiektuko arduraduan <xalba@ni.eus>.
+#
+# Translators:
+# Marcos  <marcos@euskalgnu.org>, 2003.
+# Ion Gaztañaga <ion_g_m@hotmail.com>, 2005.
+# Marcos <marcos@euskalgnu.org>, 2005.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2020, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: knotes\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-02 00:48+0000\n"
+"PO-Revision-Date: 2022-08-05 18:02+0200\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
+"Language-Team: Basque <kde-i18n-eu@kde.org>\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 22.04.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Ion Gaztañaga,Iñigo Salvador Azurmendi"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "ion_g_m@hotmail.com,xalba@ni.eus"
+
+#: apps/knotes_options.h:13
+#, kde-format
+msgid "Suppress creation of a new note on a non-unique instance."
+msgstr "Galarazi ohar berri bat instantzia ez-bakar batean sortzea."
+
+#: apps/knotesakonaditray.cpp:21 apps/knotestray.cpp:18
+#, kde-format
+msgid "KNotes: Sticky notes by KDE"
+msgstr "KNotes: KDEren ohar itsasgarriak"
+
+#: apps/knotesapp.cpp:85
+#, kde-format
+msgid "New Note"
+msgstr "Ohar berria"
+
+#: apps/knotesapp.cpp:92 kontactplugin/knotes_part.cpp:154
+#, kde-format
+msgid "New Note From Clipboard"
+msgstr "Ohar berria arbeletik"
+
+#: apps/knotesapp.cpp:97 kontactplugin/knotes_part.cpp:158
+#, kde-format
+msgid "New Note From Text File..."
+msgstr "Ohar berria testu fitxategitik..."
+
+#: apps/knotesapp.cpp:101
+#, kde-format
+msgid "Show All Notes"
+msgstr "Erakutsi ohar guztiak"
+
+#: apps/knotesapp.cpp:106
+#, kde-format
+msgid "Hide All Notes"
+msgstr "Ezkutatu ohar guztiak"
+
+#: apps/knotesapp.cpp:111 kontactplugin/knotes_part.cpp:121
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Print Selected Notes..."
+msgstr "Inprimatu hautatutako oharrak..."
+
+#: apps/knotesapp.cpp:116
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Delete Selected Notes..."
+msgstr "Ezabatu hautatutako oharrak..."
+
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#, kde-format
+msgid "Select Text File"
+msgstr "Hautatu testu-fitxategia"
+
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#, kde-format
+msgid "Text File"
+msgstr "Testu-fitxategia"
+
+#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#, kde-format
+msgid "Error during open text file: %1"
+msgstr "Errorea testu-fitxategi irekitzean: %1"
+
+#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#, kde-format
+msgid "Open Text File"
+msgstr "Ireki testu-fitxategia"
+
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:831
+#, kde-format
+msgid "Note from file '%1'"
+msgstr "«%1» fitxategiko oharra"
+
+#: apps/knotesapp.cpp:510
+#, kde-format
+msgid "No Notes"
+msgstr "Oharrik ez"
+
+#: apps/knotesapp.cpp:563 kontactplugin/knotes_part.cpp:587
+#, kde-format
+msgid "Settings"
+msgstr "Ezarpenak"
+
+#. i18n: ectx: Menu (knotes_context)
+#: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
+#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:43
+#: kontactplugin/knoteseditdialog.cpp:53
+#, kde-format
+msgid "KNotes"
+msgstr "KNotes"
+
+#: apps/main.cpp:47
+#, kde-format
+msgid "KDE Notes"
+msgstr "KDE Oharrak"
+
+#: apps/main.cpp:49
+#, kde-format
+msgid "Copyright © 1997–%1 KNotes authors"
+msgstr "Copyright © 1997–%1 KNotes-en egileak"
+
+#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:45
+#, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: apps/main.cpp:69
+#, kde-format
+msgid "Maintainer"
+msgstr "Mantentzailea"
+
+#: apps/main.cpp:70
+#, kde-format
+msgid "Guillermo Antonio Amaral Bastidas"
+msgstr "Guillermo Antonio Amaral Bastidas"
+
+#: apps/main.cpp:70 apps/main.cpp:71
+#, kde-format
+msgid "Previous Maintainer"
+msgstr "Aurreko mantentzailea"
+
+#: apps/main.cpp:71
+#, kde-format
+msgid "Michael Brade"
+msgstr "Michael Brade"
+
+#: apps/main.cpp:72
+#, kde-format
+msgid "Bernd Johannes Wuebben"
+msgstr "Bernd Johannes Wuebben"
+
+#: apps/main.cpp:72
+#, kde-format
+msgid "Original KNotes Author"
+msgstr "KNotes-en jatorrizko egilea"
+
+#: apps/main.cpp:73
+#, kde-format
+msgid "Wynn Wilkes"
+msgstr "Wynn Wilkes"
+
+#: apps/main.cpp:73
+#, kde-format
+msgid "Ported KNotes to KDE 2"
+msgstr "KNotes KDE 2ra egokitu zuen"
+
+#: apps/main.cpp:74
+#, kde-format
+msgid "Daniel Martin"
+msgstr "Daniel Martin"
+
+#: apps/main.cpp:74
+#, kde-format
+msgid "Network Interface"
+msgstr "Sareko interfazea"
+
+#: apps/main.cpp:75
+#, kde-format
+msgid "Bo Thorsen"
+msgstr "Bo Thorsen"
+
+#: apps/main.cpp:75
+#, kde-format
+msgid "Started KDE Resource Framework Integration"
+msgstr "KDE baliabide azpiegiturarekin integrazioa hasi zuen"
+
+#: apps/main.cpp:76
+#, kde-format
+msgid "Bera Debajyoti"
+msgstr "Bera Debajyoti"
+
+#: apps/main.cpp:76
+#, kde-format
+msgid "Idea and initial code for the new look & feel"
+msgstr "«Itxura eta izaera» berriaren ideia eta hasierako kodea"
+
+#: apps/main.cpp:77
+#, kde-format
+msgid "Matthias Ettrich"
+msgstr "Matthias Ettrich"
+
+#: apps/main.cpp:78
+#, kde-format
+msgid "David Faure"
+msgstr "David Faure"
+
+#: apps/main.cpp:79
+#, kde-format
+msgid "Matthias Kiefer"
+msgstr "Matthias Kiefer"
+
+#: apps/main.cpp:80
+#, kde-format
+msgid "Luboš Luňák"
+msgstr "Luboš Luňák"
+
+#: apps/main.cpp:81
+#, kde-format
+msgid "Dirk A. Mueller"
+msgstr "Dirk A. Mueller"
+
+#: apps/main.cpp:82
+#, kde-format
+msgid "Carsten Pfeiffer"
+msgstr "Carsten Pfeiffer"
+
+#: apps/main.cpp:83
+#, kde-format
+msgid "Harri Porten"
+msgstr "Harri Porten"
+
+#: apps/main.cpp:84
+#, kde-format
+msgid "Espen Sand"
+msgstr "Espen Sand"
+
+#: configdialog/knotecollectionconfigwidget.cpp:101
+#, kde-format
+msgid "Folders"
+msgstr "Karpetak"
+
+#: configdialog/knotecollectionconfigwidget.cpp:103
+#, kde-format
+msgid "Select which KNotes folders to show:"
+msgstr "Hautatu KNotes-en zein karpeta erakutsi:"
+
+#: configdialog/knotecollectionconfigwidget.cpp:134
+#, kde-format
+msgid "Search..."
+msgstr "Bilatu..."
+
+#: configdialog/knotecollectionconfigwidget.cpp:152
+#, kde-format
+msgid "&Select All"
+msgstr "&Hautatu dena"
+
+#: configdialog/knotecollectionconfigwidget.cpp:156
+#, kde-format
+msgid "&Unselect All"
+msgstr "&Desautatu dena"
+
+#: configdialog/knotecollectionconfigwidget.cpp:161
+#, kde-format
+msgid "Rename notes..."
+msgstr "Berrizendatu oharrak..."
+
+#: configdialog/knotecollectionconfigwidget.cpp:165
+#, kde-format
+msgctxt "@info"
+msgid "Select the folder where the note will be saved:"
+msgstr "Hautatu oharra gordetzeko karpeta:"
+
+#: configdialog/knotecollectionconfigwidget.cpp:183
+#, kde-format
+msgid "Notes accounts"
+msgstr "Ohar-kontuak"
+
+#: configdialog/knotecollectionconfigwidget.cpp:188
+#, kde-format
+msgid "Accounts"
+msgstr "Kontuak"
+
+#: configdialog/knotecollectionconfigwidget.cpp:218
+#, kde-format
+msgid "Rename Notes"
+msgstr "Berrizendatu oharrak"
+
+#: configdialog/knotecollectionconfigwidget.cpp:218
+#, kde-format
+msgid "Name:"
+msgstr "Izena:"
+
+#: configdialog/knotecollectionconfigwidget.cpp:236
+#, kde-format
+msgid "An error was occurred during renaming: %1"
+msgstr "Errore bat gertatu da berrizendatzerakoan: %1"
+
+#: configdialog/knotecollectionconfigwidget.cpp:236
+#, kde-format
+msgid "Rename note"
+msgstr "Berrizendatu oharra"
+
+#: configdialog/knotedisplayconfigwidget.cpp:26
+#, kde-format
+msgid "&Text color:"
+msgstr "&Testuaren kolorea:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:35
+#, kde-format
+msgid "&Background color:"
+msgstr "&Atzeko planoaren kolorea:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:45
+#, kde-format
+msgid "&Show note in taskbar"
+msgstr "Erakut&si oharra ataza-barran"
+
+#: configdialog/knotedisplayconfigwidget.cpp:47
+#, kde-format
+msgid "&Remember desktop"
+msgstr "O&roitu mahaigaina"
+
+#: configdialog/knotedisplayconfigwidget.cpp:51
+#, kde-format
+msgid "Default &width:"
+msgstr "&Zabalera lehenetsia:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:62
+#, kde-format
+msgid "Default &height:"
+msgstr "A&ltuera lehenetsia:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:23
+#, kde-format
+msgid "&Tab size:"
+msgstr "&Tabulatze neurria:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:32
+#, kde-format
+msgid "Auto &indent"
+msgstr "&Koskatze automatikoa"
+
+#: configdialog/knoteeditorconfigwidget.cpp:36
+#, kde-format
+msgid "&Rich text"
+msgstr "Testu abe&rastua"
+
+#: configdialog/knoteeditorconfigwidget.cpp:40
+#, kde-format
+msgid "Text font:"
+msgstr "Testuaren letra-tipoa:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:48
+#, kde-format
+msgid "Title font:"
+msgstr "Izenburuaren letra-tipoa:"
+
+#: configdialog/knotesimpleconfigdialog.cpp:40
+#, kde-format
+msgid "Editor Settings"
+msgstr "Editorearen ezarpenak"
+
+#: configdialog/knotesimpleconfigdialog.cpp:43
+#, kde-format
+msgid "Display Settings"
+msgstr "Bistaratze ezarpenak"
+
+#. i18n: ectx: Menu (help)
+#: data/knotesappui.rc:23
+#, kde-format
+msgid "&Help"
+msgstr "&Laguntza"
+
+#. i18n: ectx: Menu (notes_menu)
+#: data/knotesappui.rc:35 data/knotesappui.rc:36
+#, kde-format
+msgid "Notes"
+msgstr "Oharrak"
+
+#: dialog/knotedeleteselectednotesdialog.cpp:19
+#, kde-format
+msgctxt "@title:window"
+msgid "Select notes to delete"
+msgstr "Hautatu ezabatu beharreko oharrak"
+
+#: dialog/knoteselectednotesdialog.cpp:21
+#: print/knoteprintselectednotesdialog.cpp:27
+#, kde-format
+msgctxt "@title:window"
+msgid "Select notes"
+msgstr "Hautatu oharrak"
+
+#: dialog/knoteskeydialog.cpp:19
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Shortcuts"
+msgstr "Konfiguratu laster-bideak"
+
+#: dialog/knoteskeydialog.cpp:59
+#, kde-format
+msgid "Note Actions"
+msgstr "Oharren ekintzak"
+
+#: finddialog/knotefinddialog.cpp:28
+#, kde-format
+msgctxt "@title:window"
+msgid "Search Notes"
+msgstr "Bilatu oharrak"
+
+#: finddialog/knotefinddialog.cpp:73
+#, kde-format
+msgctxt "@label:textbox"
+msgid "Search notes:"
+msgstr "Bilatu oharrak:"
+
+#: finddialog/knotefinddialog.cpp:81
+#, kde-format
+msgctxt "@action:button Search notes"
+msgid "Search..."
+msgstr "Bilatu..."
+
+#: finddialog/knotefinddialog.cpp:165
+#, kde-format
+msgctxt "@label"
+msgid "No Results found in search."
+msgstr "Bilaketan ez da emaitzarik aurkitu."
+
+#: finddialog/knotefinddialog.cpp:181
+#, kde-format
+msgid "Show Note"
+msgstr "Erakutsi oharra"
+
+#: knoteconfigmodule.cpp:80
+#, kde-format
+msgid "Show number of notes in tray icon"
+msgstr "Erakutsi ohar-kopurua erretiluko ikonoan"
+
+#: knoteconfigmodule.cpp:87
+#, kde-format
+msgid "Default Title:"
+msgstr "Izenburu lehenetsia:"
+
+#: knoteconfigmodule.cpp:94
+#, kde-format
+msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgstr "<a href=\"whatsthis\">Hori nola dabil?</a>"
+
+#: knoteconfigmodule.cpp:128
+#, kde-format
+msgid ""
+"<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
+"(short format)</li><li>%l current date (long format)</li><li>%t current "
+"time</li></ul></qt>"
+msgstr ""
+"<qt><p>Izenburuko oharra zure beharretara egokitu dezakezu:</p> <ul><li>%d "
+"uneko data (formatu laburra)</li><li>%l uneko data (formatu luzea)</li><li>"
+"%t uneko ordua</li></ul></qt>"
+
+#: knoteconfigmodule.cpp:150
+#, kde-format
+msgid "Theme:"
+msgstr "Gaia:"
+
+#: knoteconfigmodule.cpp:160
+#, kde-format
+msgid "Download new printing themes"
+msgstr "Zama-jaitsi inprimatzeko gai berria"
+
+#: knoteedit.cpp:45
+#, kde-format
+msgid "Bold"
+msgstr "Lodia"
+
+#: knoteedit.cpp:48
+#, kde-format
+msgid "Italic"
+msgstr "Etzana"
+
+#: knoteedit.cpp:51
+#, kde-format
+msgid "Underline"
+msgstr "Azpimarra"
+
+#: knoteedit.cpp:54
+#, kde-format
+msgid "Strike Out"
+msgstr "Marratua"
+
+#: knoteedit.cpp:63
+#, kde-format
+msgid "Align Left"
+msgstr "Lerrokatu ezkerrean"
+
+#: knoteedit.cpp:68
+#, kde-format
+msgid "Align Center"
+msgstr "Lerrokatu erdian"
+
+#: knoteedit.cpp:72
+#, kde-format
+msgid "Align Right"
+msgstr "Lerrokatu eskuinean"
+
+#: knoteedit.cpp:76
+#, kde-format
+msgid "Align Block"
+msgstr "Lerrokatu blokea"
+
+#: knoteedit.cpp:87
+#, kde-format
+msgid "List"
+msgstr "Zerrenda"
+
+#: knoteedit.cpp:91
+#, kde-format
+msgid "Superscript"
+msgstr "Goi-indizea"
+
+#: knoteedit.cpp:94
+#, kde-format
+msgid "Subscript"
+msgstr "Azpindizea"
+
+#: knoteedit.cpp:98
+#, kde-format
+msgid "Increase Indent"
+msgstr "Koska handiagotu"
+
+#: knoteedit.cpp:103
+#, kde-format
+msgid "Decrease Indent"
+msgstr "Koska txikiagotu"
+
+#: knoteedit.cpp:114
+#, kde-format
+msgid "Text Color..."
+msgstr "Testuaren kolorea..."
+
+#: knoteedit.cpp:119
+#, kde-format
+msgid "Text Background Color..."
+msgstr "Testuaren atzeko planoko kolorea..."
+
+#: knoteedit.cpp:123
+#, kde-format
+msgid "Text Font"
+msgstr "Testuaren letra-tipoa"
+
+#: knoteedit.cpp:126
+#, kde-format
+msgid "Text Size"
+msgstr "Testuaren tamaina"
+
+#: knoteedit.cpp:137
+#, kde-format
+msgid "Insert Date"
+msgstr "Sartu data"
+
+#: knoteedit.cpp:141
+#, kde-format
+msgid "Insert Checkmark"
+msgstr "Sartu hautamarka"
+
+#: kontactplugin/kcmknotessummary.cpp:40
+#, kde-format
+msgid "kcmknotessummary"
+msgstr "kcmknotessummary"
+
+#: kontactplugin/kcmknotessummary.cpp:42
+#, kde-format
+msgid "Notes Summary Configuration Dialog"
+msgstr "Oharren laburpena konfiguratzeko elkarrizketa-koadroa"
+
+#: kontactplugin/kcmknotessummary.cpp:44
+#, kde-format
+msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
+msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
+
+#: kontactplugin/knotes_part.cpp:84
+#, kde-format
+msgctxt "@action:inmenu create new popup note"
+msgid "&New"
+msgstr "&Berria"
+
+#. i18nc( "@info:status", "Create a new popup note" ) );
+#: kontactplugin/knotes_part.cpp:92
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be presented with a dialog where you can add a new popup note."
+msgstr "Ohar gainerako bat gehitzeko elkarrizketa-koadro bat aurkeztuko zaizu."
+
+#: kontactplugin/knotes_part.cpp:94 kontactplugin/knotes_part.cpp:556
+#: kontactplugin/knotes_part.cpp:558 kontactplugin/knotes_part.cpp:738
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Edit..."
+msgstr "Editatu..."
+
+#. i18nc( "@info:status", "Edit popup note" ) );
+#: kontactplugin/knotes_part.cpp:101
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can modify an existing popup "
+"note."
+msgstr ""
+"Dagoen ohar gainerakor bat aldatzeko elkarrizketa-koadro bat aurkeztuko "
+"zaizu."
+
+#: kontactplugin/knotes_part.cpp:103
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Rename..."
+msgstr "Berrizendatu..."
+
+#. i18nc( "@info:status", "Rename popup note" ) );
+#: kontactplugin/knotes_part.cpp:109
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can rename an existing popup "
+"note."
+msgstr ""
+"Dagoen ohar gainerakor bat berrizendatzeko elkarrizketa-koadro bat "
+"aurkeztuko zaizu."
+
+#: kontactplugin/knotes_part.cpp:111
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Delete"
+msgstr "Ezabatu"
+
+#: kontactplugin/knotes_part.cpp:118
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be prompted if you really want to permanently remove the selected "
+"popup note."
+msgstr ""
+"Hautatutako ohar gainerakorra behin betiko benetan ezabatu nahi duzun "
+"galdetuko zaizu."
+
+#. i18nc( "@info:status", "Print popup note" ) );
+#: kontactplugin/knotes_part.cpp:126
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be prompted to print the selected popup note."
+msgstr "Hautatutako ohar gainerakorra inprimatzeko galdegingo zaizu."
+
+#: kontactplugin/knotes_part.cpp:129
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Print Preview Selected Notes..."
+msgstr "Hautatutako oharren inprimatze aurreikuspegia..."
+
+#: kontactplugin/knotes_part.cpp:134
+#, kde-format
+msgid "Note settings..."
+msgstr "Oharren ezarpenak..."
+
+#: kontactplugin/knotes_part.cpp:138
+#, kde-format
+msgid "Preferences KNotes..."
+msgstr "KNotes hobespenak..."
+
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:683
+#, kde-format
+msgid "Mail..."
+msgstr "Posta..."
+
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:679
+#, kde-format
+msgid "Send..."
+msgstr "Bidali..."
+
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:675
+#, kde-format
+msgid "Set Alarm..."
+msgstr "Ezarri alarma..."
+
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:687
+#, kde-format
+msgid "Save As..."
+msgstr "Gorde honela..."
+
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:661
+#, kde-format
+msgid "Lock"
+msgstr "Giltzatu"
+
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:664
+#, kde-format
+msgid "Unlock"
+msgstr "Giltzapetik askatu"
+
+#: kontactplugin/knotes_part.cpp:201
+#, kde-format
+msgid "Set Focus to Quick Search"
+msgstr "Eman fokua bilaketa bizkorrari"
+
+#: kontactplugin/knotes_part.cpp:278
+#, kde-format
+msgctxt "@info"
+msgid "To print notes, first select the notes to print from the list."
+msgstr ""
+"Oharrak inprimatzeko, aurrena, zerrendatik hautatu inprimatu beharrekoak."
+
+#: kontactplugin/knotes_part.cpp:279
+#, kde-format
+msgctxt "@title:window"
+msgid "Print Popup Notes"
+msgstr "Inprimatu ohar gainerakorrak"
+
+#: kontactplugin/knotes_part.cpp:319
+#, kde-format
+msgid "Note was not created."
+msgstr "Oharra ez da sortu."
+
+#: kontactplugin/knotes_part.cpp:319
+#, kde-format
+msgid "Create new note"
+msgstr "Sortu ohar berri bat"
+
+#: kontactplugin/knotes_part.cpp:341
+#, kde-format
+msgctxt "@info"
+msgid "Do you really want to delete this note?"
+msgstr "Benetan ezabatu nahi duzu ohar hau?"
+
+#: kontactplugin/knotes_part.cpp:343
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:42
+#, kde-format
+msgctxt "@title:window"
+msgid "Confirm Delete"
+msgstr "Berretsi ezabatzea"
+
+#: kontactplugin/knotes_part.cpp:535
+#, kde-format
+msgctxt "@title:window"
+msgid "Rename Popup Note"
+msgstr "Berrizendatu ohar gainerakorra"
+
+#: kontactplugin/knotes_part.cpp:535
+#, kde-format
+msgctxt "@label:textbox"
+msgid "New Name:"
+msgstr "Ohar berria:"
+
+#: kontactplugin/knotes_part.cpp:556 kontactplugin/knotes_part.cpp:738
+#, kde-format
+msgid "Show Note..."
+msgstr "Erakutsi oharra..."
+
+#: kontactplugin/knotes_part.cpp:691
+#, kde-format
+msgid "Rich text (*.html)"
+msgstr "Testu aberastua (*.html)"
+
+#: kontactplugin/knotes_part.cpp:693
+#, kde-format
+msgid "Plain text (*.txt)"
+msgstr "Testu xehea (*.txt)"
+
+#: kontactplugin/knotes_part.cpp:696
+#, kde-format
+msgid "Save As"
+msgstr "Gorde honela"
+
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:503
+#, kde-format
+msgid ""
+"<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
+"overwrite it?</qt>"
+msgstr ""
+"<qt><b>%1</b> izeneko fitxategi bat lehendik dago.<br />Ziur zaude hura "
+"gainidatzi nahi duzula?</qt>"
+
+#: kontactplugin/knotes_plugin.cpp:45
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "New Popup Note..."
+msgstr "Ohar gainerakor berria..."
+
+#. i18nc( "@info:status", "Create new popup note" ) );
+#: kontactplugin/knotes_plugin.cpp:51
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can create a new popup note."
+msgstr ""
+"Ohar gainerakor berri bat sortzeko elkarrizketa koadro bat aurkeztuko zaizu."
+
+#: kontactplugin/knotes_plugin.cpp:77
+#, kde-kuit-format
+msgctxt "@title"
+msgid "KNotes"
+msgstr "KNotes"
+
+#: kontactplugin/knotes_plugin.cpp:79
+#, kde-kuit-format
+msgctxt "@title"
+msgid "Popup Notes"
+msgstr "Ohar gainerakorrak"
+
+#: kontactplugin/knotes_plugin.cpp:81
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Copyright © 2003–%1 Kontact authors"
+msgstr "Copyright © 2003–%1 Kontact-en egileak"
+
+#: kontactplugin/knotes_plugin.cpp:83
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: kontactplugin/knotes_plugin.cpp:83
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Current Maintainer"
+msgstr "Egungo mantentzailea"
+
+#: kontactplugin/knotes_plugin.cpp:85
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Michael Brade"
+msgstr "Michael Brade"
+
+#: kontactplugin/knotes_plugin.cpp:85
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Previous Maintainer"
+msgstr "Aurreko mantentzailea"
+
+#: kontactplugin/knotes_plugin.cpp:86
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Tobias Koenig"
+msgstr "Tobias Koenig"
+
+#: kontactplugin/knotes_plugin.cpp:86
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Developer"
+msgstr "Garatzailea"
+
+#: kontactplugin/knotes_plugin.cpp:117
+#, kde-format
+msgctxt "@item"
+msgid "Meeting"
+msgstr "Bilera"
+
+#: kontactplugin/knotes_plugin.cpp:131 kontactplugin/knotes_plugin.cpp:135
+#, kde-format
+msgctxt "@item"
+msgid "Note: %1"
+msgstr "Oharra: %1"
+
+#: kontactplugin/knotes_plugin.cpp:141
+#, kde-format
+msgctxt "@item"
+msgid "New Note"
+msgstr "Ohar berria"
+
+#: kontactplugin/knoteseditdialog.cpp:36
+#, kde-format
+msgctxt "@title:window"
+msgid "Show Popup Note"
+msgstr "Erakutsi ohar gainerakorra"
+
+#: kontactplugin/knoteseditdialog.cpp:36
+#, kde-format
+msgctxt "@title:window"
+msgid "Edit Popup Note"
+msgstr "Editatu ohar gainerakorra"
+
+#: kontactplugin/knoteseditdialog.cpp:66
+#, kde-format
+msgctxt "@label popup note name"
+msgid "Name:"
+msgstr "Izena:"
+
+#: kontactplugin/knoteslistwidgetsearchline.cpp:41
+#, kde-format
+msgid "Search notes..."
+msgstr "Bilatu oharrak..."
+
+#: kontactplugin/knoteslistwidgetsearchline.cpp:48
+#, kde-format
+msgid "Search notes...<%1>"
+msgstr "Bilatu oharrak...<%1>"
+
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:31
+#, kde-format
+msgid "(note locked, it will not removed)"
+msgstr "(ohar giltzatua, ez da ezabatuko)"
+
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:55
+#, kde-format
+msgid "Do you really want to delete this note?"
+msgid_plural "Do you really want to delete these %1 notes?"
+msgstr[0] "Benetan ezabatu nahi duzu ohar hau?"
+msgstr[1] "Benetan ezabatu nahi dituzu %1 ohar hauek?"
+
+#: kontactplugin/summarywidget.cpp:42
+#, kde-format
+msgid "Popup Notes"
+msgstr "Ohar gainerakorrak"
+
+#: kontactplugin/summarywidget.cpp:89
+#, kde-format
+msgid "No notes found"
+msgstr "Ez da oharrik aurkitu"
+
+#: kontactplugin/summarywidget.cpp:118
+#, kde-format
+msgid "Modify Note..."
+msgstr "Aldatu oharra..."
+
+#: kontactplugin/summarywidget.cpp:120
+#, kde-format
+msgid "Delete Note..."
+msgstr "Ezabatu oharra..."
+
+#: kontactplugin/summarywidget.cpp:195
+#, kde-format
+msgid "Read Popup Note: \"%1\""
+msgstr "Irakurri ohar gainerakorra: «%1»"
+
+#: notes/knote.cpp:129
+#, kde-format
+msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgstr "<qt>Ziur zaude <b>%1</b> oharra ezabatu nahi duzula?</qt>"
+
+#: notes/knote.cpp:130
+#, kde-format
+msgid "Confirm Delete"
+msgstr "Berretsi ezabatzea"
+
+#: notes/knote.cpp:131
+#, kde-format
+msgid "&Delete"
+msgstr "E&zabatu"
+
+#: notes/knote.cpp:255
+#, kde-format
+msgid "Please enter the new name:"
+msgstr "Mesedez, sartu izen berria:"
+
+#: notes/knote.cpp:479
+#, kde-format
+msgid "Save note as plain text"
+msgstr "Gorde oharra testu xehe gisa"
+
+#: notes/knote.cpp:486
+#, kde-format
+msgctxt "@title:window"
+msgid "Save As"
+msgstr "Gorde honela"
+
+#: notes/knote.cpp:611
+#, kde-format
+msgid "&All Desktops"
+msgstr "Mahaigain &guztiak"
+
+#: notes/knote.cpp:653
+#, kde-format
+msgid "New"
+msgstr "Berria"
+
+#: notes/knote.cpp:657
+#, kde-format
+msgid "Rename..."
+msgstr "Berrizendatu..."
+
+#: notes/knote.cpp:666
+#, kde-format
+msgid "Hide"
+msgstr "Ezkutatu"
+
+#: notes/knote.cpp:671
+#, kde-format
+msgid "Delete"
+msgstr "Ezabatu"
+
+#: notes/knote.cpp:696
+#, kde-format
+msgid "Preferences..."
+msgstr "Hobespenak..."
+
+#: notes/knote.cpp:700
+#, kde-format
+msgid "Keep Above Others"
+msgstr "Mantendu besteen gainean"
+
+#: notes/knote.cpp:704
+#, kde-format
+msgid "Keep Below Others"
+msgstr "Mantendu besteen azpian"
+
+#: notes/knote.cpp:709
+#, kde-format
+msgid "To Desktop"
+msgstr "Mahaigainera"
+
+#: notes/knote.cpp:717
+#, kde-format
+msgid "Walk Through Notes"
+msgstr "Oharren artean ibili"
+
+#: print/knotegrantleeprint.cpp:32
+#, kde-format
+msgid "Alarm:"
+msgstr "Alarma:"
+
+#: print/knotegrantleeprint.cpp:33
+#, kde-format
+msgid "Note is locked"
+msgstr "Oharra giltzatuta dago"
+
+#: print/knoteprinter.cpp:112
+#, kde-format
+msgid "Print Note"
+msgid_plural "Print %1 notes"
+msgstr[0] "Inprimatu oharra"
+msgstr[1] "Inprimatu %1 ohar"
+
+#: print/knoteprinter.cpp:119
+#, kde-format
+msgid "Printing theme was not found."
+msgstr "Ez da aurkitu inprimatzeko gaia."
+
+#: print/knoteprinter.cpp:119
+#, kde-format
+msgid "Printing error"
+msgstr "Inprimatze errorea"
+
+#: print/knoteprintselectednotesdialog.cpp:49
+#, kde-format
+msgid "Printing theme:"
+msgstr "Inprimatze gaia:"
+
+#: print/knoteprintselectednotesdialog.cpp:56
+#, kde-format
+msgid "Preview"
+msgstr "Aurreikuspegia"
+
+#: print/knoteprintselectednotesdialog.cpp:58
+#, kde-format
+msgid "Print"
+msgstr "Inprimatu"
+
+#: print/knoteprintselectthemedialog.cpp:21
+#, kde-format
+msgctxt "@title:window"
+msgid "Select theme"
+msgstr "Hautatu gaia"
+
+#: print/knoteprintselectthemedialog.cpp:38
+#, kde-format
+msgid "Themes:"
+msgstr "Gaiak:"
+
+#, fuzzy
+#~| msgid "Note Actions"
+#~ msgid "KNotes Migration"
+#~ msgstr "\"Oharra\" ekintza"
+
+#~ msgid "Scheduled Alarm"
+#~ msgstr "Programatutako alarma"
+
+#~ msgid "&No alarm"
+#~ msgstr "&Alarmarik ez"
+
+#~ msgid "Alarm &at:"
+#~ msgstr "Alarma &ordu honetan:"
+
+#, fuzzy
+#~| msgid "The following notes triggered alarms:"
+#~ msgid "The following notes triggered alarms:"
+#~ msgstr "Ondorengo oharrek alarmak jaurti dituzte:"
+
+#~ msgid "Display"
+#~ msgstr "Bistaratzea"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Unable to save the notes to <b>%1</b>. Check that there is "
+#~| "sufficient disk space.<br>There should be a backup in the same directory "
+#~| "though.</qt>"
+#~ msgid ""
+#~ "<qt>Unable to save the notes to <b>%1</b>. Check that there is sufficient "
+#~ "disk space.<br />There should be a backup in the same directory though.</"
+#~ "qt>"
+#~ msgstr ""
+#~ "<qt>Ezin izan dira oharrak <b>%1</b>-(e)ra gorde. Egiaztatu diskan leku "
+#~ "nahiko dagoela.<br> Hala ere direktorio berdinean babes-kopia bat egon "
+#~ "beharko litzateke.</qt>"
+
+#~ msgid "Location:"
+#~ msgstr "Kokapena:"
+
+#~ msgid "&Mail action:"
+#~ msgstr "\"&Posta\" ekintza"
+
+#~ msgid "Incoming Notes"
+#~ msgstr "Sarrerako oharrak"
+
+#~ msgid "Accept incoming notes"
+#~ msgstr "Onartu sarrerako oharrak"
+
+#~ msgid "Outgoing Notes"
+#~ msgstr "Irteerako oharrak"
+
+#~ msgid "&Sender ID:"
+#~ msgstr "&Bidaltzailearen ID-a:"
+
+#~ msgid "&Port:"
+#~ msgstr "&Ataka:"
+
+#~ msgid "Hostname or IP address:"
+#~ msgstr "Ostalari-izena edo IP helbidea"
+
+#~ msgid "The port KNotes will listen on and send notes to."
+#~ msgstr ""
+#~ "KNotes ataka oharren zain entzuten dago eta oharrak bildaltzen ditu."
+
+#~ msgid "Unable to start the mail process."
+#~ msgstr "Ezin da posta prozesua abiatu."
+
+#~ msgid "Send \"%1\""
+#~ msgstr "Bidali \"%1\""
+
+#~ msgid "The host cannot be empty."
+#~ msgstr "Ostalaria ezin da hutsik egon."
+
+#~ msgid "Communication error: %1"
+#~ msgstr "Komunikazio errorea: %1"
+
+#~ msgid "Alarm &in:"
+#~ msgstr "Alarma &hemendik:"
+
+#~ msgid "&Style:"
+#~ msgstr "&Estiloa:"
+
+#, fuzzy
+#~| msgid "(c) 1997-2006, The KNotes Developers"
+#~ msgid "(c) 1997-2009, The KNotes Developers"
+#~ msgstr "(c) 1997-2006, KNotes-en garatzaileak"

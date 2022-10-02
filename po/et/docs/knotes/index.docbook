@@ -1,0 +1,862 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kappname "&knotes;">
+  <!ENTITY package "kdepim">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Estonian  "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<book id="knotes" lang="&language;">
+
+<bookinfo id="knotesinfo">
+<title
+>&knotes;i käsiraamat</title>
+
+<authorgroup>
+<author
+><firstname
+>Fabian</firstname
+> <surname
+>Dal Santo</surname
+> <affiliation
+> <address
+>&Fabian.DalSanto.mail;</address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Greg</firstname
+> <othername
+>M.</othername
+> <surname
+>Holmes</surname
+> </author>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Korrigeerija</contrib>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>Marek</firstname
+><surname
+>Laane</surname
+><affiliation
+><address
+><email
+>bald@starman.ee</email
+></address
+></affiliation
+><contrib
+>Tõlge eesti keelde</contrib
+></othercredit
+> 
+
+</authorgroup>
+
+<copyright>
+<year
+>2000</year>
+<holder
+>&Greg.M.Holmes;</holder>
+</copyright>
+<copyright>
+<year
+>2001</year>
+<holder
+>Fabian Del Santo</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2013-05-26</date>
+<releaseinfo
+>4.11 pre (&kde; 4.11)</releaseinfo>
+
+<abstract
+><para
+>&knotes; on töölaua sedelite rakendus.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Knotes</keyword>
+<keyword
+>kdeutils</keyword>
+<keyword
+>märkmed</keyword>
+<keyword
+>popup</keyword>
+<keyword
+>hüpikaken</keyword>
+<keyword
+>knotes</keyword>
+
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Sissejuhatus</title>
+
+<para
+>&knotes; on rakendus, mille abil saab arvutil kirjutada samasuguseid märkmeid, mida muidu kirjutatakse kleepuvate märkmepaberite peale. Sedelid salvestatakse automaatselt rakendusest väljudes ning seda taasavades näidatakse neid uuesti. </para>
+
+<para
+>Sedeleid võib välja trükkida ja e-postiga saata, kui &knotes;is vastavad võimalused seadistada. </para>
+
+<para
+>Sedelite väljanägemist, näiteks värve ja fonte, võib iga sedeli puhul eraldi määrata, samuti saab kohandada vaikeväärtusi. </para>
+
+<para
+>&knotes;i esmakäivituse järel on olemas ressurss, mis salvestab kõik sedelid faili asukohas <filename
+>$<envar
+>HOME</envar
+>/.kde/share/apps/knotes/notes.ics</filename
+>. </para>
+
+</chapter>
+
+<chapter id="using-knotes">
+<title
+>&knotes;i kasutamine</title>
+
+<variablelist>
+<varlistentry>
+<term
+>Uue sedeli loomine</term>
+<listitem>
+<para
+>Uue sedeli loomiseks klõpsa &HPNga; &knotes;i paneeliikoonil ja vali <guimenuitem
+>Uus sedel</guimenuitem
+>.</para>
+<para
+>Uue sedeli, mis sisaldaks lõikepuhvri sisu, saab luua käsuga <guimenuitem
+>Uus sedel lõikepuhvri põhjal</guimenuitem
+>.</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Sedeli kirjutamine</term>
+<listitem>
+<para
+>Sedeli kirjutamiseks hakka lihtsalt ilmuvale sedelile kirjutama. Kasutada saab kõiki tavalisi võtteid, mida kirjutamisel klaviatuuri ja hiirega ikka kasutatakse. Klõps hiire <mousebutton
+>parema</mousebutton
+> nupuga kirjutamisalal avab järgmiste võimalustega menüü:</para>
+
+<itemizedlist>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Võta tagasi</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Tee uuesti</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Lõika</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Kopeeri</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Aseta</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Kustuta</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Vali kõik</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Õigekirja kontroll</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Õigekirja automaatne kontroll</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Tabeldusmärkide lubamine</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+> </keycombo
+> </shortcut
+><guimenuitem
+>Otsi</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycap
+>F3</keycap
+> </shortcut
+><guimenuitem
+>Otsi järgmine</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Asenda</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Loe tekst ette</guimenuitem
+></para
+></listitem>
+</itemizedlist>
+<para
+>Teksti saab valida, kui hoida all &HVN; ja hiirt liigutada või kui hoida all klahv &Shift; ja kasutada <keycap
+>nooleklahve</keycap
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Kuupäeva lisamine</term>
+<listitem>
+<para
+>Käesoleva kuupäeva lisamiseks sedelile klõpsa &HPNga; sedeli tiitliribal ja vali <guimenuitem
+>Lisa kuupäev</guimenuitem
+>.</para>
+<para
+>Käesolev kuupäev ja aeg lisatakse kursori asukohta sedeli tekstis.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Sedeli ümbernimetamine</term>
+<listitem>
+<para
+>Sedeli ümbernimetamiseks klõpsa &HPNga; sedeli tiitliribal ja vali <guimenuitem
+>Nimeta ümber...</guimenuitem
+></para>
+<para
+>Kirjuta sedeli uus nimi ilmuvasse dialoogi. Uue nime rakendamiseks klõpsa nupul <guibutton
+>OK</guibutton
+>. Kui soovid dialoogist väljuda ilma sedeli nime muutmata, klõpsa nupul <guibutton
+>Loobu</guibutton
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Sedeli saatmine kirjaga</term>
+<listitem>
+<para
+>Sedeli saatmiseks e-postiga klõpsa &HPNga; sedeli tiitliribal ja vali <guimenuitem
+>Saada...</guimenuitem
+></para
+> 
+<para
+>Mis seejärel juhtub, sõltub sellest, kuidas on määratud kirja saatmise käsk dialoogis <guilabel
+>Seadistused</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Sedeli trükkimine</term>
+<listitem>
+<para
+>Sedeli trükkimiseks klõpsa &HPNga; sedeli tiitliribal ja vali <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Trüki</guimenuitem
+></menuchoice
+>.</para>
+<para
+>Ilmub &kde; standardne trükkimise dialoog.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Sedeli kustutamine</term>
+<listitem>
+<para
+>Sedeli kustutamiseks klõpsa &HPNga; sedeli tiitliribal ja vali <guimenuitem
+>Kustuta</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Sedeli peitmine</term>
+<listitem>
+<para
+>Sedeli peitmiseks klõpsa sedeli tiitliriba ülemises paremas nurgas asuval ikoonil <guiicon
+>X</guiicon
+> või vali kontekstimenüüst <menuchoice
+><shortcut
+> &Esc;</shortcut
+><guimenuitem
+>Peida</guimenuitem
+> </menuchoice
+>. Sedel kaob ekraanilt, kuid jääb siiski alles.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Häire määramine:</term>
+<listitem>
+<para
+>Vali sedeli tiitliriba kontekstimenüüst <guimenuitem
+>Määra häire</guimenuitem
+>. Märgi ilmuvas dialoogis <guilabel
+>Häire kell</guilabel
+> ning täpsusta meeldetuletuse kuupäeva ja kellaaega. Määratud ajal ilmub hüpikaken, mis näitab kõiki häireajaga sedeleid.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Sedeli saatmine:</term>
+<listitem>
+<para
+>Sedeli saatmiseks teise arvutisse vali sedeli tiitliriba kontekstimenüüst <guimenuitem
+>Saada...</guimenuitem
+> Kirjuta masinanimi või IP või vali saaja varem saadetud sedelite loendist. Kui saaja on lubanud sedelite saamise, ilmub sedel tema ekraanile, näidates tiitliribal ka saatjat.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Sedeli lukustamine:</term>
+<listitem>
+<para
+>Sedeli juhusliku muutmise vältimiseks vali sedeli tiitliriba kontekstimenüüst <guimenuitem
+>Lukusta</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Sedeli salvestamine:</term>
+<listitem>
+<para
+>Sedeli salvestamiseks vali sedeli tiitliriba kontekstimenüüst <guimenuitem
+>Salvesta kui ...</guimenuitem
+> Sedeli saab salvestada lihttekstifailina või &HTML;-vormingus, kui valik <guilabel
+>Vormindatud tekst</guilabel
+> on sisse lülitatud.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Sedeli näitamine</term>
+<listitem>
+<para
+>&knotes;i käivitamisel on kõik sedelid peidetud. Kui soovid neid näha, klõpsa &HVNga; &knotes;i paneeliikoonil ja vali sedel, mida soovid näha.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Kõigis sedelites otsimine:</term>
+<listitem>
+<para
+>Klõpsa &HPNga; paneeliikoonil ja vali <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Otsi</guimenuitem
+></menuchoice
+>.</para>
+<para
+>Ilmub standardne &kde; dialoog, kus saab sisestada teksti, mida otsitakse kõigist sedelitest.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Töölauafunktsioonid</term>
+<listitem>
+<para
+>Sedeli saatmiseks mõnele muule töölauale klõpsa &HPNga; sedeli tiitliribal ja vali <guisubmenu
+>Töölauale</guisubmenu
+>. Alammenüüst vali soovitud töölaud või võimalus <guimenuitem
+>Kõigil töölaudadel</guimenuitem
+>.</para
+> 
+<para
+>Et sedel oleks alati teiste akende peal, klõpsa &HPNga; sedeli tiitliribal ja vali <guimenuitem
+>Hoia kõige peal</guimenuitem
+>.</para
+> 
+<para
+>Kui soovid, et sedel käituks tavalise aknana, siis vali <guimenuitem
+>Hoia kõige all</guimenuitem
+>.</para
+> 
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>&knotes;i töö lõpetamine</term>
+<listitem>
+<para
+>&knotes;i töö lõpetamiseks klõpsa &HPNga; paneeliikoonil ja vali <guimenuitem
+>Välju</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<!--FIXME Not using Akonadi resources and will probably never ported to akonadi framework
+After starting &knotes; for the first time you will have a resource installed 
+that saves all notes in a file under <filename
+>$<envar
+>HOME</envar
+>/.kde/share/apps/knotes/notes.ics</filename
+>;
+<envar
+>$KDEHOME</envar
+> is usually a hidden folder in your Home folder called <filename class="directory"
+>.kde</filename
+> 
+or <filename class="directory"
+>.kde4</filename>
+"$KDEHOME" is not always defined eg not in kubuntu 11.04
+<filename class="directory"
+>`kde4-config - -localprefix`/share/apps/kvtml</filename>
+(without whitespace between '- -') is afaik always defined
+-->
+</chapter>
+
+<chapter id="configuration">
+<title
+>Seadistamine</title>
+
+<sect1 id="defaults">
+<title
+>&knotes;i vaikeväärtuste seadistamine</title>
+
+<para
+>&knotes;i seadistamiseks klõpsa &HPNga; paneeliikoonil ja vali <guimenuitem
+>KNotesi seadistamine...</guimenuitem
+> Ilmub &knotes;i dialoog <guilabel
+>KNotesi seadistused</guilabel
+>.</para>
+
+<variablelist>
+<title
+>Kaart Vaade</title>
+<varlistentry>
+<term
+><guilabel
+>Teksti värv</guilabel
+></term>
+<listitem
+><para
+>Värviriba näitab teksti praegust värvi. Sellel klõpsates avaneb &kde; standardne värvi valimise dialoog.</para
+></listitem
+> 
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tausta värv</guilabel
+></term>
+<listitem
+><para
+>Värviriba näitab tausta praegust värvi. Sellel klõpsates avaneb &kde; standardne värvi valimise dialoog.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Laius vaikimisi</guilabel
+></term>
+<listitem
+><para
+>Sedeli laius pikslites. Muuda väärtust vastavalt oma soovidele.</para
+></listitem
+> 
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Kõrgus vaikimisi</guilabel
+></term>
+<listitem
+><para
+>Sedeli kõrgus pikslites. Muuda väärtust vastavalt oma soovidele.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Sedelit näidatakse tegumiribal</guilabel
+></term>
+<listitem
+><para
+>Vaikimisi ei näita &knotes; iga sedelit tegumiribal eraldi. Kui see sulle aga meeldima peaks, saad selle siin sisse lülitada.</para>
+</listitem>
+</varlistentry>
+<!--FIXME does not work in 4.11 here
+<varlistentry>
+<term
+><guilabel
+>Remember desktop</guilabel
+></term>
+<listitem
+><para
+>.</para>
+</listitem>
+</varlistentry>
+-->
+</variablelist>
+
+<variablelist>
+<title
+>Kaart Redaktor</title>
+<varlistentry>
+<term
+><guilabel
+>Tabi laius</guilabel
+></term>
+<listitem
+><para
+>Määrab, mitu tühikut võtab klahvi &Tab; vajutus.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Automaatne taandrida</guilabel
+></term>
+<listitem
+><para
+>See on märkekast, mida ära märkides hakkab automaatne taandrida kehtima.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Vormindatud tekst</guilabel
+></term>
+<listitem>
+<para
+>Selle märkimisel näidatakse kõigi sedeliakende allosas vormindusriba.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Tiitli font:</guilabel
+></term>
+<listitem
+><para
+>Siin saab muuta fonti, mida kasutatakse sedelite tiitlil.</para>
+
+<para
+>Klõps nupul <guibutton
+>Vali...</guibutton
+> avab &kde; standardse fondi valimise dialoogi.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Teksti font</guilabel
+></term>
+<listitem>
+<para
+>Siin saab muuta fonti, mida kasutatakse sedelite tekstis.</para>
+
+<para
+>Klõps nupul <guibutton
+>Vali...</guibutton
+> avab &kde; standardse fondi valimise dialoogi.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Kaart Toimingud</title>
+<varlistentry>
+<term
+><guilabel
+>Kirja saatmise käsk</guilabel
+></term>
+<listitem
+><para
+>Siia saab kirjutada kirja saatmise käsu ja kõik vajalikud käsurea argumendid.</para>
+<para
+>Märgi <token
+>%f</token
+> lisamisega käsureal saab edastada sedeli lihtteksti ning märgiga <token
+>%t</token
+> sedeli nime kirjakäsule.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<variablelist>
+<title
+>Kaart Võrk</title>
+<varlistentry>
+<term
+><guilabel
+>Sisenevate sedelite lubamine</guilabel
+></term>
+<listitem
+><para
+>Selle märkimisel saab vastu võtta sedeleid teistest arvutitest.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Saatja ID</guilabel
+></term>
+<listitem
+><para
+>ID-d näidatakse sedeli tiitliribal koos sedeli algse nime, masinanime või IP ning saatmise ajaga.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Port</guilabel
+></term>
+<listitem
+><para
+>Port, mida kasutatakse sedeli saatmiseks võrgu kaudu (vaikimisi 24837).</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+
+<variablelist>
+<title
+>Kaart Stiil</title>
+<varlistentry>
+<term
+><guilabel
+>Stiil</guilabel
+></term>
+<listitem
+><para
+>Seni on ainuke valik <guilabel
+>puhas</guilabel
+> tekstivorming.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="customizing-display">
+<title
+>Sedeli väljanägemise muutmine</title>
+
+<para
+>Sõltumata vaikeväärtustest on võimalik iga sedeli väljanägemist ka eraldi seadistada. Seadistamisvõimalused on samasugused nendega, mida kirjeldati osas <link linkend="configuration"
+>Seadistamine</link
+>, ainult et need kehtivad ainult konkreetsele sedelile. Kõik muud parajasti olemasolevad või ka tulevikus loodavad sedelid kasutavad endiselt vaikeväärtusi.</para>
+
+<para
+>Konkreetse sedeli väljanägemise muutmiseks klõpsa &HPNga; sedeli tiitliribal ja vali <guimenuitem
+>Eelistused...</guimenuitem
+>.</para>
+<para
+>Ilmub dialoog kaartidega <guilabel
+>Vaade</guilabel
+> ja <guilabel
+>Redaktor</guilabel
+>, mis võimaldab sedelit seadistada.</para>
+</sect1>
+
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Autorid ja litsents</title>
+
+<para
+>&knotes;</para>
+
+<para
+>Rakenduse autoriõigus 1997: Bernd Wuebben &Bernd.Johannes.Wuebben.mail;</para>
+
+<para
+>Kaasautorid:</para>
+<itemizedlist>
+<listitem
+><para
+>Wynn Wilkes <email
+>wynnw@calderasystems.com</email
+></para>
+</listitem>
+</itemizedlist>
+
+<para
+>Dokumentatsiooni autoriõigus 2000: &Greg.M.Holmes; <email
+>holmegm@earthlink.net</email
+></para>
+
+<para
+>Dokumentatsiooni uuendas 2001: Fabian Del Santo &Fabian.DalSanto.mail; ja 2003: &Lauri.Watts; &Lauri.Watts.mail;.</para>
+
+
+<para
+>Tõlge eesti keelde: Marek Laane <email
+>bald@starman.ee</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+&documentation.index; 
+
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

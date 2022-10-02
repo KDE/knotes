@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+  <!ENTITY i18n-notesagent "<application
+>Agente de Notas</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Portuguese "INCLUDE"
+> 
+]>
+
+<article id="notesagent" lang="&language;">
+<articleinfo>
+<title
+>O Manual do &i18n-notesagent;</title>
+<authorgroup>
+<author
+><personname
+> <firstname
+>Laurent</firstname
+> <surname
+>Montel</surname
+> </personname
+> &Laurent.Montel.mail; </author>
+<othercredit role="translator"
+><firstname
+>José</firstname
+><surname
+>Pires</surname
+><affiliation
+><address
+><email
+>zepires@gmail.com</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2013</year>
+<holder
+>&Laurent.Montel;</holder>
+</copyright>
+
+<date
+>2013-12-20</date>
+<releaseinfo
+>&kde; 4.13</releaseinfo>
+
+</articleinfo>
+
+<sect1 id="introduction">
+<title
+>Introdução</title>
+
+<para
+>O &i18n-notesagent; é um agente do Akonadi que lhe permite receber uma nota da rede e assinalar os alarmes. </para>
+
+<sect2 id="credits">
+
+<title
+>Créditos e Licença</title>
+
+<para
+>&i18n-notesagent;</para>
+<para
+>Programa com 'copyright' 2013 de &Laurent.Montel; &Laurent.Montel.mail; </para>
+<para
+>Documentação com 'copyright' &copy; 2013 de &Laurent.Montel; &Laurent.Montel.mail; </para>
+
+<para
+>Tradução de José Nuno Pires <email
+>zepires@gmail.com</email
+></para
+> 
+&underFDL; &underGPL; </sect2>
+
+</sect1>
+
+</article>
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

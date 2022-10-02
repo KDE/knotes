@@ -1,0 +1,193 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Lasse Liehu <lasse.liehu@gmail.com>, 2013, 2014.
+# Tommi Nieminen <translator@legisign.org>, 2017, 2020, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"PO-Revision-Date: 2021-11-23 16:49+0200\n"
+"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 20.04.2\n"
+
+#: alarms/notealarmdialog.cpp:41
+#, kde-format
+msgid "Scheduled Alarm"
+msgstr "Ajastettu hälytys"
+
+#: alarms/notealarmdialog.cpp:44
+#, kde-format
+msgid "&No alarm"
+msgstr "&Ei hälytystä"
+
+#: alarms/notealarmdialog.cpp:53
+#, kde-format
+msgid "Alarm &at:"
+msgstr "Hälytys &hetkellä:"
+
+#: config/noteactionconfig.cpp:23
+#, kde-format
+msgid "&Mail action:"
+msgstr "&Sähköpostitoiminto:"
+
+#: config/noteactionconfig.cpp:31
+#, kde-format
+msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgstr "<a href=\"whatsthis\">Kuinka tämä toimii?</a>"
+
+#: config/noteactionconfig.cpp:44
+#, kde-format
+msgid ""
+"<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "
+"current note title</li><li>%f returns current note text</li></ul></qt>"
+msgstr ""
+"<qt><p>Komentoriviä voi muokata käyttämällä seuraavia merkintöjä:</p><ul><li>"
+"%t palauttaa nykyisen muistiinpanon otsikon</li><li>%f palauttaa nykyisen "
+"muistiinpanon tekstin</li></ul></qt>"
+
+#: config/notenetworkconfig.cpp:29
+#, kde-format
+msgid "Incoming Notes"
+msgstr "Tulevat muistiinpanot"
+
+#: config/notenetworkconfig.cpp:32
+#, kde-format
+msgid "Accept incoming notes"
+msgstr "Hyväksy tulevat muistiinpanot"
+
+#: config/notenetworkconfig.cpp:38
+#, kde-format
+msgid "Outgoing Notes"
+msgstr "Lähtevät muistiinpanot"
+
+#: config/notenetworkconfig.cpp:41
+#, kde-format
+msgid "&Sender ID:"
+msgstr "&Lähettäjän tunniste:"
+
+#: config/notenetworkconfig.cpp:53
+#, kde-format
+msgid "&Port:"
+msgstr "&Portti:"
+
+#: dialog/selectednotefolderdialog.cpp:22
+#, kde-format
+msgctxt "@title:window"
+msgid "Select Note Folder"
+msgstr "Valitse muistiinpanon kansio"
+
+#: dialog/selectednotefolderdialog.cpp:23
+#, kde-format
+msgctxt "@info"
+msgid "Select the folder where the note will be saved:"
+msgstr "Valitse kansio, johon muistiinpano tallennetaan:"
+
+#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
+#, kde-format
+msgid ""
+"An error occurred during fetching. Do you want to select a new default "
+"collection?"
+msgstr "Noutamisessa tapahtui virhe. Haluatko valita uuden oletuskokoelman?"
+
+#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
+#, kde-format
+msgctxt "@action:button"
+msgid "Select New Default"
+msgstr "Valitse uusi oletus"
+
+#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
+#, kde-format
+msgctxt "@action:button"
+msgid "Ignore"
+msgstr "Ohita"
+
+#: job/createnewnotejob.cpp:126
+#, kde-format
+msgid ""
+"Collection is hidden. New note will be stored but not displayed. Do you want "
+"to show collection?"
+msgstr ""
+"Kokoelma on piilotettu. Uusi muistiinpano tallennetaan mutta ei näytetä. "
+"Haluatko näyttää kokoelman?"
+
+#: job/createnewnotejob.cpp:128
+#, kde-format
+msgctxt "@action::button"
+msgid "Show Collection"
+msgstr "Näytä kokoelma"
+
+#: job/createnewnotejob.cpp:129
+#, kde-format
+msgctxt "@action::button"
+msgid "Do Not Show"
+msgstr "Älä näytä"
+
+#: job/createnewnotejob.cpp:184
+#, kde-format
+msgid "Note was not created."
+msgstr "Muistiinpanoa ei luotu."
+
+#: job/createnewnotejob.cpp:184
+#, kde-format
+msgid "Create new note"
+msgstr "Luo uusi muistiinpano"
+
+#: network/notehostdialog.cpp:43
+#, kde-format
+msgid "Select recipient:"
+msgstr "Valitse vastaanottaja:"
+
+#: network/notehostdialog.cpp:59
+#, kde-format
+msgid "Hostname or IP address:"
+msgstr "Tietokoneen nimi tai IP-osoite:"
+
+#: network/notesnetworksender.cpp:74
+#, kde-format
+msgid "Communication error: %1"
+msgstr "Viestintävirhe: %1"
+
+#: noteutils.cpp:31
+#, kde-format
+msgid "Please configure send mail action."
+msgstr "Määritä sähköpostin lähetystoiminto."
+
+#: noteutils.cpp:39
+#, kde-format
+msgid "Note: \"%1\""
+msgstr "Muistiinpano: ”%1”"
+
+#: noteutils.cpp:46
+#, kde-format
+msgid "Unable to start the mail process."
+msgstr "Sähköpostin lähettäminen epäonnistui."
+
+#: noteutils.cpp:55
+#, kde-format
+msgid "Send \"%1\""
+msgstr "Lähetä ”%1”"
+
+#: noteutils.cpp:59
+#, kde-format
+msgid "The host cannot be empty."
+msgstr "Palvelin ei voi olla tyhjä."
+
+#: resources/localresourcecreator.cpp:70
+#, kde-format
+msgctxt "Default name for resource holding notes"
+msgid "Local Notes"
+msgstr "Paikalliset muistiinpanot"
+
+#. i18n: ectx: label, entry (Port), group (Network)
+#: settings/notesharedglobalconfig.kcfg:37
+#, kde-format
+msgid "The port will listen on and send notes to."
+msgstr "Portti, jota ohjelma kuuntelee ja johon se lähettää tietoja."

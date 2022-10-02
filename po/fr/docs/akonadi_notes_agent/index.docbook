@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+  <!ENTITY i18n-notesagent "<application
+>Agent de notes</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % French "INCLUDE"
+> 
+]>
+
+<article id="notesagent" lang="&language;">
+<articleinfo>
+<title
+>Manuel de &i18n-notesagent;</title>
+<authorgroup>
+<author
+><personname
+> <firstname
+>Laurent</firstname
+> <surname
+>Montel</surname
+> </personname
+> &Laurent.Montel.mail; </author>
+&traducteurAlviseCavallari; 
+</authorgroup>
+
+<copyright>
+<year
+>2013</year>
+<holder
+>&Laurent.Montel;</holder>
+</copyright>
+
+<date
+>20/12/2013</date>
+<releaseinfo
+>&kde; 4.13</releaseinfo>
+
+</articleinfo>
+
+<sect1 id="introduction">
+<title
+>Introduction</title>
+
+<para
+>&i18n-notesagent; est un agent de akonadi qui vous permet de recevoir des notes depuis le réseau et des signaux d'alarme. </para>
+
+<sect2 id="credits">
+
+<title
+>Remerciements et licence</title>
+
+<para
+>&i18n-notesagent;</para>
+<para
+>Copyright du programme : &Laurent.Montel; &Laurent.Montel.mail; </para>
+<para
+>Copyright de la documentation : &copy; 2013 &Laurent.Montel; &Laurent.Montel.mail; </para>
+
+<para
+>Traduction française par &AlviseCavallari;.</para
+> &underFDL; &underGPL; </sect2>
+
+</sect1>
+
+</article>
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

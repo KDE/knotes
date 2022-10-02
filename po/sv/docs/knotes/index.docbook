@@ -1,0 +1,921 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Swedish "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<book id="knotes" lang="&language;">
+
+<bookinfo id="knotesinfo">
+<title
+>Handbok Anteckningslappar</title>
+
+<authorgroup>
+<author
+><firstname
+>Fabian</firstname
+> <surname
+>Dal Santo</surname
+> <affiliation
+> <address
+>&Fabian.DalSanto.mail;</address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Greg</firstname
+> <othername
+>M.</othername
+> <surname
+>Holmes</surname
+> </author>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Granskare</contrib>
+</othercredit>
+<othercredit role="translator"
+> <firstname
+>Stefan</firstname
+> <surname
+>Asserhäll</surname
+> <affiliation
+><address
+><email
+>stefan.asserhall@bredband.net</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+
+</authorgroup>
+
+<copyright>
+<year
+>2000</year>
+<holder
+>&Greg.M.Holmes;</holder>
+</copyright>
+<copyright>
+<year
+>2001</year>
+<holder
+>Fabian Del Santo</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-07-28</date>
+<releaseinfo
+>5.3.40 (Program 16.08)</releaseinfo>
+
+<abstract
+><para
+>Anteckningslappar är ett program med anteckningar som kan klistras upp på skrivbordet.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Anteckningslappar</keyword>
+<keyword
+>anteckningar</keyword>
+<keyword
+>popupp</keyword>
+<keyword
+>popupp</keyword>
+<keyword
+>anteckningslappar</keyword>
+
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inledning</title>
+
+<para
+>Anteckningslappar är ett program som låter dig skriva anteckningar som kan klistras upp i datorn. Anteckningarna sparas automatiskt när du avslutar programmet, och de visas så fort du startar det. </para>
+
+<para
+>Du kan skriva ut och e-posta dina anteckningar om du anpassar Anteckningslappar att använda hjälpprogram. </para>
+
+<para
+>Visningsfunktioner för anteckningar som färg och teckensnitt kan anpassas för varje anteckning. Du kan också anpassa de förvalda värdena. </para>
+
+<para
+>Efter att ha startat Anteckningslappar för första gången kommer en resurs att ha installerats som sparar alla anteckningar i en maildir-fil vid namn <filename
+>notes</filename
+> i <filename class="directory"
+>$(qtpaths --paths GenericDataLocation)</filename
+>. </para>
+
+</chapter>
+
+<chapter id="using-knotes">
+<title
+>Att använda Anteckningslappar</title>
+
+<variablelist>
+<varlistentry>
+<term
+>Skapa en ny anteckning:</term>
+<listitem>
+<para
+>För att skapa en ny anteckning, högerklicka på Anteckningslappars ikon i systembrickan och välj <guimenuitem
+>Ny anteckning</guimenuitem
+>.</para>
+<para
+>Du kan skapa en ny anteckning med klippbordets innehåll genom att välja <guimenuitem
+>Ny anteckning från klippbordet</guimenuitem
+> eller använda <guimenuitem
+>Ny anteckning från textfil</guimenuitem
+>.</para>
+
+<para
+>Nu visas en dialogruta som låter dig välja en katalog där anteckningen ska sparas:</para>
+
+<screenshot>
+<screeninfo
+>Välj anteckningskatalog</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="select-notes-folder.png" format="PNG"/>
+</imageobject>
+<textobject
+><phrase
+>Välj anteckningskatalog</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Välj en standardkatalog här för att hoppa över dialogrutan när nya anteckningar skapas.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Skriva en anteckning:</term>
+<listitem>
+<para
+>För att skriva anteckningen, skriv helt enkelt in anteckningen i utrymmet som tillhandahålls. Normala tangentbords- och musredigeringsfunktioner stöds. Ett <mousebutton
+>höger</mousebutton
+>klick i redigeringsområdet ger följande menyalternativ:</para>
+
+<itemizedlist>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Ångra</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Gör om</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Klipp ut</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Kopiera</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Klistra in</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Ta bort</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Töm</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Markera alla</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Kontrollera stavning</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Automatisk stavningskontroll</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Tillåt tabulatorer</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Sök</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycap
+>F3</keycap
+> </shortcut
+><guimenuitem
+>Sök igen</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Ersätt</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Läs upp text</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Infoga datum</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Infoga bock</guimenuitem
+></para
+></listitem>
+</itemizedlist>
+<para
+>Text kan väljas genom att hålla nere <mousebutton
+>vänster</mousebutton
+> musknapp och flytta musen, eller genom att hålla nere Skifttangenten och använda <keycap
+>piltangenterna</keycap
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Infoga datum:</term>
+<listitem>
+<para
+>För att infoga dagens datum i anteckningen, använd redigeringsområdets sammanhangsberoende meny och välj <guimenuitem
+>Infoga datum</guimenuitem
+>.</para>
+<para
+>Dagens datum och tiden infogas vid markörens plats i anteckningens text.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Byta namn på en anteckning:</term>
+<listitem>
+<para
+>För att byta namn på en anteckning, klicka på anteckningens rubrikrad med höger musknapp och välj <guimenuitem
+>Byt namn..</guimenuitem
+>.</para>
+<para
+>Skriv in det nya namnet på anteckningen i dialogrutan som visas. För att acceptera det nya namnet, tryck på knappen <guibutton
+>Ok</guibutton
+>. För att avsluta dialogrutan utan att byta namn på anteckningen, tryck på knappen <guibutton
+>Avbryt</guibutton
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>E-posta en anteckning:</term>
+<listitem>
+<para
+>För att e-posta en anteckning, klicka på anteckningens rubrikrad med höger musknapp och välj <guimenuitem
+>Brev..</guimenuitem
+>.</para
+> 
+<para
+>Vad som händer därefter beror på hur du har ställt in e-post-åtgärden i dialogrutan <guilabel
+>Inställningar</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Skriva ut en anteckning:</term>
+<listitem>
+<para
+>För att skriva ut en anteckning, klicka på anteckningens rubrikrad med höger musknapp och välj <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Skriv ut..</guimenuitem
+></menuchoice
+>.</para>
+<para
+>En vanlig &kde; utskriftsdialogruta öppnas.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Ta bort en anteckning:</term>
+<listitem>
+<para
+>För att ta bort en anteckning, klicka på anteckningens rubrikrad med höger musknapp och välj <guimenuitem
+>Ta bort</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Dölja en anteckning:</term>
+<listitem>
+<para
+>För att dölja en anteckning, klicka på tecknet <guiicon
+>X</guiicon
+> i övre högra hörnet på anteckningens rubrikrad eller välj <menuchoice
+><shortcut
+> <keycap
+>Esc</keycap
+></shortcut
+><guimenuitem
+>Dölj</guimenuitem
+> </menuchoice
+> i den sammanhangsberoende menyn. Anteckningen visas inte längre på skärmen. Anteckningen själv tas inte bort.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Ställa in ett alarm:</term>
+<listitem>
+<para
+>Välj <guimenuitem
+>Ställ in alarm</guimenuitem
+> i den sammanhangsberoende menyn på anteckningens namnlist. Markera <guilabel
+>Alarm vid</guilabel
+> i nästa dialogruta och justera datum och tid för påminnelsen. Ett meddelandefönster dyker upp vid alarmtiden och listar alla anteckningar med det aktuella alarmdatumet.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Skicka en anteckning:</term>
+<listitem>
+<para
+>För att skicka en anteckning till en annan dator, välj <guimenuitem
+>Skicka...</guimenuitem
+> i den sammanhangsberoende menyn på anteckningens namnlist. Lägg till ett värddatornamn eller en IP-adress, eller välj en mottagare i listan med tidigare skickade anteckningar. Om mottagarna har aktiverat inkommande anteckningar, visas anteckningen på deras skärmar, och anger avsändarens id i namnlisten.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Låsa en anteckning:</term>
+<listitem>
+<para
+>För att förhindra oavsiktliga ändringar av en anteckning, välj <guimenuitem
+>Lås</guimenuitem
+> i den sammanhangsberoende menyn på anteckningens namnlist.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Spara en anteckning:</term>
+<listitem>
+<para
+>För att spara en anteckning, välj <guimenuitem
+>Spara som...</guimenuitem
+> i den sammanhangsberoende menyn på anteckningens namnlist. Anteckningen kan sparas som en vanlig textfil eller med &HTML;-format, om <guilabel
+>Rich text</guilabel
+> är aktiverat.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Visa anteckningar:</term>
+<listitem>
+<para
+>När du startar Anteckningslappar, är alla anteckningar gömda. Om du vill visa dem, vänsterklicka på Anteckningslappars panelikon och välj anteckningen som du vill visa.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Söka i alla anteckning:</term>
+<listitem>
+<para
+>Klicka med höger musknapp på panelikonen och välj <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Sök</guimenuitem
+></menuchoice
+> i den sammanhangsberoende menyn.</para>
+<para
+>En vanlig &kde;-dialogruta visas, där du kan skriva in texten att söka efter i alla anteckningar.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Skrivbordsfunktioner:</term>
+<listitem>
+<para
+>För att visa en anteckning på ett specifikt skrivbord, högerklicka på anteckningens rubrikrad och välj <guisubmenu
+>Till skrivbord</guisubmenu
+>. Välj önskat skrivbord, eller alternativt <guimenuitem
+>Alla skrivbord</guimenuitem
+>.</para>
+<para
+>För att få anteckningen att förbli ovanför andra fönster, högerklicka på anteckningens rubrikrad och välj <guimenuitem
+>Behåll ovanför andra</guimenuitem
+>.</para>
+<para
+>För att låta anteckningen återgå till mer normalt fönsterbeteende, välj <guimenuitem
+>Behåll under andra</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Avsluta Anteckningslappar</term>
+<listitem>
+<para
+>För att avsluta Anteckningslappar, högerklicka på panelikonen och välj <guimenuitem
+>Avsluta</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+<chapter id="configuration">
+<title
+>Anpassa</title>
+
+<sect1 id="defaults">
+<title
+>Anpassa Anteckningslappars standardinställningar</title>
+
+<para
+>För att anpassa Anteckningslappar högerklicka på panelikonen. Välj <guimenuitem
+>Anpassa Knotes...</guimenuitem
+> Dialogrutan <guilabel
+>Knotes inställningar</guilabel
+> visas.</para>
+
+<variablelist>
+<title
+>Sidan Skärm</title>
+<varlistentry>
+<term
+><guilabel
+>Textfärg:</guilabel
+></term>
+<listitem
+><para
+>Färgrutan visar den nuvarande textfärgen. Genom att klicka på den här rutan öppnar du &kde;:s vanliga färgvalsdialogruta.</para
+></listitem
+> 
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Bakgrundsfärg:</guilabel
+></term>
+<listitem
+><para
+>Färgrutan visar den nuvarande bakgrundsfärgen. Genom att klicka på den här rutan öppnar du &kde;:s vanliga färgvalsdialogruta.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Förvald bredd:</guilabel
+></term>
+<listitem
+><para
+>Bredden av anteckningen i bildpunkter. Redigera det här numret som du önskar.</para
+></listitem
+> 
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Förvald höjd:</guilabel
+></term>
+<listitem
+><para
+>Höjden av anteckningen i bildpunkter. Redigera det här numret som du önskar.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Visa anteckning i verktygsrad</guilabel
+></term>
+<listitem
+><para
+>Normalt visar inte Anteckningslappar en post i aktivitetsfältet för varje anteckning. Om du föredrar att göra det, aktivera det här alternativet.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Kom ihåg skrivbord</guilabel
+></term>
+<listitem
+><para
+>Om du använder flera virtuella skrivbord och alternativet är markerat, visas anteckningar bara på angivet skrivbord.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Sidan Editor</title>
+<varlistentry>
+<term
+><guilabel
+>Tabulatoravstånd</guilabel
+></term>
+<listitem
+><para
+>Det här är storleken på en tabulator i mellanslag. Redigera det här numret som önskas.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Automatisk indentering</guilabel
+></term>
+<listitem
+><para
+>Det här är en kryssruta. Om markerad, är automatisk indentering aktiverad.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Rich text</guilabel
+></term>
+<listitem>
+<para
+>Markera alternativet för att lägga till en formatverktygsrad längst ner i alla anteckningsfönster.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Teckensnitt för rubrik:</guilabel
+></term>
+<listitem
+><para
+>Du kan ändra teckensnittet som används för anteckningens rubrik.</para>
+
+<para
+>Klicka på <guibutton
+>Välj...</guibutton
+> för att öppna  &kde;:s vanliga dialogruta för val av teckensnitt.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Teckensnitt för text:</guilabel
+></term>
+<listitem>
+<para
+>Du kan ändra teckensnittet som används för anteckningens text.</para>
+
+<para
+>Klicka på <guibutton
+>Välj...</guibutton
+> för att öppna  &kde;:s vanliga dialogruta för val av teckensnitt.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Sidan Åtgärder</title>
+<varlistentry>
+<term
+><guilabel
+>E-post-åtgärd</guilabel
+></term>
+<listitem
+><para
+>Skriv ett e-postkommando och eventuella nödvändiga kommandoradsväljare i den här rutan.</para>
+<para
+>Genom att använda <token
+>%f</token
+> på kommandoraden kan du skicka anteckningslappens vanliga text och genom att använda <token
+>%t</token
+> anteckningslappens rubrik till e-postkommandot.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<variablelist>
+<title
+>Sidan Nätverk</title>
+<varlistentry>
+<term
+><guilabel
+>Acceptera inkommande anteckningar</guilabel
+></term>
+<listitem
+><para
+>Aktivera alternativet för att tillåta att anteckningar tas emot från andra datorer.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Avsändar-id</guilabel
+></term>
+<listitem
+><para
+>Id visas i anteckningens rubrik tillsammans med den ursprungliga rubriken, värddatornamn eller IP-adress och datum den skickades.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Port</guilabel
+></term>
+<listitem
+><para
+>Porten som används för att skicka anteckningar via nätverket, standardvärdet är 24837.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Sidan Skriv ut</title>
+<varlistentry>
+<term
+><guilabel
+>Tema</guilabel
+></term>
+<listitem
+><para
+>Temat som används för att skriva ut anteckningen.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Sidan Samlingar</title>
+<varlistentry>
+<term
+><guilabel
+>Kataloger</guilabel
+></term>
+<listitem
+><para
+>Under den här fliken kan du välja vilka kataloger som visas genom att aktivera kryssrutan framför kataloger, ändra standardkatalogen där anteckningar sparas, och lägga till underkataloger för anteckningar.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Konton</guilabel
+></term>
+<listitem
+><para
+>Under den här fliken kan du redigera de lokala maildir-katalogerna som ska användas för anteckningar.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Sidan Diverse</title>
+<varlistentry>
+<term
+>Diverse inställningar</term>
+<listitem
+><para
+>Aktivera för att visa antal anteckningar i systembrickans ikon</para>
+<para
+>För att anpassa standardrubriken kan du använda <userinput
+>%d</userinput
+> för aktuellt datum på kort format, <userinput
+>%I</userinput
+> för aktuellt datum på långt format och <userinput
+>%t</userinput
+> för aktuell tid.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="customizing-display">
+<title
+>Anpassa en antecknings utseende</title>
+
+<para
+>Du kan anpassa varje anteckning oberoende av de allmänna inställningarna. Inställningarna som du anpassar, är identiska med de som beskrivs i avsnittet <link linkend="configuration"
+>Anpassa</link
+>, men de gäller bara anteckningen som du ändrar. Alla andra öppna anteckningar, och alla nya anteckningar använder de allmänna inställningarna.</para>
+
+<para
+>För att anpassa visning av en enskild anteckning, högerklicka på anteckningens rubrikrad, och välj <guimenuitem
+>Inställningar...</guimenuitem
+>.</para>
+<para
+>Dialogrutan med sidorna <guilabel
+>Skärminställningar</guilabel
+> och <guilabel
+>Editorinställningar</guilabel
+> visas, som låter dig anpassa anteckningen.</para>
+</sect1>
+
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Tack till och licens</title>
+
+<para
+>&knotes;</para>
+
+<para
+>Program copyright 1997 Bernd Wuebben &Bernd.Johannes.Wuebben.mail;</para>
+
+<para
+>Bidragsgivare:</para>
+<itemizedlist>
+<listitem
+><para
+>Wynn Wilkes <email
+>wynnw@calderasystems.com</email
+></para>
+</listitem>
+</itemizedlist>
+
+<para
+>Dokumentation copyright 2000 &Greg.M.Holmes; <email
+>holmegm@earthlink.net</email
+></para>
+
+<para
+>Dokumentation uppdaterad 2001 av Fabian Del Santo &Fabian.DalSanto.mail; och 2003 av &Lauri.Watts; &Lauri.Watts.mail;.</para>
+
+
+<para
+>Översättning Stefan Asserhäll <email
+>stefan.asserhall@bredband.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index; 
+
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

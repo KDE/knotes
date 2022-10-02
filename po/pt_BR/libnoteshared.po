@@ -1,0 +1,196 @@
+# Translation of libnoteshared.po to Brazilian Portuguese
+# Copyright (C) 2013-2019 This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# André Marcelo Alvarenga <alvarenga@kde.org>, 2013, 2014, 2015, 2018, 2019.
+# Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: libnoteshared\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"PO-Revision-Date: 2021-11-09 10:36-0300\n"
+"Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
+"Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 20.04.2\n"
+
+#: alarms/notealarmdialog.cpp:41
+#, kde-format
+msgid "Scheduled Alarm"
+msgstr "Alarme configurado"
+
+#: alarms/notealarmdialog.cpp:44
+#, kde-format
+msgid "&No alarm"
+msgstr "&Nenhum alarme"
+
+#: alarms/notealarmdialog.cpp:53
+#, kde-format
+msgid "Alarm &at:"
+msgstr "&Alarme às:"
+
+#: config/noteactionconfig.cpp:23
+#, kde-format
+msgid "&Mail action:"
+msgstr "Ação de &e-mail:"
+
+#: config/noteactionconfig.cpp:31
+#, kde-format
+msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgstr "<a href=\"whatsthis\">Como isto funciona?</a>"
+
+#: config/noteactionconfig.cpp:44
+#, kde-format
+msgid ""
+"<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "
+"current note title</li><li>%f returns current note text</li></ul></qt>"
+msgstr ""
+"<qt><p>Você pode personalizar a linha de comando. Pode ser usado:</p><ul><li>"
+"%t devolve o título da nota atual</li><li>%f devolve o texto da nota atual</"
+"li></ul></qt>"
+
+#: config/notenetworkconfig.cpp:29
+#, kde-format
+msgid "Incoming Notes"
+msgstr "Notas recebidas"
+
+#: config/notenetworkconfig.cpp:32
+#, kde-format
+msgid "Accept incoming notes"
+msgstr "Aceitar notas recebidas"
+
+#: config/notenetworkconfig.cpp:38
+#, kde-format
+msgid "Outgoing Notes"
+msgstr "Notas a enviar"
+
+#: config/notenetworkconfig.cpp:41
+#, kde-format
+msgid "&Sender ID:"
+msgstr "&ID do remetente:"
+
+#: config/notenetworkconfig.cpp:53
+#, kde-format
+msgid "&Port:"
+msgstr "&Porta:"
+
+#: dialog/selectednotefolderdialog.cpp:22
+#, kde-format
+msgctxt "@title:window"
+msgid "Select Note Folder"
+msgstr "Selecionar a pasta de notas"
+
+#: dialog/selectednotefolderdialog.cpp:23
+#, kde-format
+msgctxt "@info"
+msgid "Select the folder where the note will be saved:"
+msgstr "Selecione a pasta onde a nota será gravada:"
+
+#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
+#, kde-format
+msgid ""
+"An error occurred during fetching. Do you want to select a new default "
+"collection?"
+msgstr ""
+"Ocorreu um erro durante a recepção. Deseja selecionar uma nova coleção "
+"padrão?"
+
+#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
+#, kde-format
+msgctxt "@action:button"
+msgid "Select New Default"
+msgstr "Selecionar novo padrão"
+
+#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
+#, kde-format
+msgctxt "@action:button"
+msgid "Ignore"
+msgstr "Ignorar"
+
+#: job/createnewnotejob.cpp:126
+#, kde-format
+msgid ""
+"Collection is hidden. New note will be stored but not displayed. Do you want "
+"to show collection?"
+msgstr ""
+"A coleção está oculta. As novas notas serão armazenadas, mas não ficarão "
+"visíveis. Deseja mostrar a coleção?"
+
+#: job/createnewnotejob.cpp:128
+#, kde-format
+msgctxt "@action::button"
+msgid "Show Collection"
+msgstr "Mostrar coleção"
+
+#: job/createnewnotejob.cpp:129
+#, kde-format
+msgctxt "@action::button"
+msgid "Do Not Show"
+msgstr "Não mostrar"
+
+#: job/createnewnotejob.cpp:184
+#, kde-format
+msgid "Note was not created."
+msgstr "A nota não foi criada."
+
+#: job/createnewnotejob.cpp:184
+#, kde-format
+msgid "Create new note"
+msgstr "Criar nova nota"
+
+#: network/notehostdialog.cpp:43
+#, kde-format
+msgid "Select recipient:"
+msgstr "Selecionar destinatário:"
+
+#: network/notehostdialog.cpp:59
+#, kde-format
+msgid "Hostname or IP address:"
+msgstr "Nome da máquina ou endereço IP:"
+
+#: network/notesnetworksender.cpp:74
+#, kde-format
+msgid "Communication error: %1"
+msgstr "Erro de comunicação: %1"
+
+#: noteutils.cpp:31
+#, kde-format
+msgid "Please configure send mail action."
+msgstr "Configure a ação de envio de mensagens."
+
+#: noteutils.cpp:39
+#, kde-format
+msgid "Note: \"%1\""
+msgstr "Nota: \"%1\""
+
+#: noteutils.cpp:46
+#, kde-format
+msgid "Unable to start the mail process."
+msgstr "Impossível iniciar o processo de envio/recebimento de e-mail."
+
+#: noteutils.cpp:55
+#, kde-format
+msgid "Send \"%1\""
+msgstr "Enviar \"%1\""
+
+#: noteutils.cpp:59
+#, kde-format
+msgid "The host cannot be empty."
+msgstr "A máquina não pode estar vazia."
+
+#: resources/localresourcecreator.cpp:70
+#, kde-format
+msgctxt "Default name for resource holding notes"
+msgid "Local Notes"
+msgstr "Notas locais"
+
+#. i18n: ectx: label, entry (Port), group (Network)
+#: settings/notesharedglobalconfig.kcfg:37
+#, kde-format
+msgid "The port will listen on and send notes to."
+msgstr "A porta onde os pedidos serão atendidos e enviadas as notas."

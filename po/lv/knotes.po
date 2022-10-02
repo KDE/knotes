@@ -1,0 +1,1237 @@
+# translation of knotes.po to Latvian
+# Copyright (C) 2007, 2008 Free Software Foundation, Inc.
+#
+# Viesturs Zarins <viesturs.zarins@mii.lu.lv>, 2007, 2008.
+# Viesturs Zariņš <viesturs.zarins@mii.lu.lv>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: knotes\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-02 00:48+0000\n"
+"PO-Revision-Date: 2009-06-01 20:23+0300\n"
+"Last-Translator: Viesturs Zariņš <viesturs.zarins@mii.lu.lv>\n"
+"Language-Team: Latvian <locale@laka.lv>\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Viesturs Zariņš, Andris Maziks"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "viesturs.zarins@mi.lu.lv, andris.m@delfi.lv"
+
+#: apps/knotes_options.h:13
+#, kde-format
+msgid "Suppress creation of a new note on a non-unique instance."
+msgstr "Apspiest jaunas piezīmes izveidošanu, ja KNotes jau palaists."
+
+#: apps/knotesakonaditray.cpp:21 apps/knotestray.cpp:18
+#, fuzzy, kde-format
+#| msgid "KNotes: Sticky notes for KDE"
+msgid "KNotes: Sticky notes by KDE"
+msgstr "KNotes: Piezīmjlapiņas priekš KDE"
+
+#: apps/knotesapp.cpp:85
+#, kde-format
+msgid "New Note"
+msgstr "Jauna piezīme"
+
+#: apps/knotesapp.cpp:92 kontactplugin/knotes_part.cpp:154
+#, kde-format
+msgid "New Note From Clipboard"
+msgstr "Jauna piezīme no starpliktuves"
+
+#: apps/knotesapp.cpp:97 kontactplugin/knotes_part.cpp:158
+#, fuzzy, kde-format
+#| msgid "New Note From Clipboard"
+msgid "New Note From Text File..."
+msgstr "Jauna piezīme no starpliktuves"
+
+#: apps/knotesapp.cpp:101
+#, kde-format
+msgid "Show All Notes"
+msgstr "Rādīt visas piezīmjlapiņas"
+
+#: apps/knotesapp.cpp:106
+#, kde-format
+msgid "Hide All Notes"
+msgstr "Slēpt visas piezīmjlapiņas"
+
+#: apps/knotesapp.cpp:111 kontactplugin/knotes_part.cpp:121
+#, fuzzy, kde-format
+#| msgid "Print Note"
+#| msgid_plural "Print %1 notes"
+msgctxt "@action:inmenu"
+msgid "Print Selected Notes..."
+msgstr "Drukāt %1 piezīmi"
+
+#: apps/knotesapp.cpp:116
+#, fuzzy, kde-format
+#| msgid "Print Note"
+#| msgid_plural "Print %1 notes"
+msgctxt "@action:inmenu"
+msgid "Delete Selected Notes..."
+msgstr "Drukāt %1 piezīmi"
+
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgid "Select Text File"
+msgstr "Izvēlieties saņēmēju:"
+
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#, fuzzy, kde-format
+#| msgid "Text Size"
+msgid "Text File"
+msgstr "Teksta izmērs"
+
+#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#, kde-format
+msgid "Error during open text file: %1"
+msgstr ""
+
+#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#, fuzzy, kde-format
+#| msgid "Text Size"
+msgid "Open Text File"
+msgstr "Teksta izmērs"
+
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:831
+#, kde-format
+msgid "Note from file '%1'"
+msgstr ""
+
+#: apps/knotesapp.cpp:510
+#, kde-format
+msgid "No Notes"
+msgstr "Nav piezīmju"
+
+#: apps/knotesapp.cpp:563 kontactplugin/knotes_part.cpp:587
+#, kde-format
+msgid "Settings"
+msgstr "Iestatījumi"
+
+#. i18n: ectx: Menu (knotes_context)
+#: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
+#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:43
+#: kontactplugin/knoteseditdialog.cpp:53
+#, kde-format
+msgid "KNotes"
+msgstr "KNotes"
+
+#: apps/main.cpp:47
+#, kde-format
+msgid "KDE Notes"
+msgstr "KDE piezīmes"
+
+#: apps/main.cpp:49
+#, kde-format
+msgid "Copyright © 1997–%1 KNotes authors"
+msgstr ""
+
+#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:45
+#, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: apps/main.cpp:69
+#, kde-format
+msgid "Maintainer"
+msgstr "Uzturētājs"
+
+#: apps/main.cpp:70
+#, kde-format
+msgid "Guillermo Antonio Amaral Bastidas"
+msgstr "Guillermo Antonio Amaral Bastidas"
+
+#: apps/main.cpp:70 apps/main.cpp:71
+#, kde-format
+msgid "Previous Maintainer"
+msgstr "Iepriekšējais uzturētājs"
+
+#: apps/main.cpp:71
+#, kde-format
+msgid "Michael Brade"
+msgstr "Michael Brade"
+
+#: apps/main.cpp:72
+#, kde-format
+msgid "Bernd Johannes Wuebben"
+msgstr "Bernd Johannes Wuebben"
+
+#: apps/main.cpp:72
+#, kde-format
+msgid "Original KNotes Author"
+msgstr "Sākotnējais KNotes autors"
+
+#: apps/main.cpp:73
+#, kde-format
+msgid "Wynn Wilkes"
+msgstr "Wynn Wilkes"
+
+#: apps/main.cpp:73
+#, kde-format
+msgid "Ported KNotes to KDE 2"
+msgstr "Pielāgoja KNotes KDE2"
+
+#: apps/main.cpp:74
+#, kde-format
+msgid "Daniel Martin"
+msgstr "Daniel Martin"
+
+#: apps/main.cpp:74
+#, kde-format
+msgid "Network Interface"
+msgstr "Tīkla saskarne"
+
+#: apps/main.cpp:75
+#, kde-format
+msgid "Bo Thorsen"
+msgstr "Bo Thorsen"
+
+#: apps/main.cpp:75
+#, kde-format
+msgid "Started KDE Resource Framework Integration"
+msgstr "Iesāka integrāciju ar KDE resursu karkasu"
+
+#: apps/main.cpp:76
+#, kde-format
+msgid "Bera Debajyoti"
+msgstr "Bera Debajyoti"
+
+#: apps/main.cpp:76
+#, kde-format
+msgid "Idea and initial code for the new look & feel"
+msgstr "Jaunā izskata ideja un sākotnējais kods"
+
+#: apps/main.cpp:77
+#, kde-format
+msgid "Matthias Ettrich"
+msgstr "Matthias Ettrich"
+
+#: apps/main.cpp:78
+#, kde-format
+msgid "David Faure"
+msgstr "David Faure"
+
+#: apps/main.cpp:79
+#, kde-format
+msgid "Matthias Kiefer"
+msgstr "Matthias Kiefer"
+
+#: apps/main.cpp:80
+#, kde-format
+msgid "Luboš Luňák"
+msgstr "Luboš Luňák"
+
+#: apps/main.cpp:81
+#, kde-format
+msgid "Dirk A. Mueller"
+msgstr "Dirk A. Mueller"
+
+#: apps/main.cpp:82
+#, kde-format
+msgid "Carsten Pfeiffer"
+msgstr "Carsten Pfeiffer"
+
+#: apps/main.cpp:83
+#, kde-format
+msgid "Harri Porten"
+msgstr "Harri Porten"
+
+#: apps/main.cpp:84
+#, kde-format
+msgid "Espen Sand"
+msgstr "Espen Sand"
+
+#: configdialog/knotecollectionconfigwidget.cpp:101
+#, kde-format
+msgid "Folders"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:103
+#, kde-format
+msgid "Select which KNotes folders to show:"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:134
+#, kde-format
+msgid "Search..."
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:152
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgid "&Select All"
+msgstr "Izvēlieties saņēmēju:"
+
+#: configdialog/knotecollectionconfigwidget.cpp:156
+#, kde-format
+msgid "&Unselect All"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:161
+#, fuzzy, kde-format
+#| msgid "Rename..."
+msgid "Rename notes..."
+msgstr "Pārdēvēt..."
+
+#: configdialog/knotecollectionconfigwidget.cpp:165
+#, kde-format
+msgctxt "@info"
+msgid "Select the folder where the note will be saved:"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:183
+#, fuzzy, kde-format
+#| msgid "Note Actions"
+msgid "Notes accounts"
+msgstr "Piezīmes darbības"
+
+#: configdialog/knotecollectionconfigwidget.cpp:188
+#, kde-format
+msgid "Accounts"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:218
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgid "Rename Notes"
+msgstr "Izvēlieties saņēmēju:"
+
+#: configdialog/knotecollectionconfigwidget.cpp:218
+#, kde-format
+msgid "Name:"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:236
+#, kde-format
+msgid "An error was occurred during renaming: %1"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:236
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgid "Rename note"
+msgstr "Izvēlieties saņēmēju:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:26
+#, kde-format
+msgid "&Text color:"
+msgstr "&Teksta krāsa:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:35
+#, kde-format
+msgid "&Background color:"
+msgstr "&Fona krāsa:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:45
+#, kde-format
+msgid "&Show note in taskbar"
+msgstr "&Rādīt piezīmi uzdevumjoslā"
+
+#: configdialog/knotedisplayconfigwidget.cpp:47
+#, kde-format
+msgid "&Remember desktop"
+msgstr "Atce&rēties darbvirsmu"
+
+#: configdialog/knotedisplayconfigwidget.cpp:51
+#, kde-format
+msgid "Default &width:"
+msgstr "Noklusētais &platums:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:62
+#, kde-format
+msgid "Default &height:"
+msgstr "Noklusētais a&ugstums:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:23
+#, kde-format
+msgid "&Tab size:"
+msgstr "&Cilnes izmērs:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:32
+#, kde-format
+msgid "Auto &indent"
+msgstr "Auto at&kāpe"
+
+#: configdialog/knoteeditorconfigwidget.cpp:36
+#, kde-format
+msgid "&Rich text"
+msgstr "&Bagātīgs teksts"
+
+#: configdialog/knoteeditorconfigwidget.cpp:40
+#, kde-format
+msgid "Text font:"
+msgstr "Teksta fonts:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:48
+#, kde-format
+msgid "Title font:"
+msgstr "Virsraksta fonts:"
+
+#: configdialog/knotesimpleconfigdialog.cpp:40
+#, kde-format
+msgid "Editor Settings"
+msgstr "Redaktora iestatījumi"
+
+#: configdialog/knotesimpleconfigdialog.cpp:43
+#, kde-format
+msgid "Display Settings"
+msgstr "Attēlošanas iestatījumi"
+
+#. i18n: ectx: Menu (help)
+#: data/knotesappui.rc:23
+#, kde-format
+msgid "&Help"
+msgstr "P&alīdzība"
+
+#. i18n: ectx: Menu (notes_menu)
+#: data/knotesappui.rc:35 data/knotesappui.rc:36
+#, kde-format
+msgid "Notes"
+msgstr "Piezīmes"
+
+#: dialog/knotedeleteselectednotesdialog.cpp:19
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@title:window"
+msgid "Select notes to delete"
+msgstr "Izvēlieties saņēmēju:"
+
+#: dialog/knoteselectednotesdialog.cpp:21
+#: print/knoteprintselectednotesdialog.cpp:27
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@title:window"
+msgid "Select notes"
+msgstr "Izvēlieties saņēmēju:"
+
+#: dialog/knoteskeydialog.cpp:19
+#, fuzzy, kde-format
+#| msgid "Configure Shortcuts"
+msgctxt "@title:window"
+msgid "Configure Shortcuts"
+msgstr "Konfigurēt īsceļus"
+
+#: dialog/knoteskeydialog.cpp:59
+#, kde-format
+msgid "Note Actions"
+msgstr "Piezīmes darbības"
+
+#: finddialog/knotefinddialog.cpp:28
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@title:window"
+msgid "Search Notes"
+msgstr "Izvēlieties saņēmēju:"
+
+#: finddialog/knotefinddialog.cpp:73
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@label:textbox"
+msgid "Search notes:"
+msgstr "Izvēlieties saņēmēju:"
+
+#: finddialog/knotefinddialog.cpp:81
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@action:button Search notes"
+msgid "Search..."
+msgstr "Izvēlieties saņēmēju:"
+
+#: finddialog/knotefinddialog.cpp:165
+#, kde-format
+msgctxt "@label"
+msgid "No Results found in search."
+msgstr ""
+
+#: finddialog/knotefinddialog.cpp:181
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgid "Show Note"
+msgstr "Rādīt visas piezīmjlapiņas"
+
+#: knoteconfigmodule.cpp:80
+#, kde-format
+msgid "Show number of notes in tray icon"
+msgstr ""
+
+#: knoteconfigmodule.cpp:87
+#, fuzzy, kde-format
+#| msgid "Default &width:"
+msgid "Default Title:"
+msgstr "Noklusētais &platums:"
+
+#: knoteconfigmodule.cpp:94
+#, kde-format
+msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgstr ""
+
+#: knoteconfigmodule.cpp:128
+#, kde-format
+msgid ""
+"<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
+"(short format)</li><li>%l current date (long format)</li><li>%t current "
+"time</li></ul></qt>"
+msgstr ""
+
+#: knoteconfigmodule.cpp:150
+#, kde-format
+msgid "Theme:"
+msgstr ""
+
+#: knoteconfigmodule.cpp:160
+#, fuzzy, kde-format
+#| msgid "Print Note"
+#| msgid_plural "Print %1 notes"
+msgid "Download new printing themes"
+msgstr "Drukāt %1 piezīmi"
+
+#: knoteedit.cpp:45
+#, kde-format
+msgid "Bold"
+msgstr "Trekns"
+
+#: knoteedit.cpp:48
+#, kde-format
+msgid "Italic"
+msgstr "Slīpraksts"
+
+#: knoteedit.cpp:51
+#, kde-format
+msgid "Underline"
+msgstr "Pasvītrots"
+
+#: knoteedit.cpp:54
+#, kde-format
+msgid "Strike Out"
+msgstr "Pārsvītrots"
+
+#: knoteedit.cpp:63
+#, kde-format
+msgid "Align Left"
+msgstr "Izlīdzināt gar kreiso"
+
+#: knoteedit.cpp:68
+#, kde-format
+msgid "Align Center"
+msgstr "Izlīdzināt centrā"
+
+#: knoteedit.cpp:72
+#, kde-format
+msgid "Align Right"
+msgstr "Izlīdzināt gar labo"
+
+#: knoteedit.cpp:76
+#, kde-format
+msgid "Align Block"
+msgstr "Izlīdzināt bloku"
+
+#: knoteedit.cpp:87
+#, kde-format
+msgid "List"
+msgstr "Saraksts"
+
+#: knoteedit.cpp:91
+#, kde-format
+msgid "Superscript"
+msgstr "Augšraksts"
+
+#: knoteedit.cpp:94
+#, kde-format
+msgid "Subscript"
+msgstr "Apakšraksts"
+
+#: knoteedit.cpp:98
+#, kde-format
+msgid "Increase Indent"
+msgstr "Palielināt atkāpi"
+
+#: knoteedit.cpp:103
+#, kde-format
+msgid "Decrease Indent"
+msgstr "Samazināt atkāpi"
+
+#: knoteedit.cpp:114
+#, kde-format
+msgid "Text Color..."
+msgstr "Teksta krāsa..."
+
+#: knoteedit.cpp:119
+#, kde-format
+msgid "Text Background Color..."
+msgstr "Teksta fona krāsa..."
+
+#: knoteedit.cpp:123
+#, kde-format
+msgid "Text Font"
+msgstr "Teksta fonts"
+
+#: knoteedit.cpp:126
+#, kde-format
+msgid "Text Size"
+msgstr "Teksta izmērs"
+
+#: knoteedit.cpp:137
+#, kde-format
+msgid "Insert Date"
+msgstr "Iespraust datumu"
+
+#: knoteedit.cpp:141
+#, kde-format
+msgid "Insert Checkmark"
+msgstr ""
+
+#: kontactplugin/kcmknotessummary.cpp:40
+#, kde-format
+msgid "kcmknotessummary"
+msgstr ""
+
+#: kontactplugin/kcmknotessummary.cpp:42
+#, kde-format
+msgid "Notes Summary Configuration Dialog"
+msgstr ""
+
+#: kontactplugin/kcmknotessummary.cpp:44
+#, kde-format
+msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:84
+#, kde-format
+msgctxt "@action:inmenu create new popup note"
+msgid "&New"
+msgstr ""
+
+#. i18nc( "@info:status", "Create a new popup note" ) );
+#: kontactplugin/knotes_part.cpp:92
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be presented with a dialog where you can add a new popup note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:94 kontactplugin/knotes_part.cpp:556
+#: kontactplugin/knotes_part.cpp:558 kontactplugin/knotes_part.cpp:738
+#, fuzzy, kde-format
+#| msgid "Editor"
+msgctxt "@action:inmenu"
+msgid "Edit..."
+msgstr "Redaktors"
+
+#. i18nc( "@info:status", "Edit popup note" ) );
+#: kontactplugin/knotes_part.cpp:101
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can modify an existing popup "
+"note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:103
+#, fuzzy, kde-format
+#| msgid "Rename..."
+msgctxt "@action:inmenu"
+msgid "Rename..."
+msgstr "Pārdēvēt..."
+
+#. i18nc( "@info:status", "Rename popup note" ) );
+#: kontactplugin/knotes_part.cpp:109
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can rename an existing popup "
+"note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:111
+#, fuzzy, kde-format
+#| msgid "Delete"
+msgctxt "@action:inmenu"
+msgid "Delete"
+msgstr "Dzēst"
+
+#: kontactplugin/knotes_part.cpp:118
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be prompted if you really want to permanently remove the selected "
+"popup note."
+msgstr ""
+
+#. i18nc( "@info:status", "Print popup note" ) );
+#: kontactplugin/knotes_part.cpp:126
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be prompted to print the selected popup note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:129
+#, fuzzy, kde-format
+#| msgid "Print Note"
+#| msgid_plural "Print %1 notes"
+msgctxt "@action:inmenu"
+msgid "Print Preview Selected Notes..."
+msgstr "Drukāt %1 piezīmi"
+
+#: kontactplugin/knotes_part.cpp:134
+#, fuzzy, kde-format
+#| msgid "Style Settings"
+msgid "Note settings..."
+msgstr "Stila iestatījumi"
+
+#: kontactplugin/knotes_part.cpp:138
+#, fuzzy, kde-format
+#| msgid "Preferences..."
+msgid "Preferences KNotes..."
+msgstr "Iestatījumi.."
+
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:683
+#, kde-format
+msgid "Mail..."
+msgstr "Sūtīt uz e-pastu..."
+
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:679
+#, kde-format
+msgid "Send..."
+msgstr "Sūtīt..."
+
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:675
+#, kde-format
+msgid "Set Alarm..."
+msgstr "Pievienot atgādinājumu..."
+
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:687
+#, kde-format
+msgid "Save As..."
+msgstr "Saglabāt kā..."
+
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:661
+#, kde-format
+msgid "Lock"
+msgstr "Slēgt"
+
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:664
+#, kde-format
+msgid "Unlock"
+msgstr "Atslēgt"
+
+#: kontactplugin/knotes_part.cpp:201
+#, kde-format
+msgid "Set Focus to Quick Search"
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:278
+#, kde-format
+msgctxt "@info"
+msgid "To print notes, first select the notes to print from the list."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:279
+#, fuzzy, kde-format
+#| msgid "Print Note"
+#| msgid_plural "Print %1 notes"
+msgctxt "@title:window"
+msgid "Print Popup Notes"
+msgstr "Drukāt %1 piezīmi"
+
+#: kontactplugin/knotes_part.cpp:319
+#, kde-format
+msgid "Note was not created."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:319
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgid "Create new note"
+msgstr "Izvēlieties saņēmēju:"
+
+#: kontactplugin/knotes_part.cpp:341
+#, fuzzy, kde-format
+#| msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgctxt "@info"
+msgid "Do you really want to delete this note?"
+msgstr "<qt>Vai tiešām vēlaties dzēst piezīmi <b>%1</b>?</qt>"
+
+#: kontactplugin/knotes_part.cpp:343
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:42
+#, fuzzy, kde-format
+#| msgid "Confirm Delete"
+msgctxt "@title:window"
+msgid "Confirm Delete"
+msgstr "Apstiprināt dzēšanu"
+
+#: kontactplugin/knotes_part.cpp:535
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@title:window"
+msgid "Rename Popup Note"
+msgstr "Izvēlieties saņēmēju:"
+
+#: kontactplugin/knotes_part.cpp:535
+#, fuzzy, kde-format
+#| msgid "New Note"
+msgctxt "@label:textbox"
+msgid "New Name:"
+msgstr "Jauna piezīme"
+
+#: kontactplugin/knotes_part.cpp:556 kontactplugin/knotes_part.cpp:738
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgid "Show Note..."
+msgstr "Rādīt visas piezīmjlapiņas"
+
+#: kontactplugin/knotes_part.cpp:691
+#, fuzzy, kde-format
+#| msgid "&Rich text"
+msgid "Rich text (*.html)"
+msgstr "&Bagātīgs teksts"
+
+#: kontactplugin/knotes_part.cpp:693
+#, kde-format
+msgid "Plain text (*.txt)"
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:696
+#, kde-format
+msgid "Save As"
+msgstr "Saglabāt kā"
+
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:503
+#, kde-format
+msgid ""
+"<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
+"overwrite it?</qt>"
+msgstr ""
+"<qt>Jau pastāv fails ar nosaukumu <b>%1</b>.<br />Vai tiešām vēlaties to "
+"pārrakstīt?</qt>"
+
+#: kontactplugin/knotes_plugin.cpp:45
+#, fuzzy, kde-format
+#| msgid "New Note"
+msgctxt "@action:inmenu"
+msgid "New Popup Note..."
+msgstr "Jauna piezīme"
+
+#. i18nc( "@info:status", "Create new popup note" ) );
+#: kontactplugin/knotes_plugin.cpp:51
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can create a new popup note."
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:77
+#, fuzzy, kde-kuit-format
+#| msgid "KNotes"
+msgctxt "@title"
+msgid "KNotes"
+msgstr "KNotes"
+
+#: kontactplugin/knotes_plugin.cpp:79
+#, fuzzy, kde-kuit-format
+#| msgid "No Notes"
+msgctxt "@title"
+msgid "Popup Notes"
+msgstr "Nav piezīmju"
+
+#: kontactplugin/knotes_plugin.cpp:81
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Copyright © 2003–%1 Kontact authors"
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:83
+#, fuzzy, kde-kuit-format
+#| msgid "Laurent Montel"
+msgctxt "@info:credit"
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: kontactplugin/knotes_plugin.cpp:83
+#, fuzzy, kde-kuit-format
+#| msgid "Maintainer"
+msgctxt "@info:credit"
+msgid "Current Maintainer"
+msgstr "Uzturētājs"
+
+#: kontactplugin/knotes_plugin.cpp:85
+#, fuzzy, kde-kuit-format
+#| msgid "Michael Brade"
+msgctxt "@info:credit"
+msgid "Michael Brade"
+msgstr "Michael Brade"
+
+#: kontactplugin/knotes_plugin.cpp:85
+#, fuzzy, kde-kuit-format
+#| msgid "Previous Maintainer"
+msgctxt "@info:credit"
+msgid "Previous Maintainer"
+msgstr "Iepriekšējais uzturētājs"
+
+#: kontactplugin/knotes_plugin.cpp:86
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Tobias Koenig"
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:86
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Developer"
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:117
+#, fuzzy, kde-format
+#| msgid "Settings"
+msgctxt "@item"
+msgid "Meeting"
+msgstr "Iestatījumi"
+
+#: kontactplugin/knotes_plugin.cpp:131 kontactplugin/knotes_plugin.cpp:135
+#, fuzzy, kde-format
+#| msgid "Notes"
+msgctxt "@item"
+msgid "Note: %1"
+msgstr "Piezīmes"
+
+#: kontactplugin/knotes_plugin.cpp:141
+#, fuzzy, kde-format
+#| msgid "New Note"
+msgctxt "@item"
+msgid "New Note"
+msgstr "Jauna piezīme"
+
+#: kontactplugin/knoteseditdialog.cpp:36
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@title:window"
+msgid "Show Popup Note"
+msgstr "Rādīt visas piezīmjlapiņas"
+
+#: kontactplugin/knoteseditdialog.cpp:36
+#, kde-format
+msgctxt "@title:window"
+msgid "Edit Popup Note"
+msgstr ""
+
+#: kontactplugin/knoteseditdialog.cpp:66
+#, kde-format
+msgctxt "@label popup note name"
+msgid "Name:"
+msgstr ""
+
+#: kontactplugin/knoteslistwidgetsearchline.cpp:41
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgid "Search notes..."
+msgstr "Izvēlieties saņēmēju:"
+
+#: kontactplugin/knoteslistwidgetsearchline.cpp:48
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgid "Search notes...<%1>"
+msgstr "Izvēlieties saņēmēju:"
+
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:31
+#, kde-format
+msgid "(note locked, it will not removed)"
+msgstr ""
+
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:55
+#, fuzzy, kde-format
+#| msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgid "Do you really want to delete this note?"
+msgid_plural "Do you really want to delete these %1 notes?"
+msgstr[0] "<qt>Vai tiešām vēlaties dzēst piezīmi <b>%1</b>?</qt>"
+msgstr[1] "<qt>Vai tiešām vēlaties dzēst piezīmi <b>%1</b>?</qt>"
+msgstr[2] "<qt>Vai tiešām vēlaties dzēst piezīmi <b>%1</b>?</qt>"
+
+#: kontactplugin/summarywidget.cpp:42
+#, fuzzy, kde-format
+#| msgid "No Notes"
+msgid "Popup Notes"
+msgstr "Nav piezīmju"
+
+#: kontactplugin/summarywidget.cpp:89
+#, fuzzy, kde-format
+#| msgid "Note Actions"
+msgid "No notes found"
+msgstr "Piezīmes darbības"
+
+#: kontactplugin/summarywidget.cpp:118
+#, kde-format
+msgid "Modify Note..."
+msgstr ""
+
+#: kontactplugin/summarywidget.cpp:120
+#, fuzzy, kde-format
+#| msgid "Print Note"
+#| msgid_plural "Print %1 notes"
+msgid "Delete Note..."
+msgstr "Drukāt %1 piezīmi"
+
+#: kontactplugin/summarywidget.cpp:195
+#, kde-format
+msgid "Read Popup Note: \"%1\""
+msgstr ""
+
+#: notes/knote.cpp:129
+#, kde-format
+msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgstr "<qt>Vai tiešām vēlaties dzēst piezīmi <b>%1</b>?</qt>"
+
+#: notes/knote.cpp:130
+#, kde-format
+msgid "Confirm Delete"
+msgstr "Apstiprināt dzēšanu"
+
+#: notes/knote.cpp:131
+#, kde-format
+msgid "&Delete"
+msgstr "&Dzēst"
+
+#: notes/knote.cpp:255
+#, kde-format
+msgid "Please enter the new name:"
+msgstr "Lūdzu ievadiet jaunu nosaukumu:"
+
+#: notes/knote.cpp:479
+#, kde-format
+msgid "Save note as plain text"
+msgstr "Saglabāt piezīmi kā vienkāršu tekstu"
+
+#: notes/knote.cpp:486
+#, fuzzy, kde-format
+#| msgid "Save As"
+msgctxt "@title:window"
+msgid "Save As"
+msgstr "Saglabāt kā"
+
+#: notes/knote.cpp:611
+#, kde-format
+msgid "&All Desktops"
+msgstr "&Visām darbvirsmām"
+
+#: notes/knote.cpp:653
+#, kde-format
+msgid "New"
+msgstr "Jauna"
+
+#: notes/knote.cpp:657
+#, kde-format
+msgid "Rename..."
+msgstr "Pārdēvēt..."
+
+#: notes/knote.cpp:666
+#, kde-format
+msgid "Hide"
+msgstr "Slēpt"
+
+#: notes/knote.cpp:671
+#, kde-format
+msgid "Delete"
+msgstr "Dzēst"
+
+#: notes/knote.cpp:696
+#, kde-format
+msgid "Preferences..."
+msgstr "Iestatījumi.."
+
+#: notes/knote.cpp:700
+#, kde-format
+msgid "Keep Above Others"
+msgstr "Turēt virs citiem"
+
+#: notes/knote.cpp:704
+#, kde-format
+msgid "Keep Below Others"
+msgstr "Turēt zem citiem"
+
+#: notes/knote.cpp:709
+#, kde-format
+msgid "To Desktop"
+msgstr "Uz darbvirsmu"
+
+#: notes/knote.cpp:717
+#, kde-format
+msgid "Walk Through Notes"
+msgstr "Iet caur piezīmēm"
+
+#: print/knotegrantleeprint.cpp:32
+#, fuzzy, kde-format
+#| msgid "Alarm"
+msgid "Alarm:"
+msgstr "Atgādinājums"
+
+#: print/knotegrantleeprint.cpp:33
+#, kde-format
+msgid "Note is locked"
+msgstr ""
+
+#: print/knoteprinter.cpp:112
+#, kde-format
+msgid "Print Note"
+msgid_plural "Print %1 notes"
+msgstr[0] "Drukāt %1 piezīmi"
+msgstr[1] "Drukāt %1 piezīmes"
+msgstr[2] "Drukāt %1 piezīmju"
+
+#: print/knoteprinter.cpp:119
+#, kde-format
+msgid "Printing theme was not found."
+msgstr ""
+
+#: print/knoteprinter.cpp:119
+#, kde-format
+msgid "Printing error"
+msgstr ""
+
+#: print/knoteprintselectednotesdialog.cpp:49
+#, fuzzy, kde-format
+#| msgid "Print Note"
+#| msgid_plural "Print %1 notes"
+msgid "Printing theme:"
+msgstr "Drukāt %1 piezīmi"
+
+#: print/knoteprintselectednotesdialog.cpp:56
+#, kde-format
+msgid "Preview"
+msgstr ""
+
+#: print/knoteprintselectednotesdialog.cpp:58
+#, fuzzy, kde-format
+#| msgid "Print %1"
+msgid "Print"
+msgstr "Drukāt %1"
+
+#: print/knoteprintselectthemedialog.cpp:21
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@title:window"
+msgid "Select theme"
+msgstr "Izvēlieties saņēmēju:"
+
+#: print/knoteprintselectthemedialog.cpp:38
+#, kde-format
+msgid "Themes:"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Note Actions"
+#~ msgid "KNotes Migration"
+#~ msgstr "Piezīmes darbības"
+
+#~ msgid "Scheduled Alarm"
+#~ msgstr "Plānots atgādinājums"
+
+#~ msgid "&No alarm"
+#~ msgstr "&Nav atgādinājuma"
+
+#~ msgid "Alarm &at:"
+#~ msgstr "&Atgādināt:"
+
+#~ msgid "The following notes triggered alarms:"
+#~ msgstr "Šīs piezīmes sūta atgādinājumus:"
+
+#~ msgid "Display"
+#~ msgstr "Izskats"
+
+#~ msgid ""
+#~ "<qt>Unable to save the notes to <b>%1</b>. Check that there is sufficient "
+#~ "disk space.<br />There should be a backup in the same directory though.</"
+#~ "qt>"
+#~ msgstr ""
+#~ "<qt>Neizdevās saglabāt piezīmes iekš <b>%1</b>. Pārbaudiet vai pietiek "
+#~ "vietas uz diska.<br />Šajā pašā mapē vajadzētu būt piezīmju rezerves "
+#~ "kopijai.</qt>"
+
+#~ msgid "Location:"
+#~ msgstr "Vieta:"
+
+#~ msgid "&Mail action:"
+#~ msgstr "&Pasta darbība:"
+
+#~ msgid "Incoming Notes"
+#~ msgstr "Ienākošās piezīmes"
+
+#~ msgid "Accept incoming notes"
+#~ msgstr "Pieņemt ienākošās piezīmes"
+
+#~ msgid "Outgoing Notes"
+#~ msgstr "Izstūtītās piezīmes"
+
+#~ msgid "&Sender ID:"
+#~ msgstr "&Sūtītāja ID:"
+
+#~ msgid "&Port:"
+#~ msgstr "&Ports: "
+
+#~ msgid "Select recipient:"
+#~ msgstr "Izvēlieties saņēmēju:"
+
+#~ msgid "Hostname or IP address:"
+#~ msgstr "Resursdators vai IP adrese:"
+
+#~ msgid "The port KNotes will listen on and send notes to."
+#~ msgstr "Ports, ko KNotes klausīsies un uz ko sūtīs piezīmes."
+
+#~ msgid "Unable to start the mail process."
+#~ msgstr "Neizdevās palaist pasta procesu."
+
+#~ msgid "Send \"%1\""
+#~ msgstr "Sūtīt \"%1\""
+
+#~ msgid "The host cannot be empty."
+#~ msgstr "Dators nevar būt tukšs."
+
+#~ msgid "Communication error: %1"
+#~ msgstr "Komunikāciju kļūda: %1"
+
+#~ msgid "Alarm &in:"
+#~ msgstr "Atgād&ināt:"
+
+#~ msgid "&Style:"
+#~ msgstr "&Stils:"
+
+#~ msgid "Plain"
+#~ msgstr "Vienkāršs"
+
+#~ msgid "(c) 1997-2009, The KNotes Developers"
+#~ msgstr "(c) 1997-2009, KNotes izstrādātāji"
+
+#~ msgid "Defaults"
+#~ msgstr "Noklusētie"
+
+#~ msgid "Default Settings for New Notes"
+#~ msgstr "Noklusētie iestatījumi jaunām piezīmēm"
+
+#~ msgid "Actions"
+#~ msgstr "Darbības"
+
+#~ msgid "Action Settings"
+#~ msgstr "Darbību iestatījumi"
+
+#~ msgid "Network"
+#~ msgstr "Tīkls"
+
+#~ msgid "Network Settings"
+#~ msgstr "Tīkla iestatījumi"
+
+#~ msgid "Style"
+#~ msgstr "Stils"
+
+#~ msgid "Displa&y"
+#~ msgstr "&Izskats"
+
+#~ msgid "&Editor"
+#~ msgstr "R&edaktors"

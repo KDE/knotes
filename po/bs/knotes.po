@@ -1,0 +1,1215 @@
+# translation of knotes.po to Bosanski
+# translation of knotes.po to Bosnian
+# KTranslator Generated File
+# Copyright (C) 1998, 2004 Free Software Foundation, Inc.
+# Vedran Ljubovic <vljubovic@smartnet.ba>, 2002, 2004.
+msgid ""
+msgstr ""
+"Project-Id-Version: knotes\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-02 00:48+0000\n"
+"PO-Revision-Date: 2014-02-08 00:15+0100\n"
+"Last-Translator: Samir Ribić <megaribi@epn.ba>\n"
+"Language-Team: Bosanski <bs@li.org>\n"
+"Language: bs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Launchpad (build 16831)\n"
+"X-Launchpad-Export-Date: 2013-11-16 06:22+0000\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Vedran Ljubović, Elvedin Edo K,Samir Ribić,Ahmed Alic "
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "vljubovic@smartnet.ba,eek@etf.ba,samir.ribic@etf.unsa.ba,aa@etf.ba"
+
+#: apps/knotes_options.h:13
+#, kde-format
+msgid "Suppress creation of a new note on a non-unique instance."
+msgstr "Zabraniti stvaranje novog zapisa na nejedinstvenoj kopiji."
+
+#: apps/knotesakonaditray.cpp:21 apps/knotestray.cpp:18
+#, fuzzy, kde-format
+#| msgid "KNotes: Sticky notes for KDE"
+msgid "KNotes: Sticky notes by KDE"
+msgstr "KNotes: Bilješke za KDE"
+
+#: apps/knotesapp.cpp:85
+#, kde-format
+msgid "New Note"
+msgstr "Nova bilješka"
+
+#: apps/knotesapp.cpp:92 kontactplugin/knotes_part.cpp:154
+#, kde-format
+msgid "New Note From Clipboard"
+msgstr "Nova bilješka iz clipboarda"
+
+#: apps/knotesapp.cpp:97 kontactplugin/knotes_part.cpp:158
+#, fuzzy, kde-format
+#| msgid "New Note From Clipboard"
+msgid "New Note From Text File..."
+msgstr "Nova bilješka iz clipboarda"
+
+#: apps/knotesapp.cpp:101
+#, kde-format
+msgid "Show All Notes"
+msgstr "Prikaži sve zabilješke"
+
+#: apps/knotesapp.cpp:106
+#, kde-format
+msgid "Hide All Notes"
+msgstr "Sakrij sve zabilješke"
+
+#: apps/knotesapp.cpp:111 kontactplugin/knotes_part.cpp:121
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Print Selected Notes..."
+msgstr "Štampaj izabrane bilješku..."
+
+#: apps/knotesapp.cpp:116
+#, fuzzy, kde-format
+#| msgctxt "@action:inmenu"
+#| msgid "Print Selected Notes..."
+msgctxt "@action:inmenu"
+msgid "Delete Selected Notes..."
+msgstr "Štampaj izabrane bilješku..."
+
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#, fuzzy, kde-format
+#| msgid "Select notes"
+msgid "Select Text File"
+msgstr "Izaberi bilješke"
+
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#, fuzzy, kde-format
+#| msgid "Text Size"
+msgid "Text File"
+msgstr "Veličina teksta"
+
+#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#, kde-format
+msgid "Error during open text file: %1"
+msgstr ""
+
+#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#, fuzzy, kde-format
+#| msgid "Text Size"
+msgid "Open Text File"
+msgstr "Veličina teksta"
+
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:831
+#, kde-format
+msgid "Note from file '%1'"
+msgstr ""
+
+#: apps/knotesapp.cpp:510
+#, kde-format
+msgid "No Notes"
+msgstr "Bez bilješki"
+
+#: apps/knotesapp.cpp:563 kontactplugin/knotes_part.cpp:587
+#, kde-format
+msgid "Settings"
+msgstr "Postavke akcije"
+
+#. i18n: ectx: Menu (knotes_context)
+#: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
+#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:43
+#: kontactplugin/knoteseditdialog.cpp:53
+#, kde-format
+msgid "KNotes"
+msgstr "KBilješke"
+
+#: apps/main.cpp:47
+#, kde-format
+msgid "KDE Notes"
+msgstr "KDE bilješke"
+
+#: apps/main.cpp:49
+#, fuzzy, kde-format
+#| msgid "Copyright © 1997–2014 KNotes authors"
+msgid "Copyright © 1997–%1 KNotes authors"
+msgstr "Autorska prava © 1997–2014 KNotes autori"
+
+#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:45
+#, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: apps/main.cpp:69
+#, kde-format
+msgid "Maintainer"
+msgstr "Održava"
+
+#: apps/main.cpp:70
+#, kde-format
+msgid "Guillermo Antonio Amaral Bastidas"
+msgstr "Guillermo Antonio Amaral Bastidas"
+
+#: apps/main.cpp:70 apps/main.cpp:71
+#, kde-format
+msgid "Previous Maintainer"
+msgstr "Prethodni Održavaoc"
+
+#: apps/main.cpp:71
+#, kde-format
+msgid "Michael Brade"
+msgstr "Michael Brade"
+
+#: apps/main.cpp:72
+#, kde-format
+msgid "Bernd Johannes Wuebben"
+msgstr "Bernd Johannes Wuebben"
+
+#: apps/main.cpp:72
+#, kde-format
+msgid "Original KNotes Author"
+msgstr "Originalni autor KBilješki"
+
+#: apps/main.cpp:73
+#, kde-format
+msgid "Wynn Wilkes"
+msgstr "Wynn Wilkes"
+
+#: apps/main.cpp:73
+#, kde-format
+msgid "Ported KNotes to KDE 2"
+msgstr "Prebacio KBilješke u KDE2"
+
+#: apps/main.cpp:74
+#, kde-format
+msgid "Daniel Martin"
+msgstr "Daniel Martin"
+
+#: apps/main.cpp:74
+#, kde-format
+msgid "Network Interface"
+msgstr "Mrežni interfejs"
+
+#: apps/main.cpp:75
+#, kde-format
+msgid "Bo Thorsen"
+msgstr "Bo Thorsen"
+
+#: apps/main.cpp:75
+#, kde-format
+msgid "Started KDE Resource Framework Integration"
+msgstr "Pokrenuta integracije KDE resursne mreže"
+
+#: apps/main.cpp:76
+#, kde-format
+msgid "Bera Debajyoti"
+msgstr "Bera Debajyoti"
+
+#: apps/main.cpp:76
+#, kde-format
+msgid "Idea and initial code for the new look & feel"
+msgstr "Ideja i početni kod za novi izgled i osjećaj"
+
+#: apps/main.cpp:77
+#, kde-format
+msgid "Matthias Ettrich"
+msgstr "Matthias Ettrich"
+
+#: apps/main.cpp:78
+#, kde-format
+msgid "David Faure"
+msgstr "David Faure"
+
+#: apps/main.cpp:79
+#, kde-format
+msgid "Matthias Kiefer"
+msgstr "Matthias Kiefer"
+
+#: apps/main.cpp:80
+#, kde-format
+msgid "Luboš Luňák"
+msgstr "Luboš Lunjak"
+
+#: apps/main.cpp:81
+#, kde-format
+msgid "Dirk A. Mueller"
+msgstr "Dirk A. Mueller"
+
+#: apps/main.cpp:82
+#, kde-format
+msgid "Carsten Pfeiffer"
+msgstr "Carsten Pfeiffer"
+
+#: apps/main.cpp:83
+#, kde-format
+msgid "Harri Porten"
+msgstr "Harri Porten"
+
+#: apps/main.cpp:84
+#, kde-format
+msgid "Espen Sand"
+msgstr "Espen Sand"
+
+#: configdialog/knotecollectionconfigwidget.cpp:101
+#, kde-format
+msgid "Folders"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:103
+#, kde-format
+msgid "Select which KNotes folders to show:"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:134
+#, kde-format
+msgid "Search..."
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:152
+#, kde-format
+msgid "&Select All"
+msgstr "&Izaberi sve"
+
+#: configdialog/knotecollectionconfigwidget.cpp:156
+#, kde-format
+msgid "&Unselect All"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:161
+#, fuzzy, kde-format
+#| msgid "Rename..."
+msgid "Rename notes..."
+msgstr "Promijeni ime..."
+
+#: configdialog/knotecollectionconfigwidget.cpp:165
+#, kde-format
+msgctxt "@info"
+msgid "Select the folder where the note will be saved:"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:183
+#, fuzzy, kde-format
+#| msgid "Note Actions"
+msgid "Notes accounts"
+msgstr "Akcije zabilješki"
+
+#: configdialog/knotecollectionconfigwidget.cpp:188
+#, kde-format
+msgid "Accounts"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:218
+#, fuzzy, kde-format
+#| msgid "Search Notes"
+msgid "Rename Notes"
+msgstr "Traži bilješke"
+
+#: configdialog/knotecollectionconfigwidget.cpp:218
+#, kde-format
+msgid "Name:"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:236
+#, kde-format
+msgid "An error was occurred during renaming: %1"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:236
+#, fuzzy, kde-format
+#| msgid "Select notes"
+msgid "Rename note"
+msgstr "Izaberi bilješke"
+
+#: configdialog/knotedisplayconfigwidget.cpp:26
+#, kde-format
+msgid "&Text color:"
+msgstr "&Boja teksta:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:35
+#, kde-format
+msgid "&Background color:"
+msgstr "Boja &pozadine:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:45
+#, kde-format
+msgid "&Show note in taskbar"
+msgstr "&Prikaži bilješku na traci zadataka"
+
+#: configdialog/knotedisplayconfigwidget.cpp:47
+#, kde-format
+msgid "&Remember desktop"
+msgstr "&Zapamti radnu površinu"
+
+#: configdialog/knotedisplayconfigwidget.cpp:51
+#, kde-format
+msgid "Default &width:"
+msgstr "Podrazumjevana &širina:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:62
+#, kde-format
+msgid "Default &height:"
+msgstr "Podrazumjevana &visina:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:23
+#, kde-format
+msgid "&Tab size:"
+msgstr "Veličina ta&bulatora:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:32
+#, kde-format
+msgid "Auto &indent"
+msgstr "Automatsko &uvlačenje"
+
+#: configdialog/knoteeditorconfigwidget.cpp:36
+#, kde-format
+msgid "&Rich text"
+msgstr "&Rich text"
+
+#: configdialog/knoteeditorconfigwidget.cpp:40
+#, kde-format
+msgid "Text font:"
+msgstr "Font teksta:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:48
+#, kde-format
+msgid "Title font:"
+msgstr "Font naslova:"
+
+#: configdialog/knotesimpleconfigdialog.cpp:40
+#, kde-format
+msgid "Editor Settings"
+msgstr "Postavke editora"
+
+#: configdialog/knotesimpleconfigdialog.cpp:43
+#, kde-format
+msgid "Display Settings"
+msgstr "Podešavanje prikaza"
+
+#. i18n: ectx: Menu (help)
+#: data/knotesappui.rc:23
+#, kde-format
+msgid "&Help"
+msgstr "&Pomoć"
+
+#. i18n: ectx: Menu (notes_menu)
+#: data/knotesappui.rc:35 data/knotesappui.rc:36
+#, kde-format
+msgid "Notes"
+msgstr "Bilješke"
+
+#: dialog/knotedeleteselectednotesdialog.cpp:19
+#, fuzzy, kde-format
+#| msgid "Select notes"
+msgctxt "@title:window"
+msgid "Select notes to delete"
+msgstr "Izaberi bilješke"
+
+#: dialog/knoteselectednotesdialog.cpp:21
+#: print/knoteprintselectednotesdialog.cpp:27
+#, fuzzy, kde-format
+#| msgid "Select notes"
+msgctxt "@title:window"
+msgid "Select notes"
+msgstr "Izaberi bilješke"
+
+#: dialog/knoteskeydialog.cpp:19
+#, fuzzy, kde-format
+#| msgid "Configure Shortcuts"
+msgctxt "@title:window"
+msgid "Configure Shortcuts"
+msgstr "Podesi prečice"
+
+#: dialog/knoteskeydialog.cpp:59
+#, kde-format
+msgid "Note Actions"
+msgstr "Akcije zabilješki"
+
+#: finddialog/knotefinddialog.cpp:28
+#, fuzzy, kde-format
+#| msgid "Search Notes"
+msgctxt "@title:window"
+msgid "Search Notes"
+msgstr "Traži bilješke"
+
+#: finddialog/knotefinddialog.cpp:73
+#, fuzzy, kde-format
+#| msgid "Search notes:"
+msgctxt "@label:textbox"
+msgid "Search notes:"
+msgstr "Traži bilješke:"
+
+#: finddialog/knotefinddialog.cpp:81
+#, fuzzy, kde-format
+#| msgid "Search notes:"
+msgctxt "@action:button Search notes"
+msgid "Search..."
+msgstr "Traži bilješke:"
+
+#: finddialog/knotefinddialog.cpp:165
+#, kde-format
+msgctxt "@label"
+msgid "No Results found in search."
+msgstr ""
+
+#: finddialog/knotefinddialog.cpp:181
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgid "Show Note"
+msgstr "Prikaži sve zabilješke"
+
+#: knoteconfigmodule.cpp:80
+#, kde-format
+msgid "Show number of notes in tray icon"
+msgstr ""
+
+#: knoteconfigmodule.cpp:87
+#, fuzzy, kde-format
+#| msgid "Default &width:"
+msgid "Default Title:"
+msgstr "Podrazumjevana &širina:"
+
+#: knoteconfigmodule.cpp:94
+#, kde-format
+msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgstr "<a href=\"whatsthis\">Kako ovo radi?</a>"
+
+#: knoteconfigmodule.cpp:128
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "
+#| "current note title</li><li>%f returns current note text</li></ul></qt>"
+msgid ""
+"<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
+"(short format)</li><li>%l current date (long format)</li><li>%t current "
+"time</li></ul></qt>"
+msgstr ""
+"<qt><p>Možete prilagoditi komandnu liniju. Možete koristiti:</p><ul><li>%t "
+"vraća trenutni naslov bilješke</li><li>%f vraća trenutni tekst zabilješke</"
+"li></ul></qt>"
+
+#: knoteconfigmodule.cpp:150
+#, kde-format
+msgid "Theme:"
+msgstr "Tema:"
+
+#: knoteconfigmodule.cpp:160
+#, kde-format
+msgid "Download new printing themes"
+msgstr "Preuzmi nove teme štampe"
+
+#: knoteedit.cpp:45
+#, kde-format
+msgid "Bold"
+msgstr "Masna"
+
+#: knoteedit.cpp:48
+#, kde-format
+msgid "Italic"
+msgstr "Kurzivno"
+
+#: knoteedit.cpp:51
+#, kde-format
+msgid "Underline"
+msgstr "Podvučena"
+
+#: knoteedit.cpp:54
+#, kde-format
+msgid "Strike Out"
+msgstr "Precrtana"
+
+#: knoteedit.cpp:63
+#, kde-format
+msgid "Align Left"
+msgstr "Poravnaj lijevo"
+
+#: knoteedit.cpp:68
+#, kde-format
+msgid "Align Center"
+msgstr "Centriraj"
+
+#: knoteedit.cpp:72
+#, kde-format
+msgid "Align Right"
+msgstr "Poravnaj desno"
+
+#: knoteedit.cpp:76
+#, kde-format
+msgid "Align Block"
+msgstr "Poravnaj obostrano"
+
+#: knoteedit.cpp:87
+#, kde-format
+msgid "List"
+msgstr "Lista"
+
+#: knoteedit.cpp:91
+#, kde-format
+msgid "Superscript"
+msgstr "Eksponent"
+
+#: knoteedit.cpp:94
+#, kde-format
+msgid "Subscript"
+msgstr "Indeks"
+
+#: knoteedit.cpp:98
+#, kde-format
+msgid "Increase Indent"
+msgstr "Povećaj uvlačenje"
+
+#: knoteedit.cpp:103
+#, kde-format
+msgid "Decrease Indent"
+msgstr "Umanji uvlačenje"
+
+#: knoteedit.cpp:114
+#, kde-format
+msgid "Text Color..."
+msgstr "Boja teksta..."
+
+#: knoteedit.cpp:119
+#, kde-format
+msgid "Text Background Color..."
+msgstr "Boja pozadine teksta..."
+
+#: knoteedit.cpp:123
+#, kde-format
+msgid "Text Font"
+msgstr "Font teksta"
+
+#: knoteedit.cpp:126
+#, kde-format
+msgid "Text Size"
+msgstr "Veličina teksta"
+
+#: knoteedit.cpp:137
+#, kde-format
+msgid "Insert Date"
+msgstr "Umetni datum"
+
+#: knoteedit.cpp:141
+#, kde-format
+msgid "Insert Checkmark"
+msgstr ""
+
+#: kontactplugin/kcmknotessummary.cpp:40
+#, kde-format
+msgid "kcmknotessummary"
+msgstr ""
+
+#: kontactplugin/kcmknotessummary.cpp:42
+#, kde-format
+msgid "Notes Summary Configuration Dialog"
+msgstr ""
+
+#: kontactplugin/kcmknotessummary.cpp:44
+#, kde-format
+msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:84
+#, kde-format
+msgctxt "@action:inmenu create new popup note"
+msgid "&New"
+msgstr ""
+
+#. i18nc( "@info:status", "Create a new popup note" ) );
+#: kontactplugin/knotes_part.cpp:92
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be presented with a dialog where you can add a new popup note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:94 kontactplugin/knotes_part.cpp:556
+#: kontactplugin/knotes_part.cpp:558 kontactplugin/knotes_part.cpp:738
+#, fuzzy, kde-format
+#| msgid "Editor"
+msgctxt "@action:inmenu"
+msgid "Edit..."
+msgstr "Editor"
+
+#. i18nc( "@info:status", "Edit popup note" ) );
+#: kontactplugin/knotes_part.cpp:101
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can modify an existing popup "
+"note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:103
+#, fuzzy, kde-format
+#| msgid "Rename..."
+msgctxt "@action:inmenu"
+msgid "Rename..."
+msgstr "Promijeni ime..."
+
+#. i18nc( "@info:status", "Rename popup note" ) );
+#: kontactplugin/knotes_part.cpp:109
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can rename an existing popup "
+"note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:111
+#, fuzzy, kde-format
+#| msgid "Delete"
+msgctxt "@action:inmenu"
+msgid "Delete"
+msgstr "Obriši"
+
+#: kontactplugin/knotes_part.cpp:118
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be prompted if you really want to permanently remove the selected "
+"popup note."
+msgstr ""
+
+#. i18nc( "@info:status", "Print popup note" ) );
+#: kontactplugin/knotes_part.cpp:126
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be prompted to print the selected popup note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:129
+#, fuzzy, kde-format
+#| msgctxt "@action:inmenu"
+#| msgid "Print Selected Notes..."
+msgctxt "@action:inmenu"
+msgid "Print Preview Selected Notes..."
+msgstr "Štampaj izabrane bilješku..."
+
+#: kontactplugin/knotes_part.cpp:134
+#, fuzzy, kde-format
+#| msgid "Note Actions"
+msgid "Note settings..."
+msgstr "Akcije zabilješki"
+
+#: kontactplugin/knotes_part.cpp:138
+#, fuzzy, kde-format
+#| msgid "Preferences..."
+msgid "Preferences KNotes..."
+msgstr "Postavke..."
+
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:683
+#, kde-format
+msgid "Mail..."
+msgstr "Pošalji..."
+
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:679
+#, kde-format
+msgid "Send..."
+msgstr "Promijeni ime..."
+
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:675
+#, kde-format
+msgid "Set Alarm..."
+msgstr "Postavi alarm..."
+
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:687
+#, kde-format
+msgid "Save As..."
+msgstr "Snimi kao"
+
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:661
+#, kde-format
+msgid "Lock"
+msgstr "Zaključaj"
+
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:664
+#, kde-format
+msgid "Unlock"
+msgstr "Otključaj"
+
+#: kontactplugin/knotes_part.cpp:201
+#, kde-format
+msgid "Set Focus to Quick Search"
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:278
+#, kde-format
+msgctxt "@info"
+msgid "To print notes, first select the notes to print from the list."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:279
+#, fuzzy, kde-format
+#| msgid "Print Note"
+#| msgid_plural "Print %1 notes"
+msgctxt "@title:window"
+msgid "Print Popup Notes"
+msgstr "Štampaj %1 bilješku"
+
+#: kontactplugin/knotes_part.cpp:319
+#, kde-format
+msgid "Note was not created."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:319
+#, fuzzy, kde-format
+#| msgid "Select notes"
+msgid "Create new note"
+msgstr "Izaberi bilješke"
+
+#: kontactplugin/knotes_part.cpp:341
+#, fuzzy, kde-format
+#| msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgctxt "@info"
+msgid "Do you really want to delete this note?"
+msgstr "<qt>Da li stvarno želite obrisati bilješku <b>%1</b>?</qt>"
+
+#: kontactplugin/knotes_part.cpp:343
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:42
+#, fuzzy, kde-format
+#| msgid "Confirm Delete"
+msgctxt "@title:window"
+msgid "Confirm Delete"
+msgstr "Potvrdite brisanje"
+
+#: kontactplugin/knotes_part.cpp:535
+#, fuzzy, kde-format
+#| msgid "Search Notes"
+msgctxt "@title:window"
+msgid "Rename Popup Note"
+msgstr "Traži bilješke"
+
+#: kontactplugin/knotes_part.cpp:535
+#, fuzzy, kde-format
+#| msgid "New Note"
+msgctxt "@label:textbox"
+msgid "New Name:"
+msgstr "Nova bilješka"
+
+#: kontactplugin/knotes_part.cpp:556 kontactplugin/knotes_part.cpp:738
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgid "Show Note..."
+msgstr "Prikaži sve zabilješke"
+
+#: kontactplugin/knotes_part.cpp:691
+#, fuzzy, kde-format
+#| msgid "&Rich text"
+msgid "Rich text (*.html)"
+msgstr "&Rich text"
+
+#: kontactplugin/knotes_part.cpp:693
+#, kde-format
+msgid "Plain text (*.txt)"
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:696
+#, kde-format
+msgid "Save As"
+msgstr "Snimi kao"
+
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:503
+#, kde-format
+msgid ""
+"<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
+"overwrite it?</qt>"
+msgstr ""
+"<qt>Datoteka po imenu<b>%1</b> ve' postoji.<br />Da li ste sigurni da "
+"\\elite pisati preko nje?</qt>"
+
+#: kontactplugin/knotes_plugin.cpp:45
+#, fuzzy, kde-format
+#| msgid "New Note"
+msgctxt "@action:inmenu"
+msgid "New Popup Note..."
+msgstr "Nova bilješka"
+
+#. i18nc( "@info:status", "Create new popup note" ) );
+#: kontactplugin/knotes_plugin.cpp:51
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can create a new popup note."
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:77
+#, fuzzy, kde-kuit-format
+#| msgid "KNotes"
+msgctxt "@title"
+msgid "KNotes"
+msgstr "KBilješke"
+
+#: kontactplugin/knotes_plugin.cpp:79
+#, fuzzy, kde-kuit-format
+#| msgid "No Notes"
+msgctxt "@title"
+msgid "Popup Notes"
+msgstr "Bez bilješki"
+
+#: kontactplugin/knotes_plugin.cpp:81
+#, fuzzy, kde-kuit-format
+#| msgid "Copyright © 1997–2014 KNotes authors"
+msgctxt "@info:credit"
+msgid "Copyright © 2003–%1 Kontact authors"
+msgstr "Autorska prava © 1997–2014 KNotes autori"
+
+#: kontactplugin/knotes_plugin.cpp:83
+#, fuzzy, kde-kuit-format
+#| msgid "Laurent Montel"
+msgctxt "@info:credit"
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: kontactplugin/knotes_plugin.cpp:83
+#, fuzzy, kde-kuit-format
+#| msgid "Maintainer"
+msgctxt "@info:credit"
+msgid "Current Maintainer"
+msgstr "Održava"
+
+#: kontactplugin/knotes_plugin.cpp:85
+#, fuzzy, kde-kuit-format
+#| msgid "Michael Brade"
+msgctxt "@info:credit"
+msgid "Michael Brade"
+msgstr "Michael Brade"
+
+#: kontactplugin/knotes_plugin.cpp:85
+#, fuzzy, kde-kuit-format
+#| msgid "Previous Maintainer"
+msgctxt "@info:credit"
+msgid "Previous Maintainer"
+msgstr "Prethodni Održavaoc"
+
+#: kontactplugin/knotes_plugin.cpp:86
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Tobias Koenig"
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:86
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Developer"
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:117
+#, fuzzy, kde-format
+#| msgid "Settings"
+msgctxt "@item"
+msgid "Meeting"
+msgstr "Postavke akcije"
+
+#: kontactplugin/knotes_plugin.cpp:131 kontactplugin/knotes_plugin.cpp:135
+#, fuzzy, kde-format
+#| msgid "Notes"
+msgctxt "@item"
+msgid "Note: %1"
+msgstr "Bilješke"
+
+#: kontactplugin/knotes_plugin.cpp:141
+#, fuzzy, kde-format
+#| msgid "New Note"
+msgctxt "@item"
+msgid "New Note"
+msgstr "Nova bilješka"
+
+#: kontactplugin/knoteseditdialog.cpp:36
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@title:window"
+msgid "Show Popup Note"
+msgstr "Prikaži sve zabilješke"
+
+#: kontactplugin/knoteseditdialog.cpp:36
+#, kde-format
+msgctxt "@title:window"
+msgid "Edit Popup Note"
+msgstr ""
+
+#: kontactplugin/knoteseditdialog.cpp:66
+#, kde-format
+msgctxt "@label popup note name"
+msgid "Name:"
+msgstr ""
+
+#: kontactplugin/knoteslistwidgetsearchline.cpp:41
+#, fuzzy, kde-format
+#| msgid "Search notes:"
+msgid "Search notes..."
+msgstr "Traži bilješke:"
+
+#: kontactplugin/knoteslistwidgetsearchline.cpp:48
+#, fuzzy, kde-format
+#| msgid "Search notes:"
+msgid "Search notes...<%1>"
+msgstr "Traži bilješke:"
+
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:31
+#, kde-format
+msgid "(note locked, it will not removed)"
+msgstr ""
+
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:55
+#, fuzzy, kde-format
+#| msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgid "Do you really want to delete this note?"
+msgid_plural "Do you really want to delete these %1 notes?"
+msgstr[0] "<qt>Da li stvarno želite obrisati bilješku <b>%1</b>?</qt>"
+msgstr[1] "<qt>Da li stvarno želite obrisati bilješku <b>%1</b>?</qt>"
+msgstr[2] "<qt>Da li stvarno želite obrisati bilješku <b>%1</b>?</qt>"
+
+#: kontactplugin/summarywidget.cpp:42
+#, fuzzy, kde-format
+#| msgid "No Notes"
+msgid "Popup Notes"
+msgstr "Bez bilješki"
+
+#: kontactplugin/summarywidget.cpp:89
+#, fuzzy, kde-format
+#| msgid "Note Actions"
+msgid "No notes found"
+msgstr "Akcije zabilješki"
+
+#: kontactplugin/summarywidget.cpp:118
+#, kde-format
+msgid "Modify Note..."
+msgstr ""
+
+#: kontactplugin/summarywidget.cpp:120
+#, fuzzy, kde-format
+#| msgctxt "@action:inmenu"
+#| msgid "Print Selected Notes..."
+msgid "Delete Note..."
+msgstr "Štampaj izabrane bilješku..."
+
+#: kontactplugin/summarywidget.cpp:195
+#, kde-format
+msgid "Read Popup Note: \"%1\""
+msgstr ""
+
+#: notes/knote.cpp:129
+#, kde-format
+msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgstr "<qt>Da li stvarno želite obrisati bilješku <b>%1</b>?</qt>"
+
+#: notes/knote.cpp:130
+#, kde-format
+msgid "Confirm Delete"
+msgstr "Potvrdite brisanje"
+
+#: notes/knote.cpp:131
+#, kde-format
+msgid "&Delete"
+msgstr "&Obriši"
+
+#: notes/knote.cpp:255
+#, kde-format
+msgid "Please enter the new name:"
+msgstr "Molim vas unesite novo ime:"
+
+#: notes/knote.cpp:479
+#, kde-format
+msgid "Save note as plain text"
+msgstr "Snimi zabilješku kao običan tekst"
+
+#: notes/knote.cpp:486
+#, fuzzy, kde-format
+#| msgid "Save As"
+msgctxt "@title:window"
+msgid "Save As"
+msgstr "Snimi kao"
+
+#: notes/knote.cpp:611
+#, kde-format
+msgid "&All Desktops"
+msgstr "&Svi desktopi"
+
+#: notes/knote.cpp:653
+#, kde-format
+msgid "New"
+msgstr "Novi"
+
+#: notes/knote.cpp:657
+#, kde-format
+msgid "Rename..."
+msgstr "Promijeni ime..."
+
+#: notes/knote.cpp:666
+#, kde-format
+msgid "Hide"
+msgstr "Sakrij"
+
+#: notes/knote.cpp:671
+#, kde-format
+msgid "Delete"
+msgstr "Obriši"
+
+#: notes/knote.cpp:696
+#, kde-format
+msgid "Preferences..."
+msgstr "Postavke..."
+
+#: notes/knote.cpp:700
+#, kde-format
+msgid "Keep Above Others"
+msgstr "Drži iznad ostalih"
+
+#: notes/knote.cpp:704
+#, kde-format
+msgid "Keep Below Others"
+msgstr "Drži ispod ostalih"
+
+#: notes/knote.cpp:709
+#, kde-format
+msgid "To Desktop"
+msgstr "Na desktop"
+
+#: notes/knote.cpp:717
+#, kde-format
+msgid "Walk Through Notes"
+msgstr "Šetaj kroz zabilješke"
+
+#: print/knotegrantleeprint.cpp:32
+#, fuzzy, kde-format
+#| msgid "Alarm"
+msgid "Alarm:"
+msgstr "Alarm"
+
+#: print/knotegrantleeprint.cpp:33
+#, kde-format
+msgid "Note is locked"
+msgstr ""
+
+#: print/knoteprinter.cpp:112
+#, kde-format
+msgid "Print Note"
+msgid_plural "Print %1 notes"
+msgstr[0] "Štampaj %1 bilješku"
+msgstr[1] "Štampaj %1 bilješke"
+msgstr[2] "Štampaj %1 bilješki"
+
+#: print/knoteprinter.cpp:119
+#, kde-format
+msgid "Printing theme was not found."
+msgstr "Tema štampanja je nađena."
+
+#: print/knoteprinter.cpp:119
+#, kde-format
+msgid "Printing error"
+msgstr "Greška štampanja"
+
+#: print/knoteprintselectednotesdialog.cpp:49
+#, kde-format
+msgid "Printing theme:"
+msgstr "Štampa teme:"
+
+#: print/knoteprintselectednotesdialog.cpp:56
+#, kde-format
+msgid "Preview"
+msgstr "Pregled"
+
+#: print/knoteprintselectednotesdialog.cpp:58
+#, kde-format
+msgid "Print"
+msgstr "Štampa"
+
+#: print/knoteprintselectthemedialog.cpp:21
+#, fuzzy, kde-format
+#| msgid "Select theme"
+msgctxt "@title:window"
+msgid "Select theme"
+msgstr "Izaberi temu"
+
+#: print/knoteprintselectthemedialog.cpp:38
+#, kde-format
+msgid "Themes:"
+msgstr "Teme:"
+
+#~ msgid "KNotes Migration"
+#~ msgstr "KNotes migracija"
+
+#~ msgid "Uppercase"
+#~ msgstr "Velika slova"
+
+#~ msgid "Lowercase"
+#~ msgstr "Mala slova"
+
+#~ msgid "Change case..."
+#~ msgstr "Promijeni  veličinu slova..."
+
+#~ msgid "Send \"%1\""
+#~ msgstr "Pošalji \"%1\""
+
+#~ msgid "The host cannot be empty."
+#~ msgstr "Ime računara ne može biti prazno."
+
+#~ msgid "Unable to start the mail process."
+#~ msgstr "Ne mogu pokrenuti proces za poštu."
+
+#~ msgid "Scheduled Alarm"
+#~ msgstr "Planirani alarm"
+
+#~ msgid "&No alarm"
+#~ msgstr "&Bez alarma"
+
+#~ msgid "Alarm &at:"
+#~ msgstr "Alarm &u:"
+
+#~ msgid "Alarm &in:"
+#~ msgstr "Alarm &za:"
+
+#~ msgid "&Mail action:"
+#~ msgstr "&Akcija slanja:"
+
+#~ msgid "Incoming Notes"
+#~ msgstr "Dolazeće poruke"
+
+#~ msgid "Accept incoming notes"
+#~ msgstr "Prihvati dolazeće poruke"
+
+#~ msgid "Outgoing Notes"
+#~ msgstr "Odlazeće bilješke"
+
+#~ msgid "&Sender ID:"
+#~ msgstr "ID &pošiljaoca:"
+
+#~ msgid "&Port:"
+#~ msgstr "&Port:"
+
+#~ msgid "Print %1"
+#~ msgstr "Štampaj %1"
+
+#~ msgid "The following notes triggered alarms:"
+#~ msgstr "Sljedeće zabilješke okinule su alarmi:"
+
+#~ msgid "Display"
+#~ msgstr "Prikaži"
+
+#~ msgid "Copyright © 1997–2013 KNotes authors"
+#~ msgstr "Autorska prava © 1997–2013 KNotes autori"
+
+#~ msgid "Select recipient:"
+#~ msgstr "Izaberi primaoca"
+
+#~ msgid "Hostname or IP address:"
+#~ msgstr "Ime ili IP adresa računara:"
+
+#~ msgid "Communication error: %1"
+#~ msgstr "Greška u komunikaciji: %1"
+
+#~ msgid ""
+#~ "<qt>Unable to save the notes to <b>%1</b>. Check that there is sufficient "
+#~ "disk space.<br />There should be a backup in the same directory though.</"
+#~ "qt>"
+#~ msgstr ""
+#~ "<qt>Nemoguće spasiti zapise na<b>%1</b>. Provjerite ima li dovoljno "
+#~ "memorije na disku.<br/>Ipak bi trebala  biti rezerva u istom direktoriju."
+#~ "</qt>"
+
+#~ msgid "Location:"
+#~ msgstr "Lokacija:"
+
+#~ msgid "The port KNotes will listen on and send notes to."
+#~ msgstr "Port na kojem sluša KNotes i na koji će slati poruke."

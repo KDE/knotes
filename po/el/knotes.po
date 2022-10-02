@@ -1,0 +1,1190 @@
+# translation of knotes.po to greek
+# Copyright (C) 2002, 2003, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+#
+# Stergios Dramis <sdramis@egnatia.ee.auth.gr>, 2002-2003.
+# Spiros Georgaras <sng@hellug.gr>, 2005, 2006, 2007.
+# Toussis Manolis <manolis@koppermind.homelinux.org>, 2007, 2008, 2009.
+# Dimitrios Glentadakis <dglent@gmail.com>, 2011, 2012.
+# Stelios <sstavra@gmail.com>, 2020, 2021.
+# Petros Vidalis <pvidalis@gmail.com>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: knotes\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-02 00:48+0000\n"
+"PO-Revision-Date: 2022-03-03 12:04+0200\n"
+"Last-Translator: Petros Vidalis <pvidalis@gmail.com>\n"
+"Language-Team: Greek <kde-i18n-el@kde.org>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 21.08.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Σπύρος Γεωργαράς, Τούσης Μανώλης"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "sng@hellug.gr, manolis@koppermind.homelinux.org"
+
+#: apps/knotes_options.h:13
+#, kde-format
+msgid "Suppress creation of a new note on a non-unique instance."
+msgstr ""
+"Καταστολή δημιουργίας ενός νέου σημειώματος σε μια μη μοναδική διεργασία."
+
+#: apps/knotesakonaditray.cpp:21 apps/knotestray.cpp:18
+#, kde-format
+msgid "KNotes: Sticky notes by KDE"
+msgstr "KNotes: Επικολλημένα σημειώματα από το KDE"
+
+#: apps/knotesapp.cpp:85
+#, kde-format
+msgid "New Note"
+msgstr "Νέο σημείωμα"
+
+#: apps/knotesapp.cpp:92 kontactplugin/knotes_part.cpp:154
+#, kde-format
+msgid "New Note From Clipboard"
+msgstr "Νέο σημείωμα από το πρόχειρο"
+
+#: apps/knotesapp.cpp:97 kontactplugin/knotes_part.cpp:158
+#, kde-format
+msgid "New Note From Text File..."
+msgstr "Νέο σημείωμα από αρχείο κειμένου..."
+
+#: apps/knotesapp.cpp:101
+#, kde-format
+msgid "Show All Notes"
+msgstr "Εμφάνιση όλων των σημειωμάτων"
+
+#: apps/knotesapp.cpp:106
+#, kde-format
+msgid "Hide All Notes"
+msgstr "Απόκρυψη όλων των σημειωμάτων"
+
+#: apps/knotesapp.cpp:111 kontactplugin/knotes_part.cpp:121
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Print Selected Notes..."
+msgstr "Εκτύπωση επιλεγμένων σημειωμάτων..."
+
+#: apps/knotesapp.cpp:116
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Delete Selected Notes..."
+msgstr "Διαγραφή επιλεγμένων σημειωμάτων..."
+
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#, kde-format
+msgid "Select Text File"
+msgstr "Επιλογή αρχείου κειμένου"
+
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#, kde-format
+msgid "Text File"
+msgstr "Αρχείο κειμένου"
+
+#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#, kde-format
+msgid "Error during open text file: %1"
+msgstr "Σφάλμα κατά το άνοιγμα αρχείου κειμένου: %1"
+
+#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#, kde-format
+msgid "Open Text File"
+msgstr "Άνοιγμα αρχείου κειμένου"
+
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:831
+#, kde-format
+msgid "Note from file '%1'"
+msgstr "Σημείωμα από αρχείο '%1'"
+
+#: apps/knotesapp.cpp:510
+#, kde-format
+msgid "No Notes"
+msgstr "Κανένα σημείωμα"
+
+#: apps/knotesapp.cpp:563 kontactplugin/knotes_part.cpp:587
+#, kde-format
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#. i18n: ectx: Menu (knotes_context)
+#: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
+#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:43
+#: kontactplugin/knoteseditdialog.cpp:53
+#, kde-format
+msgid "KNotes"
+msgstr "KNotes"
+
+#: apps/main.cpp:47
+#, kde-format
+msgid "KDE Notes"
+msgstr "Σημειώματα για το KDE"
+
+#: apps/main.cpp:49
+#, kde-format
+msgid "Copyright © 1997–%1 KNotes authors"
+msgstr "Πνευματικά Δικαιώματα © 1997–%1 οι συγγραφείς του KNotes"
+
+#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:45
+#, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: apps/main.cpp:69
+#, kde-format
+msgid "Maintainer"
+msgstr "Συντηρητής"
+
+#: apps/main.cpp:70
+#, kde-format
+msgid "Guillermo Antonio Amaral Bastidas"
+msgstr "Guillermo Antonio Amaral Bastidas"
+
+#: apps/main.cpp:70 apps/main.cpp:71
+#, kde-format
+msgid "Previous Maintainer"
+msgstr "Πρώην συντηρητής"
+
+#: apps/main.cpp:71
+#, kde-format
+msgid "Michael Brade"
+msgstr "Michael Brade"
+
+#: apps/main.cpp:72
+#, kde-format
+msgid "Bernd Johannes Wuebben"
+msgstr "Bernd Johannes Wuebben"
+
+#: apps/main.cpp:72
+#, kde-format
+msgid "Original KNotes Author"
+msgstr "Αρχικός συγγραφέας του KNotes"
+
+#: apps/main.cpp:73
+#, kde-format
+msgid "Wynn Wilkes"
+msgstr "Wynn Wilkes"
+
+#: apps/main.cpp:73
+#, kde-format
+msgid "Ported KNotes to KDE 2"
+msgstr "Προσαρμογή του KNotes στο KDE 2"
+
+#: apps/main.cpp:74
+#, kde-format
+msgid "Daniel Martin"
+msgstr "Daniel Martin"
+
+#: apps/main.cpp:74
+#, kde-format
+msgid "Network Interface"
+msgstr "Διεπαφή δικτύου"
+
+#: apps/main.cpp:75
+#, kde-format
+msgid "Bo Thorsen"
+msgstr "Bo Thorsen"
+
+#: apps/main.cpp:75
+#, kde-format
+msgid "Started KDE Resource Framework Integration"
+msgstr "Ξεκίνησε την ενσωμάτωση του πλαισίου πόρων του KDE"
+
+#: apps/main.cpp:76
+#, kde-format
+msgid "Bera Debajyoti"
+msgstr "Bera Debajyoti"
+
+#: apps/main.cpp:76
+#, kde-format
+msgid "Idea and initial code for the new look & feel"
+msgstr "Έμπνευση και αρχικός κώδικας για τη νέα εμφάνιση"
+
+#: apps/main.cpp:77
+#, kde-format
+msgid "Matthias Ettrich"
+msgstr "Matthias Ettrich"
+
+#: apps/main.cpp:78
+#, kde-format
+msgid "David Faure"
+msgstr "David Faure"
+
+#: apps/main.cpp:79
+#, kde-format
+msgid "Matthias Kiefer"
+msgstr "Matthias Kiefer"
+
+#: apps/main.cpp:80
+#, kde-format
+msgid "Luboš Luňák"
+msgstr "Luboš Luňák"
+
+#: apps/main.cpp:81
+#, kde-format
+msgid "Dirk A. Mueller"
+msgstr "Dirk A. Mueller"
+
+#: apps/main.cpp:82
+#, kde-format
+msgid "Carsten Pfeiffer"
+msgstr "Carsten Pfeiffer"
+
+#: apps/main.cpp:83
+#, kde-format
+msgid "Harri Porten"
+msgstr "Harri Porten"
+
+#: apps/main.cpp:84
+#, kde-format
+msgid "Espen Sand"
+msgstr "Espen Sand"
+
+#: configdialog/knotecollectionconfigwidget.cpp:101
+#, kde-format
+msgid "Folders"
+msgstr "Φάκελοι"
+
+#: configdialog/knotecollectionconfigwidget.cpp:103
+#, kde-format
+msgid "Select which KNotes folders to show:"
+msgstr "Επιλέξτε ποιοι φάκελοι του KNotes θα εμφανίζονται:"
+
+#: configdialog/knotecollectionconfigwidget.cpp:134
+#, kde-format
+msgid "Search..."
+msgstr "Αναζήτηση..."
+
+#: configdialog/knotecollectionconfigwidget.cpp:152
+#, kde-format
+msgid "&Select All"
+msgstr "Επι&λογή όλων"
+
+#: configdialog/knotecollectionconfigwidget.cpp:156
+#, kde-format
+msgid "&Unselect All"
+msgstr "Α&ναίρεση επιλογής όλων"
+
+#: configdialog/knotecollectionconfigwidget.cpp:161
+#, kde-format
+msgid "Rename notes..."
+msgstr "Μετονομασία σημειωμάτων..."
+
+#: configdialog/knotecollectionconfigwidget.cpp:165
+#, kde-format
+msgctxt "@info"
+msgid "Select the folder where the note will be saved:"
+msgstr "Επιλέξτε το φάκελο όπου θα αποθηκευθεί το σημείωμα:"
+
+#: configdialog/knotecollectionconfigwidget.cpp:183
+#, kde-format
+msgid "Notes accounts"
+msgstr "Λογαριασμοί σημειωμάτων"
+
+#: configdialog/knotecollectionconfigwidget.cpp:188
+#, kde-format
+msgid "Accounts"
+msgstr "Λογαριασμοί"
+
+#: configdialog/knotecollectionconfigwidget.cpp:218
+#, kde-format
+msgid "Rename Notes"
+msgstr "Μετονομασία σημειωμάτων"
+
+#: configdialog/knotecollectionconfigwidget.cpp:218
+#, kde-format
+msgid "Name:"
+msgstr "Όνομα:"
+
+#: configdialog/knotecollectionconfigwidget.cpp:236
+#, kde-format
+msgid "An error was occurred during renaming: %1"
+msgstr "Παρουσιάστηκε σφάλμα κατά τη μετονομασία: %1"
+
+#: configdialog/knotecollectionconfigwidget.cpp:236
+#, kde-format
+msgid "Rename note"
+msgstr "Μετονομασία σημειώματος"
+
+#: configdialog/knotedisplayconfigwidget.cpp:26
+#, kde-format
+msgid "&Text color:"
+msgstr "Χρώμα &κειμένου:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:35
+#, kde-format
+msgid "&Background color:"
+msgstr "Χρώμα &φόντου:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:45
+#, kde-format
+msgid "&Show note in taskbar"
+msgstr "&Εμφάνιση σημειωμάτων στη γραμμή εργασιών"
+
+#: configdialog/knotedisplayconfigwidget.cpp:47
+#, kde-format
+msgid "&Remember desktop"
+msgstr "&Απομνημόνευση επιφάνειας εργασίας"
+
+#: configdialog/knotedisplayconfigwidget.cpp:51
+#, kde-format
+msgid "Default &width:"
+msgstr "Προκαθορισμένο &πλάτος:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:62
+#, kde-format
+msgid "Default &height:"
+msgstr "Προκαθορισμένο ύ&ψος:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:23
+#, kde-format
+msgid "&Tab size:"
+msgstr "Πλάτος &στηλοθέτη:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:32
+#, kde-format
+msgid "Auto &indent"
+msgstr "Αυτόματη &εσοχή"
+
+#: configdialog/knoteeditorconfigwidget.cpp:36
+#, kde-format
+msgid "&Rich text"
+msgstr "&Εμπλουτισμένο κείμενο"
+
+#: configdialog/knoteeditorconfigwidget.cpp:40
+#, kde-format
+msgid "Text font:"
+msgstr "Γραμματοσειρά κειμένου:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:48
+#, kde-format
+msgid "Title font:"
+msgstr "Γραμματοσειρά τίτλου:"
+
+#: configdialog/knotesimpleconfigdialog.cpp:40
+#, kde-format
+msgid "Editor Settings"
+msgstr "Ρυθμίσεις επεξεργαστή"
+
+#: configdialog/knotesimpleconfigdialog.cpp:43
+#, kde-format
+msgid "Display Settings"
+msgstr "Ρυθμίσεις προβολής"
+
+#. i18n: ectx: Menu (help)
+#: data/knotesappui.rc:23
+#, kde-format
+msgid "&Help"
+msgstr "&Βοήθεια"
+
+#. i18n: ectx: Menu (notes_menu)
+#: data/knotesappui.rc:35 data/knotesappui.rc:36
+#, kde-format
+msgid "Notes"
+msgstr "Σημειώματα"
+
+#: dialog/knotedeleteselectednotesdialog.cpp:19
+#, kde-format
+msgctxt "@title:window"
+msgid "Select notes to delete"
+msgstr "Επιλογή σημειωμάτων για διαγραφή"
+
+#: dialog/knoteselectednotesdialog.cpp:21
+#: print/knoteprintselectednotesdialog.cpp:27
+#, kde-format
+msgctxt "@title:window"
+msgid "Select notes"
+msgstr "Επιλογή σημειωμάτων"
+
+#: dialog/knoteskeydialog.cpp:19
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Shortcuts"
+msgstr "Διαμόρφωση συντομεύσεων"
+
+#: dialog/knoteskeydialog.cpp:59
+#, kde-format
+msgid "Note Actions"
+msgstr "Ενέργειες σημειωμάτων"
+
+#: finddialog/knotefinddialog.cpp:28
+#, kde-format
+msgctxt "@title:window"
+msgid "Search Notes"
+msgstr "Αναζήτηση σημειωμάτων"
+
+#: finddialog/knotefinddialog.cpp:73
+#, kde-format
+msgctxt "@label:textbox"
+msgid "Search notes:"
+msgstr "Αναζήτηση σημειωμάτων:"
+
+#: finddialog/knotefinddialog.cpp:81
+#, kde-format
+msgctxt "@action:button Search notes"
+msgid "Search..."
+msgstr "Αναζήτηση..."
+
+#: finddialog/knotefinddialog.cpp:165
+#, kde-format
+msgctxt "@label"
+msgid "No Results found in search."
+msgstr "Δεν βρέθηκαν αποτελέσματα στην αναζήτηση."
+
+#: finddialog/knotefinddialog.cpp:181
+#, kde-format
+msgid "Show Note"
+msgstr "Εμφάνιση σημειώματος"
+
+#: knoteconfigmodule.cpp:80
+#, kde-format
+msgid "Show number of notes in tray icon"
+msgstr "Εμφάνιση πλήθους σημειωμάτων στο εικονίδιο του πλαισίου αυστήματος"
+
+#: knoteconfigmodule.cpp:87
+#, kde-format
+msgid "Default Title:"
+msgstr "Προκαθορισμένος τίτλος:"
+
+#: knoteconfigmodule.cpp:94
+#, kde-format
+msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgstr "<a href=\"whatsthis\">Πώς λειτουργεί αυτό;</a>"
+
+#: knoteconfigmodule.cpp:128
+#, kde-format
+msgid ""
+"<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
+"(short format)</li><li>%l current date (long format)</li><li>%t current "
+"time</li></ul></qt>"
+msgstr ""
+"<qt><p>Μπορείτε να προσαρμόσετε τον τίτλο. Μπορείτε να χρησιμοποιήσετε:</"
+"p><ul><li>%d τρέχουσα ημερομηνία (σύντομη μορφή)</li><li>%l τρέχουσα "
+"ημερομηνία (επιμήκης μορφή)</li><li>%t τρέχουσα ώρα</li></ul></qt>"
+
+#: knoteconfigmodule.cpp:150
+#, kde-format
+msgid "Theme:"
+msgstr "Θέμα:"
+
+#: knoteconfigmodule.cpp:160
+#, kde-format
+msgid "Download new printing themes"
+msgstr "Λήψη νέων θεμάτων εκτύπωσης"
+
+#: knoteedit.cpp:45
+#, kde-format
+msgid "Bold"
+msgstr "Έντονα"
+
+#: knoteedit.cpp:48
+#, kde-format
+msgid "Italic"
+msgstr "Πλάγια"
+
+#: knoteedit.cpp:51
+#, kde-format
+msgid "Underline"
+msgstr "Υπογράμμιση"
+
+#: knoteedit.cpp:54
+#, kde-format
+msgid "Strike Out"
+msgstr "Μεσογράμμιση"
+
+#: knoteedit.cpp:63
+#, kde-format
+msgid "Align Left"
+msgstr "Στοίχιση αριστερά"
+
+#: knoteedit.cpp:68
+#, kde-format
+msgid "Align Center"
+msgstr "Στοίχιση στο κέντρο"
+
+#: knoteedit.cpp:72
+#, kde-format
+msgid "Align Right"
+msgstr "Στοίχιση δεξιά"
+
+#: knoteedit.cpp:76
+#, kde-format
+msgid "Align Block"
+msgstr "Στοίχιση τμήματος"
+
+#: knoteedit.cpp:87
+#, kde-format
+msgid "List"
+msgstr "Λίστα"
+
+#: knoteedit.cpp:91
+#, kde-format
+msgid "Superscript"
+msgstr "Εκθέτης"
+
+#: knoteedit.cpp:94
+#, kde-format
+msgid "Subscript"
+msgstr "Δείκτης"
+
+#: knoteedit.cpp:98
+#, kde-format
+msgid "Increase Indent"
+msgstr "Αύξηση εσοχής"
+
+#: knoteedit.cpp:103
+#, kde-format
+msgid "Decrease Indent"
+msgstr "Μείωση εσοχής"
+
+#: knoteedit.cpp:114
+#, kde-format
+msgid "Text Color..."
+msgstr "Χρώμα κειμένου..."
+
+#: knoteedit.cpp:119
+#, kde-format
+msgid "Text Background Color..."
+msgstr "Χρώμα φόντου κειμένου..."
+
+#: knoteedit.cpp:123
+#, kde-format
+msgid "Text Font"
+msgstr "Γραμματοσειρά κειμένου"
+
+#: knoteedit.cpp:126
+#, kde-format
+msgid "Text Size"
+msgstr "Μέγεθος κειμένου"
+
+#: knoteedit.cpp:137
+#, kde-format
+msgid "Insert Date"
+msgstr "Εισαγωγή ημερομηνίας"
+
+#: knoteedit.cpp:141
+#, kde-format
+msgid "Insert Checkmark"
+msgstr "Εισαγωγή δείκτη ελέγχου"
+
+#: kontactplugin/kcmknotessummary.cpp:40
+#, kde-format
+msgid "kcmknotessummary"
+msgstr "kcmknotessummary"
+
+#: kontactplugin/kcmknotessummary.cpp:42
+#, kde-format
+msgid "Notes Summary Configuration Dialog"
+msgstr "Διάλογος διαμόρφωσης περίληψης σημειωμάτων"
+
+#: kontactplugin/kcmknotessummary.cpp:44
+#, kde-format
+msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
+msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
+
+#: kontactplugin/knotes_part.cpp:84
+#, kde-format
+msgctxt "@action:inmenu create new popup note"
+msgid "&New"
+msgstr "&Νέο"
+
+#. i18nc( "@info:status", "Create a new popup note" ) );
+#: kontactplugin/knotes_part.cpp:92
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be presented with a dialog where you can add a new popup note."
+msgstr ""
+"Θα εμφανιστεί ένας διάλογος όπου θα μπορείτε να προσθέσετε ένα νέο "
+"αναδυόμενο σημείωμα."
+
+#: kontactplugin/knotes_part.cpp:94 kontactplugin/knotes_part.cpp:556
+#: kontactplugin/knotes_part.cpp:558 kontactplugin/knotes_part.cpp:738
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Edit..."
+msgstr "Επεξεργασία..."
+
+#. i18nc( "@info:status", "Edit popup note" ) );
+#: kontactplugin/knotes_part.cpp:101
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can modify an existing popup "
+"note."
+msgstr ""
+"Θα εμφανιστεί ένας διάλογος όπου θα μπορείτε να τροποποιήσετε ένα αναδυόμενο "
+"σημείωμα."
+
+#: kontactplugin/knotes_part.cpp:103
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Rename..."
+msgstr "Μετονομασία..."
+
+#. i18nc( "@info:status", "Rename popup note" ) );
+#: kontactplugin/knotes_part.cpp:109
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can rename an existing popup "
+"note."
+msgstr ""
+"Θα εμφανιστεί ένας διάλογος όπου θα μπορείτε να μετονομάσετε ένα αναδυόμενο "
+"σημείωμα."
+
+#: kontactplugin/knotes_part.cpp:111
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: kontactplugin/knotes_part.cpp:118
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be prompted if you really want to permanently remove the selected "
+"popup note."
+msgstr ""
+"Θα εμφανιστεί προτροπή αν πράγματι θέλετε να αφαιρέσετε μόνιμα το επιλεγμένο "
+"αναδυόμενο σημείωμα."
+
+#. i18nc( "@info:status", "Print popup note" ) );
+#: kontactplugin/knotes_part.cpp:126
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be prompted to print the selected popup note."
+msgstr ""
+"Θα εμφανιστεί προτροπή για την εκτύπωση του επιλεγμένου αναδυόμενου "
+"σημειώματος."
+
+#: kontactplugin/knotes_part.cpp:129
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Print Preview Selected Notes..."
+msgstr "Προεπισκόπηση εκτύπωσης επιλεγμένων σημειωμάτων..."
+
+#: kontactplugin/knotes_part.cpp:134
+#, kde-format
+msgid "Note settings..."
+msgstr "Ρυθμίσεις σημειωμάτων..."
+
+#: kontactplugin/knotes_part.cpp:138
+#, kde-format
+msgid "Preferences KNotes..."
+msgstr "Προτιμήσεις KNotes..."
+
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:683
+#, kde-format
+msgid "Mail..."
+msgstr "Αλληλογραφία..."
+
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:679
+#, kde-format
+msgid "Send..."
+msgstr "Αποστολή..."
+
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:675
+#, kde-format
+msgid "Set Alarm..."
+msgstr "Ορισμός συναγερμού..."
+
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:687
+#, kde-format
+msgid "Save As..."
+msgstr "Αποθήκευση ως..."
+
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:661
+#, kde-format
+msgid "Lock"
+msgstr "Κλείδωμα"
+
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:664
+#, kde-format
+msgid "Unlock"
+msgstr "Ξεκλείδωμα"
+
+#: kontactplugin/knotes_part.cpp:201
+#, kde-format
+msgid "Set Focus to Quick Search"
+msgstr "Ρύθμιση εστίασης στη γρήγορη αναζήτηση"
+
+#: kontactplugin/knotes_part.cpp:278
+#, kde-format
+msgctxt "@info"
+msgid "To print notes, first select the notes to print from the list."
+msgstr "Για να εκτυπώσετε σημειώματα, πρώτα επιλέξτε τα από τη λίστα."
+
+#: kontactplugin/knotes_part.cpp:279
+#, kde-format
+msgctxt "@title:window"
+msgid "Print Popup Notes"
+msgstr "Εκτύπωση αναδυόμενων σημειωμάτων"
+
+#: kontactplugin/knotes_part.cpp:319
+#, kde-format
+msgid "Note was not created."
+msgstr "Το σημείωμα δεν δημιουργήθηκε."
+
+#: kontactplugin/knotes_part.cpp:319
+#, kde-format
+msgid "Create new note"
+msgstr "Δημιουργία νέου σημειώματος"
+
+#: kontactplugin/knotes_part.cpp:341
+#, kde-format
+msgctxt "@info"
+msgid "Do you really want to delete this note?"
+msgstr "Θέλετε πράγματι να διαγράψετε αυτό το σημείωμα;"
+
+#: kontactplugin/knotes_part.cpp:343
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:42
+#, kde-format
+msgctxt "@title:window"
+msgid "Confirm Delete"
+msgstr "Επιβεβαίωση διαγραφής"
+
+#: kontactplugin/knotes_part.cpp:535
+#, kde-format
+msgctxt "@title:window"
+msgid "Rename Popup Note"
+msgstr "Μετονομασία ανδυόμενου σημειώματος"
+
+#: kontactplugin/knotes_part.cpp:535
+#, kde-format
+msgctxt "@label:textbox"
+msgid "New Name:"
+msgstr "Νέο όνομα:"
+
+#: kontactplugin/knotes_part.cpp:556 kontactplugin/knotes_part.cpp:738
+#, kde-format
+msgid "Show Note..."
+msgstr "Εμφάνιση σημειώματος..."
+
+#: kontactplugin/knotes_part.cpp:691
+#, kde-format
+msgid "Rich text (*.html)"
+msgstr "Εμπλουτισμένο κείμενο (*.html)"
+
+#: kontactplugin/knotes_part.cpp:693
+#, kde-format
+msgid "Plain text (*.txt)"
+msgstr "Απλό κείμενο (*.txt)"
+
+#: kontactplugin/knotes_part.cpp:696
+#, kde-format
+msgid "Save As"
+msgstr "Αποθήκευση ως"
+
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:503
+#, kde-format
+msgid ""
+"<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
+"overwrite it?</qt>"
+msgstr ""
+"<qt>Ένα αρχείο με όνομα <b>%1</b> υπάρχει ήδη.<br />Είστε βέβαιοι ότι θέλετε "
+"να αντικατασταθεί;</qt>"
+
+#: kontactplugin/knotes_plugin.cpp:45
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "New Popup Note..."
+msgstr "Νέο αναδυόμενο σημείωμα..."
+
+#. i18nc( "@info:status", "Create new popup note" ) );
+#: kontactplugin/knotes_plugin.cpp:51
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can create a new popup note."
+msgstr ""
+"Θα εμφανιστεί ένας διάλογος όπου θα μπορείτε να δημιουργήσετε ένα νέο "
+"αναδυόμενο σημείωμα."
+
+#: kontactplugin/knotes_plugin.cpp:77
+#, kde-kuit-format
+msgctxt "@title"
+msgid "KNotes"
+msgstr "KNotes"
+
+#: kontactplugin/knotes_plugin.cpp:79
+#, kde-kuit-format
+msgctxt "@title"
+msgid "Popup Notes"
+msgstr "Αναδυόμενα σημειώματα"
+
+#: kontactplugin/knotes_plugin.cpp:81
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Copyright © 2003–%1 Kontact authors"
+msgstr "Πνευματικά Δικαιώματα © 2003–%1 οι συγγραφείς του Kontact"
+
+#: kontactplugin/knotes_plugin.cpp:83
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: kontactplugin/knotes_plugin.cpp:83
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Current Maintainer"
+msgstr "Τρέχων συντηρητής"
+
+#: kontactplugin/knotes_plugin.cpp:85
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Michael Brade"
+msgstr "Michael Brade"
+
+#: kontactplugin/knotes_plugin.cpp:85
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Previous Maintainer"
+msgstr "Προηγούμενος συντηρητής"
+
+#: kontactplugin/knotes_plugin.cpp:86
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Tobias Koenig"
+msgstr "Tobias Koenig"
+
+#: kontactplugin/knotes_plugin.cpp:86
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Developer"
+msgstr "Προγραμματιστής"
+
+#: kontactplugin/knotes_plugin.cpp:117
+#, kde-format
+msgctxt "@item"
+msgid "Meeting"
+msgstr "Συνάντηση"
+
+#: kontactplugin/knotes_plugin.cpp:131 kontactplugin/knotes_plugin.cpp:135
+#, kde-format
+msgctxt "@item"
+msgid "Note: %1"
+msgstr "Σημείωμα: %1"
+
+#: kontactplugin/knotes_plugin.cpp:141
+#, kde-format
+msgctxt "@item"
+msgid "New Note"
+msgstr "Νέο σημείωμα"
+
+#: kontactplugin/knoteseditdialog.cpp:36
+#, kde-format
+msgctxt "@title:window"
+msgid "Show Popup Note"
+msgstr "Εμφάνιση αναδυόμενου σημειώματος"
+
+#: kontactplugin/knoteseditdialog.cpp:36
+#, kde-format
+msgctxt "@title:window"
+msgid "Edit Popup Note"
+msgstr "Επεξεργασία αναδυόμενου σημειώματος"
+
+#: kontactplugin/knoteseditdialog.cpp:66
+#, kde-format
+msgctxt "@label popup note name"
+msgid "Name:"
+msgstr "Όνομα:"
+
+#: kontactplugin/knoteslistwidgetsearchline.cpp:41
+#, kde-format
+msgid "Search notes..."
+msgstr "Αναζήτηση σημειωμάτων..."
+
+#: kontactplugin/knoteslistwidgetsearchline.cpp:48
+#, kde-format
+msgid "Search notes...<%1>"
+msgstr "Αναζήτηση σημειωμάτων...<%1>"
+
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:31
+#, kde-format
+msgid "(note locked, it will not removed)"
+msgstr "(το σημείωμα κλειδώθηκε, δεν θα αφαιρεθεί)"
+
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:55
+#, kde-format
+msgid "Do you really want to delete this note?"
+msgid_plural "Do you really want to delete these %1 notes?"
+msgstr[0] "Θέλετε πράγματι να διαγράψετε αυτό το σημείωμα;"
+msgstr[1] "Θέλετε πράγματι να διαγράψετε αυτά τα %1 σημειώματα;"
+
+#: kontactplugin/summarywidget.cpp:42
+#, kde-format
+msgid "Popup Notes"
+msgstr "Αναδυόμενα σημειώματα"
+
+#: kontactplugin/summarywidget.cpp:89
+#, kde-format
+msgid "No notes found"
+msgstr "Δεν βρέθηκαν σημειώματα"
+
+#: kontactplugin/summarywidget.cpp:118
+#, kde-format
+msgid "Modify Note..."
+msgstr "Τροποποίηση σημειωμάτων..."
+
+#: kontactplugin/summarywidget.cpp:120
+#, kde-format
+msgid "Delete Note..."
+msgstr "Διαγραφή σημειώματος..."
+
+#: kontactplugin/summarywidget.cpp:195
+#, kde-format
+msgid "Read Popup Note: \"%1\""
+msgstr "Ανάγνωση αναδυόμενου σημειώματος: «%1»"
+
+#: notes/knote.cpp:129
+#, kde-format
+msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgstr "<qt>Θέλετε πράγματι να διαγράψετε το σημείωμα <b>%1</b>;</qt>"
+
+#: notes/knote.cpp:130
+#, kde-format
+msgid "Confirm Delete"
+msgstr "Επιβεβαίωση διαγραφής"
+
+#: notes/knote.cpp:131
+#, kde-format
+msgid "&Delete"
+msgstr "&Διαγραφή"
+
+#: notes/knote.cpp:255
+#, kde-format
+msgid "Please enter the new name:"
+msgstr "Παρακαλώ δώστε το νέο όνομα:"
+
+#: notes/knote.cpp:479
+#, kde-format
+msgid "Save note as plain text"
+msgstr "Αποθήκευση σημειώματος ως απλό κείμενο"
+
+#: notes/knote.cpp:486
+#, kde-format
+msgctxt "@title:window"
+msgid "Save As"
+msgstr "Αποθήκευση ως"
+
+#: notes/knote.cpp:611
+#, kde-format
+msgid "&All Desktops"
+msgstr "&Όλες τις επιφάνειες εργασίας"
+
+#: notes/knote.cpp:653
+#, kde-format
+msgid "New"
+msgstr "Νέο"
+
+#: notes/knote.cpp:657
+#, kde-format
+msgid "Rename..."
+msgstr "Μετονομασία..."
+
+#: notes/knote.cpp:666
+#, kde-format
+msgid "Hide"
+msgstr "Απόκρυψη"
+
+#: notes/knote.cpp:671
+#, kde-format
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: notes/knote.cpp:696
+#, kde-format
+msgid "Preferences..."
+msgstr "Προτιμήσεις..."
+
+#: notes/knote.cpp:700
+#, kde-format
+msgid "Keep Above Others"
+msgstr "Διατήρηση πάνω από τα άλλα"
+
+#: notes/knote.cpp:704
+#, kde-format
+msgid "Keep Below Others"
+msgstr "Διατήρηση κάτω από τα άλλα"
+
+#: notes/knote.cpp:709
+#, kde-format
+msgid "To Desktop"
+msgstr "Στην επιφάνεια εργασίας"
+
+#: notes/knote.cpp:717
+#, kde-format
+msgid "Walk Through Notes"
+msgstr "Περιήγηση στα σημειώματα"
+
+#: print/knotegrantleeprint.cpp:32
+#, kde-format
+msgid "Alarm:"
+msgstr "Συναγερμός:"
+
+#: print/knotegrantleeprint.cpp:33
+#, kde-format
+msgid "Note is locked"
+msgstr "Το σημείωμα είναι κλειδωμένο"
+
+#: print/knoteprinter.cpp:112
+#, kde-format
+msgid "Print Note"
+msgid_plural "Print %1 notes"
+msgstr[0] "Εκτύπωση σημειώματος"
+msgstr[1] "Εκτύπωση %1 σημειωμάτων"
+
+#: print/knoteprinter.cpp:119
+#, kde-format
+msgid "Printing theme was not found."
+msgstr "Το θέμα εκτύπωσης δεν βρέθηκε."
+
+#: print/knoteprinter.cpp:119
+#, kde-format
+msgid "Printing error"
+msgstr "Σφάλμα εκτύπωσης"
+
+#: print/knoteprintselectednotesdialog.cpp:49
+#, kde-format
+msgid "Printing theme:"
+msgstr "Θέμα εκτύπωσης:"
+
+#: print/knoteprintselectednotesdialog.cpp:56
+#, kde-format
+msgid "Preview"
+msgstr "Προεπισκόπηση"
+
+#: print/knoteprintselectednotesdialog.cpp:58
+#, kde-format
+msgid "Print"
+msgstr "Εκτύπωση"
+
+#: print/knoteprintselectthemedialog.cpp:21
+#, kde-format
+msgctxt "@title:window"
+msgid "Select theme"
+msgstr "Επιλογή θέματος"
+
+#: print/knoteprintselectthemedialog.cpp:38
+#, kde-format
+msgid "Themes:"
+msgstr "Θέματα:"
+
+#, fuzzy
+#~| msgid "Note Actions"
+#~ msgid "KNotes Migration"
+#~ msgstr "Ενέργειες σημειωμάτων"
+
+#~ msgid "Scheduled Alarm"
+#~ msgstr "Προγραμματισμένος συναγερμός"
+
+#~ msgid "&No alarm"
+#~ msgstr "Κα&νένας συναγερμός"
+
+#~ msgid "Alarm &at:"
+#~ msgstr "Συναγερμός &στις:"
+
+#~ msgid "The following notes triggered alarms:"
+#~ msgstr "Τα ακόλουθα σημειώματα ενεργοποίησαν συναγερμούς:"
+
+#~ msgid "Display"
+#~ msgstr "Προβολή"
+
+#~ msgid ""
+#~ "<qt>Unable to save the notes to <b>%1</b>. Check that there is sufficient "
+#~ "disk space.<br />There should be a backup in the same directory though.</"
+#~ "qt>"
+#~ msgstr ""
+#~ "<qt>Αδυναμία αποθήκευσης των σημειωμάτων στο <b>%1</b>. Ελέγξετε ότι "
+#~ "υπάρχει επαρκής χώρος στο δίσκο.<br />Πρέπει όμως να υπάρχει ένα εφεδρικό "
+#~ "αντίγραφο στον ίδιο κατάλογο.</qt>"
+
+#~ msgid "Location:"
+#~ msgstr "Τοποθεσία:"
+
+#~ msgid "&Mail action:"
+#~ msgstr "Ενέργεια α&λληλογραφίας:"
+
+#~ msgid "Incoming Notes"
+#~ msgstr "Εισερχόμενα σημειώματα"
+
+#~ msgid "Accept incoming notes"
+#~ msgstr "Αποδοχή εισερχομένων σημειωμάτων"
+
+#~ msgid "Outgoing Notes"
+#~ msgstr "Εξερχόμενα σημειώματα"
+
+#~ msgid "&Sender ID:"
+#~ msgstr "ID απο&στολέα:"
+
+#~ msgid "&Port:"
+#~ msgstr "&Θύρα:"
+
+#~ msgid "Select recipient:"
+#~ msgstr "Επιλογή παραλήπτη:"
+
+#~ msgid "Hostname or IP address:"
+#~ msgstr "Όνομα υπολογιστή ή διεύθυνση IP:"
+
+#~ msgid "The port KNotes will listen on and send notes to."
+#~ msgstr "Η θύρα του KNotes θα ακούει και θα στέλνει σημειώματα."
+
+#~ msgid "Unable to start the mail process."
+#~ msgstr "Αδυναμία εκκίνησης της διεργασίας αλληλογραφίας."
+
+#~ msgid "Send \"%1\""
+#~ msgstr "Αποστολή του \"%1\""
+
+#~ msgid "The host cannot be empty."
+#~ msgstr "Το πεδίο κόμβου δεν μπορεί να είναι κενό."
+
+#~ msgid "Communication error: %1"
+#~ msgstr "Σφάλμα επικοινωνίας: %1"
+
+#~ msgid "Alarm &in:"
+#~ msgstr "Συναγερμός σ&ε:"
+
+#~ msgid "&Style:"
+#~ msgstr "&Στιλ:"
+
+#~ msgid "Plain"
+#~ msgstr "Απλά"
+
+#~ msgid "(c) 1997-2009, The KNotes Developers"
+#~ msgstr "(c) 1997-2009, οι προγραμματιστές του KNotes"
+
+#~ msgid "Defaults"
+#~ msgstr "Προκαθορισμένα"
+
+#~ msgid "Default Settings for New Notes"
+#~ msgstr "Προκαθορισμένες ρυθμίσεις για νέα Σημειώματα"
+
+#~ msgid "Actions"
+#~ msgstr "Ενέργειες"
+
+#~ msgid "Action Settings"
+#~ msgstr "Ρυθμίσεις ενεργειών"
+
+#~ msgid "Network"
+#~ msgstr "Δίκτυο"
+
+#~ msgid "Network Settings"
+#~ msgstr "Ρυθμίσεις δικτύου"
+
+#~ msgid "Style"
+#~ msgstr "Στυλ"
+
+#~ msgid "Displa&y"
+#~ msgstr "Προβο&λή"
+
+#~ msgid "&Editor"
+#~ msgstr "&Επεξεργαστής"

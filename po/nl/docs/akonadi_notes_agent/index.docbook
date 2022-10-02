@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+  <!ENTITY i18n-notesagent "<application
+>Agent voor notities</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Dutch "INCLUDE"
+> 
+]>
+
+<article id="notesagent" lang="&language;">
+<articleinfo>
+<title
+>Het handboek van &i18n-notesagent;</title>
+<authorgroup>
+<author
+><personname
+> <firstname
+>Laurent</firstname
+> <surname
+>Montel</surname
+> </personname
+> &Laurent.Montel.mail; </author>
+&Freek.de.Kruijf; 
+</authorgroup>
+
+<copyright>
+<year
+>2013</year>
+<holder
+>&Laurent.Montel;</holder>
+</copyright>
+
+<date
+>2013-12-20</date>
+<releaseinfo
+>&kde; 4.13</releaseinfo>
+
+</articleinfo>
+
+<sect1 id="introduction">
+<title
+>Inleiding</title>
+
+<para
+>&i18n-notesagent; is een akonadi-agent die het u mogelijk maakt om notities te ontvangen van alarmmeldingen uit het netwerk of signalen. </para>
+
+<sect2 id="credits">
+
+<title
+>Dankbetuigingen en licentie</title>
+
+<para
+>&i18n-notesagent;</para>
+<para
+>Programma copyright 2013 &Laurent.Montel; &Laurent.Montel.mail; </para>
+<para
+>Documentatie Copyright &copy; 2013 &Laurent.Montel; &Laurent.Montel.mail; </para>
+
+&meld.fouten;&vertaling.freek; &underFDL; &underGPL; </sect2>
+
+</sect1>
+
+</article>
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

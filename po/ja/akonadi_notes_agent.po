@@ -1,0 +1,120 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: akonadi_notes_agent\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"PO-Revision-Date: 2013-12-24 01:18-0800\n"
+"Last-Translator: Japanese KDE translation team <kde-jp@kde.org>\n"
+"Language-Team: Japanese <kde-jp@kde.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: notesagentalarmdialog.cpp:38
+#, kde-format
+msgctxt "@title:window"
+msgid "Alarm"
+msgstr ""
+
+#: notesagentalarmdialog.cpp:50
+#, kde-format
+msgid "The following notes triggered alarms:"
+msgstr ""
+
+#: notesagentalarmdialog.cpp:88
+#, kde-format
+msgid "Remove Alarm"
+msgstr ""
+
+#: notesagentalarmdialog.cpp:90
+#, kde-format
+msgid "Show Note..."
+msgstr ""
+
+#: notesagentalarmdialog.cpp:92
+#, kde-format
+msgid "Modify Alarm..."
+msgstr ""
+
+#: notesagentalarmdialog.cpp:146
+#, kde-format
+msgid "Are you sure to remove alarm?"
+msgstr ""
+
+#: notesagentalarmdialog.cpp:147
+#, kde-format
+msgctxt "@title:window"
+msgid "Remove Alarm"
+msgstr ""
+
+#: notesagentalarmdialog.cpp:212
+#, kde-format
+msgid "Error during fetch alarm info."
+msgstr ""
+
+#: notesagentalarmdialog.cpp:212
+#, kde-format
+msgid "Alarm"
+msgstr ""
+
+#: notesagentsettingsdialog.cpp:31
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Notes Agent"
+msgstr ""
+
+#: notesagentsettingsdialog.cpp:46
+#, kde-format
+msgid "Notify"
+msgstr ""
+
+#: notesagentsettingsdialog.cpp:48
+#, kde-format
+msgid "Network"
+msgstr ""
+
+#: notesagentsettingsdialog.cpp:56
+#, kde-format
+msgid "Notes Agent"
+msgstr ""
+
+#: notesagentsettingsdialog.cpp:58
+#, kde-format
+msgid "Notes Agent."
+msgstr ""
+
+#: notesagentsettingsdialog.cpp:60
+#, kde-format
+msgid "Copyright (C) 2013-%1 Laurent Montel"
+msgstr ""
+
+#: notesagentsettingsdialog.cpp:62
+#, kde-format
+msgid "Laurent Montel"
+msgstr ""
+
+#: notesagentsettingsdialog.cpp:62
+#, kde-format
+msgid "Maintainer"
+msgstr ""
+
+#: notesagentsettingsdialog.cpp:65
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+
+#: notesagentsettingsdialog.cpp:65
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+
+#: notesmanager.cpp:173
+#, kde-format
+msgid "Note Received"
+msgstr ""

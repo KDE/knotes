@@ -1,0 +1,196 @@
+# translation of libnoteshared.po to Slovak
+# Roman Paholík <wizzardsk@gmail.com>, 2013, 2014, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: libnoteshared\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"PO-Revision-Date: 2017-02-04 11:10+0100\n"
+"Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
+"Language-Team: Slovak <kde-sk@linux.sk>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: alarms/notealarmdialog.cpp:41
+#, kde-format
+msgid "Scheduled Alarm"
+msgstr "Naplánovaný poplach"
+
+#: alarms/notealarmdialog.cpp:44
+#, kde-format
+msgid "&No alarm"
+msgstr "Žiad&ny poplach"
+
+#: alarms/notealarmdialog.cpp:53
+#, kde-format
+msgid "Alarm &at:"
+msgstr "Popl&ach o:"
+
+#: config/noteactionconfig.cpp:23
+#, kde-format
+msgid "&Mail action:"
+msgstr "Akcia &poslania:"
+
+#: config/noteactionconfig.cpp:31
+#, kde-format
+msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgstr "<a href=\"whatsthis\">Ako toto funguje?</a>"
+
+#: config/noteactionconfig.cpp:44
+#, kde-format
+msgid ""
+"<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "
+"current note title</li><li>%f returns current note text</li></ul></qt>"
+msgstr ""
+"<qt><p>Môžete prispôsobiť príkazový riadok. Môžete použiť:</p><ul><li>%t "
+"vráti titulok aktuálnej poznámky</li><li>%f vráti text aktuálnej poznámky</"
+"li></ul></qt>"
+
+#: config/notenetworkconfig.cpp:29
+#, kde-format
+msgid "Incoming Notes"
+msgstr "Prichádzajúce poznámky"
+
+#: config/notenetworkconfig.cpp:32
+#, kde-format
+msgid "Accept incoming notes"
+msgstr "Akceptovať prichádzajúce poznámky"
+
+#: config/notenetworkconfig.cpp:38
+#, kde-format
+msgid "Outgoing Notes"
+msgstr "Odchádzajúce poznámky"
+
+#: config/notenetworkconfig.cpp:41
+#, kde-format
+msgid "&Sender ID:"
+msgstr "&ID odosielateľa:"
+
+#: config/notenetworkconfig.cpp:53
+#, kde-format
+msgid "&Port:"
+msgstr "&Port:"
+
+#: dialog/selectednotefolderdialog.cpp:22
+#, kde-format
+msgctxt "@title:window"
+msgid "Select Note Folder"
+msgstr "Vybrať priečinok poznámok"
+
+#: dialog/selectednotefolderdialog.cpp:23
+#, kde-format
+msgctxt "@info"
+msgid "Select the folder where the note will be saved:"
+msgstr "Vyberte priečinok, kam sa má uložiť poznámka:"
+
+#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
+#, kde-format
+msgid ""
+"An error occurred during fetching. Do you want to select a new default "
+"collection?"
+msgstr ""
+"Nastala chyba počas naťahovania. Chcete vybrať novú predvolenú kolekciu?"
+
+#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Select Note Folder"
+msgctxt "@action:button"
+msgid "Select New Default"
+msgstr "Vybrať priečinok poznámok"
+
+#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
+#, kde-format
+msgctxt "@action:button"
+msgid "Ignore"
+msgstr ""
+
+#: job/createnewnotejob.cpp:126
+#, fuzzy, kde-format
+#| msgid ""
+#| "Collection is hidden. New note will stored but not displaying. Do you "
+#| "want to show collection?"
+msgid ""
+"Collection is hidden. New note will be stored but not displayed. Do you want "
+"to show collection?"
+msgstr ""
+"Kolekcia je skrytá. Nová poznámka sa uloží, ale nezobrazí. Chcete zobraziť "
+"kolekciu?"
+
+#: job/createnewnotejob.cpp:128
+#, kde-format
+msgctxt "@action::button"
+msgid "Show Collection"
+msgstr ""
+
+#: job/createnewnotejob.cpp:129
+#, kde-format
+msgctxt "@action::button"
+msgid "Do Not Show"
+msgstr ""
+
+#: job/createnewnotejob.cpp:184
+#, kde-format
+msgid "Note was not created."
+msgstr "Poznámka nebola vytvorená."
+
+#: job/createnewnotejob.cpp:184
+#, kde-format
+msgid "Create new note"
+msgstr "Vytvoriť novú poznámku"
+
+#: network/notehostdialog.cpp:43
+#, kde-format
+msgid "Select recipient:"
+msgstr "Vybrať príjemcu:"
+
+#: network/notehostdialog.cpp:59
+#, kde-format
+msgid "Hostname or IP address:"
+msgstr "Hostiteľ alebo adresa IP:"
+
+#: network/notesnetworksender.cpp:74
+#, kde-format
+msgid "Communication error: %1"
+msgstr "Chyba počas komunikácie: %1"
+
+#: noteutils.cpp:31
+#, kde-format
+msgid "Please configure send mail action."
+msgstr "Prosím nastavte akciu poslať mail."
+
+#: noteutils.cpp:39
+#, kde-format
+msgid "Note: \"%1\""
+msgstr "Poznámka: \"%1\""
+
+#: noteutils.cpp:46
+#, kde-format
+msgid "Unable to start the mail process."
+msgstr "Nepodarilo sa spustiť oroces pre poslanie pošty."
+
+#: noteutils.cpp:55
+#, kde-format
+msgid "Send \"%1\""
+msgstr "Poslať \"%1\""
+
+#: noteutils.cpp:59
+#, kde-format
+msgid "The host cannot be empty."
+msgstr "Hostiteľ nemôže byť prázdny."
+
+#: resources/localresourcecreator.cpp:70
+#, kde-format
+msgctxt "Default name for resource holding notes"
+msgid "Local Notes"
+msgstr "Miestne poznámky"
+
+#. i18n: ectx: label, entry (Port), group (Network)
+#: settings/notesharedglobalconfig.kcfg:37
+#, kde-format
+msgid "The port will listen on and send notes to."
+msgstr "Port, na ktorom sa bude počúvať a posielať poznámky."

@@ -1,0 +1,175 @@
+# Translation of libnoteshared.po into Serbian.
+# Chusslove Illich <caslav.ilic@gmx.net>, 2013, 2014, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: libnoteshared\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-04-28 03:43+0200\n"
+"PO-Revision-Date: 2017-01-29 18:50+0100\n"
+"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Environment: kde\n"
+
+#: alarms/notealarmdialog.cpp:77
+#, kde-format
+msgid "Scheduled Alarm"
+msgstr "Заказани аларм"
+
+#: alarms/notealarmdialog.cpp:80
+#, kde-format
+msgid "&No alarm"
+msgstr "&Без аларма"
+
+#: alarms/notealarmdialog.cpp:89
+#, kde-format
+msgid "Alarm &at:"
+msgstr "&Аларм у:"
+
+#: config/noteactionconfig.cpp:36
+#, kde-format
+msgid "&Mail action:"
+msgstr "&Радња поште:"
+
+#: config/noteactionconfig.cpp:44
+#, kde-format
+msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgstr "<a href=\"whatsthis\">Како ово ради?</a>"
+
+#: config/noteactionconfig.cpp:57
+#, kde-format
+msgid ""
+"<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "
+"current note title</li><li>%f returns current note text</li></ul></qt>"
+msgstr ""
+"<qt><p>Командну линију можете прилагодити:</p><ul><li>%t даје наслов "
+"тренутне белешке</li><li>%f даје текст тренутне белешке</li></ul></qt>"
+
+# >> @title:group
+#: config/notenetworkconfig.cpp:54
+#, kde-format
+msgid "Incoming Notes"
+msgstr "Долазне белешке"
+
+#: config/notenetworkconfig.cpp:57
+#, kde-format
+msgid "Accept incoming notes"
+msgstr "Прихватај долазне белешке"
+
+# >> @title:group
+#: config/notenetworkconfig.cpp:63
+#, kde-format
+msgid "Outgoing Notes"
+msgstr "Одлазне белешке"
+
+#: config/notenetworkconfig.cpp:66
+#, kde-format
+msgid "&Sender ID:"
+msgstr "ИД по&шиљаоца:"
+
+#: config/notenetworkconfig.cpp:78
+#, kde-format
+msgid "&Port:"
+msgstr "&Порт:"
+
+#: dialog/selectednotefolderdialog.cpp:35
+#, kde-format
+msgctxt "@title:window"
+msgid "Select Note Folder"
+msgstr "Избор фасцикле бележака"
+
+#: dialog/selectednotefolderdialog.cpp:37
+#, kde-format
+msgctxt "@info"
+msgid "Select the folder where the note will be saved:"
+msgstr "Изаберите фасциклу за уписивање белешке:"
+
+#: job/createnewnotejob.cpp:124 job/createnewnotejob.cpp:134
+#, kde-format
+msgid ""
+"An error occurred during fetching. Do you want to select a new default "
+"collection?"
+msgstr ""
+"Грешка у току добављања. Желите ли да изаберете нову подразумевану збирку?"
+
+#: job/createnewnotejob.cpp:144
+#, fuzzy, kde-format
+#| msgid ""
+#| "Collection is hidden. New note will stored but not displaying. Do you "
+#| "want to show collection?"
+msgid ""
+"Collection is hidden. New note will be stored but not displayed. Do you want "
+"to show collection?"
+msgstr ""
+"Збирка је сакривена. Нова белешка ће бити ускладиштена али неће бити "
+"приказана. Желите ли да прикажете збирку?"
+
+#: job/createnewnotejob.cpp:198
+#, kde-format
+msgid "Note was not created."
+msgstr "Белешка није направљена."
+
+# >> @title:window
+#: job/createnewnotejob.cpp:198
+#, kde-format
+msgid "Create new note"
+msgstr "Стварање нове белешке"
+
+#: network/notehostdialog.cpp:64
+#, kde-format
+msgid "Select recipient:"
+msgstr "Избор примаоца:"
+
+#: network/notehostdialog.cpp:83
+#, kde-format
+msgid "Hostname or IP address:"
+msgstr "Име домаћина или ИП адреса:"
+
+#: network/notesnetworksender.cpp:106
+#, kde-format
+msgid "Communication error: %1"
+msgstr "Грешка у комуникацији: %1"
+
+#: noteutils.cpp:50
+#, kde-format
+msgid "Please configure send mail action."
+msgstr "Прво подесите радњу слања поште."
+
+#: noteutils.cpp:58
+#, kde-format
+msgid "Note: \"%1\""
+msgstr "Напомена: „%1“"
+
+#: noteutils.cpp:65
+#, kde-format
+msgid "Unable to start the mail process."
+msgstr "Не могу да покренем поштански процес."
+
+#: noteutils.cpp:74
+#, kde-format
+msgid "Send \"%1\""
+msgstr "Пошаљи „%1“"
+
+#: noteutils.cpp:78
+#, kde-format
+msgid "The host cannot be empty."
+msgstr "Домаћин не може да буде празан."
+
+#: resources/localresourcecreator.cpp:83
+#, kde-format
+msgctxt "Default name for resource holding notes"
+msgid "Local Notes"
+msgstr "Локалне белешке"
+
+#. i18n: ectx: label, entry (Port), group (Network)
+#: settings/notesharedglobalconfig.kcfg:37
+#, kde-format
+msgid "The port will listen on and send notes to."
+msgstr "Порт на коме се слуша и на који се шаљу белешке."

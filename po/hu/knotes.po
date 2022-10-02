@@ -1,0 +1,1247 @@
+#
+# Tamas Szanto <taszanto@gmail.com>, 2000.
+# Kristóf Kiszel <ulysses@kubuntu.org>, 2011, 2014, 2020.
+# Balázs Úr <urbalazs@gmail.com>, 2013, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: KDE 4.3\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-02 00:48+0000\n"
+"PO-Revision-Date: 2020-12-29 14:47+0100\n"
+"Last-Translator: Kristóf Kiszel <kiszel.kristof@gmail.com>\n"
+"Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 21.03.70\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Kiszel Kristóf"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "kiszel.kristof@gmail.com"
+
+#: apps/knotes_options.h:13
+#, kde-format
+msgid "Suppress creation of a new note on a non-unique instance."
+msgstr "Nem egyedi példányban nincs engedélyezve új jegyzet készítése."
+
+#: apps/knotesakonaditray.cpp:21 apps/knotestray.cpp:18
+#, kde-format
+msgid "KNotes: Sticky notes by KDE"
+msgstr "KNotes: ragadós jegyzetek a KDE-től"
+
+#: apps/knotesapp.cpp:85
+#, kde-format
+msgid "New Note"
+msgstr "Új jegyzet"
+
+#: apps/knotesapp.cpp:92 kontactplugin/knotes_part.cpp:154
+#, kde-format
+msgid "New Note From Clipboard"
+msgstr "Új jegyzet a vágólapról"
+
+#: apps/knotesapp.cpp:97 kontactplugin/knotes_part.cpp:158
+#, kde-format
+msgid "New Note From Text File..."
+msgstr "Új jegyzet szövegfájlból…"
+
+#: apps/knotesapp.cpp:101
+#, kde-format
+msgid "Show All Notes"
+msgstr "Minden jegyzet megjelenítése"
+
+#: apps/knotesapp.cpp:106
+#, kde-format
+msgid "Hide All Notes"
+msgstr "Minden jegyzet elrejtése"
+
+#: apps/knotesapp.cpp:111 kontactplugin/knotes_part.cpp:121
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Print Selected Notes..."
+msgstr "A kijelölt jegyzetek nyomtatása…"
+
+#: apps/knotesapp.cpp:116
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Delete Selected Notes..."
+msgstr "A kijelölt jegyzetek törlése…"
+
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#, kde-format
+msgid "Select Text File"
+msgstr "Szövegfájl kijelölése"
+
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#, kde-format
+msgid "Text File"
+msgstr "Szövegfájl"
+
+#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#, kde-format
+msgid "Error during open text file: %1"
+msgstr "Hiba történt a szövegfájl megnyitásakor: %1"
+
+#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#, kde-format
+msgid "Open Text File"
+msgstr "Szövegfájl megnyitása"
+
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:831
+#, kde-format
+msgid "Note from file '%1'"
+msgstr "Jegyzet a(z) „%1” fájlból"
+
+#: apps/knotesapp.cpp:510
+#, kde-format
+msgid "No Notes"
+msgstr "Nincsenek jegyzetek"
+
+#: apps/knotesapp.cpp:563 kontactplugin/knotes_part.cpp:587
+#, kde-format
+msgid "Settings"
+msgstr "Beállítások"
+
+#. i18n: ectx: Menu (knotes_context)
+#: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
+#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:43
+#: kontactplugin/knoteseditdialog.cpp:53
+#, kde-format
+msgid "KNotes"
+msgstr "KNotes"
+
+#: apps/main.cpp:47
+#, kde-format
+msgid "KDE Notes"
+msgstr "KDE jegyzetek"
+
+#: apps/main.cpp:49
+#, fuzzy, kde-format
+#| msgid "Copyright © 1997–2020 KNotes authors"
+msgid "Copyright © 1997–%1 KNotes authors"
+msgstr "Copyright © A KNotes szerzői, 1997-2020."
+
+#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:45
+#, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: apps/main.cpp:69
+#, kde-format
+msgid "Maintainer"
+msgstr "Karbantartó"
+
+#: apps/main.cpp:70
+#, kde-format
+msgid "Guillermo Antonio Amaral Bastidas"
+msgstr "Guillermo Antonio Amaral Bastidas"
+
+#: apps/main.cpp:70 apps/main.cpp:71
+#, kde-format
+msgid "Previous Maintainer"
+msgstr "Előző karbantartó"
+
+#: apps/main.cpp:71
+#, kde-format
+msgid "Michael Brade"
+msgstr "Michael Brade"
+
+#: apps/main.cpp:72
+#, kde-format
+msgid "Bernd Johannes Wuebben"
+msgstr "Bernd Johannes Wuebben"
+
+#: apps/main.cpp:72
+#, kde-format
+msgid "Original KNotes Author"
+msgstr "A KNotes első változatának szerzője"
+
+#: apps/main.cpp:73
+#, kde-format
+msgid "Wynn Wilkes"
+msgstr "Wynn Wilkes"
+
+#: apps/main.cpp:73
+#, kde-format
+msgid "Ported KNotes to KDE 2"
+msgstr "A KNotes átdolgozása a KDE 2 alá"
+
+#: apps/main.cpp:74
+#, kde-format
+msgid "Daniel Martin"
+msgstr "Daniel Martin"
+
+#: apps/main.cpp:74
+#, kde-format
+msgid "Network Interface"
+msgstr "Hálózati felület"
+
+#: apps/main.cpp:75
+#, kde-format
+msgid "Bo Thorsen"
+msgstr "Bo Thorsen"
+
+#: apps/main.cpp:75
+#, kde-format
+msgid "Started KDE Resource Framework Integration"
+msgstr "Elkezdte az integrációt a KDE erőforrás-keretrendszerével"
+
+#: apps/main.cpp:76
+#, kde-format
+msgid "Bera Debajyoti"
+msgstr "Bera Debajyoti"
+
+#: apps/main.cpp:76
+#, kde-format
+msgid "Idea and initial code for the new look & feel"
+msgstr "Az új megjelenés kitalálója és lekódolója"
+
+#: apps/main.cpp:77
+#, kde-format
+msgid "Matthias Ettrich"
+msgstr "Matthias Ettrich"
+
+#: apps/main.cpp:78
+#, kde-format
+msgid "David Faure"
+msgstr "David Faure"
+
+#: apps/main.cpp:79
+#, kde-format
+msgid "Matthias Kiefer"
+msgstr "Matthias Kiefer"
+
+#: apps/main.cpp:80
+#, kde-format
+msgid "Luboš Luňák"
+msgstr "Luboš Luňák"
+
+#: apps/main.cpp:81
+#, kde-format
+msgid "Dirk A. Mueller"
+msgstr "Dirk A. Mueller"
+
+#: apps/main.cpp:82
+#, kde-format
+msgid "Carsten Pfeiffer"
+msgstr "Carsten Pfeiffer"
+
+#: apps/main.cpp:83
+#, kde-format
+msgid "Harri Porten"
+msgstr "Harri Porten"
+
+#: apps/main.cpp:84
+#, kde-format
+msgid "Espen Sand"
+msgstr "Espen Sand"
+
+#: configdialog/knotecollectionconfigwidget.cpp:101
+#, kde-format
+msgid "Folders"
+msgstr "Mappák"
+
+#: configdialog/knotecollectionconfigwidget.cpp:103
+#, kde-format
+msgid "Select which KNotes folders to show:"
+msgstr "Válassza ki, mely KNotes mappák jelenjenek meg:"
+
+#: configdialog/knotecollectionconfigwidget.cpp:134
+#, kde-format
+msgid "Search..."
+msgstr "Keresés…"
+
+#: configdialog/knotecollectionconfigwidget.cpp:152
+#, kde-format
+msgid "&Select All"
+msgstr "Min&den kijelölése"
+
+#: configdialog/knotecollectionconfigwidget.cpp:156
+#, kde-format
+msgid "&Unselect All"
+msgstr "&Kijelölés megszüntetése"
+
+#: configdialog/knotecollectionconfigwidget.cpp:161
+#, kde-format
+msgid "Rename notes..."
+msgstr "Jegyzetek átnevezése…"
+
+#: configdialog/knotecollectionconfigwidget.cpp:165
+#, kde-format
+msgctxt "@info"
+msgid "Select the folder where the note will be saved:"
+msgstr "Válassza ki, hogy mely mappába legyen mentve a jegyzet:"
+
+#: configdialog/knotecollectionconfigwidget.cpp:183
+#, fuzzy, kde-format
+#| msgid "Note Actions"
+msgid "Notes accounts"
+msgstr "Jegyzetműveletek"
+
+#: configdialog/knotecollectionconfigwidget.cpp:188
+#, kde-format
+msgid "Accounts"
+msgstr "Fiókok"
+
+#: configdialog/knotecollectionconfigwidget.cpp:218
+#, kde-format
+msgid "Rename Notes"
+msgstr "Jegyzetek átnevezése"
+
+#: configdialog/knotecollectionconfigwidget.cpp:218
+#, kde-format
+msgid "Name:"
+msgstr "Név:"
+
+#: configdialog/knotecollectionconfigwidget.cpp:236
+#, kde-format
+msgid "An error was occurred during renaming: %1"
+msgstr "Hiba történt az átnevezés során: %1"
+
+#: configdialog/knotecollectionconfigwidget.cpp:236
+#, kde-format
+msgid "Rename note"
+msgstr "Jegyzet átnevezése"
+
+#: configdialog/knotedisplayconfigwidget.cpp:26
+#, kde-format
+msgid "&Text color:"
+msgstr "Szö&vegszín:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:35
+#, kde-format
+msgid "&Background color:"
+msgstr "&Háttérszín:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:45
+#, kde-format
+msgid "&Show note in taskbar"
+msgstr "A jegy&zetlap jelenjen meg a feladatsoron"
+
+#: configdialog/knotedisplayconfigwidget.cpp:47
+#, kde-format
+msgid "&Remember desktop"
+msgstr "Az asztal megje&gyzése"
+
+#: configdialog/knotedisplayconfigwidget.cpp:51
+#, kde-format
+msgid "Default &width:"
+msgstr "Az alapértelmezett szé&lesség:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:62
+#, kde-format
+msgid "Default &height:"
+msgstr "Az alapértelmezett &magasság:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:23
+#, kde-format
+msgid "&Tab size:"
+msgstr "A &tabulátor szélessége:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:32
+#, kde-format
+msgid "Auto &indent"
+msgstr "&Automatikus behúzás"
+
+#: configdialog/knoteeditorconfigwidget.cpp:36
+#, kde-format
+msgid "&Rich text"
+msgstr "RTF (Ri&ch Text) formátumban"
+
+#: configdialog/knoteeditorconfigwidget.cpp:40
+#, kde-format
+msgid "Text font:"
+msgstr "A szöveg betűtípusa:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:48
+#, kde-format
+msgid "Title font:"
+msgstr "A cím betűtípusa:"
+
+#: configdialog/knotesimpleconfigdialog.cpp:40
+#, kde-format
+msgid "Editor Settings"
+msgstr "A szerkesztő beállításai"
+
+#: configdialog/knotesimpleconfigdialog.cpp:43
+#, kde-format
+msgid "Display Settings"
+msgstr "Képernyőbeállítások"
+
+#. i18n: ectx: Menu (help)
+#: data/knotesappui.rc:23
+#, kde-format
+msgid "&Help"
+msgstr "&Súgó"
+
+#. i18n: ectx: Menu (notes_menu)
+#: data/knotesappui.rc:35 data/knotesappui.rc:36
+#, kde-format
+msgid "Notes"
+msgstr "Jegyzetek"
+
+#: dialog/knotedeleteselectednotesdialog.cpp:19
+#, fuzzy, kde-format
+#| msgid "Select notes to delete"
+msgctxt "@title:window"
+msgid "Select notes to delete"
+msgstr "Törlendő jegyzetek kijelölése"
+
+#: dialog/knoteselectednotesdialog.cpp:21
+#: print/knoteprintselectednotesdialog.cpp:27
+#, fuzzy, kde-format
+#| msgid "Select notes"
+msgctxt "@title:window"
+msgid "Select notes"
+msgstr "Jegyzetek kijelölése"
+
+#: dialog/knoteskeydialog.cpp:19
+#, fuzzy, kde-format
+#| msgid "Configure Shortcuts"
+msgctxt "@title:window"
+msgid "Configure Shortcuts"
+msgstr "A billentyűparancsok beállítása"
+
+#: dialog/knoteskeydialog.cpp:59
+#, kde-format
+msgid "Note Actions"
+msgstr "Jegyzetműveletek"
+
+#: finddialog/knotefinddialog.cpp:28
+#, fuzzy, kde-format
+#| msgid "Search Notes"
+msgctxt "@title:window"
+msgid "Search Notes"
+msgstr "Jegyzetek keresése"
+
+#: finddialog/knotefinddialog.cpp:73
+#, fuzzy, kde-format
+#| msgid "Search notes:"
+msgctxt "@label:textbox"
+msgid "Search notes:"
+msgstr "Jegyzetek keresése:"
+
+#: finddialog/knotefinddialog.cpp:81
+#, fuzzy, kde-format
+#| msgid "Search..."
+msgctxt "@action:button Search notes"
+msgid "Search..."
+msgstr "Keresés…"
+
+#: finddialog/knotefinddialog.cpp:165
+#, fuzzy, kde-format
+#| msgid "No Result found."
+msgctxt "@label"
+msgid "No Results found in search."
+msgstr "Nincs találat."
+
+#: finddialog/knotefinddialog.cpp:181
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgid "Show Note"
+msgstr "Minden jegyzet megjelenítése"
+
+#: knoteconfigmodule.cpp:80
+#, kde-format
+msgid "Show number of notes in tray icon"
+msgstr "Jegyzetek számának megjelenítése a tálcaikonon"
+
+#: knoteconfigmodule.cpp:87
+#, kde-format
+msgid "Default Title:"
+msgstr "Alapértelmezett cím:"
+
+#: knoteconfigmodule.cpp:94
+#, kde-format
+msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgstr "<a href=\"whatsthis\">Hogyan működik ez?</a>"
+
+#: knoteconfigmodule.cpp:128
+#, kde-format
+msgid ""
+"<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
+"(short format)</li><li>%l current date (long format)</li><li>%t current "
+"time</li></ul></qt>"
+msgstr ""
+"<qt><p>Testre szabhatja a cím jegyzetet. Használható:</p><ul><li>%d "
+"jelenlegi dátum (rövid forma)</li><li>%l jelenlegi dátum (hosszú forma)</"
+"li><li>%t jelenlegi idő</li></ul></qt>"
+
+#: knoteconfigmodule.cpp:150
+#, kde-format
+msgid "Theme:"
+msgstr "Téma:"
+
+#: knoteconfigmodule.cpp:160
+#, kde-format
+msgid "Download new printing themes"
+msgstr "Új nyomtatási témák letöltése"
+
+#: knoteedit.cpp:45
+#, kde-format
+msgid "Bold"
+msgstr "Félkövér"
+
+#: knoteedit.cpp:48
+#, kde-format
+msgid "Italic"
+msgstr "Dőlt"
+
+#: knoteedit.cpp:51
+#, kde-format
+msgid "Underline"
+msgstr "Aláhúzott"
+
+#: knoteedit.cpp:54
+#, kde-format
+msgid "Strike Out"
+msgstr "Áthúzott"
+
+#: knoteedit.cpp:63
+#, kde-format
+msgid "Align Left"
+msgstr "Balra igazítás"
+
+#: knoteedit.cpp:68
+#, kde-format
+msgid "Align Center"
+msgstr "Középre igazítás"
+
+#: knoteedit.cpp:72
+#, kde-format
+msgid "Align Right"
+msgstr "Jobbra igazítás"
+
+#: knoteedit.cpp:76
+#, kde-format
+msgid "Align Block"
+msgstr "Blokkos igazítás"
+
+#: knoteedit.cpp:87
+#, kde-format
+msgid "List"
+msgstr "Lista"
+
+#: knoteedit.cpp:91
+#, kde-format
+msgid "Superscript"
+msgstr "Felső index"
+
+#: knoteedit.cpp:94
+#, kde-format
+msgid "Subscript"
+msgstr "Alsó index"
+
+#: knoteedit.cpp:98
+#, kde-format
+msgid "Increase Indent"
+msgstr "Nagyobb behúzás"
+
+#: knoteedit.cpp:103
+#, kde-format
+msgid "Decrease Indent"
+msgstr "Kisebb behúzás"
+
+#: knoteedit.cpp:114
+#, kde-format
+msgid "Text Color..."
+msgstr "Szövegszín..."
+
+#: knoteedit.cpp:119
+#, kde-format
+msgid "Text Background Color..."
+msgstr "Háttérszín..."
+
+#: knoteedit.cpp:123
+#, kde-format
+msgid "Text Font"
+msgstr "A szöveg betűtípusa"
+
+#: knoteedit.cpp:126
+#, kde-format
+msgid "Text Size"
+msgstr "Betűméret"
+
+#: knoteedit.cpp:137
+#, kde-format
+msgid "Insert Date"
+msgstr "A dátum beszúrása"
+
+#: knoteedit.cpp:141
+#, kde-format
+msgid "Insert Checkmark"
+msgstr "Megjelölő beszúrása"
+
+#: kontactplugin/kcmknotessummary.cpp:40
+#, kde-format
+msgid "kcmknotessummary"
+msgstr ""
+
+#: kontactplugin/kcmknotessummary.cpp:42
+#, kde-format
+msgid "Notes Summary Configuration Dialog"
+msgstr ""
+
+#: kontactplugin/kcmknotessummary.cpp:44
+#, kde-format
+msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:84
+#, kde-format
+msgctxt "@action:inmenu create new popup note"
+msgid "&New"
+msgstr ""
+
+#. i18nc( "@info:status", "Create a new popup note" ) );
+#: kontactplugin/knotes_part.cpp:92
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be presented with a dialog where you can add a new popup note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:94 kontactplugin/knotes_part.cpp:556
+#: kontactplugin/knotes_part.cpp:558 kontactplugin/knotes_part.cpp:738
+#, fuzzy, kde-format
+#| msgid "Editor"
+msgctxt "@action:inmenu"
+msgid "Edit..."
+msgstr "Szerkesztő"
+
+#. i18nc( "@info:status", "Edit popup note" ) );
+#: kontactplugin/knotes_part.cpp:101
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can modify an existing popup "
+"note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:103
+#, fuzzy, kde-format
+#| msgid "Rename..."
+msgctxt "@action:inmenu"
+msgid "Rename..."
+msgstr "Átnevezés..."
+
+#. i18nc( "@info:status", "Rename popup note" ) );
+#: kontactplugin/knotes_part.cpp:109
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can rename an existing popup "
+"note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:111
+#, fuzzy, kde-format
+#| msgid "Delete"
+msgctxt "@action:inmenu"
+msgid "Delete"
+msgstr "Törlés"
+
+#: kontactplugin/knotes_part.cpp:118
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be prompted if you really want to permanently remove the selected "
+"popup note."
+msgstr ""
+
+#. i18nc( "@info:status", "Print popup note" ) );
+#: kontactplugin/knotes_part.cpp:126
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be prompted to print the selected popup note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:129
+#, fuzzy, kde-format
+#| msgctxt "@action:inmenu"
+#| msgid "Print Selected Notes..."
+msgctxt "@action:inmenu"
+msgid "Print Preview Selected Notes..."
+msgstr "A kijelölt jegyzetek nyomtatása…"
+
+#: kontactplugin/knotes_part.cpp:134
+#, fuzzy, kde-format
+#| msgid "Note Actions"
+msgid "Note settings..."
+msgstr "Jegyzetműveletek"
+
+#: kontactplugin/knotes_part.cpp:138
+#, fuzzy, kde-format
+#| msgid "Preferences..."
+msgid "Preferences KNotes..."
+msgstr "Beállítások..."
+
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:683
+#, kde-format
+msgid "Mail..."
+msgstr "Elküldés levélben..."
+
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:679
+#, kde-format
+msgid "Send..."
+msgstr "Küldés..."
+
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:675
+#, kde-format
+msgid "Set Alarm..."
+msgstr "Emlékeztető beállítása..."
+
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:687
+#, kde-format
+msgid "Save As..."
+msgstr "Mentés mint..."
+
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:661
+#, kde-format
+msgid "Lock"
+msgstr "Zárolás"
+
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:664
+#, kde-format
+msgid "Unlock"
+msgstr "Feloldás"
+
+#: kontactplugin/knotes_part.cpp:201
+#, kde-format
+msgid "Set Focus to Quick Search"
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:278
+#, kde-format
+msgctxt "@info"
+msgid "To print notes, first select the notes to print from the list."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:279
+#, fuzzy, kde-format
+#| msgid "Print Note"
+#| msgid_plural "Print %1 notes"
+msgctxt "@title:window"
+msgid "Print Popup Notes"
+msgstr "Jegyzet nyomtatása"
+
+#: kontactplugin/knotes_part.cpp:319
+#, fuzzy, kde-format
+#| msgid "Note is locked"
+msgid "Note was not created."
+msgstr "A jegyzet zárolt"
+
+#: kontactplugin/knotes_part.cpp:319
+#, fuzzy, kde-format
+#| msgid "Rename note"
+msgid "Create new note"
+msgstr "Jegyzet átnevezése"
+
+#: kontactplugin/knotes_part.cpp:341
+#, fuzzy, kde-format
+#| msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgctxt "@info"
+msgid "Do you really want to delete this note?"
+msgstr "<qt>Biztosan törölni szeretné ezt a jegyzetet: <b>%1</b>?</qt>"
+
+#: kontactplugin/knotes_part.cpp:343
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:42
+#, fuzzy, kde-format
+#| msgid "Confirm Delete"
+msgctxt "@title:window"
+msgid "Confirm Delete"
+msgstr "A törlés megerősítése"
+
+#: kontactplugin/knotes_part.cpp:535
+#, fuzzy, kde-format
+#| msgid "Rename Notes"
+msgctxt "@title:window"
+msgid "Rename Popup Note"
+msgstr "Jegyzetek átnevezése"
+
+#: kontactplugin/knotes_part.cpp:535
+#, fuzzy, kde-format
+#| msgid "Name:"
+msgctxt "@label:textbox"
+msgid "New Name:"
+msgstr "Név:"
+
+#: kontactplugin/knotes_part.cpp:556 kontactplugin/knotes_part.cpp:738
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgid "Show Note..."
+msgstr "Minden jegyzet megjelenítése"
+
+#: kontactplugin/knotes_part.cpp:691
+#, fuzzy, kde-format
+#| msgid "&Rich text"
+msgid "Rich text (*.html)"
+msgstr "RTF (Ri&ch Text) formátumban"
+
+#: kontactplugin/knotes_part.cpp:693
+#, kde-format
+msgid "Plain text (*.txt)"
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:696
+#, kde-format
+msgid "Save As"
+msgstr "Mentés mint"
+
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:503
+#, kde-format
+msgid ""
+"<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
+"overwrite it?</qt>"
+msgstr ""
+"<qt>Már létezik <b>%1</b> nevű fájl.<br />Biztosan felül szeretné írni?</qt>"
+
+#: kontactplugin/knotes_plugin.cpp:45
+#, fuzzy, kde-format
+#| msgid "New Note"
+msgctxt "@action:inmenu"
+msgid "New Popup Note..."
+msgstr "Új jegyzet"
+
+#. i18nc( "@info:status", "Create new popup note" ) );
+#: kontactplugin/knotes_plugin.cpp:51
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can create a new popup note."
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:77
+#, fuzzy, kde-kuit-format
+#| msgid "KNotes"
+msgctxt "@title"
+msgid "KNotes"
+msgstr "KNotes"
+
+#: kontactplugin/knotes_plugin.cpp:79
+#, fuzzy, kde-kuit-format
+#| msgid "No Notes"
+msgctxt "@title"
+msgid "Popup Notes"
+msgstr "Nincsenek jegyzetek"
+
+#: kontactplugin/knotes_plugin.cpp:81
+#, fuzzy, kde-kuit-format
+#| msgid "Copyright © 1997–2014 KNotes authors"
+msgctxt "@info:credit"
+msgid "Copyright © 2003–%1 Kontact authors"
+msgstr "Copyright © A KNotes szerzői, 1997-2014."
+
+#: kontactplugin/knotes_plugin.cpp:83
+#, fuzzy, kde-kuit-format
+#| msgid "Laurent Montel"
+msgctxt "@info:credit"
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: kontactplugin/knotes_plugin.cpp:83
+#, fuzzy, kde-kuit-format
+#| msgid "Maintainer"
+msgctxt "@info:credit"
+msgid "Current Maintainer"
+msgstr "Karbantartó"
+
+#: kontactplugin/knotes_plugin.cpp:85
+#, fuzzy, kde-kuit-format
+#| msgid "Michael Brade"
+msgctxt "@info:credit"
+msgid "Michael Brade"
+msgstr "Michael Brade"
+
+#: kontactplugin/knotes_plugin.cpp:85
+#, fuzzy, kde-kuit-format
+#| msgid "Previous Maintainer"
+msgctxt "@info:credit"
+msgid "Previous Maintainer"
+msgstr "Előző karbantartó"
+
+#: kontactplugin/knotes_plugin.cpp:86
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Tobias Koenig"
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:86
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Developer"
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:117
+#, fuzzy, kde-format
+#| msgid "Settings"
+msgctxt "@item"
+msgid "Meeting"
+msgstr "Beállítások"
+
+#: kontactplugin/knotes_plugin.cpp:131 kontactplugin/knotes_plugin.cpp:135
+#, fuzzy, kde-format
+#| msgid "Notes"
+msgctxt "@item"
+msgid "Note: %1"
+msgstr "Jegyzetek"
+
+#: kontactplugin/knotes_plugin.cpp:141
+#, fuzzy, kde-format
+#| msgid "New Note"
+msgctxt "@item"
+msgid "New Note"
+msgstr "Új jegyzet"
+
+#: kontactplugin/knoteseditdialog.cpp:36
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@title:window"
+msgid "Show Popup Note"
+msgstr "Minden jegyzet megjelenítése"
+
+#: kontactplugin/knoteseditdialog.cpp:36
+#, kde-format
+msgctxt "@title:window"
+msgid "Edit Popup Note"
+msgstr ""
+
+#: kontactplugin/knoteseditdialog.cpp:66
+#, fuzzy, kde-format
+#| msgid "Name:"
+msgctxt "@label popup note name"
+msgid "Name:"
+msgstr "Név:"
+
+#: kontactplugin/knoteslistwidgetsearchline.cpp:41
+#, fuzzy, kde-format
+#| msgid "Search notes:"
+msgid "Search notes..."
+msgstr "Jegyzetek keresése:"
+
+#: kontactplugin/knoteslistwidgetsearchline.cpp:48
+#, fuzzy, kde-format
+#| msgid "Search notes:"
+msgid "Search notes...<%1>"
+msgstr "Jegyzetek keresése:"
+
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:31
+#, kde-format
+msgid "(note locked, it will not removed)"
+msgstr ""
+
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:55
+#, fuzzy, kde-format
+#| msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgid "Do you really want to delete this note?"
+msgid_plural "Do you really want to delete these %1 notes?"
+msgstr[0] "<qt>Biztosan törölni szeretné ezt a jegyzetet: <b>%1</b>?</qt>"
+msgstr[1] "<qt>Biztosan törölni szeretné ezt a jegyzetet: <b>%1</b>?</qt>"
+
+#: kontactplugin/summarywidget.cpp:42
+#, fuzzy, kde-format
+#| msgid "No Notes"
+msgid "Popup Notes"
+msgstr "Nincsenek jegyzetek"
+
+#: kontactplugin/summarywidget.cpp:89
+#, fuzzy, kde-format
+#| msgid "No Result found."
+msgid "No notes found"
+msgstr "Nincs találat."
+
+#: kontactplugin/summarywidget.cpp:118
+#, kde-format
+msgid "Modify Note..."
+msgstr ""
+
+#: kontactplugin/summarywidget.cpp:120
+#, fuzzy, kde-format
+#| msgctxt "@action:inmenu"
+#| msgid "Delete Selected Notes..."
+msgid "Delete Note..."
+msgstr "A kijelölt jegyzetek törlése…"
+
+#: kontactplugin/summarywidget.cpp:195
+#, kde-format
+msgid "Read Popup Note: \"%1\""
+msgstr ""
+
+#: notes/knote.cpp:129
+#, kde-format
+msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgstr "<qt>Biztosan törölni szeretné ezt a jegyzetet: <b>%1</b>?</qt>"
+
+#: notes/knote.cpp:130
+#, kde-format
+msgid "Confirm Delete"
+msgstr "A törlés megerősítése"
+
+#: notes/knote.cpp:131
+#, kde-format
+msgid "&Delete"
+msgstr "&Törlés"
+
+#: notes/knote.cpp:255
+#, kde-format
+msgid "Please enter the new name:"
+msgstr "Adja meg az új nevet:"
+
+#: notes/knote.cpp:479
+#, kde-format
+msgid "Save note as plain text"
+msgstr "Jegyzet mentése egyszerű szövegként"
+
+#: notes/knote.cpp:486
+#, fuzzy, kde-format
+#| msgid "Save As"
+msgctxt "@title:window"
+msgid "Save As"
+msgstr "Mentés mint"
+
+#: notes/knote.cpp:611
+#, kde-format
+msgid "&All Desktops"
+msgstr "Az összes &asztalra"
+
+#: notes/knote.cpp:653
+#, kde-format
+msgid "New"
+msgstr "Új"
+
+#: notes/knote.cpp:657
+#, kde-format
+msgid "Rename..."
+msgstr "Átnevezés..."
+
+#: notes/knote.cpp:666
+#, kde-format
+msgid "Hide"
+msgstr "Elrejtés"
+
+#: notes/knote.cpp:671
+#, kde-format
+msgid "Delete"
+msgstr "Törlés"
+
+#: notes/knote.cpp:696
+#, kde-format
+msgid "Preferences..."
+msgstr "Beállítások..."
+
+#: notes/knote.cpp:700
+#, kde-format
+msgid "Keep Above Others"
+msgstr "A többi fölé"
+
+#: notes/knote.cpp:704
+#, kde-format
+msgid "Keep Below Others"
+msgstr "A többi alá"
+
+#: notes/knote.cpp:709
+#, kde-format
+msgid "To Desktop"
+msgstr "Erre az asztalra"
+
+#: notes/knote.cpp:717
+#, kde-format
+msgid "Walk Through Notes"
+msgstr "Jegyzetek végigjárása"
+
+#: print/knotegrantleeprint.cpp:32
+#, kde-format
+msgid "Alarm:"
+msgstr "Riasztás:"
+
+#: print/knotegrantleeprint.cpp:33
+#, kde-format
+msgid "Note is locked"
+msgstr "A jegyzet zárolt"
+
+#: print/knoteprinter.cpp:112
+#, kde-format
+msgid "Print Note"
+msgid_plural "Print %1 notes"
+msgstr[0] "Jegyzet nyomtatása"
+msgstr[1] "%1 jegyzet nyomtatása"
+
+#: print/knoteprinter.cpp:119
+#, kde-format
+msgid "Printing theme was not found."
+msgstr "A nyomtatási téma nem található."
+
+#: print/knoteprinter.cpp:119
+#, kde-format
+msgid "Printing error"
+msgstr "Nyomtatási hiba"
+
+#: print/knoteprintselectednotesdialog.cpp:49
+#, kde-format
+msgid "Printing theme:"
+msgstr "Nyomtatási téma:"
+
+#: print/knoteprintselectednotesdialog.cpp:56
+#, kde-format
+msgid "Preview"
+msgstr "Előnézet"
+
+#: print/knoteprintselectednotesdialog.cpp:58
+#, kde-format
+msgid "Print"
+msgstr "Nyomtatás"
+
+#: print/knoteprintselectthemedialog.cpp:21
+#, fuzzy, kde-format
+#| msgid "Select theme"
+msgctxt "@title:window"
+msgid "Select theme"
+msgstr "Téma kiválasztása"
+
+#: print/knoteprintselectthemedialog.cpp:38
+#, kde-format
+msgid "Themes:"
+msgstr "Témák:"
+
+#~ msgid ""
+#~ "<b>Thanks for using KNotes!</b><p>KNotes uses a new storage technology "
+#~ "that requires migration of your current KNotes data and configuration.</"
+#~ "p>\n"
+#~ "<p>The conversion process can take a lot of time (depending on the amount "
+#~ "of notes you have) and it <em>must not be interrupted</em>.</p>\n"
+#~ "<p>You can:</p><ul><li>Migrate now (be prepared to wait)</li><li>Skip the "
+#~ "migration and start with fresh data and configuration</li><li>Cancel and "
+#~ "exit KNotes.</li></ul><p><a href=\"http://userbase.kde.org/Akonadi\">More "
+#~ "Information...</a></p>"
+#~ msgstr ""
+#~ "<b>Köszönjük, hogy a KNotes programot használja!</b><p>A KNotes egy új "
+#~ "tárolási technológiát használ, amely szükségessé teszi a jelenlegi KNotes "
+#~ "adatok és beállítások átköltöztetését</p>\n"
+#~ "<p>A konverziós folyamat sok időt vehet igénybe (a jegyzetek számától "
+#~ "függően), és <em>nem szakítható meg</em>.</p>\n"
+#~ "<p>A lehetőségei:</p><ul><li>Költöztetés most (készüljön fel a "
+#~ "várakozásra)</li><li>Költöztetés kihagyása és indítás friss adatokkal és "
+#~ "beállításokkal</li><li>Megszakítás és kilépés a KNotes programból.</li></"
+#~ "ul><p><a href=\"http://userbase.kde.org/Akonadi\">További információk…</"
+#~ "a></p>"
+
+#~ msgid "KNotes Migration"
+#~ msgstr "KNotes költöztetés"
+
+#~ msgid "Migrate Now"
+#~ msgstr "Költöztetés most"
+
+#~ msgid "Skip Migration"
+#~ msgstr "Költöztetés kihagyása"
+
+#~ msgid ""
+#~ "Migration to KNotes failed. In case you want to try again, run 'knotes-"
+#~ "migrator --interactive' manually."
+#~ msgstr ""
+#~ "Nem sikerült átköltöztetni a KNotes programra. Ha szeretné újból "
+#~ "megpróbálni, futtassa a „knotes-migrator --interactive” parancsot kézzel."
+
+#~ msgid "Migration Failed"
+#~ msgstr "Nem sikerült a költöztetés"
+
+#~ msgid "Uppercase"
+#~ msgstr "Nagybetűs"
+
+#~ msgid "Sentence case"
+#~ msgstr "Mondatkezdő nagybetűs"
+
+#~ msgid "Lowercase"
+#~ msgstr "Kisbetűs"
+
+#~ msgid "Change case..."
+#~ msgstr "Kis- és nagybetűk változtatása…"
+
+#~ msgid "Debug nepomuk..."
+#~ msgstr "Nepomuk hibakeresése…"
+
+#~ msgid "Scheduled Alarm"
+#~ msgstr "Ütemezett emlékeztető"
+
+#~ msgid "&No alarm"
+#~ msgstr "N&incs emlékeztető"
+
+#~ msgid "Alarm &at:"
+#~ msgstr "Idő&pont:"
+
+#~ msgid "The following notes triggered alarms:"
+#~ msgstr "A következő lapok váltottak ki emlékeztetőt:"
+
+#~ msgid "Display"
+#~ msgstr "Képernyő"
+
+#~ msgid ""
+#~ "<qt>Unable to save the notes to <b>%1</b>. Check that there is sufficient "
+#~ "disk space.<br />There should be a backup in the same directory though.</"
+#~ "qt>"
+#~ msgstr ""
+#~ "<qt>Nem sikerült elmenteni a jegyzetlapokat ide: <b>%1</b>. Lehet, hogy "
+#~ "elfogyott a szabad hely a lemezen.<br />Valószínűleg található egy "
+#~ "biztonsági másolat a lap könyvtárában.</qt>"
+
+#~ msgid "Location:"
+#~ msgstr "Hely:"
+
+#~ msgid "&Mail action:"
+#~ msgstr "L&evélküldési parancs:"
+
+#~ msgid "Incoming Notes"
+#~ msgstr "Bejövő feljegyzések"
+
+#~ msgid "Accept incoming notes"
+#~ msgstr "A bejövő feljegyzések elfogadása"
+
+#~ msgid "Outgoing Notes"
+#~ msgstr "Kimenő feljegyzések"
+
+#~ msgid "&Sender ID:"
+#~ msgstr "A küldő az&onosítója:"
+
+#~ msgid "&Port:"
+#~ msgstr "&Port:"
+
+#~ msgid "Select recipient:"
+#~ msgstr "Címzett:"
+
+#~ msgid "Hostname or IP address:"
+#~ msgstr "Gépnév vagy IP-cím:"
+
+#~ msgid "The port KNotes will listen on and send notes to."
+#~ msgstr "Ezen a porton várja és ide küldi a kéréseket a KNotes."
+
+#~ msgid "Please configure send mail action."
+#~ msgstr "Kérjük állítsa be a levélküldés műveletet."
+
+#~ msgid "Unable to start the mail process."
+#~ msgstr "Nem sikerült elindítani az üzenetküldő folyamatot."
+
+#~ msgid "Send \"%1\""
+#~ msgstr "Küldés - \"%1\""
+
+#~ msgid "The host cannot be empty."
+#~ msgstr "A gépnév nem lehet üres."
+
+#~ msgid "Communication error: %1"
+#~ msgstr "Kommunikációs hiba történt: %1"
+
+#~ msgid "Alarm &in:"
+#~ msgstr "Ennyi idő múl&va:"
+
+#~ msgid "&Style:"
+#~ msgstr "&Stílus:"
+
+#~ msgid "Plain"
+#~ msgstr "Normál"
+
+#~ msgid "(c) 1997-2009, The KNotes Developers"
+#~ msgstr "(c) A KNotes fejlesztői, 1997-2009."

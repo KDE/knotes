@@ -1,0 +1,923 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % German "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<book id="knotes" lang="&language;">
+
+<bookinfo id="knotesinfo">
+<title
+>Das Handbuch zu &knotes;</title>
+
+<authorgroup>
+<author
+><firstname
+>Fabian</firstname
+> <surname
+>Dal Santo</surname
+> <affiliation
+> <address
+>&Fabian.DalSanto.mail;</address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Greg</firstname
+> <othername
+>M.</othername
+> <surname
+>Holmes</surname
+> </author>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Durchsicht</contrib>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>Gregor</firstname
+><surname
+>Zumstein</surname
+><affiliation
+><address
+><email
+>zumstein@ssd.ethz.ch</email
+></address
+></affiliation
+><contrib
+>Übersetzung von</contrib
+></othercredit
+> 
+
+</authorgroup>
+
+<copyright>
+<year
+>2000</year>
+<holder
+>&Greg.M.Holmes;</holder>
+</copyright>
+<copyright>
+<year
+>2001</year>
+<holder
+>Fabian Dal Santo</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-07-28</date>
+<releaseinfo
+>5.3.40 (Anwendungen 16.08)</releaseinfo>
+
+<abstract
+><para
+>&knotes; sind die Post-It's&reg; für die Arbeitsfläche.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Knotes</keyword>
+<keyword
+>notizen</keyword>
+<keyword
+>popup</keyword>
+<keyword
+>popup</keyword>
+<keyword
+>knotes</keyword>
+
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Einleitung</title>
+
+<para
+>&knotes; erlaubt das Anbringen virtueller Haftnotizen (<quote
+>Post-it</quote
+>) auf dem Bildschirm. Die Notizen werden beim Beenden des Programms automatisch gespeichert und beim Neustart wieder geladen und angezeigt. </para>
+
+<para
+>Wenn die entsprechenden Einstellungen vorgenommen sind, können die Notizen auch gedruckt oder per E-Mail versendet werden. </para>
+
+<para
+>Die Notizen verwenden frei einstellbare Farben und Schriftarten. Es können sowohl die Standardeinstellungen wie auch die Einstellungen für einzelne Notizen verändert werden. </para>
+
+<para
+>Nach dem ersten Start von &knotes; wird eine Ressource installiert, in der alle Notizen in einem Maildir-Ordner <filename class="directory"
+>notes</filename
+> in <filename class="directory"
+>$(qtpaths --paths GenericDataLocation)</filename
+> gespeichert werden. </para>
+
+</chapter>
+
+<chapter id="using-knotes">
+<title
+>Wie benutze ich &knotes;</title>
+
+<variablelist>
+<varlistentry>
+<term
+>Erstellen einer neuen Notiz:</term>
+<listitem>
+<para
+>Um eine neue Notiz zu erstellen, klicken Sie mit der rechten Maustaste auf das &knotes;-Symbol im Systemabschnitt und wählen <guimenuitem
+>Neue Notiz</guimenuitem
+>.</para>
+<para
+>Sie können auch eine neue Notiz erzeugen, die bereits den Inhalt der Zwischenablage als Text hat. Wählen Sie hierzu <guimenuitem
+>Neue Notiz aus der Zwischenablage</guimenuitem
+> oder benutzen Sie <guimenuitem
+>Neue Notiz aus einer Textdatei</guimenuitem
+>.</para>
+
+<para
+>Dann wird ein Dialog angezeigt, in dem Sie einen Ordner zum Speichern Ihrer Notiz auswählen können:</para>
+
+<screenshot>
+<screeninfo
+>Notiz-Ordner auswählen</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="select-notes-folder.png" format="PNG"/>
+</imageobject>
+<textobject
+><phrase
+>Notiz-Ordner auswählen</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Wählen Sie hier einen Standardordner, um diesen Dialog beim Erstellen neuer Notizen zu überspringen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Eine Notiz schreiben:</term>
+<listitem>
+<para
+>Um eine Notiz zu machen, schreibt man einfach im freien Bereich. Die gewöhnliche Tastatur- und Mausfunktionalität ist vorhanden. Ein <mousebutton
+>Rechts-</mousebutton
+>Klick im Editorbereich stellt die folgenden Menüpunkte zur Verfügung:</para>
+
+<itemizedlist>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Rückgängig</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Wiederherstellen</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Ausschneiden</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Kopieren</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+></shortcut
+><guimenuitem
+>Einfügen</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Löschen</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Löschen</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+></shortcut
+><guimenuitem
+>Alles auswählen</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Rechtschreibprüfung</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Autom. Rechtschreibprüfung</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Anordnung mit Tabulatoren erlauben</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Suchen</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycap
+>F3</keycap
+> </shortcut
+><guimenuitem
+>Weitersuchen</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Ersetzen</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Text vorlesen</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Datum einfügen</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Prüfmarkierung einfügen</guimenuitem
+></para
+></listitem>
+</itemizedlist>
+<para
+>Text wird ausgewählt indem entweder die <mousebutton
+>linke</mousebutton
+> Maustaste gedrückt und die Maus bewegt wird oder die &Shift;-Taste gedrückt wird und die <keycap
+>Pfeil</keycap
+>-Tasten verwendet werden.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Datum einfügen:</term>
+<listitem>
+<para
+>Um das aktuelle Datum in die Notiz einzufügen, klicken Sie mit der <mousebutton
+>rechten</mousebutton
+> Maustaste auf den Textbereichund wählen <guimenuitem
+>Datum einfügen</guimenuitem
+>.</para>
+<para
+>Daraufhin wird das aktuelle Datum an der Cursor-Position im Text eingefügt.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Eine Notiz umbenennen:</term>
+<listitem>
+<para
+>Um eine Notiz umzubennen, klicken Sie mit der &RMBn; auf die Titelleiste der Notiz und wählen <guimenuitem
+>Umbenennen ...</guimenuitem
+>.</para>
+<para
+>Im sich öffnenden Dialog muss der neue Name eingegeben werden. <guibutton
+>OK</guibutton
+> ändert den Namen, <guibutton
+>Abbrechen</guibutton
+> kehrt zur Notiz zurück, ohne etwas zu ändern.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Eine Notiz versenden:</term>
+<listitem>
+<para
+>Um eine Notiz als E-Mail zu versenden, klicken Sie mit der &RMBn; auf die Titelleiste der Notiz und wählen <guimenuitem
+>Versenden ...</guimenuitem
+>.</para
+> 
+<para
+>Das weitere Vorgehen hängt vom Befehl ab, der im Dialog <guilabel
+>Einstellungen</guilabel
+> unter Aktionen angegeben wurde.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Eine Notiz drucken:</term>
+<listitem>
+<para
+>Um eine Notiz zu drucken, klicken Sie mit der &RMBn; auf die Titelleiste der Notiz und wählen <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Drucken ...</guimenuitem
+></menuchoice
+>.</para>
+<para
+>Ein &kde;-Standarddruckdialog wird angezeigt.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Eine Notiz löschen:</term>
+<listitem>
+<para
+>Um eine Notiz zu löschen, klicken Sie mit der &RMBn; auf die Titelleiste der Notiz und wählen <guimenuitem
+>Löschen</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Eine Notiz verstecken:</term>
+<listitem>
+<para
+>Um eine Notiz auszublenden, klicken Sie auf das <guiicon
+>X</guiicon
+> in der oberen rechten Ecke der Titelleiste oder wählen im Kontextmenü . <menuchoice
+><shortcut
+> &Esc;</shortcut
+><guimenuitem
+>Ausblenden</guimenuitem
+> </menuchoice
+>. Die Notiz erscheint nicht weiter auf dem Bildschirm, wird aber nicht gelöscht.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Einstellen einer Erinnerung: </term>
+<listitem>
+<para
+>Wählen Sie <guimenuitem
+>Erinnerung einstellen</guimenuitem
+> im Kontextmenü der Titelleiste der Notiz. Aktivieren Sie <guilabel
+>Erinnerung um</guilabel
+> im nächsten Dialog und stellen Sie Zeit und Datum passend ein. Zum Zeitpunkt einer Erinnerung wird ein Fenster geöffnet, das eine Liste aller Notizen mit dem aktuellen Erinnerungsdatum enthält.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Senden einer Notiz:</term>
+<listitem>
+<para
+>Um eine Notiz an einen anderen Rechner zu schicken, wählen Sie <guimenuitem
+>Versenden</guimenuitem
+> aus dem Kontextmenü der Titelleiste. Geben Sie einen Rechnernamen oder eine IP-Adresse ein und wählen Sie einen Empfänger aus einer Liste früher versendeten Notizen. Wenn der Empfänger das Annehmen von Notizen erlaubt hat, wird die Notiz auf seinem Bildschirm mit der Kennung des Senders in der Titelleiste angezeigt. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Sperren einer Notiz:</term>
+<listitem>
+<para
+>Um unbeabsichtigte Änderungen einer Notiz zu verhindern, wählen Sie <guimenuitem
+>Sperren</guimenuitem
+> im Kontextmenü der Titelleiste.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Speichern einer Notiz:</term>
+<listitem>
+<para
+>Um eine Notiz zu speichern, wählen Sie <guimenuitem
+>Speichern unter</guimenuitem
+> im Kontextmenü der Titelleiste. Eine Notiz kann als einfacher Text oder im &HTML;-Format gespeichert werden, wenn <guilabel
+>Rich-Text</guilabel
+> aktiviert ist.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Anzeige von Notizen:</term>
+<listitem>
+<para
+>Beim Start von &knotes; werden keine Notizen auf dem Bildschirm angezeigt. Wenn eine Notiz angezeigt werden soll, klicken Sie mit der &LMB; auf das &knotes;-Symbol im Systemabschnitt der Kontrollleiste und wählen die Notiz aus, die Sie anschauen möchten.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Suche in allen Notizen:</term>
+<listitem>
+<para
+>Klicken Sie mit der &RMBn; auf das Symbol im Systemabschnitt der Kontrollleiste und wählen Sie im Kontextmenü <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Suchen</guimenuitem
+></menuchoice
+>.</para>
+<para
+>Ein &kde;-Standarddialog wird geöffnet, in dem Sie einen Text zur Suche in allen Notizen eingeben können.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Funktionen für die Arbeitsflächen:</term>
+<listitem>
+<para
+>Um eine Notiz auf eine bestimmte Arbeitsfläche zu senden, müssen Sie mit der rechten Maustaste auf die Titelleiste der Notiz klicken und <guisubmenu
+>Auf Arbeitsfläche ...</guisubmenu
+>wählen. Wählen Sie die gewünschte Arbeitsfläche oder alternativ <guimenuitem
+>Auf alle Arbeitsflächen</guimenuitem
+>.</para>
+<para
+>Um eine Notiz immer zuoberst auf der Arbeitsfläche zu haben, klicken Sie mit der &RMBn; auf die Titelleiste der Notiz und wählen <guimenuitem
+>Im Vordergrund halten</guimenuitem
+>.</para>
+<para
+>Um zur normalen Einstellung zurückzukehren, wählen Sie <guimenuitem
+>Im Hintergrund halten</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>&knotes; beenden</term>
+<listitem>
+<para
+>Um &knotes; zu beenden, müssen Sie auf das Symbol im Systemabschnitt klicken und <guimenuitem
+>Beenden</guimenuitem
+> auswählen.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+<chapter id="configuration">
+<title
+>Einrichtung</title>
+
+<sect1 id="defaults">
+<title
+>Standard &knotes;-Einstellungen vornehmen</title>
+
+<para
+>Um &knotes; einzurichten, klicken Sie mit der rechten Maustaste auf das Symbol im Systemabschnitt der Kontrollleiste. Wählen Sie <guimenuitem
+>KNotes einrichten ...</guimenuitem
+> aus. Damit wird der Dialog <guilabel
+>Einstellungen</guilabel
+>geöffnet.</para>
+
+<variablelist>
+<title
+>Der Abschnitt Anzeige</title>
+<varlistentry>
+<term
+><guilabel
+>Textfarbe:</guilabel
+></term>
+<listitem
+><para
+>Die aktuell eingestellte Farbe wird rechts mit einem farbigen Rechteck angezeigt. Ein Klick auf dieses Rechteck öffnet den Standard-&kde;Dialog zur Farbauswahl.</para
+></listitem
+> 
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Hintergrundfarbe:</guilabel
+></term>
+<listitem
+><para
+>Die aktuell eingestellte Farbe wird rechts mit einem farbigen Rechteck angezeigt. Ein Klick auf dieses Rechteck öffnet den Standard-&kde;-Dialog zur Farbauswahl.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Standardbreite:</guilabel
+></term>
+<listitem
+><para
+>Die Breite der Notiz in Pixeln. Diese kann nach Herzenslust geändert werden.</para
+></listitem
+> 
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Standardhöhe:</guilabel
+></term>
+<listitem
+><para
+>Die Höhe der Notiz in Pixeln. Diese kann nach Herzenslust geändert werden.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Notiz in Fensterleiste anzeigen</guilabel
+></term>
+<listitem
+><para
+>Standardmäßig erscheinen &knotes;-Notizen nicht einzeln im Programmumschalter. Wenn Sie dies jedoch vorziehen, muss diese Einstellung aktiviert werden.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Arbeitsfläche merken</guilabel
+></term>
+<listitem
+><para
+>Wenn Sie virtuelle Arbeitsflächen verwenden und diese Einstellung aktivieren, werden Notizen nur auf der angegebenen Arbeitsfläche angezeigt.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Der Abschnitt Texteingabe</title>
+<varlistentry>
+<term
+><guilabel
+>Tabulatorbreite</guilabel
+></term>
+<listitem
+><para
+>Gibt an, wie vielen Leerzeichen ein Tabulator entspricht. Diese Zahl kann den eigenen Bedürfnissen entsprechend geändert werden.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Automatisch einrücken</guilabel
+></term>
+<listitem
+><para
+>Wenn dieses Ankreuzfeld angewählt ist, so wird eine neue Zeile automatisch so weit wie die vorhergehende eingerückt.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Rich-Text</guilabel
+></term>
+<listitem>
+<para
+>Aktivieren diese Einstellung, um eine Format-Werkzeugleiste unten in allen Notizfenstern anzuzeigen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Schriftart für Titel:</guilabel
+></term>
+<listitem
+><para
+>Man kann die Schriftart für die Titel der Notizen ändern.</para>
+
+<para
+>Ein Klick auf den Knopf <guibutton
+>Auswählen ...</guibutton
+>öffnet den Standard-&kde;-Dialog zur Schriftauswahl.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Schriftart für Text</guilabel
+></term>
+<listitem>
+<para
+>Man kann die Schriftart für den Text der Notizen ändern.</para>
+
+<para
+>Ein Klick auf den Knopf <guibutton
+>Auswählen ...</guibutton
+>öffnet den Standard-&kde;-Dialog zur Schriftauswahl.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Der Abschnitt Aktionen</title>
+<varlistentry>
+<term
+><guilabel
+>E-Mail-Aktion</guilabel
+></term>
+<listitem
+><para
+>Hier muss ein E-Mail-Programm inklusive aller Befehlszeilenparameter angegeben werden.</para>
+<para
+>Mit dem Platzhalter <token
+>%f</token
+> auf der Befehlszeile können Sie den einfachen Text und mit <token
+>%t</token
+> den Titel der Notiz an das E-Mail-Programm zu übertragen.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<variablelist>
+<title
+>Der Abschnitt Netzwerk</title>
+<varlistentry>
+<term
+><guilabel
+>Eingehende Notizen akzeptieren</guilabel
+></term>
+<listitem
+><para
+>Aktivieren Sie diese Einstellung, damit Notizen von anderen Rechnern angenommen werden.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Absender-Kennung</guilabel
+></term>
+<listitem
+><para
+>Diese Kennung wird im Titel der Notiz zusammen mit dem ursprünglichen Titel, Rechnernamen oder IP-Adresse und dem Sendedatum angezeigt.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Port</guilabel
+></term>
+<listitem
+><para
+>Der Port für das Versenden von Notizen über das Netzwerk, Standard ist 24837.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Der Abschnitt Drucken</title>
+<varlistentry>
+<term
+><guilabel
+>Design</guilabel
+></term>
+<listitem
+><para
+>Das Design für das Drucken der Notiz.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Der Abschnitt Sammlungen</title>
+<varlistentry>
+<term
+><guilabel
+>Ordner</guilabel
+></term>
+<listitem
+><para
+>Auf dieser Karteikarte können Sie mit den Ankreuzfeldern auswählen, welche Ordner angezeigt werden, den Standardordner zum Speichern und Unterordner für Notizen hinzufügen.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Zugänge</guilabel
+></term>
+<listitem
+><para
+>Auf dieser Karteikarte können Sie die lokalen Maildir-Ordner bearbeiten, die für Notizen benutzt werden.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Der Abschnitt Diverses</title>
+<varlistentry>
+<term
+>Verschiedene Einstellungen</term>
+<listitem
+><para
+>Aktivieren Sie die Anzeige der Anzahl der Notizen im Kontrollleistensymbol.</para>
+<para
+>Sie können den Standardtitel der Notizen anpassen und dabei folgende Platzhalter verwenden: <userinput
+>%d</userinput
+> - das aktuelle Datum in Kurzform, <userinput
+>%d</userinput
+> - das aktuelle Datum in Langform und <userinput
+>%t</userinput
+> - die aktuelle Zeit</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="customizing-display">
+<title
+>Die Anzeige einer einzelnen Notiz einstellen</title>
+
+<para
+>Man kann die Einstellungen jeder Notiz unabhängig von den globalen Einstellungen vornehmen. Die Einstellmöglichkeiten entsprechen denen im Abschnitt <link linkend="configuration"
+>Einrichtung</link
+>, gelten aber nur für die aktuelle Notiz. Alle anderen geöffneten Notizen und alle neuen Notizen verwenden die Standardeinstellungen.</para>
+
+<para
+>Um die Anzeige einer einzelnen Notiz zu ändern, klicken Sie mit der rechten Maustaste auf die Titelleiste der Notiz und wählen <guimenuitem
+>Einstellungen ...</guimenuitem
+>.</para>
+<para
+>Daraufhin öffnet sich ein Dialog mit den Seiten <guilabel
+>Editoreinstellungen</guilabel
+> und <guilabel
+>Anzeigeeinstellungen</guilabel
+>, auf denen eine einzelne Notiz eingerichtet werden kann.</para>
+</sect1>
+
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Danksagungen und Lizenz</title>
+
+<para
+>&knotes;</para>
+
+<para
+>Copyright für das Programm 1997 &Bernd.Johannes.Wuebben.mail;</para>
+
+<para
+>Beiträge von:</para>
+<itemizedlist>
+<listitem
+><para
+>Wynn Wilkes <email
+>wynnw@calderasystems.com</email
+></para>
+</listitem>
+</itemizedlist>
+
+<para
+>Copyright für die Dokumentation 2000 &Greg.M.Holmes; <email
+>holmegm@earthlink.net</email
+></para>
+
+<para
+>Überarbeitung der Dokumentation 2001 von Fabian Dal Santo &Fabian.DalSanto.mail; und 2003 von &Lauri.Watts; &Lauri.Watts.mail;.</para>
+
+
+<para
+>Deutsche &Uuml;bersetzung von Gregor Zumstein <email
+>zumstein@ssd.ethz.ch</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index; 
+
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

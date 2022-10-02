@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+  <!ENTITY i18n-notesagent "<application
+>Agent de notes</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Catalan  "INCLUDE"
+> 
+]>
+
+<article id="notesagent" lang="&language;">
+<articleinfo>
+<title
+>El manual de l'&i18n-notesagent;</title>
+<authorgroup>
+<author
+><personname
+> <firstname
+>Laurent</firstname
+> <surname
+>Montel</surname
+> </personname
+> &Laurent.Montel.mail; </author>
+&traductor.Antoni.Bella; 
+</authorgroup>
+
+<copyright>
+<year
+>2013</year>
+<holder
+>&Laurent.Montel;</holder>
+</copyright>
+
+<date
+>20 de desembre de 2013</date>
+<releaseinfo
+>&kde; 4.13</releaseinfo>
+
+</articleinfo>
+
+<sect1 id="introduction">
+<title
+>Introducció</title>
+
+<para
+>L'&i18n-notesagent; és un agent de l'Akonadi que permet rebre notes des d'alarmes de xarxa i senyals. </para>
+
+<sect2 id="credits">
+
+<title
+>Crèdits i llicència</title>
+
+<para
+>&i18n-notesagent;</para>
+<para
+>Copyright del programa 2013 &Laurent.Montel; &Laurent.Montel.mail; </para>
+<para
+>Copyright de la documentació &copy; 2013 &Laurent.Montel; &Laurent.Montel.mail; </para>
+
+<para
+>Traductor/Revisor de la documentació: &credits.Antoni.Bella;</para
+> &underFDL; &underGPL; </sect2>
+
+</sect1>
+
+</article>
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

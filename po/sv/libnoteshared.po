@@ -1,0 +1,197 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2013, 2014, 2017, 2019, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"PO-Revision-Date: 2021-11-06 14:43+0100\n"
+"Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
+"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 20.08.1\n"
+
+#: alarms/notealarmdialog.cpp:41
+#, kde-format
+msgid "Scheduled Alarm"
+msgstr "Schemalagt alarm"
+
+#: alarms/notealarmdialog.cpp:44
+#, kde-format
+msgid "&No alarm"
+msgstr "I&nget alarm"
+
+#: alarms/notealarmdialog.cpp:53
+#, kde-format
+msgid "Alarm &at:"
+msgstr "&Alarm vid:"
+
+#: config/noteactionconfig.cpp:23
+#, kde-format
+msgid "&Mail action:"
+msgstr "E-post&åtgärd:"
+
+#: config/noteactionconfig.cpp:31
+#, kde-format
+msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgstr "<a href=\"whatsthis\">Hur fungerar det här?</a>"
+
+#: config/noteactionconfig.cpp:44
+#, kde-format
+msgid ""
+"<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "
+"current note title</li><li>%f returns current note text</li></ul></qt>"
+msgstr ""
+"<qt><p>Det går att anpassa kommandoraden. Man kan använda:</p><ul><li>%t "
+"returnerar den aktuella anteckningens rubrik</li><li>%f returnerar den "
+"aktuella anteckningens text</li></ul></qt>"
+
+#: config/notenetworkconfig.cpp:29
+#, kde-format
+msgid "Incoming Notes"
+msgstr "Inkommande anteckningar"
+
+#: config/notenetworkconfig.cpp:32
+#, kde-format
+msgid "Accept incoming notes"
+msgstr "Acceptera inkommande anteckningar"
+
+#: config/notenetworkconfig.cpp:38
+#, kde-format
+msgid "Outgoing Notes"
+msgstr "Utskickade anteckningar"
+
+#: config/notenetworkconfig.cpp:41
+#, kde-format
+msgid "&Sender ID:"
+msgstr "Av&sändar-id:"
+
+#: config/notenetworkconfig.cpp:53
+#, kde-format
+msgid "&Port:"
+msgstr "&Port:"
+
+#: dialog/selectednotefolderdialog.cpp:22
+#, kde-format
+msgctxt "@title:window"
+msgid "Select Note Folder"
+msgstr "Välj anteckningskatalog"
+
+#: dialog/selectednotefolderdialog.cpp:23
+#, kde-format
+msgctxt "@info"
+msgid "Select the folder where the note will be saved:"
+msgstr "Välj katalogen där anteckningen ska sparas:"
+
+#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
+#, kde-format
+msgid ""
+"An error occurred during fetching. Do you want to select a new default "
+"collection?"
+msgstr "Ett fel uppstod vid hämtning. Vill du välja en ny standardsamling?"
+
+#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
+#, kde-format
+msgctxt "@action:button"
+msgid "Select New Default"
+msgstr "Välj ny standard"
+
+#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
+#, kde-format
+msgctxt "@action:button"
+msgid "Ignore"
+msgstr "Ignorera"
+
+#: job/createnewnotejob.cpp:126
+#, kde-format
+msgid ""
+"Collection is hidden. New note will be stored but not displayed. Do you want "
+"to show collection?"
+msgstr ""
+"Samlingen är dold. Nya anteckningar lagras men visas inte. Vill du visa "
+"samlingen?"
+
+#: job/createnewnotejob.cpp:128
+#, kde-format
+msgctxt "@action::button"
+msgid "Show Collection"
+msgstr "Visa samling"
+
+#: job/createnewnotejob.cpp:129
+#, kde-format
+msgctxt "@action::button"
+msgid "Do Not Show"
+msgstr "Visa inte"
+
+#: job/createnewnotejob.cpp:184
+#, kde-format
+msgid "Note was not created."
+msgstr "Anteckning skapades inte."
+
+#: job/createnewnotejob.cpp:184
+#, kde-format
+msgid "Create new note"
+msgstr "Skapa ny anteckning"
+
+#: network/notehostdialog.cpp:43
+#, kde-format
+msgid "Select recipient:"
+msgstr "Välj mottagare:"
+
+#: network/notehostdialog.cpp:59
+#, kde-format
+msgid "Hostname or IP address:"
+msgstr "Värddatornamn eller IP-adress:"
+
+#: network/notesnetworksender.cpp:74
+#, kde-format
+msgid "Communication error: %1"
+msgstr "Kommunikationsfel: %1"
+
+#: noteutils.cpp:31
+#, kde-format
+msgid "Please configure send mail action."
+msgstr "Anpassa åtgärden för att skicka brev."
+
+#: noteutils.cpp:39
+#, kde-format
+msgid "Note: \"%1\""
+msgstr "Anteckning: \"%1\""
+
+#: noteutils.cpp:46
+#, kde-format
+msgid "Unable to start the mail process."
+msgstr "Kan inte starta e-postprocessen."
+
+#: noteutils.cpp:55
+#, kde-format
+msgid "Send \"%1\""
+msgstr "Skicka \"%1\""
+
+#: noteutils.cpp:59
+#, kde-format
+msgid "The host cannot be empty."
+msgstr "Värddatorn kan inte vara tom."
+
+#: resources/localresourcecreator.cpp:70
+#, kde-format
+msgctxt "Default name for resource holding notes"
+msgid "Local Notes"
+msgstr "Lokala anteckningar"
+
+#. i18n: ectx: label, entry (Port), group (Network)
+#: settings/notesharedglobalconfig.kcfg:37
+#, kde-format
+msgid "The port will listen on and send notes to."
+msgstr "Porten som lyssnas på och anteckningar skickas till."
+
+#~ msgid ""
+#~ "An error occures during fetching. Do you want select an new default "
+#~ "collection?"
+#~ msgstr "Ett fel uppstod vid hämtning. Vill du välja en ny standardsamling?"

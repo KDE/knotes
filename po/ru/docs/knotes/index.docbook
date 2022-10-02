@@ -1,0 +1,947 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Russian "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<book id="knotes" lang="&language;">
+
+<bookinfo id="knotesinfo">
+<title
+>Руководство пользователя &knotes;</title>
+
+<authorgroup>
+<author
+><firstname
+>Fabian</firstname
+> <surname
+>Dal Santo</surname
+> <affiliation
+> <address
+>&Fabian.DalSanto.mail;</address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Greg</firstname
+> <othername
+>M.</othername
+> <surname
+>Holmes</surname
+> </author>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Редактор</contrib>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>Олег</firstname
+> <surname
+>Баталов</surname
+> <affiliation
+><address
+> <email
+>batalov@twiga.kz</email
+> </address
+></affiliation
+> <contrib
+>Перевод на русский язык</contrib
+></othercredit
+> <othercredit role="translator"
+><firstname
+>Мария</firstname
+><surname
+>Шикунова</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Обновление перевода</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>Олеся</firstname
+><surname
+>Герасименко</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Редактирование перевода</contrib
+></othercredit
+> 
+
+</authorgroup>
+
+<copyright>
+<year
+>2000</year>
+<holder
+>&Greg.M.Holmes;</holder>
+</copyright>
+<copyright>
+<year
+>2001</year>
+<holder
+>Fabian Del Santo</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>28 июля 2016 г.</date>
+<releaseinfo
+>5.3.40 (Приложения KDE 16.08)</releaseinfo>
+
+<abstract
+><para
+>&knotes; — это приложение клейких заметок на рабочем столе.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Knotes</keyword>
+<keyword
+>заметки</keyword>
+<keyword
+>выплывающие</keyword>
+<keyword
+>всплывающие</keyword>
+<keyword
+>knotes</keyword>
+
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Введение</title>
+
+<para
+>&knotes; имитирует клейкие заметки на экране компьютера. При выходе из программы заметки сохраняются и восстанавливаются при следующем запуске. </para>
+
+<para
+>Заметки возможно распечатывать и отправлять по электронной почте, если в &knotes; включено использование вспомогательных приложений. </para>
+
+<para
+>Особенности отображения заметок наподобие цвета или шрифта возможно настроить для каждой заметки отдельно. Значения по умолчанию также возможно настроить в соответствии с потребностями пользователя. </para>
+
+<para
+>При первом запуске &knotes; создаётся соответствующий ресурс, все заметки сохраняются в почтовой папке <filename
+>notes</filename
+> в каталоге <filename class="directory"
+>$(qtpaths --paths GenericDataLocation)</filename
+>. </para>
+
+</chapter>
+
+<chapter id="using-knotes">
+<title
+>Использование &knotes;</title>
+
+<variablelist>
+<varlistentry>
+<term
+>Создание новой заметки:</term>
+<listitem>
+<para
+>Чтобы создать новую заметку, щёлкните правой кнопкой мыши по значку &knotes; в системном лотке и в открывшемся контекстном меню выберите пункт <guimenuitem
+>Создать новую заметку</guimenuitem
+>.</para>
+<para
+>Чтобы создать новую заметку, содержащую информацию из буфера обмена, выберите пункт <guimenuitem
+>Создать заметку из содержимого буфера обмена</guimenuitem
+>. Также возможно выбрать пункт <guimenuitem
+>Создать заметку из текстового файла...</guimenuitem
+>.</para>
+
+<para
+>Появится диалог, в котором предлагается выбрать папку для сохранения заметки:</para>
+
+<screenshot>
+<screeninfo
+>Выбор папки для сохранения заметки</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="select-notes-folder.png" format="PNG"/>
+</imageobject>
+<textobject
+><phrase
+>Выбор папки для сохранения заметки</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Выберите папку по умолчанию, чтобы в дальнейшем этот диалог не появлялся при создании новых заметок.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Написание заметки:</term>
+<listitem>
+<para
+>Чтобы написать заметку, просто наберите текст в предоставленной области. Текст возможно редактировать с помощью клавиатуры и мыши. Щелчок <mousebutton
+>правой</mousebutton
+> кнопкой мыши по области редактирования текста вызывает контекстное меню со следующими пунктами:</para>
+
+<itemizedlist>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Отменить действие</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Повторить</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Вырезать</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Копировать</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Вставить</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Удалить</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Очистить</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Выделить всё</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Проверить орфографию...</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Автоматическая проверка орфографии</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Разрешить табуляцию</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Найти…</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycap
+>F3</keycap
+> </shortcut
+><guimenuitem
+>Продолжить поиск</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Заменить...</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Зачитать текст</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Вставить дату</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Вставить «галочку»</guimenuitem
+></para
+></listitem>
+</itemizedlist>
+<para
+>Чтобы выделить текст, либо зажмите левую кнопку мыши и перемещайте курсор по тексту, либо зажмите клавишу &Shift; и используйте клавиши <keycap
+>со стрелками</keycap
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Вставка даты:</term>
+<listitem>
+<para
+>Чтобы вставить текущую дату в заметку, щёлкните правой кнопкой мыши по её заголовку и в открывшемся контекстном меню выберите пункт <guimenuitem
+>Вставить дату</guimenuitem
+>.</para>
+<para
+>Текущая дата и время будут вставлены в позицию курсора в тексте заметки.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Переименование заметки:</term>
+<listitem>
+<para
+>Чтобы переименовать заметку, щёлкните правой кнопкой мыши по её заголовку и в открывшемся контекстном меню выберите пункт <guimenuitem
+>Переименовать...</guimenuitem
+>.</para>
+<para
+>В появившемся диалоге укажите новое имя заметки. Чтобы сохранить его, нажмите кнопку <guibutton
+>OK</guibutton
+>. Чтобы выйти из диалога без переименования заметки, нажмите кнопку <guibutton
+>Отмена</guibutton
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Отправка заметки по почте:</term>
+<listitem>
+<para
+>Чтобы отправить заметку по почте, щёлкните правой кнопкой мыши по её заголовку и в открывшемся контекстном меню выберите пункт <guimenuitem
+>Отправить по почте...</guimenuitem
+>.</para
+> 
+<para
+>Дальнейшие действия зависят от параметров почты в диалоге <guilabel
+>Настройка</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Печать заметки:</term>
+<listitem>
+<para
+>Чтобы распечатать заметку, щёлкните правой кнопкой мыши по её заголовку и в открывшемся контекстном меню выберите пункт <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Печать...</guimenuitem
+></menuchoice
+>.</para>
+<para
+>Будет открыт стандартный диалог печати &kde;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Удаление заметки:</term>
+<listitem>
+<para
+>Чтобы удалить заметку, щёлкните правой кнопкой мыши по её заголовку и в открывшемся контекстном меню выберите пункт <guimenuitem
+>Удалить</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Скрытие заметки:</term>
+<listitem>
+<para
+>Чтобы скрыть заметку, нажмите крестик в правом верхнем углу заметки или, щёлкнув правой кнопкой мыши по заголовку, выберите в открывшемся контекстном меню пункт <menuchoice
+><shortcut
+>&Esc;</shortcut
+><guimenuitem
+>Скрыть</guimenuitem
+></menuchoice
+>. Заметка будет скрыта, но удалена не будет.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Установка напоминания:</term>
+<listitem>
+<para
+>Чтобы установить напоминание, щёлкните правой кнопкой мыши по заголовку заметки и в открывшемся контекстном меню выберите пункт <guimenuitem
+>Установить напоминание...</guimenuitem
+>. В появившемся диалоге отметьте параметр <guilabel
+>Напоминание в</guilabel
+> и установите дату и время. В указанное время появится всплывающее окно, отображающее все заметки, для которых установлено это время напоминания.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Отправка заметки:</term>
+<listitem>
+<para
+>Чтобы отправить заметку на другой компьютер, щёлкните правой кнопкой мыши по заголовку заметки и в открывшемся контекстном меню выберите пункт <guimenuitem
+>Отправить...</guimenuitem
+>. В открывшемся диалоговом окне введите имя хоста или IP-адрес (или выберите получателя из списка, если ранее ему уже отправлялись некоторые заметки). Если у получателя установлен флажок <guimenuitem
+>Принимать входящие заметки</guimenuitem
+> (регулируется в диалоге настройки параметров &knotes;), отправленная заметка с идентификатором отправителя отобразится на его экране.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Блокировка заметки:</term>
+<listitem>
+<para
+>Чтобы предотвратить случайное изменение заметки, щёлкните правой кнопкой мыши по заголовку заметки и в открывшемся контекстном меню выберите пункт <guimenuitem
+>Заблокировать</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Сохранение заметки:</term>
+<listitem>
+<para
+>Чтобы сохранить заметку, щёлкните правой кнопкой мыши по заголовку заметки и в открывшемся контекстном меню выберите пункт <guimenuitem
+>Сохранить как...</guimenuitem
+>. Заметку возможно сохранить в качестве обычного текстового файла или в формате &HTML;, если включён параметр <guilabel
+>Текст с форматированием</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Отображение заметок:</term>
+<listitem>
+<para
+>При запуске &knotes; по умолчанию все заметки скрыты. Чтобы отобразить их, щелкните левой кнопкой мыши по значку &knotes; на панели и выберите нужную заметку.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Поиск во всех заметках:</term>
+<listitem>
+<para
+>Щёлкните правой кнопкой мыши по значку на панели и в открывшемся контекстном меню выберите пункт <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Найти…</guimenuitem
+></menuchoice
+>.</para>
+<para
+>Будет открыт стандартный диалог поиска &kde;, где следует ввести текст для поиска во всех заметках.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Функции экрана:</term>
+<listitem>
+<para
+>Чтобы отправить заметку на рабочий стол, щёлкните правой кнопкой мыши по заголовку заметки и в открывшемся контекстном меню выберите пункт <guisubmenu
+>На рабочий стол</guisubmenu
+>. Выберите нужный рабочий стол. Также возможно отправить заметку <guisubmenu
+>На все рабочие столы</guisubmenu
+>.</para>
+<para
+>Чтобы окно заметки отображалось поверх всех остальных окон, щёлкните правой кнопкой мыши по её заголовку и в открывшемся контекстном меню установите флажок <guimenuitem
+>Показывать над другими</guimenuitem
+>.</para>
+<para
+>Чтобы вновь сделать поведение окна заметки обычным, установите флажок <guimenuitem
+>Показывать под другими</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Выход из &knotes;</term>
+<listitem>
+<para
+>Чтобы выйти из &knotes;, щёлкните правой кнопкой мыши по значку на панели и в открывшемся контекстном меню выберите пункт <guimenuitem
+>Выход</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+<chapter id="configuration">
+<title
+>Настройка</title>
+
+<sect1 id="defaults">
+<title
+>Настройка параметров по умолчанию</title>
+
+<para
+>Для настройки параметров &knotes; щёлкните правой кнопкой мыши по значку на панели и в открывшемся контекстном меню выберите пункт <guimenuitem
+>Настроить KNotes...</guimenuitem
+>. Откроется диалог настройки &knotes;.</para>
+
+<variablelist>
+<title
+>Раздел «Вывод на экран»</title>
+<varlistentry>
+<term
+><guilabel
+>Цвет текста</guilabel
+></term>
+<listitem
+><para
+>Цветной квадрат отображает текущий цвет текста. Щелчок по этому квадрату откроет стандартный диалог выбора цвета &kde;.</para
+></listitem
+> 
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Цвет фона</guilabel
+></term>
+<listitem
+><para
+>Цветной квадрат отображает текущий цвет фона. Щелчок по этому квадрату откроет стандартный диалог выбора цвета &kde;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Ширина по умолчанию</guilabel
+></term>
+<listitem
+><para
+>Ширина заметки в пикселах. Установите необходимое значение.</para
+></listitem
+> 
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Высота по умолчанию</guilabel
+></term>
+<listitem
+><para
+>Высота заметки в пикселах. Установите необходимое значение.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Показывать в списке задач</guilabel
+></term>
+<listitem
+><para
+>По умолчанию заметки &knotes; не отображаются как элементы панели задач. Если нужно, чтобы они отображались, установите этот флажок.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Запоминать рабочий стол</guilabel
+></term>
+<listitem
+><para
+>Если используется несколько виртуальных рабочих столов и установлен этот флажок, заметки появятся только на определённом рабочем столе.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Раздел «Редактор»</title>
+<varlistentry>
+<term
+><guilabel
+>Размер табуляции</guilabel
+></term>
+<listitem
+><para
+>Это размер в пробелах отступа, создаваемого клавишей &Tab;. Измените это число, если необходимо.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Автоматический отступ</guilabel
+></term>
+<listitem
+><para
+>Это переключатель. Если флажок установлен, будет использоваться автоматический отступ.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Текст с форматированием</guilabel
+></term>
+<listitem>
+<para
+>Установите этот флажок, чтобы в нижней части любой заметки отображалась панель инструментов форматирования текста.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Шрифт заголовка</guilabel
+></term>
+<listitem
+><para
+>Этот параметр позволяет изменить шрифт, используемый для заголовков заметок.</para>
+
+<para
+>Чтобы открыть стандартный диалог выбора шрифта &kde;, нажмите кнопку <guibutton
+>Выбрать шрифт...</guibutton
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Шрифт текста</guilabel
+></term>
+<listitem>
+<para
+>Этот параметр позволяет изменять шрифт, используемый для текста заметок.</para>
+
+<para
+>Чтобы открыть стандартный диалог выбора шрифта &kde;, нажмите кнопку <guibutton
+>Выбрать шрифт...</guibutton
+>.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Раздел «Действия»</title>
+<varlistentry>
+<term
+><guilabel
+>Отправка по электронной почте</guilabel
+></term>
+<listitem
+><para
+>Введите в это поле команду отправки почты и необходимые параметры командной строки.</para>
+<para
+>С помощью заменителя <token
+>%f</token
+> в командной строке возможно передать почтовой команде обычный текст заметки, а с помощью заменителя <token
+>%t</token
+> — заголовок заметки.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<variablelist>
+<title
+>Раздел «Сеть»</title>
+<varlistentry>
+<term
+><guilabel
+>Принимать входящие заметки</guilabel
+></term>
+<listitem
+><para
+>Установите этот флажок, чтобы принимать входящие заметки с других компьютеров.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Идентификатор отправителя</guilabel
+></term>
+<listitem
+><para
+>Идентификатор отправителя будет отображаться в заголовке заметки вместе с её названием, именем хоста или IP-адресом, а также датой отправки.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Порт</guilabel
+></term>
+<listitem
+><para
+>Порт используется для отправки заметок по сети, по умолчанию установлено значение 24837.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Раздел «Печать»</title>
+<varlistentry>
+<term
+><guilabel
+>Оформление</guilabel
+></term>
+<listitem
+><para
+>Оформление, используемое при печати заметки.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Раздел «Коллекции»</title>
+<varlistentry>
+<term
+><guilabel
+>Папки</guilabel
+></term>
+<listitem
+><para
+>Эта вкладка позволяет указать, какие папки следует показывать (путём установки или снятия флажка перед именем папки), изменить папку по умолчанию для сохранения заметок и добавить вложенные папки.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Учётные записи</guilabel
+></term>
+<listitem
+><para
+>Эта вкладка позволяет редактировать локальные почтовые папки, которые будут использоваться для заметок.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Раздел «Прочее»</title>
+<varlistentry>
+<term
+>Дополнительные параметры</term>
+<listitem
+><para
+>Показывать число заметок в системном лотке</para>
+<para
+>Чтобы изменить заголовок по умолчанию, используйте заменитель <userinput
+>%d</userinput
+> для текущей даты в кратком формате, <userinput
+>%I</userinput
+> для текущей даты в полном формате и <userinput
+>%t</userinput
+> для текущего времени.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="customizing-display">
+<title
+>Настройка отображения единичной заметки</title>
+
+<para
+>Каждую заметку возможно настроить независимо от общих параметров. Индивидуальные параметры идентичны описанным в разделе <link linkend="configuration"
+>Настройка</link
+>, но они будут применяться только к одной выбранной заметке. Все другие открытые и новые заметки будут иметь параметры по умолчанию.</para>
+
+<para
+>Чтобы настроить отображение одной заметки, щёлкните правой кнопкой мыши по её заголовку и в открывшемся контекстном меню выберите пункт <guimenuitem
+>Свойства...</guimenuitem
+>.</para>
+<para
+>Появится диалог с вкладками <guilabel
+>Настройка редактора</guilabel
+> и <guilabel
+>Вид</guilabel
+>, позволяющий настроить внешний вид заметки.</para>
+</sect1>
+
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Авторские права и лицензия</title>
+
+<para
+>&knotes;</para>
+
+<para
+>Авторское право на программу: Bernd Wuebben &Bernd.Johannes.Wuebben.mail;, 1997</para>
+
+<para
+>Участники:</para>
+<itemizedlist>
+<listitem
+><para
+>Wynn Wilkes <email
+>wynnw@calderasystems.com</email
+></para>
+</listitem>
+</itemizedlist>
+
+<para
+>Авторское право на документацию: &Greg.M.Holmes; <email
+>holmegm@earthlink.net</email
+>, 2000</para>
+
+<para
+>Документация обновлена в 2001 году Fabian Del Santo&Fabian.DalSanto.mail; и в 2003 году &Lauri.Watts; &Lauri.Watts.mail;.</para>
+
+
+<para
+>Перевод на русский: Олег Баталов, <email
+>olegbatalov@mail.ru</email
+>, Мария Шикунова <email
+>translation-team@basealt.ru</email
+>, Олеся Герасименко<email
+>translation-team@basealt.ru</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index; 
+
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

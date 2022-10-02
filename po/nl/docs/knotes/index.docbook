@@ -1,0 +1,919 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Dutch "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<book id="knotes" lang="&language;">
+
+<bookinfo id="knotesinfo">
+<title
+>Het handboek van &knotes;</title>
+
+<authorgroup>
+<author
+><firstname
+>Fabian</firstname
+> <surname
+>Dal Santo</surname
+> <affiliation
+> <address
+>&Fabian.DalSanto.mail;</address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Greg</firstname
+> <othername
+>M.</othername
+> <surname
+>Holmes</surname
+> </author>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Nalezer</contrib>
+</othercredit>
+&Bram.Schoenmakers;&Tom.Albers;&Natalie.Koning;&Antoon.Tolboom; 
+
+</authorgroup>
+
+<copyright>
+<year
+>2000</year>
+<holder
+>&Greg.M.Holmes;</holder>
+</copyright>
+<copyright>
+<year
+>2001</year>
+<holder
+>Fabian Del Santo</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-07-28</date>
+<releaseinfo
+>5.3.40 (Applications 16.08)</releaseinfo>
+
+<abstract
+><para
+>&knotes; is een bureaublad-toepassing om notitieblaadjes te maken.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>KNotes</keyword>
+<keyword
+>notities</keyword>
+<keyword
+>popup</keyword>
+<keyword
+>pop-up</keyword>
+<keyword
+>knotes</keyword>
+
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inleiding</title>
+
+<para
+>&knotes; is de digitale variant van de gele zelfklevende notitieblaadjes. De notities worden bij het afsluiten automatisch bewaard en worden weer getoond wanneer het programma gestart wordt. </para>
+
+<para
+>U kunt uw notities afdrukken of opsturen wanneer u de juiste hulptoepassingen in &knotes; instelt. </para>
+
+<para
+>U kunt voor iedere notitie bepaalde eigenschappen veranderen, bijvoorbeeld de kleur en het lettertype. U kunt ook de standaardinstellingen aanpassen. </para>
+
+<para
+>Na het voor de eerste keer starten van &knotes; zult u een hulpbron hebben geïnstalleerd die alle notities in een maildir-map onder <filename class="directory"
+>$(qtpaths --paths GenericDataLocation)</filename
+> opslaat. </para>
+
+</chapter>
+
+<chapter id="using-knotes">
+<title
+>Het gebruik van &knotes;</title>
+
+<variablelist>
+<varlistentry>
+<term
+>Het maken van een nieuwe notitie:</term>
+<listitem>
+<para
+>Om een nieuwe notitie te maken klikt u met de &RMB; op het &knotes;-paneelpictogram en selecteer <guimenuitem
+>Nieuwe notitie</guimenuitem
+>.</para>
+<para
+>U kunt een nieuwe notitie maken met de inhoud van het klembord door het selecteren van <guimenuitem
+>Nieuwe notitie van klembord</guimenuitem
+> of door <guimenuitem
+>Nieuwe notitie uit tekstbestand</guimenuitem
+> te gebruiken.</para>
+
+<para
+>Het volgende dialoogvenster zal verschijnen waarmee u een map kunt selecteren om uw notitie op te slaan:</para>
+
+<screenshot>
+<screeninfo
+>Map voor notitie selecteren</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="select-notes-folder.png" format="PNG"/>
+</imageobject>
+<textobject
+><phrase
+>Map voor notitie selecteren</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Selecteer hier een standaard map om deze dialoog bij het maken van nieuwe notities over te slaan.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Een notitie schrijven:</term>
+<listitem>
+<para
+>Om een notitie te schrijven typt u deze in in de beschikbare ruimte. De normale bewerkingsfuncties zijn beschikbaar. Door op de <mousebutton
+>rechter</mousebutton
+>muisknop te drukken verschijnt er een contextmenu met de volgende opties:</para>
+
+<itemizedlist>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+><guimenuitem
+>Ongedaan maken</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Opnieuw</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+></shortcut
+><guimenuitem
+>Knippen</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+></shortcut
+><guimenuitem
+>Kopiëren</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+></shortcut
+><guimenuitem
+>Plakken</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Verwijderen</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Beginwaarde</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+></shortcut
+><guimenuitem
+>Alles selecteren</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Spelling controleren</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Automatische spellingcontrole</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Tabs toestaan</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Zoeken</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycap
+>F3</keycap
+> </shortcut
+><guimenuitem
+>Volgende zoeken</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Vervangen</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Tekst uitspreken</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Datum invoegen</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Selectiemarkering invoegen</guimenuitem
+></para
+></listitem>
+</itemizedlist>
+<para
+>U kunt tekst selecteren door de <mousebutton
+>linker</mousebutton
+>muisknop ingedrukt te houden en vervolgens met de muis te slepen. U kunt ook de &Shift;-toets ingedrukt houden de <keycap
+>pijltoetsen</keycap
+> gebruiken.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>De datum invoegen:</term>
+<listitem>
+<para
+>Om de huidige datum in de notitie in te voegen gebruikt u het contextmenu van het tekstvak en kiest u <guimenuitem
+>Datum invoegen</guimenuitem
+>.</para>
+<para
+>De huidige datum en tijd worden ingevoegd op de cursorpositie in de notitietekst.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Een notitie hernoemen:</term>
+<listitem>
+<para
+>Om een notitie te hernoemen klikt u met de <mousebutton
+>rechter</mousebutton
+>muisknop op de titelbalk van de notitie en kiest u <guimenuitem
+>Hernoemen...</guimenuitem
+>.</para>
+<para
+>Typ de nieuwe naam in het dialoogvenster dat verschijnt. Om de nieuwe naam te accepteren, klik de knop <guibutton
+>OK</guibutton
+>. Om het venster te verlaten zonder de naam van de notitie te wijzigen, klik op <guibutton
+>Annuleren</guibutton
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Een notitie versturen:</term>
+<listitem>
+<para
+>Om een notitie te versturen klikt u met de <mousebutton
+>rechter</mousebutton
+>muisknop op de titelbalk van de notitie en kiest u <guimenuitem
+>Verzenden...</guimenuitem
+>.</para
+> 
+<para
+>Wat er dan gebeurt hangt af van de verzendactie-instellingen die u in het dialoogvenster <guilabel
+>Instellingen</guilabel
+> hebt gemaakt.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Een notitie afdrukken:</term>
+<listitem>
+<para
+>Om een notitie af te drukken klikt u met de <mousebutton
+>rechter</mousebutton
+>muisknop op de titelbalk van de notitie en kiest u <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Afdrukken</guimenuitem
+></menuchoice
+>.</para>
+<para
+>Een standaard &kde;-dialoogvenster voor afrukinstellingen wordt geopend.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Een notitie verwijderen:</term>
+<listitem>
+<para
+>Om een notitie te verwijderen klikt u met de <mousebutton
+>rechter</mousebutton
+>muisknop op de titelbalk van de notitie en kiest u <guimenuitem
+>Verwijderen</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Een notitie verbergen:</term>
+<listitem>
+<para
+>Om een notitie te verbergen klikt u op de <guiicon
+>X</guiicon
+> in de rechter bovenhoek van de titelbalk van de notitie of kies <menuchoice
+><shortcut
+> &Esc;</shortcut
+><guimenuitem
+>Verbergen</guimenuitem
+> </menuchoice
+> in het contextmenu. Het venster wordt gesloten, de notitie zelf wordt niet verwijderd.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Een herinnering instellen:</term>
+<listitem>
+<para
+>Selecteer <guimenuitem
+>Herinnering instellen</guimenuitem
+> in het contextmenu van de titelbalk van &knotes;. Activeer <guilabel
+>Herinnering op</guilabel
+> in de volgende dialoog en pas de datum en tijd aan voor de herinnering. Bij het aflopen van de herinnering zal er een venster verschijnen en lijst met alle notities met de actuele herinneringsdatum.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Een notitie verzenden:</term>
+<listitem>
+<para
+>Om een notitie te verzenden naar een andere computer selecteer <guimenuitem
+>Verzenden...</guimenuitem
+> in het contextmenu van de titelbalk van de notitie. Voeg een hostnaam of IP-adres toe of kies een ontvanger uit de lijst met eerder verzonden notities. Als de ontvangers inkomende notities hebben ingeschakeld, zal de notitie op zijn scherm verschijnen, met het id van de zender in de titelbalk.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Een notitie vergrendelen:</term>
+<listitem>
+<para
+>Om per ongeluk wijzigingen aanbrengen in een notitie te voorkomen selecteer <guimenuitem
+>Vergrendelen</guimenuitem
+> in het contextmenu van de titelbalk van de notitie.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Een notitie opslaan:</term>
+<listitem>
+<para
+>Om een notitie op te slaan selecteer <guimenuitem
+>Opslaan als...</guimenuitem
+> in het contextmenu van de titelbalk van de notitie. De notitie kan opgeslagen worden als een bestand met platte tekst of in &HTML;-formaat, als <guilabel
+>Rich text (Opgemaakte tekst)</guilabel
+> is ingeschakeld.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Notities tonen:</term>
+<listitem>
+<para
+>Wanneer u &knotes; start zullen alle notities verborgen zijn. Wanneer u ze wilt tonen, klik dan met de &LMB; op het pictogram van &knotes; in het paneel en selecteer de gewenste notitie.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>In alle notities zoeken:</term>
+<listitem>
+<para
+>Klik met de &RMB; op het pictogram van het paneel en kies <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Zoeken</guimenuitem
+></menuchoice
+> in het contextmenu.</para>
+<para
+>Een standaard &kde;-dialoogvenster wordt geopend waarin u de in alle notities te zoeken tekst kunt invoeren.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Bureaubladfuncties:</term>
+<listitem>
+<para
+>Om een notitie naar een bepaald bureaublad te verplaatsen klikt u met de <mousebutton
+>rechter</mousebutton
+>muisknop op de titelbalk van de notitie om vervolgens het submenu <guisubmenu
+>Naar bureaublad</guisubmenu
+> te openen. Kies hier het gewenste bureaublad, u kunt ook <guimenuitem
+>Alle bureaubladen</guimenuitem
+> kiezen</para>
+<para
+>Om een notitie continu in beeld te hebben klikt u met de <mousebutton
+>rechter</mousebutton
+>muisknop op de titelbalk van de notitie en kiest u <guimenuitem
+>Naar voorgrond</guimenuitem
+>.</para>
+<para
+>Om de notitie zich weer als een normaal venster te laten gedragen kiest u <guimenuitem
+>Naar achtergrond</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>&knotes; afsluiten</term>
+<listitem>
+<para
+>Om &knotes; af te sluiten klikt u met de <mousebutton
+>rechter</mousebutton
+>muisknop op het pictogram in uw paneel en kiest u <guimenuitem
+>Afsluiten</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+<chapter id="configuration">
+<title
+>Instellingen</title>
+
+<sect1 id="defaults">
+<title
+>De standaardinstellingen van &knotes; maken</title>
+
+<para
+>Om &knotes; in te stellen klikt u met de <mousebutton
+>rechter</mousebutton
+>muisknop op het pictogram in uw paneel en kiest u <guimenuitem
+>KNotes instellen...</guimenuitem
+>. Het dialoogvenster <guilabel
+>KNotes Instellingen</guilabel
+> wordt geopend.</para>
+
+<variablelist>
+<title
+>De sectie Weergave</title>
+<varlistentry>
+<term
+><guilabel
+>Tekstkleur:</guilabel
+></term>
+<listitem
+><para
+>Het kleurvakje toont de huidige tekstkleur. Door op dit vakje te klikken wordt het standaard &kde;-dialoogvenster "Kleur selecteren" geopend.</para
+></listitem
+> 
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Achtergrondkleur:</guilabel
+></term>
+<listitem
+><para
+>Het kleurvakje toont de huidige achtergrondkleur. Door op dit vakje te klikken wordt het standaard &kde;-dialoogvenster "Kleur selecteren" geopend.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Standaard breedte:</guilabel
+></term>
+<listitem
+><para
+>De breedte van een notitie in pixels. U kunt deze waarde naar wens veranderen.</para
+></listitem
+> 
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Standaardhoogte:</guilabel
+></term>
+<listitem
+><para
+>De hoogte van een notitie in pixels. U kunt deze waarde naar wens veranderen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Notities apart in paneel tonen</guilabel
+></term>
+<listitem
+><para
+>Gewoonlijk toont &knotes; geen pictogram voor iedere notitie in het paneel. Wanneer u dat liever wel hebt, kunt u deze optie aanzetten.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Bureaublad onthouden</guilabel
+></term>
+<listitem
+><para
+>Als u een aantal virtuele bureaubladen gebruikt en deze optie is geselecteerd, dan zal notes alleen verschijnen op het specifieke bureaublad.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>De sectie Bewerker</title>
+<varlistentry>
+<term
+><guilabel
+>Tabgrootte</guilabel
+></term>
+<listitem
+><para
+>Dit is de afstand die ingesprongen wordt bij het indrukken van de <keycap
+>Tab</keycap
+>-toets, uitgedrukt in spaties. U kunt dit getal naar wens aanpassen.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Automatisch inspringen</guilabel
+></term>
+<listitem
+><para
+>Als dit keuzevakje geselecteerd is, zal er automatisch ingesprongen worden.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Rich Text (Opgemaakte tekst)</guilabel
+></term>
+<listitem>
+<para
+>Selecteer deze optie om een werkbalk voor opmaken onderaan een venster voor een notitie te krijgen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Titellettertype:</guilabel
+></term>
+<listitem
+><para
+>U kunt het lettertype voor de titel van uw notities veranderen.</para>
+
+<para
+>Klik op <guibutton
+>Kiezen...</guibutton
+> om het standaard &kde;-dialoogvenster "Lettertype selecteren" te openen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Tekstlettertype</guilabel
+></term>
+<listitem>
+<para
+>U kunt het lettertype voor de tekst van uw notities veranderen.</para>
+
+<para
+>Klik op <guibutton
+>Kiezen...</guibutton
+> om het standaard &kde;-dialoogvenster "Lettertype selecteren" te openen.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>De sectie Acties</title>
+<varlistentry>
+<term
+><guilabel
+>Verzendactie</guilabel
+></term>
+<listitem
+><para
+>Typ het commando en de parameters voor het versturen van de notities.</para>
+<para
+>Door de parameter <token
+>%f</token
+> in de opdrachtregel kunt u de platte tekst van de notitie en met <token
+>%t</token
+> de titel van de notitie meegeven aan het commando voor e-mail verzenden.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<variablelist>
+<title
+>De sectie Netwerk</title>
+<varlistentry>
+<term
+><guilabel
+>Binnenkomende noties accepteren</guilabel
+></term>
+<listitem
+><para
+>Schakel deze optie in om het ontvangen van notities van andere computers toe te staan.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Afzender-id:</guilabel
+></term>
+<listitem
+><para
+>De id zal in de notitietitel getoond worden samen met de originele titel, hostnaam of IP-adres en datum van verzenden.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Poort</guilabel
+></term>
+<listitem
+><para
+>The poort gebruikt voor het verzenden van de notities via het netwerk, standaard 24837.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>De sectie Afdrukken</title>
+<varlistentry>
+<term
+><guilabel
+>Thema</guilabel
+></term>
+<listitem
+><para
+>Het te gebruiken thema voor het afdrukken van de notitie.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>De sectie Verzamelingen</title>
+<varlistentry>
+<term
+><guilabel
+>Mappen</guilabel
+></term>
+<listitem
+><para
+>In dit tabblad kunt u selecteren welke mappen getoond worden door activering van het keuzevakje voor de mappen, de standaard opslagmap en submappen toevoegen voor notities.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Accounts</guilabel
+></term>
+<listitem
+><para
+>In dit tabblad kunt u de lokale voor notities te gebruiken maildir-mappen bewerken.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>De sectie Diversen</title>
+<varlistentry>
+<term
+>Diverse instellingen</term>
+<listitem
+><para
+>Inschakelen om het aantal notities in het systeemvakpictogram te tonen</para>
+<para
+>Om de standaard titel aan te passen kunt u <userinput
+>%d</userinput
+> gebruiken voor de huidige datum in kort formaat, <userinput
+>%I</userinput
+> voor de huidige datum in lang formaat en <userinput
+>%t</userinput
+> voor de huidige tijd.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="customizing-display">
+<title
+>Voorkeuren instellen voor een enkele notitie</title>
+
+<para
+>U kunt de weergave van een enkele notitie laten afwijken van de standaardinstellingen. De instellingen zijn identiek aan de standaardinstellingen zoals beschreven in het hoofdtuk <link linkend="configuration"
+>Instellingen</link
+>, maar ze gelden alleen voor de notitie die u wijzigt. Alle andere notities en nieuwe notities zullen de standaardinstellingen gebruiken.</para>
+
+<para
+>Om de voorkeuren van een enkele notitie te wijzigen, klikt u met de <mousebutton
+>rechter</mousebutton
+>muisknop op de titelbalk van de notitie en kiest u <guimenuitem
+>Instellingen...</guimenuitem
+>.</para>
+<para
+>Een dialoogvenster met de pagina's <guilabel
+>Instellingen voor tonen</guilabel
+> en <guilabel
+>Instellingen voor de bewerker</guilabel
+> wordt geopend, waarmee u de notitie kunt instellen.</para>
+</sect1>
+
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Dankbetuigingen en licentie</title>
+
+<para
+>&knotes;</para>
+
+<para
+>Programma copyright 1997 Bernd Wuebben &Bernd.Johannes.Wuebben.mail;</para>
+
+<para
+>Met dank aan:</para>
+<itemizedlist>
+<listitem
+><para
+>Wynn Wilkes <email
+>wynnw@calderasystems.com</email
+></para>
+</listitem>
+</itemizedlist>
+
+<para
+>Documentatie copyright 2000 &Greg.M.Holmes; <email
+>holmegm@earthlink.net</email
+></para>
+
+<para
+>Documentatie bijgewerkt in 2001 door Fabian Del Santo &Fabian.DalSanto.mail; en in 2003 door &Lauri.Watts; &Lauri.Watts.mail;.</para>
+
+
+&meld.fouten;&vertaling.bram;&nagelezen.tom;&nagelezen.natalie;&nagelezen.antoon; &underFDL; &underGPL; </chapter>
+
+&documentation.index; 
+
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

@@ -1,0 +1,124 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Vít Pelčák <vit@pelcak.org>, 2013, 2014, 2015, 2017, 2018, 2019, 2020.
+# Vit Pelcak <vpelcak@suse.cz>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"PO-Revision-Date: 2021-04-21 15:45+0200\n"
+"Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
+"Language-Team: Czech <kde-i18n-doc@kde.org>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 20.12.3\n"
+
+#: notesagentalarmdialog.cpp:38
+#, kde-format
+msgctxt "@title:window"
+msgid "Alarm"
+msgstr "Alarm"
+
+#: notesagentalarmdialog.cpp:50
+#, kde-format
+msgid "The following notes triggered alarms:"
+msgstr "Následující poznámky vyvolaly alarm:"
+
+#: notesagentalarmdialog.cpp:88
+#, kde-format
+msgid "Remove Alarm"
+msgstr "Odstranit alarm"
+
+#: notesagentalarmdialog.cpp:90
+#, kde-format
+msgid "Show Note..."
+msgstr "Zobrazit poznámku..."
+
+#: notesagentalarmdialog.cpp:92
+#, kde-format
+msgid "Modify Alarm..."
+msgstr "Změnit alarm..."
+
+#: notesagentalarmdialog.cpp:146
+#, kde-format
+msgid "Are you sure to remove alarm?"
+msgstr "Opravdu chcete odstranit alarm?"
+
+#: notesagentalarmdialog.cpp:147
+#, kde-format
+msgctxt "@title:window"
+msgid "Remove Alarm"
+msgstr "Odstranit alarm"
+
+#: notesagentalarmdialog.cpp:212
+#, kde-format
+msgid "Error during fetch alarm info."
+msgstr "Chyba při stahování informací o alarmu."
+
+#: notesagentalarmdialog.cpp:212
+#, kde-format
+msgid "Alarm"
+msgstr "Alarm"
+
+#: notesagentsettingsdialog.cpp:31
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Notes Agent"
+msgstr "Nastavit agenta poznámek"
+
+#: notesagentsettingsdialog.cpp:46
+#, kde-format
+msgid "Notify"
+msgstr "Upozornit"
+
+#: notesagentsettingsdialog.cpp:48
+#, kde-format
+msgid "Network"
+msgstr "Síť"
+
+#: notesagentsettingsdialog.cpp:56
+#, kde-format
+msgid "Notes Agent"
+msgstr "Agent poznámek"
+
+#: notesagentsettingsdialog.cpp:58
+#, kde-format
+msgid "Notes Agent."
+msgstr "Agent poznámek."
+
+#: notesagentsettingsdialog.cpp:60
+#, kde-format
+msgid "Copyright (C) 2013-%1 Laurent Montel"
+msgstr ""
+
+#: notesagentsettingsdialog.cpp:62
+#, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: notesagentsettingsdialog.cpp:62
+#, kde-format
+msgid "Maintainer"
+msgstr "Správce"
+
+#: notesagentsettingsdialog.cpp:65
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Vít Pelčák"
+
+#: notesagentsettingsdialog.cpp:65
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "vit@pelcak.org"
+
+#: notesmanager.cpp:173
+#, kde-format
+msgid "Note Received"
+msgstr "Přijata poznámka"

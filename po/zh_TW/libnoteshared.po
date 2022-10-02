@@ -1,0 +1,195 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Franklin Weng <franklin at goodhorse dot idv dot tw>, 2013, 2014, 2015.
+# pan93412 <pan93412@gmail.com>, 2018.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"PO-Revision-Date: 2018-12-21 19:37+0800\n"
+"Last-Translator: pan93412 <pan93412@gmail.com>\n"
+"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 18.12.0\n"
+
+#: alarms/notealarmdialog.cpp:41
+#, kde-format
+msgid "Scheduled Alarm"
+msgstr "鬧鈴設定"
+
+#: alarms/notealarmdialog.cpp:44
+#, kde-format
+msgid "&No alarm"
+msgstr "不響鈴(&N)"
+
+#: alarms/notealarmdialog.cpp:53
+#, kde-format
+msgid "Alarm &at:"
+msgstr "在以下時間響鈴(&A)"
+
+#: config/noteactionconfig.cpp:23
+#, kde-format
+msgid "&Mail action:"
+msgstr "寄件命令(&M)"
+
+#: config/noteactionconfig.cpp:31
+#, kde-format
+msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgstr "<a href=\"whatsthis\">這是怎麼運作的？</a>"
+
+#: config/noteactionconfig.cpp:44
+#, kde-format
+msgid ""
+"<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "
+"current note title</li><li>%f returns current note text</li></ul></qt>"
+msgstr ""
+"<qt><p>您可以自訂命令列。您可以使用：</p><ul><li>%t 傳回目前的便條標題</"
+"li><li>%f 傳回目前的便條文字</li></ul></qt>"
+
+#: config/notenetworkconfig.cpp:29
+#, kde-format
+msgid "Incoming Notes"
+msgstr "接收便條紙"
+
+#: config/notenetworkconfig.cpp:32
+#, kde-format
+msgid "Accept incoming notes"
+msgstr "允許接收便條紙"
+
+#: config/notenetworkconfig.cpp:38
+#, kde-format
+msgid "Outgoing Notes"
+msgstr "傳送便條紙"
+
+#: config/notenetworkconfig.cpp:41
+#, kde-format
+msgid "&Sender ID:"
+msgstr "寄件人名稱(&S)"
+
+#: config/notenetworkconfig.cpp:53
+#, kde-format
+msgid "&Port:"
+msgstr "連接埠(&P)："
+
+#: dialog/selectednotefolderdialog.cpp:22
+#, kde-format
+msgctxt "@title:window"
+msgid "Select Note Folder"
+msgstr "選擇便條資料夾"
+
+#: dialog/selectednotefolderdialog.cpp:23
+#, kde-format
+msgctxt "@info"
+msgid "Select the folder where the note will be saved:"
+msgstr "選擇便條要儲存在哪個資料夾："
+
+#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
+#, kde-format
+msgid ""
+"An error occurred during fetching. Do you want to select a new default "
+"collection?"
+msgstr "抓取時發生錯誤。您要選擇新的預設收藏嗎？"
+
+#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Select Note Folder"
+msgctxt "@action:button"
+msgid "Select New Default"
+msgstr "選擇便條資料夾"
+
+#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
+#, kde-format
+msgctxt "@action:button"
+msgid "Ignore"
+msgstr ""
+
+#: job/createnewnotejob.cpp:126
+#, fuzzy, kde-format
+#| msgid ""
+#| "Collection is hidden. New note will stored but not displaying. Do you "
+#| "want to show collection?"
+msgid ""
+"Collection is hidden. New note will be stored but not displayed. Do you want "
+"to show collection?"
+msgstr "收藏已隱藏。新的便條將會儲存但不會顯示。您要顯示收藏嗎？"
+
+#: job/createnewnotejob.cpp:128
+#, kde-format
+msgctxt "@action::button"
+msgid "Show Collection"
+msgstr ""
+
+#: job/createnewnotejob.cpp:129
+#, kde-format
+msgctxt "@action::button"
+msgid "Do Not Show"
+msgstr ""
+
+#: job/createnewnotejob.cpp:184
+#, kde-format
+msgid "Note was not created."
+msgstr "便條未建立。"
+
+#: job/createnewnotejob.cpp:184
+#, kde-format
+msgid "Create new note"
+msgstr "建立新便條"
+
+#: network/notehostdialog.cpp:43
+#, kde-format
+msgid "Select recipient:"
+msgstr "選擇收件者"
+
+#: network/notehostdialog.cpp:59
+#, kde-format
+msgid "Hostname or IP address:"
+msgstr "主機名稱或IP位址:"
+
+#: network/notesnetworksender.cpp:74
+#, kde-format
+msgid "Communication error: %1"
+msgstr "通訊錯誤: %1"
+
+#: noteutils.cpp:31
+#, kde-format
+msgid "Please configure send mail action."
+msgstr "請設定傳送郵件動作。"
+
+#: noteutils.cpp:39
+#, kde-format
+msgid "Note: \"%1\""
+msgstr "備忘：\"%1\""
+
+#: noteutils.cpp:46
+#, kde-format
+msgid "Unable to start the mail process."
+msgstr "無法啟動電子郵件軟體。"
+
+#: noteutils.cpp:55
+#, kde-format
+msgid "Send \"%1\""
+msgstr "傳送「%1」"
+
+#: noteutils.cpp:59
+#, kde-format
+msgid "The host cannot be empty."
+msgstr "不能沒有主機名稱。"
+
+#: resources/localresourcecreator.cpp:70
+#, kde-format
+msgctxt "Default name for resource holding notes"
+msgid "Local Notes"
+msgstr "本地端便條"
+
+#. i18n: ectx: label, entry (Port), group (Network)
+#: settings/notesharedglobalconfig.kcfg:37
+#, kde-format
+msgid "The port will listen on and send notes to."
+msgstr "用來傳送與接收便條紙的通訊埠。"

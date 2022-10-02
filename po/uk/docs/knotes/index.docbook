@@ -1,0 +1,942 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Ukrainian "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<book id="knotes" lang="&language;">
+
+<bookinfo id="knotesinfo">
+<title
+>Довідник з &knotes;</title>
+
+<authorgroup>
+<author
+><firstname
+>Fabian</firstname
+> <surname
+>Dal Santo</surname
+> <affiliation
+> <address
+>&Fabian.DalSanto.mail;</address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Greg</firstname
+> <othername
+>M.</othername
+> <surname
+>Holmes</surname
+> </author>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Оглядач</contrib>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>Микола</firstname
+><surname
+>Шафоростов</surname
+><affiliation
+><address
+><email
+>shaforostoff@users.sourceforge.net</email
+></address
+></affiliation
+><contrib
+>Переклад українською</contrib
+></othercredit
+> <othercredit role="translator"
+><firstname
+>о. Іван</firstname
+><surname
+>Петрущак</surname
+><affiliation
+><address
+><email
+>fr.ivan@ukrainian-orthodox.org</email
+></address
+></affiliation
+><contrib
+>Виправлення і доповнення перекладу</contrib
+></othercredit
+> 
+
+</authorgroup>
+
+<copyright>
+<year
+>2000</year>
+<holder
+>&Greg.M.Holmes;</holder>
+</copyright>
+<copyright>
+<year
+>2001</year>
+<holder
+>Fabian Del Santo</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>28 липня 2016 року</date>
+<releaseinfo
+>5.3.40 (Програми 16.08)</releaseinfo>
+
+<abstract
+><para
+>&knotes; - це програма клейких нотаток для стільниці.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Knotes</keyword>
+<keyword
+>нотатки</keyword>
+<keyword
+>вигульк</keyword>
+<keyword
+>вигульки</keyword>
+<keyword
+>knotes</keyword>
+
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Вступ</title>
+
+<para
+>&knotes; - це програма, що дозволяє створювати комп'ютерний еквівалент клейких нотаток. Нотатки автоматично зберігаються при виході з програми, і показуються при її запуску. </para>
+
+<para
+>Можна друкувати нотатки та надсилати їх поштою, якщо налаштувати &knotes; для використання додаткових програм. </para>
+
+<para
+>Особливості показу нотаток, такі як колір та шрифт можуть бути налаштовані для кожної нотатки. Також можна налаштувати типові значення. </para>
+
+<para
+>Після першого запуску &knotes; буде створено відповідний ресурс, всі нотатки зберігатимуться у поштовій теці з назвою <filename
+>notes</filename
+> у каталозі <filename class="directory"
+>$(qtpaths --paths GenericDataLocation)</filename
+>. </para>
+
+</chapter>
+
+<chapter id="using-knotes">
+<title
+>Використання &knotes;</title>
+
+<variablelist>
+<varlistentry>
+<term
+>Створення нової нотатки:</term>
+<listitem>
+<para
+>Щоб створити нову нотатку, наведіть вказівник миші на піктограму &knotes; у лотку, клацніть правою кнопкою і оберіть з контекстного меню пункт <guimenuitem
+>Створити нотатку</guimenuitem
+>.</para>
+<para
+>Ви можете створити нову нотатку, що містить інформацію з буфера обміну даними, вибравши <guimenuitem
+>Створити нотатку з буфера обміну</guimenuitem
+> або скориставшись пунктом <guimenuitem
+>Створити нотатку з текстового файла</guimenuitem
+>.</para>
+
+<para
+>Після цього буде відкрито вікно, за допомогою якого ви зможете вибрати теку для збереження вашої нотатки.</para>
+
+<screenshot>
+<screeninfo
+>Вибір теки нотаток</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="select-notes-folder.png" format="PNG"/>
+</imageobject>
+<textobject
+><phrase
+>Вибір теки нотаток</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Виберіть типовий каталог, щоб пропустити це діалогове вікно під час створення нотаток.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Написання нотатки:</term>
+<listitem>
+<para
+>Щоб написати нотатку, просто введіть її текст у наданому місці. Також підтримуються функції редагування з клавіатури і мишки. Натискання на <mousebutton
+>праву</mousebutton
+> кнопку мишки в ділянці редагування надає наступні параметри меню:</para>
+
+<itemizedlist>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Вернути</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Повторити</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Вирізати</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Копіювати</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Вставити</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Вилучити</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Очистити</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Вибрати все</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Перевірити правопис</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Автоматична перевірка правопису</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Дозволити табуляцію</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+> </keycombo
+> </shortcut
+><guimenuitem
+>Пошук...</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F3</keycap
+> </keycombo
+> </shortcut
+><guimenuitem
+>Знайти далі</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenuitem
+>Замінити</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Декламувати текст</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Вставити дату</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Вставити позначку</guimenuitem
+></para
+></listitem>
+</itemizedlist>
+<para
+>Текст можна вибрати натиснувши на ліву клавішу мишки та переміщаючи її, або натиснувши на клавішу <keycap
+>Shift</keycap
+> та використовуючи клавіші <keycap
+>стрілок</keycap
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Вставка дати:</term>
+<listitem>
+<para
+>Для вставки в нотатку поточної дати відкрийте контекстним меню панелі редагування (клацніть правою кнопкою миші) і виберіть у ньому пункт <guimenuitem
+>Вставити дату</guimenuitem
+>.</para>
+<para
+>Поточна дата і час будуть вставлені у позицію курсора в тексті нотатки.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Перейменування нотатки:</term>
+<listitem>
+<para
+>Для перейменування нотатки, клацніть правою кнопкою мишки на смужці її заголовка і виберіть <guimenuitem
+>Перейменувати...</guimenuitem
+>.</para>
+<para
+>Введіть нову назву нотатки у вікні, яке з'явиться. Щоб прийняти нову назву, натисніть кнопку <guibutton
+>Гаразд</guibutton
+>. Для виходу з вікна без перейменування нотатки, натисніть кнопку <guibutton
+>Скасувати</guibutton
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Надсилання нотатки поштою:</term>
+<listitem>
+<para
+>Для надсилання нотатки поштою, клацніть правою кнопкою мишки на смужці її заголовка і виберіть <guimenuitem
+>Надіслати поштою...</guimenuitem
+>.</para
+> 
+<para
+>Що відбувається далі, залежить від налаштування поштової програми у діалоговому вікні <guilabel
+>Параметри</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Друк нотатки:</term>
+<listitem>
+<para
+>Для друку нотатки, клацніть правою кнопкою мишки на смужці заголовка нотатки й виберіть <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Друкувати</guimenuitem
+></menuchoice
+>.</para>
+<para
+>Буде відкрито стандартне вікно друку &kde;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Вилучення нотатки:</term>
+<listitem>
+<para
+>Для вилучення нотатки, клацніть правою кнопкою мишки на смужці її заголовка і виберіть<guimenuitem
+>Вилучити</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Ховання нотатки:</term>
+<listitem>
+<para
+>Щоб сховати нотатку, натисніть кнопку <guiicon
+>X</guiicon
+>, розташовану у верхньому правому кутку смужки заголовка нотатки, або оберіть пункт <menuchoice
+><shortcut
+> &Esc;</shortcut
+><guimenuitem
+>Сховати</guimenuitem
+> </menuchoice
+> з контекстного меню. Нотатку більше не буде показано на екрані. Саму нотатку вилучено не буде.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Встановлення нагадування:</term>
+<listitem>
+<para
+>Виберіть пункт <guimenuitem
+>Встановити нагадування</guimenuitem
+> у контекстному меню панелі заголовка нотатки. Позначте пункт <guilabel
+>Нагадати о</guilabel
+> на наступній сторінці діалогового вікна і вкажіть дату і час нагадування. У вказаний вами час програма покаже контекстне вікно зі списком всіх нотаток, для яких встановлено відповідне нагадування.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Надсилання нотатки:</term>
+<listitem>
+<para
+>Щоб надіслати нотатку на інший комп’ютер, виберіть у контекстному меню панелі заголовка нотатки пункт <guimenuitem
+>Надіслати...</guimenuitem
+>. Вкажіть назву вузла комп’ютера або його IP-адресу чи виберіть отримувача зі списку адрес раніше надісланих нотаток. Якщо у отримувача увімкнено можливість отримання вхідних нотаток, йому буде показано надіслану нотатку із зазначенням ідентифікатора відправника на панелі заголовка.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Блокування нотатки:</term>
+<listitem>
+<para
+>Щоб запобігти випадковим змінам у нотатці, виберіть пункт <guimenuitem
+>Заблокувати</guimenuitem
+> у контекстному меню панелі заголовка нотатки.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Збереження нотатки:</term>
+<listitem>
+<para
+>Щоб зберегти нотатку, виберіть у контекстному меню панелі заголовка нотатки пункт <guimenuitem
+>Зберегти як...</guimenuitem
+>. Нотатку можна зберегти у форматі звичайного тексту або у форматі &HTML;, якщо увімкнено режим <guilabel
+>Форматований текст</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Показ нотаток:</term>
+<listitem>
+<para
+>Коли ви запустите &knotes;, усі нотатки буде приховано. Якщо ви хочете переглянути список нотаток, клацніть лівою кнопкою миші на піктограмі &knotes; на панелі і виберіть нотатку, яку ви хочете переглянути.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Пошук у всіх нотатках:</term>
+<listitem>
+<para
+>Клацніть правою кнопкою миші на піктограмі на панелі і виберіть у контекстному меню пункт <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Пошук</guimenuitem
+></menuchoice
+>.</para>
+<para
+>У відповідь буде відкрито стандартне діалогове вікно &kde;, у якому ви зможете вказати текст, пошук якого буде виконано у всіх нотатках.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Функції стільниці:</term>
+<listitem>
+<para
+>Для перенесення нотатки на певну стільницю, клацніть правою кнопкою мишки на смужці заголовка нотатки і виберіть <guisubmenu
+>До стільниці</guisubmenu
+>. Виберіть необхідну стільницю або <guimenuitem
+>Всі стільниці</guimenuitem
+></para>
+<para
+>Щоб розташувати нотатку поверх усіх вікон, клацніть правою кнопкою мишки на смужці її заголовка і виберіть <guimenuitem
+>Зберігати над іншими</guimenuitem
+>.</para>
+<para
+>Щоб повернути нотаткам поведінку, характерну для більшості звичайних вікон, позначте пункт <guimenuitem
+>Зберігати під іншими</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Вихід з &knotes;</term>
+<listitem>
+<para
+>Для виходу з &knotes; клацніть правою кнопкою мишки на піктограмі на панелі та виберіть <guimenuitem
+>Вихід</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+<chapter id="configuration">
+<title
+>Налаштування</title>
+
+<sect1 id="defaults">
+<title
+>Налаштування &knotes; Стандартні параметри</title>
+
+<para
+>Щоб налаштувати &knotes;, клацніть правою кнопкою мишки на піктограмі на панелі. Виберіть <guimenuitem
+>Налаштувати KNotes...</guimenuitem
+>. З'явиться вікно <guilabel
+>Параметри KNotes</guilabel
+>.</para>
+
+<variablelist>
+<title
+>Розділ «Екран»</title>
+<varlistentry>
+<term
+><guilabel
+>Колір тексту:</guilabel
+></term>
+<listitem
+><para
+>Кольоровий квадрат показує поточний колір тексту. Наведіть вказівник миші на цей квадрат і клацніть лівою кнопкою миші, щоб відкрити стандартне вікно вибору кольору &kde;.</para
+></listitem
+> 
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Колір тла:</guilabel
+></term>
+<listitem
+><para
+>Кольоровий квадрат показує поточний колір тла. Наведіть вказівник миші на цей квадрат і клацніть лівою кнопкою миші, щоб відкрити стандартне вікно вибору кольору &kde;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Типова ширина:</guilabel
+></term>
+<listitem
+><para
+>Ширина нотатки в пікселях. Змініть значення за вашим уподобанням.</para
+></listitem
+> 
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Типова висота:</guilabel
+></term>
+<listitem
+><para
+>Висота нотатки в пікселях. Змініть значення за вашим уподобанням.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Показувати нотатку в смужці завдань</guilabel
+></term>
+<listitem
+><para
+>Типово, нотатки &knotes; не показано як елементи смужки завдань. Якщо ви хочете, щоб їх було видно, ввімкніть цей параметр.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Запам’ятати стільницю</guilabel
+></term>
+<listitem
+><para
+>Якщо ви користуєтеся декількома віртуальними стільницями, і позначено цей пункт, нотатки буде показано лише на вказаній вами стільниці.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Розділ «Редактор»</title>
+<varlistentry>
+<term
+><guilabel
+>Розмір табуляції</guilabel
+></term>
+<listitem
+><para
+>Це розмір відступу (у пробілах ), який створюється клавішею <keycap
+>Tab</keycap
+>. Змініть значення за вашим уподобанням.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Автоматичний відступ</guilabel
+></term>
+<listitem
+><para
+>Це прапорець-перемикач. Якщо ввімкнено, буде використовуватися автоматичний відступ.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Текст із форматуванням</guilabel
+></term>
+<listitem>
+<para
+>Позначте цей пункт, якщо ви хочете, щоб у нижній частині віко нотаток було показано панель форматування.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Шрифт заголовка:</guilabel
+></term>
+<listitem
+><para
+>Можна змінити шрифт, який використовується для заголовків нотаток.</para>
+
+<para
+>Натисніть кнопку <guibutton
+>Вибрати...</guibutton
+> для відкриття стандартного вікна вибору шрифту &kde;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Шрифт тексту</guilabel
+></term>
+<listitem>
+<para
+>Можна змінити шрифт, що використовується для тексту нотаток.</para>
+
+<para
+>Натисніть кнопку <guibutton
+>Вибрати...</guibutton
+> для відкриття стандартного вікна вибору шрифту &kde;.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Розділ «Дії»</title>
+<varlistentry>
+<term
+><guilabel
+>Команда пошти</guilabel
+></term>
+<listitem
+><para
+>У це поле введіть команду надсилання пошти і потрібні параметри командного рядка.</para>
+<para
+>За допомогою лексеми <token
+>%f</token
+> у командному рядку ви можете передати текст нотатки до команди надсилання пошти, а за допомогою лексеми <token
+>%t</token
+> — заголовок нотатки.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<variablelist>
+<title
+>Розділ «Мережа»</title>
+<varlistentry>
+<term
+><guilabel
+>Приймати вхідні нотатки</guilabel
+></term>
+<listitem
+><para
+>Позначте цей пункт, щоб дозволити програмі отримувати нотатки з інших комп’ютерів.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Ід. відправника</guilabel
+></term>
+<listitem
+><para
+>У заголовку нотатки буде показано ідентифікатор з початковим заголовком нотатки, а також дані щодо назви вузла або IP-адреси та дати надсилання.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Порт</guilabel
+></term>
+<listitem
+><para
+>Порт, який буде використано для надсилання нотаток мережею. Типовим є порт 24837.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Розділ «Друк»</title>
+<varlistentry>
+<term
+><guilabel
+>Тема</guilabel
+></term>
+<listitem
+><para
+>Тема, яку буде використано для оформлення під час друку нотатки.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Розділ «Збіки»</title>
+<varlistentry>
+<term
+><guilabel
+>Теки</guilabel
+></term>
+<listitem
+><para
+>За допомогою цієї вкладки ви можете вказати теки, які буде показано. Достатньо позначити відповідні пункти. Також можна змінити типову теку зберігання нотаток і додати підтеки для нотаток.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Облікові записи</guilabel
+></term>
+<listitem
+><para
+>За допомогою цієї вкладки ви можете редагувати перелік локальних поштових тек, які будуть використовуватися для нотаток.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>Розділ «Інше»</title>
+<varlistentry>
+<term
+>Різні параметри</term>
+<listitem
+><para
+>Увімкнути показ кількості нотаток на піктограмі у лотку.</para>
+<para
+>Для внесення змін до типового заголовка ви можете скористатися замінником <userinput
+>%d</userinput
+> для поточної дати у скороченому форматі, <userinput
+>%I</userinput
+> для поточної дати у повному форматі та <userinput
+>%t</userinput
+> для поточного часу.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="customizing-display">
+<title
+>Налаштування показу окремої нотатки</title>
+
+<para
+>Можна налаштувати кожну нотатку незалежно від глобальних параметрів. Ці параметри ідентичні описаним в розділі <link linkend="configuration"
+>Налаштування</link
+>, але вони будуть застосовуватися тільки до однієї обраної вами нотатки. Всі інші відкриті нотатки, і нові нотатки будуть використовувати типові параметри.</para>
+
+<para
+>Для налаштування показу однієї нотатки, клацніть правою кнопкою мишки на смужці її заголовка і виберіть <guimenuitem
+>Параметри...</guimenuitem
+>.</para>
+<para
+>Буде відкрито діалогове вікно зі сторінками <guilabel
+>Параметри показу</guilabel
+> і <guilabel
+>Параметри редагування</guilabel
+>, у якому ви зможете налаштувати нотатку.</para>
+</sect1>
+
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Подяки і ліцензія</title>
+
+<para
+>&knotes;</para>
+
+<para
+>Авторські права на програму Bernd Wuebben &Bernd.Johannes.Wuebben.mail;, ©1997</para>
+
+<para
+>При сприянні:</para>
+<itemizedlist>
+<listitem
+><para
+>Wynn Wilkes <email
+>wynnw@calderasystems.com</email
+></para>
+</listitem>
+</itemizedlist>
+
+<para
+>Авторське право на документацію &Greg.M.Holmes; <email
+>holmegm@earthlink.net</email
+>, ©2000</para>
+
+<para
+>Документацію оновлено у 2001 році Fabian Del Santo &Fabian.DalSanto.mail; і в 2003 році &Lauri.Watts; &Lauri.Watts.mail;.</para>
+
+
+<para
+>Переклад українською: Микола Шафоростов, <email
+>shaforostoff@users.sourceforge.net</email
+></para
+><para
+>Виправлення та доповнення перекладу: Іван Петрущак<email
+>iip@telus.net</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+&documentation.index; 
+
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

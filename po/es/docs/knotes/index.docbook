@@ -1,0 +1,934 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Spanish "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<book id="knotes" lang="&language;">
+
+<bookinfo id="knotesinfo">
+<title
+>El manual de &knotes;</title>
+
+<authorgroup>
+<author
+><firstname
+>Fabian</firstname
+> <surname
+>Dal Santo</surname
+> <affiliation
+> <address
+>&Fabian.DalSanto.mail;</address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Greg</firstname
+> <othername
+>M.</othername
+> <surname
+>Holmes</surname
+> </author>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Revisor</contrib>
+</othercredit>
+<othercredit role="translator"
+> <firstname
+>Juan Manuel</firstname
+> <surname
+>García Molina</surname
+> <affiliation
+><address
+><email
+>juanma@superiodico.net</email
+> </address
+></affiliation
+> <contrib
+>Traductor</contrib
+> </othercredit
+> <othercredit role="translator"
+> <firstname
+>Javier</firstname
+> <surname
+>Viñal</surname
+> <affiliation
+><address
+><email
+>fjvinal@gmail.com</email
+> </address
+></affiliation
+> <contrib
+>Traductor</contrib
+> </othercredit
+> 
+
+</authorgroup>
+
+<copyright>
+<year
+>2000</year>
+<holder
+>&Greg.M.Holmes;</holder>
+</copyright>
+<copyright>
+<year
+>2001</year>
+<holder
+>Fabian Del Santo</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-07-28</date>
+<releaseinfo
+>5.3.40 (Aplicaciones 16.08)</releaseinfo>
+
+<abstract
+><para
+>&knotes; es una aplicación de notas adhesivas para el escritorio.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Knotes</keyword>
+<keyword
+>notas</keyword>
+<keyword
+>emergente</keyword>
+<keyword
+>emergente</keyword>
+<keyword
+>knotes</keyword>
+
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introducción</title>
+
+<para
+>&knotes; es un programa que le permite escribir el equivalente en el equipo a las notas adhesivas. Las notas se guardan automáticamente cuanto sale del programa y se muestran cuando abre el programa. </para>
+
+<para
+>Puede imprimir y enviar por correo sus notas si configura &knotes; para usar asistentes. </para>
+
+<para
+>Muestra características de las notas como el color y el tipo de letra que se pueden personalizar para cada nota. También puede personalizar los valores predeterminados. </para>
+
+<para
+>Después de iniciar &knotes; por primera vez, usted dispondrá de un recurso instalado que guarde todas las notas en un archivo bajo <filename
+>notes</filename
+> en <filename class="directory"
+>$(qtpaths --paths GenericDataLocation)</filename
+>. </para>
+
+</chapter>
+
+<chapter id="using-knotes">
+<title
+>Usando &knotes;</title>
+
+<variablelist>
+<varlistentry>
+<term
+>Crear una nota nueva:</term>
+<listitem>
+<para
+>Para crear una nota nueva pulse con el &RMB; en el icono de la bandeja de &knotes; y seleccione <guimenuitem
+>Nueva nota</guimenuitem
+>.</para>
+<para
+>Puede crear una nota nueva que tenga el contenido del portapapeles si elige <guimenuitem
+>Nota nueva desde el portapapeles</guimenuitem
+> o usar <guimenuitem
+>Nueva nota desde archivo de texto</guimenuitem
+>.</para>
+
+<para
+>Ahora aparecerá un diálogo que le permitirá seleccionar una carpeta donde guardar su nota:</para>
+
+<screenshot>
+<screeninfo
+>Seleccionar carpeta de notas</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="select-notes-folder.png" format="PNG"/>
+</imageobject>
+<textobject
+><phrase
+>Seleccionar carpeta de notas</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Seleccione una carpeta de notas predeterminada aquí para saltar este diálogo creando nuevas notas.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Escribir su nota:</term>
+<listitem>
+<para
+>Para escribir su nota, simplemente teclee la nota en el espacio proporcionado. Se admiten las funciones de edición normales del teclado y el ratón. Pulsar con el botón <mousebutton
+>Derecho</mousebutton
+> sobre el espacio de edición le proporcionará las siguientes opciones del menú:</para>
+
+<itemizedlist>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Deshacer</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Rehacer</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Cortar</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Copiar</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Pegar</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Borrar</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Borrar</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Seleccionar todo</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Revisión de ortografía</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Autorevisión ortográfica</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Permitir tabulaciones</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Buscar</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycap
+>F3</keycap
+> </shortcut
+><guimenuitem
+>Buscar siguiente</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Remplazar</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Hablar texto</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Insertar fecha</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Insertar marca de comprobación</guimenuitem
+></para
+></listitem>
+</itemizedlist>
+<para
+>El texto se puede seleccionar manteniendo pulsado el &LMB; y moviendo el ratón o manteniendo pulsada la tecla &Shift; y usando las teclas de <keycap
+>flecha</keycap
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Insertar la fecha:</term>
+<listitem>
+<para
+>Para insertar la fecha actual en la nota, use el menú de contexto o el espacio de edición y seleccione  <guimenuitem
+>Insertar fecha</guimenuitem
+>.</para>
+<para
+>La fecha y hora actual se insertará en el texto de la nota, en la posición del cursor.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Cambiar el nombre de una nota:</term>
+<listitem>
+<para
+>Para cambiar el nombre a una nota, pulse con el &RMB; sobre la barra de título de la nota y elija <guimenuitem
+>Cambiar de nombre...</guimenuitem
+>.</para>
+<para
+>Teclee el nuevo nombre de la nota en el diálogo que aparece. Para aceptar el nuevo nombre, presione el botón <guibutton
+>Aceptar</guibutton
+>. Para salir del diálogo sin cambiar el nombre de la nota, pulse el botón <guibutton
+>Cancelar</guibutton
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Enviar una nota:</term>
+<listitem>
+<para
+>Para enviar una nota por correo, pulse con el &RMB; sobre la barra de título de la nota y elija <guimenuitem
+>Correo...</guimenuitem
+>.</para
+> 
+<para
+>Lo próximo que ocurra variará en función de cómo haya configurado la acción de correo en el diálogo <guilabel
+>Preferencias</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Imprimir una nota:</term>
+<listitem>
+<para
+>Para imprimir una nota pulse con el &RMB; en la barra de título y seleccione <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Imprimir</guimenuitem
+></menuchoice
+>.</para>
+<para
+>Se abrirá un diálogo de impresión estándar de &kde;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Eliminar una nota:</term>
+<listitem>
+<para
+>Para borrar una nota, pulse con el &RMB; sobre la barra de título de la nota y elija <guimenuitem
+>Eliminar</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Ocultar una nota:</term>
+<listitem>
+<para
+>Para ocultar una nota, pulse sobre la <guiicon
+>X</guiicon
+> en la esquina superior derecha de la barra de título de la nota o seleccione <menuchoice
+><shortcut
+> &Esc;</shortcut
+><guimenuitem
+>Ocultar</guimenuitem
+> </menuchoice
+> en el menú de contexto. La nota no volverá a mostrarse en pantalla. La propia nota no se borrará.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Establecer una alarma:</term>
+<listitem>
+<para
+>Seleccione <guimenuitem
+>Establecer alarma</guimenuitem
+> en el menú de contexto de la barra de título de la nota. Compruebe <guilabel
+>Alarma a</guilabel
+> en el siguiente diálogo y ajuste la fecha y hora del recordatorio. A la hora de la alarma se mostrará una ventana emergente y lista todas las notas con la fecha real de la alarma.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Envío de una nota:</term>
+<listitem>
+<para
+>Para enviar una nota a otro equipo, seleccione <guimenuitem
+>Enviar...</guimenuitem
+> en el menú de contexto de la barra de título de la nota. Añada un nombre de servidor o ip o elija un destinatario de la lista de notas enviadas previamente. Si los destinatarios han activado notas entrantes, la nota aparecerá en su pantalla, indicando el remitente en la barra de título.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Bloquear una nota:</term>
+<listitem>
+<para
+>Para evitar cambios accidentales en una nota, seleccione <guimenuitem
+>Bloquear</guimenuitem
+> en el menú de contexto o la barra de título de la nota.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Guardar una nota:</term>
+<listitem>
+<para
+>Para guardar una nota, seleccione <guimenuitem
+>Guardar como...</guimenuitem
+> en el menú de contexto o la barra de título. La nota puede guardarse como texto sin formato o en formato &HTML;, si está activado <guilabel
+>Texto enriquecido</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Mostrar notas:</term>
+<listitem>
+<para
+>Cuando usted inicia &knotes;, todas las notas están ocultas. Si quiere mostrarlas, &LMB; sobre el icono &knotes; del panel y seleccione la nota que quiera mostrar.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Búsqueda en todas las notas:</term>
+<listitem>
+<para
+>Pulse con el &RMB; en el icono del panel y seleccione <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Buscar</guimenuitem
+></menuchoice
+> en el menú de contexto.</para>
+<para
+>Se abrirá un diálogo estándar de &kde; donde usted introduce el texto a buscar en todas las notas.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Funciones de escritorio:</term>
+<listitem>
+<para
+>Para enviar una nota a un escritorio determinado, pulse con el &RMB; sobre la barra de título de la nota y elija <guisubmenu
+>Al escritorio</guisubmenu
+>. Elija el escritorio que desee o, si así lo desea, <guimenuitem
+>Todos los escritorios</guimenuitem
+></para>
+<para
+>Para hacer que una nota permanezca sobre las otras ventanas, pulse con el &RMB; sobre la barra de título de la nota y elija <guimenuitem
+>Mantener sobre otras</guimenuitem
+>.</para>
+<para
+>Para devolver la nota al comportamiento de una ventana más normal, seleccione <guimenuitem
+>Mantener bajo otras</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Saliendo de &knotes;</term>
+<listitem>
+<para
+>Para salir de &knotes; pulse con el &RMB; sobre el icono del panel y elija <guimenuitem
+>Salir</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+<chapter id="configuration">
+<title
+>Configuración</title>
+
+<sect1 id="defaults">
+<title
+>Configurar las preferencias predeterminadas de &knotes;</title>
+
+<para
+>Para configurar &knotes;, pulse con el &RMB; sobre el icono del panel. Elija <guimenuitem
+>Configurar KNotes...</guimenuitem
+>. Se abrirá el diálogo <guilabel
+>Configuración de KNotes</guilabel
+> de &knotes;.</para>
+
+<variablelist>
+<title
+>La sección visualizar</title>
+<varlistentry>
+<term
+><guilabel
+>Color del texto:</guilabel
+></term>
+<listitem
+><para
+>El cuadrado de color muestra el color del texto actual. Pulsando sobre este cuadrado de color, abre el diálogo de selección de color estándar de &kde;.</para
+></listitem
+> 
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Color de fondo:</guilabel
+></term>
+<listitem
+><para
+>El cuadrado de color muestra el color de fondo actual. Pulsando sobre este cuadrado de color, abre el diálogo de selección de color estándar de &kde;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Ancho predeterminado:</guilabel
+></term>
+<listitem
+><para
+>La anchura de la nota en píxeles. Edite este número como desee.</para
+></listitem
+> 
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Alto predeterminado:</guilabel
+></term>
+<listitem
+><para
+>La altura de la nota en píxeles. Edite este número como desee.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Mostrar la nota en la barra de tareas</guilabel
+></term>
+<listitem
+><para
+>Por omisión, las notas de &knotes; no muestran ninguna entrada en la barra de tareas para cada nota. Si prefiere que se haga así, active esta opción.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Recordar el escritorio</guilabel
+></term>
+<listitem
+><para
+>Si usted usa varios escritorios virtuales y se selecciona esta opción, las notas aparecerán solo en el escritorio específico.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>La sección editor</title>
+<varlistentry>
+<term
+><guilabel
+>Tamaño de la tabulación</guilabel
+></term>
+<listitem
+><para
+>Este es el tamaño de sangrado producido por la tecla &Tab;. Edite este número como desee.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sangrado automático</guilabel
+></term>
+<listitem
+><para
+>Esta es una casilla de verificación. Si está marcada, el sangrado automático está activo.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Texto enriquecido</guilabel
+></term>
+<listitem>
+<para
+>Marque esta opción para obtener una barra de herramientas de formato en la parte inferior de cada ventana de notas.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Tipo de letra del título:</guilabel
+></term>
+<listitem
+><para
+>Puede cambiar el tipo de letra usado para el título de sus notas.</para>
+
+<para
+>Pulse sobre <guibutton
+>Elegir...</guibutton
+> para abrir el diálogo de selección de tipos de letra estándar de &kde;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Color del tipo de letra</guilabel
+></term>
+<listitem>
+<para
+>Puede cambiar el tipo de letra usado para el texto de sus notas.</para>
+
+<para
+>Pulse sobre <guibutton
+>Elegir...</guibutton
+> para abrir el diálogo de selección de tipos de letra estándar de &kde;.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>La sección acciones</title>
+<varlistentry>
+<term
+><guilabel
+>Acción de correo</guilabel
+></term>
+<listitem
+><para
+>Teclee una orden de correo y los conmutadores de línea de órdenes que se precisen en esta caja.</para>
+<para
+>Usando <token
+>%f</token
+> en la línea de órdenes, usted puede pasar el texto sin formato de la nota y usando <token
+>%t</token
+> el título de la nota, a la orden de correo.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<variablelist>
+<title
+>La sección red</title>
+<varlistentry>
+<term
+><guilabel
+>Aceptar las notas entrantes</guilabel
+></term>
+<listitem
+><para
+>Active esta opción para permitir recibir notas desde otros equipos.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>ID del remitente</guilabel
+></term>
+<listitem
+><para
+>El id se mostrará en el título de la nota junto con el título original, servidor o ip y fecha de envío.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Puerto</guilabel
+></term>
+<listitem
+><para
+>El puerto usado para enviar las notas por la red, por omisión 24837.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>La sección Imprimir</title>
+<varlistentry>
+<term
+><guilabel
+>Tema</guilabel
+></term>
+<listitem
+><para
+>El tema usado para imprimir la nota.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>La sección Colecciones</title>
+<varlistentry>
+<term
+><guilabel
+>Carpetas</guilabel
+></term>
+<listitem
+><para
+>En esta pestaña usted puede seleccionar que carpetas se muestran, activando la casilla de verificación al alado de las carpetas, cambie la carpeta de guardado predeterminada y añadir subcarpetas para notas.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Cuentas</guilabel
+></term>
+<listitem
+><para
+>En esta pestaña usted puede editar las carpetas de buzones locales que usar para las notas.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>La sección Misc</title>
+<varlistentry>
+<term
+>Preferencias diversas</term>
+<listitem
+><para
+>Active para mostrar el número de notas en el icono de la bandeja</para>
+<para
+>Para personalizar el título predeterminado, usted puede usar  <userinput
+>%d</userinput
+> para la fecha actual en formato corto, <userinput
+>%I</userinput
+> para la fecha actual en formato largo y <userinput
+>%t</userinput
+> para la hora actual.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="customizing-display">
+<title
+>Personalizar la visualización de una sola nota</title>
+
+<para
+>Puede personalizar cada nota independientemente de la configuración global. Las preferencias que puede personalizar son idénticas a las descritas en la sección <link linkend="configuration"
+>Configuración</link
+>, pero solo se aplicarán a las notas que está cambiando. Cualesquiera otras notas abiertas y cualquier nota nueva que cree, usarán la configuración predeterminada.</para>
+
+<para
+>Para personalizar la visualización de una sola nota, pulse con el &RMB; sobre la barra de título de la nota y seleccione <guimenuitem
+>Preferencias...</guimenuitem
+>.</para>
+<para
+>Se abrirá un diálogo con las páginas <guilabel
+>Preferencias de visualización</guilabel
+> y <guilabel
+>Preferencias de edición</guilabel
+>, que le permitirán configurar la nota.</para>
+</sect1>
+
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Créditos y licencia</title>
+
+<para
+>&knotes;</para>
+
+<para
+>Copyright del programa 1997 Bernd Wuebben &Bernd.Johannes.Wuebben.mail;</para>
+
+<para
+>Colaboradores:</para>
+<itemizedlist>
+<listitem
+><para
+>Wynn Wilkes <email
+>wynnw@calderasystems.com</email
+></para>
+</listitem>
+</itemizedlist>
+
+<para
+>Copyright de la documentación, 2000 &Greg.M.Holmes; <email
+>holmegm@earthlink.net</email
+></para>
+
+<para
+>Documentación actualizada en 2001 por Fabian Del Santo &Fabian.DalSanto.mail; y en 2003 por &Lauri.Watts; &Lauri.Watts.mail;.</para>
+
+
+<para
+>Traducido por Juan Manuel García Molina <email
+>juanma@superiodico.net</email
+> y Javier Viñal <email
+>fjvinal@gmail.com</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+&documentation.index; 
+
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

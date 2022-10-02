@@ -1,0 +1,1218 @@
+# translation of knotes.po to 
+# Copyright (C) 2004 Free Software Foundation, Inc.
+# Ambalam <tamilpc@ambalam.com>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: knotes\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-02 00:48+0000\n"
+"PO-Revision-Date: 2005-03-21 03:17-0800\n"
+"Last-Translator: Tamil PC <tamilpc@ambalam.com>\n"
+"Language-Team:  <tamilpc@ambalam.com>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "சிவகுமார் சண்முகசுந்தரம், கோமதி சிவகுமார்,துரையப்பா வசீகரன்"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "sshanmu@yahoo.com,gomathiss@hotmail.com,t_vasee@yahoo.com"
+
+#: apps/knotes_options.h:13
+#, kde-format
+msgid "Suppress creation of a new note on a non-unique instance."
+msgstr ""
+
+#: apps/knotesakonaditray.cpp:21 apps/knotestray.cpp:18
+#, fuzzy, kde-format
+#| msgid "KNotes: Sticky notes for KDE"
+msgid "KNotes: Sticky notes by KDE"
+msgstr "Kகுறிப்புகள்: கேடியிக்கான ஒட்டும் குறிப்புகள்"
+
+#: apps/knotesapp.cpp:85
+#, kde-format
+msgid "New Note"
+msgstr "புதிய குறிப்பு"
+
+#: apps/knotesapp.cpp:92 kontactplugin/knotes_part.cpp:154
+#, kde-format
+msgid "New Note From Clipboard"
+msgstr "கிளிப்போர்டிலிருந்து புதிய குறிப்பு"
+
+#: apps/knotesapp.cpp:97 kontactplugin/knotes_part.cpp:158
+#, fuzzy, kde-format
+#| msgid "New Note From Clipboard"
+msgid "New Note From Text File..."
+msgstr "கிளிப்போர்டிலிருந்து புதிய குறிப்பு"
+
+#: apps/knotesapp.cpp:101
+#, kde-format
+msgid "Show All Notes"
+msgstr "எல்லா குறிப்புகளையும் காட்டு"
+
+#: apps/knotesapp.cpp:106
+#, kde-format
+msgid "Hide All Notes"
+msgstr "எல்லா குறிப்புகளையும் மறை"
+
+#: apps/knotesapp.cpp:111 kontactplugin/knotes_part.cpp:121
+#, fuzzy, kde-format
+#| msgid "Print %1"
+msgctxt "@action:inmenu"
+msgid "Print Selected Notes..."
+msgstr "அச்சிடு %1"
+
+#: apps/knotesapp.cpp:116
+#, fuzzy, kde-format
+#| msgid "Print %1"
+msgctxt "@action:inmenu"
+msgid "Delete Selected Notes..."
+msgstr "அச்சிடு %1"
+
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#, kde-format
+msgid "Select Text File"
+msgstr ""
+
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#, fuzzy, kde-format
+#| msgid "Text Size"
+msgid "Text File"
+msgstr "உரை அளவு"
+
+#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#, kde-format
+msgid "Error during open text file: %1"
+msgstr ""
+
+#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#, fuzzy, kde-format
+#| msgid "Text Size"
+msgid "Open Text File"
+msgstr "உரை அளவு"
+
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:831
+#, kde-format
+msgid "Note from file '%1'"
+msgstr ""
+
+#: apps/knotesapp.cpp:510
+#, kde-format
+msgid "No Notes"
+msgstr "குறிப்புகள் இல்லை"
+
+#: apps/knotesapp.cpp:563 kontactplugin/knotes_part.cpp:587
+#, kde-format
+msgid "Settings"
+msgstr "அமைவுகள்"
+
+#. i18n: ectx: Menu (knotes_context)
+#: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
+#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:43
+#: kontactplugin/knoteseditdialog.cpp:53
+#, kde-format
+msgid "KNotes"
+msgstr "Kகுறிப்புகள்"
+
+#: apps/main.cpp:47
+#, kde-format
+msgid "KDE Notes"
+msgstr "KDE குறிப்புகள்"
+
+#: apps/main.cpp:49
+#, kde-format
+msgid "Copyright © 1997–%1 KNotes authors"
+msgstr ""
+
+#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:45
+#, kde-format
+msgid "Laurent Montel"
+msgstr ""
+
+#: apps/main.cpp:69
+#, kde-format
+msgid "Maintainer"
+msgstr "பராமரிப்பாளர்"
+
+#: apps/main.cpp:70
+#, kde-format
+msgid "Guillermo Antonio Amaral Bastidas"
+msgstr ""
+
+#: apps/main.cpp:70 apps/main.cpp:71
+#, fuzzy, kde-format
+#| msgid "Maintainer"
+msgid "Previous Maintainer"
+msgstr "பராமரிப்பாளர்"
+
+#: apps/main.cpp:71
+#, kde-format
+msgid "Michael Brade"
+msgstr ""
+
+#: apps/main.cpp:72
+#, kde-format
+msgid "Bernd Johannes Wuebben"
+msgstr ""
+
+#: apps/main.cpp:72
+#, kde-format
+msgid "Original KNotes Author"
+msgstr "மூல KNotes  ஆசிரியர்"
+
+#: apps/main.cpp:73
+#, kde-format
+msgid "Wynn Wilkes"
+msgstr ""
+
+#: apps/main.cpp:73
+#, kde-format
+msgid "Ported KNotes to KDE 2"
+msgstr "KDE 2-க்கு KNotes பெயர்க்கப்பட்டது"
+
+#: apps/main.cpp:74
+#, fuzzy, kde-format
+#| msgid "&Mail action:"
+msgid "Daniel Martin"
+msgstr "அஞ்சல் செயல்:"
+
+#: apps/main.cpp:74
+#, kde-format
+msgid "Network Interface"
+msgstr "பிணைய இடைமுகம்"
+
+#: apps/main.cpp:75
+#, kde-format
+msgid "Bo Thorsen"
+msgstr ""
+
+#: apps/main.cpp:75
+#, kde-format
+msgid "Started KDE Resource Framework Integration"
+msgstr " KDE மூலத்தின் சட்டப்பணியின் ஒருங்கிணைப்பு துவங்கப்பட்டது"
+
+#: apps/main.cpp:76
+#, kde-format
+msgid "Bera Debajyoti"
+msgstr ""
+
+#: apps/main.cpp:76
+#, kde-format
+msgid "Idea and initial code for the new look & feel"
+msgstr ""
+
+#: apps/main.cpp:77
+#, kde-format
+msgid "Matthias Ettrich"
+msgstr ""
+
+#: apps/main.cpp:78
+#, kde-format
+msgid "David Faure"
+msgstr ""
+
+#: apps/main.cpp:79
+#, kde-format
+msgid "Matthias Kiefer"
+msgstr ""
+
+#: apps/main.cpp:80
+#, kde-format
+msgid "Luboš Luňák"
+msgstr ""
+
+#: apps/main.cpp:81
+#, kde-format
+msgid "Dirk A. Mueller"
+msgstr ""
+
+#: apps/main.cpp:82
+#, kde-format
+msgid "Carsten Pfeiffer"
+msgstr ""
+
+#: apps/main.cpp:83
+#, kde-format
+msgid "Harri Porten"
+msgstr ""
+
+#: apps/main.cpp:84
+#, kde-format
+msgid "Espen Sand"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:101
+#, kde-format
+msgid "Folders"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:103
+#, kde-format
+msgid "Select which KNotes folders to show:"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:134
+#, kde-format
+msgid "Search..."
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:152
+#, kde-format
+msgid "&Select All"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:156
+#, kde-format
+msgid "&Unselect All"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:161
+#, fuzzy, kde-format
+#| msgid "Rename..."
+msgid "Rename notes..."
+msgstr "மறுபெயரிடு..."
+
+#: configdialog/knotecollectionconfigwidget.cpp:165
+#, kde-format
+msgctxt "@info"
+msgid "Select the folder where the note will be saved:"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:183
+#, fuzzy, kde-format
+#| msgid "Note Actions"
+msgid "Notes accounts"
+msgstr "குறிப்பு செயல்கள்"
+
+#: configdialog/knotecollectionconfigwidget.cpp:188
+#, kde-format
+msgid "Accounts"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:218
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgid "Rename Notes"
+msgstr "எல்லா குறிப்புகளையும் காட்டு"
+
+#: configdialog/knotecollectionconfigwidget.cpp:218
+#, kde-format
+msgid "Name:"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:236
+#, kde-format
+msgid "An error was occurred during renaming: %1"
+msgstr ""
+
+#: configdialog/knotecollectionconfigwidget.cpp:236
+#, fuzzy, kde-format
+#| msgid "Rename..."
+msgid "Rename note"
+msgstr "மறுபெயரிடு..."
+
+#: configdialog/knotedisplayconfigwidget.cpp:26
+#, kde-format
+msgid "&Text color:"
+msgstr "உரை நிறம்:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:35
+#, kde-format
+msgid "&Background color:"
+msgstr "பின்னணி நிறம்:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:45
+#, kde-format
+msgid "&Show note in taskbar"
+msgstr "பணிப்பட்டையில் குறிப்பினைக் காட்டு"
+
+#: configdialog/knotedisplayconfigwidget.cpp:47
+#, fuzzy, kde-format
+#| msgid "&All Desktops"
+msgid "&Remember desktop"
+msgstr "&அனைத்து பணிமேடைகள்"
+
+#: configdialog/knotedisplayconfigwidget.cpp:51
+#, kde-format
+msgid "Default &width:"
+msgstr "முன்னிருப்பு அகலம்:"
+
+#: configdialog/knotedisplayconfigwidget.cpp:62
+#, kde-format
+msgid "Default &height:"
+msgstr "முன்னிருப்பு உயரம்:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:23
+#, kde-format
+msgid "&Tab size:"
+msgstr "தத்தல் அளவு:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:32
+#, kde-format
+msgid "Auto &indent"
+msgstr "தானியக்க &உள்ளடக்கம்"
+
+#: configdialog/knoteeditorconfigwidget.cpp:36
+#, kde-format
+msgid "&Rich text"
+msgstr "உரை ஆவணம்"
+
+#: configdialog/knoteeditorconfigwidget.cpp:40
+#, kde-format
+msgid "Text font:"
+msgstr "உரை எழுத்துரு:"
+
+#: configdialog/knoteeditorconfigwidget.cpp:48
+#, kde-format
+msgid "Title font:"
+msgstr "தலைப்பு எழுத்துரு:"
+
+#: configdialog/knotesimpleconfigdialog.cpp:40
+#, kde-format
+msgid "Editor Settings"
+msgstr "தொகுப்பான் அமைவுகள்"
+
+#: configdialog/knotesimpleconfigdialog.cpp:43
+#, kde-format
+msgid "Display Settings"
+msgstr "அமைவுகளை காட்டு"
+
+#. i18n: ectx: Menu (help)
+#: data/knotesappui.rc:23
+#, kde-format
+msgid "&Help"
+msgstr ""
+
+#. i18n: ectx: Menu (notes_menu)
+#: data/knotesappui.rc:35 data/knotesappui.rc:36
+#, kde-format
+msgid "Notes"
+msgstr "குறிப்புகள்"
+
+#: dialog/knotedeleteselectednotesdialog.cpp:19
+#, kde-format
+msgctxt "@title:window"
+msgid "Select notes to delete"
+msgstr ""
+
+#: dialog/knoteselectednotesdialog.cpp:21
+#: print/knoteprintselectednotesdialog.cpp:27
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@title:window"
+msgid "Select notes"
+msgstr "எல்லா குறிப்புகளையும் காட்டு"
+
+#: dialog/knoteskeydialog.cpp:19
+#, fuzzy, kde-format
+#| msgid "Configure Shortcuts"
+msgctxt "@title:window"
+msgid "Configure Shortcuts"
+msgstr "குறுக்குவழிகளை வடிவமை"
+
+#: dialog/knoteskeydialog.cpp:59
+#, kde-format
+msgid "Note Actions"
+msgstr "குறிப்பு செயல்கள்"
+
+#: finddialog/knotefinddialog.cpp:28
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@title:window"
+msgid "Search Notes"
+msgstr "எல்லா குறிப்புகளையும் காட்டு"
+
+#: finddialog/knotefinddialog.cpp:73
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@label:textbox"
+msgid "Search notes:"
+msgstr "எல்லா குறிப்புகளையும் காட்டு"
+
+#: finddialog/knotefinddialog.cpp:81
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@action:button Search notes"
+msgid "Search..."
+msgstr "எல்லா குறிப்புகளையும் காட்டு"
+
+#: finddialog/knotefinddialog.cpp:165
+#, kde-format
+msgctxt "@label"
+msgid "No Results found in search."
+msgstr ""
+
+#: finddialog/knotefinddialog.cpp:181
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgid "Show Note"
+msgstr "எல்லா குறிப்புகளையும் காட்டு"
+
+#: knoteconfigmodule.cpp:80
+#, kde-format
+msgid "Show number of notes in tray icon"
+msgstr ""
+
+#: knoteconfigmodule.cpp:87
+#, fuzzy, kde-format
+#| msgid "Default &width:"
+msgid "Default Title:"
+msgstr "முன்னிருப்பு அகலம்:"
+
+#: knoteconfigmodule.cpp:94
+#, kde-format
+msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgstr ""
+
+#: knoteconfigmodule.cpp:128
+#, kde-format
+msgid ""
+"<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
+"(short format)</li><li>%l current date (long format)</li><li>%t current "
+"time</li></ul></qt>"
+msgstr ""
+
+#: knoteconfigmodule.cpp:150
+#, kde-format
+msgid "Theme:"
+msgstr ""
+
+#: knoteconfigmodule.cpp:160
+#, fuzzy, kde-format
+#| msgid "Print %1"
+msgid "Download new printing themes"
+msgstr "அச்சிடு %1"
+
+#: knoteedit.cpp:45
+#, kde-format
+msgid "Bold"
+msgstr "தடித்தெழுத்து"
+
+#: knoteedit.cpp:48
+#, kde-format
+msgid "Italic"
+msgstr ""
+
+#: knoteedit.cpp:51
+#, kde-format
+msgid "Underline"
+msgstr "அடிக்கோடு"
+
+#: knoteedit.cpp:54
+#, kde-format
+msgid "Strike Out"
+msgstr "அடித்தல்."
+
+#: knoteedit.cpp:63
+#, kde-format
+msgid "Align Left"
+msgstr "இடப்புறம் ஒழுங்கமை"
+
+#: knoteedit.cpp:68
+#, kde-format
+msgid "Align Center"
+msgstr "நடுவில் ஒழுங்கமை"
+
+#: knoteedit.cpp:72
+#, kde-format
+msgid "Align Right"
+msgstr "வலப்புறம் ஒழுங்கமை"
+
+#: knoteedit.cpp:76
+#, kde-format
+msgid "Align Block"
+msgstr "தொகுதியை ஒழுங்கமை"
+
+#: knoteedit.cpp:87
+#, kde-format
+msgid "List"
+msgstr "பட்டியல்"
+
+#: knoteedit.cpp:91
+#, kde-format
+msgid "Superscript"
+msgstr "மேலொட்டு"
+
+#: knoteedit.cpp:94
+#, kde-format
+msgid "Subscript"
+msgstr "கீழொட்டு"
+
+#: knoteedit.cpp:98
+#, kde-format
+msgid "Increase Indent"
+msgstr ""
+
+#: knoteedit.cpp:103
+#, kde-format
+msgid "Decrease Indent"
+msgstr ""
+
+#: knoteedit.cpp:114
+#, kde-format
+msgid "Text Color..."
+msgstr "உரை நிறம்..."
+
+#: knoteedit.cpp:119
+#, fuzzy, kde-format
+#| msgid "Text Color..."
+msgid "Text Background Color..."
+msgstr "உரை நிறம்..."
+
+#: knoteedit.cpp:123
+#, kde-format
+msgid "Text Font"
+msgstr "உரை எழுத்துரு"
+
+#: knoteedit.cpp:126
+#, kde-format
+msgid "Text Size"
+msgstr "உரை அளவு"
+
+#: knoteedit.cpp:137
+#, kde-format
+msgid "Insert Date"
+msgstr "தேதியை நுழை"
+
+#: knoteedit.cpp:141
+#, kde-format
+msgid "Insert Checkmark"
+msgstr ""
+
+#: kontactplugin/kcmknotessummary.cpp:40
+#, kde-format
+msgid "kcmknotessummary"
+msgstr ""
+
+#: kontactplugin/kcmknotessummary.cpp:42
+#, kde-format
+msgid "Notes Summary Configuration Dialog"
+msgstr ""
+
+#: kontactplugin/kcmknotessummary.cpp:44
+#, kde-format
+msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:84
+#, kde-format
+msgctxt "@action:inmenu create new popup note"
+msgid "&New"
+msgstr ""
+
+#. i18nc( "@info:status", "Create a new popup note" ) );
+#: kontactplugin/knotes_part.cpp:92
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be presented with a dialog where you can add a new popup note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:94 kontactplugin/knotes_part.cpp:556
+#: kontactplugin/knotes_part.cpp:558 kontactplugin/knotes_part.cpp:738
+#, fuzzy, kde-format
+#| msgid "Editor"
+msgctxt "@action:inmenu"
+msgid "Edit..."
+msgstr "தொகுப்பான்"
+
+#. i18nc( "@info:status", "Edit popup note" ) );
+#: kontactplugin/knotes_part.cpp:101
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can modify an existing popup "
+"note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:103
+#, fuzzy, kde-format
+#| msgid "Rename..."
+msgctxt "@action:inmenu"
+msgid "Rename..."
+msgstr "மறுபெயரிடு..."
+
+#. i18nc( "@info:status", "Rename popup note" ) );
+#: kontactplugin/knotes_part.cpp:109
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can rename an existing popup "
+"note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:111
+#, fuzzy, kde-format
+msgctxt "@action:inmenu"
+msgid "Delete"
+msgstr "நீக்குவதை உறுதிசெய்"
+
+#: kontactplugin/knotes_part.cpp:118
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be prompted if you really want to permanently remove the selected "
+"popup note."
+msgstr ""
+
+#. i18nc( "@info:status", "Print popup note" ) );
+#: kontactplugin/knotes_part.cpp:126
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be prompted to print the selected popup note."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:129
+#, fuzzy, kde-format
+#| msgid "Print %1"
+msgctxt "@action:inmenu"
+msgid "Print Preview Selected Notes..."
+msgstr "அச்சிடு %1"
+
+#: kontactplugin/knotes_part.cpp:134
+#, fuzzy, kde-format
+msgid "Note settings..."
+msgstr "அமைவுகள்"
+
+#: kontactplugin/knotes_part.cpp:138
+#, fuzzy, kde-format
+#| msgid "Preferences..."
+msgid "Preferences KNotes..."
+msgstr "முன்னுரிமைகள்..."
+
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:683
+#, kde-format
+msgid "Mail..."
+msgstr "அஞ்சல்..."
+
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:679
+#, kde-format
+msgid "Send..."
+msgstr "அனுப்பு..."
+
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:675
+#, kde-format
+msgid "Set Alarm..."
+msgstr "அலாரத்தை அமை..."
+
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:687
+#, fuzzy, kde-format
+msgid "Save As..."
+msgstr "அலாரத்தை அமை..."
+
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:661
+#, kde-format
+msgid "Lock"
+msgstr "பூட்டு"
+
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:664
+#, fuzzy, kde-format
+msgid "Unlock"
+msgstr "பூட்டு"
+
+#: kontactplugin/knotes_part.cpp:201
+#, kde-format
+msgid "Set Focus to Quick Search"
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:278
+#, kde-format
+msgctxt "@info"
+msgid "To print notes, first select the notes to print from the list."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:279
+#, fuzzy, kde-format
+#| msgid "Print %1"
+msgctxt "@title:window"
+msgid "Print Popup Notes"
+msgstr "அச்சிடு %1"
+
+#: kontactplugin/knotes_part.cpp:319
+#, kde-format
+msgid "Note was not created."
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:319
+#, fuzzy, kde-format
+#| msgid "Rename..."
+msgid "Create new note"
+msgstr "மறுபெயரிடு..."
+
+#: kontactplugin/knotes_part.cpp:341
+#, fuzzy, kde-format
+#| msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgctxt "@info"
+msgid "Do you really want to delete this note?"
+msgstr "<qt><b>%1</b> குறிப்பை அழிக்க வேண்டுமா </qt>"
+
+#: kontactplugin/knotes_part.cpp:343
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:42
+#, fuzzy, kde-format
+#| msgid "Confirm Delete"
+msgctxt "@title:window"
+msgid "Confirm Delete"
+msgstr "நீக்குவதை உறுதிசெய்"
+
+#: kontactplugin/knotes_part.cpp:535
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@title:window"
+msgid "Rename Popup Note"
+msgstr "எல்லா குறிப்புகளையும் காட்டு"
+
+#: kontactplugin/knotes_part.cpp:535
+#, fuzzy, kde-format
+#| msgid "New Note"
+msgctxt "@label:textbox"
+msgid "New Name:"
+msgstr "புதிய குறிப்பு"
+
+#: kontactplugin/knotes_part.cpp:556 kontactplugin/knotes_part.cpp:738
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgid "Show Note..."
+msgstr "எல்லா குறிப்புகளையும் காட்டு"
+
+#: kontactplugin/knotes_part.cpp:691
+#, fuzzy, kde-format
+#| msgid "&Rich text"
+msgid "Rich text (*.html)"
+msgstr "உரை ஆவணம்"
+
+#: kontactplugin/knotes_part.cpp:693
+#, kde-format
+msgid "Plain text (*.txt)"
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:696
+#, kde-format
+msgid "Save As"
+msgstr ""
+
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:503
+#, kde-format
+msgid ""
+"<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
+"overwrite it?</qt>"
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:45
+#, fuzzy, kde-format
+#| msgid "New Note"
+msgctxt "@action:inmenu"
+msgid "New Popup Note..."
+msgstr "புதிய குறிப்பு"
+
+#. i18nc( "@info:status", "Create new popup note" ) );
+#: kontactplugin/knotes_plugin.cpp:51
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"You will be presented with a dialog where you can create a new popup note."
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:77
+#, fuzzy, kde-kuit-format
+#| msgid "KNotes"
+msgctxt "@title"
+msgid "KNotes"
+msgstr "Kகுறிப்புகள்"
+
+#: kontactplugin/knotes_plugin.cpp:79
+#, fuzzy, kde-kuit-format
+#| msgid "No Notes"
+msgctxt "@title"
+msgid "Popup Notes"
+msgstr "குறிப்புகள் இல்லை"
+
+#: kontactplugin/knotes_plugin.cpp:81
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Copyright © 2003–%1 Kontact authors"
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:83
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Laurent Montel"
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:83
+#, fuzzy, kde-kuit-format
+#| msgid "Maintainer"
+msgctxt "@info:credit"
+msgid "Current Maintainer"
+msgstr "பராமரிப்பாளர்"
+
+#: kontactplugin/knotes_plugin.cpp:85
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Michael Brade"
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:85
+#, fuzzy, kde-kuit-format
+#| msgid "Maintainer"
+msgctxt "@info:credit"
+msgid "Previous Maintainer"
+msgstr "பராமரிப்பாளர்"
+
+#: kontactplugin/knotes_plugin.cpp:86
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Tobias Koenig"
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:86
+#, kde-kuit-format
+msgctxt "@info:credit"
+msgid "Developer"
+msgstr ""
+
+#: kontactplugin/knotes_plugin.cpp:117
+#, fuzzy, kde-format
+#| msgid "Settings"
+msgctxt "@item"
+msgid "Meeting"
+msgstr "அமைவுகள்"
+
+#: kontactplugin/knotes_plugin.cpp:131 kontactplugin/knotes_plugin.cpp:135
+#, fuzzy, kde-format
+#| msgid "Notes"
+msgctxt "@item"
+msgid "Note: %1"
+msgstr "குறிப்புகள்"
+
+#: kontactplugin/knotes_plugin.cpp:141
+#, fuzzy, kde-format
+#| msgid "New Note"
+msgctxt "@item"
+msgid "New Note"
+msgstr "புதிய குறிப்பு"
+
+#: kontactplugin/knoteseditdialog.cpp:36
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@title:window"
+msgid "Show Popup Note"
+msgstr "எல்லா குறிப்புகளையும் காட்டு"
+
+#: kontactplugin/knoteseditdialog.cpp:36
+#, kde-format
+msgctxt "@title:window"
+msgid "Edit Popup Note"
+msgstr ""
+
+#: kontactplugin/knoteseditdialog.cpp:66
+#, kde-format
+msgctxt "@label popup note name"
+msgid "Name:"
+msgstr ""
+
+#: kontactplugin/knoteslistwidgetsearchline.cpp:41
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgid "Search notes..."
+msgstr "எல்லா குறிப்புகளையும் காட்டு"
+
+#: kontactplugin/knoteslistwidgetsearchline.cpp:48
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgid "Search notes...<%1>"
+msgstr "எல்லா குறிப்புகளையும் காட்டு"
+
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:31
+#, kde-format
+msgid "(note locked, it will not removed)"
+msgstr ""
+
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:55
+#, fuzzy, kde-format
+#| msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgid "Do you really want to delete this note?"
+msgid_plural "Do you really want to delete these %1 notes?"
+msgstr[0] "<qt><b>%1</b> குறிப்பை அழிக்க வேண்டுமா </qt>"
+msgstr[1] "<qt><b>%1</b> குறிப்பை அழிக்க வேண்டுமா </qt>"
+
+#: kontactplugin/summarywidget.cpp:42
+#, fuzzy, kde-format
+#| msgid "No Notes"
+msgid "Popup Notes"
+msgstr "குறிப்புகள் இல்லை"
+
+#: kontactplugin/summarywidget.cpp:89
+#, fuzzy, kde-format
+#| msgid "Note Actions"
+msgid "No notes found"
+msgstr "குறிப்பு செயல்கள்"
+
+#: kontactplugin/summarywidget.cpp:118
+#, kde-format
+msgid "Modify Note..."
+msgstr ""
+
+#: kontactplugin/summarywidget.cpp:120
+#, fuzzy, kde-format
+#| msgid "Print %1"
+msgid "Delete Note..."
+msgstr "அச்சிடு %1"
+
+#: kontactplugin/summarywidget.cpp:195
+#, kde-format
+msgid "Read Popup Note: \"%1\""
+msgstr ""
+
+#: notes/knote.cpp:129
+#, kde-format
+msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
+msgstr "<qt><b>%1</b> குறிப்பை அழிக்க வேண்டுமா </qt>"
+
+#: notes/knote.cpp:130
+#, kde-format
+msgid "Confirm Delete"
+msgstr "நீக்குவதை உறுதிசெய்"
+
+#: notes/knote.cpp:131
+#, kde-format
+msgid "&Delete"
+msgstr ""
+
+#: notes/knote.cpp:255
+#, kde-format
+msgid "Please enter the new name:"
+msgstr "புதிய பெயரை உள்ளிடவும்:"
+
+#: notes/knote.cpp:479
+#, kde-format
+msgid "Save note as plain text"
+msgstr "குறிப்பை வெற்று உரையாகச் சேமி"
+
+#: notes/knote.cpp:486
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Save As"
+msgstr "அலாரத்தை அமை..."
+
+#: notes/knote.cpp:611
+#, kde-format
+msgid "&All Desktops"
+msgstr "&அனைத்து பணிமேடைகள்"
+
+#: notes/knote.cpp:653
+#, kde-format
+msgid "New"
+msgstr "புதிய"
+
+#: notes/knote.cpp:657
+#, kde-format
+msgid "Rename..."
+msgstr "மறுபெயரிடு..."
+
+#: notes/knote.cpp:666
+#, kde-format
+msgid "Hide"
+msgstr "மறை"
+
+#: notes/knote.cpp:671
+#, fuzzy, kde-format
+msgid "Delete"
+msgstr "நீக்குவதை உறுதிசெய்"
+
+#: notes/knote.cpp:696
+#, kde-format
+msgid "Preferences..."
+msgstr "முன்னுரிமைகள்..."
+
+#: notes/knote.cpp:700
+#, kde-format
+msgid "Keep Above Others"
+msgstr "மற்றவைகளின் மேலிடு"
+
+#: notes/knote.cpp:704
+#, kde-format
+msgid "Keep Below Others"
+msgstr "மற்றவைகளின் கீழிடு"
+
+#: notes/knote.cpp:709
+#, kde-format
+msgid "To Desktop"
+msgstr "பணிமேடைக்கு"
+
+#: notes/knote.cpp:717
+#, kde-format
+msgid "Walk Through Notes"
+msgstr "குறிப்புகள் வழியாக செல்"
+
+#: print/knotegrantleeprint.cpp:32
+#, fuzzy, kde-format
+#| msgid "Alarm"
+msgid "Alarm:"
+msgstr "அலாரம்"
+
+#: print/knotegrantleeprint.cpp:33
+#, kde-format
+msgid "Note is locked"
+msgstr ""
+
+#: print/knoteprinter.cpp:112
+#, fuzzy, kde-format
+#| msgid "Print %1"
+msgid "Print Note"
+msgid_plural "Print %1 notes"
+msgstr[0] "அச்சிடு %1"
+msgstr[1] "அச்சிடு %1"
+
+#: print/knoteprinter.cpp:119
+#, kde-format
+msgid "Printing theme was not found."
+msgstr ""
+
+#: print/knoteprinter.cpp:119
+#, kde-format
+msgid "Printing error"
+msgstr ""
+
+#: print/knoteprintselectednotesdialog.cpp:49
+#, fuzzy, kde-format
+#| msgid "Print %1"
+msgid "Printing theme:"
+msgstr "அச்சிடு %1"
+
+#: print/knoteprintselectednotesdialog.cpp:56
+#, kde-format
+msgid "Preview"
+msgstr ""
+
+#: print/knoteprintselectednotesdialog.cpp:58
+#, fuzzy, kde-format
+#| msgid "Print %1"
+msgid "Print"
+msgstr "அச்சிடு %1"
+
+#: print/knoteprintselectthemedialog.cpp:21
+#, kde-format
+msgctxt "@title:window"
+msgid "Select theme"
+msgstr ""
+
+#: print/knoteprintselectthemedialog.cpp:38
+#, kde-format
+msgid "Themes:"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Note Actions"
+#~ msgid "KNotes Migration"
+#~ msgstr "குறிப்பு செயல்கள்"
+
+#~ msgid "Scheduled Alarm"
+#~ msgstr "அட்டவணையிடப்பட்ட அலாரம்"
+
+#~ msgid "&No alarm"
+#~ msgstr "&அலாரம் இல்லை"
+
+#~ msgid "Alarm &at:"
+#~ msgstr "அலாரம்:"
+
+#, fuzzy
+#~| msgid "The following notes triggered alarms:"
+#~ msgid "The following notes triggered alarms:"
+#~ msgstr "பின்வரும் குறிப்புகள் அலாரத்தை செய்தன"
+
+#~ msgid "Display"
+#~ msgstr "காட்சி"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Unable to save the notes to <b>%1</b>. Check that there is "
+#~| "sufficient disk space.<br>There should be a backup in the same directory "
+#~| "though.</qt>"
+#~ msgid ""
+#~ "<qt>Unable to save the notes to <b>%1</b>. Check that there is sufficient "
+#~ "disk space.<br />There should be a backup in the same directory though.</"
+#~ "qt>"
+#~ msgstr ""
+#~ "<qt> இடம் இல்லாததால் குறிப்பை <b>%1</b>-ல் சேமிக்க இயலவில்லை. <br>அதே அடைவில் "
+#~ "பின்சேமிப்பு செய்ய வேண்டும்.</qt>"
+
+#, fuzzy
+#~ msgid "Location:"
+#~ msgstr "செயல்கள்"
+
+#~ msgid "&Mail action:"
+#~ msgstr "அஞ்சல் செயல்:"
+
+#~ msgid "Incoming Notes"
+#~ msgstr "உள்வாங்கும் குறிப்புகள்"
+
+#~ msgid "Accept incoming notes"
+#~ msgstr "உள்வாங்கும் குறிப்புகளை ஏற்றுக் கொள்"
+
+#~ msgid "Outgoing Notes"
+#~ msgstr "வெளியேற்றும் குறிப்புகள் "
+
+#~ msgid "&Sender ID:"
+#~ msgstr "&அனுப்புநர் ID:"
+
+#~ msgid "&Port:"
+#~ msgstr "&துறை:"
+
+#~ msgid "Hostname or IP address:"
+#~ msgstr "புரவலன் பெயர் அல்லது IP முகவரி:"
+
+#~ msgid "The port KNotes will listen on and send notes to."
+#~ msgstr "Kகுறிப்புகள் கவனிக்கப்பட்டு, குறிப்புகள் அனுப்பப்பட்டுவிட்டது."
+
+#~ msgid "Unable to start the mail process."
+#~ msgstr "அஞ்சல் செயலை ஆரம்பிக்க முடியவில்லை. "
+
+#~ msgid "Send \"%1\""
+#~ msgstr "\"%1\" அனுப்பு"
+
+#~ msgid "The host cannot be empty."
+#~ msgstr "புரவண் காலியாக இயலாது."
+
+#~ msgid "Communication error: %1"
+#~ msgstr "தொடர்பு பிழை:%1"
+
+#~ msgid "Alarm &in:"
+#~ msgstr "இல் அலாரம்:"
+
+#, fuzzy
+#~ msgid "(c) 1997-2009, The KNotes Developers"
+#~ msgstr "(c) 1997-2005, KNotes மேம்பாட்டாளர்கள்"
+
+#~ msgid "Defaults"
+#~ msgstr "முன்னிருப்பு"
+
+#~ msgid "Default Settings for New Notes"
+#~ msgstr "புதிய குறியீட்டுக்கான முன்னிருப்பு அமைவு"
+
+#~ msgid "Actions"
+#~ msgstr "செயல்கள்"
+
+#~ msgid "Action Settings"
+#~ msgstr "செயல் அமைவுகள்"
+
+#~ msgid "Network"
+#~ msgstr "பிணையம்"
+
+#~ msgid "Network Settings"
+#~ msgstr "பிணையத்தின் அமைவுகள்"
+
+#~ msgid "Displa&y"
+#~ msgstr "காட்&சி"
+
+#~ msgid "&Editor"
+#~ msgstr "&தொகுப்பான்"
+
+#~ msgid "hours/minutes"
+#~ msgstr "மணிநேரங்கள்/நிமிடங்கள்"

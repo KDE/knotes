@@ -1,0 +1,901 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Catalan  "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<book id="knotes" lang="&language;">
+
+<bookinfo id="knotesinfo">
+<title
+>El manual de &knotes;</title>
+
+<authorgroup>
+<author
+><firstname
+>Fabian</firstname
+> <surname
+>Dal Santo</surname
+> <affiliation
+> <address
+>&Fabian.DalSanto.mail;</address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Greg</firstname
+> <othername
+>M.</othername
+> <surname
+>Holmes</surname
+> </author>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Revisor</contrib>
+</othercredit>
+&traductor.Antoni.Bella; 
+
+</authorgroup>
+
+<copyright>
+<year
+>2000</year>
+<holder
+>&Greg.M.Holmes;</holder>
+</copyright>
+<copyright>
+<year
+>2001</year>
+<holder
+>Fabian Del Santo</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>28 de juliol de 2016</date>
+<releaseinfo
+>5.3.40 (Aplicacions 16.08)</releaseinfo>
+
+<abstract
+><para
+>&knotes; és una aplicació de notes adhesives per a l'escriptori.</para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Knotes</keyword>
+<keyword
+>notes</keyword>
+<keyword
+>emergent</keyword>
+<keyword
+>emergent</keyword>
+<keyword
+>knotes</keyword>
+
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introducció</title>
+
+<para
+>&knotes; és un programa que et permet escriure l'equivalent informàtic de notes adhesives. Les notes es desen automàticament en sortir del programa, i es mostren quan el torneu a obrir. </para>
+
+<para
+>Podeu imprimir i enviar les notes si es configura &knotes; per utilitzar les aplicacions d'ajuda. </para>
+
+<para
+>Les funcions de visualització de notes com el color i el tipus de lletra es poden personalitzar per a cada nota. També podeu personalitzar els paràmetres per omissió. </para>
+
+<para
+>Després d'iniciar el &knotes; per primera vegada tindreu un recurs instal·lat que desarà totes les notes en una carpeta de directori de correu sota <filename
+>notes</filename
+> a <filename class="directory"
+>$(qtpaths --paths GenericDataLocation)</filename
+>. </para>
+
+</chapter>
+
+<chapter id="using-knotes">
+<title
+>Ús del &knotes;</title>
+
+<variablelist>
+<varlistentry>
+<term
+>Crear una nota nova:</term>
+<listitem>
+<para
+>Per crear una nova nota feu clic del &BDR; sobre la icona de la safata del &knotes; al i seleccioneu <guimenuitem
+>Nota nova</guimenuitem
+>.</para>
+<para
+>Podeu crear una nova nota amb el contingut del porta-retalls seleccionant <guimenuitem
+>Nota nova des del porta-retalls</guimenuitem
+> o utilitzar <guimenuitem
+>Nota nova des d'un fitxer de text</guimenuitem
+>.</para>
+
+<para
+>Ara apareixerà un diàleg que permet seleccionar una carpeta per guardar la vostra nota:</para>
+
+<screenshot>
+<screeninfo
+>Seleccionant la carpeta de les notes</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="select-notes-folder.png" format="PNG"/>
+</imageobject>
+<textobject
+><phrase
+>Seleccionant la carpeta de les notes</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Seleccioneu aquí una carpeta per omissió per a ometre aquest diàleg en la creació de notes noves.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Escriure la nota:</term>
+<listitem>
+<para
+>Per escriure la vostra nota, simplement escriviu-la a l'espai proporcionat. Les funcions d'edició teclat normal i ratolí estan suportades. Fent clic <mousebutton
+>dret</mousebutton
+> a l'espai d'edició proporcionarà les següents opcions de menú:</para>
+
+<itemizedlist>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Desfés</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Refés</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Retalla</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Copia</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Enganxa</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Suprimeix</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Neteja</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Selecciona-ho tot</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Comprova l'ortografia</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Comprova automàticament l'ortografia</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Permet tabulacions</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Cerca</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycap
+>F3</keycap
+> </shortcut
+><guimenuitem
+>Cerca la següent</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Substitueix</guimenuitem
+></menuchoice
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Pronuncia el text</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Insereix la data</guimenuitem
+></para
+></listitem>
+<listitem
+><para
+><guimenuitem
+>Insereix una marca de selecció</guimenuitem
+></para
+></listitem>
+</itemizedlist>
+<para
+>El text es pot seleccionar mantenint premut el &BER; i movent el ratolí, o mantenint premuda la tecla &Maj; i les tecles de <keycap
+>fletxa</keycap
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Inserir la data:</term>
+<listitem>
+<para
+>Per inserir la data actual a la nota, utilitzeu el menú contextual de l'espai d'edició i seleccioneu <guimenuitem
+>Insereix la data</guimenuitem
+>.</para>
+<para
+>La data i hora actuals seran inserides a la posició del cursor al text de la nota.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Reanomenar una nota:</term>
+<listitem>
+<para
+>Per canviar el nom d'una nota feu clic del &BDR; sobre la barra de títol de la nota i seleccioneu <guimenuitem
+>Reanomena...</guimenuitem
+>.</para>
+<para
+>Escriviu el nou nom de la nota al diàleg que apareix. Per acceptar el nou nom, premeu el botó <guibutton
+>D'acord</guibutton
+>. Per sortir del diàleg sense canviar el nom de la nota, premeu el botó <guibutton
+>Cancel·la</guibutton
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Enviar una nota:</term>
+<listitem>
+<para
+>Per enviar una nota feu clic del &BDR; a la barra de títol de la nota i seleccioneu <guimenuitem
+>Correu...</guimenuitem
+>.</para
+> 
+<para
+>El que passi després dependrà de com s'hagi configurat l'acció de correu en el diàleg <guilabel
+>Arranjament</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Imprimir una nota:</term>
+<listitem>
+<para
+>Per imprimir una nota feu clic del &BDR; a la barra de títol de la nota i seleccioneu <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Imprimeix</guimenuitem
+></menuchoice
+>.</para>
+<para
+>S'obrirà un diàleg d'impressió estàndard del &kde;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Eliminar una nota:</term>
+<listitem>
+<para
+>Per eliminar una nota feu clic del &BDR; a la barra de títol de la nota i seleccioneu <guimenuitem
+>Esborra</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Ocultar una nota:</term>
+<listitem>
+<para
+>Per ocultar una nota, feu clic a la <guiicon
+>X</guiicon
+> a la cantonada superior dreta de la barra de títol de la nota o seleccioneu <menuchoice
+><shortcut
+>&Esc;</shortcut
+><guimenuitem
+>Oculta</guimenuitem
+> </menuchoice
+> en el menú contextual. La nota ja no es mostrarà a la pantalla. La mateixa nota no se suprimirà.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Establir una alarma:</term>
+<listitem>
+<para
+>Seleccioneu <guimenuitem
+>Estableix una alarma</guimenuitem
+> al menú contextual de la barra de títol de la nota. Marqueu <guilabel
+>Alarma a les</guilabel
+> en el següent diàleg i ajusteu la data i l'hora per al recordatori. A l'hora de l'alarma es mostrarà una finestra emergent i llistarà totes les notes amb la data de l'alarma real.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Enviar una nota:</term>
+<listitem>
+<para
+>Per enviar una nota a un altre ordinador, seleccioneu <guimenuitem
+>Envia...</guimenuitem
+> al menú contextual de la barra de títol de la nota. Afegiu un nom de màquina o adreça IP o escolliu un destinatari des de la llista de notes enviades prèviament. Si els destinataris permeten les notes entrants, la nota apareixerà a la seva pantalla, indicant l'identificador de remitent a la barra de títol.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Bloquejar una nota:</term>
+<listitem>
+<para
+>Per evitar canvis accidentals en una nota seleccioneu <guimenuitem
+>Bloca</guimenuitem
+> al menú contextual de la barra de títol de la nota.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Desar una nota:</term>
+<listitem>
+<para
+>Per a desar una nota, seleccioneu <guimenuitem
+>Desa com a...</guimenuitem
+> al menú contextual de la barra de títol de la nota. La nota es podrà desar com un fitxer de text o en format &HTML;, si el <guilabel
+>Text enriquit</guilabel
+> està activat.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Veure les notes:</term>
+<listitem>
+<para
+>En iniciar &knotes;, totes les notes restaran ocultes. Per a mostrar-les, feu clic del &BER; sobre la icona de &knotes; al plafó i seleccioneu la nota que voleu mostrar.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Cercar a totes les notes:</term>
+<listitem>
+<para
+>Feu clic del &BDR; a la icona del plafó i seleccioneu <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>F</keycap
+></keycombo
+> </shortcut
+><guimenuitem
+>Cerca</guimenuitem
+></menuchoice
+> al menú contextual.</para>
+<para
+>S'obrirà un diàleg estàndard del &kde; on podreu introduir el text a cercar a totes les notes.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Funcions de l'escriptori:</term>
+<listitem>
+<para
+>Per enviar una nota a un escriptori específic, feu clic del &BDR; a la barra de títol de la nota i escolliu <guisubmenu
+>A l'escriptori</guisubmenu
+>. Trieu l'escriptori desitjat, o bé, <guisubmenu
+>Tots els escriptoris</guisubmenu
+>.</para>
+<para
+>Per fer que la nota romangui a la part superior d'altres finestres feu clic del &BDR; a la barra de títol de la nota i seleccioneu <guimenuitem
+>Mantén sobre les altres</guimenuitem
+>.</para>
+<para
+>Per tornar la nota a un comportament de finestra més normal, seleccioneu <guimenuitem
+>Mantén sota les altres</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Sortir de &knotes;</term>
+<listitem>
+<para
+>Per sortir de &knotes; feu clic del &BDR; a la icona del plafó i seleccioneu <guimenuitem
+>Surt</guimenuitem
+>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+<chapter id="configuration">
+<title
+>Configuració</title>
+
+<sect1 id="defaults">
+<title
+>Configurar l'arranjament per omissió de &knotes;</title>
+
+<para
+>Per configurar &knotes; feu clic del &BDR; a la icona del plafó. Seleccioneu <guimenuitem
+>Configura KNotes...</guimenuitem
+>. S'obrirà el diàleg <guilabel
+>Arranjament de KNotes</guilabel
+>.</para>
+
+<variablelist>
+<title
+>La secció Visualitzador</title>
+<varlistentry>
+<term
+><guilabel
+>Color del text:</guilabel
+></term>
+<listitem
+><para
+>El quadrat de color mostra el color actual del text. En fer-hi clic s'obrirà el diàleg de selecció de color estàndard del &kde;.</para
+></listitem
+> 
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Color de fons:</guilabel
+></term>
+<listitem
+><para
+>El quadrat de color mostra el color actual del fons. En fer-hi clic s'obrirà el diàleg estàndard de selecció de color estàndard del &kde;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Amplada per omissió:</guilabel
+></term>
+<listitem
+><para
+>L'amplada de la nota en píxels. Editeu aquest número al vostre gust.</para
+></listitem
+> 
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Alçada per omissió:</guilabel
+></term>
+<listitem
+><para
+>L'alçada de la nota en píxels. Editeu aquest número al vostre gust.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Mostra la nota a la barra de tasques</guilabel
+></term>
+<listitem
+><para
+>Per omissió, les notes &knotes; no mostren una entrada a la barra de tasques per a cada nota. Si preferiu que ho facin, habiliteu aquesta opció.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Recorda l'escriptori</guilabel
+></term>
+<listitem
+><para
+>Si utilitzeu diversos escriptoris virtuals i se selecciona aquesta opció, les notes només apareixeran a l'escriptori específic.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>La secció Editor</title>
+<varlistentry>
+<term
+><guilabel
+>Mida de la tabulació</guilabel
+></term>
+<listitem
+><para
+>Aquesta és la mida de la sagnia produïda per la tecla &Tab; en espais. Editeu aquest número al vostre gust.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sagnat automàtic</guilabel
+></term>
+<listitem
+><para
+>Aquesta és una casella de selecció. Si se selecciona, el sagnat automàtic estarà activat.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Text enriquit</guilabel
+></term>
+<listitem>
+<para
+>Marqueu aquesta opció per tenir una barra d'eines de format a la part inferior de qualsevol finestra de nota.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Tipus de lletra pel títol:</guilabel
+></term>
+<listitem
+><para
+>Podeu canviar el tipus de lletra utilitzat pel títol de les notes.</para>
+
+<para
+>Feu clic a <guibutton
+>Selecciona...</guibutton
+> per obrir el diàleg de selecció de tipus de lletra estàndard del &kde;.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Tipus de lletra pel text:</guilabel
+></term>
+<listitem>
+<para
+>Podeu canviar el tipus de lletra utilitzar per al text de les notes.</para>
+
+<para
+>Feu clic a <guibutton
+>Selecciona...</guibutton
+> per obrir el diàleg de selecció de tipus de lletra estàndard del &kde;.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>La secció Accions</title>
+<varlistentry>
+<term
+><guilabel
+>Acció de correu</guilabel
+></term>
+<listitem
+><para
+>Escriviu en aquest quadre d'edició una ordre per enviar correu electrònic amb totes les opcions de la línia d'ordres necessàries.</para>
+<para
+>Utilitzeu <token
+>%f</token
+> a la línia d'ordres per passar el text net de la nota i utilitzant <token
+>%t</token
+> per passar el títol de la nota a l'ordre de correu.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<variablelist>
+<title
+>La secció Xarxa</title>
+<varlistentry>
+<term
+><guilabel
+>Accepta les notes entrants</guilabel
+></term>
+<listitem
+><para
+>Activeu aquesta opció per permetre la recepció de les notes d'altres ordinadors.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>ID d'enviament</guilabel
+></term>
+<listitem
+><para
+>L'ID es mostrarà en el títol de la nota juntament amb el títol original, nom de la màquina o adreça IP i la data d'enviament.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Port</guilabel
+></term>
+<listitem
+><para
+>El port utilitzat per enviar les notes a través de la xarxa, per omissió és 24837.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>La secció Imprimeix</title>
+<varlistentry>
+<term
+><guilabel
+>Tema</guilabel
+></term>
+<listitem
+><para
+>El tema utilitzat per imprimir la nota.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>La secció Col·leccions</title>
+<varlistentry>
+<term
+><guilabel
+>Carpetes</guilabel
+></term>
+<listitem
+><para
+>En aquesta pestanya podeu seleccionar quines carpetes es mostraran en activar la casella de selecció al davant de les carpetes, canviar la carpeta per omissió per desar i afegir subcarpetes per a les notes.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Comptes</guilabel
+></term>
+<listitem
+><para
+>En aquesta pestanya podeu editar les carpetes de directori de correu locals que s'utilitzaran per a les notes.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<title
+>La secció Miscel·lània</title>
+<varlistentry>
+<term
+>Configuració miscel·lània</term>
+<listitem
+><para
+>Activa mostrar el nombre de notes a la icona de la safata</para>
+<para
+>Per a personalitzar el títol per omissió, podeu utilitzar <userinput
+>%d</userinput
+> per a la data actual (format curt), <userinput
+>%I</userinput
+> per a la data actual (format llarg) i <userinput
+>%t</userinput
+> per a l'hora actual.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="customizing-display">
+<title
+>Personalitzar la visualització d'una sola nota</title>
+
+<para
+>Podeu personalitzar cada nota independentment de la configuració global. Els valors que es poden personalitzar són idèntics als descrits en la secció <link linkend="configuration"
+>Configuració</link
+>, però només s'aplicarà a la nota que esteu canviant. Qualsevol altra nota oberta, i les notes que creeu, utilitzaran la configuració per omissió.</para>
+
+<para
+>Per personalitzar una sola nota feu clic del &BDR; a la barra de títol de la nota i seleccioneu <guimenuitem
+>Preferències...</guimenuitem
+>.</para>
+<para
+>S'obrirà un diàleg amb les pàgines <guilabel
+>Opcions de la visualització</guilabel
+> i <guilabel
+>Opcions de l'editor</guilabel
+>, el qual us permetrà configurar la nota.</para>
+</sect1>
+
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Crèdits i llicència</title>
+
+<para
+>&knotes;</para>
+
+<para
+>Programa copyright 1997 d'en Bernd Wuebben &Bernd.Johannes.Wuebben.mail;</para>
+
+<para
+>Col·laboradors:</para>
+<itemizedlist>
+<listitem
+><para
+>Wynn Wilkes <email
+>wynnw@calderasystems.com</email
+></para>
+</listitem>
+</itemizedlist>
+
+<para
+>Copyright de la documentació 2000 d'en &Greg.M.Holmes; <email
+>holmegm@earthlink.net</email
+></para>
+
+<para
+>Documentació actualitzada el 2001 per en Fabian Del Santo &Fabian.DalSanto.mail; i el 2003 per en &Lauri.Watts; &Lauri.Watts.mail;.</para>
+
+
+<para
+>Traductor de la documentació: &credits.Antoni.Bella;</para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index; 
+
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->
