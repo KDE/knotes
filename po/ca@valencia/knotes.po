@@ -445,7 +445,7 @@ msgstr "Mostra una nota"
 #: knoteconfigmodule.cpp:80
 #, kde-format
 msgid "Show number of notes in tray icon"
-msgstr "Mostra el nombre de notes a la icona de la safata"
+msgstr "Mostra el nombre de notes en la icona de la safata"
 
 #: knoteconfigmodule.cpp:87
 #, kde-format
