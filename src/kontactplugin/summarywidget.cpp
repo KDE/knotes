@@ -10,7 +10,6 @@
 #include "summarywidget.h"
 #include "akonadi/notesakonaditreemodel.h"
 #include "akonadi/noteschangerecorder.h"
-#include "attributes/notedisplayattribute.h"
 #include "knotesinterface.h"
 
 #include <Akonadi/ChangeRecorder>

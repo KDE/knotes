@@ -8,7 +8,6 @@
 #include <config-knotes.h>
 
 #include "attributes/notedisplayattribute.h"
-#include "attributes/notelockattribute.h"
 
 #include <KColorButton>
 #include <KLocalizedString>

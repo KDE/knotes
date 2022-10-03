@@ -14,7 +14,6 @@
 #include <KXMLGUIBuilder>
 #include <KXMLGUIFactory>
 
-#include "knotes_kontact_plugin_debug.h"
 #include <KConfigGroup>
 #include <KSharedConfig>
 #include <QAction>

@@ -10,7 +10,6 @@
 #include "knotes_part.h"
 #include "knotesglobalconfig.h"
 #include "summarywidget.h"
-#include "utils/knoteutils.h"
 #include <KCalUtils/ICalDrag>
 #include <KCalUtils/VCalDrag>
 #include <KCalendarCore/FileStorage>

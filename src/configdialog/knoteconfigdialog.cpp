@@ -11,7 +11,6 @@
 #include "config/notenetworkconfig.h"
 #include "knotesglobalconfig.h"
 #include "notesharedglobalconfig.h"
-#include "print/knoteprintselectthemecombobox.h"
 #include <config-knotes.h>
 
 #include <KAuthorized>

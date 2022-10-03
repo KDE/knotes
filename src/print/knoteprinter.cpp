@@ -19,7 +19,6 @@
 #include <KWindowStateSaver>
 #include <QPrintPreviewDialog>
 
-#include "knotes_debug.h"
 #include <KLocalizedString>
 
 KNotePrinter::KNotePrinter(QObject *parent)

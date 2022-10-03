@@ -11,7 +11,6 @@
 #include <config-knotes.h>
 
 #include "attributes/notedisplayattribute.h"
-#include "attributes/notelockattribute.h"
 
 #include <KConfigGroup>
 #include <KLocalizedString>
