@@ -13,6 +13,15 @@ set(kontact_knotesplugin_PART_SRCS
   knoteswidget.cpp
   knoteseditdialog.cpp
   knotesselectdeletenotesdialog.cpp
+
+  knotes_plugin.h
+  knotes_part.h
+  summarywidget.h
+  knotesiconview.h
+  knoteslistwidgetsearchline.h
+  knoteswidget.h
+  knoteseditdialog.h
+  knotesselectdeletenotesdialog.h
 )
 
 qt_add_dbus_adaptor(kontact_knotesplugin_PART_SRCS org.kde.kontact.KNotes.xml knotes_part.h KNotesPart)
@@ -47,7 +56,7 @@ target_link_libraries(kontact_knotesplugin
 
 ########### install files ###############
 
-set(kcmknotessummary_PART_SRCS kcmknotessummary.cpp )
+set(kcmknotessummary_PART_SRCS kcmknotessummary.cpp kcmknotessummary.h)
 configure_file(knotesplugin.json.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotesplugin.json )
 add_library(kcmknotessummary MODULE ${kcmknotessummary_PART_SRCS})
 target_link_libraries(kcmknotessummary  KF5::PimCommonAkonadi KF5::AkonadiNotes KF5::ConfigWidgets KF5::I18n)
