@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-02 00:48+0000\n"
+"POT-Creation-Date: 2022-10-04 00:45+0000\n"
 "PO-Revision-Date: 2022-02-02 20:55+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -115,8 +115,8 @@ msgstr "إعدادات"
 
 #. i18n: ectx: Menu (knotes_context)
 #: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
-#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:43
-#: kontactplugin/knoteseditdialog.cpp:53
+#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:42
+#: kontactplugin/knoteseditdialog.cpp:52
 #, kde-format
 msgid "KNotes"
 msgstr "ملاحظاتك"
@@ -131,7 +131,7 @@ msgstr "ملاحظات كدي"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr "Copyright © 1997–%1 KNotes authors"
 
-#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:45
+#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -312,32 +312,32 @@ msgstr "حدث خطأ أثناء تغيير الاسم: %1"
 msgid "Rename note"
 msgstr "غيّر اسم الملاحظة"
 
-#: configdialog/knotedisplayconfigwidget.cpp:26
+#: configdialog/knotedisplayconfigwidget.cpp:25
 #, kde-format
 msgid "&Text color:"
 msgstr "لون ال&نّصّ:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:35
+#: configdialog/knotedisplayconfigwidget.cpp:34
 #, kde-format
 msgid "&Background color:"
 msgstr "لون ال&خلفيّة:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:45
+#: configdialog/knotedisplayconfigwidget.cpp:44
 #, kde-format
 msgid "&Show note in taskbar"
 msgstr "ا&عرض الملاحظة في شريط المهامّ"
 
-#: configdialog/knotedisplayconfigwidget.cpp:47
+#: configdialog/knotedisplayconfigwidget.cpp:46
 #, kde-format
 msgid "&Remember desktop"
 msgstr "ت&ذكّر سطح المكتب"
 
-#: configdialog/knotedisplayconfigwidget.cpp:51
+#: configdialog/knotedisplayconfigwidget.cpp:50
 #, kde-format
 msgid "Default &width:"
 msgstr "ال&عرض المبدئيّ:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:62
+#: configdialog/knotedisplayconfigwidget.cpp:61
 #, kde-format
 msgid "Default &height:"
 msgstr "الار&تفاع المبدئيّ:"
@@ -367,12 +367,12 @@ msgstr "خطّ النّصّ:"
 msgid "Title font:"
 msgstr "خطّ العنوان:"
 
-#: configdialog/knotesimpleconfigdialog.cpp:40
+#: configdialog/knotesimpleconfigdialog.cpp:39
 #, kde-format
 msgid "Editor Settings"
 msgstr "إعدادات المحرّر"
 
-#: configdialog/knotesimpleconfigdialog.cpp:43
+#: configdialog/knotesimpleconfigdialog.cpp:42
 #, kde-format
 msgid "Display Settings"
 msgstr "إعدادات العرض"
@@ -573,17 +573,17 @@ msgstr "أدرِج التّاريخ"
 msgid "Insert Checkmark"
 msgstr "أدرج علامة ”تمّ“"
 
-#: kontactplugin/kcmknotessummary.cpp:40
+#: kontactplugin/kcmknotessummary.cpp:39
 #, kde-format
 msgid "kcmknotessummary"
 msgstr "وحدة تلخيص ملاحظاتك"
 
-#: kontactplugin/kcmknotessummary.cpp:42
+#: kontactplugin/kcmknotessummary.cpp:41
 #, kde-format
 msgid "Notes Summary Configuration Dialog"
 msgstr "حواريّ ضبط ملخّص الملاحظات"
 
-#: kontactplugin/kcmknotessummary.cpp:44
+#: kontactplugin/kcmknotessummary.cpp:43
 #, kde-format
 msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
 msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
@@ -779,105 +779,105 @@ msgid ""
 msgstr ""
 "<qt>الملفّ بالاسم <b>%1</b> موجود بالفعل.<br />أمتأكّد من الكتابة فوقه؟</qt>"
 
-#: kontactplugin/knotes_plugin.cpp:45
+#: kontactplugin/knotes_plugin.cpp:44
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Popup Note..."
 msgstr "ملاحظة منبثقة جديدة..."
 
 #. i18nc( "@info:status", "Create new popup note" ) );
-#: kontactplugin/knotes_plugin.cpp:51
+#: kontactplugin/knotes_plugin.cpp:50
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
 "You will be presented with a dialog where you can create a new popup note."
 msgstr "سيُعرض حواريّ يمكنك منه إنشاء ملاحظة منبثقة جديدة."
 
-#: kontactplugin/knotes_plugin.cpp:77
+#: kontactplugin/knotes_plugin.cpp:76
 #, kde-kuit-format
 msgctxt "@title"
 msgid "KNotes"
 msgstr "ملاحظاتك"
 
-#: kontactplugin/knotes_plugin.cpp:79
+#: kontactplugin/knotes_plugin.cpp:78
 #, kde-kuit-format
 msgctxt "@title"
 msgid "Popup Notes"
 msgstr "ملاحظات منبثقة"
 
-#: kontactplugin/knotes_plugin.cpp:81
+#: kontactplugin/knotes_plugin.cpp:80
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Copyright © 2003–%1 Kontact authors"
 msgstr "Copyright © 2003–%1 Kontact authors"
 
-#: kontactplugin/knotes_plugin.cpp:83
+#: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: kontactplugin/knotes_plugin.cpp:83
+#: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Current Maintainer"
 msgstr "المصين الحاليّ"
 
-#: kontactplugin/knotes_plugin.cpp:85
+#: kontactplugin/knotes_plugin.cpp:84
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Michael Brade"
 msgstr "Michael Brade"
 
-#: kontactplugin/knotes_plugin.cpp:85
+#: kontactplugin/knotes_plugin.cpp:84
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Previous Maintainer"
 msgstr "المصين السّابق"
 
-#: kontactplugin/knotes_plugin.cpp:86
+#: kontactplugin/knotes_plugin.cpp:85
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Tobias Koenig"
 msgstr "Tobias Koenig"
 
-#: kontactplugin/knotes_plugin.cpp:86
+#: kontactplugin/knotes_plugin.cpp:85
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Developer"
 msgstr "مطوّر"
 
-#: kontactplugin/knotes_plugin.cpp:117
+#: kontactplugin/knotes_plugin.cpp:116
 #, kde-format
 msgctxt "@item"
 msgid "Meeting"
 msgstr "اجتماع"
 
-#: kontactplugin/knotes_plugin.cpp:131 kontactplugin/knotes_plugin.cpp:135
+#: kontactplugin/knotes_plugin.cpp:130 kontactplugin/knotes_plugin.cpp:134
 #, kde-format
 msgctxt "@item"
 msgid "Note: %1"
 msgstr "ملاحظة: %1"
 
-#: kontactplugin/knotes_plugin.cpp:141
+#: kontactplugin/knotes_plugin.cpp:140
 #, kde-format
 msgctxt "@item"
 msgid "New Note"
 msgstr "ملاحظة جديدة"
 
-#: kontactplugin/knoteseditdialog.cpp:36
+#: kontactplugin/knoteseditdialog.cpp:35
 #, kde-format
 msgctxt "@title:window"
 msgid "Show Popup Note"
 msgstr "عرض الملاحظة المنبثقة"
 
-#: kontactplugin/knoteseditdialog.cpp:36
+#: kontactplugin/knoteseditdialog.cpp:35
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Popup Note"
 msgstr "تحرير الملاحظة المنبثقة"
 
-#: kontactplugin/knoteseditdialog.cpp:66
+#: kontactplugin/knoteseditdialog.cpp:65
 #, kde-format
 msgctxt "@label popup note name"
 msgid "Name:"
@@ -909,27 +909,27 @@ msgstr[3] "أمتأكّد من حذف %1 ملاحظات؟"
 msgstr[4] "أمتأكّد من حذف %1 ملاحظة؟"
 msgstr[5] "أمتأكّد من حذف %1 ملاحظة؟"
 
-#: kontactplugin/summarywidget.cpp:42
+#: kontactplugin/summarywidget.cpp:41
 #, kde-format
 msgid "Popup Notes"
 msgstr "ملاحظات منبثقة"
 
-#: kontactplugin/summarywidget.cpp:89
+#: kontactplugin/summarywidget.cpp:88
 #, kde-format
 msgid "No notes found"
 msgstr "لم يُعثر على أيّ ملاحظة"
 
-#: kontactplugin/summarywidget.cpp:118
+#: kontactplugin/summarywidget.cpp:117
 #, kde-format
 msgid "Modify Note..."
 msgstr "عدّل الملاحظة..."
 
-#: kontactplugin/summarywidget.cpp:120
+#: kontactplugin/summarywidget.cpp:119
 #, kde-format
 msgid "Delete Note..."
 msgstr "احذف الملاحظة..."
 
-#: kontactplugin/summarywidget.cpp:195
+#: kontactplugin/summarywidget.cpp:194
 #, kde-format
 msgid "Read Popup Note: \"%1\""
 msgstr "اقرأ الملاحظة المنبثقة: ”%1“"
@@ -1025,7 +1025,7 @@ msgstr "المنبّه:"
 msgid "Note is locked"
 msgstr "الملاحظة مُقفلة"
 
-#: print/knoteprinter.cpp:112
+#: print/knoteprinter.cpp:111
 #, kde-format
 msgid "Print Note"
 msgid_plural "Print %1 notes"
@@ -1036,12 +1036,12 @@ msgstr[3] "اطبع %1 ملاحظات"
 msgstr[4] "اطبع %1 ملاحظة"
 msgstr[5] "اطبع %1 ملاحظة"
 
-#: print/knoteprinter.cpp:119
+#: print/knoteprinter.cpp:118
 #, kde-format
 msgid "Printing theme was not found."
 msgstr "لم يُعثر على سمة الطّباعة."
 
-#: print/knoteprinter.cpp:119
+#: print/knoteprinter.cpp:118
 #, kde-format
 msgid "Printing error"
 msgstr "خطأ في الطّباعة"

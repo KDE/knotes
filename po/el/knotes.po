@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-02 00:48+0000\n"
+"POT-Creation-Date: 2022-10-04 00:45+0000\n"
 "PO-Revision-Date: 2022-03-03 12:04+0200\n"
 "Last-Translator: Petros Vidalis <pvidalis@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -117,8 +117,8 @@ msgstr "Ρυθμίσεις"
 
 #. i18n: ectx: Menu (knotes_context)
 #: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
-#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:43
-#: kontactplugin/knoteseditdialog.cpp:53
+#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:42
+#: kontactplugin/knoteseditdialog.cpp:52
 #, kde-format
 msgid "KNotes"
 msgstr "KNotes"
@@ -133,7 +133,7 @@ msgstr "Σημειώματα για το KDE"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr "Πνευματικά Δικαιώματα © 1997–%1 οι συγγραφείς του KNotes"
 
-#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:45
+#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -314,32 +314,32 @@ msgstr "Παρουσιάστηκε σφάλμα κατά τη μετονομασ
 msgid "Rename note"
 msgstr "Μετονομασία σημειώματος"
 
-#: configdialog/knotedisplayconfigwidget.cpp:26
+#: configdialog/knotedisplayconfigwidget.cpp:25
 #, kde-format
 msgid "&Text color:"
 msgstr "Χρώμα &κειμένου:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:35
+#: configdialog/knotedisplayconfigwidget.cpp:34
 #, kde-format
 msgid "&Background color:"
 msgstr "Χρώμα &φόντου:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:45
+#: configdialog/knotedisplayconfigwidget.cpp:44
 #, kde-format
 msgid "&Show note in taskbar"
 msgstr "&Εμφάνιση σημειωμάτων στη γραμμή εργασιών"
 
-#: configdialog/knotedisplayconfigwidget.cpp:47
+#: configdialog/knotedisplayconfigwidget.cpp:46
 #, kde-format
 msgid "&Remember desktop"
 msgstr "&Απομνημόνευση επιφάνειας εργασίας"
 
-#: configdialog/knotedisplayconfigwidget.cpp:51
+#: configdialog/knotedisplayconfigwidget.cpp:50
 #, kde-format
 msgid "Default &width:"
 msgstr "Προκαθορισμένο &πλάτος:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:62
+#: configdialog/knotedisplayconfigwidget.cpp:61
 #, kde-format
 msgid "Default &height:"
 msgstr "Προκαθορισμένο ύ&ψος:"
@@ -369,12 +369,12 @@ msgstr "Γραμματοσειρά κειμένου:"
 msgid "Title font:"
 msgstr "Γραμματοσειρά τίτλου:"
 
-#: configdialog/knotesimpleconfigdialog.cpp:40
+#: configdialog/knotesimpleconfigdialog.cpp:39
 #, kde-format
 msgid "Editor Settings"
 msgstr "Ρυθμίσεις επεξεργαστή"
 
-#: configdialog/knotesimpleconfigdialog.cpp:43
+#: configdialog/knotesimpleconfigdialog.cpp:42
 #, kde-format
 msgid "Display Settings"
 msgstr "Ρυθμίσεις προβολής"
@@ -575,17 +575,17 @@ msgstr "Εισαγωγή ημερομηνίας"
 msgid "Insert Checkmark"
 msgstr "Εισαγωγή δείκτη ελέγχου"
 
-#: kontactplugin/kcmknotessummary.cpp:40
+#: kontactplugin/kcmknotessummary.cpp:39
 #, kde-format
 msgid "kcmknotessummary"
 msgstr "kcmknotessummary"
 
-#: kontactplugin/kcmknotessummary.cpp:42
+#: kontactplugin/kcmknotessummary.cpp:41
 #, kde-format
 msgid "Notes Summary Configuration Dialog"
 msgstr "Διάλογος διαμόρφωσης περίληψης σημειωμάτων"
 
-#: kontactplugin/kcmknotessummary.cpp:44
+#: kontactplugin/kcmknotessummary.cpp:43
 #, kde-format
 msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
 msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
@@ -792,14 +792,14 @@ msgstr ""
 "<qt>Ένα αρχείο με όνομα <b>%1</b> υπάρχει ήδη.<br />Είστε βέβαιοι ότι θέλετε "
 "να αντικατασταθεί;</qt>"
 
-#: kontactplugin/knotes_plugin.cpp:45
+#: kontactplugin/knotes_plugin.cpp:44
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Popup Note..."
 msgstr "Νέο αναδυόμενο σημείωμα..."
 
 #. i18nc( "@info:status", "Create new popup note" ) );
-#: kontactplugin/knotes_plugin.cpp:51
+#: kontactplugin/knotes_plugin.cpp:50
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -808,91 +808,91 @@ msgstr ""
 "Θα εμφανιστεί ένας διάλογος όπου θα μπορείτε να δημιουργήσετε ένα νέο "
 "αναδυόμενο σημείωμα."
 
-#: kontactplugin/knotes_plugin.cpp:77
+#: kontactplugin/knotes_plugin.cpp:76
 #, kde-kuit-format
 msgctxt "@title"
 msgid "KNotes"
 msgstr "KNotes"
 
-#: kontactplugin/knotes_plugin.cpp:79
+#: kontactplugin/knotes_plugin.cpp:78
 #, kde-kuit-format
 msgctxt "@title"
 msgid "Popup Notes"
 msgstr "Αναδυόμενα σημειώματα"
 
-#: kontactplugin/knotes_plugin.cpp:81
+#: kontactplugin/knotes_plugin.cpp:80
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Copyright © 2003–%1 Kontact authors"
 msgstr "Πνευματικά Δικαιώματα © 2003–%1 οι συγγραφείς του Kontact"
 
-#: kontactplugin/knotes_plugin.cpp:83
+#: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: kontactplugin/knotes_plugin.cpp:83
+#: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Current Maintainer"
 msgstr "Τρέχων συντηρητής"
 
-#: kontactplugin/knotes_plugin.cpp:85
+#: kontactplugin/knotes_plugin.cpp:84
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Michael Brade"
 msgstr "Michael Brade"
 
-#: kontactplugin/knotes_plugin.cpp:85
+#: kontactplugin/knotes_plugin.cpp:84
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Previous Maintainer"
 msgstr "Προηγούμενος συντηρητής"
 
-#: kontactplugin/knotes_plugin.cpp:86
+#: kontactplugin/knotes_plugin.cpp:85
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Tobias Koenig"
 msgstr "Tobias Koenig"
 
-#: kontactplugin/knotes_plugin.cpp:86
+#: kontactplugin/knotes_plugin.cpp:85
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Developer"
 msgstr "Προγραμματιστής"
 
-#: kontactplugin/knotes_plugin.cpp:117
+#: kontactplugin/knotes_plugin.cpp:116
 #, kde-format
 msgctxt "@item"
 msgid "Meeting"
 msgstr "Συνάντηση"
 
-#: kontactplugin/knotes_plugin.cpp:131 kontactplugin/knotes_plugin.cpp:135
+#: kontactplugin/knotes_plugin.cpp:130 kontactplugin/knotes_plugin.cpp:134
 #, kde-format
 msgctxt "@item"
 msgid "Note: %1"
 msgstr "Σημείωμα: %1"
 
-#: kontactplugin/knotes_plugin.cpp:141
+#: kontactplugin/knotes_plugin.cpp:140
 #, kde-format
 msgctxt "@item"
 msgid "New Note"
 msgstr "Νέο σημείωμα"
 
-#: kontactplugin/knoteseditdialog.cpp:36
+#: kontactplugin/knoteseditdialog.cpp:35
 #, kde-format
 msgctxt "@title:window"
 msgid "Show Popup Note"
 msgstr "Εμφάνιση αναδυόμενου σημειώματος"
 
-#: kontactplugin/knoteseditdialog.cpp:36
+#: kontactplugin/knoteseditdialog.cpp:35
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Popup Note"
 msgstr "Επεξεργασία αναδυόμενου σημειώματος"
 
-#: kontactplugin/knoteseditdialog.cpp:66
+#: kontactplugin/knoteseditdialog.cpp:65
 #, kde-format
 msgctxt "@label popup note name"
 msgid "Name:"
@@ -920,27 +920,27 @@ msgid_plural "Do you really want to delete these %1 notes?"
 msgstr[0] "Θέλετε πράγματι να διαγράψετε αυτό το σημείωμα;"
 msgstr[1] "Θέλετε πράγματι να διαγράψετε αυτά τα %1 σημειώματα;"
 
-#: kontactplugin/summarywidget.cpp:42
+#: kontactplugin/summarywidget.cpp:41
 #, kde-format
 msgid "Popup Notes"
 msgstr "Αναδυόμενα σημειώματα"
 
-#: kontactplugin/summarywidget.cpp:89
+#: kontactplugin/summarywidget.cpp:88
 #, kde-format
 msgid "No notes found"
 msgstr "Δεν βρέθηκαν σημειώματα"
 
-#: kontactplugin/summarywidget.cpp:118
+#: kontactplugin/summarywidget.cpp:117
 #, kde-format
 msgid "Modify Note..."
 msgstr "Τροποποίηση σημειωμάτων..."
 
-#: kontactplugin/summarywidget.cpp:120
+#: kontactplugin/summarywidget.cpp:119
 #, kde-format
 msgid "Delete Note..."
 msgstr "Διαγραφή σημειώματος..."
 
-#: kontactplugin/summarywidget.cpp:195
+#: kontactplugin/summarywidget.cpp:194
 #, kde-format
 msgid "Read Popup Note: \"%1\""
 msgstr "Ανάγνωση αναδυόμενου σημειώματος: «%1»"
@@ -1036,19 +1036,19 @@ msgstr "Συναγερμός:"
 msgid "Note is locked"
 msgstr "Το σημείωμα είναι κλειδωμένο"
 
-#: print/knoteprinter.cpp:112
+#: print/knoteprinter.cpp:111
 #, kde-format
 msgid "Print Note"
 msgid_plural "Print %1 notes"
 msgstr[0] "Εκτύπωση σημειώματος"
 msgstr[1] "Εκτύπωση %1 σημειωμάτων"
 
-#: print/knoteprinter.cpp:119
+#: print/knoteprinter.cpp:118
 #, kde-format
 msgid "Printing theme was not found."
 msgstr "Το θέμα εκτύπωσης δεν βρέθηκε."
 
-#: print/knoteprinter.cpp:119
+#: print/knoteprinter.cpp:118
 #, kde-format
 msgid "Printing error"
 msgstr "Σφάλμα εκτύπωσης"

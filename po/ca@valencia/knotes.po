@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-02 00:48+0000\n"
+"POT-Creation-Date: 2022-10-04 00:45+0000\n"
 "PO-Revision-Date: 2022-01-02 20:55+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -115,8 +115,8 @@ msgstr "Configuració"
 
 #. i18n: ectx: Menu (knotes_context)
 #: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
-#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:43
-#: kontactplugin/knoteseditdialog.cpp:53
+#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:42
+#: kontactplugin/knoteseditdialog.cpp:52
 #, kde-format
 msgid "KNotes"
 msgstr "KNotes"
@@ -131,7 +131,7 @@ msgstr "Notes de KDE"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr "Copyright © 1997-%1, els autors de KNotes"
 
-#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:45
+#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -312,32 +312,32 @@ msgstr "S'ha detectat un error durant el canvi de nom: %1"
 msgid "Rename note"
 msgstr "Canvia el nom la nota"
 
-#: configdialog/knotedisplayconfigwidget.cpp:26
+#: configdialog/knotedisplayconfigwidget.cpp:25
 #, kde-format
 msgid "&Text color:"
 msgstr "Color del &text:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:35
+#: configdialog/knotedisplayconfigwidget.cpp:34
 #, kde-format
 msgid "&Background color:"
 msgstr "Color de &fons:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:45
+#: configdialog/knotedisplayconfigwidget.cpp:44
 #, kde-format
 msgid "&Show note in taskbar"
 msgstr "&Mostra la nota en la barra de tasques"
 
-#: configdialog/knotedisplayconfigwidget.cpp:47
+#: configdialog/knotedisplayconfigwidget.cpp:46
 #, kde-format
 msgid "&Remember desktop"
 msgstr "&Recorda l'escriptori"
 
-#: configdialog/knotedisplayconfigwidget.cpp:51
+#: configdialog/knotedisplayconfigwidget.cpp:50
 #, kde-format
 msgid "Default &width:"
 msgstr "A&mplària predeterminada:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:62
+#: configdialog/knotedisplayconfigwidget.cpp:61
 #, kde-format
 msgid "Default &height:"
 msgstr "A&lçària per defecte:"
@@ -367,12 +367,12 @@ msgstr "Tipus de lletra del text:"
 msgid "Title font:"
 msgstr "Tipus de lletra del títol:"
 
-#: configdialog/knotesimpleconfigdialog.cpp:40
+#: configdialog/knotesimpleconfigdialog.cpp:39
 #, kde-format
 msgid "Editor Settings"
 msgstr "Opcions de l'editor"
 
-#: configdialog/knotesimpleconfigdialog.cpp:43
+#: configdialog/knotesimpleconfigdialog.cpp:42
 #, kde-format
 msgid "Display Settings"
 msgstr "Opcions de la visualització"
@@ -573,17 +573,17 @@ msgstr "Inserix la data"
 msgid "Insert Checkmark"
 msgstr "Inserix una marca de selecció"
 
-#: kontactplugin/kcmknotessummary.cpp:40
+#: kontactplugin/kcmknotessummary.cpp:39
 #, kde-format
 msgid "kcmknotessummary"
 msgstr "kcmknotessummary"
 
-#: kontactplugin/kcmknotessummary.cpp:42
+#: kontactplugin/kcmknotessummary.cpp:41
 #, kde-format
 msgid "Notes Summary Configuration Dialog"
 msgstr "Diàleg de configuració del resum de les notes"
 
-#: kontactplugin/kcmknotessummary.cpp:44
+#: kontactplugin/kcmknotessummary.cpp:43
 #, kde-format
 msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
 msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
@@ -789,14 +789,14 @@ msgstr ""
 "<qt>Ja existix un fitxer anomenat <b>%1</b>.<br />Segur que voleu "
 "sobreescriure'l?</qt>"
 
-#: kontactplugin/knotes_plugin.cpp:45
+#: kontactplugin/knotes_plugin.cpp:44
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Popup Note..."
 msgstr "Nota emergent nova..."
 
 #. i18nc( "@info:status", "Create new popup note" ) );
-#: kontactplugin/knotes_plugin.cpp:51
+#: kontactplugin/knotes_plugin.cpp:50
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -804,91 +804,91 @@ msgid ""
 msgstr ""
 "Se vos presentarà un diàleg des d'on podreu crear una nota emergent nova."
 
-#: kontactplugin/knotes_plugin.cpp:77
+#: kontactplugin/knotes_plugin.cpp:76
 #, kde-kuit-format
 msgctxt "@title"
 msgid "KNotes"
 msgstr "KNotes"
 
-#: kontactplugin/knotes_plugin.cpp:79
+#: kontactplugin/knotes_plugin.cpp:78
 #, kde-kuit-format
 msgctxt "@title"
 msgid "Popup Notes"
 msgstr "Notes emergents"
 
-#: kontactplugin/knotes_plugin.cpp:81
+#: kontactplugin/knotes_plugin.cpp:80
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Copyright © 2003–%1 Kontact authors"
 msgstr "Copyright © 2003–%1, els autors de Kontact"
 
-#: kontactplugin/knotes_plugin.cpp:83
+#: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: kontactplugin/knotes_plugin.cpp:83
+#: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Current Maintainer"
 msgstr "Mantenidor actual"
 
-#: kontactplugin/knotes_plugin.cpp:85
+#: kontactplugin/knotes_plugin.cpp:84
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Michael Brade"
 msgstr "Michael Brade"
 
-#: kontactplugin/knotes_plugin.cpp:85
+#: kontactplugin/knotes_plugin.cpp:84
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Previous Maintainer"
 msgstr "Mantenidor anterior"
 
-#: kontactplugin/knotes_plugin.cpp:86
+#: kontactplugin/knotes_plugin.cpp:85
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Tobias Koenig"
 msgstr "Tobias Koenig"
 
-#: kontactplugin/knotes_plugin.cpp:86
+#: kontactplugin/knotes_plugin.cpp:85
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Developer"
 msgstr "Desenvolupador"
 
-#: kontactplugin/knotes_plugin.cpp:117
+#: kontactplugin/knotes_plugin.cpp:116
 #, kde-format
 msgctxt "@item"
 msgid "Meeting"
 msgstr "Reunió"
 
-#: kontactplugin/knotes_plugin.cpp:131 kontactplugin/knotes_plugin.cpp:135
+#: kontactplugin/knotes_plugin.cpp:130 kontactplugin/knotes_plugin.cpp:134
 #, kde-format
 msgctxt "@item"
 msgid "Note: %1"
 msgstr "Nota: %1"
 
-#: kontactplugin/knotes_plugin.cpp:141
+#: kontactplugin/knotes_plugin.cpp:140
 #, kde-format
 msgctxt "@item"
 msgid "New Note"
 msgstr "Nota nova"
 
-#: kontactplugin/knoteseditdialog.cpp:36
+#: kontactplugin/knoteseditdialog.cpp:35
 #, kde-format
 msgctxt "@title:window"
 msgid "Show Popup Note"
 msgstr "Mostra una nota emergent"
 
-#: kontactplugin/knoteseditdialog.cpp:36
+#: kontactplugin/knoteseditdialog.cpp:35
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Popup Note"
 msgstr "Edició d'una nota emergent"
 
-#: kontactplugin/knoteseditdialog.cpp:66
+#: kontactplugin/knoteseditdialog.cpp:65
 #, kde-format
 msgctxt "@label popup note name"
 msgid "Name:"
@@ -916,27 +916,27 @@ msgid_plural "Do you really want to delete these %1 notes?"
 msgstr[0] "Segur que voleu suprimir esta nota?"
 msgstr[1] "Segur que voleu suprimir estes %1 notes?"
 
-#: kontactplugin/summarywidget.cpp:42
+#: kontactplugin/summarywidget.cpp:41
 #, kde-format
 msgid "Popup Notes"
 msgstr "Notes emergents"
 
-#: kontactplugin/summarywidget.cpp:89
+#: kontactplugin/summarywidget.cpp:88
 #, kde-format
 msgid "No notes found"
 msgstr "No s'ha trobat cap nota"
 
-#: kontactplugin/summarywidget.cpp:118
+#: kontactplugin/summarywidget.cpp:117
 #, kde-format
 msgid "Modify Note..."
 msgstr "Mostra la nota..."
 
-#: kontactplugin/summarywidget.cpp:120
+#: kontactplugin/summarywidget.cpp:119
 #, kde-format
 msgid "Delete Note..."
 msgstr "Suprimix la nota..."
 
-#: kontactplugin/summarywidget.cpp:195
+#: kontactplugin/summarywidget.cpp:194
 #, kde-format
 msgid "Read Popup Note: \"%1\""
 msgstr "Llig la nota emergent: «%1»"
@@ -1032,19 +1032,19 @@ msgstr "Alarma:"
 msgid "Note is locked"
 msgstr "La nota està bloquejada"
 
-#: print/knoteprinter.cpp:112
+#: print/knoteprinter.cpp:111
 #, kde-format
 msgid "Print Note"
 msgid_plural "Print %1 notes"
 msgstr[0] "Imprimix la nota"
 msgstr[1] "Imprimix les %1 notes"
 
-#: print/knoteprinter.cpp:119
+#: print/knoteprinter.cpp:118
 #, kde-format
 msgid "Printing theme was not found."
 msgstr "No s'ha trobat el tema d'impressió."
 
-#: print/knoteprinter.cpp:119
+#: print/knoteprinter.cpp:118
 #, kde-format
 msgid "Printing error"
 msgstr "S'ha produït un error d'impressió"

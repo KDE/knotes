@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-02 00:48+0000\n"
+"POT-Creation-Date: 2022-10-04 00:45+0000\n"
 "PO-Revision-Date: 2010-05-24 16:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -123,8 +123,8 @@ msgstr "ការ​កំណត់"
 
 #. i18n: ectx: Menu (knotes_context)
 #: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
-#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:43
-#: kontactplugin/knoteseditdialog.cpp:53
+#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:42
+#: kontactplugin/knoteseditdialog.cpp:52
 #, kde-format
 msgid "KNotes"
 msgstr "KNotes"
@@ -140,7 +140,7 @@ msgstr "ចំណាំ​របស់ KDE"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr "រក្សាសិទ្ធិឆ្នាំ ១៩៩៧–២០១០ ដោយ​អ្នកនិពន្ធ KNotes"
 
-#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:45
+#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -326,32 +326,32 @@ msgstr ""
 msgid "Rename note"
 msgstr "ជ្រើស​អ្នក​ទទួល ៖"
 
-#: configdialog/knotedisplayconfigwidget.cpp:26
+#: configdialog/knotedisplayconfigwidget.cpp:25
 #, kde-format
 msgid "&Text color:"
 msgstr "ពណ៌​អត្ថបទ ៖"
 
-#: configdialog/knotedisplayconfigwidget.cpp:35
+#: configdialog/knotedisplayconfigwidget.cpp:34
 #, kde-format
 msgid "&Background color:"
 msgstr "ពណ៌​ផ្ទៃ​ខាង​ក្រោយ ៖"
 
-#: configdialog/knotedisplayconfigwidget.cpp:45
+#: configdialog/knotedisplayconfigwidget.cpp:44
 #, kde-format
 msgid "&Show note in taskbar"
 msgstr "បង្ហាញ​ចំណាំក្នុង​របារ​ភារកិច្ច"
 
-#: configdialog/knotedisplayconfigwidget.cpp:47
+#: configdialog/knotedisplayconfigwidget.cpp:46
 #, kde-format
 msgid "&Remember desktop"
 msgstr "ចងចាំ​ផ្ទៃតុ"
 
-#: configdialog/knotedisplayconfigwidget.cpp:51
+#: configdialog/knotedisplayconfigwidget.cpp:50
 #, kde-format
 msgid "Default &width:"
 msgstr "ទទឹង​លំនាំដើម ៖"
 
-#: configdialog/knotedisplayconfigwidget.cpp:62
+#: configdialog/knotedisplayconfigwidget.cpp:61
 #, kde-format
 msgid "Default &height:"
 msgstr "កម្ពស់​លំនាំដើម ៖"
@@ -381,12 +381,12 @@ msgstr "ពុម្ពអក្សរ​អត្ថបទ ៖"
 msgid "Title font:"
 msgstr "ពុម្ពអក្សរ​ចំណង​ជើង ៖"
 
-#: configdialog/knotesimpleconfigdialog.cpp:40
+#: configdialog/knotesimpleconfigdialog.cpp:39
 #, kde-format
 msgid "Editor Settings"
 msgstr "ការ​កំណត់​កម្មវិធី​និពន្ធ"
 
-#: configdialog/knotesimpleconfigdialog.cpp:43
+#: configdialog/knotesimpleconfigdialog.cpp:42
 #, kde-format
 msgid "Display Settings"
 msgstr "ការកំណត់​ការ​បង្ហាញ"
@@ -594,17 +594,17 @@ msgstr "បញ្ចូល​កាលបរិច្ឆេទ"
 msgid "Insert Checkmark"
 msgstr ""
 
-#: kontactplugin/kcmknotessummary.cpp:40
+#: kontactplugin/kcmknotessummary.cpp:39
 #, kde-format
 msgid "kcmknotessummary"
 msgstr ""
 
-#: kontactplugin/kcmknotessummary.cpp:42
+#: kontactplugin/kcmknotessummary.cpp:41
 #, kde-format
 msgid "Notes Summary Configuration Dialog"
 msgstr ""
 
-#: kontactplugin/kcmknotessummary.cpp:44
+#: kontactplugin/kcmknotessummary.cpp:43
 #, kde-format
 msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
 msgstr ""
@@ -816,7 +816,7 @@ msgid ""
 msgstr ""
 "<qt>មាន​ឯកសារ​មានឈ្មោះ <b>%1</b> រួចហើយ ។<br />តើ​អ្នក​ពិតជា​ចង់​សរសេរ​ជាន់លើ​វា​ឬ ?</qt>"
 
-#: kontactplugin/knotes_plugin.cpp:45
+#: kontactplugin/knotes_plugin.cpp:44
 #, fuzzy, kde-format
 #| msgid "New Note"
 msgctxt "@action:inmenu"
@@ -824,109 +824,109 @@ msgid "New Popup Note..."
 msgstr "ចំណាំ​ថ្មី"
 
 #. i18nc( "@info:status", "Create new popup note" ) );
-#: kontactplugin/knotes_plugin.cpp:51
+#: kontactplugin/knotes_plugin.cpp:50
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
 "You will be presented with a dialog where you can create a new popup note."
 msgstr ""
 
-#: kontactplugin/knotes_plugin.cpp:77
+#: kontactplugin/knotes_plugin.cpp:76
 #, fuzzy, kde-kuit-format
 #| msgid "KNotes"
 msgctxt "@title"
 msgid "KNotes"
 msgstr "KNotes"
 
-#: kontactplugin/knotes_plugin.cpp:79
+#: kontactplugin/knotes_plugin.cpp:78
 #, fuzzy, kde-kuit-format
 #| msgid "No Notes"
 msgctxt "@title"
 msgid "Popup Notes"
 msgstr "គ្មាន​ចំណាំ"
 
-#: kontactplugin/knotes_plugin.cpp:81
+#: kontactplugin/knotes_plugin.cpp:80
 #, fuzzy, kde-kuit-format
 #| msgid "Copyright © 1997–2010 KNotes authors"
 msgctxt "@info:credit"
 msgid "Copyright © 2003–%1 Kontact authors"
 msgstr "រក្សាសិទ្ធិឆ្នាំ ១៩៩៧–២០១០ ដោយ​អ្នកនិពន្ធ KNotes"
 
-#: kontactplugin/knotes_plugin.cpp:83
+#: kontactplugin/knotes_plugin.cpp:82
 #, fuzzy, kde-kuit-format
 #| msgid "Laurent Montel"
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: kontactplugin/knotes_plugin.cpp:83
+#: kontactplugin/knotes_plugin.cpp:82
 #, fuzzy, kde-kuit-format
 #| msgid "Maintainer"
 msgctxt "@info:credit"
 msgid "Current Maintainer"
 msgstr "អ្នក​ថែទាំ"
 
-#: kontactplugin/knotes_plugin.cpp:85
+#: kontactplugin/knotes_plugin.cpp:84
 #, fuzzy, kde-kuit-format
 #| msgid "Michael Brade"
 msgctxt "@info:credit"
 msgid "Michael Brade"
 msgstr "Michael Brade"
 
-#: kontactplugin/knotes_plugin.cpp:85
+#: kontactplugin/knotes_plugin.cpp:84
 #, fuzzy, kde-kuit-format
 #| msgid "Previous Maintainer"
 msgctxt "@info:credit"
 msgid "Previous Maintainer"
 msgstr "អ្នក​ថែ​ទាំ​មុន"
 
-#: kontactplugin/knotes_plugin.cpp:86
+#: kontactplugin/knotes_plugin.cpp:85
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Tobias Koenig"
 msgstr ""
 
-#: kontactplugin/knotes_plugin.cpp:86
+#: kontactplugin/knotes_plugin.cpp:85
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Developer"
 msgstr ""
 
-#: kontactplugin/knotes_plugin.cpp:117
+#: kontactplugin/knotes_plugin.cpp:116
 #, fuzzy, kde-format
 #| msgid "Settings"
 msgctxt "@item"
 msgid "Meeting"
 msgstr "ការ​កំណត់"
 
-#: kontactplugin/knotes_plugin.cpp:131 kontactplugin/knotes_plugin.cpp:135
+#: kontactplugin/knotes_plugin.cpp:130 kontactplugin/knotes_plugin.cpp:134
 #, fuzzy, kde-format
 #| msgid "Notes"
 msgctxt "@item"
 msgid "Note: %1"
 msgstr "ចំណាំ"
 
-#: kontactplugin/knotes_plugin.cpp:141
+#: kontactplugin/knotes_plugin.cpp:140
 #, fuzzy, kde-format
 #| msgid "New Note"
 msgctxt "@item"
 msgid "New Note"
 msgstr "ចំណាំ​ថ្មី"
 
-#: kontactplugin/knoteseditdialog.cpp:36
+#: kontactplugin/knoteseditdialog.cpp:35
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@title:window"
 msgid "Show Popup Note"
 msgstr "បង្ហាញ​ចំណាំ​ទាំង​អស់"
 
-#: kontactplugin/knoteseditdialog.cpp:36
+#: kontactplugin/knoteseditdialog.cpp:35
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Popup Note"
 msgstr ""
 
-#: kontactplugin/knoteseditdialog.cpp:66
+#: kontactplugin/knoteseditdialog.cpp:65
 #, kde-format
 msgctxt "@label popup note name"
 msgid "Name:"
@@ -956,31 +956,31 @@ msgid "Do you really want to delete this note?"
 msgid_plural "Do you really want to delete these %1 notes?"
 msgstr[0] "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​ចំណាំ <b>%1</b>​ឬទេ ?</qt>"
 
-#: kontactplugin/summarywidget.cpp:42
+#: kontactplugin/summarywidget.cpp:41
 #, fuzzy, kde-format
 #| msgid "No Notes"
 msgid "Popup Notes"
 msgstr "គ្មាន​ចំណាំ"
 
-#: kontactplugin/summarywidget.cpp:89
+#: kontactplugin/summarywidget.cpp:88
 #, fuzzy, kde-format
 #| msgid "Note Actions"
 msgid "No notes found"
 msgstr "សកម្មភាព​ចំណាំ"
 
-#: kontactplugin/summarywidget.cpp:118
+#: kontactplugin/summarywidget.cpp:117
 #, kde-format
 msgid "Modify Note..."
 msgstr ""
 
-#: kontactplugin/summarywidget.cpp:120
+#: kontactplugin/summarywidget.cpp:119
 #, fuzzy, kde-format
 #| msgid "Print Note"
 #| msgid_plural "Print %1 notes"
 msgid "Delete Note..."
 msgstr "បោះពុម្ព​ចំណាំ %1"
 
-#: kontactplugin/summarywidget.cpp:195
+#: kontactplugin/summarywidget.cpp:194
 #, kde-format
 msgid "Read Popup Note: \"%1\""
 msgstr ""
@@ -1078,18 +1078,18 @@ msgstr "ការ​ជូនដំណឹង"
 msgid "Note is locked"
 msgstr ""
 
-#: print/knoteprinter.cpp:112
+#: print/knoteprinter.cpp:111
 #, kde-format
 msgid "Print Note"
 msgid_plural "Print %1 notes"
 msgstr[0] "បោះពុម្ព​ចំណាំ %1"
 
-#: print/knoteprinter.cpp:119
+#: print/knoteprinter.cpp:118
 #, kde-format
 msgid "Printing theme was not found."
 msgstr ""
 
-#: print/knoteprinter.cpp:119
+#: print/knoteprinter.cpp:118
 #, kde-format
 msgid "Printing error"
 msgstr ""
