@@ -17,7 +17,7 @@ NoteEditorUtils::NoteEditorUtils() = default;
 
 void NoteEditorUtils::addCheckmark(QTextCursor &cursor)
 {
-    static const QChar unicode[] = {0x2713};
+    static const QChar unicode[] = {QChar(0x2713)};
     const int size = sizeof(unicode) / sizeof(QChar);
     const int position = cursor.position();
     cursor.movePosition(QTextCursor::StartOfLine);

@@ -32,7 +32,7 @@ void NoteEditorUtilsTest::testAddCheckmark()
     QFETCH(QString, input);
     QFETCH(int, position);
 
-    static const QChar unicode[] = {0x2713};
+    static const QChar unicode[] = {QChar(0x2713)};
     const int size = sizeof(unicode) / sizeof(QChar);
     const QString checkMark = QString::fromRawData(unicode, size);
 

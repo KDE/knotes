@@ -9,6 +9,7 @@
 #include "knotes_export.h"
 
 #include <QFont>
+#include <QObject>
 
 #include <memory>
 

@@ -43,12 +43,12 @@
 
 #include <QApplication>
 #include <QCheckBox>
-#include <QDesktopWidget>
 #include <QInputDialog>
 #include <QLabel>
 #include <QMenu>
 #include <QMimeData>
 #include <QPointer>
+#include <QScreen>
 #include <QSizeGrip>
 #include <QTextEdit>
 #include <QVBoxLayout>
@@ -842,7 +842,7 @@ void KNote::prepare()
 
     resize(mDisplayAttribute->size());
     const QPoint &position = mDisplayAttribute->position();
-    QRect desk = qApp->desktop()->rect();
+    QRect desk = qApp->primaryScreen()->virtualGeometry();
     desk.adjust(10, 10, -10, -10);
     if (desk.intersects(QRect(position, mDisplayAttribute->size()))) {
         move(position); // do before calling show() to avoid flicker
