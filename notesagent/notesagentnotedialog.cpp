@@ -25,8 +25,8 @@
 
 NotesAgentNoteDialog::NotesAgentNoteDialog(QWidget *parent)
     : QDialog(parent)
-    , mSubject(new QLineEdit(this))
     , mNote(new KPIMTextEdit::RichTextEditorWidget(this))
+    , mSubject(new QLineEdit(this))
 {
     auto mainLayout = new QVBoxLayout(this);
     setAttribute(Qt::WA_DeleteOnClose);
