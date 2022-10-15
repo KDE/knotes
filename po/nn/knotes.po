@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-02 00:48+0000\n"
+"POT-Creation-Date: 2022-10-04 00:45+0000\n"
 "PO-Revision-Date: 2021-03-21 17:51+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -116,8 +116,8 @@ msgstr "Innstillingar"
 
 #. i18n: ectx: Menu (knotes_context)
 #: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
-#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:43
-#: kontactplugin/knoteseditdialog.cpp:53
+#: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:42
+#: kontactplugin/knoteseditdialog.cpp:52
 #, kde-format
 msgid "KNotes"
 msgstr "KNotes"
@@ -132,7 +132,7 @@ msgstr "KDE-notat"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr ""
 
-#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:45
+#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -313,32 +313,32 @@ msgstr "Det oppstod ein feil ved endring av namn: %1"
 msgid "Rename note"
 msgstr "Endra namn på notat"
 
-#: configdialog/knotedisplayconfigwidget.cpp:26
+#: configdialog/knotedisplayconfigwidget.cpp:25
 #, kde-format
 msgid "&Text color:"
 msgstr "&Tekstfarge:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:35
+#: configdialog/knotedisplayconfigwidget.cpp:34
 #, kde-format
 msgid "&Background color:"
 msgstr "&Bakgrunnsfarge:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:45
+#: configdialog/knotedisplayconfigwidget.cpp:44
 #, kde-format
 msgid "&Show note in taskbar"
 msgstr "&Vis notat i oppgåvelinja"
 
-#: configdialog/knotedisplayconfigwidget.cpp:47
+#: configdialog/knotedisplayconfigwidget.cpp:46
 #, kde-format
 msgid "&Remember desktop"
 msgstr "&Hugs skrivebord"
 
-#: configdialog/knotedisplayconfigwidget.cpp:51
+#: configdialog/knotedisplayconfigwidget.cpp:50
 #, kde-format
 msgid "Default &width:"
 msgstr "Standard&breidd"
 
-#: configdialog/knotedisplayconfigwidget.cpp:62
+#: configdialog/knotedisplayconfigwidget.cpp:61
 #, kde-format
 msgid "Default &height:"
 msgstr "Standard&høgd:"
@@ -368,12 +368,12 @@ msgstr "Tekstskrift:"
 msgid "Title font:"
 msgstr "Tittelskrift:"
 
-#: configdialog/knotesimpleconfigdialog.cpp:40
+#: configdialog/knotesimpleconfigdialog.cpp:39
 #, kde-format
 msgid "Editor Settings"
 msgstr "Skrivefeltinnstillingar"
 
-#: configdialog/knotesimpleconfigdialog.cpp:43
+#: configdialog/knotesimpleconfigdialog.cpp:42
 #, kde-format
 msgid "Display Settings"
 msgstr "Visingsinnstillingar"
@@ -574,17 +574,17 @@ msgstr "Set inn dato"
 msgid "Insert Checkmark"
 msgstr "Set inn hake"
 
-#: kontactplugin/kcmknotessummary.cpp:40
+#: kontactplugin/kcmknotessummary.cpp:39
 #, kde-format
 msgid "kcmknotessummary"
 msgstr "kcmknotessummary"
 
-#: kontactplugin/kcmknotessummary.cpp:42
+#: kontactplugin/kcmknotessummary.cpp:41
 #, kde-format
 msgid "Notes Summary Configuration Dialog"
 msgstr "Oppsett av notatsamandrag"
 
-#: kontactplugin/kcmknotessummary.cpp:44
+#: kontactplugin/kcmknotessummary.cpp:43
 #, kde-format
 msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
 msgstr ""
@@ -785,14 +785,14 @@ msgstr ""
 "<qt>Fila <b>%1</b> finst frå før.<br />Er du sikker på at du vil skriva over "
 "ho?</qt>"
 
-#: kontactplugin/knotes_plugin.cpp:45
+#: kontactplugin/knotes_plugin.cpp:44
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Popup Note..."
 msgstr "Nytt sprettoppnotat …"
 
 #. i18nc( "@info:status", "Create new popup note" ) );
-#: kontactplugin/knotes_plugin.cpp:51
+#: kontactplugin/knotes_plugin.cpp:50
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -800,91 +800,91 @@ msgid ""
 msgstr ""
 "Du vil få opp eit dialogvindauge der du kan laga eit nytt sprettoppnotat."
 
-#: kontactplugin/knotes_plugin.cpp:77
+#: kontactplugin/knotes_plugin.cpp:76
 #, kde-kuit-format
 msgctxt "@title"
 msgid "KNotes"
 msgstr "KNotes"
 
-#: kontactplugin/knotes_plugin.cpp:79
+#: kontactplugin/knotes_plugin.cpp:78
 #, kde-kuit-format
 msgctxt "@title"
 msgid "Popup Notes"
 msgstr "Sprettoppnotat"
 
-#: kontactplugin/knotes_plugin.cpp:81
+#: kontactplugin/knotes_plugin.cpp:80
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Copyright © 2003–%1 Kontact authors"
 msgstr ""
 
-#: kontactplugin/knotes_plugin.cpp:83
+#: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: kontactplugin/knotes_plugin.cpp:83
+#: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Current Maintainer"
 msgstr "Noverande vedlikehaldar"
 
-#: kontactplugin/knotes_plugin.cpp:85
+#: kontactplugin/knotes_plugin.cpp:84
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Michael Brade"
 msgstr "Michael Brade"
 
-#: kontactplugin/knotes_plugin.cpp:85
+#: kontactplugin/knotes_plugin.cpp:84
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Previous Maintainer"
 msgstr "Tidlegare vedlikehaldar"
 
-#: kontactplugin/knotes_plugin.cpp:86
+#: kontactplugin/knotes_plugin.cpp:85
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Tobias Koenig"
 msgstr "Tobias König"
 
-#: kontactplugin/knotes_plugin.cpp:86
+#: kontactplugin/knotes_plugin.cpp:85
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Developer"
 msgstr "Utviklar"
 
-#: kontactplugin/knotes_plugin.cpp:117
+#: kontactplugin/knotes_plugin.cpp:116
 #, kde-format
 msgctxt "@item"
 msgid "Meeting"
 msgstr "Møte"
 
-#: kontactplugin/knotes_plugin.cpp:131 kontactplugin/knotes_plugin.cpp:135
+#: kontactplugin/knotes_plugin.cpp:130 kontactplugin/knotes_plugin.cpp:134
 #, kde-format
 msgctxt "@item"
 msgid "Note: %1"
 msgstr "Notat: %1"
 
-#: kontactplugin/knotes_plugin.cpp:141
+#: kontactplugin/knotes_plugin.cpp:140
 #, kde-format
 msgctxt "@item"
 msgid "New Note"
 msgstr "Nytt notat"
 
-#: kontactplugin/knoteseditdialog.cpp:36
+#: kontactplugin/knoteseditdialog.cpp:35
 #, kde-format
 msgctxt "@title:window"
 msgid "Show Popup Note"
 msgstr "Vis sprettoppnotat"
 
-#: kontactplugin/knoteseditdialog.cpp:36
+#: kontactplugin/knoteseditdialog.cpp:35
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Popup Note"
 msgstr "Rediger sprettoppnotat"
 
-#: kontactplugin/knoteseditdialog.cpp:66
+#: kontactplugin/knoteseditdialog.cpp:65
 #, kde-format
 msgctxt "@label popup note name"
 msgid "Name:"
@@ -912,27 +912,27 @@ msgid_plural "Do you really want to delete these %1 notes?"
 msgstr[0] "Er du sikker på at du vil sletta dette notatet?"
 msgstr[1] "Er du sikker på at du vil sletta desse %1 notata?"
 
-#: kontactplugin/summarywidget.cpp:42
+#: kontactplugin/summarywidget.cpp:41
 #, kde-format
 msgid "Popup Notes"
 msgstr "Sprettoppnotat"
 
-#: kontactplugin/summarywidget.cpp:89
+#: kontactplugin/summarywidget.cpp:88
 #, kde-format
 msgid "No notes found"
 msgstr "Fann ingen notat"
 
-#: kontactplugin/summarywidget.cpp:118
+#: kontactplugin/summarywidget.cpp:117
 #, kde-format
 msgid "Modify Note..."
 msgstr "Rediger notat …"
 
-#: kontactplugin/summarywidget.cpp:120
+#: kontactplugin/summarywidget.cpp:119
 #, kde-format
 msgid "Delete Note..."
 msgstr "Slett notat …"
 
-#: kontactplugin/summarywidget.cpp:195
+#: kontactplugin/summarywidget.cpp:194
 #, kde-format
 msgid "Read Popup Note: \"%1\""
 msgstr "Les sprettoppnotat: «%1»"
@@ -1028,19 +1028,19 @@ msgstr "Alarm:"
 msgid "Note is locked"
 msgstr "Notatet er låst"
 
-#: print/knoteprinter.cpp:112
+#: print/knoteprinter.cpp:111
 #, kde-format
 msgid "Print Note"
 msgid_plural "Print %1 notes"
 msgstr[0] "Skriv ut notat"
 msgstr[1] "Skriv ut %1 notat"
 
-#: print/knoteprinter.cpp:119
+#: print/knoteprinter.cpp:118
 #, kde-format
 msgid "Printing theme was not found."
 msgstr "Fann ikkje utskriftstemaet."
 
-#: print/knoteprinter.cpp:119
+#: print/knoteprinter.cpp:118
 #, kde-format
 msgid "Printing error"
 msgstr "Utskriftsfeil"
