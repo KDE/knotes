@@ -24,6 +24,7 @@
 #include <QLocale>
 
 #include <QPointer>
+#include <kwidgetsaddons_version.h>
 
 using namespace NoteShared;
 
@@ -91,12 +92,20 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
 {
     if (job->error()) {
         qCDebug(NOTESHARED_LOG) << " Error during fetch: " << job->errorString();
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        const int answer = KMessageBox::warningTwoActions(nullptr,
+#else
         const int answer = KMessageBox::warningYesNo(nullptr,
-                                                     i18n("An error occurred during fetching. Do you want to select a new default collection?"),
-                                                     QString(),
-                                                     KGuiItem(i18nc("@action:button", "Select New Default")),
-                                                     KGuiItem(i18nc("@action:button", "Ignore"), QStringLiteral("dialog-cancel")));
+#endif
+                                                          i18n("An error occurred during fetching. Do you want to select a new default collection?"),
+                                                          QString(),
+                                                          KGuiItem(i18nc("@action:button", "Select New Default")),
+                                                          KGuiItem(i18nc("@action:button", "Ignore"), QStringLiteral("dialog-cancel")));
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        if (answer == KMessageBox::ButtonCode::PrimaryAction) {
+#else
         if (answer == KMessageBox::Yes) {
+#endif
             Q_EMIT selectNewCollection();
         } else {
             deleteLater();
@@ -106,12 +115,20 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
     auto fetchCollection = qobject_cast<Akonadi::CollectionFetchJob *>(job);
     if (fetchCollection->collections().isEmpty()) {
         qCDebug(NOTESHARED_LOG) << "No collection fetched";
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        const int answer = KMessageBox::warningTwoActions(nullptr,
+#else
         const int answer = KMessageBox::warningYesNo(nullptr,
-                                                     i18n("An error occurred during fetching. Do you want to select a new default collection?"),
-                                                     QString(),
-                                                     KGuiItem(i18nc("@action:button", "Select New Default")),
-                                                     KGuiItem(i18nc("@action:button", "Ignore"), QStringLiteral("dialog-cancel")));
+#endif
+                                                          i18n("An error occurred during fetching. Do you want to select a new default collection?"),
+                                                          QString(),
+                                                          KGuiItem(i18nc("@action:button", "Select New Default")),
+                                                          KGuiItem(i18nc("@action:button", "Ignore"), QStringLiteral("dialog-cancel")));
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        if (answer == KMessageBox::ButtonCode::PrimaryAction) {
+#else
         if (answer == KMessageBox::Yes) {
+#endif
             Q_EMIT selectNewCollection();
         } else {
             deleteLater();
@@ -121,13 +138,22 @@ void CreateNewNoteJob::slotFetchCollection(KJob *job)
     Akonadi::Collection col = fetchCollection->collections().at(0);
     if (col.isValid()) {
         if (!col.hasAttribute<NoteShared::ShowFolderNotesAttribute>()) {
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+            const int answer =
+                KMessageBox::warningTwoActions(nullptr,
+#else
             const int answer =
                 KMessageBox::warningYesNo(nullptr,
-                                          i18n("Collection is hidden. New note will be stored but not displayed. Do you want to show collection?"),
-                                          QString(),
-                                          KGuiItem(i18nc("@action::button", "Show Collection")),
-                                          KGuiItem(i18nc("@action::button", "Do Not Show"), QStringLiteral("dialog-cancel")));
+#endif
+                                               i18n("Collection is hidden. New note will be stored but not displayed. Do you want to show collection?"),
+                                               QString(),
+                                               KGuiItem(i18nc("@action::button", "Show Collection")),
+                                               KGuiItem(i18nc("@action::button", "Do Not Show"), QStringLiteral("dialog-cancel")));
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+            if (answer == KMessageBox::ButtonCode::PrimaryAction) {
+#else
             if (answer == KMessageBox::Yes) {
+#endif
                 col.addAttribute(new NoteShared::ShowFolderNotesAttribute());
                 auto modifyJob = new Akonadi::CollectionModifyJob(col);
                 connect(modifyJob, &Akonadi::CollectionModifyJob::result, this, &CreateNewNoteJob::slotCollectionModifyFinished);

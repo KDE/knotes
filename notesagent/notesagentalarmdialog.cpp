@@ -31,6 +31,7 @@
 #include <QPointer>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <kwidgetsaddons_version.h>
 
 NotesAgentAlarmDialog::NotesAgentAlarmDialog(QWidget *parent)
     : QDialog(parent)
@@ -142,12 +143,20 @@ void NotesAgentAlarmDialog::slotShowNote()
 
 void NotesAgentAlarmDialog::slotRemoveAlarm()
 {
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+    const int answer = KMessageBox::warningTwoActions(this,
+#else
     const int answer = KMessageBox::warningYesNo(this,
-                                                 i18n("Are you sure to remove alarm?"),
-                                                 i18nc("@title:window", "Remove Alarm"),
-                                                 KStandardGuiItem::remove(),
-                                                 KStandardGuiItem::cancel());
+#endif
+                                                      i18n("Are you sure to remove alarm?"),
+                                                      i18nc("@title:window", "Remove Alarm"),
+                                                      KStandardGuiItem::remove(),
+                                                      KStandardGuiItem::cancel());
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+    if (answer == KMessageBox::ButtonCode::PrimaryAction) {
+#else
     if (answer == KMessageBox::Yes) {
+#endif
         const Akonadi::Item::Id id = mListWidget->currentItemId();
         if (id != -1) {
             Akonadi::Item item(id);
