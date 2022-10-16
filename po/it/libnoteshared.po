@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libnoteshared\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"POT-Creation-Date: 2022-10-16 00:47+0000\n"
 "PO-Revision-Date: 2021-11-29 23:48+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -89,7 +89,7 @@ msgctxt "@info"
 msgid "Select the folder where the note will be saved:"
 msgstr "Seleziona la cartella in cui salvare la nota:"
 
-#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
+#: job/createnewnotejob.cpp:100 job/createnewnotejob.cpp:123
 #, kde-format
 msgid ""
 "An error occurred during fetching. Do you want to select a new default "
@@ -98,19 +98,19 @@ msgstr ""
 "Si è verificato un errore durante il recupero. Vuoi selezionare una nuova "
 "collezione predefinita?"
 
-#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
+#: job/createnewnotejob.cpp:102 job/createnewnotejob.cpp:125
 #, kde-format
 msgctxt "@action:button"
 msgid "Select New Default"
 msgstr "Seleziona nuova predefinita"
 
-#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
+#: job/createnewnotejob.cpp:103 job/createnewnotejob.cpp:126
 #, kde-format
 msgctxt "@action:button"
 msgid "Ignore"
 msgstr "Ignora"
 
-#: job/createnewnotejob.cpp:126
+#: job/createnewnotejob.cpp:148
 #, kde-format
 msgid ""
 "Collection is hidden. New note will be stored but not displayed. Do you want "
@@ -119,24 +119,24 @@ msgstr ""
 "La collezione è nascosta. Le nuova nota sarà memorizzata ma non mostrata. "
 "Vuoi mostrare la collezione?"
 
-#: job/createnewnotejob.cpp:128
+#: job/createnewnotejob.cpp:150
 #, kde-format
 msgctxt "@action::button"
 msgid "Show Collection"
 msgstr "Mostra collezione"
 
-#: job/createnewnotejob.cpp:129
+#: job/createnewnotejob.cpp:151
 #, kde-format
 msgctxt "@action::button"
 msgid "Do Not Show"
 msgstr "Non mostrare"
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:210
 #, kde-format
 msgid "Note was not created."
 msgstr "La nota non è stata creata."
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:210
 #, kde-format
 msgid "Create new note"
 msgstr "Crea una nuova nota"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"POT-Creation-Date: 2022-10-16 00:47+0000\n"
 "PO-Revision-Date: 2022-07-28 13:11+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -19,49 +19,49 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 22.04.3\n"
 
-#: notesagentalarmdialog.cpp:38
+#: notesagentalarmdialog.cpp:39
 #, kde-format
 msgctxt "@title:window"
 msgid "Alarm"
 msgstr "Аларма"
 
-#: notesagentalarmdialog.cpp:50
+#: notesagentalarmdialog.cpp:51
 #, kde-format
 msgid "The following notes triggered alarms:"
 msgstr "Следните бележки задействат аларми:"
 
-#: notesagentalarmdialog.cpp:88
+#: notesagentalarmdialog.cpp:89
 #, kde-format
 msgid "Remove Alarm"
 msgstr "Премахване на алармата"
 
-#: notesagentalarmdialog.cpp:90
+#: notesagentalarmdialog.cpp:91
 #, kde-format
 msgid "Show Note..."
 msgstr "Показване на бележка..."
 
-#: notesagentalarmdialog.cpp:92
+#: notesagentalarmdialog.cpp:93
 #, kde-format
 msgid "Modify Alarm..."
 msgstr "Промяна на алармата..."
 
-#: notesagentalarmdialog.cpp:146
+#: notesagentalarmdialog.cpp:151
 #, kde-format
 msgid "Are you sure to remove alarm?"
 msgstr "Наистина ли искате да премахнете алармата?"
 
-#: notesagentalarmdialog.cpp:147
+#: notesagentalarmdialog.cpp:152
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Alarm"
 msgstr "Премахване на алармата"
 
-#: notesagentalarmdialog.cpp:212
+#: notesagentalarmdialog.cpp:221
 #, kde-format
 msgid "Error during fetch alarm info."
 msgstr "Грешка при извличане на информация за алармата."
 
-#: notesagentalarmdialog.cpp:212
+#: notesagentalarmdialog.cpp:221
 #, kde-format
 msgid "Alarm"
 msgstr "Аларма"

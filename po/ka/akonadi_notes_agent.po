@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"POT-Creation-Date: 2022-10-16 00:47+0000\n"
 "PO-Revision-Date: 2022-08-22 17:11+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -18,49 +18,49 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: notesagentalarmdialog.cpp:38
+#: notesagentalarmdialog.cpp:39
 #, kde-format
 msgctxt "@title:window"
 msgid "Alarm"
 msgstr "KAlarm"
 
-#: notesagentalarmdialog.cpp:50
+#: notesagentalarmdialog.cpp:51
 #, kde-format
 msgid "The following notes triggered alarms:"
 msgstr "მაღვიძარა შემდეგმა სანიშნეებმა გამოიწვიეს:"
 
-#: notesagentalarmdialog.cpp:88
+#: notesagentalarmdialog.cpp:89
 #, kde-format
 msgid "Remove Alarm"
 msgstr "მაღვიძარას წაშლა"
 
-#: notesagentalarmdialog.cpp:90
+#: notesagentalarmdialog.cpp:91
 #, kde-format
 msgid "Show Note..."
 msgstr "სანიშნის ჩვენება..."
 
-#: notesagentalarmdialog.cpp:92
+#: notesagentalarmdialog.cpp:93
 #, kde-format
 msgid "Modify Alarm..."
 msgstr "სანიშნის ჩასწორება..."
 
-#: notesagentalarmdialog.cpp:146
+#: notesagentalarmdialog.cpp:151
 #, kde-format
 msgid "Are you sure to remove alarm?"
 msgstr "დარწმუნებული ბრძანდებით, რომ გნებავთ, წაშალოთ ეს მაღვიძარა?"
 
-#: notesagentalarmdialog.cpp:147
+#: notesagentalarmdialog.cpp:152
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Alarm"
 msgstr "მაღვიძარას წაშლა"
 
-#: notesagentalarmdialog.cpp:212
+#: notesagentalarmdialog.cpp:221
 #, kde-format
 msgid "Error during fetch alarm info."
 msgstr "მაღვიძარის ინფორმაციის გამოთხოვის შეცდომა."
 
-#: notesagentalarmdialog.cpp:212
+#: notesagentalarmdialog.cpp:221
 #, kde-format
 msgid "Alarm"
 msgstr "KAlarm"

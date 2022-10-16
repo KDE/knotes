@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"POT-Creation-Date: 2022-10-16 00:47+0000\n"
 "PO-Revision-Date: 2022-02-26 02:50+0100\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-doc@kde.org>\n"
@@ -87,7 +87,7 @@ msgctxt "@info"
 msgid "Select the folder where the note will be saved:"
 msgstr "Wählen Sie den Ordner, in dem die Notiz gespeichert wird:"
 
-#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
+#: job/createnewnotejob.cpp:100 job/createnewnotejob.cpp:123
 #, kde-format
 msgid ""
 "An error occurred during fetching. Do you want to select a new default "
@@ -96,19 +96,19 @@ msgstr ""
 "Ein Fehler ist beim Abholen aufgetreten. Möchten Sie eine neue Standard-"
 "Sammlung verwenden?"
 
-#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
+#: job/createnewnotejob.cpp:102 job/createnewnotejob.cpp:125
 #, kde-format
 msgctxt "@action:button"
 msgid "Select New Default"
 msgstr "Neuen Standard auswählen"
 
-#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
+#: job/createnewnotejob.cpp:103 job/createnewnotejob.cpp:126
 #, kde-format
 msgctxt "@action:button"
 msgid "Ignore"
 msgstr "Ignorieren"
 
-#: job/createnewnotejob.cpp:126
+#: job/createnewnotejob.cpp:148
 #, kde-format
 msgid ""
 "Collection is hidden. New note will be stored but not displayed. Do you want "
@@ -117,24 +117,24 @@ msgstr ""
 "Die Sammlung ist ausgeblendet. Neue Notizen werden gespeichert, aber nicht "
 "angezeigt. Möchten Sie die Sammlung anzeigen?"
 
-#: job/createnewnotejob.cpp:128
+#: job/createnewnotejob.cpp:150
 #, kde-format
 msgctxt "@action::button"
 msgid "Show Collection"
 msgstr "Sammlung anzeigen"
 
-#: job/createnewnotejob.cpp:129
+#: job/createnewnotejob.cpp:151
 #, kde-format
 msgctxt "@action::button"
 msgid "Do Not Show"
 msgstr "Nicht anzeigen"
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:210
 #, kde-format
 msgid "Note was not created."
 msgstr "Die Notiz wurde nicht erstellt."
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:210
 #, kde-format
 msgid "Create new note"
 msgstr "Neue Notiz erstellen"

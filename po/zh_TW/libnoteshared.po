@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"POT-Creation-Date: 2022-10-16 00:47+0000\n"
 "PO-Revision-Date: 2018-12-21 19:37+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
@@ -89,14 +89,14 @@ msgctxt "@info"
 msgid "Select the folder where the note will be saved:"
 msgstr "選擇便條要儲存在哪個資料夾："
 
-#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
+#: job/createnewnotejob.cpp:100 job/createnewnotejob.cpp:123
 #, kde-format
 msgid ""
 "An error occurred during fetching. Do you want to select a new default "
 "collection?"
 msgstr "抓取時發生錯誤。您要選擇新的預設收藏嗎？"
 
-#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
+#: job/createnewnotejob.cpp:102 job/createnewnotejob.cpp:125
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Select Note Folder"
@@ -104,13 +104,13 @@ msgctxt "@action:button"
 msgid "Select New Default"
 msgstr "選擇便條資料夾"
 
-#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
+#: job/createnewnotejob.cpp:103 job/createnewnotejob.cpp:126
 #, kde-format
 msgctxt "@action:button"
 msgid "Ignore"
 msgstr ""
 
-#: job/createnewnotejob.cpp:126
+#: job/createnewnotejob.cpp:148
 #, fuzzy, kde-format
 #| msgid ""
 #| "Collection is hidden. New note will stored but not displaying. Do you "
@@ -120,24 +120,24 @@ msgid ""
 "to show collection?"
 msgstr "收藏已隱藏。新的便條將會儲存但不會顯示。您要顯示收藏嗎？"
 
-#: job/createnewnotejob.cpp:128
+#: job/createnewnotejob.cpp:150
 #, kde-format
 msgctxt "@action::button"
 msgid "Show Collection"
 msgstr ""
 
-#: job/createnewnotejob.cpp:129
+#: job/createnewnotejob.cpp:151
 #, kde-format
 msgctxt "@action::button"
 msgid "Do Not Show"
 msgstr ""
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:210
 #, kde-format
 msgid "Note was not created."
 msgstr "便條未建立。"
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:210
 #, kde-format
 msgid "Create new note"
 msgstr "建立新便條"

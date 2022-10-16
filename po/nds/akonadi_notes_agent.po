@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"POT-Creation-Date: 2022-10-16 00:47+0000\n"
 "PO-Revision-Date: 2014-09-18 16:42+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -17,50 +17,50 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 1.4\n"
 
-#: notesagentalarmdialog.cpp:38
+#: notesagentalarmdialog.cpp:39
 #, fuzzy, kde-format
 #| msgid "Alarm"
 msgctxt "@title:window"
 msgid "Alarm"
 msgstr "Alarm"
 
-#: notesagentalarmdialog.cpp:50
+#: notesagentalarmdialog.cpp:51
 #, kde-format
 msgid "The following notes triggered alarms:"
 msgstr "Disse Notizen hebbt Alarms utlööst:"
 
-#: notesagentalarmdialog.cpp:88
+#: notesagentalarmdialog.cpp:89
 #, kde-format
 msgid "Remove Alarm"
 msgstr "Alarm wegmaken"
 
-#: notesagentalarmdialog.cpp:90
+#: notesagentalarmdialog.cpp:91
 #, kde-format
 msgid "Show Note..."
 msgstr "Notiz wiesen..."
 
-#: notesagentalarmdialog.cpp:92
+#: notesagentalarmdialog.cpp:93
 #, kde-format
 msgid "Modify Alarm..."
 msgstr "Alarm ännern..."
 
-#: notesagentalarmdialog.cpp:146
+#: notesagentalarmdialog.cpp:151
 #, kde-format
 msgid "Are you sure to remove alarm?"
 msgstr "Wullt Du den Alarm redig wegmaken?"
 
-#: notesagentalarmdialog.cpp:147
+#: notesagentalarmdialog.cpp:152
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Alarm"
 msgstr "Alarm wegmaken"
 
-#: notesagentalarmdialog.cpp:212
+#: notesagentalarmdialog.cpp:221
 #, kde-format
 msgid "Error during fetch alarm info."
 msgstr "Fehler bi't Halen vun de Alarm-Informatschonen."
 
-#: notesagentalarmdialog.cpp:212
+#: notesagentalarmdialog.cpp:221
 #, kde-format
 msgid "Alarm"
 msgstr "Alarm"

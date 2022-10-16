@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"POT-Creation-Date: 2022-10-16 00:47+0000\n"
 "PO-Revision-Date: 2022-02-20 22:23+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -17,49 +17,49 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 21.08.1\n"
 
-#: notesagentalarmdialog.cpp:38
+#: notesagentalarmdialog.cpp:39
 #, kde-format
 msgctxt "@title:window"
 msgid "Alarm"
 msgstr "알람"
 
-#: notesagentalarmdialog.cpp:50
+#: notesagentalarmdialog.cpp:51
 #, kde-format
 msgid "The following notes triggered alarms:"
 msgstr "다음 노트에서 알람을 울림:"
 
-#: notesagentalarmdialog.cpp:88
+#: notesagentalarmdialog.cpp:89
 #, kde-format
 msgid "Remove Alarm"
 msgstr "알람 삭제"
 
-#: notesagentalarmdialog.cpp:90
+#: notesagentalarmdialog.cpp:91
 #, kde-format
 msgid "Show Note..."
 msgstr "노트 표시..."
 
-#: notesagentalarmdialog.cpp:92
+#: notesagentalarmdialog.cpp:93
 #, kde-format
 msgid "Modify Alarm..."
 msgstr "알람 수정..."
 
-#: notesagentalarmdialog.cpp:146
+#: notesagentalarmdialog.cpp:151
 #, kde-format
 msgid "Are you sure to remove alarm?"
 msgstr "알람을 삭제하시겠습니까?"
 
-#: notesagentalarmdialog.cpp:147
+#: notesagentalarmdialog.cpp:152
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Alarm"
 msgstr "알람 삭제"
 
-#: notesagentalarmdialog.cpp:212
+#: notesagentalarmdialog.cpp:221
 #, kde-format
 msgid "Error during fetch alarm info."
 msgstr "알람 정보를 가져오는 중 오류가 발생했습니다."
 
-#: notesagentalarmdialog.cpp:212
+#: notesagentalarmdialog.cpp:221
 #, kde-format
 msgid "Alarm"
 msgstr "알람"

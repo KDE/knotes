@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-06-23 00:45+0000\n"
+"POT-Creation-Date: 2022-10-16 00:47+0000\n"
 "PO-Revision-Date: 2022-08-05 18:02+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -92,7 +92,7 @@ msgctxt "@info"
 msgid "Select the folder where the note will be saved:"
 msgstr "Aukeratu oharra gordetzeko karpeta:"
 
-#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
+#: job/createnewnotejob.cpp:100 job/createnewnotejob.cpp:123
 #, kde-format
 msgid ""
 "An error occurred during fetching. Do you want to select a new default "
@@ -101,19 +101,19 @@ msgstr ""
 "Errore bat gertatu da ekartzean. Lehenetsitako bilduma berri bat aukeratu "
 "nahi duzu?"
 
-#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
+#: job/createnewnotejob.cpp:102 job/createnewnotejob.cpp:125
 #, kde-format
 msgctxt "@action:button"
 msgid "Select New Default"
 msgstr "Hautatu lehenetsi berria"
 
-#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
+#: job/createnewnotejob.cpp:103 job/createnewnotejob.cpp:126
 #, kde-format
 msgctxt "@action:button"
 msgid "Ignore"
 msgstr "Ezikusi"
 
-#: job/createnewnotejob.cpp:126
+#: job/createnewnotejob.cpp:148
 #, kde-format
 msgid ""
 "Collection is hidden. New note will be stored but not displayed. Do you want "
@@ -122,24 +122,24 @@ msgstr ""
 "Bilduma ezkutuan dago. Ohar berria gordeko da baina ez da bistaratuko "
 "Bilduma erakutsi nahi duzu?"
 
-#: job/createnewnotejob.cpp:128
+#: job/createnewnotejob.cpp:150
 #, kde-format
 msgctxt "@action::button"
 msgid "Show Collection"
 msgstr "Erakutsi bilduma"
 
-#: job/createnewnotejob.cpp:129
+#: job/createnewnotejob.cpp:151
 #, kde-format
 msgctxt "@action::button"
 msgid "Do Not Show"
 msgstr "Ez erakutsi"
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:210
 #, kde-format
 msgid "Note was not created."
 msgstr "Oharra ez da sortu."
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:210
 #, kde-format
 msgid "Create new note"
 msgstr "Sortu ohar berria"
