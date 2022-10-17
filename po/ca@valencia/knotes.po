@@ -393,7 +393,7 @@ msgstr "Notes"
 #, kde-format
 msgctxt "@title:window"
 msgid "Select notes to delete"
-msgstr "Seleccioneu les notes a suprimir"
+msgstr "Seleccioneu les notes que s'han de suprimir"
 
 #: dialog/knoteselectednotesdialog.cpp:21
 #: print/knoteprintselectednotesdialog.cpp:27
