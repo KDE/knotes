@@ -274,7 +274,7 @@ msgstr "&Desselecciona-ho tot"
 #: configdialog/knotecollectionconfigwidget.cpp:161
 #, kde-format
 msgid "Rename notes..."
-msgstr "Canvia el nom les notes..."
+msgstr "Canvia el nom de les notes..."
 
 #: configdialog/knotecollectionconfigwidget.cpp:165
 #, kde-format
@@ -295,7 +295,7 @@ msgstr "Comptes"
 #: configdialog/knotecollectionconfigwidget.cpp:218
 #, kde-format
 msgid "Rename Notes"
-msgstr "Canvia el nom les notes"
+msgstr "Canvia el nom de les notes"
 
 #: configdialog/knotecollectionconfigwidget.cpp:218
 #, kde-format
@@ -310,7 +310,7 @@ msgstr "S'ha detectat un error durant el canvi de nom: %1"
 #: configdialog/knotecollectionconfigwidget.cpp:236
 #, kde-format
 msgid "Rename note"
-msgstr "Canvia el nom la nota"
+msgstr "Canvia el nom de la nota"
 
 #: configdialog/knotedisplayconfigwidget.cpp:25
 #, kde-format
@@ -752,7 +752,7 @@ msgstr "Confirmeu la supressió"
 #, kde-format
 msgctxt "@title:window"
 msgid "Rename Popup Note"
-msgstr "Canvia el nom la nota emergent"
+msgstr "Canvia el nom de la nota emergent"
 
 #: kontactplugin/knotes_part.cpp:535
 #, kde-format
