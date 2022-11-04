@@ -896,13 +896,6 @@ void KNote::prepare()
     }
 
     updateKeepAboveBelow();
-    // HACK: update the icon color - again after showing the note, to make kicker
-    // aware of the new colors
-    KIconEffect effect;
-    const QColor col = mDisplayAttribute->backgroundColor();
-    const QPixmap icon = effect.apply(qApp->windowIcon().pixmap(style()->pixelMetric(QStyle::PM_MessageBoxIconSize)), KIconEffect::Colorize, 1, col, false);
-    const QPixmap miniIcon = effect.apply(qApp->windowIcon().pixmap(style()->pixelMetric(QStyle::PM_SmallIconSize)), KIconEffect::Colorize, 1, col, false);
-    KWindowSystem::setIcons(winId(), icon, miniIcon);
 
     // set up the look&feel of the note
     setFrameStyle(Panel | Raised);
@@ -974,11 +967,6 @@ void KNote::setColor(const QColor &fg, const QColor &bg)
     // set the text color
     m_editor->setTextColor(fg);
 
-    // update the icon color
-    KIconEffect effect;
-    QPixmap icon = effect.apply(qApp->windowIcon().pixmap(style()->pixelMetric(QStyle::PM_MessageBoxIconSize)), KIconEffect::Colorize, 1, bg, false);
-    QPixmap miniIcon = effect.apply(qApp->windowIcon().pixmap(style()->pixelMetric(QStyle::PM_SmallIconSize)), KIconEffect::Colorize, 1, bg, false);
-    KWindowSystem::setIcons(winId(), icon, miniIcon);
     // update the color of the title
     updateFocus();
     Q_EMIT sigColorChanged();
