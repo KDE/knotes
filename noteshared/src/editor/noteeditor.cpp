@@ -4,12 +4,12 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 #include "noteeditor.h"
-#include <PimCommonAutoCorrection/RichTexteditWithAutoCorrection>
+#include "widget/richtexteditwithautocorrection.h"
 
 using namespace NoteShared;
 
 NoteEditor::NoteEditor(QWidget *parent)
-    : KPIMTextEdit::RichTextEditorWidget(new PimCommonAutoCorrection::RichTextEditWithAutoCorrection(parent))
+    : KPIMTextEdit::RichTextEditorWidget(new NoteShared::RichTextEditWithAutoCorrection(parent))
 {
 }
 

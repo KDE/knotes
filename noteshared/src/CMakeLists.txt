@@ -45,6 +45,9 @@ set(libnoteshared_SRCS
     dialog/selectednotefolderdialog.h
     widget/notelistwidget.h
     alarms/notealarmdialog.h
+
+    widget/richtexteditwithautocorrection.cpp
+    widget/richtexteditwithautocorrection.h
 )
 
 ecm_qt_declare_logging_category(libnoteshared_SRCS HEADER noteshared_debug.h IDENTIFIER NOTESHARED_LOG CATEGORY_NAME org.kde.pim.noteshared
