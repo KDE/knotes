@@ -13,7 +13,6 @@ class AutoCorrection;
 }
 namespace NoteShared
 {
-class AutoCorrection;
 class RichTextEditWithAutoCorrectionPrivate;
 /**
  * @brief The RichTextEditWithAutoCorrection class
