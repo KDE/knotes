@@ -13,5 +13,5 @@ target_link_libraries( knotesgrantleeprinttest Qt::Test Qt::Gui KF5::AkonadiCore
 if (QT_MAJOR_VERSION STREQUAL "5")
     target_link_libraries(knotesgrantleeprinttest Grantlee5::Templates)
 else()
-    target_link_libraries(knotesgrantleeprinttest KF6TextTemplate::Templates)
+    target_link_libraries(knotesgrantleeprinttest KF6::TextTemplate)
 endif()

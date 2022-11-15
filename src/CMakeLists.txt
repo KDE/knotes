@@ -79,7 +79,7 @@ target_link_libraries(knotesprivate
 if (QT_MAJOR_VERSION STREQUAL "5")
     target_link_libraries(knotesprivate PRIVATE Grantlee5::Templates)
 else()
-    target_link_libraries(knotesprivate PRIVATE KF6TextTemplate::Templates)
+    target_link_libraries(knotesprivate PRIVATE KF6::TextTemplate)
 endif()
 
 set_target_properties(knotesprivate
