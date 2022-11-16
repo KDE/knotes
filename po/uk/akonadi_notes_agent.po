@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akonadi_notes_agent\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-16 00:47+0000\n"
+"POT-Creation-Date: 2022-11-16 00:47+0000\n"
 "PO-Revision-Date: 2022-01-02 08:56+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -20,49 +20,49 @@ msgstr ""
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 20.12.0\n"
 
-#: notesagentalarmdialog.cpp:39
+#: notesagentalarmdialog.cpp:38
 #, kde-format
 msgctxt "@title:window"
 msgid "Alarm"
 msgstr "Нагадування"
 
-#: notesagentalarmdialog.cpp:51
+#: notesagentalarmdialog.cpp:50
 #, kde-format
 msgid "The following notes triggered alarms:"
 msgstr "Наступні нотатки спричинили нагадування:"
 
-#: notesagentalarmdialog.cpp:89
+#: notesagentalarmdialog.cpp:88
 #, kde-format
 msgid "Remove Alarm"
 msgstr "Вилучити нагадування"
 
-#: notesagentalarmdialog.cpp:91
+#: notesagentalarmdialog.cpp:90
 #, kde-format
 msgid "Show Note..."
 msgstr "Показати нотатку…"
 
-#: notesagentalarmdialog.cpp:93
+#: notesagentalarmdialog.cpp:92
 #, kde-format
 msgid "Modify Alarm..."
 msgstr "Змінити нагадування…"
 
-#: notesagentalarmdialog.cpp:151
+#: notesagentalarmdialog.cpp:146
 #, kde-format
 msgid "Are you sure to remove alarm?"
 msgstr "Ви справді хочете вилучити нагадування?"
 
-#: notesagentalarmdialog.cpp:152
+#: notesagentalarmdialog.cpp:147
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Alarm"
 msgstr "Вилучення нагадування"
 
-#: notesagentalarmdialog.cpp:221
+#: notesagentalarmdialog.cpp:212
 #, kde-format
 msgid "Error during fetch alarm info."
 msgstr "Помилка під час отримання даних нагадування."
 
-#: notesagentalarmdialog.cpp:221
+#: notesagentalarmdialog.cpp:212
 #, kde-format
 msgid "Alarm"
 msgstr "Нагадування"

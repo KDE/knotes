@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-16 00:47+0000\n"
+"POT-Creation-Date: 2022-11-16 00:47+0000\n"
 "PO-Revision-Date: 2022-08-22 17:19+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -87,26 +87,26 @@ msgctxt "@info"
 msgid "Select the folder where the note will be saved:"
 msgstr "საქაღალდის სახელი, სადაც სანიშნს შეინახავთ:"
 
-#: job/createnewnotejob.cpp:100 job/createnewnotejob.cpp:123
+#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
 #, kde-format
 msgid ""
 "An error occurred during fetching. Do you want to select a new default "
 "collection?"
 msgstr "შეცდომა გამოთხოვისას. გნებავთ ახალ ნაგულისხმები კოლექციის არჩევა?"
 
-#: job/createnewnotejob.cpp:102 job/createnewnotejob.cpp:125
+#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
 #, kde-format
 msgctxt "@action:button"
 msgid "Select New Default"
 msgstr "ახალი ნაგულისხმების არჩევა"
 
-#: job/createnewnotejob.cpp:103 job/createnewnotejob.cpp:126
+#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
 #, kde-format
 msgctxt "@action:button"
 msgid "Ignore"
 msgstr "იგნორი"
 
-#: job/createnewnotejob.cpp:148
+#: job/createnewnotejob.cpp:126
 #, kde-format
 msgid ""
 "Collection is hidden. New note will be stored but not displayed. Do you want "
@@ -115,24 +115,24 @@ msgstr ""
 "კოლექცია დამალულია. ახალი სანიშნე შეინახება, მაგრამ არ გამოჩნდება. გნებავთ "
 "კოლექციის ჩვენება?"
 
-#: job/createnewnotejob.cpp:150
+#: job/createnewnotejob.cpp:128
 #, kde-format
 msgctxt "@action::button"
 msgid "Show Collection"
 msgstr "კოლექციის ჩვენება"
 
-#: job/createnewnotejob.cpp:151
+#: job/createnewnotejob.cpp:129
 #, kde-format
 msgctxt "@action::button"
 msgid "Do Not Show"
 msgstr "აღარ მაჩვენო"
 
-#: job/createnewnotejob.cpp:210
+#: job/createnewnotejob.cpp:184
 #, kde-format
 msgid "Note was not created."
 msgstr "სანიშნე არ შექმნლა."
 
-#: job/createnewnotejob.cpp:210
+#: job/createnewnotejob.cpp:184
 #, kde-format
 msgid "Create new note"
 msgstr "ახალი სანიშნის შექმნა"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: $2\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-16 00:47+0000\n"
+"POT-Creation-Date: 2022-11-16 00:47+0000\n"
 "PO-Revision-Date: 2014-02-01 00:30+0100\n"
 "Last-Translator: Samir Ribić <megaribi@epn.ba>\n"
 "Language-Team: none\n"
@@ -91,14 +91,14 @@ msgctxt "@info"
 msgid "Select the folder where the note will be saved:"
 msgstr "Izaberi direktorij gdje će biti sačuvana bilješka:"
 
-#: job/createnewnotejob.cpp:100 job/createnewnotejob.cpp:123
+#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
 #, kde-format
 msgid ""
 "An error occurred during fetching. Do you want to select a new default "
 "collection?"
 msgstr ""
 
-#: job/createnewnotejob.cpp:102 job/createnewnotejob.cpp:125
+#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Select Note Folder"
@@ -106,37 +106,37 @@ msgctxt "@action:button"
 msgid "Select New Default"
 msgstr "Odaberite Note direktorij"
 
-#: job/createnewnotejob.cpp:103 job/createnewnotejob.cpp:126
+#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
 #, kde-format
 msgctxt "@action:button"
 msgid "Ignore"
 msgstr ""
 
-#: job/createnewnotejob.cpp:148
+#: job/createnewnotejob.cpp:126
 #, kde-format
 msgid ""
 "Collection is hidden. New note will be stored but not displayed. Do you want "
 "to show collection?"
 msgstr ""
 
-#: job/createnewnotejob.cpp:150
+#: job/createnewnotejob.cpp:128
 #, kde-format
 msgctxt "@action::button"
 msgid "Show Collection"
 msgstr ""
 
-#: job/createnewnotejob.cpp:151
+#: job/createnewnotejob.cpp:129
 #, kde-format
 msgctxt "@action::button"
 msgid "Do Not Show"
 msgstr ""
 
-#: job/createnewnotejob.cpp:210
+#: job/createnewnotejob.cpp:184
 #, kde-format
 msgid "Note was not created."
 msgstr "Napomena nije kreirana"
 
-#: job/createnewnotejob.cpp:210
+#: job/createnewnotejob.cpp:184
 #, kde-format
 msgid "Create new note"
 msgstr "Kreiraj novu bilješku"

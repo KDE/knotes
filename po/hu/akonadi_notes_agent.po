@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-16 00:47+0000\n"
+"POT-Creation-Date: 2022-11-16 00:47+0000\n"
 "PO-Revision-Date: 2020-12-29 14:47+0100\n"
 "Last-Translator: Kristóf Kiszel <kiszel.kristof@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -19,49 +19,49 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 21.03.70\n"
 
-#: notesagentalarmdialog.cpp:39
+#: notesagentalarmdialog.cpp:38
 #, kde-format
 msgctxt "@title:window"
 msgid "Alarm"
 msgstr "Riasztás"
 
-#: notesagentalarmdialog.cpp:51
+#: notesagentalarmdialog.cpp:50
 #, kde-format
 msgid "The following notes triggered alarms:"
 msgstr "A következő jegyzetek váltottak ki riasztást:"
 
-#: notesagentalarmdialog.cpp:89
+#: notesagentalarmdialog.cpp:88
 #, kde-format
 msgid "Remove Alarm"
 msgstr "Riasztás eltávolítása"
 
-#: notesagentalarmdialog.cpp:91
+#: notesagentalarmdialog.cpp:90
 #, kde-format
 msgid "Show Note..."
 msgstr "Jegyzet megjelenítése…"
 
-#: notesagentalarmdialog.cpp:93
+#: notesagentalarmdialog.cpp:92
 #, kde-format
 msgid "Modify Alarm..."
 msgstr "Riasztás módosítása…"
 
-#: notesagentalarmdialog.cpp:151
+#: notesagentalarmdialog.cpp:146
 #, kde-format
 msgid "Are you sure to remove alarm?"
 msgstr "Biztosan eltávolítja a riasztást?"
 
-#: notesagentalarmdialog.cpp:152
+#: notesagentalarmdialog.cpp:147
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Alarm"
 msgstr "Riasztás eltávolítása"
 
-#: notesagentalarmdialog.cpp:221
+#: notesagentalarmdialog.cpp:212
 #, kde-format
 msgid "Error during fetch alarm info."
 msgstr "Hiba a riasztás adatainak letöltésekor."
 
-#: notesagentalarmdialog.cpp:221
+#: notesagentalarmdialog.cpp:212
 #, kde-format
 msgid "Alarm"
 msgstr "Riasztás"

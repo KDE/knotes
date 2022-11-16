@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-16 00:47+0000\n"
+"POT-Creation-Date: 2022-11-16 00:47+0000\n"
 "PO-Revision-Date: 2014-09-04 12:27+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -90,7 +90,7 @@ msgctxt "@info"
 msgid "Select the folder where the note will be saved:"
 msgstr "Válassza ki, hogy mely mappába legyen mentve a feljegyzés:"
 
-#: job/createnewnotejob.cpp:100 job/createnewnotejob.cpp:123
+#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
 #, fuzzy, kde-format
 #| msgid ""
 #| "An error occurred during fetching. Do you want select a new default "
@@ -102,7 +102,7 @@ msgstr ""
 "Hiba történt a letöltés során. Szeretne kiválasztani egy új alapértelmezett "
 "gyűjteményt?"
 
-#: job/createnewnotejob.cpp:102 job/createnewnotejob.cpp:125
+#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Select Note Folder"
@@ -110,13 +110,13 @@ msgctxt "@action:button"
 msgid "Select New Default"
 msgstr "Feljegyzés mappa kiválasztása"
 
-#: job/createnewnotejob.cpp:103 job/createnewnotejob.cpp:126
+#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
 #, kde-format
 msgctxt "@action:button"
 msgid "Ignore"
 msgstr ""
 
-#: job/createnewnotejob.cpp:148
+#: job/createnewnotejob.cpp:126
 #, fuzzy, kde-format
 #| msgid ""
 #| "Collection is hidden. New note will stored but not displaying. Do you "
@@ -128,24 +128,24 @@ msgstr ""
 "A gyűjtemény rejtett. Az új feljegyzés el lesz tárolva, de nem lesz "
 "megjelenítve. Szeretné megjeleníteni a gyűjteményt?"
 
-#: job/createnewnotejob.cpp:150
+#: job/createnewnotejob.cpp:128
 #, kde-format
 msgctxt "@action::button"
 msgid "Show Collection"
 msgstr ""
 
-#: job/createnewnotejob.cpp:151
+#: job/createnewnotejob.cpp:129
 #, kde-format
 msgctxt "@action::button"
 msgid "Do Not Show"
 msgstr ""
 
-#: job/createnewnotejob.cpp:210
+#: job/createnewnotejob.cpp:184
 #, kde-format
 msgid "Note was not created."
 msgstr "A feljegyzés nem jött létre."
 
-#: job/createnewnotejob.cpp:210
+#: job/createnewnotejob.cpp:184
 #, kde-format
 msgid "Create new note"
 msgstr "Új feljegyzés létrehozása"

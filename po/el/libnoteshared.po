@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-16 00:47+0000\n"
+"POT-Creation-Date: 2022-11-16 00:47+0000\n"
 "PO-Revision-Date: 2022-03-03 12:18+0200\n"
 "Last-Translator: Petros Vidalis <pvidalis@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -91,7 +91,7 @@ msgctxt "@info"
 msgid "Select the folder where the note will be saved:"
 msgstr "Επιλέξτε το φάκελο όπου θα αποθηκευθεί το σημείωμα:"
 
-#: job/createnewnotejob.cpp:100 job/createnewnotejob.cpp:123
+#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
 #, kde-format
 msgid ""
 "An error occurred during fetching. Do you want to select a new default "
@@ -100,19 +100,19 @@ msgstr ""
 "Παρουσιάστηκε σφάλμα κατά την προσκόμιση. Θέλετε να επιλέξετε μια νέα "
 "προκαθορισμένη συλλογή;"
 
-#: job/createnewnotejob.cpp:102 job/createnewnotejob.cpp:125
+#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
 #, kde-format
 msgctxt "@action:button"
 msgid "Select New Default"
 msgstr "Επιλογή νέου προκαθορισμένου"
 
-#: job/createnewnotejob.cpp:103 job/createnewnotejob.cpp:126
+#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
 #, kde-format
 msgctxt "@action:button"
 msgid "Ignore"
 msgstr "Αγνόησε"
 
-#: job/createnewnotejob.cpp:148
+#: job/createnewnotejob.cpp:126
 #, kde-format
 msgid ""
 "Collection is hidden. New note will be stored but not displayed. Do you want "
@@ -121,24 +121,24 @@ msgstr ""
 "Η συλλογή είναι κρυμμένη. Ένα νέο σημείωμα θα αποθηκευθεί αλλά δεν θα "
 "εμφανιστεί. Θέλετε να εμφανιστεί η συλλογή;"
 
-#: job/createnewnotejob.cpp:150
+#: job/createnewnotejob.cpp:128
 #, kde-format
 msgctxt "@action::button"
 msgid "Show Collection"
 msgstr "Εμφάνιση συλλογής"
 
-#: job/createnewnotejob.cpp:151
+#: job/createnewnotejob.cpp:129
 #, kde-format
 msgctxt "@action::button"
 msgid "Do Not Show"
 msgstr "Να μην εμφανιστεί"
 
-#: job/createnewnotejob.cpp:210
+#: job/createnewnotejob.cpp:184
 #, kde-format
 msgid "Note was not created."
 msgstr "Το σημείωμα δεν δημιουργήθηκε."
 
-#: job/createnewnotejob.cpp:210
+#: job/createnewnotejob.cpp:184
 #, kde-format
 msgid "Create new note"
 msgstr "Δημιουργία νέου σημειώματος"

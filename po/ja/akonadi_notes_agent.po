@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akonadi_notes_agent\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-16 00:47+0000\n"
+"POT-Creation-Date: 2022-11-16 00:47+0000\n"
 "PO-Revision-Date: 2013-12-24 01:18-0800\n"
 "Last-Translator: Japanese KDE translation team <kde-jp@kde.org>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -14,49 +14,49 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-#: notesagentalarmdialog.cpp:39
+#: notesagentalarmdialog.cpp:38
 #, kde-format
 msgctxt "@title:window"
 msgid "Alarm"
 msgstr ""
 
-#: notesagentalarmdialog.cpp:51
+#: notesagentalarmdialog.cpp:50
 #, kde-format
 msgid "The following notes triggered alarms:"
 msgstr ""
 
-#: notesagentalarmdialog.cpp:89
+#: notesagentalarmdialog.cpp:88
 #, kde-format
 msgid "Remove Alarm"
 msgstr ""
 
-#: notesagentalarmdialog.cpp:91
+#: notesagentalarmdialog.cpp:90
 #, kde-format
 msgid "Show Note..."
 msgstr ""
 
-#: notesagentalarmdialog.cpp:93
+#: notesagentalarmdialog.cpp:92
 #, kde-format
 msgid "Modify Alarm..."
 msgstr ""
 
-#: notesagentalarmdialog.cpp:151
+#: notesagentalarmdialog.cpp:146
 #, kde-format
 msgid "Are you sure to remove alarm?"
 msgstr ""
 
-#: notesagentalarmdialog.cpp:152
+#: notesagentalarmdialog.cpp:147
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Alarm"
 msgstr ""
 
-#: notesagentalarmdialog.cpp:221
+#: notesagentalarmdialog.cpp:212
 #, kde-format
 msgid "Error during fetch alarm info."
 msgstr ""
 
-#: notesagentalarmdialog.cpp:221
+#: notesagentalarmdialog.cpp:212
 #, kde-format
 msgid "Alarm"
 msgstr ""

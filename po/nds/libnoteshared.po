@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-16 00:47+0000\n"
+"POT-Creation-Date: 2022-11-16 00:47+0000\n"
 "PO-Revision-Date: 2014-08-13 01:05+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -89,7 +89,7 @@ msgctxt "@info"
 msgid "Select the folder where the note will be saved:"
 msgstr "Den Orner utsöken, binnen den de Notiz sekert warrt:"
 
-#: job/createnewnotejob.cpp:100 job/createnewnotejob.cpp:123
+#: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
 #, fuzzy, kde-format
 #| msgid ""
 #| "An error occurred during fetching. Do you want select a new default "
@@ -100,7 +100,7 @@ msgid ""
 msgstr ""
 "Bi't Halen geev dat en Fehler. Wullt Du en anner Standardsammeln utsöken?"
 
-#: job/createnewnotejob.cpp:102 job/createnewnotejob.cpp:125
+#: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Select Note Folder"
@@ -108,13 +108,13 @@ msgctxt "@action:button"
 msgid "Select New Default"
 msgstr "Notizenorner utsöken"
 
-#: job/createnewnotejob.cpp:103 job/createnewnotejob.cpp:126
+#: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
 #, kde-format
 msgctxt "@action:button"
 msgid "Ignore"
 msgstr ""
 
-#: job/createnewnotejob.cpp:148
+#: job/createnewnotejob.cpp:126
 #, fuzzy, kde-format
 #| msgid ""
 #| "Collection is hidden. New note will stored but not displaying. Do you "
@@ -126,24 +126,24 @@ msgstr ""
 "Disse Sammeln is versteken. De Notiz warrt sekert, man nich wiest. Wullt Du "
 "de Sammeln wiesen?"
 
-#: job/createnewnotejob.cpp:150
+#: job/createnewnotejob.cpp:128
 #, kde-format
 msgctxt "@action::button"
 msgid "Show Collection"
 msgstr ""
 
-#: job/createnewnotejob.cpp:151
+#: job/createnewnotejob.cpp:129
 #, kde-format
 msgctxt "@action::button"
 msgid "Do Not Show"
 msgstr ""
 
-#: job/createnewnotejob.cpp:210
+#: job/createnewnotejob.cpp:184
 #, kde-format
 msgid "Note was not created."
 msgstr "Notiz wöör nich opstellt"
 
-#: job/createnewnotejob.cpp:210
+#: job/createnewnotejob.cpp:184
 #, kde-format
 msgid "Create new note"
 msgstr "Nieg Notiz opstellen"
