@@ -26,7 +26,7 @@ Dependencies:
     'frameworks/kiconthemes': '@latest'
     'frameworks/kitemmodels': '@latest'
     'frameworks/kitemviews': '@latest'
-    'frameworks/kkcmutils': '@latest'
+    'frameworks/kcmutils': '@latest'
     'frameworks/knewstuff': '@latest'
     'frameworks/knotifications': '@latest'
     'frameworks/knotifyconfig': '@latest'
