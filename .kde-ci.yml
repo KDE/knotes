@@ -14,7 +14,6 @@ Dependencies:
     'pim/kpimtextedit' : '@same'
     'pim/libkdepim' : '@same'
     'pim/pimcommon' : '@same'
-    'third-party/grantlee' : '@stable'
     'pim/grantleetheme' : '@same'
     'frameworks/kcompletion': '@latest'
     'frameworks/kconfig': '@latest'
@@ -36,3 +35,11 @@ Dependencies:
     'frameworks/kwindowsystem': '@latest'
     'frameworks/kxmlgui': '@latest'
     'frameworks/kdoctools': '@latest'
+
+- 'on': ['Linux/Qt6', 'FreeBSD/Qt6', 'Windows/Qt6']
+  'require':
+    'libraries/ktexttemplate': '@stable'
+
+- 'on': ['Linux/Qt5', 'FreeBSD/Qt5', 'Windows/Qt5']
+  'require':
+    'third-party/grantlee' : '@stable'
