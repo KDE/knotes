@@ -9,9 +9,11 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 #include <KShortcutsEditor>
+#include <KWindowConfig>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QWindow>
 
 KNotesKeyDialog::KNotesKeyDialog(KActionCollection *globals, QWidget *parent)
     : QDialog(parent)
@@ -38,20 +40,24 @@ KNotesKeyDialog::~KNotesKeyDialog()
     writeConfig();
 }
 
+namespace
+{
+static const char myKNotesKeyDialogName[] = "KNotesKeyDialog";
+}
 void KNotesKeyDialog::readConfig()
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNotesKeyDialog");
-    const QSize size = grp.readEntry("Size", QSize(300, 200));
-    if (size.isValid()) {
-        resize(size);
-    }
+    create(); // ensure a window is created
+    windowHandle()->resize(QSize(300, 200));
+    KConfigGroup group(KSharedConfig::openStateConfig(), myKNotesKeyDialogName);
+    KWindowConfig::restoreWindowSize(windowHandle(), group);
+    resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void KNotesKeyDialog::writeConfig()
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNotesKeyDialog");
-    grp.writeEntry("Size", size());
-    grp.sync();
+    KConfigGroup group(KSharedConfig::openStateConfig(), myKNotesKeyDialogName);
+    KWindowConfig::saveWindowSize(windowHandle(), group);
+    group.sync();
 }
 
 void KNotesKeyDialog::insert(KActionCollection *actions)

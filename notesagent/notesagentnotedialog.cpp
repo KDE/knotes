@@ -18,11 +18,17 @@
 #include <QIcon>
 
 #include <KConfigGroup>
+#include <KWindowConfig>
 #include <QDialogButtonBox>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QWindow>
 
+namespace
+{
+static const char myNotesAgentNoteDialogName[] = "NotesAgentNoteDialog";
+}
 NotesAgentNoteDialog::NotesAgentNoteDialog(QWidget *parent)
     : QDialog(parent)
     , mNote(new KPIMTextEdit::RichTextEditorWidget(this))
@@ -95,16 +101,16 @@ void NotesAgentNoteDialog::slotFetchItem(KJob *job)
 
 void NotesAgentNoteDialog::readConfig()
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "NotesAgentNoteDialog");
-    const QSize size = grp.readEntry("Size", QSize(300, 200));
-    if (size.isValid()) {
-        resize(size);
-    }
+    create(); // ensure a window is created
+    windowHandle()->resize(QSize(300, 200));
+    KConfigGroup group(KSharedConfig::openStateConfig(), myNotesAgentNoteDialogName);
+    KWindowConfig::restoreWindowSize(windowHandle(), group);
+    resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void NotesAgentNoteDialog::writeConfig()
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "NotesAgentNoteDialog");
-    grp.writeEntry("Size", size());
-    grp.sync();
+    KConfigGroup group(KSharedConfig::openStateConfig(), myNotesAgentNoteDialogName);
+    KWindowConfig::saveWindowSize(windowHandle(), group);
+    group.sync();
 }

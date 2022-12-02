@@ -16,10 +16,12 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
+#include <KWindowConfig>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QTabWidget>
 #include <QVBoxLayout>
+#include <QWindow>
 
 KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title, QWidget *parent)
     : QDialog(parent)
@@ -71,18 +73,22 @@ void KNoteSimpleConfigDialog::save(Akonadi::Item &item, bool &isRichText)
     mDisplayConfigWidget->save(attr);
 }
 
+namespace
+{
+static const char myKNoteSimpleConfigDialogName[] = "KNoteSimpleConfigDialog";
+}
 void KNoteSimpleConfigDialog::readConfig()
 {
-    KConfigGroup group(KSharedConfig::openStateConfig(), "KNoteSimpleConfigDialog");
-    const QSize size = group.readEntry("Size", QSize(600, 400));
-    if (size.isValid()) {
-        resize(size);
-    }
+    create(); // ensure a window is created
+    windowHandle()->resize(QSize(600, 400));
+    KConfigGroup group(KSharedConfig::openStateConfig(), myKNoteSimpleConfigDialogName);
+    KWindowConfig::restoreWindowSize(windowHandle(), group);
+    resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void KNoteSimpleConfigDialog::writeConfig()
 {
-    KConfigGroup group(KSharedConfig::openStateConfig(), "KNoteSimpleConfigDialog");
-    group.writeEntry("Size", size());
+    KConfigGroup group(KSharedConfig::openStateConfig(), myKNoteSimpleConfigDialogName);
+    KWindowConfig::saveWindowSize(windowHandle(), group);
     group.sync();
 }

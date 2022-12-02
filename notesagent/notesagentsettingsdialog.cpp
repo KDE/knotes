@@ -15,11 +15,13 @@
 
 #include <KConfigGroup>
 #include <KSharedConfig>
+#include <KWindowConfig>
 #include <QApplication>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QTabWidget>
 #include <QVBoxLayout>
+#include <QWindow>
 
 #include <config/notenetworkconfig.h>
 
@@ -77,20 +79,19 @@ NotesAgentSettingsDialog::~NotesAgentSettingsDialog()
 }
 
 static const char myConfigGroupName[] = "NotesAgentSettingsDialog";
+void NotesAgentSettingsDialog::readConfig()
+{
+    create(); // ensure a window is created
+    windowHandle()->resize(QSize(500, 300));
+    KConfigGroup group(KSharedConfig::openStateConfig(), myConfigGroupName);
+    KWindowConfig::restoreWindowSize(windowHandle(), group);
+    resize(windowHandle()->size()); // workaround for QTBUG-40584
+}
+
 void NotesAgentSettingsDialog::writeConfig()
 {
     KConfigGroup group(KSharedConfig::openStateConfig(), myConfigGroupName);
-
-    const QSize size = group.readEntry("Size", QSize(500, 300));
-    if (size.isValid()) {
-        resize(size);
-    }
-}
-
-void NotesAgentSettingsDialog::readConfig()
-{
-    KConfigGroup group(KSharedConfig::openStateConfig(), myConfigGroupName);
-    group.writeEntry("Size", size());
+    KWindowConfig::saveWindowSize(windowHandle(), group);
     group.sync();
 }
 

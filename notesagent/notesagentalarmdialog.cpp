@@ -24,6 +24,7 @@
 
 #include <KConfigGroup>
 #include <KSharedConfig>
+#include <KWindowConfig>
 #include <QDialogButtonBox>
 #include <QLabel>
 #include <QListWidget>
@@ -31,7 +32,12 @@
 #include <QPointer>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QWindow>
 
+namespace
+{
+static const char myNotesAgentAlarmDialogName[] = "NotesAgentAlarmDialog";
+}
 NotesAgentAlarmDialog::NotesAgentAlarmDialog(QWidget *parent)
     : QDialog(parent)
 {
@@ -102,18 +108,18 @@ void NotesAgentAlarmDialog::slotCustomContextMenuRequested(const QPoint &pos)
 
 void NotesAgentAlarmDialog::readConfig()
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "NotesAgentAlarmDialog");
-    const QSize size = grp.readEntry("Size", QSize(300, 200));
-    if (size.isValid()) {
-        resize(size);
-    }
+    create(); // ensure a window is created
+    windowHandle()->resize(QSize(300, 200));
+    KConfigGroup group(KSharedConfig::openStateConfig(), myNotesAgentAlarmDialogName);
+    KWindowConfig::restoreWindowSize(windowHandle(), group);
+    resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void NotesAgentAlarmDialog::writeConfig()
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "NotesAgentAlarmDialog");
-    grp.writeEntry("Size", size());
-    grp.sync();
+    KConfigGroup group(KSharedConfig::openStateConfig(), myNotesAgentAlarmDialogName);
+    KWindowConfig::saveWindowSize(windowHandle(), group);
+    group.sync();
 }
 
 void NotesAgentAlarmDialog::addListAlarm(const Akonadi::Item::List &lstAlarm)

@@ -14,12 +14,14 @@
 #include <QIcon>
 
 #include <KSharedConfig>
+#include <KWindowConfig>
 #include <QDialogButtonBox>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QListWidget>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QWindow>
 
 KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     : QDialog(parent)
@@ -113,20 +115,24 @@ bool KNotePrintSelectedNotesDialog::preview() const
     return mPreview;
 }
 
+namespace
+{
+static const char myKNotePrintSelectedNotesDialogName[] = "KNotePrintSelectedNotesDialog";
+}
 void KNotePrintSelectedNotesDialog::readConfig()
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNotePrintSelectedNotesDialog");
-    const QSize size = grp.readEntry("Size", QSize(300, 200));
-    if (size.isValid()) {
-        resize(size);
-    }
+    create(); // ensure a window is created
+    windowHandle()->resize(QSize(300, 200));
+    KConfigGroup group(KSharedConfig::openStateConfig(), myKNotePrintSelectedNotesDialogName);
+    KWindowConfig::restoreWindowSize(windowHandle(), group);
+    resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void KNotePrintSelectedNotesDialog::writeConfig()
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNotePrintSelectedNotesDialog");
-    grp.writeEntry("Size", size());
-    grp.sync();
+    KConfigGroup group(KSharedConfig::openStateConfig(), myKNotePrintSelectedNotesDialogName);
+    KWindowConfig::saveWindowSize(windowHandle(), group);
+    group.sync();
 }
 
 void KNotePrintSelectedNotesDialog::slotPreview()

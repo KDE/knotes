@@ -16,11 +16,13 @@
 
 #include <KConfigGroup>
 #include <KSharedConfig>
+#include <KWindowConfig>
 #include <QDialogButtonBox>
 #include <QLabel>
 #include <QListWidget>
 #include <QMenu>
 #include <QVBoxLayout>
+#include <QWindow>
 
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     : QDialog(parent)
@@ -47,20 +49,24 @@ void KNoteFindDialog::setExistingNotes(const QHash<Akonadi::Item::Id, Akonadi::I
     mNoteFindWidget->setExistingNotes(notes);
 }
 
-void KNoteFindDialog::writeConfig()
+namespace
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNoteFindDialog");
-    grp.writeEntry("Size", size());
-    grp.sync();
+static const char myKNoteFindDialogName[] = "KNoteFindDialog";
 }
-
 void KNoteFindDialog::readConfig()
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNoteFindDialog");
-    const QSize size = grp.readEntry("Size", QSize(600, 300));
-    if (size.isValid()) {
-        resize(size);
-    }
+    create(); // ensure a window is created
+    windowHandle()->resize(QSize(600, 300));
+    KConfigGroup group(KSharedConfig::openStateConfig(), myKNoteFindDialogName);
+    KWindowConfig::restoreWindowSize(windowHandle(), group);
+    resize(windowHandle()->size()); // workaround for QTBUG-40584
+}
+
+void KNoteFindDialog::writeConfig()
+{
+    KConfigGroup group(KSharedConfig::openStateConfig(), myKNoteFindDialogName);
+    KWindowConfig::saveWindowSize(windowHandle(), group);
+    group.sync();
 }
 
 KNoteFindWidget::KNoteFindWidget(QWidget *parent)

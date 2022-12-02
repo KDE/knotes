@@ -11,10 +11,12 @@
 
 #include <KConfigGroup>
 #include <KSharedConfig>
+#include <KWindowConfig>
 #include <QDialogButtonBox>
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QWindow>
 
 KNotesSelectDeleteNotesListWidget::KNotesSelectDeleteNotesListWidget(QWidget *parent)
     : QListWidget(parent)
@@ -69,18 +71,22 @@ KNotesSelectDeleteNotesDialog::~KNotesSelectDeleteNotesDialog()
     writeConfig();
 }
 
+namespace
+{
+static const char myKNotesSelectDeleteNotesDialogName[] = "KNotesSelectDeleteNotesDialog";
+}
 void KNotesSelectDeleteNotesDialog::readConfig()
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNotesSelectDeleteNotesDialog");
-    const QSize size = grp.readEntry("Size", QSize(300, 200));
-    if (size.isValid()) {
-        resize(size);
-    }
+    create(); // ensure a window is created
+    windowHandle()->resize(QSize(300, 200));
+    KConfigGroup group(KSharedConfig::openStateConfig(), myKNotesSelectDeleteNotesDialogName);
+    KWindowConfig::restoreWindowSize(windowHandle(), group);
+    resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void KNotesSelectDeleteNotesDialog::writeConfig()
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNotesSelectDeleteNotesDialog");
-    grp.writeEntry("Size", size());
-    grp.sync();
+    KConfigGroup group(KSharedConfig::openStateConfig(), myKNotesSelectDeleteNotesDialogName);
+    KWindowConfig::saveWindowSize(windowHandle(), group);
+    group.sync();
 }

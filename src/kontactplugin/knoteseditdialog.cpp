@@ -16,16 +16,17 @@
 
 #include <KConfigGroup>
 #include <KSharedConfig>
+#include <KWindowConfig>
 #include <QAction>
 #include <QDialogButtonBox>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QWindow>
 
 KNoteEditDialog::KNoteEditDialog(bool readOnly, QWidget *parent)
     : QDialog(parent)
-    , mOkButton(nullptr)
 {
     init(readOnly);
 }
@@ -116,20 +117,24 @@ void KNoteEditDialog::setReadOnly(bool b)
     mTitleEdit->setEnabled(!b);
 }
 
+namespace
+{
+static const char myKNoteEditDialogName[] = "KNoteEditDialog";
+}
 void KNoteEditDialog::readConfig()
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNoteEditDialog");
-    const QSize size = grp.readEntry("Size", QSize(300, 200));
-    if (size.isValid()) {
-        resize(size);
-    }
+    create(); // ensure a window is created
+    windowHandle()->resize(QSize(300, 200));
+    KConfigGroup group(KSharedConfig::openStateConfig(), myKNoteEditDialogName);
+    KWindowConfig::restoreWindowSize(windowHandle(), group);
+    resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void KNoteEditDialog::writeConfig()
 {
-    KConfigGroup grp(KSharedConfig::openStateConfig(), "KNoteEditDialog");
-    grp.writeEntry("Size", size());
-    grp.sync();
+    KConfigGroup group(KSharedConfig::openStateConfig(), myKNoteEditDialogName);
+    KWindowConfig::saveWindowSize(windowHandle(), group);
+    group.sync();
 }
 
 QString KNoteEditDialog::text() const

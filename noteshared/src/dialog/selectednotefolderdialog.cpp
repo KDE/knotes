@@ -10,6 +10,8 @@
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
+#include <KWindowConfig>
+#include <QWindow>
 
 using namespace NoteShared;
 
@@ -30,19 +32,22 @@ SelectedNotefolderDialog::~SelectedNotefolderDialog()
 {
     writeConfig();
 }
-
+namespace
+{
+static const char mySelectedNotefolderDialogName[] = "SelectedNotefolderDialog";
+}
 void SelectedNotefolderDialog::readConfig()
 {
-    KConfigGroup group(KSharedConfig::openStateConfig(), "SelectedNotefolderDialog");
-    const QSize size = group.readEntry("Size", QSize(600, 400));
-    if (size.isValid()) {
-        resize(size);
-    }
+    create(); // ensure a window is created
+    windowHandle()->resize(QSize(600, 400));
+    KConfigGroup group(KSharedConfig::openStateConfig(), mySelectedNotefolderDialogName);
+    KWindowConfig::restoreWindowSize(windowHandle(), group);
+    resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void SelectedNotefolderDialog::writeConfig()
 {
-    KConfigGroup group(KSharedConfig::openStateConfig(), "SelectedNotefolderDialog");
-    group.writeEntry("Size", size());
+    KConfigGroup group(KSharedConfig::openStateConfig(), mySelectedNotefolderDialogName);
+    KWindowConfig::saveWindowSize(windowHandle(), group);
     group.sync();
 }
