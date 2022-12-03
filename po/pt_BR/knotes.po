@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-04 00:45+0000\n"
+"POT-Creation-Date: 2022-12-03 00:47+0000\n"
 "PO-Revision-Date: 2022-01-04 11:58-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -120,7 +120,7 @@ msgstr "Configurações"
 #. i18n: ectx: Menu (knotes_context)
 #: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
 #: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:42
-#: kontactplugin/knoteseditdialog.cpp:52
+#: kontactplugin/knoteseditdialog.cpp:53
 #, kde-format
 msgid "KNotes"
 msgstr "KNotes"
@@ -371,12 +371,12 @@ msgstr "Fonte do texto:"
 msgid "Title font:"
 msgstr "Fonte do título:"
 
-#: configdialog/knotesimpleconfigdialog.cpp:39
+#: configdialog/knotesimpleconfigdialog.cpp:41
 #, kde-format
 msgid "Editor Settings"
 msgstr "Configurações do editor"
 
-#: configdialog/knotesimpleconfigdialog.cpp:42
+#: configdialog/knotesimpleconfigdialog.cpp:44
 #, kde-format
 msgid "Display Settings"
 msgstr "Configurações da tela"
@@ -393,55 +393,55 @@ msgstr "A&juda"
 msgid "Notes"
 msgstr "Notas"
 
-#: dialog/knotedeleteselectednotesdialog.cpp:19
+#: dialog/knotedeleteselectednotesdialog.cpp:21
 #, kde-format
 msgctxt "@title:window"
 msgid "Select notes to delete"
 msgstr "Selecionar as notas a excluir"
 
-#: dialog/knoteselectednotesdialog.cpp:21
-#: print/knoteprintselectednotesdialog.cpp:27
+#: dialog/knoteselectednotesdialog.cpp:23
+#: print/knoteprintselectednotesdialog.cpp:29
 #, kde-format
 msgctxt "@title:window"
 msgid "Select notes"
 msgstr "Selecionar notas"
 
-#: dialog/knoteskeydialog.cpp:19
+#: dialog/knoteskeydialog.cpp:21
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Shortcuts"
 msgstr "Configurar atalhos"
 
-#: dialog/knoteskeydialog.cpp:59
+#: dialog/knoteskeydialog.cpp:65
 #, kde-format
 msgid "Note Actions"
 msgstr "Ações da nota"
 
-#: finddialog/knotefinddialog.cpp:28
+#: finddialog/knotefinddialog.cpp:30
 #, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Procurar notas"
 
-#: finddialog/knotefinddialog.cpp:73
+#: finddialog/knotefinddialog.cpp:79
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Search notes:"
 msgstr "Procurar notas:"
 
-#: finddialog/knotefinddialog.cpp:81
+#: finddialog/knotefinddialog.cpp:87
 #, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "Pesquisar..."
 
-#: finddialog/knotefinddialog.cpp:165
+#: finddialog/knotefinddialog.cpp:171
 #, kde-format
 msgctxt "@label"
 msgid "No Results found in search."
 msgstr "Nenhum resultado encontrado."
 
-#: finddialog/knotefinddialog.cpp:181
+#: finddialog/knotefinddialog.cpp:187
 #, kde-format
 msgid "Show Note"
 msgstr "Mostrar nota"
@@ -745,7 +745,7 @@ msgid "Do you really want to delete this note?"
 msgstr "Deseja realmente excluir esta nota?"
 
 #: kontactplugin/knotes_part.cpp:343
-#: kontactplugin/knotesselectdeletenotesdialog.cpp:42
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:44
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Delete"
@@ -880,19 +880,19 @@ msgctxt "@item"
 msgid "New Note"
 msgstr "Nova nota"
 
-#: kontactplugin/knoteseditdialog.cpp:35
+#: kontactplugin/knoteseditdialog.cpp:36
 #, kde-format
 msgctxt "@title:window"
 msgid "Show Popup Note"
 msgstr "Mostrar nota instantânea"
 
-#: kontactplugin/knoteseditdialog.cpp:35
+#: kontactplugin/knoteseditdialog.cpp:36
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Popup Note"
 msgstr "Editar nota instantânea"
 
-#: kontactplugin/knoteseditdialog.cpp:65
+#: kontactplugin/knoteseditdialog.cpp:66
 #, kde-format
 msgctxt "@label popup note name"
 msgid "Name:"
@@ -908,12 +908,12 @@ msgstr "Procurar notas..."
 msgid "Search notes...<%1>"
 msgstr "Procurar notas...<%1>"
 
-#: kontactplugin/knotesselectdeletenotesdialog.cpp:31
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:33
 #, kde-format
 msgid "(note locked, it will not removed)"
 msgstr "(nota bloqueada, ela não será removida)"
 
-#: kontactplugin/knotesselectdeletenotesdialog.cpp:55
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:57
 #, kde-format
 msgid "Do you really want to delete this note?"
 msgid_plural "Do you really want to delete these %1 notes?"
@@ -1053,17 +1053,17 @@ msgstr "O tema de impressão não foi encontrado."
 msgid "Printing error"
 msgstr "Erro de impressão"
 
-#: print/knoteprintselectednotesdialog.cpp:49
+#: print/knoteprintselectednotesdialog.cpp:51
 #, kde-format
 msgid "Printing theme:"
 msgstr "Tema de impressão:"
 
-#: print/knoteprintselectednotesdialog.cpp:56
+#: print/knoteprintselectednotesdialog.cpp:58
 #, kde-format
 msgid "Preview"
 msgstr "Visualizar"
 
-#: print/knoteprintselectednotesdialog.cpp:58
+#: print/knoteprintselectednotesdialog.cpp:60
 #, kde-format
 msgid "Print"
 msgstr "Imprimir"

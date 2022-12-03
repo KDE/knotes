@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akonadi_notes_agent\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:47+0000\n"
+"POT-Creation-Date: 2022-12-03 00:47+0000\n"
 "PO-Revision-Date: 2013-12-24 01:18-0800\n"
 "Last-Translator: Japanese KDE translation team <kde-jp@kde.org>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -14,101 +14,101 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-#: notesagentalarmdialog.cpp:38
+#: notesagentalarmdialog.cpp:44
 #, kde-format
 msgctxt "@title:window"
 msgid "Alarm"
 msgstr ""
 
-#: notesagentalarmdialog.cpp:50
+#: notesagentalarmdialog.cpp:56
 #, kde-format
 msgid "The following notes triggered alarms:"
 msgstr ""
 
-#: notesagentalarmdialog.cpp:88
+#: notesagentalarmdialog.cpp:94
 #, kde-format
 msgid "Remove Alarm"
 msgstr ""
 
-#: notesagentalarmdialog.cpp:90
+#: notesagentalarmdialog.cpp:96
 #, kde-format
 msgid "Show Note..."
 msgstr ""
 
-#: notesagentalarmdialog.cpp:92
+#: notesagentalarmdialog.cpp:98
 #, kde-format
 msgid "Modify Alarm..."
 msgstr ""
 
-#: notesagentalarmdialog.cpp:146
+#: notesagentalarmdialog.cpp:152
 #, kde-format
 msgid "Are you sure to remove alarm?"
 msgstr ""
 
-#: notesagentalarmdialog.cpp:147
+#: notesagentalarmdialog.cpp:153
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Alarm"
 msgstr ""
 
-#: notesagentalarmdialog.cpp:212
+#: notesagentalarmdialog.cpp:218
 #, kde-format
 msgid "Error during fetch alarm info."
 msgstr ""
 
-#: notesagentalarmdialog.cpp:212
+#: notesagentalarmdialog.cpp:218
 #, kde-format
 msgid "Alarm"
 msgstr ""
 
-#: notesagentsettingsdialog.cpp:31
+#: notesagentsettingsdialog.cpp:33
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Notes Agent"
 msgstr ""
 
-#: notesagentsettingsdialog.cpp:46
+#: notesagentsettingsdialog.cpp:48
 #, kde-format
 msgid "Notify"
 msgstr ""
 
-#: notesagentsettingsdialog.cpp:48
+#: notesagentsettingsdialog.cpp:50
 #, kde-format
 msgid "Network"
 msgstr ""
 
-#: notesagentsettingsdialog.cpp:56
+#: notesagentsettingsdialog.cpp:58
 #, kde-format
 msgid "Notes Agent"
 msgstr ""
 
-#: notesagentsettingsdialog.cpp:58
+#: notesagentsettingsdialog.cpp:60
 #, kde-format
 msgid "Notes Agent."
 msgstr ""
 
-#: notesagentsettingsdialog.cpp:60
+#: notesagentsettingsdialog.cpp:62
 #, kde-format
 msgid "Copyright (C) 2013-%1 Laurent Montel"
 msgstr ""
 
-#: notesagentsettingsdialog.cpp:62
+#: notesagentsettingsdialog.cpp:64
 #, kde-format
 msgid "Laurent Montel"
 msgstr ""
 
-#: notesagentsettingsdialog.cpp:62
+#: notesagentsettingsdialog.cpp:64
 #, kde-format
 msgid "Maintainer"
 msgstr ""
 
-#: notesagentsettingsdialog.cpp:65
+#: notesagentsettingsdialog.cpp:67
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 
-#: notesagentsettingsdialog.cpp:65
+#: notesagentsettingsdialog.cpp:67
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"

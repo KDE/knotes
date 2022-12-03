@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:47+0000\n"
+"POT-Creation-Date: 2022-12-03 00:47+0000\n"
 "PO-Revision-Date: 2022-01-01 15:44+0000\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
@@ -76,13 +76,13 @@ msgstr "&Sender ID:"
 msgid "&Port:"
 msgstr "&Port:"
 
-#: dialog/selectednotefolderdialog.cpp:22
+#: dialog/selectednotefolderdialog.cpp:24
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Note Folder"
 msgstr "Select Note Folder"
 
-#: dialog/selectednotefolderdialog.cpp:23
+#: dialog/selectednotefolderdialog.cpp:25
 #, kde-format
 msgctxt "@info"
 msgid "Select the folder where the note will be saved:"

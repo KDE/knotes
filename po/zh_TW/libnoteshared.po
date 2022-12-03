@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:47+0000\n"
+"POT-Creation-Date: 2022-12-03 00:47+0000\n"
 "PO-Revision-Date: 2018-12-21 19:37+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
@@ -77,13 +77,13 @@ msgstr "寄件人名稱(&S)"
 msgid "&Port:"
 msgstr "連接埠(&P)："
 
-#: dialog/selectednotefolderdialog.cpp:22
+#: dialog/selectednotefolderdialog.cpp:24
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Note Folder"
 msgstr "選擇便條資料夾"
 
-#: dialog/selectednotefolderdialog.cpp:23
+#: dialog/selectednotefolderdialog.cpp:25
 #, kde-format
 msgctxt "@info"
 msgid "Select the folder where the note will be saved:"

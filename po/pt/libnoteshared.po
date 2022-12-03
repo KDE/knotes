@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libnoteshared\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:47+0000\n"
+"POT-Creation-Date: 2022-12-03 00:47+0000\n"
 "PO-Revision-Date: 2021-11-09 19:00+0000\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
@@ -72,13 +72,13 @@ msgstr "ID do &Remetente:"
 msgid "&Port:"
 msgstr "&Porto:"
 
-#: dialog/selectednotefolderdialog.cpp:22
+#: dialog/selectednotefolderdialog.cpp:24
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Note Folder"
 msgstr "Seleccionar a Pasta de Notas"
 
-#: dialog/selectednotefolderdialog.cpp:23
+#: dialog/selectednotefolderdialog.cpp:25
 #, kde-format
 msgctxt "@info"
 msgid "Select the folder where the note will be saved:"

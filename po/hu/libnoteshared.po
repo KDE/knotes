@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:47+0000\n"
+"POT-Creation-Date: 2022-12-03 00:47+0000\n"
 "PO-Revision-Date: 2014-09-04 12:27+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -78,13 +78,13 @@ msgstr "A küldő az&onosítója:"
 msgid "&Port:"
 msgstr "&Port:"
 
-#: dialog/selectednotefolderdialog.cpp:22
+#: dialog/selectednotefolderdialog.cpp:24
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Note Folder"
 msgstr "Feljegyzés mappa kiválasztása"
 
-#: dialog/selectednotefolderdialog.cpp:23
+#: dialog/selectednotefolderdialog.cpp:25
 #, kde-format
 msgctxt "@info"
 msgid "Select the folder where the note will be saved:"

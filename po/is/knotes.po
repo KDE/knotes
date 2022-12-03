@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-04 00:45+0000\n"
+"POT-Creation-Date: 2022-12-03 00:47+0000\n"
 "PO-Revision-Date: 2009-06-13 16:18+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: icelandic <kde-isl@molar.is>\n"
@@ -129,7 +129,7 @@ msgstr "Stillingar"
 #. i18n: ectx: Menu (knotes_context)
 #: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
 #: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:42
-#: kontactplugin/knoteseditdialog.cpp:52
+#: kontactplugin/knoteseditdialog.cpp:53
 #, kde-format
 msgid "KNotes"
 msgstr "KNotes"
@@ -388,12 +388,12 @@ msgstr "Textaletur:"
 msgid "Title font:"
 msgstr "Titilletur:"
 
-#: configdialog/knotesimpleconfigdialog.cpp:39
+#: configdialog/knotesimpleconfigdialog.cpp:41
 #, kde-format
 msgid "Editor Settings"
 msgstr "Stillingar ritils"
 
-#: configdialog/knotesimpleconfigdialog.cpp:42
+#: configdialog/knotesimpleconfigdialog.cpp:44
 #, kde-format
 msgid "Display Settings"
 msgstr "Skjástillingar"
@@ -410,60 +410,60 @@ msgstr "&Hjálp"
 msgid "Notes"
 msgstr "Miðar"
 
-#: dialog/knotedeleteselectednotesdialog.cpp:19
+#: dialog/knotedeleteselectednotesdialog.cpp:21
 #, kde-format
 msgctxt "@title:window"
 msgid "Select notes to delete"
 msgstr ""
 
-#: dialog/knoteselectednotesdialog.cpp:21
-#: print/knoteprintselectednotesdialog.cpp:27
+#: dialog/knoteselectednotesdialog.cpp:23
+#: print/knoteprintselectednotesdialog.cpp:29
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@title:window"
 msgid "Select notes"
 msgstr "Sýna alla miða"
 
-#: dialog/knoteskeydialog.cpp:19
+#: dialog/knoteskeydialog.cpp:21
 #, fuzzy, kde-format
 #| msgid "Configure Shortcuts"
 msgctxt "@title:window"
 msgid "Configure Shortcuts"
 msgstr "Stilla flýtilykla"
 
-#: dialog/knoteskeydialog.cpp:59
+#: dialog/knoteskeydialog.cpp:65
 #, kde-format
 msgid "Note Actions"
 msgstr "Aðgerðir miða"
 
-#: finddialog/knotefinddialog.cpp:28
+#: finddialog/knotefinddialog.cpp:30
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Sýna alla miða"
 
-#: finddialog/knotefinddialog.cpp:73
+#: finddialog/knotefinddialog.cpp:79
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@label:textbox"
 msgid "Search notes:"
 msgstr "Sýna alla miða"
 
-#: finddialog/knotefinddialog.cpp:81
+#: finddialog/knotefinddialog.cpp:87
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "Sýna alla miða"
 
-#: finddialog/knotefinddialog.cpp:165
+#: finddialog/knotefinddialog.cpp:171
 #, kde-format
 msgctxt "@label"
 msgid "No Results found in search."
 msgstr ""
 
-#: finddialog/knotefinddialog.cpp:181
+#: finddialog/knotefinddialog.cpp:187
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgid "Show Note"
@@ -768,7 +768,7 @@ msgid "Do you really want to delete this note?"
 msgstr "<qt>Viltu örugglega eyða miða <b>%1</b>?</qt>"
 
 #: kontactplugin/knotes_part.cpp:343
-#: kontactplugin/knotesselectdeletenotesdialog.cpp:42
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:44
 #, fuzzy, kde-format
 #| msgid "Confirm Delete"
 msgctxt "@title:window"
@@ -917,20 +917,20 @@ msgctxt "@item"
 msgid "New Note"
 msgstr "Nýr miði"
 
-#: kontactplugin/knoteseditdialog.cpp:35
+#: kontactplugin/knoteseditdialog.cpp:36
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@title:window"
 msgid "Show Popup Note"
 msgstr "Sýna alla miða"
 
-#: kontactplugin/knoteseditdialog.cpp:35
+#: kontactplugin/knoteseditdialog.cpp:36
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Popup Note"
 msgstr ""
 
-#: kontactplugin/knoteseditdialog.cpp:65
+#: kontactplugin/knoteseditdialog.cpp:66
 #, kde-format
 msgctxt "@label popup note name"
 msgid "Name:"
@@ -948,12 +948,12 @@ msgstr "Sýna alla miða"
 msgid "Search notes...<%1>"
 msgstr "Sýna alla miða"
 
-#: kontactplugin/knotesselectdeletenotesdialog.cpp:31
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:33
 #, kde-format
 msgid "(note locked, it will not removed)"
 msgstr ""
 
-#: kontactplugin/knotesselectdeletenotesdialog.cpp:55
+#: kontactplugin/knotesselectdeletenotesdialog.cpp:57
 #, fuzzy, kde-format
 #| msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
 msgid "Do you really want to delete this note?"
@@ -1099,18 +1099,18 @@ msgstr ""
 msgid "Printing error"
 msgstr ""
 
-#: print/knoteprintselectednotesdialog.cpp:49
+#: print/knoteprintselectednotesdialog.cpp:51
 #, fuzzy, kde-format
 #| msgid "Print %1"
 msgid "Printing theme:"
 msgstr "Prenta %1"
 
-#: print/knoteprintselectednotesdialog.cpp:56
+#: print/knoteprintselectednotesdialog.cpp:58
 #, kde-format
 msgid "Preview"
 msgstr ""
 
-#: print/knoteprintselectednotesdialog.cpp:58
+#: print/knoteprintselectednotesdialog.cpp:60
 #, fuzzy, kde-format
 #| msgid "Print %1"
 msgid "Print"

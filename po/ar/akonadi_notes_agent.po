@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:47+0000\n"
+"POT-Creation-Date: 2022-12-03 00:47+0000\n"
 "PO-Revision-Date: 2022-01-02 20:40+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -19,101 +19,101 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Generator: Lokalize 21.07.70\n"
 
-#: notesagentalarmdialog.cpp:38
+#: notesagentalarmdialog.cpp:44
 #, kde-format
 msgctxt "@title:window"
 msgid "Alarm"
 msgstr "المنبّه"
 
-#: notesagentalarmdialog.cpp:50
+#: notesagentalarmdialog.cpp:56
 #, kde-format
 msgid "The following notes triggered alarms:"
 msgstr "حفّزت الملاحظات الآتية منبّهات:"
 
-#: notesagentalarmdialog.cpp:88
+#: notesagentalarmdialog.cpp:94
 #, kde-format
 msgid "Remove Alarm"
 msgstr "أزل المنبّه"
 
-#: notesagentalarmdialog.cpp:90
+#: notesagentalarmdialog.cpp:96
 #, kde-format
 msgid "Show Note..."
 msgstr "اعرض الملاحظة..."
 
-#: notesagentalarmdialog.cpp:92
+#: notesagentalarmdialog.cpp:98
 #, kde-format
 msgid "Modify Alarm..."
 msgstr "عدّل المنبّه..."
 
-#: notesagentalarmdialog.cpp:146
+#: notesagentalarmdialog.cpp:152
 #, kde-format
 msgid "Are you sure to remove alarm?"
 msgstr "أمتأكّد من إزالة المنبّه؟"
 
-#: notesagentalarmdialog.cpp:147
+#: notesagentalarmdialog.cpp:153
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Alarm"
 msgstr "أزل المنبّه"
 
-#: notesagentalarmdialog.cpp:212
+#: notesagentalarmdialog.cpp:218
 #, kde-format
 msgid "Error during fetch alarm info."
 msgstr "خطأ أثناء جلب معلومات المنبّه."
 
-#: notesagentalarmdialog.cpp:212
+#: notesagentalarmdialog.cpp:218
 #, kde-format
 msgid "Alarm"
 msgstr "المنبّه"
 
-#: notesagentsettingsdialog.cpp:31
+#: notesagentsettingsdialog.cpp:33
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Notes Agent"
 msgstr "اضبط وكيل الملاحظات"
 
-#: notesagentsettingsdialog.cpp:46
+#: notesagentsettingsdialog.cpp:48
 #, kde-format
 msgid "Notify"
 msgstr "الإخطار"
 
-#: notesagentsettingsdialog.cpp:48
+#: notesagentsettingsdialog.cpp:50
 #, kde-format
 msgid "Network"
 msgstr "الشّبكة"
 
-#: notesagentsettingsdialog.cpp:56
+#: notesagentsettingsdialog.cpp:58
 #, kde-format
 msgid "Notes Agent"
 msgstr "وكيل ملاحظات"
 
-#: notesagentsettingsdialog.cpp:58
+#: notesagentsettingsdialog.cpp:60
 #, kde-format
 msgid "Notes Agent."
 msgstr "وكيل للملاحظات."
 
-#: notesagentsettingsdialog.cpp:60
+#: notesagentsettingsdialog.cpp:62
 #, kde-format
 msgid "Copyright (C) 2013-%1 Laurent Montel"
 msgstr "Copyright (C) 2013-%1 Laurent Montel"
 
-#: notesagentsettingsdialog.cpp:62
+#: notesagentsettingsdialog.cpp:64
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: notesagentsettingsdialog.cpp:62
+#: notesagentsettingsdialog.cpp:64
 #, kde-format
 msgid "Maintainer"
 msgstr "المصين"
 
-#: notesagentsettingsdialog.cpp:65
+#: notesagentsettingsdialog.cpp:67
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "صفا الفليج"
 
-#: notesagentsettingsdialog.cpp:65
+#: notesagentsettingsdialog.cpp:67
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
