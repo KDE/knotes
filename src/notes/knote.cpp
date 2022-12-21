@@ -52,6 +52,7 @@
 #include <QSizeGrip>
 #include <QTextEdit>
 #include <QVBoxLayout>
+#include <QWindow>
 
 #if KDEPIM_HAVE_X11
 #include <KWindowSystem/NETWM>
@@ -562,25 +563,20 @@ void KNote::slotKeepBelow()
 
 void KNote::updateKeepAboveBelow(bool save)
 {
-#if KDEPIM_HAVE_X11
-    NET::States state = KWindowInfo(winId(), NET::WMState).state();
-#else
-    NET::States state = {}; // neutral state, TODO
-#endif
     auto attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
     if (m_keepAbove->isChecked()) {
         attribute->setKeepAbove(true);
         attribute->setKeepBelow(false);
-        KWindowSystem::setState(winId(), state | NET::KeepAbove);
+        windowHandle()->setFlag(Qt::WindowStaysOnTopHint, true);
     } else if (m_keepBelow->isChecked()) {
         attribute->setKeepAbove(false);
         attribute->setKeepBelow(true);
-        KWindowSystem::setState(winId(), state | NET::KeepBelow);
+        windowHandle()->setFlag(Qt::WindowStaysOnBottomHint, true);
     } else {
         attribute->setKeepAbove(false);
         attribute->setKeepBelow(false);
-        KWindowSystem::clearState(winId(), NET::KeepAbove);
-        KWindowSystem::clearState(winId(), NET::KeepBelow);
+        windowHandle()->setFlag(Qt::WindowStaysOnTopHint, false);
+        windowHandle()->setFlag(Qt::WindowStaysOnBottomHint, false);
     }
     if (!mBlockSave && save) {
         saveNoteContent();
