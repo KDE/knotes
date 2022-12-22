@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"POT-Creation-Date: 2022-12-22 00:48+0000\n"
 "PO-Revision-Date: 2022-08-22 17:26+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -663,32 +663,32 @@ msgstr "სანიშნის მორგება..."
 msgid "Preferences KNotes..."
 msgstr "KNotes-ის მორგება..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:683
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:679
 #, kde-format
 msgid "Mail..."
 msgstr "ელფოსტა..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:679
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:675
 #, kde-format
 msgid "Send..."
 msgstr "გაგზავნა..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:675
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:671
 #, kde-format
 msgid "Set Alarm..."
 msgstr "მაღვიძარის დაყენება..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:687
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:683
 #, kde-format
 msgid "Save As..."
 msgstr "შენახვა, როგორც..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:661
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:657
 #, kde-format
 msgid "Lock"
 msgstr "ჩაკეტვა"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:664
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:660
 #, kde-format
 msgid "Unlock"
 msgstr "განბლოკვა"
@@ -765,7 +765,7 @@ msgstr "ჩვეულებრივი ტექსტი (* .txt)"
 msgid "Save As"
 msgstr "შენახვა როგორც"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:503
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:504
 #, kde-format
 msgid ""
 "<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
@@ -922,83 +922,83 @@ msgstr "სანიშნის წაშლა..."
 msgid "Read Popup Note: \"%1\""
 msgstr ""
 
-#: notes/knote.cpp:129
+#: notes/knote.cpp:130
 #, kde-format
 msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
 msgstr ""
 
-#: notes/knote.cpp:130
+#: notes/knote.cpp:131
 #, kde-format
 msgid "Confirm Delete"
 msgstr "დაადასტურეთ წაშლა"
 
-#: notes/knote.cpp:131
+#: notes/knote.cpp:132
 #, kde-format
 msgid "&Delete"
 msgstr "&წაშლა"
 
-#: notes/knote.cpp:255
+#: notes/knote.cpp:256
 #, kde-format
 msgid "Please enter the new name:"
 msgstr ""
 
-#: notes/knote.cpp:479
+#: notes/knote.cpp:480
 #, kde-format
 msgid "Save note as plain text"
 msgstr ""
 
-#: notes/knote.cpp:486
+#: notes/knote.cpp:487
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "შენახვა როგორც"
 
-#: notes/knote.cpp:611
+#: notes/knote.cpp:607
 #, kde-format
 msgid "&All Desktops"
 msgstr "&ყველა სამუშაო მაგიდა"
 
-#: notes/knote.cpp:653
+#: notes/knote.cpp:649
 #, kde-format
 msgid "New"
 msgstr "ახალი"
 
-#: notes/knote.cpp:657
+#: notes/knote.cpp:653
 #, kde-format
 msgid "Rename..."
 msgstr "სახელის გადარქმევა..."
 
-#: notes/knote.cpp:666
+#: notes/knote.cpp:662
 #, kde-format
 msgid "Hide"
 msgstr "დამალვა"
 
-#: notes/knote.cpp:671
+#: notes/knote.cpp:667
 #, kde-format
 msgid "Delete"
 msgstr "წაშლა"
 
-#: notes/knote.cpp:696
+#: notes/knote.cpp:692
 #, kde-format
 msgid "Preferences..."
 msgstr "მორგება..."
 
-#: notes/knote.cpp:700
+#: notes/knote.cpp:696
 #, kde-format
 msgid "Keep Above Others"
 msgstr ""
 
-#: notes/knote.cpp:704
+#: notes/knote.cpp:700
 #, kde-format
 msgid "Keep Below Others"
 msgstr ""
 
-#: notes/knote.cpp:709
+#: notes/knote.cpp:705
 #, kde-format
 msgid "To Desktop"
 msgstr ""
 
-#: notes/knote.cpp:717
+#: notes/knote.cpp:713
 #, kde-format
 msgid "Walk Through Notes"
 msgstr ""

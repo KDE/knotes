@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/knotes.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"POT-Creation-Date: 2022-12-22 00:48+0000\n"
 "PO-Revision-Date: 2004-12-03 14:52-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -695,32 +695,32 @@ msgstr "Socruithe Stíle"
 msgid "Preferences KNotes..."
 msgstr "Sainroghanna..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:683
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:679
 #, kde-format
 msgid "Mail..."
 msgstr "Ríomhphost..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:679
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:675
 #, kde-format
 msgid "Send..."
 msgstr "Seol..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:675
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:671
 #, kde-format
 msgid "Set Alarm..."
 msgstr "Socraigh Aláram..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:687
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:683
 #, kde-format
 msgid "Save As..."
 msgstr "Sábháil Mar..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:661
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:657
 #, kde-format
 msgid "Lock"
 msgstr "Cuir Faoi Ghlas"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:664
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:660
 #, kde-format
 msgid "Unlock"
 msgstr "Díghlasáil"
@@ -807,7 +807,7 @@ msgstr ""
 msgid "Save As"
 msgstr "Sábháil Mar"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:503
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:504
 #, kde-format
 msgid ""
 "<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
@@ -994,85 +994,85 @@ msgstr "Priontáil Nóta"
 msgid "Read Popup Note: \"%1\""
 msgstr ""
 
-#: notes/knote.cpp:129
+#: notes/knote.cpp:130
 #, kde-format
 msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
 msgstr ""
 "<qt>An bhfuil tú cinnte gur mhaith leat nóta <b>%1</b> a scriosadh?</qt>"
 
-#: notes/knote.cpp:130
+#: notes/knote.cpp:131
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Dearbhaigh an Scriosadh"
 
-#: notes/knote.cpp:131
+#: notes/knote.cpp:132
 #, kde-format
 msgid "&Delete"
 msgstr "&Scrios"
 
-#: notes/knote.cpp:255
+#: notes/knote.cpp:256
 #, kde-format
 msgid "Please enter the new name:"
 msgstr "Iontráil an t-ainm nua le do thoil:"
 
-#: notes/knote.cpp:479
+#: notes/knote.cpp:480
 #, kde-format
 msgid "Save note as plain text"
 msgstr "Sábháil an nóta mar ghnáth-théacs"
 
-#: notes/knote.cpp:486
+#: notes/knote.cpp:487
 #, fuzzy, kde-format
 #| msgid "Save As"
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Sábháil Mar"
 
-#: notes/knote.cpp:611
+#: notes/knote.cpp:607
 #, kde-format
 msgid "&All Desktops"
 msgstr "G&ach Deasc"
 
-#: notes/knote.cpp:653
+#: notes/knote.cpp:649
 #, kde-format
 msgid "New"
 msgstr "Nua"
 
-#: notes/knote.cpp:657
+#: notes/knote.cpp:653
 #, kde-format
 msgid "Rename..."
 msgstr "Athainmnigh..."
 
-#: notes/knote.cpp:666
+#: notes/knote.cpp:662
 #, kde-format
 msgid "Hide"
 msgstr "Folaigh"
 
-#: notes/knote.cpp:671
+#: notes/knote.cpp:667
 #, kde-format
 msgid "Delete"
 msgstr "Scrios"
 
-#: notes/knote.cpp:696
+#: notes/knote.cpp:692
 #, kde-format
 msgid "Preferences..."
 msgstr "Sainroghanna..."
 
-#: notes/knote.cpp:700
+#: notes/knote.cpp:696
 #, kde-format
 msgid "Keep Above Others"
 msgstr "Coimeád Os Cionn"
 
-#: notes/knote.cpp:704
+#: notes/knote.cpp:700
 #, kde-format
 msgid "Keep Below Others"
 msgstr "Coimeád Faoi Chinn Eile"
 
-#: notes/knote.cpp:709
+#: notes/knote.cpp:705
 #, kde-format
 msgid "To Desktop"
 msgstr "Go Deasc"
 
-#: notes/knote.cpp:717
+#: notes/knote.cpp:713
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "Céimnigh Trí na Nótaí"

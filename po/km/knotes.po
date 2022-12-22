@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"POT-Creation-Date: 2022-12-22 00:48+0000\n"
 "PO-Revision-Date: 2010-05-24 16:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -697,32 +697,32 @@ msgstr "សកម្មភាព​ចំណាំ"
 msgid "Preferences KNotes..."
 msgstr "ចំណង់​ចំណូល​ចិត្ត..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:683
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:679
 #, kde-format
 msgid "Mail..."
 msgstr "សំបុត្រ..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:679
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:675
 #, kde-format
 msgid "Send..."
 msgstr "ផ្ញើ..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:675
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:671
 #, kde-format
 msgid "Set Alarm..."
 msgstr "កំណត់សម្លេង​រោទ៍..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:687
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:683
 #, kde-format
 msgid "Save As..."
 msgstr "​រក្សាទុកជា..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:661
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:657
 #, kde-format
 msgid "Lock"
 msgstr "ចាក់​សោ"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:664
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:660
 #, kde-format
 msgid "Unlock"
 msgstr "ដោះសោ"
@@ -808,7 +808,7 @@ msgstr ""
 msgid "Save As"
 msgstr "រក្សាទុក​ជា"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:503
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:504
 #, kde-format
 msgid ""
 "<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
@@ -985,84 +985,84 @@ msgstr "បោះពុម្ព​ចំណាំ %1"
 msgid "Read Popup Note: \"%1\""
 msgstr ""
 
-#: notes/knote.cpp:129
+#: notes/knote.cpp:130
 #, kde-format
 msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
 msgstr "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​ចំណាំ <b>%1</b>​ឬទេ ?</qt>"
 
-#: notes/knote.cpp:130
+#: notes/knote.cpp:131
 #, kde-format
 msgid "Confirm Delete"
 msgstr "អះអាង​ការលុប"
 
-#: notes/knote.cpp:131
+#: notes/knote.cpp:132
 #, kde-format
 msgid "&Delete"
 msgstr "លុប"
 
-#: notes/knote.cpp:255
+#: notes/knote.cpp:256
 #, kde-format
 msgid "Please enter the new name:"
 msgstr "សូម​បញ្ចូល​ឈ្មោះ​ថ្មី ៖"
 
-#: notes/knote.cpp:479
+#: notes/knote.cpp:480
 #, kde-format
 msgid "Save note as plain text"
 msgstr "រក្សា​ទុក​ចំណាំ​ជា​អត្ថបទ​ធម្មតា"
 
-#: notes/knote.cpp:486
+#: notes/knote.cpp:487
 #, fuzzy, kde-format
 #| msgid "Save As"
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "រក្សាទុក​ជា"
 
-#: notes/knote.cpp:611
+#: notes/knote.cpp:607
 #, kde-format
 msgid "&All Desktops"
 msgstr "ផ្ទៃ​តុ​ទាំងអស់"
 
-#: notes/knote.cpp:653
+#: notes/knote.cpp:649
 #, kde-format
 msgid "New"
 msgstr "ថ្មី"
 
-#: notes/knote.cpp:657
+#: notes/knote.cpp:653
 #, kde-format
 msgid "Rename..."
 msgstr "​ប្តូរឈ្មោះ..."
 
-#: notes/knote.cpp:666
+#: notes/knote.cpp:662
 #, kde-format
 msgid "Hide"
 msgstr "លាក់"
 
-#: notes/knote.cpp:671
+#: notes/knote.cpp:667
 #, kde-format
 msgid "Delete"
 msgstr "លុប"
 
-#: notes/knote.cpp:696
+#: notes/knote.cpp:692
 #, kde-format
 msgid "Preferences..."
 msgstr "ចំណង់​ចំណូល​ចិត្ត..."
 
-#: notes/knote.cpp:700
+#: notes/knote.cpp:696
 #, kde-format
 msgid "Keep Above Others"
 msgstr "ដាក់​លើ​គេ"
 
-#: notes/knote.cpp:704
+#: notes/knote.cpp:700
 #, kde-format
 msgid "Keep Below Others"
 msgstr "ដាក់ក្រោម​គេ"
 
-#: notes/knote.cpp:709
+#: notes/knote.cpp:705
 #, kde-format
 msgid "To Desktop"
 msgstr "ទៅ​ផ្ទៃតុ"
 
-#: notes/knote.cpp:717
+#: notes/knote.cpp:713
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "ដើរ​កាត់​ចំណាំ"
