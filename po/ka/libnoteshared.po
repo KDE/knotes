@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-16 00:47+0000\n"
-"PO-Revision-Date: 2022-08-22 17:19+0200\n"
+"PO-Revision-Date: 2022-12-27 09:51+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: alarms/notealarmdialog.cpp:41
 #, kde-format
@@ -49,6 +49,9 @@ msgid ""
 "<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "
 "current note title</li><li>%f returns current note text</li></ul></qt>"
 msgstr ""
+"<qt><p>შეგიძლიათ ბრძანების სტრიქონი მოირგოთ. შეგიძლიათ გამოიყენოთ:</"
+"p><ul><li>%t აბრუნებს მიმდინარე შენიშვნის სათაურს</li><li>%f აბრუნებს "
+"მიმდინარე შენიშვნის ტექსტს</li></ul></qt>"
 
 #: config/notenetworkconfig.cpp:29
 #, kde-format
