@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-22 00:48+0000\n"
-"PO-Revision-Date: 2022-12-27 06:17+0100\n"
+"PO-Revision-Date: 2022-12-29 02:48+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -909,10 +909,11 @@ msgid "(note locked, it will not removed)"
 msgstr "(შენიშვნა დაბლოკილია, ის არ წაიშლება)"
 
 #: kontactplugin/knotesselectdeletenotesdialog.cpp:57
-#, fuzzy, kde-format
+#, kde-format
 msgid "Do you really want to delete this note?"
 msgid_plural "Do you really want to delete these %1 notes?"
-msgstr[0] "მართლა გნებავთ %1 შენიშვნის წაშლა?"
+msgstr[0] "მართლა გნებავთ ამ შენიშვნის წაშლა?"
+msgstr[1] "მართლა გნებავთ %1 შენიშვნის წაშლა?"
 
 #: kontactplugin/summarywidget.cpp:41
 #, kde-format
@@ -1032,10 +1033,11 @@ msgid "Note is locked"
 msgstr "სანიშნე ჩაკეტილია"
 
 #: print/knoteprinter.cpp:111
-#, fuzzy, kde-format
+#, kde-format
 msgid "Print Note"
 msgid_plural "Print %1 notes"
-msgstr[0] "%1 შენიშვნის დაბეჭდვა"
+msgstr[0] "შენიშვნის დაბეჭდვა"
+msgstr[1] "%1 შენიშვნის დაბეჭდვა"
 
 #: print/knoteprinter.cpp:118
 #, kde-format
