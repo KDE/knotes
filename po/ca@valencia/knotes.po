@@ -1005,7 +1005,7 @@ msgstr "Preferències..."
 #: notes/knote.cpp:696
 #, kde-format
 msgid "Keep Above Others"
-msgstr "Mantín sobre les altres"
+msgstr "Mantín damunt les altres"
 
 #: notes/knote.cpp:700
 #, kde-format
