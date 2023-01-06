@@ -8,6 +8,7 @@
         "Description[de]": "KNotes-Modul für Kontact",
         "Description[el]": "Πρόσθετο KNotes του Kontact",
         "Description[en_GB]": "Kontact KNotes Plugin",
+        "Description[eo]": "Kontact KNotes-Kromprogramo",
         "Description[es]": "Complemento de KNotes para Kontact",
         "Description[eu]": "Kontact-en KNotes plugin-a",
         "Description[fi]": "Kontactin KNotes-liitännäinen",
