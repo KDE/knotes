@@ -9,13 +9,13 @@
 # H. İbrahim Güngör <ibrahim@pardus.org.tr>, 2010, 2013.
 # Volkan Gezer <volkangezer@gmail.com>, 2013, 2014, 2017.
 # Kaan Ozdincer <kaanozdincer@gmail.com>, 2014.
-# Emir SARI <emir_sari@icloud.com>, 2022.
+# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-22 00:48+0000\n"
-"PO-Revision-Date: 2022-12-10 18:40+0300\n"
+"PO-Revision-Date: 2023-01-10 21:54+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.08.3\n"
+"X-Generator: Lokalize 22.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -43,7 +43,7 @@ msgstr "Benzersiz olmayan bir örnekte not oluştururken bilgi verme."
 #: apps/knotesakonaditray.cpp:21 apps/knotestray.cpp:18
 #, kde-format
 msgid "KNotes: Sticky notes by KDE"
-msgstr "KNotes: KDE'den yapışkan notlar"
+msgstr "K Notlar: KDE'den yapışkan notlar"
 
 #: apps/knotesapp.cpp:85
 #, kde-format
@@ -123,7 +123,7 @@ msgstr "Ayarlar"
 #: kontactplugin/knoteseditdialog.cpp:53
 #, kde-format
 msgid "KNotes"
-msgstr "KNotes"
+msgstr "K Notlar"
 
 #: apps/main.cpp:47
 #, kde-format
@@ -133,7 +133,7 @@ msgstr "KDE Notları"
 #: apps/main.cpp:49
 #, kde-format
 msgid "Copyright © 1997–%1 KNotes authors"
-msgstr "Telif hakkı © 1997–%1 KNotes yazarları"
+msgstr "Telif hakkı © 1997–%1 K Notlar yazarları"
 
 #: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
 #, kde-format
@@ -168,7 +168,7 @@ msgstr "Bernd Johannes Wuebben"
 #: apps/main.cpp:72
 #, kde-format
 msgid "Original KNotes Author"
-msgstr "KNotes Asıl Yazarı"
+msgstr "K Notlar Özgün Yazarı"
 
 #: apps/main.cpp:73
 #, kde-format
@@ -178,7 +178,7 @@ msgstr "Wynn Wilkes"
 #: apps/main.cpp:73
 #, kde-format
 msgid "Ported KNotes to KDE 2"
-msgstr "KNotes'u KDE 2'ye taşıdı"
+msgstr "K Notlar'ı KDE 2'ye taşıdı"
 
 #: apps/main.cpp:74
 #, kde-format
@@ -258,7 +258,7 @@ msgstr "Klasörler"
 #: configdialog/knotecollectionconfigwidget.cpp:103
 #, kde-format
 msgid "Select which KNotes folders to show:"
-msgstr "Gösterilecek KNotes klasörlerini seçin:"
+msgstr "Gösterilecek K Notlar klasörlerini seçin:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
 #, kde-format
@@ -675,7 +675,7 @@ msgstr "Not ayarları..."
 #: kontactplugin/knotes_part.cpp:138
 #, kde-format
 msgid "Preferences KNotes..."
-msgstr "KNotes Tercihleri..."
+msgstr "K Notlar Tercihleri..."
 
 #: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:679
 #, kde-format
@@ -806,7 +806,7 @@ msgstr "Yeni bir açılır not oluşturabileceğiniz bir iletişim kutusu sunula
 #, kde-kuit-format
 msgctxt "@title"
 msgid "KNotes"
-msgstr "KNotes"
+msgstr "K Notlar"
 
 #: kontactplugin/knotes_plugin.cpp:78
 #, kde-kuit-format
@@ -818,7 +818,7 @@ msgstr "Açılan Notlar"
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Copyright © 2003–%1 Kontact authors"
-msgstr "Telif hakkı © 2003–%1 Kontact yazarları"
+msgstr "Telif hakkı © 2003–%1 Kontak yazarları"
 
 #: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
