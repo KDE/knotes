@@ -24,7 +24,7 @@
         "Description[ru]": "Заметки",
         "Description[sl]": "Vstavek Kontact za KNotes",
         "Description[sv]": "Kontacts insticksprogram för Knotes",
-        "Description[tr]": "Kontact KNotes Eklentisi",
+        "Description[tr]": "Kontak K Notlar Eklentisi",
         "Description[uk]": "Додаток приміток (KNotes) Kontact",
         "Description[x-test]": "xxKontact KNotes Pluginxx",
         "EnabledByDefault": true,
