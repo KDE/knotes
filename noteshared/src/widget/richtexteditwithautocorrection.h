@@ -7,7 +7,11 @@
 #pragma once
 
 #include <KPIMTextEdit/RichTextEditor>
+#ifdef HAVE_KTEXTADDONS_TEXT_AUTOCORRECTION_SUPPORT
+namespace TextAutoCorrection
+#else
 namespace PimCommonAutoCorrection
+#endif
 {
 class AutoCorrection;
 }
@@ -25,9 +29,13 @@ public:
     explicit RichTextEditWithAutoCorrection(QWidget *parent = nullptr);
     ~RichTextEditWithAutoCorrection() override;
 
+#ifdef HAVE_KTEXTADDONS_TEXT_AUTOCORRECTION_SUPPORT
+    Q_REQUIRED_RESULT TextAutoCorrection::AutoCorrection *autocorrection() const;
+    void setAutocorrection(TextAutoCorrection::AutoCorrection *autocorrect);
+#else
     Q_REQUIRED_RESULT PimCommonAutoCorrection::AutoCorrection *autocorrection() const;
-
     void setAutocorrection(PimCommonAutoCorrection::AutoCorrection *autocorrect);
+#endif
 
     void setAutocorrectionLanguage(const QString &language);
 

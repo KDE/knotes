@@ -91,9 +91,14 @@ target_link_libraries(notesharedprivate
     PUBLIC
     KF5::AkonadiCore
     PRIVATE
-    KF5::DNSSD KF5::PimCommon  KF5::Mime KF5::AkonadiNotes KF5::PimTextEdit KF5::Completion Qt::DBus KF5::I18n KF5::AkonadiWidgets KF5::PimCommonAutoCorrection
-    )
+    KF5::DNSSD KF5::PimCommon  KF5::Mime KF5::AkonadiNotes KF5::PimTextEdit KF5::Completion Qt::DBus KF5::I18n KF5::AkonadiWidgets
 
+    )
+if (USE_KTEXTADDONS_LIB)
+    target_link_libraries(notesharedprivate PRIVATE KF5::TextAutoCorrection)
+else()
+    target_link_libraries(notesharedprivate PRIVATE KF5::PimCommonAutoCorrection)
+endif()
 
 set_target_properties(notesharedprivate
     PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
