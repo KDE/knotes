@@ -72,7 +72,7 @@ msgstr "Alarma"
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Notes Agent"
-msgstr "Configuració de l'agent de notes"
+msgstr "Configureu l'agent de notes"
 
 #: notesagentsettingsdialog.cpp:46
 #, kde-format

@@ -406,7 +406,7 @@ msgstr "Seleccioneu les notes"
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Shortcuts"
-msgstr "Configuració de les dreceres"
+msgstr "Configureu les dreceres"
 
 #: dialog/knoteskeydialog.cpp:59
 #, kde-format
@@ -669,7 +669,7 @@ msgstr "Imprimix la vista prèvia de les notes seleccionades..."
 #: kontactplugin/knotes_part.cpp:134
 #, kde-format
 msgid "Note settings..."
-msgstr "Configuració de la nota..."
+msgstr "Configureu la nota..."
 
 #: kontactplugin/knotes_part.cpp:138
 #, kde-format
@@ -886,7 +886,7 @@ msgstr "Mostra una nota emergent"
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Popup Note"
-msgstr "Edició d'una nota emergent"
+msgstr "Editeu una nota emergent"
 
 #: kontactplugin/knoteseditdialog.cpp:65
 #, kde-format
