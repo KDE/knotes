@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-22 00:48+0000\n"
+"POT-Creation-Date: 2023-01-20 00:58+0000\n"
 "PO-Revision-Date: 2022-06-03 15:23+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -44,7 +44,7 @@ msgstr "skull@kde.ru,aspotashev@gmail.com,gammaray@basealt.ru"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "Запрет создания заметки в неуникальном экземпляре программы."
 
-#: apps/knotesakonaditray.cpp:21 apps/knotestray.cpp:18
+#: apps/knotesakonaditray.cpp:21
 #, kde-format
 msgid "KNotes: Sticky notes by KDE"
 msgstr "KNotes — приложение для работы с заметками от KDE"

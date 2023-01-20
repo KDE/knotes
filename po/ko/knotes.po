@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-22 00:48+0000\n"
+"POT-Creation-Date: 2023-01-20 00:58+0000\n"
 "PO-Revision-Date: 2022-02-20 22:23+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -34,7 +34,7 @@ msgstr "kde@peremen.name"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "두 번 이상 실행될 때 새 노트를 만들지 않습니다."
 
-#: apps/knotesakonaditray.cpp:21 apps/knotestray.cpp:18
+#: apps/knotesakonaditray.cpp:21
 #, kde-format
 msgid "KNotes: Sticky notes by KDE"
 msgstr "KNotes: KDE 찍찍이 노트"

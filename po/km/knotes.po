@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-22 00:48+0000\n"
+"POT-Creation-Date: 2023-01-20 00:58+0000\n"
 "PO-Revision-Date: 2010-05-24 16:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -35,7 +35,7 @@ msgstr "khoemsokhem@khmeros.info,​​evannak@khmeros.info,piseth_dv@khmeros.in
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "ទប់ស្កាត់​ការ​បង្កើត​ចំណាំ​ថ្មី​លើ​វត្ថុ​ដែល​មិនមែន​មាន​តែ​មួយ ។"
 
-#: apps/knotesakonaditray.cpp:21 apps/knotestray.cpp:18
+#: apps/knotesakonaditray.cpp:21
 #, fuzzy, kde-format
 #| msgid "KNotes: Sticky notes for KDE"
 msgid "KNotes: Sticky notes by KDE"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-22 00:48+0000\n"
+"POT-Creation-Date: 2023-01-20 00:58+0000\n"
 "PO-Revision-Date: 2022-02-02 20:55+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -36,7 +36,7 @@ msgstr "safa1996alfulaij@gmail.com"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "امنع إنشاء الملاحظات الجديدة في السّيرورات غير الفريدة."
 
-#: apps/knotesakonaditray.cpp:21 apps/knotestray.cpp:18
+#: apps/knotesakonaditray.cpp:21
 #, kde-format
 msgid "KNotes: Sticky notes by KDE"
 msgstr "ملاحظاتك: ملاحظات لاصقة من «كدي»"

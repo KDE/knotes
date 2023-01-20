@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-22 00:48+0000\n"
+"POT-Creation-Date: 2023-01-20 00:58+0000\n"
 "PO-Revision-Date: 2005-10-10 14:12+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -30,7 +30,7 @@ msgstr "opensource@mimos.my"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr ""
 
-#: apps/knotesakonaditray.cpp:21 apps/knotestray.cpp:18
+#: apps/knotesakonaditray.cpp:21
 #, fuzzy, kde-format
 #| msgid "KNotes: Sticky notes for KDE"
 msgid "KNotes: Sticky notes by KDE"
