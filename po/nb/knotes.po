@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-22 00:48+0000\n"
+"POT-Creation-Date: 2023-01-20 00:58+0000\n"
 "PO-Revision-Date: 2015-02-07 22:15+0100\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "Ikke opprett nytt notat for hendelse som ikke er unik."
 
-#: apps/knotesakonaditray.cpp:21 apps/knotestray.cpp:18
+#: apps/knotesakonaditray.cpp:21
 #, kde-format
 msgid "KNotes: Sticky notes by KDE"
 msgstr ""
