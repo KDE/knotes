@@ -84,7 +84,7 @@ void NotesNetworkReceiver::slotDataAvailable()
 
     do {
         // Append to "big buffer" only if we have some space left.
-        int curLen = d->m_buffer->count();
+        int curLen = d->m_buffer->size();
 
         smallBufferLen = d->m_sock->read(smallBuffer, SBSIZE);
 
@@ -98,7 +98,7 @@ void NotesNetworkReceiver::slotDataAvailable()
     } while (smallBufferLen == SBSIZE);
 
     // If we are overflowing, close connection.
-    if (d->m_buffer->count() == MAXBUFFER) {
+    if (d->m_buffer->size() == MAXBUFFER) {
         d->m_sock->close();
     } else {
         d->m_timer->start(MAXTIME);

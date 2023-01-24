@@ -1125,14 +1125,22 @@ bool KNote::eventFilter(QObject *o, QEvent *ev)
         }
 
         if (ev->type() == QEvent::MouseMove && ((e->buttons() & Qt::LeftButton) == Qt::LeftButton || (e->buttons() & Qt::MiddleButton) == Qt::MiddleButton)) {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             QPoint newPos = e->globalPos() - mOrigPos - QPoint(1, 1);
+#else
+            QPoint newPos = e->globalPosition().toPoint() - mOrigPos - QPoint(1, 1);
+#endif
             move(newPos);
             return true;
         }
 
         if (ev->type() == QEvent::MouseButtonRelease
             && ((e->buttons() & Qt::LeftButton) == Qt::LeftButton || (e->buttons() & Qt::MiddleButton) == Qt::MiddleButton)) {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             QPoint newPos = e->globalPos() - mOrigPos - QPoint(1, 1);
+#else
+            QPoint newPos = e->globalPosition().toPoint() - mOrigPos - QPoint(1, 1);
+#endif
             move(newPos);
             return false;
         }

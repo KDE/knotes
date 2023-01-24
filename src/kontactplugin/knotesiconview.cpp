@@ -65,7 +65,11 @@ void KNotesIconView::mousePressEvent(QMouseEvent *e)
 {
     if (e->button() == Qt::RightButton) {
         QListView::mousePressEvent(e);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         m_part->popupRMB(currentItem(), e->pos(), e->globalPos());
+#else
+        m_part->popupRMB(currentItem(), e->pos(), e->globalPosition().toPoint());
+#endif
     } else {
         QListView::mousePressEvent(e);
     }
@@ -171,7 +175,7 @@ void KNotesIconViewItem::setChangeIconTextAndDescription(const QString &iconText
 void KNotesIconViewItem::setIconText(const QString &text, bool save)
 {
     QString replaceText;
-    if (text.count() > 50) {
+    if (text.length() > 50) {
         replaceText = text.left(50) + QLatin1String("...");
     } else {
         replaceText = text;

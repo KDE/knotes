@@ -484,7 +484,7 @@ void KNotesApp::updateNoteActions()
         KNote *note = i.value();
         QString replaceText;
         QString realName = note->name();
-        if (realName.count() > 50) {
+        if (realName.length() > 50) {
             replaceText = realName.left(50) + QLatin1String("...");
         } else {
             replaceText = realName;
