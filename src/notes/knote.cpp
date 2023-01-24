@@ -56,6 +56,7 @@
 
 #if KDEPIM_HAVE_X11
 #include <KWindowSystem/NETWM>
+#include <KX11Extras>
 #include <fixx11h.h>
 #endif
 
@@ -160,7 +161,7 @@ void KNote::saveNote(bool force, bool sync)
     }
 #if KDEPIM_HAVE_X11
     KWindowInfo info(winId(), NET::WMDesktop);
-    const int count = KWindowSystem::numberOfDesktops();
+    const int count = KX11Extras::numberOfDesktops();
     for (int n = 1; n <= count; ++n) {
         if (info.isOnDesktop(n)) {
             if (attribute->desktop() != n) {
@@ -321,7 +322,7 @@ void KNote::updateAllAttributes()
     auto attribute = mItem.attribute<NoteShared::NoteDisplayAttribute>(Akonadi::Item::AddIfMissing);
 #if KDEPIM_HAVE_X11
     KWindowInfo info(winId(), NET::WMDesktop);
-    const int count = KWindowSystem::numberOfDesktops();
+    const int count = KX11Extras::numberOfDesktops();
     for (int n = 1; n <= count; ++n) {
         if (info.isOnDesktop(n)) {
             attribute->setDesktop(n);
@@ -614,9 +615,9 @@ void KNote::slotUpdateDesktopActions()
     auto separator = new QAction(m_toDesktop);
     separator->setSeparator(true);
     m_toDesktop->addAction(separator);
-    const int count = KWindowSystem::numberOfDesktops();
+    const int count = KX11Extras::numberOfDesktops();
     for (int n = 1; n <= count; ++n) {
-        QAction *desktopAct = m_toDesktop->addAction(QStringLiteral("&%1 %2").arg(n).arg(KWindowSystem::desktopName(n)));
+        QAction *desktopAct = m_toDesktop->addAction(QStringLiteral("&%1 %2").arg(n).arg(KX11Extras::desktopName(n)));
         desktopAct->setData(n);
         if (info.isOnDesktop(n)) {
             desktopAct->setChecked(true);
@@ -864,7 +865,7 @@ void KNote::prepare()
 
 #if KDEPIM_HAVE_X11
     if ((desktop < 0 && desktop != NETWinInfo::OnAllDesktops) || !mDisplayAttribute->rememberDesktop()) {
-        desktop = KWindowSystem::currentDesktop();
+        desktop = KX11Extras::currentDesktop();
     }
 #endif
 
@@ -913,9 +914,9 @@ void KNote::toDesktop(int desktop)
 
 #if KDEPIM_HAVE_X11
     if (desktop == NETWinInfo::OnAllDesktops) {
-        KWindowSystem::setOnAllDesktops(winId(), true);
+        KX11Extras::setOnAllDesktops(winId(), true);
     } else {
-        KWindowSystem::setOnDesktop(winId(), desktop);
+        KX11Extras::setOnDesktop(winId(), desktop);
     }
 #endif
 }

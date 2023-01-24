@@ -70,10 +70,14 @@ generate_export_header(knotesprivate BASE_NAME knotes)
 
 target_link_libraries(knotesprivate
     PUBLIC
-    KF5::IconThemes
+    KF${KF_MAJOR_VERSION}::IconThemes
     PRIVATE
     KF5::PimCommon
-    KF5::KCMUtils KF5::NewStuff KF5::WindowSystem Qt::PrintSupport KF5::TextWidgets KF5::I18n notesharedprivate KF5::AkonadiSearchPIM KF5::AkonadiNotes KF5::PimTextEdit KF5::AkonadiWidgets KF5::GrantleeTheme
+    KF${KF_MAJOR_VERSION}::XmlGui
+    KF${KF_MAJOR_VERSION}::KCMUtils KF${KF_MAJOR_VERSION}::NewStuff
+    KF${KF_MAJOR_VERSION}::WindowSystem Qt::PrintSupport
+    KF${KF_MAJOR_VERSION}::TextWidgets KF${KF_MAJOR_VERSION}::I18n notesharedprivate
+    KF5::AkonadiSearchPIM KF5::AkonadiNotes KF5::PimTextEdit KF5::AkonadiWidgets KF5::GrantleeTheme
     )
 
 if (QT_MAJOR_VERSION STREQUAL "5")
@@ -127,20 +131,21 @@ endif()
 
 target_link_libraries(knotes 
     knotesprivate
-    KF5::KCMUtils
+    KF${KF_MAJOR_VERSION}::KCMUtils
     KF5::PimCommon
-    KF5::DNSSD
+    KF${KF_MAJOR_VERSION}::DNSSD
     KF5::KontactInterface
     notesharedprivate
     KF5::AkonadiCore
     KF5::Mime
-    KF5::GlobalAccel
-    KF5::Notifications
-    KF5::WindowSystem
-    KF5::KIOFileWidgets
+    KF${KF_MAJOR_VERSION}::GlobalAccel
+    KF${KF_MAJOR_VERSION}::Notifications
+    KF${KF_MAJOR_VERSION}::WindowSystem
+    KF${KF_MAJOR_VERSION}::KIOFileWidgets
     KF5::AkonadiSearchDebug
     KF5::AkonadiNotes
-    KF5::Crash
+    KF${KF_MAJOR_VERSION}::Crash
+    KF${KF_MAJOR_VERSION}::XmlGui
     KF5::AkonadiWidgets
     )
 if (Qt5X11Extras_FOUND)
@@ -162,7 +167,7 @@ set_property(TARGET kcm_knote_static PROPERTY POSITION_INDEPENDENT_CODE ON)
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(kcm_knote_static PROPERTIES UNITY_BUILD ON)
 endif()
-target_link_libraries(kcm_knote_static knotesprivate KF5::NewStuffWidgets KF5::AkonadiCore  KF5::KCMUtils KF5::NewStuff notesharedprivate KF5::AkonadiNotes KF5::PimCommon KF5::I18n KF5::AkonadiWidgets)
+target_link_libraries(kcm_knote_static knotesprivate KF${KF_MAJOR_VERSION}::NewStuffWidgets KF5::AkonadiCore  KF${KF_MAJOR_VERSION}::KCMUtils KF${KF_MAJOR_VERSION}::NewStuff notesharedprivate KF5::AkonadiNotes KF5::PimCommon KF${KF_MAJOR_VERSION}::I18n KF5::AkonadiWidgets)
 
 # Create the individual KCMs
 kcoreaddons_add_plugin(kcm_knote_action SOURCES kcm_knote_action.cpp INSTALL_NAMESPACE "pim${QT_MAJOR_VERSION}/kcms/knotes")

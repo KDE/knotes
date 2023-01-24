@@ -14,7 +14,6 @@
 #include <config-knotes.h>
 
 #include <KAuthorized>
-#include <KNS3/DownloadDialog>
 #include <KPluginMetaData>
 
 #include <QCheckBox>

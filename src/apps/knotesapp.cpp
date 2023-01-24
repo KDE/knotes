@@ -60,6 +60,9 @@
 #include <QFileDialog>
 #include <QMenu>
 #include <QStyle>
+#if KDEPIM_HAVE_X11
+#include <KX11Extras>
+#endif
 
 static bool qActionLessThan(const QAction *a1, const QAction *a2)
 {
@@ -356,11 +359,11 @@ void KNotesApp::showNote(KNote *note) const
     note->show();
 #if KDEPIM_HAVE_X11
     if (!note->isDesktopAssigned()) {
-        note->toDesktop(KWindowSystem::currentDesktop());
+        note->toDesktop(KX11Extras::currentDesktop());
     } else {
-        KWindowSystem::setCurrentDesktop(KWindowInfo(note->winId(), NET::WMDesktop).desktop());
+        KX11Extras::setCurrentDesktop(KWindowInfo(note->winId(), NET::WMDesktop).desktop());
     }
-    KWindowSystem::forceActiveWindow(note->winId());
+    KX11Extras::forceActiveWindow(note->winId());
 #endif
     note->setFocus();
 }

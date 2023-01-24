@@ -36,15 +36,15 @@ target_link_libraries(akonadi_notes_agent
     KF5::AkonadiCore
     KF5::Mime
     KF5::AkonadiAgentBase
-    KF5::NotifyConfig
+    KF${KF_MAJOR_VERSION}::NotifyConfig
     notesharedprivate
     KF5::PimCommon
     KF5::PimTextEdit
-    KF5::XmlGui
-    KF5::WindowSystem
-    KF5::Notifications
-    KF5::IconThemes
-    KF5::I18n
+    KF${KF_MAJOR_VERSION}::XmlGui
+    KF${KF_MAJOR_VERSION}::WindowSystem
+    KF${KF_MAJOR_VERSION}::Notifications
+    KF${KF_MAJOR_VERSION}::IconThemes
+    KF${KF_MAJOR_VERSION}::I18n
     KF5::AkonadiNotes
     )
 
