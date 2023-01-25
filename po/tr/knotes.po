@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-20 00:58+0000\n"
+"POT-Creation-Date: 2023-01-25 00:58+0000\n"
 "PO-Revision-Date: 2023-01-10 21:54+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -45,74 +45,74 @@ msgstr "Benzersiz olmayan bir örnekte not oluştururken bilgi verme."
 msgid "KNotes: Sticky notes by KDE"
 msgstr "K Notlar: KDE'den yapışkan notlar"
 
-#: apps/knotesapp.cpp:85
+#: apps/knotesapp.cpp:88
 #, kde-format
 msgid "New Note"
 msgstr "Yeni Not"
 
-#: apps/knotesapp.cpp:92 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:95 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "Panodan Yeni Not"
 
-#: apps/knotesapp.cpp:97 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:100 kontactplugin/knotes_part.cpp:158
 #, kde-format
 msgid "New Note From Text File..."
 msgstr "Metin Dosyasından Yeni Not..."
 
-#: apps/knotesapp.cpp:101
+#: apps/knotesapp.cpp:104
 #, kde-format
 msgid "Show All Notes"
 msgstr "Tüm Notları Göster"
 
-#: apps/knotesapp.cpp:106
+#: apps/knotesapp.cpp:109
 #, kde-format
 msgid "Hide All Notes"
 msgstr "Tüm Notları Gizle"
 
-#: apps/knotesapp.cpp:111 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:114 kontactplugin/knotes_part.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "Seçilen Notları Yazdır..."
 
-#: apps/knotesapp.cpp:116
+#: apps/knotesapp.cpp:119
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Seçilen Notları Sil..."
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "Metin Dosyası Seç"
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "Metin Dosyası"
 
-#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "Metin dosyası açılırken hata: %1"
 
-#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "Metin Dosyası Aç"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:420 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "'%1' dosyasından not"
 
-#: apps/knotesapp.cpp:510
+#: apps/knotesapp.cpp:513
 #, kde-format
 msgid "No Notes"
 msgstr "Not Yok"
 
-#: apps/knotesapp.cpp:563 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:566 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "Ayarlar"
@@ -677,32 +677,32 @@ msgstr "Not ayarları..."
 msgid "Preferences KNotes..."
 msgstr "K Notlar Tercihleri..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:679
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:680
 #, kde-format
 msgid "Mail..."
 msgstr "Postala..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:675
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:676
 #, kde-format
 msgid "Send..."
 msgstr "Gönder..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:671
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:672
 #, kde-format
 msgid "Set Alarm..."
 msgstr "Alarmı Ayarla..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:683
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:684
 #, kde-format
 msgid "Save As..."
 msgstr "Farklı Kaydet..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:657
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:658
 #, kde-format
 msgid "Lock"
 msgstr "Kilitle"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:660
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:661
 #, kde-format
 msgid "Unlock"
 msgstr "Kilidi Aç"
@@ -779,7 +779,7 @@ msgstr "Düz metin (*.txt)"
 msgid "Save As"
 msgstr "Farklı Kaydet"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:504
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:505
 #, kde-format
 msgid ""
 "<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
@@ -939,83 +939,83 @@ msgstr "Notu Sil..."
 msgid "Read Popup Note: \"%1\""
 msgstr "Açılır Notu Oku: \"%1\""
 
-#: notes/knote.cpp:130
+#: notes/knote.cpp:131
 #, kde-format
 msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
 msgstr "<qt><b>%1</b> notunu silmek istediğinizden emin misiniz ?</qt>"
 
-#: notes/knote.cpp:131
+#: notes/knote.cpp:132
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Silmeyi Onayla"
 
-#: notes/knote.cpp:132
+#: notes/knote.cpp:133
 #, kde-format
 msgid "&Delete"
 msgstr "&Sil"
 
-#: notes/knote.cpp:256
+#: notes/knote.cpp:257
 #, kde-format
 msgid "Please enter the new name:"
 msgstr "Lütfen yeni adı girin:"
 
-#: notes/knote.cpp:480
+#: notes/knote.cpp:481
 #, kde-format
 msgid "Save note as plain text"
 msgstr "Notu düz metin olarak kaydet"
 
-#: notes/knote.cpp:487
+#: notes/knote.cpp:488
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Farklı Kaydet"
 
-#: notes/knote.cpp:607
+#: notes/knote.cpp:608
 #, kde-format
 msgid "&All Desktops"
 msgstr "&Tüm Masaüstleri"
 
-#: notes/knote.cpp:649
+#: notes/knote.cpp:650
 #, kde-format
 msgid "New"
 msgstr "Yeni"
 
-#: notes/knote.cpp:653
+#: notes/knote.cpp:654
 #, kde-format
 msgid "Rename..."
 msgstr "Yeniden adlandır..."
 
-#: notes/knote.cpp:662
+#: notes/knote.cpp:663
 #, kde-format
 msgid "Hide"
 msgstr "Gizle"
 
-#: notes/knote.cpp:667
+#: notes/knote.cpp:668
 #, kde-format
 msgid "Delete"
 msgstr "Sil"
 
-#: notes/knote.cpp:692
+#: notes/knote.cpp:693
 #, kde-format
 msgid "Preferences..."
 msgstr "Tercihler..."
 
-#: notes/knote.cpp:696
+#: notes/knote.cpp:697
 #, kde-format
 msgid "Keep Above Others"
 msgstr "Diğerlerinin Üzerinde Tut"
 
-#: notes/knote.cpp:700
+#: notes/knote.cpp:701
 #, kde-format
 msgid "Keep Below Others"
 msgstr "Diğerlerinin Altında Tut"
 
-#: notes/knote.cpp:705
+#: notes/knote.cpp:706
 #, kde-format
 msgid "To Desktop"
 msgstr "Masaüstüne"
 
-#: notes/knote.cpp:713
+#: notes/knote.cpp:714
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "Notlar Arasında Gezin"

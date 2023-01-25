@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-20 00:58+0000\n"
+"POT-Creation-Date: 2023-01-25 00:58+0000\n"
 "PO-Revision-Date: 2013-11-08 01:39+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -38,39 +38,39 @@ msgstr "Жаңа жазбаның қайталанатын данасын бол
 msgid "KNotes: Sticky notes by KDE"
 msgstr "KNotes: KDE-нің жапсырмалы жазбалары"
 
-#: apps/knotesapp.cpp:85
+#: apps/knotesapp.cpp:88
 #, kde-format
 msgid "New Note"
 msgstr "Жаңа жазба"
 
-#: apps/knotesapp.cpp:92 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:95 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "Алмасу буферінен жаңа жазба"
 
-#: apps/knotesapp.cpp:97 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:100 kontactplugin/knotes_part.cpp:158
 #, fuzzy, kde-format
 #| msgid "New Note From Clipboard"
 msgid "New Note From Text File..."
 msgstr "Алмасу буферінен жаңа жазба"
 
-#: apps/knotesapp.cpp:101
+#: apps/knotesapp.cpp:104
 #, kde-format
 msgid "Show All Notes"
 msgstr "Барлық жазбаларын көрсету"
 
-#: apps/knotesapp.cpp:106
+#: apps/knotesapp.cpp:109
 #, kde-format
 msgid "Hide All Notes"
 msgstr "Барлық жазбаларын жасыру"
 
-#: apps/knotesapp.cpp:111 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:114 kontactplugin/knotes_part.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "Тандағандарын басып шығару..."
 
-#: apps/knotesapp.cpp:116
+#: apps/knotesapp.cpp:119
 #, fuzzy, kde-format
 #| msgctxt "@action:inmenu"
 #| msgid "Print Selected Notes..."
@@ -78,40 +78,40 @@ msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Тандағандарын басып шығару..."
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 #| msgid "Select notes"
 msgid "Select Text File"
 msgstr "Жазбаларды таңдау"
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Text File"
 msgstr "Мәтіннің өлшемі"
 
-#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr ""
 
-#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Open Text File"
 msgstr "Мәтіннің өлшемі"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:420 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr ""
 
-#: apps/knotesapp.cpp:510
+#: apps/knotesapp.cpp:513
 #, kde-format
 msgid "No Notes"
 msgstr "Жазбалар жоқ"
 
-#: apps/knotesapp.cpp:563 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:566 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "Параметрлері"
@@ -695,32 +695,32 @@ msgstr "Стиль параметрлері"
 msgid "Preferences KNotes..."
 msgstr "Баптаулары..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:679
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:680
 #, kde-format
 msgid "Mail..."
 msgstr "Пошта..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:675
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:676
 #, kde-format
 msgid "Send..."
 msgstr "Жіберу..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:671
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:672
 #, kde-format
 msgid "Set Alarm..."
 msgstr "Ескертуді орнату..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:683
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:684
 #, kde-format
 msgid "Save As..."
 msgstr "Былай сақтау..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:657
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:658
 #, kde-format
 msgid "Lock"
 msgstr "Бұғаттау"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:660
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:661
 #, kde-format
 msgid "Unlock"
 msgstr "Босату"
@@ -806,7 +806,7 @@ msgstr ""
 msgid "Save As"
 msgstr "Былай сақтау"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:504
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:505
 #, kde-format
 msgid ""
 "<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
@@ -984,84 +984,84 @@ msgstr "Тандағандарын басып шығару..."
 msgid "Read Popup Note: \"%1\""
 msgstr ""
 
-#: notes/knote.cpp:130
+#: notes/knote.cpp:131
 #, kde-format
 msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
 msgstr "<qt>Шынымен <b>%1</b> жазбасын өшірмексіз бе?</qt>"
 
-#: notes/knote.cpp:131
+#: notes/knote.cpp:132
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Өшіруді құптау"
 
-#: notes/knote.cpp:132
+#: notes/knote.cpp:133
 #, kde-format
 msgid "&Delete"
 msgstr "Ө&шіру"
 
-#: notes/knote.cpp:256
+#: notes/knote.cpp:257
 #, kde-format
 msgid "Please enter the new name:"
 msgstr "Жаңа атауын келтіріңіз:"
 
-#: notes/knote.cpp:480
+#: notes/knote.cpp:481
 #, kde-format
 msgid "Save note as plain text"
 msgstr "Кәдімгі мәтінде сақтау"
 
-#: notes/knote.cpp:487
+#: notes/knote.cpp:488
 #, fuzzy, kde-format
 #| msgid "Save As"
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Былай сақтау"
 
-#: notes/knote.cpp:607
+#: notes/knote.cpp:608
 #, kde-format
 msgid "&All Desktops"
 msgstr "Б&арлық үстелдерге"
 
-#: notes/knote.cpp:649
+#: notes/knote.cpp:650
 #, kde-format
 msgid "New"
 msgstr "Жаңа"
 
-#: notes/knote.cpp:653
+#: notes/knote.cpp:654
 #, kde-format
 msgid "Rename..."
 msgstr "Атауын өзгерту..."
 
-#: notes/knote.cpp:662
+#: notes/knote.cpp:663
 #, kde-format
 msgid "Hide"
 msgstr "Жасыру"
 
-#: notes/knote.cpp:667
+#: notes/knote.cpp:668
 #, kde-format
 msgid "Delete"
 msgstr "Өшіру"
 
-#: notes/knote.cpp:692
+#: notes/knote.cpp:693
 #, kde-format
 msgid "Preferences..."
 msgstr "Баптаулары..."
 
-#: notes/knote.cpp:696
+#: notes/knote.cpp:697
 #, kde-format
 msgid "Keep Above Others"
 msgstr "Бет алдында ұстау"
 
-#: notes/knote.cpp:700
+#: notes/knote.cpp:701
 #, kde-format
 msgid "Keep Below Others"
 msgstr "Ең артында ұстау"
 
-#: notes/knote.cpp:705
+#: notes/knote.cpp:706
 #, kde-format
 msgid "To Desktop"
 msgstr "Қай үстелге"
 
-#: notes/knote.cpp:713
+#: notes/knote.cpp:714
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "Жазбаларды ақтару"

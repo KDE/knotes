@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-20 00:58+0000\n"
+"POT-Creation-Date: 2023-01-25 00:58+0000\n"
 "PO-Revision-Date: 2022-07-28 10:23+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -40,74 +40,74 @@ msgstr ""
 msgid "KNotes: Sticky notes by KDE"
 msgstr "KNotes: Sticky notes by KDE"
 
-#: apps/knotesapp.cpp:85
+#: apps/knotesapp.cpp:88
 #, kde-format
 msgid "New Note"
 msgstr "Нова бележка"
 
-#: apps/knotesapp.cpp:92 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:95 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "Нова бележка от системния буфер"
 
-#: apps/knotesapp.cpp:97 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:100 kontactplugin/knotes_part.cpp:158
 #, kde-format
 msgid "New Note From Text File..."
 msgstr "Нова бележка от текстов файл..."
 
-#: apps/knotesapp.cpp:101
+#: apps/knotesapp.cpp:104
 #, kde-format
 msgid "Show All Notes"
 msgstr "Показване на всички бележки"
 
-#: apps/knotesapp.cpp:106
+#: apps/knotesapp.cpp:109
 #, kde-format
 msgid "Hide All Notes"
 msgstr "Скриване на всички бележки"
 
-#: apps/knotesapp.cpp:111 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:114 kontactplugin/knotes_part.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "Отпечатване на избраните бележки"
 
-#: apps/knotesapp.cpp:116
+#: apps/knotesapp.cpp:119
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Изтриване на избраните бележки..."
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "Избиране на текстов файл"
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "Текстов файл"
 
-#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "Грешка при отваряне на текстов файл: %1"
 
-#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "Отваряне на текстов файл"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:420 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "Бележка от файл \"%1\""
 
-#: apps/knotesapp.cpp:510
+#: apps/knotesapp.cpp:513
 #, kde-format
 msgid "No Notes"
 msgstr "Няма бележки"
 
-#: apps/knotesapp.cpp:563 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:566 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "Настройки"
@@ -676,32 +676,32 @@ msgstr "Настройки на бележка..."
 msgid "Preferences KNotes..."
 msgstr "Настройки на KNotes..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:679
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:680
 #, kde-format
 msgid "Mail..."
 msgstr "Поща..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:675
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:676
 #, kde-format
 msgid "Send..."
 msgstr "Изпращане..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:671
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:672
 #, kde-format
 msgid "Set Alarm..."
 msgstr "Задаване на аларма..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:683
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:684
 #, kde-format
 msgid "Save As..."
 msgstr "Запис като..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:657
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:658
 #, kde-format
 msgid "Lock"
 msgstr "Заключване"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:660
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:661
 #, kde-format
 msgid "Unlock"
 msgstr "Отключване"
@@ -780,7 +780,7 @@ msgstr "Неформатиран текст (*.txt)"
 msgid "Save As"
 msgstr "Запазване като"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:504
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:505
 #, kde-format
 msgid ""
 "<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
@@ -942,84 +942,84 @@ msgstr "Изтриване на бележка..."
 msgid "Read Popup Note: \"%1\""
 msgstr "Прочитане на бележка: \"%1"
 
-#: notes/knote.cpp:130
+#: notes/knote.cpp:131
 #, kde-format
 msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
 msgstr ""
 "<qt>Сигурни ли сте, че искате да бъде изтрита бележката <b>%1</b>?</qt>"
 
-#: notes/knote.cpp:131
+#: notes/knote.cpp:132
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Потвърждаване на изтриването"
 
-#: notes/knote.cpp:132
+#: notes/knote.cpp:133
 #, kde-format
 msgid "&Delete"
 msgstr "&Изтриване"
 
-#: notes/knote.cpp:256
+#: notes/knote.cpp:257
 #, kde-format
 msgid "Please enter the new name:"
 msgstr "Моля, въведете ново име:"
 
-#: notes/knote.cpp:480
+#: notes/knote.cpp:481
 #, kde-format
 msgid "Save note as plain text"
 msgstr "Запис на бележката като обикновен текст"
 
-#: notes/knote.cpp:487
+#: notes/knote.cpp:488
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Запазване като"
 
-#: notes/knote.cpp:607
+#: notes/knote.cpp:608
 #, kde-format
 msgid "&All Desktops"
 msgstr "&Всички работни плотове"
 
-#: notes/knote.cpp:649
+#: notes/knote.cpp:650
 #, kde-format
 msgid "New"
 msgstr "Нова"
 
-#: notes/knote.cpp:653
+#: notes/knote.cpp:654
 #, kde-format
 msgid "Rename..."
 msgstr "Преименуване..."
 
-#: notes/knote.cpp:662
+#: notes/knote.cpp:663
 #, kde-format
 msgid "Hide"
 msgstr "Скриване"
 
-#: notes/knote.cpp:667
+#: notes/knote.cpp:668
 #, kde-format
 msgid "Delete"
 msgstr "Изтриване"
 
-#: notes/knote.cpp:692
+#: notes/knote.cpp:693
 #, kde-format
 msgid "Preferences..."
 msgstr "Настройване..."
 
-#: notes/knote.cpp:696
+#: notes/knote.cpp:697
 #, kde-format
 msgid "Keep Above Others"
 msgstr "На преден план"
 
-#: notes/knote.cpp:700
+#: notes/knote.cpp:701
 #, kde-format
 msgid "Keep Below Others"
 msgstr "На заден план"
 
-#: notes/knote.cpp:705
+#: notes/knote.cpp:706
 #, kde-format
 msgid "To Desktop"
 msgstr "Преместване към"
 
-#: notes/knote.cpp:713
+#: notes/knote.cpp:714
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "Преглед на бележките"

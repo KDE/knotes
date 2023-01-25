@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-20 00:58+0000\n"
+"POT-Creation-Date: 2023-01-25 00:58+0000\n"
 "PO-Revision-Date: 2022-02-02 20:55+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -41,74 +41,74 @@ msgstr "امنع إنشاء الملاحظات الجديدة في السّير�
 msgid "KNotes: Sticky notes by KDE"
 msgstr "ملاحظاتك: ملاحظات لاصقة من «كدي»"
 
-#: apps/knotesapp.cpp:85
+#: apps/knotesapp.cpp:88
 #, kde-format
 msgid "New Note"
 msgstr "ملاحظة جديدة"
 
-#: apps/knotesapp.cpp:92 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:95 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "ملاحظة جديدة من الحافظة"
 
-#: apps/knotesapp.cpp:97 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:100 kontactplugin/knotes_part.cpp:158
 #, kde-format
 msgid "New Note From Text File..."
 msgstr "ملاحظة جديدة من ملفّ نصّيّ..."
 
-#: apps/knotesapp.cpp:101
+#: apps/knotesapp.cpp:104
 #, kde-format
 msgid "Show All Notes"
 msgstr "اعرض كلّ الملاحظات"
 
-#: apps/knotesapp.cpp:106
+#: apps/knotesapp.cpp:109
 #, kde-format
 msgid "Hide All Notes"
 msgstr "أخفِ كلّ الملاحظات"
 
-#: apps/knotesapp.cpp:111 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:114 kontactplugin/knotes_part.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "اطبع الملاحظات المحدّدة..."
 
-#: apps/knotesapp.cpp:116
+#: apps/knotesapp.cpp:119
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "احذف الملاحظات المحدّدة..."
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "اختر ملفًّا نصّيًّا"
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "ملفّ نصّيّ"
 
-#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "خطأ أثناء فتح الملفّ النّصّيّ: %1"
 
-#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "افتح ملفًّا نصّيًّا"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:420 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "ملاحظة من الملفّ ’%1‘"
 
-#: apps/knotesapp.cpp:510
+#: apps/knotesapp.cpp:513
 #, kde-format
 msgid "No Notes"
 msgstr "لا ملاحظات"
 
-#: apps/knotesapp.cpp:563 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:566 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "إعدادات"
@@ -669,32 +669,32 @@ msgstr "إعدادات الملاحظة..."
 msgid "Preferences KNotes..."
 msgstr "تفضيلات «ملاحظاتك»..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:679
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:680
 #, kde-format
 msgid "Mail..."
 msgstr "أبرِد..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:675
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:676
 #, kde-format
 msgid "Send..."
 msgstr "أرسل..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:671
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:672
 #, kde-format
 msgid "Set Alarm..."
 msgstr "اضبط تنبيهًا...."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:683
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:684
 #, kde-format
 msgid "Save As..."
 msgstr "احفظ كَ‍..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:657
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:658
 #, kde-format
 msgid "Lock"
 msgstr "اقفل"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:660
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:661
 #, kde-format
 msgid "Unlock"
 msgstr "أزِل القفل"
@@ -771,7 +771,7 @@ msgstr "نصّ صِرف (*.txt)"
 msgid "Save As"
 msgstr "احفظ كَ‍"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:504
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:505
 #, kde-format
 msgid ""
 "<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
@@ -934,83 +934,83 @@ msgstr "احذف الملاحظة..."
 msgid "Read Popup Note: \"%1\""
 msgstr "اقرأ الملاحظة المنبثقة: ”%1“"
 
-#: notes/knote.cpp:130
+#: notes/knote.cpp:131
 #, kde-format
 msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
 msgstr "<html dir=\"rtl\">أمتأكّد من حذف الملاحظة <b>%1</b>؟</html>"
 
-#: notes/knote.cpp:131
+#: notes/knote.cpp:132
 #, kde-format
 msgid "Confirm Delete"
 msgstr "أكّد الحذف"
 
-#: notes/knote.cpp:132
+#: notes/knote.cpp:133
 #, kde-format
 msgid "&Delete"
 msgstr "ا&حذف"
 
-#: notes/knote.cpp:256
+#: notes/knote.cpp:257
 #, kde-format
 msgid "Please enter the new name:"
 msgstr "رجاءً أدخِل الاسم الجديد:"
 
-#: notes/knote.cpp:480
+#: notes/knote.cpp:481
 #, kde-format
 msgid "Save note as plain text"
 msgstr "احفظ الملاحظة كنصّ صِرف"
 
-#: notes/knote.cpp:487
+#: notes/knote.cpp:488
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "احفظ كَ‍"
 
-#: notes/knote.cpp:607
+#: notes/knote.cpp:608
 #, kde-format
 msgid "&All Desktops"
 msgstr "&كلّ أسطح المكتب"
 
-#: notes/knote.cpp:649
+#: notes/knote.cpp:650
 #, kde-format
 msgid "New"
 msgstr "جديد"
 
-#: notes/knote.cpp:653
+#: notes/knote.cpp:654
 #, kde-format
 msgid "Rename..."
 msgstr "غيّر الاسم..."
 
-#: notes/knote.cpp:662
+#: notes/knote.cpp:663
 #, kde-format
 msgid "Hide"
 msgstr "أخفِ"
 
-#: notes/knote.cpp:667
+#: notes/knote.cpp:668
 #, kde-format
 msgid "Delete"
 msgstr "احذف"
 
-#: notes/knote.cpp:692
+#: notes/knote.cpp:693
 #, kde-format
 msgid "Preferences..."
 msgstr "التّفضيلات..."
 
-#: notes/knote.cpp:696
+#: notes/knote.cpp:697
 #, kde-format
 msgid "Keep Above Others"
 msgstr "أبقها فوق غيرها"
 
-#: notes/knote.cpp:700
+#: notes/knote.cpp:701
 #, kde-format
 msgid "Keep Below Others"
 msgstr "أبقها تحت غيرها"
 
-#: notes/knote.cpp:705
+#: notes/knote.cpp:706
 #, kde-format
 msgid "To Desktop"
 msgstr "إلى سطح المكتب"
 
-#: notes/knote.cpp:713
+#: notes/knote.cpp:714
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "تنقّل بين الملاحظات"

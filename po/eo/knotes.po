@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes 1.0pre2\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-20 00:58+0000\n"
+"POT-Creation-Date: 2023-01-25 00:58+0000\n"
 "PO-Revision-Date: 2002-09-16 22:52GMT\n"
 "Last-Translator: Steffen Pietsch <Steffen.Pietsch@BerlinOnline.de>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
@@ -38,74 +38,74 @@ msgstr ""
 msgid "KNotes: Sticky notes by KDE"
 msgstr ""
 
-#: apps/knotesapp.cpp:85
+#: apps/knotesapp.cpp:88
 #, kde-format
 msgid "New Note"
 msgstr "Nova noto"
 
-#: apps/knotesapp.cpp:92 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:95 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr ""
 
-#: apps/knotesapp.cpp:97 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:100 kontactplugin/knotes_part.cpp:158
 #, kde-format
 msgid "New Note From Text File..."
 msgstr ""
 
-#: apps/knotesapp.cpp:101
+#: apps/knotesapp.cpp:104
 #, fuzzy, kde-format
 msgid "Show All Notes"
 msgstr "Neniuj notoj"
 
-#: apps/knotesapp.cpp:106
+#: apps/knotesapp.cpp:109
 #, kde-format
 msgid "Hide All Notes"
 msgstr ""
 
-#: apps/knotesapp.cpp:111 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:114 kontactplugin/knotes_part.cpp:121
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "Presu..."
 
-#: apps/knotesapp.cpp:116
+#: apps/knotesapp.cpp:119
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Presu..."
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr ""
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr ""
 
-#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr ""
 
-#: apps/knotesapp.cpp:414 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr ""
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:420 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr ""
 
-#: apps/knotesapp.cpp:510
+#: apps/knotesapp.cpp:513
 #, kde-format
 msgid "No Notes"
 msgstr "Neniuj notoj"
 
-#: apps/knotesapp.cpp:563 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:566 kontactplugin/knotes_part.cpp:587
 #, fuzzy, kde-format
 msgid "Settings"
 msgstr "Agoj"
@@ -672,32 +672,32 @@ msgstr "Agoj"
 msgid "Preferences KNotes..."
 msgstr "Noto-agordo..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:679
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:680
 #, kde-format
 msgid "Mail..."
 msgstr "Sendu..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:675
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:676
 #, fuzzy, kde-format
 msgid "Send..."
 msgstr "Alinomu..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:671
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:672
 #, fuzzy, kde-format
 msgid "Set Alarm..."
 msgstr "Tekstkoloro..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:683
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:684
 #, fuzzy, kde-format
 msgid "Save As..."
 msgstr "Tekstkoloro..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:657
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:658
 #, kde-format
 msgid "Lock"
 msgstr "Ŝloso"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:660
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:661
 #, kde-format
 msgid "Unlock"
 msgstr "Malŝlosi"
@@ -776,7 +776,7 @@ msgstr ""
 msgid "Save As"
 msgstr "Konservi kiel"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:504
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:505
 #, kde-format
 msgid ""
 "<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
@@ -940,84 +940,84 @@ msgstr "Presu..."
 msgid "Read Popup Note: \"%1\""
 msgstr ""
 
-#: notes/knote.cpp:130
+#: notes/knote.cpp:131
 #, fuzzy, kde-format
 msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
 msgstr "Ĉu vi vere volas forigi tiun ĉi noton?"
 
-#: notes/knote.cpp:131
+#: notes/knote.cpp:132
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Konfirmi forigon"
 
-#: notes/knote.cpp:132
+#: notes/knote.cpp:133
 #, kde-format
 msgid "&Delete"
 msgstr "&Forigi"
 
-#: notes/knote.cpp:256
+#: notes/knote.cpp:257
 #, kde-format
 msgid "Please enter the new name:"
 msgstr "Bonvolu tajpi la novan nomon:"
 
-#: notes/knote.cpp:480
+#: notes/knote.cpp:481
 #, kde-format
 msgid "Save note as plain text"
 msgstr ""
 
-#: notes/knote.cpp:487
+#: notes/knote.cpp:488
 #, fuzzy, kde-format
 #| msgid "Save As"
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Konservi kiel"
 
-#: notes/knote.cpp:607
+#: notes/knote.cpp:608
 #, kde-format
 msgid "&All Desktops"
 msgstr "Ĉ&iuj tabuloj"
 
-#: notes/knote.cpp:649
+#: notes/knote.cpp:650
 #, kde-format
 msgid "New"
 msgstr "Nova"
 
-#: notes/knote.cpp:653
+#: notes/knote.cpp:654
 #, kde-format
 msgid "Rename..."
 msgstr "Alinomu..."
 
-#: notes/knote.cpp:662
+#: notes/knote.cpp:663
 #, kde-format
 msgid "Hide"
 msgstr ""
 
-#: notes/knote.cpp:667
+#: notes/knote.cpp:668
 #, kde-format
 msgid "Delete"
 msgstr "Forigi"
 
-#: notes/knote.cpp:692
+#: notes/knote.cpp:693
 #, kde-format
 msgid "Preferences..."
 msgstr "Noto-agordo..."
 
-#: notes/knote.cpp:696
+#: notes/knote.cpp:697
 #, kde-format
 msgid "Keep Above Others"
 msgstr "Teni super aliaj"
 
-#: notes/knote.cpp:700
+#: notes/knote.cpp:701
 #, kde-format
 msgid "Keep Below Others"
 msgstr "Teni sub aliaj"
 
-#: notes/knote.cpp:705
+#: notes/knote.cpp:706
 #, kde-format
 msgid "To Desktop"
 msgstr "Al tabulo"
 
-#: notes/knote.cpp:713
+#: notes/knote.cpp:714
 #, kde-format
 msgid "Walk Through Notes"
 msgstr ""
