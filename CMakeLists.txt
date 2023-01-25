@@ -71,7 +71,7 @@ if (QT_MAJOR_VERSION STREQUAL "6")
     set(QT_REQUIRED_VERSION "6.4.0")
 endif()
 
-option(USE_KTEXTADDONS_LIB "Use ktextaddons lib (experimental)" OFF)
+option(USE_KTEXTADDONS_LIB "Use ktextaddons lib (experimental)" ON)
 set(KTEXTADDONS_MIN_VERSION "1.0.0")
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED DBus Network PrintSupport Test Widgets Xml)
