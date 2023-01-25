@@ -705,7 +705,11 @@ void KNote::createActions()
 #if KDEPIM_HAVE_X11
     m_toDesktop = new KSelectAction(i18n("To Desktop"), this);
     actionCollection()->addAction(QStringLiteral("to_desktop"), m_toDesktop);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     connect(m_toDesktop, qOverload<QAction *>(&KSelectAction::triggered), this, &KNote::slotPopupActionToDesktop);
+#else
+    connect(m_toDesktop, &KSelectAction::actionTriggered, this, &KNote::slotPopupActionToDesktop);
+#endif
     connect(m_toDesktop->menu(), &QMenu::aboutToShow, this, &KNote::slotUpdateDesktopActions);
     // initially populate it, otherwise stays disabled
     slotUpdateDesktopActions();
