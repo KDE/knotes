@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-25 00:58+0000\n"
+"POT-Creation-Date: 2023-01-26 00:58+0000\n"
 "PO-Revision-Date: 2002-10-14 08:35+0200\n"
 "Last-Translator: Thelma Lungcuzo <thelma@translate.org.za>\n"
 "Language-Team: Xhosa <xhosa@translate.org.za>\n"
@@ -1024,7 +1024,7 @@ msgstr ""
 msgid "To Desktop"
 msgstr "Kwi Desktop"
 
-#: notes/knote.cpp:714
+#: notes/knote.cpp:718
 #, kde-format
 msgid "Walk Through Notes"
 msgstr ""
