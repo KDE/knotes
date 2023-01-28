@@ -76,7 +76,6 @@ option(USE_KTEXTADDONS_LIB "Use ktextaddons lib (experimental)" ON)
 
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED DBus Network PrintSupport Test Widgets Xml)
-find_package(Qt${QT_MAJOR_VERSION}X11Extras NO_MODULE)
 # Find KF5 package
 find_package(KF${KF_MAJOR_VERSION}Completion ${KF_MIN_VERSION} REQUIRED)
 find_package(KF${KF_MAJOR_VERSION}Config ${KF_MIN_VERSION} REQUIRED)
