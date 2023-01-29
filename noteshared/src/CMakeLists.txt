@@ -95,7 +95,7 @@ target_link_libraries(notesharedprivate
 
     )
 if (USE_KTEXTADDONS_LIB)
-    target_link_libraries(notesharedprivate PRIVATE KF5::TextAutoCorrection)
+    target_link_libraries(notesharedprivate PRIVATE KF${KF_MAJOR_VERSION}::TextAutoCorrection)
 else()
     target_link_libraries(notesharedprivate PRIVATE KF5::PimCommonAutoCorrection)
 endif()
