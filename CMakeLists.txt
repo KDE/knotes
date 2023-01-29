@@ -74,6 +74,9 @@ endif()
 
 option(USE_KTEXTADDONS_LIB "Use ktextaddons lib (experimental)" ON)
 
+if (QT_MAJOR_VERSION STREQUAL "6")
+    find_package(Qt6Core5Compat)
+endif()
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED DBus Network PrintSupport Test Widgets Xml)
 find_package(Qt${QT_MAJOR_VERSION}X11Extras NO_MODULE)

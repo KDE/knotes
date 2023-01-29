@@ -94,6 +94,9 @@ target_link_libraries(notesharedprivate
     KF${KF_MAJOR_VERSION}::DNSSD KF5::PimCommon  KF5::Mime KF5::AkonadiNotes KF5::PimTextEdit KF${KF_MAJOR_VERSION}::Completion Qt::DBus KF${KF_MAJOR_VERSION}::I18n KF5::AkonadiWidgets
 
     )
+    if (TARGET Qt::Core5Compat)
+        target_link_libraries(notesharedprivate PRIVATE Qt::Core5Compat)
+    endif()
 if (USE_KTEXTADDONS_LIB)
     target_link_libraries(notesharedprivate PRIVATE KF${KF_MAJOR_VERSION}::TextAutoCorrection)
 else()
