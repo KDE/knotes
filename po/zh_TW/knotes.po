@@ -9,20 +9,21 @@
 # Franklin Weng <franklin at goodhorse dot idv dot tw>, 2007, 2008.
 # Franklin Weng <franklin@mail.everfocus.com.tw>, 2008, 2013, 2014, 2015.
 # pan93412 <pan93412@gmail.com>, 2018, 2019, 2020.
+# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-26 00:58+0000\n"
-"PO-Revision-Date: 2020-01-16 14:40+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
-"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"PO-Revision-Date: 2023-01-29 23:06+0900\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "dot tw>\n"
-"X-Generator: Lokalize 19.12.1\n"
+"X-Generator: Lokalize 22.12.1\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #, kde-format
@@ -131,10 +132,9 @@ msgid "KDE Notes"
 msgstr "KDE便條紙"
 
 #: apps/main.cpp:49
-#, fuzzy, kde-format
-#| msgid "Copyright © 1997–2019 KNotes authors"
+#, kde-format
 msgid "Copyright © 1997–%1 KNotes authors"
-msgstr "Copyright © 1997–2019 KNotes 作者群"
+msgstr "Copyright © 1997–%1 KNotes 作者群"
 
 #: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
 #, kde-format
@@ -395,26 +395,23 @@ msgid "Notes"
 msgstr "便條紙"
 
 #: dialog/knotedeleteselectednotesdialog.cpp:21
-#, fuzzy, kde-format
-#| msgid "Select notes to delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Select notes to delete"
 msgstr "選擇要刪除的便條"
 
 #: dialog/knoteselectednotesdialog.cpp:23
 #: print/knoteprintselectednotesdialog.cpp:29
-#, fuzzy, kde-format
-#| msgid "Select notes"
+#, kde-format
 msgctxt "@title:window"
 msgid "Select notes"
 msgstr "選擇便條"
 
 #: dialog/knoteskeydialog.cpp:21
-#, fuzzy, kde-format
-#| msgid "Configure Shortcuts"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Shortcuts"
-msgstr "設定快速鍵"
+msgstr "設定快捷鍵"
 
 #: dialog/knoteskeydialog.cpp:65
 #, kde-format
@@ -446,10 +443,9 @@ msgid "No Results found in search."
 msgstr "在搜尋中找不到符合的結果。"
 
 #: finddialog/knotefinddialog.cpp:187
-#, fuzzy, kde-format
-#| msgid "Show Note..."
+#, kde-format
 msgid "Show Note"
-msgstr "顯示便條..."
+msgstr "顯示便條"
 
 #: knoteconfigmodule.cpp:80
 #, kde-format
@@ -592,10 +588,9 @@ msgid "Notes Summary Configuration Dialog"
 msgstr "便條摘要設定畫面"
 
 #: kontactplugin/kcmknotessummary.cpp:43
-#, fuzzy, kde-format
-#| msgid "Copyright © 2013-2019 Laurent Montel <montel@kde.org>"
+#, kde-format
 msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
-msgstr "Copyright © 2013-2019 Laurent Montel <montel@kde.org>"
+msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
 
 #: kontactplugin/knotes_part.cpp:84
 #, kde-format
@@ -736,13 +731,10 @@ msgid "Create new note"
 msgstr "建立新便條"
 
 #: kontactplugin/knotes_part.cpp:341
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Do you really want to delete this note?"
-#| msgid_plural "Do you really want to delete these %1 notes?"
+#, kde-format
 msgctxt "@info"
 msgid "Do you really want to delete this note?"
-msgstr "您真的要刪除這 %1 項記事嗎？"
+msgstr "您真的要刪除這項記事嗎？"
 
 #: kontactplugin/knotes_part.cpp:343
 #: kontactplugin/knotesselectdeletenotesdialog.cpp:44
@@ -818,12 +810,10 @@ msgid "Popup Notes"
 msgstr "彈出式便條"
 
 #: kontactplugin/knotes_plugin.cpp:80
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:credit"
-#| msgid "Copyright © 2003–2018 Kontact authors"
+#, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Copyright © 2003–%1 Kontact authors"
-msgstr "Copyright © 2003–2018 Kontact 作者群"
+msgstr "Copyright © 2003–%1 Kontact 作者群"
 
 #: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
@@ -913,10 +903,7 @@ msgid "(note locked, it will not removed)"
 msgstr "(便條已鎖定，不會被移除)"
 
 #: kontactplugin/knotesselectdeletenotesdialog.cpp:57
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Do you really want to delete this note?"
-#| msgid_plural "Do you really want to delete these %1 notes?"
+#, kde-format
 msgid "Do you really want to delete this note?"
 msgid_plural "Do you really want to delete these %1 notes?"
 msgstr[0] "您真的要刪除這 %1 項記事嗎？"
@@ -972,8 +959,7 @@ msgid "Save note as plain text"
 msgstr "存成純文字檔"
 
 #: notes/knote.cpp:488
-#, fuzzy, kde-format
-#| msgid "Save As"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "另存新檔"
@@ -1070,8 +1056,7 @@ msgid "Print"
 msgstr "列印"
 
 #: print/knoteprintselectthemedialog.cpp:21
-#, fuzzy, kde-format
-#| msgid "Select theme"
+#, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr "選擇主題"

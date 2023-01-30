@@ -3,20 +3,21 @@
 #
 # Franklin Weng <franklin at goodhorse dot idv dot tw>, 2013, 2014, 2015.
 # pan93412 <pan93412@gmail.com>, 2018.
+# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-03 00:47+0000\n"
-"PO-Revision-Date: 2018-12-21 19:37+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
-"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"PO-Revision-Date: 2023-01-29 23:07+0900\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 18.12.0\n"
+"X-Generator: Lokalize 22.12.1\n"
 
 #: alarms/notealarmdialog.cpp:41
 #, kde-format
@@ -97,40 +98,35 @@ msgid ""
 msgstr "抓取時發生錯誤。您要選擇新的預設收藏嗎？"
 
 #: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Select Note Folder"
+#, kde-format
 msgctxt "@action:button"
 msgid "Select New Default"
-msgstr "選擇便條資料夾"
+msgstr "選擇新的預設值"
 
 #: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
 #, kde-format
 msgctxt "@action:button"
 msgid "Ignore"
-msgstr ""
+msgstr "忽略"
 
 #: job/createnewnotejob.cpp:126
-#, fuzzy, kde-format
-#| msgid ""
-#| "Collection is hidden. New note will stored but not displaying. Do you "
-#| "want to show collection?"
+#, kde-format
 msgid ""
 "Collection is hidden. New note will be stored but not displayed. Do you want "
 "to show collection?"
-msgstr "收藏已隱藏。新的便條將會儲存但不會顯示。您要顯示收藏嗎？"
+msgstr "收藏已隱藏。新的便條將會被儲存但不會被顯示。您要顯示收藏嗎？"
 
 #: job/createnewnotejob.cpp:128
 #, kde-format
 msgctxt "@action::button"
 msgid "Show Collection"
-msgstr ""
+msgstr "顯示收藏"
 
 #: job/createnewnotejob.cpp:129
 #, kde-format
 msgctxt "@action::button"
 msgid "Do Not Show"
-msgstr ""
+msgstr "不顯示"
 
 #: job/createnewnotejob.cpp:184
 #, kde-format

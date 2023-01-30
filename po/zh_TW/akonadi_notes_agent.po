@@ -3,24 +3,24 @@
 #
 # Franklin Weng <franklin at goodhorse dot idv dot tw>, 2014, 2015.
 # pan93412 <pan93412@gmail.com>, 2018, 2019.
+# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-03 00:47+0000\n"
-"PO-Revision-Date: 2019-01-19 19:35+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
-"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"PO-Revision-Date: 2023-01-29 23:08+0900\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 18.12.1\n"
+"X-Generator: Lokalize 22.12.1\n"
 
 #: notesagentalarmdialog.cpp:44
-#, fuzzy, kde-format
-#| msgid "Alarm"
+#, kde-format
 msgctxt "@title:window"
 msgid "Alarm"
 msgstr "鬧鐘"
@@ -67,8 +67,7 @@ msgid "Alarm"
 msgstr "鬧鐘"
 
 #: notesagentsettingsdialog.cpp:33
-#, fuzzy, kde-format
-#| msgid "Configure Notes Agent"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Notes Agent"
 msgstr "設定便條代理程式"
@@ -94,10 +93,9 @@ msgid "Notes Agent."
 msgstr "便條代理程式。"
 
 #: notesagentsettingsdialog.cpp:62
-#, fuzzy, kde-format
-#| msgid "Copyright (C) 2013-2019 Laurent Montel"
+#, kde-format
 msgid "Copyright (C) 2013-%1 Laurent Montel"
-msgstr "版權所有 (C) 2013-2019 Laurent Montel"
+msgstr "版權所有 (C) 2013-%1 Laurent Montel"
 
 #: notesagentsettingsdialog.cpp:64
 #, kde-format
