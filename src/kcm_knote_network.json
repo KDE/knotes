@@ -27,6 +27,7 @@
         "Description[tr]": "Ağ Ayarları",
         "Description[uk]": "Параметри мережі",
         "Description[x-test]": "xxNetwork Settingsxx",
+        "Description[zh_TW]": "網路設定",
         "Icon": "network-wired",
         "Name": "Network",
         "Name[ar]": "الشّبكة",

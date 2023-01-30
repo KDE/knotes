@@ -27,6 +27,7 @@
         "Description[tr]": "Notlar için koleksiyonları ayarla",
         "Description[uk]": "Налаштовування збірок нотаток",
         "Description[x-test]": "xxSetup collections for notesxx",
+        "Description[zh_TW]": "設定便條收藏",
         "Icon": "preferences-other",
         "Name": "Collections",
         "Name[ar]": "التّجميعات",

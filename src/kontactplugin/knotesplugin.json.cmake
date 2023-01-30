@@ -27,6 +27,7 @@
         "Description[tr]": "Kontak K Notlar Eklentisi",
         "Description[uk]": "Додаток приміток (KNotes) Kontact",
         "Description[x-test]": "xxKontact KNotes Pluginxx",
+        "Description[zh_TW]": "Kontact KNotes 外掛程式",
         "EnabledByDefault": true,
         "Icon": "view-pim-notes",
         "Id": "kontact_knotesplugin",

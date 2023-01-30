@@ -27,6 +27,7 @@
         "Description[tr]": "Notlar için eylemleri ayarla",
         "Description[uk]": "Налаштуйте дії для нотаток",
         "Description[x-test]": "xxSetup actions for notesxx",
+        "Description[zh_TW]": "設定便條的動作",
         "Icon": "preferences-other",
         "Name": "Actions",
         "Name[ar]": "الإجراءات",
