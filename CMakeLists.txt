@@ -72,8 +72,6 @@ if (QT_MAJOR_VERSION STREQUAL "6")
     set(QT_REQUIRED_VERSION "6.4.0")
 endif()
 
-option(USE_KTEXTADDONS_LIB "Use ktextaddons lib (experimental)" ON)
-
 if (QT_MAJOR_VERSION STREQUAL "6")
     find_package(Qt6Core5Compat)
 endif()
@@ -118,20 +116,7 @@ find_package(KF5PimCommonAkonadi ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
 find_package(KF5PimTextEdit ${KPIMTEXTEDIT_LIB_VERSION} CONFIG REQUIRED)
 find_package(KF5GrantleeTheme ${GRANTLEETHEME_LIB_VERSION} CONFIG REQUIRED)
 
-if (USE_KTEXTADDONS_LIB)
-    find_package(KF${KF_MAJOR_VERSION}TextEditTextToSpeech ${KTEXTADDONS_MIN_VERSION} CONFIG)
-    set_package_properties(KF${KF_MAJOR_VERSION}TextEditTextToSpeech PROPERTIES DESCRIPTION
-        "Add support for text to speech"
-        TYPE OPTIONAL
-    )
-    if (TARGET KF${KF_MAJOR_VERSION}::TextEditTextToSpeech)
-        add_definitions(-DHAVE_TEXT_TO_SPEECH_SUPPORT)
-    endif()
-    find_package(KF${KF_MAJOR_VERSION}TextAutoCorrection ${KTEXTADDONS_MIN_VERSION} CONFIG REQUIRED)
-    add_definitions(-DHAVE_KTEXTADDONS_TEXT_AUTOCORRECTION_SUPPORT)
-else()
-    find_package(KF5PimCommonAutoCorrection ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
-endif()
+find_package(KF${KF_MAJOR_VERSION}TextAutoCorrection ${KTEXTADDONS_MIN_VERSION} CONFIG REQUIRED)
 
 find_package(KF5AkonadiSearch ${AKONADI_SEARCH_VERSION} CONFIG REQUIRED)
 set_package_properties(KF5AkonadiSearch PROPERTIES DESCRIPTION "The Akonadi Search libraries" URL "ttps://invent.kde.org/pim/akonadi-search" TYPE REQUIRED PURPOSE "Provides search capabilities in pim apps and Akonadi")

@@ -97,11 +97,7 @@ target_link_libraries(notesharedprivate
     if (TARGET Qt::Core5Compat)
         target_link_libraries(notesharedprivate PRIVATE Qt::Core5Compat)
     endif()
-if (USE_KTEXTADDONS_LIB)
     target_link_libraries(notesharedprivate PRIVATE KF${KF_MAJOR_VERSION}::TextAutoCorrection)
-else()
-    target_link_libraries(notesharedprivate PRIVATE KF5::PimCommonAutoCorrection)
-endif()
 
 set_target_properties(notesharedprivate
     PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
