@@ -5,6 +5,7 @@
         "Description[bg]": "Приставка KNotes за Kontact",
         "Description[ca@valencia]": "Connector de KNotes de Kontact",
         "Description[ca]": "Connector del KNotes del Kontact",
+        "Description[cs]": "Modul KNotes pro aplikaci Kontact",
         "Description[de]": "KNotes-Modul für Kontact",
         "Description[el]": "Πρόσθετο KNotes του Kontact",
         "Description[en_GB]": "Kontact KNotes Plugin",
