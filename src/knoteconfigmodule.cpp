@@ -151,7 +151,7 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent, const QVariantList &args)
     layout->addWidget(label_PrintAction, 0, 0);
 
     mSelectTheme = new KNotePrintSelectThemeComboBox(this);
-    connect(mSelectTheme, qOverload<int>(&QComboBox::activated), this, &KNotePrintConfig::slotThemeChanged);
+    connect(mSelectTheme, &QComboBox::activated, this, &KNotePrintConfig::slotThemeChanged);
     label_PrintAction->setBuddy(mSelectTheme);
     layout->addWidget(mSelectTheme, 0, 1);
     if (KAuthorized::authorize(QStringLiteral("ghns"))) {
