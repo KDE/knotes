@@ -7,9 +7,9 @@
 #include "knoteedit.h"
 
 #include <KActionCollection>
-#include <KLineEdit>
 #include <KLocalizedString>
 #include <KToolBar>
+#include <QLineEdit>
 
 #include <KXMLGUIBuilder>
 #include <KXMLGUIFactory>
@@ -65,7 +65,7 @@ void KNoteEditDialog::init(bool readOnly)
     auto label = new QLabel(page);
     label->setText(i18nc("@label popup note name", "Name:"));
     hbl->addWidget(label, 0);
-    mTitleEdit = new KLineEdit(page);
+    mTitleEdit = new QLineEdit(page);
     mTitleEdit->setClearButtonEnabled(!readOnly);
     mTitleEdit->setObjectName(QStringLiteral("name"));
     if (!readOnly) {
