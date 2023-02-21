@@ -137,7 +137,7 @@ target_link_libraries(knotes
     KF5::KontactInterface
     notesharedprivate
     KF5::AkonadiCore
-    KF5::Mime
+    KPim${KF_MAJOR_VERSION}::Mime
     KF${KF_MAJOR_VERSION}::GlobalAccel
     KF${KF_MAJOR_VERSION}::Notifications
     KF${KF_MAJOR_VERSION}::WindowSystem

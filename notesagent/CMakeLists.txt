@@ -34,7 +34,7 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
 endif()
 target_link_libraries(akonadi_notes_agent
     KF5::AkonadiCore
-    KF5::Mime
+    KPim${KF_MAJOR_VERSION}::Mime
     KF5::AkonadiAgentBase
     KF${KF_MAJOR_VERSION}::NotifyConfig
     notesharedprivate

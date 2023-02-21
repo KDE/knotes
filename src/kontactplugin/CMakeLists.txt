@@ -46,7 +46,7 @@ target_link_libraries(kontact_knotesplugin
                       KF5::KontactInterface
                       notesharedprivate
                       KF${KF_MAJOR_VERSION}::DNSSD
-                      KF5::Mime
+                      KPim${KF_MAJOR_VERSION}::Mime
                       KF${KF_MAJOR_VERSION}::KCMUtils
                       KF5::AkonadiWidgets
                       KF5::AkonadiNotes
