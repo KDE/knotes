@@ -77,7 +77,7 @@ target_link_libraries(knotesprivate
     KF${KF_MAJOR_VERSION}::KCMUtils KF${KF_MAJOR_VERSION}::NewStuff
     KF${KF_MAJOR_VERSION}::WindowSystem Qt::PrintSupport
     KF${KF_MAJOR_VERSION}::TextWidgets KF${KF_MAJOR_VERSION}::I18n notesharedprivate
-    KF5::AkonadiSearchPIM KPim${KF_MAJOR_VERSION}::AkonadiNotes KF5::PimTextEdit KF5::AkonadiWidgets KPim${KF_MAJOR_VERSION}::GrantleeTheme
+    KPim${KF_MAJOR_VERSION}::AkonadiSearchPIM KPim${KF_MAJOR_VERSION}::AkonadiNotes KF5::PimTextEdit KF5::AkonadiWidgets KPim${KF_MAJOR_VERSION}::GrantleeTheme
     )
 
 if (QT_MAJOR_VERSION STREQUAL "5")
@@ -142,7 +142,7 @@ target_link_libraries(knotes
     KF${KF_MAJOR_VERSION}::Notifications
     KF${KF_MAJOR_VERSION}::WindowSystem
     KF${KF_MAJOR_VERSION}::KIOFileWidgets
-    KF5::AkonadiSearchDebug
+    KPim${KF_MAJOR_VERSION}::AkonadiSearchDebug
     KPim${KF_MAJOR_VERSION}::AkonadiNotes
     KF${KF_MAJOR_VERSION}::Crash
     KF${KF_MAJOR_VERSION}::XmlGui
