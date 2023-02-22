@@ -42,8 +42,8 @@ endif()
 target_link_libraries(kontact_knotesplugin
                       knotesprivate
                       KF${KF_MAJOR_VERSION}::CalendarCore
-                      KF5::CalendarUtils
-                      KF5::KontactInterface
+                      KPim${KF_MAJOR_VERSION}::CalendarUtils
+                      KPim${KF_MAJOR_VERSION}::KontactInterface
                       notesharedprivate
                       KF${KF_MAJOR_VERSION}::DNSSD
                       KPim${KF_MAJOR_VERSION}::Mime
