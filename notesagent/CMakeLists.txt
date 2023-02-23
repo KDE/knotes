@@ -39,7 +39,7 @@ target_link_libraries(akonadi_notes_agent
     KF${KF_MAJOR_VERSION}::NotifyConfig
     notesharedprivate
     KF5::PimCommon
-    KF5::PimTextEdit
+    KPim${KF_MAJOR_VERSION}::PimTextEdit
     KF${KF_MAJOR_VERSION}::XmlGui
     KF${KF_MAJOR_VERSION}::WindowSystem
     KF${KF_MAJOR_VERSION}::Notifications
