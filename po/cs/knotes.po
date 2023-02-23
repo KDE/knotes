@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-26 00:58+0000\n"
-"PO-Revision-Date: 2023-01-30 16:07+0100\n"
+"PO-Revision-Date: 2023-02-22 16:42+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -127,7 +127,7 @@ msgstr "KDE poznámky"
 #: apps/main.cpp:49
 #, kde-format
 msgid "Copyright © 1997–%1 KNotes authors"
-msgstr "Copyright © 1997–%1 Autoři KNotes"
+msgstr "Autorská práva © 1997–%1 Autoři KNotes"
 
 #: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
 #, kde-format
@@ -581,7 +581,7 @@ msgstr "Dialog nastavení souhrnu poznámek"
 #: kontactplugin/kcmknotessummary.cpp:43
 #, kde-format
 msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
-msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
+msgstr "Autorská práva © 2013-%1 Laurent Montel <montel@kde.org>"
 
 #: kontactplugin/knotes_part.cpp:84
 #, kde-format
@@ -805,7 +805,7 @@ msgstr "Vyskakovací poznámky"
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Copyright © 2003–%1 Kontact authors"
-msgstr "Copyright © 2003–%1 Tvůrci aplikace Kontact"
+msgstr "Autorská práva © 2003–%1 Tvůrci aplikace Kontact"
 
 #: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
