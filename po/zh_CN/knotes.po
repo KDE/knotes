@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-04 00:45+0000\n"
-"PO-Revision-Date: 2023-02-15 11:08\n"
+"PO-Revision-Date: 2023-02-24 12:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -639,7 +639,7 @@ msgctxt "@info:whatsthis"
 msgid ""
 "You will be prompted if you really want to permanently remove the selected "
 "popup note."
-msgstr "在永久删除所选的弹出便笺前，会有确认提示。"
+msgstr "在彻底删除所选的弹出便笺前，会有确认提示。"
 
 #. i18nc( "@info:status", "Print popup note" ) );
 #: kontactplugin/knotes_part.cpp:126
