@@ -8,7 +8,7 @@ set( knotes_knotesgrantleeprint_source knotesgrantleeprinttest.cpp  )
 add_executable( knotesgrantleeprinttest ${knotes_knotesgrantleeprint_source})
 add_test(NAME knotesgrantleeprinttest COMMAND knotesgrantleeprinttest)
 ecm_mark_as_test(knotesgrantleeprinttest)
-target_link_libraries( knotesgrantleeprinttest Qt::Test Qt::Gui KF5::AkonadiCore knotesprivate KPim${KF_MAJOR_VERSION}::Mime KPim${KF_MAJOR_VERSION}::AkonadiNotes KPim${KF_MAJOR_VERSION}::GrantleeTheme)
+target_link_libraries( knotesgrantleeprinttest Qt::Test Qt::Gui KPim${KF_MAJOR_VERSION}::AkonadiCore knotesprivate KPim${KF_MAJOR_VERSION}::Mime KPim${KF_MAJOR_VERSION}::AkonadiNotes KPim${KF_MAJOR_VERSION}::GrantleeTheme)
 
 if (QT_MAJOR_VERSION STREQUAL "5")
     target_link_libraries(knotesgrantleeprinttest Grantlee5::Templates)

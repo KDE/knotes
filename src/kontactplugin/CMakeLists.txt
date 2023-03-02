@@ -48,7 +48,7 @@ target_link_libraries(kontact_knotesplugin
                       KF${KF_MAJOR_VERSION}::DNSSD
                       KPim${KF_MAJOR_VERSION}::Mime
                       KF${KF_MAJOR_VERSION}::KCMUtils
-                      KF5::AkonadiWidgets
+                      KPim${KF_MAJOR_VERSION}::AkonadiWidgets
                       KPim${KF_MAJOR_VERSION}::AkonadiNotes
                       KF${KF_MAJOR_VERSION}::ItemViews
                       KF${KF_MAJOR_VERSION}::Contacts

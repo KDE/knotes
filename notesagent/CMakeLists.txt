@@ -33,9 +33,9 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akonadi_notes_agent PROPERTIES UNITY_BUILD ON)
 endif()
 target_link_libraries(akonadi_notes_agent
-    KF5::AkonadiCore
+    KPim${KF_MAJOR_VERSION}::AkonadiCore
     KPim${KF_MAJOR_VERSION}::Mime
-    KF5::AkonadiAgentBase
+    KPim${KF_MAJOR_VERSION}::AkonadiAgentBase
     KF${KF_MAJOR_VERSION}::NotifyConfig
     notesharedprivate
     KF5::PimCommon
