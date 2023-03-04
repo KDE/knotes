@@ -1,34 +1,5 @@
 {
     "KPlugin": {
-        "Description": "Network Settings",
-        "Description[ar]": "إعدادات الشّبكة",
-        "Description[bg]": "Настройки на мрежата",
-        "Description[ca@valencia]": "Configureu la xarxa",
-        "Description[ca]": "Configuració de la xarxa",
-        "Description[cs]": "Nastavení sítě",
-        "Description[de]": "Netzwerkeinstellungen",
-        "Description[el]": "Ρυθμίσεις δικτύου",
-        "Description[en_GB]": "Network Settings",
-        "Description[eo]": "Retaj Agordoj",
-        "Description[es]": "Preferencias de la red",
-        "Description[eu]": "Sareko ezarpenak",
-        "Description[fi]": "Verkkoasetukset",
-        "Description[fr]": "Configuration du réseau",
-        "Description[ia]": "Preferentias de rete",
-        "Description[it]": "Impostazioni di rete",
-        "Description[ka]": "ქსელის მორგება",
-        "Description[ko]": "네트워크 설정",
-        "Description[nl]": "Netwerkinstellingen",
-        "Description[pl]": "Ustawienia sieci",
-        "Description[pt]": "Configuração da Rede",
-        "Description[pt_BR]": "Configurações de rede",
-        "Description[ru]": "Параметры сети",
-        "Description[sl]": "Nastavitve omrežja",
-        "Description[sv]": "Nätverksinställningar",
-        "Description[tr]": "Ağ Ayarları",
-        "Description[uk]": "Параметри мережі",
-        "Description[x-test]": "xxNetwork Settingsxx",
-        "Description[zh_TW]": "網路設定",
         "Icon": "network-wired",
         "Name": "Network",
         "Name[ar]": "الشّبكة",
@@ -84,10 +55,7 @@
         "Name[wa]": "Rantoele",
         "Name[x-test]": "xxNetworkxx",
         "Name[zh_CN]": "网络",
-        "Name[zh_TW]": "網路",
-        "ServiceTypes": [
-            "KCModule"
-        ]
+        "Name[zh_TW]": "網路"
     },
     "X-KDE-Weight": 125
 }

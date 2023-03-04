@@ -1,34 +1,5 @@
 {
     "KPlugin": {
-        "Description": "Settings that don't fit elsewhere",
-        "Description[ar]": "بقيّة الإعدادات التي لا مكان لها",
-        "Description[bg]": "Настройки, които не пасват на друго място",
-        "Description[ca@valencia]": "Opcions que no encaixen enlloc",
-        "Description[ca]": "Opcions que no encaixen enlloc",
-        "Description[cs]": "Nastavení nehodící se jinam",
-        "Description[de]": "Verschiedene Einstellungen",
-        "Description[el]": "Ρυθμίσεις που δεν ταιριάζουν κάπου αλλού",
-        "Description[en_GB]": "Settings that don't fit elsewhere",
-        "Description[eo]": "Agordoj kiuj apartenas nenie alie",
-        "Description[es]": "Preferencias que no encajan en ningún otro sitio",
-        "Description[eu]": "Beste inon egokitzen ez diren ezarpenak",
-        "Description[fi]": "Asetukset, jotka eivät sovi muuallekaan",
-        "Description[fr]": "Paramètres ne rentrant dans aucune autre catégorie",
-        "Description[ia]": "Preferentias que non es in altere placias",
-        "Description[it]": "Impostazioni che non rientrano in altre categorie",
-        "Description[ka]": "პარამეტრები, რომლებიც სხვაგან არ ეტევა",
-        "Description[ko]": "어떤 곳에도 어울리지 않는 설정",
-        "Description[nl]": "Instellingen die nergens echt passen",
-        "Description[pl]": "Ustawienia, które nie pasują gdzie indziej",
-        "Description[pt]": "Configurações que não se encaixam em lado nenhum",
-        "Description[pt_BR]": "Outras configurações",
-        "Description[ru]": "Параметры, не вошедшие в другие разделы",
-        "Description[sl]": "Nastavitve, ki ne spadajo drugam",
-        "Description[sv]": "Inställningar som inte passar någon annanstans",
-        "Description[tr]": "Diğer bölümlere uymayan yapılandırma seçenekleri",
-        "Description[uk]": "Інші параметри",
-        "Description[x-test]": "xxSettings that don't fit elsewherexx",
-        "Description[zh_TW]": "不屬於任何其他地方的設定",
         "Icon": "preferences-other",
         "Name": "Misc",
         "Name[af]": "Allerlei",
@@ -100,10 +71,7 @@
         "Name[wa]": "Totès sôres",
         "Name[x-test]": "xxMiscxx",
         "Name[zh_CN]": "其他​​",
-        "Name[zh_TW]": "其他",
-        "ServiceTypes": [
-            "KCModule"
-        ]
+        "Name[zh_TW]": "其他"
     },
     "X-KDE-Weight": 200
 }

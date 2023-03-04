@@ -1,33 +1,5 @@
 {
     "KPlugin": {
-        "Description": "Setup printing for notes",
-        "Description[ar]": "اضبط طباعة الملاحظات",
-        "Description[bg]": "Настройка на печат за бележки",
-        "Description[ca@valencia]": "Configura la impressió per a les notes",
-        "Description[ca]": "Configura la impressió per a les notes",
-        "Description[cs]": "Nastavení tisku pro poznámky",
-        "Description[de]": "Drucken für Notizen einrichten",
-        "Description[el]": "Ρύθμιση εκτύπωσης για τα σημειώματα",
-        "Description[en_GB]": "Setup printing for notes",
-        "Description[es]": "Configurar impresión para notas",
-        "Description[eu]": "Ezarri oharren inprimatzea",
-        "Description[fi]": "Muistiinpanojen tulostusasetukset",
-        "Description[fr]": "Configuration de l'impression pour les notes",
-        "Description[ia]": "Configuration imprimente pro notas",
-        "Description[it]": "Imposta la stampa per le note",
-        "Description[ka]": "სანიშნეების ბეჭდვის მორგება",
-        "Description[ko]": "노트 인쇄 설정",
-        "Description[nl]": "Afdrukken instellen voor notities",
-        "Description[pl]": "Ustawienia wydruku notatek",
-        "Description[pt]": "Configurar a impressão das notas",
-        "Description[pt_BR]": "Configurar a impressão para notas",
-        "Description[ru]": "Настройка печати заметок",
-        "Description[sl]": "Nastavi tiskanje sporočilc",
-        "Description[sv]": "Ställ in utskrift för anteckningslappar",
-        "Description[tr]": "Notlar için yazdırma ayarı",
-        "Description[uk]": "Налаштування друку нотаток",
-        "Description[x-test]": "xxSetup printing for notesxx",
-        "Description[zh_TW]": "設定便條的列印",
         "Icon": "preferences-other",
         "Name": "Print",
         "Name[ar]": "الطّباعة",
@@ -72,10 +44,7 @@
         "Name[uk]": "Друк",
         "Name[x-test]": "xxPrintxx",
         "Name[zh_CN]": "Print",
-        "Name[zh_TW]": "列印",
-        "ServiceTypes": [
-            "KCModule"
-        ]
+        "Name[zh_TW]": "列印"
     },
     "X-KDE-Weight": 150
 }
