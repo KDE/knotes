@@ -74,7 +74,7 @@ target_link_libraries(knotesprivate
     PRIVATE
     KF5::PimCommon
     KF${KF_MAJOR_VERSION}::XmlGui
-    KF${KF_MAJOR_VERSION}::KCMUtils KF${KF_MAJOR_VERSION}::NewStuff
+    KF${KF_MAJOR_VERSION}::KCMUtils KF${KF_MAJOR_VERSION}::NewStuffCore
     KF${KF_MAJOR_VERSION}::WindowSystem Qt::PrintSupport
     KF${KF_MAJOR_VERSION}::TextWidgets KF${KF_MAJOR_VERSION}::I18n notesharedprivate
     KPim${KF_MAJOR_VERSION}::AkonadiSearchPIM KPim${KF_MAJOR_VERSION}::AkonadiNotes KPim${KF_MAJOR_VERSION}::PimTextEdit KPim${KF_MAJOR_VERSION}::AkonadiWidgets KPim${KF_MAJOR_VERSION}::GrantleeTheme
