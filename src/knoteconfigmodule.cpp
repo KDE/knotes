@@ -19,8 +19,13 @@
 #include "configdialog/knoteeditorconfigwidget.h"
 #include <KAuthorized>
 #include <KLocalizedString>
-#include <KNS3/QtQuickDialogWrapper>
 
+#include <knewstuff_version.h>
+#if KNEWSTUFF_VERSION < QT_VERSION_CHECK(5, 240, 0)
+#include <KNS3/QtQuickDialogWrapper>
+#else
+#include <KNSWidgets/QtQuickDialogWrapper>
+#endif
 #include <QCheckBox>
 #include <QLabel>
 #include <QLineEdit>
@@ -167,8 +172,13 @@ KNotePrintConfig::KNotePrintConfig(QWidget *parent, const QVariantList &args)
 
 void KNotePrintConfig::slotDownloadNewThemes()
 {
+#if KNEWSTUFF_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto newStuffDialog = new KNS3::QtQuickDialogWrapper(QStringLiteral("kwinswitcher.knsrc"));
     connect(newStuffDialog, &KNS3::QtQuickDialogWrapper::closed, this, [newStuffDialog, this]() {
+#else
+    auto newStuffDialog = new KNSWidgets::QtQuickDialogWrapper(QStringLiteral("kwinswitcher.knsrc"));
+    connect(newStuffDialog, &KNSWidgets::QtQuickDialogWrapper::closed, this, [newStuffDialog, this]() {
+#endif
         if (!newStuffDialog->changedEntries().isEmpty()) {
             mSelectTheme->loadThemes();
         }
