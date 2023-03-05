@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+  <!ENTITY i18n-notesagent "<application
+>Not Aracı</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Turkish "INCLUDE"
+> 
+]>
+
+<article id="notesagent" lang="&language;">
+<articleinfo>
+<title
+>&i18n-notesagent; El Kitabı</title>
+<authorgroup>
+<author
+><personname
+> <firstname
+>Laurent</firstname
+> <surname
+>Montel</surname
+> </personname
+> &Laurent.Montel.mail; </author>
+<othercredit role="translator"
+><firstname
+>Necdet</firstname
+><surname
+>Yücel</surname
+><affiliation
+><address
+><email
+>necdetyucel@gmail.com</email
+></address
+></affiliation
+><contrib
+>-</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2013</year>
+<holder
+>&Laurent.Montel;</holder>
+</copyright>
+
+<date
+>2013-12-20</date>
+<releaseinfo
+>&kde; 4.13</releaseinfo>
+
+</articleinfo>
+
+<sect1 id="introduction">
+<title
+>Giriş</title>
+
+<para
+>&i18n-notesagent; ağ ve sinyal alarmlarından not almanızı sağlayan bir akonadi aracıdır. </para>
+
+<sect2 id="credits">
+
+<title
+>Hazırlayanlar ve Lisans</title>
+
+<para
+>&i18n-notesagent;</para>
+<para
+>Program telif hakkı 2013 &Laurent.Montel; &Laurent.Montel.mail; </para>
+<para
+>Belgelendirme Telif Hakkı &copy; 2013 &Laurent.Montel; &Laurent.Montel.mail; </para>
+
+<para
+>Necdet Yücel<email
+>necdetyucel@gmail.com</email
+></para
+> &underFDL; &underGPL; </sect2>
+
+</sect1>
+
+</article>
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->
