@@ -39,7 +39,7 @@ msgstr "امنع إنشاء الملاحظات الجديدة في السّير�
 #: apps/knotesakonaditray.cpp:21
 #, kde-format
 msgid "KNotes: Sticky notes by KDE"
-msgstr "ملاحظاتك: ملاحظات لاصقة من «كدي»"
+msgstr "ملاحظاتك: ملاحظات لاصقة من «كِيدِي»"
 
 #: apps/knotesapp.cpp:88
 #, kde-format
@@ -124,7 +124,7 @@ msgstr "ملاحظاتك"
 #: apps/main.cpp:47
 #, kde-format
 msgid "KDE Notes"
-msgstr "ملاحظات كدي"
+msgstr "ملاحظات كِيدِي"
 
 #: apps/main.cpp:49
 #, kde-format
@@ -174,7 +174,7 @@ msgstr "Wynn Wilkes"
 #: apps/main.cpp:73
 #, kde-format
 msgid "Ported KNotes to KDE 2"
-msgstr "نقل «ملاحظاتك» إلى «كدي 2»"
+msgstr "نقل «ملاحظاتك» إلى «كِيدِي 2»"
 
 #: apps/main.cpp:74
 #, kde-format
@@ -194,7 +194,7 @@ msgstr "Bo Thorsen"
 #: apps/main.cpp:75
 #, kde-format
 msgid "Started KDE Resource Framework Integration"
-msgstr "بدأ التّكامل مع إطار عمل كدي للموارد"
+msgstr "بدأ التّكامل مع إطار عمل كِيدِي للموارد"
 
 #: apps/main.cpp:76
 #, kde-format
