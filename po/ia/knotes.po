@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-26 00:58+0000\n"
+"POT-Creation-Date: 2023-03-06 00:49+0000\n"
 "PO-Revision-Date: 2022-01-05 13:01+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -438,22 +438,22 @@ msgstr "Necun resultatos trovate in cerca."
 msgid "Show Note"
 msgstr "Monstra nota "
 
-#: knoteconfigmodule.cpp:80
+#: knoteconfigmodule.cpp:85
 #, kde-format
 msgid "Show number of notes in tray icon"
 msgstr "Monstra numero de notas in le tabuliero"
 
-#: knoteconfigmodule.cpp:87
+#: knoteconfigmodule.cpp:92
 #, kde-format
 msgid "Default Title:"
 msgstr "Titulo predefinite:"
 
-#: knoteconfigmodule.cpp:94
+#: knoteconfigmodule.cpp:99
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Como il functiona?</a>"
 
-#: knoteconfigmodule.cpp:128
+#: knoteconfigmodule.cpp:133
 #, kde-format
 msgid ""
 "<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
@@ -464,12 +464,12 @@ msgstr ""
 "data currente (forma breve)</li><li>%l data currente (forma longe)</li><li>"
 "%t tempore currente </li></ul></qt>"
 
-#: knoteconfigmodule.cpp:150
+#: knoteconfigmodule.cpp:155
 #, kde-format
 msgid "Theme:"
 msgstr "Thema:"
 
-#: knoteconfigmodule.cpp:160
+#: knoteconfigmodule.cpp:165
 #, kde-format
 msgid "Download new printing themes"
 msgstr "Discarga nove themas de imprimer"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-26 00:58+0000\n"
+"POT-Creation-Date: 2023-03-06 00:49+0000\n"
 "PO-Revision-Date: 2022-02-20 22:23+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -440,22 +440,22 @@ msgstr "검색 결과가 없습니다."
 msgid "Show Note"
 msgstr "노트 표시"
 
-#: knoteconfigmodule.cpp:80
+#: knoteconfigmodule.cpp:85
 #, kde-format
 msgid "Show number of notes in tray icon"
 msgstr "트레이 아이콘에 노트 수 표시"
 
-#: knoteconfigmodule.cpp:87
+#: knoteconfigmodule.cpp:92
 #, kde-format
 msgid "Default Title:"
 msgstr "기본 제목:"
 
-#: knoteconfigmodule.cpp:94
+#: knoteconfigmodule.cpp:99
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">어떻게 작동하나요?</a>"
 
-#: knoteconfigmodule.cpp:128
+#: knoteconfigmodule.cpp:133
 #, kde-format
 msgid ""
 "<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
@@ -466,12 +466,12 @@ msgstr ""
 "습니다:</p> <ul><li>%d: 오늘 날짜(짧은 형식)</li><li>%l: 오늘 날짜(긴 형식)</"
 "li><li>%t: 현재 시간</li></ul></qt>"
 
-#: knoteconfigmodule.cpp:150
+#: knoteconfigmodule.cpp:155
 #, kde-format
 msgid "Theme:"
 msgstr "테마:"
 
-#: knoteconfigmodule.cpp:160
+#: knoteconfigmodule.cpp:165
 #, kde-format
 msgid "Download new printing themes"
 msgstr "새 인쇄 테마 다운로드"

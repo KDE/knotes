@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-26 00:58+0000\n"
+"POT-Creation-Date: 2023-03-06 00:49+0000\n"
 "PO-Revision-Date: 2014-02-08 00:15+0100\n"
 "Last-Translator: Samir Ribić <megaribi@epn.ba>\n"
 "Language-Team: Bosanski <bs@li.org>\n"
@@ -460,23 +460,23 @@ msgstr ""
 msgid "Show Note"
 msgstr "Prikaži sve zabilješke"
 
-#: knoteconfigmodule.cpp:80
+#: knoteconfigmodule.cpp:85
 #, kde-format
 msgid "Show number of notes in tray icon"
 msgstr ""
 
-#: knoteconfigmodule.cpp:87
+#: knoteconfigmodule.cpp:92
 #, fuzzy, kde-format
 #| msgid "Default &width:"
 msgid "Default Title:"
 msgstr "Podrazumjevana &širina:"
 
-#: knoteconfigmodule.cpp:94
+#: knoteconfigmodule.cpp:99
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Kako ovo radi?</a>"
 
-#: knoteconfigmodule.cpp:128
+#: knoteconfigmodule.cpp:133
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "
@@ -490,12 +490,12 @@ msgstr ""
 "vraća trenutni naslov bilješke</li><li>%f vraća trenutni tekst zabilješke</"
 "li></ul></qt>"
 
-#: knoteconfigmodule.cpp:150
+#: knoteconfigmodule.cpp:155
 #, kde-format
 msgid "Theme:"
 msgstr "Tema:"
 
-#: knoteconfigmodule.cpp:160
+#: knoteconfigmodule.cpp:165
 #, kde-format
 msgid "Download new printing themes"
 msgstr "Preuzmi nove teme štampe"
