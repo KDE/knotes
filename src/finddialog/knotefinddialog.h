@@ -37,10 +37,10 @@ private Q_SLOTS:
 private:
     void customContextMenuRequested(const QPoint &);
     QHash<Akonadi::Item::Id, Akonadi::Item> mNotes;
-    QLabel *mResultSearch = nullptr;
-    QLineEdit *mSearchLineEdit = nullptr;
-    QPushButton *mSearchButton = nullptr;
-    NoteShared::NoteListWidget *mNoteList = nullptr;
+    QLabel *const mResultSearch;
+    QLineEdit *const mSearchLineEdit;
+    QPushButton *const mSearchButton;
+    NoteShared::NoteListWidget *const mNoteList;
 };
 
 class KNOTES_EXPORT KNoteFindDialog : public QDialog
@@ -57,5 +57,5 @@ Q_SIGNALS:
 private:
     void writeConfig();
     void readConfig();
-    KNoteFindWidget *mNoteFindWidget = nullptr;
+    KNoteFindWidget *const mNoteFindWidget;
 };

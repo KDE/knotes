@@ -26,13 +26,13 @@
 
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     : QDialog(parent)
+    , mNoteFindWidget(new KNoteFindWidget(this))
 {
     setWindowTitle(i18nc("@title:window", "Search Notes"));
     auto mainLayout = new QVBoxLayout(this);
     auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Close, this);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteFindDialog::reject);
     setAttribute(Qt::WA_DeleteOnClose);
-    mNoteFindWidget = new KNoteFindWidget(this);
     connect(mNoteFindWidget, &KNoteFindWidget::noteSelected, this, &KNoteFindDialog::noteSelected);
     mainLayout->addWidget(mNoteFindWidget);
     mainLayout->addWidget(buttonBox);
@@ -71,6 +71,10 @@ void KNoteFindDialog::writeConfig()
 
 KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     : QWidget(parent)
+    , mResultSearch(new QLabel(this))
+    , mSearchLineEdit(new QLineEdit(this))
+    , mSearchButton(new QPushButton(QIcon::fromTheme(QStringLiteral("edit-find")), i18nc("@action:button Search notes", "Search..."), this))
+    , mNoteList(new NoteShared::NoteListWidget(this))
 {
     auto vbox = new QVBoxLayout(this);
     vbox->setContentsMargins(0, 0, 0, 0);
@@ -78,26 +82,22 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     vbox->addLayout(hbox);
     auto lab = new QLabel(i18nc("@label:textbox", "Search notes:"), this);
     hbox->addWidget(lab);
-    mSearchLineEdit = new QLineEdit(this);
     mSearchLineEdit->setClearButtonEnabled(true);
     connect(mSearchLineEdit, &QLineEdit::returnPressed, this, &KNoteFindWidget::slotSearchNote);
     connect(mSearchLineEdit, &QLineEdit::textChanged, this, &KNoteFindWidget::slotTextChanged);
     hbox->addWidget(mSearchLineEdit);
 
-    mSearchButton = new QPushButton(QIcon::fromTheme(QStringLiteral("edit-find")), i18nc("@action:button Search notes", "Search..."), this);
     connect(mSearchButton, &QPushButton::clicked, this, &KNoteFindWidget::slotSearchNote);
     hbox->addWidget(mSearchButton);
     mSearchButton->setEnabled(false);
 
     // Result
-    mNoteList = new NoteShared::NoteListWidget(this);
     mNoteList->setContextMenuPolicy(Qt::CustomContextMenu);
     mNoteList->setSelectionMode(QAbstractItemView::SingleSelection);
     connect(mNoteList, &NoteShared::NoteListWidget::itemDoubleClicked, this, &KNoteFindWidget::slotItemDoubleClicked);
     connect(mNoteList, &NoteShared::NoteListWidget::customContextMenuRequested, this, &KNoteFindWidget::customContextMenuRequested);
     vbox->addWidget(mNoteList);
 
-    mResultSearch = new QLabel(this);
     mResultSearch->setTextFormat(Qt::PlainText);
     vbox->addWidget(mResultSearch);
 

@@ -26,7 +26,7 @@ public Q_SLOTS:
 private:
     void readConfig();
     void writeConfig();
-    QTabWidget *mTabWidget = nullptr;
-    KNoteEditorConfigWidget *mEditorConfigWidget = nullptr;
-    KNoteDisplayConfigWidget *mDisplayConfigWidget = nullptr;
+    QTabWidget *const mTabWidget;
+    KNoteEditorConfigWidget *const mEditorConfigWidget;
+    KNoteDisplayConfigWidget *const mDisplayConfigWidget;
 };

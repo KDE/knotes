@@ -14,5 +14,5 @@ public:
     Q_REQUIRED_RESULT bool blockSave() const;
 
 protected:
-    bool mBlockSave;
+    bool mBlockSave = false;
 };

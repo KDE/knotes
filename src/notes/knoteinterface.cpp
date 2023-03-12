@@ -6,7 +6,6 @@
 #include "knoteinterface.h"
 
 KNoteInterface::KNoteInterface()
-    : mBlockSave(false)
 {
 }
 

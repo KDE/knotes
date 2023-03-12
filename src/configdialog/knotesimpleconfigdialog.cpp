@@ -25,6 +25,9 @@
 
 KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title, QWidget *parent)
     : QDialog(parent)
+    , mTabWidget(new QTabWidget(this))
+    , mEditorConfigWidget(new KNoteEditorConfigWidget(this))
+    , mDisplayConfigWidget(new KNoteDisplayConfigWidget(true, this))
 {
     auto mainLayout = new QVBoxLayout(this);
 
@@ -35,12 +38,8 @@ KNoteSimpleConfigDialog::KNoteSimpleConfigDialog(const QString &title, QWidget *
     connect(buttonBox, &QDialogButtonBox::accepted, this, &KNoteSimpleConfigDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &KNoteSimpleConfigDialog::reject);
 
-    mTabWidget = new QTabWidget;
-
-    mEditorConfigWidget = new KNoteEditorConfigWidget(this);
     mTabWidget->addTab(mEditorConfigWidget, i18n("Editor Settings"));
 
-    mDisplayConfigWidget = new KNoteDisplayConfigWidget(true, this);
     mTabWidget->addTab(mDisplayConfigWidget, i18n("Display Settings"));
 
     mainLayout->addWidget(mTabWidget);
