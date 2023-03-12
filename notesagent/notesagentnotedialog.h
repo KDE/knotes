@@ -22,10 +22,8 @@ public:
 
     void setNoteId(Akonadi::Item::Id id);
 
-private Q_SLOTS:
-    void slotFetchItem(KJob *job);
-
 private:
+    void slotFetchItem(KJob *job);
     void readConfig();
     void writeConfig();
     KPIMTextEdit::RichTextEditorWidget *const mNote;

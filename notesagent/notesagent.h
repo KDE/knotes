@@ -38,10 +38,8 @@ public Q_SLOTS:
 protected:
     void doSetOnline(bool online) override;
 
-private Q_SLOTS:
-    void slotStartAgent();
-
 private:
+    void slotStartAgent();
     bool mAgentInitialized = false;
     NotesManager *mNotesManager = nullptr;
 };

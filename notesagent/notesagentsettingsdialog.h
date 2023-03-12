@@ -19,10 +19,8 @@ public:
     explicit NotesAgentSettingsDialog(QWidget *parent = nullptr);
     ~NotesAgentSettingsDialog() override;
 
-private Q_SLOTS:
-    void slotOkClicked();
-
 private:
+    void slotOkClicked();
     void writeConfig();
     void readConfig();
     KNotifyConfigWidget *const mNotify;

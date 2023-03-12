@@ -36,7 +36,7 @@ public:
 public Q_SLOTS:
     void load();
 
-private Q_SLOTS:
+private:
     void slotAcceptConnection();
     void slotNewNote(const QString &name, const QString &text);
     void slotCheckAlarm();
@@ -47,7 +47,6 @@ private Q_SLOTS:
 
     void slotCollectionsReceived(const Akonadi::Collection::List &collections);
 
-private:
     void clear();
     Akonadi::Item::List mListItem;
     QTcpServer *mListener = nullptr;

@@ -30,17 +30,13 @@ public:
 Q_SIGNALS:
     void selectNewCollection();
 
-private Q_SLOTS:
+private:
     void slotNoteCreationFinished(KJob *);
 
     void slotFetchCollection(KJob *job);
     void slotCollectionModifyFinished(KJob *job);
     void slotSelectNewCollection();
-
-private:
     void createFetchCollectionJob(bool useSettings);
-
-private:
     QString mTitle;
     QString mText;
     bool mRichText = false;

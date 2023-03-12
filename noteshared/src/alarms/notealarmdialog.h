@@ -30,8 +30,6 @@ public:
 
 private:
     void slotButtonChanged(QAbstractButton *button);
-
-private:
     KDateComboBox *m_atDate = nullptr;
     KTimeComboBox *m_atTime = nullptr;
     QButtonGroup *const m_buttons = nullptr;
