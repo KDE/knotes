@@ -29,16 +29,16 @@ NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)
     auto incoming = new QGroupBox(i18n("Incoming Notes"));
     auto tmpLayout = new QHBoxLayout;
 
-    mTmpChkB = new QCheckBox(i18n("Accept incoming notes"));
+    mTmpChkB = new QCheckBox(i18n("Accept incoming notes"), this);
     mTmpChkB->setObjectName(QStringLiteral("kcfg_ReceiveNotes"));
     tmpLayout->addWidget(mTmpChkB);
     incoming->setLayout(tmpLayout);
     layout->addWidget(incoming);
 
-    auto outgoing = new QGroupBox(i18n("Outgoing Notes"));
+    auto outgoing = new QGroupBox(i18n("Outgoing Notes"), this);
     tmpLayout = new QHBoxLayout;
 
-    auto label_SenderID = new QLabel(i18n("&Sender ID:"));
+    auto label_SenderID = new QLabel(i18n("&Sender ID:"), this);
     m_kcfg_SenderID = new QLineEdit;
     m_kcfg_SenderID->setClearButtonEnabled(true);
     m_kcfg_SenderID->setObjectName(QStringLiteral("kcfg_SenderID"));
@@ -50,11 +50,11 @@ NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)
 
     tmpLayout = new QHBoxLayout;
 
-    auto label_Port = new QLabel(i18n("&Port:"));
+    auto label_Port = new QLabel(i18n("&Port:"), this);
 
     tmpLayout->addWidget(label_Port);
 
-    kcfg_Port = new QSpinBox;
+    kcfg_Port = new QSpinBox(this);
     kcfg_Port->setObjectName(QStringLiteral("kcfg_Port"));
     kcfg_Port->setRange(0, 65535);
     label_Port->setBuddy(kcfg_Port);
