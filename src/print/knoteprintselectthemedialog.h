@@ -20,5 +20,5 @@ public:
     Q_REQUIRED_RESULT QString selectedTheme() const;
 
 private:
-    KNotePrintSelectThemeComboBox *mThemes = nullptr;
+    KNotePrintSelectThemeComboBox *const mThemes;
 };
