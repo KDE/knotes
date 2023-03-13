@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2006-02-13 23:30+0100\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -377,7 +377,7 @@ msgstr "Sarlavha shrifti:"
 msgid "Editor Settings"
 msgstr "Tahrirchi moslamalari"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "Koʻrsatish moslamalari"
@@ -421,25 +421,25 @@ msgstr "Tugmalar birikmasini moslash"
 msgid "Note Actions"
 msgstr ""
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, fuzzy, kde-format
 #| msgid "New Note"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Yangi yozma xotira"
 
-#: finddialog/knotefinddialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "New Note"
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "Yangi yozma xotira"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, fuzzy, kde-format
 #| msgid "New Note"
 msgctxt "@action:button Search notes"
 msgid "Search..."
+msgstr "Yangi yozma xotira"
+
+#: finddialog/knotefinddialog.cpp:83
+#, fuzzy, kde-format
+#| msgid "New Note"
+msgctxt "@label:textbox"
+msgid "Search notes:"
 msgstr "Yangi yozma xotira"
 
 #: finddialog/knotefinddialog.cpp:171
@@ -1094,13 +1094,13 @@ msgstr ""
 msgid "Print"
 msgstr "%1 hujjatni bosib chiqarish"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr ""
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr ""

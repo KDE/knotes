@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2023-01-29 23:06+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -377,7 +377,7 @@ msgstr "標題字型"
 msgid "Editor Settings"
 msgstr "編輯器設定"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "顯示設定"
@@ -418,23 +418,23 @@ msgstr "設定快捷鍵"
 msgid "Note Actions"
 msgstr "便利貼命令"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "搜尋便條"
 
-#: finddialog/knotefinddialog.cpp:79
-#, kde-format
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "搜尋便條："
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "搜尋..."
+
+#: finddialog/knotefinddialog.cpp:83
+#, kde-format
+msgctxt "@label:textbox"
+msgid "Search notes:"
+msgstr "搜尋便條："
 
 #: finddialog/knotefinddialog.cpp:171
 #, kde-format
@@ -1055,13 +1055,13 @@ msgstr "預覽"
 msgid "Print"
 msgstr "列印"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr "選擇主題"
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr "主題："

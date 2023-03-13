@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2022-01-02 15:04+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -382,7 +382,7 @@ msgstr "Titellettertype:"
 msgid "Editor Settings"
 msgstr "Editor-instellingen"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "Weergave-instellingen"
@@ -423,23 +423,23 @@ msgstr "Sneltoetsen configureren"
 msgid "Note Actions"
 msgstr "Notitiehandelingen"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Notities zoeken"
 
-#: finddialog/knotefinddialog.cpp:79
-#, kde-format
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "Notities zoeken:"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "Zoeken..."
+
+#: finddialog/knotefinddialog.cpp:83
+#, kde-format
+msgctxt "@label:textbox"
+msgid "Search notes:"
+msgstr "Notities zoeken:"
 
 #: finddialog/knotefinddialog.cpp:171
 #, kde-format
@@ -1074,13 +1074,13 @@ msgstr "Voorbeeld"
 msgid "Print"
 msgstr "Afdrukken"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr "Selecteer een thema"
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr "Thema's:"

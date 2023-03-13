@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2013-02-13 17:25+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -372,7 +372,7 @@ msgstr ""
 msgid "Editor Settings"
 msgstr ""
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr ""
@@ -415,25 +415,25 @@ msgstr "शॉर्टकट्स संयोजीत करा"
 msgid "Note Actions"
 msgstr ""
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, fuzzy, kde-format
 #| msgid "Rename..."
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "नाव बदला..."
 
-#: finddialog/knotefinddialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "Rename..."
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "नाव बदला..."
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, fuzzy, kde-format
 #| msgid "Rename..."
 msgctxt "@action:button Search notes"
 msgid "Search..."
+msgstr "नाव बदला..."
+
+#: finddialog/knotefinddialog.cpp:83
+#, fuzzy, kde-format
+#| msgid "Rename..."
+msgctxt "@label:textbox"
+msgid "Search notes:"
 msgstr "नाव बदला..."
 
 #: finddialog/knotefinddialog.cpp:171
@@ -1078,13 +1078,13 @@ msgstr ""
 msgid "Print"
 msgstr "छापा %1"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr ""
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr ""

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2022-03-03 12:04+0200\n"
 "Last-Translator: Petros Vidalis <pvidalis@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -374,7 +374,7 @@ msgstr "Γραμματοσειρά τίτλου:"
 msgid "Editor Settings"
 msgstr "Ρυθμίσεις επεξεργαστή"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "Ρυθμίσεις προβολής"
@@ -415,23 +415,23 @@ msgstr "Διαμόρφωση συντομεύσεων"
 msgid "Note Actions"
 msgstr "Ενέργειες σημειωμάτων"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Αναζήτηση σημειωμάτων"
 
-#: finddialog/knotefinddialog.cpp:79
-#, kde-format
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "Αναζήτηση σημειωμάτων:"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "Αναζήτηση..."
+
+#: finddialog/knotefinddialog.cpp:83
+#, kde-format
+msgctxt "@label:textbox"
+msgid "Search notes:"
+msgstr "Αναζήτηση σημειωμάτων:"
 
 #: finddialog/knotefinddialog.cpp:171
 #, kde-format
@@ -1068,13 +1068,13 @@ msgstr "Προεπισκόπηση"
 msgid "Print"
 msgstr "Εκτύπωση"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr "Επιλογή θέματος"
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr "Θέματα:"

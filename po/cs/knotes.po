@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2023-02-22 16:42+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -370,7 +370,7 @@ msgstr "Písmo nadpisu:"
 msgid "Editor Settings"
 msgstr "Nastavení editoru"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "Nastavení zobrazení"
@@ -411,23 +411,23 @@ msgstr "Nastavit zkratky"
 msgid "Note Actions"
 msgstr "Činnosti s poznámkami"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Hledat poznámky"
 
-#: finddialog/knotefinddialog.cpp:79
-#, kde-format
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "Hledat poznámky:"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "Hledat..."
+
+#: finddialog/knotefinddialog.cpp:83
+#, kde-format
+msgctxt "@label:textbox"
+msgid "Search notes:"
+msgstr "Hledat poznámky:"
 
 #: finddialog/knotefinddialog.cpp:171
 #, kde-format
@@ -1051,13 +1051,13 @@ msgstr "Náhled"
 msgid "Print"
 msgstr "Vytisknout"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr "Zvolte motiv"
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr "Motivy:"

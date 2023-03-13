@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2008-01-22 16:59+0530\n"
 "Last-Translator: Ravishankar Shrivastava <aviratlami@aol.in>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -377,7 +377,7 @@ msgstr "शीर्षक फ़ॉन्ट:"
 msgid "Editor Settings"
 msgstr "संपादक विन्यास"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "प्रकटन विन्यास"
@@ -420,25 +420,25 @@ msgstr "शॉर्ट कट कॉन्फ़िगर कीजिए"
 msgid "Note Actions"
 msgstr "नोट क्रियाएँ"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "सभी नोट्स दिखाएँ"
 
-#: finddialog/knotefinddialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "Show All Notes"
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "सभी नोट्स दिखाएँ"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@action:button Search notes"
 msgid "Search..."
+msgstr "सभी नोट्स दिखाएँ"
+
+#: finddialog/knotefinddialog.cpp:83
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@label:textbox"
+msgid "Search notes:"
 msgstr "सभी नोट्स दिखाएँ"
 
 #: finddialog/knotefinddialog.cpp:171
@@ -1094,13 +1094,13 @@ msgstr ""
 msgid "Print"
 msgstr "छापें %1"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr ""
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr ""

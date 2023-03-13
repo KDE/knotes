@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2005-03-21 03:17-0800\n"
 "Last-Translator: Tamil PC <tamilpc@ambalam.com>\n"
 "Language-Team:  <tamilpc@ambalam.com>\n"
@@ -380,7 +380,7 @@ msgstr "தலைப்பு எழுத்துரு:"
 msgid "Editor Settings"
 msgstr "தொகுப்பான் அமைவுகள்"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "அமைவுகளை காட்டு"
@@ -423,25 +423,25 @@ msgstr "குறுக்குவழிகளை வடிவமை"
 msgid "Note Actions"
 msgstr "குறிப்பு செயல்கள்"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "எல்லா குறிப்புகளையும் காட்டு"
 
-#: finddialog/knotefinddialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "Show All Notes"
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "எல்லா குறிப்புகளையும் காட்டு"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@action:button Search notes"
 msgid "Search..."
+msgstr "எல்லா குறிப்புகளையும் காட்டு"
+
+#: finddialog/knotefinddialog.cpp:83
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@label:textbox"
+msgid "Search notes:"
 msgstr "எல்லா குறிப்புகளையும் காட்டு"
 
 #: finddialog/knotefinddialog.cpp:171
@@ -1097,13 +1097,13 @@ msgstr ""
 msgid "Print"
 msgstr "அச்சிடு %1"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr ""
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr ""

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2009-06-13 16:18+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: icelandic <kde-isl@molar.is>\n"
@@ -393,7 +393,7 @@ msgstr "Titilletur:"
 msgid "Editor Settings"
 msgstr "Stillingar ritils"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "Skjástillingar"
@@ -436,25 +436,25 @@ msgstr "Stilla flýtilykla"
 msgid "Note Actions"
 msgstr "Aðgerðir miða"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Sýna alla miða"
 
-#: finddialog/knotefinddialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "Show All Notes"
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "Sýna alla miða"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@action:button Search notes"
 msgid "Search..."
+msgstr "Sýna alla miða"
+
+#: finddialog/knotefinddialog.cpp:83
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@label:textbox"
+msgid "Search notes:"
 msgstr "Sýna alla miða"
 
 #: finddialog/knotefinddialog.cpp:171
@@ -1116,13 +1116,13 @@ msgstr ""
 msgid "Print"
 msgstr "Prenta %1"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr ""
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr ""

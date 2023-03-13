@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2012-12-20 08:55+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -383,7 +383,7 @@ msgstr "ਟਾਇਟਲ ਫੋਂਟ:"
 msgid "Editor Settings"
 msgstr "ਐਡੀਟਰ ਸੈਟਿੰਗ"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "ਡਿਸਪਲੇਅ ਸੈਟਿੰਗ"
@@ -427,25 +427,25 @@ msgstr "ਸ਼ਾਰਟਕੱਟ ਸੰਰਚਨਾ"
 msgid "Note Actions"
 msgstr "ਨੋਟ ਐਕਸ਼ਨ"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "ਪਰਾਪਤ ਕਰਤਾ ਚੁਣੋ:"
 
-#: finddialog/knotefinddialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "Select recipient:"
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "ਪਰਾਪਤ ਕਰਤਾ ਚੁਣੋ:"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgctxt "@action:button Search notes"
 msgid "Search..."
+msgstr "ਪਰਾਪਤ ਕਰਤਾ ਚੁਣੋ:"
+
+#: finddialog/knotefinddialog.cpp:83
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@label:textbox"
+msgid "Search notes:"
 msgstr "ਪਰਾਪਤ ਕਰਤਾ ਚੁਣੋ:"
 
 #: finddialog/knotefinddialog.cpp:171
@@ -1111,14 +1111,14 @@ msgstr ""
 msgid "Print"
 msgstr "%1 ਪਰਿੰਟ ਕਰੋ"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr "ਪਰਾਪਤ ਕਰਤਾ ਚੁਣੋ:"
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr ""

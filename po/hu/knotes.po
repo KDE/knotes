@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2020-12-29 14:47+0100\n"
 "Last-Translator: Kristóf Kiszel <kiszel.kristof@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -370,7 +370,7 @@ msgstr "A cím betűtípusa:"
 msgid "Editor Settings"
 msgstr "A szerkesztő beállításai"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "Képernyőbeállítások"
@@ -414,26 +414,26 @@ msgstr "A billentyűparancsok beállítása"
 msgid "Note Actions"
 msgstr "Jegyzetműveletek"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, fuzzy, kde-format
 #| msgid "Search Notes"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Jegyzetek keresése"
 
-#: finddialog/knotefinddialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "Search notes:"
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "Jegyzetek keresése:"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, fuzzy, kde-format
 #| msgid "Search..."
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "Keresés…"
+
+#: finddialog/knotefinddialog.cpp:83
+#, fuzzy, kde-format
+#| msgid "Search notes:"
+msgctxt "@label:textbox"
+msgid "Search notes:"
+msgstr "Jegyzetek keresése:"
 
 #: finddialog/knotefinddialog.cpp:171
 #, fuzzy, kde-format
@@ -1097,14 +1097,14 @@ msgstr "Előnézet"
 msgid "Print"
 msgstr "Nyomtatás"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, fuzzy, kde-format
 #| msgid "Select theme"
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr "Téma kiválasztása"
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr "Témák:"

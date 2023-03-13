@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2009-01-08 13:14+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -385,7 +385,7 @@ msgstr "Фонт на насловот:"
 msgid "Editor Settings"
 msgstr "Поставувања на уредувачот"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "Прикажи поставувања"
@@ -428,25 +428,25 @@ msgstr "Конфигурирање кратенки"
 msgid "Note Actions"
 msgstr "Дејства за белешките"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Прикажи ги сите белешки"
 
-#: finddialog/knotefinddialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "Show All Notes"
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "Прикажи ги сите белешки"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@action:button Search notes"
 msgid "Search..."
+msgstr "Прикажи ги сите белешки"
+
+#: finddialog/knotefinddialog.cpp:83
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@label:textbox"
+msgid "Search notes:"
 msgstr "Прикажи ги сите белешки"
 
 #: finddialog/knotefinddialog.cpp:171
@@ -1110,13 +1110,13 @@ msgstr ""
 msgid "Print"
 msgstr "Печати %1"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr ""
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr ""

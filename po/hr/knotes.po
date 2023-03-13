@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes 0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2004-04-20 13:26+CEST\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -377,7 +377,7 @@ msgstr ""
 msgid "Editor Settings"
 msgstr "Postavke uređivača"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "Podešavanje prikaza"
@@ -418,22 +418,22 @@ msgstr ""
 msgid "Note Actions"
 msgstr "Akcije"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Nema zabeleški"
 
-#: finddialog/knotefinddialog.cpp:79
-#, fuzzy, kde-format
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "Nema zabeleški"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, fuzzy, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
+msgstr "Nema zabeleški"
+
+#: finddialog/knotefinddialog.cpp:83
+#, fuzzy, kde-format
+msgctxt "@label:textbox"
+msgid "Search notes:"
 msgstr "Nema zabeleški"
 
 #: finddialog/knotefinddialog.cpp:171
@@ -1075,13 +1075,13 @@ msgstr ""
 msgid "Print"
 msgstr "Ispiši %1"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr ""
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr ""

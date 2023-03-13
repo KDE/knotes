@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2008-11-23 02:06+0900\n"
 "Last-Translator: Yukiko Bando <ybando@k6.dion.ne.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -391,7 +391,7 @@ msgstr "タイトルフォント:"
 msgid "Editor Settings"
 msgstr "エディタの設定"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "表示設定"
@@ -435,25 +435,25 @@ msgstr "ショートカットを設定"
 msgid "Note Actions"
 msgstr "メモのアクション"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "受信者を選択:"
 
-#: finddialog/knotefinddialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "Select recipient:"
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "受信者を選択:"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgctxt "@action:button Search notes"
 msgid "Search..."
+msgstr "受信者を選択:"
+
+#: finddialog/knotefinddialog.cpp:83
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@label:textbox"
+msgid "Search notes:"
 msgstr "受信者を選択:"
 
 #: finddialog/knotefinddialog.cpp:171
@@ -1119,14 +1119,14 @@ msgstr ""
 msgid "Print"
 msgstr "%1 を印刷"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr "受信者を選択:"
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr ""

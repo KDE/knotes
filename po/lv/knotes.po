@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2009-06-01 20:23+0300\n"
 "Last-Translator: Viesturs Zariņš <viesturs.zarins@mii.lu.lv>\n"
 "Language-Team: Latvian <locale@laka.lv>\n"
@@ -384,7 +384,7 @@ msgstr "Virsraksta fonts:"
 msgid "Editor Settings"
 msgstr "Redaktora iestatījumi"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "Attēlošanas iestatījumi"
@@ -428,25 +428,25 @@ msgstr "Konfigurēt īsceļus"
 msgid "Note Actions"
 msgstr "Piezīmes darbības"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Izvēlieties saņēmēju:"
 
-#: finddialog/knotefinddialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "Select recipient:"
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "Izvēlieties saņēmēju:"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgctxt "@action:button Search notes"
 msgid "Search..."
+msgstr "Izvēlieties saņēmēju:"
+
+#: finddialog/knotefinddialog.cpp:83
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@label:textbox"
+msgid "Search notes:"
 msgstr "Izvēlieties saņēmēju:"
 
 #: finddialog/knotefinddialog.cpp:171
@@ -1114,14 +1114,14 @@ msgstr ""
 msgid "Print"
 msgstr "Drukāt %1"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr "Izvēlieties saņēmēju:"
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr ""

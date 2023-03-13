@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes 1.0pre2\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2002-09-16 22:52GMT\n"
 "Last-Translator: Steffen Pietsch <Steffen.Pietsch@BerlinOnline.de>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
@@ -373,7 +373,7 @@ msgstr ""
 msgid "Editor Settings"
 msgstr "Redaktiloagordo"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "Aspekto"
@@ -415,22 +415,22 @@ msgstr "Agordi klavokombinojn"
 msgid "Note Actions"
 msgstr "Agoj"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Neniuj notoj"
 
-#: finddialog/knotefinddialog.cpp:79
-#, fuzzy, kde-format
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "Neniuj notoj"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, fuzzy, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
+msgstr "Neniuj notoj"
+
+#: finddialog/knotefinddialog.cpp:83
+#, fuzzy, kde-format
+msgctxt "@label:textbox"
+msgid "Search notes:"
 msgstr "Neniuj notoj"
 
 #: finddialog/knotefinddialog.cpp:171
@@ -1064,13 +1064,13 @@ msgstr ""
 msgid "Print"
 msgstr "Presu..."
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr ""
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr ""

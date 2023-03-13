@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2013-09-08 07:05+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -373,7 +373,7 @@ msgstr ""
 msgid "Editor Settings"
 msgstr "تەھرىرلىگۈچ تەڭشىكى"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "كۆرۈنمە يۈز تەڭشىكى"
@@ -416,25 +416,25 @@ msgstr "تېزلەتمە سەپلىمە"
 msgid "Note Actions"
 msgstr ""
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, fuzzy, kde-format
 #| msgid "New Note"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "يېڭى ئىزاھ"
 
-#: finddialog/knotefinddialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "New Note"
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "يېڭى ئىزاھ"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, fuzzy, kde-format
 #| msgid "New Note"
 msgctxt "@action:button Search notes"
 msgid "Search..."
+msgstr "يېڭى ئىزاھ"
+
+#: finddialog/knotefinddialog.cpp:83
+#, fuzzy, kde-format
+#| msgid "New Note"
+msgctxt "@label:textbox"
+msgid "Search notes:"
 msgstr "يېڭى ئىزاھ"
 
 #: finddialog/knotefinddialog.cpp:171
@@ -1082,13 +1082,13 @@ msgstr ""
 msgid "Print"
 msgstr "بېسىپ چىقار %1"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr ""
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr ""
