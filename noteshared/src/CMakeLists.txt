@@ -91,7 +91,7 @@ target_link_libraries(notesharedprivate
     PUBLIC
     KPim${KF_MAJOR_VERSION}::AkonadiCore
     PRIVATE
-    KF${KF_MAJOR_VERSION}::DNSSD KF5::PimCommon  KPim${KF_MAJOR_VERSION}::Mime KPim${KF_MAJOR_VERSION}::AkonadiNotes KPim${KF_MAJOR_VERSION}::PimTextEdit KF${KF_MAJOR_VERSION}::Completion Qt::DBus KF${KF_MAJOR_VERSION}::I18n KPim${KF_MAJOR_VERSION}::AkonadiWidgets
+    KF${KF_MAJOR_VERSION}::DNSSD KPim${KF_MAJOR_VERSION}::PimCommon  KPim${KF_MAJOR_VERSION}::Mime KPim${KF_MAJOR_VERSION}::AkonadiNotes KPim${KF_MAJOR_VERSION}::PimTextEdit KF${KF_MAJOR_VERSION}::Completion Qt::DBus KF${KF_MAJOR_VERSION}::I18n KPim${KF_MAJOR_VERSION}::AkonadiWidgets
 
     )
     if (TARGET Qt::Core5Compat)
