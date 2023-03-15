@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-06 00:49+0000\n"
+"POT-Creation-Date: 2023-03-13 00:50+0000\n"
 "PO-Revision-Date: 2021-03-21 17:51+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -373,7 +373,7 @@ msgstr "Tittelskrift:"
 msgid "Editor Settings"
 msgstr "Skrivefeltinnstillingar"
 
-#: configdialog/knotesimpleconfigdialog.cpp:44
+#: configdialog/knotesimpleconfigdialog.cpp:43
 #, kde-format
 msgid "Display Settings"
 msgstr "Visingsinnstillingar"
@@ -414,23 +414,23 @@ msgstr "Set opp snøggtastar"
 msgid "Note Actions"
 msgstr "Notathandlingar"
 
-#: finddialog/knotefinddialog.cpp:30
+#: finddialog/knotefinddialog.cpp:31
 #, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Søk etter notat"
 
-#: finddialog/knotefinddialog.cpp:79
-#, kde-format
-msgctxt "@label:textbox"
-msgid "Search notes:"
-msgstr "Søk etter notat:"
-
-#: finddialog/knotefinddialog.cpp:87
+#: finddialog/knotefinddialog.cpp:76
 #, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "Søk …"
+
+#: finddialog/knotefinddialog.cpp:83
+#, kde-format
+msgctxt "@label:textbox"
+msgid "Search notes:"
+msgstr "Søk etter notat:"
 
 #: finddialog/knotefinddialog.cpp:171
 #, kde-format
@@ -1060,13 +1060,13 @@ msgstr "Førehandsvising"
 msgid "Print"
 msgstr "Skriv ut"
 
-#: print/knoteprintselectthemedialog.cpp:21
+#: print/knoteprintselectthemedialog.cpp:22
 #, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr "Vel tema"
 
-#: print/knoteprintselectthemedialog.cpp:38
+#: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
 msgid "Themes:"
 msgstr "Tema:"
