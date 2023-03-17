@@ -60,7 +60,7 @@ target_link_libraries(kontact_knotesplugin
 set(kcmknotessummary_PART_SRCS kcmknotessummary.cpp kcmknotessummary.h)
 configure_file(knotesplugin.json.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotesplugin.json )
 add_library(kcmknotessummary MODULE ${kcmknotessummary_PART_SRCS})
-target_link_libraries(kcmknotessummary  KPim${KF_MAJOR_VERSION}::PimCommonAkonadi KPim${KF_MAJOR_VERSION}::AkonadiNotes KF${KF_MAJOR_VERSION}::ConfigWidgets KF${KF_MAJOR_VERSION}::I18n)
+target_link_libraries(kcmknotessummary  KF${KF_MAJOR_VERSION}::KCMUtils KPim${KF_MAJOR_VERSION}::PimCommonAkonadi KPim${KF_MAJOR_VERSION}::AkonadiNotes KF${KF_MAJOR_VERSION}::ConfigWidgets KF${KF_MAJOR_VERSION}::I18n)
 
 
 install(TARGETS kcmknotessummary DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/summary)

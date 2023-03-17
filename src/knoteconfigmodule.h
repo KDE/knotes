@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "kcmutils_version.h"
 #include <KCModule>
 class QLineEdit;
 class KNotePrintSelectThemeComboBox;
@@ -15,7 +16,11 @@ class KNoteDisplayConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit KNoteDisplayConfig(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
+    explicit KNoteDisplayConfig(QWidget *parent, const QVariantList &args);
+#else
+    explicit KNoteDisplayConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
+#endif
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;
@@ -25,7 +30,11 @@ class KNoteEditorConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit KNoteEditorConfig(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
+    explicit KNoteEditorConfig(QWidget *parent, const QVariantList &args);
+#else
+    explicit KNoteEditorConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
+#endif
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;
@@ -35,7 +44,11 @@ class KNoteMiscConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit KNoteMiscConfig(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
+    explicit KNoteMiscConfig(QWidget *parent, const QVariantList &args);
+#else
+    explicit KNoteMiscConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
+#endif
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;
@@ -51,7 +64,11 @@ class KNotePrintConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit KNotePrintConfig(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
+    explicit KNotePrintConfig(QWidget *parent, const QVariantList &args);
+#else
+    explicit KNotePrintConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
+#endif
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;
@@ -69,7 +86,11 @@ class KNoteCollectionConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit KNoteCollectionConfig(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
+    explicit KNoteCollectionConfig(QWidget *parent, const QVariantList &args);
+#else
+    explicit KNoteCollectionConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
+#endif
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;

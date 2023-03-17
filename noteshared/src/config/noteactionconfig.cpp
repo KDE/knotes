@@ -13,17 +13,33 @@
 #include <QLabel>
 #include <QWhatsThis>
 using namespace NoteShared;
-
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
 NoteActionConfig::NoteActionConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
+#else
+NoteActionConfig::NoteActionConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
+    : KCModule(parent, data, args)
+#endif
 {
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto layout = new QGridLayout(this);
+#else
+    auto layout = new QGridLayout(widget());
+#endif
     layout->setContentsMargins(0, 0, 0, 0);
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto label_MailAction = new QLabel(i18n("&Mail action:"), this);
+#else
+    auto label_MailAction = new QLabel(i18n("&Mail action:"), widget());
+#endif
     layout->addWidget(label_MailAction, 0, 0);
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto kcfg_MailAction = new QLineEdit(this);
+#else
+    auto kcfg_MailAction = new QLineEdit(widget());
+#endif
     kcfg_MailAction->setObjectName(QStringLiteral("kcfg_MailAction"));
     label_MailAction->setBuddy(kcfg_MailAction);
     layout->addWidget(kcfg_MailAction, 0, 1);
@@ -32,8 +48,11 @@ NoteActionConfig::NoteActionConfig(QWidget *parent, const QVariantList &args)
     connect(howItWorks, &QLabel::linkActivated, this, &NoteActionConfig::slotHelpLinkClicked);
     layout->addWidget(howItWorks, 1, 0);
     howItWorks->setContextMenuPolicy(Qt::NoContextMenu);
-
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     addConfig(NoteShared::NoteSharedGlobalConfig::self(), this);
+#else
+    addConfig(NoteShared::NoteSharedGlobalConfig::self(), widget());
+#endif
     layout->setRowStretch(2, 1);
     load();
 }

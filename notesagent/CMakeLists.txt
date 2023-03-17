@@ -46,6 +46,7 @@ target_link_libraries(akonadi_notes_agent
     KF${KF_MAJOR_VERSION}::IconThemes
     KF${KF_MAJOR_VERSION}::I18n
     KPim${KF_MAJOR_VERSION}::AkonadiNotes
+    KF${KF_MAJOR_VERSION}::KCMUtils
     )
 
 if( APPLE )

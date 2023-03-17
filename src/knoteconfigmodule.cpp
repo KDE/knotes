@@ -34,11 +34,21 @@
 #include <QVBoxLayout>
 #include <QWhatsThis>
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
 KNoteDisplayConfig::KNoteDisplayConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
+#else
+KNoteDisplayConfig::KNoteDisplayConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
+    : KCModule(parent, data, args)
+#endif
 {
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto lay = new QVBoxLayout(this);
-    QWidget *w = new KNoteDisplayConfigWidget(true);
+    QWidget *w = new KNoteDisplayConfigWidget(true, this);
+#else
+    auto lay = new QVBoxLayout(widget());
+    QWidget *w = new KNoteDisplayConfigWidget(true, widget());
+#endif
     lay->addWidget(w);
     lay->addStretch();
     addConfig(KNotesGlobalConfig::self(), w);
@@ -55,11 +65,21 @@ void KNoteDisplayConfig::save()
     KCModule::save();
 }
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
 KNoteEditorConfig::KNoteEditorConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
+#else
+KNoteEditorConfig::KNoteEditorConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
+    : KCModule(parent, data, args)
+#endif
 {
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto lay = new QVBoxLayout(this);
     QWidget *w = new KNoteEditorConfigWidget(this);
+#else
+    auto lay = new QVBoxLayout(widget());
+    QWidget *w = new KNoteEditorConfigWidget(widget());
+#endif
     lay->addWidget(w);
     lay->addStretch();
     addConfig(KNotesGlobalConfig::self(), w);
@@ -76,30 +96,56 @@ void KNoteEditorConfig::load()
     KCModule::load();
 }
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
 KNoteMiscConfig::KNoteMiscConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
+#else
+KNoteMiscConfig::KNoteMiscConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
+    : KCModule(parent, data, args)
+#endif
 {
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto lay = new QVBoxLayout(this);
+#else
+    auto lay = new QVBoxLayout(widget());
+#endif
     lay->setContentsMargins(0, 0, 0, 0);
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto kcfg_SystemTrayShowNotes = new QCheckBox(i18n("Show number of notes in tray icon"), this);
+#else
+    auto kcfg_SystemTrayShowNotes = new QCheckBox(i18n("Show number of notes in tray icon"), widget());
+#endif
 
     kcfg_SystemTrayShowNotes->setObjectName(QStringLiteral("kcfg_SystemTrayShowNotes"));
     lay->addWidget(kcfg_SystemTrayShowNotes);
 
     auto hbox = new QHBoxLayout;
     lay->addLayout(hbox);
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto label_DefaultTitle = new QLabel(i18n("Default Title:"), this);
+#else
+    auto label_DefaultTitle = new QLabel(i18n("Default Title:"), widget());
+#endif
     hbox->addWidget(label_DefaultTitle);
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     mDefaultTitle = new QLineEdit(this);
+#else
+    mDefaultTitle = new QLineEdit(widget());
+#endif
     label_DefaultTitle->setBuddy(mDefaultTitle);
     hbox->addWidget(mDefaultTitle);
 
     auto howItWorks = new QLabel(i18n("<a href=\"whatsthis\">How does this work?</a>"));
     connect(howItWorks, &QLabel::linkActivated, this, &KNoteMiscConfig::slotHelpLinkClicked);
     lay->addWidget(howItWorks);
+
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     addConfig(KNotesGlobalConfig::self(), this);
+#else
+    addConfig(KNotesGlobalConfig::self(), widget());
+#endif
     howItWorks->setContextMenuPolicy(Qt::NoContextMenu);
     lay->addStretch();
     load();
@@ -143,19 +189,37 @@ void KNoteMiscConfig::slotHelpLinkClicked(const QString &)
     QWhatsThis::showText(QCursor::pos(), help);
 }
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
 KNotePrintConfig::KNotePrintConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
+#else
+KNotePrintConfig::KNotePrintConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
+    : KCModule(parent, data, args)
+#endif
 {
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto lay = new QVBoxLayout(this);
     auto w = new QWidget(this);
+#else
+    auto lay = new QVBoxLayout(widget());
+    auto w = new QWidget(widget());
+#endif
     lay->addWidget(w);
     auto layout = new QGridLayout(w);
     layout->setContentsMargins(0, 0, 0, 0);
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto label_PrintAction = new QLabel(i18n("Theme:"), this);
+#else
+    auto label_PrintAction = new QLabel(i18n("Theme:"), widget());
+#endif
     layout->addWidget(label_PrintAction, 0, 0);
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     mSelectTheme = new KNotePrintSelectThemeComboBox(this);
+#else
+    mSelectTheme = new KNotePrintSelectThemeComboBox(widget());
+#endif
     connect(mSelectTheme, &QComboBox::activated, this, &KNotePrintConfig::slotThemeChanged);
     label_PrintAction->setBuddy(mSelectTheme);
     layout->addWidget(mSelectTheme, 0, 1);
@@ -189,7 +253,11 @@ void KNotePrintConfig::slotDownloadNewThemes()
 
 void KNotePrintConfig::slotThemeChanged()
 {
+#if KNEWSTUFF_VERSION < QT_VERSION_CHECK(5, 240, 0)
     Q_EMIT changed(true);
+#else
+    markAsChanged();
+#endif
 }
 
 void KNotePrintConfig::save()
@@ -205,14 +273,29 @@ void KNotePrintConfig::load()
 void KNotePrintConfig::defaults()
 {
     mSelectTheme->selectDefaultTheme();
+#if KNEWSTUFF_VERSION < QT_VERSION_CHECK(5, 240, 0)
     Q_EMIT changed(true);
+#else
+    markAsChanged();
+#endif
 }
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
 KNoteCollectionConfig::KNoteCollectionConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
+#else
+KNoteCollectionConfig::KNoteCollectionConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
+    : KCModule(parent, data, args)
+#endif
 {
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto lay = new QHBoxLayout(this);
-    mCollectionConfigWidget = new KNoteCollectionConfigWidget;
+    mCollectionConfigWidget = new KNoteCollectionConfigWidget(this);
+#else
+    auto lay = new QHBoxLayout(widget());
+    mCollectionConfigWidget = new KNoteCollectionConfigWidget(widget());
+
+#endif
     lay->addWidget(mCollectionConfigWidget);
     connect(mCollectionConfigWidget, &KNoteCollectionConfigWidget::emitChanged, this, &KNoteCollectionConfig::markAsChanged);
     load();
