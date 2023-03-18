@@ -1,5 +1,5 @@
 # translation of knotes.po to
-# Version: $Revision: 1646898 $
+# Version: $Revision: 1647248 $
 # Currently maintained by Marcin Bokszczanin
 # Piotr Roszatycki <dexter@fnet.pl> 1998
 # Jacek Stolarczyk<jacek@mer.chemia.polsl.gliwice.pl> 1999, 2000.
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-13 00:50+0000\n"
+"POT-Creation-Date: 2023-03-18 00:59+0000\n"
 "PO-Revision-Date: 2022-01-08 10:50+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -139,7 +139,7 @@ msgstr "Notatki dla KDE"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr "Prawa autorskie © 1997–%1 Autorzy KNotes"
 
-#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
+#: apps/main.cpp:69
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -450,22 +450,22 @@ msgstr "Brak wyników po wyszukiwaniu."
 msgid "Show Note"
 msgstr "Pokaż notatkę"
 
-#: knoteconfigmodule.cpp:85
+#: knoteconfigmodule.cpp:115 knoteconfigmodule.cpp:117
 #, kde-format
 msgid "Show number of notes in tray icon"
 msgstr "Pokaż liczbę notatek na tacce systemowej"
 
-#: knoteconfigmodule.cpp:92
+#: knoteconfigmodule.cpp:126 knoteconfigmodule.cpp:128
 #, kde-format
 msgid "Default Title:"
 msgstr "Domyślny tytuł:"
 
-#: knoteconfigmodule.cpp:99
+#: knoteconfigmodule.cpp:140
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Jak to działa?</a>"
 
-#: knoteconfigmodule.cpp:133
+#: knoteconfigmodule.cpp:179
 #, kde-format
 msgid ""
 "<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
@@ -476,12 +476,12 @@ msgstr ""
 "bieżąca data(krótki format)</li><li>%l bieżąca data (długi format)</li><li>"
 "%t bieżący czas</li></ul></qt>"
 
-#: knoteconfigmodule.cpp:155
+#: knoteconfigmodule.cpp:212 knoteconfigmodule.cpp:214
 #, kde-format
 msgid "Theme:"
 msgstr "Wygląd:"
 
-#: knoteconfigmodule.cpp:165
+#: knoteconfigmodule.cpp:229
 #, kde-format
 msgid "Download new printing themes"
 msgstr "Pobierz nowe wystroje drukowania"
@@ -580,21 +580,6 @@ msgstr "Wstaw datę"
 #, kde-format
 msgid "Insert Checkmark"
 msgstr "Wstaw symbol zaznaczenia"
-
-#: kontactplugin/kcmknotessummary.cpp:39
-#, kde-format
-msgid "kcmknotessummary"
-msgstr "kcmknotessummary"
-
-#: kontactplugin/kcmknotessummary.cpp:41
-#, kde-format
-msgid "Notes Summary Configuration Dialog"
-msgstr "Okno ustawień podsumowania notatek"
-
-#: kontactplugin/kcmknotessummary.cpp:43
-#, kde-format
-msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
-msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
 
 #: kontactplugin/knotes_part.cpp:84
 #, kde-format
@@ -1083,6 +1068,15 @@ msgstr "Wybierz wystrój"
 #, kde-format
 msgid "Themes:"
 msgstr "Wystroje:"
+
+#~ msgid "kcmknotessummary"
+#~ msgstr "kcmknotessummary"
+
+#~ msgid "Notes Summary Configuration Dialog"
+#~ msgstr "Okno ustawień podsumowania notatek"
+
+#~ msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
+#~ msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
 
 #~ msgctxt "@info"
 #~ msgid "Dropping multiple mails is not supported."

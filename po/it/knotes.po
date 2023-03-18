@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-13 00:50+0000\n"
+"POT-Creation-Date: 2023-03-18 00:59+0000\n"
 "PO-Revision-Date: 2022-01-02 20:07+0100\n"
 "Last-Translator: Valter Mura <valtermura@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -133,7 +133,7 @@ msgstr "Note di KDE"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr "Copyright © 1997–%1 Gli autori di KNotes"
 
-#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
+#: apps/main.cpp:69
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -444,22 +444,22 @@ msgstr "Nessun risultato trovato nella ricerca."
 msgid "Show Note"
 msgstr "Mostra nota"
 
-#: knoteconfigmodule.cpp:85
+#: knoteconfigmodule.cpp:115 knoteconfigmodule.cpp:117
 #, kde-format
 msgid "Show number of notes in tray icon"
 msgstr "Mostra il numero delle note nell'icona del vassoio"
 
-#: knoteconfigmodule.cpp:92
+#: knoteconfigmodule.cpp:126 knoteconfigmodule.cpp:128
 #, kde-format
 msgid "Default Title:"
 msgstr "Titolo predefinito:"
 
-#: knoteconfigmodule.cpp:99
+#: knoteconfigmodule.cpp:140
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Come funziona?</a>"
 
-#: knoteconfigmodule.cpp:133
+#: knoteconfigmodule.cpp:179
 #, kde-format
 msgid ""
 "<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
@@ -470,12 +470,12 @@ msgstr ""
 "data corrente (forma breve)</li><li>%l data corrente (forma lunga)</li><li>"
 "%t ora corrente</li></ul></qt>"
 
-#: knoteconfigmodule.cpp:155
+#: knoteconfigmodule.cpp:212 knoteconfigmodule.cpp:214
 #, kde-format
 msgid "Theme:"
 msgstr "Tema:"
 
-#: knoteconfigmodule.cpp:165
+#: knoteconfigmodule.cpp:229
 #, kde-format
 msgid "Download new printing themes"
 msgstr "Scarica nuovi temi di stampa"
@@ -574,21 +574,6 @@ msgstr "Inserisci data"
 #, kde-format
 msgid "Insert Checkmark"
 msgstr "Inserisci segno di spunta"
-
-#: kontactplugin/kcmknotessummary.cpp:39
-#, kde-format
-msgid "kcmknotessummary"
-msgstr "kcmknotessummary"
-
-#: kontactplugin/kcmknotessummary.cpp:41
-#, kde-format
-msgid "Notes Summary Configuration Dialog"
-msgstr "Finestra di configurazione sommario note"
-
-#: kontactplugin/kcmknotessummary.cpp:43
-#, kde-format
-msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
-msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
 
 #: kontactplugin/knotes_part.cpp:84
 #, kde-format
@@ -1076,6 +1061,15 @@ msgstr "Seleziona il tema"
 #, kde-format
 msgid "Themes:"
 msgstr "Temi:"
+
+#~ msgid "kcmknotessummary"
+#~ msgstr "kcmknotessummary"
+
+#~ msgid "Notes Summary Configuration Dialog"
+#~ msgstr "Finestra di configurazione sommario note"
+
+#~ msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
+#~ msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
 
 #~ msgctxt "@info"
 #~ msgid "Dropping multiple mails is not supported."

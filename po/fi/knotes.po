@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-13 00:50+0000\n"
+"POT-Creation-Date: 2023-03-18 00:59+0000\n"
 "PO-Revision-Date: 2022-01-27 21:14+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -142,7 +142,7 @@ msgstr "KDE:n muistiinpanot"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr "Tekijänoikeudet © 1997–%1 KNotesin tekijät"
 
-#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
+#: apps/main.cpp:69
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -453,22 +453,22 @@ msgstr "Ei osumia."
 msgid "Show Note"
 msgstr "Näytä muistiinpano"
 
-#: knoteconfigmodule.cpp:85
+#: knoteconfigmodule.cpp:115 knoteconfigmodule.cpp:117
 #, kde-format
 msgid "Show number of notes in tray icon"
 msgstr "Näytä muistiinpanojen määrä ilmoitusalueen kuvakkeessa"
 
-#: knoteconfigmodule.cpp:92
+#: knoteconfigmodule.cpp:126 knoteconfigmodule.cpp:128
 #, kde-format
 msgid "Default Title:"
 msgstr "Oletusotsikko:"
 
-#: knoteconfigmodule.cpp:99
+#: knoteconfigmodule.cpp:140
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Kuinka tämä toimii?</a>"
 
-#: knoteconfigmodule.cpp:133
+#: knoteconfigmodule.cpp:179
 #, kde-format
 msgid ""
 "<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
@@ -479,12 +479,12 @@ msgstr ""
 "p><ul><li>%d nykyinen päivä (lyhyessä muodossa)</li> <li>%l nykyinen päivä "
 "(pitkässä muodossa)</li><li>%t nykyinen kellonaika</li></ul></qt>"
 
-#: knoteconfigmodule.cpp:155
+#: knoteconfigmodule.cpp:212 knoteconfigmodule.cpp:214
 #, kde-format
 msgid "Theme:"
 msgstr "Teema:"
 
-#: knoteconfigmodule.cpp:165
+#: knoteconfigmodule.cpp:229
 #, kde-format
 msgid "Download new printing themes"
 msgstr "Lataa uusia tulostusteemoja"
@@ -583,21 +583,6 @@ msgstr "Lisää päiväys"
 #, kde-format
 msgid "Insert Checkmark"
 msgstr "Lisää tarkastusmerkki"
-
-#: kontactplugin/kcmknotessummary.cpp:39
-#, kde-format
-msgid "kcmknotessummary"
-msgstr "kcmknotessummary"
-
-#: kontactplugin/kcmknotessummary.cpp:41
-#, kde-format
-msgid "Notes Summary Configuration Dialog"
-msgstr "Muistiinpanojen yhteenvetonäkymän asetusikkuna"
-
-#: kontactplugin/kcmknotessummary.cpp:43
-#, kde-format
-msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
-msgstr "Tekijänoikeudet © 2013–%1 Laurent Montel <montel@kde.org>"
 
 #: kontactplugin/knotes_part.cpp:84
 #, kde-format
@@ -1082,6 +1067,15 @@ msgstr "Valitse teema"
 #, kde-format
 msgid "Themes:"
 msgstr "Teemat:"
+
+#~ msgid "kcmknotessummary"
+#~ msgstr "kcmknotessummary"
+
+#~ msgid "Notes Summary Configuration Dialog"
+#~ msgstr "Muistiinpanojen yhteenvetonäkymän asetusikkuna"
+
+#~ msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
+#~ msgstr "Tekijänoikeudet © 2013–%1 Laurent Montel <montel@kde.org>"
 
 #~ msgctxt "@info"
 #~ msgid "Dropping multiple mails is not supported."

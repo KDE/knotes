@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-13 00:50+0000\n"
+"POT-Creation-Date: 2023-03-18 00:59+0000\n"
 "PO-Revision-Date: 2022-03-03 12:04+0200\n"
 "Last-Translator: Petros Vidalis <pvidalis@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -133,7 +133,7 @@ msgstr "Σημειώματα για το KDE"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr "Πνευματικά Δικαιώματα © 1997–%1 οι συγγραφείς του KNotes"
 
-#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
+#: apps/main.cpp:69
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -444,22 +444,22 @@ msgstr "Δεν βρέθηκαν αποτελέσματα στην αναζήτη
 msgid "Show Note"
 msgstr "Εμφάνιση σημειώματος"
 
-#: knoteconfigmodule.cpp:85
+#: knoteconfigmodule.cpp:115 knoteconfigmodule.cpp:117
 #, kde-format
 msgid "Show number of notes in tray icon"
 msgstr "Εμφάνιση πλήθους σημειωμάτων στο εικονίδιο του πλαισίου αυστήματος"
 
-#: knoteconfigmodule.cpp:92
+#: knoteconfigmodule.cpp:126 knoteconfigmodule.cpp:128
 #, kde-format
 msgid "Default Title:"
 msgstr "Προκαθορισμένος τίτλος:"
 
-#: knoteconfigmodule.cpp:99
+#: knoteconfigmodule.cpp:140
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Πώς λειτουργεί αυτό;</a>"
 
-#: knoteconfigmodule.cpp:133
+#: knoteconfigmodule.cpp:179
 #, kde-format
 msgid ""
 "<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
@@ -470,12 +470,12 @@ msgstr ""
 "p><ul><li>%d τρέχουσα ημερομηνία (σύντομη μορφή)</li><li>%l τρέχουσα "
 "ημερομηνία (επιμήκης μορφή)</li><li>%t τρέχουσα ώρα</li></ul></qt>"
 
-#: knoteconfigmodule.cpp:155
+#: knoteconfigmodule.cpp:212 knoteconfigmodule.cpp:214
 #, kde-format
 msgid "Theme:"
 msgstr "Θέμα:"
 
-#: knoteconfigmodule.cpp:165
+#: knoteconfigmodule.cpp:229
 #, kde-format
 msgid "Download new printing themes"
 msgstr "Λήψη νέων θεμάτων εκτύπωσης"
@@ -574,21 +574,6 @@ msgstr "Εισαγωγή ημερομηνίας"
 #, kde-format
 msgid "Insert Checkmark"
 msgstr "Εισαγωγή δείκτη ελέγχου"
-
-#: kontactplugin/kcmknotessummary.cpp:39
-#, kde-format
-msgid "kcmknotessummary"
-msgstr "kcmknotessummary"
-
-#: kontactplugin/kcmknotessummary.cpp:41
-#, kde-format
-msgid "Notes Summary Configuration Dialog"
-msgstr "Διάλογος διαμόρφωσης περίληψης σημειωμάτων"
-
-#: kontactplugin/kcmknotessummary.cpp:43
-#, kde-format
-msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
-msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
 
 #: kontactplugin/knotes_part.cpp:84
 #, kde-format
@@ -1078,6 +1063,15 @@ msgstr "Επιλογή θέματος"
 #, kde-format
 msgid "Themes:"
 msgstr "Θέματα:"
+
+#~ msgid "kcmknotessummary"
+#~ msgstr "kcmknotessummary"
+
+#~ msgid "Notes Summary Configuration Dialog"
+#~ msgstr "Διάλογος διαμόρφωσης περίληψης σημειωμάτων"
+
+#~ msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
+#~ msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
 
 #, fuzzy
 #~| msgid "Note Actions"

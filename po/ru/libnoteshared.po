@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"POT-Creation-Date: 2023-03-18 00:59+0000\n"
 "PO-Revision-Date: 2022-06-03 15:24+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -39,17 +39,17 @@ msgid "Alarm &at:"
 msgstr "Напоминание &в:"
 
 # BUGME: does "mail" mean e-mails or some other protocol? Please clarify in msgctxt --aspotashev
-#: config/noteactionconfig.cpp:23
+#: config/noteactionconfig.cpp:32 config/noteactionconfig.cpp:34
 #, kde-format
 msgid "&Mail action:"
 msgstr "Отпр&авка по электронной почте:"
 
-#: config/noteactionconfig.cpp:31
+#: config/noteactionconfig.cpp:47
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Как это работает?</a>"
 
-#: config/noteactionconfig.cpp:44
+#: config/noteactionconfig.cpp:63
 #, kde-format
 msgid ""
 "<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "

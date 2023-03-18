@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"POT-Creation-Date: 2023-03-18 00:59+0000\n"
 "PO-Revision-Date: 2021-12-27 22:08+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
@@ -38,17 +38,17 @@ msgstr "Aucu&ne alarme"
 msgid "Alarm &at:"
 msgstr "&Alarme le :"
 
-#: config/noteactionconfig.cpp:23
+#: config/noteactionconfig.cpp:32 config/noteactionconfig.cpp:34
 #, kde-format
 msgid "&Mail action:"
 msgstr "Envoi par courrier électronique :"
 
-#: config/noteactionconfig.cpp:31
+#: config/noteactionconfig.cpp:47
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Comment ça marche ?</a>"
 
-#: config/noteactionconfig.cpp:44
+#: config/noteactionconfig.cpp:63
 #, kde-format
 msgid ""
 "<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "
