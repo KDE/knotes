@@ -8,6 +8,9 @@
 #include "noteshared_export.h"
 #include <KCModule>
 
+#if KCMUTILS_VERSION >= QT_VERSION_CHECK(5, 240, 0)
+#include <KPluginMetaData>
+#endif
 class QCheckBox;
 class QLineEdit;
 class QSpinBox;
