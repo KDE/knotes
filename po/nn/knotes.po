@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-13 00:50+0000\n"
+"POT-Creation-Date: 2023-03-18 00:59+0000\n"
 "PO-Revision-Date: 2021-03-21 17:51+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -132,7 +132,7 @@ msgstr "KDE-notat"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr ""
 
-#: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
+#: apps/main.cpp:69
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -443,22 +443,22 @@ msgstr "Fann ingen resultat i søk."
 msgid "Show Note"
 msgstr "Vis notat"
 
-#: knoteconfigmodule.cpp:85
+#: knoteconfigmodule.cpp:115 knoteconfigmodule.cpp:117
 #, kde-format
 msgid "Show number of notes in tray icon"
 msgstr "Vis talet på notat i ikonet i systemtrauet"
 
-#: knoteconfigmodule.cpp:92
+#: knoteconfigmodule.cpp:126 knoteconfigmodule.cpp:128
 #, kde-format
 msgid "Default Title:"
 msgstr "Standardtittel:"
 
-#: knoteconfigmodule.cpp:99
+#: knoteconfigmodule.cpp:140
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Korleis fungerer dette?</a>"
 
-#: knoteconfigmodule.cpp:133
+#: knoteconfigmodule.cpp:179
 #, kde-format
 msgid ""
 "<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
@@ -469,12 +469,12 @@ msgstr ""
 "dato (kort format)</li><li>%l – gjeldande dato (langt format)</li><li>%t – "
 "gjeldande klokkeslett</li></ul></qt>"
 
-#: knoteconfigmodule.cpp:155
+#: knoteconfigmodule.cpp:212 knoteconfigmodule.cpp:214
 #, kde-format
 msgid "Theme:"
 msgstr "Tema:"
 
-#: knoteconfigmodule.cpp:165
+#: knoteconfigmodule.cpp:229
 #, kde-format
 msgid "Download new printing themes"
 msgstr "Last ned nye utskriftstema"
@@ -573,21 +573,6 @@ msgstr "Set inn dato"
 #, kde-format
 msgid "Insert Checkmark"
 msgstr "Set inn hake"
-
-#: kontactplugin/kcmknotessummary.cpp:39
-#, kde-format
-msgid "kcmknotessummary"
-msgstr "kcmknotessummary"
-
-#: kontactplugin/kcmknotessummary.cpp:41
-#, kde-format
-msgid "Notes Summary Configuration Dialog"
-msgstr "Oppsett av notatsamandrag"
-
-#: kontactplugin/kcmknotessummary.cpp:43
-#, kde-format
-msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
-msgstr ""
 
 #: kontactplugin/knotes_part.cpp:84
 #, kde-format
