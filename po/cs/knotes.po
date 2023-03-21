@@ -1046,12 +1046,3 @@ msgstr "Zvolte motiv"
 #, kde-format
 msgid "Themes:"
 msgstr "Motivy:"
-
-#~ msgid "kcmknotessummary"
-#~ msgstr "kcmknotessummary"
-
-#~ msgid "Notes Summary Configuration Dialog"
-#~ msgstr "Dialog nastavení souhrnu poznámek"
-
-#~ msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
-#~ msgstr "Autorská práva © 2013-%1 Laurent Montel <montel@kde.org>"
