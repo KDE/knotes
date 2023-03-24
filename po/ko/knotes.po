@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-18 00:59+0000\n"
+"POT-Creation-Date: 2023-03-24 00:49+0000\n"
 "PO-Revision-Date: 2022-02-20 22:23+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -652,32 +652,32 @@ msgstr "노트 설정..."
 msgid "Preferences KNotes..."
 msgstr "KNotes 설정..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:680
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:682
 #, kde-format
 msgid "Mail..."
 msgstr "이메일로 보내기..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:676
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:678
 #, kde-format
 msgid "Send..."
 msgstr "네트워크로 보내기..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:672
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:674
 #, kde-format
 msgid "Set Alarm..."
 msgstr "알람 설정..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:684
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:686
 #, kde-format
 msgid "Save As..."
 msgstr "다른 이름으로 저장..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:658
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:660
 #, kde-format
 msgid "Lock"
 msgstr "잠금"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:661
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:663
 #, kde-format
 msgid "Unlock"
 msgstr "잠금 해제"
@@ -754,7 +754,7 @@ msgstr "일반 텍스트 (*.txt)"
 msgid "Save As"
 msgstr "다른 이름으로 저장"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:505
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:507
 #, kde-format
 msgid ""
 "<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
@@ -931,63 +931,63 @@ msgstr "삭제(&D)"
 msgid "Please enter the new name:"
 msgstr "새로운 이름을 입력해 주십시오:"
 
-#: notes/knote.cpp:481
+#: notes/knote.cpp:483
 #, kde-format
 msgid "Save note as plain text"
 msgstr "노트를 일반 텍스트로 저장"
 
-#: notes/knote.cpp:488
+#: notes/knote.cpp:490
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "다른 이름으로 저장"
 
-#: notes/knote.cpp:608
+#: notes/knote.cpp:610
 #, kde-format
 msgid "&All Desktops"
 msgstr "모든 바탕 화면에 표시(&A)"
 
-#: notes/knote.cpp:650
+#: notes/knote.cpp:652
 #, kde-format
 msgid "New"
 msgstr "새로 만들기"
 
-#: notes/knote.cpp:654
+#: notes/knote.cpp:656
 #, kde-format
 msgid "Rename..."
 msgstr "이름 바꾸기..."
 
-#: notes/knote.cpp:663
+#: notes/knote.cpp:665
 #, kde-format
 msgid "Hide"
 msgstr "숨기기"
 
-#: notes/knote.cpp:668
+#: notes/knote.cpp:670
 #, kde-format
 msgid "Delete"
 msgstr "삭제"
 
-#: notes/knote.cpp:693
+#: notes/knote.cpp:695
 #, kde-format
 msgid "Preferences..."
 msgstr "설정..."
 
-#: notes/knote.cpp:697
+#: notes/knote.cpp:699
 #, kde-format
 msgid "Keep Above Others"
 msgstr "항상 위"
 
-#: notes/knote.cpp:701
+#: notes/knote.cpp:703
 #, kde-format
 msgid "Keep Below Others"
 msgstr "항상 아래"
 
-#: notes/knote.cpp:706
+#: notes/knote.cpp:708
 #, kde-format
 msgid "To Desktop"
 msgstr "다음 바탕 화면으로"
 
-#: notes/knote.cpp:718
+#: notes/knote.cpp:720
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "노트 사이로 탐색"

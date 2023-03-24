@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-18 00:59+0000\n"
+"POT-Creation-Date: 2023-03-24 00:49+0000\n"
 "PO-Revision-Date: 2007-08-26 21:51+0300\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -684,32 +684,32 @@ msgstr "Настаўленні стылю"
 msgid "Preferences KNotes..."
 msgstr "Настаўленні..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:680
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:682
 #, kde-format
 msgid "Mail..."
 msgstr "Па пошце..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:676
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:678
 #, kde-format
 msgid "Send..."
 msgstr "Даслаць..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:672
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:674
 #, kde-format
 msgid "Set Alarm..."
 msgstr "Наставіць нагадванне..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:684
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:686
 #, kde-format
 msgid "Save As..."
 msgstr "Запісаць як..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:658
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:660
 #, kde-format
 msgid "Lock"
 msgstr "Заблакаваць"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:661
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:663
 #, kde-format
 msgid "Unlock"
 msgstr "Разблакаваць"
@@ -794,7 +794,7 @@ msgstr ""
 msgid "Save As"
 msgstr "Запісаць як"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:505
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:507
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>A file named <b>%1</b> already exists.<br>Are you sure you want to "
@@ -993,64 +993,64 @@ msgstr "В&ыдаліць"
 msgid "Please enter the new name:"
 msgstr "Калі ласка, увядзіце новае імя:"
 
-#: notes/knote.cpp:481
+#: notes/knote.cpp:483
 #, kde-format
 msgid "Save note as plain text"
 msgstr "Запісаць заметку як просты тэкст"
 
-#: notes/knote.cpp:488
+#: notes/knote.cpp:490
 #, fuzzy, kde-format
 #| msgid "Save As"
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Запісаць як"
 
-#: notes/knote.cpp:608
+#: notes/knote.cpp:610
 #, kde-format
 msgid "&All Desktops"
 msgstr "&Усе працоўныя cталы"
 
-#: notes/knote.cpp:650
+#: notes/knote.cpp:652
 #, kde-format
 msgid "New"
 msgstr "Новая"
 
-#: notes/knote.cpp:654
+#: notes/knote.cpp:656
 #, kde-format
 msgid "Rename..."
 msgstr "Перайменаваць..."
 
-#: notes/knote.cpp:663
+#: notes/knote.cpp:665
 #, kde-format
 msgid "Hide"
 msgstr "Схаваць"
 
-#: notes/knote.cpp:668
+#: notes/knote.cpp:670
 #, kde-format
 msgid "Delete"
 msgstr "Выдаліць"
 
-#: notes/knote.cpp:693
+#: notes/knote.cpp:695
 #, kde-format
 msgid "Preferences..."
 msgstr "Настаўленні..."
 
-#: notes/knote.cpp:697
+#: notes/knote.cpp:699
 #, kde-format
 msgid "Keep Above Others"
 msgstr "Трымаць вышэй астатніх"
 
-#: notes/knote.cpp:701
+#: notes/knote.cpp:703
 #, kde-format
 msgid "Keep Below Others"
 msgstr "Трымаць ніжэй астатніх"
 
-#: notes/knote.cpp:706
+#: notes/knote.cpp:708
 #, kde-format
 msgid "To Desktop"
 msgstr "На працоўным cтале"
 
-#: notes/knote.cpp:718
+#: notes/knote.cpp:720
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "Прагледзець заметкі"

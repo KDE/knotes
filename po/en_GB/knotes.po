@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-18 00:59+0000\n"
+"POT-Creation-Date: 2023-03-24 00:49+0000\n"
 "PO-Revision-Date: 2022-02-19 12:03+0000\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
@@ -661,32 +661,32 @@ msgstr "Note settings..."
 msgid "Preferences KNotes..."
 msgstr "Preferences KNotes..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:680
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:682
 #, kde-format
 msgid "Mail..."
 msgstr "Mail..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:676
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:678
 #, kde-format
 msgid "Send..."
 msgstr "Send..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:672
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:674
 #, kde-format
 msgid "Set Alarm..."
 msgstr "Set Alarm..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:684
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:686
 #, kde-format
 msgid "Save As..."
 msgstr "Save As..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:658
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:660
 #, kde-format
 msgid "Lock"
 msgstr "Lock"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:661
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:663
 #, kde-format
 msgid "Unlock"
 msgstr "Unlock"
@@ -763,7 +763,7 @@ msgstr "Plain text (*.txt)"
 msgid "Save As"
 msgstr "Save As"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:505
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:507
 #, kde-format
 msgid ""
 "<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
@@ -944,63 +944,63 @@ msgstr "&Delete"
 msgid "Please enter the new name:"
 msgstr "Please enter the new name:"
 
-#: notes/knote.cpp:481
+#: notes/knote.cpp:483
 #, kde-format
 msgid "Save note as plain text"
 msgstr "Save note as plain text"
 
-#: notes/knote.cpp:488
+#: notes/knote.cpp:490
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Save As"
 
-#: notes/knote.cpp:608
+#: notes/knote.cpp:610
 #, kde-format
 msgid "&All Desktops"
 msgstr "&All Desktops"
 
-#: notes/knote.cpp:650
+#: notes/knote.cpp:652
 #, kde-format
 msgid "New"
 msgstr "New"
 
-#: notes/knote.cpp:654
+#: notes/knote.cpp:656
 #, kde-format
 msgid "Rename..."
 msgstr "Rename..."
 
-#: notes/knote.cpp:663
+#: notes/knote.cpp:665
 #, kde-format
 msgid "Hide"
 msgstr "Hide"
 
-#: notes/knote.cpp:668
+#: notes/knote.cpp:670
 #, kde-format
 msgid "Delete"
 msgstr "Delete"
 
-#: notes/knote.cpp:693
+#: notes/knote.cpp:695
 #, kde-format
 msgid "Preferences..."
 msgstr "Preferences..."
 
-#: notes/knote.cpp:697
+#: notes/knote.cpp:699
 #, kde-format
 msgid "Keep Above Others"
 msgstr "Keep Above Others"
 
-#: notes/knote.cpp:701
+#: notes/knote.cpp:703
 #, kde-format
 msgid "Keep Below Others"
 msgstr "Keep Below Others"
 
-#: notes/knote.cpp:706
+#: notes/knote.cpp:708
 #, kde-format
 msgid "To Desktop"
 msgstr "To Desktop"
 
-#: notes/knote.cpp:718
+#: notes/knote.cpp:720
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "Walk Through Notes"
