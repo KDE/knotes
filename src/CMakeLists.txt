@@ -77,8 +77,15 @@ target_link_libraries(knotesprivate
     KF${KF_MAJOR_VERSION}::KCMUtils KF${KF_MAJOR_VERSION}::NewStuffCore
     KF${KF_MAJOR_VERSION}::WindowSystem Qt::PrintSupport
     KF${KF_MAJOR_VERSION}::TextWidgets KF${KF_MAJOR_VERSION}::I18n notesharedprivate
-    KPim${KF_MAJOR_VERSION}::AkonadiSearchPIM KPim${KF_MAJOR_VERSION}::AkonadiNotes KPim${KF_MAJOR_VERSION}::PimTextEdit KPim${KF_MAJOR_VERSION}::AkonadiWidgets KPim${KF_MAJOR_VERSION}::GrantleeTheme
+    KPim${KF_MAJOR_VERSION}::AkonadiSearchPIM KPim${KF_MAJOR_VERSION}::AkonadiNotes KPim${KF_MAJOR_VERSION}::PimTextEdit
+    KPim${KF_MAJOR_VERSION}::AkonadiWidgets KPim${KF_MAJOR_VERSION}::GrantleeTheme
     )
+
+if (TARGET KF${KF_MAJOR_VERSION}::TextAddonsWidgets)
+    target_link_libraries(knotesprivate
+        PRIVATE
+        KF${KF_MAJOR_VERSION}::TextAddonsWidgets)
+endif()
 
 if (QT_MAJOR_VERSION STREQUAL "5")
     target_link_libraries(knotesprivate PRIVATE Grantlee5::Templates)

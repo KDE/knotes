@@ -4,6 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 #include "knotefinddialog.h"
+#include "config-knotes.h"
 #include "widget/notelistwidget.h"
 
 #include <PIM/notequery.h>
@@ -23,6 +24,10 @@
 #include <QMenu>
 #include <QVBoxLayout>
 #include <QWindow>
+
+#if KDEPIM_HAVE_TEXT_ADDONS_WIDGETS_SUPPORT
+#include <TextAddonsWidgets/LineEditCatchReturnKey>
+#endif
 
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     : QDialog(parent)
@@ -83,6 +88,9 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     auto lab = new QLabel(i18nc("@label:textbox", "Search notes:"), this);
     hbox->addWidget(lab);
     mSearchLineEdit->setClearButtonEnabled(true);
+#if KDEPIM_HAVE_TEXT_ADDONS_WIDGETS_SUPPORT
+    new TextAddonsWidgets::LineEditCatchReturnKey(mSearchLineEdit, this);
+#endif
     connect(mSearchLineEdit, &QLineEdit::returnPressed, this, &KNoteFindWidget::slotSearchNote);
     connect(mSearchLineEdit, &QLineEdit::textChanged, this, &KNoteFindWidget::slotTextChanged);
     hbox->addWidget(mSearchLineEdit);
