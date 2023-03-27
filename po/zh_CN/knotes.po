@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-03-24 00:49+0000\n"
-"PO-Revision-Date: 2023-03-11 04:52\n"
+"PO-Revision-Date: 2023-03-26 02:18\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -1040,9 +1040,3 @@ msgstr "选择主题"
 #, kde-format
 msgid "Themes:"
 msgstr "主题："
-
-#~ msgid "kcmknotessummary"
-#~ msgstr "kcmknotessummary"
-
-#~ msgid "Notes Summary Configuration Dialog"
-#~ msgstr "便笺摘要配置对话框"
