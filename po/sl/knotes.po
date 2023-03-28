@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-24 00:49+0000\n"
+"POT-Creation-Date: 2023-03-28 00:48+0000\n"
 "PO-Revision-Date: 2023-03-20 08:32+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -420,31 +420,31 @@ msgstr "Nastavi bližnjice"
 msgid "Note Actions"
 msgstr "Dejanja sporočilca"
 
-#: finddialog/knotefinddialog.cpp:31
+#: finddialog/knotefinddialog.cpp:36
 #, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Poišči sporočilca"
 
-#: finddialog/knotefinddialog.cpp:76
+#: finddialog/knotefinddialog.cpp:81
 #, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "Poišči ..."
 
-#: finddialog/knotefinddialog.cpp:83
+#: finddialog/knotefinddialog.cpp:88
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Search notes:"
 msgstr "Poišči sporočilca:"
 
-#: finddialog/knotefinddialog.cpp:171
+#: finddialog/knotefinddialog.cpp:179
 #, kde-format
 msgctxt "@label"
 msgid "No Results found in search."
 msgstr "Ni najdenih rezultatov."
 
-#: finddialog/knotefinddialog.cpp:187
+#: finddialog/knotefinddialog.cpp:195
 #, kde-format
 msgid "Show Note"
 msgstr "Prikaži sporočilce"

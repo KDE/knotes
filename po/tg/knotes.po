@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-24 00:49+0000\n"
+"POT-Creation-Date: 2023-03-28 00:48+0000\n"
 "PO-Revision-Date: 2005-09-23 19:23+0500\n"
 "Last-Translator: Victor Ibragimov <youth_opportunities@tajikngo.org>\n"
 "Language-Team: Tajik\n"
@@ -427,31 +427,31 @@ msgstr ""
 msgid "Note Actions"
 msgstr "Амалиётҳо"
 
-#: finddialog/knotefinddialog.cpp:31
+#: finddialog/knotefinddialog.cpp:36
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Нишона нест "
 
-#: finddialog/knotefinddialog.cpp:76
+#: finddialog/knotefinddialog.cpp:81
 #, fuzzy, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "Нишона нест "
 
-#: finddialog/knotefinddialog.cpp:83
+#: finddialog/knotefinddialog.cpp:88
 #, fuzzy, kde-format
 msgctxt "@label:textbox"
 msgid "Search notes:"
 msgstr "Нишона нест "
 
-#: finddialog/knotefinddialog.cpp:171
+#: finddialog/knotefinddialog.cpp:179
 #, kde-format
 msgctxt "@label"
 msgid "No Results found in search."
 msgstr ""
 
-#: finddialog/knotefinddialog.cpp:187
+#: finddialog/knotefinddialog.cpp:195
 #, fuzzy, kde-format
 msgid "Show Note"
 msgstr "Нишона нест "

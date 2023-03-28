@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-24 00:49+0000\n"
+"POT-Creation-Date: 2023-03-28 00:48+0000\n"
 "PO-Revision-Date: 2009-06-03 18:00+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -418,34 +418,34 @@ msgstr "Konfiguro Shkurtoret"
 msgid "Note Actions"
 msgstr ""
 
-#: finddialog/knotefinddialog.cpp:31
+#: finddialog/knotefinddialog.cpp:36
 #, fuzzy, kde-format
 #| msgid "No Notes"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Pa Shënime"
 
-#: finddialog/knotefinddialog.cpp:76
+#: finddialog/knotefinddialog.cpp:81
 #, fuzzy, kde-format
 #| msgid "No Notes"
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "Pa Shënime"
 
-#: finddialog/knotefinddialog.cpp:83
+#: finddialog/knotefinddialog.cpp:88
 #, fuzzy, kde-format
 #| msgid "No Notes"
 msgctxt "@label:textbox"
 msgid "Search notes:"
 msgstr "Pa Shënime"
 
-#: finddialog/knotefinddialog.cpp:171
+#: finddialog/knotefinddialog.cpp:179
 #, kde-format
 msgctxt "@label"
 msgid "No Results found in search."
 msgstr ""
 
-#: finddialog/knotefinddialog.cpp:187
+#: finddialog/knotefinddialog.cpp:195
 #, fuzzy, kde-format
 #| msgid "New Note"
 msgid "Show Note"

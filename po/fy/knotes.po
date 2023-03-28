@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-24 00:49+0000\n"
+"POT-Creation-Date: 2023-03-28 00:48+0000\n"
 "PO-Revision-Date: 2007-03-28 21:02+0200\n"
 "Last-Translator: Rinse de Vries <rinsedevries@kde.nl>\n"
 "Language-Team: Frysk <kde-i18n-fry@kde.org>\n"
@@ -439,34 +439,34 @@ msgstr "Fluchkaaien ynstelle"
 msgid "Note Actions"
 msgstr "Notysjehannelings"
 
-#: finddialog/knotefinddialog.cpp:31
+#: finddialog/knotefinddialog.cpp:36
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Alle notysjes toane"
 
-#: finddialog/knotefinddialog.cpp:76
+#: finddialog/knotefinddialog.cpp:81
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "Alle notysjes toane"
 
-#: finddialog/knotefinddialog.cpp:83
+#: finddialog/knotefinddialog.cpp:88
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgctxt "@label:textbox"
 msgid "Search notes:"
 msgstr "Alle notysjes toane"
 
-#: finddialog/knotefinddialog.cpp:171
+#: finddialog/knotefinddialog.cpp:179
 #, kde-format
 msgctxt "@label"
 msgid "No Results found in search."
 msgstr ""
 
-#: finddialog/knotefinddialog.cpp:187
+#: finddialog/knotefinddialog.cpp:195
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgid "Show Note"

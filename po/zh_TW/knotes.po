@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-24 00:49+0000\n"
+"POT-Creation-Date: 2023-03-28 00:48+0000\n"
 "PO-Revision-Date: 2023-01-29 23:06+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -418,31 +418,31 @@ msgstr "設定快捷鍵"
 msgid "Note Actions"
 msgstr "便利貼命令"
 
-#: finddialog/knotefinddialog.cpp:31
+#: finddialog/knotefinddialog.cpp:36
 #, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "搜尋便條"
 
-#: finddialog/knotefinddialog.cpp:76
+#: finddialog/knotefinddialog.cpp:81
 #, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "搜尋..."
 
-#: finddialog/knotefinddialog.cpp:83
+#: finddialog/knotefinddialog.cpp:88
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Search notes:"
 msgstr "搜尋便條："
 
-#: finddialog/knotefinddialog.cpp:171
+#: finddialog/knotefinddialog.cpp:179
 #, kde-format
 msgctxt "@label"
 msgid "No Results found in search."
 msgstr "在搜尋中找不到符合的結果。"
 
-#: finddialog/knotefinddialog.cpp:187
+#: finddialog/knotefinddialog.cpp:195
 #, kde-format
 msgid "Show Note"
 msgstr "顯示便條"

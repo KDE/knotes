@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-24 00:49+0000\n"
+"POT-Creation-Date: 2023-03-28 00:48+0000\n"
 "PO-Revision-Date: 2017-05-16 06:41-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Hebrew <en@li.org>\n"
@@ -421,31 +421,31 @@ msgstr "הגדרת קיצורים"
 msgid "Note Actions"
 msgstr "פעולות בפתקים"
 
-#: finddialog/knotefinddialog.cpp:31
+#: finddialog/knotefinddialog.cpp:36
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "הצג את כל הפתקים"
 
-#: finddialog/knotefinddialog.cpp:76
+#: finddialog/knotefinddialog.cpp:81
 #, fuzzy, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "הצג את כל הפתקים"
 
-#: finddialog/knotefinddialog.cpp:83
+#: finddialog/knotefinddialog.cpp:88
 #, fuzzy, kde-format
 msgctxt "@label:textbox"
 msgid "Search notes:"
 msgstr "הצג את כל הפתקים"
 
-#: finddialog/knotefinddialog.cpp:171
+#: finddialog/knotefinddialog.cpp:179
 #, kde-format
 msgctxt "@label"
 msgid "No Results found in search."
 msgstr ""
 
-#: finddialog/knotefinddialog.cpp:187
+#: finddialog/knotefinddialog.cpp:195
 #, fuzzy, kde-format
 msgid "Show Note"
 msgstr "הצג את כל הפתקים"

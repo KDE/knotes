@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-24 00:49+0000\n"
+"POT-Creation-Date: 2023-03-28 00:48+0000\n"
 "PO-Revision-Date: 2014-06-20 16:37+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-doc@kde.org>\n"
@@ -418,35 +418,35 @@ msgstr "Tastkombinatschonen instellen"
 msgid "Note Actions"
 msgstr "Akschonen för de Notiz"
 
-#: finddialog/knotefinddialog.cpp:31
+#: finddialog/knotefinddialog.cpp:36
 #, fuzzy, kde-format
 #| msgid "Search Notes"
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Notizen söken"
 
-#: finddialog/knotefinddialog.cpp:76
+#: finddialog/knotefinddialog.cpp:81
 #, fuzzy, kde-format
 #| msgid "Search..."
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "Söken..."
 
-#: finddialog/knotefinddialog.cpp:83
+#: finddialog/knotefinddialog.cpp:88
 #, fuzzy, kde-format
 #| msgid "Search notes:"
 msgctxt "@label:textbox"
 msgid "Search notes:"
 msgstr "Notizen söken:"
 
-#: finddialog/knotefinddialog.cpp:171
+#: finddialog/knotefinddialog.cpp:179
 #, fuzzy, kde-format
 #| msgid "No Result found."
 msgctxt "@label"
 msgid "No Results found in search."
 msgstr "Nix funnen."
 
-#: finddialog/knotefinddialog.cpp:187
+#: finddialog/knotefinddialog.cpp:195
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgid "Show Note"

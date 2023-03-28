@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-24 00:49+0000\n"
+"POT-Creation-Date: 2023-03-28 00:48+0000\n"
 "PO-Revision-Date: 2022-03-28 01:49+0100\n"
 "Last-Translator: José Nuno Pires <zepires@gmail.com>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -413,31 +413,31 @@ msgstr "Configurar os Atalhos"
 msgid "Note Actions"
 msgstr "Acções das Notas"
 
-#: finddialog/knotefinddialog.cpp:31
+#: finddialog/knotefinddialog.cpp:36
 #, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
 msgstr "Procurar as Notas"
 
-#: finddialog/knotefinddialog.cpp:76
+#: finddialog/knotefinddialog.cpp:81
 #, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
 msgstr "Procurar..."
 
-#: finddialog/knotefinddialog.cpp:83
+#: finddialog/knotefinddialog.cpp:88
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Search notes:"
 msgstr "Procurar as notas:"
 
-#: finddialog/knotefinddialog.cpp:171
+#: finddialog/knotefinddialog.cpp:179
 #, kde-format
 msgctxt "@label"
 msgid "No Results found in search."
 msgstr "Sem resultados encontrados."
 
-#: finddialog/knotefinddialog.cpp:187
+#: finddialog/knotefinddialog.cpp:195
 #, kde-format
 msgid "Show Note"
 msgstr "Mostrar a Nota"
