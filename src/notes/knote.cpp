@@ -55,8 +55,8 @@
 #include <QWindow>
 
 #if KDEPIM_HAVE_X11
-#include <KWindowSystem/NETWM>
 #include <KX11Extras>
+#include <NETWM>
 #include <fixx11h.h>
 #endif
 
