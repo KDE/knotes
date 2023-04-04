@@ -41,18 +41,18 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
 endif()
 target_link_libraries(kontact_knotesplugin
                       knotesprivate
-                      KF${KF_MAJOR_VERSION}::CalendarCore
-                      KPim${KF_MAJOR_VERSION}::CalendarUtils
-                      KPim${KF_MAJOR_VERSION}::KontactInterface
+                      KF6::CalendarCore
+                      KPim6::CalendarUtils
+                      KPim6::KontactInterface
                       notesharedprivate
-                      KF${KF_MAJOR_VERSION}::DNSSD
-                      KPim${KF_MAJOR_VERSION}::Mime
-                      KF${KF_MAJOR_VERSION}::KCMUtils
-                      KPim${KF_MAJOR_VERSION}::AkonadiWidgets
-                      KPim${KF_MAJOR_VERSION}::AkonadiNotes
-                      KF${KF_MAJOR_VERSION}::ItemViews
-                      KF${KF_MAJOR_VERSION}::Contacts
-                      KF${KF_MAJOR_VERSION}::Completion
+                      KF6::DNSSD
+                      KPim6::Mime
+                      KF6::KCMUtils
+                      KPim6::AkonadiWidgets
+                      KPim6::AkonadiNotes
+                      KF6::ItemViews
+                      KF6::Contacts
+                      KF6::Completion
 )
 
 ########### install files ###############
@@ -60,8 +60,8 @@ target_link_libraries(kontact_knotesplugin
 set(kcmknotessummary_PART_SRCS kcmknotessummary.cpp kcmknotessummary.h)
 configure_file(knotesplugin.json.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotesplugin.json )
 add_library(kcmknotessummary MODULE ${kcmknotessummary_PART_SRCS})
-target_link_libraries(kcmknotessummary  KF${KF_MAJOR_VERSION}::KCMUtils KPim${KF_MAJOR_VERSION}::PimCommonAkonadi
-    KPim${KF_MAJOR_VERSION}::AkonadiNotes KF${KF_MAJOR_VERSION}::I18n)
+target_link_libraries(kcmknotessummary  KF6::KCMUtils KPim6::PimCommonAkonadi
+    KPim6::AkonadiNotes KF6::I18n)
 
 
 install(TARGETS kcmknotessummary DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/summary)

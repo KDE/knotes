@@ -70,21 +70,21 @@ generate_export_header(knotesprivate BASE_NAME knotes)
 
 target_link_libraries(knotesprivate
     PUBLIC
-    KF${KF_MAJOR_VERSION}::IconThemes
+    KF6::IconThemes
     PRIVATE
-    KPim${KF_MAJOR_VERSION}::PimCommon
-    KF${KF_MAJOR_VERSION}::XmlGui
-    KF${KF_MAJOR_VERSION}::KCMUtils KF${KF_MAJOR_VERSION}::NewStuffCore
-    KF${KF_MAJOR_VERSION}::WindowSystem Qt::PrintSupport
-    KF${KF_MAJOR_VERSION}::TextWidgets KF${KF_MAJOR_VERSION}::I18n notesharedprivate
-    KPim${KF_MAJOR_VERSION}::AkonadiSearchPIM KPim${KF_MAJOR_VERSION}::AkonadiNotes KPim${KF_MAJOR_VERSION}::PimTextEdit
-    KPim${KF_MAJOR_VERSION}::AkonadiWidgets KPim${KF_MAJOR_VERSION}::GrantleeTheme
+    KPim6::PimCommon
+    KF6::XmlGui
+    KF6::KCMUtils KF6::NewStuffCore
+    KF6::WindowSystem Qt::PrintSupport
+    KF6::TextWidgets KF6::I18n notesharedprivate
+    KPim6::AkonadiSearchPIM KPim6::AkonadiNotes KPim6::PimTextEdit
+    KPim6::AkonadiWidgets KPim6::GrantleeTheme
     )
 
-if (TARGET KF${KF_MAJOR_VERSION}::TextAddonsWidgets)
+if (TARGET KF6::TextAddonsWidgets)
     target_link_libraries(knotesprivate
         PRIVATE
-        KF${KF_MAJOR_VERSION}::TextAddonsWidgets)
+        KF6::TextAddonsWidgets)
 endif()
 
 if (QT_MAJOR_VERSION STREQUAL "5")
@@ -138,22 +138,22 @@ endif()
 
 target_link_libraries(knotes 
     knotesprivate
-    KF${KF_MAJOR_VERSION}::KCMUtils
-    KPim${KF_MAJOR_VERSION}::PimCommon
-    KF${KF_MAJOR_VERSION}::DNSSD
-    KPim${KF_MAJOR_VERSION}::KontactInterface
+    KF6::KCMUtils
+    KPim6::PimCommon
+    KF6::DNSSD
+    KPim6::KontactInterface
     notesharedprivate
-    KPim${KF_MAJOR_VERSION}::AkonadiCore
-    KPim${KF_MAJOR_VERSION}::Mime
-    KF${KF_MAJOR_VERSION}::GlobalAccel
-    KF${KF_MAJOR_VERSION}::Notifications
-    KF${KF_MAJOR_VERSION}::WindowSystem
-    KF${KF_MAJOR_VERSION}::KIOFileWidgets
-    KPim${KF_MAJOR_VERSION}::AkonadiSearchDebug
-    KPim${KF_MAJOR_VERSION}::AkonadiNotes
-    KF${KF_MAJOR_VERSION}::Crash
-    KF${KF_MAJOR_VERSION}::XmlGui
-    KPim${KF_MAJOR_VERSION}::AkonadiWidgets
+    KPim6::AkonadiCore
+    KPim6::Mime
+    KF6::GlobalAccel
+    KF6::Notifications
+    KF6::WindowSystem
+    KF6::KIOFileWidgets
+    KPim6::AkonadiSearchDebug
+    KPim6::AkonadiNotes
+    KF6::Crash
+    KF6::XmlGui
+    KPim6::AkonadiWidgets
     )
 if (Qt5X11Extras_FOUND)
     target_link_libraries(knotes Qt::X11Extras ${X11_LIBRARIES})
@@ -174,7 +174,7 @@ set_property(TARGET kcm_knote_static PROPERTY POSITION_INDEPENDENT_CODE ON)
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(kcm_knote_static PROPERTIES UNITY_BUILD ON)
 endif()
-target_link_libraries(kcm_knote_static knotesprivate KF${KF_MAJOR_VERSION}::NewStuffWidgets KPim${KF_MAJOR_VERSION}::AkonadiCore  KF${KF_MAJOR_VERSION}::KCMUtils notesharedprivate KPim${KF_MAJOR_VERSION}::AkonadiNotes KPim${KF_MAJOR_VERSION}::PimCommon KF${KF_MAJOR_VERSION}::I18n KPim${KF_MAJOR_VERSION}::AkonadiWidgets)
+target_link_libraries(kcm_knote_static knotesprivate KF6::NewStuffWidgets KPim6::AkonadiCore  KF6::KCMUtils notesharedprivate KPim6::AkonadiNotes KPim6::PimCommon KF6::I18n KPim6::AkonadiWidgets)
 
 # Create the individual KCMs
 kcoreaddons_add_plugin(kcm_knote_action SOURCES kcm_knote_action.cpp INSTALL_NAMESPACE "pim${QT_MAJOR_VERSION}/kcms/knotes")

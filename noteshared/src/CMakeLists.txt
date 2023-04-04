@@ -89,17 +89,17 @@ generate_export_header(notesharedprivate BASE_NAME noteshared)
 
 target_link_libraries(notesharedprivate
     PUBLIC
-    KPim${KF_MAJOR_VERSION}::AkonadiCore
+    KPim6::AkonadiCore
     PRIVATE
-    KF${KF_MAJOR_VERSION}::KCMUtils
-    KF${KF_MAJOR_VERSION}::DNSSD KPim${KF_MAJOR_VERSION}::PimCommon  KPim${KF_MAJOR_VERSION}::Mime KPim${KF_MAJOR_VERSION}::AkonadiNotes
-    KPim${KF_MAJOR_VERSION}::PimTextEdit KF${KF_MAJOR_VERSION}::Completion Qt::DBus KF${KF_MAJOR_VERSION}::I18n
-    KPim${KF_MAJOR_VERSION}::AkonadiWidgets
+    KF6::KCMUtils
+    KF6::DNSSD KPim6::PimCommon  KPim6::Mime KPim6::AkonadiNotes
+    KPim6::PimTextEdit KF6::Completion Qt::DBus KF6::I18n
+    KPim6::AkonadiWidgets
     )
     if (TARGET Qt::Core5Compat)
         target_link_libraries(notesharedprivate PRIVATE Qt::Core5Compat)
     endif()
-    target_link_libraries(notesharedprivate PRIVATE KF${KF_MAJOR_VERSION}::TextAutoCorrection)
+    target_link_libraries(notesharedprivate PRIVATE KF6::TextAutoCorrection)
 
 set_target_properties(notesharedprivate
     PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}

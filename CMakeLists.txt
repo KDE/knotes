@@ -6,8 +6,8 @@ project(knotes VERSION ${PIM_VERSION})
 set(RELEASE_SERVICE_VERSION "23.07.40")
 
 
-set(KF_MIN_VERSION "5.105.0")
-
+set(KF_MIN_VERSION "5.240.0")
+set(QT_REQUIRED_VERSION "6.4.0")
 find_package(ECM ${KF_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${knotes_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH})
 include(ECMInstallIcons)
@@ -32,15 +32,6 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
-if (QT_MAJOR_VERSION STREQUAL "6")
-    set(QT_REQUIRED_VERSION "6.4.0")
-    set(KF_MIN_VERSION "5.240.0")
-    set(KF_MAJOR_VERSION "6")
-    set(KTEXTADDONS_MIN_VERSION "1.1.0")
-else()
-    set(KF_MAJOR_VERSION "5")
-    set(KTEXTADDONS_MIN_VERSION "1.0.0")
-endif()
 
 # Do NOT add quote
 set(KDEPIM_DEV_VERSION alpha)
@@ -54,7 +45,7 @@ endif()
 
 set(KDEPIM_VERSION "${PIM_VERSION}${KDEPIM_DEV_VERSION} (${RELEASE_SERVICE_VERSION})")
 set(KDEPIM_LIB_VERSION "${PIM_VERSION}")
-set(KDEPIM_LIB_SOVERSION "5")
+set(KDEPIM_LIB_SOVERSION "6")
 
 set(AKONADINOTES_LIB_VERSION "5.23.40")
 set(AKONADI_VERSION "5.23.40")
@@ -66,66 +57,58 @@ set(KMIME_LIB_VERSION "5.23.40")
 set(PIMCOMMON_LIB_VERSION "5.23.40")
 set(GRANTLEETHEME_LIB_VERSION "5.23.40")
 set(AKONADI_SEARCH_VERSION "5.23.40")
+find_package(Qt6Core5Compat)
 
-set(QT_REQUIRED_VERSION "5.15.2")
-if (QT_MAJOR_VERSION STREQUAL "6")
-    set(QT_REQUIRED_VERSION "6.4.0")
-endif()
-
-if (QT_MAJOR_VERSION STREQUAL "6")
-    find_package(Qt6Core5Compat)
-endif()
-
-find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED DBus Network PrintSupport Test Widgets Xml)
-find_package(Qt${QT_MAJOR_VERSION}X11Extras NO_MODULE)
-# Find KF5 package
-find_package(KF${KF_MAJOR_VERSION}Completion ${KF_MIN_VERSION} REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}Config ${KF_MIN_VERSION} REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}CoreAddons ${KF_MIN_VERSION} REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}Crash ${KF_MIN_VERSION} REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}DNSSD ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}GlobalAccel ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}IconThemes ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}ItemModels ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}ItemViews ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}KCMUtils ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}NewStuff ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}Notifications ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}NotifyConfig ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}Parts ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}TextWidgets ${KF_MIN_VERSION} REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}WidgetsAddons ${KF_MIN_VERSION} REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}WindowSystem ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}XmlGui ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}DocTools ${KF_MIN_VERSION})
-set_package_properties(KF${KF_MAJOR_VERSION}DocTools PROPERTIES DESCRIPTION
+find_package(Qt6 ${QT_REQUIRED_VERSION} CONFIG REQUIRED DBus Network PrintSupport Test Widgets Xml)
+find_package(Qt6X11Extras NO_MODULE)
+# Find KF6 package
+find_package(KF6Completion ${KF_MIN_VERSION} REQUIRED)
+find_package(KF6Config ${KF_MIN_VERSION} REQUIRED)
+find_package(KF6CoreAddons ${KF_MIN_VERSION} REQUIRED)
+find_package(KF6Crash ${KF_MIN_VERSION} REQUIRED)
+find_package(KF6DNSSD ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6GlobalAccel ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6IconThemes ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6ItemModels ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6ItemViews ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6KCMUtils ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6NewStuff ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6Notifications ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6NotifyConfig ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6Parts ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6TextWidgets ${KF_MIN_VERSION} REQUIRED)
+find_package(KF6WidgetsAddons ${KF_MIN_VERSION} REQUIRED)
+find_package(KF6WindowSystem ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6XmlGui ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6DocTools ${KF_MIN_VERSION})
+set_package_properties(KF6DocTools PROPERTIES DESCRIPTION
     "Tools to generate documentation"
     TYPE OPTIONAL
 )
 
 
 # Find KdepimLibs Package
-find_package(KPim${KF_MAJOR_VERSION}Akonadi ${AKONADI_VERSION} CONFIG REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}AkonadiNotes ${AKONADINOTES_LIB_VERSION} CONFIG REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}CalendarUtils ${CALENDARUTILS_LIB_VERSION} CONFIG REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}KontactInterface ${KONTACTINTERFACE_LIB_VERSION} CONFIG REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}Libkdepim ${LIBKDEPIM_LIB_VERSION} CONFIG REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}Mime ${KMIME_LIB_VERSION} CONFIG REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}PimCommonAkonadi ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}TextEdit ${KPIMTEXTEDIT_LIB_VERSION} CONFIG REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}GrantleeTheme ${GRANTLEETHEME_LIB_VERSION} CONFIG REQUIRED)
+find_package(KPim6Akonadi ${AKONADI_VERSION} CONFIG REQUIRED)
+find_package(KPim6AkonadiNotes ${AKONADINOTES_LIB_VERSION} CONFIG REQUIRED)
+find_package(KPim6CalendarUtils ${CALENDARUTILS_LIB_VERSION} CONFIG REQUIRED)
+find_package(KPim6KontactInterface ${KONTACTINTERFACE_LIB_VERSION} CONFIG REQUIRED)
+find_package(KPim6Libkdepim ${LIBKDEPIM_LIB_VERSION} CONFIG REQUIRED)
+find_package(KPim6Mime ${KMIME_LIB_VERSION} CONFIG REQUIRED)
+find_package(KPim6PimCommonAkonadi ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
+find_package(KPim6TextEdit ${KPIMTEXTEDIT_LIB_VERSION} CONFIG REQUIRED)
+find_package(KPim6GrantleeTheme ${GRANTLEETHEME_LIB_VERSION} CONFIG REQUIRED)
 
-find_package(KF${KF_MAJOR_VERSION}TextAutoCorrection ${KTEXTADDONS_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6TextAutoCorrection ${KTEXTADDONS_MIN_VERSION} CONFIG REQUIRED)
 
-find_package(KPim${KF_MAJOR_VERSION}AkonadiSearch ${AKONADI_SEARCH_VERSION} CONFIG REQUIRED)
-set_package_properties(KPim${KF_MAJOR_VERSION}AkonadiSearch PROPERTIES DESCRIPTION "The Akonadi Search libraries" URL "https://invent.kde.org/pim/akonadi-search" TYPE REQUIRED PURPOSE "Provides search capabilities in pim apps and Akonadi")
+find_package(KPim6AkonadiSearch ${AKONADI_SEARCH_VERSION} CONFIG REQUIRED)
+set_package_properties(KPim6AkonadiSearch PROPERTIES DESCRIPTION "The Akonadi Search libraries" URL "https://invent.kde.org/pim/akonadi-search" TYPE REQUIRED PURPOSE "Provides search capabilities in pim apps and Akonadi")
 
-find_package(KF${KF_MAJOR_VERSION}TextAddonsWidgets ${KTEXTADDONS_MIN_VERSION} CONFIG)
-set_package_properties(KF${KF_MAJOR_VERSION}TextAddonsWidgets PROPERTIES DESCRIPTION
+find_package(KF6TextAddonsWidgets ${KTEXTADDONS_MIN_VERSION} CONFIG)
+set_package_properties(KF6TextAddonsWidgets PROPERTIES DESCRIPTION
     "Add text addons widgets"
     TYPE OPTIONAL
 )
-set(KDEPIM_HAVE_TEXT_ADDONS_WIDGETS_SUPPORT ${KF${KF_MAJOR_VERSION}TextAddonsWidgets_FOUND})
+set(KDEPIM_HAVE_TEXT_ADDONS_WIDGETS_SUPPORT ${KF6TextAddonsWidgets_FOUND})
 
 
 if (NOT APPLE)
@@ -163,7 +146,7 @@ ecm_qt_install_logging_categories(
         DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
         )
 
-if(KF${KF_MAJOR_VERSION}DocTools_FOUND)
+if(KF6DocTools_FOUND)
     kdoctools_install(po)
     add_subdirectory(doc)
 endif()

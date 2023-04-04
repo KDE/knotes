@@ -16,7 +16,7 @@ macro(add_noteshared_unittest _source)
     Qt::Test
     Qt::Core
     Qt::Gui
-    KPim${KF_MAJOR_VERSION}::AkonadiCore
+    KPim6::AkonadiCore
 )
 endmacro()
 

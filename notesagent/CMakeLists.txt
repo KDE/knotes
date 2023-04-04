@@ -33,20 +33,20 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akonadi_notes_agent PROPERTIES UNITY_BUILD ON)
 endif()
 target_link_libraries(akonadi_notes_agent
-    KPim${KF_MAJOR_VERSION}::AkonadiCore
-    KPim${KF_MAJOR_VERSION}::Mime
-    KPim${KF_MAJOR_VERSION}::AkonadiAgentBase
-    KF${KF_MAJOR_VERSION}::NotifyConfig
+    KPim6::AkonadiCore
+    KPim6::Mime
+    KPim6::AkonadiAgentBase
+    KF6::NotifyConfig
     notesharedprivate
-    KPim${KF_MAJOR_VERSION}::PimCommon
-    KPim${KF_MAJOR_VERSION}::PimTextEdit
-    KF${KF_MAJOR_VERSION}::XmlGui
-    KF${KF_MAJOR_VERSION}::WindowSystem
-    KF${KF_MAJOR_VERSION}::Notifications
-    KF${KF_MAJOR_VERSION}::IconThemes
-    KF${KF_MAJOR_VERSION}::I18n
-    KPim${KF_MAJOR_VERSION}::AkonadiNotes
-    KF${KF_MAJOR_VERSION}::KCMUtils
+    KPim6::PimCommon
+    KPim6::PimTextEdit
+    KF6::XmlGui
+    KF6::WindowSystem
+    KF6::Notifications
+    KF6::IconThemes
+    KF6::I18n
+    KPim6::AkonadiNotes
+    KF6::KCMUtils
     )
 
 if( APPLE )
