@@ -81,24 +81,12 @@ void NoteNetworkConfigWidget::load()
     kcfg_Port->setValue(NoteShared::NoteSharedGlobalConfig::self()->port());
 }
 
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-NoteNetworkConfig::NoteNetworkConfig(QWidget *parent, const QVariantList &args)
-    : KCModule(parent, args)
-#else
 NoteNetworkConfig::NoteNetworkConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
     : KCModule(parent, data, args)
-#endif
 {
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    auto lay = new QVBoxLayout(this);
-    lay->setContentsMargins(0, 0, 0, 0);
-    auto noteNetworkConfigWidget = new NoteNetworkConfigWidget(this);
-#else
     auto lay = new QVBoxLayout(widget());
     lay->setContentsMargins(0, 0, 0, 0);
     auto noteNetworkConfigWidget = new NoteNetworkConfigWidget(widget());
-
-#endif
     lay->addWidget(noteNetworkConfigWidget);
     addConfig(NoteShared::NoteSharedGlobalConfig::self(), noteNetworkConfigWidget);
     load();

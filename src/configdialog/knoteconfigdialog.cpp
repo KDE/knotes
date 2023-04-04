@@ -28,8 +28,7 @@ KNoteConfigDialog::KNoteConfigDialog(const QString &title, QWidget *parent)
     button(QDialogButtonBox::Ok)->setDefault(true);
 
     setWindowTitle(title);
-    const QVector<KPluginMetaData> availablePlugins =
-        KPluginMetaData::findPlugins(QStringLiteral("pim" QT_STRINGIFY(QT_VERSION_MAJOR)) + QStringLiteral("/kcms/knotes"));
+    const QVector<KPluginMetaData> availablePlugins = KPluginMetaData::findPlugins(QStringLiteral("pim6/kcms/knotes"));
     for (const KPluginMetaData &metaData : availablePlugins) {
         addModule(metaData);
     }

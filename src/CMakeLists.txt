@@ -21,7 +21,6 @@ target_sources(knotesprivate PRIVATE
     notes/knotedisplaysettings.cpp
     utils/knoteutils.cpp
     notes/knoteinterface.cpp
-    notes/knotesmigrateapplication.cpp
     finddialog/knotefinddialog.cpp
     configdialog/knotesimpleconfigdialog.cpp
     configdialog/knoteconfigdialog.cpp
@@ -37,7 +36,6 @@ target_sources(knotesprivate PRIVATE
     notes/knotedisplaysettings.h
     utils/knoteutils.h
     notes/knoteinterface.h
-    notes/knotesmigrateapplication.h
     finddialog/knotefinddialog.h
     configdialog/knotesimpleconfigdialog.h
     configdialog/knoteconfigdialog.h

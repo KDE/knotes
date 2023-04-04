@@ -8,9 +8,7 @@
 #include "noteshared_export.h"
 #include <KCModule>
 
-#if KCMUTILS_VERSION >= QT_VERSION_CHECK(5, 240, 0)
 #include <KPluginMetaData>
-#endif
 class QCheckBox;
 class QLineEdit;
 class QSpinBox;
@@ -37,11 +35,7 @@ class NOTESHARED_EXPORT NoteNetworkConfig : public KCModule
 {
     Q_OBJECT
 public:
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    explicit NoteNetworkConfig(QWidget *parent, const QVariantList &args);
-#else
     explicit NoteNetworkConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
-#endif
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;

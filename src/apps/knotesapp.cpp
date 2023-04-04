@@ -172,8 +172,7 @@ KNotesApp::KNotesApp(QWidget *parent)
     // get the most recent XML UI file
     QString xmlFileName(componentName() + QLatin1String("ui.rc"));
 #pragma message("port QT5")
-    QString filter(QStringLiteral("kxmlgui" QT_STRINGIFY(QT_VERSION_MAJOR) "/knotes/")
-                   + xmlFileName); // QT5 = componentData().componentName() + QLatin1Char('/') + xmlFileName;
+    QString filter(QStringLiteral("kxmlgui6/knotes/") + xmlFileName); // QT5 = componentData().componentName() + QLatin1Char('/') + xmlFileName;
     const QStringList fileList = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, filter)
         + QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, xmlFileName); // QT5 =
 #pragma message("port QT5")
@@ -213,13 +212,7 @@ KNotesApp::KNotesApp(QWidget *parent)
 
     connect(qApp, &QGuiApplication::commitDataRequest, this, &KNotesApp::slotCommitData, Qt::DirectConnection);
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QGuiApplication::setFallbackSessionManagementEnabled(false);
-#endif
     updateNoteActions();
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    connect(qApp, &QGuiApplication::paletteChanged, this, &KNotesApp::slotGeneralPaletteChanged);
-#endif
 }
 
 KNotesApp::~KNotesApp()
@@ -243,11 +236,9 @@ void KNotesApp::slotGeneralPaletteChanged()
 
 bool KNotesApp::event(QEvent *e)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     if (e->type() == QEvent::ApplicationPaletteChange) {
         slotGeneralPaletteChanged();
     }
-#endif
     return QWidget::event(e);
 }
 

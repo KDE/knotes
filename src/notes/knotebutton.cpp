@@ -26,11 +26,7 @@ KNoteButton::KNoteButton(const QString &icon, QWidget *parent)
 
 KNoteButton::~KNoteButton() = default;
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 void KNoteButton::enterEvent(QEnterEvent *)
-#else
-void KNoteButton::enterEvent(QEvent *)
-#endif
 {
     setFlat(false);
     repaint();

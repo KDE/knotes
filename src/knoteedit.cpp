@@ -536,12 +536,8 @@ void KNoteEdit::slotCurrentCharFormatChanged(const QTextCharFormat &f)
     }
 
     // font changes
-#if QT_VERSION >= QT_VERSION_CHECK(6, 4, 0)
     const QStringList families = f.fontFamilies().toStringList();
     const auto fontFamily = families.isEmpty() ? QString() : families.constFirst();
-#else
-    const auto fontFamily = f.fontFamily();
-#endif
     m_textFont->setFont(fontFamily);
     m_textSize->setFontSize((f.fontPointSize() > 0) ? (int)f.fontPointSize() : 10);
 
