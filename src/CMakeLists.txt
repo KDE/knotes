@@ -158,7 +158,7 @@ install(TARGETS knotes  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 ########### next target ###############
 set(kcm_knotes_PART_SRCS knoteconfigmodule.cpp knoteconfigmodule.h configdialog/knotecollectionconfigwidget.cpp configdialog/knotecollectionconfigwidget.h)
 ecm_qt_declare_logging_category(kcm_knotes_PART_SRCS HEADER knotes_kcm_debug.h IDENTIFIER KNOTES_MODULES_LOG CATEGORY_NAME org.kde.pim.knotes.module
-        DESCRIPTION "kcm knotes (knotes)"
+	DESCRIPTION "knotes (kcm knotes)"
         OLD_CATEGORY_NAMES log_knotes_modules
         EXPORT KNOTES
     )
