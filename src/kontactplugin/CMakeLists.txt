@@ -58,7 +58,6 @@ target_link_libraries(kontact_knotesplugin
 ########### install files ###############
 
 set(kcmknotessummary_PART_SRCS kcmknotessummary.cpp kcmknotessummary.h)
-configure_file(knotesplugin.json.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotesplugin.json )
 add_library(kcmknotessummary MODULE ${kcmknotessummary_PART_SRCS})
 target_link_libraries(kcmknotessummary  KF6::KCMUtils KPim6::PimCommonAkonadi
     KPim6::AkonadiNotes KF6::I18n)
