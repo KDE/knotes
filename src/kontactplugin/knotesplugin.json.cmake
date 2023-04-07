@@ -31,7 +31,6 @@
         "Description[zh_TW]": "Kontact KNotes 外掛程式",
         "EnabledByDefault": true,
         "Icon": "view-pim-notes",
-        "Id": "kontact_knotesplugin",
         "License": "LGPL",
         "Name": "Popup Notes",
         "Name[ar]": "ملاحظات منبثقة",
