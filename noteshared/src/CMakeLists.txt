@@ -95,11 +95,9 @@ target_link_libraries(notesharedprivate
     KF6::DNSSD KPim6::PimCommon  KPim6::Mime KPim6::AkonadiNotes
     KPim6::PimTextEdit KF6::Completion Qt::DBus KF6::I18n
     KPim6::AkonadiWidgets
+    Qt::Core5Compat
+    KF6::TextAutoCorrection
     )
-    if (TARGET Qt::Core5Compat)
-        target_link_libraries(notesharedprivate PRIVATE Qt::Core5Compat)
-    endif()
-    target_link_libraries(notesharedprivate PRIVATE KF6::TextAutoCorrection)
 
 set_target_properties(notesharedprivate
     PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
