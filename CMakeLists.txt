@@ -123,7 +123,7 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 include_directories(${knotes_SOURCE_DIR} ${knotes_BINARY_DIR})
 
 ecm_set_disabled_deprecation_versions(QT 6.4
-     KF 5.105.0
+     KF 5.240.0
 )
 
 configure_file(knotes-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotes-version.h @ONLY)
