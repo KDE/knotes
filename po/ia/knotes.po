@@ -645,7 +645,7 @@ msgstr "Tu essera demandate ante imprimer le nota de popup seligite."
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Preview Selected Notes..."
-msgstr "Imprime notas de vista preliminari seligite ..."
+msgstr "Imprime notas de vista preliminar seligite ..."
 
 #: kontactplugin/knotes_part.cpp:134
 #, kde-format
@@ -1036,7 +1036,7 @@ msgstr "Thema de imprimer :"
 #: print/knoteprintselectednotesdialog.cpp:58
 #, kde-format
 msgid "Preview"
-msgstr "Vista preliminari"
+msgstr "Vista preliminar"
 
 #: print/knoteprintselectednotesdialog.cpp:60
 #, kde-format
