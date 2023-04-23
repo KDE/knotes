@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 add_definitions(-DTRANSLATION_DOMAIN=\"libnoteshared\")
+configure_file(config-noshared.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-noshared.h)
 
 
 set(libnoteshared_SRCS
@@ -99,7 +100,11 @@ target_link_libraries(notesharedprivate
     if (TARGET Qt::Core5Compat)
         target_link_libraries(notesharedprivate PRIVATE Qt::Core5Compat)
     endif()
-    target_link_libraries(notesharedprivate PRIVATE KF${KF_MAJOR_VERSION}::TextAutoCorrection)
+    if (TARGET KF${KF_MAJOR_VERSION}::TextAutoCorrectionWidgets)
+        target_link_libraries(notesharedprivate PRIVATE KF${KF_MAJOR_VERSION}::TextAutoCorrectionWidgets)
+    else()
+        target_link_libraries(notesharedprivate PRIVATE KF${KF_MAJOR_VERSION}::TextAutoCorrection)
+    endif()
 
 set_target_properties(notesharedprivate
     PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}

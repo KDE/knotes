@@ -5,7 +5,12 @@
 */
 
 #include "richtexteditwithautocorrection.h"
+
+#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+#include <TextAutoCorrectionCore/AutoCorrection>
+#else
 #include <TextAutoCorrection/AutoCorrection>
+#endif
 
 #include <QKeyEvent>
 
@@ -15,7 +20,11 @@ class NoteShared::RichTextEditWithAutoCorrectionPrivate
 {
 public:
     RichTextEditWithAutoCorrectionPrivate()
+#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+        : mAutoCorrection(new TextAutoCorrectionCore::AutoCorrection())
+#else
         : mAutoCorrection(new TextAutoCorrection::AutoCorrection())
+#endif
     {
     }
 
@@ -25,7 +34,11 @@ public:
             delete mAutoCorrection;
         }
     }
+#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+    TextAutoCorrectionCore::AutoCorrection *mAutoCorrection = nullptr;
+#else
     TextAutoCorrection::AutoCorrection *mAutoCorrection = nullptr;
+#endif
     bool mNeedToDelete = true;
 };
 
@@ -36,21 +49,34 @@ RichTextEditWithAutoCorrection::RichTextEditWithAutoCorrection(QWidget *parent)
 }
 
 RichTextEditWithAutoCorrection::~RichTextEditWithAutoCorrection() = default;
+
+#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+void RichTextEditWithAutoCorrection::setAutocorrection(TextAutoCorrectionCore::AutoCorrection *autocorrect)
+#else
 void RichTextEditWithAutoCorrection::setAutocorrection(TextAutoCorrection::AutoCorrection *autocorrect)
+#endif
 {
     d->mNeedToDelete = false;
     delete d->mAutoCorrection;
     d->mAutoCorrection = autocorrect;
 }
 
+#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+TextAutoCorrectionCore::AutoCorrection *RichTextEditWithAutoCorrection::autocorrection() const
+#else
 TextAutoCorrection::AutoCorrection *RichTextEditWithAutoCorrection::autocorrection() const
+#endif
 {
     return d->mAutoCorrection;
 }
 
 void RichTextEditWithAutoCorrection::setAutocorrectionLanguage(const QString &language)
 {
+#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+    TextAutoCorrectionCore::AutoCorrectionSettings *settings = d->mAutoCorrection->autoCorrectionSettings();
+#else
     TextAutoCorrection::AutoCorrectionSettings *settings = d->mAutoCorrection->autoCorrectionSettings();
+#endif
     settings->setLanguage(language);
     d->mAutoCorrection->setAutoCorrectionSettings(settings);
 }
