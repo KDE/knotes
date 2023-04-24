@@ -47,7 +47,7 @@ set(KDEPIM_VERSION "${PIM_VERSION}${KDEPIM_DEV_VERSION} (${RELEASE_SERVICE_VERSI
 set(KDEPIM_LIB_VERSION "${PIM_VERSION}")
 set(KDEPIM_LIB_SOVERSION "6")
 
-set(KTEXTADDONS_MIN_VERSION "1.2.0")
+set(KTEXTADDONS_MIN_VERSION "1.2.41")
 set(AKONADINOTES_LIB_VERSION "5.23.40")
 set(AKONADI_VERSION "5.23.40")
 set(CALENDARUTILS_LIB_VERSION "5.23.40")
@@ -99,16 +99,7 @@ find_package(KPim6PimCommonAkonadi ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
 find_package(KPim6TextEdit ${KPIMTEXTEDIT_LIB_VERSION} CONFIG REQUIRED)
 find_package(KPim6GrantleeTheme ${GRANTLEETHEME_LIB_VERSION} CONFIG REQUIRED)
 
-find_package(KF6TextAutoCorrectionWidgets ${KTEXTADDONS_MIN_VERSION} CONFIG)
-set_package_properties(KF6TextAutoCorrectionWidgets PROPERTIES DESCRIPTION
-    "Add support for text auto correction"
-    TYPE OPTIONAL
-)
-if (TARGET KF6::TextAutoCorrectionWidgets)
-    set(HAVE_TEXT_AUTOCORRECTION_WIDGETS TRUE)
-else()
-    find_package(KF6TextAutoCorrection ${KTEXTADDONS_MIN_VERSION} CONFIG REQUIRED)
-endif()
+find_package(KF6TextAutoCorrectionWidgets ${KTEXTADDONS_MIN_VERSION} CONFIG REQUIRED)
 
 find_package(KPim6AkonadiSearch ${AKONADI_SEARCH_VERSION} CONFIG REQUIRED)
 set_package_properties(KPim6AkonadiSearch PROPERTIES DESCRIPTION "The Akonadi Search libraries" URL "https://invent.kde.org/pim/akonadi-search" TYPE REQUIRED PURPOSE "Provides search capabilities in pim apps and Akonadi")
