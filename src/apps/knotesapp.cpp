@@ -171,13 +171,13 @@ KNotesApp::KNotesApp(QWidget *parent)
 
     // get the most recent XML UI file
     QString xmlFileName(componentName() + QLatin1String("ui.rc"));
-#pragma message("port QT5")
+#pragma message("port QT6")
     QString filter(QStringLiteral("kxmlgui6/knotes/") + xmlFileName); // QT5 = componentData().componentName() + QLatin1Char('/') + xmlFileName;
     const QStringList fileList = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, filter)
         + QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, xmlFileName); // QT5 =
-#pragma message("port QT5")
+#pragma message("port QT6")
     // QT5 componentData().dirs()->findAllResources( "data", filter ) +
-#pragma message("port QT5")
+#pragma message("port QT6")
     // QT5 componentData().dirs()->findAllResources( "data", xmlFileName );
     qCDebug(KNOTES_LOG) << " fileList :" << fileList << " filter :" << filter;
     QString doc;
