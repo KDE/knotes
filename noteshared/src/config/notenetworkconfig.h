@@ -4,7 +4,6 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 #pragma once
-#include "kcmutils_version.h"
 #include "noteshared_export.h"
 #include <KCModule>
 
