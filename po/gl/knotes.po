@@ -10,7 +10,7 @@
 # Marce Villarino <mvillarino@gmail.com>, 2010.
 # Marce Villarino <mvillarino@kde-espana.es>, 2012, 2013, 2014.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015, 2016, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2023.
 #
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en http://trasno.gpul.org
@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-03-24 02:40+0000\n"
-"PO-Revision-Date: 2019-11-13 22:26+0100\n"
+"PO-Revision-Date: 2023-05-01 11:12+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.08.2\n"
+"X-Generator: Lokalize 23.04.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -141,10 +141,9 @@ msgid "KDE Notes"
 msgstr "Notas de KDE"
 
 #: apps/main.cpp:49
-#, fuzzy, kde-format
-#| msgid "Copyright © 1997–2019 KNotes authors"
+#, kde-format
 msgid "Copyright © 1997–%1 KNotes authors"
-msgstr "© 1997–2019 Autores de KNotes"
+msgstr "© 1997–%1 Xente autora de KNotes"
 
 #: apps/main.cpp:69 kontactplugin/kcmknotessummary.cpp:44
 #, kde-format
@@ -405,23 +404,20 @@ msgid "Notes"
 msgstr "Notas"
 
 #: dialog/knotedeleteselectednotesdialog.cpp:21
-#, fuzzy, kde-format
-#| msgid "Select notes to delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Select notes to delete"
 msgstr "Seleccione as notas que desexe eliminar"
 
 #: dialog/knoteselectednotesdialog.cpp:23
 #: print/knoteprintselectednotesdialog.cpp:29
-#, fuzzy, kde-format
-#| msgid "Select notes"
+#, kde-format
 msgctxt "@title:window"
 msgid "Select notes"
 msgstr "Seleccionar notas"
 
 #: dialog/knoteskeydialog.cpp:21
-#, fuzzy, kde-format
-#| msgid "Configure Shortcuts"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Shortcuts"
 msgstr "Configurar os atallos"
@@ -456,8 +452,7 @@ msgid "No Results found in search."
 msgstr "Non se atoparon resultados na busca."
 
 #: finddialog/knotefinddialog.cpp:187
-#, fuzzy, kde-format
-#| msgid "Show Note..."
+#, kde-format
 msgid "Show Note"
 msgstr "Mostrar a nota…"
 
@@ -603,10 +598,9 @@ msgid "Notes Summary Configuration Dialog"
 msgstr "Diálogo de configuración do resumo das notas"
 
 #: kontactplugin/kcmknotessummary.cpp:43
-#, fuzzy, kde-format
-#| msgid "Copyright © 2013-2019 Laurent Montel <montel@kde.org>"
+#, kde-format
 msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
-msgstr "© 2013-2019 Laurent Montel <montel@kde.org>"
+msgstr "© 2013-%1 Laurent Montel <montel@kde.org>"
 
 #: kontactplugin/knotes_part.cpp:84
 #, kde-format
@@ -754,10 +748,7 @@ msgid "Create new note"
 msgstr "Crear unha nota nova"
 
 #: kontactplugin/knotes_part.cpp:341
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Do you really want to delete this note?"
-#| msgid_plural "Do you really want to delete these %1 notes?"
+#, kde-format
 msgctxt "@info"
 msgid "Do you really want to delete this note?"
 msgstr "Seguro que quere eliminar esta nota?"
@@ -837,12 +828,10 @@ msgid "Popup Notes"
 msgstr "Notas emerxentes"
 
 #: kontactplugin/knotes_plugin.cpp:80
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:credit"
-#| msgid "Copyright © 2003–2018 Kontact authors"
+#, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Copyright © 2003–%1 Kontact authors"
-msgstr "© 2003–2018 Autores de Kontact"
+msgstr "© 2003–%1 Xente autora de Kontact"
 
 #: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
@@ -932,10 +921,7 @@ msgid "(note locked, it will not removed)"
 msgstr "(nota bloqueada; non se vai retirar)"
 
 #: kontactplugin/knotesselectdeletenotesdialog.cpp:57
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Do you really want to delete this note?"
-#| msgid_plural "Do you really want to delete these %1 notes?"
+#, kde-format
 msgid "Do you really want to delete this note?"
 msgid_plural "Do you really want to delete these %1 notes?"
 msgstr[0] "Seguro que quere eliminar esta nota?"
@@ -992,8 +978,7 @@ msgid "Save note as plain text"
 msgstr "Gardar a nota como texto simple"
 
 #: notes/knote.cpp:490
-#, fuzzy, kde-format
-#| msgid "Save As"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Gardar como"
@@ -1091,8 +1076,7 @@ msgid "Print"
 msgstr "Imprimir"
 
 #: print/knoteprintselectthemedialog.cpp:21
-#, fuzzy, kde-format
-#| msgid "Select theme"
+#, kde-format
 msgctxt "@title:window"
 msgid "Select theme"
 msgstr "Escoller o tema"
