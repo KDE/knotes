@@ -3,14 +3,14 @@
 # Marce Villarino <mvillarino@kde-espana.org>, 2013, 2014.
 # Xosé <xosecalvo@gmail.com>, 2014.
 # Adrián Chaves Fernández (Gallaecio) <adriyetichaves@gmail.com>, 2017.
-# Adrian Chaves <adrian@chaves.io>, 2018, 2019.
+# Adrian Chaves <adrian@chaves.io>, 2018, 2019, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-03-18 00:59+0000\n"
-"PO-Revision-Date: 2019-11-26 23:18+0100\n"
+"PO-Revision-Date: 2023-05-01 11:11+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.08.3\n"
+"X-Generator: Lokalize 23.04.0\n"
 
 #: alarms/notealarmdialog.cpp:41
 #, kde-format
@@ -102,18 +102,16 @@ msgstr ""
 "predeterminada?"
 
 #: job/createnewnotejob.cpp:97 job/createnewnotejob.cpp:112
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Select Note Folder"
+#, kde-format
 msgctxt "@action:button"
 msgid "Select New Default"
-msgstr "Seleccione o cartafol das notas"
+msgstr "Seleccione o novo valor predeterminado"
 
 #: job/createnewnotejob.cpp:98 job/createnewnotejob.cpp:113
 #, kde-format
 msgctxt "@action:button"
 msgid "Ignore"
-msgstr ""
+msgstr "Ignorar"
 
 #: job/createnewnotejob.cpp:126
 #, kde-format
@@ -128,13 +126,13 @@ msgstr ""
 #, kde-format
 msgctxt "@action::button"
 msgid "Show Collection"
-msgstr ""
+msgstr "Mostrar a colección"
 
 #: job/createnewnotejob.cpp:129
 #, kde-format
 msgctxt "@action::button"
 msgid "Do Not Show"
-msgstr ""
+msgstr "Non mostrar"
 
 #: job/createnewnotejob.cpp:184
 #, kde-format
