@@ -14,6 +14,7 @@
         "Description[eu]": "Kontact-en KNotes plugin-a",
         "Description[fi]": "Kontactin KNotes-liitännäinen",
         "Description[fr]": "Module externe « KNotes » pour Kontact",
+        "Description[gl]": "Complemento de KNotes para Kontact",
         "Description[ia]": "Plug-in de Kontact KNotes",
         "Description[it]": "Estensione per Kontact di KNotes",
         "Description[ka]": "Kontact-ის დამატება KNotes -სთვის",
