@@ -104,13 +104,6 @@ find_package(KF6TextAutoCorrectionWidgets ${KTEXTADDONS_MIN_VERSION} CONFIG REQU
 find_package(KPim6AkonadiSearch ${AKONADI_SEARCH_VERSION} CONFIG REQUIRED)
 set_package_properties(KPim6AkonadiSearch PROPERTIES DESCRIPTION "The Akonadi Search libraries" URL "https://invent.kde.org/pim/akonadi-search" TYPE REQUIRED PURPOSE "Provides search capabilities in pim apps and Akonadi")
 
-find_package(KF6TextAddonsWidgets ${KTEXTADDONS_MIN_VERSION} CONFIG)
-set_package_properties(KF6TextAddonsWidgets PROPERTIES DESCRIPTION
-    "Add text addons widgets"
-    TYPE OPTIONAL
-)
-set(KDEPIM_HAVE_TEXT_ADDONS_WIDGETS_SUPPORT ${KF6TextAddonsWidgets_FOUND})
-
 
 if (NOT APPLE)
     find_package(X11)

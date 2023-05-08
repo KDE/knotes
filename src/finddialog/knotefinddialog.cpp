@@ -25,9 +25,7 @@
 #include <QVBoxLayout>
 #include <QWindow>
 
-#if KDEPIM_HAVE_TEXT_ADDONS_WIDGETS_SUPPORT
-#include <TextAddonsWidgets/LineEditCatchReturnKey>
-#endif
+#include <KLineEditEventHandler>
 
 KNoteFindDialog::KNoteFindDialog(QWidget *parent)
     : QDialog(parent)
@@ -88,9 +86,7 @@ KNoteFindWidget::KNoteFindWidget(QWidget *parent)
     auto lab = new QLabel(i18nc("@label:textbox", "Search notes:"), this);
     hbox->addWidget(lab);
     mSearchLineEdit->setClearButtonEnabled(true);
-#if KDEPIM_HAVE_TEXT_ADDONS_WIDGETS_SUPPORT
-    new TextAddonsWidgets::LineEditCatchReturnKey(mSearchLineEdit, this);
-#endif
+    KLineEditEventHandler::catchReturnKey(mSearchLineEdit);
     connect(mSearchLineEdit, &QLineEdit::returnPressed, this, &KNoteFindWidget::slotSearchNote);
     connect(mSearchLineEdit, &QLineEdit::textChanged, this, &KNoteFindWidget::slotTextChanged);
     hbox->addWidget(mSearchLineEdit);
