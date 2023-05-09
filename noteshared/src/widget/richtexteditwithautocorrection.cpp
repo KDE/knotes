@@ -6,7 +6,7 @@
 
 #include "richtexteditwithautocorrection.h"
 
-#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+#if HAVE_TEXT_AUTOCORRECTION_WIDGETS
 #include <TextAutoCorrectionCore/AutoCorrection>
 #else
 #include <TextAutoCorrection/AutoCorrection>
@@ -20,7 +20,7 @@ class NoteShared::RichTextEditWithAutoCorrectionPrivate
 {
 public:
     RichTextEditWithAutoCorrectionPrivate()
-#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+#if HAVE_TEXT_AUTOCORRECTION_WIDGETS
         : mAutoCorrection(new TextAutoCorrectionCore::AutoCorrection())
 #else
         : mAutoCorrection(new TextAutoCorrection::AutoCorrection())
@@ -34,7 +34,7 @@ public:
             delete mAutoCorrection;
         }
     }
-#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+#if HAVE_TEXT_AUTOCORRECTION_WIDGETS
     TextAutoCorrectionCore::AutoCorrection *mAutoCorrection = nullptr;
 #else
     TextAutoCorrection::AutoCorrection *mAutoCorrection = nullptr;
@@ -50,7 +50,7 @@ RichTextEditWithAutoCorrection::RichTextEditWithAutoCorrection(QWidget *parent)
 
 RichTextEditWithAutoCorrection::~RichTextEditWithAutoCorrection() = default;
 
-#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+#if HAVE_TEXT_AUTOCORRECTION_WIDGETS
 void RichTextEditWithAutoCorrection::setAutocorrection(TextAutoCorrectionCore::AutoCorrection *autocorrect)
 #else
 void RichTextEditWithAutoCorrection::setAutocorrection(TextAutoCorrection::AutoCorrection *autocorrect)
@@ -61,7 +61,7 @@ void RichTextEditWithAutoCorrection::setAutocorrection(TextAutoCorrection::AutoC
     d->mAutoCorrection = autocorrect;
 }
 
-#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+#if HAVE_TEXT_AUTOCORRECTION_WIDGETS
 TextAutoCorrectionCore::AutoCorrection *RichTextEditWithAutoCorrection::autocorrection() const
 #else
 TextAutoCorrection::AutoCorrection *RichTextEditWithAutoCorrection::autocorrection() const
@@ -72,7 +72,7 @@ TextAutoCorrection::AutoCorrection *RichTextEditWithAutoCorrection::autocorrecti
 
 void RichTextEditWithAutoCorrection::setAutocorrectionLanguage(const QString &language)
 {
-#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+#if HAVE_TEXT_AUTOCORRECTION_WIDGETS
     TextAutoCorrectionCore::AutoCorrectionSettings *settings = d->mAutoCorrection->autoCorrectionSettings();
 #else
     TextAutoCorrection::AutoCorrectionSettings *settings = d->mAutoCorrection->autoCorrectionSettings();
