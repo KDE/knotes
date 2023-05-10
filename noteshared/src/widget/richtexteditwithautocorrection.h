@@ -8,7 +8,7 @@
 
 #include "config-noshared.h"
 #include <KPIMTextEdit/RichTextEditor>
-#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+#if HAVE_TEXT_AUTOCORRECTION_WIDGETS
 namespace TextAutoCorrectionCore
 #else
 namespace TextAutoCorrection
@@ -31,7 +31,7 @@ public:
     explicit RichTextEditWithAutoCorrection(QWidget *parent = nullptr);
     ~RichTextEditWithAutoCorrection() override;
 
-#ifdef HAVE_TEXT_AUTOCORRECTION_WIDGETS
+#if HAVE_TEXT_AUTOCORRECTION_WIDGETS
     Q_REQUIRED_RESULT TextAutoCorrectionCore::AutoCorrection *autocorrection() const;
     void setAutocorrection(TextAutoCorrectionCore::AutoCorrection *autocorrect);
 #else
