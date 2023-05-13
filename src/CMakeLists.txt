@@ -149,9 +149,6 @@ target_link_libraries(knotes
     KF6::XmlGui
     KPim6::AkonadiWidgets
     )
-if (Qt5X11Extras_FOUND)
-    target_link_libraries(knotes Qt::X11Extras ${X11_LIBRARIES})
-endif()
 install(TARGETS knotes  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
