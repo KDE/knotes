@@ -3,7 +3,7 @@
 # Copyright (C) 2001, 2007 Free Software Foundation, Inc.
 # Hicham Amaoui <amaoui@altern.org>, 2001.
 # Youssef Chahibi <chahibi@gmail.com>, 2007.
-# Safa Alfulaij <safa1996alfulaij@gmail.com>, ٢٠١٦, 2018.
+# Safa Alfulaij <safa1996alfulaij@gmail.com>, 2016, 2018.
 # Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
