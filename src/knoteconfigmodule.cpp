@@ -20,7 +20,7 @@
 #include <KAuthorized>
 #include <KLocalizedString>
 
-#include <KNSWidgets/QtQuickDialogWrapper>
+#include <KNSWidgets/Dialog>
 #include <QCheckBox>
 #include <QLabel>
 #include <QLineEdit>
@@ -168,8 +168,8 @@ KNotePrintConfig::KNotePrintConfig(QObject *parent, const KPluginMetaData &data,
 
 void KNotePrintConfig::slotDownloadNewThemes()
 {
-    auto newStuffDialog = new KNSWidgets::QtQuickDialogWrapper(QStringLiteral("kwinswitcher.knsrc"));
-    connect(newStuffDialog, &KNSWidgets::QtQuickDialogWrapper::closed, this, [newStuffDialog, this]() {
+    auto newStuffDialog = new KNSWidgets::Dialog(QStringLiteral("kwinswitcher.knsrc"));
+    connect(newStuffDialog, &KNSWidgets::Dialog::finished, this, [newStuffDialog, this]() {
         if (!newStuffDialog->changedEntries().isEmpty()) {
             mSelectTheme->loadThemes();
         }
