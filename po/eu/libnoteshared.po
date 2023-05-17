@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-18 00:59+0000\n"
+"POT-Creation-Date: 2023-05-17 00:48+0000\n"
 "PO-Revision-Date: 2022-08-05 18:02+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -192,6 +192,7 @@ msgstr "Tokiko oharrak"
 
 #. i18n: ectx: label, entry (Port), group (Network)
 #: settings/notesharedglobalconfig.kcfg:37
-#, kde-format
-msgid "The port will listen on and send notes to."
+#, fuzzy, kde-format
+#| msgid "The port will listen on and send notes to."
+msgid "The port to listen on and send notes to."
 msgstr "Eskariak entzun eta oharrak bidaltzeko ataka."

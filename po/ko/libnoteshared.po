@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-18 00:59+0000\n"
+"POT-Creation-Date: 2023-05-17 00:48+0000\n"
 "PO-Revision-Date: 2021-11-12 00:22+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -187,6 +187,7 @@ msgstr "로컬 메모"
 
 #. i18n: ectx: label, entry (Port), group (Network)
 #: settings/notesharedglobalconfig.kcfg:37
-#, kde-format
-msgid "The port will listen on and send notes to."
+#, fuzzy, kde-format
+#| msgid "The port will listen on and send notes to."
+msgid "The port to listen on and send notes to."
 msgstr "노트를 주고받을 포트 번호입니다."
