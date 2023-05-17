@@ -34,7 +34,7 @@
     </entry>
 
     <entry name="Port" type="UInt">
-      <label>The port will listen on and send notes to.</label>
+      <label>The port to listen on and send notes to.</label>
       <default>24837</default>
     </entry>
 

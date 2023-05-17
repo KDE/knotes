@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-18 00:59+0000\n"
+"POT-Creation-Date: 2023-05-17 00:48+0000\n"
 "PO-Revision-Date: 2022-06-03 15:24+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -195,6 +195,7 @@ msgstr "Локальные заметки"
 
 #. i18n: ectx: label, entry (Port), group (Network)
 #: settings/notesharedglobalconfig.kcfg:37
-#, kde-format
-msgid "The port will listen on and send notes to."
+#, fuzzy, kde-format
+#| msgid "The port will listen on and send notes to."
+msgid "The port to listen on and send notes to."
 msgstr "Порт, который прослушивается и на который отправляются заметки."
