@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: libnoteshared\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-17 00:48+0000\n"
-"PO-Revision-Date: 2023-03-24 18:50+01\n"
+"PO-Revision-Date: 2023-05-17 11:58+01\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -189,7 +189,6 @@ msgstr "Lokaj Notoj"
 
 #. i18n: ectx: label, entry (Port), group (Network)
 #: settings/notesharedglobalconfig.kcfg:37
-#, fuzzy, kde-format
-#| msgid "The port will listen on and send notes to."
+#, kde-format
 msgid "The port to listen on and send notes to."
 msgstr "La pordo sur kiu aŭskulti kaj al kiu sendi notojn."
