@@ -1,21 +1,21 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Steve Allewell <steve.allewell@gmail.com>, 2014, 2017, 2019, 2022.
+# Steve Allewell <steve.allewell@gmail.com>, 2014, 2017, 2019, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-17 00:48+0000\n"
-"PO-Revision-Date: 2022-01-01 15:44+0000\n"
+"PO-Revision-Date: 2023-05-21 14:53+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
-"Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
+"Language-Team: British English\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.12.0\n"
+"X-Generator: Lokalize 23.03.70\n"
 
 #: alarms/notealarmdialog.cpp:41
 #, kde-format
@@ -188,10 +188,9 @@ msgstr "Local Notes"
 
 #. i18n: ectx: label, entry (Port), group (Network)
 #: settings/notesharedglobalconfig.kcfg:37
-#, fuzzy, kde-format
-#| msgid "The port will listen on and send notes to."
+#, kde-format
 msgid "The port to listen on and send notes to."
-msgstr "The port will listen on and send notes to."
+msgstr "The port to listen on and send notes to."
 
 #~ msgid ""
 #~ "An error occures during fetching. Do you want select an new default "
