@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-17 00:48+0000\n"
-"PO-Revision-Date: 2023-04-29 08:34\n"
+"PO-Revision-Date: 2023-05-22 14:00\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -184,7 +184,6 @@ msgstr "本地便笺"
 
 #. i18n: ectx: label, entry (Port), group (Network)
 #: settings/notesharedglobalconfig.kcfg:37
-#, fuzzy, kde-format
-#| msgid "The port will listen on and send notes to."
+#, kde-format
 msgid "The port to listen on and send notes to."
-msgstr "监听和发送便笺的端口。"
+msgstr ""
