@@ -34,5 +34,5 @@ Dependencies:
     'frameworks/kwindowsystem': '@latest-kf6'
     'frameworks/kxmlgui': '@latest-kf6'
     'frameworks/kdoctools': '@latest-kf6'
+    'frameworks/ktexttemplate': '@latest-kf6'
     'libraries/ktextaddons': '@latest-kf6'
-    'libraries/ktexttemplate': '@latest-kf6'
