@@ -5,7 +5,6 @@
 */
 
 #include "knotesimpleconfigdialog.h"
-#include "knoteconfigdialog.h"
 #include "knotedisplayconfigwidget.h"
 #include "knoteeditorconfigwidget.h"
 #include <config-knotes.h>
