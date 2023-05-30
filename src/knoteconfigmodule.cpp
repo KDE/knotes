@@ -75,7 +75,7 @@ KNoteMiscConfig::KNoteMiscConfig(QObject *parent, const KPluginMetaData &data, c
     : KCModule(parent, data, args)
 {
     auto lay = new QVBoxLayout(widget());
-    lay->setContentsMargins(0, 0, 0, 0);
+    // lay->setContentsMargins(0, 0, 0, 0);
 
     auto kcfg_SystemTrayShowNotes = new QCheckBox(i18n("Show number of notes in tray icon"), widget());
 

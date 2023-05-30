@@ -24,7 +24,7 @@ NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)
     : QWidget(parent)
 {
     auto layout = new QVBoxLayout(this);
-    layout->setContentsMargins(0, 0, 0, 0);
+    // layout->setContentsMargins(0, 0, 0, 0);
 
     auto incoming = new QGroupBox(i18n("Incoming Notes"));
     auto tmpLayout = new QHBoxLayout;
