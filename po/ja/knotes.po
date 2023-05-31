@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.10.2\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
@@ -944,7 +944,6 @@ msgstr ""
 msgid "Do you really want to delete this note?"
 msgid_plural "Do you really want to delete these %1 notes?"
 msgstr[0] "<qt>本当にメモ <resource>%1</resource> を削除しますか？</qt>"
-msgstr[1] "<qt>本当にメモ <resource>%1</resource> を削除しますか？</qt>"
 
 #: kontactplugin/summarywidget.cpp:41
 #, fuzzy, kde-format
@@ -1073,8 +1072,7 @@ msgstr ""
 #, kde-format
 msgid "Print Note"
 msgid_plural "Print %1 notes"
-msgstr[0] "メモを印刷"
-msgstr[1] "%1 件のメモを印刷"
+msgstr[0] "%1 件のメモを印刷"
 
 #: print/knoteprinter.cpp:118
 #, kde-format
