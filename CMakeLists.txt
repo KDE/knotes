@@ -60,7 +60,7 @@ set(GRANTLEETHEME_LIB_VERSION "5.240.40")
 set(AKONADI_SEARCH_VERSION "5.240.40")
 find_package(Qt6Core5Compat)
 
-find_package(Qt6 ${QT_REQUIRED_VERSION} CONFIG REQUIRED DBus Network PrintSupport Test Widgets Xml)
+find_package(Qt6 ${QT_REQUIRED_VERSION} CONFIG REQUIRED DBus Network PrintSupport Widgets Xml)
 find_package(Qt6X11Extras NO_MODULE)
 # Find KF6 package
 find_package(KF6Completion ${KF_MIN_VERSION} REQUIRED)
@@ -122,6 +122,7 @@ ecm_set_disabled_deprecation_versions(QT 6.5
 configure_file(knotes-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotes-version.h @ONLY)
 if(BUILD_TESTING)
    add_definitions(-DBUILD_TESTING)
+   find_package(Qt6 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Test)
 endif()
 option(USE_UNITY_CMAKE_SUPPORT "Use UNITY cmake support (speedup compile time)" OFF)
 
