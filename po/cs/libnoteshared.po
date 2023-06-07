@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-03 00:47+0000\n"
-"PO-Revision-Date: 2023-01-30 16:07+0100\n"
+"PO-Revision-Date: 2023-06-05 11:53+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 23.04.1\n"
 
 #: alarms/notealarmdialog.cpp:41
 #, kde-format
@@ -85,7 +85,7 @@ msgstr "Vyberte složku poznámek"
 #, kde-format
 msgctxt "@info"
 msgid "Select the folder where the note will be saved:"
-msgstr ""
+msgstr "Vyberte složku, kde bude poznámka uložena:"
 
 #: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
 #, kde-format
@@ -112,6 +112,8 @@ msgid ""
 "Collection is hidden. New note will be stored but not displayed. Do you want "
 "to show collection?"
 msgstr ""
+"Sbírka je skrytá. Nová poznámka bude uložena, ale nebude zobrazena. Chcete "
+"zobrazit vaši sbírku?"
 
 #: job/createnewnotejob.cpp:128
 #, kde-format
