@@ -13,7 +13,7 @@ class NOTESHARED_EXPORT NoteActionConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit NoteActionConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
+    explicit NoteActionConfig(QObject *parent, const KPluginMetaData &data);
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;

@@ -13,8 +13,8 @@
 #include <QLabel>
 #include <QWhatsThis>
 using namespace NoteShared;
-NoteActionConfig::NoteActionConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+NoteActionConfig::NoteActionConfig(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     auto layout = new QGridLayout(widget());
     // layout->setContentsMargins(0, 0, 0, 0);

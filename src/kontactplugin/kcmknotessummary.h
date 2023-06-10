@@ -22,7 +22,7 @@ class KCMKNotesSummary : public KCModule
     Q_OBJECT
 
 public:
-    explicit KCMKNotesSummary(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
+    explicit KCMKNotesSummary(QObject *parent, const KPluginMetaData &data);
 
     void load() override;
     void save() override;

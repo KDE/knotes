@@ -15,7 +15,7 @@ class KNoteDisplayConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit KNoteDisplayConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
+    explicit KNoteDisplayConfig(QObject *parent, const KPluginMetaData &data);
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;
@@ -25,7 +25,7 @@ class KNoteEditorConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit KNoteEditorConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
+    explicit KNoteEditorConfig(QObject *parent, const KPluginMetaData &data);
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;
@@ -35,7 +35,7 @@ class KNoteMiscConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit KNoteMiscConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
+    explicit KNoteMiscConfig(QObject *parent, const KPluginMetaData &data);
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;
@@ -51,7 +51,7 @@ class KNotePrintConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit KNotePrintConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
+    explicit KNotePrintConfig(QObject *parent, const KPluginMetaData &data);
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;
@@ -69,7 +69,7 @@ class KNoteCollectionConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit KNoteCollectionConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
+    explicit KNoteCollectionConfig(QObject *parent, const KPluginMetaData &data);
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;

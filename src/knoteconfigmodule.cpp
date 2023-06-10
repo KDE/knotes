@@ -29,8 +29,8 @@
 #include <QVBoxLayout>
 #include <QWhatsThis>
 
-KNoteDisplayConfig::KNoteDisplayConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KNoteDisplayConfig::KNoteDisplayConfig(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     auto lay = new QVBoxLayout(widget());
     QWidget *w = new KNoteDisplayConfigWidget(true, widget());
@@ -50,8 +50,8 @@ void KNoteDisplayConfig::save()
     KCModule::save();
 }
 
-KNoteEditorConfig::KNoteEditorConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KNoteEditorConfig::KNoteEditorConfig(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     auto lay = new QVBoxLayout(widget());
     QWidget *w = new KNoteEditorConfigWidget(widget());
@@ -71,8 +71,8 @@ void KNoteEditorConfig::load()
     KCModule::load();
 }
 
-KNoteMiscConfig::KNoteMiscConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KNoteMiscConfig::KNoteMiscConfig(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     auto lay = new QVBoxLayout(widget());
     // lay->setContentsMargins(0, 0, 0, 0);
@@ -139,8 +139,8 @@ void KNoteMiscConfig::slotHelpLinkClicked(const QString &)
     QWhatsThis::showText(QCursor::pos(), help);
 }
 
-KNotePrintConfig::KNotePrintConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KNotePrintConfig::KNotePrintConfig(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     auto lay = new QVBoxLayout(widget());
     auto w = new QWidget(widget());
@@ -199,8 +199,8 @@ void KNotePrintConfig::defaults()
     markAsChanged();
 }
 
-KNoteCollectionConfig::KNoteCollectionConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KNoteCollectionConfig::KNoteCollectionConfig(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     auto lay = new QHBoxLayout(widget());
     mCollectionConfigWidget = new KNoteCollectionConfigWidget(widget());

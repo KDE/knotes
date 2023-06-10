@@ -34,7 +34,7 @@ class NOTESHARED_EXPORT NoteNetworkConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit NoteNetworkConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args = QVariantList());
+    explicit NoteNetworkConfig(QObject *parent, const KPluginMetaData &data);
     /** Reimplemented from KCModule. */
     void load() override;
     void save() override;

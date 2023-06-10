@@ -24,8 +24,8 @@
 
 K_PLUGIN_CLASS_WITH_JSON(KCMKNotesSummary, "kcmknotessummary.json")
 
-KCMKNotesSummary::KCMKNotesSummary(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KCMKNotesSummary::KCMKNotesSummary(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     initGUI();
 
