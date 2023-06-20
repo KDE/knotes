@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-03 00:47+0000\n"
-"PO-Revision-Date: 2023-05-01 11:11+0200\n"
+"PO-Revision-Date: 2023-05-17 19:02+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -119,20 +119,20 @@ msgid ""
 "Collection is hidden. New note will be stored but not displayed. Do you want "
 "to show collection?"
 msgstr ""
-"A colección está agochada. A nova nota almacenarase pero non se mostrará. "
-"Quere mostrar a colección?"
+"A colección está agochada. A nova nota almacenarase pero non se amosará. "
+"Quere amosar a colección?"
 
 #: job/createnewnotejob.cpp:128
 #, kde-format
 msgctxt "@action::button"
 msgid "Show Collection"
-msgstr "Mostrar a colección"
+msgstr "Amosar a colección"
 
 #: job/createnewnotejob.cpp:129
 #, kde-format
 msgctxt "@action::button"
 msgid "Do Not Show"
-msgstr "Non mostrar"
+msgstr "Non amosar"
 
 #: job/createnewnotejob.cpp:184
 #, kde-format

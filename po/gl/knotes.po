@@ -73,7 +73,7 @@ msgstr "Nova nota desde un ficheiro de texto…"
 #: apps/knotesapp.cpp:104
 #, kde-format
 msgid "Show All Notes"
-msgstr "Mostrar todas as notas"
+msgstr "Amosar todas as notas"
 
 #: apps/knotesapp.cpp:109
 #, kde-format
@@ -268,7 +268,7 @@ msgstr "Cartafoles"
 #: configdialog/knotecollectionconfigwidget.cpp:103
 #, kde-format
 msgid "Select which KNotes folders to show:"
-msgstr "Escolla os cartafoles de KNotes que queira mostrar:"
+msgstr "Escolla os cartafoles de KNotes que queira amosar:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
 #, kde-format
@@ -454,12 +454,12 @@ msgstr "Non se atoparon resultados na busca."
 #: finddialog/knotefinddialog.cpp:187
 #, kde-format
 msgid "Show Note"
-msgstr "Mostrar a nota…"
+msgstr "Amosar a nota…"
 
 #: knoteconfigmodule.cpp:85
 #, kde-format
 msgid "Show number of notes in tray icon"
-msgstr "Mostrar a cantidade de notas na icona da bandexa"
+msgstr "Amosar a cantidade de notas na icona da bandexa"
 
 #: knoteconfigmodule.cpp:92
 #, kde-format
@@ -478,7 +478,7 @@ msgid ""
 "(short format)</li><li>%l current date (long format)</li><li>%t current "
 "time</li></ul></qt>"
 msgstr ""
-"<qt><p>Pode personalizar a nota. Pode empregar:</p><ul><li>%d data actual "
+"<qt><p>Pode personalizar a nota. Pode usar:</p><ul><li>%d data actual "
 "(formato curto)</li><li>%l data actual (formato longo)</li><li>%t data "
 "actual</li></ul></qt>"
 
@@ -676,7 +676,7 @@ msgstr "Preguntaráselle se quere imprimir a nota emerxente seleccionada."
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Preview Selected Notes..."
-msgstr "Mostrar a vista previa das notas seleccionadas…"
+msgstr "Amosar a vista previa das notas seleccionadas…"
 
 #: kontactplugin/knotes_part.cpp:134
 #, kde-format
@@ -721,7 +721,7 @@ msgstr "Desbloquear"
 #: kontactplugin/knotes_part.cpp:201
 #, kde-format
 msgid "Set Focus to Quick Search"
-msgstr "Estabelecer o foco na busca rápida"
+msgstr "Definir o foco na busca rápida"
 
 #: kontactplugin/knotes_part.cpp:278
 #, kde-format
@@ -775,7 +775,7 @@ msgstr "Nome novo:"
 #: kontactplugin/knotes_part.cpp:556 kontactplugin/knotes_part.cpp:738
 #, kde-format
 msgid "Show Note..."
-msgstr "Mostrar a nota…"
+msgstr "Amosar a nota…"
 
 #: kontactplugin/knotes_part.cpp:691
 #, kde-format
@@ -891,7 +891,7 @@ msgstr "Nova nota"
 #, kde-format
 msgctxt "@title:window"
 msgid "Show Popup Note"
-msgstr "Mostrar a nota emerxente"
+msgstr "Amosar a nota emerxente"
 
 #: kontactplugin/knoteseditdialog.cpp:36
 #, kde-format
