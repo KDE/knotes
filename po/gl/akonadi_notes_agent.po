@@ -38,7 +38,7 @@ msgstr "Retirar unha alarma"
 #: notesagentalarmdialog.cpp:96
 #, kde-format
 msgid "Show Note..."
-msgstr "Mostrar nota…"
+msgstr "Amosar nota…"
 
 #: notesagentalarmdialog.cpp:98
 #, kde-format
