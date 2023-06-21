@@ -36,3 +36,5 @@ KNotesIconView *KNotesWidget::notesView() const
 {
     return mIconView;
 }
+
+#include "moc_knoteswidget.cpp"

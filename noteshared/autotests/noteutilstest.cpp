@@ -38,3 +38,5 @@ void NoteUtilsTest::testExtractNoteText()
     QCOMPARE(result.noteText, resultNoteText);
     QCOMPARE(result.noteTitle, resultNoteTitle);
 }
+
+#include "moc_noteutilstest.cpp"

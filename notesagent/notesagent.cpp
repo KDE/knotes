@@ -155,3 +155,5 @@ int NotesAgent::alarmCheckInterval() const
 }
 
 AKONADI_AGENT_MAIN(NotesAgent)
+
+#include "moc_notesagent.cpp"

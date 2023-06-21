@@ -101,3 +101,5 @@ void NotesAgentSettingsDialog::slotOkClicked()
     mNetworkConfig->save();
     accept();
 }
+
+#include "moc_notesagentsettingsdialog.cpp"

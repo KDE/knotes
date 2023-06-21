@@ -44,3 +44,5 @@ void KNoteConfigDialog::slotOk()
     NoteShared::NoteSharedGlobalConfig::self()->save();
     KNotesGlobalConfig::self()->save();
 }
+
+#include "moc_knoteconfigdialog.cpp"

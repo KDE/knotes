@@ -101,3 +101,5 @@ void NoteNetworkConfig::load()
 {
     KCModule::load();
 }
+
+#include "moc_notenetworkconfig.cpp"

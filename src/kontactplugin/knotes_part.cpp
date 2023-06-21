@@ -831,3 +831,5 @@ void KNotesPart::slotNewNoteFromTextFile()
         newNote(i18n("Note from file '%1'", filename), text);
     }
 }
+
+#include "moc_knotes_part.cpp"

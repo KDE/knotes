@@ -323,3 +323,5 @@ void KNoteCollectionConfigWidget::slotModifyJobDone(KJob *job)
         }
     }
 }
+
+#include "moc_knotecollectionconfigwidget.cpp"

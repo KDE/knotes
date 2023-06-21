@@ -79,3 +79,5 @@ void NotesNetworkSender::slotClosed()
 {
     deleteLater();
 }
+
+#include "moc_notesnetworksender.cpp"

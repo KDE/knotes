@@ -239,3 +239,5 @@ void NotesAgentAlarmDialog::slotFetchAlarmItem(KJob *job)
         }
     }
 }
+
+#include "moc_notesagentalarmdialog.cpp"

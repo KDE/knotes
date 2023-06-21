@@ -92,3 +92,5 @@ void RichTextEditWithAutoCorrection::keyPressEvent(QKeyEvent *e)
     }
     KPIMTextEdit::RichTextEditor::keyPressEvent(e);
 }
+
+#include "moc_richtexteditwithautocorrection.cpp"

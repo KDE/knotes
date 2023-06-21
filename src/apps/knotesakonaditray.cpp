@@ -81,3 +81,5 @@ void KNotesAkonadiTray::updateNumberOfNotes(int number)
         setIconByPixmap(mIcon);
     }
 }
+
+#include "moc_knotesakonaditray.cpp"

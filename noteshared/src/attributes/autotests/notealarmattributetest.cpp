@@ -58,3 +58,5 @@ void NoteAlarmAttributeTest::shouldHaveType()
 }
 
 QTEST_GUILESS_MAIN(NoteAlarmAttributeTest)
+
+#include "moc_notealarmattributetest.cpp"

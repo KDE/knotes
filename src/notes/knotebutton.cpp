@@ -103,3 +103,5 @@ void KNoteButton::paintEvent(QPaintEvent *)
         p.drawPixmap(dx, dy, pix);
     }
 }
+
+#include "moc_knotebutton.cpp"

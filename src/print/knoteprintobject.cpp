@@ -70,3 +70,5 @@ QString KNotePrintObject::backgroundColorName() const
     }
     return {};
 }
+
+#include "moc_knoteprintobject.cpp"

@@ -60,3 +60,5 @@ void NoteActionConfig::load()
 {
     KCModule::load();
 }
+
+#include "moc_noteactionconfig.cpp"

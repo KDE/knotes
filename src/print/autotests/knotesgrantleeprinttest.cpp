@@ -76,3 +76,5 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
 }
 
 QTEST_GUILESS_MAIN(KNotesGrantleePrintTest)
+
+#include "moc_knotesgrantleeprinttest.cpp"

@@ -176,3 +176,5 @@ int KNotesUniqueAppHandler::activate(const QStringList &args, const QString &wor
 }
 
 #include "knotes_plugin.moc"
+
+#include "moc_knotes_plugin.cpp"

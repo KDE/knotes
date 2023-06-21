@@ -196,3 +196,5 @@ int KNoteEditDialog::cursorPositionFromStart() const
 {
     return mNoteEdit->cursorPositionFromStart();
 }
+
+#include "moc_knoteseditdialog.cpp"

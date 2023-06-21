@@ -194,3 +194,5 @@ void KNoteFindWidget::customContextMenuRequested(const QPoint &)
         menu.exec(QCursor::pos());
     }
 }
+
+#include "moc_knotefinddialog.cpp"

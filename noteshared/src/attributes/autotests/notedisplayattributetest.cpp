@@ -72,3 +72,5 @@ void NoteDisplayAttributeTest::shouldHaveType()
 }
 
 QTEST_GUILESS_MAIN(NoteDisplayAttributeTest)
+
+#include "moc_notedisplayattributetest.cpp"

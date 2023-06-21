@@ -38,3 +38,5 @@ int Application::activate(const QStringList &args, const QString &workingDir)
 
     return 0;
 }
+
+#include "moc_application.cpp"

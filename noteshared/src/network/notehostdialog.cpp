@@ -122,3 +122,5 @@ void NoteHostDialog::slotServiceDoubleClicked(const QModelIndex &idx)
     m_hostCombo->lineEdit()->setText(srv->hostName() + QLatin1Char(':') + QString::number(srv->port()));
     accept();
 }
+
+#include "moc_notehostdialog.cpp"

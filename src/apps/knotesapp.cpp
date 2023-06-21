@@ -719,3 +719,5 @@ void KNotesApp::slotItemFetchFinished(KJob *job)
         updateSystray();
     }
 }
+
+#include "moc_knotesapp.cpp"

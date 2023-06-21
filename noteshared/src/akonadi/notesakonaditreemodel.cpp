@@ -16,3 +16,5 @@ NotesAkonadiTreeModel::NotesAkonadiTreeModel(Akonadi::ChangeRecorder *changeReco
 }
 
 NotesAkonadiTreeModel::~NotesAkonadiTreeModel() = default;
+
+#include "moc_notesakonaditreemodel.cpp"

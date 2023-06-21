@@ -93,3 +93,5 @@ Akonadi::Item::Id NoteListWidget::currentItemId() const
     QListWidgetItem *item = currentItem();
     return itemId(item);
 }
+
+#include "moc_notelistwidget.cpp"

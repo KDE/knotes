@@ -90,3 +90,5 @@ void KNoteSimpleConfigDialog::writeConfig()
     KWindowConfig::saveWindowSize(windowHandle(), group);
     group.sync();
 }
+
+#include "moc_knotesimpleconfigdialog.cpp"

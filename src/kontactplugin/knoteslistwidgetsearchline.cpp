@@ -66,3 +66,5 @@ bool KNotesListWidgetSearchLine::itemMatches(const QListWidgetItem *item, const 
     }
     return KListWidgetSearchLine::itemMatches(item, s);
 }
+
+#include "moc_knoteslistwidgetsearchline.cpp"

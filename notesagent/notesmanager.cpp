@@ -194,3 +194,5 @@ void NotesManager::updateNetworkListener()
         connect(mListener, &QTcpServer::newConnection, this, &NotesManager::slotAcceptConnection);
     }
 }
+
+#include "moc_notesmanager.cpp"

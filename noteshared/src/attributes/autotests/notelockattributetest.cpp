@@ -23,3 +23,5 @@ void NoteLockAttributeTest::shouldHaveType()
 }
 
 QTEST_GUILESS_MAIN(NoteLockAttributeTest)
+
+#include "moc_notelockattributetest.cpp"

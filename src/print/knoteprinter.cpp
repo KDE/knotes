@@ -118,3 +118,5 @@ void KNotePrinter::printNotes(const QList<KNotePrintObject *> &lst, const QStrin
         KMessageBox::error(nullptr, i18n("Printing theme was not found."), i18n("Printing error"));
     }
 }
+
+#include "moc_knoteprinter.cpp"

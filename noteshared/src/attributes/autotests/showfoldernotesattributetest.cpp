@@ -23,3 +23,5 @@ void ShowFolderNotesAttributeTest::shouldHaveType()
 }
 
 QTEST_GUILESS_MAIN(ShowFolderNotesAttributeTest)
+
+#include "moc_showfoldernotesattributetest.cpp"

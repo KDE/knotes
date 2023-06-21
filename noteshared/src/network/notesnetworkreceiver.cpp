@@ -130,3 +130,5 @@ void NotesNetworkReceiver::slotError(QAbstractSocket::SocketError error)
 {
     qCWarning(NOTESHARED_LOG) << "error type :" << static_cast<int>(error) << " error string : " << d->m_sock->errorString();
 }
+
+#include "moc_notesnetworkreceiver.cpp"

@@ -14,3 +14,5 @@ NoteEditor::NoteEditor(QWidget *parent)
 }
 
 NoteEditor::~NoteEditor() = default;
+
+#include "moc_noteeditor.cpp"

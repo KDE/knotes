@@ -77,3 +77,5 @@ void KNoteDeleteSelectedNotesDialog::writeConfig()
     KWindowConfig::saveWindowSize(windowHandle(), group);
     group.sync();
 }
+
+#include "moc_knotedeleteselectednotesdialog.cpp"

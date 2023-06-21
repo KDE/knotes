@@ -204,3 +204,5 @@ QStringList KNotesSummaryWidget::configModules() const
 {
     return QStringList() << QStringLiteral("kcmknotessummary.desktop");
 }
+
+#include "moc_summarywidget.cpp"

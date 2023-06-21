@@ -218,3 +218,5 @@ void KNoteCollectionConfig::load()
 {
     // Nothing
 }
+
+#include "moc_knoteconfigmodule.cpp"

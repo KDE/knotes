@@ -1174,3 +1174,5 @@ void KNote::slotDebugAkonadiSearch()
     dlg->doSearch();
     dlg->show();
 }
+
+#include "moc_knote.cpp"

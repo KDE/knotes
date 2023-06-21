@@ -80,3 +80,5 @@ void KNotePrintSelectThemeComboBox::selectDefaultTheme()
     setCurrentIndex(index == -1 ? 0 : index);
     KNotesGlobalConfig::self()->useDefaults(bUseDefaults);
 }
+
+#include "moc_knoteprintselectthemecombobox.cpp"

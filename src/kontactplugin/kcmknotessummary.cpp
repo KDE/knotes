@@ -90,3 +90,5 @@ void KCMKNotesSummary::defaults()
 }
 
 #include "kcmknotessummary.moc"
+
+#include "moc_kcmknotessummary.cpp"

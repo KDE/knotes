@@ -54,3 +54,5 @@ void NoteEditorUtilsTest::testAddCheckmark()
 }
 
 QTEST_MAIN(NoteEditorUtilsTest)
+
+#include "moc_noteeditorutilstest.cpp"

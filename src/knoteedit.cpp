@@ -667,3 +667,5 @@ int KNoteEdit::cursorPositionFromStart() const
 {
     return textCursor().position();
 }
+
+#include "moc_knoteedit.cpp"

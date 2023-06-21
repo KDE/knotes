@@ -192,3 +192,5 @@ void CreateNewNoteJob::slotCollectionModifyFinished(KJob *job)
         qCWarning(NOTESHARED_LOG) << job->errorString();
     }
 }
+
+#include "moc_createnewnotejob.cpp"

@@ -110,3 +110,5 @@ QDateTime NoteAlarmDialog::alarm() const
         return {};
     }
 }
+
+#include "moc_notealarmdialog.cpp"
