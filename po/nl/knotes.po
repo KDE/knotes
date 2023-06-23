@@ -10,13 +10,13 @@
 # Sander Koning <sanderkoning@kde.nl>, 2005.
 # Rinse de Vries <rinsedevries@kde.nl>, 2005, 2006, 2007, 2008.
 # Freek de Kruijf <f.de.kruijf@hetnet.nl>, 2009.
-# Freek de Kruijf <freekdekruijf@kde.nl>, 2010, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2010, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-03-24 02:40+0000\n"
-"PO-Revision-Date: 2022-01-02 15:04+0100\n"
+"PO-Revision-Date: 2023-06-22 10:01+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Xgettext-Options: -C -ktranslate -x../../kdelibs/po/kde.pot\n"
 "Files: alarm.cpp bwdatetime.cpp configdlg.cpp fontdlg.cpp knotes.cpp \n"
-"X-Generator: Lokalize 21.12.0\n"
+"X-Generator: Lokalize 23.04.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -385,7 +385,7 @@ msgstr "Editor-instellingen"
 #: configdialog/knotesimpleconfigdialog.cpp:44
 #, kde-format
 msgid "Display Settings"
-msgstr "Weergave-instellingen"
+msgstr "Beeldscherminstellingen"
 
 #. i18n: ectx: Menu (help)
 #: data/knotesappui.rc:23
