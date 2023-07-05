@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -936,6 +936,7 @@ msgstr ""
 msgid "Do you really want to delete this note?"
 msgid_plural "Do you really want to delete these %1 notes?"
 msgstr[0] "<qt>واقعاً می‌خواهید یادداشت را حذف کنید <b>%1</b>؟</qt>"
+msgstr[1] ""
 
 #: kontactplugin/summarywidget.cpp:41
 #, fuzzy, kde-format
@@ -1060,10 +1061,11 @@ msgid "Note is locked"
 msgstr ""
 
 #: print/knoteprinter.cpp:111
-#, kde-format
+#, fuzzy, kde-format
 msgid "Print Note"
 msgid_plural "Print %1 notes"
 msgstr[0] "چاپ %1 یادداشت"
+msgstr[1] ""
 
 #: print/knoteprinter.cpp:118
 #, kde-format
