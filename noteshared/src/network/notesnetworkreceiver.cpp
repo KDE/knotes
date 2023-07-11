@@ -15,8 +15,8 @@
 #include <QDateTime>
 #include <QHostAddress>
 #include <QLocale>
+#include <QStringDecoder>
 #include <QTcpSocket>
-#include <QTextCodec>
 #include <QTimer>
 
 // Maximum note size in chars we are going to accept,
@@ -112,10 +112,10 @@ void NotesNetworkReceiver::slotReceptionTimeout()
 
 void NotesNetworkReceiver::slotConnectionClosed()
 {
-    QTextCodec *codec = QTextCodec::codecForLocale();
+    QStringDecoder codec(QStringDecoder::System);
 
     if (d->m_timer->isActive()) {
-        const QString noteText = QString(codec->toUnicode(*d->m_buffer)).trimmed();
+        const QString noteText = QString(codec.decode(*d->m_buffer)).trimmed();
         NoteUtils utils;
         const NoteUtils::NoteText result = utils.extractNoteText(noteText, d->m_titleAddon);
         if (!result.noteText.isEmpty()) {

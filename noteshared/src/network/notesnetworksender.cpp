@@ -13,7 +13,7 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 
-#include <QTextCodec>
+#include <QStringEncoder>
 
 using namespace NoteShared;
 
@@ -39,15 +39,15 @@ NotesNetworkSender::~NotesNetworkSender()
 
 void NotesNetworkSender::setSenderId(const QString &sender)
 {
-    QTextCodec *codec = QTextCodec::codecForLocale();
-    m_sender = codec->fromUnicode(sender);
+    QStringEncoder codec(QStringEncoder::System);
+    m_sender = codec.encode(sender);
 }
 
 void NotesNetworkSender::setNote(const QString &title, const QString &text)
 {
-    QTextCodec *codec = QTextCodec::codecForLocale();
-    m_title = codec->fromUnicode(title);
-    m_note = codec->fromUnicode(text);
+    QStringEncoder codec(QStringEncoder::System);
+    m_title = codec.encode(title);
+    m_note = codec.encode(text);
 }
 
 void NotesNetworkSender::slotConnected()

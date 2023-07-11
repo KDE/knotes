@@ -58,7 +58,6 @@ set(KMIME_LIB_VERSION "5.240.40")
 set(PIMCOMMON_LIB_VERSION "5.240.40")
 set(GRANTLEETHEME_LIB_VERSION "5.240.40")
 set(AKONADI_SEARCH_VERSION "5.240.40")
-find_package(Qt6Core5Compat)
 
 find_package(Qt6 ${QT_REQUIRED_VERSION} CONFIG REQUIRED DBus Network PrintSupport Widgets Xml)
 find_package(Qt6X11Extras NO_MODULE)
