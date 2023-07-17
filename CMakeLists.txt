@@ -1,9 +1,9 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: BSD-3-Clause
-set(PIM_VERSION "5.23.40")
+set(PIM_VERSION "5.23.80")
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 project(knotes VERSION ${PIM_VERSION})
-set(RELEASE_SERVICE_VERSION "23.07.40")
+set(RELEASE_SERVICE_VERSION "23.07.80")
 
 
 set(KF_MIN_VERSION "5.105.0")
@@ -43,7 +43,7 @@ else()
 endif()
 
 # Do NOT add quote
-set(KDEPIM_DEV_VERSION alpha)
+set(KDEPIM_DEV_VERSION beta)
 
 # add an extra space
 if(DEFINED KDEPIM_DEV_VERSION)
