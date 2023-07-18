@@ -45,7 +45,7 @@
         "Name[de]": "Haftnotizen",
         "Name[el]": "Αναδυόμενα σημειώματα",
         "Name[en_GB]": "Popup Notes",
-        "Name[eo]": "Glunotoj",
+        "Name[eo]": "Ŝprucnotoj",
         "Name[es]": "Notas emergentes",
         "Name[et]": "Sedelid",
         "Name[eu]": "Ohar gainerakorrak",
