@@ -37,5 +37,3 @@ public:
 private:
     Akonadi::Item mItem;
 };
-
-Q_DECLARE_METATYPE(QList<KNotePrintObject *>)
