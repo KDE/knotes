@@ -133,7 +133,7 @@ endif()
 target_link_libraries(knotes 
     knotesprivate
     KF6::KCMUtils
-    KF6::KI18n
+    KF6::I18n
     KPim6::PimCommon
     KF6::DNSSD
     KPim6::KontactInterface
