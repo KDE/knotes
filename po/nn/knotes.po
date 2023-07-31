@@ -2,21 +2,21 @@
 #
 # Gaute Hvoslef Kvalnes <gaute@verdsveven.com>, 1999, 2000, 2002, 2003, 2004, 2005.
 # Håvard Korsvoll <korsvoll@skulelinux.no>, 2003.
-# Karl Ove Hufthammer <karl@huftis.org>, 2004, 2008, 2016, 2019, 2020, 2021.
+# Karl Ove Hufthammer <karl@huftis.org>, 2004, 2008, 2016, 2019, 2020, 2021, 2023.
 # Eirik U. Birkeland <eirbir@gmail.com>, 2008, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-03-28 00:48+0000\n"
-"PO-Revision-Date: 2021-03-21 17:51+0100\n"
+"PO-Revision-Date: 2023-07-30 21:56+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
 "Language: nn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.12.3\n"
+"X-Generator: Lokalize 23.04.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
@@ -130,7 +130,7 @@ msgstr "KDE-notat"
 #: apps/main.cpp:49
 #, kde-format
 msgid "Copyright © 1997–%1 KNotes authors"
-msgstr ""
+msgstr "© 1997–%1 KNotes-utviklarane"
 
 #: apps/main.cpp:69
 #, kde-format
@@ -801,7 +801,7 @@ msgstr "Sprettoppnotat"
 #, kde-kuit-format
 msgctxt "@info:credit"
 msgid "Copyright © 2003–%1 Kontact authors"
-msgstr ""
+msgstr "© 2003–%1 Kontact-utviklarane"
 
 #: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
