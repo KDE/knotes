@@ -54,6 +54,8 @@ target_link_libraries(kontact_knotesplugin
                       KF6::Contacts
                       KF6::Completion
                       KF6::TextUtils
+		      KF6::I18n
+		      KF6::TextWidgets
 )
 
 ########### install files ###############

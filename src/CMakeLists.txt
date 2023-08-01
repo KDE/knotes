@@ -78,6 +78,7 @@ target_link_libraries(knotesprivate
     KPim6::AkonadiSearchPIM KPim6::AkonadiNotes KPim6::PimTextEdit
     KPim6::AkonadiWidgets KPim6::GrantleeTheme
     KF6::TextUtils
+    KF6::TextWidgets
     )
 
 if (TARGET KF6::TextAddonsWidgets)
@@ -150,6 +151,7 @@ target_link_libraries(knotes
     KF6::Crash
     KF6::XmlGui
     KPim6::AkonadiWidgets
+    KF6::TextWidgets
     )
 install(TARGETS knotes  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
