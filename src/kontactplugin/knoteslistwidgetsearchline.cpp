@@ -33,11 +33,11 @@ bool KNotesListWidgetSearchLine::itemMatches(const QListWidgetItem *item, const 
     if (!iconView) {
         return false;
     }
-    const QString strTextUtils::ConvertText::normalize{TextUtils::ConvertText::normalize(s)};
-    if (TextUtils::ConvertText::normalize(iconView->realName()).contains(strTextUtils::ConvertText::normalize)) {
+    const QString strTextUtilsNormalize{TextUtils::ConvertText::normalize(s)};
+    if (TextUtils::ConvertText::normalize(iconView->realName()).contains(strTextUtilsNormalize)) {
         return true;
     }
-    if (TextUtils::ConvertText::normalize(iconView->description()).contains(strTextUtils::ConvertText::normalize)) {
+    if (TextUtils::ConvertText::normalize(iconView->description()).contains(strTextUtilsNormalize)) {
         return true;
     }
     return KListWidgetSearchLine::itemMatches(item, s);
