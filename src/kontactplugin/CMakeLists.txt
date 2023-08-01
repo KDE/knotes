@@ -53,6 +53,7 @@ target_link_libraries(kontact_knotesplugin
                       KF6::ItemViews
                       KF6::Contacts
                       KF6::Completion
+                      KF6::TextUtils
 )
 
 ########### install files ###############

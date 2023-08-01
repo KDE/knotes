@@ -77,6 +77,7 @@ target_link_libraries(knotesprivate
     KF6::TextWidgets KF6::I18n notesharedprivate
     KPim6::AkonadiSearchPIM KPim6::AkonadiNotes KPim6::PimTextEdit
     KPim6::AkonadiWidgets KPim6::GrantleeTheme
+    KF6::TextUtils
     )
 
 if (TARGET KF6::TextAddonsWidgets)
