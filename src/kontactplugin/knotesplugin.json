@@ -20,6 +20,7 @@
         "Description[ka]": "Kontact-ის დამატება KNotes -სთვის",
         "Description[ko]": "Kontact KNotes 플러그인",
         "Description[nl]": "Kontact KNotes-plug-in",
+        "Description[nn]": "Kontact-programtillegg for KNotes",
         "Description[pl]": "Wtyczka Kontact do współpracy z KNotatkami",
         "Description[pt]": "'Plugin' do KNotes para o Kontact",
         "Description[pt_BR]": "Plugin do KNotes para o Kontact",
