@@ -1061,12 +1061,3 @@ msgstr "Избиране на тема"
 #, kde-format
 msgid "Themes:"
 msgstr "Теми:"
-
-#~ msgid "kcmknotessummary"
-#~ msgstr "kcmknotessummary"
-
-#~ msgid "Notes Summary Configuration Dialog"
-#~ msgstr "Настройки на описание на бележки"
-
-#~ msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
-#~ msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
