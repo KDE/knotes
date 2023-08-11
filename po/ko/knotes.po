@@ -192,7 +192,7 @@ msgstr "Bo Thorsen"
 #: apps/main.cpp:75
 #, kde-format
 msgid "Started KDE Resource Framework Integration"
-msgstr "KDE 자원 프레임워크 통합 시작"
+msgstr "KDE 리소스 프레임워크 통합 시작"
 
 #: apps/main.cpp:76
 #, kde-format
