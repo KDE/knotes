@@ -172,7 +172,6 @@ void NotesManager::slotNewNote(const QString &name, const QString &text)
                          QString(),
                          i18n("Note Received"),
                          QStringLiteral("knotes"),
-                         nullptr,
                          KNotification::CloseOnTimeout,
                          QStringLiteral("akonadi_notes_agent"));
     auto job = new NoteShared::CreateNewNoteJob(this, nullptr);
