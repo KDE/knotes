@@ -79,6 +79,7 @@ find_package(KF6TextWidgets ${KF_MIN_VERSION} REQUIRED)
 find_package(KF6WidgetsAddons ${KF_MIN_VERSION} REQUIRED)
 find_package(KF6WindowSystem ${KF_MIN_VERSION} CONFIG REQUIRED)
 find_package(KF6XmlGui ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6StatusNotifierItem ${KF_MIN_VERSION} CONFIG REQUIRED)
 find_package(KF6DocTools ${KF_MIN_VERSION})
 set_package_properties(KF6DocTools PROPERTIES DESCRIPTION
     "Tools to generate documentation"

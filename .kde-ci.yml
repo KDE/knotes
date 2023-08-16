@@ -34,4 +34,5 @@ Dependencies:
     'frameworks/kxmlgui': '@latest-kf6'
     'frameworks/kdoctools': '@latest-kf6'
     'frameworks/ktexttemplate': '@latest-kf6'
+    'frameworks/kstatusnotifieritem': '@latest-kf6'
     'libraries/ktextaddons': '@latest-kf6'

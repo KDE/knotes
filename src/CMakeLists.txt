@@ -152,6 +152,7 @@ target_link_libraries(knotes
     KF6::XmlGui
     KPim6::AkonadiWidgets
     KF6::TextWidgets
+    KF6::StatusNotifierItem
     )
 install(TARGETS knotes  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
