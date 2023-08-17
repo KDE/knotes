@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <KPIMTextEdit/RichTextEditor>
+#include <TextCustomEditor/RichTextEditor>
 namespace TextAutoCorrectionCore
 {
 class AutoCorrection;
@@ -19,7 +19,7 @@ class RichTextEditWithAutoCorrectionPrivate;
  * @brief The RichTextEditWithAutoCorrection class
  * @author Laurent Montel <montel@kde.org>
  */
-class RichTextEditWithAutoCorrection : public KPIMTextEdit::RichTextEditor
+class RichTextEditWithAutoCorrection : public TextCustomEditor::RichTextEditor
 {
     Q_OBJECT
 public:

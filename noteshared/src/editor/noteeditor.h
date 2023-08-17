@@ -5,11 +5,11 @@
 */
 #pragma once
 
-#include <KPIMTextEdit/RichTextEditorWidget>
+#include <TextCustomEditor/RichTextEditorWidget>
 
 namespace NoteShared
 {
-class NoteEditor : public KPIMTextEdit::RichTextEditorWidget
+class NoteEditor : public TextCustomEditor::RichTextEditorWidget
 {
     Q_OBJECT
 public:

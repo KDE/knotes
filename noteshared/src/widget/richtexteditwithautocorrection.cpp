@@ -31,7 +31,7 @@ public:
 };
 
 RichTextEditWithAutoCorrection::RichTextEditWithAutoCorrection(QWidget *parent)
-    : KPIMTextEdit::RichTextEditor(parent)
+    : TextCustomEditor::RichTextEditor(parent)
     , d(new NoteShared::RichTextEditWithAutoCorrectionPrivate)
 {
 }
@@ -90,7 +90,7 @@ void RichTextEditWithAutoCorrection::keyPressEvent(QKeyEvent *e)
             }
         }
     }
-    KPIMTextEdit::RichTextEditor::keyPressEvent(e);
+    TextCustomEditor::RichTextEditor::keyPressEvent(e);
 }
 
 #include "moc_richtexteditwithautocorrection.cpp"

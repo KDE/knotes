@@ -9,7 +9,7 @@
 #include <QDialog>
 class QLineEdit;
 class KJob;
-namespace KPIMTextEdit
+namespace TextCustomEditor
 {
 class RichTextEditorWidget;
 }
@@ -26,6 +26,6 @@ private:
     void slotFetchItem(KJob *job);
     void readConfig();
     void writeConfig();
-    KPIMTextEdit::RichTextEditorWidget *const mNote;
+    TextCustomEditor::RichTextEditorWidget *const mNote;
     QLineEdit *const mSubject;
 };

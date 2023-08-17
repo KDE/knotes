@@ -8,8 +8,8 @@
 #include "notesagent_debug.h"
 #include <Akonadi/ItemFetchJob>
 #include <Akonadi/ItemFetchScope>
-#include <KPIMTextEdit/RichTextEditor>
-#include <KPIMTextEdit/RichTextEditorWidget>
+#include <TextCustomEditor/RichTextEditor>
+#include <TextCustomEditor/RichTextEditorWidget>
 
 #include <KSharedConfig>
 
@@ -31,7 +31,7 @@ static const char myNotesAgentNoteDialogName[] = "NotesAgentNoteDialog";
 }
 NotesAgentNoteDialog::NotesAgentNoteDialog(QWidget *parent)
     : QDialog(parent)
-    , mNote(new KPIMTextEdit::RichTextEditorWidget(this))
+    , mNote(new TextCustomEditor::RichTextEditorWidget(this))
     , mSubject(new QLineEdit(this))
 {
     auto mainLayout = new QVBoxLayout(this);

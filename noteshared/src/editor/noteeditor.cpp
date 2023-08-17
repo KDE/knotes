@@ -9,7 +9,7 @@
 using namespace NoteShared;
 
 NoteEditor::NoteEditor(QWidget *parent)
-    : KPIMTextEdit::RichTextEditorWidget(new NoteShared::RichTextEditWithAutoCorrection(parent))
+    : TextCustomEditor::RichTextEditorWidget(new NoteShared::RichTextEditWithAutoCorrection(parent))
 {
 }
 
