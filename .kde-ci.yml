@@ -11,7 +11,6 @@ Dependencies:
     'pim/kcalutils' : '@latest-kf6'
     'pim/kmime' : '@latest-kf6'
     'pim/kontactinterface' : '@latest-kf6'
-    'pim/kpimtextedit' : '@latest-kf6'
     'pim/pimcommon' : '@latest-kf6'
     'pim/grantleetheme' : '@latest-kf6'
     'frameworks/kcompletion': '@latest-kf6'

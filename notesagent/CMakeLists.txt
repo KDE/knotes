@@ -39,7 +39,7 @@ target_link_libraries(akonadi_notes_agent
     KF6::NotifyConfig
     notesharedprivate
     KPim6::PimCommon
-    KPim6::PimTextEdit
+    
     KF6::XmlGui
     KF6::WindowSystem
     KF6::Notifications

@@ -75,7 +75,7 @@ target_link_libraries(knotesprivate
     KF6::KCMUtils KF6::NewStuffCore
     KF6::WindowSystem Qt::PrintSupport
     KF6::TextWidgets KF6::I18n notesharedprivate
-    KPim6::AkonadiSearchPIM KPim6::AkonadiNotes KPim6::PimTextEdit
+    KPim6::AkonadiSearchPIM KPim6::AkonadiNotes 
     KPim6::AkonadiWidgets KPim6::GrantleeTheme
     KF6::TextUtils
     KF6::TextWidgets

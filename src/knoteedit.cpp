@@ -10,7 +10,7 @@
 #include "editor/noteeditorutils.h"
 #include "notes/knote.h"
 
-#include <KPIMTextEdit/EditorUtil>
+#include <TextUtils/ConvertText>
 
 #include <PimCommon/KActionMenuChangeCase>
 
@@ -199,29 +199,25 @@ void KNoteEdit::setNote(KNote *_note)
 void KNoteEdit::slotReverseCase()
 {
     QTextCursor cursor = textCursor();
-    KPIMTextEdit::EditorUtil editorUtil;
-    editorUtil.reverseCase(cursor);
+    TextUtils::ConvertText::reverseCase(cursor);
 }
 
 void KNoteEdit::slotSentenceCase()
 {
     QTextCursor cursor = textCursor();
-    KPIMTextEdit::EditorUtil editorUtil;
-    editorUtil.sentenceCase(cursor);
+    TextUtils::ConvertText::sentenceCase(cursor);
 }
 
 void KNoteEdit::slotUpperCase()
 {
     QTextCursor cursor = textCursor();
-    KPIMTextEdit::EditorUtil editorUtil;
-    editorUtil.upperCase(cursor);
+    TextUtils::ConvertText::upperCase(cursor);
 }
 
 void KNoteEdit::slotLowerCase()
 {
     QTextCursor cursor = textCursor();
-    KPIMTextEdit::EditorUtil editorUtil;
-    editorUtil.lowerCase(cursor);
+    TextUtils::ConvertText::lowerCase(cursor);
 }
 
 QMenu *KNoteEdit::mousePopupMenu()

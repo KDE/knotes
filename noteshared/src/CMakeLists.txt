@@ -92,7 +92,7 @@ target_link_libraries(notesharedprivate
     PRIVATE
     KF6::KCMUtils
     KF6::DNSSD KPim6::PimCommon  KPim6::Mime KPim6::AkonadiNotes
-    KPim6::PimTextEdit KF6::Completion Qt::DBus KF6::I18n
+     KF6::Completion Qt::DBus KF6::I18n
     KPim6::AkonadiWidgets
     )
     target_link_libraries(notesharedprivate PRIVATE KF6::TextAutoCorrectionWidgets)
