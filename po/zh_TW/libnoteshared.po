@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-09-21 00:45+0000\n"
 "PO-Revision-Date: 2023-06-15 04:09+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
@@ -34,17 +34,17 @@ msgstr "不響鈴(&N)"
 msgid "Alarm &at:"
 msgstr "在以下時間響鈴(&A)"
 
-#: config/noteactionconfig.cpp:32 config/noteactionconfig.cpp:34
+#: config/noteactionconfig.cpp:22
 #, kde-format
 msgid "&Mail action:"
 msgstr "寄件命令(&M)"
 
-#: config/noteactionconfig.cpp:47
+#: config/noteactionconfig.cpp:30
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">這是怎麼運作的？</a>"
 
-#: config/noteactionconfig.cpp:63
+#: config/noteactionconfig.cpp:42
 #, kde-format
 msgid ""
 "<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "

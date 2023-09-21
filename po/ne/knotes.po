@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-09-21 00:45+0000\n"
 "PO-Revision-Date: 2007-09-12 14:40+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -78,174 +78,174 @@ msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "मुद्रण %1"
 
-#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:402 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr ""
 
-#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:402 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Text File"
 msgstr "पाठ साइज"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr ""
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:828
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Open Text File"
 msgstr "पाठ साइज"
 
-#: apps/knotesapp.cpp:420 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr ""
 
-#: apps/knotesapp.cpp:513
+#: apps/knotesapp.cpp:504
 #, kde-format
 msgid "No Notes"
 msgstr "द्रष्टब्य छैन"
 
-#: apps/knotesapp.cpp:566 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:557 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "सेटिङ"
 
 #. i18n: ectx: Menu (knotes_context)
-#: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
+#: apps/main.cpp:34 data/knotesappui.rc:5 data/knotesappui.rc:6
 #: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:42
 #: kontactplugin/knoteseditdialog.cpp:53
 #, kde-format
 msgid "KNotes"
 msgstr "केडीई द्रष्टब्य"
 
-#: apps/main.cpp:47
+#: apps/main.cpp:36
 #, kde-format
 msgid "KDE Notes"
 msgstr "केडीई द्रष्टब्य"
 
-#: apps/main.cpp:49
+#: apps/main.cpp:38
 #, kde-format
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr ""
 
-#: apps/main.cpp:69
+#: apps/main.cpp:58
 #, kde-format
 msgid "Laurent Montel"
 msgstr "लाउरेन्ट मोन्टेल"
 
-#: apps/main.cpp:69
+#: apps/main.cpp:58
 #, kde-format
 msgid "Maintainer"
 msgstr "मर्मतकर्ता"
 
-#: apps/main.cpp:70
+#: apps/main.cpp:59
 #, kde-format
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr ""
 
-#: apps/main.cpp:70 apps/main.cpp:71
+#: apps/main.cpp:59 apps/main.cpp:60
 #, fuzzy, kde-format
 #| msgid "Maintainer"
 msgid "Previous Maintainer"
 msgstr "मर्मतकर्ता"
 
-#: apps/main.cpp:71
+#: apps/main.cpp:60
 #, kde-format
 msgid "Michael Brade"
 msgstr "माइकल ब्रेड"
 
-#: apps/main.cpp:72
+#: apps/main.cpp:61
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "ब्रेन्ड जोन्स उबेन"
 
-#: apps/main.cpp:72
+#: apps/main.cpp:61
 #, kde-format
 msgid "Original KNotes Author"
 msgstr "मौलिक केडीई द्रष्टब्य लेखक"
 
-#: apps/main.cpp:73
+#: apps/main.cpp:62
 #, kde-format
 msgid "Wynn Wilkes"
 msgstr "विन विल्क्स"
 
-#: apps/main.cpp:73
+#: apps/main.cpp:62
 #, kde-format
 msgid "Ported KNotes to KDE 2"
 msgstr "केडीई २ मा परिमार्जित केडीई द्रष्टब्य"
 
-#: apps/main.cpp:74
+#: apps/main.cpp:63
 #, kde-format
 msgid "Daniel Martin"
 msgstr "डेनियल मार्टिन"
 
-#: apps/main.cpp:74
+#: apps/main.cpp:63
 #, kde-format
 msgid "Network Interface"
 msgstr "सञ्जाल इन्टरफेस"
 
-#: apps/main.cpp:75
+#: apps/main.cpp:64
 #, kde-format
 msgid "Bo Thorsen"
 msgstr "बो थ्रोसेन"
 
-#: apps/main.cpp:75
+#: apps/main.cpp:64
 #, kde-format
 msgid "Started KDE Resource Framework Integration"
 msgstr "केडीई स्रोत कार्यढाँचा एकीकरण सुरुआत"
 
-#: apps/main.cpp:76
+#: apps/main.cpp:65
 #, kde-format
 msgid "Bera Debajyoti"
 msgstr "बेरा डेबाजोटि"
 
-#: apps/main.cpp:76
+#: apps/main.cpp:65
 #, fuzzy, kde-format
 #| msgid "Idea and initial code for the new look&feel"
 msgid "Idea and initial code for the new look & feel"
 msgstr "नयाँ हेरा‌ई र अनुभवका लागि विचार र सुरु सङ्केत"
 
-#: apps/main.cpp:77
+#: apps/main.cpp:66
 #, kde-format
 msgid "Matthias Ettrich"
 msgstr "म्याथियास इट्ट्रिक"
 
-#: apps/main.cpp:78
+#: apps/main.cpp:67
 #, kde-format
 msgid "David Faure"
 msgstr "डेभिड फाउर"
 
-#: apps/main.cpp:79
+#: apps/main.cpp:68
 #, kde-format
 msgid "Matthias Kiefer"
 msgstr "म्याथियास किफेर"
 
-#: apps/main.cpp:80
+#: apps/main.cpp:69
 #, kde-format
 msgid "Luboš Luňák"
 msgstr "लुबोस लुनाक"
 
-#: apps/main.cpp:81
+#: apps/main.cpp:70
 #, kde-format
 msgid "Dirk A. Mueller"
 msgstr "डिर्क A. मुलर"
 
-#: apps/main.cpp:82
+#: apps/main.cpp:71
 #, kde-format
 msgid "Carsten Pfeiffer"
 msgstr "कार्सटेन फिफर"
 
-#: apps/main.cpp:83
+#: apps/main.cpp:72
 #, kde-format
 msgid "Harri Porten"
 msgstr "ह्रारि पोर्टेन"
 
-#: apps/main.cpp:84
+#: apps/main.cpp:73
 #, kde-format
 msgid "Espen Sand"
 msgstr "स्पेन स्यान्ड"
@@ -376,12 +376,12 @@ msgstr "पाठ फन्ट:"
 msgid "Title font:"
 msgstr "शीर्षक फन्ट:"
 
-#: configdialog/knotesimpleconfigdialog.cpp:41
+#: configdialog/knotesimpleconfigdialog.cpp:40
 #, kde-format
 msgid "Editor Settings"
 msgstr "सम्पादक सेटिङ"
 
-#: configdialog/knotesimpleconfigdialog.cpp:43
+#: configdialog/knotesimpleconfigdialog.cpp:42
 #, kde-format
 msgid "Display Settings"
 msgstr "सेटिङ प्रदर्शन गर्नुहोस्"
@@ -445,35 +445,35 @@ msgctxt "@label:textbox"
 msgid "Search notes:"
 msgstr "सबै द्रष्टब्य देखाउनुहोस्"
 
-#: finddialog/knotefinddialog.cpp:179
+#: finddialog/knotefinddialog.cpp:150
 #, kde-format
 msgctxt "@label"
 msgid "No Results found in search."
 msgstr ""
 
-#: finddialog/knotefinddialog.cpp:195
+#: finddialog/knotefinddialog.cpp:166
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgid "Show Note"
 msgstr "सबै द्रष्टब्य देखाउनुहोस्"
 
-#: knoteconfigmodule.cpp:115 knoteconfigmodule.cpp:117
+#: knoteconfigmodule.cpp:80
 #, kde-format
 msgid "Show number of notes in tray icon"
 msgstr ""
 
-#: knoteconfigmodule.cpp:126 knoteconfigmodule.cpp:128
+#: knoteconfigmodule.cpp:87
 #, fuzzy, kde-format
 #| msgid "Default &width:"
 msgid "Default Title:"
 msgstr "पूर्वनिर्धारित चौडाइ:"
 
-#: knoteconfigmodule.cpp:140
+#: knoteconfigmodule.cpp:94
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr ""
 
-#: knoteconfigmodule.cpp:179
+#: knoteconfigmodule.cpp:129
 #, kde-format
 msgid ""
 "<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
@@ -481,12 +481,12 @@ msgid ""
 "time</li></ul></qt>"
 msgstr ""
 
-#: knoteconfigmodule.cpp:212 knoteconfigmodule.cpp:214
+#: knoteconfigmodule.cpp:151
 #, kde-format
 msgid "Theme:"
 msgstr ""
 
-#: knoteconfigmodule.cpp:229
+#: knoteconfigmodule.cpp:161
 #, fuzzy, kde-format
 #| msgid "Print %1"
 msgid "Download new printing themes"
@@ -912,13 +912,13 @@ msgctxt "@label popup note name"
 msgid "Name:"
 msgstr ""
 
-#: kontactplugin/knoteslistwidgetsearchline.cpp:41
+#: kontactplugin/knoteslistwidgetsearchline.cpp:17
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgid "Search notes..."
 msgstr "सबै द्रष्टब्य देखाउनुहोस्"
 
-#: kontactplugin/knoteslistwidgetsearchline.cpp:48
+#: kontactplugin/knoteslistwidgetsearchline.cpp:24
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgid "Search notes...<%1>"
@@ -1042,7 +1042,7 @@ msgstr "अन्यलाई तल राख्नुहोस्"
 msgid "To Desktop"
 msgstr "डेस्कटपमा"
 
-#: notes/knote.cpp:720
+#: notes/knote.cpp:716
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "द्रष्टब्यबाट कुराकानी गर्नुहोस्"

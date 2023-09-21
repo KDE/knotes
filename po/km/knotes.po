@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-09-21 00:45+0000\n"
 "PO-Revision-Date: 2010-05-24 16:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -83,174 +83,174 @@ msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "បោះពុម្ព​ចំណាំ %1"
 
-#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:402 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgid "Select Text File"
 msgstr "ជ្រើស​អ្នក​ទទួល ៖"
 
-#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:402 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Text File"
 msgstr "ទំហំអក្សរ"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr ""
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:828
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Open Text File"
 msgstr "ទំហំអក្សរ"
 
-#: apps/knotesapp.cpp:420 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr ""
 
-#: apps/knotesapp.cpp:513
+#: apps/knotesapp.cpp:504
 #, kde-format
 msgid "No Notes"
 msgstr "គ្មាន​ចំណាំ"
 
-#: apps/knotesapp.cpp:566 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:557 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "ការ​កំណត់"
 
 #. i18n: ectx: Menu (knotes_context)
-#: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
+#: apps/main.cpp:34 data/knotesappui.rc:5 data/knotesappui.rc:6
 #: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:42
 #: kontactplugin/knoteseditdialog.cpp:53
 #, kde-format
 msgid "KNotes"
 msgstr "KNotes"
 
-#: apps/main.cpp:47
+#: apps/main.cpp:36
 #, kde-format
 msgid "KDE Notes"
 msgstr "ចំណាំ​របស់ KDE"
 
-#: apps/main.cpp:49
+#: apps/main.cpp:38
 #, fuzzy, kde-format
 #| msgid "Copyright © 1997–2010 KNotes authors"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr "រក្សាសិទ្ធិឆ្នាំ ១៩៩៧–២០១០ ដោយ​អ្នកនិពន្ធ KNotes"
 
-#: apps/main.cpp:69
+#: apps/main.cpp:58
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: apps/main.cpp:69
+#: apps/main.cpp:58
 #, kde-format
 msgid "Maintainer"
 msgstr "អ្នក​ថែទាំ"
 
-#: apps/main.cpp:70
+#: apps/main.cpp:59
 #, kde-format
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr "Guillermo Antonio Amaral Bastidas"
 
-#: apps/main.cpp:70 apps/main.cpp:71
+#: apps/main.cpp:59 apps/main.cpp:60
 #, kde-format
 msgid "Previous Maintainer"
 msgstr "អ្នក​ថែ​ទាំ​មុន"
 
-#: apps/main.cpp:71
+#: apps/main.cpp:60
 #, kde-format
 msgid "Michael Brade"
 msgstr "Michael Brade"
 
-#: apps/main.cpp:72
+#: apps/main.cpp:61
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
-#: apps/main.cpp:72
+#: apps/main.cpp:61
 #, kde-format
 msgid "Original KNotes Author"
 msgstr "អ្នក​និពន្ធ KNotes ដើម"
 
-#: apps/main.cpp:73
+#: apps/main.cpp:62
 #, kde-format
 msgid "Wynn Wilkes"
 msgstr "Wynn Wilkes"
 
-#: apps/main.cpp:73
+#: apps/main.cpp:62
 #, kde-format
 msgid "Ported KNotes to KDE 2"
 msgstr "បញ្ចូល KNotes ទៅ KDE 2"
 
-#: apps/main.cpp:74
+#: apps/main.cpp:63
 #, kde-format
 msgid "Daniel Martin"
 msgstr "Daniel Martin"
 
-#: apps/main.cpp:74
+#: apps/main.cpp:63
 #, kde-format
 msgid "Network Interface"
 msgstr "ចំណុច​ប្រទាក់​បណ្ដាញ"
 
-#: apps/main.cpp:75
+#: apps/main.cpp:64
 #, kde-format
 msgid "Bo Thorsen"
 msgstr "Bo Thorsen"
 
-#: apps/main.cpp:75
+#: apps/main.cpp:64
 #, kde-format
 msgid "Started KDE Resource Framework Integration"
 msgstr "ចាប់ផ្ដើម​ការ​បញ្ចូល​គ្រោងការណ៍​ធនធាន KDE"
 
-#: apps/main.cpp:76
+#: apps/main.cpp:65
 #, kde-format
 msgid "Bera Debajyoti"
 msgstr "Bera Debajyoti"
 
-#: apps/main.cpp:76
+#: apps/main.cpp:65
 #, kde-format
 msgid "Idea and initial code for the new look & feel"
 msgstr "គំនិត និង​កូដ​ដំបូង​សម្រាប់​រូបរាង និង​មុខងារថ្មី"
 
-#: apps/main.cpp:77
+#: apps/main.cpp:66
 #, kde-format
 msgid "Matthias Ettrich"
 msgstr "Matthias Ettrich"
 
-#: apps/main.cpp:78
+#: apps/main.cpp:67
 #, kde-format
 msgid "David Faure"
 msgstr "David Faure"
 
-#: apps/main.cpp:79
+#: apps/main.cpp:68
 #, kde-format
 msgid "Matthias Kiefer"
 msgstr "Matthias Kiefer"
 
-#: apps/main.cpp:80
+#: apps/main.cpp:69
 #, kde-format
 msgid "Luboš Luňák"
 msgstr "Luboš Luňák"
 
-#: apps/main.cpp:81
+#: apps/main.cpp:70
 #, kde-format
 msgid "Dirk A. Mueller"
 msgstr "Dirk A. Mueller"
 
-#: apps/main.cpp:82
+#: apps/main.cpp:71
 #, kde-format
 msgid "Carsten Pfeiffer"
 msgstr "Carsten Pfeiffer"
 
-#: apps/main.cpp:83
+#: apps/main.cpp:72
 #, kde-format
 msgid "Harri Porten"
 msgstr "Harri Porten"
 
-#: apps/main.cpp:84
+#: apps/main.cpp:73
 #, kde-format
 msgid "Espen Sand"
 msgstr "Espen Sand"
@@ -381,12 +381,12 @@ msgstr "ពុម្ពអក្សរ​អត្ថបទ ៖"
 msgid "Title font:"
 msgstr "ពុម្ពអក្សរ​ចំណង​ជើង ៖"
 
-#: configdialog/knotesimpleconfigdialog.cpp:41
+#: configdialog/knotesimpleconfigdialog.cpp:40
 #, kde-format
 msgid "Editor Settings"
 msgstr "ការ​កំណត់​កម្មវិធី​និពន្ធ"
 
-#: configdialog/knotesimpleconfigdialog.cpp:43
+#: configdialog/knotesimpleconfigdialog.cpp:42
 #, kde-format
 msgid "Display Settings"
 msgstr "ការកំណត់​ការ​បង្ហាញ"
@@ -451,35 +451,35 @@ msgctxt "@label:textbox"
 msgid "Search notes:"
 msgstr "ជ្រើស​អ្នក​ទទួល ៖"
 
-#: finddialog/knotefinddialog.cpp:179
+#: finddialog/knotefinddialog.cpp:150
 #, kde-format
 msgctxt "@label"
 msgid "No Results found in search."
 msgstr ""
 
-#: finddialog/knotefinddialog.cpp:195
+#: finddialog/knotefinddialog.cpp:166
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
 msgid "Show Note"
 msgstr "បង្ហាញ​ចំណាំ​ទាំង​អស់"
 
-#: knoteconfigmodule.cpp:115 knoteconfigmodule.cpp:117
+#: knoteconfigmodule.cpp:80
 #, kde-format
 msgid "Show number of notes in tray icon"
 msgstr ""
 
-#: knoteconfigmodule.cpp:126 knoteconfigmodule.cpp:128
+#: knoteconfigmodule.cpp:87
 #, fuzzy, kde-format
 #| msgid "Default &width:"
 msgid "Default Title:"
 msgstr "ទទឹង​លំនាំដើម ៖"
 
-#: knoteconfigmodule.cpp:140
+#: knoteconfigmodule.cpp:94
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr ""
 
-#: knoteconfigmodule.cpp:179
+#: knoteconfigmodule.cpp:129
 #, kde-format
 msgid ""
 "<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
@@ -487,12 +487,12 @@ msgid ""
 "time</li></ul></qt>"
 msgstr ""
 
-#: knoteconfigmodule.cpp:212 knoteconfigmodule.cpp:214
+#: knoteconfigmodule.cpp:151
 #, kde-format
 msgid "Theme:"
 msgstr ""
 
-#: knoteconfigmodule.cpp:229
+#: knoteconfigmodule.cpp:161
 #, fuzzy, kde-format
 #| msgid "Print Note"
 #| msgid_plural "Print %1 notes"
@@ -917,13 +917,13 @@ msgctxt "@label popup note name"
 msgid "Name:"
 msgstr ""
 
-#: kontactplugin/knoteslistwidgetsearchline.cpp:41
+#: kontactplugin/knoteslistwidgetsearchline.cpp:17
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgid "Search notes..."
 msgstr "ជ្រើស​អ្នក​ទទួល ៖"
 
-#: kontactplugin/knoteslistwidgetsearchline.cpp:48
+#: kontactplugin/knoteslistwidgetsearchline.cpp:24
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgid "Search notes...<%1>"
@@ -1047,7 +1047,7 @@ msgstr "ដាក់ក្រោម​គេ"
 msgid "To Desktop"
 msgstr "ទៅ​ផ្ទៃតុ"
 
-#: notes/knote.cpp:720
+#: notes/knote.cpp:716
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "ដើរ​កាត់​ចំណាំ"

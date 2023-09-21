@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libnoteshared\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-09-21 00:45+0000\n"
 "PO-Revision-Date: 2023-05-17 11:58+01\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -33,17 +33,17 @@ msgstr "&Neniu alarmo"
 msgid "Alarm &at:"
 msgstr "Al&armo je:"
 
-#: config/noteactionconfig.cpp:32 config/noteactionconfig.cpp:34
+#: config/noteactionconfig.cpp:22
 #, kde-format
 msgid "&Mail action:"
 msgstr "&Poŝta ago:"
 
-#: config/noteactionconfig.cpp:47
+#: config/noteactionconfig.cpp:30
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Kiel ĉi tio funkcias?</a>"
 
-#: config/noteactionconfig.cpp:63
+#: config/noteactionconfig.cpp:42
 #, kde-format
 msgid ""
 "<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "
