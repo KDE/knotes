@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akonadi_notes_agent\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2020-01-02 03:16+0100\n"
+"POT-Creation-Date: 2022-12-03 00:47+0000\n"
 "PO-Revision-Date: 2018-01-06 09:21+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -18,56 +18,56 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Environment: kde\n"
 
-#: notesagentalarmdialog.cpp:51
+#: notesagentalarmdialog.cpp:44
 #, fuzzy, kde-format
 #| msgid "Alarm"
 msgctxt "@title:window"
 msgid "Alarm"
 msgstr "Аларм"
 
-#: notesagentalarmdialog.cpp:63
+#: notesagentalarmdialog.cpp:56
 #, kde-format
 msgid "The following notes triggered alarms:"
 msgstr "Наредне белешке су активирале аларме:"
 
-#: notesagentalarmdialog.cpp:101
+#: notesagentalarmdialog.cpp:94
 #, kde-format
 msgid "Remove Alarm"
 msgstr "Уклони аларм"
 
-#: notesagentalarmdialog.cpp:103
+#: notesagentalarmdialog.cpp:96
 #, kde-format
 msgid "Show Note..."
 msgstr "Прикажи белешку..."
 
-#: notesagentalarmdialog.cpp:105
+#: notesagentalarmdialog.cpp:98
 #, kde-format
 msgid "Modify Alarm..."
 msgstr "Измени аларм..."
 
-#: notesagentalarmdialog.cpp:158
+#: notesagentalarmdialog.cpp:152
 #, kde-format
 msgid "Are you sure to remove alarm?"
 msgstr "Желите ли заиста да уклоните аларм?"
 
-#: notesagentalarmdialog.cpp:158
+#: notesagentalarmdialog.cpp:153
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Alarm"
 msgstr "Уклањање аларма"
 
-#: notesagentalarmdialog.cpp:220
+#: notesagentalarmdialog.cpp:218
 #, kde-format
 msgid "Error during fetch alarm info."
 msgstr "Грешка у добављању податка о аларму."
 
-#: notesagentalarmdialog.cpp:220
+#: notesagentalarmdialog.cpp:218
 #, kde-format
 msgid "Alarm"
 msgstr "Аларм"
 
 # >> @title:window
-#: notesagentsettingsdialog.cpp:42
+#: notesagentsettingsdialog.cpp:33
 #, fuzzy, kde-format
 #| msgid "Configure Notes Agent"
 msgctxt "@title:window"
@@ -75,56 +75,56 @@ msgid "Configure Notes Agent"
 msgstr "Подешавање Агента биљежака"
 
 # >> @title:tab
-#: notesagentsettingsdialog.cpp:58
+#: notesagentsettingsdialog.cpp:48
 #, kde-format
 msgid "Notify"
 msgstr "Обавештавање"
 
 # >> @title:tab
-#: notesagentsettingsdialog.cpp:61
+#: notesagentsettingsdialog.cpp:50
 #, kde-format
 msgid "Network"
 msgstr "Мрежа"
 
-#: notesagentsettingsdialog.cpp:70
+#: notesagentsettingsdialog.cpp:58
 #, kde-format
 msgid "Notes Agent"
 msgstr "Агент биљежака"
 
-#: notesagentsettingsdialog.cpp:72
+#: notesagentsettingsdialog.cpp:60
 #, kde-format
 msgid "Notes Agent."
 msgstr "Агент за белешке"
 
-#: notesagentsettingsdialog.cpp:74
+#: notesagentsettingsdialog.cpp:62
 #, fuzzy, kde-format
 #| msgid "Copyright (C) 2013-2018 Laurent Montel"
-msgid "Copyright (C) 2013-2020 Laurent Montel"
+msgid "Copyright (C) 2013-%1 Laurent Montel"
 msgstr "© 2013–2018, Лорен Монтел"
 
-#: notesagentsettingsdialog.cpp:76
+#: notesagentsettingsdialog.cpp:64
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Лорен Монтел"
 
-#: notesagentsettingsdialog.cpp:77
+#: notesagentsettingsdialog.cpp:64
 #, kde-format
 msgid "Maintainer"
 msgstr "Одржавалац"
 
-#: notesagentsettingsdialog.cpp:80
+#: notesagentsettingsdialog.cpp:67
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Часлав Илић"
 
-#: notesagentsettingsdialog.cpp:81
+#: notesagentsettingsdialog.cpp:67
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "caslav.ilic@gmx.net"
 
-#: notesmanager.cpp:197
+#: notesmanager.cpp:173
 #, kde-format
 msgid "Note Received"
 msgstr "Белешка примљена"

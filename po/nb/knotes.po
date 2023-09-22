@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-09-21 00:45+0000\n"
 "PO-Revision-Date: 2015-02-07 22:15+0100\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -86,171 +86,171 @@ msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Slett de valgte notatene …"
 
-#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:402 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "Velg tekstfil"
 
-#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:402 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "Tekstfil"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "Feil mens tekstfil ble åpnet: %1"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "Åpne en tekstfil"
 
-#: apps/knotesapp.cpp:420 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "Notat fra fila «%1»"
 
-#: apps/knotesapp.cpp:513
+#: apps/knotesapp.cpp:504
 #, kde-format
 msgid "No Notes"
 msgstr "Ingen notater"
 
-#: apps/knotesapp.cpp:566 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:557 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "Innstillinger"
 
 #. i18n: ectx: Menu (knotes_context)
-#: apps/main.cpp:45 data/knotesappui.rc:5 data/knotesappui.rc:6
+#: apps/main.cpp:34 data/knotesappui.rc:5 data/knotesappui.rc:6
 #: kontactplugin/knotes_part.cpp:74 kontactplugin/knotes_plugin.cpp:42
 #: kontactplugin/knoteseditdialog.cpp:53
 #, kde-format
 msgid "KNotes"
 msgstr "KNotes"
 
-#: apps/main.cpp:47
+#: apps/main.cpp:36
 #, kde-format
 msgid "KDE Notes"
 msgstr "KDE Notat"
 
-#: apps/main.cpp:49
+#: apps/main.cpp:38
 #, kde-format
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr ""
 
-#: apps/main.cpp:69
+#: apps/main.cpp:58
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: apps/main.cpp:69
+#: apps/main.cpp:58
 #, kde-format
 msgid "Maintainer"
 msgstr "Vedlikeholder"
 
-#: apps/main.cpp:70
+#: apps/main.cpp:59
 #, kde-format
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr "Guillermo Antonio Amaral Bastidas"
 
-#: apps/main.cpp:70 apps/main.cpp:71
+#: apps/main.cpp:59 apps/main.cpp:60
 #, kde-format
 msgid "Previous Maintainer"
 msgstr "Forrige vedlikeholder"
 
-#: apps/main.cpp:71
+#: apps/main.cpp:60
 #, kde-format
 msgid "Michael Brade"
 msgstr "Michael Brade"
 
-#: apps/main.cpp:72
+#: apps/main.cpp:61
 #, kde-format
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
-#: apps/main.cpp:72
+#: apps/main.cpp:61
 #, kde-format
 msgid "Original KNotes Author"
 msgstr "Opprinnelig forfatter av KNotes"
 
-#: apps/main.cpp:73
+#: apps/main.cpp:62
 #, kde-format
 msgid "Wynn Wilkes"
 msgstr "Wynn Wilkes"
 
-#: apps/main.cpp:73
+#: apps/main.cpp:62
 #, kde-format
 msgid "Ported KNotes to KDE 2"
 msgstr "Portet KNotes til KDE 2"
 
-#: apps/main.cpp:74
+#: apps/main.cpp:63
 #, kde-format
 msgid "Daniel Martin"
 msgstr "Daniel Martin"
 
-#: apps/main.cpp:74
+#: apps/main.cpp:63
 #, kde-format
 msgid "Network Interface"
 msgstr "Nettverksgrensesnitt:"
 
-#: apps/main.cpp:75
+#: apps/main.cpp:64
 #, kde-format
 msgid "Bo Thorsen"
 msgstr "Bo Thorsen"
 
-#: apps/main.cpp:75
+#: apps/main.cpp:64
 #, kde-format
 msgid "Started KDE Resource Framework Integration"
 msgstr "Startet integrering i rammeverk for KDE-ressurser"
 
-#: apps/main.cpp:76
+#: apps/main.cpp:65
 #, kde-format
 msgid "Bera Debajyoti"
 msgstr "Bera Debajyoti"
 
-#: apps/main.cpp:76
+#: apps/main.cpp:65
 #, kde-format
 msgid "Idea and initial code for the new look & feel"
 msgstr ""
 "Idé og den opprinnelige koden for hvordan programmet skal se ut og virke"
 
-#: apps/main.cpp:77
+#: apps/main.cpp:66
 #, kde-format
 msgid "Matthias Ettrich"
 msgstr "Matthias Ettrich"
 
-#: apps/main.cpp:78
+#: apps/main.cpp:67
 #, kde-format
 msgid "David Faure"
 msgstr "David Faure"
 
-#: apps/main.cpp:79
+#: apps/main.cpp:68
 #, kde-format
 msgid "Matthias Kiefer"
 msgstr "Matthias Kiefer"
 
-#: apps/main.cpp:80
+#: apps/main.cpp:69
 #, kde-format
 msgid "Luboš Luňák"
 msgstr "Luboš Luňák"
 
-#: apps/main.cpp:81
+#: apps/main.cpp:70
 #, kde-format
 msgid "Dirk A. Mueller"
 msgstr "Dirk A. Mueller"
 
-#: apps/main.cpp:82
+#: apps/main.cpp:71
 #, kde-format
 msgid "Carsten Pfeiffer"
 msgstr "Carsten Pfeiffer"
 
-#: apps/main.cpp:83
+#: apps/main.cpp:72
 #, kde-format
 msgid "Harri Porten"
 msgstr "Harri Porten"
 
-#: apps/main.cpp:84
+#: apps/main.cpp:73
 #, kde-format
 msgid "Espen Sand"
 msgstr "Espen Sand"
@@ -376,12 +376,12 @@ msgstr "Tekstskrift:"
 msgid "Title font:"
 msgstr "Tittelskrift:"
 
-#: configdialog/knotesimpleconfigdialog.cpp:41
+#: configdialog/knotesimpleconfigdialog.cpp:40
 #, kde-format
 msgid "Editor Settings"
 msgstr "Redigeringsinnstillinger"
 
-#: configdialog/knotesimpleconfigdialog.cpp:43
+#: configdialog/knotesimpleconfigdialog.cpp:42
 #, kde-format
 msgid "Display Settings"
 msgstr "Vis innstillinger"
@@ -440,33 +440,33 @@ msgctxt "@label:textbox"
 msgid "Search notes:"
 msgstr ""
 
-#: finddialog/knotefinddialog.cpp:179
+#: finddialog/knotefinddialog.cpp:150
 #, kde-format
 msgctxt "@label"
 msgid "No Results found in search."
 msgstr ""
 
-#: finddialog/knotefinddialog.cpp:195
+#: finddialog/knotefinddialog.cpp:166
 #, kde-format
 msgid "Show Note"
 msgstr ""
 
-#: knoteconfigmodule.cpp:115 knoteconfigmodule.cpp:117
+#: knoteconfigmodule.cpp:80
 #, kde-format
 msgid "Show number of notes in tray icon"
 msgstr "Vis i systemkurven antall notater"
 
-#: knoteconfigmodule.cpp:126 knoteconfigmodule.cpp:128
+#: knoteconfigmodule.cpp:87
 #, kde-format
 msgid "Default Title:"
 msgstr "Standard tittel:"
 
-#: knoteconfigmodule.cpp:140
+#: knoteconfigmodule.cpp:94
 #, kde-format
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Hvordan virker dette?</a>"
 
-#: knoteconfigmodule.cpp:179
+#: knoteconfigmodule.cpp:129
 #, kde-format
 msgid ""
 "<qt><p>You can customize title note. You can use:</p><ul><li>%d current date "
@@ -477,12 +477,12 @@ msgstr ""
 "dato, kort format</li> <li>%l dagens dato, langt format</li> <li>%t "
 "klokkeslettet nå</li> </ul> </qt>"
 
-#: knoteconfigmodule.cpp:212 knoteconfigmodule.cpp:214
+#: knoteconfigmodule.cpp:151
 #, kde-format
 msgid "Theme:"
 msgstr "Tema:"
 
-#: knoteconfigmodule.cpp:229
+#: knoteconfigmodule.cpp:161
 #, kde-format
 msgid "Download new printing themes"
 msgstr "Last ned nye utskriftstemaer"
@@ -878,12 +878,12 @@ msgctxt "@label popup note name"
 msgid "Name:"
 msgstr ""
 
-#: kontactplugin/knoteslistwidgetsearchline.cpp:41
+#: kontactplugin/knoteslistwidgetsearchline.cpp:17
 #, kde-format
 msgid "Search notes..."
 msgstr ""
 
-#: kontactplugin/knoteslistwidgetsearchline.cpp:48
+#: kontactplugin/knoteslistwidgetsearchline.cpp:24
 #, kde-format
 msgid "Search notes...<%1>"
 msgstr ""
@@ -1001,7 +1001,7 @@ msgstr "Behold underst"
 msgid "To Desktop"
 msgstr "Til skrivebord"
 
-#: notes/knote.cpp:720
+#: notes/knote.cpp:716
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "Gå gjennom notater"
