@@ -99,7 +99,7 @@
 >Podeu imprimir i enviar les notes si es configura &knotes; per utilitzar les aplicacions d'ajuda. </para>
 
 <para
->Les funcions de visualització de notes com el color i el tipus de lletra es poden personalitzar per a cada nota. També podeu personalitzar els paràmetres per omissió. </para>
+>Les funcions de visualització de notes com el color i la lletra es poden personalitzar per a cada nota. També podeu personalitzar els paràmetres predeterminats. </para>
 
 <para
 >Després d'iniciar el &knotes; per primera vegada tindreu un recurs instal·lat que desarà totes les notes en una carpeta de directori de correu sota <filename
@@ -675,32 +675,32 @@
 <varlistentry>
 <term
 ><guilabel
->Tipus de lletra pel títol:</guilabel
+>Lletra del títol:</guilabel
 ></term>
 <listitem
 ><para
->Podeu canviar el tipus de lletra utilitzat pel títol de les notes.</para>
+>Podeu canviar la lletra utilitzada pel títol de les notes.</para>
 
 <para
 >Feu clic a <guibutton
 >Selecciona...</guibutton
-> per obrir el diàleg de selecció de tipus de lletra estàndard del &kde;.</para>
+> per obrir el diàleg de selecció de lletra estàndard del &kde;.</para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
 <term
 ><guilabel
->Tipus de lletra del text</guilabel
+>Lletra del text</guilabel
 ></term>
 <listitem>
 <para
->Podeu canviar el tipus de lletra utilitzar per al text de les notes.</para>
+>Podeu canviar la lletra utilitzada per al text de les notes.</para>
 
 <para
 >Feu clic a <guibutton
 >Selecciona...</guibutton
-> per obrir el diàleg de selecció de tipus de lletra estàndard del &kde;.</para
+> per obrir el diàleg de selecció de lletra estàndard del &kde;.</para
 ></listitem>
 </varlistentry>
 </variablelist>
