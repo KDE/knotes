@@ -96,7 +96,7 @@
 >&knotes; és un programa que et permet escriure l'equivalent informàtic de notes adhesives. Les notes es desen automàticament en sortir del programa, i es mostren quan el torneu a obrir. </para>
 
 <para
->Podeu imprimir i enviar les notes si es configura &knotes; per utilitzar les aplicacions d'ajuda. </para>
+>Podeu imprimir i enviar les notes si es configura &knotes; per a utilitzar les aplicacions d'ajuda. </para>
 
 <para
 >Les funcions de visualització de notes com el color i la lletra es poden personalitzar per a cada nota. També podeu personalitzar els paràmetres predeterminats. </para>
@@ -120,18 +120,18 @@
 >Crear una nota nova:</term>
 <listitem>
 <para
->Per crear una nova nota feu clic del &BDR; sobre la icona de la safata del &knotes; al i seleccioneu <guimenuitem
+>Per a crear una nota nova feu clic del &BDR; sobre la icona de la safata del &knotes; al i seleccioneu <guimenuitem
 >Nota nova</guimenuitem
 >.</para>
 <para
->Podeu crear una nova nota amb el contingut del porta-retalls seleccionant <guimenuitem
+>Podeu crear una nota nova amb el contingut del porta-retalls seleccionant <guimenuitem
 >Nota nova des del porta-retalls</guimenuitem
 > o utilitzar <guimenuitem
 >Nota nova des d'un fitxer de text</guimenuitem
 >.</para>
 
 <para
->Ara apareixerà un diàleg que permet seleccionar una carpeta per guardar la vostra nota:</para>
+>Ara apareixerà un diàleg que permet seleccionar una carpeta per a guardar la vostra nota:</para>
 
 <screenshot>
 <screeninfo
@@ -157,7 +157,7 @@
 >Escriure la nota:</term>
 <listitem>
 <para
->Per escriure la vostra nota, simplement escriviu-la a l'espai proporcionat. Les funcions d'edició teclat normal i ratolí estan suportades. Fent clic <mousebutton
+>Per a escriure la vostra nota, simplement escriviu-la a l'espai proporcionat. Les funcions d'edició teclat normal i ratolí estan suportades. Fent clic <mousebutton
 >dret</mousebutton
 > a l'espai d'edició proporcionarà les següents opcions de menú:</para>
 
@@ -347,7 +347,7 @@
 >Inserir la data:</term>
 <listitem>
 <para
->Per inserir la data actual a la nota, utilitzeu el menú contextual de l'espai d'edició i seleccioneu <guimenuitem
+>Per a inserir la data actual a la nota, utilitzeu el menú contextual de l'espai d'edició i seleccioneu <guimenuitem
 >Insereix la data</guimenuitem
 >.</para>
 <para
@@ -360,13 +360,13 @@
 >Reanomenar una nota:</term>
 <listitem>
 <para
->Per canviar el nom d'una nota feu clic del &BDR; sobre la barra de títol de la nota i seleccioneu <guimenuitem
+>Per a canviar el nom d'una nota feu clic del &BDR; sobre la barra de títol de la nota i seleccioneu <guimenuitem
 >Reanomena...</guimenuitem
 >.</para>
 <para
->Escriviu el nou nom de la nota al diàleg que apareix. Per acceptar el nou nom, premeu el botó <guibutton
+>Escriviu el nom nou de la nota al diàleg que apareix. Per a acceptar el nom nou, premeu el botó <guibutton
 >D'acord</guibutton
->. Per sortir del diàleg sense canviar el nom de la nota, premeu el botó <guibutton
+>. Per a sortir del diàleg sense canviar el nom de la nota, premeu el botó <guibutton
 >Cancel·la</guibutton
 >.</para>
 </listitem>
@@ -377,7 +377,7 @@
 >Enviar una nota:</term>
 <listitem>
 <para
->Per enviar una nota feu clic del &BDR; a la barra de títol de la nota i seleccioneu <guimenuitem
+>Per a enviar una nota feu clic del &BDR; a la barra de títol de la nota i seleccioneu <guimenuitem
 >Correu...</guimenuitem
 >.</para
 > 
@@ -393,7 +393,7 @@
 >Imprimir una nota:</term>
 <listitem>
 <para
->Per imprimir una nota feu clic del &BDR; a la barra de títol de la nota i seleccioneu <menuchoice
+>Per a imprimir una nota feu clic del &BDR; a la barra de títol de la nota i seleccioneu <menuchoice
 ><shortcut
 ><keycombo action="simul"
 >&Ctrl;<keycap
@@ -414,7 +414,7 @@
 >Eliminar una nota:</term>
 <listitem>
 <para
->Per eliminar una nota feu clic del &BDR; a la barra de títol de la nota i seleccioneu <guimenuitem
+>Per a eliminar una nota feu clic del &BDR; a la barra de títol de la nota i seleccioneu <guimenuitem
 >Esborra</guimenuitem
 >.</para>
 </listitem>
@@ -455,7 +455,7 @@
 >Enviar una nota:</term>
 <listitem>
 <para
->Per enviar una nota a un altre ordinador, seleccioneu <guimenuitem
+>Per a enviar una nota a un altre ordinador, seleccioneu <guimenuitem
 >Envia...</guimenuitem
 > al menú contextual de la barra de títol de la nota. Afegiu un nom de màquina o adreça IP o escolliu un destinatari des de la llista de notes enviades prèviament. Si els destinataris permeten les notes entrants, la nota apareixerà a la seva pantalla, indicant l'identificador de remitent a la barra de títol.</para>
 </listitem>
@@ -466,7 +466,7 @@
 >Bloquejar una nota:</term>
 <listitem>
 <para
->Per evitar canvis accidentals en una nota seleccioneu <guimenuitem
+>Per a evitar canvis accidentals en una nota seleccioneu <guimenuitem
 >Bloca</guimenuitem
 > al menú contextual de la barra de títol de la nota.</para>
 </listitem>
@@ -520,17 +520,17 @@
 >Funcions de l'escriptori:</term>
 <listitem>
 <para
->Per enviar una nota a un escriptori específic, feu clic del &BDR; a la barra de títol de la nota i escolliu <guisubmenu
+>Per a enviar una nota a un escriptori específic, feu clic del &BDR; a la barra de títol de la nota i escolliu <guisubmenu
 >A l'escriptori</guisubmenu
 >. Trieu l'escriptori desitjat, o bé, <guisubmenu
 >Tots els escriptoris</guisubmenu
 >.</para>
 <para
->Per fer que la nota romangui a la part superior d'altres finestres feu clic del &BDR; a la barra de títol de la nota i seleccioneu <guimenuitem
+>Per a fer que la nota romangui a la part superior d'altres finestres feu clic del &BDR; a la barra de títol de la nota i seleccioneu <guimenuitem
 >Mantén sobre les altres</guimenuitem
 >.</para>
 <para
->Per tornar la nota a un comportament de finestra més normal, seleccioneu <guimenuitem
+>Per a tornar la nota a un comportament de finestra més normal, seleccioneu <guimenuitem
 >Mantén sota les altres</guimenuitem
 >.</para>
 </listitem>
@@ -541,7 +541,7 @@
 >Sortir de &knotes;</term>
 <listitem>
 <para
->Per sortir de &knotes; feu clic del &BDR; a la icona del plafó i seleccioneu <guimenuitem
+>Per a sortir de &knotes; feu clic del &BDR; a la icona del plafó i seleccioneu <guimenuitem
 >Surt</guimenuitem
 >.</para>
 </listitem>
@@ -560,7 +560,7 @@
 >Configurar l'arranjament per omissió de &knotes;</title>
 
 <para
->Per configurar &knotes; feu clic del &BDR; a la icona del plafó. Seleccioneu <guimenuitem
+>Per a configurar &knotes; feu clic del &BDR; a la icona del plafó. Seleccioneu <guimenuitem
 >Configura KNotes...</guimenuitem
 >. S'obrirà el diàleg <guilabel
 >Arranjament de KNotes</guilabel
@@ -668,7 +668,7 @@
 ></term>
 <listitem>
 <para
->Marqueu aquesta opció per tenir una barra d'eines de format a la part inferior de qualsevol finestra de nota.</para>
+>Marqueu aquesta opció per a tenir una barra d'eines de format a la part inferior de qualsevol finestra de nota.</para>
 </listitem>
 </varlistentry>
 
@@ -684,7 +684,7 @@
 <para
 >Feu clic a <guibutton
 >Selecciona...</guibutton
-> per obrir el diàleg de selecció de lletra estàndard del &kde;.</para>
+> per a obrir el diàleg de selecció de lletra estàndard del &kde;.</para>
 </listitem>
 </varlistentry>
 
@@ -700,7 +700,7 @@
 <para
 >Feu clic a <guibutton
 >Selecciona...</guibutton
-> per obrir el diàleg de selecció de lletra estàndard del &kde;.</para
+> per a obrir el diàleg de selecció de lletra estàndard del &kde;.</para
 ></listitem>
 </varlistentry>
 </variablelist>
@@ -715,13 +715,13 @@
 ></term>
 <listitem
 ><para
->Escriviu en aquest quadre d'edició una ordre per enviar correu electrònic amb totes les opcions de la línia d'ordres necessàries.</para>
+>Escriviu una ordre de correu electrònic amb totes les opcions necessàries de la línia d'ordres en aquest quadre d'edició.</para>
 <para
 >Utilitzeu <token
 >%f</token
-> a la línia d'ordres per passar el text net de la nota i utilitzant <token
+> a la línia d'ordres per a passar el text net de la nota i utilitzant <token
 >%t</token
-> per passar el títol de la nota a l'ordre de correu.</para>
+> per a passar el títol de la nota a l'ordre de correu.</para>
 </listitem>
 </varlistentry>
 
@@ -737,7 +737,7 @@
 ></term>
 <listitem
 ><para
->Activeu aquesta opció per permetre la recepció de les notes d'altres ordinadors.</para
+>Activeu aquesta opció per a permetre la recepció de les notes d'altres ordinadors.</para
 ></listitem>
 </varlistentry>
 
@@ -759,7 +759,7 @@
 ></term>
 <listitem
 ><para
->El port utilitzat per enviar les notes a través de la xarxa, per omissió és 24837.</para
+>El port utilitzat per a enviar les notes a través de la xarxa, per omissió és 24837.</para
 ></listitem>
 </varlistentry>
 </variablelist>
@@ -774,7 +774,7 @@
 ></term>
 <listitem
 ><para
->El tema utilitzat per imprimir la nota.</para
+>El tema utilitzat per a imprimir la nota.</para
 ></listitem>
 </varlistentry>
 </variablelist>
@@ -789,7 +789,7 @@
 ></term>
 <listitem
 ><para
->En aquesta pestanya podeu seleccionar quines carpetes es mostraran en activar la casella de selecció al davant de les carpetes, canviar la carpeta per omissió per desar i afegir subcarpetes per a les notes.</para
+>En aquesta pestanya podeu seleccionar quines carpetes es mostraran en activar la casella de selecció al davant de les carpetes, canviar la carpeta per omissió per a desar i afegir subcarpetes per a les notes.</para
 ></listitem>
 </varlistentry>
 <varlistentry>
@@ -837,7 +837,7 @@
 >, però només s'aplicarà a la nota que esteu canviant. Qualsevol altra nota oberta, i les notes que creeu, utilitzaran la configuració per omissió.</para>
 
 <para
->Per personalitzar una sola nota feu clic del &BDR; a la barra de títol de la nota i seleccioneu <guimenuitem
+>Per a personalitzar una sola nota feu clic del &BDR; a la barra de títol de la nota i seleccioneu <guimenuitem
 >Preferències...</guimenuitem
 >.</para>
 <para
