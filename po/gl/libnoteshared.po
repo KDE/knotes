@@ -172,7 +172,7 @@ msgstr "Nota: «%1»"
 #: noteutils.cpp:46
 #, kde-format
 msgid "Unable to start the mail process."
-msgstr "Non se pode iniciar o proceso de correo."
+msgstr "Non é posíbel iniciar o proceso de correo."
 
 #: noteutils.cpp:55
 #, kde-format
