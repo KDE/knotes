@@ -23,21 +23,21 @@ public:
 
     void setDisplayAttribute(const NoteShared::NoteDisplayAttribute *attr);
     const NoteShared::NoteDisplayAttribute *displayAttribute() const;
-    Q_REQUIRED_RESULT QColor backgroundColor() const;
+    [[nodiscard]] QColor backgroundColor() const;
 
-    Q_REQUIRED_RESULT QColor foregroundColor() const;
-    Q_REQUIRED_RESULT QSize size() const;
-    Q_REQUIRED_RESULT bool rememberDesktop() const;
-    Q_REQUIRED_RESULT int tabSize() const;
-    Q_REQUIRED_RESULT QFont font() const;
-    Q_REQUIRED_RESULT QFont titleFont() const;
-    Q_REQUIRED_RESULT int desktop() const;
-    Q_REQUIRED_RESULT bool isHidden() const;
-    Q_REQUIRED_RESULT QPoint position() const;
-    Q_REQUIRED_RESULT bool showInTaskbar() const;
-    Q_REQUIRED_RESULT bool keepAbove() const;
-    Q_REQUIRED_RESULT bool keepBelow() const;
-    Q_REQUIRED_RESULT bool autoIndent() const;
+    [[nodiscard]] QColor foregroundColor() const;
+    [[nodiscard]] QSize size() const;
+    [[nodiscard]] bool rememberDesktop() const;
+    [[nodiscard]] int tabSize() const;
+    [[nodiscard]] QFont font() const;
+    [[nodiscard]] QFont titleFont() const;
+    [[nodiscard]] int desktop() const;
+    [[nodiscard]] bool isHidden() const;
+    [[nodiscard]] QPoint position() const;
+    [[nodiscard]] bool showInTaskbar() const;
+    [[nodiscard]] bool keepAbove() const;
+    [[nodiscard]] bool keepBelow() const;
+    [[nodiscard]] bool autoIndent() const;
 
 private:
     const NoteShared::NoteDisplayAttribute *mDisplayAttribute = nullptr;

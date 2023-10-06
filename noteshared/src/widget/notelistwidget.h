@@ -22,11 +22,11 @@ public:
     void addNotes(const Akonadi::Item::List &notes);
     void removeNote(const Akonadi::Item &note);
 
-    Q_REQUIRED_RESULT Akonadi::Item::Id itemId(QListWidgetItem *item) const;
+    [[nodiscard]] Akonadi::Item::Id itemId(QListWidgetItem *item) const;
 
-    Q_REQUIRED_RESULT Akonadi::Item::Id currentItemId() const;
+    [[nodiscard]] Akonadi::Item::Id currentItemId() const;
 
-    Q_REQUIRED_RESULT Akonadi::Item::List selectedNotes() const;
+    [[nodiscard]] Akonadi::Item::List selectedNotes() const;
 
 private:
     void createItem(const Akonadi::Item &note);

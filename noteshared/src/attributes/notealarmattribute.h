@@ -17,18 +17,18 @@ public:
     NoteAlarmAttribute();
     ~NoteAlarmAttribute() override;
 
-    Q_REQUIRED_RESULT QByteArray type() const override;
+    [[nodiscard]] QByteArray type() const override;
 
     NoteAlarmAttribute *clone() const override;
 
-    Q_REQUIRED_RESULT QByteArray serialized() const override;
+    [[nodiscard]] QByteArray serialized() const override;
 
     void deserialize(const QByteArray &data) override;
 
     void setDateTime(const QDateTime &dateTime);
-    Q_REQUIRED_RESULT QDateTime dateTime() const;
+    [[nodiscard]] QDateTime dateTime() const;
 
-    Q_REQUIRED_RESULT bool operator==(const NoteAlarmAttribute &other) const;
+    [[nodiscard]] bool operator==(const NoteAlarmAttribute &other) const;
 
 private:
     QDateTime mDateTime;

@@ -23,10 +23,10 @@ public:
 
     void setNotes(const QHash<Akonadi::Item::Id, KNote *> &notes);
 
-    Q_REQUIRED_RESULT QList<KNotePrintObject *> selectedNotes() const;
-    Q_REQUIRED_RESULT QString selectedTheme() const;
+    [[nodiscard]] QList<KNotePrintObject *> selectedNotes() const;
+    [[nodiscard]] QString selectedTheme() const;
 
-    Q_REQUIRED_RESULT bool preview() const;
+    [[nodiscard]] bool preview() const;
 
 private Q_SLOTS:
     void slotPreview();

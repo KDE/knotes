@@ -40,8 +40,8 @@ public:
     explicit KNotesApp(QWidget *parent = nullptr);
     ~KNotesApp() override;
 
-    Q_REQUIRED_RESULT QString name(Akonadi::Item::Id id) const;
-    Q_REQUIRED_RESULT QString text(Akonadi::Item::Id id) const;
+    [[nodiscard]] QString name(Akonadi::Item::Id id) const;
+    [[nodiscard]] QString text(Akonadi::Item::Id id) const;
 public Q_SLOTS:
     void newNote(const QString &name = QString(), const QString &text = QString());
     void newNoteFromClipboard();
@@ -53,7 +53,7 @@ public Q_SLOTS:
     void setText(Akonadi::Item::Id id, const QString &newText);
 
 protected:
-    Q_REQUIRED_RESULT bool event(QEvent *e) override;
+    [[nodiscard]] bool event(QEvent *e) override;
 
 private:
     void showNote(KNote *note) const;

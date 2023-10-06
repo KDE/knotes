@@ -17,17 +17,17 @@ public:
     void showConfigureDialog(qlonglong windowId = 0);
 
     void setEnableAgent(bool b);
-    Q_REQUIRED_RESULT bool enabledAgent() const;
+    [[nodiscard]] bool enabledAgent() const;
 
     void reload();
 
-    Q_REQUIRED_RESULT bool receiveNotes() const;
+    [[nodiscard]] bool receiveNotes() const;
     void setReceiveNotes(bool b);
 
     void setPort(int value);
-    Q_REQUIRED_RESULT int port() const;
+    [[nodiscard]] int port() const;
 
-    Q_REQUIRED_RESULT int alarmCheckInterval() const;
+    [[nodiscard]] int alarmCheckInterval() const;
     void setAlarmCheckInterval(int value);
 
     void configurationChanged();

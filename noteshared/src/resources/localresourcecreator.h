@@ -19,7 +19,7 @@ public:
 
     void createIfMissing();
 
-    Q_REQUIRED_RESULT static QString akonadiNotesInstanceName();
+    [[nodiscard]] static QString akonadiNotesInstanceName();
 
 protected:
     virtual void finishCreateResource();

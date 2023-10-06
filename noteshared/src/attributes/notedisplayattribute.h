@@ -21,48 +21,48 @@ public:
     NoteDisplayAttribute();
     ~NoteDisplayAttribute() override;
 
-    Q_REQUIRED_RESULT QByteArray type() const override;
+    [[nodiscard]] QByteArray type() const override;
 
     NoteDisplayAttribute *clone() const override;
 
-    Q_REQUIRED_RESULT QByteArray serialized() const override;
+    [[nodiscard]] QByteArray serialized() const override;
 
     void deserialize(const QByteArray &data) override;
 
     void setBackgroundColor(const QColor &color);
-    Q_REQUIRED_RESULT QColor backgroundColor() const;
-    Q_REQUIRED_RESULT QColor foregroundColor() const;
+    [[nodiscard]] QColor backgroundColor() const;
+    [[nodiscard]] QColor foregroundColor() const;
     void setForegroundColor(const QColor &color);
 
-    Q_REQUIRED_RESULT QSize size() const;
+    [[nodiscard]] QSize size() const;
     void setSize(const QSize &size);
 
-    Q_REQUIRED_RESULT bool rememberDesktop() const;
+    [[nodiscard]] bool rememberDesktop() const;
     void setRememberDesktop(bool b);
     void setTabSize(int value);
-    Q_REQUIRED_RESULT int tabSize() const;
+    [[nodiscard]] int tabSize() const;
 
     void setFont(const QFont &f);
-    Q_REQUIRED_RESULT QFont font() const;
+    [[nodiscard]] QFont font() const;
     void setTitleFont(const QFont &f);
-    Q_REQUIRED_RESULT QFont titleFont() const;
+    [[nodiscard]] QFont titleFont() const;
 
     void setDesktop(int v);
-    Q_REQUIRED_RESULT int desktop() const;
+    [[nodiscard]] int desktop() const;
     void setIsHidden(bool b);
-    Q_REQUIRED_RESULT bool isHidden() const;
+    [[nodiscard]] bool isHidden() const;
     void setPosition(const QPoint &pos);
-    Q_REQUIRED_RESULT QPoint position() const;
+    [[nodiscard]] QPoint position() const;
     void setShowInTaskbar(bool b);
-    Q_REQUIRED_RESULT bool showInTaskbar() const;
+    [[nodiscard]] bool showInTaskbar() const;
     void setKeepAbove(bool b);
-    Q_REQUIRED_RESULT bool keepAbove() const;
+    [[nodiscard]] bool keepAbove() const;
     void setKeepBelow(bool b);
-    Q_REQUIRED_RESULT bool keepBelow() const;
+    [[nodiscard]] bool keepBelow() const;
 
-    Q_REQUIRED_RESULT bool autoIndent() const;
+    [[nodiscard]] bool autoIndent() const;
     void setAutoIndent(bool b);
-    Q_REQUIRED_RESULT bool operator==(const NoteDisplayAttribute &other) const;
+    [[nodiscard]] bool operator==(const NoteDisplayAttribute &other) const;
 
 private:
     QFont mFont;

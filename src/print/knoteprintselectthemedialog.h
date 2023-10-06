@@ -17,7 +17,7 @@ public:
     explicit KNotePrintSelectThemeDialog(QWidget *parent = nullptr);
     ~KNotePrintSelectThemeDialog() override;
 
-    Q_REQUIRED_RESULT QString selectedTheme() const;
+    [[nodiscard]] QString selectedTheme() const;
 
 private:
     KNotePrintSelectThemeComboBox *const mThemes;

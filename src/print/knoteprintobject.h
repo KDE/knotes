@@ -26,13 +26,13 @@ public:
     explicit KNotePrintObject(const Akonadi::Item &item, QObject *parent = nullptr);
     ~KNotePrintObject() override;
 
-    Q_REQUIRED_RESULT QString description() const;
-    Q_REQUIRED_RESULT QString name() const;
-    Q_REQUIRED_RESULT QString currentDateTime() const;
-    Q_REQUIRED_RESULT bool hasAlarm() const;
-    Q_REQUIRED_RESULT QString alarm() const;
-    Q_REQUIRED_RESULT bool isLock() const;
-    Q_REQUIRED_RESULT QString backgroundColorName() const;
+    [[nodiscard]] QString description() const;
+    [[nodiscard]] QString name() const;
+    [[nodiscard]] QString currentDateTime() const;
+    [[nodiscard]] bool hasAlarm() const;
+    [[nodiscard]] QString alarm() const;
+    [[nodiscard]] bool isLock() const;
+    [[nodiscard]] QString backgroundColorName() const;
 
 private:
     Akonadi::Item mItem;

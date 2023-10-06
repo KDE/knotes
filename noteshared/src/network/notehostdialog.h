@@ -27,11 +27,11 @@ public:
     explicit NoteHostDialog(const QString &caption, QWidget *parent = nullptr);
     ~NoteHostDialog() override;
 
-    Q_REQUIRED_RESULT QString host() const;
+    [[nodiscard]] QString host() const;
     /**
      * Returns 0 if port was not specified
      */
-    Q_REQUIRED_RESULT quint16 port() const;
+    [[nodiscard]] quint16 port() const;
 
 private:
     void slotTextChanged(const QString &);

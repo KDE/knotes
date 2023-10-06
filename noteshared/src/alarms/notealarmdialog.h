@@ -26,7 +26,7 @@ public:
     explicit NoteAlarmDialog(const QString &caption, QWidget *parent = nullptr);
     ~NoteAlarmDialog() override;
     void setAlarm(const QDateTime &dateTime);
-    Q_REQUIRED_RESULT QDateTime alarm() const;
+    [[nodiscard]] QDateTime alarm() const;
 
 private:
     void slotButtonChanged(QAbstractButton *button);

@@ -19,9 +19,9 @@ public:
         QString noteText;
     };
     NoteUtils();
-    Q_REQUIRED_RESULT bool sendToMail(QWidget *parent, const QString &title, const QString &message);
+    [[nodiscard]] bool sendToMail(QWidget *parent, const QString &title, const QString &message);
     void sendToNetwork(QWidget *parent, const QString &title, const QString &message);
-    Q_REQUIRED_RESULT QString createToolTip(const Akonadi::Item &item);
-    Q_REQUIRED_RESULT NoteText extractNoteText(QString noteText, const QString &titleAddon);
+    [[nodiscard]] QString createToolTip(const Akonadi::Item &item);
+    [[nodiscard]] NoteText extractNoteText(QString noteText, const QString &titleAddon);
 };
 }

@@ -24,7 +24,7 @@ public:
     ~KNotePrinter() override;
 
     void setDefaultFont(const QFont &font);
-    Q_REQUIRED_RESULT QFont defaultFont() const;
+    [[nodiscard]] QFont defaultFont() const;
     void printNotes(const QList<KNotePrintObject *> &lst, const QString &themePath, bool preview);
 
 private Q_SLOTS:
