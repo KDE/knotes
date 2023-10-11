@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 add_definitions(-DTRANSLATION_DOMAIN=\"knotes\")
 
-configure_file(config-knotes.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-knotes.h )
+configure_file(config-knotes.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-knotes.h )
 
 add_subdirectory(icons)
 
@@ -47,7 +47,7 @@ target_sources(knotesprivate PRIVATE
     print/knoteprintobject.h
     print/knotegrantleeprint.h
     )
-configure_file(settings/knotesglobalconfig.kcfg.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg )
+configure_file(settings/knotesglobalconfig.kcfg.in ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg )
 
 set( libknotesprivate_kcfg_lib_SRCS settings/knotesglobalconfig.kcfgc )
 

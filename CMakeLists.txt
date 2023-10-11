@@ -118,7 +118,7 @@ ecm_set_disabled_deprecation_versions(QT 6.5
      KF 5.240.0
 )
 
-configure_file(knotes-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/knotes-version.h @ONLY)
+configure_file(knotes-version.h.in ${CMAKE_CURRENT_BINARY_DIR}/knotes-version.h @ONLY)
 if(BUILD_TESTING)
    add_definitions(-DBUILD_TESTING)
    find_package(Qt6 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Test)
