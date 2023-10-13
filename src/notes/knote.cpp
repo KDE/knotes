@@ -594,10 +594,12 @@ void KNote::updateKeepAboveBelow(bool save)
 void KNote::slotUpdateShowInTaskbar()
 {
 #if KDEPIM_HAVE_X11
-    if (!mDisplayAttribute->showInTaskbar()) {
-        KWindowSystem::setState(winId(), KWindowInfo(winId(), NET::WMState).state() | NET::SkipTaskbar);
-    } else {
-        KWindowSystem::clearState(winId(), NET::SkipTaskbar);
+    if (KWindowSystem::isPlatformX11()) {
+        if (!mDisplayAttribute->showInTaskbar()) {
+            KX11Extras::setState(winId(), KWindowInfo(winId(), NET::WMState).state() | NET::SkipTaskbar);
+        } else {
+            KX11Extras::clearState(winId(), NET::SkipTaskbar);
+        }
     }
 #endif
 }
