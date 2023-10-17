@@ -26,19 +26,19 @@ NoteUtils::NoteUtils() = default;
 bool NoteUtils::sendToMail(QWidget *parent, const QString &title, const QString &message)
 {
     // get the mail action command
-    const QStringList cmd_list = NoteShared::NoteSharedGlobalConfig::mailAction().split(QLatin1Char(' '), Qt::SkipEmptyParts);
+    const QList<QStringView> cmd_list = QStringView(NoteShared::NoteSharedGlobalConfig::mailAction()).split(QLatin1Char(' '), Qt::SkipEmptyParts);
     if (cmd_list.isEmpty()) {
         KMessageBox::error(parent, i18n("Please configure send mail action."));
         return false;
     }
     KProcess mail;
-    for (const QString &cmd : cmd_list) {
+    for (const QStringView &cmd : cmd_list) {
         if (cmd == QLatin1String("%f")) {
             mail << message;
         } else if (cmd == QLatin1String("%t")) {
             mail << i18n("Note: \"%1\"", title);
         } else {
-            mail << cmd;
+            mail << cmd.toString();
         }
     }
 
