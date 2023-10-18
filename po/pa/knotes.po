@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-10-18 01:42+0000\n"
 "PO-Revision-Date: 2012-12-20 08:55+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -679,32 +679,32 @@ msgstr "ਸਟਾਇਲ ਸੈਟਿੰਗ"
 msgid "Preferences KNotes..."
 msgstr "ਮੇਰੀ ਪਸੰਦ..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:682
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:684
 #, kde-format
 msgid "Mail..."
 msgstr "ਮੇਲ..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:678
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:680
 #, kde-format
 msgid "Send..."
 msgstr "ਭੇਜੋ..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:674
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:676
 #, kde-format
 msgid "Set Alarm..."
 msgstr "ਅਲਾਰਮ ਸੈੱਟ ਕਰੋ..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:686
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:688
 #, kde-format
 msgid "Save As..."
 msgstr "ਇੰਝ ਸੰਭਾਲੋ..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:660
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:662
 #, kde-format
 msgid "Lock"
 msgstr "ਲਾਕ"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:663
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:665
 #, kde-format
 msgid "Unlock"
 msgstr "ਤਾਲਾ-ਖੋਲ੍ਹੋ"
@@ -1000,52 +1000,52 @@ msgctxt "@title:window"
 msgid "Save As"
 msgstr "ਇੰਝ ਸੰਭਾਲੋ"
 
-#: notes/knote.cpp:610
+#: notes/knote.cpp:612
 #, kde-format
 msgid "&All Desktops"
 msgstr "ਸਭ ਡੈਸਕਟਾਪ(&A)"
 
-#: notes/knote.cpp:652
+#: notes/knote.cpp:654
 #, kde-format
 msgid "New"
 msgstr "ਨਵਾਂ"
 
-#: notes/knote.cpp:656
+#: notes/knote.cpp:658
 #, kde-format
 msgid "Rename..."
 msgstr "ਨਾਂ ਬਦਲੋ..."
 
-#: notes/knote.cpp:665
+#: notes/knote.cpp:667
 #, kde-format
 msgid "Hide"
 msgstr "ਓਹਲੇ"
 
-#: notes/knote.cpp:670
+#: notes/knote.cpp:672
 #, kde-format
 msgid "Delete"
 msgstr "ਹਟਾਓ"
 
-#: notes/knote.cpp:695
+#: notes/knote.cpp:697
 #, kde-format
 msgid "Preferences..."
 msgstr "ਮੇਰੀ ਪਸੰਦ..."
 
-#: notes/knote.cpp:699
+#: notes/knote.cpp:701
 #, kde-format
 msgid "Keep Above Others"
 msgstr "ਸਭ ਤੋਂ ਉੱਤੇ ਰੱਖੋ"
 
-#: notes/knote.cpp:703
+#: notes/knote.cpp:705
 #, kde-format
 msgid "Keep Below Others"
 msgstr "ਹੋਰਾਂ ਦੇ ਹੇਠਾਂ ਰੱਖੋ"
 
-#: notes/knote.cpp:708
+#: notes/knote.cpp:710
 #, kde-format
 msgid "To Desktop"
 msgstr "ਡੈਸਕਟਾਪ ਉੱਤੇ"
 
-#: notes/knote.cpp:716
+#: notes/knote.cpp:718
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "ਨੋਟਿਸਾਂ ਵਿੱਚ ਵੇਖੋ"

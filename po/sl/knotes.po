@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-10-18 01:42+0000\n"
 "PO-Revision-Date: 2023-03-29 08:17+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -668,32 +668,32 @@ msgstr "Nastavitve sporočilca ..."
 msgid "Preferences KNotes..."
 msgstr "Možnosti KNotes ..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:682
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:684
 #, kde-format
 msgid "Mail..."
 msgstr "Pošta ..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:678
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:680
 #, kde-format
 msgid "Send..."
 msgstr "Pošlji ..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:674
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:676
 #, kde-format
 msgid "Set Alarm..."
 msgstr "Nastavi alarm ..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:686
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:688
 #, kde-format
 msgid "Save As..."
 msgstr "Shrani kot ..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:660
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:662
 #, kde-format
 msgid "Lock"
 msgstr "Zakleni"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:663
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:665
 #, kde-format
 msgid "Unlock"
 msgstr "Odkleni"
@@ -965,52 +965,52 @@ msgctxt "@title:window"
 msgid "Save As"
 msgstr "Shrani kot"
 
-#: notes/knote.cpp:610
+#: notes/knote.cpp:612
 #, kde-format
 msgid "&All Desktops"
 msgstr "Vs&a namizja"
 
-#: notes/knote.cpp:652
+#: notes/knote.cpp:654
 #, kde-format
 msgid "New"
 msgstr "Novo"
 
-#: notes/knote.cpp:656
+#: notes/knote.cpp:658
 #, kde-format
 msgid "Rename..."
 msgstr "Preimenuj ..."
 
-#: notes/knote.cpp:665
+#: notes/knote.cpp:667
 #, kde-format
 msgid "Hide"
 msgstr "Skrij"
 
-#: notes/knote.cpp:670
+#: notes/knote.cpp:672
 #, kde-format
 msgid "Delete"
 msgstr "Izbriši"
 
-#: notes/knote.cpp:695
+#: notes/knote.cpp:697
 #, kde-format
 msgid "Preferences..."
 msgstr "Možnosti ..."
 
-#: notes/knote.cpp:699
+#: notes/knote.cpp:701
 #, kde-format
 msgid "Keep Above Others"
 msgstr "Ohrani nad drugimi"
 
-#: notes/knote.cpp:703
+#: notes/knote.cpp:705
 #, kde-format
 msgid "Keep Below Others"
 msgstr "Ohrani pod drugimi"
 
-#: notes/knote.cpp:708
+#: notes/knote.cpp:710
 #, kde-format
 msgid "To Desktop"
 msgstr "Na namizje"
 
-#: notes/knote.cpp:716
+#: notes/knote.cpp:718
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "Sprehodi se skozi sporočilca"
