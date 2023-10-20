@@ -61,6 +61,7 @@
 #include <QMenu>
 #include <QStyle>
 #if KDEPIM_HAVE_X11
+#include <KWindowInfo>
 #include <KX11Extras>
 #endif
 
