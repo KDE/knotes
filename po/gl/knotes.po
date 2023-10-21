@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-18 01:42+0000\n"
+"POT-Creation-Date: 2023-10-21 01:39+0000\n"
 "PO-Revision-Date: 2023-05-01 11:12+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -55,74 +55,74 @@ msgstr "Suprimir a creación dunha nota nova nunha instancia non única."
 msgid "KNotes: Sticky notes by KDE"
 msgstr "KNotes: Notas pegañentas de KDE"
 
-#: apps/knotesapp.cpp:88
+#: apps/knotesapp.cpp:89
 #, kde-format
 msgid "New Note"
 msgstr "Nova nota"
 
-#: apps/knotesapp.cpp:95 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:96 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "Nova nota desde o portapapeis"
 
-#: apps/knotesapp.cpp:100 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:101 kontactplugin/knotes_part.cpp:158
 #, kde-format
 msgid "New Note From Text File..."
 msgstr "Nova nota desde un ficheiro de texto…"
 
-#: apps/knotesapp.cpp:104
+#: apps/knotesapp.cpp:105
 #, kde-format
 msgid "Show All Notes"
 msgstr "Amosar todas as notas"
 
-#: apps/knotesapp.cpp:109
+#: apps/knotesapp.cpp:110
 #, kde-format
 msgid "Hide All Notes"
 msgstr "Agochar todas as notas"
 
-#: apps/knotesapp.cpp:114 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "Imprimir as notas seleccionadas…"
 
-#: apps/knotesapp.cpp:119
+#: apps/knotesapp.cpp:120
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Eliminar as notas seleccionadas…"
 
-#: apps/knotesapp.cpp:402 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "Seleccionar un ficheiro de texto"
 
-#: apps/knotesapp.cpp:402 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "Ficheiro de texto"
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "Produciuse un erro ao abrir o ficheiro de texto: %1"
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "Abrir un ficheiro de texto"
 
-#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:412 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "Nota desde o ficheiro «%1»"
 
-#: apps/knotesapp.cpp:504
+#: apps/knotesapp.cpp:505
 #, kde-format
 msgid "No Notes"
 msgstr "Sen notas"
 
-#: apps/knotesapp.cpp:557 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:558 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "Opcións"
@@ -673,32 +673,32 @@ msgstr "Configuración das notas…"
 msgid "Preferences KNotes..."
 msgstr "Preferencias de KNotes…"
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:684
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:685
 #, kde-format
 msgid "Mail..."
 msgstr "Enviar por correo…"
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:680
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:681
 #, kde-format
 msgid "Send..."
 msgstr "Enviar…"
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:676
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:677
 #, kde-format
 msgid "Set Alarm..."
 msgstr "Pór a alarma…"
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:688
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:689
 #, kde-format
 msgid "Save As..."
 msgstr "Gardar como…"
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:662
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:663
 #, kde-format
 msgid "Lock"
 msgstr "Bloquear"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:665
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
 #, kde-format
 msgid "Unlock"
 msgstr "Desbloquear"
@@ -777,7 +777,7 @@ msgstr "Texto simple (*.txt)"
 msgid "Save As"
 msgstr "Gardar como"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:507
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:508
 #, kde-format
 msgid ""
 "<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
@@ -937,83 +937,83 @@ msgstr "Eliminar a nota…"
 msgid "Read Popup Note: \"%1\""
 msgstr "Ler a nota emerxente: «%1»"
 
-#: notes/knote.cpp:131
+#: notes/knote.cpp:132
 #, kde-format
 msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
 msgstr "<qt>Seguro que quere eliminar a nota <b>%1</b>?</qt>"
 
-#: notes/knote.cpp:132
+#: notes/knote.cpp:133
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Confirmar a eliminación"
 
-#: notes/knote.cpp:133
+#: notes/knote.cpp:134
 #, kde-format
 msgid "&Delete"
 msgstr "Elimina&r"
 
-#: notes/knote.cpp:257
+#: notes/knote.cpp:258
 #, kde-format
 msgid "Please enter the new name:"
 msgstr "Insira o nome novo:"
 
-#: notes/knote.cpp:483
+#: notes/knote.cpp:484
 #, kde-format
 msgid "Save note as plain text"
 msgstr "Gardar a nota como texto simple"
 
-#: notes/knote.cpp:490
+#: notes/knote.cpp:491
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Gardar como"
 
-#: notes/knote.cpp:612
+#: notes/knote.cpp:613
 #, kde-format
 msgid "&All Desktops"
 msgstr "&Todos os escritorios"
 
-#: notes/knote.cpp:654
+#: notes/knote.cpp:655
 #, kde-format
 msgid "New"
 msgstr "Nova"
 
-#: notes/knote.cpp:658
+#: notes/knote.cpp:659
 #, kde-format
 msgid "Rename..."
 msgstr "Renomear…"
 
-#: notes/knote.cpp:667
+#: notes/knote.cpp:668
 #, kde-format
 msgid "Hide"
 msgstr "Agochar"
 
-#: notes/knote.cpp:672
+#: notes/knote.cpp:673
 #, kde-format
 msgid "Delete"
 msgstr "Eliminar"
 
-#: notes/knote.cpp:697
+#: notes/knote.cpp:698
 #, kde-format
 msgid "Preferences..."
 msgstr "Preferencias…"
 
-#: notes/knote.cpp:701
+#: notes/knote.cpp:702
 #, kde-format
 msgid "Keep Above Others"
 msgstr "Manter enriba das outras"
 
-#: notes/knote.cpp:705
+#: notes/knote.cpp:706
 #, kde-format
 msgid "Keep Below Others"
 msgstr "Manter embaixo das outras"
 
-#: notes/knote.cpp:710
+#: notes/knote.cpp:711
 #, kde-format
 msgid "To Desktop"
 msgstr "Para o escritorio"
 
-#: notes/knote.cpp:718
+#: notes/knote.cpp:719
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "Navegar polas notas"

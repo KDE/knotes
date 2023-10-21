@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-18 01:42+0000\n"
+"POT-Creation-Date: 2023-10-21 01:39+0000\n"
 "PO-Revision-Date: 2017-05-16 06:41-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Hebrew <en@li.org>\n"
@@ -26,7 +26,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 3.9.6\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
+"n % 10 == 0) ? 2 : 3));\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -48,74 +49,74 @@ msgstr "מנע יצירת פתק חדש במקרה שהתוכנית פתוחה �
 msgid "KNotes: Sticky notes by KDE"
 msgstr "KNotes: פתקים דביקים  עבור KDE"
 
-#: apps/knotesapp.cpp:88
+#: apps/knotesapp.cpp:89
 #, kde-format
 msgid "New Note"
 msgstr "פתק חדש"
 
-#: apps/knotesapp.cpp:95 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:96 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "פתק חדש מלוח העריכה"
 
-#: apps/knotesapp.cpp:100 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:101 kontactplugin/knotes_part.cpp:158
 #, fuzzy, kde-format
 msgid "New Note From Text File..."
 msgstr "פתק חדש מלוח העריכה"
 
-#: apps/knotesapp.cpp:104
+#: apps/knotesapp.cpp:105
 #, kde-format
 msgid "Show All Notes"
 msgstr "הצג את כל הפתקים"
 
-#: apps/knotesapp.cpp:109
+#: apps/knotesapp.cpp:110
 #, kde-format
 msgid "Hide All Notes"
 msgstr "הסתר את כל הפתקים"
 
-#: apps/knotesapp.cpp:114 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:121
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "הדפס פתק"
 
-#: apps/knotesapp.cpp:119
+#: apps/knotesapp.cpp:120
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "הדפס פתק"
 
-#: apps/knotesapp.cpp:402 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr ""
 
-#: apps/knotesapp.cpp:402 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 msgid "Text File"
 msgstr "גודל טקסט"
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr ""
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
 #, fuzzy, kde-format
 msgid "Open Text File"
 msgstr "גודל טקסט"
 
-#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:412 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr ""
 
-#: apps/knotesapp.cpp:504
+#: apps/knotesapp.cpp:505
 #, kde-format
 msgid "No Notes"
 msgstr "אין פתקים"
 
-#: apps/knotesapp.cpp:557 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:558 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "הגדרות"
@@ -659,32 +660,32 @@ msgstr "הגדרות סגנון"
 msgid "Preferences KNotes..."
 msgstr "העדפות..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:684
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:685
 #, kde-format
 msgid "Mail..."
 msgstr "שליחה בדוא\"ל..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:680
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:681
 #, kde-format
 msgid "Send..."
 msgstr "שלח..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:676
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:677
 #, kde-format
 msgid "Set Alarm..."
 msgstr "קבע תזכורת..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:688
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:689
 #, kde-format
 msgid "Save As..."
 msgstr "שמור בשם..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:662
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:663
 #, kde-format
 msgid "Lock"
 msgstr "נְעָל"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:665
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
 #, kde-format
 msgid "Unlock"
 msgstr "שחרר נעילה"
@@ -762,7 +763,7 @@ msgstr ""
 msgid "Save As"
 msgstr "שמור בשם"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:507
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:508
 #, kde-format
 msgid ""
 "<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
@@ -896,6 +897,8 @@ msgid "Do you really want to delete this note?"
 msgid_plural "Do you really want to delete these %1 notes?"
 msgstr[0] "<qt>האם אתה בטוח שברצונך למחוק את הפתק <b>%1</b> </qt>"
 msgstr[1] "<qt>האם אתה בטוח שברצונך למחוק את הפתק <b>%1</b> </qt>"
+msgstr[2] ""
+msgstr[3] ""
 
 #: kontactplugin/summarywidget.cpp:41
 #, fuzzy, kde-format
@@ -922,84 +925,84 @@ msgstr "הדפס פתק"
 msgid "Read Popup Note: \"%1\""
 msgstr ""
 
-#: notes/knote.cpp:131
+#: notes/knote.cpp:132
 #, kde-format
 msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
 msgstr "<qt>האם אתה בטוח שברצונך למחוק את הפתק <b>%1</b> </qt>"
 
-#: notes/knote.cpp:132
+#: notes/knote.cpp:133
 #, kde-format
 msgid "Confirm Delete"
 msgstr "אשר מחיקה"
 
-#: notes/knote.cpp:133
+#: notes/knote.cpp:134
 #, kde-format
 msgid "&Delete"
 msgstr "&מחק"
 
-#: notes/knote.cpp:257
+#: notes/knote.cpp:258
 #, kde-format
 msgid "Please enter the new name:"
 msgstr "הזן את השם החדש:"
 
-#: notes/knote.cpp:483
+#: notes/knote.cpp:484
 #, kde-format
 msgid "Save note as plain text"
 msgstr "שמור את הפתק בתור קובץ טקסט"
 
-#: notes/knote.cpp:490
+#: notes/knote.cpp:491
 #, fuzzy, kde-format
 #| msgid "Save As"
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "שמור בשם"
 
-#: notes/knote.cpp:612
+#: notes/knote.cpp:613
 #, kde-format
 msgid "&All Desktops"
 msgstr "&כולם"
 
-#: notes/knote.cpp:654
+#: notes/knote.cpp:655
 #, kde-format
 msgid "New"
 msgstr "חדש"
 
-#: notes/knote.cpp:658
+#: notes/knote.cpp:659
 #, kde-format
 msgid "Rename..."
 msgstr "שנה שם..."
 
-#: notes/knote.cpp:667
+#: notes/knote.cpp:668
 #, kde-format
 msgid "Hide"
 msgstr "הסתר"
 
-#: notes/knote.cpp:672
+#: notes/knote.cpp:673
 #, kde-format
 msgid "Delete"
 msgstr "מחק"
 
-#: notes/knote.cpp:697
+#: notes/knote.cpp:698
 #, kde-format
 msgid "Preferences..."
 msgstr "העדפות..."
 
-#: notes/knote.cpp:701
+#: notes/knote.cpp:702
 #, kde-format
 msgid "Keep Above Others"
 msgstr "השאר מעל אחרים"
 
-#: notes/knote.cpp:705
+#: notes/knote.cpp:706
 #, kde-format
 msgid "Keep Below Others"
 msgstr "השאר מתחת לאחרים"
 
-#: notes/knote.cpp:710
+#: notes/knote.cpp:711
 #, kde-format
 msgid "To Desktop"
 msgstr "לשולחן עבודה"
 
-#: notes/knote.cpp:718
+#: notes/knote.cpp:719
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "עבור על כל הפתקים"
@@ -1015,11 +1018,13 @@ msgid "Note is locked"
 msgstr ""
 
 #: print/knoteprinter.cpp:111
-#, kde-format
+#, fuzzy, kde-format
 msgid "Print Note"
 msgid_plural "Print %1 notes"
 msgstr[0] "הדפס פתק"
 msgstr[1] "הדפס %1 פתקים"
+msgstr[2] ""
+msgstr[3] ""
 
 #: print/knoteprinter.cpp:118
 #, kde-format

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-18 01:42+0000\n"
+"POT-Creation-Date: 2023-10-21 01:39+0000\n"
 "PO-Revision-Date: 2023-03-29 08:17+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -48,74 +48,74 @@ msgstr "Prepreči ustvaritev novega sporočilca v primerku, ki ni edinstven."
 msgid "KNotes: Sticky notes by KDE"
 msgstr "KNotes: lepljiva sporočilca s strani KDE"
 
-#: apps/knotesapp.cpp:88
+#: apps/knotesapp.cpp:89
 #, kde-format
 msgid "New Note"
 msgstr "Novo sporočilce"
 
-#: apps/knotesapp.cpp:95 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:96 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "Novo sporočilce iz odložišča"
 
-#: apps/knotesapp.cpp:100 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:101 kontactplugin/knotes_part.cpp:158
 #, kde-format
 msgid "New Note From Text File..."
 msgstr "Novo sporočilce iz besedilne datoteke ..."
 
-#: apps/knotesapp.cpp:104
+#: apps/knotesapp.cpp:105
 #, kde-format
 msgid "Show All Notes"
 msgstr "Pokaži vsa sporočilca"
 
-#: apps/knotesapp.cpp:109
+#: apps/knotesapp.cpp:110
 #, kde-format
 msgid "Hide All Notes"
 msgstr "Skrij vsa sporočilca"
 
-#: apps/knotesapp.cpp:114 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "Natisni izbrana sporočilca ..."
 
-#: apps/knotesapp.cpp:119
+#: apps/knotesapp.cpp:120
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Izbriši izbrana sporočilca ..."
 
-#: apps/knotesapp.cpp:402 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "Izberi besedilno datoteko"
 
-#: apps/knotesapp.cpp:402 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "Besedilna datoteka"
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "Napaka med odpiranjem besedilne datoteke: %1"
 
-#: apps/knotesapp.cpp:408 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "Odpri besedilno datoteko"
 
-#: apps/knotesapp.cpp:411 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:412 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "Sporočilce iz datoteke »%1«"
 
-#: apps/knotesapp.cpp:504
+#: apps/knotesapp.cpp:505
 #, kde-format
 msgid "No Notes"
 msgstr "Ni sporočilc"
 
-#: apps/knotesapp.cpp:557 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:558 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "Nastavitve"
@@ -668,32 +668,32 @@ msgstr "Nastavitve sporočilca ..."
 msgid "Preferences KNotes..."
 msgstr "Možnosti KNotes ..."
 
-#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:684
+#: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:685
 #, kde-format
 msgid "Mail..."
 msgstr "Pošta ..."
 
-#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:680
+#: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:681
 #, kde-format
 msgid "Send..."
 msgstr "Pošlji ..."
 
-#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:676
+#: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:677
 #, kde-format
 msgid "Set Alarm..."
 msgstr "Nastavi alarm ..."
 
-#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:688
+#: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:689
 #, kde-format
 msgid "Save As..."
 msgstr "Shrani kot ..."
 
-#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:662
+#: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:663
 #, kde-format
 msgid "Lock"
 msgstr "Zakleni"
 
-#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:665
+#: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
 #, kde-format
 msgid "Unlock"
 msgstr "Odkleni"
@@ -770,7 +770,7 @@ msgstr "Navadno besedilo (*.txt)"
 msgid "Save As"
 msgstr "Shrani kot"
 
-#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:507
+#: kontactplugin/knotes_part.cpp:705 notes/knote.cpp:508
 #, kde-format
 msgid ""
 "<qt>A file named <b>%1</b> already exists.<br />Are you sure you want to "
@@ -934,83 +934,83 @@ msgstr "Izbriši sporočilce ..."
 msgid "Read Popup Note: \"%1\""
 msgstr "Preberi pojavno sporočilce: »%1«"
 
-#: notes/knote.cpp:131
+#: notes/knote.cpp:132
 #, kde-format
 msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
 msgstr "<qt>Ali resnično želite izbrisati sporočilce <b>%1</b>?</qt>"
 
-#: notes/knote.cpp:132
+#: notes/knote.cpp:133
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Potrditev izbrisa"
 
-#: notes/knote.cpp:133
+#: notes/knote.cpp:134
 #, kde-format
 msgid "&Delete"
 msgstr "Izbriši"
 
-#: notes/knote.cpp:257
+#: notes/knote.cpp:258
 #, kde-format
 msgid "Please enter the new name:"
 msgstr "Vnesite novo ime:"
 
-#: notes/knote.cpp:483
+#: notes/knote.cpp:484
 #, kde-format
 msgid "Save note as plain text"
 msgstr "Shrani sporočilce kot navadno besedilo"
 
-#: notes/knote.cpp:490
+#: notes/knote.cpp:491
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Shrani kot"
 
-#: notes/knote.cpp:612
+#: notes/knote.cpp:613
 #, kde-format
 msgid "&All Desktops"
 msgstr "Vs&a namizja"
 
-#: notes/knote.cpp:654
+#: notes/knote.cpp:655
 #, kde-format
 msgid "New"
 msgstr "Novo"
 
-#: notes/knote.cpp:658
+#: notes/knote.cpp:659
 #, kde-format
 msgid "Rename..."
 msgstr "Preimenuj ..."
 
-#: notes/knote.cpp:667
+#: notes/knote.cpp:668
 #, kde-format
 msgid "Hide"
 msgstr "Skrij"
 
-#: notes/knote.cpp:672
+#: notes/knote.cpp:673
 #, kde-format
 msgid "Delete"
 msgstr "Izbriši"
 
-#: notes/knote.cpp:697
+#: notes/knote.cpp:698
 #, kde-format
 msgid "Preferences..."
 msgstr "Možnosti ..."
 
-#: notes/knote.cpp:701
+#: notes/knote.cpp:702
 #, kde-format
 msgid "Keep Above Others"
 msgstr "Ohrani nad drugimi"
 
-#: notes/knote.cpp:705
+#: notes/knote.cpp:706
 #, kde-format
 msgid "Keep Below Others"
 msgstr "Ohrani pod drugimi"
 
-#: notes/knote.cpp:710
+#: notes/knote.cpp:711
 #, kde-format
 msgid "To Desktop"
 msgstr "Na namizje"
 
-#: notes/knote.cpp:718
+#: notes/knote.cpp:719
 #, kde-format
 msgid "Walk Through Notes"
 msgstr "Sprehodi se skozi sporočilca"
