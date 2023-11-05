@@ -5,6 +5,7 @@
   <project_license>GPL-2.0+</project_license>
   <developer_name>The KDE Community</developer_name>
   <developer_name xml:lang="ar">مجتمع كِيدِي</developer_name>
+  <developer_name xml:lang="ast">La comunidá KDE</developer_name>
   <developer_name xml:lang="bg">Общността на KDE</developer_name>
   <developer_name xml:lang="ca">La comunitat KDE</developer_name>
   <developer_name xml:lang="ca-valencia">La comunitat KDE</developer_name>
@@ -41,6 +42,7 @@
   <developer_name xml:lang="zh-TW">KDE 社群</developer_name>
   <name>KNotes</name>
   <name xml:lang="ar">ملاحظاتك</name>
+  <name xml:lang="ast">KNotes</name>
   <name xml:lang="bg">KNotes</name>
   <name xml:lang="bs">KNotes</name>
   <name xml:lang="ca">KNotes</name>
@@ -161,6 +163,7 @@
     <p xml:lang="zh-TW">KNotes 讓您可以在螢幕上貼便利貼。便條會在離開時自動儲存，開啟程式時再顯示。</p>
     <p>Features:</p>
     <p xml:lang="ar">الميزات:</p>
+    <p xml:lang="ast">Funciones:</p>
     <p xml:lang="bg">Функции:</p>
     <p xml:lang="bs">Svojstva:</p>
     <p xml:lang="ca">Característiques:</p>
