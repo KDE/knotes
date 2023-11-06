@@ -62,14 +62,14 @@ void KNoteFindDialog::readConfig()
 {
     create(); // ensure a window is created
     windowHandle()->resize(QSize(600, 300));
-    KConfigGroup group(KSharedConfig::openStateConfig(), myKNoteFindDialogName);
+    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1String(myKNoteFindDialogName));
     KWindowConfig::restoreWindowSize(windowHandle(), group);
     resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void KNoteFindDialog::writeConfig()
 {
-    KConfigGroup group(KSharedConfig::openStateConfig(), myKNoteFindDialogName);
+    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1String(myKNoteFindDialogName));
     KWindowConfig::saveWindowSize(windowHandle(), group);
     group.sync();
 }
@@ -129,7 +129,7 @@ void KNoteFindWidget::slotSearchNote()
         return;
     }
     auto config = KConfig(QStringLiteral("akonadi_indexing_agent"));
-    KConfigGroup cfg = config.group("General");
+    KConfigGroup cfg = config.group(QStringLiteral("General"));
     const bool respectDiacriticAndAccents = cfg.readEntry("respectDiacriticAndAccents", true);
     const QString searchString = respectDiacriticAndAccents ? searchStr : TextUtils::ConvertText::normalize(searchStr);
     Akonadi::Search::PIM::NoteQuery query;

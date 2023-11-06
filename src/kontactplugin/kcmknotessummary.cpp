@@ -54,7 +54,7 @@ void KCMKNotesSummary::initFolders()
 {
     KSharedConfigPtr _config = KSharedConfig::openConfig(QStringLiteral("kcmknotessummaryrc"));
 
-    mModelState = new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), widget());
+    mModelState = new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group(QStringLiteral("CheckState")), widget());
     mModelState->setSelectionModel(mCheckedCollectionWidget->selectionModel());
 }
 

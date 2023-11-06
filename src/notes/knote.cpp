@@ -737,7 +737,7 @@ void KNote::createActions()
 void KNote::createNoteHeader()
 {
     // load style configuration
-    KConfigGroup styleGroup(m_kwinConf, "Style");
+    KConfigGroup styleGroup(m_kwinConf, QLatin1String("Style"));
 
     QBoxLayout::Direction headerLayoutDirection = QBoxLayout::LeftToRight;
 

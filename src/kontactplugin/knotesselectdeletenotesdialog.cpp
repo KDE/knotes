@@ -79,14 +79,14 @@ void KNotesSelectDeleteNotesDialog::readConfig()
 {
     create(); // ensure a window is created
     windowHandle()->resize(QSize(300, 200));
-    KConfigGroup group(KSharedConfig::openStateConfig(), myKNotesSelectDeleteNotesDialogName);
+    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1String(myKNotesSelectDeleteNotesDialogName));
     KWindowConfig::restoreWindowSize(windowHandle(), group);
     resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void KNotesSelectDeleteNotesDialog::writeConfig()
 {
-    KConfigGroup group(KSharedConfig::openStateConfig(), myKNotesSelectDeleteNotesDialogName);
+    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1String(myKNotesSelectDeleteNotesDialogName));
     KWindowConfig::saveWindowSize(windowHandle(), group);
     group.sync();
 }
