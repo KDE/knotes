@@ -45,7 +45,7 @@ void KNotePrinter::doPrintPreview(const QString &htmlText)
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setCollateCopies(true);
     QPointer<QPrintPreviewDialog> previewdlg = new QPrintPreviewDialog(&printer);
-    new KWindowStateSaver(previewdlg.data(), "KNotePrintPreviewDialog");
+    new KWindowStateSaver(previewdlg.data(), QStringLiteral("KNotePrintPreviewDialog"));
     connect(previewdlg.data(), &QPrintPreviewDialog::paintRequested, this, &KNotePrinter::slotPrinterPage);
     previewdlg->exec();
     delete previewdlg;

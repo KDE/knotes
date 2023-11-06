@@ -193,7 +193,7 @@ KNotesPart::KNotesPart(QObject *parent)
 
     KSharedConfigPtr _config = KSharedConfig::openConfig(QStringLiteral("kcmknotessummaryrc"));
 
-    mModelState = new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group("CheckState"), this);
+    mModelState = new KViewStateMaintainer<Akonadi::ETMViewStateSaver>(_config->group(QStringLiteral("CheckState")), this);
     mModelState->setSelectionModel(mSelectionModel);
 
     mNotesWidget = new KNotesWidget(this, widget());
