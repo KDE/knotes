@@ -204,7 +204,7 @@ msgstr "Bera Debajyoti"
 #: apps/main.cpp:65
 #, kde-format
 msgid "Idea and initial code for the new look & feel"
-msgstr "Idea i codi inicial de l'aspecte nou i comportament"
+msgstr "Idea i codi inicial de l'aspecte i el comportament nous"
 
 #: apps/main.cpp:66
 #, kde-format
