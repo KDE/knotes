@@ -67,7 +67,7 @@ void KNoteEditDialog::init(bool readOnly)
     hbl->addWidget(label, 0);
     mTitleEdit = new QLineEdit(page);
     mTitleEdit->setClearButtonEnabled(!readOnly);
-    mTitleEdit->setObjectName(QStringLiteral("name"));
+    mTitleEdit->setObjectName(QLatin1StringView("name"));
     if (!readOnly) {
         connect(mTitleEdit, &QLineEdit::textChanged, this, &KNoteEditDialog::slotTextChanged);
     }

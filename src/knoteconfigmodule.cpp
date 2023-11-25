@@ -79,7 +79,7 @@ KNoteMiscConfig::KNoteMiscConfig(QObject *parent, const KPluginMetaData &data)
 
     auto kcfg_SystemTrayShowNotes = new QCheckBox(i18n("Show number of notes in tray icon"), widget());
 
-    kcfg_SystemTrayShowNotes->setObjectName(QStringLiteral("kcfg_SystemTrayShowNotes"));
+    kcfg_SystemTrayShowNotes->setObjectName(QLatin1StringView("kcfg_SystemTrayShowNotes"));
     lay->addWidget(kcfg_SystemTrayShowNotes);
 
     auto hbox = new QHBoxLayout;
