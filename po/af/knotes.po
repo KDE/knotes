@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes stable\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-21 01:39+0000\n"
+"POT-Creation-Date: 2023-12-05 01:35+0000\n"
 "PO-Revision-Date: 2007-01-08 15:33+0200\n"
 "Last-Translator: Frikkie Thirion <frikkie.thirion@deneloptronics.co.za>\n"
 "Language-Team: Afrikaans <translate-discuss-af@lists.sourceforge.net>\n"
@@ -318,58 +318,58 @@ msgstr ""
 msgid "Rename note"
 msgstr "Herbenoem..."
 
-#: configdialog/knotedisplayconfigwidget.cpp:25
+#: configdialog/knotedisplayconfigwidget.cpp:26
 #, kde-format
 msgid "&Text color:"
 msgstr "Teks kleur:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:34
+#: configdialog/knotedisplayconfigwidget.cpp:35
 #, kde-format
 msgid "&Background color:"
 msgstr "Agtergrond kleur:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:44
+#: configdialog/knotedisplayconfigwidget.cpp:45
 #, kde-format
 msgid "&Show note in taskbar"
 msgstr "vertoon notas in taak balk"
 
-#: configdialog/knotedisplayconfigwidget.cpp:46
+#: configdialog/knotedisplayconfigwidget.cpp:47
 #, fuzzy, kde-format
 #| msgid "&All Desktops"
 msgid "&Remember desktop"
 msgstr "Alle Werkskerms"
 
-#: configdialog/knotedisplayconfigwidget.cpp:50
+#: configdialog/knotedisplayconfigwidget.cpp:51
 #, kde-format
 msgid "Default &width:"
 msgstr "Standaard wydte:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:61
+#: configdialog/knotedisplayconfigwidget.cpp:62
 #, kde-format
 msgid "Default &height:"
 msgstr "Standaard hoogte:"
 
-#: configdialog/knoteeditorconfigwidget.cpp:23
+#: configdialog/knoteeditorconfigwidget.cpp:24
 #, kde-format
 msgid "&Tab size:"
 msgstr "Tab grootte:"
 
-#: configdialog/knoteeditorconfigwidget.cpp:32
+#: configdialog/knoteeditorconfigwidget.cpp:33
 #, kde-format
 msgid "Auto &indent"
 msgstr "Outo inkeep"
 
-#: configdialog/knoteeditorconfigwidget.cpp:36
+#: configdialog/knoteeditorconfigwidget.cpp:37
 #, kde-format
 msgid "&Rich text"
 msgstr "Rich teks"
 
-#: configdialog/knoteeditorconfigwidget.cpp:40
+#: configdialog/knoteeditorconfigwidget.cpp:41
 #, kde-format
 msgid "Text font:"
 msgstr "Teks skrif tipe:"
 
-#: configdialog/knoteeditorconfigwidget.cpp:48
+#: configdialog/knoteeditorconfigwidget.cpp:49
 #, kde-format
 msgid "Title font:"
 msgstr "Titel skrif tipe:"

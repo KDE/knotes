@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-21 01:39+0000\n"
+"POT-Creation-Date: 2023-12-05 01:35+0000\n"
 "PO-Revision-Date: 2017-06-28 10:07+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -312,57 +312,57 @@ msgstr "Klaida pervadinant: %1"
 msgid "Rename note"
 msgstr "Pervadinti lapelį"
 
-#: configdialog/knotedisplayconfigwidget.cpp:25
+#: configdialog/knotedisplayconfigwidget.cpp:26
 #, kde-format
 msgid "&Text color:"
 msgstr "&Teksto spalva:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:34
+#: configdialog/knotedisplayconfigwidget.cpp:35
 #, kde-format
 msgid "&Background color:"
 msgstr "&Fono spalva:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:44
+#: configdialog/knotedisplayconfigwidget.cpp:45
 #, kde-format
 msgid "&Show note in taskbar"
 msgstr "&Rodyti lapelį užduočių juostoje"
 
-#: configdialog/knotedisplayconfigwidget.cpp:46
+#: configdialog/knotedisplayconfigwidget.cpp:47
 #, kde-format
 msgid "&Remember desktop"
 msgstr "Į&siminti darbalaukį"
 
-#: configdialog/knotedisplayconfigwidget.cpp:50
+#: configdialog/knotedisplayconfigwidget.cpp:51
 #, kde-format
 msgid "Default &width:"
 msgstr "&Numatytas plotis:"
 
-#: configdialog/knotedisplayconfigwidget.cpp:61
+#: configdialog/knotedisplayconfigwidget.cpp:62
 #, kde-format
 msgid "Default &height:"
 msgstr "Numatytas &aukštis:"
 
-#: configdialog/knoteeditorconfigwidget.cpp:23
+#: configdialog/knoteeditorconfigwidget.cpp:24
 #, kde-format
 msgid "&Tab size:"
 msgstr "&Tab dydis:"
 
-#: configdialog/knoteeditorconfigwidget.cpp:32
+#: configdialog/knoteeditorconfigwidget.cpp:33
 #, kde-format
 msgid "Auto &indent"
 msgstr "Autom. &įtrauka"
 
-#: configdialog/knoteeditorconfigwidget.cpp:36
+#: configdialog/knoteeditorconfigwidget.cpp:37
 #, kde-format
 msgid "&Rich text"
 msgstr "&Raiškusis tekstas"
 
-#: configdialog/knoteeditorconfigwidget.cpp:40
+#: configdialog/knoteeditorconfigwidget.cpp:41
 #, kde-format
 msgid "Text font:"
 msgstr "Teksto šriftas:"
 
-#: configdialog/knoteeditorconfigwidget.cpp:48
+#: configdialog/knoteeditorconfigwidget.cpp:49
 #, kde-format
 msgid "Title font:"
 msgstr "Pavadinimo šriftas:"

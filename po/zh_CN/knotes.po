@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-21 01:39+0000\n"
+"POT-Creation-Date: 2023-12-05 01:35+0000\n"
 "PO-Revision-Date: 2023-11-25 02:26\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -308,57 +308,57 @@ msgstr "重命名时发生错误：%1"
 msgid "Rename note"
 msgstr "重命名便笺"
 
-#: configdialog/knotedisplayconfigwidget.cpp:25
+#: configdialog/knotedisplayconfigwidget.cpp:26
 #, kde-format
 msgid "&Text color:"
 msgstr "文字颜色(&T)："
 
-#: configdialog/knotedisplayconfigwidget.cpp:34
+#: configdialog/knotedisplayconfigwidget.cpp:35
 #, kde-format
 msgid "&Background color:"
 msgstr "背景颜色(&B)："
 
-#: configdialog/knotedisplayconfigwidget.cpp:44
+#: configdialog/knotedisplayconfigwidget.cpp:45
 #, kde-format
 msgid "&Show note in taskbar"
 msgstr "在任务栏显示便笺(&S)"
 
-#: configdialog/knotedisplayconfigwidget.cpp:46
+#: configdialog/knotedisplayconfigwidget.cpp:47
 #, kde-format
 msgid "&Remember desktop"
 msgstr "记住桌面(&R)"
 
-#: configdialog/knotedisplayconfigwidget.cpp:50
+#: configdialog/knotedisplayconfigwidget.cpp:51
 #, kde-format
 msgid "Default &width:"
 msgstr "默认宽度(&W)："
 
-#: configdialog/knotedisplayconfigwidget.cpp:61
+#: configdialog/knotedisplayconfigwidget.cpp:62
 #, kde-format
 msgid "Default &height:"
 msgstr "默认高度(&H)："
 
-#: configdialog/knoteeditorconfigwidget.cpp:23
+#: configdialog/knoteeditorconfigwidget.cpp:24
 #, kde-format
 msgid "&Tab size:"
 msgstr "制表符宽度(&T)："
 
-#: configdialog/knoteeditorconfigwidget.cpp:32
+#: configdialog/knoteeditorconfigwidget.cpp:33
 #, kde-format
 msgid "Auto &indent"
 msgstr "自动缩进(&I)"
 
-#: configdialog/knoteeditorconfigwidget.cpp:36
+#: configdialog/knoteeditorconfigwidget.cpp:37
 #, kde-format
 msgid "&Rich text"
 msgstr "丰富文本(&R)"
 
-#: configdialog/knoteeditorconfigwidget.cpp:40
+#: configdialog/knoteeditorconfigwidget.cpp:41
 #, kde-format
 msgid "Text font:"
 msgstr "文字字体："
 
-#: configdialog/knoteeditorconfigwidget.cpp:48
+#: configdialog/knoteeditorconfigwidget.cpp:49
 #, kde-format
 msgid "Title font:"
 msgstr "标题字体："
