@@ -1,0 +1,123 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the knotes package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: knotes\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"PO-Revision-Date: 2023-12-07 15:52+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: LANGUAGE <kde-i18n-doc@kde.org>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: notesagentalarmdialog.cpp:44
+#, kde-format
+msgctxt "@title:window"
+msgid "Alarm"
+msgstr "שעון מעורר"
+
+#: notesagentalarmdialog.cpp:56
+#, kde-format
+msgid "The following notes triggered alarms:"
+msgstr "הפתקיות הבאות הזניקו שעונים מעוררים:"
+
+#: notesagentalarmdialog.cpp:94
+#, kde-format
+msgid "Remove Alarm"
+msgstr "הסרת שעון מעורר"
+
+#: notesagentalarmdialog.cpp:96
+#, kde-format
+msgid "Show Note..."
+msgstr "הצגת פתקית…"
+
+#: notesagentalarmdialog.cpp:98
+#, kde-format
+msgid "Modify Alarm..."
+msgstr "שינוי שעון מעורר…"
+
+#: notesagentalarmdialog.cpp:152
+#, kde-format
+msgid "Are you sure to remove alarm?"
+msgstr "להסיר את השעון המעורר?"
+
+#: notesagentalarmdialog.cpp:153
+#, kde-format
+msgctxt "@title:window"
+msgid "Remove Alarm"
+msgstr "הסרת שעון מעורר"
+
+#: notesagentalarmdialog.cpp:218
+#, kde-format
+msgid "Error during fetch alarm info."
+msgstr "שגיאה במהלך משיכת פרטי שעון מעורר."
+
+#: notesagentalarmdialog.cpp:218
+#, kde-format
+msgid "Alarm"
+msgstr "שעון מעורר"
+
+#: notesagentsettingsdialog.cpp:33
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Notes Agent"
+msgstr "הגדרת סוכן פתקיות"
+
+#: notesagentsettingsdialog.cpp:48
+#, kde-format
+msgid "Notify"
+msgstr "התראה"
+
+#: notesagentsettingsdialog.cpp:50
+#, kde-format
+msgid "Network"
+msgstr "רשת"
+
+#: notesagentsettingsdialog.cpp:58
+#, kde-format
+msgid "Notes Agent"
+msgstr "סוכן פתקיות"
+
+#: notesagentsettingsdialog.cpp:60
+#, kde-format
+msgid "Notes Agent."
+msgstr "סוכן פתקיות."
+
+#: notesagentsettingsdialog.cpp:62
+#, kde-format
+msgid "Copyright (C) 2013-%1 Laurent Montel"
+msgstr "כל הזכויות שמורות (C) 2013‏-%1 לורנט מונטל"
+
+#: notesagentsettingsdialog.cpp:64
+#, kde-format
+msgid "Laurent Montel"
+msgstr "לורנט מונטל"
+
+#: notesagentsettingsdialog.cpp:64
+#, kde-format
+msgid "Maintainer"
+msgstr "מתחזק"
+
+#: notesagentsettingsdialog.cpp:67
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "צוות התרגום של KDE ישראל"
+
+#: notesagentsettingsdialog.cpp:67
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "kde-l10n-he@kde.org"
+
+#: notesmanager.cpp:173
+#, kde-format
+msgid "Note Received"
+msgstr "התקבלה פתקית"
