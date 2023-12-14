@@ -1,5 +1,5 @@
 # translation of knotes.po to
-# Version: $Revision: 1666566 $
+# Version: $Revision: 1667250 $
 # Currently maintained by Marcin Bokszczanin
 # Piotr Roszatycki <dexter@fnet.pl> 1998
 # Jacek Stolarczyk<jacek@mer.chemia.polsl.gliwice.pl> 1999, 2000.
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:35+0000\n"
+"POT-Creation-Date: 2023-12-14 01:35+0000\n"
 "PO-Revision-Date: 2022-01-08 10:50+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -86,37 +86,37 @@ msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Usuń wybrane notatki..."
 
-#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "Wybierz plik tekstowy"
 
-#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "Plik tekstowy"
 
-#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "Błąd przy otwieraniu pliku tekstowego: %1"
 
-#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "Otwórz plik tekstowy"
 
-#: apps/knotesapp.cpp:412 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:407 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "Notatka z pliku '%1'"
 
-#: apps/knotesapp.cpp:505
+#: apps/knotesapp.cpp:500
 #, kde-format
 msgid "No Notes"
 msgstr "Brak notatek"
 
-#: apps/knotesapp.cpp:558 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:553 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "Ustawienia"

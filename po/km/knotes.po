@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:35+0000\n"
+"POT-Creation-Date: 2023-12-14 01:35+0000\n"
 "PO-Revision-Date: 2010-05-24 16:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -83,40 +83,40 @@ msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "បោះពុម្ព​ចំណាំ %1"
 
-#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgid "Select Text File"
 msgstr "ជ្រើស​អ្នក​ទទួល ៖"
 
-#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Text File"
 msgstr "ទំហំអក្សរ"
 
-#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr ""
 
-#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Open Text File"
 msgstr "ទំហំអក្សរ"
 
-#: apps/knotesapp.cpp:412 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:407 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr ""
 
-#: apps/knotesapp.cpp:505
+#: apps/knotesapp.cpp:500
 #, kde-format
 msgid "No Notes"
 msgstr "គ្មាន​ចំណាំ"
 
-#: apps/knotesapp.cpp:558 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:553 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "ការ​កំណត់"

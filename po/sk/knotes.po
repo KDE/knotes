@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:35+0000\n"
+"POT-Creation-Date: 2023-12-14 01:35+0000\n"
 "PO-Revision-Date: 2019-07-12 18:09+0200\n"
 "Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
@@ -77,37 +77,37 @@ msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Vymazať vybrané poznámky..."
 
-#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "Vybrať textový súbor"
 
-#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "Textový súbor"
 
-#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "Chyba počas otvárania textového súboru: %1"
 
-#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "Otvoriť textový súbor"
 
-#: apps/knotesapp.cpp:412 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:407 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "Poznámka zo súboru '%1'"
 
-#: apps/knotesapp.cpp:505
+#: apps/knotesapp.cpp:500
 #, kde-format
 msgid "No Notes"
 msgstr "Žiadne poznámky"
 
-#: apps/knotesapp.cpp:558 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:553 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "Nastavenia"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:35+0000\n"
+"POT-Creation-Date: 2023-12-14 01:35+0000\n"
 "PO-Revision-Date: 2023-07-23 20:27+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -76,37 +76,37 @@ msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "선택한 노트 삭제..."
 
-#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "텍스트 파일 선택"
 
-#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "텍스트 파일"
 
-#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "텍스트 파일 여는 중 오류 발생: %1"
 
-#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "텍스트 파일 열기"
 
-#: apps/knotesapp.cpp:412 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:407 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "파일 '%1'의 내용으로 만든 노트"
 
-#: apps/knotesapp.cpp:505
+#: apps/knotesapp.cpp:500
 #, kde-format
 msgid "No Notes"
 msgstr "노트 없음"
 
-#: apps/knotesapp.cpp:558 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:553 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "설정"

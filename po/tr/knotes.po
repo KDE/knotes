@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:35+0000\n"
+"POT-Creation-Date: 2023-12-14 01:35+0000\n"
 "PO-Revision-Date: 2023-12-09 22:15+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -82,37 +82,37 @@ msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Seçilen Notları Sil..."
 
-#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "Metin Dosyası Seç"
 
-#: apps/knotesapp.cpp:403 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "Metin Dosyası"
 
-#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "Metin dosyası açılırken hata: %1"
 
-#: apps/knotesapp.cpp:409 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "Metin Dosyası Aç"
 
-#: apps/knotesapp.cpp:412 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:407 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "'%1' dosyasından not"
 
-#: apps/knotesapp.cpp:505
+#: apps/knotesapp.cpp:500
 #, kde-format
 msgid "No Notes"
 msgstr "Not Yok"
 
-#: apps/knotesapp.cpp:558 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:553 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "Ayarlar"
