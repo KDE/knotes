@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-03 00:47+0000\n"
-"PO-Revision-Date: 2023-12-09 09:25\n"
+"PO-Revision-Date: 2023-12-17 11:26\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -26,7 +26,7 @@ msgstr "提醒"
 #: notesagentalarmdialog.cpp:56
 #, kde-format
 msgid "The following notes triggered alarms:"
-msgstr "以下便签触发了提醒："
+msgstr "以下记事贴触发了提醒："
 
 #: notesagentalarmdialog.cpp:94
 #, kde-format
@@ -36,7 +36,7 @@ msgstr "删除提醒"
 #: notesagentalarmdialog.cpp:96
 #, kde-format
 msgid "Show Note..."
-msgstr "显示便笺..."
+msgstr "显示记事贴..."
 
 #: notesagentalarmdialog.cpp:98
 #, kde-format
@@ -68,7 +68,7 @@ msgstr "提醒"
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Notes Agent"
-msgstr "配置便笺代理"
+msgstr "配置记事贴代理"
 
 #: notesagentsettingsdialog.cpp:48
 #, kde-format
@@ -83,12 +83,12 @@ msgstr "网络"
 #: notesagentsettingsdialog.cpp:58
 #, kde-format
 msgid "Notes Agent"
-msgstr "便笺代理"
+msgstr "记事贴代理"
 
 #: notesagentsettingsdialog.cpp:60
 #, kde-format
 msgid "Notes Agent."
-msgstr "便笺代理。"
+msgstr "记事贴代理。"
 
 #: notesagentsettingsdialog.cpp:62
 #, kde-format
@@ -120,4 +120,4 @@ msgstr "wengxt@gmail.com"
 #: notesmanager.cpp:173
 #, kde-format
 msgid "Note Received"
-msgstr "便签已接收"
+msgstr "记事贴已接收"

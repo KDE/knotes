@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-14 01:35+0000\n"
-"PO-Revision-Date: 2023-12-09 09:25\n"
+"PO-Revision-Date: 2023-12-17 11:26\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -30,49 +30,49 @@ msgstr "kde-china@kde.org"
 #: apps/knotes_options.h:13
 #, kde-format
 msgid "Suppress creation of a new note on a non-unique instance."
-msgstr "禁止在非唯一的实例上新建便笺。"
+msgstr "禁止在非唯一的实例上新建记事贴。"
 
 #: apps/knotesakonaditray.cpp:21
 #, kde-format
 msgid "KNotes: Sticky notes by KDE"
-msgstr "KNotes：KDE 的便笺贴"
+msgstr "KNotes：KDE 出品的记事贴应用程序"
 
 #: apps/knotesapp.cpp:89
 #, kde-format
 msgid "New Note"
-msgstr "新建便笺"
+msgstr "新建记事贴"
 
 #: apps/knotesapp.cpp:96 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
-msgstr "从剪贴板新建便笺"
+msgstr "从剪贴板新建记事贴"
 
 #: apps/knotesapp.cpp:101 kontactplugin/knotes_part.cpp:158
 #, kde-format
 msgid "New Note From Text File..."
-msgstr "从文本文件新建便笺..."
+msgstr "从文本文件新建记事贴..."
 
 #: apps/knotesapp.cpp:105
 #, kde-format
 msgid "Show All Notes"
-msgstr "显示全部便笺"
+msgstr "显示全部记事贴"
 
 #: apps/knotesapp.cpp:110
 #, kde-format
 msgid "Hide All Notes"
-msgstr "隐藏全部便笺"
+msgstr "隐藏全部记事贴"
 
 #: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
-msgstr "打印选中的便笺..."
+msgstr "打印选中的记事贴..."
 
 #: apps/knotesapp.cpp:120
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
-msgstr "删除选中的便笺..."
+msgstr "删除选中的记事贴..."
 
 #: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
 #, kde-format
@@ -97,12 +97,12 @@ msgstr "打开文本文件"
 #: apps/knotesapp.cpp:407 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
-msgstr "来自文件“%1”的便笺"
+msgstr "来自文件“%1”的记事贴"
 
 #: apps/knotesapp.cpp:500
 #, kde-format
 msgid "No Notes"
-msgstr "无便笺"
+msgstr "无记事贴"
 
 #: apps/knotesapp.cpp:553 kontactplugin/knotes_part.cpp:587
 #, kde-format
@@ -120,7 +120,7 @@ msgstr "KNotes"
 #: apps/main.cpp:36
 #, kde-format
 msgid "KDE Notes"
-msgstr "KDE 便笺"
+msgstr "KDE 记事贴应用程序"
 
 #: apps/main.cpp:38
 #, kde-format
@@ -270,18 +270,18 @@ msgstr "全部不选(&U)"
 #: configdialog/knotecollectionconfigwidget.cpp:161
 #, kde-format
 msgid "Rename notes..."
-msgstr "重命名便笺..."
+msgstr "重命名记事贴..."
 
 #: configdialog/knotecollectionconfigwidget.cpp:165
 #, kde-format
 msgctxt "@info"
 msgid "Select the folder where the note will be saved:"
-msgstr "选择保存此便笺所用的文件夹："
+msgstr "选择保存此记事贴所用的文件夹："
 
 #: configdialog/knotecollectionconfigwidget.cpp:183
 #, kde-format
 msgid "Notes accounts"
-msgstr "便笺账户"
+msgstr "记事贴账户"
 
 #: configdialog/knotecollectionconfigwidget.cpp:188
 #, kde-format
@@ -291,7 +291,7 @@ msgstr "账户"
 #: configdialog/knotecollectionconfigwidget.cpp:218
 #, kde-format
 msgid "Rename Notes"
-msgstr "重命名便笺"
+msgstr "重命名记事贴"
 
 #: configdialog/knotecollectionconfigwidget.cpp:218
 #, kde-format
@@ -306,7 +306,7 @@ msgstr "重命名时发生错误：%1"
 #: configdialog/knotecollectionconfigwidget.cpp:236
 #, kde-format
 msgid "Rename note"
-msgstr "重命名便笺"
+msgstr "重命名记事贴"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
 #, kde-format
@@ -321,7 +321,7 @@ msgstr "背景颜色(&B)："
 #: configdialog/knotedisplayconfigwidget.cpp:45
 #, kde-format
 msgid "&Show note in taskbar"
-msgstr "在任务栏显示便笺(&S)"
+msgstr "在任务栏显示记事贴 (&S)"
 
 #: configdialog/knotedisplayconfigwidget.cpp:47
 #, kde-format
@@ -383,20 +383,20 @@ msgstr "帮助(&H)"
 #: data/knotesappui.rc:35 data/knotesappui.rc:36
 #, kde-format
 msgid "Notes"
-msgstr "便笺"
+msgstr "记事贴"
 
 #: dialog/knotedeleteselectednotesdialog.cpp:21
 #, kde-format
 msgctxt "@title:window"
 msgid "Select notes to delete"
-msgstr "选择要删除的便笺"
+msgstr "选择要删除的记事贴"
 
 #: dialog/knoteselectednotesdialog.cpp:23
 #: print/knoteprintselectednotesdialog.cpp:29
 #, kde-format
 msgctxt "@title:window"
 msgid "Select notes"
-msgstr "选择便笺"
+msgstr "选择记事贴"
 
 #: dialog/knoteskeydialog.cpp:21
 #, kde-format
@@ -407,13 +407,13 @@ msgstr "配置快捷键"
 #: dialog/knoteskeydialog.cpp:65
 #, kde-format
 msgid "Note Actions"
-msgstr "便笺操作"
+msgstr "记事贴操作"
 
 #: finddialog/knotefinddialog.cpp:36
 #, kde-format
 msgctxt "@title:window"
 msgid "Search Notes"
-msgstr "搜索便笺"
+msgstr "搜索记事贴"
 
 #: finddialog/knotefinddialog.cpp:81
 #, kde-format
@@ -425,7 +425,7 @@ msgstr "搜索..."
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Search notes:"
-msgstr "搜索便笺:"
+msgstr "搜索记事贴："
 
 #: finddialog/knotefinddialog.cpp:150
 #, kde-format
@@ -436,12 +436,12 @@ msgstr "在搜索中不找到任何结果。"
 #: finddialog/knotefinddialog.cpp:166
 #, kde-format
 msgid "Show Note"
-msgstr "显示便笺"
+msgstr "显示记事贴"
 
 #: knoteconfigmodule.cpp:80
 #, kde-format
 msgid "Show number of notes in tray icon"
-msgstr "在托盘图标显示便笺数量"
+msgstr "在托盘图标显示记事贴数量"
 
 #: knoteconfigmodule.cpp:87
 #, kde-format
@@ -460,7 +460,7 @@ msgid ""
 "(short format)</li><li>%l current date (long format)</li><li>%t current "
 "time</li></ul></qt>"
 msgstr ""
-"<qt><p>您可以自定义便笺标题。您可以使用：</p><ul><li>%d 当前日期 (短格式)</"
+"<qt><p>您可以自定义记事贴标题。您可以使用：</p><ul><li>%d 当前日期 (短格式)</"
 "li><li>%l 当前日期 (长格式)</li><li>%t 当前时间</li></ul></qt>"
 
 #: knoteconfigmodule.cpp:151
@@ -579,7 +579,7 @@ msgstr "新建(&N)"
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "You will be presented with a dialog where you can add a new popup note."
-msgstr "这将展示一个对话框，告诉您在哪里新建弹出便笺。"
+msgstr "这将显示一个对话框，告诉您在哪里新建弹出记事贴。"
 
 #: kontactplugin/knotes_part.cpp:94 kontactplugin/knotes_part.cpp:556
 #: kontactplugin/knotes_part.cpp:558 kontactplugin/knotes_part.cpp:738
@@ -595,7 +595,7 @@ msgctxt "@info:whatsthis"
 msgid ""
 "You will be presented with a dialog where you can modify an existing popup "
 "note."
-msgstr "这将展示一个对话框，告诉您在哪里修改已有的弹出便笺。"
+msgstr "这将显示一个对话框，告诉您在哪里修改已有的弹出记事贴。"
 
 #: kontactplugin/knotes_part.cpp:103
 #, kde-format
@@ -610,7 +610,7 @@ msgctxt "@info:whatsthis"
 msgid ""
 "You will be presented with a dialog where you can rename an existing popup "
 "note."
-msgstr "这将展示一个对话框，告诉您在哪里重命名已有的弹出便笺。"
+msgstr "这将显示一个对话框，告诉您在哪里重命名已有的弹出记事贴。"
 
 #: kontactplugin/knotes_part.cpp:111
 #, kde-format
@@ -624,25 +624,25 @@ msgctxt "@info:whatsthis"
 msgid ""
 "You will be prompted if you really want to permanently remove the selected "
 "popup note."
-msgstr "在彻底删除所选的弹出便笺前，会有确认提示。"
+msgstr "在彻底删除所选的弹出记事贴前，会有确认提示。"
 
 #. i18nc( "@info:status", "Print popup note" ) );
 #: kontactplugin/knotes_part.cpp:126
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "You will be prompted to print the selected popup note."
-msgstr "打印所选的弹出便笺时会有提示。"
+msgstr "打印所选的弹出记事贴时会有提示。"
 
 #: kontactplugin/knotes_part.cpp:129
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Preview Selected Notes..."
-msgstr "打印预览选中的便笺..."
+msgstr "打印预览选中的记事贴..."
 
 #: kontactplugin/knotes_part.cpp:134
 #, kde-format
 msgid "Note settings..."
-msgstr "便笺设置..."
+msgstr "记事贴设置..."
 
 #: kontactplugin/knotes_part.cpp:138
 #, kde-format
@@ -688,29 +688,29 @@ msgstr "焦点设置到快速搜索栏"
 #, kde-format
 msgctxt "@info"
 msgid "To print notes, first select the notes to print from the list."
-msgstr "要打印便笺，请先从列表中选择要打印的便笺。"
+msgstr "要打印记事贴，请先从列表中选择要打印的记事贴。"
 
 #: kontactplugin/knotes_part.cpp:279
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Popup Notes"
-msgstr "打印弹出便笺"
+msgstr "打印弹出记事贴"
 
 #: kontactplugin/knotes_part.cpp:319
 #, kde-format
 msgid "Note was not created."
-msgstr "便笺未创建。"
+msgstr "记事贴未创建。"
 
 #: kontactplugin/knotes_part.cpp:319
 #, kde-format
 msgid "Create new note"
-msgstr "创建便笺"
+msgstr "新建记事贴"
 
 #: kontactplugin/knotes_part.cpp:341
 #, kde-format
 msgctxt "@info"
 msgid "Do you really want to delete this note?"
-msgstr "您确定要删除此便笺吗？"
+msgstr "您确定要删除此记事贴吗？"
 
 #: kontactplugin/knotes_part.cpp:343
 #: kontactplugin/knotesselectdeletenotesdialog.cpp:44
@@ -723,7 +723,7 @@ msgstr "确认删除"
 #, kde-format
 msgctxt "@title:window"
 msgid "Rename Popup Note"
-msgstr "重命名弹出便笺"
+msgstr "重命名弹出记事贴"
 
 #: kontactplugin/knotes_part.cpp:535
 #, kde-format
@@ -734,7 +734,7 @@ msgstr "新名称："
 #: kontactplugin/knotes_part.cpp:556 kontactplugin/knotes_part.cpp:738
 #, kde-format
 msgid "Show Note..."
-msgstr "显示便笺..."
+msgstr "显示记事贴..."
 
 #: kontactplugin/knotes_part.cpp:691
 #, kde-format
@@ -762,7 +762,7 @@ msgstr "<qt>已经存在名为 <b>%1</b> 的文件。<br />您确定要覆盖吗
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Popup Note..."
-msgstr "新建弹出便笺..."
+msgstr "新建弹出记事贴..."
 
 #. i18nc( "@info:status", "Create new popup note" ) );
 #: kontactplugin/knotes_plugin.cpp:50
@@ -770,7 +770,7 @@ msgstr "新建弹出便笺..."
 msgctxt "@info:whatsthis"
 msgid ""
 "You will be presented with a dialog where you can create a new popup note."
-msgstr "这将展示一个对话框，告诉您在哪里新建弹出便笺。"
+msgstr "这将显示一个对话框，告诉您在哪里新建弹出记事贴。"
 
 #: kontactplugin/knotes_plugin.cpp:76
 #, kde-kuit-format
@@ -782,7 +782,7 @@ msgstr "KNotes"
 #, kde-kuit-format
 msgctxt "@title"
 msgid "Popup Notes"
-msgstr "弹出便笺"
+msgstr "弹出记事贴"
 
 #: kontactplugin/knotes_plugin.cpp:80
 #, kde-kuit-format
@@ -836,25 +836,25 @@ msgstr "会议"
 #, kde-format
 msgctxt "@item"
 msgid "Note: %1"
-msgstr "便笺：“%1”"
+msgstr "记事贴：“%1”"
 
 #: kontactplugin/knotes_plugin.cpp:140
 #, kde-format
 msgctxt "@item"
 msgid "New Note"
-msgstr "新建便笺"
+msgstr "新建记事贴"
 
 #: kontactplugin/knoteseditdialog.cpp:36
 #, kde-format
 msgctxt "@title:window"
 msgid "Show Popup Note"
-msgstr "显示弹出便笺"
+msgstr "显示弹出记事贴"
 
 #: kontactplugin/knoteseditdialog.cpp:36
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Popup Note"
-msgstr "编辑弹出便笺"
+msgstr "编辑弹出记事贴"
 
 #: kontactplugin/knoteseditdialog.cpp:66
 #, kde-format
@@ -865,53 +865,53 @@ msgstr "名称："
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
 #, kde-format
 msgid "Search notes..."
-msgstr "搜索便笺..."
+msgstr "搜索记事贴..."
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
 #, kde-format
 msgid "Search notes...<%1>"
-msgstr "搜索便笺...<%1>"
+msgstr "搜索记事贴...<%1>"
 
 #: kontactplugin/knotesselectdeletenotesdialog.cpp:33
 #, kde-format
 msgid "(note locked, it will not removed)"
-msgstr "(便笺已锁定，将不会被删除)"
+msgstr "(记事贴已锁定，将不会被删除)"
 
 #: kontactplugin/knotesselectdeletenotesdialog.cpp:57
 #, kde-format
 msgid "Do you really want to delete this note?"
 msgid_plural "Do you really want to delete these %1 notes?"
-msgstr[0] "您真的想要删除这 %1 个便笺吗？"
+msgstr[0] "您确定要删除这 %1 个记事贴吗？"
 
 #: kontactplugin/summarywidget.cpp:41
 #, kde-format
 msgid "Popup Notes"
-msgstr "弹出便笺"
+msgstr "弹出记事贴"
 
 #: kontactplugin/summarywidget.cpp:88
 #, kde-format
 msgid "No notes found"
-msgstr "未找到便笺"
+msgstr "未找到记事贴"
 
 #: kontactplugin/summarywidget.cpp:117
 #, kde-format
 msgid "Modify Note..."
-msgstr "修改便笺..."
+msgstr "修改记事贴..."
 
 #: kontactplugin/summarywidget.cpp:119
 #, kde-format
 msgid "Delete Note..."
-msgstr "删除便笺..."
+msgstr "删除记事贴..."
 
 #: kontactplugin/summarywidget.cpp:194
 #, kde-format
 msgid "Read Popup Note: \"%1\""
-msgstr "阅读弹出便笺：“%1”"
+msgstr "阅读弹出记事贴：“%1”"
 
 #: notes/knote.cpp:132
 #, kde-format
 msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
-msgstr "<qt>您真要删除便笺 <b>%1</b> 吗？</qt>"
+msgstr "<qt>您确定要删除记事贴 <b>%1</b> 吗？</qt>"
 
 #: notes/knote.cpp:133
 #, kde-format
@@ -931,7 +931,7 @@ msgstr "请输入新的名字："
 #: notes/knote.cpp:484
 #, kde-format
 msgid "Save note as plain text"
-msgstr "将便笺另存为纯文本"
+msgstr "将记事贴另存为纯文本"
 
 #: notes/knote.cpp:491
 #, kde-format
@@ -987,7 +987,7 @@ msgstr "移到桌面"
 #: notes/knote.cpp:719
 #, kde-format
 msgid "Walk Through Notes"
-msgstr "便笺漫游"
+msgstr "遍历记事贴"
 
 #: print/knotegrantleeprint.cpp:32
 #, kde-format
@@ -997,13 +997,13 @@ msgstr "提醒："
 #: print/knotegrantleeprint.cpp:33
 #, kde-format
 msgid "Note is locked"
-msgstr "便笺已锁定"
+msgstr "记事贴已锁定"
 
 #: print/knoteprinter.cpp:111
 #, kde-format
 msgid "Print Note"
 msgid_plural "Print %1 notes"
-msgstr[0] "打印 %1 个便笺"
+msgstr[0] "打印 %1 个记事贴"
 
 #: print/knoteprinter.cpp:118
 #, kde-format
