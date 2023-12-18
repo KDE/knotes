@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-17 00:48+0000\n"
-"PO-Revision-Date: 2023-12-09 09:30\n"
+"PO-Revision-Date: 2023-12-17 11:32\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -48,23 +48,23 @@ msgid ""
 "<qt><p>You can customize command line. You can use:</p><ul><li>%t returns "
 "current note title</li><li>%f returns current note text</li></ul></qt>"
 msgstr ""
-"<qt><p>您可以自定义命令行。您可以使用：</p><ul><li>%t 返回当前便笺标题</"
-"li><li>%f 返回当前便笺文本</li></ul></qt>"
+"<qt><p>您可以自定义命令行。您可以使用：</p><ul><li>%t 返回当前记事贴标题</"
+"li><li>%f 返回当前记事贴文本</li></ul></qt>"
 
 #: config/notenetworkconfig.cpp:29
 #, kde-format
 msgid "Incoming Notes"
-msgstr "接收到的便笺"
+msgstr "接收到的记事贴"
 
 #: config/notenetworkconfig.cpp:32
 #, kde-format
 msgid "Accept incoming notes"
-msgstr "接受接收到的便笺"
+msgstr "接受接收到的记事贴"
 
 #: config/notenetworkconfig.cpp:38
 #, kde-format
 msgid "Outgoing Notes"
-msgstr "发送的便笺"
+msgstr "发送的记事贴"
 
 #: config/notenetworkconfig.cpp:41
 #, kde-format
@@ -80,13 +80,13 @@ msgstr "端口(&P)："
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Note Folder"
-msgstr "选择便笺文件夹"
+msgstr "选择记事贴文件夹"
 
 #: dialog/selectednotefolderdialog.cpp:25
 #, kde-format
 msgctxt "@info"
 msgid "Select the folder where the note will be saved:"
-msgstr "选择保存此便笺所用的文件夹："
+msgstr "选择保存此记事贴所用的文件夹："
 
 #: job/createnewnotejob.cpp:95 job/createnewnotejob.cpp:110
 #, kde-format
@@ -112,7 +112,7 @@ msgstr "忽略"
 msgid ""
 "Collection is hidden. New note will be stored but not displayed. Do you want "
 "to show collection?"
-msgstr "便笺集合已隐藏。新的便笺将被储存但不显示。您想要显示便笺集合吗？"
+msgstr "记事贴集合已隐藏。新的记事贴将被储存但不显示。您想要显示记事贴集合吗？"
 
 #: job/createnewnotejob.cpp:128
 #, kde-format
@@ -129,12 +129,12 @@ msgstr "不显示"
 #: job/createnewnotejob.cpp:184
 #, kde-format
 msgid "Note was not created."
-msgstr "便笺未创建。"
+msgstr "记事贴未创建。"
 
 #: job/createnewnotejob.cpp:184
 #, kde-format
 msgid "Create new note"
-msgstr "创建便笺"
+msgstr "新建记事贴"
 
 #: network/notehostdialog.cpp:43
 #, kde-format
@@ -159,7 +159,7 @@ msgstr "请配置发送邮件操作。"
 #: noteutils.cpp:39
 #, kde-format
 msgid "Note: \"%1\""
-msgstr "便笺：“%1”"
+msgstr "记事贴：“%1”"
 
 #: noteutils.cpp:46
 #, kde-format
@@ -180,10 +180,10 @@ msgstr "主机不能为空。"
 #, kde-format
 msgctxt "Default name for resource holding notes"
 msgid "Local Notes"
-msgstr "本地便笺"
+msgstr "本地记事贴"
 
 #. i18n: ectx: label, entry (Port), group (Network)
 #: settings/notesharedglobalconfig.kcfg:37
 #, kde-format
 msgid "The port to listen on and send notes to."
-msgstr ""
+msgstr "监听和发送记事贴的端口。"
