@@ -79,7 +79,7 @@
   <name xml:lang="tr">K Notlar</name>
   <name xml:lang="uk">KNotes</name>
   <name xml:lang="x-test">xxKNotesxx</name>
-  <name xml:lang="zh-CN">KNotes</name>
+  <name xml:lang="zh-CN">KNotes 记事贴</name>
   <name xml:lang="zh-TW">螢幕便利貼_KNotes</name>
   <summary>Sticky notes application</summary>
   <summary xml:lang="ar">تطبيق الملاحظات اللاصقة</summary>
@@ -115,7 +115,7 @@
   <summary xml:lang="tr">Yapışkan notlar uygulaması</summary>
   <summary xml:lang="uk">Програма для роботи з нотатками</summary>
   <summary xml:lang="x-test">xxSticky notes applicationxx</summary>
-  <summary xml:lang="zh-CN">便签笔记应用程序</summary>
+  <summary xml:lang="zh-CN">记事贴应用程序</summary>
   <summary xml:lang="zh-TW">便利貼應用程式</summary>
   <description>
     <p>
@@ -157,7 +157,7 @@
     <p xml:lang="tr">K Notlar, yapışkan notların bilgisayar eşleniğini yazmanızı sağlayan bir programdır. Notlar programdan çıktığınızda otomatik olarak kaydedilir ve açtığınızda görüntülenir.</p>
     <p xml:lang="uk">KNotes — це програма, що дозволяє створювати комп'ютерний еквівалент липких листочків із нотатками. Нотатки автоматично зберігаються під час завершення роботи програми і показуються при її запуску.</p>
     <p xml:lang="x-test">xxKNotes is a program that lets you write the computer equivalent of sticky notes. The notes are saved automatically when you exit the program, and they display when you open the program.xx</p>
-    <p xml:lang="zh-CN">KNotes 是一个类似便签贴的计算机程序。在您退出程序后，便笺将被被自动保存，并且在下次打开程序时自动显示。</p>
+    <p xml:lang="zh-CN">KNotes 是一个在电脑环境下创建并显示记事贴的应用程序。记事贴会在退出程序时自动保存，并在下次打开程序时自动显示。</p>
     <p xml:lang="zh-TW">KNotes 讓您可以在螢幕上貼便利貼。便條會在離開時自動儲存，開啟程式時再顯示。</p>
     <p>Features:</p>
     <p xml:lang="ar">الميزات:</p>
@@ -238,7 +238,7 @@
       <li xml:lang="tr">Seçili yazıtipi ve arka plan rengi ile notlarınızı yazın</li>
       <li xml:lang="uk">запис нотаток бажаним для вас кольором і шрифтом на тлі бажаного кольору;</li>
       <li xml:lang="x-test">xxWrite notes in your choice of font and background colorxx</li>
-      <li xml:lang="zh-CN">使用您选择的字体和背景色写便笺</li>
+      <li xml:lang="zh-CN">使用您选择的字体和背景色编写记事贴</li>
       <li xml:lang="zh-TW">可以選擇便條的字型與背景顏色</li>
       <li>Use drag and drop to email your notes</li>
       <li xml:lang="ar">إمكانيّة استخدام السّحب والإفلات لإرسال ملاحظاتك عبر البريد</li>
@@ -276,7 +276,7 @@
       <li xml:lang="tr">Notlarınızı e-posta ile göndermek için sürükleyip bırakın</li>
       <li xml:lang="uk">використання перетягування зі скиданням для надсилання ваших нотаток електронною поштою;</li>
       <li xml:lang="x-test">xxUse drag and drop to email your notesxx</li>
-      <li xml:lang="zh-CN">使用拖放来通过邮件发送便笺</li>
+      <li xml:lang="zh-CN">使用拖放来通过邮件发送记事贴</li>
       <li xml:lang="zh-TW">可以用拖放的方式透過電子郵件傳送您的便條</li>
       <li>Can be dragged into Calendar to book a time-slot</li>
       <li xml:lang="ar">إمكانيّة سحبها إلى تقويم لحجز مكان في الجدول اليوميّ</li>
@@ -354,7 +354,7 @@
       <li xml:lang="tr">Notlar yazdırılabilir</li>
       <li xml:lang="uk">можливість друку нотаток.</li>
       <li xml:lang="x-test">xxNotes can be printedxx</li>
-      <li xml:lang="zh-CN">便笺可以被打印</li>
+      <li xml:lang="zh-CN">记事贴支持打印</li>
       <li xml:lang="zh-TW">可以列印便條</li>
     </ul>
   </description>
