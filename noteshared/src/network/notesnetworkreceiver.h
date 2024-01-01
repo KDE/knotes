@@ -2,7 +2,7 @@
  KNotes -- Notes for the KDE project
 
  SPDX-FileCopyrightText: 2003 Daniel Martin <daniel.martin@pirack.com>
- SPDX-FileCopyrightText: 2013 Laurent Montel <montel@kde.org>
+ SPDX-FileCopyrightText: 2013-2024 Laurent Montel <montel.org>
 
  SPDX-License-Identifier: GPL-2.0-or-later
 *******************************************************************/
