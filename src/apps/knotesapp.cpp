@@ -64,7 +64,12 @@
 #include <KWindowInfo>
 #include <KX11Extras>
 #endif
-
+// signal handler for SIGINT & SIGTERM
+#ifdef Q_OS_UNIX
+#include <KSignalHandler>
+#include <signal.h>
+#include <unistd.h>
+#endif
 static bool qActionLessThan(const QAction *a1, const QAction *a2)
 {
     return a1->text() < a2->text();
@@ -73,6 +78,20 @@ static bool qActionLessThan(const QAction *a1, const QAction *a2)
 KNotesApp::KNotesApp(QWidget *parent)
     : QWidget(parent)
 {
+#ifdef Q_OS_UNIX
+    /**
+     * Set up signal handler for SIGINT and SIGTERM
+     */
+    KSignalHandler::self()->watchSignal(SIGINT);
+    KSignalHandler::self()->watchSignal(SIGTERM);
+    connect(KSignalHandler::self(), &KSignalHandler::signalReceived, this, [this](int signal) {
+        if (signal == SIGINT || signal == SIGTERM) {
+            // Intercept console.
+            printf("Shutting down... Intercept signal\n");
+        }
+    });
+#endif
+
     Akonadi::ControlGui::widgetNeedsAkonadi(this);
 
     mDebugAkonadiSearch = !qEnvironmentVariableIsEmpty("KDEPIM_DEBUGGING");
