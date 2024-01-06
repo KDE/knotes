@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-14 01:35+0000\n"
+"POT-Creation-Date: 2024-01-06 01:33+0000\n"
 "PO-Revision-Date: 2010-05-01 15:04+0530\n"
 "Last-Translator: Danishka Navin <danishka@gmail.com>\n"
 "Language-Team: Sinhala <info@hanthana.org>\n"
@@ -38,33 +38,33 @@ msgstr "අනන්‍ය නොවන අවස්ථාවලදී නව �
 msgid "KNotes: Sticky notes by KDE"
 msgstr "KNotes: KDE සඳහා ඇළෙන සටහන්"
 
-#: apps/knotesapp.cpp:89
+#: apps/knotesapp.cpp:108
 #, kde-format
 msgid "New Note"
 msgstr "නව සටහනක්"
 
-#: apps/knotesapp.cpp:96 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "පසුරුපුවරුවෙන් නව සටහනක්"
 
-#: apps/knotesapp.cpp:101 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:120 kontactplugin/knotes_part.cpp:158
 #, fuzzy, kde-format
 #| msgid "New Note From Clipboard"
 msgid "New Note From Text File..."
 msgstr "පසුරුපුවරුවෙන් නව සටහනක්"
 
-#: apps/knotesapp.cpp:105
+#: apps/knotesapp.cpp:124
 #, kde-format
 msgid "Show All Notes"
 msgstr "සියළු සටහන් පෙන්වන්න"
 
-#: apps/knotesapp.cpp:110
+#: apps/knotesapp.cpp:129
 #, kde-format
 msgid "Hide All Notes"
 msgstr "සියළු සටහන් සඟවන්න"
 
-#: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:134 kontactplugin/knotes_part.cpp:121
 #, fuzzy, kde-format
 #| msgid "Print Note"
 #| msgid_plural "Print %1 notes"
@@ -72,7 +72,7 @@ msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "සටහන මුද්‍රණය කරන්න"
 
-#: apps/knotesapp.cpp:120
+#: apps/knotesapp.cpp:139
 #, fuzzy, kde-format
 #| msgid "Print Note"
 #| msgid_plural "Print %1 notes"
@@ -80,40 +80,40 @@ msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "සටහන මුද්‍රණය කරන්න"
 
-#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgid "Select Text File"
 msgstr "ලබන්නා තෝරන්න:"
 
-#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Text File"
 msgstr "පෙළ ප්‍රමාණය"
 
-#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr ""
 
-#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Open Text File"
 msgstr "පෙළ ප්‍රමාණය"
 
-#: apps/knotesapp.cpp:407 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:426 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr ""
 
-#: apps/knotesapp.cpp:500
+#: apps/knotesapp.cpp:519
 #, kde-format
 msgid "No Notes"
 msgstr "කිසිඳු සටහනක් නොමැත"
 
-#: apps/knotesapp.cpp:553 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:572 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "සැකසුම්"

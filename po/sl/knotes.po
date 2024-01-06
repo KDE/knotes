@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-14 01:35+0000\n"
+"POT-Creation-Date: 2024-01-06 01:33+0000\n"
 "PO-Revision-Date: 2023-03-29 08:17+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -48,74 +48,74 @@ msgstr "Prepreči ustvaritev novega sporočilca v primerku, ki ni edinstven."
 msgid "KNotes: Sticky notes by KDE"
 msgstr "KNotes: lepljiva sporočilca s strani KDE"
 
-#: apps/knotesapp.cpp:89
+#: apps/knotesapp.cpp:108
 #, kde-format
 msgid "New Note"
 msgstr "Novo sporočilce"
 
-#: apps/knotesapp.cpp:96 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "Novo sporočilce iz odložišča"
 
-#: apps/knotesapp.cpp:101 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:120 kontactplugin/knotes_part.cpp:158
 #, kde-format
 msgid "New Note From Text File..."
 msgstr "Novo sporočilce iz besedilne datoteke ..."
 
-#: apps/knotesapp.cpp:105
+#: apps/knotesapp.cpp:124
 #, kde-format
 msgid "Show All Notes"
 msgstr "Pokaži vsa sporočilca"
 
-#: apps/knotesapp.cpp:110
+#: apps/knotesapp.cpp:129
 #, kde-format
 msgid "Hide All Notes"
 msgstr "Skrij vsa sporočilca"
 
-#: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:134 kontactplugin/knotes_part.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "Natisni izbrana sporočilca ..."
 
-#: apps/knotesapp.cpp:120
+#: apps/knotesapp.cpp:139
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Izbriši izbrana sporočilca ..."
 
-#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "Izberi besedilno datoteko"
 
-#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "Besedilna datoteka"
 
-#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "Napaka med odpiranjem besedilne datoteke: %1"
 
-#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "Odpri besedilno datoteko"
 
-#: apps/knotesapp.cpp:407 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:426 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "Sporočilce iz datoteke »%1«"
 
-#: apps/knotesapp.cpp:500
+#: apps/knotesapp.cpp:519
 #, kde-format
 msgid "No Notes"
 msgstr "Ni sporočilc"
 
-#: apps/knotesapp.cpp:553 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:572 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "Nastavitve"

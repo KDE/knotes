@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-14 01:35+0000\n"
+"POT-Creation-Date: 2024-01-06 01:33+0000\n"
 "PO-Revision-Date: 2013-11-08 01:39+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -38,39 +38,39 @@ msgstr "Жаңа жазбаның қайталанатын данасын бол
 msgid "KNotes: Sticky notes by KDE"
 msgstr "KNotes: KDE-нің жапсырмалы жазбалары"
 
-#: apps/knotesapp.cpp:89
+#: apps/knotesapp.cpp:108
 #, kde-format
 msgid "New Note"
 msgstr "Жаңа жазба"
 
-#: apps/knotesapp.cpp:96 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "Алмасу буферінен жаңа жазба"
 
-#: apps/knotesapp.cpp:101 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:120 kontactplugin/knotes_part.cpp:158
 #, fuzzy, kde-format
 #| msgid "New Note From Clipboard"
 msgid "New Note From Text File..."
 msgstr "Алмасу буферінен жаңа жазба"
 
-#: apps/knotesapp.cpp:105
+#: apps/knotesapp.cpp:124
 #, kde-format
 msgid "Show All Notes"
 msgstr "Барлық жазбаларын көрсету"
 
-#: apps/knotesapp.cpp:110
+#: apps/knotesapp.cpp:129
 #, kde-format
 msgid "Hide All Notes"
 msgstr "Барлық жазбаларын жасыру"
 
-#: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:134 kontactplugin/knotes_part.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "Тандағандарын басып шығару..."
 
-#: apps/knotesapp.cpp:120
+#: apps/knotesapp.cpp:139
 #, fuzzy, kde-format
 #| msgctxt "@action:inmenu"
 #| msgid "Print Selected Notes..."
@@ -78,40 +78,40 @@ msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Тандағандарын басып шығару..."
 
-#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 #| msgid "Select notes"
 msgid "Select Text File"
 msgstr "Жазбаларды таңдау"
 
-#: apps/knotesapp.cpp:398 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Text File"
 msgstr "Мәтіннің өлшемі"
 
-#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr ""
 
-#: apps/knotesapp.cpp:404 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Open Text File"
 msgstr "Мәтіннің өлшемі"
 
-#: apps/knotesapp.cpp:407 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:426 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr ""
 
-#: apps/knotesapp.cpp:500
+#: apps/knotesapp.cpp:519
 #, kde-format
 msgid "No Notes"
 msgstr "Жазбалар жоқ"
 
-#: apps/knotesapp.cpp:553 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:572 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "Параметрлері"
