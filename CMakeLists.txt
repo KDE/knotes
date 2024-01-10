@@ -1,9 +1,9 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: BSD-3-Clause
-set(PIM_VERSION "5.240.90")
+set(PIM_VERSION "5.240.95")
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 project(knotes VERSION ${PIM_VERSION})
-set(RELEASE_SERVICE_VERSION "24.01.90")
+set(RELEASE_SERVICE_VERSION "24.01.95")
 
 
 set(KF_MIN_VERSION "5.246.0")
@@ -34,7 +34,7 @@ include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
 
 # Do NOT add quote
-set(KDEPIM_DEV_VERSION rc1)
+set(KDEPIM_DEV_VERSION rc2)
 
 # add an extra space
 if(DEFINED KDEPIM_DEV_VERSION)
