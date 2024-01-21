@@ -13,8 +13,3 @@ void KNoteInterface::setBlockSave(bool b)
 {
     mBlockSave = b;
 }
-
-bool KNoteInterface::blockSave() const
-{
-    return mBlockSave;
-}

@@ -11,7 +11,6 @@ class KNOTES_EXPORT KNoteInterface
 public:
     KNoteInterface();
     void setBlockSave(bool b);
-    [[nodiscard]] bool blockSave() const;
 
 protected:
     bool mBlockSave = false;

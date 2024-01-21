@@ -21,9 +21,6 @@ public:
 
     [[nodiscard]] static QString akonadiNotesInstanceName();
 
-protected:
-    virtual void finishCreateResource();
-
 private:
     void createInstance();
 
