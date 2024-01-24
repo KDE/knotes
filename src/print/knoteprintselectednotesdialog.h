@@ -37,7 +37,7 @@ private:
 
     void writeConfig();
     void readConfig();
-    QListWidget *mListNotes = nullptr;
+    QListWidget *const mListNotes;
     QHash<Akonadi::Item::Id, KNote *> mNotes;
     KNotePrintSelectThemeComboBox *mTheme = nullptr;
     QDialogButtonBox *mButtonBox = nullptr;

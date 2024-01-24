@@ -25,6 +25,7 @@
 
 KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     : QDialog(parent)
+    , mListNotes(new QListWidget(this))
 {
     setWindowTitle(i18nc("@title:window", "Select notes"));
     auto mainLayout = new QVBoxLayout(this);
@@ -32,7 +33,7 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     QPushButton *okButton = mButtonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    mUser1Button = new QPushButton;
+    mUser1Button = new QPushButton(this);
     mButtonBox->addButton(mUser1Button, QDialogButtonBox::ActionRole);
     connect(mButtonBox, &QDialogButtonBox::accepted, this, &KNotePrintSelectedNotesDialog::accept);
     connect(mButtonBox, &QDialogButtonBox::rejected, this, &KNotePrintSelectedNotesDialog::reject);
@@ -41,16 +42,15 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     vbox->setContentsMargins(0, 0, 0, 0);
     w->setLayout(vbox);
 
-    mListNotes = new QListWidget;
     mListNotes->setSelectionMode(QAbstractItemView::ExtendedSelection);
     vbox->addWidget(mListNotes);
 
     auto lay = new QHBoxLayout;
     lay->setContentsMargins(0, 0, 0, 0);
     vbox->addLayout(lay);
-    auto lab = new QLabel(i18n("Printing theme:"));
+    auto lab = new QLabel(i18n("Printing theme:"), this);
     lay->addWidget(lab);
-    mTheme = new KNotePrintSelectThemeComboBox;
+    mTheme = new KNotePrintSelectThemeComboBox(this);
     mTheme->loadThemes();
     lay->addWidget(mTheme);
 
