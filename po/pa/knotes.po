@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-06 01:33+0000\n"
+"POT-Creation-Date: 2024-01-25 00:37+0000\n"
 "PO-Revision-Date: 2012-12-20 08:55+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -408,7 +408,7 @@ msgid "Select notes to delete"
 msgstr "ਪਰਾਪਤ ਕਰਤਾ ਚੁਣੋ:"
 
 #: dialog/knoteselectednotesdialog.cpp:23
-#: print/knoteprintselectednotesdialog.cpp:29
+#: print/knoteprintselectednotesdialog.cpp:30
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
 msgctxt "@title:window"

@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-06 01:33+0000\n"
+"POT-Creation-Date: 2024-01-25 00:37+0000\n"
 "PO-Revision-Date: 2023-12-05 21:11+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -405,7 +405,7 @@ msgid "Select notes to delete"
 msgstr "נא לבחור פתקיות למחיקה"
 
 #: dialog/knoteselectednotesdialog.cpp:23
-#: print/knoteprintselectednotesdialog.cpp:29
+#: print/knoteprintselectednotesdialog.cpp:30
 #, kde-format
 msgctxt "@title:window"
 msgid "Select notes"

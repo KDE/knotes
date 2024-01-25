@@ -1,5 +1,5 @@
 # translation of knotes.po to
-# Version: $Revision: 1669148 $
+# Version: $Revision: 1671010 $
 # Currently maintained by Marcin Bokszczanin
 # Piotr Roszatycki <dexter@fnet.pl> 1998
 # Jacek Stolarczyk<jacek@mer.chemia.polsl.gliwice.pl> 1999, 2000.
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-06 01:33+0000\n"
+"POT-Creation-Date: 2024-01-25 00:37+0000\n"
 "PO-Revision-Date: 2022-01-08 10:50+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -404,7 +404,7 @@ msgid "Select notes to delete"
 msgstr "Wybierz notatki do usunięcia"
 
 #: dialog/knoteselectednotesdialog.cpp:23
-#: print/knoteprintselectednotesdialog.cpp:29
+#: print/knoteprintselectednotesdialog.cpp:30
 #, kde-format
 msgctxt "@title:window"
 msgid "Select notes"

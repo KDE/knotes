@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-06 01:33+0000\n"
+"POT-Creation-Date: 2024-01-25 00:37+0000\n"
 "PO-Revision-Date: 2020-12-29 14:47+0100\n"
 "Last-Translator: Kristóf Kiszel <kiszel.kristof@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -395,7 +395,7 @@ msgid "Select notes to delete"
 msgstr "Törlendő jegyzetek kijelölése"
 
 #: dialog/knoteselectednotesdialog.cpp:23
-#: print/knoteprintselectednotesdialog.cpp:29
+#: print/knoteprintselectednotesdialog.cpp:30
 #, fuzzy, kde-format
 #| msgid "Select notes"
 msgctxt "@title:window"

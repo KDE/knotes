@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-06 01:33+0000\n"
+"POT-Creation-Date: 2024-01-25 00:37+0000\n"
 "PO-Revision-Date: 2022-06-03 15:23+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -405,7 +405,7 @@ msgid "Select notes to delete"
 msgstr "Выбор заметок для удаления"
 
 #: dialog/knoteselectednotesdialog.cpp:23
-#: print/knoteprintselectednotesdialog.cpp:29
+#: print/knoteprintselectednotesdialog.cpp:30
 #, kde-format
 msgctxt "@title:window"
 msgid "Select notes"
