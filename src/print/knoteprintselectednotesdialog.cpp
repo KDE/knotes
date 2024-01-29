@@ -123,14 +123,14 @@ void KNotePrintSelectedNotesDialog::readConfig()
 {
     create(); // ensure a window is created
     windowHandle()->resize(QSize(300, 200));
-    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1String(myKNotePrintSelectedNotesDialogName));
+    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1StringView(myKNotePrintSelectedNotesDialogName));
     KWindowConfig::restoreWindowSize(windowHandle(), group);
     resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void KNotePrintSelectedNotesDialog::writeConfig()
 {
-    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1String(myKNotePrintSelectedNotesDialogName));
+    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1StringView(myKNotePrintSelectedNotesDialogName));
     KWindowConfig::saveWindowSize(windowHandle(), group);
     group.sync();
 }

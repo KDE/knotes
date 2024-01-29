@@ -62,14 +62,14 @@ void KNoteFindDialog::readConfig()
 {
     create(); // ensure a window is created
     windowHandle()->resize(QSize(600, 300));
-    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1String(myKNoteFindDialogName));
+    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1StringView(myKNoteFindDialogName));
     KWindowConfig::restoreWindowSize(windowHandle(), group);
     resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void KNoteFindDialog::writeConfig()
 {
-    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1String(myKNoteFindDialogName));
+    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1StringView(myKNoteFindDialogName));
     KWindowConfig::saveWindowSize(windowHandle(), group);
     group.sync();
 }

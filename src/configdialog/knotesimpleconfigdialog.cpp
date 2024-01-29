@@ -79,14 +79,14 @@ void KNoteSimpleConfigDialog::readConfig()
 {
     create(); // ensure a window is created
     windowHandle()->resize(QSize(600, 400));
-    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1String(myKNoteSimpleConfigDialogName));
+    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1StringView(myKNoteSimpleConfigDialogName));
     KWindowConfig::restoreWindowSize(windowHandle(), group);
     resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void KNoteSimpleConfigDialog::writeConfig()
 {
-    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1String(myKNoteSimpleConfigDialogName));
+    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1StringView(myKNoteSimpleConfigDialogName));
     KWindowConfig::saveWindowSize(windowHandle(), group);
     group.sync();
 }

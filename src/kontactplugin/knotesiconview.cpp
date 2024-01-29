@@ -172,7 +172,7 @@ void KNotesIconViewItem::setIconText(const QString &text, bool save)
 {
     QString replaceText;
     if (text.length() > 50) {
-        replaceText = text.left(50) + QLatin1String("...");
+        replaceText = text.left(50) + QLatin1StringView("...");
     } else {
         replaceText = text;
     }

@@ -103,7 +103,7 @@ void NoteHostDialog::slotTextChanged(const QString &text)
 void NoteHostDialog::serviceSelected(const QModelIndex &idx)
 {
     auto srv = idx.data(KDNSSD::ServiceModel::ServicePtrRole).value<KDNSSD::RemoteService::Ptr>();
-    m_hostCombo->lineEdit()->setText(srv->hostName() + QLatin1String(":") + QString::number(srv->port()));
+    m_hostCombo->lineEdit()->setText(srv->hostName() + QLatin1StringView(":") + QString::number(srv->port()));
 }
 
 QString NoteHostDialog::host() const

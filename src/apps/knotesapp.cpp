@@ -190,7 +190,7 @@ KNotesApp::KNotesApp(QWidget *parent)
     m_noteMenu = static_cast<QMenu *>(m_guiFactory->container(QStringLiteral("notes_menu"), this));
 
     // get the most recent XML UI file
-    QString xmlFileName(componentName() + QLatin1String("ui.rc"));
+    QString xmlFileName(componentName() + QLatin1StringView("ui.rc"));
     QString filter(QStringLiteral("kxmlgui5/knotes/") + xmlFileName); // QT5 = componentData().componentName() + QLatin1Char('/') + xmlFileName;
     const QStringList fileList = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, filter)
         + QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, xmlFileName); // QT5 =
@@ -491,12 +491,12 @@ void KNotesApp::updateNoteActions()
         QString replaceText;
         QString realName = note->name();
         if (realName.length() > 50) {
-            replaceText = realName.left(50) + QLatin1String("...");
+            replaceText = realName.left(50) + QLatin1StringView("...");
         } else {
             replaceText = realName;
         }
 
-        auto action = new QAction(replaceText.replace(QLatin1String("&"), QStringLiteral("&&")), this);
+        auto action = new QAction(replaceText.replace(QLatin1StringView("&"), QStringLiteral("&&")), this);
         action->setToolTip(realName);
         action->setObjectName(QString::number(note->noteId()));
         connect(action, &QAction::triggered, this, &KNotesApp::slotShowNote);
@@ -613,7 +613,7 @@ void KNotesApp::slotConfigureAccels()
     if (keys->exec()) {
         keys->save();
         // update GUI doc for new notes
-        m_noteGUI.setContent(KXMLGUIFactory::readConfigFile(componentName() + QLatin1String("ui.rc"), componentName()));
+        m_noteGUI.setContent(KXMLGUIFactory::readConfigFile(componentName() + QLatin1StringView("ui.rc"), componentName()));
 
         if (actionCollection) {
             QHashIterator<Akonadi::Item::Id, KNote *> i(mNotes);

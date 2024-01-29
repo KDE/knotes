@@ -33,9 +33,9 @@ bool NoteUtils::sendToMail(QWidget *parent, const QString &title, const QString 
     }
     KProcess mail;
     for (const QStringView &cmd : cmd_list) {
-        if (cmd == QLatin1String("%f")) {
+        if (cmd == QLatin1StringView("%f")) {
             mail << message;
-        } else if (cmd == QLatin1String("%t")) {
+        } else if (cmd == QLatin1StringView("%t")) {
             mail << i18n("Note: \"%1\"", title);
         } else {
             mail << cmd.toString();
@@ -121,7 +121,7 @@ QString NoteUtils::createToolTip(const Akonadi::Item &item)
                 tip +=
                     htmlCodeForStandardRow.arg(bckColorName, txtColorName, isRichText ? content : content.replace(QLatin1Char('\n'), QStringLiteral("<br>")));
             }
-            tip += QLatin1String(
+            tip += QLatin1StringView(
                 "</table"
                 "</td>"
                 "</tr>");

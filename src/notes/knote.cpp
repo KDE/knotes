@@ -79,7 +79,7 @@ KNote::KNote(const QDomDocument &buildDoc, const Akonadi::Item &item, bool allow
     setAcceptDrops(true);
     setAttribute(Qt::WA_DeleteOnClose);
     setDOMDocument(buildDoc);
-    setXMLFile(componentName() + QLatin1String("ui.rc"), false, false);
+    setXMLFile(componentName() + QLatin1StringView("ui.rc"), false, false);
 
     // create the main layout
     m_noteLayout = new QVBoxLayout(this);

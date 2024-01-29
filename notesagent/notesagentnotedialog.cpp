@@ -103,14 +103,14 @@ void NotesAgentNoteDialog::readConfig()
 {
     create(); // ensure a window is created
     windowHandle()->resize(QSize(300, 200));
-    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1String(myNotesAgentNoteDialogName));
+    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1StringView(myNotesAgentNoteDialogName));
     KWindowConfig::restoreWindowSize(windowHandle(), group);
     resize(windowHandle()->size()); // workaround for QTBUG-40584
 }
 
 void NotesAgentNoteDialog::writeConfig()
 {
-    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1String(myNotesAgentNoteDialogName));
+    KConfigGroup group(KSharedConfig::openStateConfig(), QLatin1StringView(myNotesAgentNoteDialogName));
     KWindowConfig::saveWindowSize(windowHandle(), group);
     group.sync();
 }

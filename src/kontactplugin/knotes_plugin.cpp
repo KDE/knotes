@@ -107,13 +107,13 @@ void KNotesPlugin::processDropEvent(QDropEvent *event)
         for (const auto &contact : std::as_const(contacts)) {
             const QString email = contact.fullEmail();
             if (email.isEmpty()) {
-                attendees.append(contact.realName() + QLatin1String("<>"));
+                attendees.append(contact.realName() + QLatin1StringView("<>"));
             } else {
                 attendees.append(email);
             }
         }
         event->accept();
-        static_cast<KNotesPart *>(part())->newNote(i18nc("@item", "Meeting"), attendees.join(QLatin1String(", ")));
+        static_cast<KNotesPart *>(part())->newNote(i18nc("@item", "Meeting"), attendees.join(QLatin1StringView(", ")));
         return;
     }
 
