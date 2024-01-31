@@ -23,7 +23,7 @@
 #include <QVBoxLayout>
 #include <QWindow>
 
-#include <config/notenetworkconfig.h>
+#include "config/notenetworkconfig.h"
 
 NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
     : QDialog(parent)
