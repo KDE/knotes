@@ -1059,30 +1059,3 @@ msgstr "Selecció del tema"
 #, kde-format
 msgid "Themes:"
 msgstr "Temes:"
-
-#~ msgid "kcmknotessummary"
-#~ msgstr "kcmknotessummary"
-
-#~ msgid "Notes Summary Configuration Dialog"
-#~ msgstr "Diàleg de configuració del resum de les notes"
-
-#~ msgid "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
-#~ msgstr "Copyright © 2013-%1 Laurent Montel <montel@kde.org>"
-
-#~ msgctxt "@info"
-#~ msgid "Dropping multiple mails is not supported."
-#~ msgstr "No es permet amollar múltiples correus."
-
-#~ msgctxt "@item"
-#~ msgid ""
-#~ "From: %1\n"
-#~ "To: %2\n"
-#~ "Subject: %3"
-#~ msgstr ""
-#~ "De: %1\n"
-#~ "Per a: %2\n"
-#~ "Assumpte: %3"
-
-#~ msgctxt "@item"
-#~ msgid "Mail: %1"
-#~ msgstr "Correu: %1"
