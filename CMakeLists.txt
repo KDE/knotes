@@ -117,7 +117,7 @@ include_directories(${knotes_SOURCE_DIR} ${knotes_BINARY_DIR})
 
 add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
 ecm_set_disabled_deprecation_versions(QT 6.6
-     KF 5.249.0
+     KF 6.0.0
 )
 
 configure_file(knotes-version.h.in ${CMAKE_CURRENT_BINARY_DIR}/knotes-version.h @ONLY)
