@@ -22,6 +22,7 @@
   <developer_name xml:lang="fr">La communauté KDE</developer_name>
   <developer_name xml:lang="gl">A comunidade de KDE</developer_name>
   <developer_name xml:lang="he">קהילת KDE</developer_name>
+  <developer_name xml:lang="hu">A KDE Közösség</developer_name>
   <developer_name xml:lang="ia">Le communitate de KDE</developer_name>
   <developer_name xml:lang="id">Komunitas KDE</developer_name>
   <developer_name xml:lang="it">La Comunità KDE</developer_name>
@@ -103,6 +104,7 @@
   <summary xml:lang="fr">Application de notes autocollantes</summary>
   <summary xml:lang="gl">Aplicación de notas pegañentas</summary>
   <summary xml:lang="he">יישום פתקיות דביקות</summary>
+  <summary xml:lang="hu">Ragadós cetli alkalmazás</summary>
   <summary xml:lang="ia">Application de notas collose</summary>
   <summary xml:lang="id">Aplikasi catatan lekat</summary>
   <summary xml:lang="it">Applicazione per le note adesive</summary>
