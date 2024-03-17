@@ -2,13 +2,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Volkan Gezer <volkangezer@gmail.com>, 2015, 2017.
-# Emir SARI <emir_sari@icloud.com>, 2022.
+# SPDX-FileCopyrightText: 2022, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-03 00:47+0000\n"
-"PO-Revision-Date: 2022-04-13 11:48+0300\n"
+"PO-Revision-Date: 2024-03-17 02:45+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 24.02.0\n"
 
 #: notesagentalarmdialog.cpp:44
 #, kde-format
@@ -37,17 +37,17 @@ msgstr "Alarmı Kaldır"
 #: notesagentalarmdialog.cpp:96
 #, kde-format
 msgid "Show Note..."
-msgstr "Notu Göster..."
+msgstr "Notu Göster…"
 
 #: notesagentalarmdialog.cpp:98
 #, kde-format
 msgid "Modify Alarm..."
-msgstr "Alarmı Değiştir..."
+msgstr "Alarmı Değiştir…"
 
 #: notesagentalarmdialog.cpp:152
 #, kde-format
 msgid "Are you sure to remove alarm?"
-msgstr "Alarmı silmek istediğinize emin misiniz?"
+msgstr "Alarmı kaldırmak istediğinizden emin misiniz?"
 
 #: notesagentalarmdialog.cpp:153
 #, kde-format
@@ -94,7 +94,7 @@ msgstr "Not Aracı."
 #: notesagentsettingsdialog.cpp:62
 #, kde-format
 msgid "Copyright (C) 2013-%1 Laurent Montel"
-msgstr "Telif hakkı (C) 2013-%1 Laurent Montel"
+msgstr "Telif hakkı (C) 2013–%1 Laurent Montel"
 
 #: notesagentsettingsdialog.cpp:64
 #, kde-format
