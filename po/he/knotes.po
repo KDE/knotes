@@ -13,20 +13,20 @@
 # Diego Iastrubni <elcuco@kdemail.net>, 2004, 2005.
 # Ran Rutenberg <ran.rutenberg@gmail.com>, 2007.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
-# SPDX-FileCopyrightText: 2023 Yaron Shahrabani <sh.yaron@gmail.com>
+# SPDX-FileCopyrightText: 2023, 2024 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2023-12-05 21:11+0200\n"
+"PO-Revision-Date: 2024-03-18 10:48+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
 
@@ -203,7 +203,7 @@ msgstr "בו ת׳ורסן"
 #: apps/main.cpp:64
 #, kde-format
 msgid "Started KDE Resource Framework Integration"
-msgstr "החל את האינטגרציה עם תשתית המשאבים של KDE"
+msgstr "ייסד את השילוב מול תשתית המשאבים של KDE"
 
 #: apps/main.cpp:65
 #, kde-format
