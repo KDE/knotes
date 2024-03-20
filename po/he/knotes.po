@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2024-03-18 10:48+0200\n"
+"PO-Revision-Date: 2024-03-19 09:00+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -933,22 +933,22 @@ msgstr "<qt>האם אתה בטוח שברצונך למחוק את הפתק <b>%1
 #: notes/knote.cpp:133
 #, kde-format
 msgid "Confirm Delete"
-msgstr "אשר מחיקה"
+msgstr "אישור מחיקה"
 
 #: notes/knote.cpp:134
 #, kde-format
 msgid "&Delete"
-msgstr "&מחק"
+msgstr "מ&חיקה"
 
 #: notes/knote.cpp:258
 #, kde-format
 msgid "Please enter the new name:"
-msgstr "הזן את השם החדש:"
+msgstr "נא למלא את השם החדש:"
 
 #: notes/knote.cpp:484
 #, kde-format
 msgid "Save note as plain text"
-msgstr "שמור את הפתק בתור קובץ טקסט"
+msgstr "שמירת הפתקית כקובץ טקסט"
 
 #: notes/knote.cpp:491
 #, kde-format
@@ -969,32 +969,32 @@ msgstr "חדש"
 #: notes/knote.cpp:659
 #, kde-format
 msgid "Rename..."
-msgstr "שנה שם..."
+msgstr "שינוי שם…"
 
 #: notes/knote.cpp:668
 #, kde-format
 msgid "Hide"
-msgstr "הסתר"
+msgstr "הסתרה"
 
 #: notes/knote.cpp:673
 #, kde-format
 msgid "Delete"
-msgstr "מחק"
+msgstr "מחיקה"
 
 #: notes/knote.cpp:698
 #, kde-format
 msgid "Preferences..."
-msgstr "העדפות..."
+msgstr "העדפות…"
 
 #: notes/knote.cpp:702
 #, kde-format
 msgid "Keep Above Others"
-msgstr "השאר מעל אחרים"
+msgstr "להשאיר מעל אחרים"
 
 #: notes/knote.cpp:706
 #, kde-format
 msgid "Keep Below Others"
-msgstr "השאר מתחת לאחרים"
+msgstr "להשאיר מתחת לאחרים"
 
 #: notes/knote.cpp:711
 #, kde-format
@@ -1004,7 +1004,7 @@ msgstr "לשולחן עבודה"
 #: notes/knote.cpp:719
 #, kde-format
 msgid "Walk Through Notes"
-msgstr "עבור על כל הפתקים"
+msgstr "מעבר על כל הפתקים"
 
 #: print/knotegrantleeprint.cpp:32
 #, kde-format
