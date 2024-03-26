@@ -223,7 +223,7 @@ KNotesPart::~KNotesPart()
 
 void KNotesPart::updateClickMessage()
 {
-    mNotesWidget->updateClickMessage(mQuickSearchAction->shortcut().toString());
+    mNotesWidget->updateClickMessage(mQuickSearchAction->shortcut().toString(QKeySequence::NativeText));
 }
 
 void KNotesPart::slotItemRemoved(const Akonadi::Item &item)
