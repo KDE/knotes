@@ -131,6 +131,28 @@ if (USE_UNITY_CMAKE_SUPPORT)
     set(COMPILE_WITH_UNITY_CMAKE_SUPPORT ON)
 endif()
 
+
+option(OPTION_USE_PLASMA_ACTIVITIES "Activate plasma activities (experimental)" OFF)
+if (OPTION_USE_PLASMA_ACTIVITIES)
+    if (NOT WIN32 AND NOT APPLE)
+       set(OPTION_USE_PLASMA_ACTIVITIES true)
+    else()
+       set(OPTION_USE_PLASMA_ACTIVITIES false)
+    endif()
+endif()
+if (OPTION_USE_PLASMA_ACTIVITIES)
+    if (NOT WIN32 AND NOT APPLE)
+       find_package(PlasmaActivities "6.0.0")
+    endif()
+endif()
+
+if (TARGET Plasma::Activities)
+    set(HAVE_ACTIVITY_SUPPORT TRUE)
+endif()
+
+configure_file(config-knotes.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-knotes.h )
+
+
 add_subdirectory(noteshared)
 add_subdirectory(src)
 add_subdirectory(notesagent)
