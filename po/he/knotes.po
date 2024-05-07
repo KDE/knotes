@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2024-03-19 09:00+0200\n"
+"PO-Revision-Date: 2024-05-05 11:51+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -928,7 +928,7 @@ msgstr "לקרוא את הפתקית הצצה: „%1”"
 #: notes/knote.cpp:132
 #, kde-format
 msgid "<qt>Do you really want to delete note <b>%1</b>?</qt>"
-msgstr "<qt>האם אתה בטוח שברצונך למחוק את הפתק <b>%1</b> </qt>"
+msgstr "<qt>למחוק את הפתק <b>%1</b> </qt>"
 
 #: notes/knote.cpp:133
 #, kde-format
