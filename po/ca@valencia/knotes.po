@@ -54,7 +54,7 @@ msgstr "Nota nova des del porta-retalls"
 #: apps/knotesapp.cpp:120 kontactplugin/knotes_part.cpp:158
 #, kde-format
 msgid "New Note From Text File..."
-msgstr "Nota nova des d'un fitxer de text..."
+msgstr "Nota nova des d'un fitxer de text…"
 
 #: apps/knotesapp.cpp:124
 #, kde-format
@@ -70,13 +70,13 @@ msgstr "Oculta totes les notes"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
-msgstr "Imprimix les notes seleccionades..."
+msgstr "Imprimix les notes seleccionades…"
 
 #: apps/knotesapp.cpp:139
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
-msgstr "Suprimix les notes seleccionades..."
+msgstr "Suprimix les notes seleccionades…"
 
 #: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
 #, kde-format
@@ -259,7 +259,7 @@ msgstr "Selecciona quines carpetes de KNotes mostrar:"
 #: configdialog/knotecollectionconfigwidget.cpp:134
 #, kde-format
 msgid "Search..."
-msgstr "Busca..."
+msgstr "Busca…"
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
 #, kde-format
@@ -274,7 +274,7 @@ msgstr "&Desselecciona-ho tot"
 #: configdialog/knotecollectionconfigwidget.cpp:161
 #, kde-format
 msgid "Rename notes..."
-msgstr "Canvia el nom de les notes..."
+msgstr "Canvia el nom de les notes…"
 
 #: configdialog/knotecollectionconfigwidget.cpp:165
 #, kde-format
@@ -423,7 +423,7 @@ msgstr "Busca a les notes"
 #, kde-format
 msgctxt "@action:button Search notes"
 msgid "Search..."
-msgstr "Busca..."
+msgstr "Busca…"
 
 #: finddialog/knotefinddialog.cpp:88
 #, kde-format
@@ -546,12 +546,12 @@ msgstr "Disminuïx el sagnat"
 #: knoteedit.cpp:114
 #, kde-format
 msgid "Text Color..."
-msgstr "Color del text..."
+msgstr "Color del text…"
 
 #: knoteedit.cpp:119
 #, kde-format
 msgid "Text Background Color..."
-msgstr "Color de fons del text..."
+msgstr "Color de fons del text…"
 
 #: knoteedit.cpp:123
 #, kde-format
@@ -592,7 +592,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Edit..."
-msgstr "Edita..."
+msgstr "Edita…"
 
 #. i18nc( "@info:status", "Edit popup note" ) );
 #: kontactplugin/knotes_part.cpp:101
@@ -609,7 +609,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Rename..."
-msgstr "Canvia el nom..."
+msgstr "Canvia el nom…"
 
 #. i18nc( "@info:status", "Rename popup note" ) );
 #: kontactplugin/knotes_part.cpp:109
@@ -649,37 +649,37 @@ msgstr "Se vos preguntarà si voleu imprimir la nota emergent seleccionada."
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Preview Selected Notes..."
-msgstr "Imprimix la vista prèvia de les notes seleccionades..."
+msgstr "Imprimix la vista prèvia de les notes seleccionades…"
 
 #: kontactplugin/knotes_part.cpp:134
 #, kde-format
 msgid "Note settings..."
-msgstr "Configureu la nota..."
+msgstr "Configureu la nota…"
 
 #: kontactplugin/knotes_part.cpp:138
 #, kde-format
 msgid "Preferences KNotes..."
-msgstr "Preferències de KNotes..."
+msgstr "Preferències de KNotes…"
 
 #: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:685
 #, kde-format
 msgid "Mail..."
-msgstr "Correu..."
+msgstr "Correu…"
 
 #: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:681
 #, kde-format
 msgid "Send..."
-msgstr "Envia..."
+msgstr "Envia…"
 
 #: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:677
 #, kde-format
 msgid "Set Alarm..."
-msgstr "Establix una alarma..."
+msgstr "Establix una alarma…"
 
 #: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:689
 #, kde-format
 msgid "Save As..."
-msgstr "Anomena i guarda..."
+msgstr "Anomena i guarda…"
 
 #: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:663
 #, kde-format
@@ -748,7 +748,7 @@ msgstr "Nom nou:"
 #: kontactplugin/knotes_part.cpp:556 kontactplugin/knotes_part.cpp:738
 #, kde-format
 msgid "Show Note..."
-msgstr "Mostra una nota..."
+msgstr "Mostra una nota…"
 
 #: kontactplugin/knotes_part.cpp:691
 #, kde-format
@@ -778,7 +778,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Popup Note..."
-msgstr "Nota emergent nova..."
+msgstr "Nota emergent nova…"
 
 #. i18nc( "@info:status", "Create new popup note" ) );
 #: kontactplugin/knotes_plugin.cpp:50
@@ -882,12 +882,12 @@ msgstr "Nom:"
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
 #, kde-format
 msgid "Search notes..."
-msgstr "Busca a les notes..."
+msgstr "Busca a les notes…"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
 #, kde-format
 msgid "Search notes...<%1>"
-msgstr "Busca a les notes...<%1>"
+msgstr "Busca a les notes…<%1>"
 
 #: kontactplugin/knotesselectdeletenotesdialog.cpp:33
 #, kde-format
@@ -914,12 +914,12 @@ msgstr "No s'ha trobat cap nota"
 #: kontactplugin/summarywidget.cpp:117
 #, kde-format
 msgid "Modify Note..."
-msgstr "Mostra la nota..."
+msgstr "Mostra la nota…"
 
 #: kontactplugin/summarywidget.cpp:119
 #, kde-format
 msgid "Delete Note..."
-msgstr "Suprimix la nota..."
+msgstr "Suprimix la nota…"
 
 #: kontactplugin/summarywidget.cpp:194
 #, kde-format
@@ -970,7 +970,7 @@ msgstr "Nova"
 #: notes/knote.cpp:659
 #, kde-format
 msgid "Rename..."
-msgstr "Canvia el nom..."
+msgstr "Canvia el nom…"
 
 #: notes/knote.cpp:668
 #, kde-format
@@ -985,7 +985,7 @@ msgstr "Suprimix"
 #: notes/knote.cpp:698
 #, kde-format
 msgid "Preferences..."
-msgstr "Preferències..."
+msgstr "Preferències…"
 
 #: notes/knote.cpp:702
 #, kde-format
