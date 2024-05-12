@@ -40,12 +40,12 @@ msgstr "Elimina l'alarma"
 #: notesagentalarmdialog.cpp:96
 #, kde-format
 msgid "Show Note..."
-msgstr "Mostra una nota..."
+msgstr "Mostra una nota…"
 
 #: notesagentalarmdialog.cpp:98
 #, kde-format
 msgid "Modify Alarm..."
-msgstr "Modifica l'alarma..."
+msgstr "Modifica l'alarma…"
 
 #: notesagentalarmdialog.cpp:152
 #, kde-format
