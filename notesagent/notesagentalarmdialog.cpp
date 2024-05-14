@@ -93,9 +93,9 @@ void NotesAgentAlarmDialog::slotCustomContextMenuRequested(const QPoint &pos)
     auto entriesContextMenu = new QMenu(this);
     auto removeAlarm = new QAction(QIcon::fromTheme(QStringLiteral("edit-delete")), i18n("Remove Alarm"), entriesContextMenu);
     connect(removeAlarm, &QAction::triggered, this, &NotesAgentAlarmDialog::slotRemoveAlarm);
-    auto showNote = new QAction(i18n("Show Note..."), entriesContextMenu);
+    auto showNote = new QAction(i18nc("@action", "Show Note..."), entriesContextMenu);
     connect(showNote, &QAction::triggered, this, &NotesAgentAlarmDialog::slotShowNote);
-    auto modifyAlarm = new QAction(i18n("Modify Alarm..."), entriesContextMenu);
+    auto modifyAlarm = new QAction(i18nc("@action", "Modify Alarm..."), entriesContextMenu);
     connect(modifyAlarm, &QAction::triggered, this, &NotesAgentAlarmDialog::slotModifyAlarm);
     entriesContextMenu->addAction(showNote);
     entriesContextMenu->addAction(modifyAlarm);

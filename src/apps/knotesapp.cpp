@@ -516,7 +516,7 @@ void KNotesApp::updateNoteActions()
         actionCollection()->action(QStringLiteral("show_all_notes"))->setEnabled(false);
         actionCollection()->action(QStringLiteral("print_selected_notes"))->setEnabled(false);
         actionCollection()->action(QStringLiteral("edit_find"))->setEnabled(false);
-        auto action = new QAction(i18n("No Notes"), this);
+        auto action = new QAction(i18nc("@action", "No Notes"), this);
         action->setEnabled(false);
         m_noteActions.append(action);
     } else {

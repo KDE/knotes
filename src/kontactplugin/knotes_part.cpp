@@ -198,7 +198,7 @@ KNotesPart::KNotesPart(QObject *parent)
 
     mNotesWidget = new KNotesWidget(this, widget());
 
-    mQuickSearchAction = new QAction(i18n("Set Focus to Quick Search"), this);
+    mQuickSearchAction = new QAction(i18nc("@action", "Set Focus to Quick Search"), this);
     // If change shortcut change in quicksearchwidget->lineedit->setPlaceholderText
     actionCollection()->setDefaultShortcut(mQuickSearchAction, QKeySequence(Qt::ALT | Qt::Key_Q));
     actionCollection()->addAction(QStringLiteral("focus_to_quickseach"), mQuickSearchAction);

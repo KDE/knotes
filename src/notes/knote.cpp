@@ -716,7 +716,7 @@ void KNote::createActions()
     slotUpdateDesktopActions();
 #endif
     // invisible action to walk through the notes to make this configurable
-    action = new QAction(i18n("Walk Through Notes"), this);
+    action = new QAction(i18nc("@action", "Walk Through Notes"), this);
     actionCollection()->addAction(QStringLiteral("walk_notes"), action);
     connect(action, &QAction::triggered, this, &KNote::sigShowNextNote);
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::SHIFT | Qt::Key_Backtab));

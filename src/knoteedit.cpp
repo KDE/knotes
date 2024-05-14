@@ -111,7 +111,7 @@ KNoteEdit::KNoteEdit(KActionCollection *actions, QWidget *parent)
 
     QPixmap pix(ICON_SIZE, ICON_SIZE);
     pix.fill(Qt::black); // just a dummy, gets updated before widget is shown
-    m_textColor = new QAction(i18n("Text Color..."), this);
+    m_textColor = new QAction(i18nc("@action", "Text Color..."), this);
     actions->addAction(QStringLiteral("format_color"), m_textColor);
     m_textColor->setIcon(pix);
     connect(m_textColor, &QAction::triggered, this, &KNoteEdit::slotTextColor);
