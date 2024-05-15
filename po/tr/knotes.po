@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2023-12-27 14:37+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -108,7 +108,9 @@ msgid "Note from file '%1'"
 msgstr "'%1' dosyasından not"
 
 #: apps/knotesapp.cpp:519
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No Notes"
+msgctxt "@action"
 msgid "No Notes"
 msgstr "Not Yok"
 
@@ -548,7 +550,9 @@ msgid "Decrease Indent"
 msgstr "Girintiyi Azalt"
 
 #: knoteedit.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text Color..."
+msgctxt "@action"
 msgid "Text Color..."
 msgstr "Metin Rengi..."
 
@@ -693,7 +697,9 @@ msgid "Unlock"
 msgstr "Kilidi Aç"
 
 #: kontactplugin/knotes_part.cpp:201
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set Focus to Quick Search"
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Tez Aramayı Odakla"
 
@@ -1001,7 +1007,9 @@ msgid "To Desktop"
 msgstr "Masaüstüne"
 
 #: notes/knote.cpp:719
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Walk Through Notes"
+msgctxt "@action"
 msgid "Walk Through Notes"
 msgstr "Notlar Arasında Gezin"
 

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2023-03-29 08:17+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -111,7 +111,9 @@ msgid "Note from file '%1'"
 msgstr "Sporočilce iz datoteke »%1«"
 
 #: apps/knotesapp.cpp:519
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No Notes"
+msgctxt "@action"
 msgid "No Notes"
 msgstr "Ni sporočilc"
 
@@ -551,7 +553,9 @@ msgid "Decrease Indent"
 msgstr "Zmanjšaj zamik"
 
 #: knoteedit.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text Color..."
+msgctxt "@action"
 msgid "Text Color..."
 msgstr "Barva besedila ..."
 
@@ -699,7 +703,9 @@ msgid "Unlock"
 msgstr "Odkleni"
 
 #: kontactplugin/knotes_part.cpp:201
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set Focus to Quick Search"
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Postavi žarišče na hitro iskanje"
 
@@ -1011,7 +1017,9 @@ msgid "To Desktop"
 msgstr "Na namizje"
 
 #: notes/knote.cpp:719
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Walk Through Notes"
+msgctxt "@action"
 msgid "Walk Through Notes"
 msgstr "Sprehodi se skozi sporočilca"
 

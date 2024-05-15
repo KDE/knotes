@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2022-03-03 10:38+0200\n"
 "Last-Translator: Petros Vidalis <pvidalis@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -36,12 +36,16 @@ msgid "Remove Alarm"
 msgstr "Αφαίρεση συναγερμού"
 
 #: notesagentalarmdialog.cpp:96
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show Note..."
+msgctxt "@action"
 msgid "Show Note..."
 msgstr "Εμφάνιση σημειώματος..."
 
 #: notesagentalarmdialog.cpp:98
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Modify Alarm..."
+msgctxt "@action"
 msgid "Modify Alarm..."
 msgstr "Τροποποίηση συναγερμού..."
 

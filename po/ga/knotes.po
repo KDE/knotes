@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/knotes.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2004-12-03 14:52-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -109,7 +109,9 @@ msgid "Note from file '%1'"
 msgstr ""
 
 #: apps/knotesapp.cpp:519
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No Notes"
+msgctxt "@action"
 msgid "No Notes"
 msgstr "Gan Nótaí"
 
@@ -563,7 +565,9 @@ msgid "Decrease Indent"
 msgstr "Laghdaigh Eangú"
 
 #: knoteedit.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text Color..."
+msgctxt "@action"
 msgid "Text Color..."
 msgstr "Dath Téacs..."
 
@@ -712,6 +716,7 @@ msgstr "Díghlasáil"
 
 #: kontactplugin/knotes_part.cpp:201
 #, kde-format
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
@@ -1058,7 +1063,9 @@ msgid "To Desktop"
 msgstr "Go Deasc"
 
 #: notes/knote.cpp:719
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Walk Through Notes"
+msgctxt "@action"
 msgid "Walk Through Notes"
 msgstr "Céimnigh Trí na Nótaí"
 

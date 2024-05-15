@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2005-10-10 14:12+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -104,7 +104,9 @@ msgid "Note from file '%1'"
 msgstr ""
 
 #: apps/knotesapp.cpp:519
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No Notes"
+msgctxt "@action"
 msgid "No Notes"
 msgstr "Tiada Nota"
 
@@ -556,7 +558,9 @@ msgid "Decrease Indent"
 msgstr ""
 
 #: knoteedit.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text Color..."
+msgctxt "@action"
 msgid "Text Color..."
 msgstr "Warna teks..."
 
@@ -703,6 +707,7 @@ msgstr "Pasak"
 
 #: kontactplugin/knotes_part.cpp:201
 #, kde-format
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
@@ -1031,7 +1036,9 @@ msgid "To Desktop"
 msgstr "Ke Desktop"
 
 #: notes/knote.cpp:719
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Walk Through Notes"
+msgctxt "@action"
 msgid "Walk Through Notes"
 msgstr "Nota Jalan Rentas"
 

@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2023-06-22 10:00+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -114,7 +114,9 @@ msgid "Note from file '%1'"
 msgstr "Notitie uit bestand '%1'"
 
 #: apps/knotesapp.cpp:519
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No Notes"
+msgctxt "@action"
 msgid "No Notes"
 msgstr "Geen notities"
 
@@ -554,7 +556,9 @@ msgid "Decrease Indent"
 msgstr "Inspringing verkleinen"
 
 #: knoteedit.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text Color..."
+msgctxt "@action"
 msgid "Text Color..."
 msgstr "Tekstkleur..."
 
@@ -701,7 +705,9 @@ msgid "Unlock"
 msgstr "Ontgrendelen"
 
 #: kontactplugin/knotes_part.cpp:201
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set Focus to Quick Search"
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Focus op snelzoeken instellen"
 
@@ -1013,7 +1019,9 @@ msgid "To Desktop"
 msgstr "Naar bureaublad"
 
 #: notes/knote.cpp:719
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Walk Through Notes"
+msgctxt "@action"
 msgid "Walk Through Notes"
 msgstr "Door notities bladeren"
 

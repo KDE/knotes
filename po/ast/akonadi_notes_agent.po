@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2023-11-07 21:27+0100\n"
 "Last-Translator: Enol P. <enolp@softastur.org>\n"
 "Language-Team: \n"
@@ -35,11 +35,13 @@ msgstr ""
 
 #: notesagentalarmdialog.cpp:96
 #, kde-format
+msgctxt "@action"
 msgid "Show Note..."
 msgstr ""
 
 #: notesagentalarmdialog.cpp:98
 #, kde-format
+msgctxt "@action"
 msgid "Modify Alarm..."
 msgstr ""
 

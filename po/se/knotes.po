@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2006-01-10 20:33+0100\n"
 "Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
 "Language-Team: Northern Sami <l10n-no@lister.huftis.org>\n"
@@ -102,9 +102,11 @@ msgid "Note from file '%1'"
 msgstr ""
 
 #: apps/knotesapp.cpp:519
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Notes"
+msgctxt "@action"
 msgid "No Notes"
-msgstr ""
+msgstr "Muittuhusat"
 
 #: apps/knotesapp.cpp:572 kontactplugin/knotes_part.cpp:587
 #, kde-format
@@ -539,7 +541,9 @@ msgid "Decrease Indent"
 msgstr ""
 
 #: knoteedit.cpp:114
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text Color..."
+msgctxt "@action"
 msgid "Text Color..."
 msgstr "Teakstaivdni …"
 
@@ -681,6 +685,7 @@ msgstr ""
 
 #: kontactplugin/knotes_part.cpp:201
 #, kde-format
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
@@ -987,6 +992,7 @@ msgstr ""
 
 #: notes/knote.cpp:719
 #, kde-format
+msgctxt "@action"
 msgid "Walk Through Notes"
 msgstr ""
 

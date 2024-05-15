@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2022-01-08 10:50+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -35,12 +35,16 @@ msgid "Remove Alarm"
 msgstr "Usuń alarm"
 
 #: notesagentalarmdialog.cpp:96
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show Note..."
+msgctxt "@action"
 msgid "Show Note..."
 msgstr "Pokaż notatkę..."
 
 #: notesagentalarmdialog.cpp:98
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Modify Alarm..."
+msgctxt "@action"
 msgid "Modify Alarm..."
 msgstr "Zmień alarm..."
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2023-11-07 21:27+0100\n"
 "Last-Translator: Enol P. <enolp@softastur.org>\n"
 "Language-Team: \n"
@@ -101,6 +101,7 @@ msgstr ""
 
 #: apps/knotesapp.cpp:519
 #, kde-format
+msgctxt "@action"
 msgid "No Notes"
 msgstr ""
 
@@ -538,6 +539,7 @@ msgstr ""
 
 #: knoteedit.cpp:114
 #, kde-format
+msgctxt "@action"
 msgid "Text Color..."
 msgstr ""
 
@@ -679,6 +681,7 @@ msgstr ""
 
 #: kontactplugin/knotes_part.cpp:201
 #, kde-format
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
@@ -985,6 +988,7 @@ msgstr ""
 
 #: notes/knote.cpp:719
 #, kde-format
+msgctxt "@action"
 msgid "Walk Through Notes"
 msgstr ""
 

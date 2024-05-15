@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2010-09-24 16:28+0530\n"
 "Last-Translator: Rajesh Ranjan <rajesh672@gmail.com>\n"
 "Language-Team: Maithili <bhashaghar@googlegroups.com>\n"
@@ -102,9 +102,11 @@ msgid "Note from file '%1'"
 msgstr ""
 
 #: apps/knotesapp.cpp:519
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Notes"
+msgctxt "@action"
 msgid "No Notes"
-msgstr ""
+msgstr "टिप्पणी"
 
 #: apps/knotesapp.cpp:572 kontactplugin/knotes_part.cpp:587
 #, kde-format
@@ -548,6 +550,7 @@ msgstr "हाशिया घटाबू"
 
 #: knoteedit.cpp:114
 #, kde-format
+msgctxt "@action"
 msgid "Text Color..."
 msgstr ""
 
@@ -693,6 +696,7 @@ msgstr "अनलौक करू"
 
 #: kontactplugin/knotes_part.cpp:201
 #, kde-format
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
@@ -1015,6 +1019,7 @@ msgstr ""
 
 #: notes/knote.cpp:719
 #, kde-format
+msgctxt "@action"
 msgid "Walk Through Notes"
 msgstr ""
 
