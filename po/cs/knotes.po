@@ -102,11 +102,10 @@ msgid "Note from file '%1'"
 msgstr "Poznámka ze souboru '%1'"
 
 #: apps/knotesapp.cpp:519
-#, fuzzy, kde-format
-#| msgid "No Notes"
+#, kde-format
 msgctxt "@action"
 msgid "No Notes"
-msgstr "Žádné poznámky"
+msgstr ""
 
 #: apps/knotesapp.cpp:572 kontactplugin/knotes_part.cpp:587
 #, kde-format
@@ -541,11 +540,10 @@ msgid "Decrease Indent"
 msgstr "Snížit odsazení"
 
 #: knoteedit.cpp:114
-#, fuzzy, kde-format
-#| msgid "Text Color..."
+#, kde-format
 msgctxt "@action"
 msgid "Text Color..."
-msgstr "Barva textu..."
+msgstr ""
 
 #: knoteedit.cpp:119
 #, kde-format
@@ -684,11 +682,10 @@ msgid "Unlock"
 msgstr "Odemknout"
 
 #: kontactplugin/knotes_part.cpp:201
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
-msgstr "Přejít do rychlého vyhledávání"
+msgstr ""
 
 #: kontactplugin/knotes_part.cpp:278
 #, kde-format
@@ -995,11 +992,10 @@ msgid "To Desktop"
 msgstr "Na plochu"
 
 #: notes/knote.cpp:719
-#, fuzzy, kde-format
-#| msgid "Walk Through Notes"
+#, kde-format
 msgctxt "@action"
 msgid "Walk Through Notes"
-msgstr "Procházet poznámkami"
+msgstr ""
 
 #: print/knotegrantleeprint.cpp:32
 #, kde-format

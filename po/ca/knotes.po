@@ -1,16 +1,16 @@
 # Translation of knotes.po to Catalan
-# Copyright (C) 1998-2023 This_file_is_part_of_KDE
+# Copyright (C) 1998-2024 This_file_is_part_of_KDE
 #
 # Sebastià Pla i Sanz <sps@sastia.com>, 1998, 2004.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2003, 2013, 2014, 2015, 2016, 2017, 2019, 2020.
 # Albert Astals Cid <aacid@kde.org>, 2004, 2005.
-# Josep M. Ferrer <txemaq@gmail.com>, 2006, 2007, 2008, 2009, 2010, 2014, 2015, 2017, 2018, 2021, 2022, 2023.
+# Josep M. Ferrer <txemaq@gmail.com>, 2006, 2007, 2008, 2009, 2010, 2014, 2015, 2017, 2018, 2021, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-15 00:39+0000\n"
-"PO-Revision-Date: 2023-09-22 11:24+0200\n"
+"PO-Revision-Date: 2024-05-15 11:29+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -104,8 +104,7 @@ msgid "Note from file '%1'"
 msgstr "Nota des del fitxer «%1»"
 
 #: apps/knotesapp.cpp:519
-#, fuzzy, kde-format
-#| msgid "No Notes"
+#, kde-format
 msgctxt "@action"
 msgid "No Notes"
 msgstr "Sense notes"
@@ -546,8 +545,7 @@ msgid "Decrease Indent"
 msgstr "Disminueix el sagnat"
 
 #: knoteedit.cpp:114
-#, fuzzy, kde-format
-#| msgid "Text Color..."
+#, kde-format
 msgctxt "@action"
 msgid "Text Color..."
 msgstr "Color del text..."
@@ -696,8 +694,7 @@ msgid "Unlock"
 msgstr "Desbloca"
 
 #: kontactplugin/knotes_part.cpp:201
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Estableix el focus a la cerca ràpida"
@@ -1009,8 +1006,7 @@ msgid "To Desktop"
 msgstr "A l'escriptori"
 
 #: notes/knote.cpp:719
-#, fuzzy, kde-format
-#| msgid "Walk Through Notes"
+#, kde-format
 msgctxt "@action"
 msgid "Walk Through Notes"
 msgstr "Recorre les notes"

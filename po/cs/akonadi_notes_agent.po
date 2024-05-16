@@ -35,18 +35,16 @@ msgid "Remove Alarm"
 msgstr "Odstranit upomínku"
 
 #: notesagentalarmdialog.cpp:96
-#, fuzzy, kde-format
-#| msgid "Show Note..."
+#, kde-format
 msgctxt "@action"
 msgid "Show Note..."
-msgstr "Zobrazit poznámku..."
+msgstr ""
 
 #: notesagentalarmdialog.cpp:98
-#, fuzzy, kde-format
-#| msgid "Modify Alarm..."
+#, kde-format
 msgctxt "@action"
 msgid "Modify Alarm..."
-msgstr "Změnit alarm..."
+msgstr ""
 
 #: notesagentalarmdialog.cpp:152
 #, kde-format

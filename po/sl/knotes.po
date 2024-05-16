@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-15 00:39+0000\n"
-"PO-Revision-Date: 2023-03-29 08:17+0200\n"
+"PO-Revision-Date: 2024-05-15 10:46+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -111,8 +111,7 @@ msgid "Note from file '%1'"
 msgstr "Sporočilce iz datoteke »%1«"
 
 #: apps/knotesapp.cpp:519
-#, fuzzy, kde-format
-#| msgid "No Notes"
+#, kde-format
 msgctxt "@action"
 msgid "No Notes"
 msgstr "Ni sporočilc"
@@ -553,16 +552,15 @@ msgid "Decrease Indent"
 msgstr "Zmanjšaj zamik"
 
 #: knoteedit.cpp:114
-#, fuzzy, kde-format
-#| msgid "Text Color..."
+#, kde-format
 msgctxt "@action"
 msgid "Text Color..."
-msgstr "Barva besedila ..."
+msgstr "Barva besedila..."
 
 #: knoteedit.cpp:119
 #, kde-format
 msgid "Text Background Color..."
-msgstr "Barva ozadja besedila ..."
+msgstr "Barva ozadja besedila..."
 
 #: knoteedit.cpp:123
 #, kde-format
@@ -604,7 +602,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Edit..."
-msgstr "Uredi ..."
+msgstr "Uredi..."
 
 #. i18nc( "@info:status", "Edit popup note" ) );
 #: kontactplugin/knotes_part.cpp:101
@@ -621,7 +619,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Rename..."
-msgstr "Preimenuj ..."
+msgstr "Preimenuj..."
 
 #. i18nc( "@info:status", "Rename popup note" ) );
 #: kontactplugin/knotes_part.cpp:109
@@ -665,7 +663,7 @@ msgstr "Predogled tiskanja izbranih sporočilc ..."
 #: kontactplugin/knotes_part.cpp:134
 #, kde-format
 msgid "Note settings..."
-msgstr "Nastavitve sporočilca ..."
+msgstr "Nastavitve sporočilca..."
 
 #: kontactplugin/knotes_part.cpp:138
 #, kde-format
@@ -675,22 +673,22 @@ msgstr "Možnosti KNotes ..."
 #: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:685
 #, kde-format
 msgid "Mail..."
-msgstr "Pošta ..."
+msgstr "Pošta..."
 
 #: kontactplugin/knotes_part.cpp:146 notes/knote.cpp:681
 #, kde-format
 msgid "Send..."
-msgstr "Pošlji ..."
+msgstr "Pošlji..."
 
 #: kontactplugin/knotes_part.cpp:150 notes/knote.cpp:677
 #, kde-format
 msgid "Set Alarm..."
-msgstr "Nastavi alarm ..."
+msgstr "Nastavi alarm..."
 
 #: kontactplugin/knotes_part.cpp:162 notes/knote.cpp:689
 #, kde-format
 msgid "Save As..."
-msgstr "Shrani kot ..."
+msgstr "Shrani kot..."
 
 #: kontactplugin/knotes_part.cpp:166 notes/knote.cpp:663
 #, kde-format
@@ -703,8 +701,7 @@ msgid "Unlock"
 msgstr "Odkleni"
 
 #: kontactplugin/knotes_part.cpp:201
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Postavi žarišče na hitro iskanje"
@@ -1017,8 +1014,7 @@ msgid "To Desktop"
 msgstr "Na namizje"
 
 #: notes/knote.cpp:719
-#, fuzzy, kde-format
-#| msgid "Walk Through Notes"
+#, kde-format
 msgctxt "@action"
 msgid "Walk Through Notes"
 msgstr "Sprehodi se skozi sporočilca"
