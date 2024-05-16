@@ -131,7 +131,7 @@ void KNote::slotKill(bool force)
         && KMessageBox::warningContinueCancel(this,
                                               i18n("<qt>Do you really want to delete note <b>%1</b>?</qt>", m_label->text()),
                                               i18n("Confirm Delete"),
-                                              KGuiItem(i18n("&Delete"), QStringLiteral("edit-delete")),
+                                              KGuiItem(i18nc("@action:button", "&Delete"), QStringLiteral("edit-delete")),
                                               KStandardGuiItem::cancel(),
                                               QStringLiteral("ConfirmDeleteNote"))
             != KMessageBox::Continue) {
@@ -663,7 +663,7 @@ void KNote::createActions()
     m_readOnly = new KToggleAction(QIcon::fromTheme(QStringLiteral("object-locked")), i18n("Lock"), this);
     actionCollection()->addAction(QStringLiteral("lock_note"), m_readOnly);
     connect(m_readOnly, &KToggleAction::triggered, this, &KNote::slotUpdateReadOnly);
-    m_readOnly->setCheckedState(KGuiItem(i18n("Unlock"), QStringLiteral("object-unlocked")));
+    m_readOnly->setCheckedState(KGuiItem(i18nc("@action:button", "Unlock"), QStringLiteral("object-unlocked")));
 
     action = new QAction(QIcon::fromTheme(QStringLiteral("window-close")), i18n("Hide"), this);
     actionCollection()->addAction(QStringLiteral("hide_note"), action);

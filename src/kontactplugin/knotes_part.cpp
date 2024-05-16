@@ -166,7 +166,7 @@ KNotesPart::KNotesPart(QObject *parent)
     mReadOnly = new KToggleAction(QIcon::fromTheme(QStringLiteral("object-locked")), i18n("Lock"), this);
     actionCollection()->addAction(QStringLiteral("lock_note"), mReadOnly);
     connect(mReadOnly, &KToggleAction::triggered, this, &KNotesPart::slotUpdateReadOnly);
-    mReadOnly->setCheckedState(KGuiItem(i18n("Unlock"), QStringLiteral("object-unlocked")));
+    mReadOnly->setCheckedState(KGuiItem(i18nc("@action:button", "Unlock"), QStringLiteral("object-unlocked")));
 
     KStandardAction::find(this, &KNotesPart::slotOpenFindDialog, actionCollection());
 
