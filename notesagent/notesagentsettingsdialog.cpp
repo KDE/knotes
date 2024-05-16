@@ -61,7 +61,7 @@ NotesAgentSettingsDialog::NotesAgentSettingsDialog(QWidget *parent)
                                       KAboutLicense::GPL_V2,
                                       i18n("Copyright (C) 2013-%1 Laurent Montel", QStringLiteral("2024")));
 
-    aboutData.addAuthor(i18n("Laurent Montel"), i18n("Maintainer"), QStringLiteral("montel@kde.org"));
+    aboutData.addAuthor(i18nc("@info:credit", "Laurent Montel"), i18n("Maintainer"), QStringLiteral("montel@kde.org"));
 
     QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("knotes")));
     aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"), i18nc("EMAIL OF TRANSLATORS", "Your emails"));

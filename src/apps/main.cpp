@@ -55,20 +55,22 @@ int main(int argc, char *argv[])
 
 void knotesAuthors(KAboutData &aboutData)
 {
-    aboutData.addAuthor(i18n("Laurent Montel"), i18n("Maintainer"), QStringLiteral("montel@kde.org"));
-    aboutData.addAuthor(i18n("Guillermo Antonio Amaral Bastidas"), i18n("Previous Maintainer"), QStringLiteral("me@guillermoamaral.com"));
-    aboutData.addAuthor(i18n("Michael Brade"), i18n("Previous Maintainer"), QStringLiteral("brade@kde.org"));
-    aboutData.addAuthor(i18n("Bernd Johannes Wuebben"), i18n("Original KNotes Author"), QStringLiteral("wuebben@kde.org"));
-    aboutData.addAuthor(i18n("Wynn Wilkes"), i18n("Ported KNotes to KDE 2"), QStringLiteral("wynnw@calderasystems.com"));
-    aboutData.addAuthor(i18n("Daniel Martin"), i18n("Network Interface"), QStringLiteral("daniel.martin@pirack.com"));
-    aboutData.addAuthor(i18n("Bo Thorsen"), i18n("Started KDE Resource Framework Integration"), QStringLiteral("bo@sonofthor.dk"));
-    aboutData.addCredit(i18n("Bera Debajyoti"), i18n("Idea and initial code for the new look & feel"), QStringLiteral("debajyotibera@gmail.com"));
-    aboutData.addCredit(i18n("Matthias Ettrich"), QString(), QStringLiteral("ettrich@kde.org"));
-    aboutData.addCredit(i18n("David Faure"), QString(), QStringLiteral("faure@kde.org"));
-    aboutData.addCredit(i18n("Matthias Kiefer"), QString(), QStringLiteral("kiefer@kde.org"));
-    aboutData.addCredit(i18n("Luboš Luňák"), QStringLiteral("l.lunak@kde.org"));
-    aboutData.addCredit(i18n("Dirk A. Mueller"), QString(), QStringLiteral("dmuell@gmx.net"));
-    aboutData.addCredit(i18n("Carsten Pfeiffer"), QString(), QStringLiteral("pfeiffer@kde.org"));
-    aboutData.addCredit(i18n("Harri Porten"), QString(), QStringLiteral("porten@kde.org"));
-    aboutData.addCredit(i18n("Espen Sand"), QString(), QStringLiteral("espen@kde.org"));
+    aboutData.addAuthor(i18nc("@info:credit", "Laurent Montel"), i18n("Maintainer"), QStringLiteral("montel@kde.org"));
+    aboutData.addAuthor(i18nc("@info:credit", "Guillermo Antonio Amaral Bastidas"), i18n("Previous Maintainer"), QStringLiteral("me@guillermoamaral.com"));
+    aboutData.addAuthor(i18nc("@info:credit", "Michael Brade"), i18n("Previous Maintainer"), QStringLiteral("brade@kde.org"));
+    aboutData.addAuthor(i18nc("@info:credit", "Bernd Johannes Wuebben"), i18n("Original KNotes Author"), QStringLiteral("wuebben@kde.org"));
+    aboutData.addAuthor(i18nc("@info:credit", "Wynn Wilkes"), i18n("Ported KNotes to KDE 2"), QStringLiteral("wynnw@calderasystems.com"));
+    aboutData.addAuthor(i18nc("@info:credit", "Daniel Martin"), i18n("Network Interface"), QStringLiteral("daniel.martin@pirack.com"));
+    aboutData.addAuthor(i18nc("@info:credit", "Bo Thorsen"), i18n("Started KDE Resource Framework Integration"), QStringLiteral("bo@sonofthor.dk"));
+    aboutData.addCredit(i18nc("@info:credit", "Bera Debajyoti"),
+                        i18n("Idea and initial code for the new look & feel"),
+                        QStringLiteral("debajyotibera@gmail.com"));
+    aboutData.addCredit(i18nc("@info:credit", "Matthias Ettrich"), QString(), QStringLiteral("ettrich@kde.org"));
+    aboutData.addCredit(i18nc("@info:credit", "David Faure"), QString(), QStringLiteral("faure@kde.org"));
+    aboutData.addCredit(i18nc("@info:credit", "Matthias Kiefer"), QString(), QStringLiteral("kiefer@kde.org"));
+    aboutData.addCredit(i18nc("@info:credit", "Luboš Luňák"), QStringLiteral("l.lunak@kde.org"));
+    aboutData.addCredit(i18nc("@info:credit", "Dirk A. Mueller"), QString(), QStringLiteral("dmuell@gmx.net"));
+    aboutData.addCredit(i18nc("@info:credit", "Carsten Pfeiffer"), QString(), QStringLiteral("pfeiffer@kde.org"));
+    aboutData.addCredit(i18nc("@info:credit", "Harri Porten"), QString(), QStringLiteral("porten@kde.org"));
+    aboutData.addCredit(i18nc("@info:credit", "Espen Sand"), QString(), QStringLiteral("espen@kde.org"));
 }
