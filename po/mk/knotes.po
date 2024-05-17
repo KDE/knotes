@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"POT-Creation-Date: 2024-05-17 00:39+0000\n"
 "PO-Revision-Date: 2009-01-08 13:14+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -138,8 +138,9 @@ msgstr "KDE белешки"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr ""
 
-#: apps/main.cpp:58
-#, kde-format
+#: apps/main.cpp:58 kontactplugin/knotes_plugin.cpp:82
+#, kde-format, kde-kuit-format
+msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr ""
 
@@ -150,6 +151,7 @@ msgstr "Одржувач"
 
 #: apps/main.cpp:59
 #, kde-format
+msgctxt "@info:credit"
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr ""
 
@@ -159,13 +161,15 @@ msgstr ""
 msgid "Previous Maintainer"
 msgstr "Одржувач"
 
-#: apps/main.cpp:60
-#, kde-format
+#: apps/main.cpp:60 kontactplugin/knotes_plugin.cpp:84
+#, kde-format, kde-kuit-format
+msgctxt "@info:credit"
 msgid "Michael Brade"
 msgstr ""
 
 #: apps/main.cpp:61
 #, kde-format
+msgctxt "@info:credit"
 msgid "Bernd Johannes Wuebben"
 msgstr ""
 
@@ -176,6 +180,7 @@ msgstr "Оригинален автор на KNotes"
 
 #: apps/main.cpp:62
 #, kde-format
+msgctxt "@info:credit"
 msgid "Wynn Wilkes"
 msgstr ""
 
@@ -187,6 +192,7 @@ msgstr "Ги пренел KNotes на KDE 2"
 #: apps/main.cpp:63
 #, fuzzy, kde-format
 #| msgid "&Mail action:"
+msgctxt "@info:credit"
 msgid "Daniel Martin"
 msgstr "&Акција за е-пошта:"
 
@@ -197,6 +203,7 @@ msgstr "Мрежен интерфејс"
 
 #: apps/main.cpp:64
 #, kde-format
+msgctxt "@info:credit"
 msgid "Bo Thorsen"
 msgstr ""
 
@@ -207,52 +214,61 @@ msgstr "Ја започна интеграцијата со опкружувањ
 
 #: apps/main.cpp:65
 #, kde-format
+msgctxt "@info:credit"
 msgid "Bera Debajyoti"
 msgstr ""
 
-#: apps/main.cpp:65
+#: apps/main.cpp:66
 #, fuzzy, kde-format
 #| msgid "Idea and initial code for the new look&feel"
 msgid "Idea and initial code for the new look & feel"
 msgstr "Идеја и иницијален код за новите изглед и чувство"
 
-#: apps/main.cpp:66
-#, kde-format
-msgid "Matthias Ettrich"
-msgstr ""
-
-#: apps/main.cpp:67
-#, kde-format
-msgid "David Faure"
-msgstr ""
-
 #: apps/main.cpp:68
 #, kde-format
-msgid "Matthias Kiefer"
+msgctxt "@info:credit"
+msgid "Matthias Ettrich"
 msgstr ""
 
 #: apps/main.cpp:69
 #, kde-format
-msgid "Luboš Luňák"
+msgctxt "@info:credit"
+msgid "David Faure"
 msgstr ""
 
 #: apps/main.cpp:70
 #, kde-format
-msgid "Dirk A. Mueller"
+msgctxt "@info:credit"
+msgid "Matthias Kiefer"
 msgstr ""
 
 #: apps/main.cpp:71
 #, kde-format
-msgid "Carsten Pfeiffer"
+msgctxt "@info:credit"
+msgid "Luboš Luňák"
 msgstr ""
 
 #: apps/main.cpp:72
 #, kde-format
-msgid "Harri Porten"
+msgctxt "@info:credit"
+msgid "Dirk A. Mueller"
 msgstr ""
 
 #: apps/main.cpp:73
 #, kde-format
+msgctxt "@info:credit"
+msgid "Carsten Pfeiffer"
+msgstr ""
+
+#: apps/main.cpp:74
+#, kde-format
+msgctxt "@info:credit"
+msgid "Harri Porten"
+msgstr ""
+
+#: apps/main.cpp:75
+#, kde-format
+msgctxt "@info:credit"
 msgid "Espen Sand"
 msgstr ""
 
@@ -708,7 +724,9 @@ msgid "Lock"
 msgstr "Заклучи"
 
 #: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock"
+msgctxt "@action:button"
 msgid "Unlock"
 msgstr "Отклучи"
 
@@ -841,23 +859,11 @@ msgid "Copyright © 2003–%1 Kontact authors"
 msgstr ""
 
 #: kontactplugin/knotes_plugin.cpp:82
-#, kde-kuit-format
-msgctxt "@info:credit"
-msgid "Laurent Montel"
-msgstr ""
-
-#: kontactplugin/knotes_plugin.cpp:82
 #, fuzzy, kde-kuit-format
 #| msgid "Maintainer"
 msgctxt "@info:credit"
 msgid "Current Maintainer"
 msgstr "Одржувач"
-
-#: kontactplugin/knotes_plugin.cpp:84
-#, kde-kuit-format
-msgctxt "@info:credit"
-msgid "Michael Brade"
-msgstr ""
 
 #: kontactplugin/knotes_plugin.cpp:84
 #, fuzzy, kde-kuit-format
@@ -983,9 +989,10 @@ msgid "Confirm Delete"
 msgstr "Потврди бришење"
 
 #: notes/knote.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+msgctxt "@action:button"
 msgid "&Delete"
-msgstr ""
+msgstr "Потврди бришење"
 
 #: notes/knote.cpp:258
 #, kde-format

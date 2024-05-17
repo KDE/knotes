@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"POT-Creation-Date: 2024-05-17 00:39+0000\n"
 "PO-Revision-Date: 2009-06-13 16:18+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: icelandic <kde-isl@molar.is>\n"
@@ -146,8 +146,9 @@ msgstr "KDE miðar"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr ""
 
-#: apps/main.cpp:58
-#, fuzzy, kde-format
+#: apps/main.cpp:58 kontactplugin/knotes_plugin.cpp:82
+#, fuzzy, kde-format, kde-kuit-format
+msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
@@ -158,6 +159,7 @@ msgstr "Umsjónaraðili"
 
 #: apps/main.cpp:59
 #, kde-format
+msgctxt "@info:credit"
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr ""
 
@@ -167,13 +169,15 @@ msgstr ""
 msgid "Previous Maintainer"
 msgstr "Umsjónaraðili"
 
-#: apps/main.cpp:60
-#, fuzzy, kde-format
+#: apps/main.cpp:60 kontactplugin/knotes_plugin.cpp:84
+#, fuzzy, kde-format, kde-kuit-format
+msgctxt "@info:credit"
 msgid "Michael Brade"
 msgstr "Michael Brade"
 
 #: apps/main.cpp:61
 #, fuzzy, kde-format
+msgctxt "@info:credit"
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
@@ -184,6 +188,7 @@ msgstr "Upprunalegur KNotes höfundur"
 
 #: apps/main.cpp:62
 #, fuzzy, kde-format
+msgctxt "@info:credit"
 msgid "Wynn Wilkes"
 msgstr "Wynn Wilkes"
 
@@ -195,6 +200,7 @@ msgstr "Flutti KNotes yfir í KDE 2"
 #: apps/main.cpp:63
 #, fuzzy, kde-format
 #| msgid "&Mail action:"
+msgctxt "@info:credit"
 msgid "Daniel Martin"
 msgstr "&Póstaðgerð:"
 
@@ -205,6 +211,7 @@ msgstr "Viðmót nets"
 
 #: apps/main.cpp:64
 #, kde-format
+msgctxt "@info:credit"
 msgid "Bo Thorsen"
 msgstr ""
 
@@ -215,52 +222,61 @@ msgstr "Ræsi KDE 'Resource Framework Integration'"
 
 #: apps/main.cpp:65
 #, kde-format
+msgctxt "@info:credit"
 msgid "Bera Debajyoti"
 msgstr ""
 
-#: apps/main.cpp:65
+#: apps/main.cpp:66
 #, fuzzy, kde-format
 #| msgid "Idea and initial code for the new look&feel"
 msgid "Idea and initial code for the new look & feel"
 msgstr "Hugmynd og upphafskóði fyrir nýja útlit og viðmót"
 
-#: apps/main.cpp:66
+#: apps/main.cpp:68
 #, fuzzy, kde-format
+msgctxt "@info:credit"
 msgid "Matthias Ettrich"
 msgstr "Matthias Ettrich"
 
-#: apps/main.cpp:67
+#: apps/main.cpp:69
 #, fuzzy, kde-format
+msgctxt "@info:credit"
 msgid "David Faure"
 msgstr "David Faure"
 
-#: apps/main.cpp:68
-#, kde-format
-msgid "Matthias Kiefer"
-msgstr ""
-
-#: apps/main.cpp:69
-#, fuzzy, kde-format
-msgid "Luboš Luňák"
-msgstr "Luboš Luňák"
-
 #: apps/main.cpp:70
 #, fuzzy, kde-format
-msgid "Dirk A. Mueller"
-msgstr "Dirk A. Mueller"
+msgctxt "@info:credit"
+msgid "Matthias Kiefer"
+msgstr "Matthias Ettrich"
 
 #: apps/main.cpp:71
 #, fuzzy, kde-format
-msgid "Carsten Pfeiffer"
-msgstr "Carsten Pfeiffer"
+msgctxt "@info:credit"
+msgid "Luboš Luňák"
+msgstr "Luboš Luňák"
 
 #: apps/main.cpp:72
 #, fuzzy, kde-format
-msgid "Harri Porten"
-msgstr "Harri Porten"
+msgctxt "@info:credit"
+msgid "Dirk A. Mueller"
+msgstr "Dirk A. Mueller"
 
 #: apps/main.cpp:73
 #, fuzzy, kde-format
+msgctxt "@info:credit"
+msgid "Carsten Pfeiffer"
+msgstr "Carsten Pfeiffer"
+
+#: apps/main.cpp:74
+#, fuzzy, kde-format
+msgctxt "@info:credit"
+msgid "Harri Porten"
+msgstr "Harri Porten"
+
+#: apps/main.cpp:75
+#, fuzzy, kde-format
+msgctxt "@info:credit"
 msgid "Espen Sand"
 msgstr "Espen Sand"
 
@@ -716,7 +732,9 @@ msgid "Lock"
 msgstr "Læsa"
 
 #: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock"
+msgctxt "@action:button"
 msgid "Unlock"
 msgstr "Aflæsa"
 
@@ -850,22 +868,10 @@ msgstr ""
 
 #: kontactplugin/knotes_plugin.cpp:82
 #, fuzzy, kde-kuit-format
-msgctxt "@info:credit"
-msgid "Laurent Montel"
-msgstr "Laurent Montel"
-
-#: kontactplugin/knotes_plugin.cpp:82
-#, fuzzy, kde-kuit-format
 #| msgid "Maintainer"
 msgctxt "@info:credit"
 msgid "Current Maintainer"
 msgstr "Umsjónaraðili"
-
-#: kontactplugin/knotes_plugin.cpp:84
-#, fuzzy, kde-kuit-format
-msgctxt "@info:credit"
-msgid "Michael Brade"
-msgstr "Michael Brade"
 
 #: kontactplugin/knotes_plugin.cpp:84
 #, fuzzy, kde-kuit-format
@@ -991,6 +997,7 @@ msgstr "Staðfesta eyðingu"
 
 #: notes/knote.cpp:134
 #, fuzzy, kde-format
+msgctxt "@action:button"
 msgid "&Delete"
 msgstr "&Eyða"
 
@@ -1118,6 +1125,14 @@ msgstr ""
 #, kde-format
 msgid "Themes:"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Laurent Montel"
+#~ msgstr "Laurent Montel"
+
+#, fuzzy
+#~ msgid "Michael Brade"
+#~ msgstr "Michael Brade"
 
 #, fuzzy
 #~| msgid "Note Actions"

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"POT-Creation-Date: 2024-05-17 00:39+0000\n"
 "PO-Revision-Date: 2007-08-26 21:51+0300\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -144,8 +144,10 @@ msgstr "Заметкі KDE"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr ""
 
-#: apps/main.cpp:58
-#, kde-format
+#: apps/main.cpp:58 kontactplugin/knotes_plugin.cpp:82
+#, fuzzy, kde-format, kde-kuit-format
+#| msgid "Laurent Montel"
+msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Лаўрэн Монтэль"
 
@@ -156,6 +158,7 @@ msgstr "Падтрымка"
 
 #: apps/main.cpp:59
 #, kde-format
+msgctxt "@info:credit"
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr ""
 
@@ -165,13 +168,17 @@ msgstr ""
 msgid "Previous Maintainer"
 msgstr "Падтрымка"
 
-#: apps/main.cpp:60
-#, kde-format
+#: apps/main.cpp:60 kontactplugin/knotes_plugin.cpp:84
+#, fuzzy, kde-format, kde-kuit-format
+#| msgid "Michael Brade"
+msgctxt "@info:credit"
 msgid "Michael Brade"
 msgstr "Майкл Брадэ"
 
 #: apps/main.cpp:61
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Bernd Johannes Wuebben"
+msgctxt "@info:credit"
 msgid "Bernd Johannes Wuebben"
 msgstr "Бернд Джонс Уэбэн"
 
@@ -181,7 +188,9 @@ msgid "Original KNotes Author"
 msgstr "Стварэнне KNotes"
 
 #: apps/main.cpp:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Wynn Wilkes"
+msgctxt "@info:credit"
 msgid "Wynn Wilkes"
 msgstr "Вінн Вількс"
 
@@ -191,7 +200,9 @@ msgid "Ported KNotes to KDE 2"
 msgstr "Перанос KNotes на KDE 2"
 
 #: apps/main.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Daniel Martin"
+msgctxt "@info:credit"
 msgid "Daniel Martin"
 msgstr "Даніэль Марцін"
 
@@ -202,6 +213,7 @@ msgstr "Сеткавы інтэрфейс"
 
 #: apps/main.cpp:64
 #, kde-format
+msgctxt "@info:credit"
 msgid "Bo Thorsen"
 msgstr ""
 
@@ -212,52 +224,69 @@ msgstr "Пачаў інтэграцыю з KDE Resource Framework"
 
 #: apps/main.cpp:65
 #, kde-format
+msgctxt "@info:credit"
 msgid "Bera Debajyoti"
 msgstr ""
 
-#: apps/main.cpp:65
+#: apps/main.cpp:66
 #, fuzzy, kde-format
 #| msgid "Idea and initial code for the new look&feel"
 msgid "Idea and initial code for the new look & feel"
 msgstr "Ідэя і першапачатковы код для новага выгляда"
 
-#: apps/main.cpp:66
-#, kde-format
+#: apps/main.cpp:68
+#, fuzzy, kde-format
+#| msgid "Matthias Ettrich"
+msgctxt "@info:credit"
 msgid "Matthias Ettrich"
 msgstr "Матыяс Эттрых"
 
-#: apps/main.cpp:67
-#, kde-format
+#: apps/main.cpp:69
+#, fuzzy, kde-format
+#| msgid "David Faure"
+msgctxt "@info:credit"
 msgid "David Faure"
 msgstr "Дэвід Фор"
 
-#: apps/main.cpp:68
-#, kde-format
+#: apps/main.cpp:70
+#, fuzzy, kde-format
+#| msgid "Matthias Kiefer"
+msgctxt "@info:credit"
 msgid "Matthias Kiefer"
 msgstr "Матыяс Кіфер"
 
-#: apps/main.cpp:69
-#, kde-format
+#: apps/main.cpp:71
+#, fuzzy, kde-format
+#| msgid "Luboš Luňák"
+msgctxt "@info:credit"
 msgid "Luboš Luňák"
 msgstr "Любаш Люнак"
 
-#: apps/main.cpp:70
-#, kde-format
+#: apps/main.cpp:72
+#, fuzzy, kde-format
+#| msgid "Dirk A. Mueller"
+msgctxt "@info:credit"
 msgid "Dirk A. Mueller"
 msgstr "Дзірк А. Мюллер"
 
-#: apps/main.cpp:71
-#, kde-format
+#: apps/main.cpp:73
+#, fuzzy, kde-format
+#| msgid "Carsten Pfeiffer"
+msgctxt "@info:credit"
 msgid "Carsten Pfeiffer"
 msgstr "Карстэн Пфіффер"
 
-#: apps/main.cpp:72
-#, kde-format
+#: apps/main.cpp:74
+#, fuzzy, kde-format
+#| msgid "Harri Porten"
+msgctxt "@info:credit"
 msgid "Harri Porten"
 msgstr "Гарры Портэн"
 
-#: apps/main.cpp:73
-#, kde-format
+#: apps/main.cpp:75
+#, fuzzy, kde-format
+#| msgid "Espen Sand"
+msgctxt "@info:credit"
 msgid "Espen Sand"
 msgstr "Эспен Санд"
 
@@ -714,7 +743,9 @@ msgid "Lock"
 msgstr "Заблакаваць"
 
 #: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock"
+msgctxt "@action:button"
 msgid "Unlock"
 msgstr "Разблакаваць"
 
@@ -846,24 +877,10 @@ msgstr ""
 
 #: kontactplugin/knotes_plugin.cpp:82
 #, fuzzy, kde-kuit-format
-#| msgid "Laurent Montel"
-msgctxt "@info:credit"
-msgid "Laurent Montel"
-msgstr "Лаўрэн Монтэль"
-
-#: kontactplugin/knotes_plugin.cpp:82
-#, fuzzy, kde-kuit-format
 #| msgid "Maintainer"
 msgctxt "@info:credit"
 msgid "Current Maintainer"
 msgstr "Падтрымка"
-
-#: kontactplugin/knotes_plugin.cpp:84
-#, fuzzy, kde-kuit-format
-#| msgid "Michael Brade"
-msgctxt "@info:credit"
-msgid "Michael Brade"
-msgstr "Майкл Брадэ"
 
 #: kontactplugin/knotes_plugin.cpp:84
 #, fuzzy, kde-kuit-format
@@ -989,7 +1006,9 @@ msgid "Confirm Delete"
 msgstr "Пацвердзіць выдаленне"
 
 #: notes/knote.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Delete"
+msgctxt "@action:button"
 msgid "&Delete"
 msgstr "В&ыдаліць"
 
@@ -1119,6 +1138,12 @@ msgstr ""
 #, kde-format
 msgid "Themes:"
 msgstr ""
+
+#~ msgid "Laurent Montel"
+#~ msgstr "Лаўрэн Монтэль"
+
+#~ msgid "Michael Brade"
+#~ msgstr "Майкл Брадэ"
 
 #, fuzzy
 #~| msgid "Note Actions"

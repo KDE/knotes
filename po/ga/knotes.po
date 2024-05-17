@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/knotes.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"POT-Creation-Date: 2024-05-17 00:39+0000\n"
 "PO-Revision-Date: 2004-12-03 14:52-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -139,8 +139,10 @@ msgstr "Nótaí KDE"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr "© 1997–2010 Údair KNotes"
 
-#: apps/main.cpp:58
-#, kde-format
+#: apps/main.cpp:58 kontactplugin/knotes_plugin.cpp:82
+#, fuzzy, kde-format, kde-kuit-format
+#| msgid "Laurent Montel"
+msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
@@ -150,7 +152,9 @@ msgid "Maintainer"
 msgstr "Cothaitheoir"
 
 #: apps/main.cpp:59
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Guillermo Antonio Amaral Bastidas"
+msgctxt "@info:credit"
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr "Guillermo Antonio Amaral Bastidas"
 
@@ -159,13 +163,17 @@ msgstr "Guillermo Antonio Amaral Bastidas"
 msgid "Previous Maintainer"
 msgstr "Iarchothaitheoir"
 
-#: apps/main.cpp:60
-#, kde-format
+#: apps/main.cpp:60 kontactplugin/knotes_plugin.cpp:84
+#, fuzzy, kde-format, kde-kuit-format
+#| msgid "Michael Brade"
+msgctxt "@info:credit"
 msgid "Michael Brade"
 msgstr "Michael Brade"
 
 #: apps/main.cpp:61
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Bernd Johannes Wuebben"
+msgctxt "@info:credit"
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
@@ -175,7 +183,9 @@ msgid "Original KNotes Author"
 msgstr "Bunúdar KNotes"
 
 #: apps/main.cpp:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Wynn Wilkes"
+msgctxt "@info:credit"
 msgid "Wynn Wilkes"
 msgstr "Wynn Wilkes"
 
@@ -185,7 +195,9 @@ msgid "Ported KNotes to KDE 2"
 msgstr "Leagan KNotes le haghaidh KDE 2"
 
 #: apps/main.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Daniel Martin"
+msgctxt "@info:credit"
 msgid "Daniel Martin"
 msgstr "Daniel Martin"
 
@@ -195,7 +207,9 @@ msgid "Network Interface"
 msgstr "Comhéadan Líonra"
 
 #: apps/main.cpp:64
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Bo Thorsen"
+msgctxt "@info:credit"
 msgid "Bo Thorsen"
 msgstr "Bo Thorsen"
 
@@ -205,52 +219,70 @@ msgid "Started KDE Resource Framework Integration"
 msgstr "Tosaíodh Comhtháthú Creatlaí Acmhainní KDE"
 
 #: apps/main.cpp:65
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Bera Debajyoti"
+msgctxt "@info:credit"
 msgid "Bera Debajyoti"
 msgstr "Bera Debajyoti"
 
-#: apps/main.cpp:65
+#: apps/main.cpp:66
 #, kde-format
 msgid "Idea and initial code for the new look & feel"
 msgstr "Smaoineamh agus an chéad leagan den chód leis an gcuma nua"
 
-#: apps/main.cpp:66
-#, kde-format
+#: apps/main.cpp:68
+#, fuzzy, kde-format
+#| msgid "Matthias Ettrich"
+msgctxt "@info:credit"
 msgid "Matthias Ettrich"
 msgstr "Matthias Ettrich"
 
-#: apps/main.cpp:67
-#, kde-format
+#: apps/main.cpp:69
+#, fuzzy, kde-format
+#| msgid "David Faure"
+msgctxt "@info:credit"
 msgid "David Faure"
 msgstr "David Faure"
 
-#: apps/main.cpp:68
-#, kde-format
+#: apps/main.cpp:70
+#, fuzzy, kde-format
+#| msgid "Matthias Kiefer"
+msgctxt "@info:credit"
 msgid "Matthias Kiefer"
 msgstr "Matthias Kiefer"
 
-#: apps/main.cpp:69
-#, kde-format
+#: apps/main.cpp:71
+#, fuzzy, kde-format
+#| msgid "Luboš Luňák"
+msgctxt "@info:credit"
 msgid "Luboš Luňák"
 msgstr "Luboš Luňák"
 
-#: apps/main.cpp:70
-#, kde-format
+#: apps/main.cpp:72
+#, fuzzy, kde-format
+#| msgid "Dirk A. Mueller"
+msgctxt "@info:credit"
 msgid "Dirk A. Mueller"
 msgstr "Dirk A. Mueller"
 
-#: apps/main.cpp:71
-#, kde-format
+#: apps/main.cpp:73
+#, fuzzy, kde-format
+#| msgid "Carsten Pfeiffer"
+msgctxt "@info:credit"
 msgid "Carsten Pfeiffer"
 msgstr "Carsten Pfeiffer"
 
-#: apps/main.cpp:72
-#, kde-format
+#: apps/main.cpp:74
+#, fuzzy, kde-format
+#| msgid "Harri Porten"
+msgctxt "@info:credit"
 msgid "Harri Porten"
 msgstr "Harri Porten"
 
-#: apps/main.cpp:73
-#, kde-format
+#: apps/main.cpp:75
+#, fuzzy, kde-format
+#| msgid "Espen Sand"
+msgctxt "@info:credit"
 msgid "Espen Sand"
 msgstr "Espen Sand"
 
@@ -710,7 +742,9 @@ msgid "Lock"
 msgstr "Cuir Faoi Ghlas"
 
 #: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock"
+msgctxt "@action:button"
 msgid "Unlock"
 msgstr "Díghlasáil"
 
@@ -844,24 +878,10 @@ msgstr "© 1997–2010 Údair KNotes"
 
 #: kontactplugin/knotes_plugin.cpp:82
 #, fuzzy, kde-kuit-format
-#| msgid "Laurent Montel"
-msgctxt "@info:credit"
-msgid "Laurent Montel"
-msgstr "Laurent Montel"
-
-#: kontactplugin/knotes_plugin.cpp:82
-#, fuzzy, kde-kuit-format
 #| msgid "Maintainer"
 msgctxt "@info:credit"
 msgid "Current Maintainer"
 msgstr "Cothaitheoir"
-
-#: kontactplugin/knotes_plugin.cpp:84
-#, fuzzy, kde-kuit-format
-#| msgid "Michael Brade"
-msgctxt "@info:credit"
-msgid "Michael Brade"
-msgstr "Michael Brade"
 
 #: kontactplugin/knotes_plugin.cpp:84
 #, fuzzy, kde-kuit-format
@@ -996,7 +1016,9 @@ msgid "Confirm Delete"
 msgstr "Dearbhaigh an Scriosadh"
 
 #: notes/knote.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Delete"
+msgctxt "@action:button"
 msgid "&Delete"
 msgstr "&Scrios"
 
@@ -1129,6 +1151,12 @@ msgstr "Roghnaigh faighteoir:"
 #, kde-format
 msgid "Themes:"
 msgstr ""
+
+#~ msgid "Laurent Montel"
+#~ msgstr "Laurent Montel"
+
+#~ msgid "Michael Brade"
+#~ msgstr "Michael Brade"
 
 #, fuzzy
 #~| msgid "Note Actions"

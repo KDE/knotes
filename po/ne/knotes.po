@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"POT-Creation-Date: 2024-05-17 00:39+0000\n"
 "PO-Revision-Date: 2007-09-12 14:40+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -135,8 +135,10 @@ msgstr "केडीई द्रष्टब्य"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr ""
 
-#: apps/main.cpp:58
-#, kde-format
+#: apps/main.cpp:58 kontactplugin/knotes_plugin.cpp:82
+#, fuzzy, kde-format, kde-kuit-format
+#| msgid "Laurent Montel"
+msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "लाउरेन्ट मोन्टेल"
 
@@ -147,6 +149,7 @@ msgstr "मर्मतकर्ता"
 
 #: apps/main.cpp:59
 #, kde-format
+msgctxt "@info:credit"
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr ""
 
@@ -156,13 +159,17 @@ msgstr ""
 msgid "Previous Maintainer"
 msgstr "मर्मतकर्ता"
 
-#: apps/main.cpp:60
-#, kde-format
+#: apps/main.cpp:60 kontactplugin/knotes_plugin.cpp:84
+#, fuzzy, kde-format, kde-kuit-format
+#| msgid "Michael Brade"
+msgctxt "@info:credit"
 msgid "Michael Brade"
 msgstr "माइकल ब्रेड"
 
 #: apps/main.cpp:61
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Bernd Johannes Wuebben"
+msgctxt "@info:credit"
 msgid "Bernd Johannes Wuebben"
 msgstr "ब्रेन्ड जोन्स उबेन"
 
@@ -172,7 +179,9 @@ msgid "Original KNotes Author"
 msgstr "मौलिक केडीई द्रष्टब्य लेखक"
 
 #: apps/main.cpp:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Wynn Wilkes"
+msgctxt "@info:credit"
 msgid "Wynn Wilkes"
 msgstr "विन विल्क्स"
 
@@ -182,7 +191,9 @@ msgid "Ported KNotes to KDE 2"
 msgstr "केडीई २ मा परिमार्जित केडीई द्रष्टब्य"
 
 #: apps/main.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Daniel Martin"
+msgctxt "@info:credit"
 msgid "Daniel Martin"
 msgstr "डेनियल मार्टिन"
 
@@ -192,7 +203,9 @@ msgid "Network Interface"
 msgstr "सञ्जाल इन्टरफेस"
 
 #: apps/main.cpp:64
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Bo Thorsen"
+msgctxt "@info:credit"
 msgid "Bo Thorsen"
 msgstr "बो थ्रोसेन"
 
@@ -202,53 +215,71 @@ msgid "Started KDE Resource Framework Integration"
 msgstr "केडीई स्रोत कार्यढाँचा एकीकरण सुरुआत"
 
 #: apps/main.cpp:65
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Bera Debajyoti"
+msgctxt "@info:credit"
 msgid "Bera Debajyoti"
 msgstr "बेरा डेबाजोटि"
 
-#: apps/main.cpp:65
+#: apps/main.cpp:66
 #, fuzzy, kde-format
 #| msgid "Idea and initial code for the new look&feel"
 msgid "Idea and initial code for the new look & feel"
 msgstr "नयाँ हेरा‌ई र अनुभवका लागि विचार र सुरु सङ्केत"
 
-#: apps/main.cpp:66
-#, kde-format
+#: apps/main.cpp:68
+#, fuzzy, kde-format
+#| msgid "Matthias Ettrich"
+msgctxt "@info:credit"
 msgid "Matthias Ettrich"
 msgstr "म्याथियास इट्ट्रिक"
 
-#: apps/main.cpp:67
-#, kde-format
+#: apps/main.cpp:69
+#, fuzzy, kde-format
+#| msgid "David Faure"
+msgctxt "@info:credit"
 msgid "David Faure"
 msgstr "डेभिड फाउर"
 
-#: apps/main.cpp:68
-#, kde-format
+#: apps/main.cpp:70
+#, fuzzy, kde-format
+#| msgid "Matthias Kiefer"
+msgctxt "@info:credit"
 msgid "Matthias Kiefer"
 msgstr "म्याथियास किफेर"
 
-#: apps/main.cpp:69
-#, kde-format
+#: apps/main.cpp:71
+#, fuzzy, kde-format
+#| msgid "Luboš Luňák"
+msgctxt "@info:credit"
 msgid "Luboš Luňák"
 msgstr "लुबोस लुनाक"
 
-#: apps/main.cpp:70
-#, kde-format
+#: apps/main.cpp:72
+#, fuzzy, kde-format
+#| msgid "Dirk A. Mueller"
+msgctxt "@info:credit"
 msgid "Dirk A. Mueller"
 msgstr "डिर्क A. मुलर"
 
-#: apps/main.cpp:71
-#, kde-format
+#: apps/main.cpp:73
+#, fuzzy, kde-format
+#| msgid "Carsten Pfeiffer"
+msgctxt "@info:credit"
 msgid "Carsten Pfeiffer"
 msgstr "कार्सटेन फिफर"
 
-#: apps/main.cpp:72
-#, kde-format
+#: apps/main.cpp:74
+#, fuzzy, kde-format
+#| msgid "Harri Porten"
+msgctxt "@info:credit"
 msgid "Harri Porten"
 msgstr "ह्रारि पोर्टेन"
 
-#: apps/main.cpp:73
-#, kde-format
+#: apps/main.cpp:75
+#, fuzzy, kde-format
+#| msgid "Espen Sand"
+msgctxt "@info:credit"
 msgid "Espen Sand"
 msgstr "स्पेन स्यान्ड"
 
@@ -705,7 +736,9 @@ msgid "Lock"
 msgstr "ताल्चा लगाउनुहोस्"
 
 #: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock"
+msgctxt "@action:button"
 msgid "Unlock"
 msgstr "ताल्चा खोल्नुहोस्"
 
@@ -839,24 +872,10 @@ msgstr ""
 
 #: kontactplugin/knotes_plugin.cpp:82
 #, fuzzy, kde-kuit-format
-#| msgid "Laurent Montel"
-msgctxt "@info:credit"
-msgid "Laurent Montel"
-msgstr "लाउरेन्ट मोन्टेल"
-
-#: kontactplugin/knotes_plugin.cpp:82
-#, fuzzy, kde-kuit-format
 #| msgid "Maintainer"
 msgctxt "@info:credit"
 msgid "Current Maintainer"
 msgstr "मर्मतकर्ता"
-
-#: kontactplugin/knotes_plugin.cpp:84
-#, fuzzy, kde-kuit-format
-#| msgid "Michael Brade"
-msgctxt "@info:credit"
-msgid "Michael Brade"
-msgstr "माइकल ब्रेड"
 
 #: kontactplugin/knotes_plugin.cpp:84
 #, fuzzy, kde-kuit-format
@@ -981,7 +1000,9 @@ msgid "Confirm Delete"
 msgstr "मेट्न यकीन गर्नुहोस्"
 
 #: notes/knote.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Delete"
+msgctxt "@action:button"
 msgid "&Delete"
 msgstr "मेट्नुहोस्"
 
@@ -1110,6 +1131,12 @@ msgstr ""
 #, kde-format
 msgid "Themes:"
 msgstr ""
+
+#~ msgid "Laurent Montel"
+#~ msgstr "लाउरेन्ट मोन्टेल"
+
+#~ msgid "Michael Brade"
+#~ msgstr "माइकल ब्रेड"
 
 #, fuzzy
 #~| msgid "Note Actions"

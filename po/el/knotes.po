@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"POT-Creation-Date: 2024-05-17 00:39+0000\n"
 "PO-Revision-Date: 2022-03-03 12:04+0200\n"
 "Last-Translator: Petros Vidalis <pvidalis@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -135,8 +135,9 @@ msgstr "Σημειώματα για το KDE"
 msgid "Copyright © 1997–%1 KNotes authors"
 msgstr "Πνευματικά Δικαιώματα © 1997–%1 οι συγγραφείς του KNotes"
 
-#: apps/main.cpp:58
-#, kde-format
+#: apps/main.cpp:58 kontactplugin/knotes_plugin.cpp:82
+#, kde-format, kde-kuit-format
+msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
@@ -146,7 +147,9 @@ msgid "Maintainer"
 msgstr "Συντηρητής"
 
 #: apps/main.cpp:59
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Guillermo Antonio Amaral Bastidas"
+msgctxt "@info:credit"
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr "Guillermo Antonio Amaral Bastidas"
 
@@ -155,13 +158,16 @@ msgstr "Guillermo Antonio Amaral Bastidas"
 msgid "Previous Maintainer"
 msgstr "Πρώην συντηρητής"
 
-#: apps/main.cpp:60
-#, kde-format
+#: apps/main.cpp:60 kontactplugin/knotes_plugin.cpp:84
+#, kde-format, kde-kuit-format
+msgctxt "@info:credit"
 msgid "Michael Brade"
 msgstr "Michael Brade"
 
 #: apps/main.cpp:61
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Bernd Johannes Wuebben"
+msgctxt "@info:credit"
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
 
@@ -171,7 +177,9 @@ msgid "Original KNotes Author"
 msgstr "Αρχικός συγγραφέας του KNotes"
 
 #: apps/main.cpp:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Wynn Wilkes"
+msgctxt "@info:credit"
 msgid "Wynn Wilkes"
 msgstr "Wynn Wilkes"
 
@@ -181,7 +189,9 @@ msgid "Ported KNotes to KDE 2"
 msgstr "Προσαρμογή του KNotes στο KDE 2"
 
 #: apps/main.cpp:63
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Daniel Martin"
+msgctxt "@info:credit"
 msgid "Daniel Martin"
 msgstr "Daniel Martin"
 
@@ -191,7 +201,9 @@ msgid "Network Interface"
 msgstr "Διεπαφή δικτύου"
 
 #: apps/main.cpp:64
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Bo Thorsen"
+msgctxt "@info:credit"
 msgid "Bo Thorsen"
 msgstr "Bo Thorsen"
 
@@ -201,52 +213,70 @@ msgid "Started KDE Resource Framework Integration"
 msgstr "Ξεκίνησε την ενσωμάτωση του πλαισίου πόρων του KDE"
 
 #: apps/main.cpp:65
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Bera Debajyoti"
+msgctxt "@info:credit"
 msgid "Bera Debajyoti"
 msgstr "Bera Debajyoti"
 
-#: apps/main.cpp:65
+#: apps/main.cpp:66
 #, kde-format
 msgid "Idea and initial code for the new look & feel"
 msgstr "Έμπνευση και αρχικός κώδικας για τη νέα εμφάνιση"
 
-#: apps/main.cpp:66
-#, kde-format
+#: apps/main.cpp:68
+#, fuzzy, kde-format
+#| msgid "Matthias Ettrich"
+msgctxt "@info:credit"
 msgid "Matthias Ettrich"
 msgstr "Matthias Ettrich"
 
-#: apps/main.cpp:67
-#, kde-format
+#: apps/main.cpp:69
+#, fuzzy, kde-format
+#| msgid "David Faure"
+msgctxt "@info:credit"
 msgid "David Faure"
 msgstr "David Faure"
 
-#: apps/main.cpp:68
-#, kde-format
+#: apps/main.cpp:70
+#, fuzzy, kde-format
+#| msgid "Matthias Kiefer"
+msgctxt "@info:credit"
 msgid "Matthias Kiefer"
 msgstr "Matthias Kiefer"
 
-#: apps/main.cpp:69
-#, kde-format
+#: apps/main.cpp:71
+#, fuzzy, kde-format
+#| msgid "Luboš Luňák"
+msgctxt "@info:credit"
 msgid "Luboš Luňák"
 msgstr "Luboš Luňák"
 
-#: apps/main.cpp:70
-#, kde-format
+#: apps/main.cpp:72
+#, fuzzy, kde-format
+#| msgid "Dirk A. Mueller"
+msgctxt "@info:credit"
 msgid "Dirk A. Mueller"
 msgstr "Dirk A. Mueller"
 
-#: apps/main.cpp:71
-#, kde-format
+#: apps/main.cpp:73
+#, fuzzy, kde-format
+#| msgid "Carsten Pfeiffer"
+msgctxt "@info:credit"
 msgid "Carsten Pfeiffer"
 msgstr "Carsten Pfeiffer"
 
-#: apps/main.cpp:72
-#, kde-format
+#: apps/main.cpp:74
+#, fuzzy, kde-format
+#| msgid "Harri Porten"
+msgctxt "@info:credit"
 msgid "Harri Porten"
 msgstr "Harri Porten"
 
-#: apps/main.cpp:73
-#, kde-format
+#: apps/main.cpp:75
+#, fuzzy, kde-format
+#| msgid "Espen Sand"
+msgctxt "@info:credit"
 msgid "Espen Sand"
 msgstr "Espen Sand"
 
@@ -696,7 +726,9 @@ msgid "Lock"
 msgstr "Κλείδωμα"
 
 #: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlock"
+msgctxt "@action:button"
 msgid "Unlock"
 msgstr "Ξεκλείδωμα"
 
@@ -820,20 +852,8 @@ msgstr "Πνευματικά Δικαιώματα © 2003–%1 οι συγγρα
 #: kontactplugin/knotes_plugin.cpp:82
 #, kde-kuit-format
 msgctxt "@info:credit"
-msgid "Laurent Montel"
-msgstr "Laurent Montel"
-
-#: kontactplugin/knotes_plugin.cpp:82
-#, kde-kuit-format
-msgctxt "@info:credit"
 msgid "Current Maintainer"
 msgstr "Τρέχων συντηρητής"
-
-#: kontactplugin/knotes_plugin.cpp:84
-#, kde-kuit-format
-msgctxt "@info:credit"
-msgid "Michael Brade"
-msgstr "Michael Brade"
 
 #: kontactplugin/knotes_plugin.cpp:84
 #, kde-kuit-format
@@ -947,7 +967,9 @@ msgid "Confirm Delete"
 msgstr "Επιβεβαίωση διαγραφής"
 
 #: notes/knote.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Delete"
+msgctxt "@action:button"
 msgid "&Delete"
 msgstr "&Διαγραφή"
 
@@ -1071,6 +1093,12 @@ msgstr "Επιλογή θέματος"
 #, kde-format
 msgid "Themes:"
 msgstr "Θέματα:"
+
+#~ msgid "Laurent Montel"
+#~ msgstr "Laurent Montel"
+
+#~ msgid "Michael Brade"
+#~ msgstr "Michael Brade"
 
 #~ msgid "kcmknotessummary"
 #~ msgstr "kcmknotessummary"
