@@ -9,13 +9,13 @@
 # H. İbrahim Güngör <ibrahim@pardus.org.tr>, 2010, 2013.
 # Volkan Gezer <volkangezer@gmail.com>, 2013, 2014, 2017.
 # Kaan Ozdincer <kaanozdincer@gmail.com>, 2014.
-# SPDX-FileCopyrightText: 2022, 2023 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2023-12-27 14:37+0300\n"
+"PO-Revision-Date: 2024-05-17 13:33+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.01.85\n"
+"X-Generator: Lokalize 24.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -43,7 +43,7 @@ msgstr "Benzersiz olmayan bir örnekte not oluştururken bilgi verme."
 #: apps/knotesakonaditray.cpp:21
 #, kde-format
 msgid "KNotes: Sticky notes by KDE"
-msgstr "K Notlar: KDE'den yapışkan notlar"
+msgstr "K Notlar: KDE’den yapışkan notlar"
 
 #: apps/knotesapp.cpp:108
 #, kde-format
@@ -105,7 +105,7 @@ msgstr "Metin Dosyası Aç"
 #: apps/knotesapp.cpp:426 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
-msgstr "'%1' dosyasından not"
+msgstr "“%1” dosyasından not"
 
 #: apps/knotesapp.cpp:519
 #, kde-format
@@ -178,7 +178,7 @@ msgstr "Wynn Wilkes"
 #: apps/main.cpp:62
 #, kde-format
 msgid "Ported KNotes to KDE 2"
-msgstr "K Notlar'ı KDE 2'ye taşıdı"
+msgstr "K Notlar’ı KDE 2’ye taşıdı"
 
 #: apps/main.cpp:63
 #, kde-format
@@ -454,7 +454,7 @@ msgstr "Çekmece simgesinde not sayısını göster"
 #: knoteconfigmodule.cpp:87
 #, kde-format
 msgid "Default Title:"
-msgstr "Ö&ntanımlı Başlık:"
+msgstr "Ö&ntanımlı başlık:"
 
 #: knoteconfigmodule.cpp:94
 #, kde-format
@@ -922,7 +922,7 @@ msgstr "Notu Sil..."
 #: kontactplugin/summarywidget.cpp:194
 #, kde-format
 msgid "Read Popup Note: \"%1\""
-msgstr "Açılır Notu Oku: \"%1\""
+msgstr "Açılır notu oku: “%1”"
 
 #: notes/knote.cpp:132
 #, kde-format
