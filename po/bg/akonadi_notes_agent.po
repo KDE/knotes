@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-17 00:39+0000\n"
-"PO-Revision-Date: 2024-05-15 22:51+0200\n"
+"PO-Revision-Date: 2024-05-17 21:35+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -100,8 +100,7 @@ msgid "Copyright (C) 2013-%1 Laurent Montel"
 msgstr "Copyright (C) 2013-%1 Laurent Montel"
 
 #: notesagentsettingsdialog.cpp:64
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"

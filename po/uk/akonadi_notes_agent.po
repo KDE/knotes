@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: akonadi_notes_agent\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-17 00:39+0000\n"
-"PO-Revision-Date: 2024-05-15 12:50+0300\n"
+"PO-Revision-Date: 2024-05-17 16:45+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk\n"
@@ -101,8 +101,7 @@ msgid "Copyright (C) 2013-%1 Laurent Montel"
 msgstr "© Laurent Montel, 2013–%1"
 
 #: notesagentsettingsdialog.cpp:64
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"

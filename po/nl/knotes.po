@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-17 00:39+0000\n"
-"PO-Revision-Date: 2024-05-15 10:51+0200\n"
+"PO-Revision-Date: 2024-05-17 10:30+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -33,7 +33,7 @@ msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 "Rinse de Vries - 2000 t/m 2003; 2005 t/m 2008,Bram Schoenmakers - 2004; "
-"2005; 2007,Sander Koning - 2005,Freek de Kruijf - 2013 t/m 2022"
+"2005; 2007,Sander Koning - 2005,Freek de Kruijf - 2013 t/m 2024"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
@@ -154,8 +154,7 @@ msgid "Maintainer"
 msgstr "Onderhouder"
 
 #: apps/main.cpp:59
-#, fuzzy, kde-format
-#| msgid "Guillermo Antonio Amaral Bastidas"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr "Guillermo Antonio Amaral Bastidas"
@@ -172,8 +171,7 @@ msgid "Michael Brade"
 msgstr "Michael Brade"
 
 #: apps/main.cpp:61
-#, fuzzy, kde-format
-#| msgid "Bernd Johannes Wuebben"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
@@ -184,8 +182,7 @@ msgid "Original KNotes Author"
 msgstr "Oorspronkelijke KNotes-auteur"
 
 #: apps/main.cpp:62
-#, fuzzy, kde-format
-#| msgid "Wynn Wilkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Wynn Wilkes"
 msgstr "Wynn Wilkes"
@@ -196,8 +193,7 @@ msgid "Ported KNotes to KDE 2"
 msgstr "KNotes overgedragen naar KDE 2"
 
 #: apps/main.cpp:63
-#, fuzzy, kde-format
-#| msgid "Daniel Martin"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Daniel Martin"
 msgstr "Daniel Martin"
@@ -208,8 +204,7 @@ msgid "Network Interface"
 msgstr "Netwerkinterface"
 
 #: apps/main.cpp:64
-#, fuzzy, kde-format
-#| msgid "Bo Thorsen"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Bo Thorsen"
 msgstr "Bo Thorsen"
@@ -220,8 +215,7 @@ msgid "Started KDE Resource Framework Integration"
 msgstr "Begonnen aan integratie in het raamwerk van de KDE Gegevensbronnen"
 
 #: apps/main.cpp:65
-#, fuzzy, kde-format
-#| msgid "Bera Debajyoti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Bera Debajyoti"
 msgstr "Bera Debajyoti"
@@ -232,57 +226,49 @@ msgid "Idea and initial code for the new look & feel"
 msgstr "Idee en oorspronkelijke code voor de nieuwe stijl"
 
 #: apps/main.cpp:68
-#, fuzzy, kde-format
-#| msgid "Matthias Ettrich"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Matthias Ettrich"
 msgstr "Matthias Ettrich"
 
 #: apps/main.cpp:69
-#, fuzzy, kde-format
-#| msgid "David Faure"
+#, kde-format
 msgctxt "@info:credit"
 msgid "David Faure"
 msgstr "David Faure"
 
 #: apps/main.cpp:70
-#, fuzzy, kde-format
-#| msgid "Matthias Kiefer"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Matthias Kiefer"
 msgstr "Matthias Kiefer"
 
 #: apps/main.cpp:71
-#, fuzzy, kde-format
-#| msgid "Luboš Luňák"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Luboš Luňák"
 msgstr "Luboš Luňák"
 
 #: apps/main.cpp:72
-#, fuzzy, kde-format
-#| msgid "Dirk A. Mueller"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Dirk A. Mueller"
 msgstr "Dirk A. Mueller"
 
 #: apps/main.cpp:73
-#, fuzzy, kde-format
-#| msgid "Carsten Pfeiffer"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Carsten Pfeiffer"
 msgstr "Carsten Pfeiffer"
 
 #: apps/main.cpp:74
-#, fuzzy, kde-format
-#| msgid "Harri Porten"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Harri Porten"
 msgstr "Harri Porten"
 
 #: apps/main.cpp:75
-#, fuzzy, kde-format
-#| msgid "Espen Sand"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Espen Sand"
 msgstr "Espen Sand"
@@ -728,8 +714,7 @@ msgid "Lock"
 msgstr "Vergrendelen"
 
 #: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
-#, fuzzy, kde-format
-#| msgid "Unlock"
+#, kde-format
 msgctxt "@action:button"
 msgid "Unlock"
 msgstr "Ontgrendelen"
@@ -970,8 +955,7 @@ msgid "Confirm Delete"
 msgstr "Verwijderen bevestigen"
 
 #: notes/knote.cpp:134
-#, fuzzy, kde-format
-#| msgid "&Delete"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Delete"
 msgstr "Verwij&deren"

@@ -2,22 +2,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Xosé <xosecalvo@gmail.com>, 2014.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015, 2016.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2023.
+# SPDX-FileCopyrightText: 2024 Adrián Chaves (Gallaecio)
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-17 00:39+0000\n"
-"PO-Revision-Date: 2023-05-01 11:11+0200\n"
+"PO-Revision-Date: 2024-05-17 21:03+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
-"Language-Team: Galician <proxecto@trasno.gal>\n"
+"Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.04.0\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #: notesagentalarmdialog.cpp:44
 #, kde-format
@@ -36,18 +36,16 @@ msgid "Remove Alarm"
 msgstr "Retirar unha alarma"
 
 #: notesagentalarmdialog.cpp:96
-#, fuzzy, kde-format
-#| msgid "Show Note..."
+#, kde-format
 msgctxt "@action"
 msgid "Show Note..."
-msgstr "Amosar nota…"
+msgstr "Amosar a nota…"
 
 #: notesagentalarmdialog.cpp:98
-#, fuzzy, kde-format
-#| msgid "Modify Alarm..."
+#, kde-format
 msgctxt "@action"
 msgid "Modify Alarm..."
-msgstr "Modificar alarma…"
+msgstr "Modificar a alarma…"
 
 #: notesagentalarmdialog.cpp:152
 #, kde-format
@@ -102,8 +100,7 @@ msgid "Copyright (C) 2013-%1 Laurent Montel"
 msgstr "© 2013-%1 Laurent Montel"
 
 #: notesagentsettingsdialog.cpp:64
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"

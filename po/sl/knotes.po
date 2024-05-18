@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-17 00:39+0000\n"
-"PO-Revision-Date: 2024-05-15 10:46+0200\n"
+"PO-Revision-Date: 2024-05-17 07:35+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -151,8 +151,7 @@ msgid "Maintainer"
 msgstr "Vzdrževalec"
 
 #: apps/main.cpp:59
-#, fuzzy, kde-format
-#| msgid "Guillermo Antonio Amaral Bastidas"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr "Guillermo Antonio Amaral Bastidas"
@@ -169,8 +168,7 @@ msgid "Michael Brade"
 msgstr "Michael Brade"
 
 #: apps/main.cpp:61
-#, fuzzy, kde-format
-#| msgid "Bernd Johannes Wuebben"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
@@ -181,8 +179,7 @@ msgid "Original KNotes Author"
 msgstr "Prvotni avtor KNotes"
 
 #: apps/main.cpp:62
-#, fuzzy, kde-format
-#| msgid "Wynn Wilkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Wynn Wilkes"
 msgstr "Wynn Wilkes"
@@ -193,8 +190,7 @@ msgid "Ported KNotes to KDE 2"
 msgstr "Predelava KNotes za KDE 2"
 
 #: apps/main.cpp:63
-#, fuzzy, kde-format
-#| msgid "Daniel Martin"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Daniel Martin"
 msgstr "Daniel Martin"
@@ -205,8 +201,7 @@ msgid "Network Interface"
 msgstr "Omrežni vmesnik"
 
 #: apps/main.cpp:64
-#, fuzzy, kde-format
-#| msgid "Bo Thorsen"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Bo Thorsen"
 msgstr "Bo Thorsen"
@@ -217,8 +212,7 @@ msgid "Started KDE Resource Framework Integration"
 msgstr "Začel z vgradnjo ogrodja virov KDE"
 
 #: apps/main.cpp:65
-#, fuzzy, kde-format
-#| msgid "Bera Debajyoti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Bera Debajyoti"
 msgstr "Bera Debajyoti"
@@ -229,57 +223,49 @@ msgid "Idea and initial code for the new look & feel"
 msgstr "Ideja in prvotna koda za nov videz in občutek"
 
 #: apps/main.cpp:68
-#, fuzzy, kde-format
-#| msgid "Matthias Ettrich"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Matthias Ettrich"
 msgstr "Matthias Ettrich"
 
 #: apps/main.cpp:69
-#, fuzzy, kde-format
-#| msgid "David Faure"
+#, kde-format
 msgctxt "@info:credit"
 msgid "David Faure"
 msgstr "David Faure"
 
 #: apps/main.cpp:70
-#, fuzzy, kde-format
-#| msgid "Matthias Kiefer"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Matthias Kiefer"
 msgstr "Matthias Kiefer"
 
 #: apps/main.cpp:71
-#, fuzzy, kde-format
-#| msgid "Luboš Luňák"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Luboš Luňák"
 msgstr "Luboš Luňák"
 
 #: apps/main.cpp:72
-#, fuzzy, kde-format
-#| msgid "Dirk A. Mueller"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Dirk A. Mueller"
 msgstr "Dirk A. Mueller"
 
 #: apps/main.cpp:73
-#, fuzzy, kde-format
-#| msgid "Carsten Pfeiffer"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Carsten Pfeiffer"
 msgstr "Carsten Pfeiffer"
 
 #: apps/main.cpp:74
-#, fuzzy, kde-format
-#| msgid "Harri Porten"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Harri Porten"
 msgstr "Harri Porten"
 
 #: apps/main.cpp:75
-#, fuzzy, kde-format
-#| msgid "Espen Sand"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Espen Sand"
 msgstr "Espen Sand"
@@ -297,7 +283,7 @@ msgstr "Izberite, katere mape KNotes bodo prikazane:"
 #: configdialog/knotecollectionconfigwidget.cpp:134
 #, kde-format
 msgid "Search..."
-msgstr "Poišči ..."
+msgstr "Poišči..."
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
 #, kde-format
@@ -312,7 +298,7 @@ msgstr "Odstrani izbiro"
 #: configdialog/knotecollectionconfigwidget.cpp:161
 #, kde-format
 msgid "Rename notes..."
-msgstr "Preimenuj sporočilca ..."
+msgstr "Preimenuj sporočilca..."
 
 #: configdialog/knotecollectionconfigwidget.cpp:165
 #, kde-format
@@ -726,8 +712,7 @@ msgid "Lock"
 msgstr "Zakleni"
 
 #: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
-#, fuzzy, kde-format
-#| msgid "Unlock"
+#, kde-format
 msgctxt "@action:button"
 msgid "Unlock"
 msgstr "Odkleni"
@@ -968,8 +953,7 @@ msgid "Confirm Delete"
 msgstr "Potrditev izbrisa"
 
 #: notes/knote.cpp:134
-#, fuzzy, kde-format
-#| msgid "&Delete"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Delete"
 msgstr "Izbriši"

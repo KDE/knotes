@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-17 00:39+0000\n"
-"PO-Revision-Date: 2024-05-15 06:53+0300\n"
+"PO-Revision-Date: 2024-05-17 12:52+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -153,8 +153,7 @@ msgid "Maintainer"
 msgstr "מתחזק"
 
 #: apps/main.cpp:59
-#, fuzzy, kde-format
-#| msgid "Guillermo Antonio Amaral Bastidas"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr "גיירמו אנטוניו אמראל בסטידאס"
@@ -171,8 +170,7 @@ msgid "Michael Brade"
 msgstr "מייקל ברייד"
 
 #: apps/main.cpp:61
-#, fuzzy, kde-format
-#| msgid "Bernd Johannes Wuebben"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Bernd Johannes Wuebben"
 msgstr "ברנד יוהאנס וובן"
@@ -183,8 +181,7 @@ msgid "Original KNotes Author"
 msgstr "היוצר המקורי של KNotes"
 
 #: apps/main.cpp:62
-#, fuzzy, kde-format
-#| msgid "Wynn Wilkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Wynn Wilkes"
 msgstr "וין ויילקס"
@@ -195,8 +192,7 @@ msgid "Ported KNotes to KDE 2"
 msgstr "הסב את KNotes ל־KDE 2"
 
 #: apps/main.cpp:63
-#, fuzzy, kde-format
-#| msgid "Daniel Martin"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Daniel Martin"
 msgstr "דניאל מרטין"
@@ -207,8 +203,7 @@ msgid "Network Interface"
 msgstr "ממשק רשת"
 
 #: apps/main.cpp:64
-#, fuzzy, kde-format
-#| msgid "Bo Thorsen"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Bo Thorsen"
 msgstr "בו ת׳ורסן"
@@ -219,8 +214,7 @@ msgid "Started KDE Resource Framework Integration"
 msgstr "ייסד את השילוב מול תשתית המשאבים של KDE"
 
 #: apps/main.cpp:65
-#, fuzzy, kde-format
-#| msgid "Bera Debajyoti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Bera Debajyoti"
 msgstr "ברה דבאיוטי"
@@ -231,57 +225,49 @@ msgid "Idea and initial code for the new look & feel"
 msgstr "רעיון ראשוני, וקוד עבור מראה ותחושה חדשים"
 
 #: apps/main.cpp:68
-#, fuzzy, kde-format
-#| msgid "Matthias Ettrich"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Matthias Ettrich"
 msgstr "מטיאס אטריך"
 
 #: apps/main.cpp:69
-#, fuzzy, kde-format
-#| msgid "David Faure"
+#, kde-format
 msgctxt "@info:credit"
 msgid "David Faure"
 msgstr "דוד פור"
 
 #: apps/main.cpp:70
-#, fuzzy, kde-format
-#| msgid "Matthias Kiefer"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Matthias Kiefer"
 msgstr "מתיאס קיפר"
 
 #: apps/main.cpp:71
-#, fuzzy, kde-format
-#| msgid "Luboš Luňák"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Luboš Luňák"
 msgstr "לובוש לוניאק"
 
 #: apps/main.cpp:72
-#, fuzzy, kde-format
-#| msgid "Dirk A. Mueller"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Dirk A. Mueller"
 msgstr "דירק א. מילר"
 
 #: apps/main.cpp:73
-#, fuzzy, kde-format
-#| msgid "Carsten Pfeiffer"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Carsten Pfeiffer"
 msgstr "קרסטן פייפר"
 
 #: apps/main.cpp:74
-#, fuzzy, kde-format
-#| msgid "Harri Porten"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Harri Porten"
 msgstr "הארי פורטן"
 
 #: apps/main.cpp:75
-#, fuzzy, kde-format
-#| msgid "Espen Sand"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Espen Sand"
 msgstr "קספן זנד"
@@ -721,8 +707,7 @@ msgid "Lock"
 msgstr "נעילה"
 
 #: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
-#, fuzzy, kde-format
-#| msgid "Unlock"
+#, kde-format
 msgctxt "@action:button"
 msgid "Unlock"
 msgstr "שחרור נעילה"
@@ -959,8 +944,7 @@ msgid "Confirm Delete"
 msgstr "אישור מחיקה"
 
 #: notes/knote.cpp:134
-#, fuzzy, kde-format
-#| msgid "&Delete"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Delete"
 msgstr "מ&חיקה"
