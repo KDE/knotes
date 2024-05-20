@@ -140,8 +140,7 @@ msgid "Maintainer"
 msgstr "维护者"
 
 #: apps/main.cpp:59
-#, fuzzy, kde-format
-#| msgid "Guillermo Antonio Amaral Bastidas"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr "Guillermo Antonio Amaral Bastidas"
@@ -158,8 +157,7 @@ msgid "Michael Brade"
 msgstr "Michael Brade"
 
 #: apps/main.cpp:61
-#, fuzzy, kde-format
-#| msgid "Bernd Johannes Wuebben"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
@@ -170,8 +168,7 @@ msgid "Original KNotes Author"
 msgstr "KNotes 原作者"
 
 #: apps/main.cpp:62
-#, fuzzy, kde-format
-#| msgid "Wynn Wilkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Wynn Wilkes"
 msgstr "Wynn Wilkes"
@@ -182,8 +179,7 @@ msgid "Ported KNotes to KDE 2"
 msgstr "移植 KNotes 到 KDE 2"
 
 #: apps/main.cpp:63
-#, fuzzy, kde-format
-#| msgid "Daniel Martin"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Daniel Martin"
 msgstr "Daniel Martin"
@@ -194,8 +190,7 @@ msgid "Network Interface"
 msgstr "网络接口"
 
 #: apps/main.cpp:64
-#, fuzzy, kde-format
-#| msgid "Bo Thorsen"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Bo Thorsen"
 msgstr "Bo Thorsen"
@@ -206,8 +201,7 @@ msgid "Started KDE Resource Framework Integration"
 msgstr "和 KDE 资源框架集成的起步工作"
 
 #: apps/main.cpp:65
-#, fuzzy, kde-format
-#| msgid "Bera Debajyoti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Bera Debajyoti"
 msgstr "Bera Debajyoti"
@@ -218,57 +212,49 @@ msgid "Idea and initial code for the new look & feel"
 msgstr "新界面外观的理念和初始代码"
 
 #: apps/main.cpp:68
-#, fuzzy, kde-format
-#| msgid "Matthias Ettrich"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Matthias Ettrich"
 msgstr "Matthias Ettrich"
 
 #: apps/main.cpp:69
-#, fuzzy, kde-format
-#| msgid "David Faure"
+#, kde-format
 msgctxt "@info:credit"
 msgid "David Faure"
 msgstr "David Faure"
 
 #: apps/main.cpp:70
-#, fuzzy, kde-format
-#| msgid "Matthias Kiefer"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Matthias Kiefer"
 msgstr "Matthias Kiefer"
 
 #: apps/main.cpp:71
-#, fuzzy, kde-format
-#| msgid "Luboš Luňák"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Luboš Luňák"
 msgstr "Luboš Luňák"
 
 #: apps/main.cpp:72
-#, fuzzy, kde-format
-#| msgid "Dirk A. Mueller"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Dirk A. Mueller"
 msgstr "Dirk A. Mueller"
 
 #: apps/main.cpp:73
-#, fuzzy, kde-format
-#| msgid "Carsten Pfeiffer"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Carsten Pfeiffer"
 msgstr "Carsten Pfeiffer"
 
 #: apps/main.cpp:74
-#, fuzzy, kde-format
-#| msgid "Harri Porten"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Harri Porten"
 msgstr "Harri Porten"
 
 #: apps/main.cpp:75
-#, fuzzy, kde-format
-#| msgid "Espen Sand"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Espen Sand"
 msgstr "Espen Sand"
@@ -707,8 +693,7 @@ msgid "Lock"
 msgstr "锁定"
 
 #: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
-#, fuzzy, kde-format
-#| msgid "Unlock"
+#, kde-format
 msgctxt "@action:button"
 msgid "Unlock"
 msgstr "取消锁定"
@@ -942,8 +927,7 @@ msgid "Confirm Delete"
 msgstr "确认删除"
 
 #: notes/knote.cpp:134
-#, fuzzy, kde-format
-#| msgid "&Delete"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Delete"
 msgstr "删除(&D)"
@@ -1066,9 +1050,3 @@ msgstr "选择主题"
 #, kde-format
 msgid "Themes:"
 msgstr "主题："
-
-#~ msgid "Laurent Montel"
-#~ msgstr "Laurent Montel"
-
-#~ msgid "Michael Brade"
-#~ msgstr "Michael Brade"
