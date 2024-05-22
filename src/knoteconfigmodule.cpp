@@ -158,7 +158,7 @@ KNotePrintConfig::KNotePrintConfig(QObject *parent, const KPluginMetaData &data)
     if (KAuthorized::authorize(QStringLiteral("ghns"))) {
         auto getNewTheme = new QToolButton;
         getNewTheme->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
-        getNewTheme->setToolTip(i18n("Download new printing themes"));
+        getNewTheme->setToolTip(i18nc("@info:tooltip", "Download new printing themes"));
         connect(getNewTheme, &QToolButton::clicked, this, &KNotePrintConfig::slotDownloadNewThemes);
         layout->addWidget(getNewTheme, 0, 2);
     }
