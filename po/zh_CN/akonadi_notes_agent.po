@@ -95,7 +95,7 @@ msgstr "记事贴代理。"
 #: notesagentsettingsdialog.cpp:62
 #, kde-format
 msgid "Copyright (C) 2013-%1 Laurent Montel"
-msgstr ""
+msgstr "Copyright (C) 2013-%1 Laurent Montel"
 
 #: notesagentsettingsdialog.cpp:64
 #, kde-format

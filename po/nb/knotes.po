@@ -1087,9 +1087,3 @@ msgstr ""
 #, kde-format
 msgid "Themes:"
 msgstr "Temaer:"
-
-#~ msgid "Laurent Montel"
-#~ msgstr "Laurent Montel"
-
-#~ msgid "Michael Brade"
-#~ msgstr "Michael Brade"
