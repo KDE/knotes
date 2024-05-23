@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2024-05-17 04:50+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -488,7 +488,9 @@ msgid "Theme:"
 msgstr "თემა:"
 
 #: knoteconfigmodule.cpp:161
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Download new printing themes"
+msgctxt "@info:tooltip"
 msgid "Download new printing themes"
 msgstr "ახალი საბეჭდი თემების გადმოწერა"
 

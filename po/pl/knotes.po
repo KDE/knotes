@@ -1,5 +1,5 @@
 # translation of knotes.po to
-# Version: $Revision: 1680260 $
+# Version: $Revision: 1680631 $
 # Currently maintained by Marcin Bokszczanin
 # Piotr Roszatycki <dexter@fnet.pl> 1998
 # Jacek Stolarczyk<jacek@mer.chemia.polsl.gliwice.pl> 1999, 2000.
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2022-01-08 10:50+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -514,7 +514,9 @@ msgid "Theme:"
 msgstr "Wygląd:"
 
 #: knoteconfigmodule.cpp:161
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Download new printing themes"
+msgctxt "@info:tooltip"
 msgid "Download new printing themes"
 msgstr "Pobierz nowe wystroje drukowania"
 

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2024-05-21 01:18+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -495,7 +495,9 @@ msgid "Theme:"
 msgstr "主題："
 
 #: knoteconfigmodule.cpp:161
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Download new printing themes"
+msgctxt "@info:tooltip"
 msgid "Download new printing themes"
 msgstr "下載新的列印主題"
 

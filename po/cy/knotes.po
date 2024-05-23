@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2004-01-08 21:36+0000\n"
 "Last-Translator: KD at KGyfieithu <kyfieithu@dotmon.com>\n"
 "Language-Team: Cymraeg <cy@li.org>\n"
@@ -504,6 +504,7 @@ msgstr ""
 #: knoteconfigmodule.cpp:161
 #, fuzzy, kde-format
 #| msgid "Print %1"
+msgctxt "@info:tooltip"
 msgid "Download new printing themes"
 msgstr "Argraffu %1"
 
