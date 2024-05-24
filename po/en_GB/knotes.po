@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-23 00:39+0000\n"
-"PO-Revision-Date: 2024-05-17 19:35+0100\n"
+"PO-Revision-Date: 2024-05-23 19:17+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
 "Language: en_GB\n"
@@ -491,8 +491,7 @@ msgid "Theme:"
 msgstr "Theme:"
 
 #: knoteconfigmodule.cpp:161
-#, fuzzy, kde-format
-#| msgid "Download new printing themes"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Download new printing themes"
 msgstr "Download new printing themes"
