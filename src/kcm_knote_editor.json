@@ -90,10 +90,7 @@
         "Name[wa]": "Aspougneu",
         "Name[x-test]": "xxEditorxx",
         "Name[zh_CN]": "编辑",
-        "Name[zh_TW]": "編輯器",
-        "ServiceTypes": [
-            "KCModule"
-        ]
+        "Name[zh_TW]": "編輯器"
     },
     "X-KDE-Weight": 75
 }

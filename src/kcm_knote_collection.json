@@ -77,10 +77,7 @@
         "Name[uk]": "Збірки",
         "Name[x-test]": "xxCollectionsxx",
         "Name[zh_CN]": "集合",
-        "Name[zh_TW]": "收藏",
-        "ServiceTypes": [
-            "KCModule"
-        ]
+        "Name[zh_TW]": "收藏"
     },
     "X-KDE-Weight": 175
 }

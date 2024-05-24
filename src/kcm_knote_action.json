@@ -90,10 +90,7 @@
         "Name[wa]": "Faitindjes",
         "Name[x-test]": "xxActionsxx",
         "Name[zh_CN]": "操作",
-        "Name[zh_TW]": "動作",
-        "ServiceTypes": [
-            "KCModule"
-        ]
+        "Name[zh_TW]": "動作"
     },
     "X-KDE-Weight": 100
 }
