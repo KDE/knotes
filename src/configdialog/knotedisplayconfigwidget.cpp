@@ -23,7 +23,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
     auto layout = new QGridLayout(this);
     layout->setContentsMargins({});
 
-    auto label_FgColor = new QLabel(i18n("&Text color:"), this);
+    auto label_FgColor = new QLabel(i18nc("@label:textbox", "&Text color:"), this);
     label_FgColor->setObjectName(QLatin1StringView("label_FgColor"));
     layout->addWidget(label_FgColor, 0, 0);
 
@@ -32,7 +32,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
     label_FgColor->setBuddy(kcfg_FgColor);
     layout->addWidget(kcfg_FgColor, 0, 1);
 
-    auto label_BgColor = new QLabel(i18n("&Background color:"), this);
+    auto label_BgColor = new QLabel(i18nc("@label:textbox", "&Background color:"), this);
     label_BgColor->setObjectName(QLatin1StringView("label_BgColor"));
     layout->addWidget(label_BgColor, 1, 0);
 
@@ -48,7 +48,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
     kcfg_RememberDesktop->setObjectName(QLatin1StringView("kcfg_RememberDesktop"));
 #endif
     if (defaults) {
-        auto label_Width = new QLabel(i18n("Default &width:"), this);
+        auto label_Width = new QLabel(i18nc("@label:textbox", "Default &width:"), this);
 
         layout->addWidget(label_Width, 2, 0);
 
@@ -59,7 +59,7 @@ KNoteDisplayConfigWidget::KNoteDisplayConfigWidget(bool defaults, QWidget *paren
         kcfg_Width->setSingleStep(10);
         layout->addWidget(kcfg_Width, 2, 1);
 
-        auto label_Height = new QLabel(i18n("Default &height:"), this);
+        auto label_Height = new QLabel(i18nc("@label:textbox", "Default &height:"), this);
         layout->addWidget(label_Height, 3, 0);
 
         kcfg_Height = new QSpinBox(this);

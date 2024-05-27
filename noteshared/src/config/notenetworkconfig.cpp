@@ -38,7 +38,7 @@ NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)
     auto outgoing = new QGroupBox(i18n("Outgoing Notes"), this);
     tmpLayout = new QHBoxLayout;
 
-    auto label_SenderID = new QLabel(i18n("&Sender ID:"), this);
+    auto label_SenderID = new QLabel(i18nc("@label:textbox", "&Sender ID:"), this);
     m_kcfg_SenderID = new QLineEdit;
     m_kcfg_SenderID->setClearButtonEnabled(true);
     m_kcfg_SenderID->setObjectName(QLatin1StringView("kcfg_SenderID"));
@@ -50,7 +50,7 @@ NoteNetworkConfigWidget::NoteNetworkConfigWidget(QWidget *parent)
 
     tmpLayout = new QHBoxLayout;
 
-    auto label_Port = new QLabel(i18n("&Port:"), this);
+    auto label_Port = new QLabel(i18nc("@label:textbox", "&Port:"), this);
 
     tmpLayout->addWidget(label_Port);
 

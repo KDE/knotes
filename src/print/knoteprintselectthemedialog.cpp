@@ -36,7 +36,7 @@ KNotePrintSelectThemeDialog::KNotePrintSelectThemeDialog(QWidget *parent)
     auto lay = new QHBoxLayout;
     w->setLayout(lay);
 
-    auto lab = new QLabel(i18n("Themes:"));
+    auto lab = new QLabel(i18nc("@label:textbox", "Themes:"));
     lay->addWidget(lab);
 
     mThemes->loadThemes();

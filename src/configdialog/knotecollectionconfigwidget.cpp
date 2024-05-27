@@ -100,7 +100,7 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     collectionWidget->setLayout(vbox);
     tabWidget->addTab(collectionWidget, i18n("Folders"));
 
-    auto label = new QLabel(i18n("Select which KNotes folders to show:"));
+    auto label = new QLabel(i18nc("@label:textbox", "Select which KNotes folders to show:"));
     vbox->addWidget(label);
 
     // Create a new change recorder.

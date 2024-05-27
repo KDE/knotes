@@ -40,7 +40,7 @@ NoteHostDialog::NoteHostDialog(const QString &caption, QWidget *parent)
     connect(buttonBox, &QDialogButtonBox::accepted, this, &NoteHostDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &NoteHostDialog::reject);
 
-    auto label = new QLabel(i18n("Select recipient:"), this);
+    auto label = new QLabel(i18nc("@label:textbox", "Select recipient:"), this);
     mainLayout->addWidget(label);
 
     m_servicesView->setRootIsDecorated(false);
@@ -56,7 +56,7 @@ NoteHostDialog::NoteHostDialog(const QString &caption, QWidget *parent)
 
     mainLayout->addWidget(m_servicesView);
 
-    label = new QLabel(i18n("Hostname or IP address:"), this);
+    label = new QLabel(i18nc("@label:textbox", "Hostname or IP address:"), this);
     mainLayout->addWidget(label);
 
     mainLayout->addWidget(m_hostCombo);

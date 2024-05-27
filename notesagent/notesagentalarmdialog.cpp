@@ -53,7 +53,7 @@ NotesAgentAlarmDialog::NotesAgentAlarmDialog(QWidget *parent)
     mCurrentDateTime->setText(QLocale().toString((QDateTime::currentDateTime()), QLocale::ShortFormat));
     vbox->addWidget(mCurrentDateTime);
 
-    auto lab = new QLabel(i18n("The following notes triggered alarms:"), this);
+    auto lab = new QLabel(i18nc("@label:textbox", "The following notes triggered alarms:"), this);
     vbox->addWidget(lab);
 
     mListWidget = new NoteShared::NoteListWidget(this);

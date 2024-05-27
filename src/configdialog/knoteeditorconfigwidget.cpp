@@ -21,7 +21,7 @@ KNoteEditorConfigWidget::KNoteEditorConfigWidget(QWidget *parent)
     auto layout = new QGridLayout(this);
     layout->setContentsMargins({});
 
-    auto label_TabSize = new QLabel(i18n("&Tab size:"), this);
+    auto label_TabSize = new QLabel(i18nc("@label:textbox", "&Tab size:"), this);
     layout->addWidget(label_TabSize, 0, 0, 1, 2);
 
     kcfg_TabSize = new QSpinBox(this);
@@ -38,7 +38,7 @@ KNoteEditorConfigWidget::KNoteEditorConfigWidget(QWidget *parent)
     kcfg_RichText->setObjectName(QLatin1StringView("kcfg_RichText"));
     layout->addWidget(kcfg_RichText, 1, 2);
 
-    auto label_Font = new QLabel(i18n("Text font:"), this);
+    auto label_Font = new QLabel(i18nc("@label:textbox", "Text font:"), this);
     layout->addWidget(label_Font, 3, 0);
 
     kcfg_Font = new KFontRequester(this);
@@ -46,7 +46,7 @@ KNoteEditorConfigWidget::KNoteEditorConfigWidget(QWidget *parent)
     kcfg_Font->setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
     layout->addWidget(kcfg_Font, 3, 1, 1, 2);
 
-    auto label_TitleFont = new QLabel(i18n("Title font:"), this);
+    auto label_TitleFont = new QLabel(i18nc("@label:textbox", "Title font:"), this);
     layout->addWidget(label_TitleFont, 2, 0);
 
     kcfg_TitleFont = new KFontRequester(this);

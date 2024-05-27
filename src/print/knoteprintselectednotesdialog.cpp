@@ -48,7 +48,7 @@ KNotePrintSelectedNotesDialog::KNotePrintSelectedNotesDialog(QWidget *parent)
     auto lay = new QHBoxLayout;
     lay->setContentsMargins(0, 0, 0, 0);
     vbox->addLayout(lay);
-    auto lab = new QLabel(i18n("Printing theme:"), this);
+    auto lab = new QLabel(i18nc("@label:textbox", "Printing theme:"), this);
     lay->addWidget(lab);
     mTheme = new KNotePrintSelectThemeComboBox(this);
     mTheme->loadThemes();

@@ -84,14 +84,14 @@ KNoteMiscConfig::KNoteMiscConfig(QObject *parent, const KPluginMetaData &data)
 
     auto hbox = new QHBoxLayout;
     lay->addLayout(hbox);
-    auto label_DefaultTitle = new QLabel(i18n("Default Title:"), widget());
+    auto label_DefaultTitle = new QLabel(i18nc("@label:textbox", "Default Title:"), widget());
     hbox->addWidget(label_DefaultTitle);
 
     mDefaultTitle = new QLineEdit(widget());
     label_DefaultTitle->setBuddy(mDefaultTitle);
     hbox->addWidget(mDefaultTitle);
 
-    auto howItWorks = new QLabel(i18n("<a href=\"whatsthis\">How does this work?</a>"));
+    auto howItWorks = new QLabel(i18nc("@label:textbox", "<a href=\"whatsthis\">How does this work?</a>"));
     connect(howItWorks, &QLabel::linkActivated, this, &KNoteMiscConfig::slotHelpLinkClicked);
     lay->addWidget(howItWorks);
 
@@ -148,7 +148,7 @@ KNotePrintConfig::KNotePrintConfig(QObject *parent, const KPluginMetaData &data)
     auto layout = new QGridLayout(w);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    auto label_PrintAction = new QLabel(i18n("Theme:"), widget());
+    auto label_PrintAction = new QLabel(i18nc("@label:textbox", "Theme:"), widget());
     layout->addWidget(label_PrintAction, 0, 0);
 
     mSelectTheme = new KNotePrintSelectThemeComboBox(widget());

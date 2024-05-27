@@ -85,7 +85,7 @@ void KNotesSummaryWidget::updateFolderList()
     mInProgress = false;
 
     if (counter == 0) {
-        auto label = new QLabel(i18n("No notes found"), this);
+        auto label = new QLabel(i18nc("@label:textbox", "No notes found"), this);
         label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         mLayout->addWidget(label, 0, 0);
         mLabels.append(label);
