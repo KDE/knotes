@@ -486,8 +486,7 @@ msgid "Theme:"
 msgstr "主题："
 
 #: knoteconfigmodule.cpp:161
-#, fuzzy, kde-format
-#| msgid "Download new printing themes"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Download new printing themes"
 msgstr "下载新打印主题"
