@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-23 00:39+0000\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
 "PO-Revision-Date: 2015-02-07 22:15+0100\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -293,7 +293,9 @@ msgid "Folders"
 msgstr "Mapper"
 
 #: configdialog/knotecollectionconfigwidget.cpp:103
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Select which KNotes folders to show:"
+msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
 msgstr "Velg hvilke KNotes-mapper som skal vises:"
 
@@ -354,12 +356,16 @@ msgid "Rename note"
 msgstr "Sett nytt navn på notat"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Text color:"
+msgctxt "@label:textbox"
 msgid "&Text color:"
 msgstr "&Tekstfarge:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Background color:"
+msgctxt "@label:textbox"
 msgid "&Background color:"
 msgstr "&Bakgrunnsfarge:"
 
@@ -374,17 +380,23 @@ msgid "&Remember desktop"
 msgstr "&Husk skrivebord"
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &width:"
+msgctxt "@label:textbox"
 msgid "Default &width:"
 msgstr "Standard&bredde:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &height:"
+msgctxt "@label:textbox"
 msgid "Default &height:"
 msgstr "Standard&høyde:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Tab size:"
+msgctxt "@label:textbox"
 msgid "&Tab size:"
 msgstr "&Tabulatorbredde:"
 
@@ -399,12 +411,16 @@ msgid "&Rich text"
 msgstr "&Rik tekst"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text font:"
+msgctxt "@label:textbox"
 msgid "Text font:"
 msgstr "Tekstskrift:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Title font:"
+msgctxt "@label:textbox"
 msgid "Title font:"
 msgstr "Tittelskrift:"
 
@@ -489,12 +505,16 @@ msgid "Show number of notes in tray icon"
 msgstr "Vis i systemkurven antall notater"
 
 #: knoteconfigmodule.cpp:87
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default Title:"
+msgctxt "@label:textbox"
 msgid "Default Title:"
 msgstr "Standard tittel:"
 
 #: knoteconfigmodule.cpp:94
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Hvordan virker dette?</a>"
 
@@ -510,7 +530,9 @@ msgstr ""
 "klokkeslettet nå</li> </ul> </qt>"
 
 #: knoteconfigmodule.cpp:151
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Theme:"
+msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr "Tema:"
 
@@ -933,9 +955,11 @@ msgid "Popup Notes"
 msgstr ""
 
 #: kontactplugin/summarywidget.cpp:88
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No Notes"
+msgctxt "@label:textbox"
 msgid "No notes found"
-msgstr ""
+msgstr "Ingen notater"
 
 #: kontactplugin/summarywidget.cpp:117
 #, kde-format
@@ -1065,7 +1089,9 @@ msgid "Printing error"
 msgstr "Utskriftfeil"
 
 #: print/knoteprintselectednotesdialog.cpp:51
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Printing theme:"
+msgctxt "@label:textbox"
 msgid "Printing theme:"
 msgstr "Utskriftstema:"
 
@@ -1086,6 +1112,8 @@ msgid "Select theme"
 msgstr ""
 
 #: print/knoteprintselectthemedialog.cpp:39
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Themes:"
+msgctxt "@label:textbox"
 msgid "Themes:"
 msgstr "Temaer:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-23 00:39+0000\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
 "PO-Revision-Date: 2009-06-01 20:23+0300\n"
 "Last-Translator: Viesturs Zariņš <viesturs.zarins@mii.lu.lv>\n"
 "Language-Team: Latvian <locale@laka.lv>\n"
@@ -294,6 +294,7 @@ msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:103
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
 msgstr ""
 
@@ -359,12 +360,16 @@ msgid "Rename note"
 msgstr "Izvēlieties saņēmēju:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Text color:"
+msgctxt "@label:textbox"
 msgid "&Text color:"
 msgstr "&Teksta krāsa:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Background color:"
+msgctxt "@label:textbox"
 msgid "&Background color:"
 msgstr "&Fona krāsa:"
 
@@ -379,17 +384,23 @@ msgid "&Remember desktop"
 msgstr "Atce&rēties darbvirsmu"
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &width:"
+msgctxt "@label:textbox"
 msgid "Default &width:"
 msgstr "Noklusētais &platums:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &height:"
+msgctxt "@label:textbox"
 msgid "Default &height:"
 msgstr "Noklusētais a&ugstums:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Tab size:"
+msgctxt "@label:textbox"
 msgid "&Tab size:"
 msgstr "&Cilnes izmērs:"
 
@@ -404,12 +415,16 @@ msgid "&Rich text"
 msgstr "&Bagātīgs teksts"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text font:"
+msgctxt "@label:textbox"
 msgid "Text font:"
 msgstr "Teksta fonts:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Title font:"
+msgctxt "@label:textbox"
 msgid "Title font:"
 msgstr "Virsraksta fonts:"
 
@@ -503,11 +518,13 @@ msgstr ""
 #: knoteconfigmodule.cpp:87
 #, fuzzy, kde-format
 #| msgid "Default &width:"
+msgctxt "@label:textbox"
 msgid "Default Title:"
 msgstr "Noklusētais &platums:"
 
 #: knoteconfigmodule.cpp:94
 #, kde-format
+msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr ""
 
@@ -521,6 +538,7 @@ msgstr ""
 
 #: knoteconfigmodule.cpp:151
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr ""
 
@@ -976,6 +994,7 @@ msgstr "Nav piezīmju"
 #: kontactplugin/summarywidget.cpp:88
 #, fuzzy, kde-format
 #| msgid "Note Actions"
+msgctxt "@label:textbox"
 msgid "No notes found"
 msgstr "Piezīmes darbības"
 
@@ -1115,6 +1134,7 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "Print Note"
 #| msgid_plural "Print %1 notes"
+msgctxt "@label:textbox"
 msgid "Printing theme:"
 msgstr "Drukāt %1 piezīmi"
 
@@ -1138,6 +1158,7 @@ msgstr "Izvēlieties saņēmēju:"
 
 #: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Themes:"
 msgstr ""
 

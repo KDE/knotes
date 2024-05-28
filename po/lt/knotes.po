@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-23 00:39+0000\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
 "PO-Revision-Date: 2017-06-28 10:07+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -284,7 +284,9 @@ msgid "Folders"
 msgstr "Aplankai"
 
 #: configdialog/knotecollectionconfigwidget.cpp:103
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Select which KNotes folders to show:"
+msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
 msgstr "Pasirinkite rodytinus Knotes aplankus:"
 
@@ -345,12 +347,16 @@ msgid "Rename note"
 msgstr "Pervadinti lapelį"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Text color:"
+msgctxt "@label:textbox"
 msgid "&Text color:"
 msgstr "&Teksto spalva:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Background color:"
+msgctxt "@label:textbox"
 msgid "&Background color:"
 msgstr "&Fono spalva:"
 
@@ -365,17 +371,23 @@ msgid "&Remember desktop"
 msgstr "Į&siminti darbalaukį"
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &width:"
+msgctxt "@label:textbox"
 msgid "Default &width:"
 msgstr "&Numatytas plotis:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &height:"
+msgctxt "@label:textbox"
 msgid "Default &height:"
 msgstr "Numatytas &aukštis:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Tab size:"
+msgctxt "@label:textbox"
 msgid "&Tab size:"
 msgstr "&Tab dydis:"
 
@@ -390,12 +402,16 @@ msgid "&Rich text"
 msgstr "&Raiškusis tekstas"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text font:"
+msgctxt "@label:textbox"
 msgid "Text font:"
 msgstr "Teksto šriftas:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Title font:"
+msgctxt "@label:textbox"
 msgid "Title font:"
 msgstr "Pavadinimo šriftas:"
 
@@ -488,12 +504,16 @@ msgid "Show number of notes in tray icon"
 msgstr "Sistemos dėkle rodyti lapelių skaičių"
 
 #: knoteconfigmodule.cpp:87
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default Title:"
+msgctxt "@label:textbox"
 msgid "Default Title:"
 msgstr "Numatytoji antraštė:"
 
 #: knoteconfigmodule.cpp:94
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Kaip tai veikia?</a>"
 
@@ -506,7 +526,9 @@ msgid ""
 msgstr ""
 
 #: knoteconfigmodule.cpp:151
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Theme:"
+msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr "Apipavidalinimas:"
 
@@ -944,6 +966,7 @@ msgstr "Pastabos lapeliuose"
 #: kontactplugin/summarywidget.cpp:88
 #, fuzzy, kde-format
 #| msgid "No note found"
+msgctxt "@label:textbox"
 msgid "No notes found"
 msgstr "Lapelių nerasta"
 
@@ -1078,7 +1101,9 @@ msgid "Printing error"
 msgstr "Spausdinimo klaida"
 
 #: print/knoteprintselectednotesdialog.cpp:51
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Printing theme:"
+msgctxt "@label:textbox"
 msgid "Printing theme:"
 msgstr "Spausdinimo apipavidalinimas:"
 
@@ -1100,7 +1125,9 @@ msgid "Select theme"
 msgstr "Pasirinkti apipavidalinimą"
 
 #: print/knoteprintselectthemedialog.cpp:39
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Themes:"
+msgctxt "@label:textbox"
 msgid "Themes:"
 msgstr "Apipavidalinimai:"
 

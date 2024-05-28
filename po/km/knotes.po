@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-23 00:39+0000\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
 "PO-Revision-Date: 2010-05-24 16:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -296,6 +296,7 @@ msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:103
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
 msgstr ""
 
@@ -361,12 +362,16 @@ msgid "Rename note"
 msgstr "ជ្រើស​អ្នក​ទទួល ៖"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Text color:"
+msgctxt "@label:textbox"
 msgid "&Text color:"
 msgstr "ពណ៌​អត្ថបទ ៖"
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Background color:"
+msgctxt "@label:textbox"
 msgid "&Background color:"
 msgstr "ពណ៌​ផ្ទៃ​ខាង​ក្រោយ ៖"
 
@@ -381,17 +386,23 @@ msgid "&Remember desktop"
 msgstr "ចងចាំ​ផ្ទៃតុ"
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &width:"
+msgctxt "@label:textbox"
 msgid "Default &width:"
 msgstr "ទទឹង​លំនាំដើម ៖"
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &height:"
+msgctxt "@label:textbox"
 msgid "Default &height:"
 msgstr "កម្ពស់​លំនាំដើម ៖"
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Tab size:"
+msgctxt "@label:textbox"
 msgid "&Tab size:"
 msgstr "ទំហំ​ថេប ៖"
 
@@ -406,12 +417,16 @@ msgid "&Rich text"
 msgstr "អត្ថបទ​សំបូរ​បែប"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text font:"
+msgctxt "@label:textbox"
 msgid "Text font:"
 msgstr "ពុម្ពអក្សរ​អត្ថបទ ៖"
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Title font:"
+msgctxt "@label:textbox"
 msgid "Title font:"
 msgstr "ពុម្ពអក្សរ​ចំណង​ជើង ៖"
 
@@ -505,11 +520,13 @@ msgstr ""
 #: knoteconfigmodule.cpp:87
 #, fuzzy, kde-format
 #| msgid "Default &width:"
+msgctxt "@label:textbox"
 msgid "Default Title:"
 msgstr "ទទឹង​លំនាំដើម ៖"
 
 #: knoteconfigmodule.cpp:94
 #, kde-format
+msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr ""
 
@@ -523,6 +540,7 @@ msgstr ""
 
 #: knoteconfigmodule.cpp:151
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr ""
 
@@ -976,6 +994,7 @@ msgstr "គ្មាន​ចំណាំ"
 #: kontactplugin/summarywidget.cpp:88
 #, fuzzy, kde-format
 #| msgid "Note Actions"
+msgctxt "@label:textbox"
 msgid "No notes found"
 msgstr "សកម្មភាព​ចំណាំ"
 
@@ -1113,6 +1132,7 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "Print Note"
 #| msgid_plural "Print %1 notes"
+msgctxt "@label:textbox"
 msgid "Printing theme:"
 msgstr "បោះពុម្ព​ចំណាំ %1"
 
@@ -1136,6 +1156,7 @@ msgstr "ជ្រើស​អ្នក​ទទួល ៖"
 
 #: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Themes:"
 msgstr ""
 

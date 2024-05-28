@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-23 00:39+0000\n"
-"PO-Revision-Date: 2024-05-17 04:50+0200\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"PO-Revision-Date: 2024-05-27 04:38+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -266,7 +266,9 @@ msgid "Folders"
 msgstr "საქაღალდეები"
 
 #: configdialog/knotecollectionconfigwidget.cpp:103
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Select which KNotes folders to show:"
+msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
 msgstr "აირჩიეთ KNotes-ის საჩვენებელი საქაღალდეები:"
 
@@ -327,12 +329,16 @@ msgid "Rename note"
 msgstr "სანიშნის გადარქმევა"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Text color:"
+msgctxt "@label:textbox"
 msgid "&Text color:"
 msgstr "&ტექსტის ფერი:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Background color:"
+msgctxt "@label:textbox"
 msgid "&Background color:"
 msgstr "&ფონის ფერი:"
 
@@ -347,17 +353,23 @@ msgid "&Remember desktop"
 msgstr "&სამუშაო მაგიდის დამახსოვრება"
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &width:"
+msgctxt "@label:textbox"
 msgid "Default &width:"
 msgstr "ნაგულისხმები &სიგანე:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &height:"
+msgctxt "@label:textbox"
 msgid "Default &height:"
 msgstr "ნაგულისხმები &სიმაღლე:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Tab size:"
+msgctxt "@label:textbox"
 msgid "&Tab size:"
 msgstr "&ტაბულაციის ზომა:"
 
@@ -372,12 +384,16 @@ msgid "&Rich text"
 msgstr "&მდიდარი ტექსტი"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text font:"
+msgctxt "@label:textbox"
 msgid "Text font:"
 msgstr "ტექსტის ფონტი:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Title font:"
+msgctxt "@label:textbox"
 msgid "Title font:"
 msgstr "სათაურის ფონტი:"
 
@@ -462,12 +478,16 @@ msgid "Show number of notes in tray icon"
 msgstr "სისტემის კუთხეში ხატულაზე შენიშვნების რაოდენობის ჩვენება"
 
 #: knoteconfigmodule.cpp:87
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default Title:"
+msgctxt "@label:textbox"
 msgid "Default Title:"
 msgstr "ნაგულისხმები სათაური:"
 
 #: knoteconfigmodule.cpp:94
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">როგორ მუშაობს?</a>"
 
@@ -483,13 +503,14 @@ msgstr ""
 "ფორმატი)</li><li>%t მიმდინარე დრო</li></ul></qt>"
 
 #: knoteconfigmodule.cpp:151
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Theme:"
+msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr "თემა:"
 
 #: knoteconfigmodule.cpp:161
-#, fuzzy, kde-format
-#| msgid "Download new printing themes"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Download new printing themes"
 msgstr "ახალი საბეჭდი თემების გადმოწერა"
@@ -916,7 +937,9 @@ msgid "Popup Notes"
 msgstr "მხტუნარა სანიშნეები"
 
 #: kontactplugin/summarywidget.cpp:88
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No notes found"
+msgctxt "@label:textbox"
 msgid "No notes found"
 msgstr "სანიშნების გარეშე"
 
@@ -1047,7 +1070,9 @@ msgid "Printing error"
 msgstr "ბეჭდვის შეცდომა"
 
 #: print/knoteprintselectednotesdialog.cpp:51
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Printing theme:"
+msgctxt "@label:textbox"
 msgid "Printing theme:"
 msgstr "ბეჭდვის თემა:"
 
@@ -1068,7 +1093,9 @@ msgid "Select theme"
 msgstr "თემის არჩევა"
 
 #: print/knoteprintselectthemedialog.cpp:39
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Themes:"
+msgctxt "@label:textbox"
 msgid "Themes:"
 msgstr "თემები:"
 

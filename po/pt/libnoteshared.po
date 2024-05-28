@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libnoteshared\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
 "PO-Revision-Date: 2023-05-17 14:20+0100\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
@@ -28,12 +28,16 @@ msgid "Alarm &at:"
 msgstr "&Alarme às:"
 
 #: config/noteactionconfig.cpp:22
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Mail action:"
+msgctxt "@label:textbox"
 msgid "&Mail action:"
 msgstr "Acção do &correio:"
 
 #: config/noteactionconfig.cpp:30
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Como é que isto funciona?</a>"
 
@@ -63,12 +67,16 @@ msgid "Outgoing Notes"
 msgstr "Notas Enviadas"
 
 #: config/notenetworkconfig.cpp:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Sender ID:"
+msgctxt "@label:textbox"
 msgid "&Sender ID:"
 msgstr "ID do &Remetente:"
 
 #: config/notenetworkconfig.cpp:53
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Port:"
+msgctxt "@label:textbox"
 msgid "&Port:"
 msgstr "&Porto:"
 
@@ -137,12 +145,16 @@ msgid "Create new note"
 msgstr "Criar uma nova nota"
 
 #: network/notehostdialog.cpp:43
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@label:textbox"
 msgid "Select recipient:"
 msgstr "Seleccione o destinatário:"
 
 #: network/notehostdialog.cpp:59
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Hostname or IP address:"
+msgctxt "@label:textbox"
 msgid "Hostname or IP address:"
 msgstr "Nome ou IP da máquina:"
 

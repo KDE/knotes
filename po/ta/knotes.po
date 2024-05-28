@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-23 00:39+0000\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
 "PO-Revision-Date: 2005-03-21 03:17-0800\n"
 "Last-Translator: Tamil PC <tamilpc@ambalam.com>\n"
 "Language-Team:  <tamilpc@ambalam.com>\n"
@@ -274,6 +274,7 @@ msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:103
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
 msgstr ""
 
@@ -338,12 +339,16 @@ msgid "Rename note"
 msgstr "மறுபெயரிடு..."
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Text color:"
+msgctxt "@label:textbox"
 msgid "&Text color:"
 msgstr "உரை நிறம்:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Background color:"
+msgctxt "@label:textbox"
 msgid "&Background color:"
 msgstr "பின்னணி நிறம்:"
 
@@ -359,17 +364,23 @@ msgid "&Remember desktop"
 msgstr "&அனைத்து பணிமேடைகள்"
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &width:"
+msgctxt "@label:textbox"
 msgid "Default &width:"
 msgstr "முன்னிருப்பு அகலம்:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &height:"
+msgctxt "@label:textbox"
 msgid "Default &height:"
 msgstr "முன்னிருப்பு உயரம்:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Tab size:"
+msgctxt "@label:textbox"
 msgid "&Tab size:"
 msgstr "தத்தல் அளவு:"
 
@@ -384,12 +395,16 @@ msgid "&Rich text"
 msgstr "உரை ஆவணம்"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text font:"
+msgctxt "@label:textbox"
 msgid "Text font:"
 msgstr "உரை எழுத்துரு:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Title font:"
+msgctxt "@label:textbox"
 msgid "Title font:"
 msgstr "தலைப்பு எழுத்துரு:"
 
@@ -482,11 +497,13 @@ msgstr ""
 #: knoteconfigmodule.cpp:87
 #, fuzzy, kde-format
 #| msgid "Default &width:"
+msgctxt "@label:textbox"
 msgid "Default Title:"
 msgstr "முன்னிருப்பு அகலம்:"
 
 #: knoteconfigmodule.cpp:94
 #, kde-format
+msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr ""
 
@@ -500,6 +517,7 @@ msgstr ""
 
 #: knoteconfigmodule.cpp:151
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr ""
 
@@ -947,6 +965,7 @@ msgstr "குறிப்புகள் இல்லை"
 #: kontactplugin/summarywidget.cpp:88
 #, fuzzy, kde-format
 #| msgid "Note Actions"
+msgctxt "@label:textbox"
 msgid "No notes found"
 msgstr "குறிப்பு செயல்கள்"
 
@@ -1082,6 +1101,7 @@ msgstr ""
 #: print/knoteprintselectednotesdialog.cpp:51
 #, fuzzy, kde-format
 #| msgid "Print %1"
+msgctxt "@label:textbox"
 msgid "Printing theme:"
 msgstr "அச்சிடு %1"
 
@@ -1104,6 +1124,7 @@ msgstr ""
 
 #: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Themes:"
 msgstr ""
 

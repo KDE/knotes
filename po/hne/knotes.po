@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-23 00:39+0000\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
 "PO-Revision-Date: 2009-02-28 14:00+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -293,6 +293,7 @@ msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:103
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
 msgstr ""
 
@@ -358,12 +359,16 @@ msgid "Rename note"
 msgstr "पावइया चुनव:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Text color:"
+msgctxt "@label:textbox"
 msgid "&Text color:"
 msgstr "पाठ रंगः (&T)"
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Background color:"
+msgctxt "@label:textbox"
 msgid "&Background color:"
 msgstr "पिछोत अंगना के रंगः (&B)"
 
@@ -378,17 +383,23 @@ msgid "&Remember desktop"
 msgstr ""
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &width:"
+msgctxt "@label:textbox"
 msgid "Default &width:"
 msgstr "डिफाल्ड चौड़ाईः (&w)"
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &height:"
+msgctxt "@label:textbox"
 msgid "Default &height:"
 msgstr "डिफाल्ट ऊंचाईः (&h)"
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Tab size:"
+msgctxt "@label:textbox"
 msgid "&Tab size:"
 msgstr "टैब आकारः (&T)"
 
@@ -403,12 +414,16 @@ msgid "&Rich text"
 msgstr "रिच पाठ (&R)"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text font:"
+msgctxt "@label:textbox"
 msgid "Text font:"
 msgstr "पाठ फोंटः"
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Title font:"
+msgctxt "@label:textbox"
 msgid "Title font:"
 msgstr "सीर्सक फोंट:"
 
@@ -502,11 +517,13 @@ msgstr ""
 #: knoteconfigmodule.cpp:87
 #, fuzzy, kde-format
 #| msgid "Default &width:"
+msgctxt "@label:textbox"
 msgid "Default Title:"
 msgstr "डिफाल्ड चौड़ाईः (&w)"
 
 #: knoteconfigmodule.cpp:94
 #, kde-format
+msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr ""
 
@@ -520,6 +537,7 @@ msgstr ""
 
 #: knoteconfigmodule.cpp:151
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr ""
 
@@ -974,6 +992,7 @@ msgstr "कोई टिप्पनी नइ"
 #: kontactplugin/summarywidget.cpp:88
 #, fuzzy, kde-format
 #| msgid "Note Actions"
+msgctxt "@label:textbox"
 msgid "No notes found"
 msgstr "नोट काम"
 
@@ -1112,6 +1131,7 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "Print Note"
 #| msgid_plural "Print %1 notes"
+msgctxt "@label:textbox"
 msgid "Printing theme:"
 msgstr "छपाई टिप्पनी"
 
@@ -1135,6 +1155,7 @@ msgstr "पावइया चुनव:"
 
 #: print/knoteprintselectthemedialog.cpp:39
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Themes:"
 msgstr ""
 
