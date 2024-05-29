@@ -33,15 +33,13 @@ msgid "Alarm &at:"
 msgstr "于...提醒(&A)："
 
 #: config/noteactionconfig.cpp:22
-#, fuzzy, kde-format
-#| msgid "&Mail action:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Mail action:"
 msgstr "邮件操作(&M)："
 
 #: config/noteactionconfig.cpp:30
-#, fuzzy, kde-format
-#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">工作方式解释</a>"
@@ -71,15 +69,13 @@ msgid "Outgoing Notes"
 msgstr "发送的记事贴"
 
 #: config/notenetworkconfig.cpp:41
-#, fuzzy, kde-format
-#| msgid "&Sender ID:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Sender ID:"
 msgstr "发送者 ID(&S)："
 
 #: config/notenetworkconfig.cpp:53
-#, fuzzy, kde-format
-#| msgid "&Port:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Port:"
 msgstr "端口(&P)："
@@ -145,15 +141,13 @@ msgid "Create new note"
 msgstr "新建记事贴"
 
 #: network/notehostdialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Select recipient:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Select recipient:"
 msgstr "选择接收人："
 
 #: network/notehostdialog.cpp:59
-#, fuzzy, kde-format
-#| msgid "Hostname or IP address:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Hostname or IP address:"
 msgstr "主机名或 IP 地址："

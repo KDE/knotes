@@ -265,8 +265,7 @@ msgid "Folders"
 msgstr "文件夹"
 
 #: configdialog/knotecollectionconfigwidget.cpp:103
-#, fuzzy, kde-format
-#| msgid "Select which KNotes folders to show:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
 msgstr "选择要显示的 KNotes 文件夹："
@@ -328,15 +327,13 @@ msgid "Rename note"
 msgstr "重命名记事贴"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
-#, fuzzy, kde-format
-#| msgid "&Text color:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Text color:"
 msgstr "文字颜色(&T)："
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
-#, fuzzy, kde-format
-#| msgid "&Background color:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Background color:"
 msgstr "背景颜色(&B)："
@@ -352,22 +349,19 @@ msgid "&Remember desktop"
 msgstr "记住桌面(&R)"
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
-#, fuzzy, kde-format
-#| msgid "Default &width:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default &width:"
 msgstr "默认宽度(&W)："
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
-#, fuzzy, kde-format
-#| msgid "Default &height:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default &height:"
 msgstr "默认高度(&H)："
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
-#, fuzzy, kde-format
-#| msgid "&Tab size:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Tab size:"
 msgstr "制表符宽度(&T)："
@@ -383,15 +377,13 @@ msgid "&Rich text"
 msgstr "丰富文本(&R)"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
-#, fuzzy, kde-format
-#| msgid "Text font:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Text font:"
 msgstr "文字字体："
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Title font:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Title font:"
 msgstr "标题字体："
@@ -477,15 +469,13 @@ msgid "Show number of notes in tray icon"
 msgstr "在托盘图标显示记事贴数量"
 
 #: knoteconfigmodule.cpp:87
-#, fuzzy, kde-format
-#| msgid "Default Title:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default Title:"
 msgstr "默认标题："
 
 #: knoteconfigmodule.cpp:94
-#, fuzzy, kde-format
-#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">工作方式解释</a>"
@@ -501,8 +491,7 @@ msgstr ""
 "li><li>%l 当前日期 (长格式)</li><li>%t 当前时间</li></ul></qt>"
 
 #: knoteconfigmodule.cpp:151
-#, fuzzy, kde-format
-#| msgid "Theme:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr "主题："
@@ -920,8 +909,7 @@ msgid "Popup Notes"
 msgstr "弹出记事贴"
 
 #: kontactplugin/summarywidget.cpp:88
-#, fuzzy, kde-format
-#| msgid "No notes found"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "No notes found"
 msgstr "未找到记事贴"
@@ -1051,8 +1039,7 @@ msgid "Printing error"
 msgstr "打印错误"
 
 #: print/knoteprintselectednotesdialog.cpp:51
-#, fuzzy, kde-format
-#| msgid "Printing theme:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Printing theme:"
 msgstr "打印主题："
@@ -1074,8 +1061,7 @@ msgid "Select theme"
 msgstr "选择主题"
 
 #: print/knoteprintselectthemedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "Themes:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Themes:"
 msgstr "主题："

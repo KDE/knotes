@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Freek de Kruijf <freek@opensuse.org>, 2013, 2014, 2017, 2019, 2021, 2023.
+# SPDX-FileCopyrightText: 2013, 2014, 2017, 2019, 2021, 2023, 2024 Freek de Kruijf <freek@opensuse.org>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-28 00:38+0000\n"
-"PO-Revision-Date: 2023-05-17 11:49+0200\n"
+"PO-Revision-Date: 2024-05-28 10:00+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #: alarms/notealarmdialog.cpp:41
 #, kde-format
@@ -33,15 +33,13 @@ msgid "Alarm &at:"
 msgstr "Herinnering &om:"
 
 #: config/noteactionconfig.cpp:22
-#, fuzzy, kde-format
-#| msgid "&Mail action:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Mail action:"
 msgstr "&Verzendactie:"
 
 #: config/noteactionconfig.cpp:30
-#, fuzzy, kde-format
-#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Hoe werkt dit?</a>"
@@ -72,15 +70,13 @@ msgid "Outgoing Notes"
 msgstr "Uitgaande notities"
 
 #: config/notenetworkconfig.cpp:41
-#, fuzzy, kde-format
-#| msgid "&Sender ID:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Sender ID:"
 msgstr "&Zender-ID:"
 
 #: config/notenetworkconfig.cpp:53
-#, fuzzy, kde-format
-#| msgid "&Port:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Port:"
 msgstr "&Poort:"
@@ -150,15 +146,13 @@ msgid "Create new note"
 msgstr "Nieuwe notitie maken"
 
 #: network/notehostdialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Select recipient:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Select recipient:"
 msgstr "Geadresseerde selecteren:"
 
 #: network/notehostdialog.cpp:59
-#, fuzzy, kde-format
-#| msgid "Hostname or IP address:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Hostname or IP address:"
 msgstr "Hostnaam of IP-adres:"

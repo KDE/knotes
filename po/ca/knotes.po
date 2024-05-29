@@ -269,8 +269,7 @@ msgid "Folders"
 msgstr "Carpetes"
 
 #: configdialog/knotecollectionconfigwidget.cpp:103
-#, fuzzy, kde-format
-#| msgid "Select which KNotes folders to show:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
 msgstr "Selecciona quines carpetes del KNotes mostrar:"
@@ -332,15 +331,13 @@ msgid "Rename note"
 msgstr "Reanomena la nota"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
-#, fuzzy, kde-format
-#| msgid "&Text color:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Text color:"
 msgstr "Color del &text:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
-#, fuzzy, kde-format
-#| msgid "&Background color:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Background color:"
 msgstr "Color de &fons:"
@@ -356,22 +353,19 @@ msgid "&Remember desktop"
 msgstr "&Recorda l'escriptori"
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
-#, fuzzy, kde-format
-#| msgid "Default &width:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default &width:"
 msgstr "A&mplada per omissió:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
-#, fuzzy, kde-format
-#| msgid "Default &height:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default &height:"
 msgstr "Al&çada per omissió:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
-#, fuzzy, kde-format
-#| msgid "&Tab size:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Tab size:"
 msgstr "&Mida de la tabulació:"
@@ -387,15 +381,13 @@ msgid "&Rich text"
 msgstr "Text en&riquit"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
-#, fuzzy, kde-format
-#| msgid "Text font:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Text font:"
 msgstr "Lletra del text:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Title font:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Title font:"
 msgstr "Lletra del títol:"
@@ -481,15 +473,13 @@ msgid "Show number of notes in tray icon"
 msgstr "Mostra el nombre de notes a la icona de la safata"
 
 #: knoteconfigmodule.cpp:87
-#, fuzzy, kde-format
-#| msgid "Default Title:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default Title:"
 msgstr "Títol per omissió:"
 
 #: knoteconfigmodule.cpp:94
-#, fuzzy, kde-format
-#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Com funciona això?</a>"
@@ -506,8 +496,7 @@ msgstr ""
 "hora actual</li></ul></qt>"
 
 #: knoteconfigmodule.cpp:151
-#, fuzzy, kde-format
-#| msgid "Theme:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr "Tema:"
@@ -938,8 +927,7 @@ msgid "Popup Notes"
 msgstr "Notes emergents"
 
 #: kontactplugin/summarywidget.cpp:88
-#, fuzzy, kde-format
-#| msgid "No notes found"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "No notes found"
 msgstr "No s'ha trobat cap nota"
@@ -1070,8 +1058,7 @@ msgid "Printing error"
 msgstr "Error d'impressió"
 
 #: print/knoteprintselectednotesdialog.cpp:51
-#, fuzzy, kde-format
-#| msgid "Printing theme:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Printing theme:"
 msgstr "Tema d'impressió:"
@@ -1093,8 +1080,7 @@ msgid "Select theme"
 msgstr "Selecció del tema"
 
 #: print/knoteprintselectthemedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "Themes:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Themes:"
 msgstr "Temes:"

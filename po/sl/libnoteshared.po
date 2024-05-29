@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-28 00:38+0000\n"
-"PO-Revision-Date: 2023-05-17 09:41+0200\n"
+"PO-Revision-Date: 2024-05-28 07:24+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: alarms/notealarmdialog.cpp:41
 #, kde-format
@@ -36,15 +36,13 @@ msgid "Alarm &at:"
 msgstr "&Alarm ob:"
 
 #: config/noteactionconfig.cpp:22
-#, fuzzy, kde-format
-#| msgid "&Mail action:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Mail action:"
 msgstr "Dejanje pošte:"
 
 #: config/noteactionconfig.cpp:30
-#, fuzzy, kde-format
-#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Kako to deluje?</a>"
@@ -75,15 +73,13 @@ msgid "Outgoing Notes"
 msgstr "Odhodna sporočilca"
 
 #: config/notenetworkconfig.cpp:41
-#, fuzzy, kde-format
-#| msgid "&Sender ID:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Sender ID:"
 msgstr "ID pošiljatelja:"
 
 #: config/notenetworkconfig.cpp:53
-#, fuzzy, kde-format
-#| msgid "&Port:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Port:"
 msgstr "Vrata:"
@@ -153,15 +149,13 @@ msgid "Create new note"
 msgstr "Ustvari novo sporočilce"
 
 #: network/notehostdialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Select recipient:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Select recipient:"
 msgstr "Izberite prejemnika:"
 
 #: network/notehostdialog.cpp:59
-#, fuzzy, kde-format
-#| msgid "Hostname or IP address:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Hostname or IP address:"
 msgstr "Ime gostitelja ali naslov IP:"

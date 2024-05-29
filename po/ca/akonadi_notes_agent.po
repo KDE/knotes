@@ -28,8 +28,7 @@ msgid "Alarm"
 msgstr "Alarma"
 
 #: notesagentalarmdialog.cpp:56
-#, fuzzy, kde-format
-#| msgid "The following notes triggered alarms:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "The following notes triggered alarms:"
 msgstr "Les notes següents desencadenen alarmes:"

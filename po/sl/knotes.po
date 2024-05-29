@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-28 00:38+0000\n"
-"PO-Revision-Date: 2024-05-23 07:21+0200\n"
+"PO-Revision-Date: 2024-05-28 07:40+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -276,11 +276,10 @@ msgid "Folders"
 msgstr "Mape"
 
 #: configdialog/knotecollectionconfigwidget.cpp:103
-#, fuzzy, kde-format
-#| msgid "Select which KNotes folders to show:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
-msgstr "Izberite, katere mape KNotes bodo prikazane:"
+msgstr "Izberite, katere mape KNotes naj bodo prikazane:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
 #, kde-format
@@ -339,15 +338,13 @@ msgid "Rename note"
 msgstr "Preimenuj sporočilce"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
-#, fuzzy, kde-format
-#| msgid "&Text color:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Text color:"
 msgstr "Barva besedila:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
-#, fuzzy, kde-format
-#| msgid "&Background color:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Background color:"
 msgstr "&Barva ozadja:"
@@ -363,22 +360,19 @@ msgid "&Remember desktop"
 msgstr "Zapomni si namizje"
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
-#, fuzzy, kde-format
-#| msgid "Default &width:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default &width:"
 msgstr "Privzeta širina:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
-#, fuzzy, kde-format
-#| msgid "Default &height:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default &height:"
 msgstr "Privzeta višina:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
-#, fuzzy, kde-format
-#| msgid "&Tab size:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Tab size:"
 msgstr "Velikost &tabulatorja:"
@@ -394,15 +388,13 @@ msgid "&Rich text"
 msgstr "Bogato besedilo"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
-#, fuzzy, kde-format
-#| msgid "Text font:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Text font:"
 msgstr "Pisava besedila:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Title font:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Title font:"
 msgstr "Pisava naslova:"
@@ -488,15 +480,13 @@ msgid "Show number of notes in tray icon"
 msgstr "Pokaži število sporočilc v ikoni sistemske vrstice"
 
 #: knoteconfigmodule.cpp:87
-#, fuzzy, kde-format
-#| msgid "Default Title:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default Title:"
-msgstr "Privzet naslov:"
+msgstr "Privzeti naslov:"
 
 #: knoteconfigmodule.cpp:94
-#, fuzzy, kde-format
-#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Kako to deluje?</a>"
@@ -513,8 +503,7 @@ msgstr ""
 "oblika)</li><li>%t - trenuten čas</li></ul></qt>"
 
 #: knoteconfigmodule.cpp:151
-#, fuzzy, kde-format
-#| msgid "Theme:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr "Tema:"
@@ -946,8 +935,7 @@ msgid "Popup Notes"
 msgstr "Pojavna sporočilca"
 
 #: kontactplugin/summarywidget.cpp:88
-#, fuzzy, kde-format
-#| msgid "No notes found"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "No notes found"
 msgstr "Ni najdenih sporočilc"
@@ -1080,8 +1068,7 @@ msgid "Printing error"
 msgstr "Napaka med tiskanjem"
 
 #: print/knoteprintselectednotesdialog.cpp:51
-#, fuzzy, kde-format
-#| msgid "Printing theme:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Printing theme:"
 msgstr "Tema za tiskanje:"
@@ -1103,8 +1090,7 @@ msgid "Select theme"
 msgstr "Izberite temo"
 
 #: print/knoteprintselectthemedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "Themes:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Themes:"
 msgstr "Teme:"

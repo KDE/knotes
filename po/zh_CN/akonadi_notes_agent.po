@@ -24,8 +24,7 @@ msgid "Alarm"
 msgstr "提醒"
 
 #: notesagentalarmdialog.cpp:56
-#, fuzzy, kde-format
-#| msgid "The following notes triggered alarms:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "The following notes triggered alarms:"
 msgstr "以下记事贴触发了提醒："

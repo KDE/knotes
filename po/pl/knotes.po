@@ -1,5 +1,5 @@
 # translation of knotes.po to
-# Version: $Revision: 1680631 $
+# Version: $Revision: 1681083 $
 # Currently maintained by Marcin Bokszczanin
 # Piotr Roszatycki <dexter@fnet.pl> 1998
 # Jacek Stolarczyk<jacek@mer.chemia.polsl.gliwice.pl> 1999, 2000.
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-23 00:39+0000\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
 "PO-Revision-Date: 2022-01-08 10:50+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -20,10 +20,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.03.70\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"100<10 || n%100>=20) ? 1 : 2);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -292,7 +290,9 @@ msgid "Folders"
 msgstr "Katalogi"
 
 #: configdialog/knotecollectionconfigwidget.cpp:103
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Select which KNotes folders to show:"
+msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
 msgstr "Wybierz, który katalog KNotatki pokazywać:"
 
@@ -353,12 +353,16 @@ msgid "Rename note"
 msgstr "Zmień nazwę notatki"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Text color:"
+msgctxt "@label:textbox"
 msgid "&Text color:"
 msgstr "Kolor &tekstu:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Background color:"
+msgctxt "@label:textbox"
 msgid "&Background color:"
 msgstr "Kolor &tła:"
 
@@ -373,17 +377,23 @@ msgid "&Remember desktop"
 msgstr "&Zapamiętaj pulpit"
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &width:"
+msgctxt "@label:textbox"
 msgid "Default &width:"
 msgstr "Domyślna &szerokość:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default &height:"
+msgctxt "@label:textbox"
 msgid "Default &height:"
 msgstr "Domyślna &wysokość:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Tab size:"
+msgctxt "@label:textbox"
 msgid "&Tab size:"
 msgstr "Szerokość &tabulacji:"
 
@@ -398,12 +408,16 @@ msgid "&Rich text"
 msgstr "Fo&rmatowany tekst"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Text font:"
+msgctxt "@label:textbox"
 msgid "Text font:"
 msgstr "Czcionka tekstu:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Title font:"
+msgctxt "@label:textbox"
 msgid "Title font:"
 msgstr "Czcionka tytułu:"
 
@@ -488,12 +502,16 @@ msgid "Show number of notes in tray icon"
 msgstr "Pokaż liczbę notatek na tacce systemowej"
 
 #: knoteconfigmodule.cpp:87
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default Title:"
+msgctxt "@label:textbox"
 msgid "Default Title:"
 msgstr "Domyślny tytuł:"
 
 #: knoteconfigmodule.cpp:94
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Jak to działa?</a>"
 
@@ -509,7 +527,9 @@ msgstr ""
 "%t bieżący czas</li></ul></qt>"
 
 #: knoteconfigmodule.cpp:151
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Theme:"
+msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr "Wygląd:"
 
@@ -943,7 +963,9 @@ msgid "Popup Notes"
 msgstr "Żółte karteczki"
 
 #: kontactplugin/summarywidget.cpp:88
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No notes found"
+msgctxt "@label:textbox"
 msgid "No notes found"
 msgstr "Nie znaleziono żadnej notatki"
 
@@ -1076,7 +1098,9 @@ msgid "Printing error"
 msgstr "Błąd drukowania"
 
 #: print/knoteprintselectednotesdialog.cpp:51
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Printing theme:"
+msgctxt "@label:textbox"
 msgid "Printing theme:"
 msgstr "Wygląd wydruku:"
 
@@ -1097,7 +1121,9 @@ msgid "Select theme"
 msgstr "Wybierz wystrój"
 
 #: print/knoteprintselectthemedialog.cpp:39
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Themes:"
+msgctxt "@label:textbox"
 msgid "Themes:"
 msgstr "Wystroje:"
 

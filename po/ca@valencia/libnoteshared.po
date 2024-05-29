@@ -37,15 +37,13 @@ msgid "Alarm &at:"
 msgstr "Alarma &a les:"
 
 #: config/noteactionconfig.cpp:22
-#, fuzzy, kde-format
-#| msgid "&Mail action:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Mail action:"
 msgstr "Acció de &correu:"
 
 #: config/noteactionconfig.cpp:30
-#, fuzzy, kde-format
-#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Com funciona açò?</a>"
@@ -76,15 +74,13 @@ msgid "Outgoing Notes"
 msgstr "Notes ixents"
 
 #: config/notenetworkconfig.cpp:41
-#, fuzzy, kde-format
-#| msgid "&Sender ID:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Sender ID:"
 msgstr "ID d'en&viament:"
 
 #: config/notenetworkconfig.cpp:53
-#, fuzzy, kde-format
-#| msgid "&Port:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Port:"
 msgstr "&Port:"
@@ -154,15 +150,13 @@ msgid "Create new note"
 msgstr "Crea una nota nova"
 
 #: network/notehostdialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Select recipient:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Select recipient:"
 msgstr "Seleccioneu el destinatari:"
 
 #: network/notehostdialog.cpp:59
-#, fuzzy, kde-format
-#| msgid "Hostname or IP address:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Hostname or IP address:"
 msgstr "Nom de l'amfitrió o adreça IP:"

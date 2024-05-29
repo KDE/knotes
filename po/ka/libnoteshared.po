@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-28 00:38+0000\n"
-"PO-Revision-Date: 2023-05-18 05:45+0200\n"
+"PO-Revision-Date: 2024-05-28 06:03+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: alarms/notealarmdialog.cpp:41
 #, kde-format
@@ -34,15 +34,13 @@ msgid "Alarm &at:"
 msgstr "მაღვიძარის &დრო:"
 
 #: config/noteactionconfig.cpp:22
-#, fuzzy, kde-format
-#| msgid "&Mail action:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Mail action:"
 msgstr "&ელფოსტის ქმედება:"
 
 #: config/noteactionconfig.cpp:30
-#, fuzzy, kde-format
-#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">როგორ მუშაობს?</a>"
@@ -73,15 +71,13 @@ msgid "Outgoing Notes"
 msgstr "გამავალი სანიშნეები"
 
 #: config/notenetworkconfig.cpp:41
-#, fuzzy, kde-format
-#| msgid "&Sender ID:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Sender ID:"
 msgstr "&გამგზავნის ID:"
 
 #: config/notenetworkconfig.cpp:53
-#, fuzzy, kde-format
-#| msgid "&Port:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Port:"
 msgstr "&პორტი:"
@@ -149,15 +145,13 @@ msgid "Create new note"
 msgstr "ახალი სანიშნის შექმნა"
 
 #: network/notehostdialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Select recipient:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Select recipient:"
 msgstr "აირჩიეთ მიმღები:"
 
 #: network/notehostdialog.cpp:59
-#, fuzzy, kde-format
-#| msgid "Hostname or IP address:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Hostname or IP address:"
 msgstr "ჰოსტის სახელი ან IP მისამართი:"
