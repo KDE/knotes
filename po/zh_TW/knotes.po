@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-28 00:38+0000\n"
-"PO-Revision-Date: 2024-05-23 16:03+0900\n"
+"PO-Revision-Date: 2024-05-30 02:51+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -29,12 +29,14 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Yeh-Jyi Chou,Kevin Lo,Howard Tsai"
+msgstr "Yeh-Jyi Chou,Kevin Lo,Howard Tsai,Kisaragi Hiu"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "ycchou@ccca.nctu.edu.tw,kevlo@kde.org,howard.tsai@yahoo.com"
+msgstr ""
+"ycchou@ccca.nctu.edu.tw,kevlo@kde.org,howard.tsai@yahoo.com,mail@kisaragi-"
+"hiu.com"
 
 #: apps/knotes_options.h:13
 #, kde-format
@@ -130,7 +132,7 @@ msgstr "KNotes"
 #: apps/main.cpp:36
 #, kde-format
 msgid "KDE Notes"
-msgstr "KDE便條紙"
+msgstr "KDE 便條紙"
 
 #: apps/main.cpp:38
 #, kde-format
@@ -185,7 +187,7 @@ msgstr "Wynn Wilkes"
 #: apps/main.cpp:62
 #, kde-format
 msgid "Ported KNotes to KDE 2"
-msgstr "移植KNotes至KDE 2"
+msgstr "移植 KNotes 至 KDE 2"
 
 #: apps/main.cpp:63
 #, kde-format
@@ -207,7 +209,7 @@ msgstr "Bo Thorsen"
 #: apps/main.cpp:64
 #, kde-format
 msgid "Started KDE Resource Framework Integration"
-msgstr "開始KDE資源架構整合"
+msgstr "開始 KDE 資源架構整合"
 
 #: apps/main.cpp:65
 #, kde-format
@@ -274,11 +276,10 @@ msgid "Folders"
 msgstr "資料夾"
 
 #: configdialog/knotecollectionconfigwidget.cpp:103
-#, fuzzy, kde-format
-#| msgid "Select which KNotes folders to show:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
-msgstr "選擇要顯示哪個 KNotes 資料夾："
+msgstr "選擇要顯示哪些 KNotes 資料夾："
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
 #, kde-format
@@ -337,18 +338,16 @@ msgid "Rename note"
 msgstr "重新命名便條"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
-#, fuzzy, kde-format
-#| msgid "&Text color:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Text color:"
-msgstr "文字顏色(&T)"
+msgstr "文字顏色(&T)："
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
-#, fuzzy, kde-format
-#| msgid "&Background color:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Background color:"
-msgstr "背景顏色(&B)"
+msgstr "背景顏色(&B)："
 
 #: configdialog/knotedisplayconfigwidget.cpp:45
 #, kde-format
@@ -361,30 +360,27 @@ msgid "&Remember desktop"
 msgstr "記住桌面(&R)"
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
-#, fuzzy, kde-format
-#| msgid "Default &width:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default &width:"
-msgstr "預設寬度(&W)"
+msgstr "預設寬度(&W)："
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
-#, fuzzy, kde-format
-#| msgid "Default &height:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default &height:"
-msgstr "預設高度(&H)"
+msgstr "預設高度(&H)："
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
-#, fuzzy, kde-format
-#| msgid "&Tab size:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Tab size:"
-msgstr "定位字元寬度(&T)"
+msgstr "定位字元寬度(&T)："
 
 #: configdialog/knoteeditorconfigwidget.cpp:33
 #, kde-format
 msgid "Auto &indent"
-msgstr "自動縮格(&I)"
+msgstr "自動縮排(&I)"
 
 #: configdialog/knoteeditorconfigwidget.cpp:37
 #, kde-format
@@ -392,18 +388,16 @@ msgid "&Rich text"
 msgstr "豐富文字樣式(&R)"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
-#, fuzzy, kde-format
-#| msgid "Text font:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Text font:"
-msgstr "內文字型"
+msgstr "內文字型："
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Title font:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Title font:"
-msgstr "標題字型"
+msgstr "標題字型："
 
 #: configdialog/knotesimpleconfigdialog.cpp:40
 #, kde-format
@@ -486,15 +480,13 @@ msgid "Show number of notes in tray icon"
 msgstr "在系統匣中顯示便條數量"
 
 #: knoteconfigmodule.cpp:87
-#, fuzzy, kde-format
-#| msgid "Default Title:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default Title:"
 msgstr "預設標題："
 
 #: knoteconfigmodule.cpp:94
-#, fuzzy, kde-format
-#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">這是怎麼運作的？</a>"
@@ -510,8 +502,7 @@ msgstr ""
 "li><li>%l 目前的日期（長格式）</li><li>%t 目前的時間</li></ul></qt>"
 
 #: knoteconfigmodule.cpp:151
-#, fuzzy, kde-format
-#| msgid "Theme:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr "主題："
@@ -697,7 +688,7 @@ msgstr "便條設定..."
 #: kontactplugin/knotes_part.cpp:138
 #, kde-format
 msgid "Preferences KNotes..."
-msgstr "KNotes 喜好設定..."
+msgstr "KNotes 偏好設定..."
 
 #: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:685
 #, kde-format
@@ -762,7 +753,7 @@ msgstr "建立新便條"
 #, kde-format
 msgctxt "@info"
 msgid "Do you really want to delete this note?"
-msgstr "您真的要刪除這項記事嗎？"
+msgstr "您真的要刪除這個便條嗎？"
 
 #: kontactplugin/knotes_part.cpp:343
 #: kontactplugin/knotesselectdeletenotesdialog.cpp:44
@@ -815,7 +806,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Popup Note..."
-msgstr "新增便條..."
+msgstr "新增彈出式便條..."
 
 #. i18nc( "@info:status", "Create new popup note" ) );
 #: kontactplugin/knotes_plugin.cpp:50
@@ -930,8 +921,7 @@ msgid "Popup Notes"
 msgstr "彈出式便條"
 
 #: kontactplugin/summarywidget.cpp:88
-#, fuzzy, kde-format
-#| msgid "No notes found"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "No notes found"
 msgstr "找不到便條"
@@ -1011,7 +1001,7 @@ msgstr "刪除"
 #: notes/knote.cpp:698
 #, kde-format
 msgid "Preferences..."
-msgstr "設定偏好..."
+msgstr "偏好設定..."
 
 #: notes/knote.cpp:702
 #, kde-format
@@ -1048,7 +1038,7 @@ msgstr "便條已鎖定"
 #, kde-format
 msgid "Print Note"
 msgid_plural "Print %1 notes"
-msgstr[0] "列印 %1 張備註"
+msgstr[0] "列印 %1 張便條"
 
 #: print/knoteprinter.cpp:118
 #, kde-format
@@ -1061,8 +1051,7 @@ msgid "Printing error"
 msgstr "列印失敗"
 
 #: print/knoteprintselectednotesdialog.cpp:51
-#, fuzzy, kde-format
-#| msgid "Printing theme:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Printing theme:"
 msgstr "列印主題："
@@ -1084,8 +1073,7 @@ msgid "Select theme"
 msgstr "選擇主題"
 
 #: print/knoteprintselectthemedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "Themes:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Themes:"
 msgstr "主題："

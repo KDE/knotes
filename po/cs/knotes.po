@@ -329,18 +329,16 @@ msgid "Rename note"
 msgstr "Přejmenovat poznámku"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
-#, fuzzy, kde-format
-#| msgid "&Text color:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Text color:"
-msgstr "Barva &textu:"
+msgstr ""
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
-#, fuzzy, kde-format
-#| msgid "&Background color:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Background color:"
-msgstr "&Barva pozadí:"
+msgstr ""
 
 #: configdialog/knotedisplayconfigwidget.cpp:45
 #, kde-format
@@ -353,25 +351,22 @@ msgid "&Remember desktop"
 msgstr "Zapamatovat si &plochu"
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
-#, fuzzy, kde-format
-#| msgid "Default &width:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default &width:"
-msgstr "Vý&chozí šířka:"
+msgstr ""
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
-#, fuzzy, kde-format
-#| msgid "Default &height:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default &height:"
-msgstr "Výc&hozí výška:"
+msgstr ""
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
-#, fuzzy, kde-format
-#| msgid "&Tab size:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Tab size:"
-msgstr "Velikost &tabulátoru:"
+msgstr ""
 
 #: configdialog/knoteeditorconfigwidget.cpp:33
 #, kde-format
@@ -384,18 +379,16 @@ msgid "&Rich text"
 msgstr "&Rich text"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
-#, fuzzy, kde-format
-#| msgid "Text font:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Text font:"
-msgstr "Písmo textu:"
+msgstr ""
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Title font:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Title font:"
-msgstr "Písmo nadpisu:"
+msgstr ""
 
 #: configdialog/knotesimpleconfigdialog.cpp:40
 #, kde-format
@@ -478,18 +471,16 @@ msgid "Show number of notes in tray icon"
 msgstr ""
 
 #: knoteconfigmodule.cpp:87
-#, fuzzy, kde-format
-#| msgid "Default Title:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Default Title:"
-msgstr "Výchozí titulek:"
+msgstr ""
 
 #: knoteconfigmodule.cpp:94
-#, fuzzy, kde-format
-#| msgid "<a href=\"whatsthis\">How does this work?</a>"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
-msgstr "<a href=\"whatsthis\">Jak to funguje?</a>"
+msgstr ""
 
 #: knoteconfigmodule.cpp:129
 #, kde-format
@@ -500,18 +491,16 @@ msgid ""
 msgstr ""
 
 #: knoteconfigmodule.cpp:151
-#, fuzzy, kde-format
-#| msgid "Theme:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr "Motiv:"
 
 #: knoteconfigmodule.cpp:161
-#, fuzzy, kde-format
-#| msgid "Download new printing themes"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Download new printing themes"
-msgstr "Stáhnout nové motivy pro tisk"
+msgstr ""
 
 #: knoteedit.cpp:45
 #, kde-format
@@ -924,11 +913,10 @@ msgid "Popup Notes"
 msgstr "Vyskakovací poznámky"
 
 #: kontactplugin/summarywidget.cpp:88
-#, fuzzy, kde-format
-#| msgid "No notes found"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "No notes found"
-msgstr "Žádné poznámky nenalezeny"
+msgstr ""
 
 #: kontactplugin/summarywidget.cpp:117
 #, kde-format
@@ -1057,11 +1045,10 @@ msgid "Printing error"
 msgstr "Chyba tisku:"
 
 #: print/knoteprintselectednotesdialog.cpp:51
-#, fuzzy, kde-format
-#| msgid "Printing error"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Printing theme:"
-msgstr "Chyba tisku:"
+msgstr ""
 
 #: print/knoteprintselectednotesdialog.cpp:58
 #, kde-format
@@ -1080,8 +1067,7 @@ msgid "Select theme"
 msgstr "Zvolte motiv"
 
 #: print/knoteprintselectthemedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "Themes:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Themes:"
-msgstr "Motivy:"
+msgstr ""
