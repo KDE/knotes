@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2024-05-21 01:18+0900\n"
+"PO-Revision-Date: 2024-05-30 02:51+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -29,12 +29,14 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Yeh-Jyi Chou,Kevin Lo,Howard Tsai"
+msgstr "Yeh-Jyi Chou,Kevin Lo,Howard Tsai,Kisaragi Hiu"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "ycchou@ccca.nctu.edu.tw,kevlo@kde.org,howard.tsai@yahoo.com"
+msgstr ""
+"ycchou@ccca.nctu.edu.tw,kevlo@kde.org,howard.tsai@yahoo.com,mail@kisaragi-"
+"hiu.com"
 
 #: apps/knotes_options.h:13
 #, kde-format
@@ -129,7 +131,7 @@ msgstr "KNotes"
 #: apps/main.cpp:36
 #, kde-format
 msgid "KDE Notes"
-msgstr "KDE便條紙"
+msgstr "KDE 便條紙"
 
 #: apps/main.cpp:38
 #, kde-format
@@ -179,7 +181,7 @@ msgstr "Wynn Wilkes"
 #: apps/main.cpp:62
 #, kde-format
 msgid "Ported KNotes to KDE 2"
-msgstr "移植KNotes至KDE 2"
+msgstr "移植 KNotes 至 KDE 2"
 
 #: apps/main.cpp:63
 #, kde-format
@@ -199,7 +201,7 @@ msgstr "Bo Thorsen"
 #: apps/main.cpp:64
 #, kde-format
 msgid "Started KDE Resource Framework Integration"
-msgstr "開始KDE資源架構整合"
+msgstr "開始 KDE 資源架構整合"
 
 #: apps/main.cpp:65
 #, kde-format
@@ -355,7 +357,7 @@ msgstr "定位字元寬度(&T)"
 #: configdialog/knoteeditorconfigwidget.cpp:33
 #, kde-format
 msgid "Auto &indent"
-msgstr "自動縮格(&I)"
+msgstr "自動縮排(&I)"
 
 #: configdialog/knoteeditorconfigwidget.cpp:37
 #, kde-format
@@ -656,7 +658,7 @@ msgstr "便條設定..."
 #: kontactplugin/knotes_part.cpp:138
 #, kde-format
 msgid "Preferences KNotes..."
-msgstr "KNotes 喜好設定..."
+msgstr "KNotes 偏好設定..."
 
 #: kontactplugin/knotes_part.cpp:142 notes/knote.cpp:685
 #, kde-format
@@ -719,7 +721,7 @@ msgstr "建立新便條"
 #, kde-format
 msgctxt "@info"
 msgid "Do you really want to delete this note?"
-msgstr "您真的要刪除這項記事嗎？"
+msgstr "您真的要刪除這個便條嗎？"
 
 #: kontactplugin/knotes_part.cpp:343
 #: kontactplugin/knotesselectdeletenotesdialog.cpp:44
@@ -772,7 +774,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Popup Note..."
-msgstr "新增便條..."
+msgstr "新增彈出式便條..."
 
 #. i18nc( "@info:status", "Create new popup note" ) );
 #: kontactplugin/knotes_plugin.cpp:50
@@ -977,7 +979,7 @@ msgstr "刪除"
 #: notes/knote.cpp:698
 #, kde-format
 msgid "Preferences..."
-msgstr "設定偏好..."
+msgstr "偏好設定..."
 
 #: notes/knote.cpp:702
 #, kde-format
@@ -1013,7 +1015,7 @@ msgstr "便條已鎖定"
 #, kde-format
 msgid "Print Note"
 msgid_plural "Print %1 notes"
-msgstr[0] "列印 %1 張備註"
+msgstr[0] "列印 %1 張便條"
 
 #: print/knoteprinter.cpp:118
 #, kde-format
