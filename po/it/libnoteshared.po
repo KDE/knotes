@@ -1,6 +1,6 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2014, 2017, 2019, 2021, 2023.
+# Luigi Toscano <luigi.toscano@tiscali.it>, 2014, 2017, 2019, 2021, 2023, 2024.
 #
 msgid ""
 msgstr ""
