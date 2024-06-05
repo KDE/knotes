@@ -46,6 +46,7 @@ target_sources(knotesprivate PRIVATE
     print/knoteprinter.h
     print/knoteprintobject.h
     print/knotegrantleeprint.h
+
     )
 configure_file(settings/knotesglobalconfig.kcfg.in ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg )
 
@@ -119,6 +120,8 @@ set(knotes_SRCS
     print/knoteprintselectednotesdialog.h
     notes/knote.h
     dialog/knoteselectednotesdialog.h
+    apps/knotes_options.h
+
 )
 
 
