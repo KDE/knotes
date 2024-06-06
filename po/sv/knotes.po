@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"POT-Creation-Date: 2024-06-06 00:39+0000\n"
 "PO-Revision-Date: 2022-01-02 14:22+0100\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -33,7 +33,9 @@ msgid "Your emails"
 msgstr "newzella@linux.nu,f93-cgn@sm.luth.se"
 
 #: apps/knotes_options.h:13
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Suppress creation of a new note on a non-unique instance."
+msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "Förhindra att en ny anteckning skapas med en icke-unik instans."
 

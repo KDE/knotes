@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"POT-Creation-Date: 2024-06-06 00:39+0000\n"
 "PO-Revision-Date: 2007-09-12 14:40+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -29,6 +29,7 @@ msgstr "nabin@mpp.org.np, shyamkrishna_bal@yahoo.com"
 
 #: apps/knotes_options.h:13
 #, kde-format
+msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr ""
 

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"POT-Creation-Date: 2024-06-06 00:39+0000\n"
 "PO-Revision-Date: 2024-05-28 07:40+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -39,7 +39,9 @@ msgstr ""
 "rakar@kiss.si,andrejm@ubuntu.si,matjaz.jeran@amis.net"
 
 #: apps/knotes_options.h:13
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Suppress creation of a new note on a non-unique instance."
+msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "Prepreči ustvaritev novega sporočilca v primerku, ki ni edinstven."
 

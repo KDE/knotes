@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"POT-Creation-Date: 2024-06-06 00:39+0000\n"
 "PO-Revision-Date: 2010-05-24 16:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -31,7 +31,9 @@ msgid "Your emails"
 msgstr "khoemsokhem@khmeros.info,​​evannak@khmeros.info,piseth_dv@khmeros.info"
 
 #: apps/knotes_options.h:13
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Suppress creation of a new note on a non-unique instance."
+msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "ទប់ស្កាត់​ការ​បង្កើត​ចំណាំ​ថ្មី​លើ​វត្ថុ​ដែល​មិនមែន​មាន​តែ​មួយ ។"
 

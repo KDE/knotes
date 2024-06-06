@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"POT-Creation-Date: 2024-06-06 00:39+0000\n"
 "PO-Revision-Date: 2024-02-17 22:08+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -29,7 +29,9 @@ msgid "Your emails"
 msgstr "ulysses@fsf.hu"
 
 #: apps/knotes_options.h:13
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Suppress creation of a new note on a non-unique instance."
+msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "Nem egyedi példányban nincs engedélyezve új jegyzet készítése."
 
