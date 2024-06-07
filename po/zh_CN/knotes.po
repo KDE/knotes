@@ -28,8 +28,7 @@ msgid "Your emails"
 msgstr "kde-china@kde.org"
 
 #: apps/knotes_options.h:13
-#, fuzzy, kde-format
-#| msgid "Suppress creation of a new note on a non-unique instance."
+#, kde-format
 msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "禁止在非唯一的实例上新建记事贴。"

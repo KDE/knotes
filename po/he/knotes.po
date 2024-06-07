@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-06 00:39+0000\n"
-"PO-Revision-Date: 2024-05-28 09:21+0300\n"
+"PO-Revision-Date: 2024-06-06 05:58+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -41,11 +41,10 @@ msgid "Your emails"
 msgstr "kde-l10n-he@kde.org"
 
 #: apps/knotes_options.h:13
-#, fuzzy, kde-format
-#| msgid "Suppress creation of a new note on a non-unique instance."
+#, kde-format
 msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
-msgstr "מנע יצירת פתק חדש במקרה שהתוכנית פתוחה יותר מפעם אחת."
+msgstr "מניעת יצירת פתק חדש במקרה שהתוכנית פתוחה יותר מפעם אחת."
 
 #: apps/knotesakonaditray.cpp:21
 #, kde-format

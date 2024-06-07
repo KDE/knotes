@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-06 00:39+0000\n"
-"PO-Revision-Date: 2024-05-29 12:59+0300\n"
+"PO-Revision-Date: 2024-06-06 11:14+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -36,11 +36,10 @@ msgid "Your emails"
 msgstr "gorkem@kde.org, volkangezer@gmail.com, emir_sari@icloud.com"
 
 #: apps/knotes_options.h:13
-#, fuzzy, kde-format
-#| msgid "Suppress creation of a new note on a non-unique instance."
+#, kde-format
 msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
-msgstr "Benzersiz olmayan bir örnekte not oluştururken bilgi verme."
+msgstr "Benzersiz olmayan bir örnekte not oluşturmayı bastırın."
 
 #: apps/knotesakonaditray.cpp:21
 #, kde-format
