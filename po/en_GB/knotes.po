@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-06 00:39+0000\n"
-"PO-Revision-Date: 2024-05-30 16:23+0100\n"
+"PO-Revision-Date: 2024-06-08 12:27+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
 "Language: en_GB\n"
@@ -32,8 +32,7 @@ msgstr ""
 "com"
 
 #: apps/knotes_options.h:13
-#, fuzzy, kde-format
-#| msgid "Suppress creation of a new note on a non-unique instance."
+#, kde-format
 msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "Suppress creation of a new note on a non-unique instance."

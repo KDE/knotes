@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-06 00:39+0000\n"
-"PO-Revision-Date: 2024-05-29 22:04+0200\n"
+"PO-Revision-Date: 2024-06-08 10:47+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -31,11 +31,10 @@ msgid "Your emails"
 msgstr "wolfram@steloj.de,Steffen.Pietsch@BerlinOnline.de"
 
 #: apps/knotes_options.h:13
-#, fuzzy, kde-format
-#| msgid "Suppress creation of a new note on a non-unique instance."
+#, kde-format
 msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
-msgstr "Subpremi kreadon de nova noto pri ne-unika okazo."
+msgstr "Subpremi kreadon de nova noto en ne-unika instanco."
 
 #: apps/knotesakonaditray.cpp:21
 #, kde-format

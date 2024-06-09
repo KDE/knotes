@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-06 00:39+0000\n"
-"PO-Revision-Date: 2024-05-29 13:31+0200\n"
+"PO-Revision-Date: 2024-06-07 08:32+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -43,8 +43,7 @@ msgid "Your emails"
 msgstr "cousin@kde.org, renard@kde.org, kde@macolu.org, sdepiets@gmail.com"
 
 #: apps/knotes_options.h:13
-#, fuzzy, kde-format
-#| msgid "Suppress creation of a new note on a non-unique instance."
+#, kde-format
 msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr ""
