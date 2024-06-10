@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 project(knotes VERSION ${PIM_VERSION})
 set(RELEASE_SERVICE_VERSION "24.07.40")
 
-set(KF_MIN_VERSION "6.2.0")
+set(KF_MIN_VERSION "6.3.0")
 set(QT_REQUIRED_VERSION "6.6.0")
 find_package(ECM ${KF_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${knotes_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH})
