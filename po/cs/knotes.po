@@ -2,22 +2,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Lukáš Tinkl <ltinkl@redhat.com>, 2010.
 # Vít Pelčák <vit@pelcak.org>, 2011, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
-# Vit Pelcak <vit@pelcak.org>, 2021, 2023.
+# SPDX-FileCopyrightText: 2021, 2023, 2024 Vit Pelcak <vit@pelcak.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-06 00:39+0000\n"
-"PO-Revision-Date: 2023-06-05 11:52+0200\n"
-"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
+"PO-Revision-Date: 2024-06-07 11:10+0200\n"
+"Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 24.05.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -30,8 +30,7 @@ msgid "Your emails"
 msgstr "flidr@kky.zcu.cz,lukas@kde.org,Ivo.Jansky@seznam.cz"
 
 #: apps/knotes_options.h:13
-#, fuzzy, kde-format
-#| msgid "Suppress creation of a new note on a non-unique instance."
+#, kde-format
 msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "Potlačit vytvoření nové poznámky neunikátní instance."
@@ -107,7 +106,7 @@ msgstr "Poznámka ze souboru '%1'"
 #, kde-format
 msgctxt "@action"
 msgid "No Notes"
-msgstr ""
+msgstr "Žádné poznámky"
 
 #: apps/knotesapp.cpp:572 kontactplugin/knotes_part.cpp:587
 #, kde-format
@@ -147,7 +146,7 @@ msgstr "Správce"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Guillermo Antonio Amaral Bastidas"
-msgstr ""
+msgstr "Guillermo Antonio Amaral Bastidas"
 
 #: apps/main.cpp:59 apps/main.cpp:60
 #, kde-format
@@ -164,7 +163,7 @@ msgstr "Michael Brade"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Bernd Johannes Wuebben"
-msgstr ""
+msgstr "Bernd Johannes Wuebben"
 
 #: apps/main.cpp:61
 #, kde-format
@@ -175,7 +174,7 @@ msgstr "Původní autor KNotes"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Wynn Wilkes"
-msgstr ""
+msgstr "Wynn Wilkes"
 
 #: apps/main.cpp:62
 #, kde-format
@@ -186,7 +185,7 @@ msgstr "Převod KNotes do KDE 2"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Daniel Martin"
-msgstr ""
+msgstr "Daniel Martin"
 
 #: apps/main.cpp:63
 #, kde-format
@@ -197,7 +196,7 @@ msgstr "Síťové rozhraní"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Bo Thorsen"
-msgstr ""
+msgstr "Bo Thorsen"
 
 #: apps/main.cpp:64
 #, kde-format
@@ -208,7 +207,7 @@ msgstr "Započal integrace do rámce zdrojů KDE"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Bera Debajyoti"
-msgstr ""
+msgstr "Bera Debajyoti"
 
 #: apps/main.cpp:66
 #, kde-format
@@ -231,37 +230,37 @@ msgstr "David Faure"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Matthias Kiefer"
-msgstr ""
+msgstr "Matthias Kiefer"
 
 #: apps/main.cpp:71
 #, kde-format
 msgctxt "@info:credit"
 msgid "Luboš Luňák"
-msgstr ""
+msgstr "Luboš Luňák"
 
 #: apps/main.cpp:72
 #, kde-format
 msgctxt "@info:credit"
 msgid "Dirk A. Mueller"
-msgstr ""
+msgstr "Dirk A. Mueller"
 
 #: apps/main.cpp:73
 #, kde-format
 msgctxt "@info:credit"
 msgid "Carsten Pfeiffer"
-msgstr ""
+msgstr "Carsten Pfeiffer"
 
 #: apps/main.cpp:74
 #, kde-format
 msgctxt "@info:credit"
 msgid "Harri Porten"
-msgstr ""
+msgstr "Harri Porten"
 
 #: apps/main.cpp:75
 #, kde-format
 msgctxt "@info:credit"
 msgid "Espen Sand"
-msgstr ""
+msgstr "Espen Sand"
 
 #: configdialog/knotecollectionconfigwidget.cpp:101
 #, kde-format
@@ -272,7 +271,7 @@ msgstr "Složky"
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
-msgstr ""
+msgstr "Zvolte, které složky s KNotes mají být zobrazeny:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
 #, kde-format
@@ -334,13 +333,13 @@ msgstr "Přejmenovat poznámku"
 #, kde-format
 msgctxt "@label:textbox"
 msgid "&Text color:"
-msgstr ""
+msgstr "Barva &textu:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
 #, kde-format
 msgctxt "@label:textbox"
 msgid "&Background color:"
-msgstr ""
+msgstr "&Barva pozadí:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:45
 #, kde-format
@@ -356,19 +355,19 @@ msgstr "Zapamatovat si &plochu"
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Default &width:"
-msgstr ""
+msgstr "Vý&chozí šířka:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Default &height:"
-msgstr ""
+msgstr "Výc&hozí výška:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
 #, kde-format
 msgctxt "@label:textbox"
 msgid "&Tab size:"
-msgstr ""
+msgstr "Velikost &tabulátoru:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:33
 #, kde-format
@@ -384,13 +383,13 @@ msgstr "&Rich text"
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Text font:"
-msgstr ""
+msgstr "Písmo textu:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Title font:"
-msgstr ""
+msgstr "Písmo nadpisu:"
 
 #: configdialog/knotesimpleconfigdialog.cpp:40
 #, kde-format
@@ -470,19 +469,19 @@ msgstr "Zobrazit poznámku"
 #: knoteconfigmodule.cpp:80
 #, kde-format
 msgid "Show number of notes in tray icon"
-msgstr ""
+msgstr "Zobrazovat počet poznámek v ikoně v systémovém panelu"
 
 #: knoteconfigmodule.cpp:87
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Default Title:"
-msgstr ""
+msgstr "Výchozí titulek:"
 
 #: knoteconfigmodule.cpp:94
 #, kde-format
 msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">Jak to funguje?</a>"
 
 #: knoteconfigmodule.cpp:129
 #, kde-format
@@ -502,7 +501,7 @@ msgstr "Motiv:"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Download new printing themes"
-msgstr ""
+msgstr "Stáhnout nové motivy pro tisk"
 
 #: knoteedit.cpp:45
 #, kde-format
@@ -573,7 +572,7 @@ msgstr "Snížit odsazení"
 #, kde-format
 msgctxt "@action"
 msgid "Text Color..."
-msgstr ""
+msgstr "Barva textu..."
 
 #: knoteedit.cpp:119
 #, kde-format
@@ -710,13 +709,13 @@ msgstr "Uzamknout"
 #, kde-format
 msgctxt "@action:button"
 msgid "Unlock"
-msgstr ""
+msgstr "Odemknout"
 
 #: kontactplugin/knotes_part.cpp:201
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
-msgstr ""
+msgstr "Přejít do rychlého vyhledávání"
 
 #: kontactplugin/knotes_part.cpp:278
 #, kde-format
@@ -918,7 +917,7 @@ msgstr "Vyskakovací poznámky"
 #, kde-format
 msgctxt "@label:textbox"
 msgid "No notes found"
-msgstr ""
+msgstr "Žádné poznámky nenalezeny"
 
 #: kontactplugin/summarywidget.cpp:117
 #, kde-format
@@ -1016,7 +1015,7 @@ msgstr "Na plochu"
 #, kde-format
 msgctxt "@action"
 msgid "Walk Through Notes"
-msgstr ""
+msgstr "Procházet poznámkami"
 
 #: print/knotegrantleeprint.cpp:32
 #, kde-format
@@ -1050,7 +1049,7 @@ msgstr "Chyba tisku:"
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Printing theme:"
-msgstr ""
+msgstr "Motiv pro tisk:"
 
 #: print/knoteprintselectednotesdialog.cpp:58
 #, kde-format
@@ -1072,4 +1071,4 @@ msgstr "Zvolte motiv"
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Themes:"
-msgstr ""
+msgstr "Motivy:"
