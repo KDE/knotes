@@ -2,22 +2,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Lukáš Tinkl <ltinkl@redhat.com>, 2010.
 # Vít Pelčák <vit@pelcak.org>, 2011, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
-# Vit Pelcak <vit@pelcak.org>, 2021, 2023.
+# SPDX-FileCopyrightText: 2021, 2023, 2024 Vit Pelcak <vit@pelcak.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2023-06-05 11:52+0200\n"
-"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
+"PO-Revision-Date: 2024-06-07 11:10+0200\n"
+"Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 24.05.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -252,7 +252,7 @@ msgstr "Složky"
 #: configdialog/knotecollectionconfigwidget.cpp:103
 #, kde-format
 msgid "Select which KNotes folders to show:"
-msgstr ""
+msgstr "Zvolte, které složky s KNotes mají být zobrazeny:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
 #, kde-format
@@ -443,7 +443,7 @@ msgstr "Zobrazit poznámku"
 #: knoteconfigmodule.cpp:80
 #, kde-format
 msgid "Show number of notes in tray icon"
-msgstr ""
+msgstr "Zobrazovat počet poznámek v ikoně v systémovém panelu"
 
 #: knoteconfigmodule.cpp:87
 #, kde-format
@@ -1024,7 +1024,7 @@ msgstr "Chyba tisku:"
 #: print/knoteprintselectednotesdialog.cpp:51
 #, kde-format
 msgid "Printing theme:"
-msgstr ""
+msgstr "Motiv pro tisk:"
 
 #: print/knoteprintselectednotesdialog.cpp:58
 #, kde-format
