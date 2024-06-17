@@ -21,7 +21,7 @@
 #include <Akonadi/NoteUtils>
 #include <Akonadi/Session>
 
-#include <KMime/KMimeMessage>
+#include <KMime/Message>
 
 #include <KLocalizedString>
 #include <KNotification>

@@ -39,7 +39,7 @@
 
 #include <Akonadi/ControlGui>
 
-#include <KMime/KMimeMessage>
+#include <KMime/Message>
 
 #include <KActionCollection>
 #include <KDNSSD/PublicService>

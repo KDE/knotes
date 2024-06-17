@@ -12,7 +12,7 @@
 #include <KMessageBox>
 #include <KProcess>
 
-#include <KMime/KMimeMessage>
+#include <KMime/Message>
 
 #include <QApplication>
 #include <QPointer>

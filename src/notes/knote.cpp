@@ -27,7 +27,7 @@
 
 #include <Debug/akonadisearchdebugdialog.h>
 
-#include <KMime/KMimeMessage>
+#include <KMime/Message>
 
 #include <KActionCollection>
 #include <KComboBox>

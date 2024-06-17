@@ -6,7 +6,7 @@
 #include "notelistwidget.h"
 #include "attributes/notedisplayattribute.h"
 #include "noteutils.h"
-#include <KMime/KMimeMessage>
+#include <KMime/Message>
 
 using namespace NoteShared;
 

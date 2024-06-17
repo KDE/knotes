@@ -9,7 +9,7 @@
 #include "attributes/notedisplayattribute.h"
 #include "attributes/notelockattribute.h"
 
-#include <KMime/KMimeMessage>
+#include <KMime/Message>
 
 #include <QLocale>
 

@@ -17,7 +17,7 @@
 #include <Akonadi/Item>
 #include <Akonadi/ItemCreateJob>
 
-#include <KMime/KMimeMessage>
+#include <KMime/Message>
 
 #include <KLocalizedString>
 #include <KMessageBox>

@@ -9,7 +9,7 @@
 #include "notesagent_debug.h"
 #include "notesagentnotedialog.h"
 #include "widget/notelistwidget.h"
-#include <KMime/KMimeMessage>
+#include <KMime/Message>
 
 #include <Akonadi/ItemFetchJob>
 #include <Akonadi/ItemFetchScope>
