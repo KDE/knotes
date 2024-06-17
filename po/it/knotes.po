@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2022-01-02 20:07+0100\n"
+"PO-Revision-Date: 2024-06-08 12:45+0200\n"
 "Last-Translator: Valter Mura <valtermura@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -36,7 +36,7 @@ msgstr "valtermura@gmail.com,,,,"
 #: apps/knotes_options.h:13
 #, kde-format
 msgid "Suppress creation of a new note on a non-unique instance."
-msgstr "Sopprimi la creazione di una nuova nota su una istanza non unica."
+msgstr "Annulla la creazione di una nuova nota su una istanza non unica."
 
 #: apps/knotesakonaditray.cpp:21
 #, kde-format
