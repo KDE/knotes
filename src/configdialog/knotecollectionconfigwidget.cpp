@@ -149,16 +149,16 @@ KNoteCollectionConfigWidget::KNoteCollectionConfigWidget(QWidget *parent)
     auto hbox = new QHBoxLayout;
     vbox->addLayout(hbox);
 
-    auto button = new QPushButton(i18n("&Select All"), this);
+    auto button = new QPushButton(i18nc("@action:button", "&Select All"), this);
     connect(button, &QPushButton::clicked, this, &KNoteCollectionConfigWidget::slotSelectAllCollections);
     hbox->addWidget(button);
 
-    button = new QPushButton(i18n("&Unselect All"), this);
+    button = new QPushButton(i18nc("@action:button", "&Unselect All"), this);
     connect(button, &QPushButton::clicked, this, &KNoteCollectionConfigWidget::slotUnselectAllCollections);
     hbox->addWidget(button);
     hbox->addStretch(1);
 
-    mRenameCollection = new QPushButton(i18n("Rename notes..."), this);
+    mRenameCollection = new QPushButton(i18nc("@action:button", "Rename notes..."), this);
     connect(mRenameCollection, &QPushButton::clicked, this, &KNoteCollectionConfigWidget::slotRenameCollection);
     hbox->addWidget(mRenameCollection);
 
