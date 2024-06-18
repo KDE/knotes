@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2012-12-20 08:55+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -300,17 +300,21 @@ msgstr ""
 #: configdialog/knotecollectionconfigwidget.cpp:152
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
+msgctxt "@action:button"
 msgid "&Select All"
 msgstr "ਪਰਾਪਤ ਕਰਤਾ ਚੁਣੋ:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@action:button"
 msgid "&Unselect All"
-msgstr ""
+msgstr "ਪਰਾਪਤ ਕਰਤਾ ਚੁਣੋ:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "Rename..."
+msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "ਨਾਂ ਬਦਲੋ..."
 

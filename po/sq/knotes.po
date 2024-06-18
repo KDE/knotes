@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2009-06-03 18:00+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -298,18 +298,22 @@ msgid "Search..."
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "No Notes"
+msgctxt "@action:button"
 msgid "&Select All"
-msgstr ""
+msgstr "Pa Shënime"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
 #, kde-format
+msgctxt "@action:button"
 msgid "&Unselect All"
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "Rename..."
+msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "Riemërto..."
 

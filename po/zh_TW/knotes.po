@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-06-09 19:08+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -288,17 +288,23 @@ msgid "Search..."
 msgstr "搜尋..."
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Select All"
+msgctxt "@action:button"
 msgid "&Select All"
 msgstr "全部選取(&S)"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Unselect All"
+msgctxt "@action:button"
 msgid "&Unselect All"
 msgstr "全部取消選取(&U)"
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Rename notes..."
+msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "重新命名便條..."
 

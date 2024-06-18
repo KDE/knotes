@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2008-11-23 02:06+0900\n"
 "Last-Translator: Yukiko Bando <ybando@k6.dion.ne.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -315,17 +315,21 @@ msgstr ""
 #: configdialog/knotecollectionconfigwidget.cpp:152
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
+msgctxt "@action:button"
 msgid "&Select All"
 msgstr "受信者を選択:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@action:button"
 msgid "&Unselect All"
-msgstr ""
+msgstr "受信者を選択:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "Rename..."
+msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "名前変更..."
 

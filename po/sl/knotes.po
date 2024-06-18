@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-06-06 06:32+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -288,17 +288,23 @@ msgid "Search..."
 msgstr "Poišči..."
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Select All"
+msgctxt "@action:button"
 msgid "&Select All"
 msgstr "Izberi v&se"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Unselect All"
+msgctxt "@action:button"
 msgid "&Unselect All"
 msgstr "Odstrani izbiro"
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Rename notes..."
+msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "Preimenuj sporočilca..."
 

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes stable\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2007-01-08 15:33+0200\n"
 "Last-Translator: Frikkie Thirion <frikkie.thirion@deneloptronics.co.za>\n"
 "Language-Team: Afrikaans <translate-discuss-af@lists.sourceforge.net>\n"
@@ -284,18 +284,22 @@ msgid "Search..."
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@action:button"
 msgid "&Select All"
-msgstr ""
+msgstr "Vertoon alle notas"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
 #, kde-format
+msgctxt "@action:button"
 msgid "&Unselect All"
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "Rename..."
+msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "Herbenoem..."
 

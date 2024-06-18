@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2005-09-23 19:23+0500\n"
 "Last-Translator: Victor Ibragimov <youth_opportunities@tajikngo.org>\n"
 "Language-Team: Tajik\n"
@@ -293,18 +293,21 @@ msgid "Search..."
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
-#, kde-format
+#, fuzzy, kde-format
+msgctxt "@action:button"
 msgid "&Select All"
-msgstr ""
+msgstr "Нишона нест "
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
 #, kde-format
+msgctxt "@action:button"
 msgid "&Unselect All"
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "Rename..."
+msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "Бозномгузорӣ..."
 

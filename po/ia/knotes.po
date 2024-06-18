@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-06-06 09:57+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -277,17 +277,23 @@ msgid "Search..."
 msgstr "Cerca..."
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Select All"
+msgctxt "@action:button"
 msgid "&Select All"
 msgstr "&Selectiona omne"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Unselect All"
+msgctxt "@action:button"
 msgid "&Unselect All"
 msgstr "&Annulla toto"
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Rename notes..."
+msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "Renomina..."
 

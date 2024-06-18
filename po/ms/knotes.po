@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2005-10-10 14:12+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -284,18 +284,22 @@ msgid "Search..."
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@action:button"
 msgid "&Select All"
-msgstr ""
+msgstr "Paparkan Semua Nota"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
 #, kde-format
+msgctxt "@action:button"
 msgid "&Unselect All"
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "Rename..."
+msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "Namakan semula..."
 

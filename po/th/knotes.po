@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2008-03-21 12:57+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -305,18 +305,22 @@ msgid "Search..."
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@action:button"
 msgid "&Select All"
-msgstr ""
+msgstr "แสดงบันทึกช่วยจำทั้งหมด"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
 #, kde-format
+msgctxt "@action:button"
 msgid "&Unselect All"
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "Rename..."
+msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "เปลี่ยนชื่อ..."
 

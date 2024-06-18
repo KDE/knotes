@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2023-07-23 20:27+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -296,17 +296,23 @@ msgid "Search..."
 msgstr "찾기..."
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Select All"
+msgctxt "@action:button"
 msgid "&Select All"
 msgstr "모두 선택(&S)"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Unselect All"
+msgctxt "@action:button"
 msgid "&Unselect All"
 msgstr "모두 선택 해제(&U)"
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Rename notes..."
+msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "노트 이름 바꾸기..."
 
