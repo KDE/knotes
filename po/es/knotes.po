@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-18 00:40+0000\n"
-"PO-Revision-Date: 2024-06-06 19:42+0200\n"
+"PO-Revision-Date: 2024-06-18 23:02+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "First-Translator: Pablo de Vicente <pvicentea@nexo.es>\n"
-"X-Generator: Lokalize 24.05.0\n"
+"X-Generator: Lokalize 24.05.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -288,22 +288,19 @@ msgid "Search..."
 msgstr "Buscar..."
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "&Select All"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Select All"
 msgstr "&Seleccionar todo"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
-#, fuzzy, kde-format
-#| msgid "&Unselect All"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Unselect All"
 msgstr "&Deseleccionar todo"
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
-#, fuzzy, kde-format
-#| msgid "Rename notes..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "Cambiar nombre de las notas..."

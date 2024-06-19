@@ -277,22 +277,19 @@ msgid "Search..."
 msgstr "搜索..."
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "&Select All"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Select All"
 msgstr "全选(&S)"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
-#, fuzzy, kde-format
-#| msgid "&Unselect All"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Unselect All"
 msgstr "全部不选(&U)"
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
-#, fuzzy, kde-format
-#| msgid "Rename notes..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "重命名记事贴..."
