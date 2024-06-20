@@ -2,11 +2,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
 add_definitions(-DTRANSLATION_DOMAIN=\"knotes\")
 
-configure_file(config-knotes.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-knotes.h )
+configure_file(config-knotes.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-knotes.h)
 
 add_subdirectory(icons)
 
-if (BUILD_TESTING)
+if(BUILD_TESTING)
     add_subdirectory(print/autotests)
 endif()
 
@@ -47,21 +47,21 @@ target_sources(knotesprivate PRIVATE
     print/knoteprintobject.h
     print/knotegrantleeprint.h
 
-    )
-configure_file(settings/knotesglobalconfig.kcfg.in ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg )
+)
+configure_file(settings/knotesglobalconfig.kcfg.in ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg)
 
-set( libknotesprivate_kcfg_lib_SRCS settings/knotesglobalconfig.kcfgc )
+set(libknotesprivate_kcfg_lib_SRCS settings/knotesglobalconfig.kcfgc)
 
 kconfig_add_kcfg_files(libknotesprivate_kcfg_lib_SRCS ${libknotesprivate_kcfg_lib_SRCS})
 ecm_qt_declare_logging_category(knotesprivate HEADER knotes_debug.h IDENTIFIER KNOTES_LOG CATEGORY_NAME org.kde.pim.knotes
         DESCRIPTION "knotes (knotes)"
         OLD_CATEGORY_NAMES log_knotes
         EXPORT KNOTES
-    )
+)
 
 target_sources(knotesprivate PRIVATE ${libknotesprivate_kcfg_lib_SRCS})
 
-if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+if(COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(knotesprivate PROPERTIES UNITY_BUILD ON)
 endif()
 
@@ -80,9 +80,9 @@ target_link_libraries(knotesprivate
     KPim6::AkonadiWidgets KPim6::GrantleeTheme
     KF6::TextUtils
     KF6::TextWidgets
-    )
+)
 
-if (TARGET KF6::TextAddonsWidgets)
+if(TARGET KF6::TextAddonsWidgets)
     target_link_libraries(knotesprivate
         PRIVATE
         KF6::TextAddonsWidgets)
@@ -92,7 +92,7 @@ target_link_libraries(knotesprivate PRIVATE KF6::TextTemplate)
 
 set_target_properties(knotesprivate
     PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
-    )
+)
 
 install(TARGETS knotesprivate ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
@@ -125,13 +125,13 @@ set(knotes_SRCS
 )
 
 
-qt_add_dbus_adaptor(knotes_SRCS  apps/org.kde.KNotes.xml apps/knotesapp.h KNotesApp )
+qt_add_dbus_adaptor(knotes_SRCS  apps/org.kde.KNotes.xml apps/knotesapp.h KNotesApp)
 
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-knotes.png")
 ecm_add_app_icon(knotes_SRCS ICONS ${ICONS_SRCS})
 
 add_executable(knotes ${knotes_SRCS})
-if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+if(COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(knotes PROPERTIES UNITY_BUILD ON)
 endif()
 
@@ -156,8 +156,8 @@ target_link_libraries(knotes
     KPim6::AkonadiWidgets
     KF6::TextWidgets
     KF6::StatusNotifierItem
-    )
-install(TARGETS knotes  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
+)
+install(TARGETS knotes  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 
 ########### next target ###############
@@ -166,11 +166,11 @@ ecm_qt_declare_logging_category(kcm_knotes_PART_SRCS HEADER knotes_kcm_debug.h I
 	DESCRIPTION "knotes (kcm knotes)"
         OLD_CATEGORY_NAMES log_knotes_modules
         EXPORT KNOTES
-    )
+)
 
-add_library(kcm_knote_static STATIC ${kcm_knotes_PART_SRCS} )
+add_library(kcm_knote_static STATIC ${kcm_knotes_PART_SRCS})
 set_property(TARGET kcm_knote_static PROPERTY POSITION_INDEPENDENT_CODE ON)
-if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+if(COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(kcm_knote_static PROPERTIES UNITY_BUILD ON)
 endif()
 target_link_libraries(kcm_knote_static knotesprivate KF6::NewStuffWidgets KPim6::AkonadiCore  KF6::KCMUtils notesharedprivate KPim6::AkonadiNotes KPim6::PimCommon KF6::I18n KPim6::AkonadiWidgets)
@@ -199,11 +199,11 @@ target_link_libraries(kcm_knote_misc kcm_knote_static)
 
 ########### install files ###############
 
-install( PROGRAMS data/org.kde.knotes.desktop  DESTINATION ${KDE_INSTALL_APPDIR})
-install( FILES data/org.kde.knotes.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
-install( FILES ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg  DESTINATION ${KDE_INSTALL_KCFGDIR})
-install( FILES data/knotesappui.rc data/knotesui.rc  DESTINATION ${KDE_INSTALL_KXMLGUIDIR}/knotes)
-install( FILES apps/org.kde.KNotes.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR}) 
-install( FILES data/knotes_printing_theme.knsrc DESTINATION ${KDE_INSTALL_KNSRCDIR} )
+install(PROGRAMS data/org.kde.knotes.desktop  DESTINATION ${KDE_INSTALL_APPDIR})
+install(FILES data/org.kde.knotes.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/knotesglobalconfig.kcfg  DESTINATION ${KDE_INSTALL_KCFGDIR})
+install(FILES data/knotesappui.rc data/knotesui.rc  DESTINATION ${KDE_INSTALL_KXMLGUIDIR}/knotes)
+install(FILES apps/org.kde.KNotes.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR}) 
+install(FILES data/knotes_printing_theme.knsrc DESTINATION ${KDE_INSTALL_KNSRCDIR})
 
-install(DIRECTORY print/themes/ DESTINATION ${KDE_INSTALL_DATADIR}/knotes/print/themes )
+install(DIRECTORY print/themes/ DESTINATION ${KDE_INSTALL_DATADIR}/knotes/print/themes)

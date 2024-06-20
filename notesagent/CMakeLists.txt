@@ -6,7 +6,7 @@ add_executable(akonadi_notes_agent)
 
 kconfig_add_kcfg_files(notesagent_SRCS
     settings/notesagentsettings.kcfgc
-    )
+)
 
 
 qt_add_dbus_adaptor(notesagent_SRCS org.freedesktop.Akonadi.NotesAgent.xml notesagent.h NotesAgent)
@@ -14,7 +14,7 @@ ecm_qt_declare_logging_category(akonadi_notes_agent HEADER notesagent_debug.h ID
         DESCRIPTION "knotes (note agent)"
         OLD_CATEGORY_NAMES log_notesagentagent
         EXPORT KNOTES
-    )
+)
 target_sources(akonadi_notes_agent PRIVATE
     ${notesagent_SRCS}
     notesagent.cpp
@@ -27,9 +27,9 @@ target_sources(akonadi_notes_agent PRIVATE
     notesagentsettingsdialog.h
     notesagentalarmdialog.h
     notesagentnotedialog.h
-    )
+)
 
-if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+if(COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akonadi_notes_agent PROPERTIES UNITY_BUILD ON)
 endif()
 target_link_libraries(akonadi_notes_agent
@@ -47,17 +47,17 @@ target_link_libraries(akonadi_notes_agent
     KF6::I18n
     KPim6::AkonadiNotes
     KF6::KCMUtils
-    )
+)
 
-if( APPLE )
+if(APPLE)
     set_target_properties(akonadi_notes_agent PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${knotes_SOURCE_DIR}/notesagent/Info.plist.template)
     set_target_properties(akonadi_notes_agent PROPERTIES MACOSX_BUNDLE_GUI_IDENTIFIER "org.kde.Akonadi.archivemail")
     set_target_properties(akonadi_notes_agent PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME "KDE Akonadi Notes")
-endif ()
+endif()
 
-install(TARGETS akonadi_notes_agent ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
+install(TARGETS akonadi_notes_agent ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES settings/notesagentsettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
 install(FILES notesagent.desktop DESTINATION "${KDE_INSTALL_DATAROOTDIR}/akonadi/agents")
-install(FILES akonadi_notes_agent.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR} )
+install(FILES akonadi_notes_agent.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR})
 
 

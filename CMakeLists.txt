@@ -104,7 +104,7 @@ find_package(KPim6AkonadiSearch ${AKONADI_SEARCH_VERSION} CONFIG REQUIRED)
 set_package_properties(KPim6AkonadiSearch PROPERTIES DESCRIPTION "The Akonadi Search libraries" URL "https://invent.kde.org/pim/akonadi-search" TYPE REQUIRED PURPOSE "Provides search capabilities in pim apps and Akonadi")
 
 
-if (NOT APPLE)
+if(NOT APPLE)
     find_package(X11)
 endif()
 
@@ -127,30 +127,30 @@ endif()
 option(USE_UNITY_CMAKE_SUPPORT "Use UNITY cmake support (speedup compile time)" OFF)
 
 set(COMPILE_WITH_UNITY_CMAKE_SUPPORT OFF)
-if (USE_UNITY_CMAKE_SUPPORT)
+if(USE_UNITY_CMAKE_SUPPORT)
     set(COMPILE_WITH_UNITY_CMAKE_SUPPORT ON)
 endif()
 
 
 option(OPTION_USE_PLASMA_ACTIVITIES "Activate plasma activities (experimental)" OFF)
-if (OPTION_USE_PLASMA_ACTIVITIES)
-    if (NOT WIN32 AND NOT APPLE)
+if(OPTION_USE_PLASMA_ACTIVITIES)
+    if(NOT WIN32 AND NOT APPLE)
        set(OPTION_USE_PLASMA_ACTIVITIES true)
     else()
        set(OPTION_USE_PLASMA_ACTIVITIES false)
     endif()
 endif()
-if (OPTION_USE_PLASMA_ACTIVITIES)
-    if (NOT WIN32 AND NOT APPLE)
+if(OPTION_USE_PLASMA_ACTIVITIES)
+    if(NOT WIN32 AND NOT APPLE)
        find_package(PlasmaActivities "6.0.0")
     endif()
 endif()
 
-if (TARGET Plasma::Activities)
+if(TARGET Plasma::Activities)
     set(HAVE_ACTIVITY_SUPPORT TRUE)
 endif()
 
-configure_file(config-knotes.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-knotes.h )
+configure_file(config-knotes.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-knotes.h)
 
 
 add_subdirectory(noteshared)
@@ -161,7 +161,7 @@ ecm_qt_install_logging_categories(
         EXPORT KNOTES
         FILE knotes.categories
         DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
-        )
+)
 
 if(KF6DocTools_FOUND)
     kdoctools_install(po)
