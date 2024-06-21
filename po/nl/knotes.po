@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-18 00:40+0000\n"
-"PO-Revision-Date: 2024-06-06 09:11+0200\n"
+"PO-Revision-Date: 2024-06-19 11:14+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Xgettext-Options: -C -ktranslate -x../../kdelibs/po/kde.pot\n"
 "Files: alarm.cpp bwdatetime.cpp configdlg.cpp fontdlg.cpp knotes.cpp \n"
-"X-Generator: Lokalize 24.05.0\n"
+"X-Generator: Lokalize 24.05.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -291,22 +291,19 @@ msgid "Search..."
 msgstr "Zoeken..."
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "&Select All"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Select All"
 msgstr "Alles &selecteren"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
-#, fuzzy, kde-format
-#| msgid "&Unselect All"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Unselect All"
-msgstr "Alles &deselecteren"
+msgstr "Alle selecties &ongedaan maken"
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
-#, fuzzy, kde-format
-#| msgid "Rename notes..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "Notities hernoemen..."
