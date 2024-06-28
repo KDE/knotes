@@ -11,7 +11,6 @@
         "Name[da]": "Udskriv",
         "Name[de]": "Drucken",
         "Name[el]": "Εκτύπωση",
-        "Name[en_GB]": "Print",
         "Name[eo]": "Presi",
         "Name[es]": "Imprimir",
         "Name[et]": "Trükkimine",
@@ -44,7 +43,6 @@
         "Name[tr]": "Yazdır",
         "Name[uk]": "Друк",
         "Name[x-test]": "xxPrintxx",
-        "Name[zh_CN]": "Print",
         "Name[zh_TW]": "列印"
     },
     "X-KDE-Weight": 150
