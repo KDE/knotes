@@ -14,14 +14,14 @@
 KNotesListWidgetSearchLine::KNotesListWidgetSearchLine(QWidget *parent)
     : KListWidgetSearchLine(parent)
 {
-    setPlaceholderText(i18n("Search notes..."));
+    setPlaceholderText(i18nc("@info:placeholder", "Search notes..."));
 }
 
 KNotesListWidgetSearchLine::~KNotesListWidgetSearchLine() = default;
 
 void KNotesListWidgetSearchLine::updateClickMessage(const QString &shortcutStr)
 {
-    setPlaceholderText(i18n("Search notes...<%1>", shortcutStr));
+    setPlaceholderText(i18nc("@info:placeholder", "Search notes...<%1>", shortcutStr));
 }
 
 bool KNotesListWidgetSearchLine::itemMatches(const QListWidgetItem *item, const QString &s) const
