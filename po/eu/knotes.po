@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2022-08-05 18:02+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -296,7 +296,9 @@ msgid "Select which KNotes folders to show:"
 msgstr "Hautatu KNotes-en zein karpeta erakutsi:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search..."
+msgctxt "@info:placeholder"
 msgid "Search..."
 msgstr "Bilatu..."
 
@@ -939,12 +941,16 @@ msgid "Name:"
 msgstr "Izena:"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search notes..."
+msgctxt "@info:placeholder"
 msgid "Search notes..."
 msgstr "Bilatu oharrak..."
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search notes...<%1>"
+msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
 msgstr "Bilatu oharrak...<%1>"
 

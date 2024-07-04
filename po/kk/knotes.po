@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2013-11-08 01:39+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -298,9 +298,11 @@ msgid "Select which KNotes folders to show:"
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Select notes"
+msgctxt "@info:placeholder"
 msgid "Search..."
-msgstr ""
+msgstr "Жазбаларды таңдау"
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
 #, fuzzy, kde-format
@@ -972,12 +974,14 @@ msgstr ""
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
 #, fuzzy, kde-format
 #| msgid "Select notes"
+msgctxt "@info:placeholder"
 msgid "Search notes..."
 msgstr "Жазбаларды таңдау"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
 #, fuzzy, kde-format
 #| msgid "Select notes"
+msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
 msgstr "Жазбаларды таңдау"
 

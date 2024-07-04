@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2005-10-10 14:12+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -279,9 +279,11 @@ msgid "Select which KNotes folders to show:"
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show All Notes"
+msgctxt "@info:placeholder"
 msgid "Search..."
-msgstr ""
+msgstr "Paparkan Semua Nota"
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
 #, fuzzy, kde-format
@@ -938,12 +940,14 @@ msgstr ""
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
+msgctxt "@info:placeholder"
 msgid "Search notes..."
 msgstr "Paparkan Semua Nota"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
 #, fuzzy, kde-format
 #| msgid "Show All Notes"
+msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
 msgstr "Paparkan Semua Nota"
 

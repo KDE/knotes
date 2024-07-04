@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2010-05-24 16:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -303,9 +303,11 @@ msgid "Select which KNotes folders to show:"
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Select recipient:"
+msgctxt "@info:placeholder"
 msgid "Search..."
-msgstr ""
+msgstr "ជ្រើស​អ្នក​ទទួល ៖"
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
 #, fuzzy, kde-format
@@ -970,12 +972,14 @@ msgstr ""
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
+msgctxt "@info:placeholder"
 msgid "Search notes..."
 msgstr "ជ្រើស​អ្នក​ទទួល ៖"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
 #, fuzzy, kde-format
 #| msgid "Select recipient:"
+msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
 msgstr "ជ្រើស​អ្នក​ទទួល ៖"
 

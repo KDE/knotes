@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2023-07-23 20:27+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -291,7 +291,9 @@ msgid "Select which KNotes folders to show:"
 msgstr "표시할 KNotes 폴더 선택:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search..."
+msgctxt "@info:placeholder"
 msgid "Search..."
 msgstr "찾기..."
 
@@ -924,12 +926,16 @@ msgid "Name:"
 msgstr "이름:"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search notes..."
+msgctxt "@info:placeholder"
 msgid "Search notes..."
 msgstr "노트 찾기..."
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search notes...<%1>"
+msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
 msgstr "노트 찾기...<%1>"
 

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2015-02-07 22:15+0100\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -302,7 +302,9 @@ msgid "Select which KNotes folders to show:"
 msgstr "Velg hvilke KNotes-mapper som skal vises:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search..."
+msgctxt "@info:placeholder"
 msgid "Search..."
 msgstr "Søk …"
 
@@ -936,14 +938,18 @@ msgid "Name:"
 msgstr ""
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search..."
+msgctxt "@info:placeholder"
 msgid "Search notes..."
-msgstr ""
+msgstr "Søk …"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Rename notes..."
+msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
-msgstr ""
+msgstr "Gi notater nye navn …"
 
 #: kontactplugin/knotesselectdeletenotesdialog.cpp:33
 #, kde-format

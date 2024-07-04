@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2017-06-28 10:07+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -293,7 +293,9 @@ msgid "Select which KNotes folders to show:"
 msgstr "Pasirinkite rodytinus Knotes aplankus:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search..."
+msgctxt "@info:placeholder"
 msgid "Search..."
 msgstr "Ieškoti..."
 
@@ -940,12 +942,16 @@ msgid "Name:"
 msgstr "Pavadinimas:"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search notes..."
+msgctxt "@info:placeholder"
 msgid "Search notes..."
 msgstr "Lapelių paieška..."
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search notes...<%1>"
+msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
 msgstr "Lapelių paieška...<%1>"
 

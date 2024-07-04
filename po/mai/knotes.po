@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2010-09-24 16:28+0530\n"
 "Last-Translator: Rajesh Ranjan <rajesh672@gmail.com>\n"
 "Language-Team: Maithili <bhashaghar@googlegroups.com>\n"
@@ -285,9 +285,11 @@ msgid "Select which KNotes folders to show:"
 msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Rename..."
+msgctxt "@info:placeholder"
 msgid "Search..."
-msgstr ""
+msgstr "नाम बदलू..."
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
 #, fuzzy, kde-format
@@ -927,12 +929,14 @@ msgstr ""
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
 #, fuzzy, kde-format
 #| msgid "Rename..."
+msgctxt "@info:placeholder"
 msgid "Search notes..."
 msgstr "नाम बदलू..."
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
 #, fuzzy, kde-format
 #| msgid "Rename..."
+msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
 msgstr "नाम बदलू..."
 
