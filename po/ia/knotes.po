@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-04 00:39+0000\n"
-"PO-Revision-Date: 2024-06-18 14:59+0200\n"
+"PO-Revision-Date: 2024-07-04 12:04+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -272,8 +272,7 @@ msgid "Select which KNotes folders to show:"
 msgstr "Selige qual dossier de KNotes on debe monstrar"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
-#, fuzzy, kde-format
-#| msgid "Search..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search..."
 msgstr "Cerca..."
@@ -900,15 +899,13 @@ msgid "Name:"
 msgstr "Nomine:"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
-#, fuzzy, kde-format
-#| msgid "Search notes..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search notes..."
 msgstr "Cerca notas..."
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
-#, fuzzy, kde-format
-#| msgid "Search notes...<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
 msgstr "Cerca notas...<%1>"

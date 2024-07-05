@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-04 00:39+0000\n"
-"PO-Revision-Date: 2024-06-18 12:58+0300\n"
+"PO-Revision-Date: 2024-07-04 13:52+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -280,11 +280,10 @@ msgid "Select which KNotes folders to show:"
 msgstr "Gösterilecek K Notlar klasörlerini seç:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
-#, fuzzy, kde-format
-#| msgid "Search..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search..."
-msgstr "Ara..."
+msgstr "Ara…"
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
 #, kde-format
@@ -904,18 +903,16 @@ msgid "Name:"
 msgstr "Ad:"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
-#, fuzzy, kde-format
-#| msgid "Search notes..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search notes..."
-msgstr "Notları ara..."
+msgstr "Notları ara…"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
-#, fuzzy, kde-format
-#| msgid "Search notes...<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
-msgstr "Notları ara...<%1>"
+msgstr "Notları ara…<%1>"
 
 #: kontactplugin/knotesselectdeletenotesdialog.cpp:33
 #, kde-format
