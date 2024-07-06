@@ -47,6 +47,7 @@
 #include <KIconEffect>
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KStringHandler>
 #include <KWindowSystem>
 #include <KXMLGUIBuilder>
 #include <KXMLGUIFactory>
@@ -488,13 +489,8 @@ void KNotesApp::updateNoteActions()
     while (i.hasNext()) {
         i.next();
         KNote *note = i.value();
-        QString replaceText;
-        QString realName = note->name();
-        if (realName.length() > 50) {
-            replaceText = realName.left(50) + QLatin1StringView("...");
-        } else {
-            replaceText = realName;
-        }
+        const QString realName = note->name();
+        QString replaceText = KStringHandler::rsqueeze(realName, 50);
 
         auto action = new QAction(replaceText.replace(QLatin1StringView("&"), QStringLiteral("&&")), this);
         action->setToolTip(realName);

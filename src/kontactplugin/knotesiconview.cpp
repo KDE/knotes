@@ -15,6 +15,7 @@
 #include <Akonadi/ItemModifyJob>
 
 #include <KMime/Message>
+#include <KStringHandler>
 
 #include <KIconEffect>
 #include <QEvent>
@@ -170,12 +171,7 @@ void KNotesIconViewItem::setChangeIconTextAndDescription(const QString &iconText
 
 void KNotesIconViewItem::setIconText(const QString &text, bool save)
 {
-    QString replaceText;
-    if (text.length() > 50) {
-        replaceText = text.left(50) + QLatin1StringView("...");
-    } else {
-        replaceText = text;
-    }
+    const QString replaceText = KStringHandler::rsqueeze(text, 50);
 
     setText(replaceText);
     if (save) {
