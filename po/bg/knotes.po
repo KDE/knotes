@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-04 00:39+0000\n"
-"PO-Revision-Date: 2024-06-25 17:35+0200\n"
+"PO-Revision-Date: 2024-07-05 15:56+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -275,8 +275,7 @@ msgid "Select which KNotes folders to show:"
 msgstr "Изберете кои папки на KNotes да се показват:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
-#, fuzzy, kde-format
-#| msgid "Search..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search..."
 msgstr "Търсене..."
@@ -907,15 +906,13 @@ msgid "Name:"
 msgstr "Име:"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
-#, fuzzy, kde-format
-#| msgid "Search notes..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search notes..."
 msgstr "Търсене на бележка..."
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
-#, fuzzy, kde-format
-#| msgid "Search notes...<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
 msgstr "Търсене на бележки...<%1>"

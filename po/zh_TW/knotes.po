@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-04 00:39+0000\n"
-"PO-Revision-Date: 2024-06-26 06:43+0900\n"
+"PO-Revision-Date: 2024-07-05 15:39+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -283,11 +283,10 @@ msgid "Select which KNotes folders to show:"
 msgstr "選擇要顯示哪些 KNotes 資料夾："
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
-#, fuzzy, kde-format
-#| msgid "Search..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search..."
-msgstr "搜尋..."
+msgstr "搜尋…"
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
 #, kde-format
@@ -901,18 +900,16 @@ msgid "Name:"
 msgstr "名稱："
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
-#, fuzzy, kde-format
-#| msgid "Search notes..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search notes..."
-msgstr "搜尋便條..."
+msgstr "搜尋便條…"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
-#, fuzzy, kde-format
-#| msgid "Search notes...<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
-msgstr "搜尋便條...<%1>"
+msgstr "搜尋便條…<%1>"
 
 #: kontactplugin/knotesselectdeletenotesdialog.cpp:33
 #, kde-format
