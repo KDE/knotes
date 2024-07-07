@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-04 00:39+0000\n"
+"POT-Creation-Date: 2024-07-07 00:39+0000\n"
 "PO-Revision-Date: 2024-06-16 17:46+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -40,76 +40,76 @@ msgstr ""
 msgid "KNotes: Sticky notes by KDE"
 msgstr "Kகுறிப்புகள்: கேடியிக்கான ஒட்டும் குறிப்புகள்"
 
-#: apps/knotesapp.cpp:108
+#: apps/knotesapp.cpp:109
 #, kde-format
 msgid "New Note"
 msgstr "புதிய குறிப்பு"
 
-#: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:116 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "கிளிப்போர்டிலிருந்து புதிய குறிப்பு"
 
-#: apps/knotesapp.cpp:120 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:121 kontactplugin/knotes_part.cpp:158
 #, kde-format
 msgid "New Note From Text File..."
 msgstr "உரைக்கோப்பிலிருந்து புதிய குறிப்பு"
 
-#: apps/knotesapp.cpp:124
+#: apps/knotesapp.cpp:125
 #, kde-format
 msgid "Show All Notes"
 msgstr "எல்லா குறிப்புகளையும் காட்டு"
 
-#: apps/knotesapp.cpp:129
+#: apps/knotesapp.cpp:130
 #, kde-format
 msgid "Hide All Notes"
 msgstr "எல்லா குறிப்புகளையும் மறை"
 
-#: apps/knotesapp.cpp:134 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:135 kontactplugin/knotes_part.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "தேர்ந்தெடுத்துள்ள குறிப்புகளை அச்சிடு"
 
-#: apps/knotesapp.cpp:139
+#: apps/knotesapp.cpp:140
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "தேர்ந்தெடுத்துள்ள குறிப்புகளை நீக்கு"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:418 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "உரைக்கோப்பைத் தேர்ந்தெடுக்கவும்"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:418 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "உரைக் கோப்பு"
 
-#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:424 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "உரைக்கோப்பைத் திறப்பதில் சிக்கல்: %1"
 
-#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:424 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "உரைக்கோப்பைத் திறப்பது"
 
-#: apps/knotesapp.cpp:426 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:427 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "'%1' எனும் கோப்பிலிருந்தான குறிப்பு"
 
-#: apps/knotesapp.cpp:519
+#: apps/knotesapp.cpp:515
 #, fuzzy, kde-format
 #| msgid "No Notes"
 msgctxt "@action"
 msgid "No Notes"
 msgstr "எந்த குறிப்பும் இல்லை"
 
-#: apps/knotesapp.cpp:572 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:568 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "அமைப்புகள்"

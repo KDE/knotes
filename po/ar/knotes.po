@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-04 00:39+0000\n"
+"POT-Creation-Date: 2024-07-07 00:39+0000\n"
 "PO-Revision-Date: 2024-06-26 18:56+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -43,75 +43,75 @@ msgstr "امنع إنشاء الملاحظات الجديدة في السّير�
 msgid "KNotes: Sticky notes by KDE"
 msgstr "ملاحظاتك: ملاحظات لاصقة من «كِيدِي»"
 
-#: apps/knotesapp.cpp:108
+#: apps/knotesapp.cpp:109
 #, kde-format
 msgid "New Note"
 msgstr "ملاحظة جديدة"
 
-#: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:116 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "ملاحظة جديدة من الحافظة"
 
-#: apps/knotesapp.cpp:120 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:121 kontactplugin/knotes_part.cpp:158
 #, kde-format
 msgid "New Note From Text File..."
 msgstr "ملاحظة جديدة من ملفّ نصّيّ..."
 
-#: apps/knotesapp.cpp:124
+#: apps/knotesapp.cpp:125
 #, kde-format
 msgid "Show All Notes"
 msgstr "اعرض كلّ الملاحظات"
 
-#: apps/knotesapp.cpp:129
+#: apps/knotesapp.cpp:130
 #, kde-format
 msgid "Hide All Notes"
 msgstr "أخفِ كلّ الملاحظات"
 
-#: apps/knotesapp.cpp:134 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:135 kontactplugin/knotes_part.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "اطبع الملاحظات المحدّدة..."
 
-#: apps/knotesapp.cpp:139
+#: apps/knotesapp.cpp:140
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "احذف الملاحظات المحدّدة..."
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:418 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "اختر ملفًّا نصّيًّا"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:418 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "ملفّ نصّيّ"
 
-#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:424 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "خطأ أثناء فتح الملفّ النّصّيّ: %1"
 
-#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:424 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "افتح ملفًّا نصّيًّا"
 
-#: apps/knotesapp.cpp:426 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:427 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "ملاحظة من الملفّ ’%1‘"
 
-#: apps/knotesapp.cpp:519
+#: apps/knotesapp.cpp:515
 #, kde-format
 msgctxt "@action"
 msgid "No Notes"
 msgstr "لا يوجد ملاحظات"
 
-#: apps/knotesapp.cpp:572 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:568 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "إعدادات"

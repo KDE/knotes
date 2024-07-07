@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-04 00:39+0000\n"
+"POT-Creation-Date: 2024-07-07 00:39+0000\n"
 "PO-Revision-Date: 2014-02-08 00:15+0100\n"
 "Last-Translator: Samir Ribić <megaribi@epn.ba>\n"
 "Language-Team: Bosanski <bs@li.org>\n"
@@ -43,39 +43,39 @@ msgstr "Zabraniti stvaranje novog zapisa na nejedinstvenoj kopiji."
 msgid "KNotes: Sticky notes by KDE"
 msgstr "KNotes: Bilješke za KDE"
 
-#: apps/knotesapp.cpp:108
+#: apps/knotesapp.cpp:109
 #, kde-format
 msgid "New Note"
 msgstr "Nova bilješka"
 
-#: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:116 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "Nova bilješka iz clipboarda"
 
-#: apps/knotesapp.cpp:120 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:121 kontactplugin/knotes_part.cpp:158
 #, fuzzy, kde-format
 #| msgid "New Note From Clipboard"
 msgid "New Note From Text File..."
 msgstr "Nova bilješka iz clipboarda"
 
-#: apps/knotesapp.cpp:124
+#: apps/knotesapp.cpp:125
 #, kde-format
 msgid "Show All Notes"
 msgstr "Prikaži sve zabilješke"
 
-#: apps/knotesapp.cpp:129
+#: apps/knotesapp.cpp:130
 #, kde-format
 msgid "Hide All Notes"
 msgstr "Sakrij sve zabilješke"
 
-#: apps/knotesapp.cpp:134 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:135 kontactplugin/knotes_part.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "Štampaj izabrane bilješku..."
 
-#: apps/knotesapp.cpp:139
+#: apps/knotesapp.cpp:140
 #, fuzzy, kde-format
 #| msgctxt "@action:inmenu"
 #| msgid "Print Selected Notes..."
@@ -83,42 +83,42 @@ msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Štampaj izabrane bilješku..."
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:418 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 #| msgid "Select notes"
 msgid "Select Text File"
 msgstr "Izaberi bilješke"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:418 kontactplugin/knotes_part.cpp:822
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Text File"
 msgstr "Veličina teksta"
 
-#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:424 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr ""
 
-#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:424 kontactplugin/knotes_part.cpp:828
 #, fuzzy, kde-format
 #| msgid "Text Size"
 msgid "Open Text File"
 msgstr "Veličina teksta"
 
-#: apps/knotesapp.cpp:426 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:427 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr ""
 
-#: apps/knotesapp.cpp:519
+#: apps/knotesapp.cpp:515
 #, fuzzy, kde-format
 #| msgid "No Notes"
 msgctxt "@action"
 msgid "No Notes"
 msgstr "Bez bilješki"
 
-#: apps/knotesapp.cpp:572 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:568 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "Postavke akcije"

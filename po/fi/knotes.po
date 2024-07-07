@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-04 00:39+0000\n"
+"POT-Creation-Date: 2024-07-07 00:39+0000\n"
 "PO-Revision-Date: 2022-01-27 21:14+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -52,76 +52,76 @@ msgstr "Älä luo ei-ainutkertaisia muistiinpanoja"
 msgid "KNotes: Sticky notes by KDE"
 msgstr "KNotes: KDE:n tarralaput"
 
-#: apps/knotesapp.cpp:108
+#: apps/knotesapp.cpp:109
 #, kde-format
 msgid "New Note"
 msgstr "Uusi muistiinpano"
 
-#: apps/knotesapp.cpp:115 kontactplugin/knotes_part.cpp:154
+#: apps/knotesapp.cpp:116 kontactplugin/knotes_part.cpp:154
 #, kde-format
 msgid "New Note From Clipboard"
 msgstr "Uusi muistiinpano leikepöydältä"
 
-#: apps/knotesapp.cpp:120 kontactplugin/knotes_part.cpp:158
+#: apps/knotesapp.cpp:121 kontactplugin/knotes_part.cpp:158
 #, kde-format
 msgid "New Note From Text File..."
 msgstr "Uusi muistiinpano tekstitiedostosta…"
 
-#: apps/knotesapp.cpp:124
+#: apps/knotesapp.cpp:125
 #, kde-format
 msgid "Show All Notes"
 msgstr "Näytä kaikki muistiinpanot"
 
-#: apps/knotesapp.cpp:129
+#: apps/knotesapp.cpp:130
 #, kde-format
 msgid "Hide All Notes"
 msgstr "Piilota kaikki muistiinpanot"
 
-#: apps/knotesapp.cpp:134 kontactplugin/knotes_part.cpp:121
+#: apps/knotesapp.cpp:135 kontactplugin/knotes_part.cpp:121
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Print Selected Notes..."
 msgstr "Tulosta valitut muistiinpanot…"
 
-#: apps/knotesapp.cpp:139
+#: apps/knotesapp.cpp:140
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Delete Selected Notes..."
 msgstr "Poista valitut muistiinpanot…"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:418 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Select Text File"
 msgstr "Valitse tekstitiedosto"
 
-#: apps/knotesapp.cpp:417 kontactplugin/knotes_part.cpp:822
+#: apps/knotesapp.cpp:418 kontactplugin/knotes_part.cpp:822
 #, kde-format
 msgid "Text File"
 msgstr "Tekstitiedosto"
 
-#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:424 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Error during open text file: %1"
 msgstr "Virhe avattaessa tekstitiedostoa: %1"
 
-#: apps/knotesapp.cpp:423 kontactplugin/knotes_part.cpp:828
+#: apps/knotesapp.cpp:424 kontactplugin/knotes_part.cpp:828
 #, kde-format
 msgid "Open Text File"
 msgstr "Avaa tekstitiedosto"
 
-#: apps/knotesapp.cpp:426 kontactplugin/knotes_part.cpp:831
+#: apps/knotesapp.cpp:427 kontactplugin/knotes_part.cpp:831
 #, kde-format
 msgid "Note from file '%1'"
 msgstr "Muistiinpano tiedostosta ”%1”"
 
-#: apps/knotesapp.cpp:519
+#: apps/knotesapp.cpp:515
 #, fuzzy, kde-format
 #| msgid "No Notes"
 msgctxt "@action"
 msgid "No Notes"
 msgstr "Ei muistiinpanot"
 
-#: apps/knotesapp.cpp:572 kontactplugin/knotes_part.cpp:587
+#: apps/knotesapp.cpp:568 kontactplugin/knotes_part.cpp:587
 #, kde-format
 msgid "Settings"
 msgstr "Asetukset"
