@@ -253,7 +253,7 @@ void KNotesIconViewItem::saveNoteContent(const QString &subject, const QString &
     auto message = mItem.payload<KMime::Message::Ptr>();
     const QByteArray encoding("utf-8");
     if (!subject.isEmpty()) {
-        message->subject(true)->fromUnicodeString(subject, encoding);
+        message->subject(true)->fromUnicodeString(subject);
     }
     message->contentType(true)->setMimeType(isRichText() ? "text/html" : "text/plain");
     message->contentType()->setCharset(encoding);
@@ -267,7 +267,7 @@ void KNotesIconViewItem::saveNoteContent(const QString &subject, const QString &
 
     if (position >= 0) {
         auto header = new KMime::Headers::Generic("X-Cursor-Position");
-        header->fromUnicodeString(QString::number(position), "utf-8");
+        header->fromUnicodeString(QString::number(position));
         message->setHeader(header);
     }
 
