@@ -1,5 +1,5 @@
 # translation of knotes.po to
-# Version: $Revision: 1684161 $
+# Version: $Revision: 1684772 $
 # Currently maintained by Marcin Bokszczanin
 # SPDX-FileCopyrightText: 2011, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2024 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
 # Piotr Roszatycki <dexter@fnet.pl> 1998
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-07 00:39+0000\n"
-"PO-Revision-Date: 2024-06-01 09:01+0200\n"
+"PO-Revision-Date: 2024-07-14 13:35+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -39,8 +39,7 @@ msgstr ""
 "mboksz@bcig.pl, lukasz.wojnilowicz@gmail.com"
 
 #: apps/knotes_options.h:13
-#, fuzzy, kde-format
-#| msgid "Suppress creation of a new note on a non-unique instance."
+#, kde-format
 msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "Wygaś tworzenie nowej notatki w nie-niepowtarzalnym wystąpieniu."
@@ -284,29 +283,25 @@ msgid "Select which KNotes folders to show:"
 msgstr "Wybierz, który katalog KNotatki pokazywać:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
-#, fuzzy, kde-format
-#| msgid "Search..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search..."
-msgstr "Znajdź..."
+msgstr "Poszukaj..."
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "&Select All"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Select All"
-msgstr "Zaznacz w&szystkie"
+msgstr "Zaznacz wszy&stkie"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
-#, fuzzy, kde-format
-#| msgid "&Unselect All"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Unselect All"
 msgstr "&Odznacz wszystkie"
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
-#, fuzzy, kde-format
-#| msgid "Rename notes..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "Zmień nazwy notatek..."
@@ -916,15 +911,13 @@ msgid "Name:"
 msgstr "Nazwa:"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
-#, fuzzy, kde-format
-#| msgid "Search notes..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search notes..."
 msgstr "Znajdź notatkę..."
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
-#, fuzzy, kde-format
-#| msgid "Search notes...<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
 msgstr "Znajdź notatki...<%1>"
