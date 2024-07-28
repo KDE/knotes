@@ -387,7 +387,7 @@ void KNote::saveNoteContent()
 {
     auto message = mItem.payload<KMime::Message::Ptr>();
     const QByteArray encoding("utf-8");
-    message->subject(true)->fromUnicodeString(name(), encoding);
+    message->subject(true)->fromUnicodeString(name());
     message->contentType(true)->setMimeType(m_editor->acceptRichText() ? "text/html" : "text/plain");
     message->contentType()->setCharset(encoding);
     message->contentTransferEncoding(true)->setEncoding(KMime::Headers::CEquPr);
@@ -395,7 +395,7 @@ void KNote::saveNoteContent()
     message->mainBodyPart()->fromUnicodeString(text().isEmpty() ? QStringLiteral(" ") : text());
 
     auto header = new KMime::Headers::Generic("X-Cursor-Position");
-    header->fromUnicodeString(QString::number(m_editor->cursorPositionFromStart()), "utf-8");
+    header->fromUnicodeString(QString::number(m_editor->cursorPositionFromStart()));
     message->setHeader(header);
 
     message->assemble();

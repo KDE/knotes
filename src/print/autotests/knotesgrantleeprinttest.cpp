@@ -58,7 +58,7 @@ void KNotesGrantleePrintTest::shouldDisplayNoteInfo()
     KMime::Message::Ptr msg(new KMime::Message);
     note.setMimeType(Akonadi::NoteUtils::noteMimeType());
     QString subject = QStringLiteral("Test Note");
-    msg->subject(true)->fromUnicodeString(subject, "us-ascii");
+    msg->subject(true)->fromUnicodeString(subject);
     msg->contentType(true)->setMimeType("text/plain");
     msg->contentType()->setCharset("utf-8");
     msg->contentTransferEncoding(true)->setEncoding(KMime::Headers::CEquPr);
