@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: knotes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"POT-Creation-Date: 2024-07-30 00:42+0000\n"
 "PO-Revision-Date: 2024-07-19 09:51+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -138,12 +138,12 @@ msgctxt "@action::button"
 msgid "Do Not Show"
 msgstr "Ez erakutsi"
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:183
 #, kde-format
 msgid "Note was not created."
 msgstr "Oharra ez da sortu."
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:183
 #, kde-format
 msgid "Create new note"
 msgstr "Sortu ohar berria"

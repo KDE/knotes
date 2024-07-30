@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libnoteshared\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"POT-Creation-Date: 2024-07-30 00:42+0000\n"
 "PO-Revision-Date: 2024-05-29 22:04+02\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -135,12 +135,12 @@ msgctxt "@action::button"
 msgid "Do Not Show"
 msgstr "Ne Montri"
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:183
 #, kde-format
 msgid "Note was not created."
 msgstr "Noto ne estis kreita."
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:183
 #, kde-format
 msgid "Create new note"
 msgstr "Krei novan noton"

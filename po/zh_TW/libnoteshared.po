@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"POT-Creation-Date: 2024-07-30 00:42+0000\n"
 "PO-Revision-Date: 2024-05-30 02:46+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -132,12 +132,12 @@ msgctxt "@action::button"
 msgid "Do Not Show"
 msgstr "不顯示"
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:183
 #, kde-format
 msgid "Note was not created."
 msgstr "便條未建立。"
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:183
 #, kde-format
 msgid "Create new note"
 msgstr "建立新便條"

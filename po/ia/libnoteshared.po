@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"POT-Creation-Date: 2024-07-30 00:42+0000\n"
 "PO-Revision-Date: 2024-05-29 12:41+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -135,12 +135,12 @@ msgctxt "@action::button"
 msgid "Do Not Show"
 msgstr "Non monstrar"
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:183
 #, kde-format
 msgid "Note was not created."
 msgstr "Nota esseva create."
 
-#: job/createnewnotejob.cpp:184
+#: job/createnewnotejob.cpp:183
 #, kde-format
 msgid "Create new note"
 msgstr "Crea nove nota"
