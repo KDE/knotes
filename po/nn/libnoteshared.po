@@ -36,14 +36,12 @@ msgstr "Alarm &ved:"
 
 #: config/noteactionconfig.cpp:22
 #, fuzzy, kde-format
-#| msgid "&Mail action:"
 msgctxt "@label:textbox"
 msgid "&Mail action:"
 msgstr "&E-posthandling:"
 
 #: config/noteactionconfig.cpp:30
 #, fuzzy, kde-format
-#| msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Korleis fungerer dette?</a>"
@@ -74,14 +72,12 @@ msgstr "Utgåande notat"
 
 #: config/notenetworkconfig.cpp:41
 #, fuzzy, kde-format
-#| msgid "&Sender ID:"
 msgctxt "@label:textbox"
 msgid "&Sender ID:"
 msgstr "&Avsendar-ID:"
 
 #: config/notenetworkconfig.cpp:53
 #, fuzzy, kde-format
-#| msgid "&Port:"
 msgctxt "@label:textbox"
 msgid "&Port:"
 msgstr "&Port:"
@@ -151,14 +147,12 @@ msgstr "Legg til nytt notat"
 
 #: network/notehostdialog.cpp:43
 #, fuzzy, kde-format
-#| msgid "Select recipient:"
 msgctxt "@label:textbox"
 msgid "Select recipient:"
 msgstr "Vel mottakar:"
 
 #: network/notehostdialog.cpp:59
 #, fuzzy, kde-format
-#| msgid "Hostname or IP address:"
 msgctxt "@label:textbox"
 msgid "Hostname or IP address:"
 msgstr "Vertsnamn/IP-adresse:"

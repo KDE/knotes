@@ -104,7 +104,6 @@ msgstr ""
 
 #: apps/knotesapp.cpp:515
 #, fuzzy, kde-format
-#| msgid "Notes"
 msgctxt "@action"
 msgid "No Notes"
 msgstr "Muittuhusat"
@@ -294,7 +293,6 @@ msgstr ""
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
 #, fuzzy, kde-format
-#| msgid "Rename..."
 msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "Bija ođđa nama …"
@@ -337,14 +335,12 @@ msgstr ""
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
 #, fuzzy, kde-format
-#| msgid "&Text color:"
 msgctxt "@label:textbox"
 msgid "&Text color:"
 msgstr "&Teakstaivdni:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
 #, fuzzy, kde-format
-#| msgid "&Background color:"
 msgctxt "@label:textbox"
 msgid "&Background color:"
 msgstr " &Duogášivdni:"
@@ -389,7 +385,6 @@ msgstr ""
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
 #, fuzzy, kde-format
-#| msgid "&Text color:"
 msgctxt "@label:textbox"
 msgid "Text font:"
 msgstr "&Teakstaivdni:"
@@ -579,7 +574,6 @@ msgstr ""
 
 #: knoteedit.cpp:114
 #, fuzzy, kde-format
-#| msgid "Text Color..."
 msgctxt "@action"
 msgid "Text Color..."
 msgstr "Teakstaivdni …"
@@ -895,14 +889,12 @@ msgstr ""
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
 #, fuzzy, kde-format
-#| msgid "Rename..."
 msgctxt "@info:placeholder"
 msgid "Search notes..."
 msgstr "Bija ođđa nama …"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
 #, fuzzy, kde-format
-#| msgid "Rename..."
 msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
 msgstr "Bija ođđa nama …"
@@ -926,7 +918,6 @@ msgstr ""
 
 #: kontactplugin/summarywidget.cpp:88
 #, fuzzy, kde-format
-#| msgid "Notes"
 msgctxt "@label:textbox"
 msgid "No notes found"
 msgstr "Muittuhusat"
@@ -958,8 +949,6 @@ msgstr "Nanne sihkoma"
 
 #: notes/knote.cpp:134
 #, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Delete"
 msgctxt "@action:button"
 msgid "&Delete"
 msgstr "Sihko"

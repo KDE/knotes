@@ -41,7 +41,6 @@ msgstr ""
 
 #: apps/knotes_options.h:13
 #, fuzzy, kde-format
-#| msgid "Suppress creation of a new note on a non-unique instance."
 msgctxt "@info:shell"
 msgid "Suppress creation of a new note on a non-unique instance."
 msgstr "Ikke opprett nytt notat for hendelse som ikke er unik."
@@ -115,7 +114,6 @@ msgstr "Notat fra fila «%1»"
 
 #: apps/knotesapp.cpp:515
 #, fuzzy, kde-format
-#| msgid "No Notes"
 msgctxt "@action"
 msgid "No Notes"
 msgstr "Ingen notater"
@@ -156,7 +154,6 @@ msgstr "Vedlikeholder"
 
 #: apps/main.cpp:59
 #, fuzzy, kde-format
-#| msgid "Guillermo Antonio Amaral Bastidas"
 msgctxt "@info:credit"
 msgid "Guillermo Antonio Amaral Bastidas"
 msgstr "Guillermo Antonio Amaral Bastidas"
@@ -174,7 +171,6 @@ msgstr ""
 
 #: apps/main.cpp:61
 #, fuzzy, kde-format
-#| msgid "Bernd Johannes Wuebben"
 msgctxt "@info:credit"
 msgid "Bernd Johannes Wuebben"
 msgstr "Bernd Johannes Wuebben"
@@ -186,7 +182,6 @@ msgstr "Opprinnelig forfatter av KNotes"
 
 #: apps/main.cpp:62
 #, fuzzy, kde-format
-#| msgid "Wynn Wilkes"
 msgctxt "@info:credit"
 msgid "Wynn Wilkes"
 msgstr "Wynn Wilkes"
@@ -198,7 +193,6 @@ msgstr "Portet KNotes til KDE 2"
 
 #: apps/main.cpp:63
 #, fuzzy, kde-format
-#| msgid "Daniel Martin"
 msgctxt "@info:credit"
 msgid "Daniel Martin"
 msgstr "Daniel Martin"
@@ -210,7 +204,6 @@ msgstr "Nettverksgrensesnitt:"
 
 #: apps/main.cpp:64
 #, fuzzy, kde-format
-#| msgid "Bo Thorsen"
 msgctxt "@info:credit"
 msgid "Bo Thorsen"
 msgstr "Bo Thorsen"
@@ -222,7 +215,6 @@ msgstr "Startet integrering i rammeverk for KDE-ressurser"
 
 #: apps/main.cpp:65
 #, fuzzy, kde-format
-#| msgid "Bera Debajyoti"
 msgctxt "@info:credit"
 msgid "Bera Debajyoti"
 msgstr "Bera Debajyoti"
@@ -235,56 +227,48 @@ msgstr ""
 
 #: apps/main.cpp:68
 #, fuzzy, kde-format
-#| msgid "Matthias Ettrich"
 msgctxt "@info:credit"
 msgid "Matthias Ettrich"
 msgstr "Matthias Ettrich"
 
 #: apps/main.cpp:69
 #, fuzzy, kde-format
-#| msgid "David Faure"
 msgctxt "@info:credit"
 msgid "David Faure"
 msgstr "David Faure"
 
 #: apps/main.cpp:70
 #, fuzzy, kde-format
-#| msgid "Matthias Kiefer"
 msgctxt "@info:credit"
 msgid "Matthias Kiefer"
 msgstr "Matthias Kiefer"
 
 #: apps/main.cpp:71
 #, fuzzy, kde-format
-#| msgid "Luboš Luňák"
 msgctxt "@info:credit"
 msgid "Luboš Luňák"
 msgstr "Luboš Luňák"
 
 #: apps/main.cpp:72
 #, fuzzy, kde-format
-#| msgid "Dirk A. Mueller"
 msgctxt "@info:credit"
 msgid "Dirk A. Mueller"
 msgstr "Dirk A. Mueller"
 
 #: apps/main.cpp:73
 #, fuzzy, kde-format
-#| msgid "Carsten Pfeiffer"
 msgctxt "@info:credit"
 msgid "Carsten Pfeiffer"
 msgstr "Carsten Pfeiffer"
 
 #: apps/main.cpp:74
 #, fuzzy, kde-format
-#| msgid "Harri Porten"
 msgctxt "@info:credit"
 msgid "Harri Porten"
 msgstr "Harri Porten"
 
 #: apps/main.cpp:75
 #, fuzzy, kde-format
-#| msgid "Espen Sand"
 msgctxt "@info:credit"
 msgid "Espen Sand"
 msgstr "Espen Sand"
@@ -296,35 +280,30 @@ msgstr "Mapper"
 
 #: configdialog/knotecollectionconfigwidget.cpp:103
 #, fuzzy, kde-format
-#| msgid "Select which KNotes folders to show:"
 msgctxt "@label:textbox"
 msgid "Select which KNotes folders to show:"
 msgstr "Velg hvilke KNotes-mapper som skal vises:"
 
 #: configdialog/knotecollectionconfigwidget.cpp:134
 #, fuzzy, kde-format
-#| msgid "Search..."
 msgctxt "@info:placeholder"
 msgid "Search..."
 msgstr "Søk …"
 
 #: configdialog/knotecollectionconfigwidget.cpp:152
 #, fuzzy, kde-format
-#| msgid "&Select All"
 msgctxt "@action:button"
 msgid "&Select All"
 msgstr "&Merk alle"
 
 #: configdialog/knotecollectionconfigwidget.cpp:156
 #, fuzzy, kde-format
-#| msgid "&Unselect All"
 msgctxt "@action:button"
 msgid "&Unselect All"
 msgstr "&Fravelg alle"
 
 #: configdialog/knotecollectionconfigwidget.cpp:161
 #, fuzzy, kde-format
-#| msgid "Rename notes..."
 msgctxt "@action:button"
 msgid "Rename notes..."
 msgstr "Gi notater nye navn …"
@@ -367,14 +346,12 @@ msgstr "Sett nytt navn på notat"
 
 #: configdialog/knotedisplayconfigwidget.cpp:26
 #, fuzzy, kde-format
-#| msgid "&Text color:"
 msgctxt "@label:textbox"
 msgid "&Text color:"
 msgstr "&Tekstfarge:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:35
 #, fuzzy, kde-format
-#| msgid "&Background color:"
 msgctxt "@label:textbox"
 msgid "&Background color:"
 msgstr "&Bakgrunnsfarge:"
@@ -391,21 +368,18 @@ msgstr "&Husk skrivebord"
 
 #: configdialog/knotedisplayconfigwidget.cpp:51
 #, fuzzy, kde-format
-#| msgid "Default &width:"
 msgctxt "@label:textbox"
 msgid "Default &width:"
 msgstr "Standard&bredde:"
 
 #: configdialog/knotedisplayconfigwidget.cpp:62
 #, fuzzy, kde-format
-#| msgid "Default &height:"
 msgctxt "@label:textbox"
 msgid "Default &height:"
 msgstr "Standard&høyde:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:24
 #, fuzzy, kde-format
-#| msgid "&Tab size:"
 msgctxt "@label:textbox"
 msgid "&Tab size:"
 msgstr "&Tabulatorbredde:"
@@ -422,14 +396,12 @@ msgstr "&Rik tekst"
 
 #: configdialog/knoteeditorconfigwidget.cpp:41
 #, fuzzy, kde-format
-#| msgid "Text font:"
 msgctxt "@label:textbox"
 msgid "Text font:"
 msgstr "Tekstskrift:"
 
 #: configdialog/knoteeditorconfigwidget.cpp:49
 #, fuzzy, kde-format
-#| msgid "Title font:"
 msgctxt "@label:textbox"
 msgid "Title font:"
 msgstr "Tittelskrift:"
@@ -516,14 +488,12 @@ msgstr "Vis i systemkurven antall notater"
 
 #: knoteconfigmodule.cpp:87
 #, fuzzy, kde-format
-#| msgid "Default Title:"
 msgctxt "@label:textbox"
 msgid "Default Title:"
 msgstr "Standard tittel:"
 
 #: knoteconfigmodule.cpp:94
 #, fuzzy, kde-format
-#| msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgctxt "@label:textbox"
 msgid "<a href=\"whatsthis\">How does this work?</a>"
 msgstr "<a href=\"whatsthis\">Hvordan virker dette?</a>"
@@ -541,14 +511,12 @@ msgstr ""
 
 #: knoteconfigmodule.cpp:151
 #, fuzzy, kde-format
-#| msgid "Theme:"
 msgctxt "@label:textbox"
 msgid "Theme:"
 msgstr "Tema:"
 
 #: knoteconfigmodule.cpp:161
 #, fuzzy, kde-format
-#| msgid "Download new printing themes"
 msgctxt "@info:tooltip"
 msgid "Download new printing themes"
 msgstr "Last ned nye utskriftstemaer"
@@ -620,7 +588,6 @@ msgstr "Mindre innrykk"
 
 #: knoteedit.cpp:114
 #, fuzzy, kde-format
-#| msgid "Text Color..."
 msgctxt "@action"
 msgid "Text Color..."
 msgstr "Tekstfarge …"
@@ -758,7 +725,6 @@ msgstr "Lås"
 
 #: kontactplugin/knotes_part.cpp:169 notes/knote.cpp:666
 #, fuzzy, kde-format
-#| msgid "Unlock"
 msgctxt "@action:button"
 msgid "Unlock"
 msgstr "Lås opp"
@@ -939,14 +905,12 @@ msgstr ""
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:17
 #, fuzzy, kde-format
-#| msgid "Search..."
 msgctxt "@info:placeholder"
 msgid "Search notes..."
 msgstr "Søk …"
 
 #: kontactplugin/knoteslistwidgetsearchline.cpp:24
 #, fuzzy, kde-format
-#| msgid "Rename notes..."
 msgctxt "@info:placeholder"
 msgid "Search notes...<%1>"
 msgstr "Gi notater nye navn …"
@@ -970,7 +934,6 @@ msgstr ""
 
 #: kontactplugin/summarywidget.cpp:88
 #, fuzzy, kde-format
-#| msgid "No Notes"
 msgctxt "@label:textbox"
 msgid "No notes found"
 msgstr "Ingen notater"
@@ -1002,7 +965,6 @@ msgstr "Bekreft sletting"
 
 #: notes/knote.cpp:134
 #, fuzzy, kde-format
-#| msgid "&Delete"
 msgctxt "@action:button"
 msgid "&Delete"
 msgstr "&Slett"
@@ -1070,7 +1032,6 @@ msgstr "Til skrivebord"
 
 #: notes/knote.cpp:719
 #, fuzzy, kde-format
-#| msgid "Walk Through Notes"
 msgctxt "@action"
 msgid "Walk Through Notes"
 msgstr "Gå gjennom notater"
@@ -1104,7 +1065,6 @@ msgstr "Utskriftfeil"
 
 #: print/knoteprintselectednotesdialog.cpp:51
 #, fuzzy, kde-format
-#| msgid "Printing theme:"
 msgctxt "@label:textbox"
 msgid "Printing theme:"
 msgstr "Utskriftstema:"
@@ -1127,7 +1087,6 @@ msgstr ""
 
 #: print/knoteprintselectthemedialog.cpp:39
 #, fuzzy, kde-format
-#| msgid "Themes:"
 msgctxt "@label:textbox"
 msgid "Themes:"
 msgstr "Temaer:"

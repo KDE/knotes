@@ -27,7 +27,6 @@ msgstr "Alarm"
 
 #: notesagentalarmdialog.cpp:56
 #, fuzzy, kde-format
-#| msgid "The following notes triggered alarms:"
 msgctxt "@label:textbox"
 msgid "The following notes triggered alarms:"
 msgstr "Dette notata utløyste alarmar:"
@@ -39,14 +38,12 @@ msgstr "Fjern alarm"
 
 #: notesagentalarmdialog.cpp:96
 #, fuzzy, kde-format
-#| msgid "Show Note..."
 msgctxt "@action"
 msgid "Show Note..."
 msgstr "Vis notat …"
 
 #: notesagentalarmdialog.cpp:98
 #, fuzzy, kde-format
-#| msgid "Modify Alarm..."
 msgctxt "@action"
 msgid "Modify Alarm..."
 msgstr "Endra alarm …"
@@ -105,7 +102,6 @@ msgstr "© 2013–%1 Laurent Montel"
 
 #: notesagentsettingsdialog.cpp:64
 #, fuzzy, kde-format
-#| msgid "Laurent Montel"
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
